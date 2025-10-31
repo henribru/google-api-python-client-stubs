@@ -134,6 +134,13 @@ class FirebaseAppDistributionResource(googleapiclient.discovery.Resource):
                     body: GoogleFirebaseAppdistroV1alphaBatchDeleteTestCasesRequest = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleProtobufEmptyHttpRequest: ...
+                def batchUpdate(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleFirebaseAppdistroV1alphaBatchUpdateTestCasesRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleFirebaseAppdistroV1alphaBatchUpdateTestCasesResponseHttpRequest: ...
                 def create(
                     self,
                     *,
@@ -169,6 +176,7 @@ class FirebaseAppDistributionResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: GoogleFirebaseAppdistroV1alphaTestCase = ...,
+                    allowMissing: bool = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleFirebaseAppdistroV1alphaTestCaseHttpRequest: ...
 
@@ -220,6 +228,16 @@ class GoogleFirebaseAppdistroV1alphaAppHttpRequest(googleapiclient.http.HttpRequ
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleFirebaseAppdistroV1alphaApp: ...
+
+@typing.type_check_only
+class GoogleFirebaseAppdistroV1alphaBatchUpdateTestCasesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleFirebaseAppdistroV1alphaBatchUpdateTestCasesResponse: ...
 
 @typing.type_check_only
 class GoogleFirebaseAppdistroV1alphaCancelReleaseTestResponseHttpRequest(

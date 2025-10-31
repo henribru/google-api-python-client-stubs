@@ -315,6 +315,8 @@ class RestrictionChange(typing_extensions.TypedDict, total=False):
         "ITEM_DUPLICATION",
         "DRIVE_FILE_STREAM",
         "FILE_ORGANIZER_CAN_SHARE_FOLDERS",
+        "READERS_CAN_DOWNLOAD",
+        "WRITERS_CAN_DOWNLOAD",
     ]
     newRestriction: typing_extensions.Literal[
         "RESTRICTION_UNSPECIFIED", "UNRESTRICTED", "FULLY_RESTRICTED"

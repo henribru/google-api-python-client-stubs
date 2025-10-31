@@ -341,6 +341,8 @@ class ExecutionStageState(typing_extensions.TypedDict, total=False):
         "JOB_STATE_CANCELLING",
         "JOB_STATE_QUEUED",
         "JOB_STATE_RESOURCE_CLEANING_UP",
+        "JOB_STATE_PAUSING",
+        "JOB_STATE_PAUSED",
     ]
 
 @typing.type_check_only
@@ -528,6 +530,8 @@ class Job(typing_extensions.TypedDict, total=False):
         "JOB_STATE_CANCELLING",
         "JOB_STATE_QUEUED",
         "JOB_STATE_RESOURCE_CLEANING_UP",
+        "JOB_STATE_PAUSING",
+        "JOB_STATE_PAUSED",
     ]
     currentStateTime: str
     environment: Environment
@@ -555,6 +559,8 @@ class Job(typing_extensions.TypedDict, total=False):
         "JOB_STATE_CANCELLING",
         "JOB_STATE_QUEUED",
         "JOB_STATE_RESOURCE_CLEANING_UP",
+        "JOB_STATE_PAUSING",
+        "JOB_STATE_PAUSED",
     ]
     runtimeUpdatableParams: RuntimeUpdatableParams
     satisfiesPzi: bool

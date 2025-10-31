@@ -193,7 +193,11 @@ class InstancePolicy(typing_extensions.TypedDict, total=False):
     machineType: str
     minCpuPlatform: str
     provisioningModel: typing_extensions.Literal[
-        "PROVISIONING_MODEL_UNSPECIFIED", "STANDARD", "SPOT", "PREEMPTIBLE"
+        "PROVISIONING_MODEL_UNSPECIFIED",
+        "STANDARD",
+        "SPOT",
+        "PREEMPTIBLE",
+        "RESERVATION_BOUND",
     ]
     reservation: str
 
@@ -210,7 +214,11 @@ class InstanceStatus(typing_extensions.TypedDict, total=False):
     bootDisk: Disk
     machineType: str
     provisioningModel: typing_extensions.Literal[
-        "PROVISIONING_MODEL_UNSPECIFIED", "STANDARD", "SPOT", "PREEMPTIBLE"
+        "PROVISIONING_MODEL_UNSPECIFIED",
+        "STANDARD",
+        "SPOT",
+        "PREEMPTIBLE",
+        "RESERVATION_BOUND",
     ]
     taskPack: str
 
@@ -275,6 +283,7 @@ class ListLocationsResponse(typing_extensions.TypedDict, total=False):
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListTasksResponse(typing_extensions.TypedDict, total=False):

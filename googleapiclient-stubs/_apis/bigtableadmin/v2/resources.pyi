@@ -26,6 +26,7 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
+                    returnPartialSuccess: bool = ...,
                     **kwargs: typing.Any,
                 ) -> ListOperationsResponseHttpRequest: ...
                 def list_next(
@@ -36,8 +37,6 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
 
             def operations(self) -> OperationsResource: ...
 
-        def cancel(self, *, name: str, **kwargs: typing.Any) -> EmptyHttpRequest: ...
-        def delete(self, *, name: str, **kwargs: typing.Any) -> EmptyHttpRequest: ...
         def get(self, *, name: str, **kwargs: typing.Any) -> OperationHttpRequest: ...
         def projects(self) -> ProjectsResource: ...
 
@@ -282,7 +281,13 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
                     self, *, name: str, etag: str = ..., **kwargs: typing.Any
                 ) -> EmptyHttpRequest: ...
                 def get(
-                    self, *, name: str, **kwargs: typing.Any
+                    self,
+                    *,
+                    name: str,
+                    view: typing_extensions.Literal[
+                        "VIEW_UNSPECIFIED", "SCHEMA_VIEW", "REPLICATION_VIEW", "FULL"
+                    ] = ...,
+                    **kwargs: typing.Any,
                 ) -> MaterializedViewHttpRequest: ...
                 def getIamPolicy(
                     self,
@@ -297,6 +302,9 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
+                    view: typing_extensions.Literal[
+                        "VIEW_UNSPECIFIED", "SCHEMA_VIEW", "REPLICATION_VIEW", "FULL"
+                    ] = ...,
                     **kwargs: typing.Any,
                 ) -> ListMaterializedViewsResponseHttpRequest: ...
                 def list_next(
@@ -427,6 +435,12 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
                         parent: str,
                         pageSize: int = ...,
                         pageToken: str = ...,
+                        view: typing_extensions.Literal[
+                            "SCHEMA_BUNDLE_VIEW_UNSPECIFIED",
+                            "NAME_ONLY",
+                            "BASIC",
+                            "FULL",
+                        ] = ...,
                         **kwargs: typing.Any,
                     ) -> ListSchemaBundlesResponseHttpRequest: ...
                     def list_next(
@@ -641,9 +655,6 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
 
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
-            def get(
-                self, *, name: str, **kwargs: typing.Any
-            ) -> LocationHttpRequest: ...
             def list(
                 self,
                 *,
@@ -837,14 +848,6 @@ class ListTablesResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListTablesResponse: ...
-
-@typing.type_check_only
-class LocationHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> Location: ...
 
 @typing.type_check_only
 class LogicalViewHttpRequest(googleapiclient.http.HttpRequest):

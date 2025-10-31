@@ -209,6 +209,7 @@ class ListLocationsResponse(typing_extensions.TypedDict, total=False):
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListRuntimesResponse(typing_extensions.TypedDict, total=False):
@@ -393,6 +394,7 @@ class UpgradeInfo(typing_extensions.TypedDict, total=False):
     upgradeState: typing_extensions.Literal[
         "UPGRADE_STATE_UNSPECIFIED",
         "ELIGIBLE_FOR_2ND_GEN_UPGRADE",
+        "INELIGIBLE_FOR_UPGRADE_UNTIL_REDEPLOYMENT",
         "UPGRADE_OPERATION_IN_PROGRESS",
         "SETUP_FUNCTION_UPGRADE_CONFIG_SUCCESSFUL",
         "SETUP_FUNCTION_UPGRADE_CONFIG_ERROR",

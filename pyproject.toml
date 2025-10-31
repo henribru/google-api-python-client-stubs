@@ -13,7 +13,7 @@ classifiers = [
    "Typing :: Stubs Only",
 ]
 dependencies = [
-    "google-api-python-client>=2.176.0",
+    "google-api-python-client>=2.186.0",
     "types-httplib2>=0.22.0.2",
     "typing-extensions>=3.10.0",
 ]

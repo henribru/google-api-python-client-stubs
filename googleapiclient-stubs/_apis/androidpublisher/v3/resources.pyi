@@ -579,6 +579,179 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class MonetizationResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
+        class OnetimeproductsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class PurchaseOptionsResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class OffersResource(googleapiclient.discovery.Resource):
+                    def activate(
+                        self,
+                        *,
+                        packageName: str,
+                        productId: str,
+                        purchaseOptionId: str,
+                        offerId: str,
+                        body: ActivateOneTimeProductOfferRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> OneTimeProductOfferHttpRequest: ...
+                    def batchDelete(
+                        self,
+                        *,
+                        packageName: str,
+                        productId: str,
+                        purchaseOptionId: str,
+                        body: BatchDeleteOneTimeProductOffersRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> googleapiclient.http.HttpRequest: ...
+                    def batchGet(
+                        self,
+                        *,
+                        packageName: str,
+                        productId: str,
+                        purchaseOptionId: str,
+                        body: BatchGetOneTimeProductOffersRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> BatchGetOneTimeProductOffersResponseHttpRequest: ...
+                    def batchUpdate(
+                        self,
+                        *,
+                        packageName: str,
+                        productId: str,
+                        purchaseOptionId: str,
+                        body: BatchUpdateOneTimeProductOffersRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> BatchUpdateOneTimeProductOffersResponseHttpRequest: ...
+                    def batchUpdateStates(
+                        self,
+                        *,
+                        packageName: str,
+                        productId: str,
+                        purchaseOptionId: str,
+                        body: BatchUpdateOneTimeProductOfferStatesRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> BatchUpdateOneTimeProductOfferStatesResponseHttpRequest: ...
+                    def cancel(
+                        self,
+                        *,
+                        packageName: str,
+                        productId: str,
+                        purchaseOptionId: str,
+                        offerId: str,
+                        body: CancelOneTimeProductOfferRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> OneTimeProductOfferHttpRequest: ...
+                    def deactivate(
+                        self,
+                        *,
+                        packageName: str,
+                        productId: str,
+                        purchaseOptionId: str,
+                        offerId: str,
+                        body: DeactivateOneTimeProductOfferRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> OneTimeProductOfferHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        packageName: str,
+                        productId: str,
+                        purchaseOptionId: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> ListOneTimeProductOffersResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListOneTimeProductOffersResponseHttpRequest,
+                        previous_response: ListOneTimeProductOffersResponse,
+                    ) -> ListOneTimeProductOffersResponseHttpRequest | None: ...
+
+                def batchDelete(
+                    self,
+                    *,
+                    packageName: str,
+                    productId: str,
+                    body: BatchDeletePurchaseOptionsRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> googleapiclient.http.HttpRequest: ...
+                def batchUpdateStates(
+                    self,
+                    *,
+                    packageName: str,
+                    productId: str,
+                    body: BatchUpdatePurchaseOptionStatesRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> BatchUpdatePurchaseOptionStatesResponseHttpRequest: ...
+                def offers(self) -> OffersResource: ...
+
+            def batchDelete(
+                self,
+                *,
+                packageName: str,
+                body: BatchDeleteOneTimeProductsRequest = ...,
+                **kwargs: typing.Any,
+            ) -> googleapiclient.http.HttpRequest: ...
+            def batchGet(
+                self,
+                *,
+                packageName: str,
+                productIds: str | _list[str] = ...,
+                **kwargs: typing.Any,
+            ) -> BatchGetOneTimeProductsResponseHttpRequest: ...
+            def batchUpdate(
+                self,
+                *,
+                packageName: str,
+                body: BatchUpdateOneTimeProductsRequest = ...,
+                **kwargs: typing.Any,
+            ) -> BatchUpdateOneTimeProductsResponseHttpRequest: ...
+            def delete(
+                self,
+                *,
+                packageName: str,
+                productId: str,
+                latencyTolerance: typing_extensions.Literal[
+                    "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
+                    "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
+                    "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT",
+                ] = ...,
+                **kwargs: typing.Any,
+            ) -> googleapiclient.http.HttpRequest: ...
+            def get(
+                self, *, packageName: str, productId: str, **kwargs: typing.Any
+            ) -> OneTimeProductHttpRequest: ...
+            def list(
+                self,
+                *,
+                packageName: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any,
+            ) -> ListOneTimeProductsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListOneTimeProductsResponseHttpRequest,
+                previous_response: ListOneTimeProductsResponse,
+            ) -> ListOneTimeProductsResponseHttpRequest | None: ...
+            def patch(
+                self,
+                *,
+                packageName: str,
+                productId: str,
+                body: OneTimeProduct = ...,
+                allowMissing: bool = ...,
+                latencyTolerance: typing_extensions.Literal[
+                    "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
+                    "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
+                    "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT",
+                ] = ...,
+                regionsVersion_version: str = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any,
+            ) -> OneTimeProductHttpRequest: ...
+            def purchaseOptions(self) -> PurchaseOptionsResource: ...
+
+        @typing.type_check_only
         class SubscriptionsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class BasePlansResource(googleapiclient.discovery.Resource):
@@ -823,6 +996,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
             body: ConvertRegionPricesRequest = ...,
             **kwargs: typing.Any,
         ) -> ConvertRegionPricesResponseHttpRequest: ...
+        def onetimeproducts(self) -> OnetimeproductsResource: ...
         def subscriptions(self) -> SubscriptionsResource: ...
 
     @typing.type_check_only
@@ -937,6 +1111,14 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
 
         @typing.type_check_only
         class Subscriptionsv2Resource(googleapiclient.discovery.Resource):
+            def cancel(
+                self,
+                *,
+                packageName: str,
+                token: str,
+                body: CancelSubscriptionPurchaseRequest = ...,
+                **kwargs: typing.Any,
+            ) -> CancelSubscriptionPurchaseResponseHttpRequest: ...
             def get(
                 self, *, packageName: str, token: str, **kwargs: typing.Any
             ) -> SubscriptionPurchaseV2HttpRequest: ...
@@ -1156,6 +1338,22 @@ class AppRecoveryActionHttpRequest(googleapiclient.http.HttpRequest):
     ) -> AppRecoveryAction: ...
 
 @typing.type_check_only
+class BatchGetOneTimeProductOffersResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> BatchGetOneTimeProductOffersResponse: ...
+
+@typing.type_check_only
+class BatchGetOneTimeProductsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> BatchGetOneTimeProductsResponse: ...
+
+@typing.type_check_only
 class BatchGetOrdersResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -1194,6 +1392,44 @@ class BatchUpdateBasePlanStatesResponseHttpRequest(googleapiclient.http.HttpRequ
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> BatchUpdateBasePlanStatesResponse: ...
+
+@typing.type_check_only
+class BatchUpdateOneTimeProductOfferStatesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> BatchUpdateOneTimeProductOfferStatesResponse: ...
+
+@typing.type_check_only
+class BatchUpdateOneTimeProductOffersResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> BatchUpdateOneTimeProductOffersResponse: ...
+
+@typing.type_check_only
+class BatchUpdateOneTimeProductsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> BatchUpdateOneTimeProductsResponse: ...
+
+@typing.type_check_only
+class BatchUpdatePurchaseOptionStatesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> BatchUpdatePurchaseOptionStatesResponse: ...
 
 @typing.type_check_only
 class BatchUpdateSubscriptionOfferStatesResponseHttpRequest(
@@ -1246,6 +1482,14 @@ class CancelAppRecoveryResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> CancelAppRecoveryResponse: ...
+
+@typing.type_check_only
+class CancelSubscriptionPurchaseResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> CancelSubscriptionPurchaseResponse: ...
 
 @typing.type_check_only
 class ConvertRegionPricesResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -1400,6 +1644,22 @@ class ListDeviceTierConfigsResponseHttpRequest(googleapiclient.http.HttpRequest)
     ) -> ListDeviceTierConfigsResponse: ...
 
 @typing.type_check_only
+class ListOneTimeProductOffersResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListOneTimeProductOffersResponse: ...
+
+@typing.type_check_only
+class ListOneTimeProductsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListOneTimeProductsResponse: ...
+
+@typing.type_check_only
 class ListSubscriptionOffersResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -1446,6 +1706,22 @@ class MigrateBasePlanPricesResponseHttpRequest(googleapiclient.http.HttpRequest)
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> MigrateBasePlanPricesResponse: ...
+
+@typing.type_check_only
+class OneTimeProductHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> OneTimeProduct: ...
+
+@typing.type_check_only
+class OneTimeProductOfferHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> OneTimeProductOffer: ...
 
 @typing.type_check_only
 class OrderHttpRequest(googleapiclient.http.HttpRequest):

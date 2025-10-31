@@ -301,6 +301,7 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                         filter: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
+                        returnPartialSuccess: bool = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
                     def list_next(
@@ -311,6 +312,15 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
 
                 @typing.type_check_only
                 class PlacementsResource(googleapiclient.discovery.Resource):
+                    def conversationalSearch(
+                        self,
+                        *,
+                        placement: str,
+                        body: GoogleCloudRetailV2betaConversationalSearchRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> (
+                        GoogleCloudRetailV2betaConversationalSearchResponseHttpRequest
+                    ): ...
                     def predict(
                         self,
                         *,
@@ -340,6 +350,15 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                         body: GoogleCloudRetailV2betaAddControlRequest = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudRetailV2betaServingConfigHttpRequest: ...
+                    def conversationalSearch(
+                        self,
+                        *,
+                        placement: str,
+                        body: GoogleCloudRetailV2betaConversationalSearchRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> (
+                        GoogleCloudRetailV2betaConversationalSearchResponseHttpRequest
+                    ): ...
                     def create(
                         self,
                         *,
@@ -585,6 +604,7 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
+                    returnPartialSuccess: bool = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
                 def list_next(
@@ -608,6 +628,7 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
+                returnPartialSuccess: bool = ...,
                 **kwargs: typing.Any,
             ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
             def list_next(
@@ -735,6 +756,16 @@ class GoogleCloudRetailV2betaConversationalSearchCustomizationConfigHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudRetailV2betaConversationalSearchCustomizationConfig: ...
+
+@typing.type_check_only
+class GoogleCloudRetailV2betaConversationalSearchResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudRetailV2betaConversationalSearchResponse: ...
 
 @typing.type_check_only
 class GoogleCloudRetailV2betaGenerativeQuestionConfigHttpRequest(

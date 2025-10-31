@@ -14,6 +14,20 @@ _list = list
 @typing.type_check_only
 class CloudOSLoginResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
+    class ProjectsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class LocationsResource(googleapiclient.discovery.Resource):
+            def signSshPublicKey(
+                self,
+                *,
+                parent: str,
+                body: SignSshPublicKeyRequest = ...,
+                **kwargs: typing.Any,
+            ) -> SignSshPublicKeyResponseHttpRequest: ...
+
+        def locations(self) -> LocationsResource: ...
+
+    @typing.type_check_only
     class UsersResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class ProjectsResource(googleapiclient.discovery.Resource):
@@ -73,6 +87,7 @@ class CloudOSLoginResource(googleapiclient.discovery.Resource):
         ]
         | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
+    def projects(self) -> ProjectsResource: ...
     def users(self) -> UsersResource: ...
 
 @typing.type_check_only
@@ -98,6 +113,14 @@ class LoginProfileHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> LoginProfile: ...
+
+@typing.type_check_only
+class SignSshPublicKeyResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> SignSshPublicKeyResponse: ...
 
 @typing.type_check_only
 class SshPublicKeyHttpRequest(googleapiclient.http.HttpRequest):

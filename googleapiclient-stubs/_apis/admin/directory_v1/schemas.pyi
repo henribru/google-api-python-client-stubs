@@ -265,6 +265,9 @@ class ChromeOsDevice(typing_extensions.TypedDict, total=False):
     orgUnitPath: str
     osUpdateStatus: OsUpdateStatus
     osVersion: str
+    osVersionCompliance: typing_extensions.Literal[
+        "complianceUnspecified", "compliant", "pending", "notCompliant"
+    ]
     platformVersion: str
     recentUsers: _list[dict[str, typing.Any]]
     screenshotFiles: _list[dict[str, typing.Any]]

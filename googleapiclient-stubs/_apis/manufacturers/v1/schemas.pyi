@@ -97,7 +97,11 @@ class GoogleShoppingManufacturersV1ProductCertification(
 ):
     authority: str
     code: str
+    link: str
+    logo: str
     name: str
+    validUntil: str
+    value: str
 
 @typing.type_check_only
 class Grocery(typing_extensions.TypedDict, total=False):

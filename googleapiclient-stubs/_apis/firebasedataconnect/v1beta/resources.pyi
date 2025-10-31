@@ -89,6 +89,20 @@ class FirebaseDataConnectResource(googleapiclient.discovery.Resource):
                     def get(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> ConnectorHttpRequest: ...
+                    def impersonateMutation(
+                        self,
+                        *,
+                        name: str,
+                        body: ImpersonateRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> GraphqlResponseHttpRequest: ...
+                    def impersonateQuery(
+                        self,
+                        *,
+                        name: str,
+                        body: ImpersonateRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> GraphqlResponseHttpRequest: ...
                     def list(
                         self,
                         *,
@@ -199,6 +213,9 @@ class FirebaseDataConnectResource(googleapiclient.discovery.Resource):
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> ServiceHttpRequest: ...
+                def introspectGraphql(
+                    self, *, name: str, body: GraphqlRequest = ..., **kwargs: typing.Any
+                ) -> GraphqlResponseHttpRequest: ...
                 def list(
                     self,
                     *,

@@ -49,6 +49,7 @@ class DataSourceParameter(typing_extensions.TypedDict, total=False):
     displayName: str
     fields: _list[DataSourceParameter]
     immutable: bool
+    maxListSize: str
     maxValue: float
     minValue: float
     paramId: str

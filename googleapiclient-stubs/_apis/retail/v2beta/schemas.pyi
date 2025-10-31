@@ -922,7 +922,6 @@ class GoogleCloudRetailV2betaConditionTimeRange(
 class GoogleCloudRetailV2betaControl(typing_extensions.TypedDict, total=False):
     associatedServingConfigIds: _list[str]
     displayName: str
-    facetSpec: GoogleCloudRetailV2betaSearchRequestFacetSpec
     name: str
     rule: GoogleCloudRetailV2betaRule
     searchSolutionUseCase: _list[
@@ -947,6 +946,111 @@ class GoogleCloudRetailV2betaConversationalSearchCustomizationConfig(
     catalog: str
     intentClassificationConfig: GoogleCloudRetailV2betaIntentClassificationConfig
     retailerDisplayName: str
+
+@typing.type_check_only
+class GoogleCloudRetailV2betaConversationalSearchRequest(
+    typing_extensions.TypedDict, total=False
+):
+    branch: str
+    conversationId: str
+    conversationalFilteringSpec: (
+        GoogleCloudRetailV2betaConversationalSearchRequestConversationalFilteringSpec
+    )
+    pageCategories: _list[str]
+    query: str
+    safetySettings: _list[GoogleCloudRetailV2betaSafetySetting]
+    searchParams: GoogleCloudRetailV2betaConversationalSearchRequestSearchParams
+    userInfo: GoogleCloudRetailV2betaUserInfo
+    userLabels: dict[str, typing.Any]
+    visitorId: str
+
+@typing.type_check_only
+class GoogleCloudRetailV2betaConversationalSearchRequestConversationalFilteringSpec(
+    typing_extensions.TypedDict, total=False
+):
+    conversationalFilteringMode: typing_extensions.Literal[
+        "MODE_UNSPECIFIED", "DISABLED", "ENABLED", "CONVERSATIONAL_FILTER_ONLY"
+    ]
+    enableConversationalFiltering: bool
+    userAnswer: GoogleCloudRetailV2betaConversationalSearchRequestUserAnswer
+
+@typing.type_check_only
+class GoogleCloudRetailV2betaConversationalSearchRequestSearchParams(
+    typing_extensions.TypedDict, total=False
+):
+    boostSpec: GoogleCloudRetailV2betaSearchRequestBoostSpec
+    canonicalFilter: str
+    filter: str
+    sortBy: str
+
+@typing.type_check_only
+class GoogleCloudRetailV2betaConversationalSearchRequestUserAnswer(
+    typing_extensions.TypedDict, total=False
+):
+    selectedAnswer: (
+        GoogleCloudRetailV2betaConversationalSearchRequestUserAnswerSelectedAnswer
+    )
+    textAnswer: str
+
+@typing.type_check_only
+class GoogleCloudRetailV2betaConversationalSearchRequestUserAnswerSelectedAnswer(
+    typing_extensions.TypedDict, total=False
+):
+    productAttributeValue: GoogleCloudRetailV2betaProductAttributeValue
+
+@typing.type_check_only
+class GoogleCloudRetailV2betaConversationalSearchResponse(
+    typing_extensions.TypedDict, total=False
+):
+    conversationId: str
+    conversationalFilteringResult: (
+        GoogleCloudRetailV2betaConversationalSearchResponseConversationalFilteringResult
+    )
+    conversationalTextResponse: str
+    followupQuestion: (
+        GoogleCloudRetailV2betaConversationalSearchResponseFollowupQuestion
+    )
+    refinedSearch: _list[
+        GoogleCloudRetailV2betaConversationalSearchResponseRefinedSearch
+    ]
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "STREAMING", "SUCCEEDED"]
+    userQueryTypes: _list[str]
+
+@typing.type_check_only
+class GoogleCloudRetailV2betaConversationalSearchResponseConversationalFilteringResult(
+    typing_extensions.TypedDict, total=False
+):
+    additionalFilter: GoogleCloudRetailV2betaConversationalSearchResponseConversationalFilteringResultAdditionalFilter
+    followupQuestion: (
+        GoogleCloudRetailV2betaConversationalSearchResponseFollowupQuestion
+    )
+
+@typing.type_check_only
+class GoogleCloudRetailV2betaConversationalSearchResponseConversationalFilteringResultAdditionalFilter(
+    typing_extensions.TypedDict, total=False
+):
+    productAttributeValue: GoogleCloudRetailV2betaProductAttributeValue
+
+@typing.type_check_only
+class GoogleCloudRetailV2betaConversationalSearchResponseFollowupQuestion(
+    typing_extensions.TypedDict, total=False
+):
+    followupQuestion: str
+    suggestedAnswers: _list[
+        GoogleCloudRetailV2betaConversationalSearchResponseFollowupQuestionSuggestedAnswer
+    ]
+
+@typing.type_check_only
+class GoogleCloudRetailV2betaConversationalSearchResponseFollowupQuestionSuggestedAnswer(
+    typing_extensions.TypedDict, total=False
+):
+    productAttributeValue: GoogleCloudRetailV2betaProductAttributeValue
+
+@typing.type_check_only
+class GoogleCloudRetailV2betaConversationalSearchResponseRefinedSearch(
+    typing_extensions.TypedDict, total=False
+):
+    query: str
 
 @typing.type_check_only
 class GoogleCloudRetailV2betaCreateModelMetadata(
@@ -1345,6 +1449,15 @@ class GoogleCloudRetailV2betaOutputResult(typing_extensions.TypedDict, total=Fal
     gcsResult: _list[GoogleCloudRetailV2betaGcsOutputResult]
 
 @typing.type_check_only
+class GoogleCloudRetailV2betaPanelInfo(typing_extensions.TypedDict, total=False):
+    attributionToken: str
+    displayName: str
+    panelId: str
+    panelPosition: int
+    productDetails: _list[GoogleCloudRetailV2betaProductDetail]
+    totalPanels: int
+
+@typing.type_check_only
 class GoogleCloudRetailV2betaPauseModelRequest(
     typing_extensions.TypedDict, total=False
 ): ...
@@ -1715,6 +1828,28 @@ class GoogleCloudRetailV2betaRuleTwowaySynonymsAction(
     synonyms: _list[str]
 
 @typing.type_check_only
+class GoogleCloudRetailV2betaSafetySetting(typing_extensions.TypedDict, total=False):
+    category: typing_extensions.Literal[
+        "HARM_CATEGORY_UNSPECIFIED",
+        "HARM_CATEGORY_HATE_SPEECH",
+        "HARM_CATEGORY_DANGEROUS_CONTENT",
+        "HARM_CATEGORY_HARASSMENT",
+        "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+        "HARM_CATEGORY_CIVIC_INTEGRITY",
+    ]
+    method: typing_extensions.Literal[
+        "HARM_BLOCK_METHOD_UNSPECIFIED", "SEVERITY", "PROBABILITY"
+    ]
+    threshold: typing_extensions.Literal[
+        "HARM_BLOCK_THRESHOLD_UNSPECIFIED",
+        "BLOCK_LOW_AND_ABOVE",
+        "BLOCK_MEDIUM_AND_ABOVE",
+        "BLOCK_ONLY_HIGH",
+        "BLOCK_NONE",
+        "OFF",
+    ]
+
+@typing.type_check_only
 class GoogleCloudRetailV2betaSearchRequest(typing_extensions.TypedDict, total=False):
     boostSpec: GoogleCloudRetailV2betaSearchRequestBoostSpec
     branch: str
@@ -2040,6 +2175,7 @@ class GoogleCloudRetailV2betaUserEvent(typing_extensions.TypedDict, total=False)
     orderBy: str
     pageCategories: _list[str]
     pageViewId: str
+    panels: _list[GoogleCloudRetailV2betaPanelInfo]
     productDetails: _list[GoogleCloudRetailV2betaProductDetail]
     purchaseTransaction: GoogleCloudRetailV2betaPurchaseTransaction
     referrerUri: str
@@ -2081,6 +2217,7 @@ class GoogleCloudRetailV2betaUserInfo(typing_extensions.TypedDict, total=False):
 class GoogleLongrunningListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[GoogleLongrunningOperation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class GoogleLongrunningOperation(typing_extensions.TypedDict, total=False):

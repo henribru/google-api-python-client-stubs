@@ -284,6 +284,7 @@ class GoogleMapsPlacesV1Place(typing_extensions.TypedDict, total=False):
         "CLOSED_TEMPORARILY",
         "CLOSED_PERMANENTLY",
     ]
+    consumerAlert: GoogleMapsPlacesV1PlaceConsumerAlert
     containingPlaces: _list[GoogleMapsPlacesV1PlaceContainingPlace]
     curbsidePickup: bool
     currentOpeningHours: GoogleMapsPlacesV1PlaceOpeningHours
@@ -377,6 +378,27 @@ class GoogleMapsPlacesV1PlaceAddressComponent(typing_extensions.TypedDict, total
 class GoogleMapsPlacesV1PlaceAttribution(typing_extensions.TypedDict, total=False):
     provider: str
     providerUri: str
+
+@typing.type_check_only
+class GoogleMapsPlacesV1PlaceConsumerAlert(typing_extensions.TypedDict, total=False):
+    details: GoogleMapsPlacesV1PlaceConsumerAlertDetails
+    languageCode: str
+    overview: str
+
+@typing.type_check_only
+class GoogleMapsPlacesV1PlaceConsumerAlertDetails(
+    typing_extensions.TypedDict, total=False
+):
+    aboutLink: GoogleMapsPlacesV1PlaceConsumerAlertDetailsLink
+    description: str
+    title: str
+
+@typing.type_check_only
+class GoogleMapsPlacesV1PlaceConsumerAlertDetailsLink(
+    typing_extensions.TypedDict, total=False
+):
+    title: str
+    uri: str
 
 @typing.type_check_only
 class GoogleMapsPlacesV1PlaceContainingPlace(typing_extensions.TypedDict, total=False):
@@ -521,6 +543,7 @@ class GoogleMapsPlacesV1Review(typing_extensions.TypedDict, total=False):
     rating: float
     relativePublishTimeDescription: str
     text: GoogleTypeLocalizedText
+    visitDate: GoogleTypeDate
 
 @typing.type_check_only
 class GoogleMapsPlacesV1RouteModifiers(typing_extensions.TypedDict, total=False):

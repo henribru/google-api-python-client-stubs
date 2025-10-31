@@ -946,6 +946,7 @@ class GroupingInfo(typing_extensions.TypedDict, total=False):
 class Image(typing_extensions.TypedDict, total=False):
     contentDescription: LocalizedString
     kind: str
+    privateImageId: str
     sourceUri: ImageUri
 
 @typing.type_check_only
@@ -1244,6 +1245,7 @@ class MediaRequestInfo(typing_extensions.TypedDict, total=False):
     notificationType: typing_extensions.Literal[
         "START", "PROGRESS", "END", "RESPONSE_SENT", "ERROR"
     ]
+    physicalHeaders: str
     requestId: str
     requestReceivedParamsServingInfo: str
     totalBytes: str
@@ -1890,6 +1892,13 @@ class TranslatedString(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class UpcomingNotification(typing_extensions.TypedDict, total=False):
     enableNotification: bool
+
+@typing.type_check_only
+class UploadPrivateImageRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class UploadPrivateImageResponse(typing_extensions.TypedDict, total=False):
+    privateImageId: str
 
 @typing.type_check_only
 class Uri(typing_extensions.TypedDict, total=False):

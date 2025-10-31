@@ -26,7 +26,17 @@ class CloudCommercePartnerProcurementServiceResource(
                 body: ApproveAccountRequest = ...,
                 **kwargs: typing.Any,
             ) -> EmptyHttpRequest: ...
-            def get(self, *, name: str, **kwargs: typing.Any) -> AccountHttpRequest: ...
+            def get(
+                self,
+                *,
+                name: str,
+                view: typing_extensions.Literal[
+                    "ACCOUNT_VIEW_UNSPECIFIED",
+                    "ACCOUNT_VIEW_BASIC",
+                    "ACCOUNT_VIEW_FULL",
+                ] = ...,
+                **kwargs: typing.Any,
+            ) -> AccountHttpRequest: ...
             def list(
                 self,
                 *,

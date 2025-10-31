@@ -346,10 +346,15 @@ class DicomFilterConfig(typing_extensions.TypedDict, total=False):
     resourcePathsGcsUri: str
 
 @typing.type_check_only
+class DicomNotificationConfig(typing_extensions.TypedDict, total=False):
+    pubsubTopic: str
+
+@typing.type_check_only
 class DicomStore(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     name: str
     notificationConfig: NotificationConfig
+    notificationConfigs: _list[DicomNotificationConfig]
     streamConfigs: _list[GoogleCloudHealthcareV1beta1DicomStreamConfig]
 
 @typing.type_check_only
@@ -910,6 +915,7 @@ class ListMessagesResponse(typing_extensions.TypedDict, total=False):
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListUserDataMappingsResponse(typing_extensions.TypedDict, total=False):
@@ -1255,6 +1261,12 @@ class Type(typing_extensions.TypedDict, total=False):
     primitive: typing_extensions.Literal[
         "PRIMITIVE_UNSPECIFIED", "STRING", "VARIES", "UNESCAPED_STRING"
     ]
+
+@typing.type_check_only
+class UpdateSeriesMetadataResponse(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class UpdateStudyMetadataResponse(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class UserDataMapping(typing_extensions.TypedDict, total=False):

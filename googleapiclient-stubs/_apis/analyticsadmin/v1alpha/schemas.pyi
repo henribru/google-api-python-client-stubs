@@ -623,13 +623,6 @@ class GoogleAnalyticsAdminV1alphaChannelGroupFilterStringFilter(
     value: str
 
 @typing.type_check_only
-class GoogleAnalyticsAdminV1alphaConnectedSiteTag(
-    typing_extensions.TypedDict, total=False
-):
-    displayName: str
-    tagId: str
-
-@typing.type_check_only
 class GoogleAnalyticsAdminV1alphaConversionEvent(
     typing_extensions.TypedDict, total=False
 ):
@@ -673,18 +666,6 @@ class GoogleAnalyticsAdminV1alphaCreateAccessBindingRequest(
 ):
     accessBinding: GoogleAnalyticsAdminV1alphaAccessBinding
     parent: str
-
-@typing.type_check_only
-class GoogleAnalyticsAdminV1alphaCreateConnectedSiteTagRequest(
-    typing_extensions.TypedDict, total=False
-):
-    connectedSiteTag: GoogleAnalyticsAdminV1alphaConnectedSiteTag
-    property: str
-
-@typing.type_check_only
-class GoogleAnalyticsAdminV1alphaCreateConnectedSiteTagResponse(
-    typing_extensions.TypedDict, total=False
-): ...
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaCreateRollupPropertyRequest(
@@ -829,13 +810,6 @@ class GoogleAnalyticsAdminV1alphaDeleteAccessBindingRequest(
     name: str
 
 @typing.type_check_only
-class GoogleAnalyticsAdminV1alphaDeleteConnectedSiteTagRequest(
-    typing_extensions.TypedDict, total=False
-):
-    property: str
-    tagId: str
-
-@typing.type_check_only
 class GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLink(
     typing_extensions.TypedDict, total=False
 ):
@@ -953,24 +927,6 @@ class GoogleAnalyticsAdminV1alphaExpandedDataSetFilterStringFilter(
     caseSensitive: bool
     matchType: typing_extensions.Literal["MATCH_TYPE_UNSPECIFIED", "EXACT", "CONTAINS"]
     value: str
-
-@typing.type_check_only
-class GoogleAnalyticsAdminV1alphaFetchAutomatedGa4ConfigurationOptOutRequest(
-    typing_extensions.TypedDict, total=False
-):
-    property: str
-
-@typing.type_check_only
-class GoogleAnalyticsAdminV1alphaFetchAutomatedGa4ConfigurationOptOutResponse(
-    typing_extensions.TypedDict, total=False
-):
-    optOut: bool
-
-@typing.type_check_only
-class GoogleAnalyticsAdminV1alphaFetchConnectedGa4PropertyResponse(
-    typing_extensions.TypedDict, total=False
-):
-    property: str
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaFirebaseLink(typing_extensions.TypedDict, total=False):
@@ -1112,18 +1068,6 @@ class GoogleAnalyticsAdminV1alphaListChannelGroupsResponse(
 ):
     channelGroups: _list[GoogleAnalyticsAdminV1alphaChannelGroup]
     nextPageToken: str
-
-@typing.type_check_only
-class GoogleAnalyticsAdminV1alphaListConnectedSiteTagsRequest(
-    typing_extensions.TypedDict, total=False
-):
-    property: str
-
-@typing.type_check_only
-class GoogleAnalyticsAdminV1alphaListConnectedSiteTagsResponse(
-    typing_extensions.TypedDict, total=False
-):
-    connectedSiteTags: _list[GoogleAnalyticsAdminV1alphaConnectedSiteTag]
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaListConversionEventsResponse(
@@ -1572,16 +1516,19 @@ class GoogleAnalyticsAdminV1alphaSearchChangeHistoryEventsResponse(
     nextPageToken: str
 
 @typing.type_check_only
-class GoogleAnalyticsAdminV1alphaSetAutomatedGa4ConfigurationOptOutRequest(
+class GoogleAnalyticsAdminV1alphaSubmitUserDeletionRequest(
     typing_extensions.TypedDict, total=False
 ):
-    optOut: bool
-    property: str
+    appInstanceId: str
+    clientId: str
+    userId: str
+    userProvidedData: str
 
 @typing.type_check_only
-class GoogleAnalyticsAdminV1alphaSetAutomatedGa4ConfigurationOptOutResponse(
+class GoogleAnalyticsAdminV1alphaSubmitUserDeletionResponse(
     typing_extensions.TypedDict, total=False
-): ...
+):
+    deletionRequestTime: str
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaSubpropertyEventFilter(

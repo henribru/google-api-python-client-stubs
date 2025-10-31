@@ -126,6 +126,8 @@ class GoogleApiSource(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     loggingConfig: LoggingConfig
     name: str
+    organizationSubscription: OrganizationSubscription
+    projectSubscriptions: ProjectSubscriptions
     uid: str
     updateTime: str
 
@@ -234,6 +236,7 @@ class GoogleLongrunningCancelOperationRequest(
 class GoogleLongrunningListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[GoogleLongrunningOperation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class GoogleLongrunningOperation(typing_extensions.TypedDict, total=False):
@@ -363,6 +366,10 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
+class OrganizationSubscription(typing_extensions.TypedDict, total=False):
+    enabled: bool
+
+@typing.type_check_only
 class Pipeline(typing_extensions.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     createTime: str
@@ -386,6 +393,10 @@ class Policy(typing_extensions.TypedDict, total=False):
     bindings: _list[Binding]
     etag: str
     version: int
+
+@typing.type_check_only
+class ProjectSubscriptions(typing_extensions.TypedDict, total=False):
+    list: _list[str]
 
 @typing.type_check_only
 class Provider(typing_extensions.TypedDict, total=False):

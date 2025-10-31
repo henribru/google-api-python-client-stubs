@@ -355,6 +355,44 @@ class GoogleCloudApihubV1DisablePluginRequest(
 ): ...
 
 @typing.type_check_only
+class GoogleCloudApihubV1DiscoveredApiObservation(
+    typing_extensions.TypedDict, total=False
+):
+    apiOperationCount: str
+    createTime: str
+    hostname: str
+    knownOperationsCount: str
+    lastEventDetectedTime: str
+    name: str
+    origin: str
+    serverIps: _list[str]
+    sourceLocations: _list[str]
+    sourceMetadata: GoogleCloudApihubV1SourceMetadata
+    sourceTypes: _list[
+        typing_extensions.Literal["SOURCE_TYPE_UNSPECIFIED", "GCP_XLB", "GCP_ILB"]
+    ]
+    style: typing_extensions.Literal["STYLE_UNSPECIFIED", "REST", "GRPC", "GRAPHQL"]
+    unknownOperationsCount: str
+    updateTime: str
+
+@typing.type_check_only
+class GoogleCloudApihubV1DiscoveredApiOperation(
+    typing_extensions.TypedDict, total=False
+):
+    classification: typing_extensions.Literal[
+        "CLASSIFICATION_UNSPECIFIED", "KNOWN", "UNKNOWN"
+    ]
+    count: str
+    createTime: str
+    firstSeenTime: str
+    httpOperation: GoogleCloudApihubV1HttpOperationDetails
+    lastSeenTime: str
+    matchResults: _list[GoogleCloudApihubV1MatchResult]
+    name: str
+    sourceMetadata: GoogleCloudApihubV1SourceMetadata
+    updateTime: str
+
+@typing.type_check_only
 class GoogleCloudApihubV1Documentation(typing_extensions.TypedDict, total=False):
     externalUri: str
 
@@ -411,6 +449,14 @@ class GoogleCloudApihubV1GoogleServiceAccountConfig(
     serviceAccount: str
 
 @typing.type_check_only
+class GoogleCloudApihubV1Header(typing_extensions.TypedDict, total=False):
+    count: str
+    dataType: typing_extensions.Literal[
+        "DATA_TYPE_UNSPECIFIED", "BOOL", "INTEGER", "FLOAT", "STRING", "UUID"
+    ]
+    name: str
+
+@typing.type_check_only
 class GoogleCloudApihubV1HostProjectRegistration(
     typing_extensions.TypedDict, total=False
 ):
@@ -436,6 +482,23 @@ class GoogleCloudApihubV1HttpOperation(typing_extensions.TypedDict, total=False)
         "TRACE",
     ]
     path: GoogleCloudApihubV1Path
+
+@typing.type_check_only
+class GoogleCloudApihubV1HttpOperationDetails(typing_extensions.TypedDict, total=False):
+    httpOperation: GoogleCloudApihubV1HttpOperation
+    pathParams: _list[GoogleCloudApihubV1PathParam]
+    queryParams: dict[str, typing.Any]
+    request: GoogleCloudApihubV1HttpRequest
+    response: GoogleCloudApihubV1HttpResponse
+
+@typing.type_check_only
+class GoogleCloudApihubV1HttpRequest(typing_extensions.TypedDict, total=False):
+    headers: dict[str, typing.Any]
+
+@typing.type_check_only
+class GoogleCloudApihubV1HttpResponse(typing_extensions.TypedDict, total=False):
+    headers: dict[str, typing.Any]
+    responseCodes: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudApihubV1Issue(typing_extensions.TypedDict, total=False):
@@ -513,6 +576,20 @@ class GoogleCloudApihubV1ListDeploymentsResponse(
     nextPageToken: str
 
 @typing.type_check_only
+class GoogleCloudApihubV1ListDiscoveredApiObservationsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    discoveredApiObservations: _list[GoogleCloudApihubV1DiscoveredApiObservation]
+    nextPageToken: str
+
+@typing.type_check_only
+class GoogleCloudApihubV1ListDiscoveredApiOperationsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    discoveredApiOperations: _list[GoogleCloudApihubV1DiscoveredApiOperation]
+    nextPageToken: str
+
+@typing.type_check_only
 class GoogleCloudApihubV1ListExternalApisResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -566,6 +643,30 @@ class GoogleCloudApihubV1LookupRuntimeProjectAttachmentResponse(
     typing_extensions.TypedDict, total=False
 ):
     runtimeProjectAttachment: GoogleCloudApihubV1RuntimeProjectAttachment
+
+@typing.type_check_only
+class GoogleCloudApihubV1ManagePluginInstanceSourceDataRequest(
+    typing_extensions.TypedDict, total=False
+):
+    action: typing_extensions.Literal["ACTION_UNSPECIFIED", "UPLOAD", "DELETE"]
+    data: str
+    dataType: typing_extensions.Literal[
+        "DATA_TYPE_UNSPECIFIED",
+        "PROXY_DEPLOYMENT_MANIFEST",
+        "ENVIRONMENT_MANIFEST",
+        "PROXY_BUNDLE",
+        "SHARED_FLOW_BUNDLE",
+    ]
+    relativePath: str
+
+@typing.type_check_only
+class GoogleCloudApihubV1ManagePluginInstanceSourceDataResponse(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudApihubV1MatchResult(typing_extensions.TypedDict, total=False):
+    name: str
 
 @typing.type_check_only
 class GoogleCloudApihubV1MultiIntValues(typing_extensions.TypedDict, total=False):
@@ -623,6 +724,13 @@ class GoogleCloudApihubV1Owner(typing_extensions.TypedDict, total=False):
 class GoogleCloudApihubV1Path(typing_extensions.TypedDict, total=False):
     description: str
     path: str
+
+@typing.type_check_only
+class GoogleCloudApihubV1PathParam(typing_extensions.TypedDict, total=False):
+    dataType: typing_extensions.Literal[
+        "DATA_TYPE_UNSPECIFIED", "BOOL", "INTEGER", "FLOAT", "STRING", "UUID"
+    ]
+    position: int
 
 @typing.type_check_only
 class GoogleCloudApihubV1Plugin(typing_extensions.TypedDict, total=False):
@@ -718,6 +826,14 @@ class GoogleCloudApihubV1PluginInstanceActionSource(
 class GoogleCloudApihubV1Point(typing_extensions.TypedDict, total=False):
     character: int
     line: int
+
+@typing.type_check_only
+class GoogleCloudApihubV1QueryParam(typing_extensions.TypedDict, total=False):
+    count: str
+    dataType: typing_extensions.Literal[
+        "DATA_TYPE_UNSPECIFIED", "BOOL", "INTEGER", "FLOAT", "STRING", "UUID"
+    ]
+    name: str
 
 @typing.type_check_only
 class GoogleCloudApihubV1Range(typing_extensions.TypedDict, total=False):

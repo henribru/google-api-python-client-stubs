@@ -742,6 +742,7 @@ class VmwareAdminCluster(typing_extensions.TypedDict, total=False):
     platformConfig: VmwarePlatformConfig
     preparedSecrets: VmwareAdminPreparedSecretsConfig
     privateRegistryConfig: VmwareAdminPrivateRegistryConfig
+    proxy: VmwareAdminProxy
     reconciling: bool
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
@@ -812,6 +813,11 @@ class VmwareAdminPreparedSecretsConfig(typing_extensions.TypedDict, total=False)
 class VmwareAdminPrivateRegistryConfig(typing_extensions.TypedDict, total=False):
     address: str
     caCert: str
+
+@typing.type_check_only
+class VmwareAdminProxy(typing_extensions.TypedDict, total=False):
+    noProxy: str
+    url: str
 
 @typing.type_check_only
 class VmwareAdminSeesawConfig(typing_extensions.TypedDict, total=False):

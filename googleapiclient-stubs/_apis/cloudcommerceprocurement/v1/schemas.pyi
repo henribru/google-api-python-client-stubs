@@ -11,6 +11,7 @@ class Account(typing_extensions.TypedDict, total=False):
     inputProperties: dict[str, typing.Any]
     name: str
     provider: str
+    resellerParentBillingAccount: str
     state: typing_extensions.Literal[
         "ACCOUNT_STATE_UNSPECIFIED", "ACCOUNT_ACTIVATION_REQUESTED", "ACCOUNT_ACTIVE"
     ]
@@ -37,6 +38,7 @@ class ApproveEntitlementPlanChangeRequest(typing_extensions.TypedDict, total=Fal
 
 @typing.type_check_only
 class ApproveEntitlementRequest(typing_extensions.TypedDict, total=False):
+    entitlementMigrated: str
     properties: dict[str, typing.Any]
 
 @typing.type_check_only
@@ -49,15 +51,22 @@ class Empty(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class Entitlement(typing_extensions.TypedDict, total=False):
     account: str
+    cancellationReason: str
     consumers: _list[Consumer]
     createTime: str
+    entitlementBenefitIds: _list[str]
     inputProperties: dict[str, typing.Any]
     messageToUser: str
     name: str
+    newOfferEndTime: str
+    newOfferStartTime: str
     newPendingOffer: str
+    newPendingOfferDuration: str
     newPendingPlan: str
     offer: str
+    offerDuration: str
     offerEndTime: str
+    orderId: str
     plan: str
     product: str
     productExternalName: str

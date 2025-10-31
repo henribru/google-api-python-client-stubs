@@ -114,6 +114,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
+                        contextMetadata: str = ...,
                         view: typing_extensions.Literal[
                             "ENTITY_TYPE_SCHEMA_VIEW_UNSPECIFIED",
                             "ENTITY_TYPE_SCHEMA_VIEW_BASIC",
@@ -140,6 +141,48 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                         previous_response: ListEntityTypesResponse,
                     ) -> ListEntityTypesResponseHttpRequest | None: ...
                     def entities(self) -> EntitiesResource: ...
+
+                @typing.type_check_only
+                class ResourcesResource(googleapiclient.discovery.Resource):
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GetResourceResponseHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> ListResourcesResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListResourcesResponseHttpRequest,
+                        previous_response: ListResourcesResponse,
+                    ) -> ListResourcesResponseHttpRequest | None: ...
+
+                @typing.type_check_only
+                class ToolsResource(googleapiclient.discovery.Resource):
+                    def execute(
+                        self,
+                        *,
+                        name: str,
+                        body: ExecuteToolRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> ExecuteToolResponseHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> ListToolsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListToolsResponseHttpRequest,
+                        previous_response: ListToolsResponse,
+                    ) -> ListToolsResponseHttpRequest | None: ...
 
                 def checkReadiness(
                     self, *, name: str, **kwargs: typing.Any
@@ -170,6 +213,8 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                 ) -> RefreshAccessTokenResponseHttpRequest: ...
                 def actions(self) -> ActionsResource: ...
                 def entityTypes(self) -> EntityTypesResource: ...
+                def resources(self) -> ResourcesResource: ...
+                def tools(self) -> ToolsResource: ...
 
             def connections(self) -> ConnectionsResource: ...
 
@@ -262,6 +307,22 @@ class ExecuteSqlQueryResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ExecuteSqlQueryResponse: ...
 
 @typing.type_check_only
+class ExecuteToolResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ExecuteToolResponse: ...
+
+@typing.type_check_only
+class GetResourceResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GetResourceResponse: ...
+
+@typing.type_check_only
 class ListActionsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -284,6 +345,22 @@ class ListEntityTypesResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListEntityTypesResponse: ...
+
+@typing.type_check_only
+class ListResourcesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListResourcesResponse: ...
+
+@typing.type_check_only
+class ListToolsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListToolsResponse: ...
 
 @typing.type_check_only
 class RefreshAccessTokenResponseHttpRequest(googleapiclient.http.HttpRequest):

@@ -272,6 +272,20 @@ class ListWorkforcePoolProviderKeysResponse(typing_extensions.TypedDict, total=F
     workforcePoolProviderKeys: _list[WorkforcePoolProviderKey]
 
 @typing.type_check_only
+class ListWorkforcePoolProviderScimTenantsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    workforcePoolProviderScimTenants: _list[WorkforcePoolProviderScimTenant]
+
+@typing.type_check_only
+class ListWorkforcePoolProviderScimTokensResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    workforcePoolProviderScimTokens: _list[WorkforcePoolProviderScimToken]
+
+@typing.type_check_only
 class ListWorkforcePoolProvidersResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     workforcePoolProviders: _list[WorkforcePoolProvider]
@@ -580,6 +594,16 @@ class UndeleteWorkforcePoolProviderRequest(
 ): ...
 
 @typing.type_check_only
+class UndeleteWorkforcePoolProviderScimTenantRequest(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class UndeleteWorkforcePoolProviderScimTokenRequest(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class UndeleteWorkforcePoolRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -633,12 +657,16 @@ class WorkforcePoolProvider(typing_extensions.TypedDict, total=False):
     disabled: bool
     displayName: str
     expireTime: str
+    extendedAttributesOauth2Client: (
+        GoogleIamAdminV1WorkforcePoolProviderExtraAttributesOAuth2Client
+    )
     extraAttributesOauth2Client: (
         GoogleIamAdminV1WorkforcePoolProviderExtraAttributesOAuth2Client
     )
     name: str
     oidc: GoogleIamAdminV1WorkforcePoolProviderOidc
     saml: GoogleIamAdminV1WorkforcePoolProviderSaml
+    scimUsage: typing_extensions.Literal["SCIM_USAGE_UNSPECIFIED", "ENABLED_FOR_GROUPS"]
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "DELETED"]
 
 @typing.type_check_only
@@ -648,6 +676,24 @@ class WorkforcePoolProviderKey(typing_extensions.TypedDict, total=False):
     name: str
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "DELETED"]
     use: typing_extensions.Literal["KEY_USE_UNSPECIFIED", "ENCRYPTION"]
+
+@typing.type_check_only
+class WorkforcePoolProviderScimTenant(typing_extensions.TypedDict, total=False):
+    baseUri: str
+    claimMapping: dict[str, typing.Any]
+    description: str
+    displayName: str
+    name: str
+    purgeTime: str
+    serviceAgent: str
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "DELETED"]
+
+@typing.type_check_only
+class WorkforcePoolProviderScimToken(typing_extensions.TypedDict, total=False):
+    displayName: str
+    name: str
+    securityToken: str
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "DELETED"]
 
 @typing.type_check_only
 class WorkloadIdentityPool(typing_extensions.TypedDict, total=False):

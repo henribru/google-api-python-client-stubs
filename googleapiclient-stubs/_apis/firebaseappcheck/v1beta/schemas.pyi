@@ -240,8 +240,35 @@ class GoogleFirebaseAppcheckV1betaListServicesResponse(
 class GoogleFirebaseAppcheckV1betaPlayIntegrityConfig(
     typing_extensions.TypedDict, total=False
 ):
+    accountDetails: GoogleFirebaseAppcheckV1betaPlayIntegrityConfigAccountDetails
+    appIntegrity: GoogleFirebaseAppcheckV1betaPlayIntegrityConfigAppIntegrity
+    deviceIntegrity: GoogleFirebaseAppcheckV1betaPlayIntegrityConfigDeviceIntegrity
     name: str
     tokenTtl: str
+
+@typing.type_check_only
+class GoogleFirebaseAppcheckV1betaPlayIntegrityConfigAccountDetails(
+    typing_extensions.TypedDict, total=False
+):
+    requireLicensed: bool
+
+@typing.type_check_only
+class GoogleFirebaseAppcheckV1betaPlayIntegrityConfigAppIntegrity(
+    typing_extensions.TypedDict, total=False
+):
+    allowUnrecognizedVersion: bool
+
+@typing.type_check_only
+class GoogleFirebaseAppcheckV1betaPlayIntegrityConfigDeviceIntegrity(
+    typing_extensions.TypedDict, total=False
+):
+    minDeviceRecognitionLevel: typing_extensions.Literal[
+        "DEVICE_RECOGNITION_LEVEL_UNSPECIFIED",
+        "NO_INTEGRITY",
+        "MEETS_BASIC_INTEGRITY",
+        "MEETS_DEVICE_INTEGRITY",
+        "MEETS_STRONG_INTEGRITY",
+    ]
 
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1betaPublicJwk(typing_extensions.TypedDict, total=False):
@@ -262,6 +289,7 @@ class GoogleFirebaseAppcheckV1betaPublicJwkSet(
 class GoogleFirebaseAppcheckV1betaRecaptchaConfig(
     typing_extensions.TypedDict, total=False
 ):
+    minValidScore: float
     name: str
     siteSecret: str
     siteSecretSet: bool
@@ -272,13 +300,21 @@ class GoogleFirebaseAppcheckV1betaRecaptchaEnterpriseConfig(
     typing_extensions.TypedDict, total=False
 ):
     name: str
+    riskAnalysis: GoogleFirebaseAppcheckV1betaRecaptchaEnterpriseConfigRiskAnalysis
     siteKey: str
     tokenTtl: str
+
+@typing.type_check_only
+class GoogleFirebaseAppcheckV1betaRecaptchaEnterpriseConfigRiskAnalysis(
+    typing_extensions.TypedDict, total=False
+):
+    minValidScore: float
 
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1betaRecaptchaV3Config(
     typing_extensions.TypedDict, total=False
 ):
+    minValidScore: float
     name: str
     siteSecret: str
     siteSecretSet: bool

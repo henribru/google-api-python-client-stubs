@@ -66,6 +66,7 @@ class Deployment(typing_extensions.TypedDict, total=False):
         "UNLOCK_FAILED",
     ]
     name: str
+    providerConfig: ProviderConfig
     quotaValidation: typing_extensions.Literal[
         "QUOTA_VALIDATION_UNSPECIFIED", "ENABLED", "ENFORCED"
     ]
@@ -158,6 +159,7 @@ class ListLocationsResponse(typing_extensions.TypedDict, total=False):
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListPreviewsResponse(typing_extensions.TypedDict, total=False):
@@ -267,6 +269,7 @@ class Preview(typing_extensions.TypedDict, total=False):
     previewMode: typing_extensions.Literal[
         "PREVIEW_MODE_UNSPECIFIED", "DEFAULT", "DELETE"
     ]
+    providerConfig: ProviderConfig
     serviceAccount: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
@@ -328,6 +331,12 @@ class PropertyDrift(typing_extensions.TypedDict, total=False):
     before: typing.Any
     beforeSensitivePaths: _list[str]
     path: str
+
+@typing.type_check_only
+class ProviderConfig(typing_extensions.TypedDict, total=False):
+    sourceType: typing_extensions.Literal[
+        "PROVIDER_SOURCE_UNSPECIFIED", "SERVICE_MAINTAINED"
+    ]
 
 @typing.type_check_only
 class Resource(typing_extensions.TypedDict, total=False):
@@ -400,6 +409,7 @@ class Revision(typing_extensions.TypedDict, total=False):
     importExistingResources: bool
     logs: str
     name: str
+    providerConfig: ProviderConfig
     quotaValidation: typing_extensions.Literal[
         "QUOTA_VALIDATION_UNSPECIFIED", "ENABLED", "ENFORCED"
     ]

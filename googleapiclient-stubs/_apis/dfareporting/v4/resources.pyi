@@ -918,6 +918,39 @@ class DfareportingResource(googleapiclient.discovery.Resource):
         ) -> DirectorySitesListResponseHttpRequest | None: ...
 
     @typing.type_check_only
+    class DynamicFeedsResource(googleapiclient.discovery.Resource):
+        def get(
+            self, *, dynamicFeedId: str, **kwargs: typing.Any
+        ) -> DynamicFeedHttpRequest: ...
+        def insert(
+            self, *, body: DynamicFeedsInsertRequest = ..., **kwargs: typing.Any
+        ) -> DynamicFeedHttpRequest: ...
+        def retransform(
+            self, *, dynamicFeedId: str, **kwargs: typing.Any
+        ) -> DynamicFeedHttpRequest: ...
+        def update(
+            self, *, body: DynamicFeed = ..., **kwargs: typing.Any
+        ) -> DynamicFeedHttpRequest: ...
+
+    @typing.type_check_only
+    class DynamicProfilesResource(googleapiclient.discovery.Resource):
+        def generateCode(
+            self, *, dynamicProfileId: str, **kwargs: typing.Any
+        ) -> DynamicProfileGenerateCodeResponseHttpRequest: ...
+        def get(
+            self, *, dynamicProfileId: str, **kwargs: typing.Any
+        ) -> DynamicProfileHttpRequest: ...
+        def insert(
+            self, *, body: DynamicProfile = ..., **kwargs: typing.Any
+        ) -> DynamicProfileHttpRequest: ...
+        def publish(
+            self, *, dynamicProfileId: str, **kwargs: typing.Any
+        ) -> googleapiclient.http.HttpRequest: ...
+        def update(
+            self, *, body: DynamicProfile = ..., **kwargs: typing.Any
+        ) -> DynamicProfileHttpRequest: ...
+
+    @typing.type_check_only
     class DynamicTargetingKeysResource(googleapiclient.discovery.Resource):
         def delete(
             self,
@@ -1840,6 +1873,27 @@ class DfareportingResource(googleapiclient.discovery.Resource):
         ) -> SizesListResponseHttpRequest: ...
 
     @typing.type_check_only
+    class StudioCreativeAssetsResource(googleapiclient.discovery.Resource):
+        def insert(
+            self,
+            *,
+            body: DfareportingStudioCreativeAssetsInsertRequest = ...,
+            **kwargs: typing.Any,
+        ) -> StudioCreativeAssetsResponseHttpRequest: ...
+
+    @typing.type_check_only
+    class StudioCreativesResource(googleapiclient.discovery.Resource):
+        def get(
+            self, *, studioCreativeId: str, **kwargs: typing.Any
+        ) -> StudioCreativeHttpRequest: ...
+        def insert(
+            self, *, body: StudioCreative = ..., **kwargs: typing.Any
+        ) -> StudioCreativeHttpRequest: ...
+        def publish(
+            self, *, studioCreativeId: str, **kwargs: typing.Any
+        ) -> googleapiclient.http.HttpRequest: ...
+
+    @typing.type_check_only
     class SubaccountsResource(googleapiclient.discovery.Resource):
         def get(
             self, *, profileId: str, id: str, **kwargs: typing.Any
@@ -2067,6 +2121,8 @@ class DfareportingResource(googleapiclient.discovery.Resource):
     def creatives(self) -> CreativesResource: ...
     def dimensionValues(self) -> DimensionValuesResource: ...
     def directorySites(self) -> DirectorySitesResource: ...
+    def dynamicFeeds(self) -> DynamicFeedsResource: ...
+    def dynamicProfiles(self) -> DynamicProfilesResource: ...
     def dynamicTargetingKeys(self) -> DynamicTargetingKeysResource: ...
     def eventTags(self) -> EventTagsResource: ...
     def files(self) -> FilesResource: ...
@@ -2093,6 +2149,8 @@ class DfareportingResource(googleapiclient.discovery.Resource):
     def reports(self) -> ReportsResource: ...
     def sites(self) -> SitesResource: ...
     def sizes(self) -> SizesResource: ...
+    def studioCreativeAssets(self) -> StudioCreativeAssetsResource: ...
+    def studioCreatives(self) -> StudioCreativesResource: ...
     def subaccounts(self) -> SubaccountsResource: ...
     def targetableRemarketingLists(self) -> TargetableRemarketingListsResource: ...
     def targetingTemplates(self) -> TargetingTemplatesResource: ...
@@ -2515,6 +2573,30 @@ class DirectorySitesListResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> DirectorySitesListResponse: ...
 
 @typing.type_check_only
+class DynamicFeedHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> DynamicFeed: ...
+
+@typing.type_check_only
+class DynamicProfileHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> DynamicProfile: ...
+
+@typing.type_check_only
+class DynamicProfileGenerateCodeResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> DynamicProfileGenerateCodeResponse: ...
+
+@typing.type_check_only
 class DynamicTargetingKeyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -2923,6 +3005,22 @@ class SizesListResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> SizesListResponse: ...
+
+@typing.type_check_only
+class StudioCreativeHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> StudioCreative: ...
+
+@typing.type_check_only
+class StudioCreativeAssetsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> StudioCreativeAssetsResponse: ...
 
 @typing.type_check_only
 class SubaccountHttpRequest(googleapiclient.http.HttpRequest):

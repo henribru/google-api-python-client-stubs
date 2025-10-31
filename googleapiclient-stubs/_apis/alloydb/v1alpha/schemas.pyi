@@ -9,6 +9,11 @@ class AuthorizedNetwork(typing_extensions.TypedDict, total=False):
     cidrRange: str
 
 @typing.type_check_only
+class AutoScalingConfig(typing_extensions.TypedDict, total=False):
+    policy: Policy
+    schedules: _list[Schedule]
+
+@typing.type_check_only
 class AutomatedBackupPolicy(typing_extensions.TypedDict, total=False):
     backupWindow: str
     enabled: bool
@@ -59,6 +64,32 @@ class Backup(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
+class BackupDrBackupSource(typing_extensions.TypedDict, total=False):
+    backup: str
+
+@typing.type_check_only
+class BackupDrEnabledWindow(typing_extensions.TypedDict, total=False):
+    automatedBackupPreviouslyEnabled: bool
+    backupPlanAssociation: str
+    continuousBackupPreviousRecoveryWindowDays: int
+    continuousBackupPreviouslyEnabled: bool
+    continuousBackupPreviouslyEnabledTime: str
+    dataSource: str
+    disabledTime: str
+    enabledTime: str
+    logRetentionPeriod: str
+
+@typing.type_check_only
+class BackupDrInfo(typing_extensions.TypedDict, total=False):
+    currentWindow: BackupDrEnabledWindow
+    previousWindows: _list[BackupDrEnabledWindow]
+
+@typing.type_check_only
+class BackupDrPitrSource(typing_extensions.TypedDict, total=False):
+    dataSource: str
+    pointInTime: str
+
+@typing.type_check_only
 class BackupSource(typing_extensions.TypedDict, total=False):
     backupName: str
     backupUid: str
@@ -91,6 +122,8 @@ class Cluster(typing_extensions.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     automatedBackupPolicy: AutomatedBackupPolicy
     backupSource: BackupSource
+    backupdrBackupSource: BackupDrBackupSource
+    backupdrInfo: BackupDrInfo
     cloudsqlBackupRunSource: CloudSQLBackupRunSource
     clusterType: typing_extensions.Literal[
         "CLUSTER_TYPE_UNSPECIFIED", "PRIMARY", "SECONDARY"
@@ -116,6 +149,11 @@ class Cluster(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     maintenanceSchedule: MaintenanceSchedule
     maintenanceUpdatePolicy: MaintenanceUpdatePolicy
+    maintenanceVersionSelectionPolicy: typing_extensions.Literal[
+        "MAINTENANCE_VERSION_SELECTION_POLICY_UNSPECIFIED",
+        "MAINTENANCE_VERSION_SELECTION_POLICY_LATEST",
+        "MAINTENANCE_VERSION_SELECTION_POLICY_DEFAULT",
+    ]
     migrationSource: MigrationSource
     name: str
     network: str
@@ -230,6 +268,10 @@ class ContinuousBackupInfo(typing_extensions.TypedDict, total=False):
 class ContinuousBackupSource(typing_extensions.TypedDict, total=False):
     cluster: str
     pointInTime: str
+
+@typing.type_check_only
+class CpuUtilization(typing_extensions.TypedDict, total=False):
+    utilizationTarget: float
 
 @typing.type_check_only
 class CsvExportOptions(typing_extensions.TypedDict, total=False):
@@ -443,6 +485,7 @@ class ListInstancesResponse(typing_extensions.TypedDict, total=False):
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListSupportedDatabaseFlagsResponse(typing_extensions.TypedDict, total=False):
@@ -534,6 +577,13 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
+class Policy(typing_extensions.TypedDict, total=False):
+    coolDownPeriodSec: str
+    cpuUtilization: CpuUtilization
+    enabled: bool
+    maxNodeCount: str
+
+@typing.type_check_only
 class PrimaryConfig(typing_extensions.TypedDict, total=False):
     secondaryClusterNames: _list[str]
 
@@ -586,6 +636,7 @@ class QueryInsightsInstanceConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ReadPoolConfig(typing_extensions.TypedDict, total=False):
+    autoScalingConfig: AutoScalingConfig
     nodeCount: int
 
 @typing.type_check_only
@@ -601,6 +652,8 @@ class RestartInstanceRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class RestoreClusterRequest(typing_extensions.TypedDict, total=False):
     backupSource: BackupSource
+    backupdrBackupSource: BackupDrBackupSource
+    backupdrPitrSource: BackupDrPitrSource
     cluster: Cluster
     clusterId: str
     continuousBackupSource: ContinuousBackupSource
@@ -612,6 +665,16 @@ class RestoreFromCloudSQLRequest(typing_extensions.TypedDict, total=False):
     cloudsqlBackupRunSource: CloudSQLBackupRunSource
     cluster: Cluster
     clusterId: str
+
+@typing.type_check_only
+class Schedule(typing_extensions.TypedDict, total=False):
+    cronExpression: str
+    description: str
+    disabled: bool
+    durationSec: str
+    minNodeCount: str
+    name: str
+    timeZone: str
 
 @typing.type_check_only
 class SecondaryConfig(typing_extensions.TypedDict, total=False):
@@ -725,6 +788,23 @@ class StorageDatabasecenterPartnerapiV1mainBackupConfiguration(
     pointInTimeRecoveryEnabled: bool
 
 @typing.type_check_only
+class StorageDatabasecenterPartnerapiV1mainBackupDRConfiguration(
+    typing_extensions.TypedDict, total=False
+):
+    backupdrManaged: bool
+
+@typing.type_check_only
+class StorageDatabasecenterPartnerapiV1mainBackupDRMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    backupConfiguration: StorageDatabasecenterPartnerapiV1mainBackupConfiguration
+    backupRun: StorageDatabasecenterPartnerapiV1mainBackupRun
+    backupdrConfiguration: StorageDatabasecenterPartnerapiV1mainBackupDRConfiguration
+    fullResourceName: str
+    lastRefreshTime: str
+    resourceId: StorageDatabasecenterPartnerapiV1mainDatabaseResourceId
+
+@typing.type_check_only
 class StorageDatabasecenterPartnerapiV1mainBackupRun(
     typing_extensions.TypedDict, total=False
 ):
@@ -741,6 +821,23 @@ class StorageDatabasecenterPartnerapiV1mainCompliance(
     version: str
 
 @typing.type_check_only
+class StorageDatabasecenterPartnerapiV1mainConfigBasedSignalData(
+    typing_extensions.TypedDict, total=False
+):
+    fullResourceName: str
+    lastRefreshTime: str
+    resourceId: StorageDatabasecenterPartnerapiV1mainDatabaseResourceId
+    signalBoolValue: bool
+    signalType: typing_extensions.Literal[
+        "SIGNAL_TYPE_UNSPECIFIED",
+        "SIGNAL_TYPE_OUTDATED_MINOR_VERSION",
+        "SIGNAL_TYPE_DATABASE_AUDITING_DISABLED",
+        "SIGNAL_TYPE_NO_ROOT_PASSWORD",
+        "SIGNAL_TYPE_EXPOSED_TO_PUBLIC_ACCESS",
+        "SIGNAL_TYPE_UNENCRYPTED_CONNECTIONS",
+    ]
+
+@typing.type_check_only
 class StorageDatabasecenterPartnerapiV1mainCustomMetadataData(
     typing_extensions.TypedDict, total=False
 ):
@@ -752,6 +849,11 @@ class StorageDatabasecenterPartnerapiV1mainCustomMetadataData(
 class StorageDatabasecenterPartnerapiV1mainDatabaseResourceFeed(
     typing_extensions.TypedDict, total=False
 ):
+    backupdrMetadata: StorageDatabasecenterPartnerapiV1mainBackupDRMetadata
+    configBasedSignalData: StorageDatabasecenterPartnerapiV1mainConfigBasedSignalData
+    databaseResourceSignalData: (
+        StorageDatabasecenterPartnerapiV1mainDatabaseResourceSignalData
+    )
     feedTimestamp: str
     feedType: typing_extensions.Literal[
         "FEEDTYPE_UNSPECIFIED",
@@ -759,6 +861,9 @@ class StorageDatabasecenterPartnerapiV1mainDatabaseResourceFeed(
         "OBSERVABILITY_DATA",
         "SECURITY_FINDING_DATA",
         "RECOMMENDATION_SIGNAL_DATA",
+        "CONFIG_BASED_SIGNAL_DATA",
+        "BACKUPDR_METADATA",
+        "DATABASE_RESOURCE_SIGNAL_DATA",
     ]
     observabilityMetricData: (
         StorageDatabasecenterPartnerapiV1mainObservabilityMetricData
@@ -771,6 +876,7 @@ class StorageDatabasecenterPartnerapiV1mainDatabaseResourceFeed(
     )
     resourceId: StorageDatabasecenterPartnerapiV1mainDatabaseResourceId
     resourceMetadata: StorageDatabasecenterPartnerapiV1mainDatabaseResourceMetadata
+    skipIngestion: bool
 
 @typing.type_check_only
 class StorageDatabasecenterPartnerapiV1mainDatabaseResourceHealthSignalData(
@@ -903,6 +1009,14 @@ class StorageDatabasecenterPartnerapiV1mainDatabaseResourceHealthSignalData(
         "SIGNAL_TYPE_HIGH_READ_PRESSURE",
         "SIGNAL_TYPE_ENCRYPTION_ORG_POLICY_NOT_SATISFIED",
         "SIGNAL_TYPE_LOCATION_ORG_POLICY_NOT_SATISFIED",
+        "SIGNAL_TYPE_OUTDATED_MINOR_VERSION",
+        "SIGNAL_TYPE_SCHEMA_NOT_OPTIMIZED",
+        "SIGNAL_TYPE_MANY_IDLE_CONNECTIONS",
+        "SIGNAL_TYPE_REPLICATION_LAG",
+        "SIGNAL_TYPE_OUTDATED_VERSION",
+        "SIGNAL_TYPE_OUTDATED_CLIENT",
+        "SIGNAL_TYPE_DATABOOST_DISABLED",
+        "SIGNAL_TYPE_RECOMMENDED_MAINTENANCE_POLICIES",
     ]
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "RESOLVED", "MUTED"]
 
@@ -932,6 +1046,7 @@ class StorageDatabasecenterPartnerapiV1mainDatabaseResourceMetadata(
     )
     backupConfiguration: StorageDatabasecenterPartnerapiV1mainBackupConfiguration
     backupRun: StorageDatabasecenterPartnerapiV1mainBackupRun
+    backupdrConfiguration: StorageDatabasecenterPartnerapiV1mainBackupDRConfiguration
     creationTime: str
     currentState: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
@@ -943,7 +1058,10 @@ class StorageDatabasecenterPartnerapiV1mainDatabaseResourceMetadata(
     ]
     customMetadata: StorageDatabasecenterPartnerapiV1mainCustomMetadataData
     edition: typing_extensions.Literal[
-        "EDITION_UNSPECIFIED", "EDITION_ENTERPRISE", "EDITION_ENTERPRISE_PLUS"
+        "EDITION_UNSPECIFIED",
+        "EDITION_ENTERPRISE",
+        "EDITION_ENTERPRISE_PLUS",
+        "EDITION_STANDARD",
     ]
     entitlements: _list[StorageDatabasecenterPartnerapiV1mainEntitlement]
     expectedState: typing_extensions.Literal[
@@ -971,6 +1089,7 @@ class StorageDatabasecenterPartnerapiV1mainDatabaseResourceMetadata(
     ]
     location: str
     machineConfiguration: StorageDatabasecenterPartnerapiV1mainMachineConfiguration
+    maintenanceInfo: StorageDatabasecenterPartnerapiV1mainResourceMaintenanceInfo
     primaryResourceId: StorageDatabasecenterPartnerapiV1mainDatabaseResourceId
     primaryResourceLocation: str
     product: StorageDatabasecenterProtoCommonProduct
@@ -988,6 +1107,7 @@ class StorageDatabasecenterPartnerapiV1mainDatabaseResourceMetadata(
     tagsSet: StorageDatabasecenterPartnerapiV1mainTags
     updationTime: str
     userLabelSet: StorageDatabasecenterPartnerapiV1mainUserLabels
+    zone: str
 
 @typing.type_check_only
 class StorageDatabasecenterPartnerapiV1mainDatabaseResourceRecommendationSignalData(
@@ -1099,6 +1219,34 @@ class StorageDatabasecenterPartnerapiV1mainDatabaseResourceRecommendationSignalD
         "SIGNAL_TYPE_HIGH_READ_PRESSURE",
         "SIGNAL_TYPE_ENCRYPTION_ORG_POLICY_NOT_SATISFIED",
         "SIGNAL_TYPE_LOCATION_ORG_POLICY_NOT_SATISFIED",
+        "SIGNAL_TYPE_OUTDATED_MINOR_VERSION",
+        "SIGNAL_TYPE_SCHEMA_NOT_OPTIMIZED",
+        "SIGNAL_TYPE_MANY_IDLE_CONNECTIONS",
+        "SIGNAL_TYPE_REPLICATION_LAG",
+        "SIGNAL_TYPE_OUTDATED_VERSION",
+        "SIGNAL_TYPE_OUTDATED_CLIENT",
+        "SIGNAL_TYPE_DATABOOST_DISABLED",
+        "SIGNAL_TYPE_RECOMMENDED_MAINTENANCE_POLICIES",
+    ]
+
+@typing.type_check_only
+class StorageDatabasecenterPartnerapiV1mainDatabaseResourceSignalData(
+    typing_extensions.TypedDict, total=False
+):
+    fullResourceName: str
+    lastRefreshTime: str
+    resourceId: StorageDatabasecenterPartnerapiV1mainDatabaseResourceId
+    signalBoolValue: bool
+    signalState: typing_extensions.Literal[
+        "SIGNAL_STATE_UNSPECIFIED", "ACTIVE", "INACTIVE", "DISMISSED"
+    ]
+    signalType: typing_extensions.Literal[
+        "SIGNAL_TYPE_UNSPECIFIED",
+        "SIGNAL_TYPE_OUTDATED_MINOR_VERSION",
+        "SIGNAL_TYPE_DATABASE_AUDITING_DISABLED",
+        "SIGNAL_TYPE_NO_ROOT_PASSWORD",
+        "SIGNAL_TYPE_EXPOSED_TO_PUBLIC_ACCESS",
+        "SIGNAL_TYPE_UNENCRYPTED_CONNECTIONS",
     ]
 
 @typing.type_check_only
@@ -1177,6 +1325,45 @@ class StorageDatabasecenterPartnerapiV1mainOperationError(
     message: str
 
 @typing.type_check_only
+class StorageDatabasecenterPartnerapiV1mainResourceMaintenanceDenySchedule(
+    typing_extensions.TypedDict, total=False
+):
+    endDate: GoogleTypeDate
+    startDate: GoogleTypeDate
+    time: GoogleTypeTimeOfDay
+
+@typing.type_check_only
+class StorageDatabasecenterPartnerapiV1mainResourceMaintenanceInfo(
+    typing_extensions.TypedDict, total=False
+):
+    denyMaintenanceSchedules: _list[
+        StorageDatabasecenterPartnerapiV1mainResourceMaintenanceDenySchedule
+    ]
+    maintenanceSchedule: (
+        StorageDatabasecenterPartnerapiV1mainResourceMaintenanceSchedule
+    )
+    maintenanceVersion: str
+
+@typing.type_check_only
+class StorageDatabasecenterPartnerapiV1mainResourceMaintenanceSchedule(
+    typing_extensions.TypedDict, total=False
+):
+    day: typing_extensions.Literal[
+        "DAY_OF_WEEK_UNSPECIFIED",
+        "MONDAY",
+        "TUESDAY",
+        "WEDNESDAY",
+        "THURSDAY",
+        "FRIDAY",
+        "SATURDAY",
+        "SUNDAY",
+    ]
+    phase: typing_extensions.Literal[
+        "PHASE_UNSPECIFIED", "ANY", "WEEK1", "WEEK2", "WEEK5"
+    ]
+    time: GoogleTypeTimeOfDay
+
+@typing.type_check_only
 class StorageDatabasecenterPartnerapiV1mainRetentionSettings(
     typing_extensions.TypedDict, total=False
 ):
@@ -1223,9 +1410,11 @@ class StorageDatabasecenterProtoCommonProduct(typing_extensions.TypedDict, total
         "ENGINE_OTHER",
         "ENGINE_FIRESTORE_WITH_NATIVE_MODE",
         "ENGINE_FIRESTORE_WITH_DATASTORE_MODE",
+        "ENGINE_FIRESTORE_WITH_MONGODB_COMPATIBILITY_MODE",
         "ENGINE_EXADATA_ORACLE",
         "ENGINE_ADB_SERVERLESS_ORACLE",
     ]
+    minorVersion: str
     type: typing_extensions.Literal[
         "PRODUCT_TYPE_UNSPECIFIED",
         "PRODUCT_TYPE_CLOUD_SQL",
@@ -1240,6 +1429,7 @@ class StorageDatabasecenterProtoCommonProduct(typing_extensions.TypedDict, total
         "PRODUCT_TYPE_FIRESTORE",
         "PRODUCT_TYPE_COMPUTE_ENGINE",
         "PRODUCT_TYPE_ORACLE_ON_GCP",
+        "PRODUCT_TYPE_BIGQUERY",
         "PRODUCT_TYPE_OTHER",
     ]
     version: str

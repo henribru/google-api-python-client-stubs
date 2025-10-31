@@ -44,6 +44,7 @@ class BootDiskConfig(typing_extensions.TypedDict, total=False):
     provisionedIops: str
     provisionedThroughput: str
     sourceImage: str
+    storagePool: str
 
 @typing.type_check_only
 class CreatingData(typing_extensions.TypedDict, total=False): ...
@@ -77,6 +78,10 @@ class GetGuestAttributesRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GetGuestAttributesResponse(typing_extensions.TypedDict, total=False):
     guestAttributes: _list[GuestAttributes]
+
+@typing.type_check_only
+class GetMaintenanceInfoResponse(typing_extensions.TypedDict, total=False):
+    nodeUpcomingMaintenances: _list[NodeUpcomingMaintenanceInfo]
 
 @typing.type_check_only
 class Guaranteed(typing_extensions.TypedDict, total=False):
@@ -124,6 +129,7 @@ class ListNodesResponse(typing_extensions.TypedDict, total=False):
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListQueuedResourcesResponse(typing_extensions.TypedDict, total=False):
@@ -234,6 +240,12 @@ class NodeSpec(typing_extensions.TypedDict, total=False):
     node: Node
     nodeId: str
     parent: str
+
+@typing.type_check_only
+class NodeUpcomingMaintenanceInfo(typing_extensions.TypedDict, total=False):
+    nodeName: str
+    nodeUid: str
+    upcomingMaintenance: UpcomingMaintenance
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):

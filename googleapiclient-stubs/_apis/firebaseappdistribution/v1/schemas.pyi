@@ -242,10 +242,12 @@ class GoogleFirebaseAppdistroV1Release(typing_extensions.TypedDict, total=False)
     buildVersion: str
     createTime: str
     displayVersion: str
+    expireTime: str
     firebaseConsoleUri: str
     name: str
     releaseNotes: GoogleFirebaseAppdistroV1ReleaseNotes
     testingUri: str
+    updateTime: str
 
 @typing.type_check_only
 class GoogleFirebaseAppdistroV1ReleaseNotes(typing_extensions.TypedDict, total=False):
@@ -298,6 +300,7 @@ class GoogleLongrunningCancelOperationRequest(
 class GoogleLongrunningListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[GoogleLongrunningOperation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class GoogleLongrunningOperation(typing_extensions.TypedDict, total=False):

@@ -133,7 +133,7 @@ class GitHubConfig(typing_extensions.TypedDict, total=False):
     appInstallationId: str
     authorizerCredential: OAuthCredential
     githubApp: typing_extensions.Literal[
-        "GIT_HUB_APP_UNSPECIFIED", "DEVELOPER_CONNECT", "FIREBASE"
+        "GIT_HUB_APP_UNSPECIFIED", "DEVELOPER_CONNECT", "FIREBASE", "GEMINI_CODE_ASSIST"
     ]
     installationUri: str
 
@@ -271,6 +271,7 @@ class ListLocationsResponse(typing_extensions.TypedDict, total=False):
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListUsersResponse(typing_extensions.TypedDict, total=False):

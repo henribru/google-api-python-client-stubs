@@ -35,6 +35,17 @@ class PosixAccount(typing_extensions.TypedDict, total=False):
     username: str
 
 @typing.type_check_only
+class SignSshPublicKeyRequest(typing_extensions.TypedDict, total=False):
+    appEngineInstance: str
+    computeInstance: str
+    serviceAccount: str
+    sshPublicKey: str
+
+@typing.type_check_only
+class SignSshPublicKeyResponse(typing_extensions.TypedDict, total=False):
+    signedSshPublicKey: str
+
+@typing.type_check_only
 class SshPublicKey(typing_extensions.TypedDict, total=False):
     expirationTimeUsec: str
     fingerprint: str

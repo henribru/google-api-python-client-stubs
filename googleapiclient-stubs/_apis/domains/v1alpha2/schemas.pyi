@@ -355,6 +355,7 @@ class Registration(typing_extensions.TypedDict, total=False):
             "UNVERIFIED_EMAIL",
             "PROBLEM_WITH_BILLING",
             "DNS_NOT_ACTIVATED",
+            "AUTO_RENEWAL_UPDATE_NOT_EFFECTIVE",
         ]
     ]
     labels: dict[str, typing.Any]

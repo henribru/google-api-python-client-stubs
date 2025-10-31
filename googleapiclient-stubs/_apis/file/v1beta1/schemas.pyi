@@ -71,6 +71,7 @@ class FileShareConfig(typing_extensions.TypedDict, total=False):
     name: str
     nfsExportOptions: _list[NfsExportOptions]
     sourceBackup: str
+    sourceBackupdrBackup: str
 
 @typing.type_check_only
 class FixedIOPS(typing_extensions.TypedDict, total=False):
@@ -181,6 +182,9 @@ class IOPSPerTB(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Instance(typing_extensions.TypedDict, total=False):
+    backendType: typing_extensions.Literal[
+        "BACKEND_TYPE_UNSPECIFIED", "COMPUTE_BASED_BACKEND", "FILESTORE_BACKEND"
+    ]
     capacityGb: str
     capacityStepSizeGb: str
     createTime: str
@@ -195,6 +199,7 @@ class Instance(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     maxCapacityGb: str
     maxShareCount: str
+    minCapacityGb: str
     multiShareEnabled: bool
     name: str
     networks: _list[NetworkConfig]
@@ -357,6 +362,9 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
+class PauseReplicaRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class PerformanceConfig(typing_extensions.TypedDict, total=False):
     fixedIops: FixedIOPS
     iopsPerTb: IOPSPerTB
@@ -382,13 +390,26 @@ class ReplicaConfig(typing_extensions.TypedDict, total=False):
     lastActiveSyncTime: str
     peerInstance: str
     state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "CREATING", "READY", "REMOVING", "FAILED"
+        "STATE_UNSPECIFIED",
+        "CREATING",
+        "READY",
+        "REMOVING",
+        "FAILED",
+        "PROMOTING",
+        "PAUSING",
+        "PAUSED",
+        "RESUMING",
     ]
     stateReasons: _list[
         typing_extensions.Literal[
-            "STATE_REASON_UNSPECIFIED", "PEER_INSTANCE_UNREACHABLE", "REMOVE_FAILED"
+            "STATE_REASON_UNSPECIFIED",
+            "PEER_INSTANCE_UNREACHABLE",
+            "REMOVE_FAILED",
+            "PAUSE_FAILED",
+            "RESUME_FAILED",
         ]
     ]
+    stateUpdateTime: str
 
 @typing.type_check_only
 class Replication(typing_extensions.TypedDict, total=False):
@@ -400,6 +421,9 @@ class RestoreInstanceRequest(typing_extensions.TypedDict, total=False):
     fileShare: str
     sourceBackup: str
     sourceSnapshot: str
+
+@typing.type_check_only
+class ResumeReplicaRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class RevertInstanceRequest(typing_extensions.TypedDict, total=False):

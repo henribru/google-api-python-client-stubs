@@ -47,6 +47,7 @@ class AnalyzeConsumerPolicyResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Api(typing_extensions.TypedDict, total=False):
+    edition: str
     methods: _list[Method]
     mixins: _list[Mixin]
     name: str
@@ -205,6 +206,14 @@ class ConsumerPolicy(typing_extensions.TypedDict, total=False):
     etag: str
     name: str
     updateTime: str
+
+@typing.type_check_only
+class ContentSecurity(typing_extensions.TypedDict, total=False):
+    contentSecurityProviders: _list[ContentSecurityProvider]
+
+@typing.type_check_only
+class ContentSecurityProvider(typing_extensions.TypedDict, total=False):
+    name: str
 
 @typing.type_check_only
 class Context(typing_extensions.TypedDict, total=False):
@@ -539,6 +548,7 @@ class GoogleApiServiceusageV2betaImpact(typing_extensions.TypedDict, total=False
     impactType: typing_extensions.Literal[
         "IMPACT_TYPE_UNSPECIFIED", "DEPENDENCY_MISSING_DEPENDENCIES"
     ]
+    missingDependency: str
 
 @typing.type_check_only
 class GoogleApiServiceusageV2betaUpdateConsumerPolicyMetadata(
@@ -648,7 +658,25 @@ class LongRunning(typing_extensions.TypedDict, total=False):
     totalPollTimeout: str
 
 @typing.type_check_only
+class McpEnableRule(typing_extensions.TypedDict, total=False):
+    mcpServices: _list[McpService]
+
+@typing.type_check_only
+class McpPolicy(typing_extensions.TypedDict, total=False):
+    contentSecurity: ContentSecurity
+    createTime: str
+    etag: str
+    mcpEnableRules: _list[McpEnableRule]
+    name: str
+    updateTime: str
+
+@typing.type_check_only
+class McpService(typing_extensions.TypedDict, total=False):
+    service: str
+
+@typing.type_check_only
 class Method(typing_extensions.TypedDict, total=False):
+    edition: str
     name: str
     options: _list[Option]
     requestStreaming: bool
@@ -799,6 +827,7 @@ class Page(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class PhpSettings(typing_extensions.TypedDict, total=False):
     common: CommonLanguageSettings
+    libraryPackage: str
 
 @typing.type_check_only
 class Publishing(typing_extensions.TypedDict, total=False):
@@ -923,6 +952,9 @@ class UpdateAdminQuotaPolicyMetadata(typing_extensions.TypedDict, total=False): 
 
 @typing.type_check_only
 class UpdateConsumerPolicyMetadata(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class UpdateMcpPolicyMetadata(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Usage(typing_extensions.TypedDict, total=False):

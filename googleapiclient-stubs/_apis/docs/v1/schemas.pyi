@@ -205,10 +205,17 @@ class Document(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
+class DocumentFormat(typing_extensions.TypedDict, total=False):
+    documentMode: typing_extensions.Literal[
+        "DOCUMENT_MODE_UNSPECIFIED", "PAGES", "PAGELESS"
+    ]
+
+@typing.type_check_only
 class DocumentStyle(typing_extensions.TypedDict, total=False):
     background: Background
     defaultFooterId: str
     defaultHeaderId: str
+    documentFormat: DocumentFormat
     evenPageFooterId: str
     evenPageHeaderId: str
     firstPageFooterId: str
@@ -424,6 +431,12 @@ class InsertInlineSheetsChartResponse(typing_extensions.TypedDict, total=False):
 class InsertPageBreakRequest(typing_extensions.TypedDict, total=False):
     endOfSegmentLocation: EndOfSegmentLocation
     location: Location
+
+@typing.type_check_only
+class InsertPersonRequest(typing_extensions.TypedDict, total=False):
+    endOfSegmentLocation: EndOfSegmentLocation
+    location: Location
+    personProperties: PersonProperties
 
 @typing.type_check_only
 class InsertSectionBreakRequest(typing_extensions.TypedDict, total=False):
@@ -810,6 +823,7 @@ class Request(typing_extensions.TypedDict, total=False):
     deleteTableRow: DeleteTableRowRequest
     insertInlineImage: InsertInlineImageRequest
     insertPageBreak: InsertPageBreakRequest
+    insertPerson: InsertPersonRequest
     insertSectionBreak: InsertSectionBreakRequest
     insertTable: InsertTableRequest
     insertTableColumn: InsertTableColumnRequest
@@ -1000,6 +1014,7 @@ class Tab(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class TabProperties(typing_extensions.TypedDict, total=False):
+    iconEmoji: str
     index: int
     nestingLevel: int
     parentTabId: str

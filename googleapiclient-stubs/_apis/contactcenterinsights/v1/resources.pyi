@@ -361,6 +361,7 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                             filter: str = ...,
                             pageSize: int = ...,
                             pageToken: str = ...,
+                            returnPartialSuccess: bool = ...,
                             **kwargs: typing.Any,
                         ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
                         def list_next(
@@ -389,6 +390,13 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                     ) -> (
                         GoogleCloudContactcenterinsightsV1AuthorizedViewHttpRequest
                     ): ...
+                    def getIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        options_requestedPolicyVersion: int = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleIamV1PolicyHttpRequest: ...
                     def list(
                         self,
                         *,
@@ -449,6 +457,20 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                         GoogleCloudContactcenterinsightsV1SearchAuthorizedViewsResponseHttpRequest
                         | None
                     ): ...
+                    def setIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        body: GoogleIamV1SetIamPolicyRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleIamV1PolicyHttpRequest: ...
+                    def testIamPermissions(
+                        self,
+                        *,
+                        resource: str,
+                        body: GoogleIamV1TestIamPermissionsRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
                     def conversations(self) -> ConversationsResource: ...
                     def operations(self) -> OperationsResource: ...
 
@@ -735,9 +757,17 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: GoogleCloudContactcenterinsightsV1Conversation = ...,
+                    allowMissing: bool = ...,
                     updateMask: str = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudContactcenterinsightsV1ConversationHttpRequest: ...
+                def sample(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleCloudContactcenterinsightsV1SampleConversationsRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleLongrunningOperationHttpRequest: ...
                 def upload(
                     self,
                     *,
@@ -895,6 +925,13 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                         GoogleCloudContactcenterinsightsV1ListConversationsResponseHttpRequest
                         | None
                     ): ...
+                    def sample(
+                        self,
+                        *,
+                        parent: str,
+                        body: GoogleCloudContactcenterinsightsV1SampleConversationsRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
                     def analyses(self) -> AnalysesResource: ...
                     def feedbackLabels(self) -> FeedbackLabelsResource: ...
 
@@ -929,6 +966,39 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                     body: GoogleCloudContactcenterinsightsV1BulkUploadFeedbackLabelsRequest = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleCloudContactcenterinsightsV1Dataset = ...,
+                    datasetId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleCloudContactcenterinsightsV1DatasetHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudContactcenterinsightsV1DatasetHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> (
+                    GoogleCloudContactcenterinsightsV1ListDatasetsResponseHttpRequest
+                ): ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudContactcenterinsightsV1ListDatasetsResponseHttpRequest,
+                    previous_response: GoogleCloudContactcenterinsightsV1ListDatasetsResponse,
+                ) -> (
+                    GoogleCloudContactcenterinsightsV1ListDatasetsResponseHttpRequest
+                    | None
+                ): ...
                 def listAllFeedbackLabels(
                     self,
                     *,
@@ -946,6 +1016,14 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                     GoogleCloudContactcenterinsightsV1ListAllFeedbackLabelsResponseHttpRequest
                     | None
                 ): ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudContactcenterinsightsV1Dataset = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleCloudContactcenterinsightsV1DatasetHttpRequest: ...
                 def conversations(self) -> ConversationsResource: ...
                 def insightsdata(self) -> InsightsdataResource: ...
 
@@ -1074,6 +1152,7 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
+                    returnPartialSuccess: bool = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
                 def list_next(
@@ -1236,6 +1315,18 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                         filter: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
+                        qaScorecardSources: typing_extensions.Literal[
+                            "QA_SCORECARD_SOURCE_UNSPECIFIED",
+                            "QA_SCORECARD_SOURCE_CUSTOMER_DEFINED",
+                            "QA_SCORECARD_SOURCE_DISCOVERY_ENGINE",
+                        ]
+                        | _list[
+                            typing_extensions.Literal[
+                                "QA_SCORECARD_SOURCE_UNSPECIFIED",
+                                "QA_SCORECARD_SOURCE_CUSTOMER_DEFINED",
+                                "QA_SCORECARD_SOURCE_DISCOVERY_ENGINE",
+                            ]
+                        ] = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudContactcenterinsightsV1ListQaScorecardRevisionsResponseHttpRequest: ...
                     def list_next(
@@ -1284,6 +1375,18 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
+                    qaScorecardSources: typing_extensions.Literal[
+                        "QA_SCORECARD_SOURCE_UNSPECIFIED",
+                        "QA_SCORECARD_SOURCE_CUSTOMER_DEFINED",
+                        "QA_SCORECARD_SOURCE_DISCOVERY_ENGINE",
+                    ]
+                    | _list[
+                        typing_extensions.Literal[
+                            "QA_SCORECARD_SOURCE_UNSPECIFIED",
+                            "QA_SCORECARD_SOURCE_CUSTOMER_DEFINED",
+                            "QA_SCORECARD_SOURCE_DISCOVERY_ENGINE",
+                        ]
+                    ] = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudContactcenterinsightsV1ListQaScorecardsResponseHttpRequest: ...
                 def list_next(
@@ -1531,6 +1634,16 @@ class GoogleCloudContactcenterinsightsV1ConversationHttpRequest(
     ) -> GoogleCloudContactcenterinsightsV1Conversation: ...
 
 @typing.type_check_only
+class GoogleCloudContactcenterinsightsV1DatasetHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudContactcenterinsightsV1Dataset: ...
+
+@typing.type_check_only
 class GoogleCloudContactcenterinsightsV1EncryptionSpecHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -1649,6 +1762,16 @@ class GoogleCloudContactcenterinsightsV1ListConversationsResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudContactcenterinsightsV1ListConversationsResponse: ...
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1ListDatasetsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudContactcenterinsightsV1ListDatasetsResponse: ...
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1ListFeedbackLabelsResponseHttpRequest(
@@ -1839,6 +1962,24 @@ class GoogleCloudContactcenterinsightsV1ViewHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudContactcenterinsightsV1View: ...
+
+@typing.type_check_only
+class GoogleIamV1PolicyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleIamV1Policy: ...
+
+@typing.type_check_only
+class GoogleIamV1TestIamPermissionsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleIamV1TestIamPermissionsResponse: ...
 
 @typing.type_check_only
 class GoogleLongrunningListOperationsResponseHttpRequest(

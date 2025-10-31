@@ -69,6 +69,7 @@ class Cluster(typing_extensions.TypedDict, total=False):
         "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "DELETING"
     ]
     tlsConfig: TlsConfig
+    updateOptions: UpdateOptions
     updateTime: str
 
 @typing.type_check_only
@@ -206,6 +207,7 @@ class ListLocationsResponse(typing_extensions.TypedDict, total=False):
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListSchemaRegistriesResponse(typing_extensions.TypedDict, total=False):
@@ -349,6 +351,7 @@ class StopConnectorResponse(typing_extensions.TypedDict, total=False): ...
 class TaskRetryPolicy(typing_extensions.TypedDict, total=False):
     maximumBackoff: str
     minimumBackoff: str
+    taskRetryDisabled: bool
 
 @typing.type_check_only
 class TlsConfig(typing_extensions.TypedDict, total=False):
@@ -365,6 +368,10 @@ class Topic(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class TrustConfig(typing_extensions.TypedDict, total=False):
     casConfigs: _list[CertificateAuthorityServiceConfig]
+
+@typing.type_check_only
+class UpdateOptions(typing_extensions.TypedDict, total=False):
+    allowBrokerDownscaleOnClusterUpscale: bool
 
 @typing.type_check_only
 class UpdateSchemaConfigRequest(typing_extensions.TypedDict, total=False):

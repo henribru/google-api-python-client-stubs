@@ -100,6 +100,7 @@ class ListLocationsResponse(typing_extensions.TypedDict, total=False):
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):
@@ -123,6 +124,13 @@ class LoggingConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Manifest(typing_extensions.TypedDict, total=False):
     manifestLocation: str
+
+@typing.type_check_only
+class ObjectRetention(typing_extensions.TypedDict, total=False):
+    retainUntilTime: str
+    retentionMode: typing_extensions.Literal[
+        "RETENTION_MODE_UNSPECIFIED", "LOCKED", "UNLOCKED"
+    ]
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
@@ -154,6 +162,7 @@ class PutMetadata(typing_extensions.TypedDict, total=False):
     contentType: str
     customMetadata: dict[str, typing.Any]
     customTime: str
+    objectRetention: ObjectRetention
 
 @typing.type_check_only
 class PutObjectHold(typing_extensions.TypedDict, total=False):

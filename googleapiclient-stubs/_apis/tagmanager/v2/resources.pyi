@@ -240,6 +240,9 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                             "serverPageLocationPath",
                             "serverPageLocationHostname",
                             "visitorRegion",
+                            "analyticsClientId",
+                            "analyticsSessionId",
+                            "analyticsSessionNumber",
                         ]
                         | _list[
                             typing_extensions.Literal[
@@ -357,6 +360,9 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                                 "serverPageLocationPath",
                                 "serverPageLocationHostname",
                                 "visitorRegion",
+                                "analyticsClientId",
+                                "analyticsSessionId",
+                                "analyticsSessionNumber",
                             ]
                         ] = ...,
                         **kwargs: typing.Any,
@@ -480,6 +486,9 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                             "serverPageLocationPath",
                             "serverPageLocationHostname",
                             "visitorRegion",
+                            "analyticsClientId",
+                            "analyticsSessionId",
+                            "analyticsSessionNumber",
                         ]
                         | _list[
                             typing_extensions.Literal[
@@ -597,6 +606,9 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                                 "serverPageLocationPath",
                                 "serverPageLocationHostname",
                                 "visitorRegion",
+                                "analyticsClientId",
+                                "analyticsSessionId",
+                                "analyticsSessionNumber",
                             ]
                         ] = ...,
                         **kwargs: typing.Any,
@@ -728,6 +740,9 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                             "serverPageLocationPath",
                             "serverPageLocationHostname",
                             "visitorRegion",
+                            "analyticsClientId",
+                            "analyticsSessionId",
+                            "analyticsSessionNumber",
                         ] = ...,
                         **kwargs: typing.Any,
                     ) -> RevertBuiltInVariableResponseHttpRequest: ...

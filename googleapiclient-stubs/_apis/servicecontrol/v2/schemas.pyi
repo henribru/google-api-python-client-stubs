@@ -45,12 +45,15 @@ class Auth(typing_extensions.TypedDict, total=False):
     accessLevels: _list[str]
     audiences: _list[str]
     claims: dict[str, typing.Any]
+    oauth: Oauth
     presenter: str
     principal: str
 
 @typing.type_check_only
 class AuthenticationInfo(typing_extensions.TypedDict, total=False):
     authoritySelector: str
+    loggableShortLivedCredential: dict[str, typing.Any]
+    oauthInfo: OAuthInfo
     principalEmail: str
     principalSubject: str
     serviceAccountDelegationInfo: _list[ServiceAccountDelegationInfo]
@@ -89,6 +92,14 @@ class CheckResponse(typing_extensions.TypedDict, total=False):
 class FirstPartyPrincipal(typing_extensions.TypedDict, total=False):
     principalEmail: str
     serviceMetadata: dict[str, typing.Any]
+
+@typing.type_check_only
+class OAuthInfo(typing_extensions.TypedDict, total=False):
+    oauthClientId: str
+
+@typing.type_check_only
+class Oauth(typing_extensions.TypedDict, total=False):
+    clientId: str
 
 @typing.type_check_only
 class OrgPolicyViolationInfo(typing_extensions.TypedDict, total=False):

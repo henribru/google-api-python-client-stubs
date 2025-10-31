@@ -254,6 +254,7 @@ class NetAppFilesResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
+                    returnPartialSuccess: bool = ...,
                     **kwargs: typing.Any,
                 ) -> ListOperationsResponseHttpRequest: ...
                 def list_next(
@@ -483,6 +484,13 @@ class NetAppFilesResource(googleapiclient.discovery.Resource):
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self, *, name: str, force: bool = ..., **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def establishPeering(
+                    self,
+                    *,
+                    name: str,
+                    body: EstablishVolumePeeringRequest = ...,
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any

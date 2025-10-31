@@ -81,7 +81,9 @@ class Instance(typing_extensions.TypedDict, total=False):
     dataprocServiceAccount: str
     description: str
     disabledReason: _list[
-        typing_extensions.Literal["DISABLED_REASON_UNSPECIFIED", "KMS_KEY_ISSUE"]
+        typing_extensions.Literal[
+            "DISABLED_REASON_UNSPECIFIED", "KMS_KEY_ISSUE", "PROJECT_STATE_OFF"
+        ]
     ]
     displayName: str
     enableRbac: bool
@@ -116,6 +118,7 @@ class Instance(typing_extensions.TypedDict, total=False):
         "AUTO_UPDATING",
         "AUTO_UPGRADING",
         "DISABLED",
+        "ENABLING",
     ]
     stateMessage: str
     tags: dict[str, typing.Any]

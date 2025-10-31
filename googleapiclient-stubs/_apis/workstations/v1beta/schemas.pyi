@@ -153,6 +153,7 @@ class HttpOptions(typing_extensions.TypedDict, total=False):
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListUsableWorkstationConfigsResponse(typing_extensions.TypedDict, total=False):
@@ -307,6 +308,7 @@ class Workstation(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class WorkstationBoostConfig(typing_extensions.TypedDict, total=False):
     id: str
+    running: bool
 
 @typing.type_check_only
 class WorkstationCluster(typing_extensions.TypedDict, total=False):

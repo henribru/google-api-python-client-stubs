@@ -22,6 +22,8 @@ class AutonomousDatabase(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     name: str
     network: str
+    odbNetwork: str
+    odbSubnet: str
     peerAutonomousDatabases: _list[str]
     properties: AutonomousDatabaseProperties
     sourceConfig: SourceConfig
@@ -144,6 +146,8 @@ class AutonomousDatabaseProperties(typing_extensions.TypedDict, total=False):
         "DB_WORKLOAD_UNSPECIFIED", "OLTP", "DW", "AJD", "APEX"
     ]
     disasterRecoveryRoleChangedTime: str
+    encryptionKey: EncryptionKey
+    encryptionKeyHistoryEntries: _list[EncryptionKeyHistoryEntry]
     failedDataRecoveryDuration: str
     isAutoScalingEnabled: bool
     isLocalDataGuardEnabled: bool
@@ -204,6 +208,7 @@ class AutonomousDatabaseProperties(typing_extensions.TypedDict, total=False):
     ]
     scheduledOperationDetails: _list[ScheduledOperationDetails]
     secretId: str
+    serviceAgentEmail: str
     sqlWebDeveloperUrl: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
@@ -275,6 +280,17 @@ class AutonomousDbVersion(typing_extensions.TypedDict, total=False):
     workloadUri: str
 
 @typing.type_check_only
+class BackupDestinationDetails(typing_extensions.TypedDict, total=False):
+    type: typing_extensions.Literal[
+        "BACKUP_DESTINATION_TYPE_UNSPECIFIED",
+        "NFS",
+        "RECOVERY_APPLIANCE",
+        "OBJECT_STORE",
+        "LOCAL",
+        "DBRS",
+    ]
+
+@typing.type_check_only
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -340,15 +356,19 @@ class CloudExadataInfrastructureProperties(typing_extensions.TypedDict, total=Fa
 
 @typing.type_check_only
 class CloudVmCluster(typing_extensions.TypedDict, total=False):
+    backupOdbSubnet: str
     backupSubnetCidr: str
     cidr: str
     createTime: str
     displayName: str
     exadataInfrastructure: str
     gcpOracleZone: str
+    identityConnector: IdentityConnector
     labels: dict[str, typing.Any]
     name: str
     network: str
+    odbNetwork: str
+    odbSubnet: str
     properties: CloudVmClusterProperties
 
 @typing.type_check_only
@@ -413,6 +433,50 @@ class DataCollectionOptions(typing_extensions.TypedDict, total=False):
     incidentLogsEnabled: bool
 
 @typing.type_check_only
+class DataCollectionOptionsCommon(typing_extensions.TypedDict, total=False):
+    isDiagnosticsEventsEnabled: bool
+    isHealthMonitoringEnabled: bool
+    isIncidentLogsEnabled: bool
+
+@typing.type_check_only
+class DataCollectionOptionsDbSystem(typing_extensions.TypedDict, total=False):
+    isDiagnosticsEventsEnabled: bool
+    isIncidentLogsEnabled: bool
+
+@typing.type_check_only
+class Database(typing_extensions.TypedDict, total=False):
+    adminPassword: str
+    characterSet: str
+    createTime: str
+    databaseId: str
+    dbHomeName: str
+    dbName: str
+    dbUniqueName: str
+    gcpOracleZone: str
+    name: str
+    ncharacterSet: str
+    ociUrl: str
+    opsInsightsStatus: typing_extensions.Literal[
+        "OPERATIONS_INSIGHTS_STATUS_UNSPECIFIED",
+        "ENABLING",
+        "ENABLED",
+        "DISABLING",
+        "NOT_ENABLED",
+        "FAILED_ENABLING",
+        "FAILED_DISABLING",
+    ]
+    properties: DatabaseProperties
+    tdeWalletPassword: str
+
+@typing.type_check_only
+class DatabaseCharacterSet(typing_extensions.TypedDict, total=False):
+    characterSet: str
+    characterSetType: typing_extensions.Literal[
+        "CHARACTER_SET_TYPE_UNSPECIFIED", "DATABASE", "NATIONAL"
+    ]
+    name: str
+
+@typing.type_check_only
 class DatabaseConnectionStringProfile(typing_extensions.TypedDict, total=False):
     consumerGroup: typing_extensions.Literal[
         "CONSUMER_GROUP_UNSPECIFIED", "HIGH", "MEDIUM", "LOW", "TP", "TPURGENT"
@@ -433,12 +497,107 @@ class DatabaseConnectionStringProfile(typing_extensions.TypedDict, total=False):
     value: str
 
 @typing.type_check_only
+class DatabaseManagementConfig(typing_extensions.TypedDict, total=False):
+    managementState: typing_extensions.Literal[
+        "MANAGEMENT_STATE_UNSPECIFIED",
+        "ENABLING",
+        "ENABLED",
+        "DISABLING",
+        "DISABLED",
+        "UPDATING",
+        "FAILED_ENABLING",
+        "FAILED_DISABLING",
+        "FAILED_UPDATING",
+    ]
+    managementType: typing_extensions.Literal[
+        "MANAGEMENT_TYPE_UNSPECIFIED", "BASIC", "ADVANCED"
+    ]
+
+@typing.type_check_only
+class DatabaseProperties(typing_extensions.TypedDict, total=False):
+    databaseManagementConfig: DatabaseManagementConfig
+    dbBackupConfig: DbBackupConfig
+    dbVersion: str
+    state: typing_extensions.Literal[
+        "DATABASE_LIFECYCLE_STATE_UNSPECIFIED",
+        "PROVISIONING",
+        "AVAILABLE",
+        "UPDATING",
+        "BACKUP_IN_PROGRESS",
+        "UPGRADING",
+        "CONVERTING",
+        "TERMINATING",
+        "TERMINATED",
+        "RESTORE_FAILED",
+        "FAILED",
+    ]
+
+@typing.type_check_only
+class DbBackupConfig(typing_extensions.TypedDict, total=False):
+    autoBackupEnabled: bool
+    autoFullBackupDay: typing_extensions.Literal[
+        "DAY_OF_WEEK_UNSPECIFIED",
+        "MONDAY",
+        "TUESDAY",
+        "WEDNESDAY",
+        "THURSDAY",
+        "FRIDAY",
+        "SATURDAY",
+        "SUNDAY",
+    ]
+    autoFullBackupWindow: typing_extensions.Literal[
+        "BACKUP_WINDOW_UNSPECIFIED",
+        "SLOT_ONE",
+        "SLOT_TWO",
+        "SLOT_THREE",
+        "SLOT_FOUR",
+        "SLOT_FIVE",
+        "SLOT_SIX",
+        "SLOT_SEVEN",
+        "SLOT_EIGHT",
+        "SLOT_NINE",
+        "SLOT_TEN",
+        "SLOT_ELEVEN",
+        "SLOT_TWELVE",
+    ]
+    autoIncrementalBackupWindow: typing_extensions.Literal[
+        "BACKUP_WINDOW_UNSPECIFIED",
+        "SLOT_ONE",
+        "SLOT_TWO",
+        "SLOT_THREE",
+        "SLOT_FOUR",
+        "SLOT_FIVE",
+        "SLOT_SIX",
+        "SLOT_SEVEN",
+        "SLOT_EIGHT",
+        "SLOT_NINE",
+        "SLOT_TEN",
+        "SLOT_ELEVEN",
+        "SLOT_TWELVE",
+    ]
+    backupDeletionPolicy: typing_extensions.Literal[
+        "BACKUP_DELETION_POLICY_UNSPECIFIED",
+        "DELETE_IMMEDIATELY",
+        "DELETE_AFTER_RETENTION_PERIOD",
+    ]
+    backupDestinationDetails: _list[BackupDestinationDetails]
+    retentionPeriodDays: int
+
+@typing.type_check_only
+class DbHome(typing_extensions.TypedDict, total=False):
+    database: Database
+    dbVersion: str
+    displayName: str
+    isUnifiedAuditingEnabled: bool
+
+@typing.type_check_only
 class DbNode(typing_extensions.TypedDict, total=False):
     name: str
     properties: DbNodeProperties
 
 @typing.type_check_only
 class DbNodeProperties(typing_extensions.TypedDict, total=False):
+    createTime: str
     dbNodeStorageSizeGb: int
     dbServerOcid: str
     hostname: str
@@ -486,6 +645,82 @@ class DbServerProperties(typing_extensions.TypedDict, total=False):
     vmCount: int
 
 @typing.type_check_only
+class DbSystem(typing_extensions.TypedDict, total=False):
+    createTime: str
+    displayName: str
+    entitlementId: str
+    gcpOracleZone: str
+    labels: dict[str, typing.Any]
+    name: str
+    ociUrl: str
+    odbNetwork: str
+    odbSubnet: str
+    properties: DbSystemProperties
+
+@typing.type_check_only
+class DbSystemInitialStorageSize(typing_extensions.TypedDict, total=False):
+    name: str
+    properties: DbSystemInitialStorageSizeProperties
+
+@typing.type_check_only
+class DbSystemInitialStorageSizeProperties(typing_extensions.TypedDict, total=False):
+    launchFromBackupStorageSizeDetails: _list[StorageSizeDetails]
+    shapeType: typing_extensions.Literal["SHAPE_TYPE_UNSPECIFIED", "STANDARD_X86"]
+    storageManagement: typing_extensions.Literal[
+        "STORAGE_MANAGEMENT_UNSPECIFIED", "ASM", "LVM"
+    ]
+    storageSizeDetails: _list[StorageSizeDetails]
+
+@typing.type_check_only
+class DbSystemOptions(typing_extensions.TypedDict, total=False):
+    storageManagement: typing_extensions.Literal[
+        "STORAGE_MANAGEMENT_UNSPECIFIED", "ASM", "LVM"
+    ]
+
+@typing.type_check_only
+class DbSystemProperties(typing_extensions.TypedDict, total=False):
+    computeCount: int
+    computeModel: typing_extensions.Literal["COMPUTE_MODEL_UNSPECIFIED", "ECPU", "OCPU"]
+    dataCollectionOptions: DataCollectionOptionsDbSystem
+    dataStorageSizeGb: int
+    databaseEdition: typing_extensions.Literal[
+        "DB_SYSTEM_DATABASE_EDITION_UNSPECIFIED",
+        "STANDARD_EDITION",
+        "ENTERPRISE_EDITION",
+        "ENTERPRISE_EDITION_HIGH_PERFORMANCE",
+    ]
+    dbHome: DbHome
+    dbSystemOptions: DbSystemOptions
+    domain: str
+    hostname: str
+    hostnamePrefix: str
+    initialDataStorageSizeGb: int
+    licenseModel: typing_extensions.Literal[
+        "LICENSE_MODEL_UNSPECIFIED", "LICENSE_INCLUDED", "BRING_YOUR_OWN_LICENSE"
+    ]
+    lifecycleState: typing_extensions.Literal[
+        "DB_SYSTEM_LIFECYCLE_STATE_UNSPECIFIED",
+        "PROVISIONING",
+        "AVAILABLE",
+        "UPDATING",
+        "TERMINATING",
+        "TERMINATED",
+        "FAILED",
+        "MIGRATED",
+        "MAINTENANCE_IN_PROGRESS",
+        "NEEDS_ATTENTION",
+        "UPGRADING",
+    ]
+    memorySizeGb: int
+    nodeCount: int
+    ocid: str
+    privateIp: str
+    recoStorageSizeGb: int
+    shape: str
+    sshPublicKeys: _list[str]
+    timeZone: TimeZone
+
+@typing.type_check_only
 class DbSystemShape(typing_extensions.TypedDict, total=False):
     availableCoreCountPerNode: int
     availableDataStorageTb: int
@@ -501,7 +736,36 @@ class DbSystemShape(typing_extensions.TypedDict, total=False):
     shape: str
 
 @typing.type_check_only
+class DbVersion(typing_extensions.TypedDict, total=False):
+    name: str
+    properties: DbVersionProperties
+
+@typing.type_check_only
+class DbVersionProperties(typing_extensions.TypedDict, total=False):
+    isLatestForMajorVersion: bool
+    isPreviewDbVersion: bool
+    isUpgradeSupported: bool
+    supportsPdb: bool
+    version: str
+
+@typing.type_check_only
+class DefinedTagValue(typing_extensions.TypedDict, total=False):
+    tags: dict[str, typing.Any]
+
+@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class EncryptionKey(typing_extensions.TypedDict, total=False):
+    kmsKey: str
+    provider: typing_extensions.Literal[
+        "PROVIDER_UNSPECIFIED", "GOOGLE_MANAGED", "ORACLE_MANAGED"
+    ]
+
+@typing.type_check_only
+class EncryptionKeyHistoryEntry(typing_extensions.TypedDict, total=False):
+    activationTime: str
+    encryptionKey: EncryptionKey
 
 @typing.type_check_only
 class Entitlement(typing_extensions.TypedDict, total=False):
@@ -516,6 +780,107 @@ class Entitlement(typing_extensions.TypedDict, total=False):
         "ACCOUNT_SUSPENDED",
         "NOT_APPROVED_IN_PRIVATE_MARKETPLACE",
     ]
+
+@typing.type_check_only
+class ExadbVmCluster(typing_extensions.TypedDict, total=False):
+    backupOdbSubnet: str
+    createTime: str
+    displayName: str
+    entitlementId: str
+    gcpOracleZone: str
+    labels: dict[str, typing.Any]
+    name: str
+    odbNetwork: str
+    odbSubnet: str
+    properties: ExadbVmClusterProperties
+
+@typing.type_check_only
+class ExadbVmClusterProperties(typing_extensions.TypedDict, total=False):
+    additionalEcpuCountPerNode: int
+    clusterName: str
+    dataCollectionOptions: DataCollectionOptionsCommon
+    enabledEcpuCountPerNode: int
+    exascaleDbStorageVault: str
+    giVersion: str
+    gridImageId: str
+    hostname: str
+    hostnamePrefix: str
+    licenseModel: typing_extensions.Literal[
+        "LICENSE_MODEL_UNSPECIFIED", "LICENSE_INCLUDED", "BRING_YOUR_OWN_LICENSE"
+    ]
+    lifecycleState: typing_extensions.Literal[
+        "EXADB_VM_CLUSTER_LIFECYCLE_STATE_UNSPECIFIED",
+        "PROVISIONING",
+        "AVAILABLE",
+        "UPDATING",
+        "TERMINATING",
+        "TERMINATED",
+        "FAILED",
+        "MAINTENANCE_IN_PROGRESS",
+    ]
+    memorySizeGb: int
+    nodeCount: int
+    ociUri: str
+    scanListenerPortTcp: int
+    shapeAttribute: typing_extensions.Literal[
+        "SHAPE_ATTRIBUTE_UNSPECIFIED", "SMART_STORAGE", "BLOCK_STORAGE"
+    ]
+    sshPublicKeys: _list[str]
+    timeZone: TimeZone
+    vmFileSystemStorage: ExadbVmClusterStorageDetails
+
+@typing.type_check_only
+class ExadbVmClusterStorageDetails(typing_extensions.TypedDict, total=False):
+    sizeInGbsPerNode: int
+
+@typing.type_check_only
+class ExascaleDbStorageDetails(typing_extensions.TypedDict, total=False):
+    availableSizeGbs: int
+    totalSizeGbs: int
+
+@typing.type_check_only
+class ExascaleDbStorageVault(typing_extensions.TypedDict, total=False):
+    createTime: str
+    displayName: str
+    entitlementId: str
+    gcpOracleZone: str
+    labels: dict[str, typing.Any]
+    name: str
+    properties: ExascaleDbStorageVaultProperties
+
+@typing.type_check_only
+class ExascaleDbStorageVaultProperties(typing_extensions.TypedDict, total=False):
+    additionalFlashCachePercent: int
+    attachedShapeAttributes: _list[
+        typing_extensions.Literal[
+            "SHAPE_ATTRIBUTE_UNSPECIFIED", "SMART_STORAGE", "BLOCK_STORAGE"
+        ]
+    ]
+    availableShapeAttributes: _list[
+        typing_extensions.Literal[
+            "SHAPE_ATTRIBUTE_UNSPECIFIED", "SMART_STORAGE", "BLOCK_STORAGE"
+        ]
+    ]
+    description: str
+    exascaleDbStorageDetails: ExascaleDbStorageDetails
+    ociUri: str
+    ocid: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "PROVISIONING",
+        "AVAILABLE",
+        "UPDATING",
+        "TERMINATING",
+        "TERMINATED",
+        "FAILED",
+    ]
+    timeZone: TimeZone
+    vmClusterCount: int
+    vmClusterIds: _list[str]
+
+@typing.type_check_only
+class FailoverAutonomousDatabaseRequest(typing_extensions.TypedDict, total=False):
+    peerAutonomousDatabase: str
 
 @typing.type_check_only
 class GenerateAutonomousDatabaseWalletRequest(typing_extensions.TypedDict, total=False):
@@ -533,6 +898,17 @@ class GenerateAutonomousDatabaseWalletResponse(
 class GiVersion(typing_extensions.TypedDict, total=False):
     name: str
     version: str
+
+@typing.type_check_only
+class IdentityConnector(typing_extensions.TypedDict, total=False):
+    connectionState: typing_extensions.Literal[
+        "CONNECTION_STATE_UNSPECIFIED",
+        "CONNECTED",
+        "PARTIALLY_CONNECTED",
+        "DISCONNECTED",
+        "UNKNOWN",
+    ]
+    serviceAgentEmail: str
 
 @typing.type_check_only
 class ListAutonomousDatabaseBackupsResponse(typing_extensions.TypedDict, total=False):
@@ -567,6 +943,16 @@ class ListCloudVmClustersResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class ListDatabaseCharacterSetsResponse(typing_extensions.TypedDict, total=False):
+    databaseCharacterSets: _list[DatabaseCharacterSet]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListDatabasesResponse(typing_extensions.TypedDict, total=False):
+    databases: _list[Database]
+    nextPageToken: str
+
+@typing.type_check_only
 class ListDbNodesResponse(typing_extensions.TypedDict, total=False):
     dbNodes: _list[DbNode]
     nextPageToken: str
@@ -577,13 +963,38 @@ class ListDbServersResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class ListDbSystemInitialStorageSizesResponse(typing_extensions.TypedDict, total=False):
+    dbSystemInitialStorageSizes: _list[DbSystemInitialStorageSize]
+    nextPageToken: str
+
+@typing.type_check_only
 class ListDbSystemShapesResponse(typing_extensions.TypedDict, total=False):
     dbSystemShapes: _list[DbSystemShape]
     nextPageToken: str
 
 @typing.type_check_only
+class ListDbSystemsResponse(typing_extensions.TypedDict, total=False):
+    dbSystems: _list[DbSystem]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListDbVersionsResponse(typing_extensions.TypedDict, total=False):
+    dbVersions: _list[DbVersion]
+    nextPageToken: str
+
+@typing.type_check_only
 class ListEntitlementsResponse(typing_extensions.TypedDict, total=False):
     entitlements: _list[Entitlement]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListExadbVmClustersResponse(typing_extensions.TypedDict, total=False):
+    exadbVmClusters: _list[ExadbVmCluster]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListExascaleDbStorageVaultsResponse(typing_extensions.TypedDict, total=False):
+    exascaleDbStorageVaults: _list[ExascaleDbStorageVault]
     nextPageToken: str
 
 @typing.type_check_only
@@ -597,9 +1008,32 @@ class ListLocationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class ListMinorVersionsResponse(typing_extensions.TypedDict, total=False):
+    minorVersions: _list[MinorVersion]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListOdbNetworksResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    odbNetworks: _list[OdbNetwork]
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListOdbSubnetsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    odbSubnets: _list[OdbSubnet]
+    unreachable: _list[str]
+
+@typing.type_check_only
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListPluggableDatabasesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    pluggableDatabases: _list[PluggableDatabase]
 
 @typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):
@@ -659,6 +1093,37 @@ class MaintenanceWindow(typing_extensions.TypedDict, total=False):
     weeksOfMonth: _list[int]
 
 @typing.type_check_only
+class MinorVersion(typing_extensions.TypedDict, total=False):
+    gridImageId: str
+    name: str
+    version: str
+
+@typing.type_check_only
+class OdbNetwork(typing_extensions.TypedDict, total=False):
+    createTime: str
+    entitlementId: str
+    gcpOracleZone: str
+    labels: dict[str, typing.Any]
+    name: str
+    network: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "PROVISIONING", "AVAILABLE", "TERMINATING", "FAILED"
+    ]
+
+@typing.type_check_only
+class OdbSubnet(typing_extensions.TypedDict, total=False):
+    cidrRange: str
+    createTime: str
+    labels: dict[str, typing.Any]
+    name: str
+    purpose: typing_extensions.Literal[
+        "PURPOSE_UNSPECIFIED", "CLIENT_SUBNET", "BACKUP_SUBNET"
+    ]
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "PROVISIONING", "AVAILABLE", "TERMINATING", "FAILED"
+    ]
+
+@typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
@@ -676,6 +1141,77 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     statusMessage: str
     target: str
     verb: str
+
+@typing.type_check_only
+class PluggableDatabase(typing_extensions.TypedDict, total=False):
+    createTime: str
+    name: str
+    ociUrl: str
+    properties: PluggableDatabaseProperties
+
+@typing.type_check_only
+class PluggableDatabaseConnectionStrings(typing_extensions.TypedDict, total=False):
+    allConnectionStrings: dict[str, typing.Any]
+    pdbDefault: str
+    pdbIpDefault: str
+
+@typing.type_check_only
+class PluggableDatabaseNodeLevelDetails(typing_extensions.TypedDict, total=False):
+    nodeName: str
+    openMode: typing_extensions.Literal[
+        "PLUGGABLE_DATABASE_OPEN_MODE_UNSPECIFIED",
+        "READ_ONLY",
+        "READ_WRITE",
+        "MOUNTED",
+        "MIGRATE",
+    ]
+    pluggableDatabaseId: str
+
+@typing.type_check_only
+class PluggableDatabaseProperties(typing_extensions.TypedDict, total=False):
+    compartmentId: str
+    connectionStrings: PluggableDatabaseConnectionStrings
+    containerDatabaseOcid: str
+    databaseManagementConfig: DatabaseManagementConfig
+    definedTags: dict[str, typing.Any]
+    freeformTags: dict[str, typing.Any]
+    isRestricted: bool
+    lifecycleDetails: str
+    lifecycleState: typing_extensions.Literal[
+        "PLUGGABLE_DATABASE_LIFECYCLE_STATE_UNSPECIFIED",
+        "PROVISIONING",
+        "AVAILABLE",
+        "TERMINATING",
+        "TERMINATED",
+        "UPDATING",
+        "FAILED",
+        "RELOCATING",
+        "RELOCATED",
+        "REFRESHING",
+        "RESTORE_IN_PROGRESS",
+        "RESTORE_FAILED",
+        "BACKUP_IN_PROGRESS",
+        "DISABLED",
+    ]
+    ocid: str
+    operationsInsightsState: typing_extensions.Literal[
+        "OPERATIONS_INSIGHTS_STATE_UNSPECIFIED",
+        "ENABLING",
+        "ENABLED",
+        "DISABLING",
+        "NOT_ENABLED",
+        "FAILED_ENABLING",
+        "FAILED_DISABLING",
+    ]
+    pdbName: str
+    pdbNodeLevelDetails: _list[PluggableDatabaseNodeLevelDetails]
+
+@typing.type_check_only
+class RemoveVirtualMachineExadbVmClusterRequest(
+    typing_extensions.TypedDict, total=False
+):
+    hostnames: _list[str]
+    requestId: str
 
 @typing.type_check_only
 class RestartAutonomousDatabaseRequest(typing_extensions.TypedDict, total=False): ...
@@ -715,6 +1251,11 @@ class Status(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class StopAutonomousDatabaseRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class StorageSizeDetails(typing_extensions.TypedDict, total=False):
+    dataStorageSizeInGbs: int
+    recoStorageSizeInGbs: int
 
 @typing.type_check_only
 class SwitchoverAutonomousDatabaseRequest(typing_extensions.TypedDict, total=False):

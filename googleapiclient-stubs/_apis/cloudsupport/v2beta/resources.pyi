@@ -36,6 +36,9 @@ class CloudSupportResource(googleapiclient.discovery.Resource):
     class CasesResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class AttachmentsResource(googleapiclient.discovery.Resource):
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> AttachmentHttpRequest: ...
             def list(
                 self,
                 *,
@@ -55,6 +58,7 @@ class CloudSupportResource(googleapiclient.discovery.Resource):
             def create(
                 self, *, parent: str, body: Comment = ..., **kwargs: typing.Any
             ) -> CommentHttpRequest: ...
+            def get(self, *, name: str, **kwargs: typing.Any) -> CommentHttpRequest: ...
             def list(
                 self,
                 *,

@@ -349,6 +349,8 @@ class ProductWeight(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Shipping(typing_extensions.TypedDict, total=False):
     country: str
+    handlingCutoffTime: str
+    handlingCutoffTimezone: str
     locationGroupName: str
     locationId: str
     maxHandlingTime: str

@@ -10,6 +10,7 @@ class AllowlistedCertificate(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AuthorizationAttemptInfo(typing_extensions.TypedDict, total=False):
+    attemptTime: str
     details: str
     domain: str
     failureReason: typing_extensions.Literal[
@@ -18,6 +19,13 @@ class AuthorizationAttemptInfo(typing_extensions.TypedDict, total=False):
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "AUTHORIZING", "AUTHORIZED", "FAILED"
     ]
+    troubleshooting: Troubleshooting
+
+@typing.type_check_only
+class CNAME(typing_extensions.TypedDict, total=False):
+    expectedData: str
+    name: str
+    resolvedData: _list[str]
 
 @typing.type_check_only
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
@@ -111,6 +119,12 @@ class GclbTarget(typing_extensions.TypedDict, total=False):
     targetSslProxy: str
 
 @typing.type_check_only
+class IPs(typing_extensions.TypedDict, total=False):
+    resolved: _list[str]
+    serving: _list[str]
+    servingOnAltPorts: _list[str]
+
+@typing.type_check_only
 class IntermediateCA(typing_extensions.TypedDict, total=False):
     pemCertificate: str
 
@@ -158,6 +172,7 @@ class ListLocationsResponse(typing_extensions.TypedDict, total=False):
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListTrustConfigsResponse(typing_extensions.TypedDict, total=False):
@@ -219,6 +234,21 @@ class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
+
+@typing.type_check_only
+class Troubleshooting(typing_extensions.TypedDict, total=False):
+    cname: CNAME
+    ips: IPs
+    issues: _list[
+        typing_extensions.Literal[
+            "ISSUE_UNSPECIFIED",
+            "CNAME_MISMATCH",
+            "RESOLVED_TO_NOT_SERVING",
+            "RESOLVED_TO_SERVING_ON_ALT_PORTS",
+            "NO_RESOLVED_IPS",
+            "CERTIFICATE_NOT_ATTACHED",
+        ]
+    ]
 
 @typing.type_check_only
 class TrustAnchor(typing_extensions.TypedDict, total=False):

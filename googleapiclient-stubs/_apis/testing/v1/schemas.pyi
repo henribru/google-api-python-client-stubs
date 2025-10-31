@@ -59,7 +59,14 @@ class AndroidModel(typing_extensions.TypedDict, total=False):
         "DEVICE_FORM_UNSPECIFIED", "VIRTUAL", "PHYSICAL", "EMULATOR"
     ]
     formFactor: typing_extensions.Literal[
-        "DEVICE_FORM_FACTOR_UNSPECIFIED", "PHONE", "TABLET", "WEARABLE"
+        "DEVICE_FORM_FACTOR_UNSPECIFIED",
+        "PHONE",
+        "TABLET",
+        "WEARABLE",
+        "TV",
+        "AUTOMOTIVE",
+        "DESKTOP",
+        "XR",
     ]
     id: str
     labInfo: LabInfo
@@ -299,7 +306,14 @@ class IosDeviceList(typing_extensions.TypedDict, total=False):
 class IosModel(typing_extensions.TypedDict, total=False):
     deviceCapabilities: _list[str]
     formFactor: typing_extensions.Literal[
-        "DEVICE_FORM_FACTOR_UNSPECIFIED", "PHONE", "TABLET", "WEARABLE"
+        "DEVICE_FORM_FACTOR_UNSPECIFIED",
+        "PHONE",
+        "TABLET",
+        "WEARABLE",
+        "TV",
+        "AUTOMOTIVE",
+        "DESKTOP",
+        "XR",
     ]
     id: str
     name: str

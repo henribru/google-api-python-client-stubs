@@ -127,6 +127,58 @@ class AnalyticsHubResource(googleapiclient.discovery.Resource):
                         **kwargs: typing.Any,
                     ) -> TestIamPermissionsResponseHttpRequest: ...
 
+                @typing.type_check_only
+                class QueryTemplatesResource(googleapiclient.discovery.Resource):
+                    def approve(
+                        self,
+                        *,
+                        name: str,
+                        body: ApproveQueryTemplateRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> QueryTemplateHttpRequest: ...
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: QueryTemplate = ...,
+                        queryTemplateId: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> QueryTemplateHttpRequest: ...
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> EmptyHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> QueryTemplateHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> ListQueryTemplatesResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListQueryTemplatesResponseHttpRequest,
+                        previous_response: ListQueryTemplatesResponse,
+                    ) -> ListQueryTemplatesResponseHttpRequest | None: ...
+                    def patch(
+                        self,
+                        *,
+                        name: str,
+                        body: QueryTemplate = ...,
+                        updateMask: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> QueryTemplateHttpRequest: ...
+                    def submit(
+                        self,
+                        *,
+                        name: str,
+                        body: SubmitQueryTemplateRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> QueryTemplateHttpRequest: ...
+
                 def create(
                     self,
                     *,
@@ -205,6 +257,7 @@ class AnalyticsHubResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def listings(self) -> ListingsResource: ...
+                def queryTemplates(self) -> QueryTemplatesResource: ...
 
             @typing.type_check_only
             class SubscriptionsResource(googleapiclient.discovery.Resource):
@@ -318,6 +371,14 @@ class ListOrgDataExchangesResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListOrgDataExchangesResponse: ...
 
 @typing.type_check_only
+class ListQueryTemplatesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListQueryTemplatesResponse: ...
+
+@typing.type_check_only
 class ListSharedResourceSubscriptionsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -358,6 +419,14 @@ class PolicyHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Policy: ...
+
+@typing.type_check_only
+class QueryTemplateHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> QueryTemplate: ...
 
 @typing.type_check_only
 class RevokeSubscriptionResponseHttpRequest(googleapiclient.http.HttpRequest):

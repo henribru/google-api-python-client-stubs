@@ -102,6 +102,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
+                    returnPartialSuccess: bool = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
                 def list_next(
@@ -167,6 +168,30 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                     validateOnly: bool = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
+                def setIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    body: GoogleIamV1SetIamPolicyRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleIamV1PolicyHttpRequest: ...
+                def testIamPermissions(
+                    self,
+                    *,
+                    resource: str,
+                    body: GoogleIamV1TestIamPermissionsRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
+
+            @typing.type_check_only
+            class ChangeRequestsResource(googleapiclient.discovery.Resource):
+                def getIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    options_requestedPolicyVersion: int = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleIamV1PolicyHttpRequest: ...
                 def setIamPolicy(
                     self,
                     *,
@@ -249,6 +274,41 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                     body: GoogleIamV1TestIamPermissionsRequest = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
+
+            @typing.type_check_only
+            class DataProductsResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class DataAssetsResource(googleapiclient.discovery.Resource):
+                    def setIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        body: GoogleIamV1SetIamPolicyRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleIamV1PolicyHttpRequest: ...
+                    def testIamPermissions(
+                        self,
+                        *,
+                        resource: str,
+                        body: GoogleIamV1TestIamPermissionsRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
+
+                def setIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    body: GoogleIamV1SetIamPolicyRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleIamV1PolicyHttpRequest: ...
+                def testIamPermissions(
+                    self,
+                    *,
+                    resource: str,
+                    body: GoogleIamV1TestIamPermissionsRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
+                def dataAssets(self) -> DataAssetsResource: ...
 
             @typing.type_check_only
             class DataScansResource(googleapiclient.discovery.Resource):
@@ -1668,6 +1728,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
+                    returnPartialSuccess: bool = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
                 def list_next(
@@ -1724,7 +1785,9 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                 previous_response: GoogleCloudDataplexV1SearchEntriesResponse,
             ) -> GoogleCloudDataplexV1SearchEntriesResponseHttpRequest | None: ...
             def aspectTypes(self) -> AspectTypesResource: ...
+            def changeRequests(self) -> ChangeRequestsResource: ...
             def dataAttributeBindings(self) -> DataAttributeBindingsResource: ...
+            def dataProducts(self) -> DataProductsResource: ...
             def dataScans(self) -> DataScansResource: ...
             def dataTaxonomies(self) -> DataTaxonomiesResource: ...
             def entryGroups(self) -> EntryGroupsResource: ...

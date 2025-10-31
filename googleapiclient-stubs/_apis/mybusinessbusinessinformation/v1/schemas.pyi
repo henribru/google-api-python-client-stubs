@@ -165,6 +165,7 @@ class Metadata(typing_extensions.TypedDict, total=False):
     hasGoogleUpdated: bool
     hasPendingEdits: bool
     hasVoiceOfMerchant: bool
+    isParticularlyPersonalPlace: bool
     mapsUri: str
     newReviewUri: str
     placeId: str

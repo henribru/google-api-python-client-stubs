@@ -133,6 +133,7 @@ class BuildStep(typing_extensions.TypedDict, total=False):
     id: str
     name: str
     pullTiming: TimeSpan
+    remoteConfig: str
     results: _list[StepResult]
     script: str
     secretEnv: _list[str]
@@ -837,6 +838,7 @@ class Discovery(typing_extensions.TypedDict, total=False):
         "SPDX_RELATIONSHIP",
         "VULNERABILITY_ASSESSMENT",
         "SBOM_REFERENCE",
+        "SECRET",
     ]
 
 @typing.type_check_only
@@ -914,6 +916,10 @@ class File(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class FileHashes(typing_extensions.TypedDict, total=False):
     fileHash: _list[Hash]
+
+@typing.type_check_only
+class FileLocation(typing_extensions.TypedDict, total=False):
+    filePath: str
 
 @typing.type_check_only
 class FileNote(typing_extensions.TypedDict, total=False):
@@ -1202,6 +1208,7 @@ class Note(typing_extensions.TypedDict, total=False):
         "SPDX_RELATIONSHIP",
         "VULNERABILITY_ASSESSMENT",
         "SBOM_REFERENCE",
+        "SECRET",
     ]
     longDescription: str
     name: str
@@ -1210,6 +1217,7 @@ class Note(typing_extensions.TypedDict, total=False):
     relatedUrl: _list[RelatedUrl]
     sbom: DocumentNote
     sbomReference: SBOMReferenceNote
+    secret: SecretNote
     shortDescription: str
     spdxFile: FileNote
     spdxPackage: PackageInfoNote
@@ -1245,6 +1253,7 @@ class Occurrence(typing_extensions.TypedDict, total=False):
         "SPDX_RELATIONSHIP",
         "VULNERABILITY_ASSESSMENT",
         "SBOM_REFERENCE",
+        "SECRET",
     ]
     name: str
     noteName: str
@@ -1252,6 +1261,7 @@ class Occurrence(typing_extensions.TypedDict, total=False):
     resource: Resource
     sbom: DocumentOccurrence
     sbomReference: SBOMReferenceOccurrence
+    secret: SecretOccurrence
     spdxFile: FileOccurrence
     spdxPackage: PackageInfoOccurrence
     spdxRelationship: RelationshipOccurrence
@@ -1534,6 +1544,51 @@ class SbomReferenceIntotoPredicate(typing_extensions.TypedDict, total=False):
     location: str
     mimeType: str
     referrerId: str
+
+@typing.type_check_only
+class SecretLocation(typing_extensions.TypedDict, total=False):
+    fileLocation: FileLocation
+
+@typing.type_check_only
+class SecretNote(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class SecretOccurrence(typing_extensions.TypedDict, total=False):
+    kind: typing_extensions.Literal[
+        "SECRET_KIND_UNSPECIFIED",
+        "SECRET_KIND_UNKNOWN",
+        "SECRET_KIND_GCP_SERVICE_ACCOUNT_KEY",
+        "SECRET_KIND_GCP_API_KEY",
+        "SECRET_KIND_GCP_OAUTH2_CLIENT_CREDENTIALS",
+        "SECRET_KIND_GCP_OAUTH2_ACCESS_TOKEN",
+        "SECRET_KIND_ANTHROPIC_ADMIN_API_KEY",
+        "SECRET_KIND_ANTHROPIC_API_KEY",
+        "SECRET_KIND_AZURE_ACCESS_TOKEN",
+        "SECRET_KIND_AZURE_IDENTITY_TOKEN",
+        "SECRET_KIND_DOCKER_HUB_PERSONAL_ACCESS_TOKEN",
+        "SECRET_KIND_GITHUB_APP_REFRESH_TOKEN",
+        "SECRET_KIND_GITHUB_APP_SERVER_TO_SERVER_TOKEN",
+        "SECRET_KIND_GITHUB_APP_USER_TO_SERVER_TOKEN",
+        "SECRET_KIND_GITHUB_CLASSIC_PERSONAL_ACCESS_TOKEN",
+        "SECRET_KIND_GITHUB_FINE_GRAINED_PERSONAL_ACCESS_TOKEN",
+        "SECRET_KIND_GITHUB_OAUTH_TOKEN",
+        "SECRET_KIND_HUGGINGFACE_API_KEY",
+        "SECRET_KIND_OPENAI_API_KEY",
+        "SECRET_KIND_PERPLEXITY_API_KEY",
+        "SECRET_KIND_STRIPE_SECRET_KEY",
+        "SECRET_KIND_STRIPE_RESTRICTED_KEY",
+        "SECRET_KIND_STRIPE_WEBHOOK_SECRET",
+    ]
+    locations: _list[SecretLocation]
+    statuses: _list[SecretStatus]
+
+@typing.type_check_only
+class SecretStatus(typing_extensions.TypedDict, total=False):
+    message: str
+    status: typing_extensions.Literal[
+        "STATUS_UNSPECIFIED", "UNKNOWN", "VALID", "INVALID"
+    ]
+    updateTime: str
 
 @typing.type_check_only
 class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):

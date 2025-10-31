@@ -640,6 +640,13 @@ class VMwareEngineResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
+                def privateCloudDeletionNow(
+                    self,
+                    *,
+                    name: str,
+                    body: AcceleratePrivateCloudDeletionRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
                 def resetNsxCredentials(
                     self,
                     *,

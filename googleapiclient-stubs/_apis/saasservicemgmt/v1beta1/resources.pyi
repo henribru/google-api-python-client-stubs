@@ -68,6 +68,57 @@ class SaaSServiceManagementResource(googleapiclient.discovery.Resource):
                 ) -> ReleaseHttpRequest: ...
 
             @typing.type_check_only
+            class ReplicationsInternalResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: ReplicationInternal = ...,
+                    replicationInternalId: str = ...,
+                    requestId: str = ...,
+                    validateOnly: bool = ...,
+                    **kwargs: typing.Any,
+                ) -> ReplicationInternalHttpRequest: ...
+                def delete(
+                    self,
+                    *,
+                    name: str,
+                    etag: str = ...,
+                    requestId: str = ...,
+                    validateOnly: bool = ...,
+                    **kwargs: typing.Any,
+                ) -> EmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> ReplicationInternalHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListReplicationsInternalResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListReplicationsInternalResponseHttpRequest,
+                    previous_response: ListReplicationsInternalResponse,
+                ) -> ListReplicationsInternalResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: ReplicationInternal = ...,
+                    etag: str = ...,
+                    requestId: str = ...,
+                    updateMask: str = ...,
+                    validateOnly: bool = ...,
+                    **kwargs: typing.Any,
+                ) -> ReplicationInternalHttpRequest: ...
+
+            @typing.type_check_only
             class RolloutKindsResource(googleapiclient.discovery.Resource):
                 def create(
                     self,
@@ -436,6 +487,7 @@ class SaaSServiceManagementResource(googleapiclient.discovery.Resource):
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
             def releases(self) -> ReleasesResource: ...
+            def replicationsInternal(self) -> ReplicationsInternalResource: ...
             def rolloutKinds(self) -> RolloutKindsResource: ...
             def rollouts(self) -> RolloutsResource: ...
             def saas(self) -> SaasResource: ...
@@ -491,6 +543,14 @@ class ListReleasesResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListReleasesResponse: ...
+
+@typing.type_check_only
+class ListReplicationsInternalResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListReplicationsInternalResponse: ...
 
 @typing.type_check_only
 class ListRolloutKindsResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -555,6 +615,14 @@ class ReleaseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Release: ...
+
+@typing.type_check_only
+class ReplicationInternalHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ReplicationInternal: ...
 
 @typing.type_check_only
 class RolloutHttpRequest(googleapiclient.http.HttpRequest):

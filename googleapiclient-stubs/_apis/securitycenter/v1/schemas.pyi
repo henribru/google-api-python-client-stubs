@@ -39,7 +39,7 @@ class AffectedResources(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class AiModel(typing_extensions.TypedDict, total=False):
     deploymentPlatform: typing_extensions.Literal[
-        "DEPLOYMENT_PLATFORM_UNSPECIFIED", "VERTEX_AI", "GKE"
+        "DEPLOYMENT_PLATFORM_UNSPECIFIED", "VERTEX_AI", "GKE", "GCE", "FINE_TUNED_MODEL"
     ]
     displayName: str
     domain: str
@@ -240,8 +240,18 @@ class CloudArmor(typing_extensions.TypedDict, total=False):
     threatVector: str
 
 @typing.type_check_only
+class CloudControl(typing_extensions.TypedDict, total=False):
+    cloudControlName: str
+    policyType: str
+    type: typing_extensions.Literal[
+        "CLOUD_CONTROL_TYPE_UNSPECIFIED", "BUILT_IN", "CUSTOM"
+    ]
+    version: int
+
+@typing.type_check_only
 class CloudDlpDataProfile(typing_extensions.TypedDict, total=False):
     dataProfile: str
+    infoTypes: _list[InfoType]
     parentType: typing_extensions.Literal[
         "PARENT_TYPE_UNSPECIFIED", "ORGANIZATION", "PROJECT"
     ]
@@ -265,6 +275,12 @@ class Compliance(typing_extensions.TypedDict, total=False):
     ids: _list[str]
     standard: str
     version: str
+
+@typing.type_check_only
+class ComplianceDetails(typing_extensions.TypedDict, total=False):
+    cloudControl: CloudControl
+    cloudControlDeploymentNames: _list[str]
+    frameworks: _list[Framework]
 
 @typing.type_check_only
 class Connection(typing_extensions.TypedDict, total=False):
@@ -291,6 +307,11 @@ class Container(typing_extensions.TypedDict, total=False):
     labels: _list[Label]
     name: str
     uri: str
+
+@typing.type_check_only
+class Control(typing_extensions.TypedDict, total=False):
+    controlName: str
+    displayName: str
 
 @typing.type_check_only
 class CreateResourceValueConfigRequest(typing_extensions.TypedDict, total=False):
@@ -398,7 +419,10 @@ class DataRetentionDeletionEvent(typing_extensions.TypedDict, total=False):
     dataObjectCount: str
     eventDetectionTime: str
     eventType: typing_extensions.Literal[
-        "EVENT_TYPE_UNSPECIFIED", "EVENT_TYPE_MAX_TTL_EXCEEDED"
+        "EVENT_TYPE_UNSPECIFIED",
+        "EVENT_TYPE_MAX_TTL_EXCEEDED",
+        "EVENT_TYPE_MAX_TTL_FROM_CREATION",
+        "EVENT_TYPE_MAX_TTL_FROM_LAST_MODIFICATION",
     ]
     maxRetentionAllowed: str
 
@@ -544,6 +568,7 @@ class Finding(typing_extensions.TypedDict, total=False):
     cloudArmor: CloudArmor
     cloudDlpDataProfile: CloudDlpDataProfile
     cloudDlpInspection: CloudDlpInspection
+    complianceDetails: ComplianceDetails
     compliances: _list[Compliance]
     connections: _list[Connection]
     contacts: dict[str, typing.Any]
@@ -611,6 +636,24 @@ class Finding(typing_extensions.TypedDict, total=False):
 class Folder(typing_extensions.TypedDict, total=False):
     resourceFolder: str
     resourceFolderDisplayName: str
+
+@typing.type_check_only
+class Framework(typing_extensions.TypedDict, total=False):
+    category: _list[
+        typing_extensions.Literal[
+            "FRAMEWORK_CATEGORY_UNSPECIFIED",
+            "SECURITY_BENCHMARKS",
+            "ASSURED_WORKLOADS",
+            "DATA_SECURITY",
+            "GOOGLE_BEST_PRACTICES",
+        ]
+    ]
+    controls: _list[Control]
+    displayName: str
+    name: str
+    type: typing_extensions.Literal[
+        "FRAMEWORK_TYPE_UNSPECIFIED", "FRAMEWORK_TYPE_BUILT_IN", "FRAMEWORK_TYPE_CUSTOM"
+    ]
 
 @typing.type_check_only
 class GcpMetadata(typing_extensions.TypedDict, total=False):
@@ -940,7 +983,7 @@ class GoogleCloudSecuritycenterV2AffectedResources(
 @typing.type_check_only
 class GoogleCloudSecuritycenterV2AiModel(typing_extensions.TypedDict, total=False):
     deploymentPlatform: typing_extensions.Literal[
-        "DEPLOYMENT_PLATFORM_UNSPECIFIED", "VERTEX_AI", "GKE"
+        "DEPLOYMENT_PLATFORM_UNSPECIFIED", "VERTEX_AI", "GKE", "GCE", "FINE_TUNED_MODEL"
     ]
     displayName: str
     domain: str
@@ -1059,6 +1102,7 @@ class GoogleCloudSecuritycenterV2BigQueryExport(
     typing_extensions.TypedDict, total=False
 ):
     createTime: str
+    cryptoKeyName: str
     dataset: str
     description: str
     filter: str
@@ -1093,10 +1137,20 @@ class GoogleCloudSecuritycenterV2CloudArmor(typing_extensions.TypedDict, total=F
     threatVector: str
 
 @typing.type_check_only
+class GoogleCloudSecuritycenterV2CloudControl(typing_extensions.TypedDict, total=False):
+    cloudControlName: str
+    policyType: str
+    type: typing_extensions.Literal[
+        "CLOUD_CONTROL_TYPE_UNSPECIFIED", "BUILT_IN", "CUSTOM"
+    ]
+    version: int
+
+@typing.type_check_only
 class GoogleCloudSecuritycenterV2CloudDlpDataProfile(
     typing_extensions.TypedDict, total=False
 ):
     dataProfile: str
+    infoTypes: _list[GoogleCloudSecuritycenterV2InfoType]
     parentType: typing_extensions.Literal[
         "PARENT_TYPE_UNSPECIFIED", "ORGANIZATION", "PROJECT"
     ]
@@ -1126,6 +1180,14 @@ class GoogleCloudSecuritycenterV2Compliance(typing_extensions.TypedDict, total=F
     version: str
 
 @typing.type_check_only
+class GoogleCloudSecuritycenterV2ComplianceDetails(
+    typing_extensions.TypedDict, total=False
+):
+    cloudControl: GoogleCloudSecuritycenterV2CloudControl
+    cloudControlDeploymentNames: _list[str]
+    frameworks: _list[GoogleCloudSecuritycenterV2Framework]
+
+@typing.type_check_only
 class GoogleCloudSecuritycenterV2Connection(typing_extensions.TypedDict, total=False):
     destinationIp: str
     destinationPort: int
@@ -1152,6 +1214,11 @@ class GoogleCloudSecuritycenterV2Container(typing_extensions.TypedDict, total=Fa
     labels: _list[GoogleCloudSecuritycenterV2Label]
     name: str
     uri: str
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2Control(typing_extensions.TypedDict, total=False):
+    controlName: str
+    displayName: str
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV2Cve(typing_extensions.TypedDict, total=False):
@@ -1249,7 +1316,10 @@ class GoogleCloudSecuritycenterV2DataRetentionDeletionEvent(
     dataObjectCount: str
     eventDetectionTime: str
     eventType: typing_extensions.Literal[
-        "EVENT_TYPE_UNSPECIFIED", "EVENT_TYPE_MAX_TTL_EXCEEDED"
+        "EVENT_TYPE_UNSPECIFIED",
+        "EVENT_TYPE_MAX_TTL_EXCEEDED",
+        "EVENT_TYPE_MAX_TTL_FROM_CREATION",
+        "EVENT_TYPE_MAX_TTL_FROM_LAST_MODIFICATION",
     ]
     maxRetentionAllowed: str
 
@@ -1362,11 +1432,13 @@ class GoogleCloudSecuritycenterV2Finding(typing_extensions.TypedDict, total=Fals
     cloudArmor: GoogleCloudSecuritycenterV2CloudArmor
     cloudDlpDataProfile: GoogleCloudSecuritycenterV2CloudDlpDataProfile
     cloudDlpInspection: GoogleCloudSecuritycenterV2CloudDlpInspection
+    complianceDetails: GoogleCloudSecuritycenterV2ComplianceDetails
     compliances: _list[GoogleCloudSecuritycenterV2Compliance]
     connections: _list[GoogleCloudSecuritycenterV2Connection]
     contacts: dict[str, typing.Any]
     containers: _list[GoogleCloudSecuritycenterV2Container]
     createTime: str
+    cryptoKeyName: str
     dataAccessEvents: _list[GoogleCloudSecuritycenterV2DataAccessEvent]
     dataFlowEvents: _list[GoogleCloudSecuritycenterV2DataFlowEvent]
     dataRetentionDeletionEvents: _list[
@@ -1433,6 +1505,24 @@ class GoogleCloudSecuritycenterV2Folder(typing_extensions.TypedDict, total=False
     resourceFolderDisplayName: str
 
 @typing.type_check_only
+class GoogleCloudSecuritycenterV2Framework(typing_extensions.TypedDict, total=False):
+    category: _list[
+        typing_extensions.Literal[
+            "FRAMEWORK_CATEGORY_UNSPECIFIED",
+            "SECURITY_BENCHMARKS",
+            "ASSURED_WORKLOADS",
+            "DATA_SECURITY",
+            "GOOGLE_BEST_PRACTICES",
+        ]
+    ]
+    controls: _list[GoogleCloudSecuritycenterV2Control]
+    displayName: str
+    name: str
+    type: typing_extensions.Literal[
+        "FRAMEWORK_TYPE_UNSPECIFIED", "FRAMEWORK_TYPE_BUILT_IN", "FRAMEWORK_TYPE_CUSTOM"
+    ]
+
+@typing.type_check_only
 class GoogleCloudSecuritycenterV2Geolocation(typing_extensions.TypedDict, total=False):
     regionCode: str
 
@@ -1459,6 +1549,12 @@ class GoogleCloudSecuritycenterV2Indicator(typing_extensions.TypedDict, total=Fa
     ipAddresses: _list[str]
     signatures: _list[GoogleCloudSecuritycenterV2ProcessSignature]
     uris: _list[str]
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2InfoType(typing_extensions.TypedDict, total=False):
+    name: str
+    sensitivityScore: GoogleCloudSecuritycenterV2SensitivityScore
+    version: str
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV2IpRule(typing_extensions.TypedDict, total=False):
@@ -1540,6 +1636,7 @@ class GoogleCloudSecuritycenterV2IssueMute(typing_extensions.TypedDict, total=Fa
 class GoogleCloudSecuritycenterV2IssueResource(
     typing_extensions.TypedDict, total=False
 ):
+    application: GoogleCloudSecuritycenterV2IssueResourceApplication
     awsMetadata: GoogleCloudSecuritycenterV2IssueResourceAwsMetadata
     azureMetadata: GoogleCloudSecuritycenterV2IssueResourceAzureMetadata
     cloudProvider: typing_extensions.Literal[
@@ -1552,6 +1649,12 @@ class GoogleCloudSecuritycenterV2IssueResource(
     googleCloudMetadata: GoogleCloudSecuritycenterV2IssueResourceGoogleCloudMetadata
     name: str
     type: str
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2IssueResourceApplication(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV2IssueResourceAwsMetadata(
@@ -1755,6 +1858,7 @@ class GoogleCloudSecuritycenterV2MitreAttack(typing_extensions.TypedDict, total=
             "COMPROMISE_SOFTWARE_DEPENDENCIES_AND_DEVELOPMENT_TOOLS",
             "EXPLOITATION_FOR_CLIENT_EXECUTION",
             "USER_EXECUTION",
+            "EXPLOITATION_FOR_CREDENTIAL_ACCESS",
             "LINUX_AND_MAC_FILE_AND_DIRECTORY_PERMISSIONS_MODIFICATION",
             "DOMAIN_POLICY_MODIFICATION",
             "DATA_DESTRUCTION",
@@ -1914,6 +2018,7 @@ class GoogleCloudSecuritycenterV2MitreAttack(typing_extensions.TypedDict, total=
             "COMPROMISE_SOFTWARE_DEPENDENCIES_AND_DEVELOPMENT_TOOLS",
             "EXPLOITATION_FOR_CLIENT_EXECUTION",
             "USER_EXECUTION",
+            "EXPLOITATION_FOR_CREDENTIAL_ACCESS",
             "LINUX_AND_MAC_FILE_AND_DIRECTORY_PERMISSIONS_MODIFICATION",
             "DOMAIN_POLICY_MODIFICATION",
             "DATA_DESTRUCTION",
@@ -1986,6 +2091,7 @@ class GoogleCloudSecuritycenterV2MitreAttack(typing_extensions.TypedDict, total=
 @typing.type_check_only
 class GoogleCloudSecuritycenterV2MuteConfig(typing_extensions.TypedDict, total=False):
     createTime: str
+    cryptoKeyName: str
     description: str
     expiryTime: str
     filter: str
@@ -2229,6 +2335,18 @@ class GoogleCloudSecuritycenterV2SensitiveDataProtectionMapping(
     ]
 
 @typing.type_check_only
+class GoogleCloudSecuritycenterV2SensitivityScore(
+    typing_extensions.TypedDict, total=False
+):
+    score: typing_extensions.Literal[
+        "SENSITIVITY_SCORE_LEVEL_UNSPECIFIED",
+        "SENSITIVITY_LOW",
+        "SENSITIVITY_UNKNOWN",
+        "SENSITIVITY_MODERATE",
+        "SENSITIVITY_HIGH",
+    ]
+
+@typing.type_check_only
 class GoogleCloudSecuritycenterV2ServiceAccountDelegationInfo(
     typing_extensions.TypedDict, total=False
 ):
@@ -2351,6 +2469,12 @@ class Indicator(typing_extensions.TypedDict, total=False):
     ipAddresses: _list[str]
     signatures: _list[ProcessSignature]
     uris: _list[str]
+
+@typing.type_check_only
+class InfoType(typing_extensions.TypedDict, total=False):
+    name: str
+    sensitivityScore: SensitivityScore
+    version: str
 
 @typing.type_check_only
 class IpRule(typing_extensions.TypedDict, total=False):
@@ -2494,6 +2618,7 @@ class ListNotificationConfigsResponse(typing_extensions.TypedDict, total=False):
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListResourceValueConfigsResponse(typing_extensions.TypedDict, total=False):
@@ -2629,6 +2754,7 @@ class MitreAttack(typing_extensions.TypedDict, total=False):
             "COMPROMISE_SOFTWARE_DEPENDENCIES_AND_DEVELOPMENT_TOOLS",
             "EXPLOITATION_FOR_CLIENT_EXECUTION",
             "USER_EXECUTION",
+            "EXPLOITATION_FOR_CREDENTIAL_ACCESS",
             "LINUX_AND_MAC_FILE_AND_DIRECTORY_PERMISSIONS_MODIFICATION",
             "DOMAIN_POLICY_MODIFICATION",
             "DATA_DESTRUCTION",
@@ -2788,6 +2914,7 @@ class MitreAttack(typing_extensions.TypedDict, total=False):
             "COMPROMISE_SOFTWARE_DEPENDENCIES_AND_DEVELOPMENT_TOOLS",
             "EXPLOITATION_FOR_CLIENT_EXECUTION",
             "USER_EXECUTION",
+            "EXPLOITATION_FOR_CREDENTIAL_ACCESS",
             "LINUX_AND_MAC_FILE_AND_DIRECTORY_PERMISSIONS_MODIFICATION",
             "DOMAIN_POLICY_MODIFICATION",
             "DATA_DESTRUCTION",
@@ -3096,6 +3223,16 @@ class SecurityPosture(typing_extensions.TypedDict, total=False):
     postureDeployment: str
     postureDeploymentResource: str
     revisionId: str
+
+@typing.type_check_only
+class SensitivityScore(typing_extensions.TypedDict, total=False):
+    score: typing_extensions.Literal[
+        "SENSITIVITY_SCORE_LEVEL_UNSPECIFIED",
+        "SENSITIVITY_LOW",
+        "SENSITIVITY_UNKNOWN",
+        "SENSITIVITY_MODERATE",
+        "SENSITIVITY_HIGH",
+    ]
 
 @typing.type_check_only
 class ServiceAccountDelegationInfo(typing_extensions.TypedDict, total=False):

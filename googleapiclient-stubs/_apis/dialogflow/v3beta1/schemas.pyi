@@ -1834,11 +1834,13 @@ class GoogleCloudDialogflowCxV3beta1Flow(typing_extensions.TypedDict, total=Fals
     description: str
     displayName: str
     eventHandlers: _list[GoogleCloudDialogflowCxV3beta1EventHandler]
+    inputParameterDefinitions: _list[GoogleCloudDialogflowCxV3beta1ParameterDefinition]
     knowledgeConnectorSettings: GoogleCloudDialogflowCxV3beta1KnowledgeConnectorSettings
     locked: bool
     multiLanguageSettings: GoogleCloudDialogflowCxV3beta1FlowMultiLanguageSettings
     name: str
     nluSettings: GoogleCloudDialogflowCxV3beta1NluSettings
+    outputParameterDefinitions: _list[GoogleCloudDialogflowCxV3beta1ParameterDefinition]
     transitionRouteGroups: _list[str]
     transitionRoutes: _list[GoogleCloudDialogflowCxV3beta1TransitionRoute]
 
@@ -2530,7 +2532,26 @@ class GoogleCloudDialogflowCxV3beta1LlmModelSettings(
     typing_extensions.TypedDict, total=False
 ):
     model: str
+    parameters: GoogleCloudDialogflowCxV3beta1LlmModelSettingsParameters
     promptText: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3beta1LlmModelSettingsParameters(
+    typing_extensions.TypedDict, total=False
+):
+    inputTokenLimit: typing_extensions.Literal[
+        "INPUT_TOKEN_LIMIT_UNSPECIFIED",
+        "INPUT_TOKEN_LIMIT_SHORT",
+        "INPUT_TOKEN_LIMIT_MEDIUM",
+        "INPUT_TOKEN_LIMIT_LONG",
+    ]
+    outputTokenLimit: typing_extensions.Literal[
+        "OUTPUT_TOKEN_LIMIT_UNSPECIFIED",
+        "OUTPUT_TOKEN_LIMIT_SHORT",
+        "OUTPUT_TOKEN_LIMIT_MEDIUM",
+        "OUTPUT_TOKEN_LIMIT_LONG",
+    ]
+    temperature: float
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1LoadVersionRequest(
@@ -3820,6 +3841,88 @@ class GoogleCloudDialogflowCxV3beta1WebhookServiceDirectoryConfig(
     service: str
 
 @typing.type_check_only
+class GoogleCloudDialogflowV2AgentCoachingInstruction(
+    typing_extensions.TypedDict, total=False
+):
+    agentAction: str
+    condition: str
+    displayDetails: str
+    displayName: str
+    duplicateCheckResult: (
+        GoogleCloudDialogflowV2AgentCoachingInstructionDuplicateCheckResult
+    )
+    systemAction: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2AgentCoachingInstructionDuplicateCheckResult(
+    typing_extensions.TypedDict, total=False
+):
+    duplicateSuggestions: _list[
+        GoogleCloudDialogflowV2AgentCoachingInstructionDuplicateCheckResultDuplicateSuggestion
+    ]
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2AgentCoachingInstructionDuplicateCheckResultDuplicateSuggestion(
+    typing_extensions.TypedDict, total=False
+):
+    answerRecord: str
+    similarityScore: float
+    suggestionIndex: int
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2AgentCoachingSuggestion(
+    typing_extensions.TypedDict, total=False
+):
+    agentActionSuggestions: _list[
+        GoogleCloudDialogflowV2AgentCoachingSuggestionAgentActionSuggestion
+    ]
+    applicableInstructions: _list[GoogleCloudDialogflowV2AgentCoachingInstruction]
+    sampleResponses: _list[GoogleCloudDialogflowV2AgentCoachingSuggestionSampleResponse]
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2AgentCoachingSuggestionAgentActionSuggestion(
+    typing_extensions.TypedDict, total=False
+):
+    agentAction: str
+    duplicateCheckResult: (
+        GoogleCloudDialogflowV2AgentCoachingSuggestionDuplicateCheckResult
+    )
+    sources: GoogleCloudDialogflowV2AgentCoachingSuggestionSources
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2AgentCoachingSuggestionDuplicateCheckResult(
+    typing_extensions.TypedDict, total=False
+):
+    duplicateSuggestions: _list[
+        GoogleCloudDialogflowV2AgentCoachingSuggestionDuplicateCheckResultDuplicateSuggestion
+    ]
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2AgentCoachingSuggestionDuplicateCheckResultDuplicateSuggestion(
+    typing_extensions.TypedDict, total=False
+):
+    answerRecord: str
+    similarityScore: float
+    sources: GoogleCloudDialogflowV2AgentCoachingSuggestionSources
+    suggestionIndex: int
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2AgentCoachingSuggestionSampleResponse(
+    typing_extensions.TypedDict, total=False
+):
+    duplicateCheckResult: (
+        GoogleCloudDialogflowV2AgentCoachingSuggestionDuplicateCheckResult
+    )
+    responseText: str
+    sources: GoogleCloudDialogflowV2AgentCoachingSuggestionSources
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2AgentCoachingSuggestionSources(
+    typing_extensions.TypedDict, total=False
+):
+    instructionIndexes: _list[int]
+
+@typing.type_check_only
 class GoogleCloudDialogflowV2AnnotatedMessagePart(
     typing_extensions.TypedDict, total=False
 ):
@@ -4070,6 +4173,7 @@ class GoogleCloudDialogflowV2GenerateSuggestionsResponseGeneratorSuggestionAnswe
 class GoogleCloudDialogflowV2GeneratorSuggestion(
     typing_extensions.TypedDict, total=False
 ):
+    agentCoachingSuggestion: GoogleCloudDialogflowV2AgentCoachingSuggestion
     freeFormSuggestion: GoogleCloudDialogflowV2FreeFormSuggestion
     summarySuggestion: GoogleCloudDialogflowV2SummarySuggestion
     toolCallInfo: _list[GoogleCloudDialogflowV2GeneratorSuggestionToolCallInfo]
@@ -4690,13 +4794,20 @@ class GoogleCloudDialogflowV2SummarySuggestionSummarySection(
 @typing.type_check_only
 class GoogleCloudDialogflowV2ToolCall(typing_extensions.TypedDict, total=False):
     action: str
+    answerRecord: str
     createTime: str
     inputParameters: dict[str, typing.Any]
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "TRIGGERED", "NEEDS_CONFIRMATION"
+    ]
     tool: str
+    toolDisplayDetails: str
+    toolDisplayName: str
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2ToolCallResult(typing_extensions.TypedDict, total=False):
     action: str
+    answerRecord: str
     content: str
     createTime: str
     error: GoogleCloudDialogflowV2ToolCallResultError
@@ -4733,6 +4844,90 @@ class GoogleCloudDialogflowV2WebhookResponse(typing_extensions.TypedDict, total=
     payload: dict[str, typing.Any]
     sessionEntityTypes: _list[GoogleCloudDialogflowV2SessionEntityType]
     source: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1AgentCoachingInstruction(
+    typing_extensions.TypedDict, total=False
+):
+    agentAction: str
+    condition: str
+    displayDetails: str
+    displayName: str
+    duplicateCheckResult: (
+        GoogleCloudDialogflowV2beta1AgentCoachingInstructionDuplicateCheckResult
+    )
+    systemAction: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1AgentCoachingInstructionDuplicateCheckResult(
+    typing_extensions.TypedDict, total=False
+):
+    duplicateSuggestions: _list[
+        GoogleCloudDialogflowV2beta1AgentCoachingInstructionDuplicateCheckResultDuplicateSuggestion
+    ]
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1AgentCoachingInstructionDuplicateCheckResultDuplicateSuggestion(
+    typing_extensions.TypedDict, total=False
+):
+    answerRecord: str
+    similarityScore: float
+    suggestionIndex: int
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1AgentCoachingSuggestion(
+    typing_extensions.TypedDict, total=False
+):
+    agentActionSuggestions: _list[
+        GoogleCloudDialogflowV2beta1AgentCoachingSuggestionAgentActionSuggestion
+    ]
+    applicableInstructions: _list[GoogleCloudDialogflowV2beta1AgentCoachingInstruction]
+    sampleResponses: _list[
+        GoogleCloudDialogflowV2beta1AgentCoachingSuggestionSampleResponse
+    ]
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1AgentCoachingSuggestionAgentActionSuggestion(
+    typing_extensions.TypedDict, total=False
+):
+    agentAction: str
+    duplicateCheckResult: (
+        GoogleCloudDialogflowV2beta1AgentCoachingSuggestionDuplicateCheckResult
+    )
+    sources: GoogleCloudDialogflowV2beta1AgentCoachingSuggestionSources
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1AgentCoachingSuggestionDuplicateCheckResult(
+    typing_extensions.TypedDict, total=False
+):
+    duplicateSuggestions: _list[
+        GoogleCloudDialogflowV2beta1AgentCoachingSuggestionDuplicateCheckResultDuplicateSuggestion
+    ]
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1AgentCoachingSuggestionDuplicateCheckResultDuplicateSuggestion(
+    typing_extensions.TypedDict, total=False
+):
+    answerRecord: str
+    similarityScore: float
+    sources: GoogleCloudDialogflowV2beta1AgentCoachingSuggestionSources
+    suggestionIndex: int
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1AgentCoachingSuggestionSampleResponse(
+    typing_extensions.TypedDict, total=False
+):
+    duplicateCheckResult: (
+        GoogleCloudDialogflowV2beta1AgentCoachingSuggestionDuplicateCheckResult
+    )
+    responseText: str
+    sources: GoogleCloudDialogflowV2beta1AgentCoachingSuggestionSources
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1AgentCoachingSuggestionSources(
+    typing_extensions.TypedDict, total=False
+):
+    instructionIndexes: _list[int]
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1AnnotatedMessagePart(
@@ -4904,6 +5099,7 @@ class GoogleCloudDialogflowV2beta1GenerateSuggestionsResponseGeneratorSuggestion
 class GoogleCloudDialogflowV2beta1GeneratorSuggestion(
     typing_extensions.TypedDict, total=False
 ):
+    agentCoachingSuggestion: GoogleCloudDialogflowV2beta1AgentCoachingSuggestion
     freeFormSuggestion: GoogleCloudDialogflowV2beta1FreeFormSuggestion
     summarySuggestion: GoogleCloudDialogflowV2beta1SummarySuggestion
     toolCallInfo: _list[GoogleCloudDialogflowV2beta1GeneratorSuggestionToolCallInfo]
@@ -5749,15 +5945,22 @@ class GoogleCloudDialogflowV2beta1TelephonyDtmfEvents(
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1ToolCall(typing_extensions.TypedDict, total=False):
     action: str
+    answerRecord: str
     createTime: str
     inputParameters: dict[str, typing.Any]
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "TRIGGERED", "NEEDS_CONFIRMATION"
+    ]
     tool: str
+    toolDisplayDetails: str
+    toolDisplayName: str
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1ToolCallResult(
     typing_extensions.TypedDict, total=False
 ):
     action: str
+    answerRecord: str
     content: str
     createTime: str
     error: GoogleCloudDialogflowV2beta1ToolCallResultError
@@ -5839,6 +6042,7 @@ class GoogleCloudLocationLocation(typing_extensions.TypedDict, total=False):
 class GoogleLongrunningListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[GoogleLongrunningOperation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class GoogleLongrunningOperation(typing_extensions.TypedDict, total=False):

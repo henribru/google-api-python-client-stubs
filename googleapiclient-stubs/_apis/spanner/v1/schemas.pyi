@@ -12,6 +12,7 @@ class AdaptMessageRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AdaptMessageResponse(typing_extensions.TypedDict, total=False):
+    last: bool
     payload: str
     stateUpdates: dict[str, typing.Any]
 
@@ -185,6 +186,7 @@ class CommitResponse(typing_extensions.TypedDict, total=False):
     commitStats: CommitStats
     commitTimestamp: str
     precommitToken: MultiplexedSessionPrecommitToken
+    snapshotTimestamp: str
 
 @typing.type_check_only
 class CommitStats(typing_extensions.TypedDict, total=False):

@@ -5,6 +5,9 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class ApproveQueryTemplateRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class AuditConfig(typing_extensions.TypedDict, total=False):
     auditLogConfigs: _list[AuditLogConfig]
     service: str
@@ -33,6 +36,8 @@ class BigQueryConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class BigQueryDatasetSource(typing_extensions.TypedDict, total=False):
     dataset: str
+    effectiveReplicas: _list[Replica]
+    replicaLocations: _list[str]
     restrictedExportPolicy: RestrictedExportPolicy
     selectedResources: _list[SelectedResource]
 
@@ -95,6 +100,7 @@ class DestinationDataset(typing_extensions.TypedDict, total=False):
     friendlyName: str
     labels: dict[str, typing.Any]
     location: str
+    replicaLocations: _list[str]
 
 @typing.type_check_only
 class DestinationDatasetReference(typing_extensions.TypedDict, total=False):
@@ -200,6 +206,11 @@ class ListListingsResponse(typing_extensions.TypedDict, total=False):
 class ListOrgDataExchangesResponse(typing_extensions.TypedDict, total=False):
     dataExchanges: _list[DataExchange]
     nextPageToken: str
+
+@typing.type_check_only
+class ListQueryTemplatesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    queryTemplates: _list[QueryTemplate]
 
 @typing.type_check_only
 class ListSharedResourceSubscriptionsResponse(typing_extensions.TypedDict, total=False):
@@ -323,11 +334,36 @@ class PushConfig(typing_extensions.TypedDict, total=False):
     pushEndpoint: str
 
 @typing.type_check_only
+class QueryTemplate(typing_extensions.TypedDict, total=False):
+    createTime: str
+    description: str
+    displayName: str
+    documentation: str
+    name: str
+    primaryContact: str
+    proposer: str
+    routine: Routine
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "DRAFTED", "PENDING", "DELETED", "APPROVED"
+    ]
+    updateTime: str
+
+@typing.type_check_only
 class RefreshSubscriptionRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class RefreshSubscriptionResponse(typing_extensions.TypedDict, total=False):
     subscription: Subscription
+
+@typing.type_check_only
+class Replica(typing_extensions.TypedDict, total=False):
+    location: str
+    primaryState: typing_extensions.Literal[
+        "PRIMARY_STATE_UNSPECIFIED", "PRIMARY_REPLICA"
+    ]
+    replicaState: typing_extensions.Literal[
+        "REPLICA_STATE_UNSPECIFIED", "READY_TO_USE", "UNAVAILABLE"
+    ]
 
 @typing.type_check_only
 class RestrictedExportConfig(typing_extensions.TypedDict, total=False):
@@ -354,6 +390,13 @@ class RevokeSubscriptionRequest(typing_extensions.TypedDict, total=False):
 class RevokeSubscriptionResponse(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class Routine(typing_extensions.TypedDict, total=False):
+    definitionBody: str
+    routineType: typing_extensions.Literal[
+        "ROUTINE_TYPE_UNSPECIFIED", "TABLE_VALUED_FUNCTION"
+    ]
+
+@typing.type_check_only
 class SelectedResource(typing_extensions.TypedDict, total=False):
     routine: str
     table: str
@@ -373,6 +416,9 @@ class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
+
+@typing.type_check_only
+class SubmitQueryTemplateRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class SubscribeDataExchangeRequest(typing_extensions.TypedDict, total=False):

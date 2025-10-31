@@ -22,10 +22,12 @@ class GoogleFirebaseAppdistroV1Release(typing_extensions.TypedDict, total=False)
     buildVersion: str
     createTime: str
     displayVersion: str
+    expireTime: str
     firebaseConsoleUri: str
     name: str
     releaseNotes: GoogleFirebaseAppdistroV1ReleaseNotes
     testingUri: str
+    updateTime: str
 
 @typing.type_check_only
 class GoogleFirebaseAppdistroV1ReleaseNotes(typing_extensions.TypedDict, total=False):
@@ -68,6 +70,7 @@ class GoogleFirebaseAppdistroV1alphaAiStep(typing_extensions.TypedDict, total=Fa
     goal: str
     hint: str
     successCriteria: str
+    testCase: str
 
 @typing.type_check_only
 class GoogleFirebaseAppdistroV1alphaAiStepResult(
@@ -121,6 +124,18 @@ class GoogleFirebaseAppdistroV1alphaBatchDeleteTestCasesRequest(
     typing_extensions.TypedDict, total=False
 ):
     names: _list[str]
+
+@typing.type_check_only
+class GoogleFirebaseAppdistroV1alphaBatchUpdateTestCasesRequest(
+    typing_extensions.TypedDict, total=False
+):
+    requests: _list[GoogleFirebaseAppdistroV1alphaUpdateTestCaseRequest]
+
+@typing.type_check_only
+class GoogleFirebaseAppdistroV1alphaBatchUpdateTestCasesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    testCases: _list[GoogleFirebaseAppdistroV1alphaTestCase]
 
 @typing.type_check_only
 class GoogleFirebaseAppdistroV1alphaCancelReleaseTestResponse(
@@ -180,19 +195,35 @@ class GoogleFirebaseAppdistroV1alphaDeviceExecution(
     state: typing_extensions.Literal[
         "TEST_STATE_UNSPECIFIED", "IN_PROGRESS", "PASSED", "FAILED", "INCONCLUSIVE"
     ]
+    videoStartTime: str
     videoUri: str
 
 @typing.type_check_only
 class GoogleFirebaseAppdistroV1alphaDeviceInteraction(
     typing_extensions.TypedDict, total=False
 ):
+    backAction: GoogleFirebaseAppdistroV1alphaDeviceInteractionBack
+    dragAndDrop: GoogleFirebaseAppdistroV1alphaDeviceInteractionDragAndDrop
     enterText: GoogleFirebaseAppdistroV1alphaDeviceInteractionEnterText
     keyCode: str
+    longPress: AndroidxCrawlerOutputPoint
     screenshot: GoogleFirebaseAppdistroV1alphaScreenshot
     swipe: GoogleFirebaseAppdistroV1alphaDeviceInteractionSwipe
     tap: AndroidxCrawlerOutputPoint
     textInput: str
     wait: GoogleFirebaseAppdistroV1alphaDeviceInteractionWait
+
+@typing.type_check_only
+class GoogleFirebaseAppdistroV1alphaDeviceInteractionBack(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleFirebaseAppdistroV1alphaDeviceInteractionDragAndDrop(
+    typing_extensions.TypedDict, total=False
+):
+    end: AndroidxCrawlerOutputPoint
+    start: AndroidxCrawlerOutputPoint
 
 @typing.type_check_only
 class GoogleFirebaseAppdistroV1alphaDeviceInteractionEnterText(
@@ -279,9 +310,13 @@ class GoogleFirebaseAppdistroV1alphaGetUploadStatusResponse(
 class GoogleFirebaseAppdistroV1alphaGoalAction(
     typing_extensions.TypedDict, total=False
 ):
+    cachingType: typing_extensions.Literal[
+        "CACHING_TYPE_UNSPECIFIED", "NO_CACHING", "CACHE_AND_MODEL", "CACHE_ONLY"
+    ]
     debugInfo: GoogleFirebaseAppdistroV1alphaGoalActionDebugInfo
     deviceAction: GoogleFirebaseAppdistroV1alphaDeviceAction
     explanation: str
+    startTime: str
     terminalAction: GoogleFirebaseAppdistroV1alphaTerminalAction
 
 @typing.type_check_only
@@ -401,8 +436,10 @@ class GoogleFirebaseAppdistroV1alphaTerminalAction(
 class GoogleFirebaseAppdistroV1alphaTestCase(typing_extensions.TypedDict, total=False):
     aiInstructions: GoogleFirebaseAppdistroV1alphaAiInstructions
     createTime: str
+    dependentTestCases: _list[str]
     displayName: str
     name: str
+    prerequisiteTestCase: str
 
 @typing.type_check_only
 class GoogleFirebaseAppdistroV1alphaTestConfig(
@@ -435,6 +472,13 @@ class GoogleFirebaseAppdistroV1alphaTesterUdid(
     name: str
     platform: str
     udid: str
+
+@typing.type_check_only
+class GoogleFirebaseAppdistroV1alphaUpdateTestCaseRequest(
+    typing_extensions.TypedDict, total=False
+):
+    allowMissing: bool
+    testCase: GoogleFirebaseAppdistroV1alphaTestCase
 
 @typing.type_check_only
 class GoogleProtobufEmpty(typing_extensions.TypedDict, total=False): ...

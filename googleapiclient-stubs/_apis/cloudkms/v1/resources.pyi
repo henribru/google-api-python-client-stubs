@@ -196,6 +196,13 @@ class CloudKMSResource(googleapiclient.discovery.Resource):
                             body: CryptoKeyVersion = ...,
                             **kwargs: typing.Any,
                         ) -> CryptoKeyVersionHttpRequest: ...
+                        def decapsulate(
+                            self,
+                            *,
+                            name: str,
+                            body: DecapsulateRequest = ...,
+                            **kwargs: typing.Any,
+                        ) -> DecapsulateResponseHttpRequest: ...
                         def destroy(
                             self,
                             *,
@@ -211,7 +218,11 @@ class CloudKMSResource(googleapiclient.discovery.Resource):
                             *,
                             name: str,
                             publicKeyFormat: typing_extensions.Literal[
-                                "PUBLIC_KEY_FORMAT_UNSPECIFIED", "PEM", "NIST_PQC"
+                                "PUBLIC_KEY_FORMAT_UNSPECIFIED",
+                                "PEM",
+                                "DER",
+                                "NIST_PQC",
+                                "XWING_RAW_BYTES",
                             ] = ...,
                             **kwargs: typing.Any,
                         ) -> PublicKeyHttpRequest: ...
@@ -514,6 +525,9 @@ class CloudKMSResource(googleapiclient.discovery.Resource):
             def keyRings(self) -> KeyRingsResource: ...
             def operations(self) -> OperationsResource: ...
 
+        def getAutokeyConfig(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> AutokeyConfigHttpRequest: ...
         def getKajPolicyConfig(
             self, *, name: str, **kwargs: typing.Any
         ) -> KeyAccessJustificationsPolicyConfigHttpRequest: ...
@@ -528,6 +542,14 @@ class CloudKMSResource(googleapiclient.discovery.Resource):
         def showEffectiveKeyAccessJustificationsPolicyConfig(
             self, *, project: str, **kwargs: typing.Any
         ) -> ShowEffectiveKeyAccessJustificationsPolicyConfigResponseHttpRequest: ...
+        def updateAutokeyConfig(
+            self,
+            *,
+            name: str,
+            body: AutokeyConfig = ...,
+            updateMask: str = ...,
+            **kwargs: typing.Any,
+        ) -> AutokeyConfigHttpRequest: ...
         def updateKajPolicyConfig(
             self,
             *,
@@ -593,6 +615,14 @@ class CryptoKeyVersionHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> CryptoKeyVersion: ...
+
+@typing.type_check_only
+class DecapsulateResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> DecapsulateResponse: ...
 
 @typing.type_check_only
 class DecryptResponseHttpRequest(googleapiclient.http.HttpRequest):

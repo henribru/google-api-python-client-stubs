@@ -95,6 +95,7 @@ class AccumulableInfo(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class AnalyzeBatchRequest(typing_extensions.TypedDict, total=False):
     requestId: str
+    requestorId: str
 
 @typing.type_check_only
 class AnalyzeOperationMetadata(typing_extensions.TypedDict, total=False):
@@ -925,6 +926,7 @@ class ListJobsResponse(typing_extensions.TypedDict, total=False):
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListSessionTemplatesResponse(typing_extensions.TypedDict, total=False):
@@ -1253,6 +1255,7 @@ class RegexValidation(typing_extensions.TypedDict, total=False):
 class RepairClusterRequest(typing_extensions.TypedDict, total=False):
     cluster: ClusterToRepair
     clusterUuid: str
+    dataprocSuperUser: bool
     gracefulDecommissionTimeout: str
     nodePools: _list[NodePool]
     parentOperationId: str
@@ -1575,6 +1578,7 @@ class SoftwareConfig(typing_extensions.TypedDict, total=False):
             "SOLR",
             "ZEPPELIN",
             "ZOOKEEPER",
+            "JUPYTER_KERNEL_GATEWAY",
         ]
     ]
     properties: dict[str, typing.Any]
@@ -2121,7 +2125,6 @@ class UsageMetrics(typing_extensions.TypedDict, total=False):
     acceleratorType: str
     milliAcceleratorSeconds: str
     milliDcuSeconds: str
-    milliSlotSeconds: str
     shuffleStorageGbSeconds: str
     updateTime: str
 
@@ -2131,7 +2134,6 @@ class UsageSnapshot(typing_extensions.TypedDict, total=False):
     milliAccelerator: str
     milliDcu: str
     milliDcuPremium: str
-    milliSlot: str
     shuffleStorageGb: str
     shuffleStorageGbPremium: str
     snapshotTime: str
@@ -2231,6 +2233,7 @@ class WriteSparkApplicationContextResponse(
 
 @typing.type_check_only
 class YarnApplication(typing_extensions.TypedDict, total=False):
+    memoryMbSeconds: str
     name: str
     progress: float
     state: typing_extensions.Literal[
@@ -2245,3 +2248,4 @@ class YarnApplication(typing_extensions.TypedDict, total=False):
         "KILLED",
     ]
     trackingUrl: str
+    vcoreSeconds: str

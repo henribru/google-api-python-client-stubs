@@ -33,6 +33,16 @@ class DenyMaintenancePeriod(typing_extensions.TypedDict, total=False):
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class GetTagsRequest(typing_extensions.TypedDict, total=False):
+    name: str
+
+@typing.type_check_only
+class GetTagsResponse(typing_extensions.TypedDict, total=False):
+    name: str
+    tags: dict[str, typing.Any]
+    tagsEtag: str
+
+@typing.type_check_only
 class GoogleCloudMemcacheV1LocationMetadata(typing_extensions.TypedDict, total=False):
     availableZones: dict[str, typing.Any]
 
@@ -217,6 +227,7 @@ class ListLocationsResponse(typing_extensions.TypedDict, total=False):
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):
@@ -318,6 +329,19 @@ class Schedule(typing_extensions.TypedDict, total=False):
     ]
     duration: str
     startTime: TimeOfDay
+
+@typing.type_check_only
+class SetTagsRequest(typing_extensions.TypedDict, total=False):
+    name: str
+    requestId: str
+    tags: dict[str, typing.Any]
+    tagsEtag: str
+
+@typing.type_check_only
+class SetTagsResponse(typing_extensions.TypedDict, total=False):
+    name: str
+    tags: dict[str, typing.Any]
+    tagsEtag: str
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):

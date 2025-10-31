@@ -47,10 +47,49 @@ class AutoAccept(typing_extensions.TypedDict, total=False):
     autoAcceptProjects: _list[str]
 
 @typing.type_check_only
+class AutoCreatedSubnetworkInfo(typing_extensions.TypedDict, total=False):
+    internalRange: str
+    internalRangeRef: str
+    subnetwork: str
+    subnetworkRef: str
+
+@typing.type_check_only
+class AutomatedDnsCreationSpec(typing_extensions.TypedDict, total=False):
+    dnsSuffix: str
+    hostname: str
+    ttl: str
+
+@typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
     condition: Expr
     members: _list[str]
     role: str
+
+@typing.type_check_only
+class CheckConsumerConfigRequest(typing_extensions.TypedDict, total=False):
+    consumerNetwork: str
+    endpointProject: str
+    requestedIpVersion: typing_extensions.Literal[
+        "IP_VERSION_UNSPECIFIED", "IPV4", "IPV6"
+    ]
+    serviceClass: str
+
+@typing.type_check_only
+class CheckConsumerConfigResponse(typing_extensions.TypedDict, total=False):
+    errors: _list[
+        typing_extensions.Literal[
+            "ERROR_UNSPECIFIED",
+            "NETWORK_PROJECT_INVALID",
+            "NETWORK_PROJECT_APIS_NOT_ENABLED",
+            "NETWORK_INVALID",
+            "CONNECTION_POLICY_MISSING",
+            "IP_VERSION_NOT_SUPPORTED",
+            "NETWORK_PROJECT_SERVICE_AGENT_NOT_FOUND",
+            "ENDPOINT_PROJECT_INVALID",
+            "ENDPOINT_PROJECT_API_NOT_ENABLED",
+            "ENDPOINT_PROJECT_IS_NOT_SERVICE_PROJECT",
+        ]
+    ]
 
 @typing.type_check_only
 class ConsumerPscConfig(typing_extensions.TypedDict, total=False):
@@ -72,6 +111,7 @@ class ConsumerPscConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ConsumerPscConnection(typing_extensions.TypedDict, total=False):
+    dnsAutomationStatus: DnsAutomationStatus
     error: GoogleRpcStatus
     errorInfo: GoogleRpcErrorInfo
     errorType: typing_extensions.Literal[
@@ -102,6 +142,39 @@ class ConsumerPscConnection(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class Destination(typing_extensions.TypedDict, total=False):
+    createTime: str
+    description: str
+    endpoints: _list[DestinationEndpoint]
+    etag: str
+    ipPrefix: str
+    labels: dict[str, typing.Any]
+    name: str
+    stateTimeline: StateTimeline
+    uid: str
+    updateTime: str
+
+@typing.type_check_only
+class DestinationEndpoint(typing_extensions.TypedDict, total=False):
+    asn: str
+    csp: str
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "VALID", "INVALID"]
+    updateTime: str
+
+@typing.type_check_only
+class DnsAutomationStatus(typing_extensions.TypedDict, total=False):
+    error: GoogleRpcStatus
+    fqdn: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "PENDING_CREATE",
+        "ACTIVE",
+        "PENDING_DELETE",
+        "CREATE_FAILED",
+        "DELETE_FAILED",
+    ]
+
+@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -129,6 +202,7 @@ class GoogleLongrunningCancelOperationRequest(
 class GoogleLongrunningListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[GoogleLongrunningOperation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class GoogleLongrunningOperation(typing_extensions.TypedDict, total=False):
@@ -284,6 +358,12 @@ class LinkedVpnTunnels(typing_extensions.TypedDict, total=False):
     vpcNetwork: str
 
 @typing.type_check_only
+class ListDestinationsResponse(typing_extensions.TypedDict, total=False):
+    destinations: _list[Destination]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
 class ListGroupsResponse(typing_extensions.TypedDict, total=False):
     groups: _list[Group]
     nextPageToken: str
@@ -310,6 +390,23 @@ class ListInternalRangesResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ListLocationsResponse(typing_extensions.TypedDict, total=False):
     locations: _list[Location]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListMulticloudDataTransferConfigsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    multicloudDataTransferConfigs: _list[MulticloudDataTransferConfig]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListMulticloudDataTransferSupportedServicesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    multicloudDataTransferSupportedServices: _list[
+        MulticloudDataTransferSupportedService
+    ]
     nextPageToken: str
 
 @typing.type_check_only
@@ -391,6 +488,24 @@ class Migration(typing_extensions.TypedDict, total=False):
     target: str
 
 @typing.type_check_only
+class MulticloudDataTransferConfig(typing_extensions.TypedDict, total=False):
+    createTime: str
+    description: str
+    destinationsActiveCount: int
+    destinationsCount: int
+    etag: str
+    labels: dict[str, typing.Any]
+    name: str
+    services: dict[str, typing.Any]
+    uid: str
+    updateTime: str
+
+@typing.type_check_only
+class MulticloudDataTransferSupportedService(typing_extensions.TypedDict, total=False):
+    name: str
+    serviceConfigs: _list[ServiceConfig]
+
+@typing.type_check_only
 class NextHopInterconnectAttachment(typing_extensions.TypedDict, total=False):
     siteToSiteDataTransfer: bool
     uri: str
@@ -456,6 +571,7 @@ class PolicyBasedRoute(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ProducerPscConfig(typing_extensions.TypedDict, total=False):
+    automatedDnsCreationSpec: AutomatedDnsCreationSpec
     serviceAttachmentUri: str
 
 @typing.type_check_only
@@ -632,6 +748,16 @@ class ServiceClass(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
+class ServiceConfig(typing_extensions.TypedDict, total=False):
+    eligibilityCriteria: typing_extensions.Literal[
+        "ELIGIBILITY_CRITERIA_UNSPECIFIED",
+        "NETWORK_SERVICE_TIER_PREMIUM_ONLY",
+        "NETWORK_SERVICE_TIER_STANDARD_ONLY",
+        "REQUEST_ENDPOINT_REGIONAL_ENDPOINT_ONLY",
+    ]
+    supportEndTime: str
+
+@typing.type_check_only
 class ServiceConnectionMap(typing_extensions.TypedDict, total=False):
     consumerPscConfigs: _list[ConsumerPscConfig]
     consumerPscConnections: _list[ConsumerPscConnection]
@@ -649,6 +775,7 @@ class ServiceConnectionMap(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ServiceConnectionPolicy(typing_extensions.TypedDict, total=False):
+    autoCreatedSubnetInfo: AutoCreatedSubnetworkInfo
     createTime: str
     description: str
     etag: str
@@ -766,6 +893,13 @@ class SpokeTypeCount(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class StateMetadata(typing_extensions.TypedDict, total=False):
+    effectiveTime: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "ADDING", "ACTIVE", "DELETING", "SUSPENDING", "SUSPENDED"
+    ]
+
+@typing.type_check_only
 class StateReason(typing_extensions.TypedDict, total=False):
     code: typing_extensions.Literal[
         "CODE_UNSPECIFIED",
@@ -779,6 +913,10 @@ class StateReason(typing_extensions.TypedDict, total=False):
     ]
     message: str
     userDetails: str
+
+@typing.type_check_only
+class StateTimeline(typing_extensions.TypedDict, total=False):
+    states: _list[StateMetadata]
 
 @typing.type_check_only
 class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):

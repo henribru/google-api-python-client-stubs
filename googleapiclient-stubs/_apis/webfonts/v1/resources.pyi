@@ -19,10 +19,12 @@ class WebfontsResource(googleapiclient.discovery.Resource):
             self,
             *,
             capability: typing_extensions.Literal[
-                "CAPABILITY_UNSPECIFIED", "WOFF2", "VF"
+                "CAPABILITY_UNSPECIFIED", "WOFF2", "VF", "FAMILY_TAGS"
             ]
             | _list[
-                typing_extensions.Literal["CAPABILITY_UNSPECIFIED", "WOFF2", "VF"]
+                typing_extensions.Literal[
+                    "CAPABILITY_UNSPECIFIED", "WOFF2", "VF", "FAMILY_TAGS"
+                ]
             ] = ...,
             category: str = ...,
             family: str | _list[str] = ...,

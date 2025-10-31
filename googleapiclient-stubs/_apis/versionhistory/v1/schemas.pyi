@@ -73,8 +73,14 @@ class Release(typing_extensions.TypedDict, total=False):
     fractionGroup: str
     name: str
     pinnable: bool
+    rolloutData: _list[RolloutData]
     serving: Interval
     version: str
+
+@typing.type_check_only
+class RolloutData(typing_extensions.TypedDict, total=False):
+    rolloutName: str
+    tag: _list[str]
 
 @typing.type_check_only
 class Version(typing_extensions.TypedDict, total=False):

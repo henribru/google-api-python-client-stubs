@@ -41,6 +41,7 @@ class NetworkManagementResource(googleapiclient.discovery.Resource):
                         filter: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
+                        returnPartialSuccess: bool = ...,
                         **kwargs: typing.Any,
                     ) -> ListOperationsResponseHttpRequest: ...
                     def list_next(
@@ -210,6 +211,7 @@ class NetworkManagementResource(googleapiclient.discovery.Resource):
                         filter: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
+                        returnPartialSuccess: bool = ...,
                         **kwargs: typing.Any,
                     ) -> ListOperationsResponseHttpRequest: ...
                     def list_next(
@@ -274,6 +276,21 @@ class NetworkManagementResource(googleapiclient.discovery.Resource):
                     previous_request: QueryOrgVpcFlowLogsConfigsResponseHttpRequest,
                     previous_response: QueryOrgVpcFlowLogsConfigsResponse,
                 ) -> QueryOrgVpcFlowLogsConfigsResponseHttpRequest | None: ...
+                def showEffectiveFlowLogsConfigs(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    resource: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ShowEffectiveFlowLogsConfigsResponseHttpRequest: ...
+                def showEffectiveFlowLogsConfigs_next(
+                    self,
+                    previous_request: ShowEffectiveFlowLogsConfigsResponseHttpRequest,
+                    previous_response: ShowEffectiveFlowLogsConfigsResponse,
+                ) -> ShowEffectiveFlowLogsConfigsResponseHttpRequest | None: ...
 
             def get(
                 self, *, name: str, **kwargs: typing.Any
@@ -392,6 +409,14 @@ class QueryOrgVpcFlowLogsConfigsResponseHttpRequest(googleapiclient.http.HttpReq
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> QueryOrgVpcFlowLogsConfigsResponse: ...
+
+@typing.type_check_only
+class ShowEffectiveFlowLogsConfigsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ShowEffectiveFlowLogsConfigsResponse: ...
 
 @typing.type_check_only
 class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):

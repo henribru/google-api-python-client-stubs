@@ -19,6 +19,12 @@ class ListLocationsResponse(typing_extensions.TypedDict, total=False):
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListTraceScopesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    traceScopes: _list[TraceScope]
 
 @typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):
@@ -50,6 +56,7 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
 class Scope(typing_extensions.TypedDict, total=False):
     logScope: str
     name: str
+    traceScope: str
     updateTime: str
 
 @typing.type_check_only
@@ -57,3 +64,11 @@ class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
+
+@typing.type_check_only
+class TraceScope(typing_extensions.TypedDict, total=False):
+    createTime: str
+    description: str
+    name: str
+    resourceNames: _list[str]
+    updateTime: str

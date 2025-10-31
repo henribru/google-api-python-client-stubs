@@ -591,6 +591,15 @@ class StatusProto(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class VulnerabilityReport(typing_extensions.TypedDict, total=False):
+    highestUpgradableCveSeverity: typing_extensions.Literal[
+        "VULNERABILITY_SEVERITY_LEVEL_UNSPECIFIED",
+        "NONE",
+        "MINIMAL",
+        "LOW",
+        "MEDIUM",
+        "HIGH",
+        "CRITICAL",
+    ]
     name: str
     updateTime: str
     vulnerabilities: _list[VulnerabilityReportVulnerability]

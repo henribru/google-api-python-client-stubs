@@ -319,6 +319,48 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                 ) -> OperationHttpRequest: ...
 
             @typing.type_check_only
+            class LbTcpExtensionsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: LbTcpExtension = ...,
+                    lbTcpExtensionId: str = ...,
+                    requestId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, requestId: str = ..., **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> LbTcpExtensionHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListLbTcpExtensionsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListLbTcpExtensionsResponseHttpRequest,
+                    previous_response: ListLbTcpExtensionsResponse,
+                ) -> ListLbTcpExtensionsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: LbTcpExtension = ...,
+                    requestId: str = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+
+            @typing.type_check_only
             class LbTrafficExtensionsResource(googleapiclient.discovery.Resource):
                 def create(
                     self,
@@ -705,6 +747,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
             def httpRoutes(self) -> HttpRoutesResource: ...
             def lbEdgeExtensions(self) -> LbEdgeExtensionsResource: ...
             def lbRouteExtensions(self) -> LbRouteExtensionsResource: ...
+            def lbTcpExtensions(self) -> LbTcpExtensionsResource: ...
             def lbTrafficExtensions(self) -> LbTrafficExtensionsResource: ...
             def meshes(self) -> MeshesResource: ...
             def operations(self) -> OperationsResource: ...
@@ -803,6 +846,14 @@ class LbRouteExtensionHttpRequest(googleapiclient.http.HttpRequest):
     ) -> LbRouteExtension: ...
 
 @typing.type_check_only
+class LbTcpExtensionHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> LbTcpExtension: ...
+
+@typing.type_check_only
 class LbTrafficExtensionHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -873,6 +924,14 @@ class ListLbRouteExtensionsResponseHttpRequest(googleapiclient.http.HttpRequest)
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListLbRouteExtensionsResponse: ...
+
+@typing.type_check_only
+class ListLbTcpExtensionsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListLbTcpExtensionsResponse: ...
 
 @typing.type_check_only
 class ListLbTrafficExtensionsResponseHttpRequest(googleapiclient.http.HttpRequest):

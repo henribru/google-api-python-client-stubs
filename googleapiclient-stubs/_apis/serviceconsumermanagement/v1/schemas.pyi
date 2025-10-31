@@ -11,6 +11,7 @@ class AddTenantProjectRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Api(typing_extensions.TypedDict, total=False):
+    edition: str
     methods: _list[Method]
     mixins: _list[Mixin]
     name: str
@@ -382,6 +383,7 @@ class LongRunning(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Method(typing_extensions.TypedDict, total=False):
+    edition: str
     name: str
     options: _list[Option]
     requestStreaming: bool
@@ -528,6 +530,7 @@ class Page(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class PhpSettings(typing_extensions.TypedDict, total=False):
     common: CommonLanguageSettings
+    libraryPackage: str
 
 @typing.type_check_only
 class PolicyBinding(typing_extensions.TypedDict, total=False):

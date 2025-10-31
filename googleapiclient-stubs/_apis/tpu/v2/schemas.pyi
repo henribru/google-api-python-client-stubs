@@ -33,7 +33,15 @@ class AttachedDisk(typing_extensions.TypedDict, total=False):
     sourceDisk: str
 
 @typing.type_check_only
+class BootDiskConfig(typing_extensions.TypedDict, total=False):
+    customerEncryptionKey: CustomerEncryptionKey
+
+@typing.type_check_only
 class CreatingData(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class CustomerEncryptionKey(typing_extensions.TypedDict, total=False):
+    kmsKeyName: str
 
 @typing.type_check_only
 class DeletingData(typing_extensions.TypedDict, total=False): ...
@@ -106,6 +114,7 @@ class ListNodesResponse(typing_extensions.TypedDict, total=False):
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListQueuedResourcesResponse(typing_extensions.TypedDict, total=False):
@@ -153,6 +162,7 @@ class Node(typing_extensions.TypedDict, total=False):
     apiVersion: typing_extensions.Literal[
         "API_VERSION_UNSPECIFIED", "V1_ALPHA1", "V1", "V2_ALPHA1", "V2"
     ]
+    bootDiskConfig: BootDiskConfig
     cidrBlock: str
     createTime: str
     dataDisks: _list[AttachedDisk]

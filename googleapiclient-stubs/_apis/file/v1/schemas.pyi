@@ -66,6 +66,7 @@ class FileShareConfig(typing_extensions.TypedDict, total=False):
     name: str
     nfsExportOptions: _list[NfsExportOptions]
     sourceBackup: str
+    sourceBackupdrBackup: str
 
 @typing.type_check_only
 class FixedIOPS(typing_extensions.TypedDict, total=False):
@@ -176,6 +177,7 @@ class IOPSPerTB(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Instance(typing_extensions.TypedDict, total=False):
+    capacityStepSizeGb: str
     createTime: str
     customPerformanceSupported: bool
     deletionProtectionEnabled: bool
@@ -185,6 +187,8 @@ class Instance(typing_extensions.TypedDict, total=False):
     fileShares: _list[FileShareConfig]
     kmsKeyName: str
     labels: dict[str, typing.Any]
+    maxCapacityGb: str
+    minCapacityGb: str
     name: str
     networks: _list[NetworkConfig]
     performanceConfig: PerformanceConfig
@@ -280,11 +284,15 @@ class MaintenanceWindow(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class NetworkConfig(typing_extensions.TypedDict, total=False):
     connectMode: typing_extensions.Literal[
-        "CONNECT_MODE_UNSPECIFIED", "DIRECT_PEERING", "PRIVATE_SERVICE_ACCESS"
+        "CONNECT_MODE_UNSPECIFIED",
+        "DIRECT_PEERING",
+        "PRIVATE_SERVICE_ACCESS",
+        "PRIVATE_SERVICE_CONNECT",
     ]
     ipAddresses: _list[str]
     modes: _list[typing_extensions.Literal["ADDRESS_MODE_UNSPECIFIED", "MODE_IPV4"]]
     network: str
+    pscConfig: PscConfig
     reservedIpRange: str
 
 @typing.type_check_only
@@ -295,6 +303,7 @@ class NfsExportOptions(typing_extensions.TypedDict, total=False):
     anonGid: str
     anonUid: str
     ipRanges: _list[str]
+    network: str
     squashMode: typing_extensions.Literal[
         "SQUASH_MODE_UNSPECIFIED", "NO_ROOT_SQUASH", "ROOT_SQUASH"
     ]
@@ -335,17 +344,34 @@ class PromoteReplicaRequest(typing_extensions.TypedDict, total=False):
     peerInstance: str
 
 @typing.type_check_only
+class PscConfig(typing_extensions.TypedDict, total=False):
+    endpointProject: str
+
+@typing.type_check_only
 class ReplicaConfig(typing_extensions.TypedDict, total=False):
     lastActiveSyncTime: str
     peerInstance: str
     state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "CREATING", "READY", "REMOVING", "FAILED"
+        "STATE_UNSPECIFIED",
+        "CREATING",
+        "READY",
+        "REMOVING",
+        "FAILED",
+        "PROMOTING",
+        "PAUSING",
+        "PAUSED",
+        "RESUMING",
     ]
     stateReasons: _list[
         typing_extensions.Literal[
-            "STATE_REASON_UNSPECIFIED", "PEER_INSTANCE_UNREACHABLE", "REMOVE_FAILED"
+            "STATE_REASON_UNSPECIFIED",
+            "PEER_INSTANCE_UNREACHABLE",
+            "REMOVE_FAILED",
+            "PAUSE_FAILED",
+            "RESUME_FAILED",
         ]
     ]
+    stateUpdateTime: str
 
 @typing.type_check_only
 class Replication(typing_extensions.TypedDict, total=False):

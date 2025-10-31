@@ -362,6 +362,129 @@ class NetworkconnectivityResource(googleapiclient.discovery.Resource):
                 ) -> TestIamPermissionsResponseHttpRequest: ...
 
             @typing.type_check_only
+            class MulticloudDataTransferConfigsResource(
+                googleapiclient.discovery.Resource
+            ):
+                @typing.type_check_only
+                class DestinationsResource(googleapiclient.discovery.Resource):
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: Destination = ...,
+                        destinationId: str = ...,
+                        requestId: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
+                    def delete(
+                        self,
+                        *,
+                        name: str,
+                        etag: str = ...,
+                        requestId: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> DestinationHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        filter: str = ...,
+                        orderBy: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        returnPartialSuccess: bool = ...,
+                        **kwargs: typing.Any,
+                    ) -> ListDestinationsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListDestinationsResponseHttpRequest,
+                        previous_response: ListDestinationsResponse,
+                    ) -> ListDestinationsResponseHttpRequest | None: ...
+                    def patch(
+                        self,
+                        *,
+                        name: str,
+                        body: Destination = ...,
+                        requestId: str = ...,
+                        updateMask: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
+
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: MulticloudDataTransferConfig = ...,
+                    multicloudDataTransferConfigId: str = ...,
+                    requestId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+                def delete(
+                    self,
+                    *,
+                    name: str,
+                    etag: str = ...,
+                    requestId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> MulticloudDataTransferConfigHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    returnPartialSuccess: bool = ...,
+                    **kwargs: typing.Any,
+                ) -> ListMulticloudDataTransferConfigsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListMulticloudDataTransferConfigsResponseHttpRequest,
+                    previous_response: ListMulticloudDataTransferConfigsResponse,
+                ) -> ListMulticloudDataTransferConfigsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: MulticloudDataTransferConfig = ...,
+                    requestId: str = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+                def destinations(self) -> DestinationsResource: ...
+
+            @typing.type_check_only
+            class MulticloudDataTransferSupportedServicesResource(
+                googleapiclient.discovery.Resource
+            ):
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> MulticloudDataTransferSupportedServiceHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListMulticloudDataTransferSupportedServicesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListMulticloudDataTransferSupportedServicesResponseHttpRequest,
+                    previous_response: ListMulticloudDataTransferSupportedServicesResponse,
+                ) -> (
+                    ListMulticloudDataTransferSupportedServicesResponseHttpRequest
+                    | None
+                ): ...
+
+            @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def cancel(
                     self,
@@ -383,6 +506,7 @@ class NetworkconnectivityResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
+                    returnPartialSuccess: bool = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
                 def list_next(
@@ -558,8 +682,19 @@ class NetworkconnectivityResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: ServiceConnectionPolicy = ...,
+                    autoSubnetworkConfig_allocRangeSpace: str | _list[str] = ...,
+                    autoSubnetworkConfig_ipStack: typing_extensions.Literal[
+                        "SUBNET_IP_STACK_UNSPECIFIED",
+                        "IPV4_ONLY",
+                        "IPV6_ONLY",
+                        "IPV4_IPV6",
+                    ] = ...,
+                    autoSubnetworkConfig_prefixLength: int = ...,
                     requestId: str = ...,
                     serviceConnectionPolicyId: str = ...,
+                    subnetworkMode: typing_extensions.Literal[
+                        "SUBNETWORK_MODE_UNSPECIFIED", "USER_PROVIDED", "AUTO_CREATED"
+                    ] = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def delete(
@@ -720,6 +855,13 @@ class NetworkconnectivityResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
 
+            def checkConsumerConfig(
+                self,
+                *,
+                location: str,
+                body: CheckConsumerConfigRequest = ...,
+                **kwargs: typing.Any,
+            ) -> CheckConsumerConfigResponseHttpRequest: ...
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
@@ -740,6 +882,12 @@ class NetworkconnectivityResource(googleapiclient.discovery.Resource):
             ) -> ListLocationsResponseHttpRequest | None: ...
             def global_(self) -> GlobalResource: ...
             def internalRanges(self) -> InternalRangesResource: ...
+            def multicloudDataTransferConfigs(
+                self,
+            ) -> MulticloudDataTransferConfigsResource: ...
+            def multicloudDataTransferSupportedServices(
+                self,
+            ) -> MulticloudDataTransferSupportedServicesResource: ...
             def operations(self) -> OperationsResource: ...
             def regionalEndpoints(self) -> RegionalEndpointsResource: ...
             def serviceClasses(self) -> ServiceClassesResource: ...
@@ -765,6 +913,22 @@ class NetworkconnectivityResource(googleapiclient.discovery.Resource):
         | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def projects(self) -> ProjectsResource: ...
+
+@typing.type_check_only
+class CheckConsumerConfigResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> CheckConsumerConfigResponse: ...
+
+@typing.type_check_only
+class DestinationHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> Destination: ...
 
 @typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
@@ -817,6 +981,14 @@ class InternalRangeHttpRequest(googleapiclient.http.HttpRequest):
     ) -> InternalRange: ...
 
 @typing.type_check_only
+class ListDestinationsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListDestinationsResponse: ...
+
+@typing.type_check_only
 class ListGroupsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -855,6 +1027,26 @@ class ListLocationsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListLocationsResponse: ...
+
+@typing.type_check_only
+class ListMulticloudDataTransferConfigsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListMulticloudDataTransferConfigsResponse: ...
+
+@typing.type_check_only
+class ListMulticloudDataTransferSupportedServicesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListMulticloudDataTransferSupportedServicesResponse: ...
 
 @typing.type_check_only
 class ListPolicyBasedRoutesResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -937,6 +1129,24 @@ class LocationHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Location: ...
+
+@typing.type_check_only
+class MulticloudDataTransferConfigHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> MulticloudDataTransferConfig: ...
+
+@typing.type_check_only
+class MulticloudDataTransferSupportedServiceHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> MulticloudDataTransferSupportedService: ...
 
 @typing.type_check_only
 class PolicyHttpRequest(googleapiclient.http.HttpRequest):

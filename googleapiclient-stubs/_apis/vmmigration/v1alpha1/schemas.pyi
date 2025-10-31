@@ -11,6 +11,11 @@ class AccessKeyCredentials(typing_extensions.TypedDict, total=False):
     sessionToken: str
 
 @typing.type_check_only
+class AdaptationModifier(typing_extensions.TypedDict, total=False):
+    modifier: str
+    value: str
+
+@typing.type_check_only
 class AdaptingOSStep(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -55,6 +60,15 @@ class AwsSourceDetails(typing_extensions.TypedDict, total=False):
     migrationResourcesUserTags: dict[str, typing.Any]
     publicIp: str
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "PENDING", "FAILED", "ACTIVE"]
+
+@typing.type_check_only
+class AwsSourceDiskDetails(typing_extensions.TypedDict, total=False):
+    diskType: typing_extensions.Literal[
+        "TYPE_UNSPECIFIED", "GP2", "GP3", "IO1", "IO2", "ST1", "SC1", "STANDARD"
+    ]
+    sizeGib: str
+    tags: dict[str, typing.Any]
+    volumeId: str
 
 @typing.type_check_only
 class AwsSourceVmDetails(typing_extensions.TypedDict, total=False):
@@ -183,6 +197,9 @@ class CancelCloneJobRequest(typing_extensions.TypedDict, total=False): ...
 class CancelCutoverJobRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class CancelDiskMigrationJobRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class CancelImageImportJobRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -226,6 +243,19 @@ class CloneStep(typing_extensions.TypedDict, total=False):
     startTime: str
 
 @typing.type_check_only
+class ComputeEngineDisk(typing_extensions.TypedDict, total=False):
+    diskId: str
+    diskType: typing_extensions.Literal[
+        "COMPUTE_ENGINE_DISK_TYPE_UNSPECIFIED",
+        "COMPUTE_ENGINE_DISK_TYPE_STANDARD",
+        "COMPUTE_ENGINE_DISK_TYPE_SSD",
+        "COMPUTE_ENGINE_DISK_TYPE_BALANCED",
+        "COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED",
+    ]
+    replicaZones: _list[str]
+    zone: str
+
+@typing.type_check_only
 class ComputeEngineDisksTargetDefaults(typing_extensions.TypedDict, total=False):
     disks: _list[PersistentDiskDefaults]
     disksTargetDefaults: DisksMigrationDisksTargetDefaults
@@ -241,6 +271,7 @@ class ComputeEngineDisksTargetDetails(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ComputeEngineTargetDefaults(typing_extensions.TypedDict, total=False):
+    adaptationModifiers: _list[AdaptationModifier]
     additionalLicenses: _list[str]
     appliedLicense: AppliedLicense
     bootConversion: typing_extensions.Literal[
@@ -283,6 +314,7 @@ class ComputeEngineTargetDefaults(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ComputeEngineTargetDetails(typing_extensions.TypedDict, total=False):
+    adaptationModifiers: _list[AdaptationModifier]
     additionalLicenses: _list[str]
     appliedLicense: AppliedLicense
     bootConversion: typing_extensions.Literal[
@@ -336,7 +368,13 @@ class ComputeScheduling(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class CopyingSourceDiskSnapshotStep(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class CreatingImageStep(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class CreatingSourceDiskSnapshotStep(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class CutoverForecast(typing_extensions.TypedDict, total=False):
@@ -432,6 +470,40 @@ class DiskImageTargetDetails(typing_extensions.TypedDict, total=False):
     targetProject: str
 
 @typing.type_check_only
+class DiskMigrationJob(typing_extensions.TypedDict, total=False):
+    awsSourceDiskDetails: AwsSourceDiskDetails
+    createTime: str
+    errors: _list[Status]
+    name: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "READY",
+        "RUNNING",
+        "SUCCEEDED",
+        "CANCELLING",
+        "CANCELLED",
+        "FAILED",
+    ]
+    steps: _list[DiskMigrationStep]
+    targetDetails: DiskMigrationJobTargetDetails
+    updateTime: str
+
+@typing.type_check_only
+class DiskMigrationJobTargetDetails(typing_extensions.TypedDict, total=False):
+    encryption: Encryption
+    labels: dict[str, typing.Any]
+    targetDisk: ComputeEngineDisk
+    targetProject: str
+
+@typing.type_check_only
+class DiskMigrationStep(typing_extensions.TypedDict, total=False):
+    copyingSourceDiskSnapshot: CopyingSourceDiskSnapshotStep
+    creatingSourceDiskSnapshot: CreatingSourceDiskSnapshotStep
+    endTime: str
+    provisioningTargetDisk: ProvisioningTargetDiskStep
+    startTime: str
+
+@typing.type_check_only
 class DisksMigrationDisksTargetDefaults(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -485,6 +557,12 @@ class FetchInventoryResponse(typing_extensions.TypedDict, total=False):
     vmwareVms: VmwareVmsDetails
 
 @typing.type_check_only
+class FetchStorageInventoryResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    resources: _list[SourceStorageResource]
+    updateTime: str
+
+@typing.type_check_only
 class FinalizeMigrationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -534,6 +612,7 @@ class ImageImportJob(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ImageImportOsAdaptationParameters(typing_extensions.TypedDict, total=False):
+    adaptationModifiers: _list[AdaptationModifier]
     bootConversion: typing_extensions.Literal[
         "BOOT_CONVERSION_UNSPECIFIED", "NONE", "BIOS_TO_EFI"
     ]
@@ -586,6 +665,12 @@ class ListDatacenterConnectorsResponse(typing_extensions.TypedDict, total=False)
     unreachable: _list[str]
 
 @typing.type_check_only
+class ListDiskMigrationJobsResponse(typing_extensions.TypedDict, total=False):
+    diskMigrationJobs: _list[DiskMigrationJob]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
 class ListGroupsResponse(typing_extensions.TypedDict, total=False):
     groups: _list[Group]
     nextPageToken: str
@@ -618,6 +703,7 @@ class ListMigratingVmsResponse(typing_extensions.TypedDict, total=False):
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListReplicationCyclesResponse(typing_extensions.TypedDict, total=False):
@@ -739,6 +825,7 @@ class MigrationError(typing_extensions.TypedDict, total=False):
         "UTILIZATION_REPORT_ERROR",
         "APPLIANCE_UPGRADE_ERROR",
         "IMAGE_IMPORT_ERROR",
+        "DISK_MIGRATION_ERROR",
     ]
     errorMessage: LocalizedMessage
     errorTime: str
@@ -825,6 +912,9 @@ class PostProcessingStep(typing_extensions.TypedDict, total=False): ...
 class PreparingVMDisksStep(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class ProvisioningTargetDiskStep(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class RemoveGroupMigrationRequest(typing_extensions.TypedDict, total=False):
     migratingVm: str
 
@@ -857,6 +947,9 @@ class ReplicationSync(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ResumeMigrationRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class RunDiskMigrationJobRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class SchedulePolicy(typing_extensions.TypedDict, total=False):
@@ -898,6 +991,10 @@ class Source(typing_extensions.TypedDict, total=False):
     name: str
     updateTime: str
     vmware: VmwareSourceDetails
+
+@typing.type_check_only
+class SourceStorageResource(typing_extensions.TypedDict, total=False):
+    awsDiskDetails: AwsSourceDiskDetails
 
 @typing.type_check_only
 class StartMigrationRequest(typing_extensions.TypedDict, total=False): ...

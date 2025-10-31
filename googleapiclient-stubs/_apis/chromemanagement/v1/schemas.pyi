@@ -601,8 +601,12 @@ class GoogleChromeManagementV1NetworkStatusReport(
     ]
     encryptionOn: bool
     gatewayIpAddress: str
+    gatewayIpv6Address: str
     guid: str
+    ipv6Address: _list[str]
     lanIpAddress: str
+    linkDownSpeedKbps: str
+    metered: bool
     receivingBitRateMbps: str
     reportTime: str
     sampleFrequency: str
@@ -948,7 +952,10 @@ class GoogleChromeManagementV1TelemetryEvent(typing_extensions.TypedDict, total=
         "APP_UNINSTALLED",
         "APP_LAUNCHED",
         "OS_CRASH",
+        "EXTERNAL_DISPLAY_CONNECTED",
+        "EXTERNAL_DISPLAY_DISCONNECTED",
     ]
+    externalDisplaysEvent: GoogleChromeManagementV1TelemetryExternalDisplayEvent
     httpsLatencyChangeEvent: GoogleChromeManagementV1TelemetryHttpsLatencyChangeEvent
     name: str
     networkStateChangeEvent: (
@@ -982,8 +989,27 @@ class GoogleChromeManagementV1TelemetryEventNotificationFilter(
             "APP_UNINSTALLED",
             "APP_LAUNCHED",
             "OS_CRASH",
+            "EXTERNAL_DISPLAY_CONNECTED",
+            "EXTERNAL_DISPLAY_DISCONNECTED",
         ]
     ]
+
+@typing.type_check_only
+class GoogleChromeManagementV1TelemetryExternalDisplayData(
+    typing_extensions.TypedDict, total=False
+):
+    displayName: str
+    edidVersion: str
+    refreshRate: str
+    resolutionHorizontal: int
+    resolutionVertical: int
+    serialNumber: int
+
+@typing.type_check_only
+class GoogleChromeManagementV1TelemetryExternalDisplayEvent(
+    typing_extensions.TypedDict, total=False
+):
+    externalDisplayData: _list[GoogleChromeManagementV1TelemetryExternalDisplayData]
 
 @typing.type_check_only
 class GoogleChromeManagementV1TelemetryHttpsLatencyChangeEvent(
@@ -1181,10 +1207,14 @@ class GoogleChromeManagementVersionsV1CertificateProvisioningProcess(
     issuedCertificate: str
     name: str
     provisioningProfileId: str
+    scepCaConnection: GoogleChromeManagementVersionsV1ScepCaConnection
+    scepProfile: GoogleChromeManagementVersionsV1ScepProfile
     signData: str
     signature: str
     signatureAlgorithm: typing_extensions.Literal[
-        "SIGNATURE_ALGORITHM_UNSPECIFIED", "SIGNATURE_ALGORITHM_RSA_PKCS1_V1_5_SHA256"
+        "SIGNATURE_ALGORITHM_UNSPECIFIED",
+        "SIGNATURE_ALGORITHM_RSA_PKCS1_V1_5_SHA256",
+        "SIGNATURE_ALGORITHM_ECDSA_SHA256",
     ]
     startTime: str
     subjectPublicKeyInfo: str
@@ -1228,6 +1258,7 @@ class GoogleChromeManagementVersionsV1ChromeBrowserProfile(
     profileId: str
     profilePermanentId: str
     reportingData: GoogleChromeManagementVersionsV1ReportingData
+    supportsFcmNotifications: bool
     userEmail: str
     userId: str
 
@@ -1273,6 +1304,17 @@ class GoogleChromeManagementVersionsV1ChromeOsUserSession(
     userPrimaryEmail: str
 
 @typing.type_check_only
+class GoogleChromeManagementVersionsV1ClaimCertificateProvisioningProcessRequest(
+    typing_extensions.TypedDict, total=False
+):
+    callerInstanceId: str
+
+@typing.type_check_only
+class GoogleChromeManagementVersionsV1ClaimCertificateProvisioningProcessResponse(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class GoogleChromeManagementVersionsV1DeviceInfo(
     typing_extensions.TypedDict, total=False
 ):
@@ -1310,6 +1352,18 @@ class GoogleChromeManagementVersionsV1ListChromeBrowserProfilesResponse(
     chromeBrowserProfiles: _list[GoogleChromeManagementVersionsV1ChromeBrowserProfile]
     nextPageToken: str
     totalSize: str
+
+@typing.type_check_only
+class GoogleChromeManagementVersionsV1MoveThirdPartyProfileUserRequest(
+    typing_extensions.TypedDict, total=False
+):
+    destinationOrgUnit: str
+
+@typing.type_check_only
+class GoogleChromeManagementVersionsV1MoveThirdPartyProfileUserResponse(
+    typing_extensions.TypedDict, total=False
+):
+    thirdPartyProfileUser: GoogleChromeManagementVersionsV1ThirdPartyProfileUser
 
 @typing.type_check_only
 class GoogleChromeManagementVersionsV1ReportingData(
@@ -1389,10 +1443,56 @@ class GoogleChromeManagementVersionsV1ReportingDataPolicyData(
     value: str
 
 @typing.type_check_only
+class GoogleChromeManagementVersionsV1ScepCaConnection(
+    typing_extensions.TypedDict, total=False
+):
+    caConnectionAdapterConfigReference: str
+
+@typing.type_check_only
+class GoogleChromeManagementVersionsV1ScepProfile(
+    typing_extensions.TypedDict, total=False
+):
+    certificateTemplateName: str
+    country: str
+    keyUsages: _list[
+        typing_extensions.Literal[
+            "KEY_USAGE_UNSPECIFIED", "KEY_USAGE_SIGNING", "KEY_USAGE_KEY_ENCIPHERMENT"
+        ]
+    ]
+    locality: str
+    organization: str
+    organizationalUnits: _list[str]
+    state: str
+    subjectAltNames: _list[GoogleChromeManagementVersionsV1SubjectAltName]
+    subjectCommonName: str
+
+@typing.type_check_only
+class GoogleChromeManagementVersionsV1SetFailureRequest(
+    typing_extensions.TypedDict, total=False
+):
+    errorMessage: str
+
+@typing.type_check_only
+class GoogleChromeManagementVersionsV1SetFailureResponse(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class GoogleChromeManagementVersionsV1SignDataMetadata(
     typing_extensions.TypedDict, total=False
 ):
     startTime: str
+
+@typing.type_check_only
+class GoogleChromeManagementVersionsV1SignDataRequest(
+    typing_extensions.TypedDict, total=False
+):
+    signData: str
+    signatureAlgorithm: typing_extensions.Literal[
+        "SIGNATURE_ALGORITHM_UNSPECIFIED",
+        "SIGNATURE_ALGORITHM_RSA_PKCS1_V1_5_SHA256",
+        "SIGNATURE_ALGORITHM_ECDSA_SHA256",
+    ]
 
 @typing.type_check_only
 class GoogleChromeManagementVersionsV1SignDataResponse(
@@ -1401,6 +1501,56 @@ class GoogleChromeManagementVersionsV1SignDataResponse(
     certificateProvisioningProcess: (
         GoogleChromeManagementVersionsV1CertificateProvisioningProcess
     )
+
+@typing.type_check_only
+class GoogleChromeManagementVersionsV1SubjectAltName(
+    typing_extensions.TypedDict, total=False
+):
+    type: typing_extensions.Literal[
+        "SUBJECT_ALT_NAME_TYPE_UNSPECIFIED",
+        "RFC822_NAME",
+        "DNS_NAME",
+        "OTHER_NAME_USER_PRINCIPAL_NAME",
+        "UNIFORM_RESOURCE_IDENTIFIER",
+    ]
+    value: str
+
+@typing.type_check_only
+class GoogleChromeManagementVersionsV1ThirdPartyProfileUser(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
+    orgUnitId: str
+
+@typing.type_check_only
+class GoogleChromeManagementVersionsV1UploadCertificateRequest(
+    typing_extensions.TypedDict, total=False
+):
+    certificatePem: str
+
+@typing.type_check_only
+class GoogleChromeManagementVersionsV1UploadCertificateResponse(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleLongrunningCancelOperationRequest(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleLongrunningListOperationsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    operations: _list[GoogleLongrunningOperation]
+    unreachable: _list[str]
+
+@typing.type_check_only
+class GoogleLongrunningOperation(typing_extensions.TypedDict, total=False):
+    done: bool
+    error: GoogleRpcStatus
+    metadata: dict[str, typing.Any]
+    name: str
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleProtobufEmpty(typing_extensions.TypedDict, total=False): ...

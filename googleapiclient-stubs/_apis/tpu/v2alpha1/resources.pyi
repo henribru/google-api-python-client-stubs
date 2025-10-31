@@ -130,6 +130,7 @@ class TPUResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
+                    returnPartialSuccess: bool = ...,
                     **kwargs: typing.Any,
                 ) -> ListOperationsResponseHttpRequest: ...
                 def list_next(
@@ -160,6 +161,9 @@ class TPUResource(googleapiclient.discovery.Resource):
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> QueuedResourceHttpRequest: ...
+                def getMaintenanceInfo(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GetMaintenanceInfoResponseHttpRequest: ...
                 def list(
                     self,
                     *,
@@ -304,6 +308,14 @@ class GetGuestAttributesResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GetGuestAttributesResponse: ...
+
+@typing.type_check_only
+class GetMaintenanceInfoResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GetMaintenanceInfoResponse: ...
 
 @typing.type_check_only
 class ListAcceleratorTypesResponseHttpRequest(googleapiclient.http.HttpRequest):

@@ -776,6 +776,7 @@ class NonBillableWinningBidStatusRow(typing_extensions.TypedDict, total=False):
         "INVALID_IMPRESSION",
         "FATAL_VAST_ERROR",
         "LOST_IN_MEDIATION",
+        "OVERDELIVERED_IMPRESSION",
     ]
 
 @typing.type_check_only

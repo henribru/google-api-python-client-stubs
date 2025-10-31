@@ -61,6 +61,7 @@ class CaOptions(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CaPool(typing_extensions.TypedDict, total=False):
+    encryptionSpec: EncryptionSpec
     issuancePolicy: IssuancePolicy
     labels: dict[str, typing.Any]
     name: str
@@ -218,6 +219,10 @@ class EnableCertificateAuthorityRequest(typing_extensions.TypedDict, total=False
     requestId: str
 
 @typing.type_check_only
+class EncryptionSpec(typing_extensions.TypedDict, total=False):
+    cloudKmsKey: str
+
+@typing.type_check_only
 class Expr(typing_extensions.TypedDict, total=False):
     description: str
     expression: str
@@ -336,6 +341,7 @@ class ListLocationsResponse(typing_extensions.TypedDict, total=False):
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):
@@ -398,13 +404,6 @@ class PublishingOptions(typing_extensions.TypedDict, total=False):
     ]
     publishCaCert: bool
     publishCrl: bool
-
-@typing.type_check_only
-class ReconciliationOperationMetadata(typing_extensions.TypedDict, total=False):
-    deleteResource: bool
-    exclusiveAction: typing_extensions.Literal[
-        "UNKNOWN_REPAIR_ACTION", "DELETE", "RETRY"
-    ]
 
 @typing.type_check_only
 class RelativeDistinguishedName(typing_extensions.TypedDict, total=False):

@@ -287,11 +287,7 @@ class ConnectorInfraConfig(typing_extensions.TypedDict, total=False):
     maxInstanceRequestConcurrency: int
     migrateDeploymentModel: bool
     migrateTls: bool
-    networkEgressMode: typing_extensions.Literal[
-        "NETWORK_EGRESS_MODE_UNSPECIFIED",
-        "SERVERLESS_VPC_ACCESS_CONNECTOR",
-        "DIRECT_VPC_EGRESS",
-    ]
+    networkEgressModeOverride: NetworkEgressModeOverride
     provisionCloudSpanner: bool
     provisionMemstore: bool
     ratelimitThreshold: str
@@ -1106,6 +1102,7 @@ class ListManagedZonesResponse(typing_extensions.TypedDict, total=False):
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListProvidersResponse(typing_extensions.TypedDict, total=False):
@@ -1214,6 +1211,16 @@ class NetworkConfig(typing_extensions.TypedDict, total=False):
     egressIps: _list[str]
     egressMode: typing_extensions.Literal[
         "NETWORK_EGRESS_MODE_UNSPECIFIED", "AUTO_IP", "STATIC_IP"
+    ]
+
+@typing.type_check_only
+class NetworkEgressModeOverride(typing_extensions.TypedDict, total=False):
+    isEventingOverrideEnabled: bool
+    isJobsOverrideEnabled: bool
+    networkEgressMode: typing_extensions.Literal[
+        "NETWORK_EGRESS_MODE_UNSPECIFIED",
+        "SERVERLESS_VPC_ACCESS_CONNECTOR",
+        "DIRECT_VPC_EGRESS",
     ]
 
 @typing.type_check_only

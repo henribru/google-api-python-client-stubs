@@ -254,6 +254,7 @@ class NetAppFilesResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
+                    returnPartialSuccess: bool = ...,
                     **kwargs: typing.Any,
                 ) -> ListOperationsResponseHttpRequest: ...
                 def list_next(
@@ -508,6 +509,13 @@ class NetAppFilesResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: Volume = ...,
                     updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def restore(
+                    self,
+                    *,
+                    name: str,
+                    body: RestoreBackupFilesRequest = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def revert(

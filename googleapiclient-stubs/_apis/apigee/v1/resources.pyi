@@ -2022,6 +2022,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
+                returnPartialSuccess: bool = ...,
                 **kwargs: typing.Any,
             ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
             def list_next(
@@ -2096,6 +2097,44 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 GoogleCloudApigeeV1BatchComputeSecurityAssessmentResultsResponseHttpRequest
                 | None
             ): ...
+
+        @typing.type_check_only
+        class SecurityFeedbackResource(googleapiclient.discovery.Resource):
+            def create(
+                self,
+                *,
+                parent: str,
+                body: GoogleCloudApigeeV1SecurityFeedback = ...,
+                securityFeedbackId: str = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleCloudApigeeV1SecurityFeedbackHttpRequest: ...
+            def delete(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleProtobufEmptyHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleCloudApigeeV1SecurityFeedbackHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleCloudApigeeV1ListSecurityFeedbackResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleCloudApigeeV1ListSecurityFeedbackResponseHttpRequest,
+                previous_response: GoogleCloudApigeeV1ListSecurityFeedbackResponse,
+            ) -> GoogleCloudApigeeV1ListSecurityFeedbackResponseHttpRequest | None: ...
+            def patch(
+                self,
+                *,
+                name: str,
+                body: GoogleCloudApigeeV1SecurityFeedback = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleCloudApigeeV1SecurityFeedbackHttpRequest: ...
 
         @typing.type_check_only
         class SecurityMonitoringConditionsResource(googleapiclient.discovery.Resource):
@@ -2577,6 +2616,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
         def optimizedHostStats(self) -> OptimizedHostStatsResource: ...
         def reports(self) -> ReportsResource: ...
         def securityAssessmentResults(self) -> SecurityAssessmentResultsResource: ...
+        def securityFeedback(self) -> SecurityFeedbackResource: ...
         def securityMonitoringConditions(
             self,
         ) -> SecurityMonitoringConditionsResource: ...
@@ -3435,6 +3475,16 @@ class GoogleCloudApigeeV1ListSecurityActionsResponseHttpRequest(
     ) -> GoogleCloudApigeeV1ListSecurityActionsResponse: ...
 
 @typing.type_check_only
+class GoogleCloudApigeeV1ListSecurityFeedbackResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudApigeeV1ListSecurityFeedbackResponse: ...
+
+@typing.type_check_only
 class GoogleCloudApigeeV1ListSecurityIncidentsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -3645,6 +3695,14 @@ class GoogleCloudApigeeV1SecurityActionsConfigHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudApigeeV1SecurityActionsConfig: ...
+
+@typing.type_check_only
+class GoogleCloudApigeeV1SecurityFeedbackHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudApigeeV1SecurityFeedback: ...
 
 @typing.type_check_only
 class GoogleCloudApigeeV1SecurityIncidentHttpRequest(googleapiclient.http.HttpRequest):

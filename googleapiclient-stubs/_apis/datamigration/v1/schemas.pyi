@@ -578,6 +578,10 @@ class GoogleCloudClouddmsV1OperationMetadata(typing_extensions.TypedDict, total=
     verb: str
 
 @typing.type_check_only
+class HeterogeneousMetadata(typing_extensions.TypedDict, total=False):
+    unsupportedEventsCount: str
+
+@typing.type_check_only
 class ImportMappingRulesRequest(typing_extensions.TypedDict, total=False):
     autoCommit: bool
     rulesFiles: _list[RulesFile]
@@ -809,6 +813,7 @@ class MigrationJob(typing_extensions.TypedDict, total=False):
 class MigrationJobObject(typing_extensions.TypedDict, total=False):
     createTime: str
     error: Status
+    heterogeneousMetadata: HeterogeneousMetadata
     name: str
     phase: typing_extensions.Literal[
         "PHASE_UNSPECIFIED",
@@ -1215,7 +1220,9 @@ class SqlServerBackups(typing_extensions.TypedDict, total=False):
 class SqlServerConnectionProfile(typing_extensions.TypedDict, total=False):
     backups: SqlServerBackups
     cloudSqlId: str
+    cloudSqlProjectId: str
     database: str
+    dbmPort: int
     forwardSshConnectivity: ForwardSshTunnelConnectivity
     host: str
     password: str
@@ -1226,6 +1233,11 @@ class SqlServerConnectionProfile(typing_extensions.TypedDict, total=False):
     ssl: SslConfig
     staticIpConnectivity: StaticIpConnectivity
     username: str
+
+@typing.type_check_only
+class SqlServerDagConfig(typing_extensions.TypedDict, total=False):
+    linkedServer: str
+    sourceAg: str
 
 @typing.type_check_only
 class SqlServerDatabaseBackup(typing_extensions.TypedDict, total=False):
@@ -1241,6 +1253,7 @@ class SqlServerEncryptionOptions(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SqlServerHomogeneousMigrationJobConfig(typing_extensions.TypedDict, total=False):
     backupFilePattern: str
+    dagConfig: SqlServerDagConfig
     databaseBackups: _list[SqlServerDatabaseBackup]
     promoteWhenReady: bool
     useDiffBackup: bool

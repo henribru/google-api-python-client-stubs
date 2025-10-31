@@ -53,6 +53,15 @@ class MyBusinessVerificationsResource(googleapiclient.discovery.Resource):
         ) -> VerifyLocationResponseHttpRequest: ...
         def verifications(self) -> VerificationsResource: ...
 
+    @typing.type_check_only
+    class VerificationTokensResource(googleapiclient.discovery.Resource):
+        def generate(
+            self,
+            *,
+            body: GenerateInstantVerificationTokenRequest = ...,
+            **kwargs: typing.Any,
+        ) -> GenerateInstantVerificationTokenResponseHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[
@@ -66,6 +75,7 @@ class MyBusinessVerificationsResource(googleapiclient.discovery.Resource):
         | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def locations(self) -> LocationsResource: ...
+    def verificationTokens(self) -> VerificationTokensResource: ...
 
 @typing.type_check_only
 class CompleteVerificationResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -82,6 +92,16 @@ class FetchVerificationOptionsResponseHttpRequest(googleapiclient.http.HttpReque
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> FetchVerificationOptionsResponse: ...
+
+@typing.type_check_only
+class GenerateInstantVerificationTokenResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GenerateInstantVerificationTokenResponse: ...
 
 @typing.type_check_only
 class ListVerificationsResponseHttpRequest(googleapiclient.http.HttpRequest):

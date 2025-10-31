@@ -40,6 +40,9 @@ class BackfillJob(typing_extensions.TypedDict, total=False):
 class BackfillNoneStrategy(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class BasicEncryption(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class BigQueryDestinationConfig(typing_extensions.TypedDict, total=False):
     appendOnly: AppendOnly
     blmtConfig: BlmtConfig
@@ -136,6 +139,14 @@ class DropLargeObjects(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class EncryptionAndServerValidation(typing_extensions.TypedDict, total=False):
+    caCertificate: str
+    serverCertificateHostname: str
+
+@typing.type_check_only
+class EncryptionNotEnforced(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Error(typing_extensions.TypedDict, total=False):
@@ -249,6 +260,10 @@ class LookupStreamObjectRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Merge(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class MongodbChangeStreamPosition(typing_extensions.TypedDict, total=False):
+    startTime: str
 
 @typing.type_check_only
 class MongodbCluster(typing_extensions.TypedDict, total=False):
@@ -469,6 +484,7 @@ class OracleSourceConfig(typing_extensions.TypedDict, total=False):
 class OracleSslConfig(typing_extensions.TypedDict, total=False):
     caCertificate: str
     caCertificateSet: bool
+    serverCertificateDistinguishedName: str
 
 @typing.type_check_only
 class OracleTable(typing_extensions.TypedDict, total=False):
@@ -608,10 +624,12 @@ class ServerAndClientVerification(typing_extensions.TypedDict, total=False):
     caCertificate: str
     clientCertificate: str
     clientKey: str
+    serverCertificateHostname: str
 
 @typing.type_check_only
 class ServerVerification(typing_extensions.TypedDict, total=False):
     caCertificate: str
+    serverCertificateHostname: str
 
 @typing.type_check_only
 class SingleTargetDataset(typing_extensions.TypedDict, total=False):
@@ -643,6 +661,7 @@ class SourceObjectIdentifier(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SpecificStartPosition(typing_extensions.TypedDict, total=False):
+    mongodbChangeStreamPosition: MongodbChangeStreamPosition
     mysqlGtidPosition: MysqlGtidPosition
     mysqlLogPosition: MysqlLogPosition
     oracleScnPosition: OracleScnPosition
@@ -678,6 +697,7 @@ class SqlServerProfile(typing_extensions.TypedDict, total=False):
     password: str
     port: int
     secretManagerStoredPassword: str
+    sslConfig: SqlServerSslConfig
     username: str
 
 @typing.type_check_only
@@ -697,6 +717,12 @@ class SqlServerSourceConfig(typing_extensions.TypedDict, total=False):
     maxConcurrentBackfillTasks: int
     maxConcurrentCdcTasks: int
     transactionLogs: SqlServerTransactionLogs
+
+@typing.type_check_only
+class SqlServerSslConfig(typing_extensions.TypedDict, total=False):
+    basicEncryption: BasicEncryption
+    encryptionAndServerValidation: EncryptionAndServerValidation
+    encryptionNotEnforced: EncryptionNotEnforced
 
 @typing.type_check_only
 class SqlServerTable(typing_extensions.TypedDict, total=False):

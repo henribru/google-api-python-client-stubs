@@ -32,7 +32,9 @@ class AuthzExtension(typing_extensions.TypedDict, total=False):
     service: str
     timeout: str
     updateTime: str
-    wireFormat: typing_extensions.Literal["WIRE_FORMAT_UNSPECIFIED", "EXT_PROC_GRPC"]
+    wireFormat: typing_extensions.Literal[
+        "WIRE_FORMAT_UNSPECIFIED", "EXT_PROC_GRPC", "EXT_AUTHZ_GRPC"
+    ]
 
 @typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):

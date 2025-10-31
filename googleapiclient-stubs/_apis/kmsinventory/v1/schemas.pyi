@@ -62,6 +62,7 @@ class GoogleCloudKmsV1CryptoKey(typing_extensions.TypedDict, total=False):
         "ASYMMETRIC_DECRYPT",
         "RAW_ENCRYPT_DECRYPT",
         "MAC",
+        "KEY_ENCAPSULATION",
     ]
     rotationPeriod: str
     versionTemplate: GoogleCloudKmsV1CryptoKeyVersionTemplate
@@ -105,7 +106,12 @@ class GoogleCloudKmsV1CryptoKeyVersion(typing_extensions.TypedDict, total=False)
         "HMAC_SHA512",
         "HMAC_SHA224",
         "EXTERNAL_SYMMETRIC_ENCRYPTION",
+        "ML_KEM_768",
+        "ML_KEM_1024",
+        "KEM_XWING",
+        "PQ_SIGN_ML_DSA_44",
         "PQ_SIGN_ML_DSA_65",
+        "PQ_SIGN_ML_DSA_87",
         "PQ_SIGN_SLH_DSA_SHA2_128S",
         "PQ_SIGN_HASH_SLH_DSA_SHA2_128S_SHA256",
     ]
@@ -180,7 +186,12 @@ class GoogleCloudKmsV1CryptoKeyVersionTemplate(
         "HMAC_SHA512",
         "HMAC_SHA224",
         "EXTERNAL_SYMMETRIC_ENCRYPTION",
+        "ML_KEM_768",
+        "ML_KEM_1024",
+        "KEM_XWING",
+        "PQ_SIGN_ML_DSA_44",
         "PQ_SIGN_ML_DSA_65",
+        "PQ_SIGN_ML_DSA_87",
         "PQ_SIGN_SLH_DSA_SHA2_128S",
         "PQ_SIGN_HASH_SLH_DSA_SHA2_128S_SHA256",
     ]

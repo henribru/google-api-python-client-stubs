@@ -45,6 +45,7 @@ class AbortInfo(typing_extensions.TypedDict, total=False):
         "UNKNOWN_ISSUE_IN_GOOGLE_MANAGED_PROJECT",
         "UNSUPPORTED_GOOGLE_MANAGED_PROJECT_CONFIG",
         "NO_SERVERLESS_IP_RANGES",
+        "IP_VERSION_PROTOCOL_MISMATCH",
     ]
     ipAddress: str
     projectsMissingPermission: _list[str]
@@ -272,15 +273,63 @@ class DropInfo(typing_extensions.TypedDict, total=False):
         "LOAD_BALANCER_BACKEND_IP_VERSION_MISMATCH",
         "NO_KNOWN_ROUTE_FROM_NCC_NETWORK_TO_DESTINATION",
         "CLOUD_NAT_PROTOCOL_UNSUPPORTED",
+        "L2_INTERCONNECT_UNSUPPORTED_PROTOCOL",
+        "L2_INTERCONNECT_UNSUPPORTED_PORT",
+        "L2_INTERCONNECT_DESTINATION_IP_MISMATCH",
+        "NCC_ROUTE_WITHIN_HYBRID_SUBNET_UNSUPPORTED",
+        "HYBRID_SUBNET_REGION_MISMATCH",
     ]
+    destinationGeolocationCode: str
     destinationIp: str
     region: str
     resourceUri: str
+    sourceGeolocationCode: str
     sourceIp: str
 
 @typing.type_check_only
 class EdgeLocation(typing_extensions.TypedDict, total=False):
     metropolitanArea: str
+
+@typing.type_check_only
+class EffectiveVpcFlowLogsConfig(typing_extensions.TypedDict, total=False):
+    aggregationInterval: typing_extensions.Literal[
+        "AGGREGATION_INTERVAL_UNSPECIFIED",
+        "INTERVAL_5_SEC",
+        "INTERVAL_30_SEC",
+        "INTERVAL_1_MIN",
+        "INTERVAL_5_MIN",
+        "INTERVAL_10_MIN",
+        "INTERVAL_15_MIN",
+    ]
+    crossProjectMetadata: typing_extensions.Literal[
+        "CROSS_PROJECT_METADATA_UNSPECIFIED",
+        "CROSS_PROJECT_METADATA_ENABLED",
+        "CROSS_PROJECT_METADATA_DISABLED",
+    ]
+    filterExpr: str
+    flowSampling: float
+    interconnectAttachment: str
+    metadata: typing_extensions.Literal[
+        "METADATA_UNSPECIFIED",
+        "INCLUDE_ALL_METADATA",
+        "EXCLUDE_ALL_METADATA",
+        "CUSTOM_METADATA",
+    ]
+    metadataFields: _list[str]
+    name: str
+    network: str
+    scope: typing_extensions.Literal[
+        "SCOPE_UNSPECIFIED",
+        "SUBNET",
+        "COMPUTE_API_SUBNET",
+        "NETWORK",
+        "VPN_TUNNEL",
+        "INTERCONNECT_ATTACHMENT",
+        "ORGANIZATION",
+    ]
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ENABLED", "DISABLED"]
+    subnet: str
+    vpnTunnel: str
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
@@ -368,6 +417,9 @@ class FirewallInfo(typing_extensions.TypedDict, total=False):
     priority: int
     targetServiceAccounts: _list[str]
     targetTags: _list[str]
+    targetType: typing_extensions.Literal[
+        "TARGET_TYPE_UNSPECIFIED", "INSTANCES", "INTERNAL_MANAGED_LB"
+    ]
     uri: str
 
 @typing.type_check_only
@@ -425,14 +477,10 @@ class GoogleServiceInfo(typing_extensions.TypedDict, total=False):
     sourceIp: str
 
 @typing.type_check_only
-class Host(typing_extensions.TypedDict, total=False):
-    cloudInstanceId: str
-    cloudProjectId: str
-    cloudProvider: str
-    cloudRegion: str
-    cloudVpcId: str
-    cloudZone: str
-    os: str
+class HybridSubnetInfo(typing_extensions.TypedDict, total=False):
+    displayName: str
+    region: str
+    uri: str
 
 @typing.type_check_only
 class InstanceInfo(typing_extensions.TypedDict, total=False):
@@ -446,6 +494,18 @@ class InstanceInfo(typing_extensions.TypedDict, total=False):
     running: bool
     serviceAccount: str
     status: typing_extensions.Literal["STATUS_UNSPECIFIED", "RUNNING", "NOT_RUNNING"]
+    uri: str
+
+@typing.type_check_only
+class InterconnectAttachmentInfo(typing_extensions.TypedDict, total=False):
+    cloudRouterUri: str
+    displayName: str
+    interconnectUri: str
+    l2AttachmentMatchedIpAddress: str
+    region: str
+    type: typing_extensions.Literal[
+        "TYPE_UNSPECIFIED", "DEDICATED", "PARTNER", "PARTNER_PROVIDER", "L2_DEDICATED"
+    ]
     uri: str
 
 @typing.type_check_only
@@ -469,35 +529,16 @@ class ListLocationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
-class ListMonitoringPointsResponse(typing_extensions.TypedDict, total=False):
-    monitoringPoints: _list[MonitoringPoint]
-    nextPageToken: str
-
-@typing.type_check_only
-class ListNetworkMonitoringProvidersResponse(typing_extensions.TypedDict, total=False):
-    networkMonitoringProviders: _list[NetworkMonitoringProvider]
-    nextPageToken: str
-
-@typing.type_check_only
-class ListNetworkPathsResponse(typing_extensions.TypedDict, total=False):
-    networkPaths: _list[NetworkPath]
-    nextPageToken: str
-
-@typing.type_check_only
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListVpcFlowLogsConfigsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     unreachable: _list[str]
     vpcFlowLogsConfigs: _list[VpcFlowLogsConfig]
-
-@typing.type_check_only
-class ListWebPathsResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    webPaths: _list[WebPath]
 
 @typing.type_check_only
 class LoadBalancerBackend(typing_extensions.TypedDict, total=False):
@@ -554,33 +595,6 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class MonitoringPoint(typing_extensions.TypedDict, total=False):
-    autoGeoLocationEnabled: bool
-    connectionStatus: typing_extensions.Literal[
-        "CONNECTION_STATUS_UNSPECIFIED", "ONLINE", "OFFLINE"
-    ]
-    createTime: str
-    displayName: str
-    errors: _list[
-        typing_extensions.Literal[
-            "ERROR_CODE_UNSPECIFIED", "NTP_ERROR", "UPGRADE_ERROR", "DOWNLOAD_FAILED"
-        ]
-    ]
-    geoLocation: str
-    host: Host
-    hostname: str
-    name: str
-    networkInterfaces: _list[NetworkInterface]
-    originatingIp: str
-    providerTags: _list[ProviderTag]
-    type: str
-    updateTime: str
-    upgradeType: typing_extensions.Literal[
-        "UPGRADE_TYPE_UNSPECIFIED", "MANUAL", "MANAGED", "SCHEDULED", "AUTO", "EXTERNAL"
-    ]
-    version: str
-
-@typing.type_check_only
 class NatInfo(typing_extensions.TypedDict, total=False):
     natGatewayName: str
     networkUri: str
@@ -600,6 +614,7 @@ class NatInfo(typing_extensions.TypedDict, total=False):
         "EXTERNAL_TO_INTERNAL",
         "CLOUD_NAT",
         "PRIVATE_SERVICE_CONNECT",
+        "GKE_POD_IP_MASQUERADING",
     ]
 
 @typing.type_check_only
@@ -609,59 +624,6 @@ class NetworkInfo(typing_extensions.TypedDict, total=False):
     matchedSubnetUri: str
     region: str
     uri: str
-
-@typing.type_check_only
-class NetworkInterface(typing_extensions.TypedDict, total=False):
-    adapterDescription: str
-    cidr: str
-    interfaceName: str
-    ipAddress: str
-    macAddress: str
-    speed: str
-    vlanId: str
-
-@typing.type_check_only
-class NetworkMonitoringProvider(typing_extensions.TypedDict, total=False):
-    createTime: str
-    name: str
-    providerType: typing_extensions.Literal["PROVIDER_TYPE_UNSPECIFIED", "EXTERNAL"]
-    providerUri: str
-    state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED",
-        "ACTIVATING",
-        "ACTIVE",
-        "SUSPENDING",
-        "SUSPENDED",
-        "DELETING",
-        "DELETED",
-    ]
-    updateTime: str
-
-@typing.type_check_only
-class NetworkPath(typing_extensions.TypedDict, total=False):
-    createTime: str
-    destination: str
-    destinationGeoLocation: str
-    displayName: str
-    dualEnded: bool
-    monitoringEnabled: bool
-    monitoringPolicyDisplayName: str
-    monitoringPolicyId: str
-    monitoringStatus: typing_extensions.Literal[
-        "MONITORING_STATUS_UNSPECIFIED",
-        "MONITORING",
-        "POLICY_MISMATCH",
-        "MONITORING_POINT_OFFLINE",
-        "DISABLED",
-    ]
-    name: str
-    networkProtocol: typing_extensions.Literal[
-        "NETWORK_PROTOCOL_UNSPECIFIED", "ICMP", "UDP", "TCP"
-    ]
-    providerTags: _list[ProviderTag]
-    providerUiUri: str
-    sourceMonitoringPointId: str
-    updateTime: str
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
@@ -711,19 +673,6 @@ class ProbingDetails(typing_extensions.TypedDict, total=False):
     verifyTime: str
 
 @typing.type_check_only
-class ProviderTag(typing_extensions.TypedDict, total=False):
-    category: str
-    resourceType: typing_extensions.Literal[
-        "RESOURCE_TYPE_UNSPECIFIED",
-        "NETWORK_PATH",
-        "PATH_TEMPLATE",
-        "WEB_PATH",
-        "MONITORING_POLICY",
-        "MONITORING_POINT",
-    ]
-    value: str
-
-@typing.type_check_only
 class ProxyConnectionInfo(typing_extensions.TypedDict, total=False):
     networkUri: str
     newDestinationIp: str
@@ -736,6 +685,12 @@ class ProxyConnectionInfo(typing_extensions.TypedDict, total=False):
     oldSourcePort: int
     protocol: str
     subnetUri: str
+
+@typing.type_check_only
+class QueryOrgVpcFlowLogsConfigsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    unreachable: _list[str]
+    vpcFlowLogsConfigs: _list[VpcFlowLogsConfig]
 
 @typing.type_check_only
 class ReachabilityDetails(typing_extensions.TypedDict, total=False):
@@ -835,6 +790,12 @@ class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
     updateMask: str
 
 @typing.type_check_only
+class ShowEffectiveFlowLogsConfigsResponse(typing_extensions.TypedDict, total=False):
+    effectiveFlowLogsConfigs: _list[EffectiveVpcFlowLogsConfig]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
 class SingleEdgeResponse(typing_extensions.TypedDict, total=False):
     destinationEgressLocation: EdgeLocation
     destinationRouter: str
@@ -873,7 +834,9 @@ class Step(typing_extensions.TypedDict, total=False):
     forwardingRule: ForwardingRuleInfo
     gkeMaster: GKEMasterInfo
     googleService: GoogleServiceInfo
+    hybridSubnet: HybridSubnetInfo
     instance: InstanceInfo
+    interconnectAttachment: InterconnectAttachmentInfo
     loadBalancer: LoadBalancerInfo
     loadBalancerBackendInfo: LoadBalancerBackendInfo
     nat: NatInfo
@@ -910,8 +873,10 @@ class Step(typing_extensions.TypedDict, total=False):
         "ARRIVE_AT_INSTANCE",
         "ARRIVE_AT_INTERNAL_LOAD_BALANCER",
         "ARRIVE_AT_EXTERNAL_LOAD_BALANCER",
+        "ARRIVE_AT_HYBRID_SUBNET",
         "ARRIVE_AT_VPN_GATEWAY",
         "ARRIVE_AT_VPN_TUNNEL",
+        "ARRIVE_AT_INTERCONNECT_ATTACHMENT",
         "ARRIVE_AT_VPC_CONNECTOR",
         "DIRECT_VPC_EGRESS_CONNECTION",
         "SERVERLESS_EXTERNAL_CONNECTION",
@@ -964,6 +929,11 @@ class VpcFlowLogsConfig(typing_extensions.TypedDict, total=False):
         "INTERVAL_15_MIN",
     ]
     createTime: str
+    crossProjectMetadata: typing_extensions.Literal[
+        "CROSS_PROJECT_METADATA_UNSPECIFIED",
+        "CROSS_PROJECT_METADATA_ENABLED",
+        "CROSS_PROJECT_METADATA_DISABLED",
+    ]
     description: str
     filterExpr: str
     flowSampling: float
@@ -977,7 +947,9 @@ class VpcFlowLogsConfig(typing_extensions.TypedDict, total=False):
     ]
     metadataFields: _list[str]
     name: str
+    network: str
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "ENABLED", "DISABLED"]
+    subnet: str
     targetResourceState: typing_extensions.Literal[
         "TARGET_RESOURCE_STATE_UNSPECIFIED",
         "TARGET_RESOURCE_EXISTS",
@@ -1008,29 +980,3 @@ class VpnTunnelInfo(typing_extensions.TypedDict, total=False):
     sourceGateway: str
     sourceGatewayIp: str
     uri: str
-
-@typing.type_check_only
-class WebPath(typing_extensions.TypedDict, total=False):
-    createTime: str
-    destination: str
-    displayName: str
-    interval: str
-    monitoringEnabled: bool
-    monitoringPolicyDisplayName: str
-    monitoringPolicyId: str
-    monitoringStatus: typing_extensions.Literal[
-        "MONITORING_STATUS_UNSPECIFIED",
-        "MONITORING",
-        "POLICY_MISMATCH",
-        "MONITORING_POINT_OFFLINE",
-        "DISABLED",
-    ]
-    name: str
-    providerTags: _list[ProviderTag]
-    providerUiUri: str
-    relatedNetworkPathId: str
-    sourceMonitoringPointId: str
-    updateTime: str
-    workflowType: typing_extensions.Literal[
-        "WORKFLOW_TYPE_UNSPECIFIED", "BROWSER", "HTTP"
-    ]

@@ -105,11 +105,13 @@ class GoogleCloudAiplatformV1beta1Candidate(typing_extensions.TypedDict, total=F
         "PROHIBITED_CONTENT",
         "SPII",
         "MALFORMED_FUNCTION_CALL",
+        "MODEL_ARMOR",
         "IMAGE_SAFETY",
         "IMAGE_PROHIBITED_CONTENT",
         "IMAGE_RECITATION",
         "IMAGE_OTHER",
         "UNEXPECTED_TOOL_CALL",
+        "NO_IMAGE",
     ]
     groundingMetadata: GoogleCloudAiplatformV1beta1GroundingMetadata
     index: int
@@ -178,7 +180,17 @@ class GoogleCloudAiplatformV1beta1DynamicRetrievalConfig(
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1EnterpriseWebSearch(
     typing_extensions.TypedDict, total=False
-): ...
+):
+    blockingConfidence: typing_extensions.Literal[
+        "PHISH_BLOCK_THRESHOLD_UNSPECIFIED",
+        "BLOCK_LOW_AND_ABOVE",
+        "BLOCK_MEDIUM_AND_ABOVE",
+        "BLOCK_HIGH_AND_ABOVE",
+        "BLOCK_HIGHER_AND_ABOVE",
+        "BLOCK_VERY_HIGH_AND_ABOVE",
+        "BLOCK_ONLY_EXTREMELY_HIGH",
+    ]
+    excludeDomains: _list[str]
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1ExecutableCode(
@@ -230,7 +242,9 @@ class GoogleCloudAiplatformV1beta1FunctionCallingConfig(
     typing_extensions.TypedDict, total=False
 ):
     allowedFunctionNames: _list[str]
-    mode: typing_extensions.Literal["MODE_UNSPECIFIED", "AUTO", "ANY", "NONE"]
+    mode: typing_extensions.Literal[
+        "MODE_UNSPECIFIED", "AUTO", "ANY", "NONE", "VALIDATED"
+    ]
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1FunctionDeclaration(
@@ -249,7 +263,31 @@ class GoogleCloudAiplatformV1beta1FunctionResponse(
 ):
     id: str
     name: str
+    parts: _list[GoogleCloudAiplatformV1beta1FunctionResponsePart]
     response: dict[str, typing.Any]
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1FunctionResponseBlob(
+    typing_extensions.TypedDict, total=False
+):
+    data: str
+    displayName: str
+    mimeType: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1FunctionResponseFileData(
+    typing_extensions.TypedDict, total=False
+):
+    displayName: str
+    fileUri: str
+    mimeType: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1FunctionResponsePart(
+    typing_extensions.TypedDict, total=False
+):
+    fileData: GoogleCloudAiplatformV1beta1FunctionResponseFileData
+    inlineData: GoogleCloudAiplatformV1beta1FunctionResponseBlob
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1GenerateContentRequest(
@@ -259,6 +297,7 @@ class GoogleCloudAiplatformV1beta1GenerateContentRequest(
     contents: _list[GoogleCloudAiplatformV1beta1Content]
     generationConfig: GoogleCloudAiplatformV1beta1GenerationConfig
     labels: dict[str, typing.Any]
+    modelArmorConfig: GoogleCloudAiplatformV1beta1ModelArmorConfig
     safetySettings: _list[GoogleCloudAiplatformV1beta1SafetySetting]
     systemInstruction: GoogleCloudAiplatformV1beta1Content
     toolConfig: GoogleCloudAiplatformV1beta1ToolConfig
@@ -285,7 +324,9 @@ class GoogleCloudAiplatformV1beta1GenerateContentResponsePromptFeedback(
         "OTHER",
         "BLOCKLIST",
         "PROHIBITED_CONTENT",
+        "MODEL_ARMOR",
         "IMAGE_SAFETY",
+        "JAILBREAK",
     ]
     blockReasonMessage: str
     safetyRatings: _list[GoogleCloudAiplatformV1beta1SafetyRating]
@@ -316,6 +357,7 @@ class GoogleCloudAiplatformV1beta1GenerationConfig(
     candidateCount: int
     enableAffectiveDialog: bool
     frequencyPenalty: float
+    imageConfig: GoogleCloudAiplatformV1beta1ImageConfig
     logprobs: int
     maxOutputTokens: int
     mediaResolution: typing_extensions.Literal[
@@ -384,6 +426,10 @@ class GoogleCloudAiplatformV1beta1GenerationConfigThinkingConfig(
     thinkingBudget: int
 
 @typing.type_check_only
+class GoogleCloudAiplatformV1beta1GoogleMaps(typing_extensions.TypedDict, total=False):
+    enableWidget: bool
+
+@typing.type_check_only
 class GoogleCloudAiplatformV1beta1GoogleSearchRetrieval(
     typing_extensions.TypedDict, total=False
 ):
@@ -393,13 +439,41 @@ class GoogleCloudAiplatformV1beta1GoogleSearchRetrieval(
 class GoogleCloudAiplatformV1beta1GroundingChunk(
     typing_extensions.TypedDict, total=False
 ):
+    maps: GoogleCloudAiplatformV1beta1GroundingChunkMaps
     retrievedContext: GoogleCloudAiplatformV1beta1GroundingChunkRetrievedContext
     web: GoogleCloudAiplatformV1beta1GroundingChunkWeb
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1GroundingChunkMaps(
+    typing_extensions.TypedDict, total=False
+):
+    placeAnswerSources: GoogleCloudAiplatformV1beta1GroundingChunkMapsPlaceAnswerSources
+    placeId: str
+    text: str
+    title: str
+    uri: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1GroundingChunkMapsPlaceAnswerSources(
+    typing_extensions.TypedDict, total=False
+):
+    reviewSnippets: _list[
+        GoogleCloudAiplatformV1beta1GroundingChunkMapsPlaceAnswerSourcesReviewSnippet
+    ]
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1GroundingChunkMapsPlaceAnswerSourcesReviewSnippet(
+    typing_extensions.TypedDict, total=False
+):
+    googleMapsUri: str
+    reviewId: str
+    title: str
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1GroundingChunkRetrievedContext(
     typing_extensions.TypedDict, total=False
 ):
+    documentName: str
     ragChunk: GoogleCloudAiplatformV1beta1RagChunk
     text: str
     title: str
@@ -417,12 +491,23 @@ class GoogleCloudAiplatformV1beta1GroundingChunkWeb(
 class GoogleCloudAiplatformV1beta1GroundingMetadata(
     typing_extensions.TypedDict, total=False
 ):
+    googleMapsWidgetContextToken: str
     groundingChunks: _list[GoogleCloudAiplatformV1beta1GroundingChunk]
     groundingSupports: _list[GoogleCloudAiplatformV1beta1GroundingSupport]
     retrievalMetadata: GoogleCloudAiplatformV1beta1RetrievalMetadata
     retrievalQueries: _list[str]
     searchEntryPoint: GoogleCloudAiplatformV1beta1SearchEntryPoint
+    sourceFlaggingUris: _list[
+        GoogleCloudAiplatformV1beta1GroundingMetadataSourceFlaggingUri
+    ]
     webSearchQueries: _list[str]
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1GroundingMetadataSourceFlaggingUri(
+    typing_extensions.TypedDict, total=False
+):
+    flagContentUri: str
+    sourceId: str
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1GroundingSupport(
@@ -431,6 +516,21 @@ class GoogleCloudAiplatformV1beta1GroundingSupport(
     confidenceScores: _list[float]
     groundingChunkIndices: _list[int]
     segment: GoogleCloudAiplatformV1beta1Segment
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ImageConfig(typing_extensions.TypedDict, total=False):
+    aspectRatio: str
+    imageOutputOptions: GoogleCloudAiplatformV1beta1ImageConfigImageOutputOptions
+    personGeneration: typing_extensions.Literal[
+        "PERSON_GENERATION_UNSPECIFIED", "ALLOW_ALL", "ALLOW_ADULT", "ALLOW_NONE"
+    ]
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ImageConfigImageOutputOptions(
+    typing_extensions.TypedDict, total=False
+):
+    compressionQuality: int
+    mimeType: str
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1LogprobsResult(
@@ -461,6 +561,19 @@ class GoogleCloudAiplatformV1beta1ModalityTokenCount(
         "MODALITY_UNSPECIFIED", "TEXT", "IMAGE", "VIDEO", "AUDIO", "DOCUMENT"
     ]
     tokenCount: int
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ModelArmorConfig(
+    typing_extensions.TypedDict, total=False
+):
+    promptTemplateName: str
+    responseTemplateName: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1MultiSpeakerVoiceConfig(
+    typing_extensions.TypedDict, total=False
+):
+    speakerVoiceConfigs: _list[GoogleCloudAiplatformV1beta1SpeakerVoiceConfig]
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1Part(typing_extensions.TypedDict, total=False):
@@ -571,6 +684,7 @@ class GoogleCloudAiplatformV1beta1SafetyRating(
         "HARM_CATEGORY_IMAGE_DANGEROUS_CONTENT",
         "HARM_CATEGORY_IMAGE_HARASSMENT",
         "HARM_CATEGORY_IMAGE_SEXUALLY_EXPLICIT",
+        "HARM_CATEGORY_JAILBREAK",
     ]
     overwrittenThreshold: typing_extensions.Literal[
         "HARM_BLOCK_THRESHOLD_UNSPECIFIED",
@@ -608,6 +722,7 @@ class GoogleCloudAiplatformV1beta1SafetySetting(
         "HARM_CATEGORY_IMAGE_DANGEROUS_CONTENT",
         "HARM_CATEGORY_IMAGE_HARASSMENT",
         "HARM_CATEGORY_IMAGE_SEXUALLY_EXPLICIT",
+        "HARM_CATEGORY_JAILBREAK",
     ]
     method: typing_extensions.Literal[
         "HARM_BLOCK_METHOD_UNSPECIFIED", "SEVERITY", "PROBABILITY"
@@ -673,10 +788,18 @@ class GoogleCloudAiplatformV1beta1Segment(typing_extensions.TypedDict, total=Fal
     text: str
 
 @typing.type_check_only
+class GoogleCloudAiplatformV1beta1SpeakerVoiceConfig(
+    typing_extensions.TypedDict, total=False
+):
+    speaker: str
+    voiceConfig: GoogleCloudAiplatformV1beta1VoiceConfig
+
+@typing.type_check_only
 class GoogleCloudAiplatformV1beta1SpeechConfig(
     typing_extensions.TypedDict, total=False
 ):
     languageCode: str
+    multiSpeakerVoiceConfig: GoogleCloudAiplatformV1beta1MultiSpeakerVoiceConfig
     voiceConfig: GoogleCloudAiplatformV1beta1VoiceConfig
 
 @typing.type_check_only
@@ -685,6 +808,7 @@ class GoogleCloudAiplatformV1beta1Tool(typing_extensions.TypedDict, total=False)
     computerUse: GoogleCloudAiplatformV1beta1ToolComputerUse
     enterpriseWebSearch: GoogleCloudAiplatformV1beta1EnterpriseWebSearch
     functionDeclarations: _list[GoogleCloudAiplatformV1beta1FunctionDeclaration]
+    googleMaps: GoogleCloudAiplatformV1beta1GoogleMaps
     googleSearch: GoogleCloudAiplatformV1beta1ToolGoogleSearch
     googleSearchRetrieval: GoogleCloudAiplatformV1beta1GoogleSearchRetrieval
     retrieval: GoogleCloudAiplatformV1beta1Retrieval
@@ -702,6 +826,7 @@ class GoogleCloudAiplatformV1beta1ToolComputerUse(
     environment: typing_extensions.Literal[
         "ENVIRONMENT_UNSPECIFIED", "ENVIRONMENT_BROWSER"
     ]
+    excludedPredefinedFunctions: _list[str]
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1ToolConfig(typing_extensions.TypedDict, total=False):
@@ -711,7 +836,17 @@ class GoogleCloudAiplatformV1beta1ToolConfig(typing_extensions.TypedDict, total=
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1ToolGoogleSearch(
     typing_extensions.TypedDict, total=False
-): ...
+):
+    blockingConfidence: typing_extensions.Literal[
+        "PHISH_BLOCK_THRESHOLD_UNSPECIFIED",
+        "BLOCK_LOW_AND_ABOVE",
+        "BLOCK_MEDIUM_AND_ABOVE",
+        "BLOCK_HIGH_AND_ABOVE",
+        "BLOCK_HIGHER_AND_ABOVE",
+        "BLOCK_VERY_HIGH_AND_ABOVE",
+        "BLOCK_ONLY_EXTREMELY_HIGH",
+    ]
+    excludeDomains: _list[str]
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1UrlContext(
@@ -773,6 +908,7 @@ class GoogleCloudAiplatformV1beta1VideoMetadata(
     typing_extensions.TypedDict, total=False
 ):
     endOffset: str
+    fps: float
     startOffset: str
 
 @typing.type_check_only

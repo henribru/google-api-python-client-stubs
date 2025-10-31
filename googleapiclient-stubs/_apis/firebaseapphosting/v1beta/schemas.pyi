@@ -26,6 +26,7 @@ class Backend(typing_extensions.TypedDict, total=False):
     managedResources: _list[ManagedResource]
     mode: str
     name: str
+    overrideEnv: _list[EnvironmentVariable]
     reconciling: bool
     requestLogsDisabled: bool
     serviceAccount: str

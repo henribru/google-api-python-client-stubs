@@ -180,7 +180,7 @@ class GoogleCloudApigeeV1ApiProduct(typing_extensions.TypedDict, total=False):
     proxies: _list[str]
     quota: str
     quotaCounterScope: typing_extensions.Literal[
-        "QUOTA_COUNTER_SCOPE_UNSPECIFIED", "PROXY", "OPERATION"
+        "QUOTA_COUNTER_SCOPE_UNSPECIFIED", "PROXY", "OPERATION", "PRODUCT"
     ]
     quotaInterval: str
     quotaTimeUnit: str
@@ -1093,8 +1093,10 @@ class GoogleCloudApigeeV1Instance(typing_extensions.TypedDict, total=False):
     displayName: str
     host: str
     ipRange: str
+    isVersionLocked: bool
     lastModifiedAt: str
     location: str
+    maintenanceUpdatePolicy: GoogleCloudApigeeV1MaintenanceUpdatePolicy
     name: str
     peeringCidrRange: typing_extensions.Literal[
         "CIDR_RANGE_UNSPECIFIED",
@@ -1108,6 +1110,7 @@ class GoogleCloudApigeeV1Instance(typing_extensions.TypedDict, total=False):
     ]
     port: str
     runtimeVersion: str
+    scheduledMaintenance: GoogleCloudApigeeV1ScheduledMaintenance
     serviceAttachment: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "DELETING", "UPDATING"
@@ -1388,6 +1391,13 @@ class GoogleCloudApigeeV1ListSecurityActionsResponse(
     securityActions: _list[GoogleCloudApigeeV1SecurityAction]
 
 @typing.type_check_only
+class GoogleCloudApigeeV1ListSecurityFeedbackResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    securityFeedback: _list[GoogleCloudApigeeV1SecurityFeedback]
+
+@typing.type_check_only
 class GoogleCloudApigeeV1ListSecurityIncidentsResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -1446,6 +1456,33 @@ class GoogleCloudApigeeV1ListTraceConfigOverridesResponse(
 ):
     nextPageToken: str
     traceConfigOverrides: _list[GoogleCloudApigeeV1TraceConfigOverride]
+
+@typing.type_check_only
+class GoogleCloudApigeeV1MaintenanceUpdatePolicy(
+    typing_extensions.TypedDict, total=False
+):
+    maintenanceChannel: typing_extensions.Literal[
+        "MAINTENANCE_CHANNEL_UNSPECIFIED", "WEEK1", "WEEK2"
+    ]
+    maintenanceWindows: _list[
+        GoogleCloudApigeeV1MaintenanceUpdatePolicyMaintenanceWindow
+    ]
+
+@typing.type_check_only
+class GoogleCloudApigeeV1MaintenanceUpdatePolicyMaintenanceWindow(
+    typing_extensions.TypedDict, total=False
+):
+    day: typing_extensions.Literal[
+        "DAY_OF_WEEK_UNSPECIFIED",
+        "MONDAY",
+        "TUESDAY",
+        "WEDNESDAY",
+        "THURSDAY",
+        "FRIDAY",
+        "SATURDAY",
+        "SUNDAY",
+    ]
+    startTime: GoogleTypeTimeOfDay
 
 @typing.type_check_only
 class GoogleCloudApigeeV1Metadata(typing_extensions.TypedDict, total=False):
@@ -1966,6 +2003,10 @@ class GoogleCloudApigeeV1RuntimeTraceSamplingConfig(
     samplingRate: float
 
 @typing.type_check_only
+class GoogleCloudApigeeV1ScheduledMaintenance(typing_extensions.TypedDict, total=False):
+    startTime: str
+
+@typing.type_check_only
 class GoogleCloudApigeeV1Schema(typing_extensions.TypedDict, total=False):
     dimensions: _list[GoogleCloudApigeeV1SchemaSchemaElement]
     meta: _list[str]
@@ -2134,6 +2175,38 @@ class GoogleCloudApigeeV1SecurityAssessmentResultScoringResultAssessmentRecommen
 ):
     text: str
     uri: str
+
+@typing.type_check_only
+class GoogleCloudApigeeV1SecurityFeedback(typing_extensions.TypedDict, total=False):
+    comment: str
+    createTime: str
+    displayName: str
+    feedbackContexts: _list[GoogleCloudApigeeV1SecurityFeedbackFeedbackContext]
+    feedbackType: typing_extensions.Literal[
+        "FEEDBACK_TYPE_UNSPECIFIED", "EXCLUDED_DETECTION"
+    ]
+    name: str
+    reason: typing_extensions.Literal[
+        "REASON_UNSPECIFIED",
+        "INTERNAL_SYSTEM",
+        "NON_RISK_CLIENT",
+        "NAT",
+        "PENETRATION_TEST",
+        "OTHER",
+    ]
+    updateTime: str
+
+@typing.type_check_only
+class GoogleCloudApigeeV1SecurityFeedbackFeedbackContext(
+    typing_extensions.TypedDict, total=False
+):
+    attribute: typing_extensions.Literal[
+        "ATTRIBUTE_UNSPECIFIED",
+        "ATTRIBUTE_ENVIRONMENTS",
+        "ATTRIBUTE_IP_ADDRESS_RANGES",
+        "ATTRIBUTE_API_KEYS",
+    ]
+    values: _list[str]
 
 @typing.type_check_only
 class GoogleCloudApigeeV1SecurityIncident(typing_extensions.TypedDict, total=False):
@@ -2551,6 +2624,7 @@ class GoogleIamV1TestIamPermissionsResponse(typing_extensions.TypedDict, total=F
 class GoogleLongrunningListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[GoogleLongrunningOperation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class GoogleLongrunningOperation(typing_extensions.TypedDict, total=False):
@@ -2596,3 +2670,10 @@ class GoogleTypeMoney(typing_extensions.TypedDict, total=False):
     currencyCode: str
     nanos: int
     units: str
+
+@typing.type_check_only
+class GoogleTypeTimeOfDay(typing_extensions.TypedDict, total=False):
+    hours: int
+    minutes: int
+    nanos: int
+    seconds: int
