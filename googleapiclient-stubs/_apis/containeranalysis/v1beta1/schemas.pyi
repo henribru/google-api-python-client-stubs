@@ -333,6 +333,7 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsMavenArtifact(
     typing_extensions.TypedDict, total=False
 ):
     artifactId: str
+    deployFolder: str
     groupId: str
     path: str
     repository: str
@@ -521,6 +522,7 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1BuildWarning(
 class ContaineranalysisGoogleDevtoolsCloudbuildV1BuiltImage(
     typing_extensions.TypedDict, total=False
 ):
+    artifactRegistryPackage: str
     digest: str
     name: str
     pushTiming: ContaineranalysisGoogleDevtoolsCloudbuildV1TimeSpan
@@ -718,6 +720,7 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1TimeSpan(
 class ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedGoModule(
     typing_extensions.TypedDict, total=False
 ):
+    artifactRegistryPackage: str
     fileHashes: ContaineranalysisGoogleDevtoolsCloudbuildV1FileHashes
     pushTiming: ContaineranalysisGoogleDevtoolsCloudbuildV1TimeSpan
     uri: str
@@ -726,6 +729,7 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedGoModule(
 class ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedMavenArtifact(
     typing_extensions.TypedDict, total=False
 ):
+    artifactRegistryPackage: str
     fileHashes: ContaineranalysisGoogleDevtoolsCloudbuildV1FileHashes
     pushTiming: ContaineranalysisGoogleDevtoolsCloudbuildV1TimeSpan
     uri: str
@@ -734,6 +738,7 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedMavenArtifact(
 class ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedNpmPackage(
     typing_extensions.TypedDict, total=False
 ):
+    artifactRegistryPackage: str
     fileHashes: ContaineranalysisGoogleDevtoolsCloudbuildV1FileHashes
     pushTiming: ContaineranalysisGoogleDevtoolsCloudbuildV1TimeSpan
     uri: str
@@ -742,6 +747,7 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedNpmPackage(
 class ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedPythonPackage(
     typing_extensions.TypedDict, total=False
 ):
+    artifactRegistryPackage: str
     fileHashes: ContaineranalysisGoogleDevtoolsCloudbuildV1FileHashes
     pushTiming: ContaineranalysisGoogleDevtoolsCloudbuildV1TimeSpan
     uri: str
@@ -818,6 +824,7 @@ class Discovered(typing_extensions.TypedDict, total=False):
     files: _list[File]
     lastAnalysisTime: str
     lastScanTime: str
+    lastVulnerabilityUpdateTime: str
     sbomStatus: SBOMStatus
 
 @typing.type_check_only
@@ -1066,7 +1073,7 @@ class GrafeasV1beta1VulnerabilityDetails(typing_extensions.TypedDict, total=Fals
 @typing.type_check_only
 class Hash(typing_extensions.TypedDict, total=False):
     type: typing_extensions.Literal[
-        "HASH_TYPE_UNSPECIFIED", "SHA256", "GO_MODULE_H1", "SHA512"
+        "HASH_TYPE_UNSPECIFIED", "SHA256", "GO_MODULE_H1", "SHA512", "DIRSUM_SHA256"
     ]
     value: str
 
@@ -1184,6 +1191,7 @@ class Location(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Note(typing_extensions.TypedDict, total=False):
+    advisoryPublishTime: str
     attestationAuthority: Authority
     baseImage: Basis
     build: Build

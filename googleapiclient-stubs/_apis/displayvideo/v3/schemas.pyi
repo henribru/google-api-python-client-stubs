@@ -64,7 +64,6 @@ class AdGroup(typing_extensions.TypedDict, total=False):
         "AD_GROUP_FORMAT_RESPONSIVE",
         "AD_GROUP_FORMAT_REACH",
         "AD_GROUP_FORMAT_MASTHEAD",
-        "AD_GROUP_FORMAT_DEMAND_GEN",
     ]
     adGroupId: str
     advertiserId: str
@@ -87,6 +86,7 @@ class AdGroup(typing_extensions.TypedDict, total=False):
 class AdGroupAd(typing_extensions.TypedDict, total=False):
     adGroupAdId: str
     adGroupId: str
+    adPolicy: AdPolicy
     adUrls: _list[AdUrl]
     advertiserId: str
     audioAd: AudioAd
@@ -112,6 +112,208 @@ class AdGroupAd(typing_extensions.TypedDict, total=False):
 class AdGroupAssignedTargetingOption(typing_extensions.TypedDict, total=False):
     adGroupId: str
     assignedTargetingOption: AssignedTargetingOption
+
+@typing.type_check_only
+class AdPolicy(typing_extensions.TypedDict, total=False):
+    adPolicyApprovalStatus: typing_extensions.Literal[
+        "AD_POLICY_APPROVAL_STATUS_UNKNOWN",
+        "DISAPPROVED",
+        "APPROVED_LIMITED",
+        "APPROVED",
+        "AREA_OF_INTEREST_ONLY",
+    ]
+    adPolicyReviewStatus: typing_extensions.Literal[
+        "AD_POLICY_REVIEW_STATUS_UNKNOWN",
+        "REVIEW_IN_PROGRESS",
+        "REVIEWED",
+        "UNDER_APPEAL",
+        "ELIGIBLE_MAY_SERVE",
+    ]
+    adPolicyTopicEntry: _list[AdPolicyTopicEntry]
+
+@typing.type_check_only
+class AdPolicyCriterionRestriction(typing_extensions.TypedDict, total=False):
+    countryCriterionId: str
+    countryLabel: str
+
+@typing.type_check_only
+class AdPolicyTopicAppealInfo(typing_extensions.TypedDict, total=False):
+    appealFormLink: str
+    appealType: typing_extensions.Literal[
+        "AD_POLICY_APPEAL_TYPE_UNKNOWN", "SELF_SERVICE_APPEAL", "APPEAL_FORM"
+    ]
+
+@typing.type_check_only
+class AdPolicyTopicConstraint(typing_extensions.TypedDict, total=False):
+    certificateDomainMismatchCountryList: (
+        AdPolicyTopicConstraintAdPolicyCountryConstraintList
+    )
+    certificateMissingCountryList: AdPolicyTopicConstraintAdPolicyCountryConstraintList
+    countryConstraint: AdPolicyTopicConstraintAdPolicyCountryConstraintList
+    globalCertificateDomainMismatch: (
+        AdPolicyTopicConstraintAdPolicyGlobalCertificateDomainMismatchConstraint
+    )
+    globalCertificateMissing: (
+        AdPolicyTopicConstraintAdPolicyGlobalCertificateMissingConstraint
+    )
+    requestCertificateFormLink: str
+    resellerConstraint: AdPolicyTopicConstraintAdPolicyResellerConstraint
+
+@typing.type_check_only
+class AdPolicyTopicConstraintAdPolicyCountryConstraintList(
+    typing_extensions.TypedDict, total=False
+):
+    countries: _list[AdPolicyCriterionRestriction]
+
+@typing.type_check_only
+class AdPolicyTopicConstraintAdPolicyGlobalCertificateDomainMismatchConstraint(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class AdPolicyTopicConstraintAdPolicyGlobalCertificateMissingConstraint(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class AdPolicyTopicConstraintAdPolicyResellerConstraint(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class AdPolicyTopicEntry(typing_extensions.TypedDict, total=False):
+    appealInfo: AdPolicyTopicAppealInfo
+    helpCenterLink: str
+    policyDecisionType: typing_extensions.Literal[
+        "AD_POLICY_DECISION_TYPE_UNKNOWN", "PURSUANT_TO_NOTICE", "GOOGLE_INVESTIGATION"
+    ]
+    policyEnforcementMeans: typing_extensions.Literal[
+        "AD_POLICY_ENFORCEMENT_MEANS_UNKNOWN", "AUTOMATED", "HUMAN_REVIEW"
+    ]
+    policyLabel: str
+    policyTopic: str
+    policyTopicConstraints: _list[AdPolicyTopicConstraint]
+    policyTopicDescription: str
+    policyTopicEvidences: _list[AdPolicyTopicEvidence]
+    policyTopicType: typing_extensions.Literal[
+        "AD_POLICY_TOPIC_ENTRY_TYPE_UNKNOWN",
+        "PROHIBITED",
+        "FULLY_LIMITED",
+        "LIMITED",
+        "DESCRIPTIVE",
+        "BROADENING",
+        "AREA_OF_INTEREST_ONLY",
+    ]
+
+@typing.type_check_only
+class AdPolicyTopicEvidence(typing_extensions.TypedDict, total=False):
+    counterfeit: AdPolicyTopicEvidenceCounterfeit
+    destinationMismatch: AdPolicyTopicEvidenceDestinationMismatch
+    destinationNotWorking: AdPolicyTopicEvidenceDestinationNotWorking
+    destinationTextList: AdPolicyTopicEvidenceDestinationTextList
+    httpCode: int
+    languageCode: str
+    legalRemoval: AdPolicyTopicEvidenceLegalRemoval
+    regionalRequirements: AdPolicyTopicEvidenceRegionalRequirements
+    textList: AdPolicyTopicEvidenceTextList
+    trademark: AdPolicyTopicEvidenceTrademark
+    websiteList: AdPolicyTopicEvidenceWebsiteList
+
+@typing.type_check_only
+class AdPolicyTopicEvidenceCounterfeit(typing_extensions.TypedDict, total=False):
+    owners: _list[str]
+
+@typing.type_check_only
+class AdPolicyTopicEvidenceDestinationMismatch(
+    typing_extensions.TypedDict, total=False
+):
+    uriTypes: _list[
+        typing_extensions.Literal[
+            "AD_POLICY_TOPIC_EVIDENCE_DESTINATION_MISMATCH_URL_TYPE_UNKNOWN",
+            "DISPLAY_URL",
+            "FINAL_URL",
+            "FINAL_MOBILE_URL",
+            "TRACKING_URL",
+            "MOBILE_TRACKING_URL",
+        ]
+    ]
+
+@typing.type_check_only
+class AdPolicyTopicEvidenceDestinationNotWorking(
+    typing_extensions.TypedDict, total=False
+):
+    device: typing_extensions.Literal[
+        "AD_POLICY_TOPIC_EVIDENCE_DESTINATION_NOT_WORKING_DEVICE_TYPE_UNKNOWN",
+        "DESKTOP",
+        "ANDROID",
+        "IOS",
+    ]
+    dnsErrorType: typing_extensions.Literal[
+        "AD_POLICY_TOPIC_EVIDENCE_DESTINATION_NOT_WORKING_DNS_ERROR_TYPE_UNKNOWN",
+        "HOSTNAME_NOT_FOUND",
+        "GOOGLE_CRAWLER_DNS_ISSUE",
+    ]
+    expandedUri: str
+    httpErrorCode: str
+    lastCheckedTime: str
+
+@typing.type_check_only
+class AdPolicyTopicEvidenceDestinationTextList(
+    typing_extensions.TypedDict, total=False
+):
+    destinationTexts: _list[str]
+
+@typing.type_check_only
+class AdPolicyTopicEvidenceLegalRemoval(typing_extensions.TypedDict, total=False):
+    complaintType: typing_extensions.Literal[
+        "AD_POLICY_TOPIC_EVIDENCE_LEGAL_REMOVAL_COMPLAINT_TYPE_UNKNOWN",
+        "COPYRIGHT",
+        "COURT_ORDER",
+        "LOCAL_LEGAL",
+    ]
+    countryRestrictions: _list[AdPolicyCriterionRestriction]
+    dmca: AdPolicyTopicEvidenceLegalRemovalDmca
+    localLegal: AdPolicyTopicEvidenceLegalRemovalLocalLegal
+    restrictedUris: _list[str]
+
+@typing.type_check_only
+class AdPolicyTopicEvidenceLegalRemovalDmca(typing_extensions.TypedDict, total=False):
+    complainant: str
+
+@typing.type_check_only
+class AdPolicyTopicEvidenceLegalRemovalLocalLegal(
+    typing_extensions.TypedDict, total=False
+):
+    lawType: str
+
+@typing.type_check_only
+class AdPolicyTopicEvidenceRegionalRequirements(
+    typing_extensions.TypedDict, total=False
+):
+    regionalRequirementsEntries: _list[
+        AdPolicyTopicEvidenceRegionalRequirementsRegionalRequirementsEntry
+    ]
+
+@typing.type_check_only
+class AdPolicyTopicEvidenceRegionalRequirementsRegionalRequirementsEntry(
+    typing_extensions.TypedDict, total=False
+):
+    countryRestrictions: _list[AdPolicyCriterionRestriction]
+    legalPolicy: str
+
+@typing.type_check_only
+class AdPolicyTopicEvidenceTextList(typing_extensions.TypedDict, total=False):
+    texts: _list[str]
+
+@typing.type_check_only
+class AdPolicyTopicEvidenceTrademark(typing_extensions.TypedDict, total=False):
+    countryRestrictions: _list[AdPolicyCriterionRestriction]
+    owner: str
+    term: str
+
+@typing.type_check_only
+class AdPolicyTopicEvidenceWebsiteList(typing_extensions.TypedDict, total=False):
+    websites: _list[str]
 
 @typing.type_check_only
 class AdUrl(typing_extensions.TypedDict, total=False):
@@ -485,6 +687,7 @@ class AlgorithmRulesComparisonValue(typing_extensions.TypedDict, total=False):
         "EXCHANGE_SPOTIFY",
         "EXCHANGE_TUBI",
         "EXCHANGE_SNAP",
+        "EXCHANGE_CADENT",
     ]
     int64Value: str
     onScreenPositionValue: typing_extensions.Literal[
@@ -1030,20 +1233,6 @@ class BulkListAssignedTargetingOptionsResponse(
     nextPageToken: str
 
 @typing.type_check_only
-class BulkListCampaignAssignedTargetingOptionsResponse(
-    typing_extensions.TypedDict, total=False
-):
-    assignedTargetingOptions: _list[AssignedTargetingOption]
-    nextPageToken: str
-
-@typing.type_check_only
-class BulkListInsertionOrderAssignedTargetingOptionsResponse(
-    typing_extensions.TypedDict, total=False
-):
-    assignedTargetingOptions: _list[AssignedTargetingOption]
-    nextPageToken: str
-
-@typing.type_check_only
 class BulkUpdateLineItemsRequest(typing_extensions.TypedDict, total=False):
     lineItemIds: _list[str]
     targetLineItem: LineItem
@@ -1537,6 +1726,7 @@ class CreateSdfDownloadTaskRequest(typing_extensions.TypedDict, total=False):
         "SDF_VERSION_8_1",
         "SDF_VERSION_9",
         "SDF_VERSION_9_1",
+        "SDF_VERSION_9_2",
     ]
 
 @typing.type_check_only
@@ -2265,6 +2455,7 @@ class ExchangeAssignedTargetingOptionDetails(typing_extensions.TypedDict, total=
         "EXCHANGE_SPOTIFY",
         "EXCHANGE_TUBI",
         "EXCHANGE_SNAP",
+        "EXCHANGE_CADENT",
     ]
 
 @typing.type_check_only
@@ -2362,6 +2553,7 @@ class ExchangeConfigEnabledExchange(typing_extensions.TypedDict, total=False):
         "EXCHANGE_SPOTIFY",
         "EXCHANGE_TUBI",
         "EXCHANGE_SNAP",
+        "EXCHANGE_CADENT",
     ]
     googleAdManagerAgencyId: str
     googleAdManagerBuyerNetworkId: str
@@ -2458,6 +2650,7 @@ class ExchangeReviewStatus(typing_extensions.TypedDict, total=False):
         "EXCHANGE_SPOTIFY",
         "EXCHANGE_TUBI",
         "EXCHANGE_SNAP",
+        "EXCHANGE_CADENT",
     ]
     status: typing_extensions.Literal[
         "REVIEW_STATUS_UNSPECIFIED",
@@ -2557,6 +2750,7 @@ class ExchangeTargetingOptionDetails(typing_extensions.TypedDict, total=False):
         "EXCHANGE_SPOTIFY",
         "EXCHANGE_TUBI",
         "EXCHANGE_SNAP",
+        "EXCHANGE_CADENT",
     ]
 
 @typing.type_check_only
@@ -2716,41 +2910,6 @@ class GenderTargetingOptionDetails(typing_extensions.TypedDict, total=False):
     gender: typing_extensions.Literal[
         "GENDER_UNSPECIFIED", "GENDER_MALE", "GENDER_FEMALE", "GENDER_UNKNOWN"
     ]
-
-@typing.type_check_only
-class GenerateDefaultLineItemRequest(typing_extensions.TypedDict, total=False):
-    containsEuPoliticalAds: typing_extensions.Literal[
-        "EU_POLITICAL_ADVERTISING_STATUS_UNKNOWN",
-        "CONTAINS_EU_POLITICAL_ADVERTISING",
-        "DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING",
-    ]
-    displayName: str
-    insertionOrderId: str
-    lineItemType: typing_extensions.Literal[
-        "LINE_ITEM_TYPE_UNSPECIFIED",
-        "LINE_ITEM_TYPE_DISPLAY_DEFAULT",
-        "LINE_ITEM_TYPE_DISPLAY_MOBILE_APP_INSTALL",
-        "LINE_ITEM_TYPE_VIDEO_DEFAULT",
-        "LINE_ITEM_TYPE_VIDEO_MOBILE_APP_INSTALL",
-        "LINE_ITEM_TYPE_DISPLAY_MOBILE_APP_INVENTORY",
-        "LINE_ITEM_TYPE_VIDEO_MOBILE_APP_INVENTORY",
-        "LINE_ITEM_TYPE_AUDIO_DEFAULT",
-        "LINE_ITEM_TYPE_VIDEO_OVER_THE_TOP",
-        "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_ACTION",
-        "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_NON_SKIPPABLE",
-        "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_VIDEO_SEQUENCE",
-        "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_AUDIO",
-        "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_REACH",
-        "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_SIMPLE",
-        "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_NON_SKIPPABLE_OVER_THE_TOP",
-        "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_REACH_OVER_THE_TOP",
-        "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_SIMPLE_OVER_THE_TOP",
-        "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_TARGET_FREQUENCY",
-        "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_VIEW",
-        "LINE_ITEM_TYPE_DISPLAY_OUT_OF_HOME",
-        "LINE_ITEM_TYPE_VIDEO_OUT_OF_HOME",
-    ]
-    mobileApp: MobileApp
 
 @typing.type_check_only
 class GeoRegionAssignedTargetingOptionDetails(typing_extensions.TypedDict, total=False):
@@ -2967,6 +3126,7 @@ class GuaranteedOrder(typing_extensions.TypedDict, total=False):
         "EXCHANGE_SPOTIFY",
         "EXCHANGE_TUBI",
         "EXCHANGE_SNAP",
+        "EXCHANGE_CADENT",
     ]
     guaranteedOrderId: str
     legacyGuaranteedOrderId: str
@@ -3122,6 +3282,7 @@ class IntegralAdScience(typing_extensions.TypedDict, total=False):
         "SUSPICIOUS_ACTIVITY_UNSPECIFIED",
         "SUSPICIOUS_ACTIVITY_HR",
         "SUSPICIOUS_ACTIVITY_HMR",
+        "SUSPICIOUS_ACTIVITY_FD",
     ]
     excludedAdultRisk: typing_extensions.Literal[
         "ADULT_UNSPECIFIED", "ADULT_HR", "ADULT_HMR"
@@ -3277,6 +3438,7 @@ class InventorySource(typing_extensions.TypedDict, total=False):
         "EXCHANGE_SPOTIFY",
         "EXCHANGE_TUBI",
         "EXCHANGE_SNAP",
+        "EXCHANGE_CADENT",
     ]
     guaranteedOrderId: str
     inventorySourceId: str
@@ -3599,13 +3761,6 @@ class ListAssignedLocationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
-class ListCampaignAssignedTargetingOptionsResponse(
-    typing_extensions.TypedDict, total=False
-):
-    assignedTargetingOptions: _list[AssignedTargetingOption]
-    nextPageToken: str
-
-@typing.type_check_only
 class ListCampaignsResponse(typing_extensions.TypedDict, total=False):
     campaigns: _list[Campaign]
     nextPageToken: str
@@ -3663,13 +3818,6 @@ class ListGoogleAudiencesResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ListGuaranteedOrdersResponse(typing_extensions.TypedDict, total=False):
     guaranteedOrders: _list[GuaranteedOrder]
-    nextPageToken: str
-
-@typing.type_check_only
-class ListInsertionOrderAssignedTargetingOptionsResponse(
-    typing_extensions.TypedDict, total=False
-):
-    assignedTargetingOptions: _list[AssignedTargetingOption]
     nextPageToken: str
 
 @typing.type_check_only
@@ -4224,6 +4372,7 @@ class RateDetails(typing_extensions.TypedDict, total=False):
         "INVENTORY_SOURCE_RATE_TYPE_CPM_FIXED",
         "INVENTORY_SOURCE_RATE_TYPE_CPM_FLOOR",
         "INVENTORY_SOURCE_RATE_TYPE_CPD",
+        "INVENTORY_SOURCE_RATE_TYPE_CPH",
         "INVENTORY_SOURCE_RATE_TYPE_FLAT",
     ]
     minimumSpend: Money
@@ -4315,6 +4464,7 @@ class SdfConfig(typing_extensions.TypedDict, total=False):
         "SDF_VERSION_8_1",
         "SDF_VERSION_9",
         "SDF_VERSION_9_1",
+        "SDF_VERSION_9_2",
     ]
 
 @typing.type_check_only
@@ -4344,6 +4494,7 @@ class SdfDownloadTaskMetadata(typing_extensions.TypedDict, total=False):
         "SDF_VERSION_8_1",
         "SDF_VERSION_9",
         "SDF_VERSION_9_1",
+        "SDF_VERSION_9_2",
     ]
 
 @typing.type_check_only

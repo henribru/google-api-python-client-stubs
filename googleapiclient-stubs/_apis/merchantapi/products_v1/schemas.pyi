@@ -437,9 +437,11 @@ class ProductAttributes(typing_extensions.TypedDict, total=False):
     salePriceEffectiveDate: Interval
     sellOnGoogleQuantity: str
     shipping: _list[Shipping]
+    shippingHandlingBusinessDays: _list[ShippingBusinessDaysConfig]
     shippingHeight: ShippingDimension
     shippingLabel: str
     shippingLength: ShippingDimension
+    shippingTransitBusinessDays: _list[ShippingBusinessDaysConfig]
     shippingWeight: ShippingWeight
     shippingWidth: ShippingDimension
     shoppingAdsExcludedCountries: _list[str]
@@ -603,6 +605,11 @@ class Shipping(typing_extensions.TypedDict, total=False):
     service: str
 
 @typing.type_check_only
+class ShippingBusinessDaysConfig(typing_extensions.TypedDict, total=False):
+    businessDays: str
+    country: str
+
+@typing.type_check_only
 class ShippingDimension(typing_extensions.TypedDict, total=False):
     unit: str
     value: float
@@ -630,7 +637,7 @@ class StructuredTitle(typing_extensions.TypedDict, total=False):
 class SubscriptionCost(typing_extensions.TypedDict, total=False):
     amount: Price
     period: typing_extensions.Literal[
-        "SUBSCRIPTION_PERIOD_UNSPECIFIED", "MONTH", "YEAR"
+        "SUBSCRIPTION_PERIOD_UNSPECIFIED", "MONTH", "YEAR", "WEEK"
     ]
     periodLength: str
 

@@ -5,6 +5,12 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class Ack(typing_extensions.TypedDict, total=False):
+    ignoreNotFound: bool
+    key: _list[typing.Any]
+    queue: str
+
+@typing.type_check_only
 class AdaptMessageRequest(typing_extensions.TypedDict, total=False):
     attachments: dict[str, typing.Any]
     payload: str
@@ -43,6 +49,9 @@ class AutoscalingConfig(typing_extensions.TypedDict, total=False):
 class AutoscalingConfigOverrides(typing_extensions.TypedDict, total=False):
     autoscalingLimits: AutoscalingLimits
     autoscalingTargetHighPriorityCpuUtilizationPercent: int
+    autoscalingTargetTotalCpuUtilizationPercent: int
+    disableHighPriorityCpuAutoscaling: bool
+    disableTotalCpuAutoscaling: bool
 
 @typing.type_check_only
 class AutoscalingLimits(typing_extensions.TypedDict, total=False):
@@ -55,6 +64,7 @@ class AutoscalingLimits(typing_extensions.TypedDict, total=False):
 class AutoscalingTargets(typing_extensions.TypedDict, total=False):
     highPriorityCpuUtilizationPercent: int
     storageUtilizationPercent: int
+    totalCpuUtilizationPercent: int
 
 @typing.type_check_only
 class Backup(typing_extensions.TypedDict, total=False):
@@ -72,6 +82,9 @@ class Backup(typing_extensions.TypedDict, total=False):
     incrementalBackupChainId: str
     instancePartitions: _list[BackupInstancePartition]
     maxExpireTime: str
+    minimumRestorableEdition: typing_extensions.Literal[
+        "EDITION_UNSPECIFIED", "STANDARD", "ENTERPRISE", "ENTERPRISE_PLUS"
+    ]
     name: str
     oldestVersionTime: str
     referencingBackups: _list[str]
@@ -165,6 +178,10 @@ class ChildLink(typing_extensions.TypedDict, total=False):
     variable: str
 
 @typing.type_check_only
+class ClientContext(typing_extensions.TypedDict, total=False):
+    secureContext: dict[str, typing.Any]
+
+@typing.type_check_only
 class ColumnMetadata(typing_extensions.TypedDict, total=False):
     isPrimaryKey: bool
     name: str
@@ -191,6 +208,12 @@ class CommitResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class CommitStats(typing_extensions.TypedDict, total=False):
     mutationCount: str
+
+@typing.type_check_only
+class CompactDatabaseMetadata(typing_extensions.TypedDict, total=False):
+    cancelTime: str
+    database: str
+    progress: OperationProgress
 
 @typing.type_check_only
 class ContextValue(typing_extensions.TypedDict, total=False):
@@ -576,6 +599,7 @@ class InstanceOperationProgress(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class InstancePartition(typing_extensions.TypedDict, total=False):
+    autoscalingConfig: AutoscalingConfig
     config: str
     createTime: str
     displayName: str
@@ -688,6 +712,7 @@ class ListInstancesResponse(typing_extensions.TypedDict, total=False):
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListScansResponse(typing_extensions.TypedDict, total=False):
@@ -759,10 +784,12 @@ class MultiplexedSessionPrecommitToken(typing_extensions.TypedDict, total=False)
 
 @typing.type_check_only
 class Mutation(typing_extensions.TypedDict, total=False):
+    ack: Ack
     delete: Delete
     insert: Write
     insertOrUpdate: Write
     replace: Write
+    send: Send
     update: Write
 
 @typing.type_check_only
@@ -959,6 +986,7 @@ class ReplicaSelection(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class RequestOptions(typing_extensions.TypedDict, total=False):
+    clientContext: ClientContext
     priority: typing_extensions.Literal[
         "PRIORITY_UNSPECIFIED", "PRIORITY_LOW", "PRIORITY_MEDIUM", "PRIORITY_HIGH"
     ]
@@ -1033,6 +1061,13 @@ class ScanData(typing_extensions.TypedDict, total=False):
     data: VisualizationData
     endTime: str
     startTime: str
+
+@typing.type_check_only
+class Send(typing_extensions.TypedDict, total=False):
+    deliverTime: str
+    key: _list[typing.Any]
+    payload: typing.Any
+    queue: str
 
 @typing.type_check_only
 class Session(typing_extensions.TypedDict, total=False):
@@ -1129,6 +1164,7 @@ class Type(typing_extensions.TypedDict, total=False):
         "PROTO",
         "ENUM",
         "INTERVAL",
+        "UUID",
     ]
     protoTypeFqn: str
     structType: StructType

@@ -240,6 +240,95 @@ class DocumentResource(googleapiclient.discovery.Resource):
                 def humanReviewConfig(self) -> HumanReviewConfigResource: ...
                 def processorVersions(self) -> ProcessorVersionsResource: ...
 
+            @typing.type_check_only
+            class SchemasResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class SchemaVersionsResource(googleapiclient.discovery.Resource):
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: GoogleCloudDocumentaiV1SchemaVersion = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleCloudDocumentaiV1SchemaVersionHttpRequest: ...
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
+                    def generate(
+                        self,
+                        *,
+                        parent: str,
+                        body: GoogleCloudDocumentaiV1GenerateSchemaVersionRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> (
+                        GoogleCloudDocumentaiV1GenerateSchemaVersionResponseHttpRequest
+                    ): ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleCloudDocumentaiV1SchemaVersionHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> (
+                        GoogleCloudDocumentaiV1ListSchemaVersionsResponseHttpRequest
+                    ): ...
+                    def list_next(
+                        self,
+                        previous_request: GoogleCloudDocumentaiV1ListSchemaVersionsResponseHttpRequest,
+                        previous_response: GoogleCloudDocumentaiV1ListSchemaVersionsResponse,
+                    ) -> (
+                        GoogleCloudDocumentaiV1ListSchemaVersionsResponseHttpRequest
+                        | None
+                    ): ...
+                    def patch(
+                        self,
+                        *,
+                        name: str,
+                        body: GoogleCloudDocumentaiV1SchemaVersion = ...,
+                        updateMask: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleCloudDocumentaiV1SchemaVersionHttpRequest: ...
+
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleCloudDocumentaiV1NextSchema = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleCloudDocumentaiV1NextSchemaHttpRequest: ...
+                def delete(
+                    self, *, name: str, force: bool = ..., **kwargs: typing.Any
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudDocumentaiV1NextSchemaHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleCloudDocumentaiV1ListSchemasResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudDocumentaiV1ListSchemasResponseHttpRequest,
+                    previous_response: GoogleCloudDocumentaiV1ListSchemasResponse,
+                ) -> GoogleCloudDocumentaiV1ListSchemasResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudDocumentaiV1NextSchema = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleCloudDocumentaiV1NextSchemaHttpRequest: ...
+                def schemaVersions(self) -> SchemaVersionsResource: ...
+
             def fetchProcessorTypes(
                 self, *, parent: str, **kwargs: typing.Any
             ) -> GoogleCloudDocumentaiV1FetchProcessorTypesResponseHttpRequest: ...
@@ -264,6 +353,7 @@ class DocumentResource(googleapiclient.discovery.Resource):
             def operations(self) -> OperationsResource: ...
             def processorTypes(self) -> ProcessorTypesResource: ...
             def processors(self) -> ProcessorsResource: ...
+            def schemas(self) -> SchemasResource: ...
 
         @typing.type_check_only
         class OperationsResource(googleapiclient.discovery.Resource):
@@ -308,6 +398,16 @@ class GoogleCloudDocumentaiV1FetchProcessorTypesResponseHttpRequest(
     ) -> GoogleCloudDocumentaiV1FetchProcessorTypesResponse: ...
 
 @typing.type_check_only
+class GoogleCloudDocumentaiV1GenerateSchemaVersionResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudDocumentaiV1GenerateSchemaVersionResponse: ...
+
+@typing.type_check_only
 class GoogleCloudDocumentaiV1ListEvaluationsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -348,6 +448,34 @@ class GoogleCloudDocumentaiV1ListProcessorsResponseHttpRequest(
     ) -> GoogleCloudDocumentaiV1ListProcessorsResponse: ...
 
 @typing.type_check_only
+class GoogleCloudDocumentaiV1ListSchemaVersionsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudDocumentaiV1ListSchemaVersionsResponse: ...
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1ListSchemasResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudDocumentaiV1ListSchemasResponse: ...
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1NextSchemaHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudDocumentaiV1NextSchema: ...
+
+@typing.type_check_only
 class GoogleCloudDocumentaiV1ProcessResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -382,6 +510,14 @@ class GoogleCloudDocumentaiV1ProcessorVersionHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudDocumentaiV1ProcessorVersion: ...
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1SchemaVersionHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudDocumentaiV1SchemaVersion: ...
 
 @typing.type_check_only
 class GoogleCloudLocationListLocationsResponseHttpRequest(

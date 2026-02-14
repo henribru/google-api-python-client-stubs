@@ -151,9 +151,20 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
 
     @typing.type_check_only
     class InstancesResource(googleapiclient.discovery.Resource):
+        def ListEntraIdCertificates(
+            self, *, project: str, instance: str, **kwargs: typing.Any
+        ) -> InstancesListEntraIdCertificatesResponseHttpRequest: ...
         def ListServerCertificates(
             self, *, project: str, instance: str, **kwargs: typing.Any
         ) -> InstancesListServerCertificatesResponseHttpRequest: ...
+        def RotateEntraIdCertificate(
+            self,
+            *,
+            project: str,
+            instance: str,
+            body: InstancesRotateEntraIdCertificateRequest = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
         def RotateServerCertificate(
             self,
             *,
@@ -170,6 +181,9 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
             body: InstancesAcquireSsrsLeaseRequest = ...,
             **kwargs: typing.Any,
         ) -> SqlInstancesAcquireSsrsLeaseResponseHttpRequest: ...
+        def addEntraIdCertificate(
+            self, *, project: str, instance: str, **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
         def addServerCa(
             self, *, project: str, instance: str, **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
@@ -327,6 +341,14 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
             project: str,
             instance: str,
             body: InstancesRestoreBackupRequest = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
+        def restoreBackupMcp(
+            self,
+            *,
+            targetProject: str,
+            targetInstance: str,
+            body: SqlInstancesRestoreBackupMcpRequest = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def rotateServerCa(
@@ -525,6 +547,7 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
             project: str,
             instance: str,
             body: User = ...,
+            databaseRoles: str | _list[str] = ...,
             host: str = ...,
             name: str = ...,
             **kwargs: typing.Any,
@@ -633,6 +656,16 @@ class GenerateEphemeralCertResponseHttpRequest(googleapiclient.http.HttpRequest)
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GenerateEphemeralCertResponse: ...
+
+@typing.type_check_only
+class InstancesListEntraIdCertificatesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> InstancesListEntraIdCertificatesResponse: ...
 
 @typing.type_check_only
 class InstancesListResponseHttpRequest(googleapiclient.http.HttpRequest):

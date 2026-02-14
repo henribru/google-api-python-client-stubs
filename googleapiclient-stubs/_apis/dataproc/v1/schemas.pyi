@@ -293,6 +293,7 @@ class ClusterConfig(typing_extensions.TypedDict, total=False):
     ]
     configBucket: str
     dataprocMetricConfig: DataprocMetricConfig
+    diagnosticBucket: str
     encryptionConfig: EncryptionConfig
     endpointConfig: EndpointConfig
     gceClusterConfig: GceClusterConfig
@@ -569,6 +570,7 @@ class FlinkJob(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GceClusterConfig(typing_extensions.TypedDict, total=False):
+    autoZoneExcludeZoneUris: _list[str]
     confidentialInstanceConfig: ConfidentialInstanceConfig
     internalIpOnly: bool
     metadata: dict[str, typing.Any]
@@ -1612,6 +1614,39 @@ class SparkBatch(typing_extensions.TypedDict, total=False):
 class SparkConnectConfig(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class SparkConnectExecutionInfo(typing_extensions.TypedDict, total=False):
+    closeTimestamp: str
+    detail: str
+    finishTimestamp: str
+    jobIds: _list[str]
+    jobTag: str
+    operationId: str
+    sessionId: str
+    sparkSessionTags: _list[str]
+    sqlExecIds: _list[str]
+    startTimestamp: str
+    state: typing_extensions.Literal[
+        "EXECUTION_STATE_UNKNOWN",
+        "EXECUTION_STATE_STARTED",
+        "EXECUTION_STATE_COMPILED",
+        "EXECUTION_STATE_READY",
+        "EXECUTION_STATE_CANCELED",
+        "EXECUTION_STATE_FAILED",
+        "EXECUTION_STATE_FINISHED",
+        "EXECUTION_STATE_CLOSED",
+    ]
+    statement: str
+    userId: str
+
+@typing.type_check_only
+class SparkConnectSessionInfo(typing_extensions.TypedDict, total=False):
+    finishTimestamp: str
+    sessionId: str
+    startTimestamp: str
+    totalExecution: str
+    userId: str
+
+@typing.type_check_only
 class SparkHistoryServerConfig(typing_extensions.TypedDict, total=False):
     dataprocCluster: str
 
@@ -1720,6 +1755,8 @@ class SparkWrapperObject(typing_extensions.TypedDict, total=False):
     rddOperationGraph: RddOperationGraph
     rddStorageInfo: RddStorageInfo
     resourceProfileInfo: ResourceProfileInfo
+    sparkConnectExecutionInfo: SparkConnectExecutionInfo
+    sparkConnectSessionInfo: SparkConnectSessionInfo
     sparkPlanGraph: SparkPlanGraph
     speculationStageSummary: SpeculationStageSummary
     sqlExecutionUiData: SqlExecutionUiData

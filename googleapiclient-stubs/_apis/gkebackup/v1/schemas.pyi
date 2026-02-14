@@ -17,6 +17,51 @@ class AuditLogConfig(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class BDRBackupPlanJobLog(typing_extensions.TypedDict, total=False):
+    backupPlanName: str
+    endTime: str
+    errorCode: int
+    errorMessage: str
+    errorType: str
+    jobCategory: str
+    jobId: str
+    jobStatus: str
+    newBackupPlanRevisionId: str
+    newBackupPlanRevisionName: str
+    previousBackupPlanRevisionId: str
+    previousBackupPlanRevisionName: str
+    previousBackupRules: _list[BackupRuleDetail]
+    resourceType: str
+    revisedBackupRules: _list[BackupRuleDetail]
+    startTime: str
+    workloadsAffectedCount: int
+
+@typing.type_check_only
+class BDRBackupRestoreJobLog(typing_extensions.TypedDict, total=False):
+    backupConsistencyTime: str
+    backupName: str
+    backupPlanName: str
+    backupRetentionDays: int
+    backupRule: str
+    backupVaultName: str
+    endTime: str
+    errorCode: int
+    errorMessage: str
+    errorType: str
+    incrementalBackupSizeGib: float
+    jobCategory: str
+    jobId: str
+    jobStatus: str
+    recoveryPointTime: str
+    resourceType: str
+    restoreResourceLocation: str
+    restoreResourceName: str
+    sourceResourceId: str
+    sourceResourceLocation: str
+    sourceResourceName: str
+    startTime: str
+
+@typing.type_check_only
 class Backup(typing_extensions.TypedDict, total=False):
     allNamespaces: bool
     clusterMetadata: ClusterMetadata
@@ -151,6 +196,15 @@ class BackupPlanDetails(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class BackupRuleDetail(typing_extensions.TypedDict, total=False):
+    backupWindow: str
+    backupWindowTimezone: str
+    recurrence: str
+    recurrenceSchedule: str
+    retentionDays: int
+    ruleName: str
+
+@typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
     condition: Expr
     members: _list[str]
@@ -222,6 +276,16 @@ class Filter(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GetBackupIndexDownloadUrlResponse(typing_extensions.TypedDict, total=False):
     signedUrl: str
+
+@typing.type_check_only
+class GetTagsRequest(typing_extensions.TypedDict, total=False):
+    name: str
+
+@typing.type_check_only
+class GetTagsResponse(typing_extensions.TypedDict, total=False):
+    etag: str
+    name: str
+    tags: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleLongrunningCancelOperationRequest(
@@ -515,6 +579,19 @@ class Schedule(typing_extensions.TypedDict, total=False):
 class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
     policy: Policy
     updateMask: str
+
+@typing.type_check_only
+class SetTagsRequest(typing_extensions.TypedDict, total=False):
+    etag: str
+    name: str
+    requestId: str
+    tags: dict[str, typing.Any]
+
+@typing.type_check_only
+class SetTagsResponse(typing_extensions.TypedDict, total=False):
+    etag: str
+    name: str
+    tags: dict[str, typing.Any]
 
 @typing.type_check_only
 class SubstitutionRule(typing_extensions.TypedDict, total=False):

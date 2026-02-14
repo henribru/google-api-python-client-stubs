@@ -563,6 +563,7 @@ class FhirStoreMetric(typing_extensions.TypedDict, total=False):
     count: str
     resourceType: str
     structuredStorageSizeBytes: str
+    versionedStorageSizeBytes: str
 
 @typing.type_check_only
 class FhirStoreMetrics(typing_extensions.TypedDict, total=False):
@@ -652,11 +653,20 @@ class GoogleCloudHealthcareV1beta1DeidentifyOptions(
 class GoogleCloudHealthcareV1beta1DicomBigQueryDestination(
     typing_extensions.TypedDict, total=False
 ):
+    changeDataCaptureConfig: GoogleCloudHealthcareV1beta1DicomChangeDataCaptureConfig
     force: bool
+    includeSourceStore: bool
+    schemaFlattened: SchemaFlattened
+    schemaJson: SchemaJSON
     tableUri: str
     writeDisposition: typing_extensions.Literal[
         "WRITE_DISPOSITION_UNSPECIFIED", "WRITE_EMPTY", "WRITE_TRUNCATE", "WRITE_APPEND"
     ]
+
+@typing.type_check_only
+class GoogleCloudHealthcareV1beta1DicomChangeDataCaptureConfig(
+    typing_extensions.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class GoogleCloudHealthcareV1beta1DicomGcsDestination(
@@ -1112,12 +1122,18 @@ class SchemaConfig(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class SchemaFlattened(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class SchemaGroup(typing_extensions.TypedDict, total=False):
     choice: bool
     maxOccurs: int
     members: _list[GroupOrSegment]
     minOccurs: int
     name: str
+
+@typing.type_check_only
+class SchemaJSON(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class SchemaPackage(typing_extensions.TypedDict, total=False):
@@ -1150,10 +1166,6 @@ class SearchConfig(typing_extensions.TypedDict, total=False):
 class SearchParameter(typing_extensions.TypedDict, total=False):
     canonicalUrl: str
     parameter: str
-
-@typing.type_check_only
-class SearchResourcesRequest(typing_extensions.TypedDict, total=False):
-    resourceType: str
 
 @typing.type_check_only
 class Segment(typing_extensions.TypedDict, total=False):
@@ -1283,6 +1295,7 @@ class ValidationConfig(typing_extensions.TypedDict, total=False):
     disableProfileValidation: bool
     disableReferenceTypeValidation: bool
     disableRequiredFieldValidation: bool
+    enableFhirpathProfileValidation: bool
     enabledImplementationGuides: _list[str]
 
 @typing.type_check_only

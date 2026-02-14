@@ -58,6 +58,10 @@ class DenyMaintenancePeriod(typing_extensions.TypedDict, total=False):
     time: TimeOfDay
 
 @typing.type_check_only
+class DirectoryServicesConfig(typing_extensions.TypedDict, total=False):
+    ldap: LdapConfig
+
+@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -183,6 +187,7 @@ class Instance(typing_extensions.TypedDict, total=False):
     deletionProtectionEnabled: bool
     deletionProtectionReason: str
     description: str
+    directoryServices: DirectoryServicesConfig
     etag: str
     fileShares: _list[FileShareConfig]
     kmsKeyName: str
@@ -231,6 +236,13 @@ class Instance(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class LdapConfig(typing_extensions.TypedDict, total=False):
+    domain: str
+    groupsOu: str
+    servers: _list[str]
+    usersOu: str
+
+@typing.type_check_only
 class ListBackupsResponse(typing_extensions.TypedDict, total=False):
     backups: _list[Backup]
     nextPageToken: str
@@ -251,6 +263,7 @@ class ListLocationsResponse(typing_extensions.TypedDict, total=False):
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListSnapshotsResponse(typing_extensions.TypedDict, total=False):
@@ -290,7 +303,9 @@ class NetworkConfig(typing_extensions.TypedDict, total=False):
         "PRIVATE_SERVICE_CONNECT",
     ]
     ipAddresses: _list[str]
-    modes: _list[typing_extensions.Literal["ADDRESS_MODE_UNSPECIFIED", "MODE_IPV4"]]
+    modes: _list[
+        typing_extensions.Literal["ADDRESS_MODE_UNSPECIFIED", "MODE_IPV4", "MODE_IPV6"]
+    ]
     network: str
     pscConfig: PscConfig
     reservedIpRange: str
@@ -325,6 +340,9 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     statusDetail: str
     target: str
     verb: str
+
+@typing.type_check_only
+class PauseReplicaRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class PerformanceConfig(typing_extensions.TypedDict, total=False):
@@ -382,6 +400,9 @@ class Replication(typing_extensions.TypedDict, total=False):
 class RestoreInstanceRequest(typing_extensions.TypedDict, total=False):
     fileShare: str
     sourceBackup: str
+
+@typing.type_check_only
+class ResumeReplicaRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class RevertInstanceRequest(typing_extensions.TypedDict, total=False):

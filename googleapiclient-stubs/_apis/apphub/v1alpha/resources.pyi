@@ -245,6 +245,25 @@ class AppHubResource(googleapiclient.discovery.Resource):
                 ) -> LookupDiscoveredWorkloadResponseHttpRequest: ...
 
             @typing.type_check_only
+            class ExtendedMetadataSchemasResource(googleapiclient.discovery.Resource):
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> ExtendedMetadataSchemaHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListExtendedMetadataSchemasResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListExtendedMetadataSchemasResponseHttpRequest,
+                    previous_response: ListExtendedMetadataSchemasResponse,
+                ) -> ListExtendedMetadataSchemasResponseHttpRequest | None: ...
+
+            @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def cancel(
                     self,
@@ -318,6 +337,9 @@ class AppHubResource(googleapiclient.discovery.Resource):
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
+            def getBoundary(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> BoundaryHttpRequest: ...
             def list(
                 self,
                 *,
@@ -336,9 +358,19 @@ class AppHubResource(googleapiclient.discovery.Resource):
             def lookupServiceProjectAttachment(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LookupServiceProjectAttachmentResponseHttpRequest: ...
+            def updateBoundary(
+                self,
+                *,
+                name: str,
+                body: Boundary = ...,
+                requestId: str = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any,
+            ) -> OperationHttpRequest: ...
             def applications(self) -> ApplicationsResource: ...
             def discoveredServices(self) -> DiscoveredServicesResource: ...
             def discoveredWorkloads(self) -> DiscoveredWorkloadsResource: ...
+            def extendedMetadataSchemas(self) -> ExtendedMetadataSchemasResource: ...
             def operations(self) -> OperationsResource: ...
             def serviceProjectAttachments(
                 self,
@@ -367,6 +399,14 @@ class ApplicationHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Application: ...
+
+@typing.type_check_only
+class BoundaryHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> Boundary: ...
 
 @typing.type_check_only
 class DetachServiceProjectAttachmentResponseHttpRequest(
@@ -401,6 +441,14 @@ class EmptyHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Empty: ...
+
+@typing.type_check_only
+class ExtendedMetadataSchemaHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ExtendedMetadataSchema: ...
 
 @typing.type_check_only
 class FindUnregisteredServicesResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -441,6 +489,14 @@ class ListDiscoveredWorkloadsResponseHttpRequest(googleapiclient.http.HttpReques
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListDiscoveredWorkloadsResponse: ...
+
+@typing.type_check_only
+class ListExtendedMetadataSchemasResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListExtendedMetadataSchemasResponse: ...
 
 @typing.type_check_only
 class ListLocationsResponseHttpRequest(googleapiclient.http.HttpRequest):

@@ -329,6 +329,12 @@ class AdsenseResource(googleapiclient.discovery.Resource):
                     "CUSTOM_SEARCH_STYLE_ID",
                     "DOMAIN_REGISTRANT",
                     "WEBSEARCH_QUERY_STRING",
+                    "OS_TYPE_NAME",
+                    "OS_TYPE_CODE",
+                    "BROWSER_TYPE_NAME",
+                    "BROWSER_TYPE_CODE",
+                    "WEBVIEW_TYPE_NAME",
+                    "WEBVIEW_TYPE_CODE",
                 ]
                 | _list[
                     typing_extensions.Literal[
@@ -383,6 +389,12 @@ class AdsenseResource(googleapiclient.discovery.Resource):
                         "CUSTOM_SEARCH_STYLE_ID",
                         "DOMAIN_REGISTRANT",
                         "WEBSEARCH_QUERY_STRING",
+                        "OS_TYPE_NAME",
+                        "OS_TYPE_CODE",
+                        "BROWSER_TYPE_NAME",
+                        "BROWSER_TYPE_CODE",
+                        "WEBVIEW_TYPE_NAME",
+                        "WEBVIEW_TYPE_CODE",
                     ]
                 ] = ...,
                 endDate_day: int = ...,
@@ -549,6 +561,12 @@ class AdsenseResource(googleapiclient.discovery.Resource):
                     "CUSTOM_SEARCH_STYLE_ID",
                     "DOMAIN_REGISTRANT",
                     "WEBSEARCH_QUERY_STRING",
+                    "OS_TYPE_NAME",
+                    "OS_TYPE_CODE",
+                    "BROWSER_TYPE_NAME",
+                    "BROWSER_TYPE_CODE",
+                    "WEBVIEW_TYPE_NAME",
+                    "WEBVIEW_TYPE_CODE",
                 ]
                 | _list[
                     typing_extensions.Literal[
@@ -603,6 +621,12 @@ class AdsenseResource(googleapiclient.discovery.Resource):
                         "CUSTOM_SEARCH_STYLE_ID",
                         "DOMAIN_REGISTRANT",
                         "WEBSEARCH_QUERY_STRING",
+                        "OS_TYPE_NAME",
+                        "OS_TYPE_CODE",
+                        "BROWSER_TYPE_NAME",
+                        "BROWSER_TYPE_CODE",
+                        "WEBVIEW_TYPE_NAME",
+                        "WEBVIEW_TYPE_CODE",
                     ]
                 ] = ...,
                 endDate_day: int = ...,

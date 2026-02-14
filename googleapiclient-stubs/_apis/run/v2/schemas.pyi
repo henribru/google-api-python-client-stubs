@@ -47,6 +47,12 @@ class GoogleCloudRunV2CloudSqlInstance(typing_extensions.TypedDict, total=False)
     instances: _list[str]
 
 @typing.type_check_only
+class GoogleCloudRunV2CloudStorageSource(typing_extensions.TypedDict, total=False):
+    bucket: str
+    generation: str
+    object: str
+
+@typing.type_check_only
 class GoogleCloudRunV2Condition(typing_extensions.TypedDict, total=False):
     executionReason: typing_extensions.Literal[
         "EXECUTION_REASON_UNDEFINED",
@@ -55,6 +61,7 @@ class GoogleCloudRunV2Condition(typing_extensions.TypedDict, total=False):
         "CANCELLED",
         "CANCELLING",
         "DELETED",
+        "DELAYED_START_PENDING",
     ]
     lastTransitionTime: str
     message: str
@@ -115,7 +122,9 @@ class GoogleCloudRunV2Container(typing_extensions.TypedDict, total=False):
     livenessProbe: GoogleCloudRunV2Probe
     name: str
     ports: _list[GoogleCloudRunV2ContainerPort]
+    readinessProbe: GoogleCloudRunV2Probe
     resources: GoogleCloudRunV2ResourceRequirements
+    sourceCode: GoogleCloudRunV2SourceCode
     startupProbe: GoogleCloudRunV2Probe
     volumeMounts: _list[GoogleCloudRunV2VolumeMount]
     workingDir: str
@@ -130,6 +139,11 @@ class GoogleCloudRunV2ContainerOverride(typing_extensions.TypedDict, total=False
 @typing.type_check_only
 class GoogleCloudRunV2ContainerPort(typing_extensions.TypedDict, total=False):
     containerPort: int
+    name: str
+
+@typing.type_check_only
+class GoogleCloudRunV2ContainerStatus(typing_extensions.TypedDict, total=False):
+    imageDigest: str
     name: str
 
 @typing.type_check_only
@@ -154,6 +168,8 @@ class GoogleCloudRunV2EnvVarSource(typing_extensions.TypedDict, total=False):
 class GoogleCloudRunV2Execution(typing_extensions.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     cancelledCount: int
+    client: str
+    clientVersion: str
     completionTime: str
     conditions: _list[GoogleCloudRunV2Condition]
     createTime: str
@@ -208,6 +224,8 @@ class GoogleCloudRunV2ExecutionReference(typing_extensions.TypedDict, total=Fals
 @typing.type_check_only
 class GoogleCloudRunV2ExecutionTemplate(typing_extensions.TypedDict, total=False):
     annotations: dict[str, typing.Any]
+    client: str
+    clientVersion: str
     labels: dict[str, typing.Any]
     parallelism: int
     taskCount: int
@@ -259,6 +277,63 @@ class GoogleCloudRunV2ImageExportStatus(typing_extensions.TypedDict, total=False
     exportedImageDigest: str
     status: UtilStatusProto
     tag: str
+
+@typing.type_check_only
+class GoogleCloudRunV2Instance(typing_extensions.TypedDict, total=False):
+    annotations: dict[str, typing.Any]
+    binaryAuthorization: GoogleCloudRunV2BinaryAuthorization
+    client: str
+    clientVersion: str
+    conditions: _list[GoogleCloudRunV2Condition]
+    containerStatuses: _list[GoogleCloudRunV2ContainerStatus]
+    containers: _list[GoogleCloudRunV2Container]
+    createTime: str
+    creator: str
+    deleteTime: str
+    description: str
+    encryptionKey: str
+    encryptionKeyRevocationAction: typing_extensions.Literal[
+        "ENCRYPTION_KEY_REVOCATION_ACTION_UNSPECIFIED", "PREVENT_NEW", "SHUTDOWN"
+    ]
+    encryptionKeyShutdownDuration: str
+    etag: str
+    expireTime: str
+    generation: str
+    gpuZonalRedundancyDisabled: bool
+    iapEnabled: bool
+    ingress: typing_extensions.Literal[
+        "INGRESS_TRAFFIC_UNSPECIFIED",
+        "INGRESS_TRAFFIC_ALL",
+        "INGRESS_TRAFFIC_INTERNAL_ONLY",
+        "INGRESS_TRAFFIC_INTERNAL_LOAD_BALANCER",
+        "INGRESS_TRAFFIC_NONE",
+    ]
+    invokerIamDisabled: bool
+    labels: dict[str, typing.Any]
+    lastModifier: str
+    launchStage: typing_extensions.Literal[
+        "LAUNCH_STAGE_UNSPECIFIED",
+        "UNIMPLEMENTED",
+        "PRELAUNCH",
+        "EARLY_ACCESS",
+        "ALPHA",
+        "BETA",
+        "GA",
+        "DEPRECATED",
+    ]
+    logUri: str
+    name: str
+    nodeSelector: GoogleCloudRunV2NodeSelector
+    observedGeneration: str
+    reconciling: bool
+    satisfiesPzs: bool
+    serviceAccount: str
+    terminalCondition: GoogleCloudRunV2Condition
+    uid: str
+    updateTime: str
+    urls: _list[str]
+    volumes: _list[GoogleCloudRunV2Volume]
+    vpcAccess: GoogleCloudRunV2VpcAccess
 
 @typing.type_check_only
 class GoogleCloudRunV2InstanceSplit(typing_extensions.TypedDict, total=False):
@@ -324,6 +399,11 @@ class GoogleCloudRunV2ListExecutionsResponse(typing_extensions.TypedDict, total=
     nextPageToken: str
 
 @typing.type_check_only
+class GoogleCloudRunV2ListInstancesResponse(typing_extensions.TypedDict, total=False):
+    instances: _list[GoogleCloudRunV2Instance]
+    nextPageToken: str
+
+@typing.type_check_only
 class GoogleCloudRunV2ListJobsResponse(typing_extensions.TypedDict, total=False):
     jobs: _list[GoogleCloudRunV2Job]
     nextPageToken: str
@@ -337,6 +417,7 @@ class GoogleCloudRunV2ListRevisionsResponse(typing_extensions.TypedDict, total=F
 class GoogleCloudRunV2ListServicesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     services: _list[GoogleCloudRunV2Service]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class GoogleCloudRunV2ListTasksResponse(typing_extensions.TypedDict, total=False):
@@ -398,6 +479,8 @@ class GoogleCloudRunV2ResourceRequirements(typing_extensions.TypedDict, total=Fa
 @typing.type_check_only
 class GoogleCloudRunV2Revision(typing_extensions.TypedDict, total=False):
     annotations: dict[str, typing.Any]
+    client: str
+    clientVersion: str
     conditions: _list[GoogleCloudRunV2Condition]
     containers: _list[GoogleCloudRunV2Container]
     createTime: str
@@ -459,6 +542,8 @@ class GoogleCloudRunV2RevisionScalingStatus(typing_extensions.TypedDict, total=F
 @typing.type_check_only
 class GoogleCloudRunV2RevisionTemplate(typing_extensions.TypedDict, total=False):
     annotations: dict[str, typing.Any]
+    client: str
+    clientVersion: str
     containers: _list[GoogleCloudRunV2Container]
     encryptionKey: str
     encryptionKeyRevocationAction: typing_extensions.Literal[
@@ -569,6 +654,20 @@ class GoogleCloudRunV2ServiceScaling(typing_extensions.TypedDict, total=False):
     scalingMode: typing_extensions.Literal[
         "SCALING_MODE_UNSPECIFIED", "AUTOMATIC", "MANUAL"
     ]
+
+@typing.type_check_only
+class GoogleCloudRunV2SourceCode(typing_extensions.TypedDict, total=False):
+    cloudStorageSource: GoogleCloudRunV2CloudStorageSource
+
+@typing.type_check_only
+class GoogleCloudRunV2StartInstanceRequest(typing_extensions.TypedDict, total=False):
+    etag: str
+    validateOnly: bool
+
+@typing.type_check_only
+class GoogleCloudRunV2StopInstanceRequest(typing_extensions.TypedDict, total=False):
+    etag: str
+    validateOnly: bool
 
 @typing.type_check_only
 class GoogleCloudRunV2StorageSource(typing_extensions.TypedDict, total=False):
@@ -761,6 +860,7 @@ class GoogleCloudRunV2WorkerPool(typing_extensions.TypedDict, total=False):
     scaling: GoogleCloudRunV2WorkerPoolScaling
     template: GoogleCloudRunV2WorkerPoolRevisionTemplate
     terminalCondition: GoogleCloudRunV2Condition
+    threatDetectionEnabled: bool
     uid: str
     updateTime: str
 
@@ -769,6 +869,8 @@ class GoogleCloudRunV2WorkerPoolRevisionTemplate(
     typing_extensions.TypedDict, total=False
 ):
     annotations: dict[str, typing.Any]
+    client: str
+    clientVersion: str
     containers: _list[GoogleCloudRunV2Container]
     encryptionKey: str
     encryptionKeyRevocationAction: typing_extensions.Literal[
@@ -956,6 +1058,7 @@ class GoogleDevtoolsCloudbuildV1BuildStep(typing_extensions.TypedDict, total=Fal
 
 @typing.type_check_only
 class GoogleDevtoolsCloudbuildV1BuiltImage(typing_extensions.TypedDict, total=False):
+    artifactRegistryPackage: str
     digest: str
     name: str
     pushTiming: GoogleDevtoolsCloudbuildV1TimeSpan
@@ -1051,6 +1154,7 @@ class GoogleDevtoolsCloudbuildV1InlineSecret(typing_extensions.TypedDict, total=
 @typing.type_check_only
 class GoogleDevtoolsCloudbuildV1MavenArtifact(typing_extensions.TypedDict, total=False):
     artifactId: str
+    deployFolder: str
     groupId: str
     path: str
     repository: str
@@ -1157,6 +1261,7 @@ class GoogleDevtoolsCloudbuildV1TimeSpan(typing_extensions.TypedDict, total=Fals
 class GoogleDevtoolsCloudbuildV1UploadedGoModule(
     typing_extensions.TypedDict, total=False
 ):
+    artifactRegistryPackage: str
     fileHashes: GoogleDevtoolsCloudbuildV1FileHashes
     pushTiming: GoogleDevtoolsCloudbuildV1TimeSpan
     uri: str
@@ -1165,6 +1270,7 @@ class GoogleDevtoolsCloudbuildV1UploadedGoModule(
 class GoogleDevtoolsCloudbuildV1UploadedMavenArtifact(
     typing_extensions.TypedDict, total=False
 ):
+    artifactRegistryPackage: str
     fileHashes: GoogleDevtoolsCloudbuildV1FileHashes
     pushTiming: GoogleDevtoolsCloudbuildV1TimeSpan
     uri: str
@@ -1173,6 +1279,7 @@ class GoogleDevtoolsCloudbuildV1UploadedMavenArtifact(
 class GoogleDevtoolsCloudbuildV1UploadedNpmPackage(
     typing_extensions.TypedDict, total=False
 ):
+    artifactRegistryPackage: str
     fileHashes: GoogleDevtoolsCloudbuildV1FileHashes
     pushTiming: GoogleDevtoolsCloudbuildV1TimeSpan
     uri: str
@@ -1181,6 +1288,7 @@ class GoogleDevtoolsCloudbuildV1UploadedNpmPackage(
 class GoogleDevtoolsCloudbuildV1UploadedPythonPackage(
     typing_extensions.TypedDict, total=False
 ):
+    artifactRegistryPackage: str
     fileHashes: GoogleDevtoolsCloudbuildV1FileHashes
     pushTiming: GoogleDevtoolsCloudbuildV1TimeSpan
     uri: str

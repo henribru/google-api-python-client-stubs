@@ -90,6 +90,13 @@ class CCAIPlatformResource(googleapiclient.discovery.Resource):
                     previous_response: ListOperationsResponse,
                 ) -> ListOperationsResponseHttpRequest | None: ...
 
+            def generateShifts(
+                self,
+                *,
+                parent: str,
+                body: GenerateShiftsRequest = ...,
+                **kwargs: typing.Any,
+            ) -> OperationHttpRequest: ...
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...

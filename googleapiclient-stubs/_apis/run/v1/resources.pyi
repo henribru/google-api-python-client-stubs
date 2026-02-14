@@ -120,6 +120,50 @@ class CloudRunResource(googleapiclient.discovery.Resource):
             ) -> ListExecutionsResponseHttpRequest: ...
 
         @typing.type_check_only
+        class InstancesResource(googleapiclient.discovery.Resource):
+            def create(
+                self, *, parent: str, body: Instance = ..., **kwargs: typing.Any
+            ) -> InstanceHttpRequest: ...
+            def delete(
+                self,
+                *,
+                name: str,
+                apiVersion: str = ...,
+                kind: str = ...,
+                propagationPolicy: str = ...,
+                **kwargs: typing.Any,
+            ) -> StatusHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> InstanceHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                fieldSelector: str = ...,
+                includeUninitialized: bool = ...,
+                labelSelector: str = ...,
+                limit: int = ...,
+                resourceVersion: str = ...,
+                watch: bool = ...,
+                **kwargs: typing.Any,
+            ) -> ListInstancesResponseHttpRequest: ...
+            def start(
+                self,
+                *,
+                name: str,
+                body: StartInstanceRequest = ...,
+                **kwargs: typing.Any,
+            ) -> InstanceHttpRequest: ...
+            def stop(
+                self,
+                *,
+                name: str,
+                body: StopInstanceRequest = ...,
+                **kwargs: typing.Any,
+            ) -> InstanceHttpRequest: ...
+
+        @typing.type_check_only
         class JobsResource(googleapiclient.discovery.Resource):
             def create(
                 self, *, parent: str, body: Job = ..., **kwargs: typing.Any
@@ -292,6 +336,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
         def configurations(self) -> ConfigurationsResource: ...
         def domainmappings(self) -> DomainmappingsResource: ...
         def executions(self) -> ExecutionsResource: ...
+        def instances(self) -> InstancesResource: ...
         def jobs(self) -> JobsResource: ...
         def revisions(self) -> RevisionsResource: ...
         def routes(self) -> RoutesResource: ...
@@ -388,6 +433,30 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                     watch: bool = ...,
                     **kwargs: typing.Any,
                 ) -> ListDomainMappingsResponseHttpRequest: ...
+
+            @typing.type_check_only
+            class InstancesResource(googleapiclient.discovery.Resource):
+                def getIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    options_requestedPolicyVersion: int = ...,
+                    **kwargs: typing.Any,
+                ) -> PolicyHttpRequest: ...
+                def setIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    body: SetIamPolicyRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> PolicyHttpRequest: ...
+                def testIamPermissions(
+                    self,
+                    *,
+                    resource: str,
+                    body: TestIamPermissionsRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> TestIamPermissionsResponseHttpRequest: ...
 
             @typing.type_check_only
             class JobsResource(googleapiclient.discovery.Resource):
@@ -597,6 +666,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
             def authorizeddomains(self) -> AuthorizeddomainsResource: ...
             def configurations(self) -> ConfigurationsResource: ...
             def domainmappings(self) -> DomainmappingsResource: ...
+            def instances(self) -> InstancesResource: ...
             def jobs(self) -> JobsResource: ...
             def operations(self) -> OperationsResource: ...
             def revisions(self) -> RevisionsResource: ...
@@ -673,6 +743,14 @@ class GoogleLongrunningOperationHttpRequest(googleapiclient.http.HttpRequest):
     ) -> GoogleLongrunningOperation: ...
 
 @typing.type_check_only
+class InstanceHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> Instance: ...
+
+@typing.type_check_only
 class JobHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -711,6 +789,14 @@ class ListExecutionsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListExecutionsResponse: ...
+
+@typing.type_check_only
+class ListInstancesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListInstancesResponse: ...
 
 @typing.type_check_only
 class ListJobsResponseHttpRequest(googleapiclient.http.HttpRequest):

@@ -53,6 +53,10 @@ class Binding(typing_extensions.TypedDict, total=False):
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class ClusterSelector(typing_extensions.TypedDict, total=False):
+    labelSelector: str
+
+@typing.type_check_only
 class ClusterUpgradeFleetSpec(typing_extensions.TypedDict, total=False):
     gkeUpgradeOverrides: _list[ClusterUpgradeGKEUpgradeOverride]
     postConditions: ClusterUpgradePostConditions
@@ -135,6 +139,7 @@ class CommonFeatureSpec(typing_extensions.TypedDict, total=False):
     fleetobservability: FleetObservabilityFeatureSpec
     multiclusteringress: MultiClusterIngressFeatureSpec
     rbacrolebindingactuation: RBACRoleBindingActuationFeatureSpec
+    workloadidentity: WorkloadIdentityFeatureSpec
 
 @typing.type_check_only
 class CommonFeatureState(typing_extensions.TypedDict, total=False):
@@ -143,6 +148,7 @@ class CommonFeatureState(typing_extensions.TypedDict, total=False):
     fleetobservability: FleetObservabilityFeatureState
     rbacrolebindingactuation: RBACRoleBindingActuationFeatureState
     state: FeatureState
+    workloadidentity: WorkloadIdentityFeatureState
 
 @typing.type_check_only
 class CommonFleetDefaultMemberConfigSpec(typing_extensions.TypedDict, total=False):
@@ -481,6 +487,16 @@ class EdgeCluster(typing_extensions.TypedDict, total=False):
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class ExcludedCluster(typing_extensions.TypedDict, total=False):
+    membership: str
+    reason: typing_extensions.Literal[
+        "REASON_UNSPECIFIED",
+        "EXCLUDED_BY_FILTER",
+        "ALREADY_UPGRADED",
+        "VERSION_TOO_OLD",
+    ]
+
+@typing.type_check_only
 class Expr(typing_extensions.TypedDict, total=False):
     description: str
     expression: str
@@ -520,6 +536,11 @@ class FeatureState(typing_extensions.TypedDict, total=False):
     code: typing_extensions.Literal["CODE_UNSPECIFIED", "OK", "WARNING", "ERROR"]
     description: str
     updateTime: str
+
+@typing.type_check_only
+class FeatureUpdate(typing_extensions.TypedDict, total=False):
+    binaryAuthorizationConfig: BinaryAuthorizationConfig
+    securityPostureConfig: SecurityPostureConfig
 
 @typing.type_check_only
 class Fleet(typing_extensions.TypedDict, total=False):
@@ -786,6 +807,16 @@ class ListPermittedScopesResponse(typing_extensions.TypedDict, total=False):
     scopes: _list[Scope]
 
 @typing.type_check_only
+class ListRolloutSequencesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    rolloutSequences: _list[RolloutSequence]
+
+@typing.type_check_only
+class ListRolloutsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    rollouts: _list[Rollout]
+
+@typing.type_check_only
 class ListScopeNamespacesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     scopeNamespaces: _list[Namespace]
@@ -879,6 +910,7 @@ class MembershipFeatureState(typing_extensions.TypedDict, total=False):
     policycontroller: PolicyControllerMembershipState
     servicemesh: ServiceMeshMembershipState
     state: FeatureState
+    workloadidentity: WorkloadIdentityMembershipState
 
 @typing.type_check_only
 class MembershipSpec(typing_extensions.TypedDict, total=False):
@@ -1148,6 +1180,83 @@ class Role(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class Rollout(typing_extensions.TypedDict, total=False):
+    completeTime: str
+    createTime: str
+    deleteTime: str
+    displayName: str
+    etag: str
+    excludedClusters: _list[ExcludedCluster]
+    feature: FeatureUpdate
+    labels: dict[str, typing.Any]
+    membershipStates: dict[str, typing.Any]
+    name: str
+    rolloutSequence: str
+    schedule: Schedule
+    stages: _list[RolloutStage]
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "RUNNING", "PAUSED", "CANCELLED", "COMPLETED", "SCHEDULED"
+    ]
+    stateReason: str
+    uid: str
+    updateTime: str
+    versionUpgrade: VersionUpgrade
+
+@typing.type_check_only
+class RolloutMembershipState(typing_extensions.TypedDict, total=False):
+    lastUpdateTime: str
+    stageAssignment: int
+    targets: _list[RolloutTarget]
+
+@typing.type_check_only
+class RolloutSequence(typing_extensions.TypedDict, total=False):
+    createTime: str
+    deleteTime: str
+    displayName: str
+    etag: str
+    labels: dict[str, typing.Any]
+    name: str
+    stages: _list[Stage]
+    uid: str
+    updateTime: str
+
+@typing.type_check_only
+class RolloutStage(typing_extensions.TypedDict, total=False):
+    endTime: str
+    soakDuration: str
+    stageNumber: int
+    startTime: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "PENDING",
+        "RUNNING",
+        "SOAKING",
+        "COMPLETED",
+        "FORCED_SOAKING",
+    ]
+
+@typing.type_check_only
+class RolloutTarget(typing_extensions.TypedDict, total=False):
+    cluster: str
+    nodePool: str
+    operation: str
+    reason: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "PENDING",
+        "RUNNING",
+        "FAILED",
+        "SUCCEEDED",
+        "PAUSED",
+        "REMOVED",
+        "INELIGIBLE",
+    ]
+
+@typing.type_check_only
+class Schedule(typing_extensions.TypedDict, total=False):
+    waves: _list[WaveSchedule]
+
+@typing.type_check_only
 class Scope(typing_extensions.TypedDict, total=False):
     createTime: str
     deleteTime: str
@@ -1311,6 +1420,12 @@ class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
     updateMask: str
 
 @typing.type_check_only
+class Stage(typing_extensions.TypedDict, total=False):
+    clusterSelector: ClusterSelector
+    fleetProjects: _list[str]
+    soakDuration: str
+
+@typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: typing_extensions.Literal["CODE_UNSPECIFIED", "OK", "FAILED", "UNKNOWN"]
     description: str
@@ -1327,3 +1442,62 @@ class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
 class TypeMeta(typing_extensions.TypedDict, total=False):
     apiVersion: str
     kind: str
+
+@typing.type_check_only
+class VersionUpgrade(typing_extensions.TypedDict, total=False):
+    desiredVersion: str
+    type: typing_extensions.Literal[
+        "TYPE_UNSPECIFIED", "TYPE_CONTROL_PLANE", "TYPE_NODE_POOL", "TYPE_CONFIG_SYNC"
+    ]
+
+@typing.type_check_only
+class WaveSchedule(typing_extensions.TypedDict, total=False):
+    waveEndTime: str
+    waveNumber: int
+    waveStartTime: str
+
+@typing.type_check_only
+class WorkloadIdentityFeatureSpec(typing_extensions.TypedDict, total=False):
+    scopeTenancyPool: str
+
+@typing.type_check_only
+class WorkloadIdentityFeatureState(typing_extensions.TypedDict, total=False):
+    namespaceStateDetails: dict[str, typing.Any]
+    namespaceStates: dict[str, typing.Any]
+    scopeTenancyWorkloadIdentityPool: str
+    workloadIdentityPool: str
+    workloadIdentityPoolStateDetails: dict[str, typing.Any]
+
+@typing.type_check_only
+class WorkloadIdentityIdentityProviderStateDetail(
+    typing_extensions.TypedDict, total=False
+):
+    code: typing_extensions.Literal[
+        "IDENTITY_PROVIDER_STATE_UNSPECIFIED",
+        "IDENTITY_PROVIDER_STATE_OK",
+        "IDENTITY_PROVIDER_STATE_ERROR",
+    ]
+    description: str
+
+@typing.type_check_only
+class WorkloadIdentityMembershipState(typing_extensions.TypedDict, total=False):
+    description: str
+    identityProviderStateDetails: dict[str, typing.Any]
+
+@typing.type_check_only
+class WorkloadIdentityNamespaceStateDetail(typing_extensions.TypedDict, total=False):
+    code: typing_extensions.Literal[
+        "NAMESPACE_STATE_UNSPECIFIED", "NAMESPACE_STATE_OK", "NAMESPACE_STATE_ERROR"
+    ]
+    description: str
+
+@typing.type_check_only
+class WorkloadIdentityWorkloadIdentityPoolStateDetail(
+    typing_extensions.TypedDict, total=False
+):
+    code: typing_extensions.Literal[
+        "WORKLOAD_IDENTITY_POOL_STATE_UNSPECIFIED",
+        "WORKLOAD_IDENTITY_POOL_STATE_OK",
+        "WORKLOAD_IDENTITY_POOL_STATE_ERROR",
+    ]
+    description: str

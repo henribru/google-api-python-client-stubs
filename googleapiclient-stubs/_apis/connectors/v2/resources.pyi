@@ -32,6 +32,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
+                        executionConfig_headers: str = ...,
                         view: typing_extensions.Literal[
                             "ACTION_SCHEMA_VIEW_UNSPECIFIED",
                             "ACTION_SCHEMA_VIEW_BASIC",
@@ -43,6 +44,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
+                        executionConfig_headers: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
                         view: typing_extensions.Literal[
@@ -67,26 +69,37 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                             *,
                             parent: str,
                             body: Entity = ...,
+                            executionConfig_headers: str = ...,
                             **kwargs: typing.Any,
                         ) -> EntityHttpRequest: ...
                         def delete(
-                            self, *, name: str, **kwargs: typing.Any
+                            self,
+                            *,
+                            name: str,
+                            executionConfig_headers: str = ...,
+                            **kwargs: typing.Any,
                         ) -> EmptyHttpRequest: ...
                         def deleteEntitiesWithConditions(
                             self,
                             *,
                             entityType: str,
                             conditions: str = ...,
+                            executionConfig_headers: str = ...,
                             **kwargs: typing.Any,
                         ) -> EmptyHttpRequest: ...
                         def get(
-                            self, *, name: str, **kwargs: typing.Any
+                            self,
+                            *,
+                            name: str,
+                            executionConfig_headers: str = ...,
+                            **kwargs: typing.Any,
                         ) -> EntityHttpRequest: ...
                         def list(
                             self,
                             *,
                             parent: str,
                             conditions: str = ...,
+                            executionConfig_headers: str = ...,
                             pageSize: int = ...,
                             pageToken: str = ...,
                             sortBy: str | _list[str] = ...,
@@ -99,7 +112,12 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                             previous_response: ListEntitiesResponse,
                         ) -> ListEntitiesResponseHttpRequest | None: ...
                         def patch(
-                            self, *, name: str, body: Entity = ..., **kwargs: typing.Any
+                            self,
+                            *,
+                            name: str,
+                            body: Entity = ...,
+                            executionConfig_headers: str = ...,
+                            **kwargs: typing.Any,
                         ) -> EntityHttpRequest: ...
                         def updateEntitiesWithConditions(
                             self,
@@ -107,6 +125,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                             entityType: str,
                             body: Entity = ...,
                             conditions: str = ...,
+                            executionConfig_headers: str = ...,
                             **kwargs: typing.Any,
                         ) -> UpdateEntitiesWithConditionsResponseHttpRequest: ...
 
@@ -115,6 +134,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         contextMetadata: str = ...,
+                        executionConfig_headers: str = ...,
                         view: typing_extensions.Literal[
                             "ENTITY_TYPE_SCHEMA_VIEW_UNSPECIFIED",
                             "ENTITY_TYPE_SCHEMA_VIEW_BASIC",
@@ -126,6 +146,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
+                        executionConfig_headers: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
                         view: typing_extensions.Literal[
@@ -145,12 +166,24 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class ResourcesResource(googleapiclient.discovery.Resource):
                     def get(
-                        self, *, name: str, **kwargs: typing.Any
+                        self,
+                        *,
+                        name: str,
+                        executionConfig_headers: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> GetResourceResponseHttpRequest: ...
+                    def getResourcePost(
+                        self,
+                        *,
+                        name: str,
+                        body: GetResourcePostRequest = ...,
+                        **kwargs: typing.Any,
                     ) -> GetResourceResponseHttpRequest: ...
                     def list(
                         self,
                         *,
                         parent: str,
+                        executionConfig_headers: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
                         **kwargs: typing.Any,
@@ -174,6 +207,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
+                        executionConfig_headers: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
                         **kwargs: typing.Any,
@@ -188,7 +222,11 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                     self, *, name: str, **kwargs: typing.Any
                 ) -> CheckReadinessResponseHttpRequest: ...
                 def checkStatus(
-                    self, *, name: str, **kwargs: typing.Any
+                    self,
+                    *,
+                    name: str,
+                    executionConfig_headers: str = ...,
+                    **kwargs: typing.Any,
                 ) -> CheckStatusResponseHttpRequest: ...
                 def exchangeAuthCode(
                     self,

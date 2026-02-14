@@ -153,12 +153,6 @@ class DebugOptions(typing_extensions.TypedDict, total=False):
     enableDebugging: bool
 
 @typing.type_check_only
-class DebugResponse(typing_extensions.TypedDict, total=False):
-    gsrRequest: str
-    gsrResponse: str
-    searchResponse: SearchResponse
-
-@typing.type_check_only
 class DeleteQueueItemsRequest(typing_extensions.TypedDict, total=False):
     connectorName: str
     debugOptions: DebugOptions
@@ -1056,6 +1050,7 @@ class ListItemsResponse(typing_extensions.TypedDict, total=False):
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListQuerySourcesResponse(typing_extensions.TypedDict, total=False):
@@ -1317,6 +1312,8 @@ class QueryCountByStatus(typing_extensions.TypedDict, total=False):
 class QueryInterpretation(typing_extensions.TypedDict, total=False):
     interpretationType: typing_extensions.Literal["NONE", "BLEND", "REPLACE"]
     interpretedQuery: str
+    interpretedQueryActualResultCount: int
+    interpretedQueryEstimatedResultCount: str
     reason: typing_extensions.Literal[
         "UNSPECIFIED",
         "QUERY_HAS_NATURAL_LANGUAGE_INTENT",

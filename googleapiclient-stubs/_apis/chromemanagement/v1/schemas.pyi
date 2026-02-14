@@ -195,6 +195,13 @@ class GoogleChromeManagementV1ChromeAppSiteAccess(
     hostMatch: str
 
 @typing.type_check_only
+class GoogleChromeManagementV1CountActiveDevicesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    sevenDaysCount: str
+    thirtyDaysCount: str
+
+@typing.type_check_only
 class GoogleChromeManagementV1CountChromeAppRequestsResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -258,6 +265,27 @@ class GoogleChromeManagementV1CountChromeVersionsResponse(
     browserVersions: _list[GoogleChromeManagementV1BrowserVersion]
     nextPageToken: str
     totalSize: int
+
+@typing.type_check_only
+class GoogleChromeManagementV1CountDevicesPerBootTypeResponse(
+    typing_extensions.TypedDict, total=False
+):
+    devBootTypeCount: str
+    unreportedBootTypeCount: str
+    verifiedBootTypeCount: str
+
+@typing.type_check_only
+class GoogleChromeManagementV1CountDevicesPerReleaseChannelResponse(
+    typing_extensions.TypedDict, total=False
+):
+    betaChannelCount: str
+    canaryChannelCount: str
+    devChannelCount: str
+    ltcChannelCount: str
+    ltsChannelCount: str
+    stableChannelCount: str
+    unreportedChannelCount: str
+    unsupportedChannelCount: str
 
 @typing.type_check_only
 class GoogleChromeManagementV1CountInstalledAppsResponse(
@@ -698,6 +726,7 @@ class GoogleChromeManagementV1RiskAssessmentEntry(
         "RISK_ASSESSMENT_PROVIDER_CRXCAVATOR",
         "RISK_ASSESSMENT_PROVIDER_SPIN_AI",
         "RISK_ASSESSMENT_PROVIDER_LAYERX",
+        "RISK_ASSESSMENT_PROVIDER_SPIN_AI_V2",
     ]
     riskAssessment: GoogleChromeManagementV1RiskAssessment
     riskLevel: typing_extensions.Literal[

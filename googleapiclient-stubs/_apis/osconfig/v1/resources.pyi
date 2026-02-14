@@ -113,6 +113,37 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                 def vulnerabilityReports(self) -> VulnerabilityReportsResource: ...
 
             @typing.type_check_only
+            class OperationsResource(googleapiclient.discovery.Resource):
+                def cancel(
+                    self,
+                    *,
+                    name: str,
+                    body: CancelOperationRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> EmptyHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    name: str,
+                    filter: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    returnPartialSuccess: bool = ...,
+                    **kwargs: typing.Any,
+                ) -> ListOperationsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListOperationsResponseHttpRequest,
+                    previous_response: ListOperationsResponse,
+                ) -> ListOperationsResponseHttpRequest | None: ...
+
+            @typing.type_check_only
             class OsPolicyAssignmentsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class OperationsResource(googleapiclient.discovery.Resource):
@@ -182,6 +213,7 @@ class OSConfigResource(googleapiclient.discovery.Resource):
 
             def global_(self) -> GlobalResource: ...
             def instances(self) -> InstancesResource: ...
+            def operations(self) -> OperationsResource: ...
             def osPolicyAssignments(self) -> OsPolicyAssignmentsResource: ...
 
         @typing.type_check_only
@@ -357,6 +389,14 @@ class ListOSPolicyAssignmentsResponseHttpRequest(googleapiclient.http.HttpReques
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListOSPolicyAssignmentsResponse: ...
+
+@typing.type_check_only
+class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListOperationsResponse: ...
 
 @typing.type_check_only
 class ListPatchDeploymentsResponseHttpRequest(googleapiclient.http.HttpRequest):

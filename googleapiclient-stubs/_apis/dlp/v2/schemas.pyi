@@ -27,6 +27,46 @@ class GooglePrivacyDlpV2ActivateJobTriggerRequest(
 ): ...
 
 @typing.type_check_only
+class GooglePrivacyDlpV2AdjustByImageFindings(typing_extensions.TypedDict, total=False):
+    imageContainmentType: GooglePrivacyDlpV2ImageContainmentType
+    infoTypes: _list[GooglePrivacyDlpV2InfoType]
+    minLikelihood: typing_extensions.Literal[
+        "LIKELIHOOD_UNSPECIFIED",
+        "VERY_UNLIKELY",
+        "UNLIKELY",
+        "POSSIBLE",
+        "LIKELY",
+        "VERY_LIKELY",
+    ]
+
+@typing.type_check_only
+class GooglePrivacyDlpV2AdjustByMatchingInfoTypes(
+    typing_extensions.TypedDict, total=False
+):
+    infoTypes: _list[GooglePrivacyDlpV2InfoType]
+    matchingType: typing_extensions.Literal[
+        "MATCHING_TYPE_UNSPECIFIED",
+        "MATCHING_TYPE_FULL_MATCH",
+        "MATCHING_TYPE_PARTIAL_MATCH",
+        "MATCHING_TYPE_INVERSE_MATCH",
+        "MATCHING_TYPE_RULE_SPECIFIC",
+    ]
+    minLikelihood: typing_extensions.Literal[
+        "LIKELIHOOD_UNSPECIFIED",
+        "VERY_UNLIKELY",
+        "UNLIKELY",
+        "POSSIBLE",
+        "LIKELY",
+        "VERY_LIKELY",
+    ]
+
+@typing.type_check_only
+class GooglePrivacyDlpV2AdjustmentRule(typing_extensions.TypedDict, total=False):
+    adjustByImageFindings: GooglePrivacyDlpV2AdjustByImageFindings
+    adjustByMatchingInfoTypes: GooglePrivacyDlpV2AdjustByMatchingInfoTypes
+    likelihoodAdjustment: GooglePrivacyDlpV2LikelihoodAdjustment
+
+@typing.type_check_only
 class GooglePrivacyDlpV2AllInfoTypes(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -1178,6 +1218,9 @@ class GooglePrivacyDlpV2Domain(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class GooglePrivacyDlpV2Encloses(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class GooglePrivacyDlpV2EntityId(typing_extensions.TypedDict, total=False):
     field: GooglePrivacyDlpV2FieldId
 
@@ -1197,6 +1240,13 @@ class GooglePrivacyDlpV2ExcludeByHotword(typing_extensions.TypedDict, total=Fals
     proximity: GooglePrivacyDlpV2Proximity
 
 @typing.type_check_only
+class GooglePrivacyDlpV2ExcludeByImageFindings(
+    typing_extensions.TypedDict, total=False
+):
+    imageContainmentType: GooglePrivacyDlpV2ImageContainmentType
+    infoTypes: _list[GooglePrivacyDlpV2InfoType]
+
+@typing.type_check_only
 class GooglePrivacyDlpV2ExcludeInfoTypes(typing_extensions.TypedDict, total=False):
     infoTypes: _list[GooglePrivacyDlpV2InfoType]
 
@@ -1204,12 +1254,14 @@ class GooglePrivacyDlpV2ExcludeInfoTypes(typing_extensions.TypedDict, total=Fals
 class GooglePrivacyDlpV2ExclusionRule(typing_extensions.TypedDict, total=False):
     dictionary: GooglePrivacyDlpV2Dictionary
     excludeByHotword: GooglePrivacyDlpV2ExcludeByHotword
+    excludeByImageFindings: GooglePrivacyDlpV2ExcludeByImageFindings
     excludeInfoTypes: GooglePrivacyDlpV2ExcludeInfoTypes
     matchingType: typing_extensions.Literal[
         "MATCHING_TYPE_UNSPECIFIED",
         "MATCHING_TYPE_FULL_MATCH",
         "MATCHING_TYPE_PARTIAL_MATCH",
         "MATCHING_TYPE_INVERSE_MATCH",
+        "MATCHING_TYPE_RULE_SPECIFIC",
     ]
     regex: GooglePrivacyDlpV2Regex
 
@@ -1367,6 +1419,9 @@ class GooglePrivacyDlpV2FixedSizeBucketingConfig(
     upperBound: GooglePrivacyDlpV2Value
 
 @typing.type_check_only
+class GooglePrivacyDlpV2FullyInside(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class GooglePrivacyDlpV2GlobalProcessing(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -1419,6 +1474,12 @@ class GooglePrivacyDlpV2HybridOptions(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     requiredFindingLabelKeys: _list[str]
     tableOptions: GooglePrivacyDlpV2TableOptions
+
+@typing.type_check_only
+class GooglePrivacyDlpV2ImageContainmentType(typing_extensions.TypedDict, total=False):
+    encloses: GooglePrivacyDlpV2Encloses
+    fullyInside: GooglePrivacyDlpV2FullyInside
+    overlaps: GooglePrivacyDlpV2Overlap
 
 @typing.type_check_only
 class GooglePrivacyDlpV2ImageFallbackLocation(typing_extensions.TypedDict, total=False):
@@ -1530,6 +1591,12 @@ class GooglePrivacyDlpV2InfoTypeDescription(typing_extensions.TypedDict, total=F
     description: str
     displayName: str
     example: str
+    launchStatus: typing_extensions.Literal[
+        "INFO_TYPE_LAUNCH_STATUS_UNSPECIFIED",
+        "GENERAL_AVAILABILITY",
+        "PUBLIC_PREVIEW",
+        "PRIVATE_PREVIEW",
+    ]
     locationSupport: GooglePrivacyDlpV2LocationSupport
     name: str
     sensitivityScore: GooglePrivacyDlpV2SensitivityScore
@@ -1645,6 +1712,7 @@ class GooglePrivacyDlpV2InspectTemplate(typing_extensions.TypedDict, total=False
 
 @typing.type_check_only
 class GooglePrivacyDlpV2InspectionRule(typing_extensions.TypedDict, total=False):
+    adjustmentRule: GooglePrivacyDlpV2AdjustmentRule
     exclusionRule: GooglePrivacyDlpV2ExclusionRule
     hotwordRule: GooglePrivacyDlpV2HotwordRule
 
@@ -1985,6 +2053,9 @@ class GooglePrivacyDlpV2OutputStorageConfig(typing_extensions.TypedDict, total=F
     ]
     storagePath: GooglePrivacyDlpV2CloudStoragePath
     table: GooglePrivacyDlpV2BigQueryTable
+
+@typing.type_check_only
+class GooglePrivacyDlpV2Overlap(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class GooglePrivacyDlpV2PartitionId(typing_extensions.TypedDict, total=False):

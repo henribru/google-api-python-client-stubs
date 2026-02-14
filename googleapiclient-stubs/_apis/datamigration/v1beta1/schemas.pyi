@@ -17,6 +17,10 @@ class AuditLogConfig(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class BadRequest(typing_extensions.TypedDict, total=False):
+    fieldViolations: _list[FieldViolation]
+
+@typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
     condition: Expr
     members: _list[str]
@@ -87,7 +91,18 @@ class DatabaseType(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class DebugInfo(typing_extensions.TypedDict, total=False):
+    detail: str
+    stackEntries: _list[str]
+
+@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class ErrorInfo(typing_extensions.TypedDict, total=False):
+    domain: str
+    metadata: dict[str, typing.Any]
+    reason: str
 
 @typing.type_check_only
 class Expr(typing_extensions.TypedDict, total=False):
@@ -95,6 +110,13 @@ class Expr(typing_extensions.TypedDict, total=False):
     expression: str
     location: str
     title: str
+
+@typing.type_check_only
+class FieldViolation(typing_extensions.TypedDict, total=False):
+    description: str
+    field: str
+    localizedMessage: LocalizedMessage
+    reason: str
 
 @typing.type_check_only
 class GenerateSshScriptRequest(typing_extensions.TypedDict, total=False):
@@ -114,6 +136,15 @@ class GoogleCloudClouddmsV1beta1OperationMetadata(
     statusMessage: str
     target: str
     verb: str
+
+@typing.type_check_only
+class Help(typing_extensions.TypedDict, total=False):
+    links: _list[Link]
+
+@typing.type_check_only
+class Link(typing_extensions.TypedDict, total=False):
+    description: str
+    url: str
 
 @typing.type_check_only
 class ListConnectionProfilesResponse(typing_extensions.TypedDict, total=False):
@@ -136,6 +167,12 @@ class ListMigrationJobsResponse(typing_extensions.TypedDict, total=False):
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+    unreachable: _list[str]
+
+@typing.type_check_only
+class LocalizedMessage(typing_extensions.TypedDict, total=False):
+    locale: str
+    message: str
 
 @typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):
@@ -242,13 +279,54 @@ class Policy(typing_extensions.TypedDict, total=False):
     version: int
 
 @typing.type_check_only
+class PreconditionFailure(typing_extensions.TypedDict, total=False):
+    violations: _list[PreconditionFailureViolation]
+
+@typing.type_check_only
+class PreconditionFailureViolation(typing_extensions.TypedDict, total=False):
+    description: str
+    subject: str
+    type: str
+
+@typing.type_check_only
 class PromoteMigrationJobRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class QuotaFailure(typing_extensions.TypedDict, total=False):
+    violations: _list[QuotaFailureViolation]
+
+@typing.type_check_only
+class QuotaFailureViolation(typing_extensions.TypedDict, total=False):
+    apiService: str
+    description: str
+    futureQuotaValue: str
+    quotaDimensions: dict[str, typing.Any]
+    quotaId: str
+    quotaMetric: str
+    quotaValue: str
+    subject: str
+
+@typing.type_check_only
+class RequestInfo(typing_extensions.TypedDict, total=False):
+    requestId: str
+    servingData: str
+
+@typing.type_check_only
+class ResourceInfo(typing_extensions.TypedDict, total=False):
+    description: str
+    owner: str
+    resourceName: str
+    resourceType: str
 
 @typing.type_check_only
 class RestartMigrationJobRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class ResumeMigrationJobRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class RetryInfo(typing_extensions.TypedDict, total=False):
+    retryDelay: str
 
 @typing.type_check_only
 class ReverseSshConnectivity(typing_extensions.TypedDict, total=False):

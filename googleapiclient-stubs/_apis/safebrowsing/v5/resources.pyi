@@ -51,6 +51,12 @@ class SafebrowsingResource(googleapiclient.discovery.Resource):
             self, *, hashPrefixes: str | _list[str] = ..., **kwargs: typing.Any
         ) -> GoogleSecuritySafebrowsingV5SearchHashesResponseHttpRequest: ...
 
+    @typing.type_check_only
+    class UrlsResource(googleapiclient.discovery.Resource):
+        def search(
+            self, *, urls: str | _list[str] = ..., **kwargs: typing.Any
+        ) -> GoogleSecuritySafebrowsingV5SearchUrlsResponseHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[
@@ -66,6 +72,7 @@ class SafebrowsingResource(googleapiclient.discovery.Resource):
     def hashList(self) -> HashListResource: ...
     def hashLists(self) -> HashListsResource: ...
     def hashes(self) -> HashesResource: ...
+    def urls(self) -> UrlsResource: ...
 
 @typing.type_check_only
 class GoogleSecuritySafebrowsingV5BatchGetHashListsResponseHttpRequest(
@@ -104,3 +111,13 @@ class GoogleSecuritySafebrowsingV5SearchHashesResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleSecuritySafebrowsingV5SearchHashesResponse: ...
+
+@typing.type_check_only
+class GoogleSecuritySafebrowsingV5SearchUrlsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleSecuritySafebrowsingV5SearchUrlsResponse: ...

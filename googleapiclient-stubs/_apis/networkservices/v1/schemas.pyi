@@ -102,6 +102,17 @@ class ExtensionChainExtension(typing_extensions.TypedDict, total=False):
     forwardHeaders: _list[str]
     metadata: dict[str, typing.Any]
     name: str
+    observabilityMode: bool
+    requestBodySendMode: typing_extensions.Literal[
+        "BODY_SEND_MODE_UNSPECIFIED",
+        "BODY_SEND_MODE_STREAMED",
+        "BODY_SEND_MODE_FULL_DUPLEX_STREAMED",
+    ]
+    responseBodySendMode: typing_extensions.Literal[
+        "BODY_SEND_MODE_UNSPECIFIED",
+        "BODY_SEND_MODE_STREAMED",
+        "BODY_SEND_MODE_FULL_DUPLEX_STREAMED",
+    ]
     service: str
     supportedEvents: _list[
         typing_extensions.Literal[
@@ -378,6 +389,19 @@ class HttpRouteURLRewrite(typing_extensions.TypedDict, total=False):
     pathPrefixRewrite: str
 
 @typing.type_check_only
+class LbEdgeExtension(typing_extensions.TypedDict, total=False):
+    createTime: str
+    description: str
+    extensionChains: _list[ExtensionChain]
+    forwardingRules: _list[str]
+    labels: dict[str, typing.Any]
+    loadBalancingScheme: typing_extensions.Literal[
+        "LOAD_BALANCING_SCHEME_UNSPECIFIED", "INTERNAL_MANAGED", "EXTERNAL_MANAGED"
+    ]
+    name: str
+    updateTime: str
+
+@typing.type_check_only
 class LbRouteExtension(typing_extensions.TypedDict, total=False):
     createTime: str
     description: str
@@ -442,6 +466,12 @@ class ListHttpRoutesResponse(typing_extensions.TypedDict, total=False):
     unreachable: _list[str]
 
 @typing.type_check_only
+class ListLbEdgeExtensionsResponse(typing_extensions.TypedDict, total=False):
+    lbEdgeExtensions: _list[LbEdgeExtension]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
 class ListLbRouteExtensionsResponse(typing_extensions.TypedDict, total=False):
     lbRouteExtensions: _list[LbRouteExtension]
     nextPageToken: str
@@ -474,6 +504,7 @@ class ListMeshesResponse(typing_extensions.TypedDict, total=False):
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListServiceBindingsResponse(typing_extensions.TypedDict, total=False):

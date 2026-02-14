@@ -14,6 +14,19 @@ class BareMetalAdminApiServerArgument(typing_extensions.TypedDict, total=False):
     value: str
 
 @typing.type_check_only
+class BareMetalAdminBgpLbConfig(typing_extensions.TypedDict, total=False):
+    addressPools: _list[BareMetalAdminLoadBalancerAddressPool]
+    asn: str
+    bgpPeerConfigs: _list[BareMetalAdminBgpPeerConfig]
+    loadBalancerNodePoolConfig: BareMetalAdminLoadBalancerNodePoolConfig
+
+@typing.type_check_only
+class BareMetalAdminBgpPeerConfig(typing_extensions.TypedDict, total=False):
+    asn: str
+    controlPlaneNodes: _list[str]
+    ipAddress: str
+
+@typing.type_check_only
 class BareMetalAdminCluster(typing_extensions.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     bareMetalVersion: str
@@ -83,10 +96,24 @@ class BareMetalAdminIslandModeCidrConfig(typing_extensions.TypedDict, total=Fals
     serviceAddressCidrBlocks: _list[str]
 
 @typing.type_check_only
+class BareMetalAdminLoadBalancerAddressPool(typing_extensions.TypedDict, total=False):
+    addresses: _list[str]
+    avoidBuggyIps: bool
+    manualAssign: bool
+    pool: str
+
+@typing.type_check_only
 class BareMetalAdminLoadBalancerConfig(typing_extensions.TypedDict, total=False):
+    bgpLbConfig: BareMetalAdminBgpLbConfig
     manualLbConfig: BareMetalAdminManualLbConfig
     portConfig: BareMetalAdminPortConfig
     vipConfig: BareMetalAdminVipConfig
+
+@typing.type_check_only
+class BareMetalAdminLoadBalancerNodePoolConfig(
+    typing_extensions.TypedDict, total=False
+):
+    nodePoolConfig: BareMetalNodePoolConfig
 
 @typing.type_check_only
 class BareMetalAdminMachineDrainStatus(typing_extensions.TypedDict, total=False):
@@ -106,8 +133,16 @@ class BareMetalAdminManualLbConfig(typing_extensions.TypedDict, total=False):
     enabled: bool
 
 @typing.type_check_only
+class BareMetalAdminMultipleNetworkInterfacesConfig(
+    typing_extensions.TypedDict, total=False
+):
+    enabled: bool
+
+@typing.type_check_only
 class BareMetalAdminNetworkConfig(typing_extensions.TypedDict, total=False):
+    advancedNetworking: bool
     islandModeCidr: BareMetalAdminIslandModeCidrConfig
+    multipleNetworkInterfacesConfig: BareMetalAdminMultipleNetworkInterfacesConfig
 
 @typing.type_check_only
 class BareMetalAdminNodeAccessConfig(typing_extensions.TypedDict, total=False):
@@ -496,6 +531,7 @@ class ListLocationsResponse(typing_extensions.TypedDict, total=False):
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListVmwareAdminClustersResponse(typing_extensions.TypedDict, total=False):

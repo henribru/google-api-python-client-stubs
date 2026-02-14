@@ -65,7 +65,13 @@ class KmsinventoryResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class CryptoKeysResource(googleapiclient.discovery.Resource):
                     def getProtectedResourcesSummary(
-                        self, *, name: str, **kwargs: typing.Any
+                        self,
+                        *,
+                        name: str,
+                        fallbackScope: typing_extensions.Literal[
+                            "FALLBACK_SCOPE_UNSPECIFIED", "FALLBACK_SCOPE_PROJECT"
+                        ] = ...,
+                        **kwargs: typing.Any,
                     ) -> (
                         GoogleCloudKmsInventoryV1ProtectedResourcesSummaryHttpRequest
                     ): ...
@@ -74,8 +80,32 @@ class KmsinventoryResource(googleapiclient.discovery.Resource):
 
             def keyRings(self) -> KeyRingsResource: ...
 
+        @typing.type_check_only
+        class ProtectedResourcesResource(googleapiclient.discovery.Resource):
+            def search(
+                self,
+                *,
+                scope: str,
+                cryptoKey: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                resourceTypes: str | _list[str] = ...,
+                **kwargs: typing.Any,
+            ) -> (
+                GoogleCloudKmsInventoryV1SearchProtectedResourcesResponseHttpRequest
+            ): ...
+            def search_next(
+                self,
+                previous_request: GoogleCloudKmsInventoryV1SearchProtectedResourcesResponseHttpRequest,
+                previous_response: GoogleCloudKmsInventoryV1SearchProtectedResourcesResponse,
+            ) -> (
+                GoogleCloudKmsInventoryV1SearchProtectedResourcesResponseHttpRequest
+                | None
+            ): ...
+
         def cryptoKeys(self) -> CryptoKeysResource: ...
         def locations(self) -> LocationsResource: ...
+        def protectedResources(self) -> ProtectedResourcesResource: ...
 
     def new_batch_http_request(
         self,

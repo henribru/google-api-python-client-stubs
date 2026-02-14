@@ -5,6 +5,24 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class AuditConfig(typing_extensions.TypedDict, total=False):
+    auditLogConfigs: _list[AuditLogConfig]
+    service: str
+
+@typing.type_check_only
+class AuditLogConfig(typing_extensions.TypedDict, total=False):
+    exemptedMembers: _list[str]
+    logType: typing_extensions.Literal[
+        "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
+    ]
+
+@typing.type_check_only
+class Binding(typing_extensions.TypedDict, total=False):
+    condition: Expr
+    members: _list[str]
+    role: str
+
+@typing.type_check_only
 class Catalog(typing_extensions.TypedDict, total=False):
     createTime: str
     deleteTime: str
@@ -21,6 +39,13 @@ class Database(typing_extensions.TypedDict, total=False):
     name: str
     type: typing_extensions.Literal["TYPE_UNSPECIFIED", "HIVE"]
     updateTime: str
+
+@typing.type_check_only
+class Expr(typing_extensions.TypedDict, total=False):
+    description: str
+    expression: str
+    location: str
+    title: str
 
 @typing.type_check_only
 class HiveDatabaseOptions(typing_extensions.TypedDict, total=False):
@@ -49,12 +74,24 @@ class ListTablesResponse(typing_extensions.TypedDict, total=False):
     tables: _list[Table]
 
 @typing.type_check_only
+class Policy(typing_extensions.TypedDict, total=False):
+    auditConfigs: _list[AuditConfig]
+    bindings: _list[Binding]
+    etag: str
+    version: int
+
+@typing.type_check_only
 class RenameTableRequest(typing_extensions.TypedDict, total=False):
     newName: str
 
 @typing.type_check_only
 class SerDeInfo(typing_extensions.TypedDict, total=False):
     serializationLib: str
+
+@typing.type_check_only
+class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
+    policy: Policy
+    updateMask: str
 
 @typing.type_check_only
 class StorageDescriptor(typing_extensions.TypedDict, total=False):

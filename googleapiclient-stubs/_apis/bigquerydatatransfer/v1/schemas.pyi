@@ -183,6 +183,9 @@ class TransferConfig(typing_extensions.TypedDict, total=False):
     emailPreferences: EmailPreferences
     encryptionConfiguration: EncryptionConfiguration
     error: Status
+    managedTableType: typing_extensions.Literal[
+        "MANAGED_TABLE_TYPE_UNSPECIFIED", "NATIVE", "BIGLAKE"
+    ]
     name: str
     nextRunTime: str
     notificationPubsubTopic: str

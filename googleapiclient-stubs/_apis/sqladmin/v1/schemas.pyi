@@ -76,6 +76,7 @@ class Backup(typing_extensions.TypedDict, total=False):
         "MYSQL_8_0_45",
         "MYSQL_8_0_46",
         "MYSQL_8_4",
+        "MYSQL_9_7",
         "SQLSERVER_2017_STANDARD",
         "SQLSERVER_2017_ENTERPRISE",
         "SQLSERVER_2017_EXPRESS",
@@ -203,6 +204,7 @@ class BackupRun(typing_extensions.TypedDict, total=False):
         "MYSQL_8_0_45",
         "MYSQL_8_0_46",
         "MYSQL_8_4",
+        "MYSQL_9_7",
         "SQLSERVER_2017_STANDARD",
         "SQLSERVER_2017_ENTERPRISE",
         "SQLSERVER_2017_EXPRESS",
@@ -329,6 +331,7 @@ class ConnectSettings(typing_extensions.TypedDict, total=False):
         "MYSQL_8_0_45",
         "MYSQL_8_0_46",
         "MYSQL_8_4",
+        "MYSQL_9_7",
         "SQLSERVER_2017_STANDARD",
         "SQLSERVER_2017_ENTERPRISE",
         "SQLSERVER_2017_EXPRESS",
@@ -444,6 +447,7 @@ class DatabaseInstance(typing_extensions.TypedDict, total=False):
         "MYSQL_8_0_45",
         "MYSQL_8_0_46",
         "MYSQL_8_4",
+        "MYSQL_9_7",
         "SQLSERVER_2017_STANDARD",
         "SQLSERVER_2017_ENTERPRISE",
         "SQLSERVER_2017_EXPRESS",
@@ -596,14 +600,18 @@ class DnsNameMapping(typing_extensions.TypedDict, total=False):
         "PRIVATE_SERVICES_ACCESS",
         "PRIVATE_SERVICE_CONNECT",
     ]
-    dnsScope: typing_extensions.Literal["DNS_SCOPE_UNSPECIFIED", "INSTANCE"]
+    dnsScope: typing_extensions.Literal["DNS_SCOPE_UNSPECIFIED", "INSTANCE", "CLUSTER"]
     name: str
+    recordManager: typing_extensions.Literal[
+        "RECORD_MANAGER_UNSPECIFIED", "CUSTOMER", "CLOUD_SQL_AUTOMATION"
+    ]
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class ExecuteSqlPayload(typing_extensions.TypedDict, total=False):
+    application: str
     autoIamAuthn: bool
     database: str
     partialResultMode: typing_extensions.Literal[
@@ -675,6 +683,7 @@ class Flag(typing_extensions.TypedDict, total=False):
             "MYSQL_8_0_45",
             "MYSQL_8_0_46",
             "MYSQL_8_4",
+            "MYSQL_9_7",
             "SQLSERVER_2017_STANDARD",
             "SQLSERVER_2017_ENTERPRISE",
             "SQLSERVER_2017_EXPRESS",
@@ -764,6 +773,7 @@ class ImportContext(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class InsightsConfig(typing_extensions.TypedDict, total=False):
+    enhancedQueryInsightsEnabled: bool
     queryInsightsEnabled: bool
     queryPlansPerMinute: int
     queryStringLength: int
@@ -805,6 +815,14 @@ class InstancesImportRequest(typing_extensions.TypedDict, total=False):
     importContext: ImportContext
 
 @typing.type_check_only
+class InstancesListEntraIdCertificatesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    activeVersion: str
+    certs: _list[SslCert]
+    kind: str
+
+@typing.type_check_only
 class InstancesListResponse(typing_extensions.TypedDict, total=False):
     items: _list[DatabaseInstance]
     kind: str
@@ -843,6 +861,12 @@ class InstancesRestoreBackupRequest(typing_extensions.TypedDict, total=False):
     restoreInstanceSettings: DatabaseInstance
 
 @typing.type_check_only
+class InstancesRotateEntraIdCertificateRequest(
+    typing_extensions.TypedDict, total=False
+):
+    rotateEntraIdCertificateContext: RotateEntraIdCertificateContext
+
+@typing.type_check_only
 class InstancesRotateServerCaRequest(typing_extensions.TypedDict, total=False):
     rotateServerCaContext: RotateServerCaContext
 
@@ -876,6 +900,11 @@ class IpConfiguration(typing_extensions.TypedDict, total=False):
         "CUSTOMER_MANAGED_CAS_CA",
     ]
     serverCaPool: str
+    serverCertificateRotationMode: typing_extensions.Literal[
+        "SERVER_CERTIFICATE_ROTATION_MODE_UNSPECIFIED",
+        "NO_AUTOMATIC_ROTATION",
+        "AUTOMATIC_ROTATION_DURING_MAINTENANCE",
+    ]
     sslMode: typing_extensions.Literal[
         "SSL_MODE_UNSPECIFIED",
         "ALLOW_UNENCRYPTED_AND_ENCRYPTED",
@@ -1087,6 +1116,15 @@ class PerformDiskShrinkContext(typing_extensions.TypedDict, total=False):
     targetSizeGb: str
 
 @typing.type_check_only
+class PerformanceCaptureConfig(typing_extensions.TypedDict, total=False):
+    enabled: bool
+    probeThreshold: int
+    probingIntervalSeconds: int
+    runningThreadsThreshold: int
+    secondsBehindSourceThreshold: int
+    transactionDurationThreshold: int
+
+@typing.type_check_only
 class PointInTimeRestoreContext(typing_extensions.TypedDict, total=False):
     allocatedIpRange: str
     datasource: str
@@ -1103,6 +1141,8 @@ class PoolNodeConfig(typing_extensions.TypedDict, total=False):
     gceZone: str
     ipAddresses: _list[IpMapping]
     name: str
+    pscAutoConnections: _list[PscAutoConnectionConfig]
+    pscServiceAttachmentLink: str
     state: typing_extensions.Literal[
         "SQL_INSTANCE_STATE_UNSPECIFIED",
         "RUNNABLE",
@@ -1148,6 +1188,7 @@ class PreCheckMajorVersionUpgradeContext(typing_extensions.TypedDict, total=Fals
         "MYSQL_8_0_45",
         "MYSQL_8_0_46",
         "MYSQL_8_4",
+        "MYSQL_9_7",
         "SQLSERVER_2017_STANDARD",
         "SQLSERVER_2017_ENTERPRISE",
         "SQLSERVER_2017_EXPRESS",
@@ -1244,6 +1285,11 @@ class RestoreBackupContext(typing_extensions.TypedDict, total=False):
     project: str
 
 @typing.type_check_only
+class RotateEntraIdCertificateContext(typing_extensions.TypedDict, total=False):
+    kind: str
+    nextVersion: str
+
+@typing.type_check_only
 class RotateServerCaContext(typing_extensions.TypedDict, total=False):
     kind: str
     nextVersion: str
@@ -1280,6 +1326,9 @@ class Settings(typing_extensions.TypedDict, total=False):
         "CONNECTOR_ENFORCEMENT_UNSPECIFIED", "NOT_REQUIRED", "REQUIRED"
     ]
     crashSafeReplicationEnabled: bool
+    dataApiAccess: typing_extensions.Literal[
+        "DATA_API_ACCESS_UNSPECIFIED", "DISALLOW_DATA_API", "ALLOW_DATA_API"
+    ]
     dataCacheConfig: DataCacheConfig
     dataDiskProvisionedIops: str
     dataDiskProvisionedThroughput: str
@@ -1300,6 +1349,7 @@ class Settings(typing_extensions.TypedDict, total=False):
     ]
     enableDataplexIntegration: bool
     enableGoogleMlIntegration: bool
+    entraidConfig: SqlServerEntraIdConfig
     finalBackupConfig: FinalBackupConfig
     insightsConfig: InsightsConfig
     ipConfiguration: IpConfiguration
@@ -1307,6 +1357,7 @@ class Settings(typing_extensions.TypedDict, total=False):
     locationPreference: LocationPreference
     maintenanceWindow: MaintenanceWindow
     passwordValidationPolicy: PasswordValidationPolicy
+    performanceCaptureConfig: PerformanceCaptureConfig
     pricingPlan: typing_extensions.Literal[
         "SQL_PRICING_PLAN_UNSPECIFIED", "PACKAGE", "PER_USE"
     ]
@@ -1443,6 +1494,12 @@ class SqlInstancesRescheduleMaintenanceRequestBody(
 class SqlInstancesResetReplicaSizeRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class SqlInstancesRestoreBackupMcpRequest(typing_extensions.TypedDict, total=False):
+    backupId: str
+    sourceInstance: str
+    sourceProject: str
+
+@typing.type_check_only
 class SqlInstancesStartExternalSyncRequest(typing_extensions.TypedDict, total=False):
     migrationType: typing_extensions.Literal[
         "MIGRATION_TYPE_UNSPECIFIED", "LOGICAL", "PHYSICAL"
@@ -1508,6 +1565,12 @@ class SqlServerAuditConfig(typing_extensions.TypedDict, total=False):
 class SqlServerDatabaseDetails(typing_extensions.TypedDict, total=False):
     compatibilityLevel: int
     recoveryModel: str
+
+@typing.type_check_only
+class SqlServerEntraIdConfig(typing_extensions.TypedDict, total=False):
+    applicationId: str
+    kind: str
+    tenantId: str
 
 @typing.type_check_only
 class SqlServerUserDetails(typing_extensions.TypedDict, total=False):
@@ -1598,6 +1661,7 @@ class TruncateLogContext(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class User(typing_extensions.TypedDict, total=False):
+    databaseRoles: _list[str]
     dualPasswordType: typing_extensions.Literal[
         "DUAL_PASSWORD_TYPE_UNSPECIFIED",
         "NO_MODIFY_DUAL_PASSWORD",
@@ -1622,6 +1686,7 @@ class User(typing_extensions.TypedDict, total=False):
         "CLOUD_IAM_GROUP",
         "CLOUD_IAM_GROUP_USER",
         "CLOUD_IAM_GROUP_SERVICE_ACCOUNT",
+        "ENTRAID_USER",
     ]
 
 @typing.type_check_only

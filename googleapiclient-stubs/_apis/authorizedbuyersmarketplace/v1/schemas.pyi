@@ -38,6 +38,7 @@ class AuctionPackage(typing_extensions.TypedDict, total=False):
     description: str
     displayName: str
     eligibleSeatIds: _list[str]
+    floorPriceCpm: Money
     name: str
     subscribedBuyers: _list[str]
     subscribedClients: _list[str]
@@ -316,6 +317,9 @@ class MarketplaceTargeting(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class MediaPlanner(typing_extensions.TypedDict, total=False):
     accountId: str
+    ancestorNames: _list[str]
+    displayName: str
+    name: str
 
 @typing.type_check_only
 class MobileApplicationTargeting(typing_extensions.TypedDict, total=False):

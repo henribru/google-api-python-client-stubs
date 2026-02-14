@@ -871,53 +871,6 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
         ) -> SearchResponseHttpRequest | None: ...
 
     @typing.type_check_only
-    class ReturnaddressResource(googleapiclient.discovery.Resource):
-        def custombatch(
-            self, *, body: ReturnaddressCustomBatchRequest = ..., **kwargs: typing.Any
-        ) -> ReturnaddressCustomBatchResponseHttpRequest: ...
-        def delete(
-            self, *, merchantId: str, returnAddressId: str, **kwargs: typing.Any
-        ) -> googleapiclient.http.HttpRequest: ...
-        def get(
-            self, *, merchantId: str, returnAddressId: str, **kwargs: typing.Any
-        ) -> ReturnAddressHttpRequest: ...
-        def insert(
-            self, *, merchantId: str, body: ReturnAddress = ..., **kwargs: typing.Any
-        ) -> ReturnAddressHttpRequest: ...
-        def list(
-            self,
-            *,
-            merchantId: str,
-            country: str = ...,
-            maxResults: int = ...,
-            pageToken: str = ...,
-            **kwargs: typing.Any,
-        ) -> ReturnaddressListResponseHttpRequest: ...
-        def list_next(
-            self,
-            previous_request: ReturnaddressListResponseHttpRequest,
-            previous_response: ReturnaddressListResponse,
-        ) -> ReturnaddressListResponseHttpRequest | None: ...
-
-    @typing.type_check_only
-    class ReturnpolicyResource(googleapiclient.discovery.Resource):
-        def custombatch(
-            self, *, body: ReturnpolicyCustomBatchRequest = ..., **kwargs: typing.Any
-        ) -> ReturnpolicyCustomBatchResponseHttpRequest: ...
-        def delete(
-            self, *, merchantId: str, returnPolicyId: str, **kwargs: typing.Any
-        ) -> googleapiclient.http.HttpRequest: ...
-        def get(
-            self, *, merchantId: str, returnPolicyId: str, **kwargs: typing.Any
-        ) -> ReturnPolicyHttpRequest: ...
-        def insert(
-            self, *, merchantId: str, body: ReturnPolicy = ..., **kwargs: typing.Any
-        ) -> ReturnPolicyHttpRequest: ...
-        def list(
-            self, *, merchantId: str, **kwargs: typing.Any
-        ) -> ReturnpolicyListResponseHttpRequest: ...
-
-    @typing.type_check_only
     class ReturnpolicyonlineResource(googleapiclient.discovery.Resource):
         def create(
             self,
@@ -1036,8 +989,6 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
     def regionalinventory(self) -> RegionalinventoryResource: ...
     def regions(self) -> RegionsResource: ...
     def reports(self) -> ReportsResource: ...
-    def returnaddress(self) -> ReturnaddressResource: ...
-    def returnpolicy(self) -> ReturnpolicyResource: ...
     def returnpolicyonline(self) -> ReturnpolicyonlineResource: ...
     def shippingsettings(self) -> ShippingsettingsResource: ...
     def shoppingadsprogram(self) -> ShoppingadsprogramResource: ...
@@ -1645,60 +1596,12 @@ class RequestPhoneVerificationResponseHttpRequest(googleapiclient.http.HttpReque
     ) -> RequestPhoneVerificationResponse: ...
 
 @typing.type_check_only
-class ReturnAddressHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> ReturnAddress: ...
-
-@typing.type_check_only
-class ReturnPolicyHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> ReturnPolicy: ...
-
-@typing.type_check_only
 class ReturnPolicyOnlineHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ReturnPolicyOnline: ...
-
-@typing.type_check_only
-class ReturnaddressCustomBatchResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> ReturnaddressCustomBatchResponse: ...
-
-@typing.type_check_only
-class ReturnaddressListResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> ReturnaddressListResponse: ...
-
-@typing.type_check_only
-class ReturnpolicyCustomBatchResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> ReturnpolicyCustomBatchResponse: ...
-
-@typing.type_check_only
-class ReturnpolicyListResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> ReturnpolicyListResponse: ...
 
 @typing.type_check_only
 class SearchResponseHttpRequest(googleapiclient.http.HttpRequest):

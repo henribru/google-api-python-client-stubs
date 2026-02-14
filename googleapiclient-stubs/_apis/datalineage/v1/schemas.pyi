@@ -5,6 +5,71 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class ApiservingMcpMcpToolDataHandlingProfile(typing_extensions.TypedDict, total=False):
+    inputDataAccessLevel: typing_extensions.Literal[
+        "DATA_ACCESS_LEVEL_UNSPECIFIED",
+        "DATA_ACCESS_LEVEL_PUBLIC",
+        "DATA_ACCESS_LEVEL_CONFIDENTIAL",
+        "DATA_ACCESS_LEVEL_NEED_TO_KNOW",
+        "DATA_ACCESS_LEVEL_PII",
+        "DATA_ACCESS_LEVEL_USER",
+        "DATA_ACCESS_LEVEL_NO_DATA_ACCESS",
+    ]
+    outputDataAccessLevel: typing_extensions.Literal[
+        "DATA_ACCESS_LEVEL_UNSPECIFIED",
+        "DATA_ACCESS_LEVEL_PUBLIC",
+        "DATA_ACCESS_LEVEL_CONFIDENTIAL",
+        "DATA_ACCESS_LEVEL_NEED_TO_KNOW",
+        "DATA_ACCESS_LEVEL_PII",
+        "DATA_ACCESS_LEVEL_USER",
+        "DATA_ACCESS_LEVEL_NO_DATA_ACCESS",
+    ]
+
+@typing.type_check_only
+class ApiservingMcpMcpToolLifecycleProfile(typing_extensions.TypedDict, total=False):
+    launchState: typing_extensions.Literal[
+        "LAUNCH_STATE_UNSPECIFIED",
+        "LAUNCH_STATE_DEVELOPMENT",
+        "LAUNCH_STATE_PRODUCTION_PREVIEW",
+        "LAUNCH_STATE_GENERAL_AVAILABILITY",
+    ]
+
+@typing.type_check_only
+class GoogleCloudDatacatalogLineageConfigmanagementV1Config(
+    typing_extensions.TypedDict, total=False
+):
+    etag: str
+    ingestion: GoogleCloudDatacatalogLineageConfigmanagementV1ConfigIngestion
+    name: str
+
+@typing.type_check_only
+class GoogleCloudDatacatalogLineageConfigmanagementV1ConfigIngestion(
+    typing_extensions.TypedDict, total=False
+):
+    rules: _list[
+        GoogleCloudDatacatalogLineageConfigmanagementV1ConfigIngestionIngestionRule
+    ]
+
+@typing.type_check_only
+class GoogleCloudDatacatalogLineageConfigmanagementV1ConfigIngestionIngestionRule(
+    typing_extensions.TypedDict, total=False
+):
+    integrationSelector: GoogleCloudDatacatalogLineageConfigmanagementV1ConfigIngestionIngestionRuleIntegrationSelector
+    lineageEnablement: GoogleCloudDatacatalogLineageConfigmanagementV1ConfigIngestionIngestionRuleLineageEnablement
+
+@typing.type_check_only
+class GoogleCloudDatacatalogLineageConfigmanagementV1ConfigIngestionIngestionRuleIntegrationSelector(
+    typing_extensions.TypedDict, total=False
+):
+    integration: typing_extensions.Literal["INTEGRATION_UNSPECIFIED", "DATAPROC"]
+
+@typing.type_check_only
+class GoogleCloudDatacatalogLineageConfigmanagementV1ConfigIngestionIngestionRuleLineageEnablement(
+    typing_extensions.TypedDict, total=False
+):
+    enabled: bool
+
+@typing.type_check_only
 class GoogleCloudDatacatalogLineageV1BatchSearchLinkProcessesRequest(
     typing_extensions.TypedDict, total=False
 ):

@@ -32,6 +32,7 @@ class PlaceActionLink(typing_extensions.TypedDict, total=False):
         "FOOD_DELIVERY",
         "FOOD_TAKEOUT",
         "SHOP_ONLINE",
+        "SOLOPRENEUR_APPOINTMENT",
     ]
     providerType: typing_extensions.Literal[
         "PROVIDER_TYPE_UNSPECIFIED", "MERCHANT", "AGGREGATOR_3P"
@@ -51,4 +52,5 @@ class PlaceActionTypeMetadata(typing_extensions.TypedDict, total=False):
         "FOOD_DELIVERY",
         "FOOD_TAKEOUT",
         "SHOP_ONLINE",
+        "SOLOPRENEUR_APPOINTMENT",
     ]

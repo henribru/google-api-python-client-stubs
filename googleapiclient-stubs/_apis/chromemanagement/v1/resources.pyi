@@ -198,6 +198,15 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
 
         @typing.type_check_only
         class ReportsResource(googleapiclient.discovery.Resource):
+            def countActiveDevices(
+                self,
+                *,
+                customer: str,
+                date_day: int = ...,
+                date_month: int = ...,
+                date_year: int = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleChromeManagementV1CountActiveDevicesResponseHttpRequest: ...
             def countChromeBrowsersNeedingAttention(
                 self, *, customer: str, orgUnitId: str = ..., **kwargs: typing.Any
             ) -> GoogleChromeManagementV1CountChromeBrowsersNeedingAttentionResponseHttpRequest: ...
@@ -251,6 +260,26 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
                 previous_response: GoogleChromeManagementV1CountChromeVersionsResponse,
             ) -> (
                 GoogleChromeManagementV1CountChromeVersionsResponseHttpRequest | None
+            ): ...
+            def countDevicesPerBootType(
+                self,
+                *,
+                customer: str,
+                date_day: int = ...,
+                date_month: int = ...,
+                date_year: int = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleChromeManagementV1CountDevicesPerBootTypeResponseHttpRequest: ...
+            def countDevicesPerReleaseChannel(
+                self,
+                *,
+                customer: str,
+                date_day: int = ...,
+                date_month: int = ...,
+                date_year: int = ...,
+                **kwargs: typing.Any,
+            ) -> (
+                GoogleChromeManagementV1CountDevicesPerReleaseChannelResponseHttpRequest
             ): ...
             def countInstalledApps(
                 self,
@@ -531,6 +560,16 @@ class GoogleChromeManagementV1AppDetailsHttpRequest(googleapiclient.http.HttpReq
     ) -> GoogleChromeManagementV1AppDetails: ...
 
 @typing.type_check_only
+class GoogleChromeManagementV1CountActiveDevicesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleChromeManagementV1CountActiveDevicesResponse: ...
+
+@typing.type_check_only
 class GoogleChromeManagementV1CountChromeAppRequestsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -601,6 +640,26 @@ class GoogleChromeManagementV1CountChromeVersionsResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleChromeManagementV1CountChromeVersionsResponse: ...
+
+@typing.type_check_only
+class GoogleChromeManagementV1CountDevicesPerBootTypeResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleChromeManagementV1CountDevicesPerBootTypeResponse: ...
+
+@typing.type_check_only
+class GoogleChromeManagementV1CountDevicesPerReleaseChannelResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleChromeManagementV1CountDevicesPerReleaseChannelResponse: ...
 
 @typing.type_check_only
 class GoogleChromeManagementV1CountInstalledAppsResponseHttpRequest(

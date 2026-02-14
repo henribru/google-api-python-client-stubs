@@ -681,6 +681,71 @@ class ClassroomResource(googleapiclient.discovery.Resource):
             def addOnAttachments(self) -> AddOnAttachmentsResource: ...
 
         @typing.type_check_only
+        class StudentGroupsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class StudentGroupMembersResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    courseId: str,
+                    studentGroupId: str,
+                    body: StudentGroupMember = ...,
+                    **kwargs: typing.Any,
+                ) -> StudentGroupMemberHttpRequest: ...
+                def delete(
+                    self,
+                    *,
+                    courseId: str,
+                    studentGroupId: str,
+                    userId: str,
+                    **kwargs: typing.Any,
+                ) -> EmptyHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    courseId: str,
+                    studentGroupId: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListStudentGroupMembersResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListStudentGroupMembersResponseHttpRequest,
+                    previous_response: ListStudentGroupMembersResponse,
+                ) -> ListStudentGroupMembersResponseHttpRequest | None: ...
+
+            def create(
+                self, *, courseId: str, body: StudentGroup = ..., **kwargs: typing.Any
+            ) -> StudentGroupHttpRequest: ...
+            def delete(
+                self, *, courseId: str, id: str, **kwargs: typing.Any
+            ) -> EmptyHttpRequest: ...
+            def list(
+                self,
+                *,
+                courseId: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any,
+            ) -> ListStudentGroupsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListStudentGroupsResponseHttpRequest,
+                previous_response: ListStudentGroupsResponse,
+            ) -> ListStudentGroupsResponseHttpRequest | None: ...
+            def patch(
+                self,
+                *,
+                courseId: str,
+                id: str,
+                body: StudentGroup = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any,
+            ) -> StudentGroupHttpRequest: ...
+            def studentGroupMembers(self) -> StudentGroupMembersResource: ...
+
+        @typing.type_check_only
         class StudentsResource(googleapiclient.discovery.Resource):
             def create(
                 self,
@@ -833,6 +898,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
         def courseWork(self) -> CourseWorkResource: ...
         def courseWorkMaterials(self) -> CourseWorkMaterialsResource: ...
         def posts(self) -> PostsResource: ...
+        def studentGroups(self) -> StudentGroupsResource: ...
         def students(self) -> StudentsResource: ...
         def teachers(self) -> TeachersResource: ...
         def topics(self) -> TopicsResource: ...
@@ -1146,6 +1212,22 @@ class ListRubricsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListRubricsResponse: ...
 
 @typing.type_check_only
+class ListStudentGroupMembersResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListStudentGroupMembersResponse: ...
+
+@typing.type_check_only
+class ListStudentGroupsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListStudentGroupsResponse: ...
+
+@typing.type_check_only
 class ListStudentSubmissionsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -1200,6 +1282,22 @@ class StudentHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Student: ...
+
+@typing.type_check_only
+class StudentGroupHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> StudentGroup: ...
+
+@typing.type_check_only
+class StudentGroupMemberHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> StudentGroupMember: ...
 
 @typing.type_check_only
 class StudentSubmissionHttpRequest(googleapiclient.http.HttpRequest):

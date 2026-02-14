@@ -137,6 +137,13 @@ class CloudFilestoreResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
+                def pauseReplica(
+                    self,
+                    *,
+                    name: str,
+                    body: PauseReplicaRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
                 def promoteReplica(
                     self,
                     *,
@@ -149,6 +156,13 @@ class CloudFilestoreResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: RestoreInstanceRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def resumeReplica(
+                    self,
+                    *,
+                    name: str,
+                    body: ResumeReplicaRequest = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def revert(
@@ -182,6 +196,7 @@ class CloudFilestoreResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
+                    returnPartialSuccess: bool = ...,
                     **kwargs: typing.Any,
                 ) -> ListOperationsResponseHttpRequest: ...
                 def list_next(

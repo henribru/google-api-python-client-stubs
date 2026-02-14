@@ -386,6 +386,7 @@ class GoogleCloudAssuredworkloadsV1beta1Workload(
         "SOVEREIGN_CONTROLS_BY_PSN",
         "SOVEREIGN_CONTROLS_BY_CNTXT",
         "SOVEREIGN_CONTROLS_BY_CNTXT_NO_EKM",
+        "SPAIN_DATA_BOUNDARY_BY_TELEFONICA",
     ]
     partnerPermissions: GoogleCloudAssuredworkloadsV1beta1WorkloadPartnerPermissions
     partnerServicesBillingAccount: str

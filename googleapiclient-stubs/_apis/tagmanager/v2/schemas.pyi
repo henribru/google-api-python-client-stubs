@@ -153,6 +153,10 @@ class BuiltInVariable(typing_extensions.TypedDict, total=False):
     workspaceId: str
 
 @typing.type_check_only
+class BulkUpdateWorkspaceResponse(typing_extensions.TypedDict, total=False):
+    changes: _list[Entity]
+
+@typing.type_check_only
 class Client(typing_extensions.TypedDict, total=False):
     accountId: str
     clientId: str
@@ -517,6 +521,10 @@ class Parameter(typing_extensions.TypedDict, total=False):
         "tagReference",
     ]
     value: str
+
+@typing.type_check_only
+class ProposedChange(typing_extensions.TypedDict, total=False):
+    changes: _list[Entity]
 
 @typing.type_check_only
 class PublishContainerVersionResponse(typing_extensions.TypedDict, total=False):

@@ -752,6 +752,9 @@ class GoogleCloudDialogflowCxV3WebhookGenericWebService(
     requestHeaders: dict[str, typing.Any]
     secretVersionForUsernamePassword: str
     secretVersionsForRequestHeaders: dict[str, typing.Any]
+    serviceAccountAuthConfig: (
+        GoogleCloudDialogflowCxV3WebhookGenericWebServiceServiceAccountAuthConfig
+    )
     serviceAgentAuth: typing_extensions.Literal[
         "SERVICE_AGENT_AUTH_UNSPECIFIED", "NONE", "ID_TOKEN", "ACCESS_TOKEN"
     ]
@@ -776,6 +779,12 @@ class GoogleCloudDialogflowCxV3WebhookGenericWebServiceSecretVersionHeaderValue(
     typing_extensions.TypedDict, total=False
 ):
     secretVersion: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3WebhookGenericWebServiceServiceAccountAuthConfig(
+    typing_extensions.TypedDict, total=False
+):
+    serviceAccount: str
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3WebhookRequest(typing_extensions.TypedDict, total=False):
@@ -1187,6 +1196,10 @@ class GoogleCloudDialogflowCxV3beta1Changelog(typing_extensions.TypedDict, total
     userEmail: str
 
 @typing.type_check_only
+class GoogleCloudDialogflowCxV3beta1CodeBlock(typing_extensions.TypedDict, total=False):
+    code: str
+
+@typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1CompareVersionsRequest(
     typing_extensions.TypedDict, total=False
 ):
@@ -1491,6 +1504,12 @@ class GoogleCloudDialogflowCxV3beta1DetectIntentRequest(
     outputAudioConfig: GoogleCloudDialogflowCxV3beta1OutputAudioConfig
     queryInput: GoogleCloudDialogflowCxV3beta1QueryInput
     queryParams: GoogleCloudDialogflowCxV3beta1QueryParameters
+    responseView: typing_extensions.Literal[
+        "DETECT_INTENT_RESPONSE_VIEW_UNSPECIFIED",
+        "DETECT_INTENT_RESPONSE_VIEW_FULL",
+        "DETECT_INTENT_RESPONSE_VIEW_BASIC",
+        "DETECT_INTENT_RESPONSE_VIEW_DEFAULT",
+    ]
     session: str
 
 @typing.type_check_only
@@ -2702,10 +2721,12 @@ class GoogleCloudDialogflowCxV3beta1Phrase(typing_extensions.TypedDict, total=Fa
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1Playbook(typing_extensions.TypedDict, total=False):
+    codeBlock: GoogleCloudDialogflowCxV3beta1CodeBlock
     createTime: str
     displayName: str
     goal: str
     handlers: _list[GoogleCloudDialogflowCxV3beta1Handler]
+    inlineActions: _list[str]
     inputParameterDefinitions: _list[GoogleCloudDialogflowCxV3beta1ParameterDefinition]
     instruction: GoogleCloudDialogflowCxV3beta1PlaybookInstruction
     llmModelSettings: GoogleCloudDialogflowCxV3beta1LlmModelSettings
@@ -3078,9 +3099,11 @@ class GoogleCloudDialogflowCxV3beta1SafetySettings(
     defaultBannedPhraseMatchStrategy: typing_extensions.Literal[
         "PHRASE_MATCH_STRATEGY_UNSPECIFIED", "PARTIAL_MATCH", "WORD_MATCH"
     ]
+    defaultRaiSettings: GoogleCloudDialogflowCxV3beta1SafetySettingsRaiSettings
     promptSecuritySettings: (
         GoogleCloudDialogflowCxV3beta1SafetySettingsPromptSecuritySettings
     )
+    raiSettings: GoogleCloudDialogflowCxV3beta1SafetySettingsRaiSettings
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1SafetySettingsPhrase(
@@ -3094,6 +3117,33 @@ class GoogleCloudDialogflowCxV3beta1SafetySettingsPromptSecuritySettings(
     typing_extensions.TypedDict, total=False
 ):
     enablePromptSecurity: bool
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3beta1SafetySettingsRaiSettings(
+    typing_extensions.TypedDict, total=False
+):
+    categoryFilters: _list[
+        GoogleCloudDialogflowCxV3beta1SafetySettingsRaiSettingsCategoryFilter
+    ]
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3beta1SafetySettingsRaiSettingsCategoryFilter(
+    typing_extensions.TypedDict, total=False
+):
+    category: typing_extensions.Literal[
+        "SAFETY_CATEGORY_UNSPECIFIED",
+        "DANGEROUS_CONTENT",
+        "HATE_SPEECH",
+        "HARASSMENT",
+        "SEXUALLY_EXPLICIT_CONTENT",
+    ]
+    filterLevel: typing_extensions.Literal[
+        "SAFETY_FILTER_LEVEL_UNSPECIFIED",
+        "BLOCK_NONE",
+        "BLOCK_FEW",
+        "BLOCK_SOME",
+        "BLOCK_MOST",
+    ]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1SearchConfig(
@@ -3302,6 +3352,9 @@ class GoogleCloudDialogflowCxV3beta1ToolAuthentication(
     apiKeyConfig: GoogleCloudDialogflowCxV3beta1ToolAuthenticationApiKeyConfig
     bearerTokenConfig: GoogleCloudDialogflowCxV3beta1ToolAuthenticationBearerTokenConfig
     oauthConfig: GoogleCloudDialogflowCxV3beta1ToolAuthenticationOAuthConfig
+    serviceAccountAuthConfig: (
+        GoogleCloudDialogflowCxV3beta1ToolAuthenticationServiceAccountAuthConfig
+    )
     serviceAgentAuthConfig: (
         GoogleCloudDialogflowCxV3beta1ToolAuthenticationServiceAgentAuthConfig
     )
@@ -3336,6 +3389,12 @@ class GoogleCloudDialogflowCxV3beta1ToolAuthenticationOAuthConfig(
     scopes: _list[str]
     secretVersionForClientSecret: str
     tokenEndpoint: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3beta1ToolAuthenticationServiceAccountAuthConfig(
+    typing_extensions.TypedDict, total=False
+):
+    serviceAccount: str
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1ToolAuthenticationServiceAgentAuthConfig(
@@ -3735,6 +3794,9 @@ class GoogleCloudDialogflowCxV3beta1WebhookGenericWebService(
     requestHeaders: dict[str, typing.Any]
     secretVersionForUsernamePassword: str
     secretVersionsForRequestHeaders: dict[str, typing.Any]
+    serviceAccountAuthConfig: (
+        GoogleCloudDialogflowCxV3beta1WebhookGenericWebServiceServiceAccountAuthConfig
+    )
     serviceAgentAuth: typing_extensions.Literal[
         "SERVICE_AGENT_AUTH_UNSPECIFIED", "NONE", "ID_TOKEN", "ACCESS_TOKEN"
     ]
@@ -3759,6 +3821,12 @@ class GoogleCloudDialogflowCxV3beta1WebhookGenericWebServiceSecretVersionHeaderV
     typing_extensions.TypedDict, total=False
 ):
     secretVersion: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3beta1WebhookGenericWebServiceServiceAccountAuthConfig(
+    typing_extensions.TypedDict, total=False
+):
+    serviceAccount: str
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1WebhookRequest(
@@ -3852,6 +3920,14 @@ class GoogleCloudDialogflowV2AgentCoachingInstruction(
         GoogleCloudDialogflowV2AgentCoachingInstructionDuplicateCheckResult
     )
     systemAction: str
+    triggeringEvent: typing_extensions.Literal[
+        "TRIGGER_EVENT_UNSPECIFIED",
+        "END_OF_UTTERANCE",
+        "MANUAL_CALL",
+        "CUSTOMER_MESSAGE",
+        "AGENT_MESSAGE",
+        "TOOL_CALL_COMPLETION",
+    ]
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2AgentCoachingInstructionDuplicateCheckResult(
@@ -4215,6 +4291,31 @@ class GoogleCloudDialogflowV2ImportDocumentsResponse(
     warnings: _list[GoogleRpcStatus]
 
 @typing.type_check_only
+class GoogleCloudDialogflowV2IngestedContextReferenceDebugInfo(
+    typing_extensions.TypedDict, total=False
+):
+    contextReferenceRetrieved: bool
+    ingestedParametersDebugInfo: _list[
+        GoogleCloudDialogflowV2IngestedContextReferenceDebugInfoIngestedParameterDebugInfo
+    ]
+    projectNotAllowlisted: bool
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2IngestedContextReferenceDebugInfoIngestedParameterDebugInfo(
+    typing_extensions.TypedDict, total=False
+):
+    ingestionStatus: typing_extensions.Literal[
+        "INGESTION_STATUS_UNSPECIFIED",
+        "INGESTION_STATUS_SUCCEEDED",
+        "INGESTION_STATUS_CONTEXT_NOT_AVAILABLE",
+        "INGESTION_STATUS_PARSE_FAILED",
+        "INGESTION_STATUS_INVALID_ENTRY",
+        "INGESTION_STATUS_INVALID_FORMAT",
+        "INGESTION_STATUS_LANGUAGE_MISMATCH",
+    ]
+    parameter: str
+
+@typing.type_check_only
 class GoogleCloudDialogflowV2InitializeEncryptionSpecMetadata(
     typing_extensions.TypedDict, total=False
 ):
@@ -4557,6 +4658,7 @@ class GoogleCloudDialogflowV2KnowledgeAssistAnswer(
     typing_extensions.TypedDict, total=False
 ):
     answerRecord: str
+    knowledgeAssistDebugInfo: GoogleCloudDialogflowV2KnowledgeAssistDebugInfo
     suggestedQuery: GoogleCloudDialogflowV2KnowledgeAssistAnswerSuggestedQuery
     suggestedQueryAnswer: GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswer
 
@@ -4598,6 +4700,71 @@ class GoogleCloudDialogflowV2KnowledgeAssistAnswerSuggestedQuery(
     typing_extensions.TypedDict, total=False
 ):
     queryText: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2KnowledgeAssistDebugInfo(
+    typing_extensions.TypedDict, total=False
+):
+    datastoreResponseReason: typing_extensions.Literal[
+        "DATASTORE_RESPONSE_REASON_UNSPECIFIED",
+        "NONE",
+        "SEARCH_OUT_OF_QUOTA",
+        "SEARCH_EMPTY_RESULTS",
+        "ANSWER_GENERATION_GEN_AI_DISABLED",
+        "ANSWER_GENERATION_OUT_OF_QUOTA",
+        "ANSWER_GENERATION_ERROR",
+        "ANSWER_GENERATION_NOT_ENOUGH_INFO",
+        "ANSWER_GENERATION_RAI_FAILED",
+        "ANSWER_GENERATION_NOT_GROUNDED",
+    ]
+    ingestedContextReferenceDebugInfo: (
+        GoogleCloudDialogflowV2IngestedContextReferenceDebugInfo
+    )
+    knowledgeAssistBehavior: (
+        GoogleCloudDialogflowV2KnowledgeAssistDebugInfoKnowledgeAssistBehavior
+    )
+    queryCategorizationFailureReason: typing_extensions.Literal[
+        "QUERY_CATEGORIZATION_FAILURE_REASON_UNSPECIFIED",
+        "QUERY_CATEGORIZATION_INVALID_CONFIG",
+        "QUERY_CATEGORIZATION_RESULT_NOT_FOUND",
+        "QUERY_CATEGORIZATION_FAILED",
+    ]
+    queryGenerationFailureReason: typing_extensions.Literal[
+        "QUERY_GENERATION_FAILURE_REASON_UNSPECIFIED",
+        "QUERY_GENERATION_OUT_OF_QUOTA",
+        "QUERY_GENERATION_FAILED",
+        "QUERY_GENERATION_NO_QUERY_GENERATED",
+        "QUERY_GENERATION_RAI_FAILED",
+        "NOT_IN_ALLOWLIST",
+        "QUERY_GENERATION_QUERY_REDACTED",
+        "QUERY_GENERATION_LLM_RESPONSE_PARSE_FAILED",
+        "QUERY_GENERATION_EMPTY_CONVERSATION",
+        "QUERY_GENERATION_EMPTY_LAST_MESSAGE",
+        "QUERY_GENERATION_TRIGGERING_EVENT_CONDITION_NOT_MET",
+    ]
+    serviceLatency: GoogleCloudDialogflowV2ServiceLatency
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2KnowledgeAssistDebugInfoKnowledgeAssistBehavior(
+    typing_extensions.TypedDict, total=False
+):
+    answerGenerationRewriterOn: bool
+    appendedSearchContextCount: int
+    conversationTranscriptHasMixedLanguages: bool
+    disableSyncDelivery: bool
+    endUserMetadataIncluded: bool
+    invalidItemsQuerySuggestionSkipped: bool
+    multipleQueriesGenerated: bool
+    previousQueriesIncluded: bool
+    primaryQueryRedactedAndReplaced: bool
+    queryContainedSearchContext: bool
+    queryGenerationAgentLanguageMismatch: bool
+    queryGenerationEndUserLanguageMismatch: bool
+    returnQueryOnly: bool
+    thirdPartyConnectorAllowed: bool
+    useCustomSafetyFilterLevel: bool
+    usePubsubDelivery: bool
+    useTranslatedMessage: bool
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2KnowledgeOperationMetadata(
@@ -4666,6 +4833,21 @@ class GoogleCloudDialogflowV2SentimentAnalysisResult(
     typing_extensions.TypedDict, total=False
 ):
     queryTextSentiment: GoogleCloudDialogflowV2Sentiment
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2ServiceLatency(typing_extensions.TypedDict, total=False):
+    internalServiceLatencies: _list[
+        GoogleCloudDialogflowV2ServiceLatencyInternalServiceLatency
+    ]
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2ServiceLatencyInternalServiceLatency(
+    typing_extensions.TypedDict, total=False
+):
+    completeTime: str
+    latencyMs: float
+    startTime: str
+    step: str
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2SessionEntityType(
@@ -4857,6 +5039,14 @@ class GoogleCloudDialogflowV2beta1AgentCoachingInstruction(
         GoogleCloudDialogflowV2beta1AgentCoachingInstructionDuplicateCheckResult
     )
     systemAction: str
+    triggeringEvent: typing_extensions.Literal[
+        "TRIGGER_EVENT_UNSPECIFIED",
+        "END_OF_UTTERANCE",
+        "MANUAL_CALL",
+        "CUSTOMER_MESSAGE",
+        "AGENT_MESSAGE",
+        "TOOL_CALL_COMPLETION",
+    ]
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1AgentCoachingInstructionDuplicateCheckResult(
@@ -5124,6 +5314,31 @@ class GoogleCloudDialogflowV2beta1ImportDocumentsResponse(
     typing_extensions.TypedDict, total=False
 ):
     warnings: _list[GoogleRpcStatus]
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1IngestedContextReferenceDebugInfo(
+    typing_extensions.TypedDict, total=False
+):
+    contextReferenceRetrieved: bool
+    ingestedParametersDebugInfo: _list[
+        GoogleCloudDialogflowV2beta1IngestedContextReferenceDebugInfoIngestedParameterDebugInfo
+    ]
+    projectNotAllowlisted: bool
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1IngestedContextReferenceDebugInfoIngestedParameterDebugInfo(
+    typing_extensions.TypedDict, total=False
+):
+    ingestionStatus: typing_extensions.Literal[
+        "INGESTION_STATUS_UNSPECIFIED",
+        "INGESTION_STATUS_SUCCEEDED",
+        "INGESTION_STATUS_CONTEXT_NOT_AVAILABLE",
+        "INGESTION_STATUS_PARSE_FAILED",
+        "INGESTION_STATUS_INVALID_ENTRY",
+        "INGESTION_STATUS_INVALID_FORMAT",
+        "INGESTION_STATUS_LANGUAGE_MISMATCH",
+    ]
+    parameter: str
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1InitializeEncryptionSpecMetadata(
@@ -5610,6 +5825,7 @@ class GoogleCloudDialogflowV2beta1KnowledgeAssistAnswer(
     typing_extensions.TypedDict, total=False
 ):
     answerRecord: str
+    knowledgeAssistDebugInfo: GoogleCloudDialogflowV2beta1KnowledgeAssistDebugInfo
     suggestedQuery: GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerSuggestedQuery
     suggestedQueryAnswer: (
         GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswer
@@ -5653,6 +5869,71 @@ class GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerSuggestedQuery(
     typing_extensions.TypedDict, total=False
 ):
     queryText: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1KnowledgeAssistDebugInfo(
+    typing_extensions.TypedDict, total=False
+):
+    datastoreResponseReason: typing_extensions.Literal[
+        "DATASTORE_RESPONSE_REASON_UNSPECIFIED",
+        "NONE",
+        "SEARCH_OUT_OF_QUOTA",
+        "SEARCH_EMPTY_RESULTS",
+        "ANSWER_GENERATION_GEN_AI_DISABLED",
+        "ANSWER_GENERATION_OUT_OF_QUOTA",
+        "ANSWER_GENERATION_ERROR",
+        "ANSWER_GENERATION_NOT_ENOUGH_INFO",
+        "ANSWER_GENERATION_RAI_FAILED",
+        "ANSWER_GENERATION_NOT_GROUNDED",
+    ]
+    ingestedContextReferenceDebugInfo: (
+        GoogleCloudDialogflowV2beta1IngestedContextReferenceDebugInfo
+    )
+    knowledgeAssistBehavior: (
+        GoogleCloudDialogflowV2beta1KnowledgeAssistDebugInfoKnowledgeAssistBehavior
+    )
+    queryCategorizationFailureReason: typing_extensions.Literal[
+        "QUERY_CATEGORIZATION_FAILURE_REASON_UNSPECIFIED",
+        "QUERY_CATEGORIZATION_INVALID_CONFIG",
+        "QUERY_CATEGORIZATION_RESULT_NOT_FOUND",
+        "QUERY_CATEGORIZATION_FAILED",
+    ]
+    queryGenerationFailureReason: typing_extensions.Literal[
+        "QUERY_GENERATION_FAILURE_REASON_UNSPECIFIED",
+        "QUERY_GENERATION_OUT_OF_QUOTA",
+        "QUERY_GENERATION_FAILED",
+        "QUERY_GENERATION_NO_QUERY_GENERATED",
+        "QUERY_GENERATION_RAI_FAILED",
+        "NOT_IN_ALLOWLIST",
+        "QUERY_GENERATION_QUERY_REDACTED",
+        "QUERY_GENERATION_LLM_RESPONSE_PARSE_FAILED",
+        "QUERY_GENERATION_EMPTY_CONVERSATION",
+        "QUERY_GENERATION_EMPTY_LAST_MESSAGE",
+        "QUERY_GENERATION_TRIGGERING_EVENT_CONDITION_NOT_MET",
+    ]
+    serviceLatency: GoogleCloudDialogflowV2beta1ServiceLatency
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1KnowledgeAssistDebugInfoKnowledgeAssistBehavior(
+    typing_extensions.TypedDict, total=False
+):
+    answerGenerationRewriterOn: bool
+    appendedSearchContextCount: int
+    conversationTranscriptHasMixedLanguages: bool
+    disableSyncDelivery: bool
+    endUserMetadataIncluded: bool
+    invalidItemsQuerySuggestionSkipped: bool
+    multipleQueriesGenerated: bool
+    previousQueriesIncluded: bool
+    primaryQueryRedactedAndReplaced: bool
+    queryContainedSearchContext: bool
+    queryGenerationAgentLanguageMismatch: bool
+    queryGenerationEndUserLanguageMismatch: bool
+    returnQueryOnly: bool
+    thirdPartyConnectorAllowed: bool
+    useCustomSafetyFilterLevel: bool
+    usePubsubDelivery: bool
+    useTranslatedMessage: bool
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1KnowledgeOperationMetadata(
@@ -5774,6 +6055,23 @@ class GoogleCloudDialogflowV2beta1SentimentAnalysisResult(
     typing_extensions.TypedDict, total=False
 ):
     queryTextSentiment: GoogleCloudDialogflowV2beta1Sentiment
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1ServiceLatency(
+    typing_extensions.TypedDict, total=False
+):
+    internalServiceLatencies: _list[
+        GoogleCloudDialogflowV2beta1ServiceLatencyInternalServiceLatency
+    ]
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1ServiceLatencyInternalServiceLatency(
+    typing_extensions.TypedDict, total=False
+):
+    completeTime: str
+    latencyMs: float
+    startTime: str
+    step: str
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1SessionEntityType(

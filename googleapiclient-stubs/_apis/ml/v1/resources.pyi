@@ -310,6 +310,7 @@ class CloudMachineLearningEngineResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
+                returnPartialSuccess: bool = ...,
                 **kwargs: typing.Any,
             ) -> GoogleLongrunning__ListOperationsResponseHttpRequest: ...
             def list_next(

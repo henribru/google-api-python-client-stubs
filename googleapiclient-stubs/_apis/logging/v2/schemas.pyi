@@ -153,6 +153,47 @@ class Expr(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
+class FieldSource(typing_extensions.TypedDict, total=False):
+    aliasRef: str
+    columnType: str
+    field: str
+    isJson: bool
+    parentPath: str
+    projectedField: ProjectedField
+
+@typing.type_check_only
+class FilterExpression(typing_extensions.TypedDict, total=False):
+    comparator: typing_extensions.Literal[
+        "COMPARATOR_UNSPECIFIED",
+        "EQUALS",
+        "MATCHES_REGEXP",
+        "GREATER_THAN",
+        "LESS_THAN",
+        "GREATER_THAN_EQUALS",
+        "LESS_THAN_EQUALS",
+        "IS_NULL",
+        "IN",
+        "LIKE",
+    ]
+    fieldSource: FieldSource
+    fieldSourceValue: FieldSource
+    isNegation: bool
+    literalValue: typing.Any
+
+@typing.type_check_only
+class FilterPredicate(typing_extensions.TypedDict, total=False):
+    childPredicates: _list[FilterPredicate]
+    leafPredicate: FilterExpression
+    operatorType: typing_extensions.Literal[
+        "OPERATOR_TYPE_UNSPECIFIED", "AND", "OR", "LEAF"
+    ]
+
+@typing.type_check_only
+class FunctionApplication(typing_extensions.TypedDict, total=False):
+    parameters: _list[typing.Any]
+    type: str
+
+@typing.type_check_only
 class GetIamPolicyRequest(typing_extensions.TypedDict, total=False):
     options: GetPolicyOptions
 
@@ -290,6 +331,7 @@ class ListMonitoredResourceDescriptorsResponse(
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListRecentQueriesResponse(typing_extensions.TypedDict, total=False):
@@ -350,6 +392,7 @@ class LogBucket(typing_extensions.TypedDict, total=False):
 class LogEntry(typing_extensions.TypedDict, total=False):
     apphub: AppHub
     apphubDestination: AppHub
+    apphubSource: AppHub
     errorGroups: _list[LogErrorGroup]
     httpRequest: HttpRequest
     insertId: str
@@ -581,6 +624,7 @@ class Operation(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class OpsAnalyticsQuery(typing_extensions.TypedDict, total=False):
+    queryBuilder: QueryBuilderConfig
     sqlQueryText: str
 
 @typing.type_check_only
@@ -588,6 +632,27 @@ class Policy(typing_extensions.TypedDict, total=False):
     bindings: _list[Binding]
     etag: str
     version: int
+
+@typing.type_check_only
+class ProjectedField(typing_extensions.TypedDict, total=False):
+    alias: str
+    cast: str
+    field: str
+    operation: typing_extensions.Literal[
+        "FIELD_OPERATION_UNSPECIFIED", "NO_SETTING", "GROUP_BY", "AGGREGATE"
+    ]
+    regexExtraction: str
+    sqlAggregationFunction: FunctionApplication
+    truncationGranularity: str
+
+@typing.type_check_only
+class QueryBuilderConfig(typing_extensions.TypedDict, total=False):
+    fieldSources: _list[FieldSource]
+    filter: FilterPredicate
+    limit: str
+    orderBys: _list[SortOrderParameter]
+    resourceNames: _list[str]
+    searchTerm: str
 
 @typing.type_check_only
 class RecentQuery(typing_extensions.TypedDict, total=False):
@@ -658,6 +723,16 @@ class Settings(typing_extensions.TypedDict, total=False):
     loggingServiceAccountId: str
     name: str
     storageLocation: str
+
+@typing.type_check_only
+class SortOrderParameter(typing_extensions.TypedDict, total=False):
+    fieldSource: FieldSource
+    sortOrderDirection: typing_extensions.Literal[
+        "SORT_ORDER_UNSPECIFIED",
+        "SORT_ORDER_NONE",
+        "SORT_ORDER_ASCENDING",
+        "SORT_ORDER_DESCENDING",
+    ]
 
 @typing.type_check_only
 class SourceLocation(typing_extensions.TypedDict, total=False):

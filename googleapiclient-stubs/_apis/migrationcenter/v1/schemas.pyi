@@ -118,6 +118,49 @@ class AssetPerformanceData(typing_extensions.TypedDict, total=False):
     dailyResourceUsageAggregations: _list[DailyResourceUsageAggregation]
 
 @typing.type_check_only
+class AssetsExportJob(typing_extensions.TypedDict, total=False):
+    condition: AssetsExportJobExportCondition
+    createTime: str
+    inventory: AssetsExportJobInventory
+    labels: dict[str, typing.Any]
+    name: str
+    networkDependencies: AssetsExportJobNetworkDependencies
+    performanceData: AssetsExportJobPerformanceData
+    recentExecutions: _list[AssetsExportJobExecution]
+    showHidden: bool
+    signedUriDestination: SignedUriDestination
+    updateTime: str
+
+@typing.type_check_only
+class AssetsExportJobExecution(typing_extensions.TypedDict, total=False):
+    endTime: str
+    executionId: str
+    expireTime: str
+    requestedAssetCount: int
+    result: AssetsExportJobExecutionResult
+    startTime: str
+
+@typing.type_check_only
+class AssetsExportJobExecutionResult(typing_extensions.TypedDict, total=False):
+    error: Status
+    outputFiles: OutputFileList
+    signedUris: SignedUris
+
+@typing.type_check_only
+class AssetsExportJobExportCondition(typing_extensions.TypedDict, total=False):
+    filter: str
+
+@typing.type_check_only
+class AssetsExportJobInventory(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class AssetsExportJobNetworkDependencies(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class AssetsExportJobPerformanceData(typing_extensions.TypedDict, total=False):
+    maxDays: int
+
+@typing.type_check_only
 class AwsEc2PlatformDetails(typing_extensions.TypedDict, total=False):
     hyperthreading: typing_extensions.Literal[
         "HYPERTHREADING_STATUS_UNSPECIFIED",
@@ -215,6 +258,12 @@ class ComputeStorageDescriptor(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class CpuUsageSample(typing_extensions.TypedDict, total=False):
     utilizedPercentage: float
+
+@typing.type_check_only
+class CsvOutputFile(typing_extensions.TypedDict, total=False):
+    columnsCount: int
+    rowCount: int
+    signedUri: SignedUri
 
 @typing.type_check_only
 class DailyResourceUsageAggregation(typing_extensions.TypedDict, total=False):
@@ -618,6 +667,11 @@ class InsightList(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
+class ListAssetsExportJobsResponse(typing_extensions.TypedDict, total=False):
+    assetsExportJobs: _list[AssetsExportJob]
+    nextPageToken: str
+
+@typing.type_check_only
 class ListAssetsResponse(typing_extensions.TypedDict, total=False):
     assets: _list[Asset]
     nextPageToken: str
@@ -747,6 +801,7 @@ class MachineDiskDetails(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class MachineNetworkDetails(typing_extensions.TypedDict, total=False):
     adapters: NetworkAdapterList
+    defaultGateway: str
     primaryIpAddress: str
     primaryMacAddress: str
     publicIpAddress: str
@@ -909,6 +964,16 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
+class OutputFile(typing_extensions.TypedDict, total=False):
+    csvOutputFile: CsvOutputFile
+    fileSizeBytes: str
+    xlsxOutputFile: XlsxOutputFile
+
+@typing.type_check_only
+class OutputFileList(typing_extensions.TypedDict, total=False):
+    entries: _list[OutputFile]
+
+@typing.type_check_only
 class PerformanceSample(typing_extensions.TypedDict, total=False):
     cpu: CpuUsageSample
     disk: DiskUsageSample
@@ -1036,6 +1101,7 @@ class ReportSummaryAssetAggregateStats(typing_extensions.TypedDict, total=False)
     memoryBytesHistogram: ReportSummaryHistogramChartData
     memoryUtilizationChart: ReportSummaryUtilizationChartData
     operatingSystem: ReportSummaryChartData
+    softwareInstances: ReportSummaryChartData
     storageBytesHistogram: ReportSummaryHistogramChartData
     storageUtilizationChart: ReportSummaryUtilizationChartData
     totalAssets: str
@@ -1138,6 +1204,14 @@ class ReportSummaryVmwareNodeAllocation(typing_extensions.TypedDict, total=False
     vmwareNode: ReportSummaryVmwareNode
 
 @typing.type_check_only
+class RunAssetsExportJobRequest(typing_extensions.TypedDict, total=False):
+    requestId: str
+
+@typing.type_check_only
+class RunAssetsExportJobResponse(typing_extensions.TypedDict, total=False):
+    assetsExportJobExecution: AssetsExportJobExecution
+
+@typing.type_check_only
 class RunImportJobRequest(typing_extensions.TypedDict, total=False):
     requestId: str
 
@@ -1183,6 +1257,19 @@ class Settings(typing_extensions.TypedDict, total=False):
     disableCloudLogging: bool
     name: str
     preferenceSet: str
+
+@typing.type_check_only
+class SignedUri(typing_extensions.TypedDict, total=False):
+    file: str
+    uri: str
+
+@typing.type_check_only
+class SignedUriDestination(typing_extensions.TypedDict, total=False):
+    fileFormat: typing_extensions.Literal["FILE_FORMAT_UNSPECIFIED", "CSV", "XLSX"]
+
+@typing.type_check_only
+class SignedUris(typing_extensions.TypedDict, total=False):
+    signedUris: _list[SignedUri]
 
 @typing.type_check_only
 class SoleTenancyPreferences(typing_extensions.TypedDict, total=False):
@@ -1359,3 +1446,7 @@ class VmwarePlatformDetails(typing_extensions.TypedDict, total=False):
     vcenterUri: str
     vcenterVersion: str
     vcenterVmId: str
+
+@typing.type_check_only
+class XlsxOutputFile(typing_extensions.TypedDict, total=False):
+    signedUri: SignedUri

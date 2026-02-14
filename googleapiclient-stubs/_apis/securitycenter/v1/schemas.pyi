@@ -33,6 +33,19 @@ class AdaptiveProtection(typing_extensions.TypedDict, total=False):
     confidence: float
 
 @typing.type_check_only
+class AdcApplication(typing_extensions.TypedDict, total=False):
+    attributes: GoogleCloudSecuritycenterV1ResourceApplicationAttributes
+    name: str
+
+@typing.type_check_only
+class AdcApplicationTemplateRevision(typing_extensions.TypedDict, total=False):
+    name: str
+
+@typing.type_check_only
+class AdcSharedTemplateRevision(typing_extensions.TypedDict, total=False):
+    name: str
+
+@typing.type_check_only
 class AffectedResources(typing_extensions.TypedDict, total=False):
     count: str
 
@@ -47,6 +60,7 @@ class AiModel(typing_extensions.TypedDict, total=False):
     location: str
     name: str
     publisher: str
+    usageCategory: str
 
 @typing.type_check_only
 class Allowed(typing_extensions.TypedDict, total=False):
@@ -56,6 +70,19 @@ class Allowed(typing_extensions.TypedDict, total=False):
 class Application(typing_extensions.TypedDict, total=False):
     baseUri: str
     fullUri: str
+
+@typing.type_check_only
+class ArtifactGuardPolicies(typing_extensions.TypedDict, total=False):
+    failingPolicies: _list[ArtifactGuardPolicy]
+    resourceId: str
+
+@typing.type_check_only
+class ArtifactGuardPolicy(typing_extensions.TypedDict, total=False):
+    failureReason: str
+    policyId: str
+    type: typing_extensions.Literal[
+        "ARTIFACT_GUARD_POLICY_TYPE_UNSPECIFIED", "VULNERABILITY"
+    ]
 
 @typing.type_check_only
 class Asset(typing_extensions.TypedDict, total=False):
@@ -541,6 +568,9 @@ class Expr(typing_extensions.TypedDict, total=False):
 class File(typing_extensions.TypedDict, total=False):
     contents: str
     diskPath: DiskPath
+    fileLoadState: typing_extensions.Literal[
+        "FILE_LOAD_STATE_UNSPECIFIED", "LOADED_BY_PROCESS", "NOT_LOADED_BY_PROCESS"
+    ]
     hashedSize: str
     operations: _list[FileOperation]
     partiallyHashed: bool
@@ -560,6 +590,7 @@ class Finding(typing_extensions.TypedDict, total=False):
     affectedResources: AffectedResources
     aiModel: AiModel
     application: Application
+    artifactGuardPolicies: ArtifactGuardPolicies
     attackExposure: AttackExposure
     backupDisasterRecovery: BackupDisasterRecovery
     canonicalName: str
@@ -621,6 +652,7 @@ class Finding(typing_extensions.TypedDict, total=False):
     parentDisplayName: str
     processes: _list[Process]
     resourceName: str
+    secret: Secret
     securityMarks: SecurityMarks
     securityPosture: SecurityPosture
     severity: typing_extensions.Literal[
@@ -646,6 +678,7 @@ class Framework(typing_extensions.TypedDict, total=False):
             "ASSURED_WORKLOADS",
             "DATA_SECURITY",
             "GOOGLE_BEST_PRACTICES",
+            "CUSTOM_FRAMEWORK",
         ]
     ]
     controls: _list[Control]
@@ -778,6 +811,10 @@ class GoogleCloudSecuritycenterV1Property(typing_extensions.TypedDict, total=Fal
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV1Resource(typing_extensions.TypedDict, total=False):
+    adcApplication: AdcApplication
+    adcApplicationTemplate: AdcApplicationTemplateRevision
+    adcSharedTemplate: AdcSharedTemplateRevision
+    application: GoogleCloudSecuritycenterV1ResourceApplication
     awsMetadata: AwsMetadata
     azureMetadata: AzureMetadata
     cloudProvider: typing_extensions.Literal[
@@ -799,6 +836,51 @@ class GoogleCloudSecuritycenterV1Resource(typing_extensions.TypedDict, total=Fal
     resourcePathString: str
     service: str
     type: str
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV1ResourceApplication(
+    typing_extensions.TypedDict, total=False
+):
+    attributes: GoogleCloudSecuritycenterV1ResourceApplicationAttributes
+    name: str
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV1ResourceApplicationAttributes(
+    typing_extensions.TypedDict, total=False
+):
+    businessOwners: _list[
+        GoogleCloudSecuritycenterV1ResourceApplicationAttributesContactInfo
+    ]
+    criticality: GoogleCloudSecuritycenterV1ResourceApplicationAttributesCriticality
+    developerOwners: _list[
+        GoogleCloudSecuritycenterV1ResourceApplicationAttributesContactInfo
+    ]
+    environment: GoogleCloudSecuritycenterV1ResourceApplicationAttributesEnvironment
+    operatorOwners: _list[
+        GoogleCloudSecuritycenterV1ResourceApplicationAttributesContactInfo
+    ]
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV1ResourceApplicationAttributesContactInfo(
+    typing_extensions.TypedDict, total=False
+):
+    email: str
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV1ResourceApplicationAttributesCriticality(
+    typing_extensions.TypedDict, total=False
+):
+    type: typing_extensions.Literal[
+        "CRITICALITY_TYPE_UNSPECIFIED", "MISSION_CRITICAL", "HIGH", "MEDIUM", "LOW"
+    ]
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV1ResourceApplicationAttributesEnvironment(
+    typing_extensions.TypedDict, total=False
+):
+    type: typing_extensions.Literal[
+        "ENVIRONMENT_TYPE_UNSPECIFIED", "PRODUCTION", "STAGING", "TEST", "DEVELOPMENT"
+    ]
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV1ResourceSelector(
@@ -975,6 +1057,25 @@ class GoogleCloudSecuritycenterV2AdaptiveProtection(
     confidence: float
 
 @typing.type_check_only
+class GoogleCloudSecuritycenterV2AdcApplication(
+    typing_extensions.TypedDict, total=False
+):
+    attributes: GoogleCloudSecuritycenterV2ResourceApplicationAttributes
+    name: str
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2AdcApplicationTemplateRevision(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2AdcSharedTemplateRevision(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
+
+@typing.type_check_only
 class GoogleCloudSecuritycenterV2AffectedResources(
     typing_extensions.TypedDict, total=False
 ):
@@ -991,6 +1092,7 @@ class GoogleCloudSecuritycenterV2AiModel(typing_extensions.TypedDict, total=Fals
     location: str
     name: str
     publisher: str
+    usageCategory: str
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV2Allowed(typing_extensions.TypedDict, total=False):
@@ -1000,6 +1102,23 @@ class GoogleCloudSecuritycenterV2Allowed(typing_extensions.TypedDict, total=Fals
 class GoogleCloudSecuritycenterV2Application(typing_extensions.TypedDict, total=False):
     baseUri: str
     fullUri: str
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2ArtifactGuardPolicies(
+    typing_extensions.TypedDict, total=False
+):
+    failingPolicies: _list[GoogleCloudSecuritycenterV2ArtifactGuardPolicy]
+    resourceId: str
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2ArtifactGuardPolicy(
+    typing_extensions.TypedDict, total=False
+):
+    failureReason: str
+    policyId: str
+    type: typing_extensions.Literal[
+        "ARTIFACT_GUARD_POLICY_TYPE_UNSPECIFIED", "VULNERABILITY"
+    ]
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV2Attack(typing_extensions.TypedDict, total=False):
@@ -1403,6 +1522,9 @@ class GoogleCloudSecuritycenterV2ExternalSystem(
 class GoogleCloudSecuritycenterV2File(typing_extensions.TypedDict, total=False):
     contents: str
     diskPath: GoogleCloudSecuritycenterV2DiskPath
+    fileLoadState: typing_extensions.Literal[
+        "FILE_LOAD_STATE_UNSPECIFIED", "LOADED_BY_PROCESS", "NOT_LOADED_BY_PROCESS"
+    ]
     hashedSize: str
     operations: _list[GoogleCloudSecuritycenterV2FileOperation]
     partiallyHashed: bool
@@ -1424,6 +1546,7 @@ class GoogleCloudSecuritycenterV2Finding(typing_extensions.TypedDict, total=Fals
     affectedResources: GoogleCloudSecuritycenterV2AffectedResources
     aiModel: GoogleCloudSecuritycenterV2AiModel
     application: GoogleCloudSecuritycenterV2Application
+    artifactGuardPolicies: GoogleCloudSecuritycenterV2ArtifactGuardPolicies
     attackExposure: GoogleCloudSecuritycenterV2AttackExposure
     backupDisasterRecovery: GoogleCloudSecuritycenterV2BackupDisasterRecovery
     canonicalName: str
@@ -1488,6 +1611,7 @@ class GoogleCloudSecuritycenterV2Finding(typing_extensions.TypedDict, total=Fals
     parentDisplayName: str
     processes: _list[GoogleCloudSecuritycenterV2Process]
     resourceName: str
+    secret: GoogleCloudSecuritycenterV2Secret
     securityMarks: GoogleCloudSecuritycenterV2SecurityMarks
     securityPosture: GoogleCloudSecuritycenterV2SecurityPosture
     severity: typing_extensions.Literal[
@@ -1513,6 +1637,7 @@ class GoogleCloudSecuritycenterV2Framework(typing_extensions.TypedDict, total=Fa
             "ASSURED_WORKLOADS",
             "DATA_SECURITY",
             "GOOGLE_BEST_PRACTICES",
+            "CUSTOM_FRAMEWORK",
         ]
     ]
     controls: _list[GoogleCloudSecuritycenterV2Control]
@@ -1636,6 +1761,11 @@ class GoogleCloudSecuritycenterV2IssueMute(typing_extensions.TypedDict, total=Fa
 class GoogleCloudSecuritycenterV2IssueResource(
     typing_extensions.TypedDict, total=False
 ):
+    adcApplication: GoogleCloudSecuritycenterV2IssueResourceAdcApplication
+    adcApplicationTemplate: (
+        GoogleCloudSecuritycenterV2IssueResourceAdcApplicationTemplateRevision
+    )
+    adcSharedTemplate: GoogleCloudSecuritycenterV2IssueResourceAdcSharedTemplateRevision
     application: GoogleCloudSecuritycenterV2IssueResourceApplication
     awsMetadata: GoogleCloudSecuritycenterV2IssueResourceAwsMetadata
     azureMetadata: GoogleCloudSecuritycenterV2IssueResourceAzureMetadata
@@ -1651,10 +1781,72 @@ class GoogleCloudSecuritycenterV2IssueResource(
     type: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2IssueResourceApplication(
+class GoogleCloudSecuritycenterV2IssueResourceAdcApplication(
+    typing_extensions.TypedDict, total=False
+):
+    attributes: GoogleCloudSecuritycenterV2IssueResourceApplicationAttributes
+    name: str
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2IssueResourceAdcApplicationTemplateRevision(
     typing_extensions.TypedDict, total=False
 ):
     name: str
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2IssueResourceAdcSharedTemplateRevision(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2IssueResourceApplication(
+    typing_extensions.TypedDict, total=False
+):
+    attributes: GoogleCloudSecuritycenterV2IssueResourceApplicationAttributes
+    name: str
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2IssueResourceApplicationAttributes(
+    typing_extensions.TypedDict, total=False
+):
+    businessOwners: _list[
+        GoogleCloudSecuritycenterV2IssueResourceApplicationAttributesContactInfo
+    ]
+    criticality: (
+        GoogleCloudSecuritycenterV2IssueResourceApplicationAttributesCriticality
+    )
+    developerOwners: _list[
+        GoogleCloudSecuritycenterV2IssueResourceApplicationAttributesContactInfo
+    ]
+    environment: (
+        GoogleCloudSecuritycenterV2IssueResourceApplicationAttributesEnvironment
+    )
+    operatorOwners: _list[
+        GoogleCloudSecuritycenterV2IssueResourceApplicationAttributesContactInfo
+    ]
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2IssueResourceApplicationAttributesContactInfo(
+    typing_extensions.TypedDict, total=False
+):
+    email: str
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2IssueResourceApplicationAttributesCriticality(
+    typing_extensions.TypedDict, total=False
+):
+    type: typing_extensions.Literal[
+        "CRITICALITY_TYPE_UNSPECIFIED", "MISSION_CRITICAL", "HIGH", "MEDIUM", "LOW"
+    ]
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2IssueResourceApplicationAttributesEnvironment(
+    typing_extensions.TypedDict, total=False
+):
+    type: typing_extensions.Literal[
+        "ENVIRONMENT_TYPE_UNSPECIFIED", "PRODUCTION", "STAGING", "TEST", "DEVELOPMENT"
+    ]
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV2IssueResourceAwsMetadata(
@@ -2215,6 +2407,10 @@ class GoogleCloudSecuritycenterV2Requests(typing_extensions.TypedDict, total=Fal
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV2Resource(typing_extensions.TypedDict, total=False):
+    adcApplication: GoogleCloudSecuritycenterV2AdcApplication
+    adcApplicationTemplate: GoogleCloudSecuritycenterV2AdcApplicationTemplateRevision
+    adcSharedTemplate: GoogleCloudSecuritycenterV2AdcSharedTemplateRevision
+    application: GoogleCloudSecuritycenterV2ResourceApplication
     awsMetadata: GoogleCloudSecuritycenterV2AwsMetadata
     azureMetadata: GoogleCloudSecuritycenterV2AzureMetadata
     cloudProvider: typing_extensions.Literal[
@@ -2231,6 +2427,51 @@ class GoogleCloudSecuritycenterV2Resource(typing_extensions.TypedDict, total=Fal
     resourcePathString: str
     service: str
     type: str
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2ResourceApplication(
+    typing_extensions.TypedDict, total=False
+):
+    attributes: GoogleCloudSecuritycenterV2ResourceApplicationAttributes
+    name: str
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2ResourceApplicationAttributes(
+    typing_extensions.TypedDict, total=False
+):
+    businessOwners: _list[
+        GoogleCloudSecuritycenterV2ResourceApplicationAttributesContactInfo
+    ]
+    criticality: GoogleCloudSecuritycenterV2ResourceApplicationAttributesCriticality
+    developerOwners: _list[
+        GoogleCloudSecuritycenterV2ResourceApplicationAttributesContactInfo
+    ]
+    environment: GoogleCloudSecuritycenterV2ResourceApplicationAttributesEnvironment
+    operatorOwners: _list[
+        GoogleCloudSecuritycenterV2ResourceApplicationAttributesContactInfo
+    ]
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2ResourceApplicationAttributesContactInfo(
+    typing_extensions.TypedDict, total=False
+):
+    email: str
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2ResourceApplicationAttributesCriticality(
+    typing_extensions.TypedDict, total=False
+):
+    type: typing_extensions.Literal[
+        "CRITICALITY_TYPE_UNSPECIFIED", "MISSION_CRITICAL", "HIGH", "MEDIUM", "LOW"
+    ]
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2ResourceApplicationAttributesEnvironment(
+    typing_extensions.TypedDict, total=False
+):
+    type: typing_extensions.Literal[
+        "ENVIRONMENT_TYPE_UNSPECIFIED", "PRODUCTION", "STAGING", "TEST", "DEVELOPMENT"
+    ]
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV2ResourcePath(typing_extensions.TypedDict, total=False):
@@ -2285,6 +2526,36 @@ class GoogleCloudSecuritycenterV2Role(typing_extensions.TypedDict, total=False):
     kind: typing_extensions.Literal["KIND_UNSPECIFIED", "ROLE", "CLUSTER_ROLE"]
     name: str
     ns: str
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2Secret(typing_extensions.TypedDict, total=False):
+    environmentVariable: GoogleCloudSecuritycenterV2SecretEnvironmentVariable
+    filePath: GoogleCloudSecuritycenterV2SecretFilePath
+    status: GoogleCloudSecuritycenterV2SecretStatus
+    type: str
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2SecretEnvironmentVariable(
+    typing_extensions.TypedDict, total=False
+):
+    key: str
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2SecretFilePath(
+    typing_extensions.TypedDict, total=False
+):
+    path: str
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2SecretStatus(typing_extensions.TypedDict, total=False):
+    lastUpdatedTime: str
+    validity: typing_extensions.Literal[
+        "SECRET_VALIDITY_UNSPECIFIED",
+        "SECRET_VALIDITY_UNSUPPORTED",
+        "SECRET_VALIDITY_FAILED",
+        "SECRET_VALIDITY_INVALID",
+        "SECRET_VALIDITY_VALID",
+    ]
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV2SecurityBulletin(
@@ -3127,6 +3398,10 @@ class Requests(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Resource(typing_extensions.TypedDict, total=False):
+    adcApplication: AdcApplication
+    adcApplicationTemplate: AdcApplicationTemplateRevision
+    adcSharedTemplate: AdcSharedTemplateRevision
+    application: GoogleCloudSecuritycenterV1ResourceApplication
     awsMetadata: AwsMetadata
     azureMetadata: AzureMetadata
     cloudProvider: typing_extensions.Literal[
@@ -3182,6 +3457,32 @@ class Role(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class RunAssetDiscoveryRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class Secret(typing_extensions.TypedDict, total=False):
+    environmentVariable: SecretEnvironmentVariable
+    filePath: SecretFilePath
+    status: SecretStatus
+    type: str
+
+@typing.type_check_only
+class SecretEnvironmentVariable(typing_extensions.TypedDict, total=False):
+    key: str
+
+@typing.type_check_only
+class SecretFilePath(typing_extensions.TypedDict, total=False):
+    path: str
+
+@typing.type_check_only
+class SecretStatus(typing_extensions.TypedDict, total=False):
+    lastUpdatedTime: str
+    validity: typing_extensions.Literal[
+        "SECRET_VALIDITY_UNSPECIFIED",
+        "SECRET_VALIDITY_UNSUPPORTED",
+        "SECRET_VALIDITY_FAILED",
+        "SECRET_VALIDITY_INVALID",
+        "SECRET_VALIDITY_VALID",
+    ]
 
 @typing.type_check_only
 class SecurityBulletin(typing_extensions.TypedDict, total=False):

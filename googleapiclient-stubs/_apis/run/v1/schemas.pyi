@@ -401,6 +401,7 @@ class GoogleDevtoolsCloudbuildV1BuildStep(typing_extensions.TypedDict, total=Fal
 
 @typing.type_check_only
 class GoogleDevtoolsCloudbuildV1BuiltImage(typing_extensions.TypedDict, total=False):
+    artifactRegistryPackage: str
     digest: str
     name: str
     pushTiming: GoogleDevtoolsCloudbuildV1TimeSpan
@@ -496,6 +497,7 @@ class GoogleDevtoolsCloudbuildV1InlineSecret(typing_extensions.TypedDict, total=
 @typing.type_check_only
 class GoogleDevtoolsCloudbuildV1MavenArtifact(typing_extensions.TypedDict, total=False):
     artifactId: str
+    deployFolder: str
     groupId: str
     path: str
     repository: str
@@ -602,6 +604,7 @@ class GoogleDevtoolsCloudbuildV1TimeSpan(typing_extensions.TypedDict, total=Fals
 class GoogleDevtoolsCloudbuildV1UploadedGoModule(
     typing_extensions.TypedDict, total=False
 ):
+    artifactRegistryPackage: str
     fileHashes: GoogleDevtoolsCloudbuildV1FileHashes
     pushTiming: GoogleDevtoolsCloudbuildV1TimeSpan
     uri: str
@@ -610,6 +613,7 @@ class GoogleDevtoolsCloudbuildV1UploadedGoModule(
 class GoogleDevtoolsCloudbuildV1UploadedMavenArtifact(
     typing_extensions.TypedDict, total=False
 ):
+    artifactRegistryPackage: str
     fileHashes: GoogleDevtoolsCloudbuildV1FileHashes
     pushTiming: GoogleDevtoolsCloudbuildV1TimeSpan
     uri: str
@@ -618,6 +622,7 @@ class GoogleDevtoolsCloudbuildV1UploadedMavenArtifact(
 class GoogleDevtoolsCloudbuildV1UploadedNpmPackage(
     typing_extensions.TypedDict, total=False
 ):
+    artifactRegistryPackage: str
     fileHashes: GoogleDevtoolsCloudbuildV1FileHashes
     pushTiming: GoogleDevtoolsCloudbuildV1TimeSpan
     uri: str
@@ -626,6 +631,7 @@ class GoogleDevtoolsCloudbuildV1UploadedNpmPackage(
 class GoogleDevtoolsCloudbuildV1UploadedPythonPackage(
     typing_extensions.TypedDict, total=False
 ):
+    artifactRegistryPackage: str
     fileHashes: GoogleDevtoolsCloudbuildV1FileHashes
     pushTiming: GoogleDevtoolsCloudbuildV1TimeSpan
     uri: str
@@ -680,10 +686,32 @@ class HTTPHeader(typing_extensions.TypedDict, total=False):
     value: str
 
 @typing.type_check_only
+class Instance(typing_extensions.TypedDict, total=False):
+    apiVersion: str
+    kind: str
+    metadata: ObjectMeta
+    spec: InstanceSpec
+    status: InstanceStatus
+
+@typing.type_check_only
+class InstanceSpec(typing_extensions.TypedDict, total=False):
+    containers: _list[Container]
+    nodeSelector: dict[str, typing.Any]
+    serviceAccountName: str
+    volumes: _list[Volume]
+
+@typing.type_check_only
 class InstanceSplit(typing_extensions.TypedDict, total=False):
     latestRevision: bool
     percent: int
     revisionName: str
+
+@typing.type_check_only
+class InstanceStatus(typing_extensions.TypedDict, total=False):
+    conditions: _list[GoogleCloudRunV1Condition]
+    logUri: str
+    observedGeneration: int
+    urls: _list[str]
 
 @typing.type_check_only
 class Job(typing_extensions.TypedDict, total=False):
@@ -737,6 +765,14 @@ class ListDomainMappingsResponse(typing_extensions.TypedDict, total=False):
 class ListExecutionsResponse(typing_extensions.TypedDict, total=False):
     apiVersion: str
     items: _list[Execution]
+    kind: str
+    metadata: ListMeta
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListInstancesResponse(typing_extensions.TypedDict, total=False):
+    apiVersion: str
+    items: _list[Instance]
     kind: str
     metadata: ListMeta
     unreachable: _list[str]
@@ -999,6 +1035,9 @@ class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
     updateMask: str
 
 @typing.type_check_only
+class StartInstanceRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: StatusDetails
@@ -1021,6 +1060,9 @@ class StatusDetails(typing_extensions.TypedDict, total=False):
     name: str
     retryAfterSeconds: int
     uid: str
+
+@typing.type_check_only
+class StopInstanceRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class TCPSocketAction(typing_extensions.TypedDict, total=False):

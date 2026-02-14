@@ -63,6 +63,42 @@ class FixedOrPercent(typing_extensions.TypedDict, total=False):
     percent: int
 
 @typing.type_check_only
+class GoogleCloudOsconfigCommonV1__OperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    apiVersion: str
+    createTime: str
+    endTime: str
+    requestedCancellation: bool
+    statusMessage: str
+    target: str
+    verb: str
+
+@typing.type_check_only
+class GoogleCloudOsconfigCommonV1alpha__OperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    apiVersion: str
+    createTime: str
+    endTime: str
+    requestedCancellation: bool
+    statusMessage: str
+    target: str
+    verb: str
+
+@typing.type_check_only
+class GoogleCloudOsconfigCommonV1main__OperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    apiVersion: str
+    createTime: str
+    endTime: str
+    requestedCancellation: bool
+    statusMessage: str
+    target: str
+    verb: str
+
+@typing.type_check_only
 class GoogleCloudOsconfigV1__OSPolicyAssignmentOperationMetadata(
     typing_extensions.TypedDict, total=False
 ):
@@ -253,6 +289,12 @@ class ListOSPolicyAssignmentRevisionsResponse(typing_extensions.TypedDict, total
 class ListOSPolicyAssignmentsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     osPolicyAssignments: _list[OSPolicyAssignment]
+
+@typing.type_check_only
+class ListOperationsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    operations: _list[Operation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListVulnerabilityReportsResponse(typing_extensions.TypedDict, total=False):

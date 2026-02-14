@@ -43,6 +43,7 @@ class GoogleIdentityStsV1ExchangeTokenResponse(
 @typing.type_check_only
 class GoogleIdentityStsV1Options(typing_extensions.TypedDict, total=False):
     accessBoundary: GoogleIdentityStsV1AccessBoundary
+    bindCertFingerprint: str
     userProject: str
 
 @typing.type_check_only

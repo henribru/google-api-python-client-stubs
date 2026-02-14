@@ -99,6 +99,9 @@ class CloudSchedulerResource(googleapiclient.discovery.Resource):
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
+            def getCmekConfig(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> CmekConfigHttpRequest: ...
             def list(
                 self,
                 *,
@@ -114,6 +117,14 @@ class CloudSchedulerResource(googleapiclient.discovery.Resource):
                 previous_request: ListLocationsResponseHttpRequest,
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
+            def updateCmekConfig(
+                self,
+                *,
+                name: str,
+                body: CmekConfig = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any,
+            ) -> OperationHttpRequest: ...
             def jobs(self) -> JobsResource: ...
             def operations(self) -> OperationsResource: ...
 
@@ -132,6 +143,14 @@ class CloudSchedulerResource(googleapiclient.discovery.Resource):
         | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def projects(self) -> ProjectsResource: ...
+
+@typing.type_check_only
+class CmekConfigHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> CmekConfig: ...
 
 @typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):

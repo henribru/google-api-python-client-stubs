@@ -351,6 +351,7 @@ class LabelDescriptor(typing_extensions.TypedDict, total=False):
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListTenancyUnitsResponse(typing_extensions.TypedDict, total=False):
@@ -690,6 +691,7 @@ class TenantProjectPolicy(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class TenantResource(typing_extensions.TypedDict, total=False):
+    migratedTenantProject: str
     resource: str
     status: typing_extensions.Literal[
         "STATUS_UNSPECIFIED",
@@ -784,6 +786,7 @@ class V1Beta1RefreshConsumerResponse(typing_extensions.TypedDict, total=False): 
 class V1Beta1ServiceIdentity(typing_extensions.TypedDict, total=False):
     email: str
     name: str
+    projectRole: str
     tag: str
     uniqueId: str
 

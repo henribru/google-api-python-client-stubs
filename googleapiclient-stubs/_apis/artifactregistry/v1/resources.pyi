@@ -429,6 +429,13 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+                def exportArtifact(
+                    self,
+                    *,
+                    repository: str,
+                    body: ExportArtifactRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> RepositoryHttpRequest: ...

@@ -278,6 +278,7 @@ class Connector(typing_extensions.TypedDict, total=False):
 class ConnectorInfraConfig(typing_extensions.TypedDict, total=False):
     alwaysAllocateCpu: bool
     connectionRatelimitWindowSeconds: str
+    connectionServiceAccountEnabled: bool
     connectorVersioningEnabled: bool
     deploymentModel: typing_extensions.Literal[
         "DEPLOYMENT_MODEL_UNSPECIFIED", "GKE_MST", "CLOUD_RUN_MST"
@@ -290,6 +291,7 @@ class ConnectorInfraConfig(typing_extensions.TypedDict, total=False):
     networkEgressModeOverride: NetworkEgressModeOverride
     provisionCloudSpanner: bool
     provisionMemstore: bool
+    publicNetworkIngressEnabled: bool
     ratelimitThreshold: str
     resourceLimits: ResourceLimits
     resourceRequests: ResourceRequests
@@ -465,8 +467,16 @@ class EUASecret(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class EgressControlConfig(typing_extensions.TypedDict, total=False):
+    accessMode: typing_extensions.Literal[
+        "ACCESS_MODE_UNSPECIFIED", "RESTRICTED", "ALLOW_ALL"
+    ]
+    additionalExtractionRules: ExtractionRules
+    allowlistedProjectNumbers: _list[str]
     backends: str
     extractionRules: ExtractionRules
+    launchEnvironment: typing_extensions.Literal[
+        "LAUNCH_ENVIRONMENT_UNSPECIFIED", "AUTOPUSH", "STAGING", "PROD"
+    ]
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
@@ -769,6 +779,7 @@ class Expr(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ExtractionRule(typing_extensions.TypedDict, total=False):
     extractionRegex: str
+    formatString: str
     source: Source
 
 @typing.type_check_only
@@ -847,6 +858,18 @@ class FieldComparison(typing_extensions.TypedDict, total=False):
     intValue: str
     key: str
     stringValue: str
+
+@typing.type_check_only
+class GenerateConnectionToolspecOverrideRequest(
+    typing_extensions.TypedDict, total=False
+):
+    toolNames: _list[ToolName]
+
+@typing.type_check_only
+class GenerateConnectionToolspecOverrideResponse(
+    typing_extensions.TypedDict, total=False
+):
+    toolspecOverride: ToolspecOverride
 
 @typing.type_check_only
 class HPAConfig(typing_extensions.TypedDict, total=False):
@@ -1194,6 +1217,16 @@ class MarketplaceConnectorDetails(typing_extensions.TypedDict, total=False):
     partner: str
 
 @typing.type_check_only
+class ModifyConnectionToolspecOverrideRequest(typing_extensions.TypedDict, total=False):
+    toolspecOverride: ToolspecOverride
+
+@typing.type_check_only
+class ModifyConnectionToolspecOverrideResponse(
+    typing_extensions.TypedDict, total=False
+):
+    toolspecOverrides: ToolspecOverride
+
+@typing.type_check_only
 class MultipleSelectConfig(typing_extensions.TypedDict, total=False):
     allowCustomValues: bool
     multipleSelectOptions: _list[MultipleSelectOption]
@@ -1377,6 +1410,11 @@ class RegionalSettings(typing_extensions.TypedDict, total=False):
     name: str
     networkConfig: NetworkConfig
     provisioned: bool
+
+@typing.type_check_only
+class RemoveConnectionToolspecOverrideRequest(
+    typing_extensions.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class RepairEventingRequest(typing_extensions.TypedDict, total=False): ...
@@ -1573,7 +1611,9 @@ class SloMetadata(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Source(typing_extensions.TypedDict, total=False):
     fieldId: str
-    sourceType: typing_extensions.Literal["SOURCE_TYPE_UNSPECIFIED", "CONFIG_VARIABLE"]
+    sourceType: typing_extensions.Literal[
+        "SOURCE_TYPE_UNSPECIFIED", "CONFIG_VARIABLE", "AUTH_CONFIG_VARIABLE"
+    ]
 
 @typing.type_check_only
 class SshPublicKey(typing_extensions.TypedDict, total=False):
@@ -1638,6 +1678,20 @@ class TimeOfDay(typing_extensions.TypedDict, total=False):
     minutes: int
     nanos: int
     seconds: int
+
+@typing.type_check_only
+class ToolName(typing_extensions.TypedDict, total=False):
+    entityType: str
+    name: str
+    operation: typing_extensions.Literal[
+        "OPERATION_UNSPECIFIED", "LIST", "GET", "CREATE", "UPDATE", "DELETE"
+    ]
+
+@typing.type_check_only
+class ToolspecOverride(typing_extensions.TypedDict, total=False):
+    createTime: str
+    tools: _list[dict[str, typing.Any]]
+    updateTime: str
 
 @typing.type_check_only
 class TrafficShapingConfig(typing_extensions.TypedDict, total=False):

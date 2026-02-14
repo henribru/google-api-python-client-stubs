@@ -75,8 +75,14 @@ class ManagedKafkaResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
+                        filter: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
+                        view: typing_extensions.Literal[
+                            "CONSUMER_GROUP_VIEW_UNSPECIFIED",
+                            "CONSUMER_GROUP_VIEW_BASIC",
+                            "CONSUMER_GROUP_VIEW_FULL",
+                        ] = ...,
                         **kwargs: typing.Any,
                     ) -> ListConsumerGroupsResponseHttpRequest: ...
                     def list_next(
@@ -144,7 +150,15 @@ class ManagedKafkaResource(googleapiclient.discovery.Resource):
                     self, *, name: str, requestId: str = ..., **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def get(
-                    self, *, name: str, **kwargs: typing.Any
+                    self,
+                    *,
+                    name: str,
+                    view: typing_extensions.Literal[
+                        "CLUSTER_VIEW_UNSPECIFIED",
+                        "CLUSTER_VIEW_BASIC",
+                        "CLUSTER_VIEW_FULL",
+                    ] = ...,
+                    **kwargs: typing.Any,
                 ) -> ClusterHttpRequest: ...
                 def list(
                     self,

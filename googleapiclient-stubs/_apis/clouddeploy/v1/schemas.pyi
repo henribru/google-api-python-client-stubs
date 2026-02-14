@@ -149,6 +149,7 @@ class AutomationRun(typing_extensions.TypedDict, total=False):
     stateDescription: str
     targetId: str
     timedPromoteReleaseOperation: TimedPromoteReleaseOperation
+    uid: str
     updateTime: str
     waitUntilTime: str
 
@@ -234,14 +235,17 @@ class CloudRunMetadata(typing_extensions.TypedDict, total=False):
     revision: str
     service: str
     serviceUrls: _list[str]
+    workerPool: str
 
 @typing.type_check_only
 class CloudRunRenderMetadata(typing_extensions.TypedDict, total=False):
     service: str
+    workerPool: str
 
 @typing.type_check_only
 class Config(typing_extensions.TypedDict, total=False):
     defaultSkaffoldVersion: str
+    defaultToolVersions: ToolVersions
     name: str
     supportedVersions: _list[SkaffoldVersion]
 
@@ -844,12 +848,19 @@ class Release(typing_extensions.TypedDict, total=False):
     targetArtifacts: dict[str, typing.Any]
     targetRenders: dict[str, typing.Any]
     targetSnapshots: _list[Target]
+    toolVersions: ToolVersions
     uid: str
 
 @typing.type_check_only
 class ReleaseCondition(typing_extensions.TypedDict, total=False):
+    dockerVersionSupportedCondition: ToolVersionSupportedCondition
+    helmVersionSupportedCondition: ToolVersionSupportedCondition
+    kptVersionSupportedCondition: ToolVersionSupportedCondition
+    kubectlVersionSupportedCondition: ToolVersionSupportedCondition
+    kustomizeVersionSupportedCondition: ToolVersionSupportedCondition
     releaseReadyCondition: ReleaseReadyCondition
     skaffoldSupportedCondition: SkaffoldSupportedCondition
+    skaffoldVersionSupportedCondition: ToolVersionSupportedCondition
 
 @typing.type_check_only
 class ReleaseNotificationEvent(typing_extensions.TypedDict, total=False):
@@ -1360,6 +1371,27 @@ class TimedPromoteReleaseRule(typing_extensions.TypedDict, total=False):
     id: str
     schedule: str
     timeZone: str
+
+@typing.type_check_only
+class ToolVersionSupportedCondition(typing_extensions.TypedDict, total=False):
+    maintenanceModeTime: str
+    status: bool
+    supportExpirationTime: str
+    toolVersionSupportState: typing_extensions.Literal[
+        "TOOL_VERSION_SUPPORT_STATE_UNSPECIFIED",
+        "TOOL_VERSION_SUPPORT_STATE_SUPPORTED",
+        "TOOL_VERSION_SUPPORT_STATE_MAINTENANCE_MODE",
+        "TOOL_VERSION_SUPPORT_STATE_UNSUPPORTED",
+    ]
+
+@typing.type_check_only
+class ToolVersions(typing_extensions.TypedDict, total=False):
+    docker: str
+    helm: str
+    kpt: str
+    kubectl: str
+    kustomize: str
+    skaffold: str
 
 @typing.type_check_only
 class VerifyJob(typing_extensions.TypedDict, total=False): ...

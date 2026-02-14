@@ -38,9 +38,9 @@ class GetTagsRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GetTagsResponse(typing_extensions.TypedDict, total=False):
+    etag: str
     name: str
     tags: dict[str, typing.Any]
-    tagsEtag: str
 
 @typing.type_check_only
 class GoogleCloudMemcacheV1LocationMetadata(typing_extensions.TypedDict, total=False):
@@ -332,16 +332,16 @@ class Schedule(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SetTagsRequest(typing_extensions.TypedDict, total=False):
+    etag: str
     name: str
     requestId: str
     tags: dict[str, typing.Any]
-    tagsEtag: str
 
 @typing.type_check_only
 class SetTagsResponse(typing_extensions.TypedDict, total=False):
+    etag: str
     name: str
     tags: dict[str, typing.Any]
-    tagsEtag: str
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
