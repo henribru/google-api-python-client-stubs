@@ -2,15 +2,12 @@
 import json
 import keyword
 import os
-import re
 import shutil
 import subprocess
 import textwrap
 from contextlib import contextmanager
 from pathlib import Path
 from typing import Any, DefaultDict, Dict, List, Set
-
-from mypy.api import run
 
 from googleapiclient.discovery import fix_method_name, key2param
 
@@ -397,6 +394,11 @@ def copytree(src, dst, symlinks=False, ignore=None, overwrite=True):
 
 
 def main():
+    subprocess.run(["uv", "remove", "google-api-python-client"])
+    subprocess.run(["uv", "add", "google-api-python-client"])
+    subprocess.run(["git", "clone", "https://github.com/googleapis/google-api-python-client.git"]);
+    subprocess.run(["git", "restore", "."], cwd="google-api-python-client")
+    subprocess.run(["git", "pull"], cwd="google-api-python-client")
     shutil.rmtree("apiclient-stubs", ignore_errors=True)
     apis = []
     ignored_apis = [
