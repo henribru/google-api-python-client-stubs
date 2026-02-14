@@ -1,5 +1,4 @@
 *
-!*/
 !/.github/**
 !/.gitignore
 !/googleapiclient-stubs/
@@ -11,3 +10,4 @@
 !/README.md
 !/LICENSE
 !/create_stubs.py
+!discovery.pyi
