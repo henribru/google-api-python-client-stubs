@@ -16,6 +16,41 @@ class BigLakeServiceResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
+        class CatalogsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class NamespacesResource(googleapiclient.discovery.Resource):
+                def getIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    options_requestedPolicyVersion: int = ...,
+                    **kwargs: typing.Any,
+                ) -> PolicyHttpRequest: ...
+                def setIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    body: SetIamPolicyRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> PolicyHttpRequest: ...
+
+            def getIamPolicy(
+                self,
+                *,
+                resource: str,
+                options_requestedPolicyVersion: int = ...,
+                **kwargs: typing.Any,
+            ) -> PolicyHttpRequest: ...
+            def setIamPolicy(
+                self,
+                *,
+                resource: str,
+                body: SetIamPolicyRequest = ...,
+                **kwargs: typing.Any,
+            ) -> PolicyHttpRequest: ...
+            def namespaces(self) -> NamespacesResource: ...
+
+        @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class CatalogsResource(googleapiclient.discovery.Resource):
@@ -137,6 +172,7 @@ class BigLakeServiceResource(googleapiclient.discovery.Resource):
 
             def catalogs(self) -> CatalogsResource: ...
 
+        def catalogs(self) -> CatalogsResource: ...
         def locations(self) -> LocationsResource: ...
 
     def new_batch_http_request(
@@ -192,6 +228,14 @@ class ListTablesResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListTablesResponse: ...
+
+@typing.type_check_only
+class PolicyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> Policy: ...
 
 @typing.type_check_only
 class TableHttpRequest(googleapiclient.http.HttpRequest):

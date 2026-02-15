@@ -6,6 +6,7 @@ _list = list
 
 @typing.type_check_only
 class AdvancedVoiceOptions(typing_extensions.TypedDict, total=False):
+    enableTextnorm: bool
     lowLatencyJourneySynthesis: bool
     relaxSafetyFilters: bool
 

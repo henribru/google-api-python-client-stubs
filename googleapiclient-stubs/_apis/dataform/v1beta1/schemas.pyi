@@ -130,6 +130,7 @@ class CompilationResult(typing_extensions.TypedDict, total=False):
     gitCommitish: str
     internalMetadata: str
     name: str
+    privateResourceMetadata: PrivateResourceMetadata
     releaseConfig: str
     resolvedGitCommitSha: str
     workspace: str
@@ -241,6 +242,22 @@ class FileOperation(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class FileSearchResult(typing_extensions.TypedDict, total=False):
     path: str
+
+@typing.type_check_only
+class Folder(typing_extensions.TypedDict, total=False):
+    containingFolder: str
+    createTime: str
+    creatorIamPrincipal: str
+    displayName: str
+    internalMetadata: str
+    name: str
+    teamFolderName: str
+    updateTime: str
+
+@typing.type_check_only
+class FolderContentsEntry(typing_extensions.TypedDict, total=False):
+    folder: Folder
+    repository: Repository
 
 @typing.type_check_only
 class GitRemoteSettings(typing_extensions.TypedDict, total=False):
@@ -379,6 +396,14 @@ class MoveFileRequest(typing_extensions.TypedDict, total=False):
 class MoveFileResponse(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class MoveFolderRequest(typing_extensions.TypedDict, total=False):
+    destinationContainingFolder: str
+
+@typing.type_check_only
+class MoveRepositoryRequest(typing_extensions.TypedDict, total=False):
+    destinationContainingFolder: str
+
+@typing.type_check_only
 class Notebook(typing_extensions.TypedDict, total=False):
     contents: str
     dependencyTargets: _list[Target]
@@ -435,6 +460,10 @@ class PolicyName(typing_extensions.TypedDict, total=False):
     type: str
 
 @typing.type_check_only
+class PrivateResourceMetadata(typing_extensions.TypedDict, total=False):
+    userScoped: bool
+
+@typing.type_check_only
 class PullGitCommitsRequest(typing_extensions.TypedDict, total=False):
     author: CommitAuthor
     remoteBranch: str
@@ -460,10 +489,25 @@ class QueryDirectoryContentsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class QueryFolderContentsResponse(typing_extensions.TypedDict, total=False):
+    entries: _list[FolderContentsEntry]
+    nextPageToken: str
+
+@typing.type_check_only
 class QueryRepositoryDirectoryContentsResponse(
     typing_extensions.TypedDict, total=False
 ):
     directoryEntries: _list[DirectoryEntry]
+    nextPageToken: str
+
+@typing.type_check_only
+class QueryTeamFolderContentsResponse(typing_extensions.TypedDict, total=False):
+    entries: _list[TeamFolderContentsEntry]
+    nextPageToken: str
+
+@typing.type_check_only
+class QueryUserRootContentsResponse(typing_extensions.TypedDict, total=False):
+    entries: _list[RootContentsEntry]
     nextPageToken: str
 
 @typing.type_check_only
@@ -483,8 +527,10 @@ class ReadRepositoryFileResponse(typing_extensions.TypedDict, total=False):
 class Relation(typing_extensions.TypedDict, total=False):
     additionalOptions: dict[str, typing.Any]
     clusterExpressions: _list[str]
+    connection: str
     dependencyTargets: _list[Target]
     disabled: bool
+    fileFormat: typing_extensions.Literal["FILE_FORMAT_UNSPECIFIED", "PARQUET"]
     incrementalTableConfig: IncrementalTableConfig
     partitionExpirationDays: int
     partitionExpression: str
@@ -500,6 +546,8 @@ class Relation(typing_extensions.TypedDict, total=False):
     ]
     requirePartitionFilter: bool
     selectQuery: str
+    storageUri: str
+    tableFormat: typing_extensions.Literal["TABLE_FORMAT_UNSPECIFIED", "ICEBERG"]
     tags: _list[str]
 
 @typing.type_check_only
@@ -536,6 +584,7 @@ class RemoveFileResponse(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Repository(typing_extensions.TypedDict, total=False):
+    containingFolder: str
     createTime: str
     dataEncryptionState: DataEncryptionState
     displayName: str
@@ -547,6 +596,7 @@ class Repository(typing_extensions.TypedDict, total=False):
     npmrcEnvironmentVariablesSecretVersion: str
     serviceAccount: str
     setAuthenticatedUserAdmin: bool
+    teamFolderName: str
     workspaceCompilationOverrides: WorkspaceCompilationOverrides
 
 @typing.type_check_only
@@ -556,6 +606,11 @@ class ResetWorkspaceChangesRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ResetWorkspaceChangesResponse(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class RootContentsEntry(typing_extensions.TypedDict, total=False):
+    folder: Folder
+    repository: Repository
 
 @typing.type_check_only
 class ScheduledExecutionRecord(typing_extensions.TypedDict, total=False):
@@ -578,6 +633,11 @@ class SearchFilesResponse(typing_extensions.TypedDict, total=False):
 class SearchResult(typing_extensions.TypedDict, total=False):
     directory: DirectorySearchResult
     file: FileSearchResult
+
+@typing.type_check_only
+class SearchTeamFoldersResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    results: _list[TeamFolderSearchResult]
 
 @typing.type_check_only
 class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
@@ -608,6 +668,24 @@ class Target(typing_extensions.TypedDict, total=False):
     database: str
     name: str
     schema: str
+
+@typing.type_check_only
+class TeamFolder(typing_extensions.TypedDict, total=False):
+    createTime: str
+    creatorIamPrincipal: str
+    displayName: str
+    internalMetadata: str
+    name: str
+    updateTime: str
+
+@typing.type_check_only
+class TeamFolderContentsEntry(typing_extensions.TypedDict, total=False):
+    folder: Folder
+    repository: Repository
+
+@typing.type_check_only
+class TeamFolderSearchResult(typing_extensions.TypedDict, total=False):
+    teamFolder: TeamFolder
 
 @typing.type_check_only
 class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
@@ -645,6 +723,7 @@ class WorkflowInvocation(typing_extensions.TypedDict, total=False):
     invocationConfig: InvocationConfig
     invocationTiming: Interval
     name: str
+    privateResourceMetadata: PrivateResourceMetadata
     resolvedCompilationResult: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "RUNNING", "SUCCEEDED", "CANCELLED", "FAILED", "CANCELING"
@@ -669,8 +748,10 @@ class WorkflowInvocationAction(typing_extensions.TypedDict, total=False):
 class Workspace(typing_extensions.TypedDict, total=False):
     createTime: str
     dataEncryptionState: DataEncryptionState
+    disableMoves: bool
     internalMetadata: str
     name: str
+    privateResourceMetadata: PrivateResourceMetadata
 
 @typing.type_check_only
 class WorkspaceCompilationOverrides(typing_extensions.TypedDict, total=False):

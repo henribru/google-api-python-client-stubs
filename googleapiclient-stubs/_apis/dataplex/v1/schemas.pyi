@@ -321,6 +321,23 @@ class GoogleCloudDataplexV1DataAccessSpec(typing_extensions.TypedDict, total=Fal
     readers: _list[str]
 
 @typing.type_check_only
+class GoogleCloudDataplexV1DataAsset(typing_extensions.TypedDict, total=False):
+    accessGroupConfigs: dict[str, typing.Any]
+    createTime: str
+    etag: str
+    labels: dict[str, typing.Any]
+    name: str
+    resource: str
+    uid: str
+    updateTime: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataAssetAccessGroupConfig(
+    typing_extensions.TypedDict, total=False
+):
+    iamRoles: _list[str]
+
+@typing.type_check_only
 class GoogleCloudDataplexV1DataAttribute(typing_extensions.TypedDict, total=False):
     attributeCount: int
     createTime: str
@@ -469,10 +486,50 @@ class GoogleCloudDataplexV1DataDocumentationResultTableResult(
 @typing.type_check_only
 class GoogleCloudDataplexV1DataDocumentationSpec(
     typing_extensions.TypedDict, total=False
-): ...
+):
+    catalogPublishingEnabled: bool
+    generationScopes: _list[
+        typing_extensions.Literal[
+            "GENERATION_SCOPE_UNSPECIFIED",
+            "ALL",
+            "TABLE_AND_COLUMN_DESCRIPTIONS",
+            "SQL_QUERIES",
+        ]
+    ]
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataProduct(typing_extensions.TypedDict, total=False):
+    accessGroups: dict[str, typing.Any]
+    assetCount: int
+    createTime: str
+    description: str
+    displayName: str
+    etag: str
+    icon: str
+    labels: dict[str, typing.Any]
+    name: str
+    ownerEmails: _list[str]
+    uid: str
+    updateTime: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataProductAccessGroup(
+    typing_extensions.TypedDict, total=False
+):
+    description: str
+    displayName: str
+    id: str
+    principal: GoogleCloudDataplexV1DataProductPrincipal
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataProductPrincipal(
+    typing_extensions.TypedDict, total=False
+):
+    googleGroup: str
 
 @typing.type_check_only
 class GoogleCloudDataplexV1DataProfileResult(typing_extensions.TypedDict, total=False):
+    catalogPublishingStatus: GoogleCloudDataplexV1DataScanCatalogPublishingStatus
     postScanActionsResult: GoogleCloudDataplexV1DataProfileResultPostScanActionsResult
     profile: GoogleCloudDataplexV1DataProfileResultProfile
     rowCount: str
@@ -567,6 +624,7 @@ class GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfoTopNValue(
 
 @typing.type_check_only
 class GoogleCloudDataplexV1DataProfileSpec(typing_extensions.TypedDict, total=False):
+    catalogPublishingEnabled: bool
     excludeFields: GoogleCloudDataplexV1DataProfileSpecSelectedFields
     includeFields: GoogleCloudDataplexV1DataProfileSpecSelectedFields
     postScanActions: GoogleCloudDataplexV1DataProfileSpecPostScanActions
@@ -616,6 +674,9 @@ class GoogleCloudDataplexV1DataQualityDimensionResult(
 
 @typing.type_check_only
 class GoogleCloudDataplexV1DataQualityResult(typing_extensions.TypedDict, total=False):
+    anomalyDetectionGeneratedAssets: (
+        GoogleCloudDataplexV1DataQualityResultAnomalyDetectionGeneratedAssets
+    )
     catalogPublishingStatus: GoogleCloudDataplexV1DataScanCatalogPublishingStatus
     columns: _list[GoogleCloudDataplexV1DataQualityColumnResult]
     dimensions: _list[GoogleCloudDataplexV1DataQualityDimensionResult]
@@ -625,6 +686,15 @@ class GoogleCloudDataplexV1DataQualityResult(typing_extensions.TypedDict, total=
     rules: _list[GoogleCloudDataplexV1DataQualityRuleResult]
     scannedData: GoogleCloudDataplexV1ScannedData
     score: float
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataQualityResultAnomalyDetectionGeneratedAssets(
+    typing_extensions.TypedDict, total=False
+):
+    dataIntermediateTable: str
+    freshnessIntermediateTable: str
+    resultTable: str
+    volumeIntermediateTable: str
 
 @typing.type_check_only
 class GoogleCloudDataplexV1DataQualityResultPostScanActionsResult(
@@ -862,7 +932,9 @@ class GoogleCloudDataplexV1DataScan(typing_extensions.TypedDict, total=False):
 class GoogleCloudDataplexV1DataScanCatalogPublishingStatus(
     typing_extensions.TypedDict, total=False
 ):
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "SUCCEEDED", "FAILED"]
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "SUCCEEDED", "FAILED", "SKIPPED"
+    ]
 
 @typing.type_check_only
 class GoogleCloudDataplexV1DataScanEvent(typing_extensions.TypedDict, total=False):
@@ -1476,6 +1548,13 @@ class GoogleCloudDataplexV1ListContentResponse(
     nextPageToken: str
 
 @typing.type_check_only
+class GoogleCloudDataplexV1ListDataAssetsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    dataAssets: _list[GoogleCloudDataplexV1DataAsset]
+    nextPageToken: str
+
+@typing.type_check_only
 class GoogleCloudDataplexV1ListDataAttributeBindingsResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -1490,6 +1569,14 @@ class GoogleCloudDataplexV1ListDataAttributesResponse(
     dataAttributes: _list[GoogleCloudDataplexV1DataAttribute]
     nextPageToken: str
     unreachableLocations: _list[str]
+
+@typing.type_check_only
+class GoogleCloudDataplexV1ListDataProductsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    dataProducts: _list[GoogleCloudDataplexV1DataProduct]
+    nextPageToken: str
+    unreachable: _list[str]
 
 @typing.type_check_only
 class GoogleCloudDataplexV1ListDataScanJobsResponse(
@@ -1595,6 +1682,14 @@ class GoogleCloudDataplexV1ListLakesResponse(typing_extensions.TypedDict, total=
     unreachableLocations: _list[str]
 
 @typing.type_check_only
+class GoogleCloudDataplexV1ListMetadataFeedsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    metadataFeeds: _list[GoogleCloudDataplexV1MetadataFeed]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
 class GoogleCloudDataplexV1ListMetadataJobsResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -1626,6 +1721,35 @@ class GoogleCloudDataplexV1ListTasksResponse(typing_extensions.TypedDict, total=
 class GoogleCloudDataplexV1ListZonesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     zones: _list[GoogleCloudDataplexV1Zone]
+
+@typing.type_check_only
+class GoogleCloudDataplexV1MetadataFeed(typing_extensions.TypedDict, total=False):
+    createTime: str
+    filters: GoogleCloudDataplexV1MetadataFeedFilters
+    labels: dict[str, typing.Any]
+    name: str
+    pubsubTopic: str
+    scope: GoogleCloudDataplexV1MetadataFeedScope
+    uid: str
+    updateTime: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1MetadataFeedFilters(
+    typing_extensions.TypedDict, total=False
+):
+    aspectTypes: _list[str]
+    changeTypes: _list[
+        typing_extensions.Literal[
+            "CHANGE_TYPE_UNSPECIFIED", "CREATE", "UPDATE", "DELETE"
+        ]
+    ]
+    entryTypes: _list[str]
+
+@typing.type_check_only
+class GoogleCloudDataplexV1MetadataFeedScope(typing_extensions.TypedDict, total=False):
+    entryGroups: _list[str]
+    organizationLevel: bool
+    projects: _list[str]
 
 @typing.type_check_only
 class GoogleCloudDataplexV1MetadataJob(typing_extensions.TypedDict, total=False):
@@ -2040,12 +2164,17 @@ class GoogleCloudDataplexV1TaskTriggerSpec(typing_extensions.TypedDict, total=Fa
 @typing.type_check_only
 class GoogleCloudDataplexV1Trigger(typing_extensions.TypedDict, total=False):
     onDemand: GoogleCloudDataplexV1TriggerOnDemand
+    oneTime: GoogleCloudDataplexV1TriggerOneTime
     schedule: GoogleCloudDataplexV1TriggerSchedule
 
 @typing.type_check_only
 class GoogleCloudDataplexV1TriggerOnDemand(
     typing_extensions.TypedDict, total=False
 ): ...
+
+@typing.type_check_only
+class GoogleCloudDataplexV1TriggerOneTime(typing_extensions.TypedDict, total=False):
+    ttlAfterScanCompletion: str
 
 @typing.type_check_only
 class GoogleCloudDataplexV1TriggerSchedule(typing_extensions.TypedDict, total=False):

@@ -36,6 +36,7 @@ class GoogleCloudKmsInventoryV1ProtectedResourcesSummary(
     projectCount: int
     resourceCount: str
     resourceTypes: dict[str, typing.Any]
+    warnings: _list[GoogleCloudKmsInventoryV1Warning]
 
 @typing.type_check_only
 class GoogleCloudKmsInventoryV1SearchProtectedResourcesResponse(
@@ -43,6 +44,16 @@ class GoogleCloudKmsInventoryV1SearchProtectedResourcesResponse(
 ):
     nextPageToken: str
     protectedResources: _list[GoogleCloudKmsInventoryV1ProtectedResource]
+
+@typing.type_check_only
+class GoogleCloudKmsInventoryV1Warning(typing_extensions.TypedDict, total=False):
+    displayMessage: str
+    warningCode: typing_extensions.Literal[
+        "WARNING_CODE_UNSPECIFIED",
+        "INSUFFICIENT_PERMISSIONS_PARTIAL_DATA",
+        "RESOURCE_LIMIT_EXCEEDED_PARTIAL_DATA",
+        "ORG_LESS_PROJECT_PARTIAL_DATA",
+    ]
 
 @typing.type_check_only
 class GoogleCloudKmsV1CryptoKey(typing_extensions.TypedDict, total=False):
@@ -114,6 +125,9 @@ class GoogleCloudKmsV1CryptoKeyVersion(typing_extensions.TypedDict, total=False)
         "PQ_SIGN_ML_DSA_87",
         "PQ_SIGN_SLH_DSA_SHA2_128S",
         "PQ_SIGN_HASH_SLH_DSA_SHA2_128S_SHA256",
+        "PQ_SIGN_ML_DSA_44_EXTERNAL_MU",
+        "PQ_SIGN_ML_DSA_65_EXTERNAL_MU",
+        "PQ_SIGN_ML_DSA_87_EXTERNAL_MU",
     ]
     attestation: GoogleCloudKmsV1KeyOperationAttestation
     createTime: str
@@ -128,7 +142,12 @@ class GoogleCloudKmsV1CryptoKeyVersion(typing_extensions.TypedDict, total=False)
     importTime: str
     name: str
     protectionLevel: typing_extensions.Literal[
-        "PROTECTION_LEVEL_UNSPECIFIED", "SOFTWARE", "HSM", "EXTERNAL", "EXTERNAL_VPC"
+        "PROTECTION_LEVEL_UNSPECIFIED",
+        "SOFTWARE",
+        "HSM",
+        "EXTERNAL",
+        "EXTERNAL_VPC",
+        "HSM_SINGLE_TENANT",
     ]
     reimportEligible: bool
     state: typing_extensions.Literal[
@@ -194,9 +213,17 @@ class GoogleCloudKmsV1CryptoKeyVersionTemplate(
         "PQ_SIGN_ML_DSA_87",
         "PQ_SIGN_SLH_DSA_SHA2_128S",
         "PQ_SIGN_HASH_SLH_DSA_SHA2_128S_SHA256",
+        "PQ_SIGN_ML_DSA_44_EXTERNAL_MU",
+        "PQ_SIGN_ML_DSA_65_EXTERNAL_MU",
+        "PQ_SIGN_ML_DSA_87_EXTERNAL_MU",
     ]
     protectionLevel: typing_extensions.Literal[
-        "PROTECTION_LEVEL_UNSPECIFIED", "SOFTWARE", "HSM", "EXTERNAL", "EXTERNAL_VPC"
+        "PROTECTION_LEVEL_UNSPECIFIED",
+        "SOFTWARE",
+        "HSM",
+        "EXTERNAL",
+        "EXTERNAL_VPC",
+        "HSM_SINGLE_TENANT",
     ]
 
 @typing.type_check_only

@@ -152,11 +152,12 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> TagBindingCollectionHttpRequest: ...
-            def update(
+            def patch(
                 self,
                 *,
                 name: str,
                 body: TagBindingCollection = ...,
+                updateMask: str = ...,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
 

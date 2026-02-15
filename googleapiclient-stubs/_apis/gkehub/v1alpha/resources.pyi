@@ -384,6 +384,65 @@ class GKEHubResource(googleapiclient.discovery.Resource):
                 ) -> ListOperationsResponseHttpRequest | None: ...
 
             @typing.type_check_only
+            class RolloutSequencesResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: RolloutSequence = ...,
+                    rolloutSequenceId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> RolloutSequenceHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListRolloutSequencesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListRolloutSequencesResponseHttpRequest,
+                    previous_response: ListRolloutSequencesResponse,
+                ) -> ListRolloutSequencesResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: RolloutSequence = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+
+            @typing.type_check_only
+            class RolloutsResource(googleapiclient.discovery.Resource):
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> RolloutHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListRolloutsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListRolloutsResponseHttpRequest,
+                    previous_response: ListRolloutsResponse,
+                ) -> ListRolloutsResponseHttpRequest | None: ...
+
+            @typing.type_check_only
             class ScopesResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class NamespacesResource(googleapiclient.discovery.Resource):
@@ -569,6 +628,8 @@ class GKEHubResource(googleapiclient.discovery.Resource):
             def fleets(self) -> FleetsResource: ...
             def memberships(self) -> MembershipsResource: ...
             def operations(self) -> OperationsResource: ...
+            def rolloutSequences(self) -> RolloutSequencesResource: ...
+            def rollouts(self) -> RolloutsResource: ...
             def scopes(self) -> ScopesResource: ...
 
         def locations(self) -> LocationsResource: ...
@@ -721,6 +782,22 @@ class ListPermittedScopesResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListPermittedScopesResponse: ...
 
 @typing.type_check_only
+class ListRolloutSequencesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListRolloutSequencesResponse: ...
+
+@typing.type_check_only
+class ListRolloutsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListRolloutsResponse: ...
+
+@typing.type_check_only
 class ListScopeNamespacesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -799,6 +876,22 @@ class RBACRoleBindingHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> RBACRoleBinding: ...
+
+@typing.type_check_only
+class RolloutHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> Rollout: ...
+
+@typing.type_check_only
+class RolloutSequenceHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> RolloutSequence: ...
 
 @typing.type_check_only
 class ScopeHttpRequest(googleapiclient.http.HttpRequest):

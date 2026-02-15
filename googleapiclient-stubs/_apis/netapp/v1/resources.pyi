@@ -179,6 +179,46 @@ class NetAppFilesResource(googleapiclient.discovery.Resource):
                 def backups(self) -> BackupsResource: ...
 
             @typing.type_check_only
+            class HostGroupsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: HostGroup = ...,
+                    hostGroupId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> HostGroupHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListHostGroupsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListHostGroupsResponseHttpRequest,
+                    previous_response: ListHostGroupsResponse,
+                ) -> ListHostGroupsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: HostGroup = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+
+            @typing.type_check_only
             class KmsConfigsResource(googleapiclient.discovery.Resource):
                 def create(
                     self,
@@ -485,6 +525,13 @@ class NetAppFilesResource(googleapiclient.discovery.Resource):
                 def delete(
                     self, *, name: str, force: bool = ..., **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+                def establishPeering(
+                    self,
+                    *,
+                    name: str,
+                    body: EstablishVolumePeeringRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> VolumeHttpRequest: ...
@@ -550,6 +597,7 @@ class NetAppFilesResource(googleapiclient.discovery.Resource):
             def activeDirectories(self) -> ActiveDirectoriesResource: ...
             def backupPolicies(self) -> BackupPoliciesResource: ...
             def backupVaults(self) -> BackupVaultsResource: ...
+            def hostGroups(self) -> HostGroupsResource: ...
             def kmsConfigs(self) -> KmsConfigsResource: ...
             def operations(self) -> OperationsResource: ...
             def storagePools(self) -> StoragePoolsResource: ...
@@ -612,6 +660,14 @@ class GoogleProtobufEmptyHttpRequest(googleapiclient.http.HttpRequest):
     ) -> GoogleProtobufEmpty: ...
 
 @typing.type_check_only
+class HostGroupHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> HostGroup: ...
+
+@typing.type_check_only
 class KmsConfigHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -650,6 +706,14 @@ class ListBackupsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListBackupsResponse: ...
+
+@typing.type_check_only
+class ListHostGroupsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListHostGroupsResponse: ...
 
 @typing.type_check_only
 class ListKmsConfigsResponseHttpRequest(googleapiclient.http.HttpRequest):

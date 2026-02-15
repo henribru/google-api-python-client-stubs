@@ -376,7 +376,7 @@ class ShippingWeight(typing_extensions.TypedDict, total=False):
 class SubscriptionCost(typing_extensions.TypedDict, total=False):
     amount: Price
     period: typing_extensions.Literal[
-        "SUBSCRIPTION_PERIOD_UNSPECIFIED", "MONTH", "YEAR"
+        "SUBSCRIPTION_PERIOD_UNSPECIFIED", "MONTH", "YEAR", "WEEK"
     ]
     periodLength: str
 

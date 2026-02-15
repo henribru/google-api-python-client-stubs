@@ -54,6 +54,10 @@ class Environment(typing_extensions.TypedDict, total=False):
     webHost: str
 
 @typing.type_check_only
+class GenerateAccessTokenResponse(typing_extensions.TypedDict, total=False):
+    accessToken: str
+
+@typing.type_check_only
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]

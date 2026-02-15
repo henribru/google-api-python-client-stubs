@@ -1063,6 +1063,9 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                         **kwargs: typing.Any,
                     ) -> ZoneHttpRequest: ...
 
+                def bulk_update(
+                    self, *, path: str, body: ProposedChange = ..., **kwargs: typing.Any
+                ) -> BulkUpdateWorkspaceResponseHttpRequest: ...
                 def create(
                     self, *, parent: str, body: Workspace = ..., **kwargs: typing.Any
                 ) -> WorkspaceHttpRequest: ...
@@ -1255,6 +1258,14 @@ class AccountHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Account: ...
+
+@typing.type_check_only
+class BulkUpdateWorkspaceResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> BulkUpdateWorkspaceResponse: ...
 
 @typing.type_check_only
 class ClientHttpRequest(googleapiclient.http.HttpRequest):

@@ -316,6 +316,9 @@ class ConfigResource(googleapiclient.discovery.Resource):
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
+            def getAutoMigrationConfig(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> AutoMigrationConfigHttpRequest: ...
             def list(
                 self,
                 *,
@@ -331,6 +334,14 @@ class ConfigResource(googleapiclient.discovery.Resource):
                 previous_request: ListLocationsResponseHttpRequest,
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
+            def updateAutoMigrationConfig(
+                self,
+                *,
+                name: str,
+                body: AutoMigrationConfig = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any,
+            ) -> OperationHttpRequest: ...
             def deployments(self) -> DeploymentsResource: ...
             def operations(self) -> OperationsResource: ...
             def previews(self) -> PreviewsResource: ...
@@ -351,6 +362,14 @@ class ConfigResource(googleapiclient.discovery.Resource):
         | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def projects(self) -> ProjectsResource: ...
+
+@typing.type_check_only
+class AutoMigrationConfigHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> AutoMigrationConfig: ...
 
 @typing.type_check_only
 class DeploymentHttpRequest(googleapiclient.http.HttpRequest):

@@ -60,6 +60,7 @@ class AccountService(typing_extensions.TypedDict, total=False):
     accountAggregation: AccountAggregation
     accountManagement: AccountManagement
     campaignsManagement: CampaignsManagement
+    comparisonShopping: ComparisonShopping
     externalAccountId: str
     handshake: Handshake
     localListingManagement: LocalListingManagement
@@ -74,12 +75,18 @@ class AccountService(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class AddAccountService(typing_extensions.TypedDict, total=False):
     accountAggregation: AccountAggregation
+    accountManagement: AccountManagement
+    campaignsManagement: CampaignsManagement
+    comparisonShopping: ComparisonShopping
+    externalAccountId: str
+    productsManagement: ProductsManagement
     provider: str
 
 @typing.type_check_only
 class AddUser(typing_extensions.TypedDict, total=False):
     user: User
     userId: str
+    verificationMailSettings: VerificationMailSettings
 
 @typing.type_check_only
 class Address(typing_extensions.TypedDict, total=False):
@@ -216,9 +223,13 @@ class ClaimHomepageRequest(typing_extensions.TypedDict, total=False):
     overwrite: bool
 
 @typing.type_check_only
+class ComparisonShopping(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class CreateAndConfigureAccountRequest(typing_extensions.TypedDict, total=False):
     account: Account
     service: _list[AddAccountService]
+    setAlias: _list[SetAliasForRelationship]
     user: _list[AddUser]
     users: _list[CreateUserRequest]
 
@@ -405,6 +416,11 @@ class ItemUpdatesAccountLevelSettings(typing_extensions.TypedDict, total=False):
     allowConditionUpdates: bool
     allowPriceUpdates: bool
     allowStrictAvailabilityUpdates: bool
+
+@typing.type_check_only
+class LatLng(typing_extensions.TypedDict, total=False):
+    latitude: float
+    longitude: float
 
 @typing.type_check_only
 class LfpLink(typing_extensions.TypedDict, total=False):
@@ -676,6 +692,15 @@ class ProposeAccountServiceRequest(typing_extensions.TypedDict, total=False):
     provider: str
 
 @typing.type_check_only
+class RadiusArea(typing_extensions.TypedDict, total=False):
+    latLng: LatLng
+    radius: float
+    radiusUnits: typing_extensions.Literal[
+        "RADIUS_UNITS_UNSPECIFIED", "MILES", "KILOMETERS"
+    ]
+    regionCode: str
+
+@typing.type_check_only
 class RateGroup(typing_extensions.TypedDict, total=False):
     applicableShippingLabels: _list[str]
     carrierRates: _list[CarrierRate]
@@ -690,6 +715,7 @@ class Region(typing_extensions.TypedDict, total=False):
     geotargetArea: GeoTargetArea
     name: str
     postalCodeArea: PostalCodeArea
+    radiusArea: RadiusArea
     regionalInventoryEligible: bool
     shippingEligible: bool
 
@@ -757,6 +783,11 @@ class Service(typing_extensions.TypedDict, total=False):
         "SHIPMENT_TYPE_UNSPECIFIED", "DELIVERY", "LOCAL_DELIVERY", "COLLECTION_POINT"
     ]
     storeConfig: StoreConfig
+
+@typing.type_check_only
+class SetAliasForRelationship(typing_extensions.TypedDict, total=False):
+    accountIdAlias: str
+    provider: str
 
 @typing.type_check_only
 class ShippingSettings(typing_extensions.TypedDict, total=False):
@@ -864,6 +895,17 @@ class Value(typing_extensions.TypedDict, total=False):
     noShipping: bool
     pricePercentage: str
     subtable: str
+
+@typing.type_check_only
+class VerificationMailSettings(typing_extensions.TypedDict, total=False):
+    verificationMailMode: typing_extensions.Literal[
+        "VERIFICATION_MAIL_MODE_UNSPECIFIED",
+        "SEND_VERIFICATION_MAIL",
+        "SUPPRESS_VERIFICATION_MAIL",
+    ]
+
+@typing.type_check_only
+class VerifySelfRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Warehouse(typing_extensions.TypedDict, total=False):

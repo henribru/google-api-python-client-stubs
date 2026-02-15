@@ -48,6 +48,7 @@ class AutoAccept(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AutoCreatedSubnetworkInfo(typing_extensions.TypedDict, total=False):
+    delinked: bool
     internalRange: str
     internalRangeRef: str
     subnetwork: str
@@ -58,6 +59,37 @@ class AutomatedDnsCreationSpec(typing_extensions.TypedDict, total=False):
     dnsSuffix: str
     hostname: str
     ttl: str
+
+@typing.type_check_only
+class AutomatedDnsRecord(typing_extensions.TypedDict, total=False):
+    consumerNetwork: str
+    createTime: str
+    creationMode: typing_extensions.Literal[
+        "CREATION_MODE_UNSPECIFIED", "CONSUMER_API", "SERVICE_CONNECTION_MAP"
+    ]
+    currentConfig: Config
+    description: str
+    dnsSuffix: str
+    dnsZone: str
+    etag: str
+    fqdn: str
+    hostname: str
+    labels: dict[str, typing.Any]
+    name: str
+    originalConfig: Config
+    recordType: typing_extensions.Literal[
+        "RECORD_TYPE_UNSPECIFIED", "A", "AAAA", "TXT", "CNAME"
+    ]
+    serviceClass: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "PROGRAMMED",
+        "FAILED_DEPROGRAMMING",
+        "CREATING",
+        "DELETING",
+    ]
+    stateDetails: str
+    updateTime: str
 
 @typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
@@ -90,6 +122,11 @@ class CheckConsumerConfigResponse(typing_extensions.TypedDict, total=False):
             "ENDPOINT_PROJECT_IS_NOT_SERVICE_PROJECT",
         ]
     ]
+
+@typing.type_check_only
+class Config(typing_extensions.TypedDict, total=False):
+    rrdatas: _list[str]
+    ttl: str
 
 @typing.type_check_only
 class ConsumerPscConfig(typing_extensions.TypedDict, total=False):
@@ -356,6 +393,12 @@ class LinkedVpnTunnels(typing_extensions.TypedDict, total=False):
     siteToSiteDataTransfer: bool
     uris: _list[str]
     vpcNetwork: str
+
+@typing.type_check_only
+class ListAutomatedDnsRecordsResponse(typing_extensions.TypedDict, total=False):
+    automatedDnsRecords: _list[AutomatedDnsRecord]
+    nextPageToken: str
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListDestinationsResponse(typing_extensions.TypedDict, total=False):

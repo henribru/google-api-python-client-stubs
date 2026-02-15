@@ -271,30 +271,6 @@ class EventarcResource(googleapiclient.discovery.Resource):
                 ) -> TestIamPermissionsResponseHttpRequest: ...
 
             @typing.type_check_only
-            class KafkaSourcesResource(googleapiclient.discovery.Resource):
-                def getIamPolicy(
-                    self,
-                    *,
-                    resource: str,
-                    options_requestedPolicyVersion: int = ...,
-                    **kwargs: typing.Any,
-                ) -> PolicyHttpRequest: ...
-                def setIamPolicy(
-                    self,
-                    *,
-                    resource: str,
-                    body: SetIamPolicyRequest = ...,
-                    **kwargs: typing.Any,
-                ) -> PolicyHttpRequest: ...
-                def testIamPermissions(
-                    self,
-                    *,
-                    resource: str,
-                    body: TestIamPermissionsRequest = ...,
-                    **kwargs: typing.Any,
-                ) -> TestIamPermissionsResponseHttpRequest: ...
-
-            @typing.type_check_only
             class MessageBusesResource(googleapiclient.discovery.Resource):
                 def create(
                     self,
@@ -602,7 +578,6 @@ class EventarcResource(googleapiclient.discovery.Resource):
             def channels(self) -> ChannelsResource: ...
             def enrollments(self) -> EnrollmentsResource: ...
             def googleApiSources(self) -> GoogleApiSourcesResource: ...
-            def kafkaSources(self) -> KafkaSourcesResource: ...
             def messageBuses(self) -> MessageBusesResource: ...
             def operations(self) -> OperationsResource: ...
             def pipelines(self) -> PipelinesResource: ...

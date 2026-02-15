@@ -33,6 +33,13 @@ class CloudFunctionsResource(googleapiclient.discovery.Resource):
                     body: CommitFunctionUpgradeRequest = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
+                def commitFunctionUpgradeAsGen2(
+                    self,
+                    *,
+                    name: str,
+                    body: CommitFunctionUpgradeAsGen2Request = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
                 def create(
                     self,
                     *,

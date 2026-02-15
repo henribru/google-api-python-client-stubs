@@ -236,6 +236,8 @@ class GoogleCloudAiplatformV1beta1FunctionCall(
     args: dict[str, typing.Any]
     id: str
     name: str
+    partialArgs: _list[GoogleCloudAiplatformV1beta1PartialArg]
+    willContinue: bool
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1FunctionCallingConfig(
@@ -245,6 +247,7 @@ class GoogleCloudAiplatformV1beta1FunctionCallingConfig(
     mode: typing_extensions.Literal[
         "MODE_UNSPECIFIED", "AUTO", "ANY", "NONE", "VALIDATED"
     ]
+    streamFunctionCallArguments: bool
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1FunctionDeclaration(
@@ -346,7 +349,11 @@ class GoogleCloudAiplatformV1beta1GenerateContentResponseUsageMetadata(
     toolUsePromptTokensDetails: _list[GoogleCloudAiplatformV1beta1ModalityTokenCount]
     totalTokenCount: int
     trafficType: typing_extensions.Literal[
-        "TRAFFIC_TYPE_UNSPECIFIED", "ON_DEMAND", "PROVISIONED_THROUGHPUT"
+        "TRAFFIC_TYPE_UNSPECIFIED",
+        "ON_DEMAND",
+        "ON_DEMAND_PRIORITY",
+        "ON_DEMAND_FLEX",
+        "PROVISIONED_THROUGHPUT",
     ]
 
 @typing.type_check_only
@@ -424,6 +431,9 @@ class GoogleCloudAiplatformV1beta1GenerationConfigThinkingConfig(
 ):
     includeThoughts: bool
     thinkingBudget: int
+    thinkingLevel: typing_extensions.Literal[
+        "THINKING_LEVEL_UNSPECIFIED", "LOW", "MEDIUM", "HIGH", "MINIMAL"
+    ]
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1GoogleMaps(typing_extensions.TypedDict, total=False):
@@ -521,6 +531,7 @@ class GoogleCloudAiplatformV1beta1GroundingSupport(
 class GoogleCloudAiplatformV1beta1ImageConfig(typing_extensions.TypedDict, total=False):
     aspectRatio: str
     imageOutputOptions: GoogleCloudAiplatformV1beta1ImageConfigImageOutputOptions
+    imageSize: str
     personGeneration: typing_extensions.Literal[
         "PERSON_GENERATION_UNSPECIFIED", "ALLOW_ALL", "ALLOW_ADULT", "ALLOW_NONE"
     ]
@@ -583,10 +594,32 @@ class GoogleCloudAiplatformV1beta1Part(typing_extensions.TypedDict, total=False)
     functionCall: GoogleCloudAiplatformV1beta1FunctionCall
     functionResponse: GoogleCloudAiplatformV1beta1FunctionResponse
     inlineData: GoogleCloudAiplatformV1beta1Blob
+    mediaResolution: GoogleCloudAiplatformV1beta1PartMediaResolution
     text: str
     thought: bool
     thoughtSignature: str
     videoMetadata: GoogleCloudAiplatformV1beta1VideoMetadata
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1PartMediaResolution(
+    typing_extensions.TypedDict, total=False
+):
+    level: typing_extensions.Literal[
+        "MEDIA_RESOLUTION_UNSPECIFIED",
+        "MEDIA_RESOLUTION_LOW",
+        "MEDIA_RESOLUTION_MEDIUM",
+        "MEDIA_RESOLUTION_HIGH",
+        "MEDIA_RESOLUTION_ULTRA_HIGH",
+    ]
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1PartialArg(typing_extensions.TypedDict, total=False):
+    boolValue: bool
+    jsonPath: str
+    nullValue: typing_extensions.Literal["NULL_VALUE"]
+    numberValue: float
+    stringValue: str
+    willContinue: bool
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1PrebuiltVoiceConfig(
@@ -647,6 +680,13 @@ class GoogleCloudAiplatformV1beta1RagRetrievalConfigRankingRankService(
     typing_extensions.TypedDict, total=False
 ):
     modelName: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ReplicatedVoiceConfig(
+    typing_extensions.TypedDict, total=False
+):
+    mimeType: str
+    voiceSampleAudio: str
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1Retrieval(typing_extensions.TypedDict, total=False):
@@ -811,6 +851,7 @@ class GoogleCloudAiplatformV1beta1Tool(typing_extensions.TypedDict, total=False)
     googleMaps: GoogleCloudAiplatformV1beta1GoogleMaps
     googleSearch: GoogleCloudAiplatformV1beta1ToolGoogleSearch
     googleSearchRetrieval: GoogleCloudAiplatformV1beta1GoogleSearchRetrieval
+    parallelAiSearch: GoogleCloudAiplatformV1beta1ToolParallelAiSearch
     retrieval: GoogleCloudAiplatformV1beta1Retrieval
     urlContext: GoogleCloudAiplatformV1beta1UrlContext
 
@@ -847,6 +888,13 @@ class GoogleCloudAiplatformV1beta1ToolGoogleSearch(
         "BLOCK_ONLY_EXTREMELY_HIGH",
     ]
     excludeDomains: _list[str]
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ToolParallelAiSearch(
+    typing_extensions.TypedDict, total=False
+):
+    apiKey: str
+    customConfigs: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1UrlContext(
@@ -914,6 +962,7 @@ class GoogleCloudAiplatformV1beta1VideoMetadata(
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1VoiceConfig(typing_extensions.TypedDict, total=False):
     prebuiltVoiceConfig: GoogleCloudAiplatformV1beta1PrebuiltVoiceConfig
+    replicatedVoiceConfig: GoogleCloudAiplatformV1beta1ReplicatedVoiceConfig
 
 @typing.type_check_only
 class LatLng(typing_extensions.TypedDict, total=False):

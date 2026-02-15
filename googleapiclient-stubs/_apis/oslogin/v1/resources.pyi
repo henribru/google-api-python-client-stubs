@@ -34,6 +34,13 @@ class CloudOSLoginResource(googleapiclient.discovery.Resource):
             def delete(
                 self, *, name: str, **kwargs: typing.Any
             ) -> EmptyHttpRequest: ...
+            def provisionPosixAccount(
+                self,
+                *,
+                name: str,
+                body: ProvisionPosixAccountRequest = ...,
+                **kwargs: typing.Any,
+            ) -> PosixAccountHttpRequest: ...
 
         @typing.type_check_only
         class SshPublicKeysResource(googleapiclient.discovery.Resource):
@@ -113,6 +120,14 @@ class LoginProfileHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> LoginProfile: ...
+
+@typing.type_check_only
+class PosixAccountHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> PosixAccount: ...
 
 @typing.type_check_only
 class SignSshPublicKeyResponseHttpRequest(googleapiclient.http.HttpRequest):

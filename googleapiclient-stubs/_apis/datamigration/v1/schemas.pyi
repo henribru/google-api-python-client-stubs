@@ -17,6 +17,7 @@ class AlloyDbSettings(typing_extensions.TypedDict, total=False):
         "POSTGRES_15",
         "POSTGRES_16",
         "POSTGRES_17",
+        "POSTGRES_18",
     ]
     encryptionConfig: EncryptionConfig
     initialUser: UserPassword
@@ -81,6 +82,10 @@ class BackgroundJobLogEntry(typing_extensions.TypedDict, total=False):
     requestAutocommit: bool
     seedJobDetails: SeedJobDetails
     startTime: str
+
+@typing.type_check_only
+class BadRequest(typing_extensions.TypedDict, total=False):
+    fieldViolations: _list[FieldViolation]
 
 @typing.type_check_only
 class BinaryLogParser(typing_extensions.TypedDict, total=False):
@@ -361,6 +366,11 @@ class DatabaseType(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class DebugInfo(typing_extensions.TypedDict, total=False):
+    detail: str
+    stackEntries: _list[str]
+
+@typing.type_check_only
 class DemoteDestinationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -523,6 +533,12 @@ class EntityMove(typing_extensions.TypedDict, total=False):
     newSchema: str
 
 @typing.type_check_only
+class ErrorInfo(typing_extensions.TypedDict, total=False):
+    domain: str
+    metadata: dict[str, typing.Any]
+    reason: str
+
+@typing.type_check_only
 class Expr(typing_extensions.TypedDict, total=False):
     description: str
     expression: str
@@ -533,6 +549,13 @@ class Expr(typing_extensions.TypedDict, total=False):
 class FetchStaticIpsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     staticIps: _list[str]
+
+@typing.type_check_only
+class FieldViolation(typing_extensions.TypedDict, total=False):
+    description: str
+    field: str
+    localizedMessage: LocalizedMessage
+    reason: str
 
 @typing.type_check_only
 class FilterTableColumns(typing_extensions.TypedDict, total=False):
@@ -576,6 +599,10 @@ class GoogleCloudClouddmsV1OperationMetadata(typing_extensions.TypedDict, total=
     statusMessage: str
     target: str
     verb: str
+
+@typing.type_check_only
+class Help(typing_extensions.TypedDict, total=False):
+    links: _list[Link]
 
 @typing.type_check_only
 class HeterogeneousMetadata(typing_extensions.TypedDict, total=False):
@@ -627,6 +654,11 @@ class IntComparisonFilter(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class Link(typing_extensions.TypedDict, total=False):
+    description: str
+    url: str
+
+@typing.type_check_only
 class ListConnectionProfilesResponse(typing_extensions.TypedDict, total=False):
     connectionProfiles: _list[ConnectionProfile]
     nextPageToken: str
@@ -663,12 +695,18 @@ class ListMigrationJobsResponse(typing_extensions.TypedDict, total=False):
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListPrivateConnectionsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     privateConnections: _list[PrivateConnection]
     unreachable: _list[str]
+
+@typing.type_check_only
+class LocalizedMessage(typing_extensions.TypedDict, total=False):
+    locale: str
+    message: str
 
 @typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):
@@ -769,6 +807,7 @@ class MigrationJob(typing_extensions.TypedDict, total=False):
     name: str
     objectsConfig: MigrationJobObjectsConfig
     oracleToPostgresConfig: OracleToPostgresConfig
+    originalMigrationName: str
     performanceConfig: PerformanceConfig
     phase: typing_extensions.Literal[
         "PHASE_UNSPECIFIED",
@@ -779,6 +818,8 @@ class MigrationJob(typing_extensions.TypedDict, total=False):
         "PREPARING_THE_DUMP",
         "READY_FOR_PROMOTE",
     ]
+    postgresToSqlserverConfig: PostgresToSqlServerConfig
+    purpose: typing_extensions.Literal["PURPOSE_UNSPECIFIED", "MIGRATE", "FAILBACK"]
     reverseSshConnectivity: ReverseSshConnectivity
     satisfiesPzi: bool
     satisfiesPzs: bool
@@ -993,6 +1034,7 @@ class PostgreSqlConnectionProfile(typing_extensions.TypedDict, total=False):
     alloydbClusterId: str
     cloudSqlId: str
     database: str
+    forwardSshConnectivity: ForwardSshTunnelConnectivity
     host: str
     networkArchitecture: typing_extensions.Literal[
         "NETWORK_ARCHITECTURE_UNSPECIFIED",
@@ -1002,6 +1044,7 @@ class PostgreSqlConnectionProfile(typing_extensions.TypedDict, total=False):
     password: str
     passwordSet: bool
     port: int
+    privateConnectivity: PrivateConnectivity
     privateServiceConnectConnectivity: PrivateServiceConnectConnectivity
     ssl: SslConfig
     staticIpConnectivity: StaticIpConnectivity
@@ -1011,6 +1054,25 @@ class PostgreSqlConnectionProfile(typing_extensions.TypedDict, total=False):
 class PostgresDestinationConfig(typing_extensions.TypedDict, total=False):
     maxConcurrentConnections: int
     transactionTimeout: str
+
+@typing.type_check_only
+class PostgresSourceConfig(typing_extensions.TypedDict, total=False):
+    skipFullDump: bool
+
+@typing.type_check_only
+class PostgresToSqlServerConfig(typing_extensions.TypedDict, total=False):
+    postgresSourceConfig: PostgresSourceConfig
+    sqlserverDestinationConfig: SqlServerDestinationConfig
+
+@typing.type_check_only
+class PreconditionFailure(typing_extensions.TypedDict, total=False):
+    violations: _list[PreconditionFailureViolation]
+
+@typing.type_check_only
+class PreconditionFailureViolation(typing_extensions.TypedDict, total=False):
+    description: str
+    subject: str
+    type: str
 
 @typing.type_check_only
 class PrimaryInstanceSettings(typing_extensions.TypedDict, total=False):
@@ -1061,6 +1123,33 @@ class PscInterfaceConfig(typing_extensions.TypedDict, total=False):
     networkAttachment: str
 
 @typing.type_check_only
+class QuotaFailure(typing_extensions.TypedDict, total=False):
+    violations: _list[QuotaFailureViolation]
+
+@typing.type_check_only
+class QuotaFailureViolation(typing_extensions.TypedDict, total=False):
+    apiService: str
+    description: str
+    futureQuotaValue: str
+    quotaDimensions: dict[str, typing.Any]
+    quotaId: str
+    quotaMetric: str
+    quotaValue: str
+    subject: str
+
+@typing.type_check_only
+class RequestInfo(typing_extensions.TypedDict, total=False):
+    requestId: str
+    servingData: str
+
+@typing.type_check_only
+class ResourceInfo(typing_extensions.TypedDict, total=False):
+    description: str
+    owner: str
+    resourceName: str
+    resourceType: str
+
+@typing.type_check_only
 class RestartMigrationJobRequest(typing_extensions.TypedDict, total=False):
     objectsFilter: MigrationJobObjectsConfig
     restartFailedObjects: bool
@@ -1069,6 +1158,10 @@ class RestartMigrationJobRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ResumeMigrationJobRequest(typing_extensions.TypedDict, total=False):
     skipValidation: bool
+
+@typing.type_check_only
+class RetryInfo(typing_extensions.TypedDict, total=False):
+    retryDelay: str
 
 @typing.type_check_only
 class ReverseSshConnectivity(typing_extensions.TypedDict, total=False):
@@ -1243,6 +1336,11 @@ class SqlServerDagConfig(typing_extensions.TypedDict, total=False):
 class SqlServerDatabaseBackup(typing_extensions.TypedDict, total=False):
     database: str
     encryptionOptions: SqlServerEncryptionOptions
+
+@typing.type_check_only
+class SqlServerDestinationConfig(typing_extensions.TypedDict, total=False):
+    maxConcurrentConnections: int
+    transactionTimeout: str
 
 @typing.type_check_only
 class SqlServerEncryptionOptions(typing_extensions.TypedDict, total=False):

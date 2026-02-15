@@ -402,27 +402,6 @@ class GoogleCloudBeyondcorpAppgatewaysV1AppGatewayOperationMetadata(
     verb: str
 
 @typing.type_check_only
-class GoogleCloudBeyondcorpPartnerservicesV1alphaGroup(
-    typing_extensions.TypedDict, total=False
-):
-    email: str
-    id: str
-
-@typing.type_check_only
-class GoogleCloudBeyondcorpPartnerservicesV1alphaListPartnerTenantsResponse(
-    typing_extensions.TypedDict, total=False
-):
-    nextPageToken: str
-    partnerTenants: _list[GoogleCloudBeyondcorpPartnerservicesV1alphaPartnerTenant]
-
-@typing.type_check_only
-class GoogleCloudBeyondcorpPartnerservicesV1alphaPartnerMetadata(
-    typing_extensions.TypedDict, total=False
-):
-    internalTenantId: str
-    partnerTenantId: str
-
-@typing.type_check_only
 class GoogleCloudBeyondcorpPartnerservicesV1alphaPartnerServiceOperationMetadata(
     typing_extensions.TypedDict, total=False
 ):
@@ -433,17 +412,6 @@ class GoogleCloudBeyondcorpPartnerservicesV1alphaPartnerServiceOperationMetadata
     statusMessage: str
     target: str
     verb: str
-
-@typing.type_check_only
-class GoogleCloudBeyondcorpPartnerservicesV1alphaPartnerTenant(
-    typing_extensions.TypedDict, total=False
-):
-    createTime: str
-    displayName: str
-    group: GoogleCloudBeyondcorpPartnerservicesV1alphaGroup
-    name: str
-    partnerMetadata: GoogleCloudBeyondcorpPartnerservicesV1alphaPartnerMetadata
-    updateTime: str
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpPartnerservicesV1mainPartnerServiceOperationMetadata(

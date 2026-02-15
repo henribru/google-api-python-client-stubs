@@ -79,6 +79,15 @@ class GceConfidentialInstanceConfig(typing_extensions.TypedDict, total=False):
     enableConfidentialCompute: bool
 
 @typing.type_check_only
+class GceHyperdiskBalancedHighAvailability(typing_extensions.TypedDict, total=False):
+    archiveTimeout: str
+    reclaimPolicy: typing_extensions.Literal[
+        "RECLAIM_POLICY_UNSPECIFIED", "DELETE", "RETAIN"
+    ]
+    sizeGb: int
+    sourceSnapshot: str
+
+@typing.type_check_only
 class GceInstance(typing_extensions.TypedDict, total=False):
     accelerators: _list[Accelerator]
     boostConfigs: _list[BoostConfig]
@@ -87,6 +96,7 @@ class GceInstance(typing_extensions.TypedDict, total=False):
     disablePublicIpAddresses: bool
     disableSsh: bool
     enableNestedVirtualization: bool
+    instanceMetadata: dict[str, typing.Any]
     machineType: str
     poolSize: int
     pooledInstances: int
@@ -94,6 +104,7 @@ class GceInstance(typing_extensions.TypedDict, total=False):
     serviceAccount: str
     serviceAccountScopes: _list[str]
     shieldedInstanceConfig: GceShieldedInstanceConfig
+    startupScriptUri: str
     tags: _list[str]
     vmTags: dict[str, typing.Any]
 
@@ -112,6 +123,7 @@ class GcePersistentDisk(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GceRegionalPersistentDisk(typing_extensions.TypedDict, total=False):
+    archiveTimeout: str
     diskType: str
     fsType: str
     reclaimPolicy: typing_extensions.Literal[
@@ -205,6 +217,7 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PersistentDirectory(typing_extensions.TypedDict, total=False):
+    gceHd: GceHyperdiskBalancedHighAvailability
     gcePd: GceRegionalPersistentDisk
     mountPath: str
 

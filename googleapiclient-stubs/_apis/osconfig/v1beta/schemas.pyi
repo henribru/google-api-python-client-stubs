@@ -111,6 +111,42 @@ class GooRepository(typing_extensions.TypedDict, total=False):
 class GooSettings(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class GoogleCloudOsconfigCommonV1__OperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    apiVersion: str
+    createTime: str
+    endTime: str
+    requestedCancellation: bool
+    statusMessage: str
+    target: str
+    verb: str
+
+@typing.type_check_only
+class GoogleCloudOsconfigCommonV1alpha__OperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    apiVersion: str
+    createTime: str
+    endTime: str
+    requestedCancellation: bool
+    statusMessage: str
+    target: str
+    verb: str
+
+@typing.type_check_only
+class GoogleCloudOsconfigCommonV1main__OperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    apiVersion: str
+    createTime: str
+    endTime: str
+    requestedCancellation: bool
+    statusMessage: str
+    target: str
+    verb: str
+
+@typing.type_check_only
 class GoogleCloudOsconfigV1__OSPolicyAssignmentOperationMetadata(
     typing_extensions.TypedDict, total=False
 ):
@@ -245,6 +281,7 @@ class PatchConfig(typing_extensions.TypedDict, total=False):
     rebootConfig: typing_extensions.Literal[
         "REBOOT_CONFIG_UNSPECIFIED", "DEFAULT", "ALWAYS", "NEVER"
     ]
+    skipUnpatchableVms: bool
     windowsUpdate: WindowsUpdateSettings
     yum: YumSettings
     zypper: ZypperSettings
@@ -297,6 +334,7 @@ class PatchJob(typing_extensions.TypedDict, total=False):
         "INSTANCE_LOOKUP",
         "PATCHING",
         "SUCCEEDED",
+        "COMPLETED_WITH_INACTIVE_VMS",
         "COMPLETED_WITH_ERRORS",
         "CANCELED",
         "TIMED_OUT",
@@ -326,6 +364,7 @@ class PatchJobInstanceDetails(typing_extensions.TypedDict, total=False):
         "RUNNING_PRE_PATCH_STEP",
         "RUNNING_POST_PATCH_STEP",
         "NO_AGENT_DETECTED",
+        "SKIPPED",
     ]
 
 @typing.type_check_only
@@ -341,6 +380,7 @@ class PatchJobInstanceDetailsSummary(typing_extensions.TypedDict, total=False):
     postPatchStepInstanceCount: str
     prePatchStepInstanceCount: str
     rebootingInstanceCount: str
+    skippedInstanceCount: str
     startedInstanceCount: str
     succeededInstanceCount: str
     succeededRebootRequiredInstanceCount: str

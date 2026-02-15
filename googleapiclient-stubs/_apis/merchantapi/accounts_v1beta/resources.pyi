@@ -73,6 +73,9 @@ class MerchantResource(googleapiclient.discovery.Resource):
 
         @typing.type_check_only
         class DeveloperRegistrationResource(googleapiclient.discovery.Resource):
+            def getAccountForGcpRegistration(
+                self, **kwargs: typing.Any
+            ) -> GetAccountForGcpRegistrationResponseHttpRequest: ...
             def getDeveloperRegistration(
                 self, *, name: str, **kwargs: typing.Any
             ) -> DeveloperRegistrationHttpRequest: ...
@@ -451,6 +454,16 @@ class MerchantResource(googleapiclient.discovery.Resource):
 
         @typing.type_check_only
         class UsersResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class MeResource(googleapiclient.discovery.Resource):
+                def verifySelf(
+                    self,
+                    *,
+                    account: str,
+                    body: VerifySelfRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> UserHttpRequest: ...
+
             def create(
                 self,
                 *,
@@ -484,6 +497,7 @@ class MerchantResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any,
             ) -> UserHttpRequest: ...
+            def me(self) -> MeResource: ...
 
         def createAndConfigure(
             self, *, body: CreateAndConfigureAccountRequest = ..., **kwargs: typing.Any
@@ -492,9 +506,6 @@ class MerchantResource(googleapiclient.discovery.Resource):
             self, *, name: str, force: bool = ..., **kwargs: typing.Any
         ) -> EmptyHttpRequest: ...
         def get(self, *, name: str, **kwargs: typing.Any) -> AccountHttpRequest: ...
-        def getAccountForGcpRegistration(
-            self, **kwargs: typing.Any
-        ) -> GetAccountForGcpRegistrationResponseHttpRequest: ...
         def list(
             self,
             *,

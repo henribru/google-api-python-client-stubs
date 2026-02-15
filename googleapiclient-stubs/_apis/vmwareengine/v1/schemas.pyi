@@ -63,6 +63,7 @@ class Binding(typing_extensions.TypedDict, total=False):
 class Cluster(typing_extensions.TypedDict, total=False):
     autoscalingSettings: AutoscalingSettings
     createTime: str
+    datastoreMountConfig: _list[DatastoreMountConfig]
     management: bool
     name: str
     nodeTypeConfigs: dict[str, typing.Any]
@@ -84,6 +85,39 @@ class Constraints(typing_extensions.TypedDict, total=False):
 class Credentials(typing_extensions.TypedDict, total=False):
     password: str
     username: str
+
+@typing.type_check_only
+class Datastore(typing_extensions.TypedDict, total=False):
+    clusters: _list[str]
+    createTime: str
+    description: str
+    etag: str
+    name: str
+    nfsDatastore: NfsDatastore
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "UPDATING", "DELETING"
+    ]
+    uid: str
+    updateTime: str
+
+@typing.type_check_only
+class DatastoreMountConfig(typing_extensions.TypedDict, total=False):
+    accessMode: typing_extensions.Literal[
+        "ACCESS_MODE_UNSPECIFIED", "READ_ONLY", "READ_WRITE"
+    ]
+    datastore: str
+    datastoreNetwork: DatastoreNetwork
+    fileShare: str
+    nfsVersion: typing_extensions.Literal["NFS_VERSION_UNSPECIFIED", "NFS_V3"]
+    securityType: typing_extensions.Literal["SECURITY_TYPE_UNSPECIFIED"]
+    servers: _list[str]
+
+@typing.type_check_only
+class DatastoreNetwork(typing_extensions.TypedDict, total=False):
+    connectionCount: int
+    mtu: int
+    networkPeering: str
+    subnet: str
 
 @typing.type_check_only
 class DnsBindPermission(typing_extensions.TypedDict, total=False):
@@ -151,6 +185,14 @@ class ForwardingRule(typing_extensions.TypedDict, total=False):
     nameServers: _list[str]
 
 @typing.type_check_only
+class GoogleFileService(typing_extensions.TypedDict, total=False):
+    filestoreInstance: str
+    netappVolume: str
+
+@typing.type_check_only
+class GoogleVmwareFileService(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class GrantDnsBindPermissionRequest(typing_extensions.TypedDict, total=False):
     principal: Principal
     requestId: str
@@ -194,6 +236,12 @@ class ListAnnouncementsResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ListClustersResponse(typing_extensions.TypedDict, total=False):
     clusters: _list[Cluster]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListDatastoresResponse(typing_extensions.TypedDict, total=False):
+    datastores: _list[Datastore]
     nextPageToken: str
     unreachable: _list[str]
 
@@ -259,6 +307,7 @@ class ListNodesResponse(typing_extensions.TypedDict, total=False):
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListPeeringRoutesResponse(typing_extensions.TypedDict, total=False):
@@ -349,6 +398,12 @@ class ManagementDnsZoneBinding(typing_extensions.TypedDict, total=False):
     vpcNetwork: str
 
 @typing.type_check_only
+class MountDatastoreRequest(typing_extensions.TypedDict, total=False):
+    datastoreMountConfig: DatastoreMountConfig
+    ignoreColocation: bool
+    requestId: str
+
+@typing.type_check_only
 class NetworkConfig(typing_extensions.TypedDict, total=False):
     dnsServerIp: str
     managementCidr: str
@@ -406,6 +461,12 @@ class NetworkService(typing_extensions.TypedDict, total=False):
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "UNPROVISIONED", "RECONCILING", "ACTIVE"
     ]
+
+@typing.type_check_only
+class NfsDatastore(typing_extensions.TypedDict, total=False):
+    googleFileService: GoogleFileService
+    googleVmwareFileService: GoogleVmwareFileService
+    thirdPartyFileService: ThirdPartyFileService
 
 @typing.type_check_only
 class Node(typing_extensions.TypedDict, total=False):
@@ -620,6 +681,12 @@ class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
+class ThirdPartyFileService(typing_extensions.TypedDict, total=False):
+    fileShare: str
+    network: str
+    servers: _list[str]
+
+@typing.type_check_only
 class Thresholds(typing_extensions.TypedDict, total=False):
     scaleIn: int
     scaleOut: int
@@ -648,6 +715,11 @@ class TimeWindow(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class UndeletePrivateCloudRequest(typing_extensions.TypedDict, total=False):
+    requestId: str
+
+@typing.type_check_only
+class UnmountDatastoreRequest(typing_extensions.TypedDict, total=False):
+    datastore: str
     requestId: str
 
 @typing.type_check_only

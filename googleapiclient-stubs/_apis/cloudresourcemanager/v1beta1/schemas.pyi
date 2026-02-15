@@ -118,6 +118,7 @@ class FolderOperationError(typing_extensions.TypedDict, total=False):
         "FOLDER_BEING_MOVED_VIOLATION",
         "FOLDER_TO_DELETE_NON_EMPTY_VIOLATION",
         "DELETED_FOLDER_HEIGHT_VIOLATION",
+        "FOLDER_TO_DELETE_CONFIGURED_CAPABILITY_VIOLATION",
     ]
 
 @typing.type_check_only

@@ -658,7 +658,7 @@ class TestIssue(typing_extensions.TypedDict, total=False):
         "detectedAppSplashScreen",
         "assetIssue",
     ]
-    warning: Any
+    warning_migration: Any
 
 @typing.type_check_only
 class TestSuiteOverview(typing_extensions.TypedDict, total=False):

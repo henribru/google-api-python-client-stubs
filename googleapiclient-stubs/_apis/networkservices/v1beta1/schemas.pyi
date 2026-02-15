@@ -65,6 +65,7 @@ class ExtensionChainExtension(typing_extensions.TypedDict, total=False):
     forwardHeaders: _list[str]
     metadata: dict[str, typing.Any]
     name: str
+    observabilityMode: bool
     requestBodySendMode: typing_extensions.Literal[
         "BODY_SEND_MODE_UNSPECIFIED",
         "BODY_SEND_MODE_STREAMED",
@@ -485,6 +486,7 @@ class ListMeshesResponse(typing_extensions.TypedDict, total=False):
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListServiceBindingsResponse(typing_extensions.TypedDict, total=False):
@@ -724,6 +726,8 @@ class TrafficPortSelector(typing_extensions.TypedDict, total=False):
 class WasmPlugin(typing_extensions.TypedDict, total=False):
     createTime: str
     description: str
+    kmsKeyName: str
+    kmsKeyVersion: str
     labels: dict[str, typing.Any]
     logConfig: WasmPluginLogConfig
     mainVersionId: str

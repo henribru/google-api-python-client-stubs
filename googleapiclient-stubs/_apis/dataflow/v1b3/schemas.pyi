@@ -456,6 +456,7 @@ class GetTemplateResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GetWorkerStacktracesRequest(typing_extensions.TypedDict, total=False):
+    endTime: str
     workerId: str
 
 @typing.type_check_only
@@ -995,6 +996,7 @@ class RuntimeMetadata(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class RuntimeUpdatableParams(typing_extensions.TypedDict, total=False):
+    acceptableBacklogDuration: str
     maxNumWorkers: int
     minNumWorkers: int
     workerUtilizationHint: float
@@ -1313,6 +1315,7 @@ class StreamingConfigTask(typing_extensions.TypedDict, total=False):
     maxWorkItemCommitBytes: str
     operationalLimits: StreamingOperationalLimits
     streamingComputationConfigs: _list[StreamingComputationConfig]
+    streamingEngineStateTagEncodingVersion: int
     userStepToStateFamilyNameMap: dict[str, typing.Any]
     userWorkerRunnerV1Settings: str
     userWorkerRunnerV2Settings: str

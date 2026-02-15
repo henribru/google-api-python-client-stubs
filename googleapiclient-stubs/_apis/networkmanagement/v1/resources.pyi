@@ -18,35 +18,39 @@ class NetworkManagementResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
-            class OperationsResource(googleapiclient.discovery.Resource):
-                def cancel(
-                    self,
-                    *,
-                    name: str,
-                    body: CancelOperationRequest = ...,
-                    **kwargs: typing.Any,
-                ) -> EmptyHttpRequest: ...
-                def delete(
-                    self, *, name: str, **kwargs: typing.Any
-                ) -> EmptyHttpRequest: ...
-                def get(
-                    self, *, name: str, **kwargs: typing.Any
-                ) -> OperationHttpRequest: ...
-                def list(
-                    self,
-                    *,
-                    name: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    returnPartialSuccess: bool = ...,
-                    **kwargs: typing.Any,
-                ) -> ListOperationsResponseHttpRequest: ...
-                def list_next(
-                    self,
-                    previous_request: ListOperationsResponseHttpRequest,
-                    previous_response: ListOperationsResponse,
-                ) -> ListOperationsResponseHttpRequest | None: ...
+            class GlobalResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class OperationsResource(googleapiclient.discovery.Resource):
+                    def cancel(
+                        self,
+                        *,
+                        name: str,
+                        body: CancelOperationRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> EmptyHttpRequest: ...
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> EmptyHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        name: str,
+                        filter: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        returnPartialSuccess: bool = ...,
+                        **kwargs: typing.Any,
+                    ) -> ListOperationsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListOperationsResponseHttpRequest,
+                        previous_response: ListOperationsResponse,
+                    ) -> ListOperationsResponseHttpRequest | None: ...
+
+                def operations(self) -> OperationsResource: ...
 
             @typing.type_check_only
             class VpcFlowLogsConfigsResource(googleapiclient.discovery.Resource):
@@ -106,7 +110,7 @@ class NetworkManagementResource(googleapiclient.discovery.Resource):
                 previous_request: ListLocationsResponseHttpRequest,
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
-            def operations(self) -> OperationsResource: ...
+            def global_(self) -> GlobalResource: ...
             def vpcFlowLogsConfigs(self) -> VpcFlowLogsConfigsResource: ...
 
         def locations(self) -> LocationsResource: ...

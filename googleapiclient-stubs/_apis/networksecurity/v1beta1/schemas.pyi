@@ -891,6 +891,7 @@ class SACRealmSACRealmSymantecOptions(typing_extensions.TypedDict, total=False):
         "SUCCEEDED",
         "READ_SECRET_FAILED",
         "REQUEST_TO_SYMANTEC_FAILED",
+        "UNAVAILABLE_FOR_HISTORICAL_REQUESTS",
     ]
 
 @typing.type_check_only

@@ -17,6 +17,7 @@ class BackfillAllStrategy(typing_extensions.TypedDict, total=False):
     oracleExcludedObjects: OracleRdbms
     postgresqlExcludedObjects: PostgresqlRdbms
     salesforceExcludedObjects: SalesforceOrg
+    spannerExcludedObjects: SpannerDatabase
     sqlServerExcludedObjects: SqlServerRdbms
 
 @typing.type_check_only
@@ -43,6 +44,10 @@ class BackfillNoneStrategy(typing_extensions.TypedDict, total=False): ...
 class BasicEncryption(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class BigQueryClustering(typing_extensions.TypedDict, total=False):
+    columns: _list[str]
+
+@typing.type_check_only
 class BigQueryDestinationConfig(typing_extensions.TypedDict, total=False):
     appendOnly: AppendOnly
     blmtConfig: BlmtConfig
@@ -50,6 +55,13 @@ class BigQueryDestinationConfig(typing_extensions.TypedDict, total=False):
     merge: Merge
     singleTargetDataset: SingleTargetDataset
     sourceHierarchyDatasets: SourceHierarchyDatasets
+
+@typing.type_check_only
+class BigQueryPartitioning(typing_extensions.TypedDict, total=False):
+    ingestionTimePartition: IngestionTimePartition
+    integerRangePartition: IntegerRangePartition
+    requirePartitionFilter: bool
+    timeUnitPartition: TimeUnitPartition
 
 @typing.type_check_only
 class BigQueryProfile(typing_extensions.TypedDict, total=False): ...
@@ -96,9 +108,15 @@ class ConnectionProfile(typing_extensions.TypedDict, total=False):
     salesforceProfile: SalesforceProfile
     satisfiesPzi: bool
     satisfiesPzs: bool
+    spannerProfile: SpannerProfile
     sqlServerProfile: SqlServerProfile
     staticServiceIpConnectivity: StaticServiceIpConnectivity
     updateTime: str
+
+@typing.type_check_only
+class CustomizationRule(typing_extensions.TypedDict, total=False):
+    bigqueryClustering: BigQueryClustering
+    bigqueryPartitioning: BigQueryPartitioning
 
 @typing.type_check_only
 class DatasetTemplate(typing_extensions.TypedDict, total=False):
@@ -123,6 +141,7 @@ class DiscoverConnectionProfileRequest(typing_extensions.TypedDict, total=False)
     oracleRdbms: OracleRdbms
     postgresqlRdbms: PostgresqlRdbms
     salesforceOrg: SalesforceOrg
+    spannerDatabase: SpannerDatabase
     sqlServerRdbms: SqlServerRdbms
 
 @typing.type_check_only
@@ -132,6 +151,7 @@ class DiscoverConnectionProfileResponse(typing_extensions.TypedDict, total=False
     oracleRdbms: OracleRdbms
     postgresqlRdbms: PostgresqlRdbms
     salesforceOrg: SalesforceOrg
+    spannerDatabase: SpannerDatabase
     sqlServerRdbms: SqlServerRdbms
 
 @typing.type_check_only
@@ -155,6 +175,10 @@ class Error(typing_extensions.TypedDict, total=False):
     errorUuid: str
     message: str
     reason: str
+
+@typing.type_check_only
+class EventFilter(typing_extensions.TypedDict, total=False):
+    sqlWhereClause: str
 
 @typing.type_check_only
 class FetchStaticIpsResponse(typing_extensions.TypedDict, total=False):
@@ -191,6 +215,23 @@ class HostAddress(typing_extensions.TypedDict, total=False):
     port: int
 
 @typing.type_check_only
+class IngestionTimePartition(typing_extensions.TypedDict, total=False):
+    partitioningTimeGranularity: typing_extensions.Literal[
+        "PARTITIONING_TIME_GRANULARITY_UNSPECIFIED",
+        "PARTITIONING_TIME_GRANULARITY_HOUR",
+        "PARTITIONING_TIME_GRANULARITY_DAY",
+        "PARTITIONING_TIME_GRANULARITY_MONTH",
+        "PARTITIONING_TIME_GRANULARITY_YEAR",
+    ]
+
+@typing.type_check_only
+class IntegerRangePartition(typing_extensions.TypedDict, total=False):
+    column: str
+    end: str
+    interval: str
+    start: str
+
+@typing.type_check_only
 class JsonFileFormat(typing_extensions.TypedDict, total=False):
     compression: typing_extensions.Literal[
         "JSON_COMPRESSION_UNSPECIFIED", "NO_COMPRESSION", "GZIP"
@@ -214,6 +255,7 @@ class ListLocationsResponse(typing_extensions.TypedDict, total=False):
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListPrivateConnectionsResponse(typing_extensions.TypedDict, total=False):
@@ -290,6 +332,7 @@ class MongodbObjectIdentifier(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class MongodbProfile(typing_extensions.TypedDict, total=False):
+    additionalOptions: dict[str, typing.Any]
     hostAddresses: _list[HostAddress]
     password: str
     replicaSet: str
@@ -303,6 +346,9 @@ class MongodbProfile(typing_extensions.TypedDict, total=False):
 class MongodbSourceConfig(typing_extensions.TypedDict, total=False):
     excludeObjects: MongodbCluster
     includeObjects: MongodbCluster
+    jsonMode: typing_extensions.Literal[
+        "MONGODB_JSON_MODE_UNSPECIFIED", "STRICT", "CANONICAL"
+    ]
     maxConcurrentBackfillTasks: int
 
 @typing.type_check_only
@@ -393,6 +439,10 @@ class Oauth2ClientCredentials(typing_extensions.TypedDict, total=False):
     clientId: str
     clientSecret: str
     secretManagerStoredClientSecret: str
+
+@typing.type_check_only
+class ObjectFilter(typing_extensions.TypedDict, total=False):
+    sourceObjectIdentifier: SourceObjectIdentifier
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
@@ -584,6 +634,11 @@ class Route(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
+class RuleSet(typing_extensions.TypedDict, total=False):
+    customizationRules: _list[CustomizationRule]
+    objectFilter: ObjectFilter
+
+@typing.type_check_only
 class RunStreamRequest(typing_extensions.TypedDict, total=False):
     cdcStrategy: CdcStrategy
     force: bool
@@ -643,6 +698,7 @@ class SourceConfig(typing_extensions.TypedDict, total=False):
     postgresqlSourceConfig: PostgresqlSourceConfig
     salesforceSourceConfig: SalesforceSourceConfig
     sourceConnectionProfile: str
+    spannerSourceConfig: SpannerSourceConfig
     sqlServerSourceConfig: SqlServerSourceConfig
 
 @typing.type_check_only
@@ -657,7 +713,52 @@ class SourceObjectIdentifier(typing_extensions.TypedDict, total=False):
     oracleIdentifier: OracleObjectIdentifier
     postgresqlIdentifier: PostgresqlObjectIdentifier
     salesforceIdentifier: SalesforceObjectIdentifier
+    spannerIdentifier: SpannerObjectIdentifier
     sqlServerIdentifier: SqlServerObjectIdentifier
+
+@typing.type_check_only
+class SpannerColumn(typing_extensions.TypedDict, total=False):
+    column: str
+    dataType: str
+    isPrimaryKey: bool
+    ordinalPosition: str
+
+@typing.type_check_only
+class SpannerDatabase(typing_extensions.TypedDict, total=False):
+    schemas: _list[SpannerSchema]
+
+@typing.type_check_only
+class SpannerObjectIdentifier(typing_extensions.TypedDict, total=False):
+    schema: str
+    table: str
+
+@typing.type_check_only
+class SpannerProfile(typing_extensions.TypedDict, total=False):
+    database: str
+    host: str
+
+@typing.type_check_only
+class SpannerSchema(typing_extensions.TypedDict, total=False):
+    schema: str
+    tables: _list[SpannerTable]
+
+@typing.type_check_only
+class SpannerSourceConfig(typing_extensions.TypedDict, total=False):
+    backfillDataBoostEnabled: bool
+    changeStreamName: str
+    excludeObjects: SpannerDatabase
+    fgacRole: str
+    includeObjects: SpannerDatabase
+    maxConcurrentBackfillTasks: int
+    maxConcurrentCdcTasks: int
+    spannerRpcPriority: typing_extensions.Literal[
+        "SPANNER_RPC_PRIORITY_UNSPECIFIED", "LOW", "MEDIUM", "HIGH"
+    ]
+
+@typing.type_check_only
+class SpannerTable(typing_extensions.TypedDict, total=False):
+    columns: _list[SpannerColumn]
+    table: str
 
 @typing.type_check_only
 class SpecificStartPosition(typing_extensions.TypedDict, total=False):
@@ -740,7 +841,8 @@ class StandardConnectionFormat(typing_extensions.TypedDict, total=False):
     directConnection: bool
 
 @typing.type_check_only
-class StartBackfillJobRequest(typing_extensions.TypedDict, total=False): ...
+class StartBackfillJobRequest(typing_extensions.TypedDict, total=False):
+    eventFilter: EventFilter
 
 @typing.type_check_only
 class StartBackfillJobResponse(typing_extensions.TypedDict, total=False):
@@ -774,6 +876,7 @@ class Stream(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     lastRecoveryTime: str
     name: str
+    ruleSets: _list[RuleSet]
     satisfiesPzi: bool
     satisfiesPzs: bool
     sourceConfig: SourceConfig
@@ -797,11 +900,23 @@ class StreamLargeObjects(typing_extensions.TypedDict, total=False): ...
 class StreamObject(typing_extensions.TypedDict, total=False):
     backfillJob: BackfillJob
     createTime: str
+    customizationRules: _list[CustomizationRule]
     displayName: str
     errors: _list[Error]
     name: str
     sourceObject: SourceObjectIdentifier
     updateTime: str
+
+@typing.type_check_only
+class TimeUnitPartition(typing_extensions.TypedDict, total=False):
+    column: str
+    partitioningTimeGranularity: typing_extensions.Literal[
+        "PARTITIONING_TIME_GRANULARITY_UNSPECIFIED",
+        "PARTITIONING_TIME_GRANULARITY_HOUR",
+        "PARTITIONING_TIME_GRANULARITY_DAY",
+        "PARTITIONING_TIME_GRANULARITY_MONTH",
+        "PARTITIONING_TIME_GRANULARITY_YEAR",
+    ]
 
 @typing.type_check_only
 class UserCredentials(typing_extensions.TypedDict, total=False):

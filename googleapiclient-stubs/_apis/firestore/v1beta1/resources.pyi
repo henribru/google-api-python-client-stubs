@@ -65,6 +65,13 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                     currentDocument_updateTime: str = ...,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
+                def executePipeline(
+                    self,
+                    *,
+                    database: str,
+                    body: ExecutePipelineRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> ExecutePipelineResponseHttpRequest: ...
                 def get(
                     self,
                     *,
@@ -295,6 +302,14 @@ class EmptyHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Empty: ...
+
+@typing.type_check_only
+class ExecutePipelineResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ExecutePipelineResponse: ...
 
 @typing.type_check_only
 class GoogleFirestoreAdminV1beta1IndexHttpRequest(googleapiclient.http.HttpRequest):

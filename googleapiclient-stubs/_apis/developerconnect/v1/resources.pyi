@@ -43,6 +43,17 @@ class DeveloperConnectResource(googleapiclient.discovery.Resource):
                     def fetchSelf(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> UserHttpRequest: ...
+                    def finishOAuthFlow(
+                        self,
+                        *,
+                        accountConnector: str,
+                        googleOauthParams_scopes: str | _list[str] = ...,
+                        googleOauthParams_ticket: str = ...,
+                        googleOauthParams_versionInfo: str = ...,
+                        oauthParams_code: str = ...,
+                        oauthParams_ticket: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> FinishOAuthResponseHttpRequest: ...
                     def list(
                         self,
                         *,
@@ -58,6 +69,9 @@ class DeveloperConnectResource(googleapiclient.discovery.Resource):
                         previous_request: ListUsersResponseHttpRequest,
                         previous_response: ListUsersResponse,
                     ) -> ListUsersResponseHttpRequest | None: ...
+                    def startOAuthFlow(
+                        self, *, accountConnector: str, **kwargs: typing.Any
+                    ) -> StartOAuthResponseHttpRequest: ...
 
                 def create(
                     self,
@@ -285,6 +299,26 @@ class DeveloperConnectResource(googleapiclient.discovery.Resource):
 
             @typing.type_check_only
             class InsightsConfigsResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class DeploymentEventsResource(googleapiclient.discovery.Resource):
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> DeploymentEventHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        filter: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> ListDeploymentEventsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListDeploymentEventsResponseHttpRequest,
+                        previous_response: ListDeploymentEventsResponse,
+                    ) -> ListDeploymentEventsResponseHttpRequest | None: ...
+
                 def create(
                     self,
                     *,
@@ -331,6 +365,7 @@ class DeveloperConnectResource(googleapiclient.discovery.Resource):
                     validateOnly: bool = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
+                def deploymentEvents(self) -> DeploymentEventsResource: ...
 
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
@@ -419,6 +454,14 @@ class ConnectionHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Connection: ...
 
 @typing.type_check_only
+class DeploymentEventHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> DeploymentEvent: ...
+
+@typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -475,6 +518,14 @@ class FetchReadWriteTokenResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> FetchReadWriteTokenResponse: ...
 
 @typing.type_check_only
+class FinishOAuthResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> FinishOAuthResponse: ...
+
+@typing.type_check_only
 class GitRepositoryLinkHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -505,6 +556,14 @@ class ListConnectionsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListConnectionsResponse: ...
+
+@typing.type_check_only
+class ListDeploymentEventsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListDeploymentEventsResponse: ...
 
 @typing.type_check_only
 class ListGitRepositoryLinksResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -561,6 +620,14 @@ class OperationHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Operation: ...
+
+@typing.type_check_only
+class StartOAuthResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> StartOAuthResponse: ...
 
 @typing.type_check_only
 class UserHttpRequest(googleapiclient.http.HttpRequest):

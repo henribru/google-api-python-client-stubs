@@ -1043,6 +1043,7 @@ class VersionedPackage(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class VersionedResource(typing_extensions.TypedDict, total=False):
+    assetExceptions: _list[AssetException]
     resource: dict[str, typing.Any]
     version: str
 

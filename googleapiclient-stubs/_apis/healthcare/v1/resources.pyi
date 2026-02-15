@@ -745,7 +745,8 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             parent: str,
-                            body: SearchResourcesRequest = ...,
+                            body: HttpBody = ...,
+                            resourceType: str = ...,
                             **kwargs: typing.Any,
                         ) -> HttpBodyHttpRequest: ...
                         def search_type(
@@ -753,7 +754,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                             *,
                             parent: str,
                             resourceType: str,
-                            body: SearchResourcesRequest = ...,
+                            body: HttpBody = ...,
                             **kwargs: typing.Any,
                         ) -> HttpBodyHttpRequest: ...
                         def update(

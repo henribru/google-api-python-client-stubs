@@ -76,6 +76,27 @@ class AppList(typing_extensions.TypedDict, total=False):
     selfLink: str
 
 @typing.type_check_only
+class Approval(typing_extensions.TypedDict, total=False):
+    approvalId: str
+    completeTime: str
+    createTime: str
+    dueTime: str
+    initiator: User
+    kind: str
+    modifyTime: str
+    reviewerResponses: _list[ReviewerResponse]
+    status: typing_extensions.Literal[
+        "STATUS_UNSPECIFIED", "IN_PROGRESS", "APPROVED", "CANCELLED", "DECLINED"
+    ]
+    targetFileId: str
+
+@typing.type_check_only
+class ApprovalList(typing_extensions.TypedDict, total=False):
+    items: _list[Approval]
+    kind: str
+    nextPageToken: str
+
+@typing.type_check_only
 class Change(typing_extensions.TypedDict, total=False):
     changeType: str
     drive: Drive
@@ -112,6 +133,7 @@ class Channel(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Comment(typing_extensions.TypedDict, total=False):
     anchor: str
+    assigneeEmailAddress: str
     author: User
     content: str
     createdTime: str
@@ -119,6 +141,7 @@ class Comment(typing_extensions.TypedDict, total=False):
     htmlContent: str
     id: str
     kind: str
+    mentionedEmailAddresses: _list[str]
     modifiedTime: str
     quotedFileContent: dict[str, typing.Any]
     replies: _list[Reply]
@@ -344,6 +367,7 @@ class PermissionList(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Reply(typing_extensions.TypedDict, total=False):
     action: str
+    assigneeEmailAddress: str
     author: User
     content: str
     createdTime: str
@@ -351,6 +375,7 @@ class Reply(typing_extensions.TypedDict, total=False):
     htmlContent: str
     id: str
     kind: str
+    mentionedEmailAddresses: _list[str]
     modifiedTime: str
 
 @typing.type_check_only
@@ -365,6 +390,14 @@ class ResolveAccessProposalRequest(typing_extensions.TypedDict, total=False):
     role: _list[str]
     sendNotification: bool
     view: str
+
+@typing.type_check_only
+class ReviewerResponse(typing_extensions.TypedDict, total=False):
+    kind: str
+    response: typing_extensions.Literal[
+        "RESPONSE_UNSPECIFIED", "NO_RESPONSE", "APPROVED", "DECLINED"
+    ]
+    reviewer: User
 
 @typing.type_check_only
 class Revision(typing_extensions.TypedDict, total=False):

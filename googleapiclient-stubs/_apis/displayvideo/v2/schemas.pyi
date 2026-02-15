@@ -615,20 +615,6 @@ class BulkListAssignedTargetingOptionsResponse(
     nextPageToken: str
 
 @typing.type_check_only
-class BulkListCampaignAssignedTargetingOptionsResponse(
-    typing_extensions.TypedDict, total=False
-):
-    assignedTargetingOptions: _list[AssignedTargetingOption]
-    nextPageToken: str
-
-@typing.type_check_only
-class BulkListInsertionOrderAssignedTargetingOptionsResponse(
-    typing_extensions.TypedDict, total=False
-):
-    assignedTargetingOptions: _list[AssignedTargetingOption]
-    nextPageToken: str
-
-@typing.type_check_only
 class BulkUpdateLineItemsRequest(typing_extensions.TypedDict, total=False):
     lineItemIds: _list[str]
     targetLineItem: LineItem
@@ -1053,6 +1039,7 @@ class CreateSdfDownloadTaskRequest(typing_extensions.TypedDict, total=False):
         "SDF_VERSION_8_1",
         "SDF_VERSION_9",
         "SDF_VERSION_9_1",
+        "SDF_VERSION_9_2",
     ]
 
 @typing.type_check_only
@@ -1723,6 +1710,7 @@ class ExchangeAssignedTargetingOptionDetails(typing_extensions.TypedDict, total=
         "EXCHANGE_SPOTIFY",
         "EXCHANGE_TUBI",
         "EXCHANGE_SNAP",
+        "EXCHANGE_CADENT",
     ]
 
 @typing.type_check_only
@@ -1820,6 +1808,7 @@ class ExchangeConfigEnabledExchange(typing_extensions.TypedDict, total=False):
         "EXCHANGE_SPOTIFY",
         "EXCHANGE_TUBI",
         "EXCHANGE_SNAP",
+        "EXCHANGE_CADENT",
     ]
     googleAdManagerAgencyId: str
     googleAdManagerBuyerNetworkId: str
@@ -1916,6 +1905,7 @@ class ExchangeReviewStatus(typing_extensions.TypedDict, total=False):
         "EXCHANGE_SPOTIFY",
         "EXCHANGE_TUBI",
         "EXCHANGE_SNAP",
+        "EXCHANGE_CADENT",
     ]
     status: typing_extensions.Literal[
         "REVIEW_STATUS_UNSPECIFIED",
@@ -2015,6 +2005,7 @@ class ExchangeTargetingOptionDetails(typing_extensions.TypedDict, total=False):
         "EXCHANGE_SPOTIFY",
         "EXCHANGE_TUBI",
         "EXCHANGE_SNAP",
+        "EXCHANGE_CADENT",
     ]
 
 @typing.type_check_only
@@ -2089,41 +2080,6 @@ class GenderTargetingOptionDetails(typing_extensions.TypedDict, total=False):
     gender: typing_extensions.Literal[
         "GENDER_UNSPECIFIED", "GENDER_MALE", "GENDER_FEMALE", "GENDER_UNKNOWN"
     ]
-
-@typing.type_check_only
-class GenerateDefaultLineItemRequest(typing_extensions.TypedDict, total=False):
-    containsEuPoliticalAds: typing_extensions.Literal[
-        "EU_POLITICAL_ADVERTISING_STATUS_UNKNOWN",
-        "CONTAINS_EU_POLITICAL_ADVERTISING",
-        "DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING",
-    ]
-    displayName: str
-    insertionOrderId: str
-    lineItemType: typing_extensions.Literal[
-        "LINE_ITEM_TYPE_UNSPECIFIED",
-        "LINE_ITEM_TYPE_DISPLAY_DEFAULT",
-        "LINE_ITEM_TYPE_DISPLAY_MOBILE_APP_INSTALL",
-        "LINE_ITEM_TYPE_VIDEO_DEFAULT",
-        "LINE_ITEM_TYPE_VIDEO_MOBILE_APP_INSTALL",
-        "LINE_ITEM_TYPE_DISPLAY_MOBILE_APP_INVENTORY",
-        "LINE_ITEM_TYPE_VIDEO_MOBILE_APP_INVENTORY",
-        "LINE_ITEM_TYPE_AUDIO_DEFAULT",
-        "LINE_ITEM_TYPE_VIDEO_OVER_THE_TOP",
-        "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_ACTION",
-        "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_NON_SKIPPABLE",
-        "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_VIDEO_SEQUENCE",
-        "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_AUDIO",
-        "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_REACH",
-        "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_SIMPLE",
-        "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_NON_SKIPPABLE_OVER_THE_TOP",
-        "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_REACH_OVER_THE_TOP",
-        "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_SIMPLE_OVER_THE_TOP",
-        "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_TARGET_FREQUENCY",
-        "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_VIEW",
-        "LINE_ITEM_TYPE_DISPLAY_OUT_OF_HOME",
-        "LINE_ITEM_TYPE_VIDEO_OUT_OF_HOME",
-    ]
-    mobileApp: MobileApp
 
 @typing.type_check_only
 class GeoRegionAssignedTargetingOptionDetails(typing_extensions.TypedDict, total=False):
@@ -2340,6 +2296,7 @@ class GuaranteedOrder(typing_extensions.TypedDict, total=False):
         "EXCHANGE_SPOTIFY",
         "EXCHANGE_TUBI",
         "EXCHANGE_SNAP",
+        "EXCHANGE_CADENT",
     ]
     guaranteedOrderId: str
     legacyGuaranteedOrderId: str
@@ -2491,6 +2448,7 @@ class IntegralAdScience(typing_extensions.TypedDict, total=False):
         "SUSPICIOUS_ACTIVITY_UNSPECIFIED",
         "SUSPICIOUS_ACTIVITY_HR",
         "SUSPICIOUS_ACTIVITY_HMR",
+        "SUSPICIOUS_ACTIVITY_FD",
     ]
     excludedAdultRisk: typing_extensions.Literal[
         "ADULT_UNSPECIFIED", "ADULT_HR", "ADULT_HMR"
@@ -2645,6 +2603,7 @@ class InventorySource(typing_extensions.TypedDict, total=False):
         "EXCHANGE_SPOTIFY",
         "EXCHANGE_TUBI",
         "EXCHANGE_SNAP",
+        "EXCHANGE_CADENT",
     ]
     guaranteedOrderId: str
     inventorySourceId: str
@@ -2921,13 +2880,6 @@ class ListAssignedLocationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
-class ListCampaignAssignedTargetingOptionsResponse(
-    typing_extensions.TypedDict, total=False
-):
-    assignedTargetingOptions: _list[AssignedTargetingOption]
-    nextPageToken: str
-
-@typing.type_check_only
 class ListCampaignsResponse(typing_extensions.TypedDict, total=False):
     campaigns: _list[Campaign]
     nextPageToken: str
@@ -2975,13 +2927,6 @@ class ListGoogleAudiencesResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ListGuaranteedOrdersResponse(typing_extensions.TypedDict, total=False):
     guaranteedOrders: _list[GuaranteedOrder]
-    nextPageToken: str
-
-@typing.type_check_only
-class ListInsertionOrderAssignedTargetingOptionsResponse(
-    typing_extensions.TypedDict, total=False
-):
-    assignedTargetingOptions: _list[AssignedTargetingOption]
     nextPageToken: str
 
 @typing.type_check_only
@@ -3555,6 +3500,7 @@ class RateDetails(typing_extensions.TypedDict, total=False):
         "INVENTORY_SOURCE_RATE_TYPE_CPM_FIXED",
         "INVENTORY_SOURCE_RATE_TYPE_CPM_FLOOR",
         "INVENTORY_SOURCE_RATE_TYPE_CPD",
+        "INVENTORY_SOURCE_RATE_TYPE_CPH",
         "INVENTORY_SOURCE_RATE_TYPE_FLAT",
     ]
     minimumSpend: Money
@@ -3646,6 +3592,7 @@ class SdfConfig(typing_extensions.TypedDict, total=False):
         "SDF_VERSION_8_1",
         "SDF_VERSION_9",
         "SDF_VERSION_9_1",
+        "SDF_VERSION_9_2",
     ]
 
 @typing.type_check_only
@@ -3675,6 +3622,7 @@ class SdfDownloadTaskMetadata(typing_extensions.TypedDict, total=False):
         "SDF_VERSION_8_1",
         "SDF_VERSION_9",
         "SDF_VERSION_9_1",
+        "SDF_VERSION_9_2",
     ]
 
 @typing.type_check_only

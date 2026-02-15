@@ -5,6 +5,12 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class AIInference(typing_extensions.TypedDict, total=False):
+    endpoint: str
+    serviceAccountEmail: str
+    unstructuredInference: UnstructuredInference
+
+@typing.type_check_only
 class ApproveQueryTemplateRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -180,6 +186,7 @@ class GooglePubsubV1Subscription(typing_extensions.TypedDict, total=False):
     pushConfig: PushConfig
     retainAckedMessages: bool
     retryPolicy: RetryPolicy
+    tags: dict[str, typing.Any]
 
 @typing.type_check_only
 class JavaScriptUDF(typing_extensions.TypedDict, total=False):
@@ -271,9 +278,11 @@ class Listing(typing_extensions.TypedDict, total=False):
     ]
     restrictedExportConfig: RestrictedExportConfig
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE"]
+    storedProcedureConfig: StoredProcedureConfig
 
 @typing.type_check_only
 class MessageTransform(typing_extensions.TypedDict, total=False):
+    aiInference: AIInference
     disabled: bool
     enabled: bool
     javascriptUdf: JavaScriptUDF
@@ -418,6 +427,13 @@ class Status(typing_extensions.TypedDict, total=False):
     message: str
 
 @typing.type_check_only
+class StoredProcedureConfig(typing_extensions.TypedDict, total=False):
+    allowedStoredProcedureTypes: _list[
+        typing_extensions.Literal["STORED_PROCEDURE_TYPE_UNSPECIFIED", "SQL_PROCEDURE"]
+    ]
+    enabled: bool
+
+@typing.type_check_only
 class SubmitQueryTemplateRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -472,3 +488,7 @@ class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class TextConfig(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class UnstructuredInference(typing_extensions.TypedDict, total=False):
+    parameters: dict[str, typing.Any]

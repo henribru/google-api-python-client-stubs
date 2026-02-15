@@ -16,6 +16,12 @@ class AccountConnector(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
+class AppHubService(typing_extensions.TypedDict, total=False):
+    apphubService: str
+    criticality: str
+    environment: str
+
+@typing.type_check_only
 class AppHubWorkload(typing_extensions.TypedDict, total=False):
     criticality: str
     environment: str
@@ -26,6 +32,25 @@ class ArtifactConfig(typing_extensions.TypedDict, total=False):
     googleArtifactAnalysis: GoogleArtifactAnalysis
     googleArtifactRegistry: GoogleArtifactRegistry
     uri: str
+
+@typing.type_check_only
+class ArtifactDeployment(typing_extensions.TypedDict, total=False):
+    artifactAlias: str
+    artifactReference: str
+    containerStatusSummary: str
+    deployTime: str
+    id: str
+    sourceCommitUris: _list[str]
+    undeployTime: str
+
+@typing.type_check_only
+class BasicAuthentication(typing_extensions.TypedDict, total=False):
+    passwordSecretVersion: str
+    username: str
+
+@typing.type_check_only
+class BearerTokenAuthentication(typing_extensions.TypedDict, total=False):
+    tokenSecretVersion: str
 
 @typing.type_check_only
 class BitbucketCloudConfig(typing_extensions.TypedDict, total=False):
@@ -62,16 +87,32 @@ class Connection(typing_extensions.TypedDict, total=False):
     githubEnterpriseConfig: GitHubEnterpriseConfig
     gitlabConfig: GitLabConfig
     gitlabEnterpriseConfig: GitLabEnterpriseConfig
+    httpConfig: GenericHTTPEndpointConfig
     installationState: InstallationState
     labels: dict[str, typing.Any]
     name: str
     reconciling: bool
+    secureSourceManagerInstanceConfig: SecureSourceManagerInstanceConfig
     uid: str
     updateTime: str
 
 @typing.type_check_only
 class CryptoKeyConfig(typing_extensions.TypedDict, total=False):
     keyReference: str
+
+@typing.type_check_only
+class DeploymentEvent(typing_extensions.TypedDict, total=False):
+    artifactDeployments: _list[ArtifactDeployment]
+    createTime: str
+    deployTime: str
+    name: str
+    runtimeConfig: RuntimeConfig
+    runtimeDeploymentUri: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "STATE_ACTIVE", "STATE_INACTIVE"
+    ]
+    undeployTime: str
+    updateTime: str
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
@@ -124,9 +165,21 @@ class FetchReadWriteTokenResponse(typing_extensions.TypedDict, total=False):
     token: str
 
 @typing.type_check_only
+class FinishOAuthResponse(typing_extensions.TypedDict, total=False):
+    exchangeError: ExchangeError
+
+@typing.type_check_only
 class GKEWorkload(typing_extensions.TypedDict, total=False):
     cluster: str
     deployment: str
+
+@typing.type_check_only
+class GenericHTTPEndpointConfig(typing_extensions.TypedDict, total=False):
+    basicAuthentication: BasicAuthentication
+    bearerTokenAuthentication: BearerTokenAuthentication
+    hostUri: str
+    serviceDirectoryConfig: ServiceDirectoryConfig
+    sslCaCertificate: str
 
 @typing.type_check_only
 class GitHubConfig(typing_extensions.TypedDict, total=False):
@@ -144,6 +197,7 @@ class GitHubEnterpriseConfig(typing_extensions.TypedDict, total=False):
     appSlug: str
     hostUri: str
     installationUri: str
+    organization: str
     privateKeySecretVersion: str
     serverVersion: str
     serviceDirectoryConfig: ServiceDirectoryConfig
@@ -169,6 +223,7 @@ class GitLabEnterpriseConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GitProxyConfig(typing_extensions.TypedDict, total=False):
     enabled: bool
+    httpProxyBaseUri: str
 
 @typing.type_check_only
 class GitRepositoryLink(typing_extensions.TypedDict, total=False):
@@ -195,6 +250,10 @@ class GoogleArtifactRegistry(typing_extensions.TypedDict, total=False):
     projectId: str
 
 @typing.type_check_only
+class GoogleCloudRun(typing_extensions.TypedDict, total=False):
+    serviceUri: str
+
+@typing.type_check_only
 class HttpBody(typing_extensions.TypedDict, total=False):
     contentType: str
     data: str
@@ -209,6 +268,7 @@ class InsightsConfig(typing_extensions.TypedDict, total=False):
     errors: _list[Status]
     labels: dict[str, typing.Any]
     name: str
+    projects: Projects
     reconciling: bool
     runtimeConfigs: _list[RuntimeConfig]
     state: typing_extensions.Literal[
@@ -249,6 +309,11 @@ class ListConnectionsResponse(typing_extensions.TypedDict, total=False):
     connections: _list[Connection]
     nextPageToken: str
     unreachable: _list[str]
+
+@typing.type_check_only
+class ListDeploymentEventsResponse(typing_extensions.TypedDict, total=False):
+    deploymentEvents: _list[DeploymentEvent]
+    nextPageToken: str
 
 @typing.type_check_only
 class ListGitRepositoryLinksResponse(typing_extensions.TypedDict, total=False):
@@ -333,6 +398,10 @@ class ProcessGitLabWebhookRequest(typing_extensions.TypedDict, total=False):
     body: HttpBody
 
 @typing.type_check_only
+class Projects(typing_extensions.TypedDict, total=False):
+    projectIds: _list[str]
+
+@typing.type_check_only
 class ProviderOAuthConfig(typing_extensions.TypedDict, total=False):
     scopes: _list[str]
     systemProviderId: typing_extensions.Literal[
@@ -349,14 +418,40 @@ class ProviderOAuthConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class RuntimeConfig(typing_extensions.TypedDict, total=False):
+    appHubService: AppHubService
     appHubWorkload: AppHubWorkload
     gkeWorkload: GKEWorkload
+    googleCloudRun: GoogleCloudRun
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "LINKED", "UNLINKED"]
     uri: str
 
 @typing.type_check_only
+class SecureSourceManagerInstanceConfig(typing_extensions.TypedDict, total=False):
+    instance: str
+
+@typing.type_check_only
 class ServiceDirectoryConfig(typing_extensions.TypedDict, total=False):
     service: str
+
+@typing.type_check_only
+class StartOAuthResponse(typing_extensions.TypedDict, total=False):
+    authUri: str
+    clientId: str
+    codeChallenge: str
+    codeChallengeMethod: str
+    scopes: _list[str]
+    systemProviderId: typing_extensions.Literal[
+        "SYSTEM_PROVIDER_UNSPECIFIED",
+        "GITHUB",
+        "GITLAB",
+        "GOOGLE",
+        "SENTRY",
+        "ROVO",
+        "NEW_RELIC",
+        "DATASTAX",
+        "DYNATRACE",
+    ]
+    ticket: str
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):

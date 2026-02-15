@@ -289,6 +289,7 @@ class TranslateResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
+                    returnPartialSuccess: bool = ...,
                     **kwargs: typing.Any,
                 ) -> ListOperationsResponseHttpRequest: ...
                 def list_next(
@@ -358,6 +359,13 @@ class TranslateResource(googleapiclient.discovery.Resource):
                 previous_request: ListLocationsResponseHttpRequest,
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
+            def refineText(
+                self,
+                *,
+                parent: str,
+                body: RefineTextRequest = ...,
+                **kwargs: typing.Any,
+            ) -> RefineTextResponseHttpRequest: ...
             def romanizeText(
                 self,
                 *,
@@ -597,6 +605,14 @@ class OperationHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Operation: ...
+
+@typing.type_check_only
+class RefineTextResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> RefineTextResponse: ...
 
 @typing.type_check_only
 class RomanizeTextResponseHttpRequest(googleapiclient.http.HttpRequest):

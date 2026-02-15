@@ -25,8 +25,10 @@ class ContactCenter(typing_extensions.TypedDict, total=False):
     createTime: str
     critical: Critical
     customerDomainPrefix: str
+    deleteTime: str
     displayName: str
     early: Early
+    expireTime: str
     featureConfig: FeatureConfig
     instanceConfig: InstanceConfig
     kmsKey: str
@@ -35,6 +37,7 @@ class ContactCenter(typing_extensions.TypedDict, total=False):
     normal: Normal
     privateAccess: PrivateAccess
     privateComponents: _list[str]
+    purgeTime: str
     releaseVersion: str
     samlParams: SAMLParams
     state: typing_extensions.Literal[
@@ -65,14 +68,57 @@ class Critical(typing_extensions.TypedDict, total=False):
     peakHours: _list[WeeklySchedule]
 
 @typing.type_check_only
+class Date(typing_extensions.TypedDict, total=False):
+    day: int
+    month: int
+    year: int
+
+@typing.type_check_only
+class DateList(typing_extensions.TypedDict, total=False):
+    values: _list[Date]
+
+@typing.type_check_only
+class DateTime(typing_extensions.TypedDict, total=False):
+    day: int
+    hours: int
+    minutes: int
+    month: int
+    nanos: int
+    seconds: int
+    timeZone: TimeZone
+    utcOffset: str
+    year: int
+
+@typing.type_check_only
 class Early(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class EmployeeInfo(typing_extensions.TypedDict, total=False):
+    id: str
+    unwantedEventIntervals: _list[UnwantedEventInterval]
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class EventTemplate(typing_extensions.TypedDict, total=False):
+    durationMinutes: int
+    id: str
+    maximumMinutesAfterShiftStart: int
+    minimumMinutesAfterShiftStart: int
+    startTimeIncrementMinutes: int
+
+@typing.type_check_only
 class FeatureConfig(typing_extensions.TypedDict, total=False):
     agentDesktopEnabled: bool
+
+@typing.type_check_only
+class GenerateShiftsRequest(typing_extensions.TypedDict, total=False):
+    employeeInfo: _list[EmployeeInfo]
+    planningHorizon: PlanningHorizon
+    shiftTemplates: _list[ShiftTemplate]
+    solverConfig: SolverConfig
+    workforceDemands: WorkforceDemandList
 
 @typing.type_check_only
 class GoogleCloudCommonOperationMetadata(typing_extensions.TypedDict, total=False):
@@ -154,6 +200,11 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
+class PlanningHorizon(typing_extensions.TypedDict, total=False):
+    endTime: DateTime
+    startTime: DateTime
+
+@typing.type_check_only
 class PrivateAccess(typing_extensions.TypedDict, total=False):
     egressSettings: _list[Component]
     ingressSettings: _list[Component]
@@ -226,6 +277,31 @@ class SAMLParams(typing_extensions.TypedDict, total=False):
     userEmail: str
 
 @typing.type_check_only
+class ShiftTemplate(typing_extensions.TypedDict, total=False):
+    assignableEmployeeIds: _list[str]
+    daysOffCountPerWeek: int
+    daysOffDates: DateList
+    durationMinutes: int
+    earliestStartTime: TimeOfDay
+    eventTemplates: _list[EventTemplate]
+    id: str
+    latestStartTime: TimeOfDay
+    maximumEmployeeCount: int
+    minimumEmployeeCount: int
+    minimumIntereventGapMinutes: int
+    startTimeIncrementMinutes: int
+
+@typing.type_check_only
+class SolverConfig(typing_extensions.TypedDict, total=False):
+    maximumProcessingDuration: str
+    scheduleType: typing_extensions.Literal[
+        "SCHEDULE_TYPE_UNSPECIFIED",
+        "SINGLE_SHIFT",
+        "WEEKLY_WITH_FIXED_EVENTS",
+        "WEEKLY_WITH_VARIABLE_EVENTS",
+    ]
+
+@typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
@@ -239,11 +315,21 @@ class TimeOfDay(typing_extensions.TypedDict, total=False):
     seconds: int
 
 @typing.type_check_only
+class TimeZone(typing_extensions.TypedDict, total=False):
+    id: str
+    version: str
+
+@typing.type_check_only
 class URIs(typing_extensions.TypedDict, total=False):
     chatBotUri: str
     mediaUri: str
     rootUri: str
     virtualAgentStreamingServiceUri: str
+
+@typing.type_check_only
+class UnwantedEventInterval(typing_extensions.TypedDict, total=False):
+    durationMinutes: int
+    startTime: DateTime
 
 @typing.type_check_only
 class WeeklySchedule(typing_extensions.TypedDict, total=False):
@@ -262,3 +348,13 @@ class WeeklySchedule(typing_extensions.TypedDict, total=False):
     duration: str
     endTime: TimeOfDay
     startTime: TimeOfDay
+
+@typing.type_check_only
+class WorkforceDemand(typing_extensions.TypedDict, total=False):
+    employeeCount: int
+    endTime: DateTime
+    startTime: DateTime
+
+@typing.type_check_only
+class WorkforceDemandList(typing_extensions.TypedDict, total=False):
+    values: _list[WorkforceDemand]

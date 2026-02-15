@@ -143,6 +143,17 @@ class ComputeResource(googleapiclient.discovery.Resource):
         ) -> TestPermissionsResponseHttpRequest: ...
 
     @typing.type_check_only
+    class AdviceResource(googleapiclient.discovery.Resource):
+        def calendarMode(
+            self,
+            *,
+            project: str,
+            region: str,
+            body: CalendarModeAdviceRequest = ...,
+            **kwargs: typing.Any,
+        ) -> CalendarModeAdviceResponseHttpRequest: ...
+
+    @typing.type_check_only
     class AutoscalersResource(googleapiclient.discovery.Resource):
         def aggregatedList(
             self,
@@ -210,6 +221,15 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
+        def testIamPermissions(
+            self,
+            *,
+            project: str,
+            zone: str,
+            resource: str,
+            body: TestPermissionsRequest = ...,
+            **kwargs: typing.Any,
+        ) -> TestPermissionsResponseHttpRequest: ...
         def update(
             self,
             *,
@@ -1004,6 +1024,14 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
+        def testIamPermissions(
+            self,
+            *,
+            project: str,
+            resource: str,
+            body: TestPermissionsRequest = ...,
+            **kwargs: typing.Any,
+        ) -> TestPermissionsResponseHttpRequest: ...
         def update(
             self,
             *,
@@ -1574,6 +1602,14 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
+        def testIamPermissions(
+            self,
+            *,
+            project: str,
+            resource: str,
+            body: TestPermissionsRequest = ...,
+            **kwargs: typing.Any,
+        ) -> TestPermissionsResponseHttpRequest: ...
         def update(
             self,
             *,
@@ -1630,6 +1666,14 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
+        def testIamPermissions(
+            self,
+            *,
+            project: str,
+            resource: str,
+            body: TestPermissionsRequest = ...,
+            **kwargs: typing.Any,
+        ) -> TestPermissionsResponseHttpRequest: ...
         def update(
             self,
             *,
@@ -1686,6 +1730,14 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
+        def testIamPermissions(
+            self,
+            *,
+            project: str,
+            resource: str,
+            body: TestPermissionsRequest = ...,
+            **kwargs: typing.Any,
+        ) -> TestPermissionsResponseHttpRequest: ...
         def update(
             self,
             *,
@@ -4954,6 +5006,15 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
+        def testIamPermissions(
+            self,
+            *,
+            project: str,
+            region: str,
+            resource: str,
+            body: TestPermissionsRequest = ...,
+            **kwargs: typing.Any,
+        ) -> TestPermissionsResponseHttpRequest: ...
         def update(
             self,
             *,
@@ -5400,6 +5461,15 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
+        def testIamPermissions(
+            self,
+            *,
+            project: str,
+            region: str,
+            resource: str,
+            body: TestPermissionsRequest = ...,
+            **kwargs: typing.Any,
+        ) -> TestPermissionsResponseHttpRequest: ...
 
     @typing.type_check_only
     class RegionHealthChecksResource(googleapiclient.discovery.Resource):
@@ -5451,6 +5521,15 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
+        def testIamPermissions(
+            self,
+            *,
+            project: str,
+            region: str,
+            resource: str,
+            body: TestPermissionsRequest = ...,
+            **kwargs: typing.Any,
+        ) -> TestPermissionsResponseHttpRequest: ...
         def update(
             self,
             *,
@@ -6219,6 +6298,15 @@ class ComputeResource(googleapiclient.discovery.Resource):
             previous_request: NotificationEndpointListHttpRequest,
             previous_response: NotificationEndpointList,
         ) -> NotificationEndpointListHttpRequest | None: ...
+        def testIamPermissions(
+            self,
+            *,
+            project: str,
+            region: str,
+            resource: str,
+            body: TestPermissionsRequest = ...,
+            **kwargs: typing.Any,
+        ) -> TestPermissionsResponseHttpRequest: ...
 
     @typing.type_check_only
     class RegionOperationsResource(googleapiclient.discovery.Resource):
@@ -6825,6 +6913,47 @@ class ComputeResource(googleapiclient.discovery.Resource):
         ) -> TestPermissionsResponseHttpRequest: ...
 
     @typing.type_check_only
+    class ReservationSlotsResource(googleapiclient.discovery.Resource):
+        def get(
+            self,
+            *,
+            project: str,
+            zone: str,
+            parentName: str,
+            reservationSlot: str,
+            **kwargs: typing.Any,
+        ) -> ReservationSlotsGetResponseHttpRequest: ...
+        def list(
+            self,
+            *,
+            project: str,
+            zone: str,
+            parentName: str,
+            filter: str = ...,
+            maxResults: int = ...,
+            orderBy: str = ...,
+            pageToken: str = ...,
+            returnPartialSuccess: bool = ...,
+            **kwargs: typing.Any,
+        ) -> ReservationSlotsListResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ReservationSlotsListResponseHttpRequest,
+            previous_response: ReservationSlotsListResponse,
+        ) -> ReservationSlotsListResponseHttpRequest | None: ...
+        def update(
+            self,
+            *,
+            project: str,
+            zone: str,
+            parentName: str,
+            reservationSlot: str,
+            body: ReservationSlot = ...,
+            updateMask: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
+
+    @typing.type_check_only
     class ReservationSubBlocksResource(googleapiclient.discovery.Resource):
         def get(
             self,
@@ -6833,6 +6962,11 @@ class ComputeResource(googleapiclient.discovery.Resource):
             zone: str,
             parentName: str,
             reservationSubBlock: str,
+            view: typing_extensions.Literal[
+                "SUB_BLOCK_VIEW_BASIC",
+                "SUB_BLOCK_VIEW_FULL",
+                "SUB_BLOCK_VIEW_UNSPECIFIED",
+            ] = ...,
             **kwargs: typing.Any,
         ) -> ReservationSubBlocksGetResponseHttpRequest: ...
         def getIamPolicy(
@@ -7361,6 +7495,14 @@ class ComputeResource(googleapiclient.discovery.Resource):
         def list_next(
             self, previous_request: RouteListHttpRequest, previous_response: RouteList
         ) -> RouteListHttpRequest | None: ...
+        def testIamPermissions(
+            self,
+            *,
+            project: str,
+            resource: str,
+            body: TestPermissionsRequest = ...,
+            **kwargs: typing.Any,
+        ) -> TestPermissionsResponseHttpRequest: ...
 
     @typing.type_check_only
     class SecurityPoliciesResource(googleapiclient.discovery.Resource):
@@ -7972,6 +8114,8 @@ class ComputeResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             returnPartialSuccess: bool = ...,
             serviceProjectNumber: str = ...,
+            views: typing_extensions.Literal["DEFAULT", "WITH_UTILIZATION"]
+            | _list[typing_extensions.Literal["DEFAULT", "WITH_UTILIZATION"]] = ...,
             **kwargs: typing.Any,
         ) -> SubnetworkAggregatedListHttpRequest: ...
         def aggregatedList_next(
@@ -8631,6 +8775,14 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
+        def testIamPermissions(
+            self,
+            *,
+            project: str,
+            resource: str,
+            body: TestPermissionsRequest = ...,
+            **kwargs: typing.Any,
+        ) -> TestPermissionsResponseHttpRequest: ...
 
     @typing.type_check_only
     class TargetTcpProxiesResource(googleapiclient.discovery.Resource):
@@ -8705,6 +8857,14 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
+        def testIamPermissions(
+            self,
+            *,
+            project: str,
+            resource: str,
+            body: TestPermissionsRequest = ...,
+            **kwargs: typing.Any,
+        ) -> TestPermissionsResponseHttpRequest: ...
 
     @typing.type_check_only
     class TargetVpnGatewaysResource(googleapiclient.discovery.Resource):
@@ -8851,6 +9011,14 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
+        def testIamPermissions(
+            self,
+            *,
+            project: str,
+            resource: str,
+            body: TestPermissionsRequest = ...,
+            **kwargs: typing.Any,
+        ) -> TestPermissionsResponseHttpRequest: ...
         def update(
             self,
             *,
@@ -9141,6 +9309,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def acceleratorTypes(self) -> AcceleratorTypesResource: ...
     def addresses(self) -> AddressesResource: ...
+    def advice(self) -> AdviceResource: ...
     def autoscalers(self) -> AutoscalersResource: ...
     def backendBuckets(self) -> BackendBucketsResource: ...
     def backendServices(self) -> BackendServicesResource: ...
@@ -9227,6 +9396,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
     def regionZones(self) -> RegionZonesResource: ...
     def regions(self) -> RegionsResource: ...
     def reservationBlocks(self) -> ReservationBlocksResource: ...
+    def reservationSlots(self) -> ReservationSlotsResource: ...
     def reservationSubBlocks(self) -> ReservationSubBlocksResource: ...
     def reservations(self) -> ReservationsResource: ...
     def resourcePolicies(self) -> ResourcePoliciesResource: ...
@@ -9383,6 +9553,14 @@ class BackendServiceListUsableHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> BackendServiceListUsable: ...
+
+@typing.type_check_only
+class CalendarModeAdviceResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> CalendarModeAdviceResponse: ...
 
 @typing.type_check_only
 class CommitmentHttpRequest(googleapiclient.http.HttpRequest):
@@ -10619,6 +10797,22 @@ class ReservationListHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ReservationList: ...
+
+@typing.type_check_only
+class ReservationSlotsGetResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ReservationSlotsGetResponse: ...
+
+@typing.type_check_only
+class ReservationSlotsListResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ReservationSlotsListResponse: ...
 
 @typing.type_check_only
 class ReservationSubBlocksGetResponseHttpRequest(googleapiclient.http.HttpRequest):
