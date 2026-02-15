@@ -179,6 +179,7 @@ class ProjectsMetadata(typing_extensions.TypedDict, total=False):
         "UNKNOWN_STATE", "ON", "OFF", "DELETED"
     ]
     gceTag: _list[GceTag]
+    isGceProjectDeprovisioning: bool
     p4ServiceAccount: str
     producerProjectId: str
     producerProjectNumber: str

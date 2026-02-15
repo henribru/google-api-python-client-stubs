@@ -101,9 +101,18 @@ class BackupVault(typing_extensions.TypedDict, total=False):
     backupVaultType: typing_extensions.Literal[
         "BACKUP_VAULT_TYPE_UNSPECIFIED", "IN_REGION", "CROSS_REGION"
     ]
+    backupsCryptoKeyVersion: str
     createTime: str
     description: str
     destinationBackupVault: str
+    encryptionState: typing_extensions.Literal[
+        "ENCRYPTION_STATE_UNSPECIFIED",
+        "ENCRYPTION_STATE_PENDING",
+        "ENCRYPTION_STATE_COMPLETED",
+        "ENCRYPTION_STATE_IN_PROGRESS",
+        "ENCRYPTION_STATE_FAILED",
+    ]
+    kmsConfig: str
     labels: dict[str, typing.Any]
     name: str
     sourceBackupVault: str
@@ -113,8 +122,25 @@ class BackupVault(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class BlockDevice(typing_extensions.TypedDict, total=False):
+    hostGroups: _list[str]
+    identifier: str
+    name: str
+    osType: typing_extensions.Literal["OS_TYPE_UNSPECIFIED", "LINUX", "WINDOWS", "ESXI"]
+    sizeGib: str
+
+@typing.type_check_only
 class CacheConfig(typing_extensions.TypedDict, total=False):
+    cachePrePopulate: CachePrePopulate
+    cachePrePopulateState: typing_extensions.Literal[
+        "CACHE_PRE_POPULATE_STATE_UNSPECIFIED",
+        "NOT_NEEDED",
+        "IN_PROGRESS",
+        "COMPLETE",
+        "ERROR",
+    ]
     cifsChangeNotifyEnabled: bool
+    writebackEnabled: bool
 
 @typing.type_check_only
 class CacheParameters(typing_extensions.TypedDict, total=False):
@@ -135,6 +161,12 @@ class CacheParameters(typing_extensions.TypedDict, total=False):
     peerVolumeName: str
     peeringCommandExpiryTime: str
     stateDetails: str
+
+@typing.type_check_only
+class CachePrePopulate(typing_extensions.TypedDict, total=False):
+    excludePathList: _list[str]
+    pathList: _list[str]
+    recursion: bool
 
 @typing.type_check_only
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
@@ -176,6 +208,19 @@ class ExportPolicy(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleProtobufEmpty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class HostGroup(typing_extensions.TypedDict, total=False):
+    createTime: str
+    description: str
+    hosts: _list[str]
+    labels: dict[str, typing.Any]
+    name: str
+    osType: typing_extensions.Literal["OS_TYPE_UNSPECIFIED", "LINUX", "WINDOWS", "ESXI"]
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "CREATING", "READY", "UPDATING", "DELETING", "DISABLED"
+    ]
+    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "ISCSI_INITIATOR"]
 
 @typing.type_check_only
 class HourlySchedule(typing_extensions.TypedDict, total=False):
@@ -264,6 +309,12 @@ class ListBackupsResponse(typing_extensions.TypedDict, total=False):
     unreachable: _list[str]
 
 @typing.type_check_only
+class ListHostGroupsResponse(typing_extensions.TypedDict, total=False):
+    hostGroups: _list[HostGroup]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
 class ListKmsConfigsResponse(typing_extensions.TypedDict, total=False):
     kmsConfigs: _list[KmsConfig]
     nextPageToken: str
@@ -320,6 +371,7 @@ class Location(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class LocationMetadata(typing_extensions.TypedDict, total=False):
+    hasOntapProxy: bool
     hasVcp: bool
     supportedFlexPerformance: _list[
         typing_extensions.Literal[
@@ -348,7 +400,7 @@ class MountOption(typing_extensions.TypedDict, total=False):
     instructions: str
     ipAddress: str
     protocol: typing_extensions.Literal[
-        "PROTOCOLS_UNSPECIFIED", "NFSV3", "NFSV4", "SMB"
+        "PROTOCOLS_UNSPECIFIED", "NFSV3", "NFSV4", "SMB", "ISCSI"
     ]
 
 @typing.type_check_only
@@ -557,11 +609,13 @@ class StoragePool(typing_extensions.TypedDict, total=False):
         "RESTORING",
         "DISABLED",
         "ERROR",
-        "DEGRADED",
     ]
     stateDetails: str
     totalIops: str
     totalThroughputMibps: str
+    type: typing_extensions.Literal[
+        "STORAGE_POOL_TYPE_UNSPECIFIED", "FILE", "UNIFIED", "UNIFIED_LARGE_CAPACITY"
+    ]
     volumeCapacityGib: str
     volumeCount: int
     zone: str
@@ -614,6 +668,7 @@ class VerifyKmsConfigResponse(typing_extensions.TypedDict, total=False):
 class Volume(typing_extensions.TypedDict, total=False):
     activeDirectory: str
     backupConfig: BackupConfig
+    blockDevices: _list[BlockDevice]
     cacheParameters: CacheParameters
     capacityGib: str
     coldTierSizeGib: str
@@ -636,7 +691,9 @@ class Volume(typing_extensions.TypedDict, total=False):
     name: str
     network: str
     protocols: _list[
-        typing_extensions.Literal["PROTOCOLS_UNSPECIFIED", "NFSV3", "NFSV4", "SMB"]
+        typing_extensions.Literal[
+            "PROTOCOLS_UNSPECIFIED", "NFSV3", "NFSV4", "SMB", "ISCSI"
+        ]
     ]
     psaRange: str
     replicaZone: str

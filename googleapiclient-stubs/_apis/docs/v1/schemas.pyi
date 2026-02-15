@@ -5,6 +5,14 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class AddDocumentTabRequest(typing_extensions.TypedDict, total=False):
+    tabProperties: TabProperties
+
+@typing.type_check_only
+class AddDocumentTabResponse(typing_extensions.TypedDict, total=False):
+    tabProperties: TabProperties
+
+@typing.type_check_only
 class AutoText(typing_extensions.TypedDict, total=False):
     suggestedDeletionIds: _list[str]
     suggestedInsertionIds: _list[str]
@@ -138,6 +146,45 @@ class CropPropertiesSuggestionState(typing_extensions.TypedDict, total=False):
     offsetTopSuggested: bool
 
 @typing.type_check_only
+class DateElement(typing_extensions.TypedDict, total=False):
+    dateElementProperties: DateElementProperties
+    dateId: str
+    suggestedDateElementPropertiesChanges: dict[str, typing.Any]
+    suggestedDeletionIds: _list[str]
+    suggestedInsertionIds: _list[str]
+    suggestedTextStyleChanges: dict[str, typing.Any]
+    textStyle: TextStyle
+
+@typing.type_check_only
+class DateElementProperties(typing_extensions.TypedDict, total=False):
+    dateFormat: typing_extensions.Literal[
+        "DATE_FORMAT_UNSPECIFIED",
+        "DATE_FORMAT_CUSTOM",
+        "DATE_FORMAT_MONTH_DAY_ABBREVIATED",
+        "DATE_FORMAT_MONTH_DAY_FULL",
+        "DATE_FORMAT_MONTH_DAY_YEAR_ABBREVIATED",
+        "DATE_FORMAT_ISO8601",
+    ]
+    displayText: str
+    locale: str
+    timeFormat: typing_extensions.Literal[
+        "TIME_FORMAT_UNSPECIFIED",
+        "TIME_FORMAT_DISABLED",
+        "TIME_FORMAT_HOUR_MINUTE",
+        "TIME_FORMAT_HOUR_MINUTE_TIMEZONE",
+    ]
+    timeZoneId: str
+    timestamp: str
+
+@typing.type_check_only
+class DateElementPropertiesSuggestionState(typing_extensions.TypedDict, total=False):
+    dateFormatSuggested: bool
+    localeSuggested: bool
+    timeFormatSuggested: bool
+    timeZoneIdSuggested: bool
+    timestampSuggested: bool
+
+@typing.type_check_only
 class DeleteContentRangeRequest(typing_extensions.TypedDict, total=False):
     range: Range
 
@@ -164,6 +211,10 @@ class DeleteParagraphBulletsRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class DeletePositionedObjectRequest(typing_extensions.TypedDict, total=False):
     objectId: str
+    tabId: str
+
+@typing.type_check_only
+class DeleteTabRequest(typing_extensions.TypedDict, total=False):
     tabId: str
 
 @typing.type_check_only
@@ -413,6 +464,12 @@ class InlineObjectPropertiesSuggestionState(typing_extensions.TypedDict, total=F
     embeddedObjectSuggestionState: EmbeddedObjectSuggestionState
 
 @typing.type_check_only
+class InsertDateRequest(typing_extensions.TypedDict, total=False):
+    dateElementProperties: DateElementProperties
+    endOfSegmentLocation: EndOfSegmentLocation
+    location: Location
+
+@typing.type_check_only
 class InsertInlineImageRequest(typing_extensions.TypedDict, total=False):
     endOfSegmentLocation: EndOfSegmentLocation
     location: Location
@@ -635,6 +692,7 @@ class ParagraphBorder(typing_extensions.TypedDict, total=False):
 class ParagraphElement(typing_extensions.TypedDict, total=False):
     autoText: AutoText
     columnBreak: ColumnBreak
+    dateElement: DateElement
     endIndex: int
     equation: Equation
     footnoteReference: FootnoteReference
@@ -808,6 +866,7 @@ class ReplaceNamedRangeContentRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Request(typing_extensions.TypedDict, total=False):
+    addDocumentTab: AddDocumentTabRequest
     createFooter: CreateFooterRequest
     createFootnote: CreateFootnoteRequest
     createHeader: CreateHeaderRequest
@@ -819,8 +878,10 @@ class Request(typing_extensions.TypedDict, total=False):
     deleteNamedRange: DeleteNamedRangeRequest
     deleteParagraphBullets: DeleteParagraphBulletsRequest
     deletePositionedObject: DeletePositionedObjectRequest
+    deleteTab: DeleteTabRequest
     deleteTableColumn: DeleteTableColumnRequest
     deleteTableRow: DeleteTableRowRequest
+    insertDate: InsertDateRequest
     insertInlineImage: InsertInlineImageRequest
     insertPageBreak: InsertPageBreakRequest
     insertPerson: InsertPersonRequest
@@ -836,6 +897,7 @@ class Request(typing_extensions.TypedDict, total=False):
     replaceNamedRangeContent: ReplaceNamedRangeContentRequest
     unmergeTableCells: UnmergeTableCellsRequest
     updateDocumentStyle: UpdateDocumentStyleRequest
+    updateDocumentTabProperties: UpdateDocumentTabPropertiesRequest
     updateParagraphStyle: UpdateParagraphStyleRequest
     updateSectionStyle: UpdateSectionStyleRequest
     updateTableCellStyle: UpdateTableCellStyleRequest
@@ -845,6 +907,7 @@ class Request(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Response(typing_extensions.TypedDict, total=False):
+    addDocumentTab: AddDocumentTabResponse
     createFooter: CreateFooterResponse
     createFootnote: CreateFootnoteResponse
     createHeader: CreateHeaderResponse
@@ -960,6 +1023,11 @@ class SubstringMatchCriteria(typing_extensions.TypedDict, total=False):
 class SuggestedBullet(typing_extensions.TypedDict, total=False):
     bullet: Bullet
     bulletSuggestionState: BulletSuggestionState
+
+@typing.type_check_only
+class SuggestedDateElementProperties(typing_extensions.TypedDict, total=False):
+    dateElementProperties: DateElementProperties
+    dateElementPropertiesSuggestionState: DateElementPropertiesSuggestionState
 
 @typing.type_check_only
 class SuggestedDocumentStyle(typing_extensions.TypedDict, total=False):
@@ -1191,6 +1259,11 @@ class UpdateDocumentStyleRequest(typing_extensions.TypedDict, total=False):
     documentStyle: DocumentStyle
     fields: str
     tabId: str
+
+@typing.type_check_only
+class UpdateDocumentTabPropertiesRequest(typing_extensions.TypedDict, total=False):
+    fields: str
+    tabProperties: TabProperties
 
 @typing.type_check_only
 class UpdateParagraphStyleRequest(typing_extensions.TypedDict, total=False):

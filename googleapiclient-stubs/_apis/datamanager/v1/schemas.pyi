@@ -28,6 +28,13 @@ class AudienceMember(typing_extensions.TypedDict, total=False):
     userData: UserData
 
 @typing.type_check_only
+class AwsWrappedKeyInfo(typing_extensions.TypedDict, total=False):
+    encryptedDek: str
+    kekUri: str
+    keyType: typing_extensions.Literal["KEY_TYPE_UNSPECIFIED", "XCHACHA20_POLY1305"]
+    roleArn: str
+
+@typing.type_check_only
 class CartData(typing_extensions.TypedDict, total=False):
     items: _list[Item]
     merchantFeedLabel: str
@@ -65,6 +72,7 @@ class DeviceInfo(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class EncryptionInfo(typing_extensions.TypedDict, total=False):
+    awsWrappedKeyInfo: AwsWrappedKeyInfo
     gcpWrappedKeyInfo: GcpWrappedKeyInfo
 
 @typing.type_check_only
@@ -95,6 +103,7 @@ class ErrorCount(typing_extensions.TypedDict, total=False):
         "PROCESSING_ERROR_REASON_INVALID_KEK",
         "PROCESSING_ERROR_REASON_WIP_AUTH_FAILED",
         "PROCESSING_ERROR_REASON_KEK_PERMISSION_DENIED",
+        "PROCESSING_ERROR_REASON_AWS_AUTH_FAILED",
         "PROCESSING_ERROR_REASON_USER_IDENTIFIER_DECRYPTION_ERROR",
         "PROCESSING_ERROR_OPERATING_ACCOUNT_MISMATCH_FOR_AD_IDENTIFIER",
     ]
@@ -107,13 +116,16 @@ class ErrorInfo(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Event(typing_extensions.TypedDict, total=False):
     adIdentifiers: AdIdentifiers
+    additionalEventParameters: _list[EventParameter]
     cartData: CartData
+    clientId: str
     consent: Consent
     conversionValue: float
     currency: str
     customVariables: _list[CustomVariable]
     destinationReferences: _list[str]
     eventDeviceInfo: DeviceInfo
+    eventName: str
     eventSource: typing_extensions.Literal[
         "EVENT_SOURCE_UNSPECIFIED", "WEB", "APP", "IN_STORE", "PHONE", "OTHER"
     ]
@@ -122,7 +134,13 @@ class Event(typing_extensions.TypedDict, total=False):
     lastUpdatedTimestamp: str
     transactionId: str
     userData: UserData
+    userId: str
     userProperties: UserProperties
+
+@typing.type_check_only
+class EventParameter(typing_extensions.TypedDict, total=False):
+    parameterName: str
+    value: str
 
 @typing.type_check_only
 class ExperimentalField(typing_extensions.TypedDict, total=False):
@@ -203,9 +221,16 @@ class IngestUserDataStatus(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Item(typing_extensions.TypedDict, total=False):
+    additionalItemParameters: _list[ItemParameter]
+    itemId: str
     merchantProductId: str
     quantity: str
     unitPrice: float
+
+@typing.type_check_only
+class ItemParameter(typing_extensions.TypedDict, total=False):
+    parameterName: str
+    value: str
 
 @typing.type_check_only
 class MobileData(typing_extensions.TypedDict, total=False):
@@ -224,6 +249,7 @@ class ProductAccount(typing_extensions.TypedDict, total=False):
         "DISPLAY_VIDEO_PARTNER",
         "DISPLAY_VIDEO_ADVERTISER",
         "DATA_PARTNER",
+        "GOOGLE_ANALYTICS_PROPERTY",
     ]
     product: typing_extensions.Literal[
         "PRODUCT_UNSPECIFIED",
@@ -283,6 +309,12 @@ class RetrieveRequestStatusResponse(typing_extensions.TypedDict, total=False):
     requestStatusPerDestination: _list[RequestStatusPerDestination]
 
 @typing.type_check_only
+class Status(typing_extensions.TypedDict, total=False):
+    code: int
+    details: _list[dict[str, typing.Any]]
+    message: str
+
+@typing.type_check_only
 class TermsOfService(typing_extensions.TypedDict, total=False):
     customerMatchTermsOfServiceStatus: typing_extensions.Literal[
         "TERMS_OF_SERVICE_STATUS_UNSPECIFIED", "ACCEPTED", "REJECTED"
@@ -300,12 +332,18 @@ class UserIdentifier(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class UserProperties(typing_extensions.TypedDict, total=False):
+    additionalUserProperties: _list[UserProperty]
     customerType: typing_extensions.Literal[
         "CUSTOMER_TYPE_UNSPECIFIED", "NEW", "RETURNING", "REENGAGED"
     ]
     customerValueBucket: typing_extensions.Literal[
         "CUSTOMER_VALUE_BUCKET_UNSPECIFIED", "LOW", "MEDIUM", "HIGH"
     ]
+
+@typing.type_check_only
+class UserProperty(typing_extensions.TypedDict, total=False):
+    propertyName: str
+    value: str
 
 @typing.type_check_only
 class WarningCount(typing_extensions.TypedDict, total=False):
@@ -319,6 +357,7 @@ class WarningCount(typing_extensions.TypedDict, total=False):
         "PROCESSING_WARNING_REASON_INVALID_KEK",
         "PROCESSING_WARNING_REASON_USER_IDENTIFIER_DECRYPTION_ERROR",
         "PROCESSING_WARNING_REASON_INTERNAL_ERROR",
+        "PROCESSING_WARNING_REASON_AWS_AUTH_FAILED",
     ]
     recordCount: str
 

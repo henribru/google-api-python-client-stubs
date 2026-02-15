@@ -40,6 +40,9 @@ class CloudMemorystoreForMemcachedResource(googleapiclient.discovery.Resource):
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> InstanceHttpRequest: ...
+                def getTags(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GetTagsResponseHttpRequest: ...
                 def list(
                     self,
                     *,
@@ -70,6 +73,9 @@ class CloudMemorystoreForMemcachedResource(googleapiclient.discovery.Resource):
                     body: RescheduleMaintenanceRequest = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
+                def setTags(
+                    self, *, name: str, body: SetTagsRequest = ..., **kwargs: typing.Any
+                ) -> SetTagsResponseHttpRequest: ...
                 def updateParameters(
                     self,
                     *,
@@ -162,6 +168,14 @@ class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Empty: ...
 
 @typing.type_check_only
+class GetTagsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GetTagsResponse: ...
+
+@typing.type_check_only
 class InstanceHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -208,3 +222,11 @@ class OperationHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Operation: ...
+
+@typing.type_check_only
+class SetTagsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> SetTagsResponse: ...

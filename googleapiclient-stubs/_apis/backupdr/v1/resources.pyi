@@ -158,6 +158,27 @@ class BackupdrResource(googleapiclient.discovery.Resource):
                             requestId: str = ...,
                             **kwargs: typing.Any,
                         ) -> OperationHttpRequest: ...
+                        def fetchForResourceType(
+                            self,
+                            *,
+                            parent: str,
+                            filter: str = ...,
+                            orderBy: str = ...,
+                            pageSize: int = ...,
+                            pageToken: str = ...,
+                            resourceType: str = ...,
+                            view: typing_extensions.Literal[
+                                "BACKUP_VIEW_UNSPECIFIED",
+                                "BACKUP_VIEW_BASIC",
+                                "BACKUP_VIEW_FULL",
+                            ] = ...,
+                            **kwargs: typing.Any,
+                        ) -> FetchBackupsForResourceTypeResponseHttpRequest: ...
+                        def fetchForResourceType_next(
+                            self,
+                            previous_request: FetchBackupsForResourceTypeResponseHttpRequest,
+                            previous_response: FetchBackupsForResourceTypeResponse,
+                        ) -> FetchBackupsForResourceTypeResponseHttpRequest | None: ...
                         def get(
                             self,
                             *,
@@ -390,6 +411,21 @@ class BackupdrResource(googleapiclient.discovery.Resource):
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> DataSourceReferenceHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListDataSourceReferencesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListDataSourceReferencesResponseHttpRequest,
+                    previous_response: ListDataSourceReferencesResponse,
+                ) -> ListDataSourceReferencesResponseHttpRequest | None: ...
 
             @typing.type_check_only
             class ManagementServersResource(googleapiclient.discovery.Resource):
@@ -513,6 +549,13 @@ class BackupdrResource(googleapiclient.discovery.Resource):
 
             @typing.type_check_only
             class TrialResource(googleapiclient.discovery.Resource):
+                def end(
+                    self,
+                    *,
+                    parent: str,
+                    body: EndTrialRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> TrialHttpRequest: ...
                 def subscribe(
                     self,
                     *,
@@ -651,6 +694,14 @@ class FetchBackupPlanAssociationsForResourceTypeResponseHttpRequest(
     ) -> FetchBackupPlanAssociationsForResourceTypeResponse: ...
 
 @typing.type_check_only
+class FetchBackupsForResourceTypeResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> FetchBackupsForResourceTypeResponse: ...
+
+@typing.type_check_only
 class FetchDataSourceReferencesForResourceTypeResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -723,6 +774,14 @@ class ListBackupsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListBackupsResponse: ...
+
+@typing.type_check_only
+class ListDataSourceReferencesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListDataSourceReferencesResponse: ...
 
 @typing.type_check_only
 class ListDataSourcesResponseHttpRequest(googleapiclient.http.HttpRequest):

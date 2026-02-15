@@ -380,6 +380,7 @@ class FeatureState(typing_extensions.TypedDict, total=False):
     rbacrolebindingactuation: RBACRoleBindingActuationState
     servicemesh: ServiceMeshState
     state: State
+    workloadidentity: WorkloadIdentityState
 
 @typing.type_check_only
 class GoogleRpcStatus(typing_extensions.TypedDict, total=False):
@@ -861,3 +862,19 @@ class WorkloadCertificateSpec(typing_extensions.TypedDict, total=False):
     certificateManagement: typing_extensions.Literal[
         "CERTIFICATE_MANAGEMENT_UNSPECIFIED", "DISABLED", "ENABLED"
     ]
+
+@typing.type_check_only
+class WorkloadIdentityIdentityProviderStateDetail(
+    typing_extensions.TypedDict, total=False
+):
+    code: typing_extensions.Literal[
+        "IDENTITY_PROVIDER_STATE_UNSPECIFIED",
+        "IDENTITY_PROVIDER_STATE_OK",
+        "IDENTITY_PROVIDER_STATE_ERROR",
+    ]
+    description: str
+
+@typing.type_check_only
+class WorkloadIdentityState(typing_extensions.TypedDict, total=False):
+    description: str
+    identityProviderStateDetails: dict[str, typing.Any]

@@ -5,6 +5,36 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class ApiservingMcpMcpToolDataHandlingProfile(typing_extensions.TypedDict, total=False):
+    inputDataAccessLevel: typing_extensions.Literal[
+        "DATA_ACCESS_LEVEL_UNSPECIFIED",
+        "DATA_ACCESS_LEVEL_PUBLIC",
+        "DATA_ACCESS_LEVEL_CONFIDENTIAL",
+        "DATA_ACCESS_LEVEL_NEED_TO_KNOW",
+        "DATA_ACCESS_LEVEL_PII",
+        "DATA_ACCESS_LEVEL_USER",
+        "DATA_ACCESS_LEVEL_NO_DATA_ACCESS",
+    ]
+    outputDataAccessLevel: typing_extensions.Literal[
+        "DATA_ACCESS_LEVEL_UNSPECIFIED",
+        "DATA_ACCESS_LEVEL_PUBLIC",
+        "DATA_ACCESS_LEVEL_CONFIDENTIAL",
+        "DATA_ACCESS_LEVEL_NEED_TO_KNOW",
+        "DATA_ACCESS_LEVEL_PII",
+        "DATA_ACCESS_LEVEL_USER",
+        "DATA_ACCESS_LEVEL_NO_DATA_ACCESS",
+    ]
+
+@typing.type_check_only
+class ApiservingMcpMcpToolLifecycleProfile(typing_extensions.TypedDict, total=False):
+    launchState: typing_extensions.Literal[
+        "LAUNCH_STATE_UNSPECIFIED",
+        "LAUNCH_STATE_DEVELOPMENT",
+        "LAUNCH_STATE_PRODUCTION_PREVIEW",
+        "LAUNCH_STATE_GENERAL_AVAILABILITY",
+    ]
+
+@typing.type_check_only
 class EdgeConfigstoreBundleBadBundle(typing_extensions.TypedDict, total=False):
     violations: _list[EdgeConfigstoreBundleBadBundleViolation]
 
@@ -66,6 +96,12 @@ class GoogleCloudApigeeV1AddonsConfig(typing_extensions.TypedDict, total=False):
     connectorsPlatformConfig: GoogleCloudApigeeV1ConnectorsPlatformConfig
     integrationConfig: GoogleCloudApigeeV1IntegrationConfig
     monetizationConfig: GoogleCloudApigeeV1MonetizationConfig
+
+@typing.type_check_only
+class GoogleCloudApigeeV1AdjustAppGroupBalanceRequest(
+    typing_extensions.TypedDict, total=False
+):
+    adjustment: GoogleTypeMoney
 
 @typing.type_check_only
 class GoogleCloudApigeeV1AdjustDeveloperBalanceRequest(
@@ -142,6 +178,7 @@ class GoogleCloudApigeeV1ApiDoc(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleCloudApigeeV1ApiDocDocumentation(typing_extensions.TypedDict, total=False):
+    asyncApiDocumentation: GoogleCloudApigeeV1AsyncApiDocumentation
     graphqlDocumentation: GoogleCloudApigeeV1GraphqlDocumentation
     oasDocumentation: GoogleCloudApigeeV1OASDocumentation
 
@@ -175,6 +212,10 @@ class GoogleCloudApigeeV1ApiProduct(typing_extensions.TypedDict, total=False):
     graphqlOperationGroup: GoogleCloudApigeeV1GraphQLOperationGroup
     grpcOperationGroup: GoogleCloudApigeeV1GrpcOperationGroup
     lastModifiedAt: str
+    llmOperationGroup: GoogleCloudApigeeV1LlmOperationGroup
+    llmQuota: str
+    llmQuotaInterval: str
+    llmQuotaTimeUnit: str
     name: str
     operationGroup: GoogleCloudApigeeV1OperationGroup
     proxies: _list[str]
@@ -249,6 +290,47 @@ class GoogleCloudApigeeV1ApiSecurityRuntimeConfig(
     updateTime: str
 
 @typing.type_check_only
+class GoogleCloudApigeeV1ApimServiceExtension(typing_extensions.TypedDict, total=False):
+    createTime: str
+    extensionProcessor: str
+    extensions: _list[GoogleCloudApigeeV1ApimServiceExtensionExtension]
+    lbForwardingRule: str
+    name: str
+    network: str
+    networkConfigs: _list[GoogleCloudApigeeV1ApimServiceExtensionNetworkConfig]
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "DELETING", "UPDATING"
+    ]
+    updateTime: str
+
+@typing.type_check_only
+class GoogleCloudApigeeV1ApimServiceExtensionExtension(
+    typing_extensions.TypedDict, total=False
+):
+    failOpen: bool
+    hostname: str
+    matchCondition: str
+    name: str
+    supportedEvents: _list[
+        typing_extensions.Literal[
+            "SUPPORTED_EVENT_UNSPECIFIED",
+            "REQUEST_HEADERS",
+            "REQUEST_BODY",
+            "RESPONSE_HEADERS",
+            "RESPONSE_BODY",
+            "REQUEST_TRAILERS",
+            "RESPONSE_TRAILERS",
+        ]
+    ]
+
+@typing.type_check_only
+class GoogleCloudApigeeV1ApimServiceExtensionNetworkConfig(
+    typing_extensions.TypedDict, total=False
+):
+    region: str
+    subnet: str
+
+@typing.type_check_only
 class GoogleCloudApigeeV1App(typing_extensions.TypedDict, total=False):
     apiProducts: _list[GoogleCloudApigeeV1ApiProductRef]
     appGroup: str
@@ -274,6 +356,7 @@ class GoogleCloudApigeeV1AppGroup(typing_extensions.TypedDict, total=False):
     channelUri: str
     createdAt: str
     displayName: str
+    email: str
     lastModifiedAt: str
     name: str
     organization: str
@@ -307,6 +390,34 @@ class GoogleCloudApigeeV1AppGroupAppKey(typing_extensions.TypedDict, total=False
     status: str
 
 @typing.type_check_only
+class GoogleCloudApigeeV1AppGroupBalance(typing_extensions.TypedDict, total=False):
+    wallets: _list[GoogleCloudApigeeV1AppGroupBalanceWallet]
+
+@typing.type_check_only
+class GoogleCloudApigeeV1AppGroupBalanceWallet(
+    typing_extensions.TypedDict, total=False
+):
+    balance: GoogleTypeMoney
+    lastCreditTime: str
+
+@typing.type_check_only
+class GoogleCloudApigeeV1AppGroupMonetizationConfig(
+    typing_extensions.TypedDict, total=False
+):
+    billingType: typing_extensions.Literal[
+        "BILLING_TYPE_UNSPECIFIED", "PREPAID", "POSTPAID"
+    ]
+
+@typing.type_check_only
+class GoogleCloudApigeeV1AppGroupSubscription(typing_extensions.TypedDict, total=False):
+    apiproduct: str
+    createdAt: str
+    endTime: str
+    lastModifiedAt: str
+    name: str
+    startTime: str
+
+@typing.type_check_only
 class GoogleCloudApigeeV1ArchiveDeployment(typing_extensions.TypedDict, total=False):
     createdAt: str
     gcsUri: str
@@ -314,6 +425,12 @@ class GoogleCloudApigeeV1ArchiveDeployment(typing_extensions.TypedDict, total=Fa
     name: str
     operation: str
     updatedAt: str
+
+@typing.type_check_only
+class GoogleCloudApigeeV1AsyncApiDocumentation(
+    typing_extensions.TypedDict, total=False
+):
+    spec: GoogleCloudApigeeV1DocumentationFile
 
 @typing.type_check_only
 class GoogleCloudApigeeV1AsyncQuery(typing_extensions.TypedDict, total=False):
@@ -357,6 +474,10 @@ class GoogleCloudApigeeV1Attributes(typing_extensions.TypedDict, total=False):
 class GoogleCloudApigeeV1BatchComputeSecurityAssessmentResultsRequest(
     typing_extensions.TypedDict, total=False
 ):
+    apiHubApis: (
+        GoogleCloudApigeeV1BatchComputeSecurityAssessmentResultsRequestApiHubApiArray
+    )
+    apiHubGateways: GoogleCloudApigeeV1BatchComputeSecurityAssessmentResultsRequestApiHubGatewayArray
     include: (
         GoogleCloudApigeeV1BatchComputeSecurityAssessmentResultsRequestResourceArray
     )
@@ -367,6 +488,18 @@ class GoogleCloudApigeeV1BatchComputeSecurityAssessmentResultsRequest(
     pageToken: str
     profile: str
     scope: str
+
+@typing.type_check_only
+class GoogleCloudApigeeV1BatchComputeSecurityAssessmentResultsRequestApiHubApiArray(
+    typing_extensions.TypedDict, total=False
+):
+    apis: _list[str]
+
+@typing.type_check_only
+class GoogleCloudApigeeV1BatchComputeSecurityAssessmentResultsRequestApiHubGatewayArray(
+    typing_extensions.TypedDict, total=False
+):
+    gateways: _list[str]
 
 @typing.type_check_only
 class GoogleCloudApigeeV1BatchComputeSecurityAssessmentResultsRequestIncludeAll(
@@ -386,7 +519,9 @@ class GoogleCloudApigeeV1BatchComputeSecurityAssessmentResultsRequestResourceArr
     typing_extensions.TypedDict, total=False
 ):
     name: str
-    type: typing_extensions.Literal["RESOURCE_TYPE_UNSPECIFIED", "API_PROXY"]
+    type: typing_extensions.Literal[
+        "RESOURCE_TYPE_UNSPECIFIED", "API_PROXY", "API_HUB_DEPLOYMENT"
+    ]
 
 @typing.type_check_only
 class GoogleCloudApigeeV1BatchComputeSecurityAssessmentResultsResponse(
@@ -501,6 +636,13 @@ class GoogleCloudApigeeV1Credential(typing_extensions.TypedDict, total=False):
     issuedAt: str
     scopes: _list[str]
     status: str
+
+@typing.type_check_only
+class GoogleCloudApigeeV1CreditAppGroupBalanceRequest(
+    typing_extensions.TypedDict, total=False
+):
+    transactionAmount: GoogleTypeMoney
+    transactionId: str
 
 @typing.type_check_only
 class GoogleCloudApigeeV1CreditDeveloperBalanceRequest(
@@ -822,6 +964,7 @@ class GoogleCloudApigeeV1EndpointAttachment(typing_extensions.TypedDict, total=F
         "CLOSED",
         "FROZEN",
         "NEEDS_ATTENTION",
+        "ACCEPTED_LIMITED_CAPACITY",
     ]
     host: str
     location: str
@@ -956,6 +1099,11 @@ class GoogleCloudApigeeV1EnvironmentGroupConfig(
     revisionId: str
     routingRules: _list[GoogleCloudApigeeV1RoutingRule]
     uid: str
+
+@typing.type_check_only
+class GoogleCloudApigeeV1ExpireAppGroupSubscriptionRequest(
+    typing_extensions.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class GoogleCloudApigeeV1ExpireDeveloperSubscriptionRequest(
@@ -1165,6 +1313,7 @@ class GoogleCloudApigeeV1KeyValueEntry(typing_extensions.TypedDict, total=False)
 @typing.type_check_only
 class GoogleCloudApigeeV1KeyValueMap(typing_extensions.TypedDict, total=False):
     encrypted: bool
+    maskedValues: bool
     name: str
 
 @typing.type_check_only
@@ -1216,10 +1365,24 @@ class GoogleCloudApigeeV1ListApiProxiesResponse(
     proxies: _list[GoogleCloudApigeeV1ApiProxy]
 
 @typing.type_check_only
+class GoogleCloudApigeeV1ListApimServiceExtensionsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    apimServiceExtensions: _list[GoogleCloudApigeeV1ApimServiceExtension]
+    nextPageToken: str
+
+@typing.type_check_only
 class GoogleCloudApigeeV1ListAppGroupAppsResponse(
     typing_extensions.TypedDict, total=False
 ):
     appGroupApps: _list[GoogleCloudApigeeV1AppGroupApp]
+    nextPageToken: str
+
+@typing.type_check_only
+class GoogleCloudApigeeV1ListAppGroupSubscriptionsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    appGroupSubscriptions: _list[GoogleCloudApigeeV1AppGroupSubscription]
     nextPageToken: str
 
 @typing.type_check_only
@@ -1458,6 +1621,29 @@ class GoogleCloudApigeeV1ListTraceConfigOverridesResponse(
     traceConfigOverrides: _list[GoogleCloudApigeeV1TraceConfigOverride]
 
 @typing.type_check_only
+class GoogleCloudApigeeV1LlmOperation(typing_extensions.TypedDict, total=False):
+    methods: _list[str]
+    model: str
+    resource: str
+
+@typing.type_check_only
+class GoogleCloudApigeeV1LlmOperationConfig(typing_extensions.TypedDict, total=False):
+    apiSource: str
+    attributes: _list[GoogleCloudApigeeV1Attribute]
+    llmOperations: _list[GoogleCloudApigeeV1LlmOperation]
+    llmTokenQuota: GoogleCloudApigeeV1LlmTokenQuota
+
+@typing.type_check_only
+class GoogleCloudApigeeV1LlmOperationGroup(typing_extensions.TypedDict, total=False):
+    operationConfigs: _list[GoogleCloudApigeeV1LlmOperationConfig]
+
+@typing.type_check_only
+class GoogleCloudApigeeV1LlmTokenQuota(typing_extensions.TypedDict, total=False):
+    interval: str
+    limit: str
+    timeUnit: str
+
+@typing.type_check_only
 class GoogleCloudApigeeV1MaintenanceUpdatePolicy(
     typing_extensions.TypedDict, total=False
 ):
@@ -1611,6 +1797,7 @@ class GoogleCloudApigeeV1Organization(typing_extensions.TypedDict, total=False):
         "BILLING_TYPE_UNSPECIFIED", "SUBSCRIPTION", "EVALUATION", "PAYG"
     ]
     caCertificate: str
+    caCertificates: _list[str]
     controlPlaneEncryptionKeyName: str
     createdAt: str
     customerName: str
@@ -1977,8 +2164,11 @@ class GoogleCloudApigeeV1RuntimeConfig(typing_extensions.TypedDict, total=False)
 @typing.type_check_only
 class GoogleCloudApigeeV1RuntimeTraceConfig(typing_extensions.TypedDict, total=False):
     endpoint: str
-    exporter: typing_extensions.Literal["EXPORTER_UNSPECIFIED", "JAEGER", "CLOUD_TRACE"]
+    exporter: typing_extensions.Literal[
+        "EXPORTER_UNSPECIFIED", "JAEGER", "CLOUD_TRACE", "OPEN_TELEMETRY_COLLECTOR"
+    ]
     name: str
+    openTelemetryProtocolEnabled: bool
     overrides: _list[GoogleCloudApigeeV1RuntimeTraceConfigOverride]
     revisionCreateTime: str
     revisionId: str
@@ -1990,6 +2180,7 @@ class GoogleCloudApigeeV1RuntimeTraceConfigOverride(
 ):
     apiProxy: str
     name: str
+    openTelemetryProtocolEnabled: bool
     revisionCreateTime: str
     revisionId: str
     samplingConfig: GoogleCloudApigeeV1RuntimeTraceSamplingConfig
@@ -2132,9 +2323,30 @@ class GoogleCloudApigeeV1SecurityAssessmentResult(
 class GoogleCloudApigeeV1SecurityAssessmentResultResource(
     typing_extensions.TypedDict, total=False
 ):
+    apiHubDeploymentDetails: (
+        GoogleCloudApigeeV1SecurityAssessmentResultResourceApiHubDeploymentDetails
+    )
     name: str
     resourceRevisionId: str
-    type: typing_extensions.Literal["RESOURCE_TYPE_UNSPECIFIED", "API_PROXY"]
+    type: typing_extensions.Literal[
+        "RESOURCE_TYPE_UNSPECIFIED", "API_PROXY", "API_HUB_DEPLOYMENT"
+    ]
+
+@typing.type_check_only
+class GoogleCloudApigeeV1SecurityAssessmentResultResourceApiHubDeploymentDetails(
+    typing_extensions.TypedDict, total=False
+):
+    displayName: str
+    gateway: str
+    gatewayType: typing_extensions.Literal[
+        "API_HUB_GATEWAY_TYPE_UNSPECIFIED",
+        "APIGEE_X",
+        "APIGEE_HYBRID",
+        "APIGEE_EDGE",
+        "APIGEE_OPDK",
+    ]
+    resourceUri: str
+    sourceProject: str
 
 @typing.type_check_only
 class GoogleCloudApigeeV1SecurityAssessmentResultScoringResult(
@@ -2157,7 +2369,9 @@ class GoogleCloudApigeeV1SecurityAssessmentResultScoringResultAssessmentRecommen
         GoogleCloudApigeeV1SecurityAssessmentResultScoringResultAssessmentRecommendationRecommendation
     ]
     scoreImpact: int
-    verdict: typing_extensions.Literal["VERDICT_UNSPECIFIED", "PASS", "FAIL"]
+    verdict: typing_extensions.Literal[
+        "VERDICT_UNSPECIFIED", "PASS", "FAIL", "NOT_APPLICABLE"
+    ]
     weight: typing_extensions.Literal[
         "WEIGHT_UNSPECIFIED", "MINOR", "MODERATE", "MAJOR"
     ]
@@ -2201,10 +2415,7 @@ class GoogleCloudApigeeV1SecurityFeedbackFeedbackContext(
     typing_extensions.TypedDict, total=False
 ):
     attribute: typing_extensions.Literal[
-        "ATTRIBUTE_UNSPECIFIED",
-        "ATTRIBUTE_ENVIRONMENTS",
-        "ATTRIBUTE_IP_ADDRESS_RANGES",
-        "ATTRIBUTE_API_KEYS",
+        "ATTRIBUTE_UNSPECIFIED", "ATTRIBUTE_ENVIRONMENTS", "ATTRIBUTE_IP_ADDRESS_RANGES"
     ]
     values: _list[str]
 
@@ -2287,14 +2498,32 @@ class GoogleCloudApigeeV1SecurityProfileV2(typing_extensions.TypedDict, total=Fa
     googleDefined: bool
     name: str
     profileAssessmentConfigs: dict[str, typing.Any]
+    riskAssessmentType: typing_extensions.Literal[
+        "RISK_ASSESSMENT_TYPE_UNSPECIFIED", "APIGEE", "API_HUB"
+    ]
     updateTime: str
 
 @typing.type_check_only
 class GoogleCloudApigeeV1SecurityProfileV2ProfileAssessmentConfig(
     typing_extensions.TypedDict, total=False
 ):
+    include: GoogleCloudApigeeV1SecurityProfileV2ProfileAssessmentConfigApiHubGatewayTypeArray
     weight: typing_extensions.Literal[
         "WEIGHT_UNSPECIFIED", "MINOR", "MODERATE", "MAJOR"
+    ]
+
+@typing.type_check_only
+class GoogleCloudApigeeV1SecurityProfileV2ProfileAssessmentConfigApiHubGatewayTypeArray(
+    typing_extensions.TypedDict, total=False
+):
+    gatewayTypes: _list[
+        typing_extensions.Literal[
+            "API_HUB_GATEWAY_TYPE_UNSPECIFIED",
+            "APIGEE_X",
+            "APIGEE_HYBRID",
+            "APIGEE_EDGE",
+            "APIGEE_OPDK",
+        ]
     ]
 
 @typing.type_check_only
@@ -2528,7 +2757,9 @@ class GoogleCloudApigeeV1TlsInfoConfig(typing_extensions.TypedDict, total=False)
 @typing.type_check_only
 class GoogleCloudApigeeV1TraceConfig(typing_extensions.TypedDict, total=False):
     endpoint: str
-    exporter: typing_extensions.Literal["EXPORTER_UNSPECIFIED", "JAEGER", "CLOUD_TRACE"]
+    exporter: typing_extensions.Literal[
+        "EXPORTER_UNSPECIFIED", "JAEGER", "CLOUD_TRACE", "OPEN_TELEMETRY_COLLECTOR"
+    ]
     samplingConfig: GoogleCloudApigeeV1TraceSamplingConfig
 
 @typing.type_check_only

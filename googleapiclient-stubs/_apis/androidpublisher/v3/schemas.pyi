@@ -213,6 +213,9 @@ class AutoRenewingPlan(typing_extensions.TypedDict, total=False):
     recurringPrice: Money
 
 @typing.type_check_only
+class BaseDetails(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class BasePlan(typing_extensions.TypedDict, total=False):
     autoRenewingBasePlanType: AutoRenewingBasePlanType
     basePlanId: str
@@ -222,6 +225,9 @@ class BasePlan(typing_extensions.TypedDict, total=False):
     prepaidBasePlanType: PrepaidBasePlanType
     regionalConfigs: _list[RegionalBasePlanConfig]
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "DRAFT", "ACTIVE", "INACTIVE"]
+
+@typing.type_check_only
+class BasePriceOfferPhase(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class BatchDeleteOneTimeProductOffersRequest(typing_extensions.TypedDict, total=False):
@@ -424,6 +430,7 @@ class Comment(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ConvertRegionPricesRequest(typing_extensions.TypedDict, total=False):
     price: Money
+    productTaxCategoryCode: str
 
 @typing.type_check_only
 class ConvertRegionPricesResponse(typing_extensions.TypedDict, total=False):
@@ -497,6 +504,20 @@ class DeactivateSubscriptionOfferRequest(typing_extensions.TypedDict, total=Fals
     offerId: str
     packageName: str
     productId: str
+
+@typing.type_check_only
+class DeferSubscriptionPurchaseRequest(typing_extensions.TypedDict, total=False):
+    deferralContext: DeferralContext
+
+@typing.type_check_only
+class DeferSubscriptionPurchaseResponse(typing_extensions.TypedDict, total=False):
+    itemExpiryTimeDetails: _list[ItemExpiryTimeDetails]
+
+@typing.type_check_only
+class DeferralContext(typing_extensions.TypedDict, total=False):
+    deferDuration: str
+    etag: str
+    validateOnly: bool
 
 @typing.type_check_only
 class DeferredItemRemoval(typing_extensions.TypedDict, total=False): ...
@@ -648,6 +669,24 @@ class ExternalAccountIdentifiers(typing_extensions.TypedDict, total=False):
     obfuscatedExternalProfileId: str
 
 @typing.type_check_only
+class ExternalAccountIds(typing_extensions.TypedDict, total=False):
+    obfuscatedAccountId: str
+    obfuscatedProfileId: str
+
+@typing.type_check_only
+class ExternalOfferDetails(typing_extensions.TypedDict, total=False):
+    appDownloadEventExternalTransactionId: str
+    installedAppCategory: typing_extensions.Literal[
+        "EXTERNAL_OFFER_APP_CATEGORY_UNSPECIFIED", "APP", "GAME"
+    ]
+    installedAppPackage: str
+    linkType: typing_extensions.Literal[
+        "EXTERNAL_OFFER_LINK_TYPE_UNSPECIFIED",
+        "LINK_TO_DIGITAL_CONTENT_OFFER",
+        "LINK_TO_APP_DOWNLOAD",
+    ]
+
+@typing.type_check_only
 class ExternalSubscription(typing_extensions.TypedDict, total=False):
     subscriptionType: typing_extensions.Literal[
         "SUBSCRIPTION_TYPE_UNSPECIFIED", "RECURRING", "PREPAID"
@@ -658,6 +697,7 @@ class ExternalTransaction(typing_extensions.TypedDict, total=False):
     createTime: str
     currentPreTaxAmount: Price
     currentTaxAmount: Price
+    externalOfferDetails: ExternalOfferDetails
     externalTransactionId: str
     oneTimeTransaction: OneTimeExternalTransaction
     originalPreTaxAmount: Price
@@ -697,6 +737,12 @@ class ExternallyHostedApk(typing_extensions.TypedDict, total=False):
     usesPermissions: _list[UsesPermission]
     versionCode: int
     versionName: str
+
+@typing.type_check_only
+class FreeTrialDetails(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class FreeTrialOfferPhase(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class FullRefund(typing_extensions.TypedDict, total=False): ...
@@ -915,11 +961,37 @@ class InternalAppSharingArtifact(typing_extensions.TypedDict, total=False):
     sha256: str
 
 @typing.type_check_only
+class IntroductoryPriceDetails(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class IntroductoryPriceInfo(typing_extensions.TypedDict, total=False):
     introductoryPriceAmountMicros: str
     introductoryPriceCurrencyCode: str
     introductoryPriceCycles: int
     introductoryPricePeriod: str
+
+@typing.type_check_only
+class IntroductoryPriceOfferPhase(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class ItemExpiryTimeDetails(typing_extensions.TypedDict, total=False):
+    expiryTime: str
+    productId: str
+
+@typing.type_check_only
+class ItemReplacement(typing_extensions.TypedDict, total=False):
+    basePlanId: str
+    offerId: str
+    productId: str
+    replacementMode: typing_extensions.Literal[
+        "REPLACEMENT_MODE_UNSPECIFIED",
+        "WITH_TIME_PRORATION",
+        "CHARGE_PRORATED_PRICE",
+        "WITHOUT_PRORATION",
+        "CHARGE_FULL_PRICE",
+        "DEFERRED",
+        "KEEP_EXISTING",
+    ]
 
 @typing.type_check_only
 class LanguageTargeting(typing_extensions.TypedDict, total=False):
@@ -997,6 +1069,8 @@ class ManagedProductTaxAndComplianceSettings(typing_extensions.TypedDict, total=
         "WITHDRAWAL_RIGHT_SERVICE",
     ]
     isTokenizedDigitalAsset: bool
+    productTaxCategoryCode: str
+    regionalProductAgeRatingInfos: _list[RegionalProductAgeRatingInfo]
     taxRateInfoByRegionCode: dict[str, typing.Any]
 
 @typing.type_check_only
@@ -1051,6 +1125,20 @@ class OfferDetails(typing_extensions.TypedDict, total=False):
     basePlanId: str
     offerId: str
     offerTags: _list[str]
+
+@typing.type_check_only
+class OfferPhase(typing_extensions.TypedDict, total=False):
+    basePrice: BasePriceOfferPhase
+    freeTrial: FreeTrialOfferPhase
+    introductoryPrice: IntroductoryPriceOfferPhase
+    prorationPeriod: ProrationPeriodOfferPhase
+
+@typing.type_check_only
+class OfferPhaseDetails(typing_extensions.TypedDict, total=False):
+    baseDetails: BaseDetails
+    freeTrialDetails: FreeTrialDetails
+    introductoryPriceDetails: IntroductoryPriceDetails
+    prorationPeriodDetails: ProrationPeriodDetails
 
 @typing.type_check_only
 class OfferTag(typing_extensions.TypedDict, total=False):
@@ -1170,6 +1258,7 @@ class OneTimeProductPurchaseOptionRegionalPricingAndAvailabilityConfig(
         "AVAILABLE",
         "NO_LONGER_AVAILABLE",
         "AVAILABLE_IF_RELEASED",
+        "AVAILABLE_FOR_OFFERS_ONLY",
     ]
     price: Money
     regionCode: str
@@ -1182,11 +1271,14 @@ class OneTimeProductRentPurchaseOption(typing_extensions.TypedDict, total=False)
 @typing.type_check_only
 class OneTimeProductTaxAndComplianceSettings(typing_extensions.TypedDict, total=False):
     isTokenizedDigitalAsset: bool
+    productTaxCategoryCode: str
+    regionalProductAgeRatingInfos: _list[RegionalProductAgeRatingInfo]
     regionalTaxConfigs: _list[RegionalTaxConfig]
 
 @typing.type_check_only
 class OneTimePurchaseDetails(typing_extensions.TypedDict, total=False):
     offerId: str
+    preorderDetails: PreorderDetails
     purchaseOptionId: str
     quantity: int
     rentalDetails: RentalDetails
@@ -1203,6 +1295,14 @@ class Order(typing_extensions.TypedDict, total=False):
     orderId: str
     pointsDetails: PointsDetails
     purchaseToken: str
+    salesChannel: typing_extensions.Literal[
+        "SALES_CHANNEL_UNSPECIFIED",
+        "IN_APP",
+        "PC_EMULATOR",
+        "NATIVE_PC",
+        "PLAY_STORE",
+        "OUTSIDE_PLAY_STORE",
+    ]
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
         "PENDING",
@@ -1261,6 +1361,11 @@ class OtherRegionsSubscriptionOfferPhasePrices(
     usdPrice: Money
 
 @typing.type_check_only
+class OutOfAppPurchaseContext(typing_extensions.TypedDict, total=False):
+    expiredExternalAccountIdentifiers: ExternalAccountIdentifiers
+    expiredPurchaseToken: str
+
+@typing.type_check_only
 class PageInfo(typing_extensions.TypedDict, total=False):
     resultPerPage: int
     startIndex: int
@@ -1296,6 +1401,13 @@ class PointsDetails(typing_extensions.TypedDict, total=False):
     pointsDiscountRateMicros: str
     pointsOfferId: str
     pointsSpent: str
+
+@typing.type_check_only
+class PreorderDetails(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class PreorderOfferDetails(typing_extensions.TypedDict, total=False):
+    preorderReleaseTime: str
 
 @typing.type_check_only
 class PrepaidBasePlanType(typing_extensions.TypedDict, total=False):
@@ -1340,6 +1452,7 @@ class ProductOfferDetails(typing_extensions.TypedDict, total=False):
     offerId: str
     offerTags: _list[str]
     offerToken: str
+    preorderOfferDetails: PreorderOfferDetails
     purchaseOptionId: str
     quantity: int
     refundableQuantity: int
@@ -1383,6 +1496,18 @@ class ProductPurchaseV2(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ProductPurchasesAcknowledgeRequest(typing_extensions.TypedDict, total=False):
     developerPayload: str
+
+@typing.type_check_only
+class ProrationPeriodDetails(typing_extensions.TypedDict, total=False):
+    originalOfferPhase: typing_extensions.Literal[
+        "OFFER_PHASE_UNSPECIFIED", "BASE", "INTRODUCTORY", "FREE_TRIAL"
+    ]
+
+@typing.type_check_only
+class ProrationPeriodOfferPhase(typing_extensions.TypedDict, total=False):
+    originalOfferPhaseType: typing_extensions.Literal[
+        "ORIGINAL_OFFER_PHASE_TYPE_UNSPECIFIED", "BASE", "INTRODUCTORY", "FREE_TRIAL"
+    ]
 
 @typing.type_check_only
 class PurchaseOptionTaxAndComplianceSettings(typing_extensions.TypedDict, total=False):
@@ -1442,6 +1567,17 @@ class RegionalPriceMigrationConfig(typing_extensions.TypedDict, total=False):
         "PRICE_INCREASE_TYPE_UNSPECIFIED",
         "PRICE_INCREASE_TYPE_OPT_IN",
         "PRICE_INCREASE_TYPE_OPT_OUT",
+    ]
+    regionCode: str
+
+@typing.type_check_only
+class RegionalProductAgeRatingInfo(typing_extensions.TypedDict, total=False):
+    productAgeRatingTier: typing_extensions.Literal[
+        "PRODUCT_AGE_RATING_TIER_UNKNOWN",
+        "PRODUCT_AGE_RATING_TIER_EVERYONE",
+        "PRODUCT_AGE_RATING_TIER_THIRTEEN_AND_ABOVE",
+        "PRODUCT_AGE_RATING_TIER_SIXTEEN_AND_ABOVE",
+        "PRODUCT_AGE_RATING_TIER_EIGHTEEN_AND_ABOVE",
     ]
     regionCode: str
 
@@ -1680,6 +1816,7 @@ class SubscriptionDetails(typing_extensions.TypedDict, total=False):
     offerPhase: typing_extensions.Literal[
         "OFFER_PHASE_UNSPECIFIED", "BASE", "INTRODUCTORY", "FREE_TRIAL"
     ]
+    offerPhaseDetails: OfferPhaseDetails
     servicePeriodEndTime: str
     servicePeriodStartTime: str
 
@@ -1776,8 +1913,10 @@ class SubscriptionPurchaseLineItem(typing_extensions.TypedDict, total=False):
     deferredItemRemoval: DeferredItemRemoval
     deferredItemReplacement: DeferredItemReplacement
     expiryTime: str
+    itemReplacement: ItemReplacement
     latestSuccessfulOrderId: str
     offerDetails: OfferDetails
+    offerPhase: OfferPhase
     prepaidPlan: PrepaidPlan
     productId: str
     signupPromotion: SignupPromotion
@@ -1790,11 +1929,13 @@ class SubscriptionPurchaseV2(typing_extensions.TypedDict, total=False):
         "ACKNOWLEDGEMENT_STATE_ACKNOWLEDGED",
     ]
     canceledStateContext: CanceledStateContext
+    etag: str
     externalAccountIdentifiers: ExternalAccountIdentifiers
     kind: str
     latestOrderId: str
     lineItems: _list[SubscriptionPurchaseLineItem]
     linkedPurchaseToken: str
+    outOfAppPurchaseContext: OutOfAppPurchaseContext
     pausedStateContext: PausedStateContext
     regionCode: str
     startTime: str
@@ -1815,6 +1956,7 @@ class SubscriptionPurchaseV2(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SubscriptionPurchasesAcknowledgeRequest(typing_extensions.TypedDict, total=False):
     developerPayload: str
+    externalAccountIds: ExternalAccountIds
 
 @typing.type_check_only
 class SubscriptionPurchasesDeferRequest(typing_extensions.TypedDict, total=False):
@@ -1832,6 +1974,8 @@ class SubscriptionTaxAndComplianceSettings(typing_extensions.TypedDict, total=Fa
         "WITHDRAWAL_RIGHT_SERVICE",
     ]
     isTokenizedDigitalAsset: bool
+    productTaxCategoryCode: str
+    regionalProductAgeRatingInfos: _list[RegionalProductAgeRatingInfo]
     taxRateInfoByRegionCode: dict[str, typing.Any]
 
 @typing.type_check_only

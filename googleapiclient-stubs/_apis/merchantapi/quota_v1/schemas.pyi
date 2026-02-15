@@ -5,6 +5,16 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class AccountLimit(typing_extensions.TypedDict, total=False):
+    name: str
+    products: ProductLimit
+
+@typing.type_check_only
+class ListAccountLimitsResponse(typing_extensions.TypedDict, total=False):
+    accountLimits: _list[AccountLimit]
+    nextPageToken: str
+
+@typing.type_check_only
 class ListQuotaGroupsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     quotaGroups: _list[QuotaGroup]
@@ -42,6 +52,11 @@ class ProductChange(typing_extensions.TypedDict, total=False):
         "MERCHANT_REVIEWS",
         "YOUTUBE_CHECKOUT",
     ]
+
+@typing.type_check_only
+class ProductLimit(typing_extensions.TypedDict, total=False):
+    limit: str
+    scope: typing_extensions.Literal["SCOPE_UNSPECIFIED", "ADS_NON_EEA", "ADS_EEA"]
 
 @typing.type_check_only
 class ProductStatusChangeMessage(typing_extensions.TypedDict, total=False):

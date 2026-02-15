@@ -504,6 +504,12 @@ class CloudIdentityResource(googleapiclient.discovery.Resource):
 
     @typing.type_check_only
     class PoliciesResource(googleapiclient.discovery.Resource):
+        def create(
+            self, *, body: Policy = ..., **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def delete(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
         def get(self, *, name: str, **kwargs: typing.Any) -> PolicyHttpRequest: ...
         def list(
             self,
@@ -518,6 +524,9 @@ class CloudIdentityResource(googleapiclient.discovery.Resource):
             previous_request: ListPoliciesResponseHttpRequest,
             previous_response: ListPoliciesResponse,
         ) -> ListPoliciesResponseHttpRequest | None: ...
+        def patch(
+            self, *, name: str, body: Policy = ..., **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
 
     def new_batch_http_request(
         self,

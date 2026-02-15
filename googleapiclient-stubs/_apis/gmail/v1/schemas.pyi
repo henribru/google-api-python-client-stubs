@@ -23,6 +23,16 @@ class BatchModifyMessagesRequest(typing_extensions.TypedDict, total=False):
     removeLabelIds: _list[str]
 
 @typing.type_check_only
+class ClassificationLabelFieldValue(typing_extensions.TypedDict, total=False):
+    fieldId: str
+    selection: str
+
+@typing.type_check_only
+class ClassificationLabelValue(typing_extensions.TypedDict, total=False):
+    fields: _list[ClassificationLabelFieldValue]
+    labelId: str
+
+@typing.type_check_only
 class CseIdentity(typing_extensions.TypedDict, total=False):
     emailAddress: str
     primaryKeyPairId: str
@@ -231,6 +241,7 @@ class ListThreadsResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Message(typing_extensions.TypedDict, total=False):
+    classificationLabelValues: _list[ClassificationLabelValue]
     historyId: str
     id: str
     internalDate: str

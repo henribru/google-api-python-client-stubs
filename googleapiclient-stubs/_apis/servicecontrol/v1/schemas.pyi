@@ -353,6 +353,11 @@ class QuotaError(typing_extensions.TypedDict, total=False):
 class QuotaInfo(typing_extensions.TypedDict, total=False):
     limitExceeded: _list[str]
     quotaConsumed: dict[str, typing.Any]
+    quotaExtractionState: typing_extensions.Literal[
+        "QUOTA_EXTRACTION_STATE_UNSPECIFIED",
+        "QUOTA_EXTRACTION_STATE_DARK_LAUNCH",
+        "QUOTA_EXTRACTION_STATE_TRAFFIC_MIGRATION",
+    ]
     quotaMetrics: _list[MetricValueSet]
 
 @typing.type_check_only
@@ -562,6 +567,7 @@ class V1ResourceEvent(typing_extensions.TypedDict, total=False):
 class ViolationInfo(typing_extensions.TypedDict, total=False):
     checkedValue: str
     constraint: str
+    constraintViolationInfo: dict[str, typing.Any]
     errorMessage: str
     policyType: typing_extensions.Literal[
         "POLICY_TYPE_UNSPECIFIED",

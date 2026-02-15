@@ -293,6 +293,11 @@ class FormAction(typing_extensions.TypedDict, total=False):
     parameters: _list[ActionParameter]
 
 @typing.type_check_only
+class ForwardedMetadata(typing_extensions.TypedDict, total=False):
+    space: str
+    spaceDisplayName: str
+
+@typing.type_check_only
 class GoogleAppsCardV1Action(typing_extensions.TypedDict, total=False):
     allWidgetsAreRequired: bool
     function: str
@@ -849,7 +854,10 @@ class Membership(typing_extensions.TypedDict, total=False):
     member: User
     name: str
     role: typing_extensions.Literal[
-        "MEMBERSHIP_ROLE_UNSPECIFIED", "ROLE_MEMBER", "ROLE_MANAGER"
+        "MEMBERSHIP_ROLE_UNSPECIFIED",
+        "ROLE_MEMBER",
+        "ROLE_MANAGER",
+        "ROLE_ASSISTANT_MANAGER",
     ]
     state: typing_extensions.Literal[
         "MEMBERSHIP_STATE_UNSPECIFIED", "JOINED", "INVITED", "NOT_A_MEMBER"
@@ -948,6 +956,7 @@ class OpenLink(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PermissionSetting(typing_extensions.TypedDict, total=False):
+    assistantManagersAllowed: bool
     managersAllowed: bool
     membersAllowed: bool
 
@@ -964,8 +973,19 @@ class PermissionSettings(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class QuotedMessageMetadata(typing_extensions.TypedDict, total=False):
+    forwardedMetadata: ForwardedMetadata
     lastUpdateTime: str
     name: str
+    quoteType: typing_extensions.Literal["QUOTE_TYPE_UNSPECIFIED", "REPLY"]
+    quotedMessageSnapshot: QuotedMessageSnapshot
+
+@typing.type_check_only
+class QuotedMessageSnapshot(typing_extensions.TypedDict, total=False):
+    annotations: _list[Annotation]
+    attachments: _list[Attachment]
+    formattedText: str
+    sender: str
+    text: str
 
 @typing.type_check_only
 class Reaction(typing_extensions.TypedDict, total=False):
@@ -999,6 +1019,7 @@ class RichLinkMetadata(typing_extensions.TypedDict, total=False):
         "RICH_LINK_TYPE_UNSPECIFIED",
         "DRIVE_FILE",
         "CHAT_SPACE",
+        "GMAIL_MESSAGE",
         "MEET_SPACE",
         "CALENDAR_EVENT",
     ]

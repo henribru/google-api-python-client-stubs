@@ -18,6 +18,50 @@ class NetworkconnectivityResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
+            class AutomatedDnsRecordsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: AutomatedDnsRecord = ...,
+                    automatedDnsRecordId: str = ...,
+                    insertMode: typing_extensions.Literal[
+                        "INSERT_MODE_UNSPECIFIED", "FAIL_IF_EXISTS", "OVERWRITE"
+                    ] = ...,
+                    requestId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+                def delete(
+                    self,
+                    *,
+                    name: str,
+                    deleteMode: typing_extensions.Literal[
+                        "DELETE_MODE_UNSPECIFIED", "DEPROGRAM", "SKIP_DEPROGRAMMING"
+                    ] = ...,
+                    etag: str = ...,
+                    requestId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> AutomatedDnsRecordHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListAutomatedDnsRecordsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListAutomatedDnsRecordsResponseHttpRequest,
+                    previous_response: ListAutomatedDnsRecordsResponse,
+                ) -> ListAutomatedDnsRecordsResponseHttpRequest | None: ...
+
+            @typing.type_check_only
             class GlobalResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class HubsResource(googleapiclient.discovery.Resource):
@@ -880,6 +924,7 @@ class NetworkconnectivityResource(googleapiclient.discovery.Resource):
                 previous_request: ListLocationsResponseHttpRequest,
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
+            def automatedDnsRecords(self) -> AutomatedDnsRecordsResource: ...
             def global_(self) -> GlobalResource: ...
             def internalRanges(self) -> InternalRangesResource: ...
             def multicloudDataTransferConfigs(
@@ -913,6 +958,14 @@ class NetworkconnectivityResource(googleapiclient.discovery.Resource):
         | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def projects(self) -> ProjectsResource: ...
+
+@typing.type_check_only
+class AutomatedDnsRecordHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> AutomatedDnsRecord: ...
 
 @typing.type_check_only
 class CheckConsumerConfigResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -979,6 +1032,14 @@ class InternalRangeHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> InternalRange: ...
+
+@typing.type_check_only
+class ListAutomatedDnsRecordsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListAutomatedDnsRecordsResponse: ...
 
 @typing.type_check_only
 class ListDestinationsResponseHttpRequest(googleapiclient.http.HttpRequest):

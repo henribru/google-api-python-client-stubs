@@ -23,11 +23,16 @@ class Attributes(typing_extensions.TypedDict, total=False):
         "FREE_SHIPPING_OVERNIGHT",
         "FREE_SHIPPING_TWO_DAY",
     ]
+    customRedemptionRestriction: str
+    eventApplicability: typing_extensions.Literal[
+        "EVENT_APPLICABILITY_UNSPECIFIED", "SITEWIDE", "SPECIFIC_CATEGORIES"
+    ]
     freeGiftDescription: str
     freeGiftItemId: str
     freeGiftValue: Price
     genericRedemptionCode: str
     getThisQuantityDiscounted: str
+    googleProductCategories: _list[str]
     itemGroupIdExclusion: _list[str]
     itemGroupIdInclusion: _list[str]
     itemIdExclusion: _list[str]
@@ -35,6 +40,7 @@ class Attributes(typing_extensions.TypedDict, total=False):
     limitQuantity: str
     limitValue: Price
     longTitle: str
+    maxDiscountAmount: Price
     minimumPurchaseAmount: Price
     minimumPurchaseQuantity: str
     moneyOffAmount: Price
@@ -67,6 +73,14 @@ class Attributes(typing_extensions.TypedDict, total=False):
     promotionDisplayTimePeriod: Interval
     promotionEffectiveTimePeriod: Interval
     promotionUrl: str
+    redemptionRestriction: typing_extensions.Literal[
+        "REDEMPTION_RESTRICTION_UNSPECIFIED",
+        "SUBSCRIBE",
+        "FIRST_ORDER",
+        "SIGNUP_FOR_EMAIL",
+        "SIGNUP_FOR_TEXT",
+        "CUSTOM",
+    ]
     storeApplicability: typing_extensions.Literal[
         "STORE_APPLICABILITY_UNSPECIFIED", "ALL_STORES", "SPECIFIC_STORES"
     ]

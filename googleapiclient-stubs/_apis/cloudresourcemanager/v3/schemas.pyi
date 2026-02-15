@@ -148,6 +148,7 @@ class FolderOperationError(typing_extensions.TypedDict, total=False):
         "FOLDER_BEING_MOVED_VIOLATION",
         "FOLDER_TO_DELETE_NON_EMPTY_VIOLATION",
         "DELETED_FOLDER_HEIGHT_VIOLATION",
+        "FOLDER_TO_DELETE_CONFIGURED_CAPABILITY_VIOLATION",
     ]
 
 @typing.type_check_only
@@ -321,6 +322,7 @@ class TagHold(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class TagKey(typing_extensions.TypedDict, total=False):
+    allowedValuesRegex: str
     createTime: str
     description: str
     etag: str

@@ -571,6 +571,44 @@ class NetworkSecurityResource(googleapiclient.discovery.Resource):
                 ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
 
             @typing.type_check_only
+            class DnsThreatDetectorsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: DnsThreatDetector = ...,
+                    dnsThreatDetectorId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> DnsThreatDetectorHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> DnsThreatDetectorHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListDnsThreatDetectorsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListDnsThreatDetectorsResponseHttpRequest,
+                    previous_response: ListDnsThreatDetectorsResponse,
+                ) -> ListDnsThreatDetectorsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: DnsThreatDetector = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> DnsThreatDetectorHttpRequest: ...
+
+            @typing.type_check_only
             class FirewallEndpointAssociationsResource(
                 googleapiclient.discovery.Resource
             ):
@@ -609,6 +647,48 @@ class NetworkSecurityResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: FirewallEndpointAssociation = ...,
+                    requestId: str = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+
+            @typing.type_check_only
+            class FirewallEndpointsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: FirewallEndpoint = ...,
+                    firewallEndpointId: str = ...,
+                    requestId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, requestId: str = ..., **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> FirewallEndpointHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListFirewallEndpointsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListFirewallEndpointsResponseHttpRequest,
+                    previous_response: ListFirewallEndpointsResponse,
+                ) -> ListFirewallEndpointsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: FirewallEndpoint = ...,
                     requestId: str = ...,
                     updateMask: str = ...,
                     **kwargs: typing.Any,
@@ -1227,9 +1307,11 @@ class NetworkSecurityResource(googleapiclient.discovery.Resource):
                 self,
             ) -> BackendAuthenticationConfigsResource: ...
             def clientTlsPolicies(self) -> ClientTlsPoliciesResource: ...
+            def dnsThreatDetectors(self) -> DnsThreatDetectorsResource: ...
             def firewallEndpointAssociations(
                 self,
             ) -> FirewallEndpointAssociationsResource: ...
+            def firewallEndpoints(self) -> FirewallEndpointsResource: ...
             def gatewaySecurityPolicies(self) -> GatewaySecurityPoliciesResource: ...
             def interceptDeploymentGroups(
                 self,
@@ -1308,6 +1390,14 @@ class ClientTlsPolicyHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ClientTlsPolicy: ...
+
+@typing.type_check_only
+class DnsThreatDetectorHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> DnsThreatDetector: ...
 
 @typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
@@ -1448,6 +1538,14 @@ class ListClientTlsPoliciesResponseHttpRequest(googleapiclient.http.HttpRequest)
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListClientTlsPoliciesResponse: ...
+
+@typing.type_check_only
+class ListDnsThreatDetectorsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListDnsThreatDetectorsResponse: ...
 
 @typing.type_check_only
 class ListFirewallEndpointAssociationsResponseHttpRequest(

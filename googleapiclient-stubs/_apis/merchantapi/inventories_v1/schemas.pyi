@@ -13,6 +13,16 @@ class Interval(typing_extensions.TypedDict, total=False):
     startTime: str
 
 @typing.type_check_only
+class InventoryLoyaltyProgram(typing_extensions.TypedDict, total=False):
+    cashbackForFutureUse: Price
+    loyaltyPoints: str
+    memberPriceEffectiveInterval: Interval
+    price: Price
+    programLabel: str
+    shippingLabel: str
+    tierLabel: str
+
+@typing.type_check_only
 class ListLocalInventoriesResponse(typing_extensions.TypedDict, total=False):
     localInventories: _list[LocalInventory]
     nextPageToken: str
@@ -39,6 +49,7 @@ class LocalInventoryAttributes(typing_extensions.TypedDict, total=False):
         "OUT_OF_STOCK",
     ]
     instoreProductLocation: str
+    loyaltyPrograms: _list[InventoryLoyaltyProgram]
     pickupMethod: typing_extensions.Literal[
         "PICKUP_METHOD_UNSPECIFIED", "BUY", "RESERVE", "SHIP_TO_STORE", "NOT_SUPPORTED"
     ]
@@ -115,6 +126,7 @@ class RegionalInventoryAttributes(typing_extensions.TypedDict, total=False):
     availability: typing_extensions.Literal[
         "REGIONAL_INVENTORY_AVAILABILITY_UNSPECIFIED", "IN_STOCK", "OUT_OF_STOCK"
     ]
+    loyaltyPrograms: _list[InventoryLoyaltyProgram]
     price: Price
     salePrice: Price
     salePriceEffectiveDate: Interval

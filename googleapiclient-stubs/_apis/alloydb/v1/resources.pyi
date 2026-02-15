@@ -39,7 +39,15 @@ class CloudAlloyDBAdminResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def get(
-                    self, *, name: str, **kwargs: typing.Any
+                    self,
+                    *,
+                    name: str,
+                    view: typing_extensions.Literal[
+                        "BACKUP_VIEW_UNSPECIFIED",
+                        "BACKUP_VIEW_BASIC",
+                        "BACKUP_VIEW_CLUSTER_DELETED",
+                    ] = ...,
+                    **kwargs: typing.Any,
                 ) -> BackupHttpRequest: ...
                 def list(
                     self,
@@ -49,6 +57,11 @@ class CloudAlloyDBAdminResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
+                    view: typing_extensions.Literal[
+                        "BACKUP_VIEW_UNSPECIFIED",
+                        "BACKUP_VIEW_BASIC",
+                        "BACKUP_VIEW_CLUSTER_DELETED",
+                    ] = ...,
                     **kwargs: typing.Any,
                 ) -> ListBackupsResponseHttpRequest: ...
                 def list_next(

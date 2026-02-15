@@ -112,6 +112,11 @@ class BatchDeletePrintersResponse(typing_extensions.TypedDict, total=False):
     printerIds: _list[str]
 
 @typing.type_check_only
+class BluetoothAdapterInfo(typing_extensions.TypedDict, total=False):
+    address: str
+    numConnectedDevices: int
+
+@typing.type_check_only
 class Building(typing_extensions.TypedDict, total=False):
     address: BuildingAddress
     buildingId: str
@@ -205,6 +210,7 @@ class ChromeOsDevice(typing_extensions.TypedDict, total=False):
     autoUpdateExpiration: str
     autoUpdateThrough: str
     backlightInfo: _list[BacklightInfo]
+    bluetoothAdapterInfo: _list[BluetoothAdapterInfo]
     bootMode: str
     chromeOsType: typing_extensions.Literal[
         "chromeOsTypeUnspecified", "chromeOsFlex", "chromeOs"
@@ -392,6 +398,11 @@ class DirectoryChromeosdevicesIssueCommandResponse(
     commandId: str
 
 @typing.type_check_only
+class DirectoryUsersCreateGuestRequest(typing_extensions.TypedDict, total=False):
+    customer: str
+    primaryGuestEmail: str
+
+@typing.type_check_only
 class DomainAlias(typing_extensions.TypedDict, total=False):
     creationTime: str
     domainAliasName: str
@@ -502,6 +513,10 @@ class Groups(typing_extensions.TypedDict, total=False):
     groups: _list[Group]
     kind: str
     nextPageToken: str
+
+@typing.type_check_only
+class GuestAccountInfo(typing_extensions.TypedDict, total=False):
+    primaryGuestEmail: str
 
 @typing.type_check_only
 class ListPrintServersResponse(typing_extensions.TypedDict, total=False):
@@ -799,6 +814,7 @@ class User(typing_extensions.TypedDict, total=False):
     etag: str
     externalIds: typing.Any
     gender: typing.Any
+    guestAccountInfo: GuestAccountInfo
     hashFunction: str
     id: str
     ims: typing.Any
@@ -808,6 +824,7 @@ class User(typing_extensions.TypedDict, total=False):
     isDelegatedAdmin: bool
     isEnforcedIn2Sv: bool
     isEnrolledIn2Sv: bool
+    isGuestUser: bool
     isMailboxSetup: bool
     keywords: typing.Any
     kind: str

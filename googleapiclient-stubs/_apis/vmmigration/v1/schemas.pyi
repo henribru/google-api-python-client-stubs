@@ -306,6 +306,7 @@ class ComputeEngineTargetDefaults(typing_extensions.TypedDict, total=False):
     networkTags: _list[str]
     secureBoot: bool
     serviceAccount: str
+    storagePool: str
     targetProject: str
     vmName: str
     zone: str
@@ -350,6 +351,7 @@ class ComputeEngineTargetDetails(typing_extensions.TypedDict, total=False):
     project: str
     secureBoot: bool
     serviceAccount: str
+    storagePool: str
     vmName: str
     zone: str
 
@@ -419,7 +421,8 @@ class CycleStep(typing_extensions.TypedDict, total=False):
     startTime: str
 
 @typing.type_check_only
-class DataDiskImageImport(typing_extensions.TypedDict, total=False): ...
+class DataDiskImageImport(typing_extensions.TypedDict, total=False):
+    guestOsFeatures: _list[str]
 
 @typing.type_check_only
 class DatacenterConnector(typing_extensions.TypedDict, total=False):

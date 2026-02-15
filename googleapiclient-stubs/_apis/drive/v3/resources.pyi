@@ -45,6 +45,25 @@ class DriveResource(googleapiclient.discovery.Resource):
         ) -> googleapiclient.http.HttpRequest: ...
 
     @typing.type_check_only
+    class ApprovalsResource(googleapiclient.discovery.Resource):
+        def get(
+            self, *, fileId: str, approvalId: str, **kwargs: typing.Any
+        ) -> ApprovalHttpRequest: ...
+        def list(
+            self,
+            *,
+            fileId: str,
+            pageSize: int = ...,
+            pageToken: str = ...,
+            **kwargs: typing.Any,
+        ) -> ApprovalListHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ApprovalListHttpRequest,
+            previous_response: ApprovalList,
+        ) -> ApprovalListHttpRequest | None: ...
+
+    @typing.type_check_only
     class AppsResource(googleapiclient.discovery.Resource):
         def get(self, *, appId: str, **kwargs: typing.Any) -> AppHttpRequest: ...
         def list(
@@ -573,6 +592,7 @@ class DriveResource(googleapiclient.discovery.Resource):
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def about(self) -> AboutResource: ...
     def accessproposals(self) -> AccessproposalsResource: ...
+    def approvals(self) -> ApprovalsResource: ...
     def apps(self) -> AppsResource: ...
     def changes(self) -> ChangesResource: ...
     def channels(self) -> ChannelsResource: ...
@@ -616,6 +636,22 @@ class AppListHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> AppList: ...
+
+@typing.type_check_only
+class ApprovalHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> Approval: ...
+
+@typing.type_check_only
+class ApprovalListHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ApprovalList: ...
 
 @typing.type_check_only
 class ChangeListHttpRequest(googleapiclient.http.HttpRequest):

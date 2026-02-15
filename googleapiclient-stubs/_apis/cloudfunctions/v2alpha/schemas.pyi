@@ -47,6 +47,13 @@ class BuildConfig(typing_extensions.TypedDict, total=False):
     workerPool: str
 
 @typing.type_check_only
+class BuildConfigOverrides(typing_extensions.TypedDict, total=False):
+    runtime: str
+
+@typing.type_check_only
+class CommitFunctionUpgradeAsGen2Request(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class CommitFunctionUpgradeRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -57,6 +64,12 @@ class Date(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DetachFunctionRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class DirectVpcNetworkInterface(typing_extensions.TypedDict, total=False):
+    network: str
+    subnetwork: str
+    tags: _list[str]
 
 @typing.type_check_only
 class EventFilter(typing_extensions.TypedDict, total=False):
@@ -159,6 +172,7 @@ class GoogleCloudFunctionsV2alphaOperationMetadata(
         "ABORT_FUNCTION_UPGRADE",
         "COMMIT_FUNCTION_UPGRADE",
         "DETACH_FUNCTION",
+        "COMMIT_FUNCTION_UPGRADE_AS_GEN2",
     ]
     requestResource: dict[str, typing.Any]
     sourceToken: str
@@ -317,6 +331,12 @@ class ServiceConfig(typing_extensions.TypedDict, total=False):
     availableCpu: str
     availableMemory: str
     binaryAuthorizationPolicy: str
+    directVpcEgress: typing_extensions.Literal[
+        "DIRECT_VPC_EGRESS_UNSPECIFIED",
+        "VPC_EGRESS_PRIVATE_RANGES_ONLY",
+        "VPC_EGRESS_ALL_TRAFFIC",
+    ]
+    directVpcNetworkInterface: _list[DirectVpcNetworkInterface]
     environmentVariables: dict[str, typing.Any]
     ingressSettings: typing_extensions.Literal[
         "INGRESS_SETTINGS_UNSPECIFIED",
@@ -345,12 +365,18 @@ class ServiceConfig(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class ServiceConfigOverrides(typing_extensions.TypedDict, total=False):
+    maxInstanceCount: int
+
+@typing.type_check_only
 class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
     policy: Policy
     updateMask: str
 
 @typing.type_check_only
 class SetupFunctionUpgradeConfigRequest(typing_extensions.TypedDict, total=False):
+    buildConfigOverrides: BuildConfigOverrides
+    serviceConfigOverrides: ServiceConfigOverrides
     triggerServiceAccount: str
 
 @typing.type_check_only
@@ -403,4 +429,7 @@ class UpgradeInfo(typing_extensions.TypedDict, total=False):
         "REDIRECT_FUNCTION_UPGRADE_TRAFFIC_ERROR",
         "ROLLBACK_FUNCTION_UPGRADE_TRAFFIC_ERROR",
         "COMMIT_FUNCTION_UPGRADE_ERROR",
+        "COMMIT_FUNCTION_UPGRADE_ERROR_ROLLBACK_SAFE",
+        "COMMIT_FUNCTION_UPGRADE_AS_GEN2_SUCCESSFUL",
+        "COMMIT_FUNCTION_UPGRADE_AS_GEN2_ERROR",
     ]

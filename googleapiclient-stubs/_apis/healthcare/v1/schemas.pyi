@@ -479,6 +479,7 @@ class FhirStoreMetric(typing_extensions.TypedDict, total=False):
     count: str
     resourceType: str
     structuredStorageSizeBytes: str
+    versionedStorageSizeBytes: str
 
 @typing.type_check_only
 class FhirStoreMetrics(typing_extensions.TypedDict, total=False):
@@ -545,6 +546,9 @@ class GoogleCloudHealthcareV1DicomBigQueryDestination(
     typing_extensions.TypedDict, total=False
 ):
     force: bool
+    includeSourceStore: bool
+    schemaFlattened: SchemaFlattened
+    schemaJson: SchemaJSON
     tableUri: str
     writeDisposition: typing_extensions.Literal[
         "WRITE_DISPOSITION_UNSPECIFIED", "WRITE_EMPTY", "WRITE_TRUNCATE", "WRITE_APPEND"
@@ -843,6 +847,8 @@ class Policy(typing_extensions.TypedDict, total=False):
 class ProgressCounter(typing_extensions.TypedDict, total=False):
     failure: str
     pending: str
+    secondaryFailure: str
+    secondarySuccess: str
     success: str
 
 @typing.type_check_only
@@ -934,12 +940,18 @@ class SchemaConfig(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class SchemaFlattened(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class SchemaGroup(typing_extensions.TypedDict, total=False):
     choice: bool
     maxOccurs: int
     members: _list[GroupOrSegment]
     minOccurs: int
     name: str
+
+@typing.type_check_only
+class SchemaJSON(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class SchemaPackage(typing_extensions.TypedDict, total=False):
@@ -963,10 +975,6 @@ class SchemaSegment(typing_extensions.TypedDict, total=False):
 class SchematizedData(typing_extensions.TypedDict, total=False):
     data: str
     error: str
-
-@typing.type_check_only
-class SearchResourcesRequest(typing_extensions.TypedDict, total=False):
-    resourceType: str
 
 @typing.type_check_only
 class Segment(typing_extensions.TypedDict, total=False):
@@ -1089,6 +1097,7 @@ class ValidationConfig(typing_extensions.TypedDict, total=False):
     disableProfileValidation: bool
     disableReferenceTypeValidation: bool
     disableRequiredFieldValidation: bool
+    enableFhirpathProfileValidation: bool
     enabledImplementationGuides: _list[str]
 
 @typing.type_check_only

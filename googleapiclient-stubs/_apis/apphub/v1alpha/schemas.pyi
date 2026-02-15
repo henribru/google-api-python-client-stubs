@@ -45,6 +45,16 @@ class Binding(typing_extensions.TypedDict, total=False):
     role: str
 
 @typing.type_check_only
+class Boundary(typing_extensions.TypedDict, total=False):
+    createTime: str
+    crmNode: str
+    name: str
+    type: typing_extensions.Literal[
+        "TYPE_UNSPECIFIED", "AUTOMATIC", "MANUAL", "MANAGED_AUTOMATIC"
+    ]
+    updateTime: str
+
+@typing.type_check_only
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -105,6 +115,16 @@ class Expr(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
+class ExtendedMetadata(typing_extensions.TypedDict, total=False):
+    metadataStruct: dict[str, typing.Any]
+
+@typing.type_check_only
+class ExtendedMetadataSchema(typing_extensions.TypedDict, total=False):
+    jsonSchema: str
+    name: str
+    schemaVersion: str
+
+@typing.type_check_only
 class FindUnregisteredServicesResponse(typing_extensions.TypedDict, total=False):
     discoveredServices: _list[DiscoveredService]
     nextPageToken: str
@@ -115,6 +135,14 @@ class FindUnregisteredWorkloadsResponse(typing_extensions.TypedDict, total=False
     discoveredWorkloads: _list[DiscoveredWorkload]
     nextPageToken: str
     unreachable: _list[str]
+
+@typing.type_check_only
+class FunctionalType(typing_extensions.TypedDict, total=False):
+    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "AGENT", "MCP_SERVER"]
+
+@typing.type_check_only
+class Identity(typing_extensions.TypedDict, total=False):
+    principal: str
 
 @typing.type_check_only
 class ListApplicationsResponse(typing_extensions.TypedDict, total=False):
@@ -133,6 +161,11 @@ class ListDiscoveredWorkloadsResponse(typing_extensions.TypedDict, total=False):
     discoveredWorkloads: _list[DiscoveredWorkload]
     nextPageToken: str
     unreachable: _list[str]
+
+@typing.type_check_only
+class ListExtendedMetadataSchemasResponse(typing_extensions.TypedDict, total=False):
+    extendedMetadataSchemas: _list[ExtendedMetadataSchema]
+    nextPageToken: str
 
 @typing.type_check_only
 class ListLocationsResponse(typing_extensions.TypedDict, total=False):
@@ -209,6 +242,10 @@ class Policy(typing_extensions.TypedDict, total=False):
     version: int
 
 @typing.type_check_only
+class RegistrationType(typing_extensions.TypedDict, total=False):
+    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "EXCLUSIVE", "SHARED"]
+
+@typing.type_check_only
 class Scope(typing_extensions.TypedDict, total=False):
     type: typing_extensions.Literal["TYPE_UNSPECIFIED", "REGIONAL", "GLOBAL"]
 
@@ -240,8 +277,12 @@ class ServiceProjectAttachment(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ServiceProperties(typing_extensions.TypedDict, total=False):
+    extendedMetadata: dict[str, typing.Any]
+    functionalType: FunctionalType
     gcpProject: str
+    identity: Identity
     location: str
+    registrationType: RegistrationType
     zone: str
 
 @typing.type_check_only
@@ -286,7 +327,10 @@ class Workload(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class WorkloadProperties(typing_extensions.TypedDict, total=False):
+    extendedMetadata: dict[str, typing.Any]
+    functionalType: FunctionalType
     gcpProject: str
+    identity: Identity
     location: str
     zone: str
 

@@ -53,7 +53,13 @@ class Build(typing_extensions.TypedDict, total=False):
     reconciling: bool
     source: BuildSource
     state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "BUILDING", "BUILT", "DEPLOYING", "READY", "FAILED"
+        "STATE_UNSPECIFIED",
+        "BUILDING",
+        "BUILT",
+        "DEPLOYING",
+        "READY",
+        "FAILED",
+        "SKIPPED",
     ]
     uid: str
     updateTime: str
@@ -85,6 +91,7 @@ class CodebaseSource(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Config(typing_extensions.TypedDict, total=False):
+    effectiveEnv: _list[EnvironmentVariable]
     env: _list[EnvironmentVariable]
     runConfig: RunConfig
 
@@ -223,6 +230,14 @@ class EnvironmentVariable(typing_extensions.TypedDict, total=False):
     availability: _list[
         typing_extensions.Literal["AVAILABILITY_UNSPECIFIED", "BUILD", "RUNTIME"]
     ]
+    origin: typing_extensions.Literal[
+        "ORIGIN_UNSPECIFIED",
+        "BACKEND_OVERRIDES",
+        "BUILD_CONFIG",
+        "APPHOSTING_YAML",
+        "FIREBASE_SYSTEM",
+    ]
+    originFileName: str
     secret: str
     value: str
     variable: str
@@ -262,6 +277,7 @@ class ListLocationsResponse(typing_extensions.TypedDict, total=False):
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListRolloutsResponse(typing_extensions.TypedDict, total=False):
@@ -321,6 +337,11 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
+class Path(typing_extensions.TypedDict, total=False):
+    pattern: str
+    type: typing_extensions.Literal["PATTERN_TYPE_UNSPECIFIED", "RE2", "GLOB", "PREFIX"]
+
+@typing.type_check_only
 class Redirect(typing_extensions.TypedDict, total=False):
     status: str
     uri: str
@@ -346,6 +367,7 @@ class Rollout(typing_extensions.TypedDict, total=False):
         "SUCCEEDED",
         "FAILED",
         "CANCELLED",
+        "SKIPPED",
     ]
     uid: str
     updateTime: str
@@ -355,6 +377,8 @@ class RolloutPolicy(typing_extensions.TypedDict, total=False):
     codebaseBranch: str
     disabled: bool
     disabledTime: str
+    ignoredPaths: _list[Path]
+    requiredPaths: _list[Path]
 
 @typing.type_check_only
 class RunConfig(typing_extensions.TypedDict, total=False):

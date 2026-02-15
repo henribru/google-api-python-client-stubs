@@ -37,6 +37,7 @@ class Certificate(typing_extensions.TypedDict, total=False):
     expireTime: str
     labels: dict[str, typing.Any]
     managed: ManagedCertificate
+    managedIdentity: ManagedIdentityCertificate
     name: str
     pemCertificate: str
     sanDnsnames: _list[str]
@@ -200,6 +201,14 @@ class ManagedCertificate(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class ManagedIdentityCertificate(typing_extensions.TypedDict, total=False):
+    identity: str
+    provisioningIssue: ProvisioningIssue
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "PROVISIONING", "FAILED", "ACTIVE"
+    ]
+
+@typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
@@ -262,6 +271,7 @@ class TrustConfig(typing_extensions.TypedDict, total=False):
     etag: str
     labels: dict[str, typing.Any]
     name: str
+    spiffeTrustStores: dict[str, typing.Any]
     trustStores: _list[TrustStore]
     updateTime: str
 

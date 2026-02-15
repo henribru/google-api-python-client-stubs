@@ -297,6 +297,7 @@ class BuildTrigger(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class BuiltImage(typing_extensions.TypedDict, total=False):
+    artifactRegistryPackage: str
     digest: str
     name: str
     pushTiming: TimeSpan
@@ -644,6 +645,7 @@ class ListWorkerPoolsResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class MavenArtifact(typing_extensions.TypedDict, total=False):
     artifactId: str
+    deployFolder: str
     groupId: str
     path: str
     repository: str
@@ -894,24 +896,28 @@ class UpdateWorkerPoolOperationMetadata(typing_extensions.TypedDict, total=False
 
 @typing.type_check_only
 class UploadedGoModule(typing_extensions.TypedDict, total=False):
+    artifactRegistryPackage: str
     fileHashes: FileHashes
     pushTiming: TimeSpan
     uri: str
 
 @typing.type_check_only
 class UploadedMavenArtifact(typing_extensions.TypedDict, total=False):
+    artifactRegistryPackage: str
     fileHashes: FileHashes
     pushTiming: TimeSpan
     uri: str
 
 @typing.type_check_only
 class UploadedNpmPackage(typing_extensions.TypedDict, total=False):
+    artifactRegistryPackage: str
     fileHashes: FileHashes
     pushTiming: TimeSpan
     uri: str
 
 @typing.type_check_only
 class UploadedPythonPackage(typing_extensions.TypedDict, total=False):
+    artifactRegistryPackage: str
     fileHashes: FileHashes
     pushTiming: TimeSpan
     uri: str

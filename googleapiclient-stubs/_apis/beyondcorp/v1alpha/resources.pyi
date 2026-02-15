@@ -18,37 +18,6 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
-            class GlobalResource(googleapiclient.discovery.Resource):
-                @typing.type_check_only
-                class PartnerTenantsResource(googleapiclient.discovery.Resource):
-                    def delete(
-                        self, *, name: str, requestId: str = ..., **kwargs: typing.Any
-                    ) -> GoogleLongrunningOperationHttpRequest: ...
-                    def get(
-                        self, *, name: str, **kwargs: typing.Any
-                    ) -> GoogleCloudBeyondcorpPartnerservicesV1alphaPartnerTenantHttpRequest: ...
-                    def list(
-                        self,
-                        *,
-                        parent: str,
-                        filter: str = ...,
-                        orderBy: str = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
-                        **kwargs: typing.Any,
-                    ) -> GoogleCloudBeyondcorpPartnerservicesV1alphaListPartnerTenantsResponseHttpRequest: ...
-                    def list_next(
-                        self,
-                        previous_request: GoogleCloudBeyondcorpPartnerservicesV1alphaListPartnerTenantsResponseHttpRequest,
-                        previous_response: GoogleCloudBeyondcorpPartnerservicesV1alphaListPartnerTenantsResponse,
-                    ) -> (
-                        GoogleCloudBeyondcorpPartnerservicesV1alphaListPartnerTenantsResponseHttpRequest
-                        | None
-                    ): ...
-
-                def partnerTenants(self) -> PartnerTenantsResource: ...
-
-            @typing.type_check_only
             class InsightsResource(googleapiclient.discovery.Resource):
                 def configuredInsight(
                     self,
@@ -198,7 +167,6 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
                     self, *, name: str, requestId: str = ..., **kwargs: typing.Any
                 ) -> GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaRestartSubscriptionResponseHttpRequest: ...
 
-            def global_(self) -> GlobalResource: ...
             def insights(self) -> InsightsResource: ...
             def operations(self) -> OperationsResource: ...
             def subscriptions(self) -> SubscriptionsResource: ...
@@ -1032,26 +1000,6 @@ class GoogleCloudBeyondcorpAppconnectorsV1alphaResolveInstanceConfigResponseHttp
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudBeyondcorpAppconnectorsV1alphaResolveInstanceConfigResponse: ...
-
-@typing.type_check_only
-class GoogleCloudBeyondcorpPartnerservicesV1alphaListPartnerTenantsResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> GoogleCloudBeyondcorpPartnerservicesV1alphaListPartnerTenantsResponse: ...
-
-@typing.type_check_only
-class GoogleCloudBeyondcorpPartnerservicesV1alphaPartnerTenantHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> GoogleCloudBeyondcorpPartnerservicesV1alphaPartnerTenant: ...
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpSaasplatformInsightsV1alphaConfiguredInsightResponseHttpRequest(

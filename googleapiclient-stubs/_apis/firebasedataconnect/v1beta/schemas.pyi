@@ -8,12 +8,18 @@ _list = list
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class ClientCache(typing_extensions.TypedDict, total=False):
+    entityIdIncluded: bool
+    strictValidationEnabled: bool
+
+@typing.type_check_only
 class CloudSqlInstance(typing_extensions.TypedDict, total=False):
     instance: str
 
 @typing.type_check_only
 class Connector(typing_extensions.TypedDict, total=False):
     annotations: dict[str, typing.Any]
+    clientCache: ClientCache
     createTime: str
     displayName: str
     etag: str
@@ -25,7 +31,15 @@ class Connector(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
+class DataConnectProperties(typing_extensions.TypedDict, total=False):
+    entityId: str
+    entityIds: _list[str]
+    maxAge: str
+    path: _list[typing.Any]
+
+@typing.type_check_only
 class Datasource(typing_extensions.TypedDict, total=False):
+    httpGraphql: HttpGraphql
     postgresql: PostgreSql
 
 @typing.type_check_only
@@ -40,6 +54,7 @@ class ExecuteMutationRequest(typing_extensions.TypedDict, total=False):
 class ExecuteMutationResponse(typing_extensions.TypedDict, total=False):
     data: dict[str, typing.Any]
     errors: _list[GraphqlError]
+    extensions: GraphqlResponseExtensions
 
 @typing.type_check_only
 class ExecuteQueryRequest(typing_extensions.TypedDict, total=False):
@@ -50,6 +65,7 @@ class ExecuteQueryRequest(typing_extensions.TypedDict, total=False):
 class ExecuteQueryResponse(typing_extensions.TypedDict, total=False):
     data: dict[str, typing.Any]
     errors: _list[GraphqlError]
+    extensions: GraphqlResponseExtensions
 
 @typing.type_check_only
 class File(typing_extensions.TypedDict, total=False):
@@ -86,7 +102,14 @@ class GraphqlErrorExtensions(typing_extensions.TypedDict, total=False):
     ]
     debugDetails: str
     file: str
-    resource: str
+    warningLevel: typing_extensions.Literal[
+        "WARNING_LEVEL_UNKNOWN",
+        "LOG_ONLY",
+        "INTERACTIVE_ACK",
+        "REQUIRE_ACK",
+        "REQUIRE_FORCE",
+    ]
+    workarounds: _list[Workaround]
 
 @typing.type_check_only
 class GraphqlRequest(typing_extensions.TypedDict, total=False):
@@ -103,6 +126,16 @@ class GraphqlRequestExtensions(typing_extensions.TypedDict, total=False):
 class GraphqlResponse(typing_extensions.TypedDict, total=False):
     data: dict[str, typing.Any]
     errors: _list[GraphqlError]
+    extensions: GraphqlResponseExtensions
+
+@typing.type_check_only
+class GraphqlResponseExtensions(typing_extensions.TypedDict, total=False):
+    dataConnect: _list[DataConnectProperties]
+
+@typing.type_check_only
+class HttpGraphql(typing_extensions.TypedDict, total=False):
+    timeout: str
+    uri: str
 
 @typing.type_check_only
 class ImpersonateRequest(typing_extensions.TypedDict, total=False):
@@ -131,6 +164,7 @@ class ListLocationsResponse(typing_extensions.TypedDict, total=False):
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListSchemasResponse(typing_extensions.TypedDict, total=False):
@@ -223,3 +257,9 @@ class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
+
+@typing.type_check_only
+class Workaround(typing_extensions.TypedDict, total=False):
+    description: str
+    reason: str
+    replace: str

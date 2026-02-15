@@ -159,6 +159,13 @@ class GoogleAdsSearchads360V0Common__EnhancedCpc(
 ): ...
 
 @typing.type_check_only
+class GoogleAdsSearchads360V0Common__FinalAppUrl(
+    typing_extensions.TypedDict, total=False
+):
+    osType: typing_extensions.Literal["UNSPECIFIED", "UNKNOWN", "IOS", "ANDROID"]
+    url: str
+
+@typing.type_check_only
 class GoogleAdsSearchads360V0Common__FrequencyCapEntry(
     typing_extensions.TypedDict, total=False
 ): ...
@@ -294,9 +301,12 @@ class GoogleAdsSearchads360V0Common__Metrics(typing_extensions.TypedDict, total=
     allConversionsValue: float
     allConversionsValueByConversionDate: float
     allConversionsValuePerCost: float
+    averageCartSize: float
     averageCost: float
     averageCpc: float
     averageCpm: float
+    averageImpressionFrequencyPerUser: float
+    averageOrderValueMicros: str
     averageQualityScore: float
     clicks: str
     clientAccountConversions: float
@@ -322,6 +332,7 @@ class GoogleAdsSearchads360V0Common__Metrics(typing_extensions.TypedDict, total=
     conversionsValueByConversionDate: float
     conversionsValuePerCost: float
     costMicros: str
+    costOfGoodsSoldMicros: str
     costPerAllConversions: float
     costPerConversion: float
     costPerCurrentModelAttributedConversion: float
@@ -336,6 +347,8 @@ class GoogleAdsSearchads360V0Common__Metrics(typing_extensions.TypedDict, total=
     ctr: float
     generalInvalidClickRate: float
     generalInvalidClicks: str
+    grossProfitMargin: float
+    grossProfitMicros: str
     historicalCreativeQualityScore: typing_extensions.Literal[
         "UNSPECIFIED", "UNKNOWN", "BELOW_AVERAGE", "AVERAGE", "ABOVE_AVERAGE"
     ]
@@ -361,7 +374,9 @@ class GoogleAdsSearchads360V0Common__Metrics(typing_extensions.TypedDict, total=
     leadRevenueMicros: str
     leadUnitsSold: float
     mobileFriendlyClicksPercentage: float
+    orders: float
     rawEventConversionMetrics: _list[GoogleAdsSearchads360V0Common__Value]
+    revenueMicros: str
     searchAbsoluteTopImpressionShare: float
     searchBudgetLostAbsoluteTopImpressionShare: float
     searchBudgetLostImpressionShare: float
@@ -374,6 +389,8 @@ class GoogleAdsSearchads360V0Common__Metrics(typing_extensions.TypedDict, total=
     searchRankLostTopImpressionShare: float
     searchTopImpressionShare: float
     topImpressionPercentage: float
+    uniqueUsers: str
+    unitsSold: float
     valuePerAllConversions: float
     valuePerAllConversionsByConversionDate: float
     valuePerConversion: float
@@ -509,6 +526,7 @@ class GoogleAdsSearchads360V0Common__Segments(typing_extensions.TypedDict, total
     geoTargetCity: str
     geoTargetCountry: str
     geoTargetMetro: str
+    geoTargetPostalCode: str
     geoTargetRegion: str
     hour: int
     keyword: GoogleAdsSearchads360V0Common__Keyword
@@ -1284,6 +1302,9 @@ class GoogleAdsSearchads360V0Resources__Ad(typing_extensions.TypedDict, total=Fa
         GoogleAdsSearchads360V0Common__SearchAds360ExpandedDynamicSearchAdInfo
     )
     expandedTextAd: GoogleAdsSearchads360V0Common__SearchAds360ExpandedTextAdInfo
+    finalAppUrls: _list[GoogleAdsSearchads360V0Common__FinalAppUrl]
+    finalMobileUrls: _list[str]
+    finalUrlSuffix: str
     finalUrls: _list[str]
     id: str
     name: str
@@ -1293,6 +1314,7 @@ class GoogleAdsSearchads360V0Resources__Ad(typing_extensions.TypedDict, total=Fa
         GoogleAdsSearchads360V0Common__SearchAds360ResponsiveSearchAdInfo
     )
     textAd: GoogleAdsSearchads360V0Common__SearchAds360TextAdInfo
+    trackingUrlTemplate: str
     type: typing_extensions.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
@@ -1356,6 +1378,7 @@ class GoogleAdsSearchads360V0Resources__AdGroup(
         "CAMPAIGN_PAUSED",
         "ACCOUNT_PAUSED",
     ]
+    finalUrlSuffix: str
     id: str
     labels: _list[str]
     languageCode: str
@@ -1367,6 +1390,7 @@ class GoogleAdsSearchads360V0Resources__AdGroup(
         "UNSPECIFIED", "UNKNOWN", "ENABLED", "PAUSED", "REMOVED"
     ]
     targetingSetting: GoogleAdsSearchads360V0Common__TargetingSetting
+    trackingUrlTemplate: str
     type: typing_extensions.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
@@ -1514,6 +1538,7 @@ class GoogleAdsSearchads360V0Resources__AdGroupCriterion(
         "AD_GROUP_CRITERION_SERVING",
         "AD_GROUP_CRITERION_ACCOUNT_PAUSED",
     ]
+    finalMobileUrls: _list[str]
     finalUrlSuffix: str
     finalUrls: _list[str]
     gender: GoogleAdsSearchads360V0Common__GenderInfo
@@ -1574,6 +1599,7 @@ class GoogleAdsSearchads360V0Resources__AdGroupCriterion(
         "BRAND_LIST",
         "LIFE_EVENT",
     ]
+    urlCustomParameters: _list[GoogleAdsSearchads360V0Common__CustomParameter]
     userList: GoogleAdsSearchads360V0Common__UserListInfo
     webpage: GoogleAdsSearchads360V0Common__WebpageInfo
 
@@ -1634,6 +1660,8 @@ class GoogleAdsSearchads360V0Resources__Asset(typing_extensions.TypedDict, total
         "DISABLED",
         "REMOVED",
     ]
+    finalMobileUrls: _list[str]
+    finalUrlSuffix: str
     finalUrls: _list[str]
     id: str
     imageAsset: GoogleAdsSearchads360V0Common__ImageAsset
@@ -1685,6 +1713,7 @@ class GoogleAdsSearchads360V0Resources__Asset(typing_extensions.TypedDict, total
         "LOCATION",
         "HOTEL_PROPERTY",
     ]
+    urlCustomParameters: _list[GoogleAdsSearchads360V0Common__CustomParameter]
     youtubeVideoAsset: GoogleAdsSearchads360V0Common__YoutubeVideoAsset
 
 @typing.type_check_only
@@ -1750,6 +1779,8 @@ class GoogleAdsSearchads360V0Resources__AssetGroupAsset(
         "BUSINESS_LOGO",
         "HOTEL_PROPERTY",
         "DISCOVERY_CAROUSEL_CARD",
+        "LONG_DESCRIPTION",
+        "CALL_TO_ACTION",
     ]
     resourceName: str
     status: typing_extensions.Literal[
@@ -2008,6 +2039,30 @@ class GoogleAdsSearchads360V0Resources__Campaign(
             "BUSINESS_LOGO",
             "HOTEL_PROPERTY",
             "DISCOVERY_CAROUSEL_CARD",
+            "LONG_DESCRIPTION",
+            "CALL_TO_ACTION",
+        ]
+    ]
+    feedTypes: _list[
+        typing_extensions.Literal[
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "PAGE_FEED",
+            "DYNAMIC_EDUCATION",
+            "MERCHANT_CENTER_FEED",
+            "DYNAMIC_REAL_ESTATE",
+            "DYNAMIC_CUSTOM",
+            "DYNAMIC_HOTELS_AND_RENTALS",
+            "DYNAMIC_FLIGHTS",
+            "DYNAMIC_TRAVEL",
+            "DYNAMIC_LOCAL",
+            "DYNAMIC_JOBS",
+            "LOCATION_SYNC",
+            "BUSINESS_PROFILE_DYNAMIC_LOCATION_GROUP",
+            "CHAIN_DYNAMIC_LOCATION_GROUP",
+            "STATIC_LOCATION_GROUP",
+            "HOTEL_PROPERTY",
+            "TRAVEL_FEED",
         ]
     ]
     finalUrlSuffix: str
@@ -2215,6 +2270,8 @@ class GoogleAdsSearchads360V0Resources__Conversion(
         "BUSINESS_LOGO",
         "HOTEL_PROPERTY",
         "DISCOVERY_CAROUSEL_CARD",
+        "LONG_DESCRIPTION",
+        "CALL_TO_ACTION",
     ]
     assetId: str
     attributionType: typing_extensions.Literal[
@@ -2733,6 +2790,8 @@ class GoogleAdsSearchads360V0Resources__Visit(typing_extensions.TypedDict, total
         "BUSINESS_LOGO",
         "HOTEL_PROPERTY",
         "DISCOVERY_CAROUSEL_CARD",
+        "LONG_DESCRIPTION",
+        "CALL_TO_ACTION",
     ]
     assetId: str
     clickId: str

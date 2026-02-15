@@ -230,6 +230,8 @@ class ConfigBasedSignalData(typing_extensions.TypedDict, total=False):
         "SIGNAL_TYPE_NO_ROOT_PASSWORD",
         "SIGNAL_TYPE_EXPOSED_TO_PUBLIC_ACCESS",
         "SIGNAL_TYPE_UNENCRYPTED_CONNECTIONS",
+        "SIGNAL_TYPE_EXTENDED_SUPPORT",
+        "SIGNAL_TYPE_NO_AUTOMATED_BACKUP_POLICY",
     ]
 
 @typing.type_check_only
@@ -411,6 +413,8 @@ class DatabaseResourceHealthSignalData(typing_extensions.TypedDict, total=False)
         "SIGNAL_TYPE_OUTDATED_CLIENT",
         "SIGNAL_TYPE_DATABOOST_DISABLED",
         "SIGNAL_TYPE_RECOMMENDED_MAINTENANCE_POLICIES",
+        "SIGNAL_TYPE_EXTENDED_SUPPORT",
+        "SIGNAL_TYPE_PERFORMANCE_KPI_CHANGE",
     ]
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "RESOLVED", "MUTED"]
 
@@ -443,6 +447,7 @@ class DatabaseResourceMetadata(typing_extensions.TypedDict, total=False):
         "SUSPENDED",
         "DELETED",
         "STATE_OTHER",
+        "STOPPED",
     ]
     customMetadata: CustomMetadataData
     edition: typing_extensions.Literal[
@@ -459,6 +464,7 @@ class DatabaseResourceMetadata(typing_extensions.TypedDict, total=False):
         "SUSPENDED",
         "DELETED",
         "STATE_OTHER",
+        "STOPPED",
     ]
     gcbdrConfiguration: GCBDRConfiguration
     id: DatabaseResourceId
@@ -475,6 +481,7 @@ class DatabaseResourceMetadata(typing_extensions.TypedDict, total=False):
         "SUB_RESOURCE_TYPE_EXTERNAL_PRIMARY",
         "SUB_RESOURCE_TYPE_OTHER",
     ]
+    isDeletionProtectionEnabled: bool
     location: str
     machineConfiguration: MachineConfiguration
     maintenanceInfo: ResourceMaintenanceInfo
@@ -482,6 +489,7 @@ class DatabaseResourceMetadata(typing_extensions.TypedDict, total=False):
     primaryResourceLocation: str
     product: Product
     resourceContainer: str
+    resourceFlags: _list[ResourceFlags]
     resourceName: str
     suspensionReason: typing_extensions.Literal[
         "SUSPENSION_REASON_UNSPECIFIED",
@@ -615,6 +623,8 @@ class DatabaseResourceRecommendationSignalData(
         "SIGNAL_TYPE_OUTDATED_CLIENT",
         "SIGNAL_TYPE_DATABOOST_DISABLED",
         "SIGNAL_TYPE_RECOMMENDED_MAINTENANCE_POLICIES",
+        "SIGNAL_TYPE_EXTENDED_SUPPORT",
+        "SIGNAL_TYPE_PERFORMANCE_KPI_CHANGE",
     ]
 
 @typing.type_check_only
@@ -633,6 +643,8 @@ class DatabaseResourceSignalData(typing_extensions.TypedDict, total=False):
         "SIGNAL_TYPE_NO_ROOT_PASSWORD",
         "SIGNAL_TYPE_EXPOSED_TO_PUBLIC_ACCESS",
         "SIGNAL_TYPE_UNENCRYPTED_CONNECTIONS",
+        "SIGNAL_TYPE_EXTENDED_SUPPORT",
+        "SIGNAL_TYPE_NO_AUTOMATED_BACKUP_POLICY",
     ]
 
 @typing.type_check_only
@@ -858,7 +870,9 @@ class Location(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class MachineConfiguration(typing_extensions.TypedDict, total=False):
+    baselineSlots: str
     cpuCount: int
+    maxReservationSlots: str
     memorySizeInBytes: str
     shardCount: int
     vcpuCount: float
@@ -1105,6 +1119,11 @@ class RescheduleMaintenanceRequest(typing_extensions.TypedDict, total=False):
     scheduleTime: str
 
 @typing.type_check_only
+class ResourceFlags(typing_extensions.TypedDict, total=False):
+    key: str
+    value: str
+
+@typing.type_check_only
 class ResourceMaintenanceDenySchedule(typing_extensions.TypedDict, total=False):
     endDate: Date
     startDate: Date
@@ -1113,8 +1132,20 @@ class ResourceMaintenanceDenySchedule(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ResourceMaintenanceInfo(typing_extensions.TypedDict, total=False):
     denyMaintenanceSchedules: _list[ResourceMaintenanceDenySchedule]
+    isInstanceStopped: bool
     maintenanceSchedule: ResourceMaintenanceSchedule
+    maintenanceState: typing_extensions.Literal[
+        "MAINTENANCE_STATE_UNSPECIFIED",
+        "CREATING",
+        "READY",
+        "UPDATING",
+        "REPAIRING",
+        "DELETING",
+        "ERROR",
+    ]
     maintenanceVersion: str
+    upcomingMaintenance: UpcomingMaintenance
+    versionUpdateTime: str
 
 @typing.type_check_only
 class ResourceMaintenanceSchedule(typing_extensions.TypedDict, total=False):
@@ -1129,16 +1160,9 @@ class ResourceMaintenanceSchedule(typing_extensions.TypedDict, total=False):
         "SUNDAY",
     ]
     phase: typing_extensions.Literal[
-        "WINDOW_PHASE_UNSPECIFIED",
-        "WINDOW_PHASE_ANY",
-        "WINDOW_PHASE_WEEK1",
-        "WINDOW_PHASE_WEEK2",
-        "WINDOW_PHASE_WEEK5",
-    ]
-    time: TimeOfDay
-    week: typing_extensions.Literal[
         "PHASE_UNSPECIFIED", "ANY", "WEEK1", "WEEK2", "WEEK5"
     ]
+    time: TimeOfDay
 
 @typing.type_check_only
 class RetentionSettings(typing_extensions.TypedDict, total=False):
@@ -1189,6 +1213,11 @@ class TypedValue(typing_extensions.TypedDict, total=False):
     doubleValue: float
     int64Value: str
     stringValue: str
+
+@typing.type_check_only
+class UpcomingMaintenance(typing_extensions.TypedDict, total=False):
+    endTime: str
+    startTime: str
 
 @typing.type_check_only
 class UpdateInfo(typing_extensions.TypedDict, total=False):

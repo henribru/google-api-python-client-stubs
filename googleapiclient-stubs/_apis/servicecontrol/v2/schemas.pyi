@@ -293,6 +293,7 @@ class V2ResourceEvent(typing_extensions.TypedDict, total=False):
 class ViolationInfo(typing_extensions.TypedDict, total=False):
     checkedValue: str
     constraint: str
+    constraintViolationInfo: dict[str, typing.Any]
     errorMessage: str
     policyType: typing_extensions.Literal[
         "POLICY_TYPE_UNSPECIFIED",

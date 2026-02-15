@@ -1772,6 +1772,7 @@ class ProductStatus(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ProductStatusDestinationStatus(typing_extensions.TypedDict, total=False):
     approvedCountries: _list[str]
+    channel: str
     destination: str
     disapprovedCountries: _list[str]
     pendingCountries: _list[str]
@@ -2257,36 +2258,6 @@ class RequestReviewShoppingAdsRequest(typing_extensions.TypedDict, total=False):
     regionCode: str
 
 @typing.type_check_only
-class ReturnAddress(typing_extensions.TypedDict, total=False):
-    address: ReturnAddressAddress
-    country: str
-    kind: str
-    label: str
-    phoneNumber: str
-    returnAddressId: str
-
-@typing.type_check_only
-class ReturnAddressAddress(typing_extensions.TypedDict, total=False):
-    country: str
-    locality: str
-    postalCode: str
-    recipientName: str
-    region: str
-    streetAddress: _list[str]
-
-@typing.type_check_only
-class ReturnPolicy(typing_extensions.TypedDict, total=False):
-    country: str
-    kind: str
-    label: str
-    name: str
-    nonFreeReturnReasons: _list[str]
-    policy: ReturnPolicyPolicy
-    returnPolicyId: str
-    returnShippingFee: Price
-    seasonalOverrides: _list[ReturnPolicySeasonalOverride]
-
-@typing.type_check_only
 class ReturnPolicyOnline(typing_extensions.TypedDict, total=False):
     countries: _list[str]
     itemConditions: _list[
@@ -2341,78 +2312,6 @@ class ReturnPolicyOnlineReturnShippingFee(typing_extensions.TypedDict, total=Fal
     type: typing_extensions.Literal[
         "TYPE_UNSPECIFIED", "FIXED", "CUSTOMER_PAYING_ACTUAL_FEE"
     ]
-
-@typing.type_check_only
-class ReturnPolicyPolicy(typing_extensions.TypedDict, total=False):
-    lastReturnDate: str
-    numberOfDays: str
-    type: str
-
-@typing.type_check_only
-class ReturnPolicySeasonalOverride(typing_extensions.TypedDict, total=False):
-    endDate: str
-    name: str
-    policy: ReturnPolicyPolicy
-    startDate: str
-
-@typing.type_check_only
-class ReturnaddressCustomBatchRequest(typing_extensions.TypedDict, total=False):
-    entries: _list[ReturnaddressCustomBatchRequestEntry]
-
-@typing.type_check_only
-class ReturnaddressCustomBatchRequestEntry(typing_extensions.TypedDict, total=False):
-    batchId: int
-    merchantId: str
-    method: str
-    returnAddress: ReturnAddress
-    returnAddressId: str
-
-@typing.type_check_only
-class ReturnaddressCustomBatchResponse(typing_extensions.TypedDict, total=False):
-    entries: _list[ReturnaddressCustomBatchResponseEntry]
-    kind: str
-
-@typing.type_check_only
-class ReturnaddressCustomBatchResponseEntry(typing_extensions.TypedDict, total=False):
-    batchId: int
-    errors: Errors
-    kind: str
-    returnAddress: ReturnAddress
-
-@typing.type_check_only
-class ReturnaddressListResponse(typing_extensions.TypedDict, total=False):
-    kind: str
-    nextPageToken: str
-    resources: _list[ReturnAddress]
-
-@typing.type_check_only
-class ReturnpolicyCustomBatchRequest(typing_extensions.TypedDict, total=False):
-    entries: _list[ReturnpolicyCustomBatchRequestEntry]
-
-@typing.type_check_only
-class ReturnpolicyCustomBatchRequestEntry(typing_extensions.TypedDict, total=False):
-    batchId: int
-    merchantId: str
-    method: str
-    returnPolicy: ReturnPolicy
-    returnPolicyId: str
-
-@typing.type_check_only
-class ReturnpolicyCustomBatchResponse(typing_extensions.TypedDict, total=False):
-    entries: _list[ReturnpolicyCustomBatchResponseEntry]
-    kind: str
-
-@typing.type_check_only
-class ReturnpolicyCustomBatchResponseEntry(typing_extensions.TypedDict, total=False):
-    batchId: int
-    errors: Errors
-    kind: str
-    returnPolicy: ReturnPolicy
-
-@typing.type_check_only
-class ReturnpolicyListResponse(typing_extensions.TypedDict, total=False):
-    kind: str
-    resources: _list[ReturnPolicy]
 
 @typing.type_check_only
 class Row(typing_extensions.TypedDict, total=False):

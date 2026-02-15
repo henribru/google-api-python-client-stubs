@@ -82,6 +82,8 @@ class EntityType(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ExchangeAuthCodeRequest(typing_extensions.TypedDict, total=False):
     authCodeData: AuthCodeData
+    executionConfig: ExecutionConfig
+    oauth2Config: OAuth2Config
 
 @typing.type_check_only
 class ExchangeAuthCodeResponse(typing_extensions.TypedDict, total=False):
@@ -90,6 +92,7 @@ class ExchangeAuthCodeResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ExecuteActionRequest(typing_extensions.TypedDict, total=False):
+    executionConfig: ExecutionConfig
     parameters: dict[str, typing.Any]
 
 @typing.type_check_only
@@ -107,12 +110,18 @@ class ExecuteSqlQueryResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ExecuteToolRequest(typing_extensions.TypedDict, total=False):
+    executionConfig: ExecutionConfig
     parameters: dict[str, typing.Any]
+    toolDefinition: dict[str, typing.Any]
 
 @typing.type_check_only
 class ExecuteToolResponse(typing_extensions.TypedDict, total=False):
     metadata: dict[str, typing.Any]
     result: dict[str, typing.Any]
+
+@typing.type_check_only
+class ExecutionConfig(typing_extensions.TypedDict, total=False):
+    headers: str
 
 @typing.type_check_only
 class Field(typing_extensions.TypedDict, total=False):
@@ -171,6 +180,11 @@ class Field(typing_extensions.TypedDict, total=False):
     name: str
     nullable: bool
     reference: Reference
+
+@typing.type_check_only
+class GetResourcePostRequest(typing_extensions.TypedDict, total=False):
+    executionConfig: ExecutionConfig
+    toolSpec: ToolSpec
 
 @typing.type_check_only
 class GetResourceResponse(typing_extensions.TypedDict, total=False):
@@ -349,6 +363,13 @@ class ListResourcesResponse(typing_extensions.TypedDict, total=False):
     resources: _list[Resource]
 
 @typing.type_check_only
+class ListToolsPostRequest(typing_extensions.TypedDict, total=False):
+    executionConfig: ExecutionConfig
+    pageSize: int
+    pageToken: str
+    toolSpec: ToolSpec
+
+@typing.type_check_only
 class ListToolsResponse(typing_extensions.TypedDict, total=False):
     metadata: dict[str, typing.Any]
     nextPageToken: str
@@ -392,6 +413,12 @@ class NodeSloMetadata(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class NotificationParameter(typing_extensions.TypedDict, total=False):
     values: _list[str]
+
+@typing.type_check_only
+class OAuth2Config(typing_extensions.TypedDict, total=False):
+    authUri: str
+    clientId: str
+    clientSecret: str
 
 @typing.type_check_only
 class PerSliSloEligibility(typing_extensions.TypedDict, total=False):
@@ -467,6 +494,8 @@ class Reference(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class RefreshAccessTokenRequest(typing_extensions.TypedDict, total=False):
+    executionConfig: ExecutionConfig
+    oauth2Config: OAuth2Config
     refreshToken: str
 
 @typing.type_check_only
@@ -586,6 +615,11 @@ class ToolAnnotations(typing_extensions.TypedDict, total=False):
     openWorldHint: bool
     readOnlyHint: bool
     title: str
+
+@typing.type_check_only
+class ToolSpec(typing_extensions.TypedDict, total=False):
+    toolDefinitions: _list[dict[str, typing.Any]]
+    toolSpecVersion: str
 
 @typing.type_check_only
 class UpdateEntitiesWithConditionsResponse(typing_extensions.TypedDict, total=False):

@@ -28,6 +28,57 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                 ) -> GoogleCloudRunV2SubmitBuildResponseHttpRequest: ...
 
             @typing.type_check_only
+            class InstancesResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleCloudRunV2Instance = ...,
+                    instanceId: str = ...,
+                    validateOnly: bool = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+                def delete(
+                    self,
+                    *,
+                    name: str,
+                    etag: str = ...,
+                    validateOnly: bool = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudRunV2InstanceHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    showDeleted: bool = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleCloudRunV2ListInstancesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudRunV2ListInstancesResponseHttpRequest,
+                    previous_response: GoogleCloudRunV2ListInstancesResponse,
+                ) -> GoogleCloudRunV2ListInstancesResponseHttpRequest | None: ...
+                def start(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudRunV2StartInstanceRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+                def stop(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudRunV2StopInstanceRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+
+            @typing.type_check_only
             class JobsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class ExecutionsResource(googleapiclient.discovery.Resource):
@@ -407,6 +458,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                 self, *, name: str, **kwargs: typing.Any
             ) -> GoogleCloudRunV2MetadataHttpRequest: ...
             def builds(self) -> BuildsResource: ...
+            def instances(self) -> InstancesResource: ...
             def jobs(self) -> JobsResource: ...
             def operations(self) -> OperationsResource: ...
             def services(self) -> ServicesResource: ...
@@ -453,6 +505,14 @@ class GoogleCloudRunV2ExportStatusResponseHttpRequest(googleapiclient.http.HttpR
     ) -> GoogleCloudRunV2ExportStatusResponse: ...
 
 @typing.type_check_only
+class GoogleCloudRunV2InstanceHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudRunV2Instance: ...
+
+@typing.type_check_only
 class GoogleCloudRunV2JobHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -469,6 +529,16 @@ class GoogleCloudRunV2ListExecutionsResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudRunV2ListExecutionsResponse: ...
+
+@typing.type_check_only
+class GoogleCloudRunV2ListInstancesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudRunV2ListInstancesResponse: ...
 
 @typing.type_check_only
 class GoogleCloudRunV2ListJobsResponseHttpRequest(googleapiclient.http.HttpRequest):

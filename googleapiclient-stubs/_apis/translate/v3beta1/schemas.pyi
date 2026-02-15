@@ -22,6 +22,7 @@ class BatchTranslateDocumentRequest(typing_extensions.TypedDict, total=False):
     inputConfigs: _list[BatchDocumentInputConfig]
     models: dict[str, typing.Any]
     outputConfig: BatchDocumentOutputConfig
+    pdfNativeOnly: bool
     sourceLanguageCode: str
     targetLanguageCodes: _list[str]
 
@@ -124,6 +125,7 @@ class ListLocationsResponse(typing_extensions.TypedDict, total=False):
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):
@@ -144,6 +146,21 @@ class Operation(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class OutputConfig(typing_extensions.TypedDict, total=False):
     gcsDestination: GcsDestination
+
+@typing.type_check_only
+class RefineTextRequest(typing_extensions.TypedDict, total=False):
+    refinementEntries: _list[RefinementEntry]
+    sourceLanguageCode: str
+    targetLanguageCode: str
+
+@typing.type_check_only
+class RefineTextResponse(typing_extensions.TypedDict, total=False):
+    refinedTranslations: _list[str]
+
+@typing.type_check_only
+class RefinementEntry(typing_extensions.TypedDict, total=False):
+    originalTranslation: str
+    sourceText: str
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):

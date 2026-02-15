@@ -483,6 +483,86 @@ class CloudKMSResource(googleapiclient.discovery.Resource):
                     self, *, name: str, **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
 
+            @typing.type_check_only
+            class SingleTenantHsmInstancesResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class ProposalsResource(googleapiclient.discovery.Resource):
+                    def approve(
+                        self,
+                        *,
+                        name: str,
+                        body: ApproveSingleTenantHsmInstanceProposalRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> ApproveSingleTenantHsmInstanceProposalResponseHttpRequest: ...
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: SingleTenantHsmInstanceProposal = ...,
+                        singleTenantHsmInstanceProposalId: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> OperationHttpRequest: ...
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> EmptyHttpRequest: ...
+                    def execute(
+                        self,
+                        *,
+                        name: str,
+                        body: ExecuteSingleTenantHsmInstanceProposalRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> OperationHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> SingleTenantHsmInstanceProposalHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        filter: str = ...,
+                        orderBy: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        showDeleted: bool = ...,
+                        **kwargs: typing.Any,
+                    ) -> ListSingleTenantHsmInstanceProposalsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListSingleTenantHsmInstanceProposalsResponseHttpRequest,
+                        previous_response: ListSingleTenantHsmInstanceProposalsResponse,
+                    ) -> (
+                        ListSingleTenantHsmInstanceProposalsResponseHttpRequest | None
+                    ): ...
+
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: SingleTenantHsmInstance = ...,
+                    singleTenantHsmInstanceId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> SingleTenantHsmInstanceHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    showDeleted: bool = ...,
+                    **kwargs: typing.Any,
+                ) -> ListSingleTenantHsmInstancesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListSingleTenantHsmInstancesResponseHttpRequest,
+                    previous_response: ListSingleTenantHsmInstancesResponse,
+                ) -> ListSingleTenantHsmInstancesResponseHttpRequest | None: ...
+                def proposals(self) -> ProposalsResource: ...
+
             def generateRandomBytes(
                 self,
                 *,
@@ -524,6 +604,7 @@ class CloudKMSResource(googleapiclient.discovery.Resource):
             def keyHandles(self) -> KeyHandlesResource: ...
             def keyRings(self) -> KeyRingsResource: ...
             def operations(self) -> OperationsResource: ...
+            def singleTenantHsmInstances(self) -> SingleTenantHsmInstancesResource: ...
 
         def getAutokeyConfig(
             self, *, name: str, **kwargs: typing.Any
@@ -575,6 +656,16 @@ class CloudKMSResource(googleapiclient.discovery.Resource):
     def folders(self) -> FoldersResource: ...
     def organizations(self) -> OrganizationsResource: ...
     def projects(self) -> ProjectsResource: ...
+
+@typing.type_check_only
+class ApproveSingleTenantHsmInstanceProposalResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ApproveSingleTenantHsmInstanceProposalResponse: ...
 
 @typing.type_check_only
 class AsymmetricDecryptResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -647,6 +738,14 @@ class EkmConnectionHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> EkmConnection: ...
+
+@typing.type_check_only
+class EmptyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> Empty: ...
 
 @typing.type_check_only
 class EncryptResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -753,6 +852,24 @@ class ListLocationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListLocationsResponse: ...
 
 @typing.type_check_only
+class ListSingleTenantHsmInstanceProposalsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListSingleTenantHsmInstanceProposalsResponse: ...
+
+@typing.type_check_only
+class ListSingleTenantHsmInstancesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListSingleTenantHsmInstancesResponse: ...
+
+@typing.type_check_only
 class LocationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -843,6 +960,22 @@ class ShowEffectiveKeyAccessJustificationsPolicyConfigResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ShowEffectiveKeyAccessJustificationsPolicyConfigResponse: ...
+
+@typing.type_check_only
+class SingleTenantHsmInstanceHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> SingleTenantHsmInstance: ...
+
+@typing.type_check_only
+class SingleTenantHsmInstanceProposalHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> SingleTenantHsmInstanceProposal: ...
 
 @typing.type_check_only
 class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):

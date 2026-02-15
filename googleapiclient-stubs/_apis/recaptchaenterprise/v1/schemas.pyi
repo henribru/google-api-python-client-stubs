@@ -550,6 +550,7 @@ class GoogleCloudRecaptchaenterpriseV1TokenProperties(
         "DUPE",
         "MISSING",
         "BROWSER_ERROR",
+        "UNEXPECTED_ACTION",
     ]
     iosBundleId: str
     valid: bool

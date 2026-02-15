@@ -126,3 +126,23 @@ class GoogleSecuritySafebrowsingV5SearchHashesResponse(
 ):
     cacheDuration: str
     fullHashes: _list[GoogleSecuritySafebrowsingV5FullHash]
+
+@typing.type_check_only
+class GoogleSecuritySafebrowsingV5SearchUrlsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    cacheDuration: str
+    threats: _list[GoogleSecuritySafebrowsingV5ThreatUrl]
+
+@typing.type_check_only
+class GoogleSecuritySafebrowsingV5ThreatUrl(typing_extensions.TypedDict, total=False):
+    threatTypes: _list[
+        typing_extensions.Literal[
+            "THREAT_TYPE_UNSPECIFIED",
+            "MALWARE",
+            "SOCIAL_ENGINEERING",
+            "UNWANTED_SOFTWARE",
+            "POTENTIALLY_HARMFUL_APPLICATION",
+        ]
+    ]
+    url: str

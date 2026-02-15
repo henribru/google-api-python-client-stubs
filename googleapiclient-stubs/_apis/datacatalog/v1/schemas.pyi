@@ -260,6 +260,7 @@ class GoogleCloudDatacatalogV1Entry(typing_extensions.TypedDict, total=False):
     filesetSpec: GoogleCloudDatacatalogV1FilesetSpec
     fullyQualifiedName: str
     gcsFilesetSpec: GoogleCloudDatacatalogV1GcsFilesetSpec
+    graphSpec: GoogleCloudDatacatalogV1GraphSpec
     integratedSystem: typing_extensions.Literal[
         "INTEGRATED_SYSTEM_UNSPECIFIED",
         "BIGQUERY",
@@ -282,6 +283,7 @@ class GoogleCloudDatacatalogV1Entry(typing_extensions.TypedDict, total=False):
     schema: GoogleCloudDatacatalogV1Schema
     serviceSpec: GoogleCloudDatacatalogV1ServiceSpec
     sourceSystemTimestamps: GoogleCloudDatacatalogV1SystemTimestamps
+    spannerTableSpec: GoogleCloudDatacatalogV1SpannerTableSpec
     sqlDatabaseSystemSpec: GoogleCloudDatacatalogV1SqlDatabaseSystemSpec
     type: typing_extensions.Literal[
         "ENTRY_TYPE_UNSPECIFIED",
@@ -303,6 +305,7 @@ class GoogleCloudDatacatalogV1Entry(typing_extensions.TypedDict, total=False):
         "FEATURE_ONLINE_STORE",
         "FEATURE_VIEW",
         "FEATURE_GROUP",
+        "GRAPH",
     ]
     usageSignal: GoogleCloudDatacatalogV1UsageSignal
     userSpecifiedSystem: str
@@ -372,6 +375,55 @@ class GoogleCloudDatacatalogV1GcsFileSpec(typing_extensions.TypedDict, total=Fal
 class GoogleCloudDatacatalogV1GcsFilesetSpec(typing_extensions.TypedDict, total=False):
     filePatterns: _list[str]
     sampleGcsFileSpecs: _list[GoogleCloudDatacatalogV1GcsFileSpec]
+
+@typing.type_check_only
+class GoogleCloudDatacatalogV1GraphSpec(typing_extensions.TypedDict, total=False):
+    edgeTables: _list[GoogleCloudDatacatalogV1GraphSpecGraphElementTable]
+    name: str
+    nodeTables: _list[GoogleCloudDatacatalogV1GraphSpecGraphElementTable]
+
+@typing.type_check_only
+class GoogleCloudDatacatalogV1GraphSpecGraphElementTable(
+    typing_extensions.TypedDict, total=False
+):
+    alias: str
+    dataSource: str
+    destinationNodeReference: (
+        GoogleCloudDatacatalogV1GraphSpecGraphElementTableGraphNodeReference
+    )
+    dynamicLabelColumn: str
+    dynamicPropertiesColumn: str
+    elementKeys: _list[str]
+    inputSource: typing_extensions.Literal["INPUT_SOURCE_UNSPECIFIED", "TABLE", "VIEW"]
+    kind: typing_extensions.Literal["KIND_UNSPECIFIED", "NODE", "EDGE"]
+    labelAndProperties: _list[
+        GoogleCloudDatacatalogV1GraphSpecGraphElementTableLabelAndProperties
+    ]
+    sourceNodeReference: (
+        GoogleCloudDatacatalogV1GraphSpecGraphElementTableGraphNodeReference
+    )
+
+@typing.type_check_only
+class GoogleCloudDatacatalogV1GraphSpecGraphElementTableGraphNodeReference(
+    typing_extensions.TypedDict, total=False
+):
+    edgeTableColumns: _list[str]
+    nodeAlias: str
+    nodeTableColumns: _list[str]
+
+@typing.type_check_only
+class GoogleCloudDatacatalogV1GraphSpecGraphElementTableLabelAndProperties(
+    typing_extensions.TypedDict, total=False
+):
+    label: str
+    properties: _list[GoogleCloudDatacatalogV1GraphSpecGraphElementTableProperty]
+
+@typing.type_check_only
+class GoogleCloudDatacatalogV1GraphSpecGraphElementTableProperty(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
+    type: str
 
 @typing.type_check_only
 class GoogleCloudDatacatalogV1ImportEntriesMetadata(
@@ -722,6 +774,36 @@ class GoogleCloudDatacatalogV1SetConfigRequest(
         "TAG_TEMPLATE_MIGRATION_ENABLED",
         "TAG_TEMPLATE_MIGRATION_DISABLED",
     ]
+
+@typing.type_check_only
+class GoogleCloudDatacatalogV1SpannerTableSpec(
+    typing_extensions.TypedDict, total=False
+):
+    foreignKeys: _list[GoogleCloudDatacatalogV1SpannerTableSpecSpannerForeignKey]
+    primaryKey: GoogleCloudDatacatalogV1SpannerTableSpecSpannerPrimaryKey
+
+@typing.type_check_only
+class GoogleCloudDatacatalogV1SpannerTableSpecSpannerForeignKey(
+    typing_extensions.TypedDict, total=False
+):
+    columnMappings: _list[
+        GoogleCloudDatacatalogV1SpannerTableSpecSpannerForeignKeyForeignKeyColumnMapping
+    ]
+    entry: str
+    name: str
+
+@typing.type_check_only
+class GoogleCloudDatacatalogV1SpannerTableSpecSpannerForeignKeyForeignKeyColumnMapping(
+    typing_extensions.TypedDict, total=False
+):
+    column: str
+    referenceColumn: str
+
+@typing.type_check_only
+class GoogleCloudDatacatalogV1SpannerTableSpecSpannerPrimaryKey(
+    typing_extensions.TypedDict, total=False
+):
+    columns: _list[str]
 
 @typing.type_check_only
 class GoogleCloudDatacatalogV1SqlDatabaseSystemSpec(

@@ -114,6 +114,18 @@ class Command(typing_extensions.TypedDict, total=False):
     shellCommand: ShellCommand
 
 @typing.type_check_only
+class ComponentHealth(typing_extensions.TypedDict, total=False):
+    component: str
+    componentHealthChecks: _list[HealthCheck]
+    componentHealthType: typing_extensions.Literal[
+        "TYPE_UNSPECIFIED", "TYPE_REQUIRED", "TYPE_OPTIONAL", "TYPE_SPECIAL"
+    ]
+    state: typing_extensions.Literal[
+        "HEALTH_STATE_UNSPECIFIED", "HEALTHY", "UNHEALTHY", "CRITICAL", "UNSUPPORTED"
+    ]
+    subComponentsHealth: _list[ComponentHealth]
+
+@typing.type_check_only
 class DatabaseProperties(typing_extensions.TypedDict, total=False):
     backupProperties: BackupProperties
     databaseType: typing_extensions.Literal[
@@ -187,6 +199,16 @@ class ExternalDataSources(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GceInstanceFilter(typing_extensions.TypedDict, total=False):
     serviceAccounts: _list[str]
+
+@typing.type_check_only
+class HealthCheck(typing_extensions.TypedDict, total=False):
+    message: str
+    metric: str
+    resource: CloudResource
+    source: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "PASSED", "FAILED", "DEGRADED", "SKIPPED", "UNSUPPORTED"
+    ]
 
 @typing.type_check_only
 class IAMPermission(typing_extensions.TypedDict, total=False):
@@ -362,6 +384,11 @@ class RuleExecutionResult(typing_extensions.TypedDict, total=False):
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "STATE_SUCCESS", "STATE_FAILURE", "STATE_SKIPPED"
     ]
+
+@typing.type_check_only
+class RuleOutput(typing_extensions.TypedDict, total=False):
+    details: dict[str, typing.Any]
+    message: str
 
 @typing.type_check_only
 class RunEvaluationRequest(typing_extensions.TypedDict, total=False):
@@ -689,6 +716,7 @@ class UpcomingMaintenanceEvent(typing_extensions.TypedDict, total=False):
 class ViolationDetails(typing_extensions.TypedDict, total=False):
     asset: str
     observed: dict[str, typing.Any]
+    ruleOutput: _list[RuleOutput]
     serviceAccount: str
 
 @typing.type_check_only
@@ -698,6 +726,14 @@ class WorkloadProfile(typing_extensions.TypedDict, total=False):
     refreshedTime: str
     sapWorkload: SapWorkload
     workloadType: typing_extensions.Literal["WORKLOAD_TYPE_UNSPECIFIED", "S4_HANA"]
+
+@typing.type_check_only
+class WorkloadProfileHealth(typing_extensions.TypedDict, total=False):
+    checkTime: str
+    componentsHealth: _list[ComponentHealth]
+    state: typing_extensions.Literal[
+        "HEALTH_STATE_UNSPECIFIED", "HEALTHY", "UNHEALTHY", "CRITICAL", "UNSUPPORTED"
+    ]
 
 @typing.type_check_only
 class WriteInsightRequest(typing_extensions.TypedDict, total=False):
