@@ -213,6 +213,15 @@ class Destination(typing_extensions.TypedDict, total=False):
     ports: _list[int]
 
 @typing.type_check_only
+class DnsThreatDetector(typing_extensions.TypedDict, total=False):
+    createTime: str
+    excludedNetworks: _list[str]
+    labels: dict[str, typing.Any]
+    name: str
+    provider: typing_extensions.Literal["PROVIDER_UNSPECIFIED", "INFOBLOX"]
+    updateTime: str
+
+@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -519,6 +528,12 @@ class ListClientTlsPoliciesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class ListDnsThreatDetectorsResponse(typing_extensions.TypedDict, total=False):
+    dnsThreatDetectors: _list[DnsThreatDetector]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
 class ListFirewallEndpointAssociationsResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -719,6 +734,7 @@ class MirroringEndpointGroup(typing_extensions.TypedDict, total=False):
         "OUT_OF_SYNC",
         "DELETE_FAILED",
     ]
+    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "DIRECT"]
     updateTime: str
 
 @typing.type_check_only

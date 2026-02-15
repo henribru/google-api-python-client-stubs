@@ -276,6 +276,7 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                         filter: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
+                        returnPartialSuccess: bool = ...,
                         **kwargs: typing.Any,
                     ) -> ListOperationsResponseHttpRequest: ...
                     def list_next(
@@ -356,6 +357,7 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                 self,
                 *,
                 name: str,
+                extraLocationTypes: str | _list[str] = ...,
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,

@@ -19,6 +19,20 @@ class DataformResource(googleapiclient.discovery.Resource):
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class FoldersResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: Folder = ...,
+                    folderId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> FolderHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> FolderHttpRequest: ...
                 def getIamPolicy(
                     self,
                     *,
@@ -26,6 +40,36 @@ class DataformResource(googleapiclient.discovery.Resource):
                     options_requestedPolicyVersion: int = ...,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
+                def move(
+                    self,
+                    *,
+                    name: str,
+                    body: MoveFolderRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: Folder = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> FolderHttpRequest: ...
+                def queryFolderContents(
+                    self,
+                    *,
+                    folder: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> QueryFolderContentsResponseHttpRequest: ...
+                def queryFolderContents_next(
+                    self,
+                    previous_request: QueryFolderContentsResponseHttpRequest,
+                    previous_response: QueryFolderContentsResponse,
+                ) -> QueryFolderContentsResponseHttpRequest | None: ...
                 def setIamPolicy(
                     self,
                     *,
@@ -484,6 +528,13 @@ class DataformResource(googleapiclient.discovery.Resource):
                     previous_request: ListRepositoriesResponseHttpRequest,
                     previous_response: ListRepositoriesResponse,
                 ) -> ListRepositoriesResponseHttpRequest | None: ...
+                def move(
+                    self,
+                    *,
+                    name: str,
+                    body: MoveRepositoryRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
                 def patch(
                     self,
                     *,
@@ -537,6 +588,20 @@ class DataformResource(googleapiclient.discovery.Resource):
 
             @typing.type_check_only
             class TeamFoldersResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: TeamFolder = ...,
+                    teamFolderId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> TeamFolderHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> TeamFolderHttpRequest: ...
                 def getIamPolicy(
                     self,
                     *,
@@ -544,6 +609,44 @@ class DataformResource(googleapiclient.discovery.Resource):
                     options_requestedPolicyVersion: int = ...,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: TeamFolder = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> TeamFolderHttpRequest: ...
+                def queryContents(
+                    self,
+                    *,
+                    teamFolder: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> QueryTeamFolderContentsResponseHttpRequest: ...
+                def queryContents_next(
+                    self,
+                    previous_request: QueryTeamFolderContentsResponseHttpRequest,
+                    previous_response: QueryTeamFolderContentsResponse,
+                ) -> QueryTeamFolderContentsResponseHttpRequest | None: ...
+                def search(
+                    self,
+                    *,
+                    location: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> SearchTeamFoldersResponseHttpRequest: ...
+                def search_next(
+                    self,
+                    previous_request: SearchTeamFoldersResponseHttpRequest,
+                    previous_response: SearchTeamFoldersResponse,
+                ) -> SearchTeamFoldersResponseHttpRequest | None: ...
                 def setIamPolicy(
                     self,
                     *,
@@ -580,6 +683,21 @@ class DataformResource(googleapiclient.discovery.Resource):
                 previous_request: ListLocationsResponseHttpRequest,
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
+            def queryUserRootContents(
+                self,
+                *,
+                location: str,
+                filter: str = ...,
+                orderBy: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any,
+            ) -> QueryUserRootContentsResponseHttpRequest: ...
+            def queryUserRootContents_next(
+                self,
+                previous_request: QueryUserRootContentsResponseHttpRequest,
+                previous_response: QueryUserRootContentsResponse,
+            ) -> QueryUserRootContentsResponseHttpRequest | None: ...
             def updateConfig(
                 self,
                 *,
@@ -706,6 +824,14 @@ class FetchRepositoryHistoryResponseHttpRequest(googleapiclient.http.HttpRequest
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> FetchRepositoryHistoryResponse: ...
+
+@typing.type_check_only
+class FolderHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> Folder: ...
 
 @typing.type_check_only
 class InstallNpmPackagesResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -862,6 +988,14 @@ class QueryDirectoryContentsResponseHttpRequest(googleapiclient.http.HttpRequest
     ) -> QueryDirectoryContentsResponse: ...
 
 @typing.type_check_only
+class QueryFolderContentsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> QueryFolderContentsResponse: ...
+
+@typing.type_check_only
 class QueryRepositoryDirectoryContentsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -870,6 +1004,22 @@ class QueryRepositoryDirectoryContentsResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> QueryRepositoryDirectoryContentsResponse: ...
+
+@typing.type_check_only
+class QueryTeamFolderContentsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> QueryTeamFolderContentsResponse: ...
+
+@typing.type_check_only
+class QueryUserRootContentsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> QueryUserRootContentsResponse: ...
 
 @typing.type_check_only
 class QueryWorkflowInvocationActionsResponseHttpRequest(
@@ -944,6 +1094,22 @@ class SearchFilesResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> SearchFilesResponse: ...
+
+@typing.type_check_only
+class SearchTeamFoldersResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> SearchTeamFoldersResponse: ...
+
+@typing.type_check_only
+class TeamFolderHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> TeamFolder: ...
 
 @typing.type_check_only
 class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):

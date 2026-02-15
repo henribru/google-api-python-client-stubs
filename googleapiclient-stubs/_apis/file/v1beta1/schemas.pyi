@@ -270,6 +270,7 @@ class ListLocationsResponse(typing_extensions.TypedDict, total=False):
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListSharesResponse(typing_extensions.TypedDict, total=False):
@@ -320,7 +321,9 @@ class NetworkConfig(typing_extensions.TypedDict, total=False):
         "PRIVATE_SERVICE_CONNECT",
     ]
     ipAddresses: _list[str]
-    modes: _list[typing_extensions.Literal["ADDRESS_MODE_UNSPECIFIED", "MODE_IPV4"]]
+    modes: _list[
+        typing_extensions.Literal["ADDRESS_MODE_UNSPECIFIED", "MODE_IPV4", "MODE_IPV6"]
+    ]
     network: str
     pscConfig: PscConfig
     reservedIpRange: str

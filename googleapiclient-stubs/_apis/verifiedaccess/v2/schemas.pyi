@@ -119,6 +119,7 @@ class VerifyChallengeResponseResult(typing_extensions.TypedDict, total=False):
         "CHROME_BROWSER_HW_KEY",
         "CHROME_BROWSER_OS_KEY",
         "CHROME_BROWSER_NO_KEY",
+        "CHROME_OS_NO_KEY",
     ]
     profileCustomerId: str
     profileKeyTrustLevel: typing_extensions.Literal[
@@ -128,6 +129,7 @@ class VerifyChallengeResponseResult(typing_extensions.TypedDict, total=False):
         "CHROME_BROWSER_HW_KEY",
         "CHROME_BROWSER_OS_KEY",
         "CHROME_BROWSER_NO_KEY",
+        "CHROME_OS_NO_KEY",
     ]
     profilePermanentId: str
     signedPublicKeyAndChallenge: str

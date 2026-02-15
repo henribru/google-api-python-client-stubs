@@ -48,9 +48,31 @@ class GoogleMarketingPlatformAdminAPIResource(googleapiclient.discovery.Resource
                 **kwargs: typing.Any,
             ) -> SetPropertyServiceLevelResponseHttpRequest: ...
 
+        def findSalesPartnerManagedClients(
+            self,
+            *,
+            organization: str,
+            body: FindSalesPartnerManagedClientsRequest = ...,
+            **kwargs: typing.Any,
+        ) -> FindSalesPartnerManagedClientsResponseHttpRequest: ...
         def get(
             self, *, name: str, **kwargs: typing.Any
         ) -> OrganizationHttpRequest: ...
+        def list(
+            self, *, pageSize: int = ..., pageToken: str = ..., **kwargs: typing.Any
+        ) -> ListOrganizationsResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListOrganizationsResponseHttpRequest,
+            previous_response: ListOrganizationsResponse,
+        ) -> ListOrganizationsResponseHttpRequest | None: ...
+        def reportPropertyUsage(
+            self,
+            *,
+            organization: str,
+            body: ReportPropertyUsageRequest = ...,
+            **kwargs: typing.Any,
+        ) -> ReportPropertyUsageResponseHttpRequest: ...
         def analyticsAccountLinks(self) -> AnalyticsAccountLinksResource: ...
 
     def new_batch_http_request(
@@ -84,6 +106,16 @@ class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Empty: ...
 
 @typing.type_check_only
+class FindSalesPartnerManagedClientsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> FindSalesPartnerManagedClientsResponse: ...
+
+@typing.type_check_only
 class ListAnalyticsAccountLinksResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -92,12 +124,28 @@ class ListAnalyticsAccountLinksResponseHttpRequest(googleapiclient.http.HttpRequ
     ) -> ListAnalyticsAccountLinksResponse: ...
 
 @typing.type_check_only
+class ListOrganizationsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListOrganizationsResponse: ...
+
+@typing.type_check_only
 class OrganizationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Organization: ...
+
+@typing.type_check_only
+class ReportPropertyUsageResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ReportPropertyUsageResponse: ...
 
 @typing.type_check_only
 class SetPropertyServiceLevelResponseHttpRequest(googleapiclient.http.HttpRequest):

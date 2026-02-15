@@ -79,6 +79,36 @@ class Market(typing_extensions.TypedDict, total=False):
     origin: str
 
 @typing.type_check_only
+class McpToolDataHandlingProfile(typing_extensions.TypedDict, total=False):
+    inputDataAccessLevel: typing_extensions.Literal[
+        "DATA_ACCESS_LEVEL_UNSPECIFIED",
+        "DATA_ACCESS_LEVEL_PUBLIC",
+        "DATA_ACCESS_LEVEL_CONFIDENTIAL",
+        "DATA_ACCESS_LEVEL_NEED_TO_KNOW",
+        "DATA_ACCESS_LEVEL_PII",
+        "DATA_ACCESS_LEVEL_USER",
+        "DATA_ACCESS_LEVEL_NO_DATA_ACCESS",
+    ]
+    outputDataAccessLevel: typing_extensions.Literal[
+        "DATA_ACCESS_LEVEL_UNSPECIFIED",
+        "DATA_ACCESS_LEVEL_PUBLIC",
+        "DATA_ACCESS_LEVEL_CONFIDENTIAL",
+        "DATA_ACCESS_LEVEL_NEED_TO_KNOW",
+        "DATA_ACCESS_LEVEL_PII",
+        "DATA_ACCESS_LEVEL_USER",
+        "DATA_ACCESS_LEVEL_NO_DATA_ACCESS",
+    ]
+
+@typing.type_check_only
+class McpToolLifecycleProfile(typing_extensions.TypedDict, total=False):
+    launchState: typing_extensions.Literal[
+        "LAUNCH_STATE_UNSPECIFIED",
+        "LAUNCH_STATE_DEVELOPMENT",
+        "LAUNCH_STATE_PRODUCTION_PREVIEW",
+        "LAUNCH_STATE_GENERAL_AVAILABILITY",
+    ]
+
+@typing.type_check_only
 class ModelVersion(typing_extensions.TypedDict, total=False):
     dated: str
     major: int

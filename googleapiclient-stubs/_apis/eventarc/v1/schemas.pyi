@@ -410,6 +410,10 @@ class Pubsub(typing_extensions.TypedDict, total=False):
     topic: str
 
 @typing.type_check_only
+class RetryPolicy(typing_extensions.TypedDict, total=False):
+    maxAttempts: int
+
+@typing.type_check_only
 class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
     policy: Policy
     updateMask: str
@@ -460,6 +464,7 @@ class Trigger(typing_extensions.TypedDict, total=False):
     eventFilters: _list[EventFilter]
     labels: dict[str, typing.Any]
     name: str
+    retryPolicy: RetryPolicy
     satisfiesPzs: bool
     serviceAccount: str
     transport: Transport

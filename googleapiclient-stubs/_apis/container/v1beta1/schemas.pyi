@@ -16,6 +16,7 @@ class AcceleratorConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class AdditionalIPRangesConfig(typing_extensions.TypedDict, total=False):
     podIpv4RangeNames: _list[str]
+    status: typing_extensions.Literal["STATUS_UNSPECIFIED", "ACTIVE", "DRAINING"]
     subnetwork: str
 
 @typing.type_check_only
@@ -53,7 +54,9 @@ class AddonsConfig(typing_extensions.TypedDict, total=False):
     lustreCsiDriverConfig: LustreCsiDriverConfig
     networkPolicyConfig: NetworkPolicyConfig
     parallelstoreCsiDriverConfig: ParallelstoreCsiDriverConfig
+    podSnapshotConfig: PodSnapshotConfig
     rayOperatorConfig: RayOperatorConfig
+    sliceControllerConfig: SliceControllerConfig
     statefulHaConfig: StatefulHAConfig
 
 @typing.type_check_only
@@ -202,6 +205,11 @@ class BootDisk(typing_extensions.TypedDict, total=False):
     sizeGb: str
 
 @typing.type_check_only
+class BootDiskProfile(typing_extensions.TypedDict, total=False):
+    swapSizeGib: str
+    swapSizePercent: int
+
+@typing.type_check_only
 class CancelOperationRequest(typing_extensions.TypedDict, total=False):
     name: str
     operationId: str
@@ -212,6 +220,15 @@ class CancelOperationRequest(typing_extensions.TypedDict, total=False):
 class CertificateAuthorityDomainConfig(typing_extensions.TypedDict, total=False):
     fqdns: _list[str]
     gcpSecretManagerCertificateConfig: GCPSecretManagerCertificateConfig
+
+@typing.type_check_only
+class CertificateConfig(typing_extensions.TypedDict, total=False):
+    gcpSecretManagerSecretUri: str
+
+@typing.type_check_only
+class CertificateConfigPair(typing_extensions.TypedDict, total=False):
+    cert: CertificateConfig
+    key: CertificateConfig
 
 @typing.type_check_only
 class CheckAutopilotCompatibilityResponse(typing_extensions.TypedDict, total=False):
@@ -253,6 +270,7 @@ class Cluster(typing_extensions.TypedDict, total=False):
     controlPlaneEndpointsConfig: ControlPlaneEndpointsConfig
     costManagementConfig: CostManagementConfig
     createTime: str
+    currentEmulatedVersion: str
     currentMasterVersion: str
     currentNodeCount: int
     currentNodeVersion: str
@@ -281,6 +299,7 @@ class Cluster(typing_extensions.TypedDict, total=False):
     loggingConfig: LoggingConfig
     loggingService: str
     maintenancePolicy: MaintenancePolicy
+    managedOpentelemetryConfig: ManagedOpenTelemetryConfig
     master: Master
     masterAuth: MasterAuth
     masterAuthorizedNetworksConfig: MasterAuthorizedNetworksConfig
@@ -308,6 +327,7 @@ class Cluster(typing_extensions.TypedDict, total=False):
     releaseChannel: ReleaseChannel
     resourceLabels: dict[str, typing.Any]
     resourceUsageExportConfig: ResourceUsageExportConfig
+    rollbackSafeUpgrade: RollbackSafeUpgrade
     satisfiesPzi: bool
     satisfiesPzs: bool
     secretManagerConfig: SecretManagerConfig
@@ -338,6 +358,9 @@ class Cluster(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ClusterAutoscaling(typing_extensions.TypedDict, total=False):
+    autopilotGeneralProfile: typing_extensions.Literal[
+        "AUTOPILOT_GENERAL_PROFILE_UNSPECIFIED", "NO_PERFORMANCE"
+    ]
     autoprovisioningLocations: _list[str]
     autoprovisioningNodePoolDefaults: AutoprovisioningNodePoolDefaults
     autoscalingProfile: typing_extensions.Literal[
@@ -401,6 +424,7 @@ class ClusterUpdate(typing_extensions.TypedDict, total=False):
     desiredLocations: _list[str]
     desiredLoggingConfig: LoggingConfig
     desiredLoggingService: str
+    desiredManagedOpentelemetryConfig: ManagedOpenTelemetryConfig
     desiredMaster: Master
     desiredMasterAuthorizedNetworksConfig: MasterAuthorizedNetworksConfig
     desiredMasterVersion: str
@@ -429,11 +453,14 @@ class ClusterUpdate(typing_extensions.TypedDict, total=False):
         "PRIVATE_IPV6_GOOGLE_ACCESS_TO_GOOGLE",
         "PRIVATE_IPV6_GOOGLE_ACCESS_BIDIRECTIONAL",
     ]
+    desiredPrivilegedAdmissionConfig: PrivilegedAdmissionConfig
     desiredProtectConfig: ProtectConfig
     desiredRbacBindingConfig: RBACBindingConfig
     desiredReleaseChannel: ReleaseChannel
     desiredResourceUsageExportConfig: ResourceUsageExportConfig
+    desiredRollbackSafeUpgrade: RollbackSafeUpgrade
     desiredSecretManagerConfig: SecretManagerConfig
+    desiredSecretSyncConfig: SecretSyncConfig
     desiredSecurityPostureConfig: SecurityPostureConfig
     desiredServiceExternalIpsConfig: ServiceExternalIPsConfig
     desiredShieldedNodes: ShieldedNodes
@@ -475,7 +502,17 @@ class ClusterUpgradeInfo(typing_extensions.TypedDict, total=False):
             "SYSTEM_CONFIG",
         ]
     ]
+    rollbackSafeUpgradeStatus: RollbackSafeUpgradeStatus
     upgradeDetails: _list[UpgradeDetails]
+
+@typing.type_check_only
+class CompatibilityStatus(typing_extensions.TypedDict, total=False):
+    downgradableVersion: str
+    emulatedVersionTime: str
+
+@typing.type_check_only
+class CompleteControlPlaneUpgradeRequest(typing_extensions.TypedDict, total=False):
+    version: str
 
 @typing.type_check_only
 class CompleteIPRotationRequest(typing_extensions.TypedDict, total=False):
@@ -514,6 +551,7 @@ class ConsumptionMeteringConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ContainerdConfig(typing_extensions.TypedDict, total=False):
     privateRegistryAccessConfig: PrivateRegistryAccessConfig
+    registryHosts: _list[RegistryHostConfig]
     writableCgroups: WritableCgroups
 
 @typing.type_check_only
@@ -586,6 +624,10 @@ class Date(typing_extensions.TypedDict, total=False):
     year: int
 
 @typing.type_check_only
+class DedicatedLocalSsdProfile(typing_extensions.TypedDict, total=False):
+    diskCount: str
+
+@typing.type_check_only
 class DefaultComputeClassConfig(typing_extensions.TypedDict, total=False):
     enabled: bool
 
@@ -604,11 +646,24 @@ class DesiredEnterpriseConfig(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class DisruptionEvent(typing_extensions.TypedDict, total=False):
+    disruptionType: typing_extensions.Literal[
+        "DISRUPTION_TYPE_UNSPECIFIED", "POD_NOT_ENOUGH_PDB", "POD_PDB_VIOLATION"
+    ]
+    pdbBlockedNode: str
+    pdbBlockedPod: _list[PdbBlockedPod]
+    pdbViolationTimeout: str
+
+@typing.type_check_only
 class DnsCacheConfig(typing_extensions.TypedDict, total=False):
     enabled: bool
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class EncryptionConfig(typing_extensions.TypedDict, total=False):
+    disabled: bool
 
 @typing.type_check_only
 class EnterpriseConfig(typing_extensions.TypedDict, total=False):
@@ -618,6 +673,11 @@ class EnterpriseConfig(typing_extensions.TypedDict, total=False):
     desiredTier: typing_extensions.Literal[
         "CLUSTER_TIER_UNSPECIFIED", "STANDARD", "ENTERPRISE"
     ]
+
+@typing.type_check_only
+class EphemeralLocalSsdProfile(typing_extensions.TypedDict, total=False):
+    swapSizeGib: str
+    swapSizePercent: int
 
 @typing.type_check_only
 class EphemeralStorageConfig(typing_extensions.TypedDict, total=False):
@@ -683,6 +743,12 @@ class Fleet(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GCPSecretManagerCertificateConfig(typing_extensions.TypedDict, total=False):
     secretUri: str
+
+@typing.type_check_only
+class GPUDirectConfig(typing_extensions.TypedDict, total=False):
+    gpuDirectStrategy: typing_extensions.Literal[
+        "GPU_DIRECT_STRATEGY_UNSPECIFIED", "RDMA"
+    ]
 
 @typing.type_check_only
 class GPUDriverInstallationConfig(typing_extensions.TypedDict, total=False):
@@ -753,6 +819,23 @@ class HighScaleCheckpointingConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class HorizontalPodAutoscaling(typing_extensions.TypedDict, total=False):
     disabled: bool
+
+@typing.type_check_only
+class HostConfig(typing_extensions.TypedDict, total=False):
+    ca: _list[CertificateConfig]
+    capabilities: _list[
+        typing_extensions.Literal[
+            "HOST_CAPABILITY_UNSPECIFIED",
+            "HOST_CAPABILITY_PULL",
+            "HOST_CAPABILITY_RESOLVE",
+            "HOST_CAPABILITY_PUSH",
+        ]
+    ]
+    client: _list[CertificateConfigPair]
+    dialTimeout: str
+    header: _list[RegistryHeader]
+    host: str
+    overridePath: bool
 
 @typing.type_check_only
 class HostMaintenancePolicy(typing_extensions.TypedDict, total=False):
@@ -866,6 +949,8 @@ class LinuxNodeConfig(typing_extensions.TypedDict, total=False):
         "CGROUP_MODE_UNSPECIFIED", "CGROUP_MODE_V1", "CGROUP_MODE_V2"
     ]
     hugepages: HugepagesConfig
+    nodeKernelModuleLoading: NodeKernelModuleLoading
+    swapConfig: SwapConfig
     sysctls: dict[str, typing.Any]
     transparentHugepageDefrag: typing_extensions.Literal[
         "TRANSPARENT_HUGEPAGE_DEFRAG_UNSPECIFIED",
@@ -949,6 +1034,9 @@ class LustreCsiDriverConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class MaintenanceExclusionOptions(typing_extensions.TypedDict, total=False):
+    endTimeBehavior: typing_extensions.Literal[
+        "END_TIME_BEHAVIOR_UNSPECIFIED", "UNTIL_END_OF_SUPPORT"
+    ]
     scope: typing_extensions.Literal[
         "NO_UPGRADES", "NO_MINOR_UPGRADES", "NO_MINOR_OR_NODE_UPGRADES"
     ]
@@ -965,12 +1053,19 @@ class MaintenanceWindow(typing_extensions.TypedDict, total=False):
     recurringWindow: RecurringTimeWindow
 
 @typing.type_check_only
+class ManagedOpenTelemetryConfig(typing_extensions.TypedDict, total=False):
+    scope: typing_extensions.Literal[
+        "SCOPE_UNSPECIFIED", "NONE", "COLLECTION_AND_INSTRUMENTATION_COMPONENTS"
+    ]
+
+@typing.type_check_only
 class ManagedPrometheusConfig(typing_extensions.TypedDict, total=False):
     autoMonitoringConfig: AutoMonitoringConfig
     enabled: bool
 
 @typing.type_check_only
-class Master(typing_extensions.TypedDict, total=False): ...
+class Master(typing_extensions.TypedDict, total=False):
+    compatibilityStatus: CompatibilityStatus
 
 @typing.type_check_only
 class MasterAuth(typing_extensions.TypedDict, total=False):
@@ -1109,6 +1204,7 @@ class NodeConfig(typing_extensions.TypedDict, total=False):
     bootDisk: BootDisk
     bootDiskKmsKey: str
     confidentialNodes: ConfidentialNodes
+    consolidationDelay: str
     containerdConfig: ContainerdConfig
     diskSizeGb: int
     diskType: str
@@ -1123,6 +1219,7 @@ class NodeConfig(typing_extensions.TypedDict, total=False):
     fastSocket: FastSocket
     flexStart: bool
     gcfsConfig: GcfsConfig
+    gpuDirectConfig: GPUDirectConfig
     gvnic: VirtualNIC
     hostMaintenancePolicy: HostMaintenancePolicy
     imageType: str
@@ -1169,6 +1266,16 @@ class NodeConfigDefaults(typing_extensions.TypedDict, total=False):
     nodeKubeletConfig: NodeKubeletConfig
 
 @typing.type_check_only
+class NodeDrainConfig(typing_extensions.TypedDict, total=False):
+    respectPdbDuringNodePoolDeletion: bool
+
+@typing.type_check_only
+class NodeKernelModuleLoading(typing_extensions.TypedDict, total=False):
+    policy: typing_extensions.Literal[
+        "POLICY_UNSPECIFIED", "ENFORCE_SIGNED_MODULES", "DO_NOT_ENFORCE_SIGNED_MODULES"
+    ]
+
+@typing.type_check_only
 class NodeKubeletConfig(typing_extensions.TypedDict, total=False):
     allowedUnsafeSysctls: _list[str]
     containerLogMaxFiles: int
@@ -1203,6 +1310,7 @@ class NodeManagement(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class NodeNetworkConfig(typing_extensions.TypedDict, total=False):
+    acceleratorNetworkProfile: str
     additionalNodeNetworkConfigs: _list[AdditionalNodeNetworkConfig]
     additionalPodNetworkConfigs: _list[AdditionalPodNetworkConfig]
     createPodRange: bool
@@ -1230,6 +1338,7 @@ class NodePool(typing_extensions.TypedDict, total=False):
     maxPodsConstraint: MaxPodsConstraint
     name: str
     networkConfig: NodeNetworkConfig
+    nodeDrainConfig: NodeDrainConfig
     placementPolicy: PlacementPolicy
     podIpv4CidrSize: int
     queuedProvisioning: QueuedProvisioning
@@ -1384,6 +1493,11 @@ class ParentProductConfig(typing_extensions.TypedDict, total=False):
     productName: str
 
 @typing.type_check_only
+class PdbBlockedPod(typing_extensions.TypedDict, total=False):
+    name: str
+    namespace: str
+
+@typing.type_check_only
 class PlacementPolicy(typing_extensions.TypedDict, total=False):
     policyName: str
     tpuTopology: str
@@ -1401,6 +1515,10 @@ class PodCIDROverprovisionConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PodSecurityPolicyConfig(typing_extensions.TypedDict, total=False):
+    enabled: bool
+
+@typing.type_check_only
+class PodSnapshotConfig(typing_extensions.TypedDict, total=False):
     enabled: bool
 
 @typing.type_check_only
@@ -1478,6 +1596,16 @@ class RecurringTimeWindow(typing_extensions.TypedDict, total=False):
     window: TimeWindow
 
 @typing.type_check_only
+class RegistryHeader(typing_extensions.TypedDict, total=False):
+    key: str
+    value: _list[str]
+
+@typing.type_check_only
+class RegistryHostConfig(typing_extensions.TypedDict, total=False):
+    hosts: _list[HostConfig]
+    server: str
+
+@typing.type_check_only
 class ReleaseChannel(typing_extensions.TypedDict, total=False):
     channel: typing_extensions.Literal[
         "UNSPECIFIED", "RAPID", "REGULAR", "STABLE", "EXTENDED"
@@ -1529,6 +1657,18 @@ class RollbackNodePoolUpgradeRequest(typing_extensions.TypedDict, total=False):
     projectId: str
     respectPdb: bool
     zone: str
+
+@typing.type_check_only
+class RollbackSafeUpgrade(typing_extensions.TypedDict, total=False):
+    controlPlaneSoakDuration: str
+
+@typing.type_check_only
+class RollbackSafeUpgradeStatus(typing_extensions.TypedDict, total=False):
+    controlPlaneUpgradeRollbackEndTime: str
+    mode: typing_extensions.Literal[
+        "MODE_UNSPECIFIED", "KCP_MINOR_UPGRADE_ROLLBACK_SAFE_MODE"
+    ]
+    previousVersion: str
 
 @typing.type_check_only
 class RotationConfig(typing_extensions.TypedDict, total=False):
@@ -1711,6 +1851,10 @@ class ShieldedNodes(typing_extensions.TypedDict, total=False):
     enabled: bool
 
 @typing.type_check_only
+class SliceControllerConfig(typing_extensions.TypedDict, total=False):
+    enabled: bool
+
+@typing.type_check_only
 class SoleTenantConfig(typing_extensions.TypedDict, total=False):
     minNodeCpus: int
     nodeAffinities: _list[NodeAffinity]
@@ -1774,6 +1918,14 @@ class StatusCondition(typing_extensions.TypedDict, total=False):
     message: str
 
 @typing.type_check_only
+class SwapConfig(typing_extensions.TypedDict, total=False):
+    bootDiskProfile: BootDiskProfile
+    dedicatedLocalSsdProfile: DedicatedLocalSsdProfile
+    enabled: bool
+    encryptionConfig: EncryptionConfig
+    ephemeralLocalSsdProfile: EphemeralLocalSsdProfile
+
+@typing.type_check_only
 class SyncRotationConfig(typing_extensions.TypedDict, total=False):
     enabled: bool
     rotationInterval: str
@@ -1821,6 +1973,7 @@ class UpdateNodePoolRequest(typing_extensions.TypedDict, total=False):
     bootDisk: BootDisk
     clusterId: str
     confidentialNodes: ConfidentialNodes
+    consolidationDelay: str
     containerdConfig: ContainerdConfig
     diskSizeGb: str
     diskType: str
@@ -1838,6 +1991,7 @@ class UpdateNodePoolRequest(typing_extensions.TypedDict, total=False):
     machineType: str
     maxRunDuration: str
     name: str
+    nodeDrainConfig: NodeDrainConfig
     nodeNetworkConfig: NodeNetworkConfig
     nodePoolId: str
     nodeVersion: str
@@ -1866,6 +2020,7 @@ class UpgradeAvailableEvent(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class UpgradeDetails(typing_extensions.TypedDict, total=False):
     endTime: str
+    initialEmulatedVersion: str
     initialVersion: str
     startTime: str
     startType: typing_extensions.Literal[
@@ -1874,10 +2029,12 @@ class UpgradeDetails(typing_extensions.TypedDict, total=False):
     state: typing_extensions.Literal[
         "UNKNOWN", "FAILED", "SUCCEEDED", "CANCELED", "RUNNING"
     ]
+    targetEmulatedVersion: str
     targetVersion: str
 
 @typing.type_check_only
 class UpgradeEvent(typing_extensions.TypedDict, total=False):
+    currentEmulatedVersion: str
     currentVersion: str
     operation: str
     operationStartTime: str
@@ -1885,18 +2042,22 @@ class UpgradeEvent(typing_extensions.TypedDict, total=False):
     resourceType: typing_extensions.Literal[
         "UPGRADE_RESOURCE_TYPE_UNSPECIFIED", "MASTER", "NODE_POOL"
     ]
+    targetEmulatedVersion: str
     targetVersion: str
 
 @typing.type_check_only
 class UpgradeInfoEvent(typing_extensions.TypedDict, total=False):
+    currentEmulatedVersion: str
     currentVersion: str
     description: str
+    disruptionEvent: DisruptionEvent
     endTime: str
     eventType: typing_extensions.Literal[
         "EVENT_TYPE_UNSPECIFIED",
         "END_OF_SUPPORT",
         "COS_MILESTONE_VERSION_UPDATE",
         "UPGRADE_LIFECYCLE",
+        "DISRUPTION_EVENT",
     ]
     extendedSupportEndTime: str
     operation: str
@@ -1909,6 +2070,7 @@ class UpgradeInfoEvent(typing_extensions.TypedDict, total=False):
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "STARTED", "SUCCEEDED", "FAILED", "CANCELED"
     ]
+    targetEmulatedVersion: str
     targetVersion: str
 
 @typing.type_check_only
@@ -1917,7 +2079,7 @@ class UpgradeSettings(typing_extensions.TypedDict, total=False):
     maxSurge: int
     maxUnavailable: int
     strategy: typing_extensions.Literal[
-        "NODE_POOL_UPDATE_STRATEGY_UNSPECIFIED", "BLUE_GREEN", "SURGE"
+        "NODE_POOL_UPDATE_STRATEGY_UNSPECIFIED", "BLUE_GREEN", "SURGE", "SHORT_LIVED"
     ]
 
 @typing.type_check_only
@@ -1945,6 +2107,7 @@ class UserManagedKeysConfig(typing_extensions.TypedDict, total=False):
     aggregationCa: str
     clusterCa: str
     controlPlaneDiskEncryptionKey: str
+    controlPlaneDiskEncryptionKeyVersions: _list[str]
     etcdApiCa: str
     etcdPeerCa: str
     gkeopsEtcdBackupEncryptionKey: str

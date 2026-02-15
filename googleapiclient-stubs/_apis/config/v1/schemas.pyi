@@ -23,6 +23,12 @@ class AuditLogConfig(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class AutoMigrationConfig(typing_extensions.TypedDict, total=False):
+    autoMigrationEnabled: bool
+    name: str
+    updateTime: str
+
+@typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
     condition: Expr
     members: _list[str]
@@ -51,6 +57,7 @@ class Deployment(typing_extensions.TypedDict, total=False):
         "DELETE_BUILD_RUN_FAILED",
         "BUCKET_CREATION_PERMISSION_DENIED",
         "BUCKET_CREATION_FAILED",
+        "EXTERNAL_VALUE_SOURCE_IMPORT_FAILED",
     ]
     errorLogs: str
     importExistingResources: bool
@@ -259,6 +266,7 @@ class Preview(typing_extensions.TypedDict, total=False):
         "DEPLOYMENT_LOCK_ACQUIRE_FAILED",
         "PREVIEW_BUILD_API_FAILED",
         "PREVIEW_BUILD_RUN_FAILED",
+        "EXTERNAL_VALUE_SOURCE_IMPORT_FAILED",
     ]
     errorLogs: str
     errorStatus: Status
@@ -404,6 +412,7 @@ class Revision(typing_extensions.TypedDict, total=False):
         "APPLY_BUILD_API_FAILED",
         "APPLY_BUILD_RUN_FAILED",
         "QUOTA_VALIDATION_FAILED",
+        "EXTERNAL_VALUE_SOURCE_IMPORT_FAILED",
     ]
     errorLogs: str
     importExistingResources: bool

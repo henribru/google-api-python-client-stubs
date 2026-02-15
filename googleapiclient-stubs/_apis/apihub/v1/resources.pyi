@@ -18,6 +18,33 @@ class APIHubResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
+            class AddonsResource(googleapiclient.discovery.Resource):
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudApihubV1AddonHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleCloudApihubV1ListAddonsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudApihubV1ListAddonsResponseHttpRequest,
+                    previous_response: GoogleCloudApihubV1ListAddonsResponse,
+                ) -> GoogleCloudApihubV1ListAddonsResponseHttpRequest | None: ...
+                def manageConfig(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudApihubV1ManageAddonConfigRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+
+            @typing.type_check_only
             class ApiHubInstancesResource(googleapiclient.discovery.Resource):
                 def create(
                     self,
@@ -104,6 +131,17 @@ class APIHubResource(googleapiclient.discovery.Resource):
                         def delete(
                             self, *, name: str, **kwargs: typing.Any
                         ) -> EmptyHttpRequest: ...
+                        def fetchAdditionalSpecContent(
+                            self,
+                            *,
+                            name: str,
+                            specContentType: typing_extensions.Literal[
+                                "SPEC_CONTENT_TYPE_UNSPECIFIED",
+                                "BOOSTED_SPEC_CONTENT",
+                                "GATEWAY_OPEN_API_SPEC",
+                            ] = ...,
+                            **kwargs: typing.Any,
+                        ) -> GoogleCloudApihubV1FetchAdditionalSpecContentResponseHttpRequest: ...
                         def get(
                             self, *, name: str, **kwargs: typing.Any
                         ) -> GoogleCloudApihubV1SpecHttpRequest: ...
@@ -519,6 +557,7 @@ class APIHubResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
+                    returnPartialSuccess: bool = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
                 def list_next(
@@ -727,6 +766,23 @@ class APIHubResource(googleapiclient.discovery.Resource):
             ) -> (
                 GoogleCloudApihubV1LookupRuntimeProjectAttachmentResponseHttpRequest
             ): ...
+            def retrieveApiViews(
+                self,
+                *,
+                parent: str,
+                filter: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                view: typing_extensions.Literal[
+                    "API_VIEW_TYPE_UNSPECIFIED", "MCP_SERVER", "MCP_TOOL"
+                ] = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleCloudApihubV1RetrieveApiViewsResponseHttpRequest: ...
+            def retrieveApiViews_next(
+                self,
+                previous_request: GoogleCloudApihubV1RetrieveApiViewsResponseHttpRequest,
+                previous_response: GoogleCloudApihubV1RetrieveApiViewsResponse,
+            ) -> GoogleCloudApihubV1RetrieveApiViewsResponseHttpRequest | None: ...
             def searchResources(
                 self,
                 *,
@@ -739,6 +795,7 @@ class APIHubResource(googleapiclient.discovery.Resource):
                 previous_request: GoogleCloudApihubV1SearchResourcesResponseHttpRequest,
                 previous_response: GoogleCloudApihubV1SearchResourcesResponse,
             ) -> GoogleCloudApihubV1SearchResourcesResponseHttpRequest | None: ...
+            def addons(self) -> AddonsResource: ...
             def apiHubInstances(self) -> ApiHubInstancesResource: ...
             def apis(self) -> ApisResource: ...
             def attributes(self) -> AttributesResource: ...
@@ -779,6 +836,14 @@ class EmptyHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Empty: ...
+
+@typing.type_check_only
+class GoogleCloudApihubV1AddonHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudApihubV1Addon: ...
 
 @typing.type_check_only
 class GoogleCloudApihubV1ApiHttpRequest(googleapiclient.http.HttpRequest):
@@ -873,6 +938,16 @@ class GoogleCloudApihubV1ExternalApiHttpRequest(googleapiclient.http.HttpRequest
     ) -> GoogleCloudApihubV1ExternalApi: ...
 
 @typing.type_check_only
+class GoogleCloudApihubV1FetchAdditionalSpecContentResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudApihubV1FetchAdditionalSpecContentResponse: ...
+
+@typing.type_check_only
 class GoogleCloudApihubV1HostProjectRegistrationHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -881,6 +956,16 @@ class GoogleCloudApihubV1HostProjectRegistrationHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudApihubV1HostProjectRegistration: ...
+
+@typing.type_check_only
+class GoogleCloudApihubV1ListAddonsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudApihubV1ListAddonsResponse: ...
 
 @typing.type_check_only
 class GoogleCloudApihubV1ListApiOperationsResponseHttpRequest(
@@ -1073,6 +1158,16 @@ class GoogleCloudApihubV1PluginInstanceHttpRequest(googleapiclient.http.HttpRequ
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudApihubV1PluginInstance: ...
+
+@typing.type_check_only
+class GoogleCloudApihubV1RetrieveApiViewsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudApihubV1RetrieveApiViewsResponse: ...
 
 @typing.type_check_only
 class GoogleCloudApihubV1RuntimeProjectAttachmentHttpRequest(

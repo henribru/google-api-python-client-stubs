@@ -16,6 +16,48 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class AdvertisersResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
+        class AdAssetsResource(googleapiclient.discovery.Resource):
+            def bulkCreate(
+                self,
+                *,
+                advertiserId: str,
+                body: BulkCreateAdAssetsRequest = ...,
+                **kwargs: typing.Any,
+            ) -> BulkCreateAdAssetsResponseHttpRequest: ...
+            def create(
+                self,
+                *,
+                advertiserId: str,
+                body: CreateAdAssetRequest = ...,
+                **kwargs: typing.Any,
+            ) -> AdAssetHttpRequest: ...
+            def get(
+                self, *, advertiserId: str, adAssetId: str, **kwargs: typing.Any
+            ) -> AdAssetHttpRequest: ...
+            def list(
+                self,
+                *,
+                advertiserId: str,
+                filter: str = ...,
+                orderBy: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any,
+            ) -> ListAdAssetsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListAdAssetsResponseHttpRequest,
+                previous_response: ListAdAssetsResponse,
+            ) -> ListAdAssetsResponseHttpRequest | None: ...
+            def upload(
+                self,
+                *,
+                advertiserId: str,
+                body: UploadAdAssetRequest = ...,
+                **kwargs: typing.Any,
+            ) -> UploadAdAssetResponseHttpRequest: ...
+
+        @typing.type_check_only
         class AdGroupAdsResource(googleapiclient.discovery.Resource):
             def get(
                 self, *, advertiserId: str, adGroupAdId: str, **kwargs: typing.Any
@@ -179,6 +221,69 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                     self,
                 ) -> AssignedTargetingOptionsResource: ...
 
+            @typing.type_check_only
+            class YoutubeAssetTypesResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class YoutubeAssetAssociationsResource(
+                    googleapiclient.discovery.Resource
+                ):
+                    def create(
+                        self,
+                        *,
+                        advertiserId: str,
+                        adGroupId: str,
+                        youtubeAssetType: typing_extensions.Literal[
+                            "YOUTUBE_ASSET_TYPE_UNSPECIFIED",
+                            "YOUTUBE_ASSET_TYPE_LOCATION",
+                            "YOUTUBE_ASSET_TYPE_AFFILIATE_LOCATION",
+                            "YOUTUBE_ASSET_TYPE_SITELINK",
+                        ],
+                        body: YoutubeAssetAssociation = ...,
+                        linkedEntity_lineItemId: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> YoutubeAssetAssociationHttpRequest: ...
+                    def delete(
+                        self,
+                        *,
+                        advertiserId: str,
+                        adGroupId: str,
+                        youtubeAssetType: typing_extensions.Literal[
+                            "YOUTUBE_ASSET_TYPE_UNSPECIFIED",
+                            "YOUTUBE_ASSET_TYPE_LOCATION",
+                            "YOUTUBE_ASSET_TYPE_AFFILIATE_LOCATION",
+                            "YOUTUBE_ASSET_TYPE_SITELINK",
+                        ],
+                        youtubeAssetAssociationId: str,
+                        linkedEntity_lineItemId: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> EmptyHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        advertiserId: str,
+                        adGroupId: str,
+                        youtubeAssetType: typing_extensions.Literal[
+                            "YOUTUBE_ASSET_TYPE_UNSPECIFIED",
+                            "YOUTUBE_ASSET_TYPE_LOCATION",
+                            "YOUTUBE_ASSET_TYPE_AFFILIATE_LOCATION",
+                            "YOUTUBE_ASSET_TYPE_SITELINK",
+                        ],
+                        linkedEntity_lineItemId: str = ...,
+                        orderBy: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> ListYoutubeAssetAssociationsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListYoutubeAssetAssociationsResponseHttpRequest,
+                        previous_response: ListYoutubeAssetAssociationsResponse,
+                    ) -> ListYoutubeAssetAssociationsResponseHttpRequest | None: ...
+
+                def youtubeAssetAssociations(
+                    self,
+                ) -> YoutubeAssetAssociationsResource: ...
+
             def bulkListAssignedTargetingOptions(
                 self,
                 *,
@@ -214,6 +319,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                 previous_response: ListAdGroupsResponse,
             ) -> ListAdGroupsResponseHttpRequest | None: ...
             def targetingTypes(self) -> TargetingTypesResource: ...
+            def youtubeAssetTypes(self) -> YoutubeAssetTypesResource: ...
 
         @typing.type_check_only
         class AssetsResource(googleapiclient.discovery.Resource):
@@ -1170,6 +1276,69 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                     self,
                 ) -> AssignedTargetingOptionsResource: ...
 
+            @typing.type_check_only
+            class YoutubeAssetTypesResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class YoutubeAssetAssociationsResource(
+                    googleapiclient.discovery.Resource
+                ):
+                    def create(
+                        self,
+                        *,
+                        advertiserId: str,
+                        lineItemId: str,
+                        youtubeAssetType: typing_extensions.Literal[
+                            "YOUTUBE_ASSET_TYPE_UNSPECIFIED",
+                            "YOUTUBE_ASSET_TYPE_LOCATION",
+                            "YOUTUBE_ASSET_TYPE_AFFILIATE_LOCATION",
+                            "YOUTUBE_ASSET_TYPE_SITELINK",
+                        ],
+                        body: YoutubeAssetAssociation = ...,
+                        linkedEntity_adGroupId: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> YoutubeAssetAssociationHttpRequest: ...
+                    def delete(
+                        self,
+                        *,
+                        advertiserId: str,
+                        lineItemId: str,
+                        youtubeAssetType: typing_extensions.Literal[
+                            "YOUTUBE_ASSET_TYPE_UNSPECIFIED",
+                            "YOUTUBE_ASSET_TYPE_LOCATION",
+                            "YOUTUBE_ASSET_TYPE_AFFILIATE_LOCATION",
+                            "YOUTUBE_ASSET_TYPE_SITELINK",
+                        ],
+                        youtubeAssetAssociationId: str,
+                        linkedEntity_adGroupId: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> EmptyHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        advertiserId: str,
+                        lineItemId: str,
+                        youtubeAssetType: typing_extensions.Literal[
+                            "YOUTUBE_ASSET_TYPE_UNSPECIFIED",
+                            "YOUTUBE_ASSET_TYPE_LOCATION",
+                            "YOUTUBE_ASSET_TYPE_AFFILIATE_LOCATION",
+                            "YOUTUBE_ASSET_TYPE_SITELINK",
+                        ],
+                        linkedEntity_adGroupId: str = ...,
+                        orderBy: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> ListYoutubeAssetAssociationsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListYoutubeAssetAssociationsResponseHttpRequest,
+                        previous_response: ListYoutubeAssetAssociationsResponse,
+                    ) -> ListYoutubeAssetAssociationsResponseHttpRequest | None: ...
+
+                def youtubeAssetAssociations(
+                    self,
+                ) -> YoutubeAssetAssociationsResource: ...
+
             def bulkEditAssignedTargetingOptions(
                 self,
                 *,
@@ -1249,6 +1418,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any,
             ) -> LineItemHttpRequest: ...
             def targetingTypes(self) -> TargetingTypesResource: ...
+            def youtubeAssetTypes(self) -> YoutubeAssetTypesResource: ...
 
         @typing.type_check_only
         class LocationListsResource(googleapiclient.discovery.Resource):
@@ -1739,6 +1909,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
             updateMask: str = ...,
             **kwargs: typing.Any,
         ) -> AdvertiserHttpRequest: ...
+        def adAssets(self) -> AdAssetsResource: ...
         def adGroupAds(self) -> AdGroupAdsResource: ...
         def adGroups(self) -> AdGroupsResource: ...
         def assets(self) -> AssetsResource: ...
@@ -2936,6 +3107,14 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
     def users(self) -> UsersResource: ...
 
 @typing.type_check_only
+class AdAssetHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> AdAsset: ...
+
+@typing.type_check_only
 class AdGroupHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -2990,6 +3169,14 @@ class AuditAdvertiserResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> AuditAdvertiserResponse: ...
+
+@typing.type_check_only
+class BulkCreateAdAssetsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> BulkCreateAdAssetsResponse: ...
 
 @typing.type_check_only
 class BulkEditAdvertiserAssignedTargetingOptionsResponseHttpRequest(
@@ -3332,6 +3519,14 @@ class LineItemHttpRequest(googleapiclient.http.HttpRequest):
     ) -> LineItem: ...
 
 @typing.type_check_only
+class ListAdAssetsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListAdAssetsResponse: ...
+
+@typing.type_check_only
 class ListAdGroupAdsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -3628,6 +3823,14 @@ class ListUsersResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListUsersResponse: ...
 
 @typing.type_check_only
+class ListYoutubeAssetAssociationsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListYoutubeAssetAssociationsResponse: ...
+
+@typing.type_check_only
 class LocationListHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -3716,12 +3919,28 @@ class TargetingOptionHttpRequest(googleapiclient.http.HttpRequest):
     ) -> TargetingOption: ...
 
 @typing.type_check_only
+class UploadAdAssetResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> UploadAdAssetResponse: ...
+
+@typing.type_check_only
 class UserHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> User: ...
+
+@typing.type_check_only
+class YoutubeAssetAssociationHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> YoutubeAssetAssociation: ...
 
 @typing.type_check_only
 class BytesHttpRequest(googleapiclient.http.HttpRequest):

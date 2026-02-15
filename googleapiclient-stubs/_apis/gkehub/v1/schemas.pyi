@@ -135,6 +135,7 @@ class CommonFeatureSpec(typing_extensions.TypedDict, total=False):
     fleetobservability: FleetObservabilityFeatureSpec
     multiclusteringress: MultiClusterIngressFeatureSpec
     rbacrolebindingactuation: RBACRoleBindingActuationFeatureSpec
+    workloadidentity: WorkloadIdentityFeatureSpec
 
 @typing.type_check_only
 class CommonFeatureState(typing_extensions.TypedDict, total=False):
@@ -143,6 +144,7 @@ class CommonFeatureState(typing_extensions.TypedDict, total=False):
     fleetobservability: FleetObservabilityFeatureState
     rbacrolebindingactuation: RBACRoleBindingActuationFeatureState
     state: FeatureState
+    workloadidentity: WorkloadIdentityFeatureState
 
 @typing.type_check_only
 class CommonFleetDefaultMemberConfigSpec(typing_extensions.TypedDict, total=False):
@@ -860,6 +862,7 @@ class MembershipFeatureState(typing_extensions.TypedDict, total=False):
     policycontroller: PolicyControllerMembershipState
     servicemesh: ServiceMeshMembershipState
     state: FeatureState
+    workloadidentity: WorkloadIdentityMembershipState
 
 @typing.type_check_only
 class MembershipState(typing_extensions.TypedDict, total=False):
@@ -1293,3 +1296,49 @@ class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
 class TypeMeta(typing_extensions.TypedDict, total=False):
     apiVersion: str
     kind: str
+
+@typing.type_check_only
+class WorkloadIdentityFeatureSpec(typing_extensions.TypedDict, total=False):
+    scopeTenancyPool: str
+
+@typing.type_check_only
+class WorkloadIdentityFeatureState(typing_extensions.TypedDict, total=False):
+    namespaceStateDetails: dict[str, typing.Any]
+    namespaceStates: dict[str, typing.Any]
+    scopeTenancyWorkloadIdentityPool: str
+    workloadIdentityPool: str
+    workloadIdentityPoolStateDetails: dict[str, typing.Any]
+
+@typing.type_check_only
+class WorkloadIdentityIdentityProviderStateDetail(
+    typing_extensions.TypedDict, total=False
+):
+    code: typing_extensions.Literal[
+        "IDENTITY_PROVIDER_STATE_UNSPECIFIED",
+        "IDENTITY_PROVIDER_STATE_OK",
+        "IDENTITY_PROVIDER_STATE_ERROR",
+    ]
+    description: str
+
+@typing.type_check_only
+class WorkloadIdentityMembershipState(typing_extensions.TypedDict, total=False):
+    description: str
+    identityProviderStateDetails: dict[str, typing.Any]
+
+@typing.type_check_only
+class WorkloadIdentityNamespaceStateDetail(typing_extensions.TypedDict, total=False):
+    code: typing_extensions.Literal[
+        "NAMESPACE_STATE_UNSPECIFIED", "NAMESPACE_STATE_OK", "NAMESPACE_STATE_ERROR"
+    ]
+    description: str
+
+@typing.type_check_only
+class WorkloadIdentityWorkloadIdentityPoolStateDetail(
+    typing_extensions.TypedDict, total=False
+):
+    code: typing_extensions.Literal[
+        "WORKLOAD_IDENTITY_POOL_STATE_UNSPECIFIED",
+        "WORKLOAD_IDENTITY_POOL_STATE_OK",
+        "WORKLOAD_IDENTITY_POOL_STATE_ERROR",
+    ]
+    description: str

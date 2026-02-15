@@ -13,6 +13,7 @@ class AccessApprovalServiceAccount(typing_extensions.TypedDict, total=False):
 class AccessApprovalSettings(typing_extensions.TypedDict, total=False):
     activeKeyVersion: str
     ancestorHasActiveKeyVersion: bool
+    ancestorsEnrolledServices: _list[EnrolledService]
     approvalPolicy: CustomerApprovalApprovalPolicy
     effectiveApprovalPolicy: CustomerApprovalApprovalPolicy
     enrolledAncestor: bool
@@ -168,6 +169,9 @@ class SignatureInfo(typing_extensions.TypedDict, total=False):
         "PQ_SIGN_ML_DSA_87",
         "PQ_SIGN_SLH_DSA_SHA2_128S",
         "PQ_SIGN_HASH_SLH_DSA_SHA2_128S_SHA256",
+        "PQ_SIGN_ML_DSA_44_EXTERNAL_MU",
+        "PQ_SIGN_ML_DSA_65_EXTERNAL_MU",
+        "PQ_SIGN_ML_DSA_87_EXTERNAL_MU",
     ]
     googlePublicKeyPem: str
     serializedApprovalRequest: str

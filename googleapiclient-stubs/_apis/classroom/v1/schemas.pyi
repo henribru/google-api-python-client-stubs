@@ -110,6 +110,7 @@ class Course(typing_extensions.TypedDict, total=False):
     ownerId: str
     room: str
     section: str
+    subject: str
     teacherFolder: DriveFolder
     teacherGroupEmail: str
     updateTime: str
@@ -399,6 +400,16 @@ class ListRubricsResponse(typing_extensions.TypedDict, total=False):
     rubrics: _list[Rubric]
 
 @typing.type_check_only
+class ListStudentGroupMembersResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    studentGroupMembers: _list[StudentGroupMember]
+
+@typing.type_check_only
+class ListStudentGroupsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    studentGroups: _list[StudentGroup]
+
+@typing.type_check_only
 class ListStudentSubmissionsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     studentSubmissions: _list[StudentSubmission]
@@ -533,6 +544,18 @@ class Student(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class StudentContext(typing_extensions.TypedDict, total=False):
     submissionId: str
+
+@typing.type_check_only
+class StudentGroup(typing_extensions.TypedDict, total=False):
+    courseId: str
+    id: str
+    title: str
+
+@typing.type_check_only
+class StudentGroupMember(typing_extensions.TypedDict, total=False):
+    courseId: str
+    studentGroupId: str
+    userId: str
 
 @typing.type_check_only
 class StudentSubmission(typing_extensions.TypedDict, total=False):

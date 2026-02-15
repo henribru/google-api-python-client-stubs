@@ -131,6 +131,7 @@ class Channel(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ComposeRequest(typing_extensions.TypedDict, total=False):
+    deleteSourceObjects: bool
     destination: Object
     kind: str
     sourceObjects: _list[dict[str, typing.Any]]
@@ -327,6 +328,7 @@ class Policy(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class RelocateBucketRequest(typing_extensions.TypedDict, total=False):
     destinationCustomPlacementConfig: dict[str, typing.Any]
+    destinationKmsKeyName: str
     destinationLocation: str
     validateOnly: bool
 

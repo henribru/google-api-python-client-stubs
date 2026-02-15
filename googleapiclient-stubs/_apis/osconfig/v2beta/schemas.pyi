@@ -16,6 +16,42 @@ class FixedOrPercent(typing_extensions.TypedDict, total=False):
     percent: int
 
 @typing.type_check_only
+class GoogleCloudOsconfigCommonV1__OperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    apiVersion: str
+    createTime: str
+    endTime: str
+    requestedCancellation: bool
+    statusMessage: str
+    target: str
+    verb: str
+
+@typing.type_check_only
+class GoogleCloudOsconfigCommonV1alpha__OperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    apiVersion: str
+    createTime: str
+    endTime: str
+    requestedCancellation: bool
+    statusMessage: str
+    target: str
+    verb: str
+
+@typing.type_check_only
+class GoogleCloudOsconfigCommonV1main__OperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    apiVersion: str
+    createTime: str
+    endTime: str
+    requestedCancellation: bool
+    statusMessage: str
+    target: str
+    verb: str
+
+@typing.type_check_only
 class GoogleCloudOsconfigV1__OSPolicyAssignmentOperationMetadata(
     typing_extensions.TypedDict, total=False
 ):

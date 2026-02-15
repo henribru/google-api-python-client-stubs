@@ -220,6 +220,9 @@ class BackupForGKEResource(googleapiclient.discovery.Resource):
                     options_requestedPolicyVersion: int = ...,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
+                def getTags(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GetTagsResponseHttpRequest: ...
                 def list(
                     self,
                     *,
@@ -250,6 +253,9 @@ class BackupForGKEResource(googleapiclient.discovery.Resource):
                     body: SetIamPolicyRequest = ...,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
+                def setTags(
+                    self, *, name: str, body: SetTagsRequest = ..., **kwargs: typing.Any
+                ) -> SetTagsResponseHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
@@ -489,6 +495,9 @@ class BackupForGKEResource(googleapiclient.discovery.Resource):
                     options_requestedPolicyVersion: int = ...,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
+                def getTags(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GetTagsResponseHttpRequest: ...
                 def list(
                     self,
                     *,
@@ -519,6 +528,9 @@ class BackupForGKEResource(googleapiclient.discovery.Resource):
                     body: SetIamPolicyRequest = ...,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
+                def setTags(
+                    self, *, name: str, body: SetTagsRequest = ..., **kwargs: typing.Any
+                ) -> SetTagsResponseHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
@@ -615,6 +627,14 @@ class GetBackupIndexDownloadUrlResponseHttpRequest(googleapiclient.http.HttpRequ
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GetBackupIndexDownloadUrlResponse: ...
+
+@typing.type_check_only
+class GetTagsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GetTagsResponse: ...
 
 @typing.type_check_only
 class GoogleLongrunningListOperationsResponseHttpRequest(
@@ -769,6 +789,14 @@ class RestorePlanBindingHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> RestorePlanBinding: ...
+
+@typing.type_check_only
+class SetTagsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> SetTagsResponse: ...
 
 @typing.type_check_only
 class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):

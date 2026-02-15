@@ -208,6 +208,7 @@ class Workload(typing_extensions.TypedDict, total=False):
         "PARTNER_SOVEREIGN_CONTROLS_BY_PSN",
         "PARTNER_SOVEREIGN_CONTROLS_BY_CNTXT",
         "PARTNER_SOVEREIGN_CONTROLS_BY_CNTXT_NO_EKM",
+        "PARTNER_SPAIN_DATA_BOUNDARY_BY_TELEFONICA",
     ]
     workloadOnboardingState: WorkloadOnboardingState
 

@@ -128,7 +128,10 @@ class GoogleIamAdminV1WorkforcePoolProviderExtraAttributesOAuth2Client(
     typing_extensions.TypedDict, total=False
 ):
     attributesType: typing_extensions.Literal[
-        "ATTRIBUTES_TYPE_UNSPECIFIED", "AZURE_AD_GROUPS_MAIL", "AZURE_AD_GROUPS_ID"
+        "ATTRIBUTES_TYPE_UNSPECIFIED",
+        "AZURE_AD_GROUPS_MAIL",
+        "AZURE_AD_GROUPS_ID",
+        "AZURE_AD_GROUPS_DISPLAY_NAME",
     ]
     clientId: str
     clientSecret: GoogleIamAdminV1WorkforcePoolProviderOidcClientSecret

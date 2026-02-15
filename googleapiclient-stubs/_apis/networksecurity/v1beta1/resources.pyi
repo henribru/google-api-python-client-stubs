@@ -653,6 +653,48 @@ class NetworkSecurityResource(googleapiclient.discovery.Resource):
                 ) -> OperationHttpRequest: ...
 
             @typing.type_check_only
+            class FirewallEndpointsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: FirewallEndpoint = ...,
+                    firewallEndpointId: str = ...,
+                    requestId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, requestId: str = ..., **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> FirewallEndpointHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListFirewallEndpointsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListFirewallEndpointsResponseHttpRequest,
+                    previous_response: ListFirewallEndpointsResponse,
+                ) -> ListFirewallEndpointsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: FirewallEndpoint = ...,
+                    requestId: str = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+
+            @typing.type_check_only
             class GatewaySecurityPoliciesResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class RulesResource(googleapiclient.discovery.Resource):
@@ -1335,6 +1377,7 @@ class NetworkSecurityResource(googleapiclient.discovery.Resource):
             def firewallEndpointAssociations(
                 self,
             ) -> FirewallEndpointAssociationsResource: ...
+            def firewallEndpoints(self) -> FirewallEndpointsResource: ...
             def gatewaySecurityPolicies(self) -> GatewaySecurityPoliciesResource: ...
             def interceptDeploymentGroups(
                 self,

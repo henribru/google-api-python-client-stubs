@@ -239,6 +239,7 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
+                returnPartialSuccess: bool = ...,
                 **kwargs: typing.Any,
             ) -> ListOperationsResponseHttpRequest: ...
             def list_next(
@@ -270,9 +271,6 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
                 previous_response: ListQuerySourcesResponse,
             ) -> ListQuerySourcesResponseHttpRequest | None: ...
 
-        def debugSearch(
-            self, *, body: SearchRequest = ..., **kwargs: typing.Any
-        ) -> DebugResponseHttpRequest: ...
         def removeActivity(
             self, *, body: RemoveActivityRequest = ..., **kwargs: typing.Any
         ) -> RemoveActivityResponseHttpRequest: ...
@@ -590,14 +588,6 @@ class DataSourceHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> DataSource: ...
-
-@typing.type_check_only
-class DebugResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> DebugResponse: ...
 
 @typing.type_check_only
 class GetCustomerIndexStatsResponseHttpRequest(googleapiclient.http.HttpRequest):

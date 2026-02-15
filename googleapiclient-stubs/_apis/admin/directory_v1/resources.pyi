@@ -774,6 +774,9 @@ class DirectoryResource(googleapiclient.discovery.Resource):
                 self, *, userKey: str, body: UserPhoto = ..., **kwargs: typing.Any
             ) -> UserPhotoHttpRequest: ...
 
+        def createGuest(
+            self, *, body: DirectoryUsersCreateGuestRequest = ..., **kwargs: typing.Any
+        ) -> UserHttpRequest: ...
         def delete(
             self, *, userKey: str, **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...

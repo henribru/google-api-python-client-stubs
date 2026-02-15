@@ -143,6 +143,17 @@ class GoogleFirebaseAppdistroV1alphaCancelReleaseTestResponse(
 ): ...
 
 @typing.type_check_only
+class GoogleFirebaseAppdistroV1alphaClearTestCaseCacheRequest(
+    typing_extensions.TypedDict, total=False
+):
+    testDevices: _list[GoogleFirebaseAppdistroV1alphaTestDevice]
+
+@typing.type_check_only
+class GoogleFirebaseAppdistroV1alphaClearTestCaseCacheResponse(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class GoogleFirebaseAppdistroV1alphaCreateReleaseNotesRequest(
     typing_extensions.TypedDict, total=False
 ):
@@ -168,6 +179,13 @@ class GoogleFirebaseAppdistroV1alphaDeviceExecution(
     appCrash: GoogleFirebaseAppdistroV1alphaAppCrash
     crawlGraphUri: str
     device: GoogleFirebaseAppdistroV1alphaTestDevice
+    executionType: typing_extensions.Literal[
+        "EXECUTION_TYPE_UNSPECIFIED",
+        "AI",
+        "ACTION_BASED_REPLAY",
+        "AI_REPLAY",
+        "RANDOM_CRAWL",
+    ]
     failedReason: typing_extensions.Literal[
         "FAILED_REASON_UNSPECIFIED",
         "CRASHED",
@@ -177,6 +195,7 @@ class GoogleFirebaseAppdistroV1alphaDeviceExecution(
         "FAILED_AI_STEP",
         "TIMED_OUT",
     ]
+    finalAiAssertionMissing: bool
     inconclusiveReason: typing_extensions.Literal[
         "INCONCLUSIVE_REASON_UNSPECIFIED",
         "QUOTA_EXCEEDED",
@@ -189,6 +208,8 @@ class GoogleFirebaseAppdistroV1alphaDeviceExecution(
         "NO_CODE_APK",
         "INVALID_APK_PREVIEW_SDK",
     ]
+    name: str
+    originDeviceExecution: str
     resultsStoragePath: str
     roboStats: GoogleFirebaseAppdistroV1alphaRoboStats
     screenshotUris: _list[str]

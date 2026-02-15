@@ -19,6 +19,27 @@ class StorageBatchOperationsResource(googleapiclient.discovery.Resource):
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class JobsResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class BucketOperationsResource(googleapiclient.discovery.Resource):
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> BucketOperationHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        filter: str = ...,
+                        orderBy: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> ListBucketOperationsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListBucketOperationsResponseHttpRequest,
+                        previous_response: ListBucketOperationsResponse,
+                    ) -> ListBucketOperationsResponseHttpRequest | None: ...
+
                 def cancel(
                     self,
                     *,
@@ -36,7 +57,12 @@ class StorageBatchOperationsResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
-                    self, *, name: str, requestId: str = ..., **kwargs: typing.Any
+                    self,
+                    *,
+                    name: str,
+                    force: bool = ...,
+                    requestId: str = ...,
+                    **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def get(self, *, name: str, **kwargs: typing.Any) -> JobHttpRequest: ...
                 def list(
@@ -54,6 +80,7 @@ class StorageBatchOperationsResource(googleapiclient.discovery.Resource):
                     previous_request: ListJobsResponseHttpRequest,
                     previous_response: ListJobsResponse,
                 ) -> ListJobsResponseHttpRequest | None: ...
+                def bucketOperations(self) -> BucketOperationsResource: ...
 
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
@@ -124,6 +151,14 @@ class StorageBatchOperationsResource(googleapiclient.discovery.Resource):
     def projects(self) -> ProjectsResource: ...
 
 @typing.type_check_only
+class BucketOperationHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> BucketOperation: ...
+
+@typing.type_check_only
 class CancelJobResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -146,6 +181,14 @@ class JobHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Job: ...
+
+@typing.type_check_only
+class ListBucketOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListBucketOperationsResponse: ...
 
 @typing.type_check_only
 class ListJobsResponseHttpRequest(googleapiclient.http.HttpRequest):

@@ -198,6 +198,7 @@ class InstancePolicy(typing_extensions.TypedDict, total=False):
         "SPOT",
         "PREEMPTIBLE",
         "RESERVATION_BOUND",
+        "FLEX_START",
     ]
     reservation: str
 
@@ -219,6 +220,7 @@ class InstanceStatus(typing_extensions.TypedDict, total=False):
         "SPOT",
         "PREEMPTIBLE",
         "RESERVATION_BOUND",
+        "FLEX_START",
     ]
     taskPack: str
 

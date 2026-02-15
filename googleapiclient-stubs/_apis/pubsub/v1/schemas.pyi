@@ -5,6 +5,12 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class AIInference(typing_extensions.TypedDict, total=False):
+    endpoint: str
+    serviceAccountEmail: str
+    unstructuredInference: UnstructuredInference
+
+@typing.type_check_only
 class AcknowledgeRequest(typing_extensions.TypedDict, total=False):
     ackIds: _list[str]
 
@@ -82,6 +88,7 @@ class BigQueryConfig(typing_extensions.TypedDict, total=False):
         "NOT_FOUND",
         "SCHEMA_MISMATCH",
         "IN_TRANSIT_LOCATION_RESTRICTION",
+        "VERTEX_AI_LOCATION_RESTRICTION",
     ]
     table: str
     useTableSchema: bool
@@ -129,6 +136,7 @@ class CloudStorageConfig(typing_extensions.TypedDict, total=False):
         "NOT_FOUND",
         "IN_TRANSIT_LOCATION_RESTRICTION",
         "SCHEMA_MISMATCH",
+        "VERTEX_AI_LOCATION_RESTRICTION",
     ]
     textConfig: TextConfig
 
@@ -157,6 +165,7 @@ class ConfluentCloud(typing_extensions.TypedDict, total=False):
 class CreateSnapshotRequest(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     subscription: str
+    tags: dict[str, typing.Any]
 
 @typing.type_check_only
 class DeadLetterPolicy(typing_extensions.TypedDict, total=False):
@@ -236,6 +245,7 @@ class MessageStoragePolicy(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class MessageTransform(typing_extensions.TypedDict, total=False):
+    aiInference: AIInference
     disabled: bool
     enabled: bool
     javascriptUdf: JavaScriptUDF
@@ -378,6 +388,7 @@ class Subscription(typing_extensions.TypedDict, total=False):
     retainAckedMessages: bool
     retryPolicy: RetryPolicy
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "RESOURCE_ERROR"]
+    tags: dict[str, typing.Any]
     topic: str
     topicMessageRetentionDuration: str
 
@@ -410,6 +421,11 @@ class Topic(typing_extensions.TypedDict, total=False):
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "ACTIVE", "INGESTION_RESOURCE_ERROR"
     ]
+    tags: dict[str, typing.Any]
+
+@typing.type_check_only
+class UnstructuredInference(typing_extensions.TypedDict, total=False):
+    parameters: dict[str, typing.Any]
 
 @typing.type_check_only
 class UpdateSnapshotRequest(typing_extensions.TypedDict, total=False):

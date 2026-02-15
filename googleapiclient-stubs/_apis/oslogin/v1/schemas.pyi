@@ -35,6 +35,10 @@ class PosixAccount(typing_extensions.TypedDict, total=False):
     username: str
 
 @typing.type_check_only
+class ProvisionPosixAccountRequest(typing_extensions.TypedDict, total=False):
+    regions: _list[str]
+
+@typing.type_check_only
 class SignSshPublicKeyRequest(typing_extensions.TypedDict, total=False):
     appEngineInstance: str
     computeInstance: str

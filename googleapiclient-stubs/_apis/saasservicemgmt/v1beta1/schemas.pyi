@@ -56,12 +56,6 @@ class ListReleasesResponse(typing_extensions.TypedDict, total=False):
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListReplicationsInternalResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    replicationsInternal: _list[ReplicationInternal]
-    unreachable: _list[str]
-
-@typing.type_check_only
 class ListRolloutKindsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     rolloutKinds: _list[RolloutKind]
@@ -137,39 +131,12 @@ class ReleaseRequirements(typing_extensions.TypedDict, total=False):
     upgradeableFromReleases: _list[str]
 
 @typing.type_check_only
-class ReplicationInternal(typing_extensions.TypedDict, total=False):
-    annotations: dict[str, typing.Any]
-    createTime: str
-    etag: str
-    labels: dict[str, typing.Any]
-    maxRetryCount: int
-    name: str
-    payload: dict[str, typing.Any]
-    state: typing_extensions.Literal[
-        "REPLICATION_STATE_UNSPECIFIED",
-        "REPLICATION_STATE_PENDING",
-        "REPLICATION_STATE_RUNNING",
-        "REPLICATION_STATE_FAILED",
-        "REPLICATION_STATE_SUCCEEDED",
-    ]
-    stats: dict[str, typing.Any]
-    targetLocations: _list[str]
-    uid: str
-    updateTime: str
-
-@typing.type_check_only
-class ReplicationStats(typing_extensions.TypedDict, total=False):
-    errors: _list[Status]
-    failedResources: _list[str]
-    finishedResources: _list[str]
-    pendingResources: _list[str]
-    retryCount: _list[int]
-
-@typing.type_check_only
 class Rollout(typing_extensions.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     control: RolloutControl
     createTime: str
+    deleteTime: str
+    effectiveUnitFilter: str
     endTime: str
     etag: str
     labels: dict[str, typing.Any]
@@ -216,6 +183,12 @@ class RolloutKind(typing_extensions.TypedDict, total=False):
     errorBudget: ErrorBudget
     etag: str
     labels: dict[str, typing.Any]
+    maintenancePolicyEnforcement: typing_extensions.Literal[
+        "MAINTENANCE_POLICY_ENFORCEMENT_UNSPECIFIED",
+        "MAINTENANCE_POLICY_ENFORCEMENT_STRICT",
+        "MAINTENANCE_POLICY_ENFORCEMENT_IGNORED",
+        "MAINTENANCE_POLICY_ENFORCEMENT_SKIPPED",
+    ]
     name: str
     rolloutOrchestrationStrategy: str
     uid: str
@@ -250,12 +223,6 @@ class Saas(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Schedule(typing_extensions.TypedDict, total=False):
     startTime: str
-
-@typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
-    code: int
-    details: _list[dict[str, typing.Any]]
-    message: str
 
 @typing.type_check_only
 class Tenant(typing_extensions.TypedDict, total=False):
@@ -358,6 +325,7 @@ class UnitOperation(typing_extensions.TypedDict, total=False):
     cancel: bool
     conditions: _list[UnitOperationCondition]
     createTime: str
+    deleteTime: str
     deprovision: Deprovision
     engineState: str
     errorCategory: typing_extensions.Literal[

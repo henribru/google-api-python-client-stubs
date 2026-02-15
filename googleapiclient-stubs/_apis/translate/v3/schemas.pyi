@@ -65,6 +65,7 @@ class BatchTranslateDocumentRequest(typing_extensions.TypedDict, total=False):
     inputConfigs: _list[BatchDocumentInputConfig]
     models: dict[str, typing.Any]
     outputConfig: BatchDocumentOutputConfig
+    pdfNativeOnly: bool
     sourceLanguageCode: str
     targetLanguageCodes: _list[str]
 
@@ -105,6 +106,7 @@ class DatasetOutputConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class DetectLanguageRequest(typing_extensions.TypedDict, total=False):
     content: str
+    documentInputConfig: DocumentInputConfig
     labels: dict[str, typing.Any]
     mimeType: str
     model: str
@@ -294,6 +296,7 @@ class ListModelsResponse(typing_extensions.TypedDict, total=False):
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):
@@ -342,6 +345,21 @@ class ReferenceSentencePair(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ReferenceSentencePairList(typing_extensions.TypedDict, total=False):
     referenceSentencePairs: _list[ReferenceSentencePair]
+
+@typing.type_check_only
+class RefineTextRequest(typing_extensions.TypedDict, total=False):
+    refinementEntries: _list[RefinementEntry]
+    sourceLanguageCode: str
+    targetLanguageCode: str
+
+@typing.type_check_only
+class RefineTextResponse(typing_extensions.TypedDict, total=False):
+    refinedTranslations: _list[str]
+
+@typing.type_check_only
+class RefinementEntry(typing_extensions.TypedDict, total=False):
+    originalTranslation: str
+    sourceText: str
 
 @typing.type_check_only
 class Romanization(typing_extensions.TypedDict, total=False):

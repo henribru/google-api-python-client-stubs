@@ -27,145 +27,6 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
 
         @typing.type_check_only
         class CampaignsResource(googleapiclient.discovery.Resource):
-            @typing.type_check_only
-            class TargetingTypesResource(googleapiclient.discovery.Resource):
-                @typing.type_check_only
-                class AssignedTargetingOptionsResource(
-                    googleapiclient.discovery.Resource
-                ):
-                    def get(
-                        self,
-                        *,
-                        advertiserId: str,
-                        campaignId: str,
-                        targetingType: typing_extensions.Literal[
-                            "TARGETING_TYPE_UNSPECIFIED",
-                            "TARGETING_TYPE_CHANNEL",
-                            "TARGETING_TYPE_APP_CATEGORY",
-                            "TARGETING_TYPE_APP",
-                            "TARGETING_TYPE_URL",
-                            "TARGETING_TYPE_DAY_AND_TIME",
-                            "TARGETING_TYPE_AGE_RANGE",
-                            "TARGETING_TYPE_REGIONAL_LOCATION_LIST",
-                            "TARGETING_TYPE_PROXIMITY_LOCATION_LIST",
-                            "TARGETING_TYPE_GENDER",
-                            "TARGETING_TYPE_VIDEO_PLAYER_SIZE",
-                            "TARGETING_TYPE_USER_REWARDED_CONTENT",
-                            "TARGETING_TYPE_PARENTAL_STATUS",
-                            "TARGETING_TYPE_CONTENT_INSTREAM_POSITION",
-                            "TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION",
-                            "TARGETING_TYPE_DEVICE_TYPE",
-                            "TARGETING_TYPE_AUDIENCE_GROUP",
-                            "TARGETING_TYPE_BROWSER",
-                            "TARGETING_TYPE_HOUSEHOLD_INCOME",
-                            "TARGETING_TYPE_ON_SCREEN_POSITION",
-                            "TARGETING_TYPE_THIRD_PARTY_VERIFIER",
-                            "TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION",
-                            "TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION",
-                            "TARGETING_TYPE_ENVIRONMENT",
-                            "TARGETING_TYPE_CARRIER_AND_ISP",
-                            "TARGETING_TYPE_OPERATING_SYSTEM",
-                            "TARGETING_TYPE_DEVICE_MAKE_MODEL",
-                            "TARGETING_TYPE_KEYWORD",
-                            "TARGETING_TYPE_NEGATIVE_KEYWORD_LIST",
-                            "TARGETING_TYPE_VIEWABILITY",
-                            "TARGETING_TYPE_CATEGORY",
-                            "TARGETING_TYPE_INVENTORY_SOURCE",
-                            "TARGETING_TYPE_LANGUAGE",
-                            "TARGETING_TYPE_AUTHORIZED_SELLER_STATUS",
-                            "TARGETING_TYPE_GEO_REGION",
-                            "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
-                            "TARGETING_TYPE_EXCHANGE",
-                            "TARGETING_TYPE_SUB_EXCHANGE",
-                            "TARGETING_TYPE_POI",
-                            "TARGETING_TYPE_BUSINESS_CHAIN",
-                            "TARGETING_TYPE_CONTENT_DURATION",
-                            "TARGETING_TYPE_CONTENT_STREAM_TYPE",
-                            "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
-                            "TARGETING_TYPE_OMID",
-                            "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
-                            "TARGETING_TYPE_CONTENT_GENRE",
-                            "TARGETING_TYPE_YOUTUBE_VIDEO",
-                            "TARGETING_TYPE_YOUTUBE_CHANNEL",
-                            "TARGETING_TYPE_SESSION_POSITION",
-                        ],
-                        assignedTargetingOptionId: str,
-                        **kwargs: typing.Any,
-                    ) -> AssignedTargetingOptionHttpRequest: ...
-                    def list(
-                        self,
-                        *,
-                        advertiserId: str,
-                        campaignId: str,
-                        targetingType: typing_extensions.Literal[
-                            "TARGETING_TYPE_UNSPECIFIED",
-                            "TARGETING_TYPE_CHANNEL",
-                            "TARGETING_TYPE_APP_CATEGORY",
-                            "TARGETING_TYPE_APP",
-                            "TARGETING_TYPE_URL",
-                            "TARGETING_TYPE_DAY_AND_TIME",
-                            "TARGETING_TYPE_AGE_RANGE",
-                            "TARGETING_TYPE_REGIONAL_LOCATION_LIST",
-                            "TARGETING_TYPE_PROXIMITY_LOCATION_LIST",
-                            "TARGETING_TYPE_GENDER",
-                            "TARGETING_TYPE_VIDEO_PLAYER_SIZE",
-                            "TARGETING_TYPE_USER_REWARDED_CONTENT",
-                            "TARGETING_TYPE_PARENTAL_STATUS",
-                            "TARGETING_TYPE_CONTENT_INSTREAM_POSITION",
-                            "TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION",
-                            "TARGETING_TYPE_DEVICE_TYPE",
-                            "TARGETING_TYPE_AUDIENCE_GROUP",
-                            "TARGETING_TYPE_BROWSER",
-                            "TARGETING_TYPE_HOUSEHOLD_INCOME",
-                            "TARGETING_TYPE_ON_SCREEN_POSITION",
-                            "TARGETING_TYPE_THIRD_PARTY_VERIFIER",
-                            "TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION",
-                            "TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION",
-                            "TARGETING_TYPE_ENVIRONMENT",
-                            "TARGETING_TYPE_CARRIER_AND_ISP",
-                            "TARGETING_TYPE_OPERATING_SYSTEM",
-                            "TARGETING_TYPE_DEVICE_MAKE_MODEL",
-                            "TARGETING_TYPE_KEYWORD",
-                            "TARGETING_TYPE_NEGATIVE_KEYWORD_LIST",
-                            "TARGETING_TYPE_VIEWABILITY",
-                            "TARGETING_TYPE_CATEGORY",
-                            "TARGETING_TYPE_INVENTORY_SOURCE",
-                            "TARGETING_TYPE_LANGUAGE",
-                            "TARGETING_TYPE_AUTHORIZED_SELLER_STATUS",
-                            "TARGETING_TYPE_GEO_REGION",
-                            "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
-                            "TARGETING_TYPE_EXCHANGE",
-                            "TARGETING_TYPE_SUB_EXCHANGE",
-                            "TARGETING_TYPE_POI",
-                            "TARGETING_TYPE_BUSINESS_CHAIN",
-                            "TARGETING_TYPE_CONTENT_DURATION",
-                            "TARGETING_TYPE_CONTENT_STREAM_TYPE",
-                            "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
-                            "TARGETING_TYPE_OMID",
-                            "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
-                            "TARGETING_TYPE_CONTENT_GENRE",
-                            "TARGETING_TYPE_YOUTUBE_VIDEO",
-                            "TARGETING_TYPE_YOUTUBE_CHANNEL",
-                            "TARGETING_TYPE_SESSION_POSITION",
-                        ],
-                        filter: str = ...,
-                        orderBy: str = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
-                        **kwargs: typing.Any,
-                    ) -> ListCampaignAssignedTargetingOptionsResponseHttpRequest: ...
-                    def list_next(
-                        self,
-                        previous_request: ListCampaignAssignedTargetingOptionsResponseHttpRequest,
-                        previous_response: ListCampaignAssignedTargetingOptionsResponse,
-                    ) -> (
-                        ListCampaignAssignedTargetingOptionsResponseHttpRequest | None
-                    ): ...
-
-                def assignedTargetingOptions(
-                    self,
-                ) -> AssignedTargetingOptionsResource: ...
-
             def create(
                 self, *, advertiserId: str, body: Campaign = ..., **kwargs: typing.Any
             ) -> CampaignHttpRequest: ...
@@ -190,22 +51,6 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                 previous_request: ListCampaignsResponseHttpRequest,
                 previous_response: ListCampaignsResponse,
             ) -> ListCampaignsResponseHttpRequest | None: ...
-            def listAssignedTargetingOptions(
-                self,
-                *,
-                advertiserId: str,
-                campaignId: str,
-                filter: str = ...,
-                orderBy: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
-                **kwargs: typing.Any,
-            ) -> BulkListCampaignAssignedTargetingOptionsResponseHttpRequest: ...
-            def listAssignedTargetingOptions_next(
-                self,
-                previous_request: BulkListCampaignAssignedTargetingOptionsResponseHttpRequest,
-                previous_response: BulkListCampaignAssignedTargetingOptionsResponse,
-            ) -> BulkListCampaignAssignedTargetingOptionsResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -215,7 +60,6 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any,
             ) -> CampaignHttpRequest: ...
-            def targetingTypes(self) -> TargetingTypesResource: ...
 
         @typing.type_check_only
         class ChannelsResource(googleapiclient.discovery.Resource):
@@ -355,266 +199,6 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
 
         @typing.type_check_only
         class InsertionOrdersResource(googleapiclient.discovery.Resource):
-            @typing.type_check_only
-            class TargetingTypesResource(googleapiclient.discovery.Resource):
-                @typing.type_check_only
-                class AssignedTargetingOptionsResource(
-                    googleapiclient.discovery.Resource
-                ):
-                    def create(
-                        self,
-                        *,
-                        advertiserId: str,
-                        insertionOrderId: str,
-                        targetingType: typing_extensions.Literal[
-                            "TARGETING_TYPE_UNSPECIFIED",
-                            "TARGETING_TYPE_CHANNEL",
-                            "TARGETING_TYPE_APP_CATEGORY",
-                            "TARGETING_TYPE_APP",
-                            "TARGETING_TYPE_URL",
-                            "TARGETING_TYPE_DAY_AND_TIME",
-                            "TARGETING_TYPE_AGE_RANGE",
-                            "TARGETING_TYPE_REGIONAL_LOCATION_LIST",
-                            "TARGETING_TYPE_PROXIMITY_LOCATION_LIST",
-                            "TARGETING_TYPE_GENDER",
-                            "TARGETING_TYPE_VIDEO_PLAYER_SIZE",
-                            "TARGETING_TYPE_USER_REWARDED_CONTENT",
-                            "TARGETING_TYPE_PARENTAL_STATUS",
-                            "TARGETING_TYPE_CONTENT_INSTREAM_POSITION",
-                            "TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION",
-                            "TARGETING_TYPE_DEVICE_TYPE",
-                            "TARGETING_TYPE_AUDIENCE_GROUP",
-                            "TARGETING_TYPE_BROWSER",
-                            "TARGETING_TYPE_HOUSEHOLD_INCOME",
-                            "TARGETING_TYPE_ON_SCREEN_POSITION",
-                            "TARGETING_TYPE_THIRD_PARTY_VERIFIER",
-                            "TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION",
-                            "TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION",
-                            "TARGETING_TYPE_ENVIRONMENT",
-                            "TARGETING_TYPE_CARRIER_AND_ISP",
-                            "TARGETING_TYPE_OPERATING_SYSTEM",
-                            "TARGETING_TYPE_DEVICE_MAKE_MODEL",
-                            "TARGETING_TYPE_KEYWORD",
-                            "TARGETING_TYPE_NEGATIVE_KEYWORD_LIST",
-                            "TARGETING_TYPE_VIEWABILITY",
-                            "TARGETING_TYPE_CATEGORY",
-                            "TARGETING_TYPE_INVENTORY_SOURCE",
-                            "TARGETING_TYPE_LANGUAGE",
-                            "TARGETING_TYPE_AUTHORIZED_SELLER_STATUS",
-                            "TARGETING_TYPE_GEO_REGION",
-                            "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
-                            "TARGETING_TYPE_EXCHANGE",
-                            "TARGETING_TYPE_SUB_EXCHANGE",
-                            "TARGETING_TYPE_POI",
-                            "TARGETING_TYPE_BUSINESS_CHAIN",
-                            "TARGETING_TYPE_CONTENT_DURATION",
-                            "TARGETING_TYPE_CONTENT_STREAM_TYPE",
-                            "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
-                            "TARGETING_TYPE_OMID",
-                            "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
-                            "TARGETING_TYPE_CONTENT_GENRE",
-                            "TARGETING_TYPE_YOUTUBE_VIDEO",
-                            "TARGETING_TYPE_YOUTUBE_CHANNEL",
-                            "TARGETING_TYPE_SESSION_POSITION",
-                        ],
-                        body: AssignedTargetingOption = ...,
-                        **kwargs: typing.Any,
-                    ) -> AssignedTargetingOptionHttpRequest: ...
-                    def delete(
-                        self,
-                        *,
-                        advertiserId: str,
-                        insertionOrderId: str,
-                        targetingType: typing_extensions.Literal[
-                            "TARGETING_TYPE_UNSPECIFIED",
-                            "TARGETING_TYPE_CHANNEL",
-                            "TARGETING_TYPE_APP_CATEGORY",
-                            "TARGETING_TYPE_APP",
-                            "TARGETING_TYPE_URL",
-                            "TARGETING_TYPE_DAY_AND_TIME",
-                            "TARGETING_TYPE_AGE_RANGE",
-                            "TARGETING_TYPE_REGIONAL_LOCATION_LIST",
-                            "TARGETING_TYPE_PROXIMITY_LOCATION_LIST",
-                            "TARGETING_TYPE_GENDER",
-                            "TARGETING_TYPE_VIDEO_PLAYER_SIZE",
-                            "TARGETING_TYPE_USER_REWARDED_CONTENT",
-                            "TARGETING_TYPE_PARENTAL_STATUS",
-                            "TARGETING_TYPE_CONTENT_INSTREAM_POSITION",
-                            "TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION",
-                            "TARGETING_TYPE_DEVICE_TYPE",
-                            "TARGETING_TYPE_AUDIENCE_GROUP",
-                            "TARGETING_TYPE_BROWSER",
-                            "TARGETING_TYPE_HOUSEHOLD_INCOME",
-                            "TARGETING_TYPE_ON_SCREEN_POSITION",
-                            "TARGETING_TYPE_THIRD_PARTY_VERIFIER",
-                            "TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION",
-                            "TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION",
-                            "TARGETING_TYPE_ENVIRONMENT",
-                            "TARGETING_TYPE_CARRIER_AND_ISP",
-                            "TARGETING_TYPE_OPERATING_SYSTEM",
-                            "TARGETING_TYPE_DEVICE_MAKE_MODEL",
-                            "TARGETING_TYPE_KEYWORD",
-                            "TARGETING_TYPE_NEGATIVE_KEYWORD_LIST",
-                            "TARGETING_TYPE_VIEWABILITY",
-                            "TARGETING_TYPE_CATEGORY",
-                            "TARGETING_TYPE_INVENTORY_SOURCE",
-                            "TARGETING_TYPE_LANGUAGE",
-                            "TARGETING_TYPE_AUTHORIZED_SELLER_STATUS",
-                            "TARGETING_TYPE_GEO_REGION",
-                            "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
-                            "TARGETING_TYPE_EXCHANGE",
-                            "TARGETING_TYPE_SUB_EXCHANGE",
-                            "TARGETING_TYPE_POI",
-                            "TARGETING_TYPE_BUSINESS_CHAIN",
-                            "TARGETING_TYPE_CONTENT_DURATION",
-                            "TARGETING_TYPE_CONTENT_STREAM_TYPE",
-                            "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
-                            "TARGETING_TYPE_OMID",
-                            "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
-                            "TARGETING_TYPE_CONTENT_GENRE",
-                            "TARGETING_TYPE_YOUTUBE_VIDEO",
-                            "TARGETING_TYPE_YOUTUBE_CHANNEL",
-                            "TARGETING_TYPE_SESSION_POSITION",
-                        ],
-                        assignedTargetingOptionId: str,
-                        **kwargs: typing.Any,
-                    ) -> EmptyHttpRequest: ...
-                    def get(
-                        self,
-                        *,
-                        advertiserId: str,
-                        insertionOrderId: str,
-                        targetingType: typing_extensions.Literal[
-                            "TARGETING_TYPE_UNSPECIFIED",
-                            "TARGETING_TYPE_CHANNEL",
-                            "TARGETING_TYPE_APP_CATEGORY",
-                            "TARGETING_TYPE_APP",
-                            "TARGETING_TYPE_URL",
-                            "TARGETING_TYPE_DAY_AND_TIME",
-                            "TARGETING_TYPE_AGE_RANGE",
-                            "TARGETING_TYPE_REGIONAL_LOCATION_LIST",
-                            "TARGETING_TYPE_PROXIMITY_LOCATION_LIST",
-                            "TARGETING_TYPE_GENDER",
-                            "TARGETING_TYPE_VIDEO_PLAYER_SIZE",
-                            "TARGETING_TYPE_USER_REWARDED_CONTENT",
-                            "TARGETING_TYPE_PARENTAL_STATUS",
-                            "TARGETING_TYPE_CONTENT_INSTREAM_POSITION",
-                            "TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION",
-                            "TARGETING_TYPE_DEVICE_TYPE",
-                            "TARGETING_TYPE_AUDIENCE_GROUP",
-                            "TARGETING_TYPE_BROWSER",
-                            "TARGETING_TYPE_HOUSEHOLD_INCOME",
-                            "TARGETING_TYPE_ON_SCREEN_POSITION",
-                            "TARGETING_TYPE_THIRD_PARTY_VERIFIER",
-                            "TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION",
-                            "TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION",
-                            "TARGETING_TYPE_ENVIRONMENT",
-                            "TARGETING_TYPE_CARRIER_AND_ISP",
-                            "TARGETING_TYPE_OPERATING_SYSTEM",
-                            "TARGETING_TYPE_DEVICE_MAKE_MODEL",
-                            "TARGETING_TYPE_KEYWORD",
-                            "TARGETING_TYPE_NEGATIVE_KEYWORD_LIST",
-                            "TARGETING_TYPE_VIEWABILITY",
-                            "TARGETING_TYPE_CATEGORY",
-                            "TARGETING_TYPE_INVENTORY_SOURCE",
-                            "TARGETING_TYPE_LANGUAGE",
-                            "TARGETING_TYPE_AUTHORIZED_SELLER_STATUS",
-                            "TARGETING_TYPE_GEO_REGION",
-                            "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
-                            "TARGETING_TYPE_EXCHANGE",
-                            "TARGETING_TYPE_SUB_EXCHANGE",
-                            "TARGETING_TYPE_POI",
-                            "TARGETING_TYPE_BUSINESS_CHAIN",
-                            "TARGETING_TYPE_CONTENT_DURATION",
-                            "TARGETING_TYPE_CONTENT_STREAM_TYPE",
-                            "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
-                            "TARGETING_TYPE_OMID",
-                            "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
-                            "TARGETING_TYPE_CONTENT_GENRE",
-                            "TARGETING_TYPE_YOUTUBE_VIDEO",
-                            "TARGETING_TYPE_YOUTUBE_CHANNEL",
-                            "TARGETING_TYPE_SESSION_POSITION",
-                        ],
-                        assignedTargetingOptionId: str,
-                        **kwargs: typing.Any,
-                    ) -> AssignedTargetingOptionHttpRequest: ...
-                    def list(
-                        self,
-                        *,
-                        advertiserId: str,
-                        insertionOrderId: str,
-                        targetingType: typing_extensions.Literal[
-                            "TARGETING_TYPE_UNSPECIFIED",
-                            "TARGETING_TYPE_CHANNEL",
-                            "TARGETING_TYPE_APP_CATEGORY",
-                            "TARGETING_TYPE_APP",
-                            "TARGETING_TYPE_URL",
-                            "TARGETING_TYPE_DAY_AND_TIME",
-                            "TARGETING_TYPE_AGE_RANGE",
-                            "TARGETING_TYPE_REGIONAL_LOCATION_LIST",
-                            "TARGETING_TYPE_PROXIMITY_LOCATION_LIST",
-                            "TARGETING_TYPE_GENDER",
-                            "TARGETING_TYPE_VIDEO_PLAYER_SIZE",
-                            "TARGETING_TYPE_USER_REWARDED_CONTENT",
-                            "TARGETING_TYPE_PARENTAL_STATUS",
-                            "TARGETING_TYPE_CONTENT_INSTREAM_POSITION",
-                            "TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION",
-                            "TARGETING_TYPE_DEVICE_TYPE",
-                            "TARGETING_TYPE_AUDIENCE_GROUP",
-                            "TARGETING_TYPE_BROWSER",
-                            "TARGETING_TYPE_HOUSEHOLD_INCOME",
-                            "TARGETING_TYPE_ON_SCREEN_POSITION",
-                            "TARGETING_TYPE_THIRD_PARTY_VERIFIER",
-                            "TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION",
-                            "TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION",
-                            "TARGETING_TYPE_ENVIRONMENT",
-                            "TARGETING_TYPE_CARRIER_AND_ISP",
-                            "TARGETING_TYPE_OPERATING_SYSTEM",
-                            "TARGETING_TYPE_DEVICE_MAKE_MODEL",
-                            "TARGETING_TYPE_KEYWORD",
-                            "TARGETING_TYPE_NEGATIVE_KEYWORD_LIST",
-                            "TARGETING_TYPE_VIEWABILITY",
-                            "TARGETING_TYPE_CATEGORY",
-                            "TARGETING_TYPE_INVENTORY_SOURCE",
-                            "TARGETING_TYPE_LANGUAGE",
-                            "TARGETING_TYPE_AUTHORIZED_SELLER_STATUS",
-                            "TARGETING_TYPE_GEO_REGION",
-                            "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
-                            "TARGETING_TYPE_EXCHANGE",
-                            "TARGETING_TYPE_SUB_EXCHANGE",
-                            "TARGETING_TYPE_POI",
-                            "TARGETING_TYPE_BUSINESS_CHAIN",
-                            "TARGETING_TYPE_CONTENT_DURATION",
-                            "TARGETING_TYPE_CONTENT_STREAM_TYPE",
-                            "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
-                            "TARGETING_TYPE_OMID",
-                            "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
-                            "TARGETING_TYPE_CONTENT_GENRE",
-                            "TARGETING_TYPE_YOUTUBE_VIDEO",
-                            "TARGETING_TYPE_YOUTUBE_CHANNEL",
-                            "TARGETING_TYPE_SESSION_POSITION",
-                        ],
-                        filter: str = ...,
-                        orderBy: str = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
-                        **kwargs: typing.Any,
-                    ) -> (
-                        ListInsertionOrderAssignedTargetingOptionsResponseHttpRequest
-                    ): ...
-                    def list_next(
-                        self,
-                        previous_request: ListInsertionOrderAssignedTargetingOptionsResponseHttpRequest,
-                        previous_response: ListInsertionOrderAssignedTargetingOptionsResponse,
-                    ) -> (
-                        ListInsertionOrderAssignedTargetingOptionsResponseHttpRequest
-                        | None
-                    ): ...
-
-                def assignedTargetingOptions(
-                    self,
-                ) -> AssignedTargetingOptionsResource: ...
-
             def create(
                 self,
                 *,
@@ -643,24 +227,6 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                 previous_request: ListInsertionOrdersResponseHttpRequest,
                 previous_response: ListInsertionOrdersResponse,
             ) -> ListInsertionOrdersResponseHttpRequest | None: ...
-            def listAssignedTargetingOptions(
-                self,
-                *,
-                advertiserId: str,
-                insertionOrderId: str,
-                filter: str = ...,
-                orderBy: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
-                **kwargs: typing.Any,
-            ) -> BulkListInsertionOrderAssignedTargetingOptionsResponseHttpRequest: ...
-            def listAssignedTargetingOptions_next(
-                self,
-                previous_request: BulkListInsertionOrderAssignedTargetingOptionsResponseHttpRequest,
-                previous_response: BulkListInsertionOrderAssignedTargetingOptionsResponse,
-            ) -> (
-                BulkListInsertionOrderAssignedTargetingOptionsResponseHttpRequest | None
-            ): ...
             def patch(
                 self,
                 *,
@@ -670,7 +236,6 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any,
             ) -> InsertionOrderHttpRequest: ...
-            def targetingTypes(self) -> TargetingTypesResource: ...
 
         @typing.type_check_only
         class InvoicesResource(googleapiclient.discovery.Resource):
@@ -1004,13 +569,6 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                 body: DuplicateLineItemRequest = ...,
                 **kwargs: typing.Any,
             ) -> DuplicateLineItemResponseHttpRequest: ...
-            def generateDefault(
-                self,
-                *,
-                advertiserId: str,
-                body: GenerateDefaultLineItemRequest = ...,
-                **kwargs: typing.Any,
-            ) -> LineItemHttpRequest: ...
             def get(
                 self, *, advertiserId: str, lineItemId: str, **kwargs: typing.Any
             ) -> LineItemHttpRequest: ...
@@ -3001,26 +2559,6 @@ class BulkListAssignedTargetingOptionsResponseHttpRequest(
     ) -> BulkListAssignedTargetingOptionsResponse: ...
 
 @typing.type_check_only
-class BulkListCampaignAssignedTargetingOptionsResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> BulkListCampaignAssignedTargetingOptionsResponse: ...
-
-@typing.type_check_only
-class BulkListInsertionOrderAssignedTargetingOptionsResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> BulkListInsertionOrderAssignedTargetingOptionsResponse: ...
-
-@typing.type_check_only
 class BulkUpdateLineItemsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -3241,16 +2779,6 @@ class ListAssignedLocationsResponseHttpRequest(googleapiclient.http.HttpRequest)
     ) -> ListAssignedLocationsResponse: ...
 
 @typing.type_check_only
-class ListCampaignAssignedTargetingOptionsResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> ListCampaignAssignedTargetingOptionsResponse: ...
-
-@typing.type_check_only
 class ListCampaignsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -3329,16 +2857,6 @@ class ListGuaranteedOrdersResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListGuaranteedOrdersResponse: ...
-
-@typing.type_check_only
-class ListInsertionOrderAssignedTargetingOptionsResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> ListInsertionOrderAssignedTargetingOptionsResponse: ...
 
 @typing.type_check_only
 class ListInsertionOrdersResponseHttpRequest(googleapiclient.http.HttpRequest):

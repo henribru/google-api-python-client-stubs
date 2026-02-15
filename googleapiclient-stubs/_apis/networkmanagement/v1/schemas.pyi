@@ -24,6 +24,9 @@ class AbortInfo(typing_extensions.TypedDict, total=False):
         "PERMISSION_DENIED_NO_NEG_ENDPOINT_CONFIGS",
         "PERMISSION_DENIED_NO_CLOUD_ROUTER_CONFIGS",
         "NO_SOURCE_LOCATION",
+        "NO_SOURCE_GCP_NETWORK_LOCATION",
+        "NO_SOURCE_NON_GCP_NETWORK_LOCATION",
+        "NO_SOURCE_INTERNET_LOCATION",
         "INVALID_ARGUMENT",
         "TRACE_TOO_LONG",
         "INTERNAL_ERROR",
@@ -38,6 +41,7 @@ class AbortInfo(typing_extensions.TypedDict, total=False):
         "GOOGLE_MANAGED_SERVICE_AMBIGUOUS_PSC_ENDPOINT",
         "GOOGLE_MANAGED_SERVICE_AMBIGUOUS_ENDPOINT",
         "SOURCE_PSC_CLOUD_SQL_UNSUPPORTED",
+        "SOURCE_EXTERNAL_CLOUD_SQL_UNSUPPORTED",
         "SOURCE_REDIS_CLUSTER_UNSUPPORTED",
         "SOURCE_REDIS_INSTANCE_UNSUPPORTED",
         "SOURCE_FORWARDING_RULE_UNSUPPORTED",
@@ -46,6 +50,7 @@ class AbortInfo(typing_extensions.TypedDict, total=False):
         "UNSUPPORTED_GOOGLE_MANAGED_PROJECT_CONFIG",
         "NO_SERVERLESS_IP_RANGES",
         "IP_VERSION_PROTOCOL_MISMATCH",
+        "GKE_POD_UNKNOWN_ENDPOINT_LOCATION",
     ]
     ipAddress: str
     projectsMissingPermission: _list[str]
@@ -166,6 +171,7 @@ class DeliverInfo(typing_extensions.TypedDict, total=False):
         "GOOGLE_MANAGED_SERVICE",
         "REDIS_INSTANCE",
         "REDIS_CLUSTER",
+        "GKE_POD",
     ]
 
 @typing.type_check_only
@@ -194,6 +200,7 @@ class DropInfo(typing_extensions.TypedDict, total=False):
         "ROUTE_NEXT_HOP_VPN_TUNNEL_NOT_ESTABLISHED",
         "ROUTE_NEXT_HOP_FORWARDING_RULE_TYPE_INVALID",
         "NO_ROUTE_FROM_INTERNET_TO_PRIVATE_IPV6_ADDRESS",
+        "NO_ROUTE_FROM_INTERNET_TO_PRIVATE_IPV4_ADDRESS",
         "NO_ROUTE_FROM_EXTERNAL_IPV6_SOURCE_TO_PRIVATE_IPV6_ADDRESS",
         "VPN_TUNNEL_LOCAL_SELECTOR_MISMATCH",
         "VPN_TUNNEL_REMOTE_SELECTOR_MISMATCH",
@@ -208,6 +215,7 @@ class DropInfo(typing_extensions.TypedDict, total=False):
         "INGRESS_FIREWALL_TAGS_UNSUPPORTED_BY_DIRECT_VPC_EGRESS",
         "INSTANCE_NOT_RUNNING",
         "GKE_CLUSTER_NOT_RUNNING",
+        "GKE_POD_NOT_RUNNING",
         "CLOUD_SQL_INSTANCE_NOT_RUNNING",
         "REDIS_INSTANCE_NOT_RUNNING",
         "REDIS_CLUSTER_NOT_RUNNING",
@@ -270,6 +278,7 @@ class DropInfo(typing_extensions.TypedDict, total=False):
         "UNSUPPORTED_ROUTE_MATCHED_FOR_NAT64_DESTINATION",
         "TRAFFIC_FROM_HYBRID_ENDPOINT_TO_INTERNET_DISALLOWED",
         "NO_MATCHING_NAT64_GATEWAY",
+        "NO_CONFIGURED_PRIVATE_NAT64_RULE",
         "LOAD_BALANCER_BACKEND_IP_VERSION_MISMATCH",
         "NO_KNOWN_ROUTE_FROM_NCC_NETWORK_TO_DESTINATION",
         "CLOUD_NAT_PROTOCOL_UNSUPPORTED",
@@ -278,6 +287,8 @@ class DropInfo(typing_extensions.TypedDict, total=False):
         "L2_INTERCONNECT_DESTINATION_IP_MISMATCH",
         "NCC_ROUTE_WITHIN_HYBRID_SUBNET_UNSUPPORTED",
         "HYBRID_SUBNET_REGION_MISMATCH",
+        "HYBRID_SUBNET_NO_ROUTE",
+        "NO_VALID_ROUTE_FROM_GOOGLE_MANAGED_NETWORK_TO_DESTINATION",
     ]
     destinationGeolocationCode: str
     destinationIp: str
@@ -350,6 +361,7 @@ class Endpoint(typing_extensions.TypedDict, total=False):
     ]
     fqdn: str
     gkeMasterCluster: str
+    gkePod: str
     instance: str
     ipAddress: str
     loadBalancerId: str
@@ -368,7 +380,7 @@ class Endpoint(typing_extensions.TypedDict, total=False):
     ]
     network: str
     networkType: typing_extensions.Literal[
-        "NETWORK_TYPE_UNSPECIFIED", "GCP_NETWORK", "NON_GCP_NETWORK"
+        "NETWORK_TYPE_UNSPECIFIED", "GCP_NETWORK", "NON_GCP_NETWORK", "INTERNET"
     ]
     port: int
     projectId: str
@@ -406,6 +418,8 @@ class FirewallInfo(typing_extensions.TypedDict, total=False):
         "SERVERLESS_VPC_ACCESS_MANAGED_FIREWALL_RULE",
         "NETWORK_FIREWALL_POLICY_RULE",
         "NETWORK_REGIONAL_FIREWALL_POLICY_RULE",
+        "SYSTEM_NETWORK_FIREWALL_POLICY_RULE",
+        "SYSTEM_REGIONAL_NETWORK_FIREWALL_POLICY_RULE",
         "UNSUPPORTED_FIREWALL_POLICY_RULE",
         "TRACKING_STATE",
         "ANALYSIS_SKIPPED",
@@ -463,6 +477,12 @@ class GKEMasterInfo(typing_extensions.TypedDict, total=False):
     internalIp: str
 
 @typing.type_check_only
+class GkePodInfo(typing_extensions.TypedDict, total=False):
+    ipAddress: str
+    networkUri: str
+    podUri: str
+
+@typing.type_check_only
 class GoogleServiceInfo(typing_extensions.TypedDict, total=False):
     googleServiceType: typing_extensions.Literal[
         "GOOGLE_SERVICE_TYPE_UNSPECIFIED",
@@ -507,6 +527,20 @@ class InterconnectAttachmentInfo(typing_extensions.TypedDict, total=False):
         "TYPE_UNSPECIFIED", "DEDICATED", "PARTNER", "PARTNER_PROVIDER", "L2_DEDICATED"
     ]
     uri: str
+
+@typing.type_check_only
+class IpMasqueradingSkippedInfo(typing_extensions.TypedDict, total=False):
+    nonMasqueradeRange: str
+    reason: typing_extensions.Literal[
+        "REASON_UNSPECIFIED",
+        "DESTINATION_IP_IN_CONFIGURED_NON_MASQUERADE_RANGE",
+        "DESTINATION_IP_IN_DEFAULT_NON_MASQUERADE_RANGE",
+        "DESTINATION_ON_SAME_NODE",
+        "DEFAULT_SNAT_DISABLED",
+        "NO_MASQUERADING_FOR_IPV6",
+        "POD_USES_NODE_NETWORK_NAMESPACE",
+        "NO_MASQUERADING_FOR_RETURN_PACKET",
+    ]
 
 @typing.type_check_only
 class LatencyDistribution(typing_extensions.TypedDict, total=False):
@@ -596,6 +630,14 @@ class Location(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class NatInfo(typing_extensions.TypedDict, total=False):
+    cloudNatGatewayType: typing_extensions.Literal[
+        "CLOUD_NAT_GATEWAY_TYPE_UNSPECIFIED",
+        "PUBLIC_NAT44",
+        "PUBLIC_NAT64",
+        "PRIVATE_NAT_NCC",
+        "PRIVATE_NAT_HYBRID",
+        "PRIVATE_NAT64",
+    ]
     natGatewayName: str
     networkUri: str
     newDestinationIp: str
@@ -833,10 +875,12 @@ class Step(typing_extensions.TypedDict, total=False):
     forward: ForwardInfo
     forwardingRule: ForwardingRuleInfo
     gkeMaster: GKEMasterInfo
+    gkePod: GkePodInfo
     googleService: GoogleServiceInfo
     hybridSubnet: HybridSubnetInfo
     instance: InstanceInfo
     interconnectAttachment: InterconnectAttachmentInfo
+    ipMasqueradingSkipped: IpMasqueradingSkippedInfo
     loadBalancer: LoadBalancerInfo
     loadBalancerBackendInfo: LoadBalancerBackendInfo
     nat: NatInfo
@@ -856,6 +900,7 @@ class Step(typing_extensions.TypedDict, total=False):
         "START_FROM_PRIVATE_NETWORK",
         "START_FROM_GKE_MASTER",
         "START_FROM_CLOUD_SQL_INSTANCE",
+        "START_FROM_GKE_POD",
         "START_FROM_REDIS_INSTANCE",
         "START_FROM_REDIS_CLUSTER",
         "START_FROM_CLOUD_FUNCTION",
@@ -881,6 +926,7 @@ class Step(typing_extensions.TypedDict, total=False):
         "DIRECT_VPC_EGRESS_CONNECTION",
         "SERVERLESS_EXTERNAL_CONNECTION",
         "NAT",
+        "SKIP_GKE_POD_IP_MASQUERADING",
         "PROXY_CONNECTION",
         "DELIVER",
         "DROP",

@@ -1119,6 +1119,14 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 body: CancelSubscriptionPurchaseRequest = ...,
                 **kwargs: typing.Any,
             ) -> CancelSubscriptionPurchaseResponseHttpRequest: ...
+            def defer(
+                self,
+                *,
+                packageName: str,
+                token: str,
+                body: DeferSubscriptionPurchaseRequest = ...,
+                **kwargs: typing.Any,
+            ) -> DeferSubscriptionPurchaseResponseHttpRequest: ...
             def get(
                 self, *, packageName: str, token: str, **kwargs: typing.Any
             ) -> SubscriptionPurchaseV2HttpRequest: ...
@@ -1498,6 +1506,14 @@ class ConvertRegionPricesResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ConvertRegionPricesResponse: ...
+
+@typing.type_check_only
+class DeferSubscriptionPurchaseResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> DeferSubscriptionPurchaseResponse: ...
 
 @typing.type_check_only
 class DeobfuscationFilesUploadResponseHttpRequest(googleapiclient.http.HttpRequest):

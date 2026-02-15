@@ -142,6 +142,7 @@ class GoogleFirebaseAppcheckV1betaExchangeCustomTokenRequest(
     typing_extensions.TypedDict, total=False
 ):
     customToken: str
+    jti: str
     limitedUse: bool
 
 @typing.type_check_only

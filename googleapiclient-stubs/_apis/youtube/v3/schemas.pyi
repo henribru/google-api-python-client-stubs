@@ -1410,6 +1410,17 @@ class LiveChatFanFundingEventDetails(typing_extensions.TypedDict, total=False):
     userComment: str
 
 @typing.type_check_only
+class LiveChatGiftDetails(typing_extensions.TypedDict, total=False):
+    altText: str
+    comboCount: int
+    giftDuration: str
+    giftName: str
+    giftUrl: str
+    hasVisualEffect: bool
+    jewelsCount: int
+    language: str
+
+@typing.type_check_only
 class LiveChatGiftMembershipReceivedDetails(typing_extensions.TypedDict, total=False):
     associatedMembershipGiftingMessageId: str
     gifterChannelId: str
@@ -1472,6 +1483,7 @@ class LiveChatMessageSnippet(typing_extensions.TypedDict, total=False):
     authorChannelId: str
     displayMessage: str
     fanFundingEventDetails: LiveChatFanFundingEventDetails
+    giftDetails: LiveChatGiftDetails
     giftMembershipReceivedDetails: LiveChatGiftMembershipReceivedDetails
     hasDisplayContent: bool
     liveChatId: str
@@ -1503,6 +1515,7 @@ class LiveChatMessageSnippet(typing_extensions.TypedDict, total=False):
         "superChatEvent",
         "superStickerEvent",
         "pollEvent",
+        "giftEvent",
     ]
     userBannedDetails: LiveChatUserBannedMessageDetails
 

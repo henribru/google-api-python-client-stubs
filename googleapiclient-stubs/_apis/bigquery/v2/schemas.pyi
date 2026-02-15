@@ -195,6 +195,7 @@ class BigtableColumn(typing_extensions.TypedDict, total=False):
     encoding: str
     fieldName: str
     onlyReadLatest: bool
+    protoConfig: BigtableProtoConfig
     qualifierEncoded: str
     qualifierString: str
     type: str
@@ -205,6 +206,7 @@ class BigtableColumnFamily(typing_extensions.TypedDict, total=False):
     encoding: str
     familyId: str
     onlyReadLatest: bool
+    protoConfig: BigtableProtoConfig
     type: str
 
 @typing.type_check_only
@@ -213,6 +215,11 @@ class BigtableOptions(typing_extensions.TypedDict, total=False):
     ignoreUnspecifiedColumnFamilies: bool
     outputColumnFamiliesAsJson: bool
     readRowkeyAsString: bool
+
+@typing.type_check_only
+class BigtableProtoConfig(typing_extensions.TypedDict, total=False):
+    protoMessageName: str
+    schemaBundleId: str
 
 @typing.type_check_only
 class BinaryClassificationMetrics(typing_extensions.TypedDict, total=False):
@@ -706,13 +713,16 @@ class HparamTuningTrial(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class IncrementalResultStats(typing_extensions.TypedDict, total=False):
-    disabledReason: typing_extensions.Literal["DISABLED_REASON_UNSPECIFIED", "OTHER"]
+    disabledReason: typing_extensions.Literal[
+        "DISABLED_REASON_UNSPECIFIED", "OTHER", "UNSUPPORTED_OPERATOR"
+    ]
     resultSetLastModifyTime: str
     resultSetLastReplaceTime: str
 
 @typing.type_check_only
 class IndexPruningStats(typing_extensions.TypedDict, total=False):
     baseTable: TableReference
+    indexId: str
     postIndexPruningParallelInputCount: str
     preIndexPruningParallelInputCount: str
 

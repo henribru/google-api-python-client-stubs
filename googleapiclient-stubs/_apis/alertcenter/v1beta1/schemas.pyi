@@ -364,6 +364,7 @@ class ResourceInfo(typing_extensions.TypedDict, total=False):
     chatMessageId: str
     deviceId: str
     documentId: str
+    messageId: str
     resourceTitle: str
 
 @typing.type_check_only

@@ -241,6 +241,7 @@ class DiscoveryOccurrence(typing_extensions.TypedDict, total=False):
     cpe: str
     files: _list[File]
     lastScanTime: str
+    lastVulnerabilityUpdateTime: str
     sbomStatus: SBOMStatus
 
 @typing.type_check_only
@@ -298,6 +299,7 @@ class GitSourceContext(typing_extensions.TypedDict, total=False):
 class GrafeasV1BaseImage(typing_extensions.TypedDict, total=False):
     layerCount: int
     name: str
+    registry: str
     repository: str
 
 @typing.type_check_only

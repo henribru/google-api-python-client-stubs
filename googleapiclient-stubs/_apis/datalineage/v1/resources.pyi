@@ -14,9 +14,76 @@ _list = list
 @typing.type_check_only
 class DatalineageResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
+    class FoldersResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class LocationsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class ConfigResource(googleapiclient.discovery.Resource):
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> (
+                    GoogleCloudDatacatalogLineageConfigmanagementV1ConfigHttpRequest
+                ): ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudDatacatalogLineageConfigmanagementV1Config = ...,
+                    **kwargs: typing.Any,
+                ) -> (
+                    GoogleCloudDatacatalogLineageConfigmanagementV1ConfigHttpRequest
+                ): ...
+
+            def config(self) -> ConfigResource: ...
+
+        def locations(self) -> LocationsResource: ...
+
+    @typing.type_check_only
+    class OrganizationsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class LocationsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class ConfigResource(googleapiclient.discovery.Resource):
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> (
+                    GoogleCloudDatacatalogLineageConfigmanagementV1ConfigHttpRequest
+                ): ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudDatacatalogLineageConfigmanagementV1Config = ...,
+                    **kwargs: typing.Any,
+                ) -> (
+                    GoogleCloudDatacatalogLineageConfigmanagementV1ConfigHttpRequest
+                ): ...
+
+            def config(self) -> ConfigResource: ...
+
+        def locations(self) -> LocationsResource: ...
+
+    @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class ConfigResource(googleapiclient.discovery.Resource):
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> (
+                    GoogleCloudDatacatalogLineageConfigmanagementV1ConfigHttpRequest
+                ): ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudDatacatalogLineageConfigmanagementV1Config = ...,
+                    **kwargs: typing.Any,
+                ) -> (
+                    GoogleCloudDatacatalogLineageConfigmanagementV1ConfigHttpRequest
+                ): ...
+
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def cancel(
@@ -215,6 +282,7 @@ class DatalineageResource(googleapiclient.discovery.Resource):
             ) -> (
                 GoogleCloudDatacatalogLineageV1SearchLinksResponseHttpRequest | None
             ): ...
+            def config(self) -> ConfigResource: ...
             def operations(self) -> OperationsResource: ...
             def processes(self) -> ProcessesResource: ...
 
@@ -232,7 +300,19 @@ class DatalineageResource(googleapiclient.discovery.Resource):
         ]
         | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
+    def folders(self) -> FoldersResource: ...
+    def organizations(self) -> OrganizationsResource: ...
     def projects(self) -> ProjectsResource: ...
+
+@typing.type_check_only
+class GoogleCloudDatacatalogLineageConfigmanagementV1ConfigHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudDatacatalogLineageConfigmanagementV1Config: ...
 
 @typing.type_check_only
 class GoogleCloudDatacatalogLineageV1BatchSearchLinkProcessesResponseHttpRequest(

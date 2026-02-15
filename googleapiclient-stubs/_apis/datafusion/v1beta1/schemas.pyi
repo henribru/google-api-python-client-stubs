@@ -96,6 +96,7 @@ class Instance(typing_extensions.TypedDict, total=False):
     loggingConfig: LoggingConfig
     maintenanceEvents: _list[MaintenanceEvent]
     maintenancePolicy: MaintenancePolicy
+    monitoringConfig: MonitoringConfig
     name: str
     networkConfig: NetworkConfig
     options: dict[str, typing.Any]
@@ -162,6 +163,7 @@ class ListNamespacesResponse(typing_extensions.TypedDict, total=False):
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):
@@ -173,6 +175,7 @@ class Location(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class LoggingConfig(typing_extensions.TypedDict, total=False):
+    enableInstanceV2Logs: bool
     instanceCloudLoggingDisabled: bool
 
 @typing.type_check_only
@@ -191,6 +194,10 @@ class MaintenancePolicy(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class MaintenanceWindow(typing_extensions.TypedDict, total=False):
     recurringTimeWindow: RecurringTimeWindow
+
+@typing.type_check_only
+class MonitoringConfig(typing_extensions.TypedDict, total=False):
+    enableInstanceV2Metrics: bool
 
 @typing.type_check_only
 class Namespace(typing_extensions.TypedDict, total=False):

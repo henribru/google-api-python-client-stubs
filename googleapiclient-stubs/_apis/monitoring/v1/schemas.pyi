@@ -265,6 +265,10 @@ class Field(typing_extensions.TypedDict, total=False):
     typeUrl: str
 
 @typing.type_check_only
+class FilterControl(typing_extensions.TypedDict, total=False):
+    templateVariable: str
+
+@typing.type_check_only
 class GaugeView(typing_extensions.TypedDict, total=False):
     lowerBound: float
     upperBound: float
@@ -639,6 +643,7 @@ class Widget(typing_extensions.TypedDict, total=False):
     blank: Empty
     collapsibleGroup: CollapsibleGroup
     errorReportingPanel: ErrorReportingPanel
+    filterControl: FilterControl
     id: str
     incidentList: IncidentList
     logsPanel: LogsPanel

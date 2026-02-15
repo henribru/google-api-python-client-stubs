@@ -5,6 +5,22 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class AddQuorumMember(typing_extensions.TypedDict, total=False):
+    twoFactorPublicKeyPem: str
+
+@typing.type_check_only
+class ApproveSingleTenantHsmInstanceProposalRequest(
+    typing_extensions.TypedDict, total=False
+):
+    quorumReply: QuorumReply
+    requiredActionQuorumReply: RequiredActionQuorumReply
+
+@typing.type_check_only
+class ApproveSingleTenantHsmInstanceProposalResponse(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class AsymmetricDecryptRequest(typing_extensions.TypedDict, total=False):
     ciphertext: str
     ciphertextCrc32c: str
@@ -14,7 +30,12 @@ class AsymmetricDecryptResponse(typing_extensions.TypedDict, total=False):
     plaintext: str
     plaintextCrc32c: str
     protectionLevel: typing_extensions.Literal[
-        "PROTECTION_LEVEL_UNSPECIFIED", "SOFTWARE", "HSM", "EXTERNAL", "EXTERNAL_VPC"
+        "PROTECTION_LEVEL_UNSPECIFIED",
+        "SOFTWARE",
+        "HSM",
+        "EXTERNAL",
+        "EXTERNAL_VPC",
+        "HSM_SINGLE_TENANT",
     ]
     verifiedCiphertextCrc32c: bool
 
@@ -29,7 +50,12 @@ class AsymmetricSignRequest(typing_extensions.TypedDict, total=False):
 class AsymmetricSignResponse(typing_extensions.TypedDict, total=False):
     name: str
     protectionLevel: typing_extensions.Literal[
-        "PROTECTION_LEVEL_UNSPECIFIED", "SOFTWARE", "HSM", "EXTERNAL", "EXTERNAL_VPC"
+        "PROTECTION_LEVEL_UNSPECIFIED",
+        "SOFTWARE",
+        "HSM",
+        "EXTERNAL",
+        "EXTERNAL_VPC",
+        "HSM_SINGLE_TENANT",
     ]
     signature: str
     signatureCrc32c: str
@@ -52,6 +78,12 @@ class AuditLogConfig(typing_extensions.TypedDict, total=False):
 class AutokeyConfig(typing_extensions.TypedDict, total=False):
     etag: str
     keyProject: str
+    keyProjectResolutionMode: typing_extensions.Literal[
+        "KEY_PROJECT_RESOLUTION_MODE_UNSPECIFIED",
+        "DEDICATED_KEY_PROJECT",
+        "RESOURCE_PROJECT",
+        "DISABLED",
+    ]
     name: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "ACTIVE", "KEY_PROJECT_DELETED", "UNINITIALIZED"
@@ -80,6 +112,16 @@ class CertificateChains(typing_extensions.TypedDict, total=False):
     caviumCerts: _list[str]
     googleCardCerts: _list[str]
     googlePartitionCerts: _list[str]
+
+@typing.type_check_only
+class Challenge(typing_extensions.TypedDict, total=False):
+    challenge: str
+    publicKeyPem: str
+
+@typing.type_check_only
+class ChallengeReply(typing_extensions.TypedDict, total=False):
+    publicKeyPem: str
+    signedChallenge: str
 
 @typing.type_check_only
 class ChecksummedData(typing_extensions.TypedDict, total=False):
@@ -151,9 +193,14 @@ class CryptoKeyVersion(typing_extensions.TypedDict, total=False):
         "ML_KEM_768",
         "ML_KEM_1024",
         "KEM_XWING",
+        "PQ_SIGN_ML_DSA_44",
         "PQ_SIGN_ML_DSA_65",
+        "PQ_SIGN_ML_DSA_87",
         "PQ_SIGN_SLH_DSA_SHA2_128S",
         "PQ_SIGN_HASH_SLH_DSA_SHA2_128S_SHA256",
+        "PQ_SIGN_ML_DSA_44_EXTERNAL_MU",
+        "PQ_SIGN_ML_DSA_65_EXTERNAL_MU",
+        "PQ_SIGN_ML_DSA_87_EXTERNAL_MU",
     ]
     attestation: KeyOperationAttestation
     createTime: str
@@ -168,7 +215,12 @@ class CryptoKeyVersion(typing_extensions.TypedDict, total=False):
     importTime: str
     name: str
     protectionLevel: typing_extensions.Literal[
-        "PROTECTION_LEVEL_UNSPECIFIED", "SOFTWARE", "HSM", "EXTERNAL", "EXTERNAL_VPC"
+        "PROTECTION_LEVEL_UNSPECIFIED",
+        "SOFTWARE",
+        "HSM",
+        "EXTERNAL",
+        "EXTERNAL_VPC",
+        "HSM_SINGLE_TENANT",
     ]
     reimportEligible: bool
     state: typing_extensions.Literal[
@@ -227,12 +279,22 @@ class CryptoKeyVersionTemplate(typing_extensions.TypedDict, total=False):
         "ML_KEM_768",
         "ML_KEM_1024",
         "KEM_XWING",
+        "PQ_SIGN_ML_DSA_44",
         "PQ_SIGN_ML_DSA_65",
+        "PQ_SIGN_ML_DSA_87",
         "PQ_SIGN_SLH_DSA_SHA2_128S",
         "PQ_SIGN_HASH_SLH_DSA_SHA2_128S_SHA256",
+        "PQ_SIGN_ML_DSA_44_EXTERNAL_MU",
+        "PQ_SIGN_ML_DSA_65_EXTERNAL_MU",
+        "PQ_SIGN_ML_DSA_87_EXTERNAL_MU",
     ]
     protectionLevel: typing_extensions.Literal[
-        "PROTECTION_LEVEL_UNSPECIFIED", "SOFTWARE", "HSM", "EXTERNAL", "EXTERNAL_VPC"
+        "PROTECTION_LEVEL_UNSPECIFIED",
+        "SOFTWARE",
+        "HSM",
+        "EXTERNAL",
+        "EXTERNAL_VPC",
+        "HSM_SINGLE_TENANT",
     ]
 
 @typing.type_check_only
@@ -244,7 +306,12 @@ class DecapsulateRequest(typing_extensions.TypedDict, total=False):
 class DecapsulateResponse(typing_extensions.TypedDict, total=False):
     name: str
     protectionLevel: typing_extensions.Literal[
-        "PROTECTION_LEVEL_UNSPECIFIED", "SOFTWARE", "HSM", "EXTERNAL", "EXTERNAL_VPC"
+        "PROTECTION_LEVEL_UNSPECIFIED",
+        "SOFTWARE",
+        "HSM",
+        "EXTERNAL",
+        "EXTERNAL_VPC",
+        "HSM_SINGLE_TENANT",
     ]
     sharedSecret: str
     sharedSecretCrc32c: str
@@ -262,9 +329,17 @@ class DecryptResponse(typing_extensions.TypedDict, total=False):
     plaintext: str
     plaintextCrc32c: str
     protectionLevel: typing_extensions.Literal[
-        "PROTECTION_LEVEL_UNSPECIFIED", "SOFTWARE", "HSM", "EXTERNAL", "EXTERNAL_VPC"
+        "PROTECTION_LEVEL_UNSPECIFIED",
+        "SOFTWARE",
+        "HSM",
+        "EXTERNAL",
+        "EXTERNAL_VPC",
+        "HSM_SINGLE_TENANT",
     ]
     usedPrimary: bool
+
+@typing.type_check_only
+class DeleteSingleTenantHsmInstance(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class DestroyCryptoKeyVersionRequest(typing_extensions.TypedDict, total=False): ...
@@ -274,6 +349,9 @@ class Digest(typing_extensions.TypedDict, total=False):
     sha256: str
     sha384: str
     sha512: str
+
+@typing.type_check_only
+class DisableSingleTenantHsmInstance(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class EkmConfig(typing_extensions.TypedDict, total=False):
@@ -292,6 +370,12 @@ class EkmConnection(typing_extensions.TypedDict, total=False):
     serviceResolvers: _list[ServiceResolver]
 
 @typing.type_check_only
+class Empty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class EnableSingleTenantHsmInstance(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class EncryptRequest(typing_extensions.TypedDict, total=False):
     additionalAuthenticatedData: str
     additionalAuthenticatedDataCrc32c: str
@@ -304,10 +388,20 @@ class EncryptResponse(typing_extensions.TypedDict, total=False):
     ciphertextCrc32c: str
     name: str
     protectionLevel: typing_extensions.Literal[
-        "PROTECTION_LEVEL_UNSPECIFIED", "SOFTWARE", "HSM", "EXTERNAL", "EXTERNAL_VPC"
+        "PROTECTION_LEVEL_UNSPECIFIED",
+        "SOFTWARE",
+        "HSM",
+        "EXTERNAL",
+        "EXTERNAL_VPC",
+        "HSM_SINGLE_TENANT",
     ]
     verifiedAdditionalAuthenticatedDataCrc32c: bool
     verifiedPlaintextCrc32c: bool
+
+@typing.type_check_only
+class ExecuteSingleTenantHsmInstanceProposalRequest(
+    typing_extensions.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class Expr(typing_extensions.TypedDict, total=False):
@@ -325,7 +419,12 @@ class ExternalProtectionLevelOptions(typing_extensions.TypedDict, total=False):
 class GenerateRandomBytesRequest(typing_extensions.TypedDict, total=False):
     lengthBytes: int
     protectionLevel: typing_extensions.Literal[
-        "PROTECTION_LEVEL_UNSPECIFIED", "SOFTWARE", "HSM", "EXTERNAL", "EXTERNAL_VPC"
+        "PROTECTION_LEVEL_UNSPECIFIED",
+        "SOFTWARE",
+        "HSM",
+        "EXTERNAL",
+        "EXTERNAL_VPC",
+        "HSM_SINGLE_TENANT",
     ]
 
 @typing.type_check_only
@@ -375,9 +474,14 @@ class ImportCryptoKeyVersionRequest(typing_extensions.TypedDict, total=False):
         "ML_KEM_768",
         "ML_KEM_1024",
         "KEM_XWING",
+        "PQ_SIGN_ML_DSA_44",
         "PQ_SIGN_ML_DSA_65",
+        "PQ_SIGN_ML_DSA_87",
         "PQ_SIGN_SLH_DSA_SHA2_128S",
         "PQ_SIGN_HASH_SLH_DSA_SHA2_128S_SHA256",
+        "PQ_SIGN_ML_DSA_44_EXTERNAL_MU",
+        "PQ_SIGN_ML_DSA_65_EXTERNAL_MU",
+        "PQ_SIGN_ML_DSA_87_EXTERNAL_MU",
     ]
     cryptoKeyVersion: str
     importJob: str
@@ -388,6 +492,7 @@ class ImportCryptoKeyVersionRequest(typing_extensions.TypedDict, total=False):
 class ImportJob(typing_extensions.TypedDict, total=False):
     attestation: KeyOperationAttestation
     createTime: str
+    cryptoKeyBackend: str
     expireEventTime: str
     expireTime: str
     generateTime: str
@@ -402,7 +507,12 @@ class ImportJob(typing_extensions.TypedDict, total=False):
     ]
     name: str
     protectionLevel: typing_extensions.Literal[
-        "PROTECTION_LEVEL_UNSPECIFIED", "SOFTWARE", "HSM", "EXTERNAL", "EXTERNAL_VPC"
+        "PROTECTION_LEVEL_UNSPECIFIED",
+        "SOFTWARE",
+        "HSM",
+        "EXTERNAL",
+        "EXTERNAL_VPC",
+        "HSM_SINGLE_TENANT",
     ]
     publicKey: WrappingPublicKey
     state: typing_extensions.Literal[
@@ -498,6 +608,20 @@ class ListLocationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class ListSingleTenantHsmInstanceProposalsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    singleTenantHsmInstanceProposals: _list[SingleTenantHsmInstanceProposal]
+    totalSize: int
+
+@typing.type_check_only
+class ListSingleTenantHsmInstancesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    singleTenantHsmInstances: _list[SingleTenantHsmInstance]
+    totalSize: int
+
+@typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):
     displayName: str
     labels: dict[str, typing.Any]
@@ -509,6 +633,7 @@ class Location(typing_extensions.TypedDict, total=False):
 class LocationMetadata(typing_extensions.TypedDict, total=False):
     ekmAvailable: bool
     hsmAvailable: bool
+    hsmSingleTenantAvailable: bool
 
 @typing.type_check_only
 class MacSignRequest(typing_extensions.TypedDict, total=False):
@@ -521,7 +646,12 @@ class MacSignResponse(typing_extensions.TypedDict, total=False):
     macCrc32c: str
     name: str
     protectionLevel: typing_extensions.Literal[
-        "PROTECTION_LEVEL_UNSPECIFIED", "SOFTWARE", "HSM", "EXTERNAL", "EXTERNAL_VPC"
+        "PROTECTION_LEVEL_UNSPECIFIED",
+        "SOFTWARE",
+        "HSM",
+        "EXTERNAL",
+        "EXTERNAL_VPC",
+        "HSM_SINGLE_TENANT",
     ]
     verifiedDataCrc32c: bool
 
@@ -536,7 +666,12 @@ class MacVerifyRequest(typing_extensions.TypedDict, total=False):
 class MacVerifyResponse(typing_extensions.TypedDict, total=False):
     name: str
     protectionLevel: typing_extensions.Literal[
-        "PROTECTION_LEVEL_UNSPECIFIED", "SOFTWARE", "HSM", "EXTERNAL", "EXTERNAL_VPC"
+        "PROTECTION_LEVEL_UNSPECIFIED",
+        "SOFTWARE",
+        "HSM",
+        "EXTERNAL",
+        "EXTERNAL_VPC",
+        "HSM_SINGLE_TENANT",
     ]
     success: bool
     verifiedDataCrc32c: bool
@@ -600,20 +735,46 @@ class PublicKey(typing_extensions.TypedDict, total=False):
         "ML_KEM_768",
         "ML_KEM_1024",
         "KEM_XWING",
+        "PQ_SIGN_ML_DSA_44",
         "PQ_SIGN_ML_DSA_65",
+        "PQ_SIGN_ML_DSA_87",
         "PQ_SIGN_SLH_DSA_SHA2_128S",
         "PQ_SIGN_HASH_SLH_DSA_SHA2_128S_SHA256",
+        "PQ_SIGN_ML_DSA_44_EXTERNAL_MU",
+        "PQ_SIGN_ML_DSA_65_EXTERNAL_MU",
+        "PQ_SIGN_ML_DSA_87_EXTERNAL_MU",
     ]
     name: str
     pem: str
     pemCrc32c: str
     protectionLevel: typing_extensions.Literal[
-        "PROTECTION_LEVEL_UNSPECIFIED", "SOFTWARE", "HSM", "EXTERNAL", "EXTERNAL_VPC"
+        "PROTECTION_LEVEL_UNSPECIFIED",
+        "SOFTWARE",
+        "HSM",
+        "EXTERNAL",
+        "EXTERNAL_VPC",
+        "HSM_SINGLE_TENANT",
     ]
     publicKey: ChecksummedData
     publicKeyFormat: typing_extensions.Literal[
         "PUBLIC_KEY_FORMAT_UNSPECIFIED", "PEM", "DER", "NIST_PQC", "XWING_RAW_BYTES"
     ]
+
+@typing.type_check_only
+class QuorumAuth(typing_extensions.TypedDict, total=False):
+    requiredApproverCount: int
+    totalApproverCount: int
+    twoFactorPublicKeyPems: _list[str]
+
+@typing.type_check_only
+class QuorumParameters(typing_extensions.TypedDict, total=False):
+    approvedTwoFactorPublicKeyPems: _list[str]
+    challenges: _list[Challenge]
+    requiredApproverCount: int
+
+@typing.type_check_only
+class QuorumReply(typing_extensions.TypedDict, total=False):
+    challengeReplies: _list[ChallengeReply]
 
 @typing.type_check_only
 class RawDecryptRequest(typing_extensions.TypedDict, total=False):
@@ -630,7 +791,12 @@ class RawDecryptResponse(typing_extensions.TypedDict, total=False):
     plaintext: str
     plaintextCrc32c: str
     protectionLevel: typing_extensions.Literal[
-        "PROTECTION_LEVEL_UNSPECIFIED", "SOFTWARE", "HSM", "EXTERNAL", "EXTERNAL_VPC"
+        "PROTECTION_LEVEL_UNSPECIFIED",
+        "SOFTWARE",
+        "HSM",
+        "EXTERNAL",
+        "EXTERNAL_VPC",
+        "HSM_SINGLE_TENANT",
     ]
     verifiedAdditionalAuthenticatedDataCrc32c: bool
     verifiedCiphertextCrc32c: bool
@@ -653,12 +819,41 @@ class RawEncryptResponse(typing_extensions.TypedDict, total=False):
     initializationVectorCrc32c: str
     name: str
     protectionLevel: typing_extensions.Literal[
-        "PROTECTION_LEVEL_UNSPECIFIED", "SOFTWARE", "HSM", "EXTERNAL", "EXTERNAL_VPC"
+        "PROTECTION_LEVEL_UNSPECIFIED",
+        "SOFTWARE",
+        "HSM",
+        "EXTERNAL",
+        "EXTERNAL_VPC",
+        "HSM_SINGLE_TENANT",
     ]
     tagLength: int
     verifiedAdditionalAuthenticatedDataCrc32c: bool
     verifiedInitializationVectorCrc32c: bool
     verifiedPlaintextCrc32c: bool
+
+@typing.type_check_only
+class RefreshSingleTenantHsmInstance(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class RegisterTwoFactorAuthKeys(typing_extensions.TypedDict, total=False):
+    requiredApproverCount: int
+    twoFactorPublicKeyPems: _list[str]
+
+@typing.type_check_only
+class RemoveQuorumMember(typing_extensions.TypedDict, total=False):
+    twoFactorPublicKeyPem: str
+
+@typing.type_check_only
+class RequiredActionQuorumParameters(typing_extensions.TypedDict, total=False):
+    approvedTwoFactorPublicKeyPems: _list[str]
+    quorumChallenges: _list[Challenge]
+    requiredApproverCount: int
+    requiredChallenges: _list[Challenge]
+
+@typing.type_check_only
+class RequiredActionQuorumReply(typing_extensions.TypedDict, total=False):
+    quorumChallengeReplies: _list[ChallengeReply]
+    requiredChallengeReplies: _list[ChallengeReply]
 
 @typing.type_check_only
 class RestoreCryptoKeyVersionRequest(typing_extensions.TypedDict, total=False): ...
@@ -692,6 +887,55 @@ class ShowEffectiveKeyAccessJustificationsPolicyConfigResponse(
     typing_extensions.TypedDict, total=False
 ):
     effectiveKajPolicy: KeyAccessJustificationsPolicyConfig
+
+@typing.type_check_only
+class SingleTenantHsmInstance(typing_extensions.TypedDict, total=False):
+    createTime: str
+    deleteTime: str
+    disableTime: str
+    name: str
+    quorumAuth: QuorumAuth
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "CREATING",
+        "PENDING_TWO_FACTOR_AUTH_REGISTRATION",
+        "ACTIVE",
+        "DISABLING",
+        "DISABLED",
+        "DELETING",
+        "DELETED",
+        "FAILED",
+    ]
+    unrefreshedDurationUntilDisable: str
+
+@typing.type_check_only
+class SingleTenantHsmInstanceProposal(typing_extensions.TypedDict, total=False):
+    addQuorumMember: AddQuorumMember
+    createTime: str
+    deleteSingleTenantHsmInstance: DeleteSingleTenantHsmInstance
+    deleteTime: str
+    disableSingleTenantHsmInstance: DisableSingleTenantHsmInstance
+    enableSingleTenantHsmInstance: EnableSingleTenantHsmInstance
+    expireTime: str
+    failureReason: str
+    name: str
+    purgeTime: str
+    quorumParameters: QuorumParameters
+    refreshSingleTenantHsmInstance: RefreshSingleTenantHsmInstance
+    registerTwoFactorAuthKeys: RegisterTwoFactorAuthKeys
+    removeQuorumMember: RemoveQuorumMember
+    requiredActionQuorumParameters: RequiredActionQuorumParameters
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "CREATING",
+        "PENDING",
+        "APPROVED",
+        "RUNNING",
+        "SUCCEEDED",
+        "FAILED",
+        "DELETED",
+    ]
+    ttl: str
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):

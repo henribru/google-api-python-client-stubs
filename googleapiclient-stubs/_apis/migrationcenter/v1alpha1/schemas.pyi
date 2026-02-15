@@ -76,12 +76,15 @@ class Asset(typing_extensions.TypedDict, total=False):
     assignedGroups: _list[str]
     attributes: dict[str, typing.Any]
     awsCloudFrontDistributionDetails: AwsCloudFrontDistributionDetails
+    awsDynamodbTableDetails: AwsDynamoDBTableDetails
     awsEcsClusterDetails: AwsEcsClusterDetails
     awsEfsFileSystemDetails: AwsEfsFileSystemDetails
     awsEksClusterDetails: AwsEksClusterDetails
     awsElbLoadBalancerDetails: AwsElbLoadBalancerDetails
     awsLambdaFunctionDetails: AwsLambdaFunctionDetails
+    awsNatGatewayDetails: AwsNatGatewayDetails
     awsRedshiftDetails: AwsRedshiftDetails
+    awsRoute53HostedZoneDetails: AwsRoute53HostedZoneDetails
     awsS3BucketDetails: AwsS3BucketDetails
     awsVpcDetails: AwsVpcDetails
     createTime: str
@@ -106,12 +109,15 @@ class Asset(typing_extensions.TypedDict, total=False):
 class AssetFrame(typing_extensions.TypedDict, total=False):
     attributes: dict[str, typing.Any]
     awsCloudFrontDistributionDetails: AwsCloudFrontDistributionDetails
+    awsDynamodbTableDetails: AwsDynamoDBTableDetails
     awsEcsClusterDetails: AwsEcsClusterDetails
     awsEfsFileSystemDetails: AwsEfsFileSystemDetails
     awsEksClusterDetails: AwsEksClusterDetails
     awsElbLoadBalancerDetails: AwsElbLoadBalancerDetails
     awsLambdaFunctionDetails: AwsLambdaFunctionDetails
+    awsNatGatewayDetails: AwsNatGatewayDetails
     awsRedshiftDetails: AwsRedshiftDetails
+    awsRoute53HostedZoneDetails: AwsRoute53HostedZoneDetails
     awsS3BucketDetails: AwsS3BucketDetails
     awsVpcDetails: AwsVpcDetails
     collectionType: typing_extensions.Literal[
@@ -178,8 +184,7 @@ class AssetsExportJobExportCondition(typing_extensions.TypedDict, total=False):
 class AssetsExportJobInventory(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
-class AssetsExportJobNetworkDependencies(typing_extensions.TypedDict, total=False):
-    maxDays: int
+class AssetsExportJobNetworkDependencies(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class AssetsExportJobPerformanceData(typing_extensions.TypedDict, total=False):
@@ -187,6 +192,9 @@ class AssetsExportJobPerformanceData(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AwsCloudFrontDistributionDetails(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class AwsDynamoDBTableDetails(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class AwsEc2PlatformDetails(typing_extensions.TypedDict, total=False):
@@ -214,10 +222,16 @@ class AwsElbLoadBalancerDetails(typing_extensions.TypedDict, total=False): ...
 class AwsLambdaFunctionDetails(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class AwsNatGatewayDetails(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class AwsRds(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class AwsRedshiftDetails(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class AwsRoute53HostedZoneDetails(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class AwsS3BucketDetails(typing_extensions.TypedDict, total=False):
@@ -1091,6 +1105,11 @@ class ListReportConfigsResponse(typing_extensions.TypedDict, total=False):
     unreachable: _list[str]
 
 @typing.type_check_only
+class ListReportExportJobsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    reportExportJobs: _list[ReportExportJob]
+
+@typing.type_check_only
 class ListReportsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     reports: _list[Report]
@@ -1481,6 +1500,27 @@ class ReportConfigGroupPreferenceSetAssignment(
     preferenceSet: str
 
 @typing.type_check_only
+class ReportExportExecution(typing_extensions.TypedDict, total=False):
+    endTime: str
+    executionId: str
+    expireTime: str
+    progressPercentage: int
+    result: ReportExportExecutionResult
+    startTime: str
+
+@typing.type_check_only
+class ReportExportExecutionResult(typing_extensions.TypedDict, total=False):
+    error: Status
+    outputFiles: OutputFileList
+    signedUris: SignedUris
+
+@typing.type_check_only
+class ReportExportJob(typing_extensions.TypedDict, total=False):
+    name: str
+    recentExecutions: _list[ReportExportExecution]
+    signedUriDestination: SignedUriDestination
+
+@typing.type_check_only
 class ReportSummary(typing_extensions.TypedDict, total=False):
     allAssetsStats: ReportSummaryAssetAggregateStats
     databaseStats: ReportSummaryAssetAggregateStats
@@ -1496,6 +1536,7 @@ class ReportSummaryAssetAggregateStats(typing_extensions.TypedDict, total=False)
     memoryUtilization: ReportSummaryChartData
     memoryUtilizationChart: ReportSummaryUtilizationChartData
     operatingSystem: ReportSummaryChartData
+    softwareInstances: ReportSummaryChartData
     storageBytesHistogram: ReportSummaryHistogramChartData
     storageUtilization: ReportSummaryChartData
     storageUtilizationChart: ReportSummaryUtilizationChartData
@@ -1634,6 +1675,14 @@ class RunAssetsExportJobResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class RunImportJobRequest(typing_extensions.TypedDict, total=False):
     requestId: str
+
+@typing.type_check_only
+class RunReportExportJobRequest(typing_extensions.TypedDict, total=False):
+    requestId: str
+
+@typing.type_check_only
+class RunReportExportJobResponse(typing_extensions.TypedDict, total=False):
+    reportExportExecution: ReportExportExecution
 
 @typing.type_check_only
 class RunningProcess(typing_extensions.TypedDict, total=False):

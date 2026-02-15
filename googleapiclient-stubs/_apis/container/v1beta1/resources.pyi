@@ -133,6 +133,13 @@ class ContainerResource(googleapiclient.discovery.Resource):
                 def checkAutopilotCompatibility(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> CheckAutopilotCompatibilityResponseHttpRequest: ...
+                def completeControlPlaneUpgrade(
+                    self,
+                    *,
+                    name: str,
+                    body: CompleteControlPlaneUpgradeRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
                 def completeIpRotation(
                     self,
                     *,
@@ -412,6 +419,13 @@ class ContainerResource(googleapiclient.discovery.Resource):
                     zone: str,
                     clusterId: str,
                     body: SetAddonsConfigRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def completeControlPlaneUpgrade(
+                    self,
+                    *,
+                    name: str,
+                    body: CompleteControlPlaneUpgradeRequest = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def completeIpRotation(

@@ -39,6 +39,54 @@ class VMwareEngineResource(googleapiclient.discovery.Resource):
                 ) -> ListAnnouncementsResponseHttpRequest | None: ...
 
             @typing.type_check_only
+            class DatastoresResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: Datastore = ...,
+                    datastoreId: str = ...,
+                    requestId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self,
+                    *,
+                    name: str,
+                    etag: str = ...,
+                    requestId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> DatastoreHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    requestId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListDatastoresResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListDatastoresResponseHttpRequest,
+                    previous_response: ListDatastoresResponse,
+                ) -> ListDatastoresResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: Datastore = ...,
+                    requestId: str = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+
+            @typing.type_check_only
             class DnsBindPermissionResource(googleapiclient.discovery.Resource):
                 def grant(
                     self,
@@ -248,6 +296,7 @@ class VMwareEngineResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
+                    returnPartialSuccess: bool = ...,
                     **kwargs: typing.Any,
                 ) -> ListOperationsResponseHttpRequest: ...
                 def list_next(
@@ -317,6 +366,13 @@ class VMwareEngineResource(googleapiclient.discovery.Resource):
                         previous_request: ListClustersResponseHttpRequest,
                         previous_response: ListClustersResponse,
                     ) -> ListClustersResponseHttpRequest | None: ...
+                    def mountDatastore(
+                        self,
+                        *,
+                        name: str,
+                        body: MountDatastoreRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> OperationHttpRequest: ...
                     def patch(
                         self,
                         *,
@@ -341,6 +397,13 @@ class VMwareEngineResource(googleapiclient.discovery.Resource):
                         body: TestIamPermissionsRequest = ...,
                         **kwargs: typing.Any,
                     ) -> TestIamPermissionsResponseHttpRequest: ...
+                    def unmountDatastore(
+                        self,
+                        *,
+                        name: str,
+                        body: UnmountDatastoreRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> OperationHttpRequest: ...
                     def nodes(self) -> NodesResource: ...
 
                 @typing.type_check_only
@@ -841,6 +904,7 @@ class VMwareEngineResource(googleapiclient.discovery.Resource):
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
             def announcements(self) -> AnnouncementsResource: ...
+            def datastores(self) -> DatastoresResource: ...
             def dnsBindPermission(self) -> DnsBindPermissionResource: ...
             def networkPeerings(self) -> NetworkPeeringsResource: ...
             def networkPolicies(self) -> NetworkPoliciesResource: ...
@@ -889,6 +953,14 @@ class CredentialsHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Credentials: ...
+
+@typing.type_check_only
+class DatastoreHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> Datastore: ...
 
 @typing.type_check_only
 class DnsBindPermissionHttpRequest(googleapiclient.http.HttpRequest):
@@ -963,6 +1035,14 @@ class ListClustersResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListClustersResponse: ...
+
+@typing.type_check_only
+class ListDatastoresResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListDatastoresResponse: ...
 
 @typing.type_check_only
 class ListExternalAccessRulesResponseHttpRequest(googleapiclient.http.HttpRequest):
