@@ -47,6 +47,13 @@ class BuildConfig(typing_extensions.TypedDict, total=False):
     workerPool: str
 
 @typing.type_check_only
+class BuildConfigOverrides(typing_extensions.TypedDict, total=False):
+    runtime: str
+
+@typing.type_check_only
+class CommitFunctionUpgradeAsGen2Request(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class CommitFunctionUpgradeRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -155,6 +162,7 @@ class GoogleCloudFunctionsV2OperationMetadata(typing_extensions.TypedDict, total
         "ABORT_FUNCTION_UPGRADE",
         "COMMIT_FUNCTION_UPGRADE",
         "DETACH_FUNCTION",
+        "COMMIT_FUNCTION_UPGRADE_AS_GEN2",
     ]
     requestResource: dict[str, typing.Any]
     sourceToken: str
@@ -341,12 +349,18 @@ class ServiceConfig(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class ServiceConfigOverrides(typing_extensions.TypedDict, total=False):
+    maxInstanceCount: int
+
+@typing.type_check_only
 class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
     policy: Policy
     updateMask: str
 
 @typing.type_check_only
 class SetupFunctionUpgradeConfigRequest(typing_extensions.TypedDict, total=False):
+    buildConfigOverrides: BuildConfigOverrides
+    serviceConfigOverrides: ServiceConfigOverrides
     triggerServiceAccount: str
 
 @typing.type_check_only
@@ -399,4 +413,7 @@ class UpgradeInfo(typing_extensions.TypedDict, total=False):
         "REDIRECT_FUNCTION_UPGRADE_TRAFFIC_ERROR",
         "ROLLBACK_FUNCTION_UPGRADE_TRAFFIC_ERROR",
         "COMMIT_FUNCTION_UPGRADE_ERROR",
+        "COMMIT_FUNCTION_UPGRADE_ERROR_ROLLBACK_SAFE",
+        "COMMIT_FUNCTION_UPGRADE_AS_GEN2_SUCCESSFUL",
+        "COMMIT_FUNCTION_UPGRADE_AS_GEN2_ERROR",
     ]

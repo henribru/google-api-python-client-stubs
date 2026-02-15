@@ -23,6 +23,7 @@ class GoogleIdentityStsV1AccessBoundaryRule(typing_extensions.TypedDict, total=F
 @typing.type_check_only
 class GoogleIdentityStsV1Options(typing_extensions.TypedDict, total=False):
     accessBoundary: GoogleIdentityStsV1AccessBoundary
+    bindCertFingerprint: str
     userProject: str
 
 @typing.type_check_only

@@ -130,6 +130,7 @@ class CompilationResult(typing_extensions.TypedDict, total=False):
     gitCommitish: str
     internalMetadata: str
     name: str
+    privateResourceMetadata: PrivateResourceMetadata
     releaseConfig: str
     resolvedGitCommitSha: str
     workspace: str
@@ -435,6 +436,10 @@ class PolicyName(typing_extensions.TypedDict, total=False):
     type: str
 
 @typing.type_check_only
+class PrivateResourceMetadata(typing_extensions.TypedDict, total=False):
+    userScoped: bool
+
+@typing.type_check_only
 class PullGitCommitsRequest(typing_extensions.TypedDict, total=False):
     author: CommitAuthor
     remoteBranch: str
@@ -483,8 +488,10 @@ class ReadRepositoryFileResponse(typing_extensions.TypedDict, total=False):
 class Relation(typing_extensions.TypedDict, total=False):
     additionalOptions: dict[str, typing.Any]
     clusterExpressions: _list[str]
+    connection: str
     dependencyTargets: _list[Target]
     disabled: bool
+    fileFormat: typing_extensions.Literal["FILE_FORMAT_UNSPECIFIED", "PARQUET"]
     incrementalTableConfig: IncrementalTableConfig
     partitionExpirationDays: int
     partitionExpression: str
@@ -500,6 +507,8 @@ class Relation(typing_extensions.TypedDict, total=False):
     ]
     requirePartitionFilter: bool
     selectQuery: str
+    storageUri: str
+    tableFormat: typing_extensions.Literal["TABLE_FORMAT_UNSPECIFIED", "ICEBERG"]
     tags: _list[str]
 
 @typing.type_check_only
@@ -645,6 +654,7 @@ class WorkflowInvocation(typing_extensions.TypedDict, total=False):
     invocationConfig: InvocationConfig
     invocationTiming: Interval
     name: str
+    privateResourceMetadata: PrivateResourceMetadata
     resolvedCompilationResult: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "RUNNING", "SUCCEEDED", "CANCELLED", "FAILED", "CANCELING"
@@ -671,6 +681,7 @@ class Workspace(typing_extensions.TypedDict, total=False):
     dataEncryptionState: DataEncryptionState
     internalMetadata: str
     name: str
+    privateResourceMetadata: PrivateResourceMetadata
 
 @typing.type_check_only
 class WorkspaceCompilationOverrides(typing_extensions.TypedDict, total=False):

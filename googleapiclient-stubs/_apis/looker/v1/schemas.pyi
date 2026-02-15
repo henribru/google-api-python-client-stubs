@@ -12,6 +12,12 @@ class AdminSettings(typing_extensions.TypedDict, total=False):
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class ControlledEgressConfig(typing_extensions.TypedDict, total=False):
+    egressFqdns: _list[str]
+    marketplaceEnabled: bool
+    webProxyIps: _list[str]
+
+@typing.type_check_only
 class CustomDomain(typing_extensions.TypedDict, total=False):
     domain: str
     state: typing_extensions.Literal[
@@ -80,8 +86,11 @@ class ImportInstanceRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Instance(typing_extensions.TypedDict, total=False):
     adminSettings: AdminSettings
+    catalogIntegrationEnabled: bool
     classType: typing_extensions.Literal["CLASS_TYPE_UNSPECIFIED", "R1", "P1"]
     consumerNetwork: str
+    controlledEgressConfig: ControlledEgressConfig
+    controlledEgressEnabled: bool
     createTime: str
     customDomain: CustomDomain
     denyMaintenancePeriod: DenyMaintenancePeriod
@@ -99,6 +108,7 @@ class Instance(typing_extensions.TypedDict, total=False):
     maintenanceWindow: MaintenanceWindow
     name: str
     oauthConfig: OAuthConfig
+    periodicExportConfig: PeriodicExportConfig
     platformEdition: typing_extensions.Literal[
         "PLATFORM_EDITION_UNSPECIFIED",
         "LOOKER_CORE_TRIAL",
@@ -120,6 +130,12 @@ class Instance(typing_extensions.TypedDict, total=False):
     reservedRange: str
     satisfiesPzi: bool
     satisfiesPzs: bool
+    softDeleteReason: typing_extensions.Literal[
+        "SOFT_DELETE_REASON_UNSPECIFIED",
+        "BILLING_ACCOUNT_ISSUE",
+        "TRIAL_EXPIRED",
+        "CUSTOMER_REQUEST",
+    ]
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
         "ACTIVE",
@@ -131,6 +147,7 @@ class Instance(typing_extensions.TypedDict, total=False):
         "EXPORTING",
         "IMPORTING",
     ]
+    suspendedTime: str
     updateTime: str
     userMetadata: UserMetadata
 
@@ -218,6 +235,12 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
+class PeriodicExportConfig(typing_extensions.TypedDict, total=False):
+    gcsUri: str
+    kmsKey: str
+    startTime: TimeOfDay
+
+@typing.type_check_only
 class PscConfig(typing_extensions.TypedDict, total=False):
     allowedVpcs: _list[str]
     lookerServiceAttachmentUri: str
@@ -252,6 +275,9 @@ class TimeOfDay(typing_extensions.TypedDict, total=False):
     minutes: int
     nanos: int
     seconds: int
+
+@typing.type_check_only
+class UndeleteInstanceRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class UserMetadata(typing_extensions.TypedDict, total=False):

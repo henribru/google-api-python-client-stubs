@@ -721,6 +721,11 @@ class DeviceRadioState(typing_extensions.TypedDict, total=False):
         "ULTRA_WIDEBAND_USER_CHOICE",
         "ULTRA_WIDEBAND_DISABLED",
     ]
+    userInitiatedAddEsimSettings: typing_extensions.Literal[
+        "USER_INITIATED_ADD_ESIM_SETTINGS_UNSPECIFIED",
+        "USER_INITIATED_ADD_ESIM_ALLOWED",
+        "USER_INITIATED_ADD_ESIM_DISALLOWED",
+    ]
     wifiState: typing_extensions.Literal[
         "WIFI_STATE_UNSPECIFIED",
         "WIFI_STATE_USER_CHOICE",
@@ -1284,6 +1289,7 @@ class NonComplianceDetail(typing_extensions.TypedDict, total=False):
         "NEW_ACCOUNT_NOT_IN_ENTERPRISE",
         "DEFAULT_APPLICATION_SETTING_UNSUPPORTED_SCOPES",
         "DEFAULT_APPLICATION_SETTING_FAILED_FOR_SCOPE",
+        "PRIVATE_DNS_HOST_NOT_SERVING",
     ]
 
 @typing.type_check_only
@@ -1883,6 +1889,7 @@ class StopLostModeUserAttemptEvent(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SystemUpdate(typing_extensions.TypedDict, total=False):
+    allowedDaysWithoutUpdate: int
     endMinutes: int
     freezePeriods: _list[FreezePeriod]
     startMinutes: int

@@ -50,6 +50,13 @@ class AuthorizedBuyersMarketplaceResource(googleapiclient.discovery.Resource):
                 previous_request: ListFinalizedDealsResponseHttpRequest,
                 previous_response: ListFinalizedDealsResponse,
             ) -> ListFinalizedDealsResponseHttpRequest | None: ...
+            def setReadyToServe(
+                self,
+                *,
+                deal: str,
+                body: SetReadyToServeRequest = ...,
+                **kwargs: typing.Any,
+            ) -> FinalizedDealHttpRequest: ...
 
         def auctionPackages(self) -> AuctionPackagesResource: ...
         def finalizedDeals(self) -> FinalizedDealsResource: ...

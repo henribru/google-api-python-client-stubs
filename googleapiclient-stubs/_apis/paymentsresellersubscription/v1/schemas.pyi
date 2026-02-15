@@ -33,6 +33,7 @@ class CancelSubscriptionResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CreateSubscriptionIntent(typing_extensions.TypedDict, total=False):
+    cycleOptions: CycleOptions
     parent: str
     subscription: Subscription
     subscriptionId: str
@@ -140,6 +141,11 @@ class GoogleTypeLocalizedText(typing_extensions.TypedDict, total=False):
 class IntentPayload(typing_extensions.TypedDict, total=False):
     createIntent: CreateSubscriptionIntent
     entitleIntent: EntitleSubscriptionIntent
+    intentOptions: IntentPayloadIntentOptions
+
+@typing.type_check_only
+class IntentPayloadIntentOptions(typing_extensions.TypedDict, total=False):
+    enableOfferOverride: bool
 
 @typing.type_check_only
 class ListProductsResponse(typing_extensions.TypedDict, total=False):
@@ -229,6 +235,11 @@ class PromotionIntroductoryPricingDetailsIntroductoryPricingSpec(
 @typing.type_check_only
 class ResumeSubscriptionRequest(typing_extensions.TypedDict, total=False):
     cycleOptions: CycleOptions
+    resumeMode: typing_extensions.Literal[
+        "RESUME_MODE_UNSPECIFIED",
+        "RESUME_MODE_CYCLE_OPTIONS",
+        "RESUME_MODE_RESTORE_EXISTING_BILLING_SCHEDULE",
+    ]
 
 @typing.type_check_only
 class ResumeSubscriptionResponse(typing_extensions.TypedDict, total=False):

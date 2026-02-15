@@ -525,6 +525,21 @@ class AppengineResource(googleapiclient.discovery.Resource):
                         domainMappingsId: str,
                         **kwargs: typing.Any,
                     ) -> DomainMappingHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        projectsId: str,
+                        locationsId: str,
+                        applicationsId: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> ListDomainMappingsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListDomainMappingsResponseHttpRequest,
+                        previous_response: ListDomainMappingsResponse,
+                    ) -> ListDomainMappingsResponseHttpRequest | None: ...
                     def patch(
                         self,
                         *,
@@ -541,6 +556,32 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 class ServicesResource(googleapiclient.discovery.Resource):
                     @typing.type_check_only
                     class VersionsResource(googleapiclient.discovery.Resource):
+                        @typing.type_check_only
+                        class InstancesResource(googleapiclient.discovery.Resource):
+                            def debug(
+                                self,
+                                *,
+                                projectsId: str,
+                                locationsId: str,
+                                applicationsId: str,
+                                servicesId: str,
+                                versionsId: str,
+                                instancesId: str,
+                                body: DebugInstanceRequest = ...,
+                                **kwargs: typing.Any,
+                            ) -> OperationHttpRequest: ...
+                            def delete(
+                                self,
+                                *,
+                                projectsId: str,
+                                locationsId: str,
+                                applicationsId: str,
+                                servicesId: str,
+                                versionsId: str,
+                                instancesId: str,
+                                **kwargs: typing.Any,
+                            ) -> OperationHttpRequest: ...
+
                         def delete(
                             self,
                             *,
@@ -563,6 +604,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                             updateMask: str = ...,
                             **kwargs: typing.Any,
                         ) -> OperationHttpRequest: ...
+                        def instances(self) -> InstancesResource: ...
 
                     def delete(
                         self,

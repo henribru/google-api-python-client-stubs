@@ -76,7 +76,9 @@ class CommonRemoteRepository(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DockerImage(typing_extensions.TypedDict, total=False):
+    artifactType: str
     buildTime: str
+    imageManifests: _list[ImageManifest]
     imageSizeBytes: str
     mediaType: str
     name: str
@@ -101,6 +103,26 @@ class DownloadFileResponse(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class ExportArtifactMetadata(typing_extensions.TypedDict, total=False):
+    exportedFiles: _list[ExportedFile]
+
+@typing.type_check_only
+class ExportArtifactRequest(typing_extensions.TypedDict, total=False):
+    gcsPath: str
+    sourceTag: str
+    sourceVersion: str
+
+@typing.type_check_only
+class ExportArtifactResponse(typing_extensions.TypedDict, total=False):
+    exportedVersion: Version
+
+@typing.type_check_only
+class ExportedFile(typing_extensions.TypedDict, total=False):
+    gcsObjectPath: str
+    hashes: _list[Hash]
+    name: str
 
 @typing.type_check_only
 class Expr(typing_extensions.TypedDict, total=False):
@@ -212,6 +234,16 @@ class GoogleDevtoolsArtifactregistryV1Rule(typing_extensions.TypedDict, total=Fa
 class Hash(typing_extensions.TypedDict, total=False):
     type: typing_extensions.Literal["HASH_TYPE_UNSPECIFIED", "SHA256", "MD5"]
     value: str
+
+@typing.type_check_only
+class ImageManifest(typing_extensions.TypedDict, total=False):
+    architecture: str
+    digest: str
+    mediaType: str
+    os: str
+    osFeatures: _list[str]
+    osVersion: str
+    variant: str
 
 @typing.type_check_only
 class ImportAptArtifactsErrorInfo(typing_extensions.TypedDict, total=False):
@@ -477,6 +509,7 @@ class Repository(typing_extensions.TypedDict, total=False):
         "KFP",
         "GO",
         "GENERIC",
+        "RUBY",
     ]
     kmsKeyName: str
     labels: dict[str, typing.Any]
@@ -632,6 +665,7 @@ class Version(typing_extensions.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     createTime: str
     description: str
+    fingerprints: _list[Hash]
     metadata: dict[str, typing.Any]
     name: str
     relatedTags: _list[Tag]

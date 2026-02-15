@@ -137,6 +137,20 @@ class DocumentsTarget(typing_extensions.TypedDict, total=False):
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class ExecutePipelineRequest(typing_extensions.TypedDict, total=False):
+    newTransaction: TransactionOptions
+    readTime: str
+    structuredPipeline: StructuredPipeline
+    transaction: str
+
+@typing.type_check_only
+class ExecutePipelineResponse(typing_extensions.TypedDict, total=False):
+    executionTime: str
+    explainStats: ExplainStats
+    results: _list[Document]
+    transaction: str
+
+@typing.type_check_only
 class ExecutionStats(typing_extensions.TypedDict, total=False):
     debugStats: dict[str, typing.Any]
     executionDuration: str
@@ -157,6 +171,10 @@ class ExplainMetrics(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ExplainOptions(typing_extensions.TypedDict, total=False):
     analyze: bool
+
+@typing.type_check_only
+class ExplainStats(typing_extensions.TypedDict, total=False):
+    data: dict[str, typing.Any]
 
 @typing.type_check_only
 class FieldFilter(typing_extensions.TypedDict, total=False):
@@ -208,6 +226,12 @@ class FindNearest(typing_extensions.TypedDict, total=False):
     limit: int
     queryVector: Value
     vectorField: FieldReference
+
+@typing.type_check_only
+class Function(typing_extensions.TypedDict, total=False):
+    args: _list[Value]
+    name: str
+    options: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleFirestoreAdminV1Backup(typing_extensions.TypedDict, total=False):
@@ -599,9 +623,8 @@ class GoogleFirestoreAdminV1ListUserCredsResponse(
     userCreds: _list[GoogleFirestoreAdminV1UserCreds]
 
 @typing.type_check_only
-class GoogleFirestoreAdminV1LocationMetadata(
-    typing_extensions.TypedDict, total=False
-): ...
+class GoogleFirestoreAdminV1LocationMetadata(typing_extensions.TypedDict, total=False):
+    availableStoragePlacements: _list[str]
 
 @typing.type_check_only
 class GoogleFirestoreAdminV1PitrSnapshot(typing_extensions.TypedDict, total=False):
@@ -802,6 +825,10 @@ class PartitionQueryResponse(typing_extensions.TypedDict, total=False):
     partitions: _list[Cursor]
 
 @typing.type_check_only
+class Pipeline(typing_extensions.TypedDict, total=False):
+    stages: _list[Stage]
+
+@typing.type_check_only
 class PlanSummary(typing_extensions.TypedDict, total=False):
     indexesUsed: _list[dict[str, typing.Any]]
 
@@ -864,6 +891,12 @@ class RunQueryResponse(typing_extensions.TypedDict, total=False):
     transaction: str
 
 @typing.type_check_only
+class Stage(typing_extensions.TypedDict, total=False):
+    args: _list[Value]
+    name: str
+    options: dict[str, typing.Any]
+
+@typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
@@ -873,6 +906,11 @@ class Status(typing_extensions.TypedDict, total=False):
 class StructuredAggregationQuery(typing_extensions.TypedDict, total=False):
     aggregations: _list[Aggregation]
     structuredQuery: StructuredQuery
+
+@typing.type_check_only
+class StructuredPipeline(typing_extensions.TypedDict, total=False):
+    options: dict[str, typing.Any]
+    pipeline: Pipeline
 
 AlternativeStructuredQuery = typing_extensions.TypedDict(
     "AlternativeStructuredQuery",
@@ -935,10 +973,13 @@ class Value(typing_extensions.TypedDict, total=False):
     booleanValue: bool
     bytesValue: str
     doubleValue: float
+    fieldReferenceValue: str
+    functionValue: Function
     geoPointValue: LatLng
     integerValue: str
     mapValue: MapValue
     nullValue: typing_extensions.Literal["NULL_VALUE"]
+    pipelineValue: Pipeline
     referenceValue: str
     stringValue: str
     timestampValue: str

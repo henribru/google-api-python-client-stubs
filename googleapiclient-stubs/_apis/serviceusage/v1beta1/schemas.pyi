@@ -224,6 +224,11 @@ class ContentSecurity(typing_extensions.TypedDict, total=False):
     contentSecurityProviders: _list[ContentSecurityProvider]
 
 @typing.type_check_only
+class ContentSecurityPolicy(typing_extensions.TypedDict, total=False):
+    mcpContentSecurity: ContentSecurity
+    name: str
+
+@typing.type_check_only
 class ContentSecurityProvider(typing_extensions.TypedDict, total=False):
     name: str
 
@@ -539,7 +544,6 @@ class GoogleApiServiceusageV2betaAnalyzeConsumerPolicyResponse(
 class GoogleApiServiceusageV2betaConsumerPolicy(
     typing_extensions.TypedDict, total=False
 ):
-    annotations: dict[str, typing.Any]
     createTime: str
     enableRules: _list[GoogleApiServiceusageV2betaEnableRule]
     etag: str
@@ -559,7 +563,30 @@ class GoogleApiServiceusageV2betaImpact(typing_extensions.TypedDict, total=False
     missingDependency: str
 
 @typing.type_check_only
+class GoogleApiServiceusageV2betaMcpEnableRule(
+    typing_extensions.TypedDict, total=False
+):
+    mcpServices: _list[GoogleApiServiceusageV2betaMcpService]
+
+@typing.type_check_only
+class GoogleApiServiceusageV2betaMcpPolicy(typing_extensions.TypedDict, total=False):
+    createTime: str
+    etag: str
+    mcpEnableRules: _list[GoogleApiServiceusageV2betaMcpEnableRule]
+    name: str
+    updateTime: str
+
+@typing.type_check_only
+class GoogleApiServiceusageV2betaMcpService(typing_extensions.TypedDict, total=False):
+    service: str
+
+@typing.type_check_only
 class GoogleApiServiceusageV2betaUpdateConsumerPolicyMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleApiServiceusageV2betaUpdateMcpPolicyMetadata(
     typing_extensions.TypedDict, total=False
 ): ...
 
@@ -674,6 +701,7 @@ class ListConsumerQuotaMetricsResponse(typing_extensions.TypedDict, total=False)
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListServicesResponse(typing_extensions.TypedDict, total=False):
@@ -710,7 +738,6 @@ class McpEnableRule(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class McpPolicy(typing_extensions.TypedDict, total=False):
-    contentSecurity: ContentSecurity
     createTime: str
     etag: str
     mcpEnableRules: _list[McpEnableRule]
@@ -1047,6 +1074,9 @@ class UpdateAdminQuotaPolicyMetadata(typing_extensions.TypedDict, total=False): 
 
 @typing.type_check_only
 class UpdateConsumerPolicyMetadata(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class UpdateContentSecurityPolicyMetadata(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class UpdateMcpPolicyMetadata(typing_extensions.TypedDict, total=False): ...

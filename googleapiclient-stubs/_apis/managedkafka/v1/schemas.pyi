@@ -30,6 +30,12 @@ class AddAclEntryResponse(typing_extensions.TypedDict, total=False):
     aclCreated: bool
 
 @typing.type_check_only
+class BrokerDetails(typing_extensions.TypedDict, total=False):
+    brokerIndex: str
+    nodeId: str
+    rack: str
+
+@typing.type_check_only
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -57,16 +63,18 @@ class CheckCompatibilityResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Cluster(typing_extensions.TypedDict, total=False):
+    brokerDetails: _list[BrokerDetails]
     capacityConfig: CapacityConfig
     createTime: str
     gcpConfig: GcpConfig
+    kafkaVersion: str
     labels: dict[str, typing.Any]
     name: str
     rebalanceConfig: RebalanceConfig
     satisfiesPzi: bool
     satisfiesPzs: bool
     state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "DELETING"
+        "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "DELETING", "UPDATING"
     ]
     tlsConfig: TlsConfig
     updateOptions: UpdateOptions
@@ -88,7 +96,7 @@ class ConnectCluster(typing_extensions.TypedDict, total=False):
     satisfiesPzi: bool
     satisfiesPzs: bool
     state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "DELETING"
+        "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "DELETING", "DETACHED"
     ]
     updateTime: str
 

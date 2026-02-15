@@ -214,6 +214,13 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                 def delete(
                     self, *, name: str, force: bool = ..., **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+                def generateToolspecOverride(
+                    self,
+                    *,
+                    name: str,
+                    body: GenerateConnectionToolspecOverrideRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> GenerateConnectionToolspecOverrideResponseHttpRequest: ...
                 def get(
                     self,
                     *,
@@ -258,6 +265,13 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                     body: ListenEventRequest = ...,
                     **kwargs: typing.Any,
                 ) -> ListenEventResponseHttpRequest: ...
+                def modifyToolspecOverride(
+                    self,
+                    *,
+                    name: str,
+                    body: ModifyConnectionToolspecOverrideRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> ModifyConnectionToolspecOverrideResponseHttpRequest: ...
                 def patch(
                     self,
                     *,
@@ -266,6 +280,13 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
+                def removeToolspecOverride(
+                    self,
+                    *,
+                    name: str,
+                    body: RemoveConnectionToolspecOverrideRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> EmptyHttpRequest: ...
                 def repairEventing(
                     self,
                     *,
@@ -841,6 +862,16 @@ class FetchAuthSchemaResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> FetchAuthSchemaResponse: ...
 
 @typing.type_check_only
+class GenerateConnectionToolspecOverrideResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GenerateConnectionToolspecOverrideResponse: ...
+
+@typing.type_check_only
 class ListActionsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -999,6 +1030,16 @@ class ManagedZoneHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ManagedZone: ...
+
+@typing.type_check_only
+class ModifyConnectionToolspecOverrideResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ModifyConnectionToolspecOverrideResponse: ...
 
 @typing.type_check_only
 class OperationHttpRequest(googleapiclient.http.HttpRequest):

@@ -54,6 +54,14 @@ class CloudShellResource(googleapiclient.discovery.Resource):
                 body: AuthorizeEnvironmentRequest = ...,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
+            def generateAccessToken(
+                self,
+                *,
+                environment: str,
+                expireTime: str = ...,
+                ttl: str = ...,
+                **kwargs: typing.Any,
+            ) -> GenerateAccessTokenResponseHttpRequest: ...
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> EnvironmentHttpRequest: ...
@@ -104,6 +112,14 @@ class EnvironmentHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Environment: ...
+
+@typing.type_check_only
+class GenerateAccessTokenResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GenerateAccessTokenResponse: ...
 
 @typing.type_check_only
 class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):

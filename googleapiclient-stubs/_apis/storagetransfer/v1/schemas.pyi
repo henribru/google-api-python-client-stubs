@@ -34,6 +34,7 @@ class AwsS3Data(typing_extensions.TypedDict, total=False):
     credentialsSecret: str
     managedPrivateNetwork: bool
     path: str
+    privateNetworkService: str
     roleArn: str
 
 @typing.type_check_only
@@ -43,6 +44,7 @@ class AzureBlobStorageData(typing_extensions.TypedDict, total=False):
     credentialsSecret: str
     federatedIdentityConfig: FederatedIdentityConfig
     path: str
+    privateNetworkService: str
     storageAccount: str
 
 @typing.type_check_only
@@ -133,6 +135,7 @@ class ListAgentPoolsResponse(typing_extensions.TypedDict, total=False):
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListTransferJobsResponse(typing_extensions.TypedDict, total=False):
@@ -206,6 +209,7 @@ class ObjectConditions(typing_extensions.TypedDict, total=False):
     includePrefixes: _list[str]
     lastModifiedBefore: str
     lastModifiedSince: str
+    matchGlob: str
     maxTimeElapsedSinceLastModification: str
     minTimeElapsedSinceLastModification: str
 
@@ -303,6 +307,8 @@ class TransferCounters(typing_extensions.TypedDict, total=False):
     objectsFoundOnlyFromSink: str
     objectsFromSourceFailed: str
     objectsFromSourceSkippedBySync: str
+    unrestoredDeepArchiveObjectsSkippedCount: str
+    unsupportedS3GlacierObjectsSkippedCount: str
 
 @typing.type_check_only
 class TransferJob(typing_extensions.TypedDict, total=False):

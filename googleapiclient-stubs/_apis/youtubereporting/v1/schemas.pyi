@@ -11,8 +11,10 @@ class Empty(typing_extensions.TypedDict, total=False): ...
 class GdataBlobstore2Info(typing_extensions.TypedDict, total=False):
     blobGeneration: str
     blobId: str
+    downloadExternalReadToken: str
     downloadReadHandle: str
     readToken: str
+    uploadFragmentListCreationInfo: str
     uploadMetadataContainer: str
 
 @typing.type_check_only

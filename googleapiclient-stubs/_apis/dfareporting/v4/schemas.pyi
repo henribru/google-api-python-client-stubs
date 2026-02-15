@@ -143,6 +143,7 @@ class Ad(typing_extensions.TypedDict, total=False):
         "IN_STREAM_VIDEO",
         "IN_STREAM_AUDIO",
     ]
+    contextualKeywordTargeting: ContextualKeywordTargeting
     createInfo: LastModifiedInfo
     creativeGroupAssignments: _list[CreativeGroupAssignment]
     creativeRotation: CreativeRotation
@@ -582,6 +583,14 @@ class ContentSourceMetaData(typing_extensions.TypedDict, total=False):
     separator: str
 
 @typing.type_check_only
+class ContextualKeyword(typing_extensions.TypedDict, total=False):
+    keyword: str
+
+@typing.type_check_only
+class ContextualKeywordTargeting(typing_extensions.TypedDict, total=False):
+    keywords: _list[ContextualKeyword]
+
+@typing.type_check_only
 class Conversion(typing_extensions.TypedDict, total=False):
     adUserDataConsent: typing_extensions.Literal["GRANTED", "DENIED"]
     cartData: CartData
@@ -682,6 +691,9 @@ class Creative(typing_extensions.TypedDict, total=False):
         "CREATIVE_AUTHORING_SOURCE_ACS",
         "CREATIVE_AUTHORING_SOURCE_ADOBE",
         "CREATIVE_AUTHORING_SOURCE_TYPEFACE_AI",
+        "CREATIVE_AUTHORING_SOURCE_REMBRAND",
+        "CREATIVE_AUTHORING_SOURCE_TRACKTO_STUDIO",
+        "CREATIVE_AUTHORING_SOURCE_BORNLOGIC",
     ]
     authoringTool: typing_extensions.Literal["NINJA", "SWIFFY"]
     autoAdvanceImages: bool
@@ -3277,6 +3289,7 @@ class TargetingTemplate(typing_extensions.TypedDict, total=False):
     accountId: str
     advertiserId: str
     advertiserIdDimensionValue: DimensionValue
+    contextualKeywordTargeting: ContextualKeywordTargeting
     dayPartTargeting: DayPartTargeting
     geoTargeting: GeoTargeting
     id: str
@@ -3374,7 +3387,7 @@ class TvCampaignTimepoint(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class UniversalAdId(typing_extensions.TypedDict, total=False):
     registry: typing_extensions.Literal[
-        "OTHER", "AD_ID_OFFICIAL", "CLEARCAST", "DCM", "ARPP"
+        "OTHER", "AD_ID_OFFICIAL", "CLEARCAST", "DCM", "ARPP", "CUSV"
     ]
     value: str
 

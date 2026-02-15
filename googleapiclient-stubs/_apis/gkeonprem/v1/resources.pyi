@@ -31,6 +31,7 @@ class GKEOnPremResource(googleapiclient.discovery.Resource):
                         filter: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
+                        returnPartialSuccess: bool = ...,
                         **kwargs: typing.Any,
                     ) -> ListOperationsResponseHttpRequest: ...
                     def list_next(
@@ -148,6 +149,7 @@ class GKEOnPremResource(googleapiclient.discovery.Resource):
                             filter: str = ...,
                             pageSize: int = ...,
                             pageToken: str = ...,
+                            returnPartialSuccess: bool = ...,
                             **kwargs: typing.Any,
                         ) -> ListOperationsResponseHttpRequest: ...
                         def list_next(
@@ -261,6 +263,7 @@ class GKEOnPremResource(googleapiclient.discovery.Resource):
                         filter: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
+                        returnPartialSuccess: bool = ...,
                         **kwargs: typing.Any,
                     ) -> ListOperationsResponseHttpRequest: ...
                     def list_next(
@@ -400,6 +403,7 @@ class GKEOnPremResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
+                    returnPartialSuccess: bool = ...,
                     **kwargs: typing.Any,
                 ) -> ListOperationsResponseHttpRequest: ...
                 def list_next(
@@ -422,6 +426,7 @@ class GKEOnPremResource(googleapiclient.discovery.Resource):
                         filter: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
+                        returnPartialSuccess: bool = ...,
                         **kwargs: typing.Any,
                     ) -> ListOperationsResponseHttpRequest: ...
                     def list_next(
@@ -436,6 +441,7 @@ class GKEOnPremResource(googleapiclient.discovery.Resource):
                     parent: str,
                     body: VmwareAdminCluster = ...,
                     allowPreflightFailure: bool = ...,
+                    skipValidations: str | _list[str] = ...,
                     validateOnly: bool = ...,
                     vmwareAdminClusterId: str = ...,
                     **kwargs: typing.Any,
@@ -486,6 +492,7 @@ class GKEOnPremResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: VmwareAdminCluster = ...,
+                    skipValidations: str | _list[str] = ...,
                     updateMask: str = ...,
                     validateOnly: bool = ...,
                     **kwargs: typing.Any,
@@ -530,6 +537,7 @@ class GKEOnPremResource(googleapiclient.discovery.Resource):
                         filter: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
+                        returnPartialSuccess: bool = ...,
                         **kwargs: typing.Any,
                     ) -> ListOperationsResponseHttpRequest: ...
                     def list_next(
@@ -552,6 +560,7 @@ class GKEOnPremResource(googleapiclient.discovery.Resource):
                             filter: str = ...,
                             pageSize: int = ...,
                             pageToken: str = ...,
+                            returnPartialSuccess: bool = ...,
                             **kwargs: typing.Any,
                         ) -> ListOperationsResponseHttpRequest: ...
                         def list_next(
@@ -658,6 +667,7 @@ class GKEOnPremResource(googleapiclient.discovery.Resource):
                     parent: str,
                     body: VmwareCluster = ...,
                     allowPreflightFailure: bool = ...,
+                    skipValidations: str | _list[str] = ...,
                     validateOnly: bool = ...,
                     vmwareClusterId: str = ...,
                     **kwargs: typing.Any,
@@ -720,6 +730,7 @@ class GKEOnPremResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: VmwareCluster = ...,
+                    skipValidations: str | _list[str] = ...,
                     updateMask: str = ...,
                     validateOnly: bool = ...,
                     **kwargs: typing.Any,

@@ -165,6 +165,10 @@ class Expr(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
+class FirewallPolicyRuleOperationMetadata(typing_extensions.TypedDict, total=False):
+    allocatedPriority: int
+
+@typing.type_check_only
 class GlobalSetPolicyRequest(typing_extensions.TypedDict, total=False):
     bindings: _list[Binding]
     etag: str
@@ -235,6 +239,7 @@ class Operation(typing_extensions.TypedDict, total=False):
     description: str
     endTime: str
     error: dict[str, typing.Any]
+    firewallPolicyRuleOperationMetadata: FirewallPolicyRuleOperationMetadata
     httpErrorMessage: str
     httpErrorStatusCode: int
     id: str

@@ -143,6 +143,7 @@ class EnvironmentConfig(typing_extensions.TypedDict, total=False):
         "ENVIRONMENT_SIZE_SMALL",
         "ENVIRONMENT_SIZE_MEDIUM",
         "ENVIRONMENT_SIZE_LARGE",
+        "ENVIRONMENT_SIZE_EXTRA_LARGE",
     ]
     gkeCluster: str
     maintenanceWindow: MaintenanceWindow

@@ -443,6 +443,48 @@ class MigrationCenterAPIResource(googleapiclient.discovery.Resource):
             class ReportConfigsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class ReportsResource(googleapiclient.discovery.Resource):
+                    @typing.type_check_only
+                    class ReportExportJobsResource(googleapiclient.discovery.Resource):
+                        def create(
+                            self,
+                            *,
+                            parent: str,
+                            body: ReportExportJob = ...,
+                            reportExportJobId: str = ...,
+                            requestId: str = ...,
+                            **kwargs: typing.Any,
+                        ) -> OperationHttpRequest: ...
+                        def delete(
+                            self,
+                            *,
+                            name: str,
+                            requestId: str = ...,
+                            **kwargs: typing.Any,
+                        ) -> OperationHttpRequest: ...
+                        def get(
+                            self, *, name: str, **kwargs: typing.Any
+                        ) -> ReportExportJobHttpRequest: ...
+                        def list(
+                            self,
+                            *,
+                            parent: str,
+                            pageSize: int = ...,
+                            pageToken: str = ...,
+                            **kwargs: typing.Any,
+                        ) -> ListReportExportJobsResponseHttpRequest: ...
+                        def list_next(
+                            self,
+                            previous_request: ListReportExportJobsResponseHttpRequest,
+                            previous_response: ListReportExportJobsResponse,
+                        ) -> ListReportExportJobsResponseHttpRequest | None: ...
+                        def run(
+                            self,
+                            *,
+                            name: str,
+                            body: RunReportExportJobRequest = ...,
+                            **kwargs: typing.Any,
+                        ) -> OperationHttpRequest: ...
+
                     def create(
                         self,
                         *,
@@ -488,6 +530,7 @@ class MigrationCenterAPIResource(googleapiclient.discovery.Resource):
                         previous_request: ListReportsResponseHttpRequest,
                         previous_response: ListReportsResponse,
                     ) -> ListReportsResponseHttpRequest | None: ...
+                    def reportExportJobs(self) -> ReportExportJobsResource: ...
 
                 def create(
                     self,
@@ -835,6 +878,14 @@ class ListReportConfigsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListReportConfigsResponse: ...
 
 @typing.type_check_only
+class ListReportExportJobsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListReportExportJobsResponse: ...
+
+@typing.type_check_only
 class ListReportsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -905,6 +956,14 @@ class ReportConfigHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ReportConfig: ...
+
+@typing.type_check_only
+class ReportExportJobHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ReportExportJob: ...
 
 @typing.type_check_only
 class SettingsHttpRequest(googleapiclient.http.HttpRequest):

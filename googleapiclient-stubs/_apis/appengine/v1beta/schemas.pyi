@@ -473,6 +473,7 @@ class ProjectsMetadata(typing_extensions.TypedDict, total=False):
         "UNKNOWN_STATE", "ON", "OFF", "DELETED"
     ]
     gceTag: _list[GceTag]
+    isGceProjectDeprovisioning: bool
     p4ServiceAccount: str
     producerProjectId: str
     producerProjectNumber: str
@@ -666,6 +667,26 @@ class UrlMap(typing_extensions.TypedDict, total=False):
 class Version(typing_extensions.TypedDict, total=False):
     apiConfig: ApiConfigHandler
     appEngineApis: bool
+    appEngineBundledServices: _list[
+        typing_extensions.Literal[
+            "BUNDLED_SERVICE_TYPE_UNSPECIFIED",
+            "BUNDLED_SERVICE_TYPE_APP_IDENTITY_SERVICE",
+            "BUNDLED_SERVICE_TYPE_BLOBSTORE",
+            "BUNDLED_SERVICE_TYPE_CAPABILITY_SERVICE",
+            "BUNDLED_SERVICE_TYPE_DATASTORE_V3",
+            "BUNDLED_SERVICE_TYPE_DEFERRED",
+            "BUNDLED_SERVICE_TYPE_IMAGES",
+            "BUNDLED_SERVICE_TYPE_MAIL",
+            "BUNDLED_SERVICE_TYPE_MEMCACHE",
+            "BUNDLED_SERVICE_TYPE_MODULES",
+            "BUNDLED_SERVICE_TYPE_NAMESPACES",
+            "BUNDLED_SERVICE_TYPE_NDB",
+            "BUNDLED_SERVICE_TYPE_SEARCH",
+            "BUNDLED_SERVICE_TYPE_TASKQUEUES",
+            "BUNDLED_SERVICE_TYPE_URLFETCH",
+            "BUNDLED_SERVICE_TYPE_USERS",
+        ]
+    ]
     automaticScaling: AutomaticScaling
     basicScaling: BasicScaling
     betaSettings: dict[str, typing.Any]
@@ -718,6 +739,7 @@ class Version(typing_extensions.TypedDict, total=False):
     threadsafe: bool
     versionUrl: str
     vm: bool
+    vpcAccess: VpcAccess
     vpcAccessConnector: VpcAccessConnector
     vpcEgress: VpcEgress
     zones: _list[str]
@@ -727,6 +749,13 @@ class Volume(typing_extensions.TypedDict, total=False):
     name: str
     sizeGb: float
     volumeType: str
+
+@typing.type_check_only
+class VpcAccess(typing_extensions.TypedDict, total=False):
+    networkInterfaces: _list[VpcNetworkInterface]
+    vpcEgress: typing_extensions.Literal[
+        "VPC_EGRESS_UNSPECIFIED", "ALL_TRAFFIC", "PRIVATE_IP_RANGES"
+    ]
 
 @typing.type_check_only
 class VpcAccessConnector(typing_extensions.TypedDict, total=False):
@@ -742,6 +771,12 @@ class VpcEgress(typing_extensions.TypedDict, total=False):
     ]
     networkTags: _list[VpcNetworkTag]
     subnetworkKey: SubnetworkKey
+
+@typing.type_check_only
+class VpcNetworkInterface(typing_extensions.TypedDict, total=False):
+    network: str
+    subnet: str
+    tags: _list[str]
 
 @typing.type_check_only
 class VpcNetworkTag(typing_extensions.TypedDict, total=False):

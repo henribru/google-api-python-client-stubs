@@ -310,6 +310,8 @@ class GoogleMapsPlacesV1Place(typing_extensions.TypedDict, total=False):
     liveMusic: bool
     location: GoogleTypeLatLng
     menuForChildren: bool
+    movedPlace: str
+    movedPlaceId: str
     name: str
     nationalPhoneNumber: str
     neighborhoodSummary: GoogleMapsPlacesV1PlaceNeighborhoodSummary

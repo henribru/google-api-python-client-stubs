@@ -686,6 +686,7 @@ class GoogleLongrunning__ListOperationsResponse(
 ):
     nextPageToken: str
     operations: _list[GoogleLongrunning__Operation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class GoogleLongrunning__Operation(typing_extensions.TypedDict, total=False):

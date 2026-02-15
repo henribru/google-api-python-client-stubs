@@ -5,169 +5,6 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
-class ApiservingMediaRequestInfo(typing_extensions.TypedDict, total=False):
-    currentBytes: str
-    customData: str
-    diffObjectVersion: str
-    finalStatus: int
-    notificationType: typing_extensions.Literal[
-        "START", "PROGRESS", "END", "RESPONSE_SENT", "ERROR"
-    ]
-    physicalHeaders: str
-    requestId: str
-    requestReceivedParamsServingInfo: str
-    totalBytes: str
-    totalBytesIsEstimated: bool
-
-@typing.type_check_only
-class ApiservingMediaResponseInfo(typing_extensions.TypedDict, total=False):
-    customData: str
-    dataStorageTransform: str
-    destinationBlobMintIndex: int
-    dynamicDropTarget: str
-    dynamicDropzone: str
-    mediaForDiff: GdataMedia
-    originalObjectBlobMintIndex: int
-    requestClass: typing_extensions.Literal[
-        "UNKNOWN_REQUEST_CLASS", "LATENCY_SENSITIVE", "PRODUCTION_BATCH", "BEST_EFFORT"
-    ]
-    scottyAgentUserId: str
-    scottyCustomerLog: str
-    trafficClassField: typing_extensions.Literal[
-        "BE1",
-        "AF1",
-        "AF2",
-        "AF3",
-        "AF4",
-        "NC1",
-        "NC0",
-        "BE0",
-        "LLQ",
-        "LLQ1",
-        "LLQ2",
-        "LLQ3",
-    ]
-    verifyHashFromHeader: bool
-
-@typing.type_check_only
-class GdataBlobstore2Info(typing_extensions.TypedDict, total=False):
-    blobGeneration: str
-    blobId: str
-    downloadReadHandle: str
-    readToken: str
-    uploadMetadataContainer: str
-
-@typing.type_check_only
-class GdataCompositeMedia(typing_extensions.TypedDict, total=False):
-    blobRef: str
-    blobstore2Info: GdataBlobstore2Info
-    cosmoBinaryReference: str
-    crc32cHash: int
-    inline: str
-    length: str
-    md5Hash: str
-    objectId: GdataObjectId
-    path: str
-    referenceType: typing_extensions.Literal[
-        "PATH", "BLOB_REF", "INLINE", "BIGSTORE_REF", "COSMO_BINARY_REFERENCE"
-    ]
-    sha1Hash: str
-
-@typing.type_check_only
-class GdataContentTypeInfo(typing_extensions.TypedDict, total=False):
-    bestGuess: str
-    fromBytes: str
-    fromFileName: str
-    fromHeader: str
-    fromUrlPath: str
-
-@typing.type_check_only
-class GdataDiffChecksumsResponse(typing_extensions.TypedDict, total=False):
-    checksumsLocation: GdataCompositeMedia
-    chunkSizeBytes: str
-    objectLocation: GdataCompositeMedia
-    objectSizeBytes: str
-    objectVersion: str
-
-@typing.type_check_only
-class GdataDiffDownloadResponse(typing_extensions.TypedDict, total=False):
-    objectLocation: GdataCompositeMedia
-
-@typing.type_check_only
-class GdataDiffUploadRequest(typing_extensions.TypedDict, total=False):
-    checksumsInfo: GdataCompositeMedia
-    objectInfo: GdataCompositeMedia
-    objectVersion: str
-
-@typing.type_check_only
-class GdataDiffUploadResponse(typing_extensions.TypedDict, total=False):
-    objectVersion: str
-    originalObject: GdataCompositeMedia
-
-@typing.type_check_only
-class GdataDiffVersionResponse(typing_extensions.TypedDict, total=False):
-    objectSizeBytes: str
-    objectVersion: str
-
-@typing.type_check_only
-class GdataDownloadParameters(typing_extensions.TypedDict, total=False):
-    allowGzipCompression: bool
-    ignoreRange: bool
-
-@typing.type_check_only
-class GdataMedia(typing_extensions.TypedDict, total=False):
-    algorithm: str
-    bigstoreObjectRef: str
-    blobRef: str
-    blobstore2Info: GdataBlobstore2Info
-    compositeMedia: _list[GdataCompositeMedia]
-    contentType: str
-    contentTypeInfo: GdataContentTypeInfo
-    cosmoBinaryReference: str
-    crc32cHash: int
-    diffChecksumsResponse: GdataDiffChecksumsResponse
-    diffDownloadResponse: GdataDiffDownloadResponse
-    diffUploadRequest: GdataDiffUploadRequest
-    diffUploadResponse: GdataDiffUploadResponse
-    diffVersionResponse: GdataDiffVersionResponse
-    downloadParameters: GdataDownloadParameters
-    filename: str
-    hash: str
-    hashVerified: bool
-    inline: str
-    isPotentialRetry: bool
-    length: str
-    md5Hash: str
-    mediaId: str
-    objectId: GdataObjectId
-    path: str
-    referenceType: typing_extensions.Literal[
-        "PATH",
-        "BLOB_REF",
-        "INLINE",
-        "GET_MEDIA",
-        "COMPOSITE_MEDIA",
-        "BIGSTORE_REF",
-        "DIFF_VERSION_RESPONSE",
-        "DIFF_CHECKSUMS_RESPONSE",
-        "DIFF_DOWNLOAD_RESPONSE",
-        "DIFF_UPLOAD_REQUEST",
-        "DIFF_UPLOAD_RESPONSE",
-        "COSMO_BINARY_REFERENCE",
-        "ARBITRARY_BYTES",
-    ]
-    sha1Hash: str
-    sha256Hash: str
-    timestamp: str
-    token: str
-
-@typing.type_check_only
-class GdataObjectId(typing_extensions.TypedDict, total=False):
-    bucketName: str
-    generation: str
-    objectName: str
-
-@typing.type_check_only
 class GoogleApiDistribution(typing_extensions.TypedDict, total=False):
     bucketCounts: _list[str]
     bucketOptions: GoogleApiDistributionBucketOptions
@@ -361,6 +198,9 @@ class GoogleCloudDiscoveryengineV1AnswerGenerationSpecUserDefinedClassifierSpec(
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1Assistant(typing_extensions.TypedDict, total=False):
     customerPolicy: GoogleCloudDiscoveryengineV1AssistantCustomerPolicy
+    defaultWebGroundingToggleOff: bool
+    description: str
+    displayName: str
     enabledTools: dict[str, typing.Any]
     generationConfig: GoogleCloudDiscoveryengineV1AssistantGenerationConfig
     name: str
@@ -408,7 +248,9 @@ class GoogleCloudDiscoveryengineV1AssistantCustomerPolicyModelArmorConfig(
 class GoogleCloudDiscoveryengineV1AssistantGenerationConfig(
     typing_extensions.TypedDict, total=False
 ):
+    allowedModelIds: _list[str]
     defaultLanguage: str
+    defaultModelId: str
     systemInstruction: (
         GoogleCloudDiscoveryengineV1AssistantGenerationConfigSystemInstruction
     )
@@ -697,6 +539,7 @@ class GoogleCloudDiscoveryengineV1DataConnector(
         "THIRD_PARTY_FEDERATED",
         "THIRD_PARTY_EUA",
         "GCNV",
+        "GOOGLE_CHAT",
     ]
     createEuaSaas: bool
     createTime: str
@@ -809,6 +652,7 @@ class GoogleCloudDiscoveryengineV1DataStore(typing_extensions.TypedDict, total=F
         "CONFIGURABLE_SUBSCRIPTION_INDEXING_CORE",
         "CONFIGURABLE_CONSUMPTION_EMBEDDING",
     ]
+    configurableBillingApproachUpdateTime: str
     contentConfig: typing_extensions.Literal[
         "CONTENT_CONFIG_UNSPECIFIED",
         "NO_CONTENT",
@@ -828,6 +672,9 @@ class GoogleCloudDiscoveryengineV1DataStore(typing_extensions.TypedDict, total=F
     isInfobotFaqDataStore: bool
     kmsKeyName: str
     name: str
+    naturalLanguageQueryUnderstandingConfig: (
+        GoogleCloudDiscoveryengineV1NaturalLanguageQueryUnderstandingConfig
+    )
     servingConfigDataStore: GoogleCloudDiscoveryengineV1DataStoreServingConfigDataStore
     solutionTypes: _list[
         typing_extensions.Literal[
@@ -985,6 +832,7 @@ class GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfigLayoutPar
 ):
     enableGetProcessedDocument: bool
     enableImageAnnotation: bool
+    enableLlmLayoutParsing: bool
     enableTableAnnotation: bool
     excludeHtmlClasses: _list[str]
     excludeHtmlElements: _list[str]
@@ -1015,6 +863,7 @@ class GoogleCloudDiscoveryengineV1Engine(typing_extensions.TypedDict, total=Fals
     appType: typing_extensions.Literal["APP_TYPE_UNSPECIFIED", "APP_TYPE_INTRANET"]
     chatEngineConfig: GoogleCloudDiscoveryengineV1EngineChatEngineConfig
     chatEngineMetadata: GoogleCloudDiscoveryengineV1EngineChatEngineMetadata
+    cmekConfig: GoogleCloudDiscoveryengineV1CmekConfig
     commonConfig: GoogleCloudDiscoveryengineV1EngineCommonConfig
     configurableBillingApproach: typing_extensions.Literal[
         "CONFIGURABLE_BILLING_APPROACH_UNSPECIFIED",
@@ -1028,10 +877,13 @@ class GoogleCloudDiscoveryengineV1Engine(typing_extensions.TypedDict, total=Fals
     industryVertical: typing_extensions.Literal[
         "INDUSTRY_VERTICAL_UNSPECIFIED", "GENERIC", "MEDIA", "HEALTHCARE_FHIR"
     ]
+    knowledgeGraphConfig: GoogleCloudDiscoveryengineV1EngineKnowledgeGraphConfig
     mediaRecommendationEngineConfig: (
         GoogleCloudDiscoveryengineV1EngineMediaRecommendationEngineConfig
     )
+    modelConfigs: dict[str, typing.Any]
     name: str
+    observabilityConfig: GoogleCloudDiscoveryengineV1ObservabilityConfig
     searchEngineConfig: GoogleCloudDiscoveryengineV1EngineSearchEngineConfig
     solutionType: typing_extensions.Literal[
         "SOLUTION_TYPE_UNSPECIFIED",
@@ -1072,6 +924,25 @@ class GoogleCloudDiscoveryengineV1EngineCommonConfig(
     typing_extensions.TypedDict, total=False
 ):
     companyName: str
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1EngineKnowledgeGraphConfig(
+    typing_extensions.TypedDict, total=False
+):
+    cloudKnowledgeGraphTypes: _list[str]
+    enableCloudKnowledgeGraph: bool
+    enablePrivateKnowledgeGraph: bool
+    featureConfig: GoogleCloudDiscoveryengineV1EngineKnowledgeGraphConfigFeatureConfig
+    privateKnowledgeGraphTypes: _list[str]
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1EngineKnowledgeGraphConfigFeatureConfig(
+    typing_extensions.TypedDict, total=False
+):
+    disablePrivateKgAutoComplete: bool
+    disablePrivateKgEnrichment: bool
+    disablePrivateKgQueryUiChips: bool
+    disablePrivateKgQueryUnderstanding: bool
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1EngineMediaRecommendationEngineConfig(
@@ -1115,6 +986,21 @@ class GoogleCloudDiscoveryengineV1EngineMediaRecommendationEngineConfigRecommend
 class GoogleCloudDiscoveryengineV1EngineSearchEngineConfig(
     typing_extensions.TypedDict, total=False
 ):
+    requiredSubscriptionTier: typing_extensions.Literal[
+        "SUBSCRIPTION_TIER_UNSPECIFIED",
+        "SUBSCRIPTION_TIER_SEARCH",
+        "SUBSCRIPTION_TIER_SEARCH_AND_ASSISTANT",
+        "SUBSCRIPTION_TIER_NOTEBOOK_LM",
+        "SUBSCRIPTION_TIER_FRONTLINE_WORKER",
+        "SUBSCRIPTION_TIER_AGENTSPACE_STARTER",
+        "SUBSCRIPTION_TIER_AGENTSPACE_BUSINESS",
+        "SUBSCRIPTION_TIER_ENTERPRISE",
+        "SUBSCRIPTION_TIER_EDU",
+        "SUBSCRIPTION_TIER_EDU_PRO",
+        "SUBSCRIPTION_TIER_EDU_EMERGING",
+        "SUBSCRIPTION_TIER_EDU_PRO_EMERGING",
+        "SUBSCRIPTION_TIER_FRONTLINE_STARTER",
+    ]
     searchAddOns: _list[
         typing_extensions.Literal["SEARCH_ADD_ON_UNSPECIFIED", "SEARCH_ADD_ON_LLM"]
     ]
@@ -1128,6 +1014,7 @@ class GoogleCloudDiscoveryengineV1HealthcareFhirConfig(
 ):
     enableConfigurableSchema: bool
     enableStaticIndexingForBatchIngestion: bool
+    initialFilterGroups: _list[str]
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1IdentityMappingEntryOperationMetadata(
@@ -1266,15 +1153,43 @@ class GoogleCloudDiscoveryengineV1LicenseConfig(
         "SUBSCRIPTION_TIER_EDU_PRO",
         "SUBSCRIPTION_TIER_EDU_EMERGING",
         "SUBSCRIPTION_TIER_EDU_PRO_EMERGING",
+        "SUBSCRIPTION_TIER_FRONTLINE_STARTER",
     ]
 
 @typing.type_check_only
+class GoogleCloudDiscoveryengineV1NaturalLanguageQueryUnderstandingConfig(
+    typing_extensions.TypedDict, total=False
+):
+    mode: typing_extensions.Literal["MODE_UNSPECIFIED", "DISABLED", "ENABLED"]
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1ObservabilityConfig(
+    typing_extensions.TypedDict, total=False
+):
+    observabilityEnabled: bool
+    sensitiveLoggingEnabled: bool
+
+@typing.type_check_only
 class GoogleCloudDiscoveryengineV1Project(typing_extensions.TypedDict, total=False):
+    configurableBillingStatus: (
+        GoogleCloudDiscoveryengineV1ProjectConfigurableBillingStatus
+    )
     createTime: str
     customerProvidedConfig: GoogleCloudDiscoveryengineV1ProjectCustomerProvidedConfig
     name: str
     provisionCompletionTime: str
     serviceTermsMap: dict[str, typing.Any]
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1ProjectConfigurableBillingStatus(
+    typing_extensions.TypedDict, total=False
+):
+    effectiveIndexingCoreThreshold: str
+    effectiveSearchQpmThreshold: str
+    indexingCoreThresholdNextUpdateTime: str
+    searchQpmThresholdNextUpdateTime: str
+    startTime: str
+    terminateTime: str
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1ProjectCustomerProvidedConfig(
@@ -1289,6 +1204,8 @@ class GoogleCloudDiscoveryengineV1ProjectCustomerProvidedConfigNotebooklmConfig(
     typing_extensions.TypedDict, total=False
 ):
     modelArmorConfig: GoogleCloudDiscoveryengineV1ProjectCustomerProvidedConfigNotebooklmConfigModelArmorConfig
+    observabilityConfig: GoogleCloudDiscoveryengineV1ObservabilityConfig
+    optOutNotebookSharing: bool
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1ProjectCustomerProvidedConfigNotebooklmConfigModelArmorConfig(
@@ -1612,6 +1529,14 @@ class GoogleCloudDiscoveryengineV1UserLicense(typing_extensions.TypedDict, total
     userProfile: str
 
 @typing.type_check_only
+class GoogleCloudDiscoveryengineV1UserStore(typing_extensions.TypedDict, total=False):
+    defaultLicenseConfig: str
+    displayName: str
+    enableExpiredLicenseAutoUpdate: bool
+    enableLicenseAutoRegister: bool
+    name: str
+
+@typing.type_check_only
 class GoogleCloudDiscoveryengineV1WorkspaceConfig(
     typing_extensions.TypedDict, total=False
 ):
@@ -1629,6 +1554,22 @@ class GoogleCloudDiscoveryengineV1WorkspaceConfig(
         "GOOGLE_KEEP",
         "GOOGLE_PEOPLE",
     ]
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaA2AAgentDefinition(
+    typing_extensions.TypedDict, total=False
+):
+    cloudMarketplaceConfig: (
+        GoogleCloudDiscoveryengineV1alphaA2AAgentDefinitionCloudMarketplaceConfig
+    )
+    jsonAgentCard: str
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaA2AAgentDefinitionCloudMarketplaceConfig(
+    typing_extensions.TypedDict, total=False
+):
+    entitlement: str
+    order: str
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1alphaAclConfig(
@@ -1658,6 +1599,27 @@ class GoogleCloudDiscoveryengineV1alphaActionConfig(
     jsonActionParams: str
     serviceName: str
     useStaticSecrets: bool
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaAddPatientFilterRequest(
+    typing_extensions.TypedDict, total=False
+):
+    dataStore: str
+    filterGroups: _list[str]
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaAdkAgentDefinition(
+    typing_extensions.TypedDict, total=False
+):
+    provisionedReasoningEngine: (
+        GoogleCloudDiscoveryengineV1alphaAdkAgentDefinitionProvisionedReasoningEngine
+    )
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaAdkAgentDefinitionProvisionedReasoningEngine(
+    typing_extensions.TypedDict, total=False
+):
+    reasoningEngine: str
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1alphaAdvancedCompleteQueryRequest(
@@ -1784,6 +1746,127 @@ class GoogleCloudDiscoveryengineV1alphaAdvancedSiteSearchConfig(
     disableInitialIndex: bool
 
 @typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaAgent(typing_extensions.TypedDict, total=False):
+    a2aAgentDefinition: GoogleCloudDiscoveryengineV1alphaA2AAgentDefinition
+    adkAgentDefinition: GoogleCloudDiscoveryengineV1alphaAdkAgentDefinition
+    authorizationConfig: GoogleCloudDiscoveryengineV1alphaAuthorizationConfig
+    createTime: str
+    customPlaceholderText: str
+    deploymentFailureReason: str
+    description: str
+    dialogflowAgentDefinition: (
+        GoogleCloudDiscoveryengineV1alphaDialogflowAgentDefinition
+    )
+    displayName: str
+    icon: GoogleCloudDiscoveryengineV1alphaAgentImage
+    languageCode: str
+    managedAgentDefinition: GoogleCloudDiscoveryengineV1alphaManagedAgentDefinition
+    name: str
+    rejectionReason: str
+    sharingConfig: GoogleCloudDiscoveryengineV1alphaAgentSharingConfig
+    starterPrompts: _list[GoogleCloudDiscoveryengineV1alphaAgentStarterPrompt]
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "CONFIGURED",
+        "DEPLOYING",
+        "DISABLED",
+        "DEPLOYMENT_FAILED",
+        "PRIVATE",
+        "ENABLED",
+        "SUSPENDED",
+    ]
+    suspensionReason: str
+    updateTime: str
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaAgentFile(
+    typing_extensions.TypedDict, total=False
+):
+    fileName: str
+    mimeType: str
+    name: str
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaAgentImage(
+    typing_extensions.TypedDict, total=False
+):
+    content: str
+    uri: str
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaAgentSharingConfig(
+    typing_extensions.TypedDict, total=False
+):
+    scope: typing_extensions.Literal["SCOPE_UNSPECIFIED", "RESTRICTED", "ALL_USERS"]
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaAgentStarterPrompt(
+    typing_extensions.TypedDict, total=False
+):
+    text: str
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaAgentView(
+    typing_extensions.TypedDict, total=False
+):
+    agentOrigin: typing_extensions.Literal[
+        "AGENT_ORIGIN_UNSPECIFIED", "GOOGLE", "ORGANIZATION", "USER"
+    ]
+    agentSharingState: typing_extensions.Literal[
+        "AGENT_SHARING_STATE_UNSPECIFIED", "NOT_SHARED", "PENDING", "SHARED", "REJECTED"
+    ]
+    agentType: typing_extensions.Literal[
+        "AGENT_TYPE_UNSPECIFIED",
+        "NO_CODE",
+        "HTTP",
+        "ADK",
+        "MANAGED",
+        "A2A",
+        "DIALOGFLOW",
+        "LOW_CODE",
+    ]
+    customPlaceholderText: str
+    deploymentFailureReason: str
+    description: str
+    displayName: str
+    icon: GoogleCloudDiscoveryengineV1alphaAgentImage
+    name: str
+    rejectionReason: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "CONFIGURED",
+        "DEPLOYING",
+        "DISABLED",
+        "DEPLOYMENT_FAILED",
+        "PRIVATE",
+        "ENABLED",
+        "SUSPENDED",
+    ]
+    suggestedPrompts: _list[GoogleCloudDiscoveryengineV1alphaAgentViewSuggestedPrompt]
+    suspensionReason: str
+    updateTime: str
+    userAnnotations: GoogleCloudDiscoveryengineV1alphaUserAnnotations
+    userPermissions: GoogleCloudDiscoveryengineV1alphaAgentViewUserPermissions
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaAgentViewSuggestedPrompt(
+    typing_extensions.TypedDict, total=False
+):
+    text: str
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaAgentViewUserPermissions(
+    typing_extensions.TypedDict, total=False
+):
+    canDelete: bool
+    canEdit: bool
+    canProposeUsers: bool
+    canRequestReview: bool
+    canRun: bool
+    canView: bool
+    canWithdraw: bool
+
+@typing.type_check_only
 class GoogleCloudDiscoveryengineV1alphaAlertPolicyConfig(
     typing_extensions.TypedDict, total=False
 ):
@@ -1832,6 +1915,13 @@ class GoogleCloudDiscoveryengineV1alphaAlloyDbSource(
     locationId: str
     projectId: str
     tableId: str
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaAnalyticsConfig(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
+    userLevelMetricsEnabled: bool
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1alphaAnswer(typing_extensions.TypedDict, total=False):
@@ -2420,6 +2510,10 @@ class GoogleCloudDiscoveryengineV1alphaAssistant(
     typing_extensions.TypedDict, total=False
 ):
     customerPolicy: GoogleCloudDiscoveryengineV1alphaAssistantCustomerPolicy
+    defaultWebGroundingToggleOff: bool
+    description: str
+    disableLocationContext: bool
+    displayName: str
     enabledTools: dict[str, typing.Any]
     generationConfig: GoogleCloudDiscoveryengineV1alphaAssistantGenerationConfig
     name: str
@@ -2513,7 +2607,9 @@ class GoogleCloudDiscoveryengineV1alphaAssistantCustomerPolicyModelArmorConfig(
 class GoogleCloudDiscoveryengineV1alphaAssistantGenerationConfig(
     typing_extensions.TypedDict, total=False
 ):
+    allowedModelIds: _list[str]
     defaultLanguage: str
+    defaultModelId: str
     systemInstruction: (
         GoogleCloudDiscoveryengineV1alphaAssistantGenerationConfigSystemInstruction
     )
@@ -2585,6 +2681,32 @@ class GoogleCloudDiscoveryengineV1alphaAssistantToolList(
     typing_extensions.TypedDict, total=False
 ):
     toolInfo: _list[GoogleCloudDiscoveryengineV1alphaAssistantToolInfo]
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaAuthorization(
+    typing_extensions.TypedDict, total=False
+):
+    displayName: str
+    name: str
+    serverSideOauth2: GoogleCloudDiscoveryengineV1alphaAuthorizationServerSideOAuth2
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaAuthorizationConfig(
+    typing_extensions.TypedDict, total=False
+):
+    agentAuthorization: str
+    toolAuthorizations: _list[str]
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaAuthorizationServerSideOAuth2(
+    typing_extensions.TypedDict, total=False
+):
+    authorizationUri: str
+    clientId: str
+    clientSecret: str
+    pkceVerificationEnabled: bool
+    scopes: _list[str]
+    tokenUri: str
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1alphaBAPConfig(
@@ -2753,6 +2875,45 @@ class GoogleCloudDiscoveryengineV1alphaBigtableSource(
     tableId: str
 
 @typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaBillingAccountLicenseConfig(
+    typing_extensions.TypedDict, total=False
+):
+    autoRenew: bool
+    endDate: GoogleTypeDate
+    geminiBundle: bool
+    licenseConfigDistributions: dict[str, typing.Any]
+    licenseCount: str
+    name: str
+    procurementEntitlementId: str
+    startDate: GoogleTypeDate
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "ACTIVE", "EXPIRED", "NOT_STARTED"
+    ]
+    subscriptionDisplayName: str
+    subscriptionName: str
+    subscriptionTerm: typing_extensions.Literal[
+        "SUBSCRIPTION_TERM_UNSPECIFIED",
+        "SUBSCRIPTION_TERM_ONE_MONTH",
+        "SUBSCRIPTION_TERM_ONE_YEAR",
+        "SUBSCRIPTION_TERM_THREE_YEARS",
+    ]
+    subscriptionTier: typing_extensions.Literal[
+        "SUBSCRIPTION_TIER_UNSPECIFIED",
+        "SUBSCRIPTION_TIER_SEARCH",
+        "SUBSCRIPTION_TIER_SEARCH_AND_ASSISTANT",
+        "SUBSCRIPTION_TIER_NOTEBOOK_LM",
+        "SUBSCRIPTION_TIER_FRONTLINE_WORKER",
+        "SUBSCRIPTION_TIER_AGENTSPACE_STARTER",
+        "SUBSCRIPTION_TIER_AGENTSPACE_BUSINESS",
+        "SUBSCRIPTION_TIER_ENTERPRISE",
+        "SUBSCRIPTION_TIER_EDU",
+        "SUBSCRIPTION_TIER_EDU_PRO",
+        "SUBSCRIPTION_TIER_EDU_EMERGING",
+        "SUBSCRIPTION_TIER_EDU_PRO_EMERGING",
+        "SUBSCRIPTION_TIER_FRONTLINE_STARTER",
+    ]
+
+@typing.type_check_only
 class GoogleCloudDiscoveryengineV1alphaBranch(typing_extensions.TypedDict, total=False):
     branchStats: GoogleCloudDiscoveryengineV1alphaBranchBranchStats
     displayName: str
@@ -2765,6 +2926,40 @@ class GoogleCloudDiscoveryengineV1alphaBranchBranchStats(
     typing_extensions.TypedDict, total=False
 ):
     documentCounts: dict[str, typing.Any]
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaCannedQuery(
+    typing_extensions.TypedDict, total=False
+):
+    defaultTexts: GoogleCloudDiscoveryengineV1alphaCannedQueryCannedQueryTexts
+    displayName: str
+    enabled: bool
+    googleDefined: bool
+    localizedTexts: dict[str, typing.Any]
+    name: str
+    requiredCapabilities: _list[
+        GoogleCloudDiscoveryengineV1alphaCannedQueryAssistantCapability
+    ]
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaCannedQueryAssistantCapability(
+    typing_extensions.TypedDict, total=False
+):
+    actionName: str
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaCannedQueryCannedQueryTexts(
+    typing_extensions.TypedDict, total=False
+):
+    prefix: str
+    suggestedPrompts: _list[GoogleCloudDiscoveryengineV1alphaCannedQuerySuggestedPrompt]
+    title: str
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaCannedQuerySuggestedPrompt(
+    typing_extensions.TypedDict, total=False
+):
+    promptText: str
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1alphaCheckGroundingRequest(
@@ -3023,39 +3218,6 @@ class GoogleCloudDiscoveryengineV1alphaConditionTimeRange(
 ):
     endTime: str
     startTime: str
-
-@typing.type_check_only
-class GoogleCloudDiscoveryengineV1alphaConfigurablePricingUsageStats(
-    typing_extensions.TypedDict, total=False
-):
-    metricUsages: _list[
-        GoogleCloudDiscoveryengineV1alphaConfigurablePricingUsageStatsMetricUsage
-    ]
-    name: str
-
-@typing.type_check_only
-class GoogleCloudDiscoveryengineV1alphaConfigurablePricingUsageStatsDatedUsage(
-    typing_extensions.TypedDict, total=False
-):
-    date: GoogleTypeDate
-    usage: float
-
-@typing.type_check_only
-class GoogleCloudDiscoveryengineV1alphaConfigurablePricingUsageStatsMetricUsage(
-    typing_extensions.TypedDict, total=False
-):
-    datedUsages: _list[
-        GoogleCloudDiscoveryengineV1alphaConfigurablePricingUsageStatsDatedUsage
-    ]
-    metricType: typing_extensions.Literal[
-        "BILLING_METRIC_TYPE_UNSPECIFIED",
-        "DAILY_MDN_QPM",
-        "DAILY_MIN_QPM",
-        "DAILY_MAX_QPM",
-        "DAILY_SEARCH_REQUEST",
-        "TOTAL_STORAGE",
-    ]
-    totalUsages: _list[float]
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1alphaConnectorRun(
@@ -3403,6 +3565,7 @@ class GoogleCloudDiscoveryengineV1alphaDataConnector(
         "THIRD_PARTY_FEDERATED",
         "THIRD_PARTY_EUA",
         "GCNV",
+        "GOOGLE_CHAT",
     ]
     createEuaSaas: bool
     createTime: str
@@ -3517,6 +3680,7 @@ class GoogleCloudDiscoveryengineV1alphaDataStore(
         "CONFIGURABLE_SUBSCRIPTION_INDEXING_CORE",
         "CONFIGURABLE_CONSUMPTION_EMBEDDING",
     ]
+    configurableBillingApproachUpdateTime: str
     contentConfig: typing_extensions.Literal[
         "CONTENT_CONFIG_UNSPECIFIED",
         "NO_CONTENT",
@@ -3583,6 +3747,13 @@ class GoogleCloudDiscoveryengineV1alphaDedicatedCrawlRateTimeSeries(
     userTriggeredCrawlRate: GoogleCloudDiscoveryengineV1alphaCrawlRateTimeSeries
 
 @typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaDeleteAgentMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    createTime: str
+    updateTime: str
+
+@typing.type_check_only
 class GoogleCloudDiscoveryengineV1alphaDeleteCmekConfigMetadata(
     typing_extensions.TypedDict, total=False
 ):
@@ -3618,6 +3789,12 @@ class GoogleCloudDiscoveryengineV1alphaDeleteIdentityMappingStoreMetadata(
     updateTime: str
 
 @typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaDeletePatientFiltersRequest(
+    typing_extensions.TypedDict, total=False
+):
+    dataStore: str
+
+@typing.type_check_only
 class GoogleCloudDiscoveryengineV1alphaDeleteSchemaMetadata(
     typing_extensions.TypedDict, total=False
 ):
@@ -3645,6 +3822,13 @@ class GoogleCloudDiscoveryengineV1alphaDeleteTargetSiteMetadata(
     updateTime: str
 
 @typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaDeleteUserStoreMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    failureCount: str
+    successCount: str
+
+@typing.type_check_only
 class GoogleCloudDiscoveryengineV1alphaDestinationConfig(
     typing_extensions.TypedDict, total=False
 ):
@@ -3659,6 +3843,12 @@ class GoogleCloudDiscoveryengineV1alphaDestinationConfigDestination(
 ):
     host: str
     port: int
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaDialogflowAgentDefinition(
+    typing_extensions.TypedDict, total=False
+):
+    dialogflowAgent: str
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1alphaDisableAdvancedSiteSearchMetadata(
@@ -3676,6 +3866,21 @@ class GoogleCloudDiscoveryengineV1alphaDisableAdvancedSiteSearchRequest(
 class GoogleCloudDiscoveryengineV1alphaDisableAdvancedSiteSearchResponse(
     typing_extensions.TypedDict, total=False
 ): ...
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaDistributeLicenseConfigRequest(
+    typing_extensions.TypedDict, total=False
+):
+    licenseConfigId: str
+    licenseCount: str
+    location: str
+    projectNumber: str
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaDistributeLicenseConfigResponse(
+    typing_extensions.TypedDict, total=False
+):
+    licenseConfig: GoogleCloudDiscoveryengineV1alphaLicenseConfig
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1alphaDocument(
@@ -3779,6 +3984,7 @@ class GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigParsingConfigLayo
 ):
     enableGetProcessedDocument: bool
     enableImageAnnotation: bool
+    enableLlmLayoutParsing: bool
     enableTableAnnotation: bool
     excludeHtmlClasses: _list[str]
     excludeHtmlElements: _list[str]
@@ -3826,6 +4032,7 @@ class GoogleCloudDiscoveryengineV1alphaEngine(typing_extensions.TypedDict, total
     appType: typing_extensions.Literal["APP_TYPE_UNSPECIFIED", "APP_TYPE_INTRANET"]
     chatEngineConfig: GoogleCloudDiscoveryengineV1alphaEngineChatEngineConfig
     chatEngineMetadata: GoogleCloudDiscoveryengineV1alphaEngineChatEngineMetadata
+    cmekConfig: GoogleCloudDiscoveryengineV1alphaCmekConfig
     commonConfig: GoogleCloudDiscoveryengineV1alphaEngineCommonConfig
     configurableBillingApproach: typing_extensions.Literal[
         "CONFIGURABLE_BILLING_APPROACH_UNSPECIFIED",
@@ -3839,10 +4046,13 @@ class GoogleCloudDiscoveryengineV1alphaEngine(typing_extensions.TypedDict, total
     industryVertical: typing_extensions.Literal[
         "INDUSTRY_VERTICAL_UNSPECIFIED", "GENERIC", "MEDIA", "HEALTHCARE_FHIR"
     ]
+    knowledgeGraphConfig: GoogleCloudDiscoveryengineV1alphaEngineKnowledgeGraphConfig
     mediaRecommendationEngineConfig: (
         GoogleCloudDiscoveryengineV1alphaEngineMediaRecommendationEngineConfig
     )
+    modelConfigs: dict[str, typing.Any]
     name: str
+    observabilityConfig: GoogleCloudDiscoveryengineV1alphaObservabilityConfig
     recommendationMetadata: (
         GoogleCloudDiscoveryengineV1alphaEngineRecommendationMetadata
     )
@@ -3889,6 +4099,27 @@ class GoogleCloudDiscoveryengineV1alphaEngineCommonConfig(
     typing_extensions.TypedDict, total=False
 ):
     companyName: str
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaEngineKnowledgeGraphConfig(
+    typing_extensions.TypedDict, total=False
+):
+    cloudKnowledgeGraphTypes: _list[str]
+    enableCloudKnowledgeGraph: bool
+    enablePrivateKnowledgeGraph: bool
+    featureConfig: (
+        GoogleCloudDiscoveryengineV1alphaEngineKnowledgeGraphConfigFeatureConfig
+    )
+    privateKnowledgeGraphTypes: _list[str]
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaEngineKnowledgeGraphConfigFeatureConfig(
+    typing_extensions.TypedDict, total=False
+):
+    disablePrivateKgAutoComplete: bool
+    disablePrivateKgEnrichment: bool
+    disablePrivateKgQueryUiChips: bool
+    disablePrivateKgQueryUnderstanding: bool
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1alphaEngineMediaRecommendationEngineConfig(
@@ -3946,6 +4177,21 @@ class GoogleCloudDiscoveryengineV1alphaEngineRecommendationMetadata(
 class GoogleCloudDiscoveryengineV1alphaEngineSearchEngineConfig(
     typing_extensions.TypedDict, total=False
 ):
+    requiredSubscriptionTier: typing_extensions.Literal[
+        "SUBSCRIPTION_TIER_UNSPECIFIED",
+        "SUBSCRIPTION_TIER_SEARCH",
+        "SUBSCRIPTION_TIER_SEARCH_AND_ASSISTANT",
+        "SUBSCRIPTION_TIER_NOTEBOOK_LM",
+        "SUBSCRIPTION_TIER_FRONTLINE_WORKER",
+        "SUBSCRIPTION_TIER_AGENTSPACE_STARTER",
+        "SUBSCRIPTION_TIER_AGENTSPACE_BUSINESS",
+        "SUBSCRIPTION_TIER_ENTERPRISE",
+        "SUBSCRIPTION_TIER_EDU",
+        "SUBSCRIPTION_TIER_EDU_PRO",
+        "SUBSCRIPTION_TIER_EDU_EMERGING",
+        "SUBSCRIPTION_TIER_EDU_PRO_EMERGING",
+        "SUBSCRIPTION_TIER_FRONTLINE_STARTER",
+    ]
     searchAddOns: _list[
         typing_extensions.Literal["SEARCH_ADD_ON_UNSPECIFIED", "SEARCH_ADD_ON_LLM"]
     ]
@@ -4207,6 +4453,12 @@ class GoogleCloudDiscoveryengineV1alphaGcsSource(
     inputUris: _list[str]
 
 @typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaGetAgentViewResponse(
+    typing_extensions.TypedDict, total=False
+):
+    agentView: GoogleCloudDiscoveryengineV1alphaAgentView
+
+@typing.type_check_only
 class GoogleCloudDiscoveryengineV1alphaGetConnectorSecretResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -4251,12 +4503,14 @@ class GoogleCloudDiscoveryengineV1alphaHealthcareFhirConfig(
 ):
     enableConfigurableSchema: bool
     enableStaticIndexingForBatchIngestion: bool
+    initialFilterGroups: _list[str]
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1alphaIdentityMappingEntry(
     typing_extensions.TypedDict, total=False
 ):
     externalIdentity: str
+    externalIdentityName: str
     groupId: str
     userId: str
 
@@ -4312,6 +4566,19 @@ class GoogleCloudDiscoveryengineV1alphaImageCharacteristics(
     ]
     height: int
     width: int
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaImportAgentFileRequest(
+    typing_extensions.TypedDict, total=False
+):
+    fileName: str
+    mimeType: str
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaImportAgentFileResponse(
+    typing_extensions.TypedDict, total=False
+):
+    agentFile: GoogleCloudDiscoveryengineV1alphaAgentFile
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1alphaImportCompletionSuggestionsMetadata(
@@ -4566,13 +4833,65 @@ class GoogleCloudDiscoveryengineV1alphaLicenseConfig(
         "SUBSCRIPTION_TIER_EDU_PRO",
         "SUBSCRIPTION_TIER_EDU_EMERGING",
         "SUBSCRIPTION_TIER_EDU_PRO_EMERGING",
+        "SUBSCRIPTION_TIER_FRONTLINE_STARTER",
     ]
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaLicenseConfigUsageStats(
+    typing_extensions.TypedDict, total=False
+):
+    licenseConfig: str
+    usedLicenseCount: str
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaListAgentsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    agents: _list[GoogleCloudDiscoveryengineV1alphaAgent]
+    nextPageToken: str
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaListAssistantsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    assistants: _list[GoogleCloudDiscoveryengineV1alphaAssistant]
+    nextPageToken: str
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaListAuthorizationsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    authorizations: _list[GoogleCloudDiscoveryengineV1alphaAuthorization]
+    nextPageToken: str
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaListAvailableAgentViewsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    agentViews: _list[GoogleCloudDiscoveryengineV1alphaAgentView]
+    nextPageToken: str
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaListBillingAccountLicenseConfigsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    billingAccountLicenseConfigs: _list[
+        GoogleCloudDiscoveryengineV1alphaBillingAccountLicenseConfig
+    ]
+    nextPageToken: str
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1alphaListBranchesResponse(
     typing_extensions.TypedDict, total=False
 ):
     branches: _list[GoogleCloudDiscoveryengineV1alphaBranch]
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaListCannedQueriesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    cannedQueries: _list[GoogleCloudDiscoveryengineV1alphaCannedQuery]
+    nextPageToken: str
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1alphaListChunksResponse(
@@ -4687,6 +5006,14 @@ class GoogleCloudDiscoveryengineV1alphaListIdentityMappingsResponse(
     nextPageToken: str
 
 @typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaListLicenseConfigsUsageStatsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    licenseConfigUsageStats: _list[
+        GoogleCloudDiscoveryengineV1alphaLicenseConfigUsageStats
+    ]
+
+@typing.type_check_only
 class GoogleCloudDiscoveryengineV1alphaListSampleQueriesResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -4747,6 +5074,11 @@ class GoogleCloudDiscoveryengineV1alphaListUserLicensesResponse(
     userLicenses: _list[GoogleCloudDiscoveryengineV1alphaUserLicense]
 
 @typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaManagedAgentDefinition(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class GoogleCloudDiscoveryengineV1alphaMediaInfo(
     typing_extensions.TypedDict, total=False
 ):
@@ -4758,6 +5090,13 @@ class GoogleCloudDiscoveryengineV1alphaNaturalLanguageQueryUnderstandingConfig(
     typing_extensions.TypedDict, total=False
 ):
     mode: typing_extensions.Literal["MODE_UNSPECIFIED", "DISABLED", "ENABLED"]
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaObservabilityConfig(
+    typing_extensions.TypedDict, total=False
+):
+    observabilityEnabled: bool
+    sensitiveLoggingEnabled: bool
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1alphaObtainCrawlRateRequest(
@@ -4811,6 +5150,15 @@ class GoogleCloudDiscoveryengineV1alphaPanelInfo(
     totalPanels: int
 
 @typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaPatientFilterOperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    createTime: str
+    filtersAddedCount: str
+    filtersRemovedCount: str
+    updateTime: str
+
+@typing.type_check_only
 class GoogleCloudDiscoveryengineV1alphaPauseEngineRequest(
     typing_extensions.TypedDict, total=False
 ): ...
@@ -4834,6 +5182,9 @@ class GoogleCloudDiscoveryengineV1alphaProcessedDocument(
 class GoogleCloudDiscoveryengineV1alphaProject(
     typing_extensions.TypedDict, total=False
 ):
+    configurableBillingStatus: (
+        GoogleCloudDiscoveryengineV1alphaProjectConfigurableBillingStatus
+    )
     createTime: str
     customerProvidedConfig: (
         GoogleCloudDiscoveryengineV1alphaProjectCustomerProvidedConfig
@@ -4841,6 +5192,17 @@ class GoogleCloudDiscoveryengineV1alphaProject(
     name: str
     provisionCompletionTime: str
     serviceTermsMap: dict[str, typing.Any]
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaProjectConfigurableBillingStatus(
+    typing_extensions.TypedDict, total=False
+):
+    effectiveIndexingCoreThreshold: str
+    effectiveSearchQpmThreshold: str
+    indexingCoreThresholdNextUpdateTime: str
+    searchQpmThresholdNextUpdateTime: str
+    startTime: str
+    terminateTime: str
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1alphaProjectCustomerProvidedConfig(
@@ -4855,6 +5217,8 @@ class GoogleCloudDiscoveryengineV1alphaProjectCustomerProvidedConfigNotebooklmCo
     typing_extensions.TypedDict, total=False
 ):
     modelArmorConfig: GoogleCloudDiscoveryengineV1alphaProjectCustomerProvidedConfigNotebooklmConfigModelArmorConfig
+    observabilityConfig: GoogleCloudDiscoveryengineV1alphaObservabilityConfig
+    optOutNotebookSharing: bool
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1alphaProjectCustomerProvidedConfigNotebooklmConfigModelArmorConfig(
@@ -5035,6 +5399,38 @@ class GoogleCloudDiscoveryengineV1alphaQuery(typing_extensions.TypedDict, total=
     text: str
 
 @typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaQueryConfigurablePricingUsageStatsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    metricUsages: _list[
+        GoogleCloudDiscoveryengineV1alphaQueryConfigurablePricingUsageStatsResponseMetricUsage
+    ]
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaQueryConfigurablePricingUsageStatsResponseDatedUsage(
+    typing_extensions.TypedDict, total=False
+):
+    date: GoogleTypeDate
+    usage: float
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaQueryConfigurablePricingUsageStatsResponseMetricUsage(
+    typing_extensions.TypedDict, total=False
+):
+    datedUsages: _list[
+        GoogleCloudDiscoveryengineV1alphaQueryConfigurablePricingUsageStatsResponseDatedUsage
+    ]
+    metricType: typing_extensions.Literal[
+        "BILLING_METRIC_TYPE_UNSPECIFIED",
+        "DAILY_MDN_QPM",
+        "DAILY_MIN_QPM",
+        "DAILY_MAX_QPM",
+        "DAILY_SEARCH_REQUEST",
+        "TOTAL_STORAGE",
+    ]
+    totalUsage: float
+
+@typing.type_check_only
 class GoogleCloudDiscoveryengineV1alphaRankRequest(
     typing_extensions.TypedDict, total=False
 ):
@@ -5169,6 +5565,13 @@ class GoogleCloudDiscoveryengineV1alphaRemoveDedicatedCrawlRateResponse(
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "SUCCEEDED", "FAILED"]
 
 @typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaRemovePatientFilterRequest(
+    typing_extensions.TypedDict, total=False
+):
+    dataStore: str
+    filterGroups: _list[str]
+
+@typing.type_check_only
 class GoogleCloudDiscoveryengineV1alphaRemoveSuggestionRequest(
     typing_extensions.TypedDict, total=False
 ):
@@ -5182,6 +5585,13 @@ class GoogleCloudDiscoveryengineV1alphaRemoveSuggestionRequest(
 class GoogleCloudDiscoveryengineV1alphaRemoveSuggestionResponse(
     typing_extensions.TypedDict, total=False
 ): ...
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaReplacePatientFilterRequest(
+    typing_extensions.TypedDict, total=False
+):
+    dataStore: str
+    filterGroups: _list[str]
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1alphaReply(typing_extensions.TypedDict, total=False):
@@ -5264,6 +5674,20 @@ class GoogleCloudDiscoveryengineV1alphaRequirementViolationSamplesBinding(
 class GoogleCloudDiscoveryengineV1alphaResumeEngineRequest(
     typing_extensions.TypedDict, total=False
 ): ...
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaRetractLicenseConfigRequest(
+    typing_extensions.TypedDict, total=False
+):
+    fullRetract: bool
+    licenseConfig: str
+    licenseCount: str
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaRetractLicenseConfigResponse(
+    typing_extensions.TypedDict, total=False
+):
+    licenseConfig: GoogleCloudDiscoveryengineV1alphaLicenseConfig
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1alphaSafetyRating(
@@ -5357,6 +5781,7 @@ class GoogleCloudDiscoveryengineV1alphaSearchRequest(
     branch: str
     canonicalFilter: str
     contentSearchSpec: GoogleCloudDiscoveryengineV1alphaSearchRequestContentSearchSpec
+    crowdingSpecs: _list[GoogleCloudDiscoveryengineV1alphaSearchRequestCrowdingSpec]
     customFineTuningSpec: GoogleCloudDiscoveryengineV1alphaCustomFineTuningSpec
     dataStoreSpecs: _list[GoogleCloudDiscoveryengineV1alphaSearchRequestDataStoreSpec]
     displaySpec: GoogleCloudDiscoveryengineV1alphaSearchRequestDisplaySpec
@@ -5369,6 +5794,7 @@ class GoogleCloudDiscoveryengineV1alphaSearchRequest(
     offset: int
     oneBoxPageSize: int
     orderBy: str
+    pageCategories: _list[str]
     pageSize: int
     pageToken: str
     params: dict[str, typing.Any]
@@ -5386,6 +5812,9 @@ class GoogleCloudDiscoveryengineV1alphaSearchRequest(
         "RANK_BY_FORMULA",
     ]
     regionCode: str
+    relevanceFilterSpec: (
+        GoogleCloudDiscoveryengineV1alphaSearchRequestRelevanceFilterSpec
+    )
     relevanceScoreSpec: GoogleCloudDiscoveryengineV1alphaSearchRequestRelevanceScoreSpec
     relevanceThreshold: typing_extensions.Literal[
         "RELEVANCE_THRESHOLD_UNSPECIFIED", "LOWEST", "LOW", "MEDIUM", "HIGH"
@@ -5525,6 +5954,16 @@ class GoogleCloudDiscoveryengineV1alphaSearchRequestContentSearchSpecSummarySpec
     ]
 
 @typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaSearchRequestCrowdingSpec(
+    typing_extensions.TypedDict, total=False
+):
+    field: str
+    maxCount: int
+    mode: typing_extensions.Literal[
+        "MODE_UNSPECIFIED", "DROP_CROWDED_RESULTS", "DEMOTE_CROWDED_RESULTS_TO_END"
+    ]
+
+@typing.type_check_only
 class GoogleCloudDiscoveryengineV1alphaSearchRequestDataStoreSpec(
     typing_extensions.TypedDict, total=False
 ):
@@ -5612,6 +6051,22 @@ class GoogleCloudDiscoveryengineV1alphaSearchRequestQueryExpansionSpec(
     pinUnexpandedResults: bool
 
 @typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaSearchRequestRelevanceFilterSpec(
+    typing_extensions.TypedDict, total=False
+):
+    keywordSearchThreshold: GoogleCloudDiscoveryengineV1alphaSearchRequestRelevanceFilterSpecRelevanceThresholdSpec
+    semanticSearchThreshold: GoogleCloudDiscoveryengineV1alphaSearchRequestRelevanceFilterSpecRelevanceThresholdSpec
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaSearchRequestRelevanceFilterSpecRelevanceThresholdSpec(
+    typing_extensions.TypedDict, total=False
+):
+    relevanceThreshold: typing_extensions.Literal[
+        "RELEVANCE_THRESHOLD_UNSPECIFIED", "LOWEST", "LOW", "MEDIUM", "HIGH"
+    ]
+    semanticRelevanceThreshold: float
+
+@typing.type_check_only
 class GoogleCloudDiscoveryengineV1alphaSearchRequestRelevanceScoreSpec(
     typing_extensions.TypedDict, total=False
 ):
@@ -5669,6 +6124,9 @@ class GoogleCloudDiscoveryengineV1alphaSearchResponse(
     redirectUri: str
     results: _list[GoogleCloudDiscoveryengineV1alphaSearchResponseSearchResult]
     searchLinkPromotions: _list[GoogleCloudDiscoveryengineV1alphaSearchLinkPromotion]
+    semanticState: typing_extensions.Literal[
+        "SEMANTIC_STATE_UNSPECIFIED", "DISABLED", "ENABLED"
+    ]
     sessionInfo: GoogleCloudDiscoveryengineV1alphaSearchResponseSessionInfo
     suggestedQuery: str
     summary: GoogleCloudDiscoveryengineV1alphaSearchResponseSummary
@@ -6191,6 +6649,7 @@ class GoogleCloudDiscoveryengineV1alphaStreamAssistResponse(
 ):
     answer: GoogleCloudDiscoveryengineV1alphaAssistAnswer
     assistToken: str
+    invocationTools: _list[str]
     sessionInfo: GoogleCloudDiscoveryengineV1alphaStreamAssistResponseSessionInfo
 
 @typing.type_check_only
@@ -6356,18 +6815,11 @@ class GoogleCloudDiscoveryengineV1alphaUpdateTargetSiteMetadata(
     updateTime: str
 
 @typing.type_check_only
-class GoogleCloudDiscoveryengineV1alphaUploadSessionFileRequest(
+class GoogleCloudDiscoveryengineV1alphaUserAnnotations(
     typing_extensions.TypedDict, total=False
 ):
-    blob: GdataMedia
-    mediaRequestInfo: ApiservingMediaRequestInfo
-
-@typing.type_check_only
-class GoogleCloudDiscoveryengineV1alphaUploadSessionFileResponse(
-    typing_extensions.TypedDict, total=False
-):
-    fileId: str
-    mediaResponseInfo: ApiservingMediaResponseInfo
+    pinned: bool
+    viewed: bool
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1alphaUserEvent(
@@ -6424,6 +6876,16 @@ class GoogleCloudDiscoveryengineV1alphaUserLicense(
     userProfile: str
 
 @typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaUserStore(
+    typing_extensions.TypedDict, total=False
+):
+    defaultLicenseConfig: str
+    displayName: str
+    enableExpiredLicenseAutoUpdate: bool
+    enableLicenseAutoRegister: bool
+    name: str
+
+@typing.type_check_only
 class GoogleCloudDiscoveryengineV1alphaVideoCharacteristics(
     typing_extensions.TypedDict, total=False
 ):
@@ -6475,9 +6937,9 @@ class GoogleCloudDiscoveryengineV1alphaWidgetConfig(
     enableSnippetResultSummary: bool
     enableSummarization: bool
     enableWebApp: bool
-    experimentalFeatures: dict[str, typing.Any]
     facetField: _list[GoogleCloudDiscoveryengineV1alphaWidgetConfigFacetField]
     fieldsUiComponentsMap: dict[str, typing.Any]
+    geminiBundle: bool
     homepageSetting: GoogleCloudDiscoveryengineV1alphaWidgetConfigHomepageSetting
     industryVertical: typing_extensions.Literal[
         "INDUSTRY_VERTICAL_UNSPECIFIED", "GENERIC", "MEDIA", "HEALTHCARE_FHIR"
@@ -6485,6 +6947,7 @@ class GoogleCloudDiscoveryengineV1alphaWidgetConfig(
     llmEnabled: bool
     minimumDataTermAccepted: bool
     name: str
+    nodes: _list[GoogleCloudDiscoveryengineV1alphaWidgetConfigNode]
     resultDisplayType: typing_extensions.Literal[
         "RESULT_DISPLAY_TYPE_UNSPECIFIED", "SNIPPET", "EXTRACTIVE_ANSWER"
     ]
@@ -6615,6 +7078,17 @@ class GoogleCloudDiscoveryengineV1alphaWidgetConfigImage(
     url: str
 
 @typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaWidgetConfigNode(
+    typing_extensions.TypedDict, total=False
+):
+    description: str
+    displayName: str
+    iconUrl: str
+    outputSchema: dict[str, typing.Any]
+    parameterSchema: dict[str, typing.Any]
+    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "TRIGGER", "FLOW", "CONNECTOR"]
+
+@typing.type_check_only
 class GoogleCloudDiscoveryengineV1alphaWidgetConfigUIComponentField(
     typing_extensions.TypedDict, total=False
 ):
@@ -6656,9 +7130,13 @@ class GoogleCloudDiscoveryengineV1alphaWidgetConfigUiSettings(
         "SEARCH_WITH_ANSWER",
         "SEARCH_WITH_FOLLOW_UPS",
     ]
+    modelConfigs: dict[str, typing.Any]
     resultDescriptionType: typing_extensions.Literal[
         "RESULT_DISPLAY_TYPE_UNSPECIFIED", "SNIPPET", "EXTRACTIVE_ANSWER"
     ]
+    searchAddonSpec: (
+        GoogleCloudDiscoveryengineV1alphaWidgetConfigUiSettingsSearchAddonSpec
+    )
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1alphaWidgetConfigUiSettingsGenerativeAnswerConfig(
@@ -6679,6 +7157,14 @@ class GoogleCloudDiscoveryengineV1alphaWidgetConfigUiSettingsGenerativeAnswerCon
     modelPromptPreamble: str
     modelVersion: str
     resultCount: int
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaWidgetConfigUiSettingsSearchAddonSpec(
+    typing_extensions.TypedDict, total=False
+):
+    generativeAnswerAddOnDisabled: bool
+    kpiPersonalizationAddOnDisabled: bool
+    semanticAddOnDisabled: bool
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1alphaWorkspaceConfig(
@@ -6944,6 +7430,7 @@ class GoogleCloudDiscoveryengineV1betaDataStore(
         "CONFIGURABLE_SUBSCRIPTION_INDEXING_CORE",
         "CONFIGURABLE_CONSUMPTION_EMBEDDING",
     ]
+    configurableBillingApproachUpdateTime: str
     contentConfig: typing_extensions.Literal[
         "CONTENT_CONFIG_UNSPECIFIED",
         "NO_CONTENT",
@@ -7107,6 +7594,7 @@ class GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigParsingConfigLayou
 ):
     enableGetProcessedDocument: bool
     enableImageAnnotation: bool
+    enableLlmLayoutParsing: bool
     enableTableAnnotation: bool
     excludeHtmlClasses: _list[str]
     excludeHtmlElements: _list[str]
@@ -7137,6 +7625,7 @@ class GoogleCloudDiscoveryengineV1betaEngine(typing_extensions.TypedDict, total=
     appType: typing_extensions.Literal["APP_TYPE_UNSPECIFIED", "APP_TYPE_INTRANET"]
     chatEngineConfig: GoogleCloudDiscoveryengineV1betaEngineChatEngineConfig
     chatEngineMetadata: GoogleCloudDiscoveryengineV1betaEngineChatEngineMetadata
+    cmekConfig: GoogleCloudDiscoveryengineV1betaCmekConfig
     commonConfig: GoogleCloudDiscoveryengineV1betaEngineCommonConfig
     configurableBillingApproach: typing_extensions.Literal[
         "CONFIGURABLE_BILLING_APPROACH_UNSPECIFIED",
@@ -7150,10 +7639,13 @@ class GoogleCloudDiscoveryengineV1betaEngine(typing_extensions.TypedDict, total=
     industryVertical: typing_extensions.Literal[
         "INDUSTRY_VERTICAL_UNSPECIFIED", "GENERIC", "MEDIA", "HEALTHCARE_FHIR"
     ]
+    knowledgeGraphConfig: GoogleCloudDiscoveryengineV1betaEngineKnowledgeGraphConfig
     mediaRecommendationEngineConfig: (
         GoogleCloudDiscoveryengineV1betaEngineMediaRecommendationEngineConfig
     )
+    modelConfigs: dict[str, typing.Any]
     name: str
+    observabilityConfig: GoogleCloudDiscoveryengineV1betaObservabilityConfig
     searchEngineConfig: GoogleCloudDiscoveryengineV1betaEngineSearchEngineConfig
     solutionType: typing_extensions.Literal[
         "SOLUTION_TYPE_UNSPECIFIED",
@@ -7194,6 +7686,27 @@ class GoogleCloudDiscoveryengineV1betaEngineCommonConfig(
     typing_extensions.TypedDict, total=False
 ):
     companyName: str
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1betaEngineKnowledgeGraphConfig(
+    typing_extensions.TypedDict, total=False
+):
+    cloudKnowledgeGraphTypes: _list[str]
+    enableCloudKnowledgeGraph: bool
+    enablePrivateKnowledgeGraph: bool
+    featureConfig: (
+        GoogleCloudDiscoveryengineV1betaEngineKnowledgeGraphConfigFeatureConfig
+    )
+    privateKnowledgeGraphTypes: _list[str]
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1betaEngineKnowledgeGraphConfigFeatureConfig(
+    typing_extensions.TypedDict, total=False
+):
+    disablePrivateKgAutoComplete: bool
+    disablePrivateKgEnrichment: bool
+    disablePrivateKgQueryUiChips: bool
+    disablePrivateKgQueryUnderstanding: bool
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1betaEngineMediaRecommendationEngineConfig(
@@ -7237,6 +7750,21 @@ class GoogleCloudDiscoveryengineV1betaEngineMediaRecommendationEngineConfigRecom
 class GoogleCloudDiscoveryengineV1betaEngineSearchEngineConfig(
     typing_extensions.TypedDict, total=False
 ):
+    requiredSubscriptionTier: typing_extensions.Literal[
+        "SUBSCRIPTION_TIER_UNSPECIFIED",
+        "SUBSCRIPTION_TIER_SEARCH",
+        "SUBSCRIPTION_TIER_SEARCH_AND_ASSISTANT",
+        "SUBSCRIPTION_TIER_NOTEBOOK_LM",
+        "SUBSCRIPTION_TIER_FRONTLINE_WORKER",
+        "SUBSCRIPTION_TIER_AGENTSPACE_STARTER",
+        "SUBSCRIPTION_TIER_AGENTSPACE_BUSINESS",
+        "SUBSCRIPTION_TIER_ENTERPRISE",
+        "SUBSCRIPTION_TIER_EDU",
+        "SUBSCRIPTION_TIER_EDU_PRO",
+        "SUBSCRIPTION_TIER_EDU_EMERGING",
+        "SUBSCRIPTION_TIER_EDU_PRO_EMERGING",
+        "SUBSCRIPTION_TIER_FRONTLINE_STARTER",
+    ]
     searchAddOns: _list[
         typing_extensions.Literal["SEARCH_ADD_ON_UNSPECIFIED", "SEARCH_ADD_ON_LLM"]
     ]
@@ -7278,6 +7806,7 @@ class GoogleCloudDiscoveryengineV1betaHealthcareFhirConfig(
 ):
     enableConfigurableSchema: bool
     enableStaticIndexingForBatchIngestion: bool
+    initialFilterGroups: _list[str]
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1betaIdentityMappingEntryOperationMetadata(
@@ -7446,6 +7975,7 @@ class GoogleCloudDiscoveryengineV1betaLicenseConfig(
         "SUBSCRIPTION_TIER_EDU_PRO",
         "SUBSCRIPTION_TIER_EDU_EMERGING",
         "SUBSCRIPTION_TIER_EDU_PRO_EMERGING",
+        "SUBSCRIPTION_TIER_FRONTLINE_STARTER",
     ]
 
 @typing.type_check_only
@@ -7453,6 +7983,13 @@ class GoogleCloudDiscoveryengineV1betaNaturalLanguageQueryUnderstandingConfig(
     typing_extensions.TypedDict, total=False
 ):
     mode: typing_extensions.Literal["MODE_UNSPECIFIED", "DISABLED", "ENABLED"]
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1betaObservabilityConfig(
+    typing_extensions.TypedDict, total=False
+):
+    observabilityEnabled: bool
+    sensitiveLoggingEnabled: bool
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1betaObtainCrawlRateResponse(
@@ -7476,6 +8013,9 @@ class GoogleCloudDiscoveryengineV1betaOrganicCrawlRateTimeSeries(
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1betaProject(typing_extensions.TypedDict, total=False):
+    configurableBillingStatus: (
+        GoogleCloudDiscoveryengineV1betaProjectConfigurableBillingStatus
+    )
     createTime: str
     customerProvidedConfig: (
         GoogleCloudDiscoveryengineV1betaProjectCustomerProvidedConfig
@@ -7483,6 +8023,17 @@ class GoogleCloudDiscoveryengineV1betaProject(typing_extensions.TypedDict, total
     name: str
     provisionCompletionTime: str
     serviceTermsMap: dict[str, typing.Any]
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1betaProjectConfigurableBillingStatus(
+    typing_extensions.TypedDict, total=False
+):
+    effectiveIndexingCoreThreshold: str
+    effectiveSearchQpmThreshold: str
+    indexingCoreThresholdNextUpdateTime: str
+    searchQpmThresholdNextUpdateTime: str
+    startTime: str
+    terminateTime: str
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1betaProjectCustomerProvidedConfig(
@@ -7497,6 +8048,8 @@ class GoogleCloudDiscoveryengineV1betaProjectCustomerProvidedConfigNotebooklmCon
     typing_extensions.TypedDict, total=False
 ):
     modelArmorConfig: GoogleCloudDiscoveryengineV1betaProjectCustomerProvidedConfigNotebooklmConfigModelArmorConfig
+    observabilityConfig: GoogleCloudDiscoveryengineV1betaObservabilityConfig
+    optOutNotebookSharing: bool
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1betaProjectCustomerProvidedConfigNotebooklmConfigModelArmorConfig(
@@ -7611,6 +8164,7 @@ class GoogleCloudDiscoveryengineV1betaSearchRequest(
     branch: str
     canonicalFilter: str
     contentSearchSpec: GoogleCloudDiscoveryengineV1betaSearchRequestContentSearchSpec
+    crowdingSpecs: _list[GoogleCloudDiscoveryengineV1betaSearchRequestCrowdingSpec]
     dataStoreSpecs: _list[GoogleCloudDiscoveryengineV1betaSearchRequestDataStoreSpec]
     displaySpec: GoogleCloudDiscoveryengineV1betaSearchRequestDisplaySpec
     embeddingSpec: GoogleCloudDiscoveryengineV1betaSearchRequestEmbeddingSpec
@@ -7622,6 +8176,7 @@ class GoogleCloudDiscoveryengineV1betaSearchRequest(
     offset: int
     oneBoxPageSize: int
     orderBy: str
+    pageCategories: _list[str]
     pageSize: int
     pageToken: str
     params: dict[str, typing.Any]
@@ -7639,6 +8194,9 @@ class GoogleCloudDiscoveryengineV1betaSearchRequest(
         "RANK_BY_FORMULA",
     ]
     regionCode: str
+    relevanceFilterSpec: (
+        GoogleCloudDiscoveryengineV1betaSearchRequestRelevanceFilterSpec
+    )
     relevanceScoreSpec: GoogleCloudDiscoveryengineV1betaSearchRequestRelevanceScoreSpec
     relevanceThreshold: typing_extensions.Literal[
         "RELEVANCE_THRESHOLD_UNSPECIFIED", "LOWEST", "LOW", "MEDIUM", "HIGH"
@@ -7777,6 +8335,16 @@ class GoogleCloudDiscoveryengineV1betaSearchRequestContentSearchSpecSummarySpecM
     ]
 
 @typing.type_check_only
+class GoogleCloudDiscoveryengineV1betaSearchRequestCrowdingSpec(
+    typing_extensions.TypedDict, total=False
+):
+    field: str
+    maxCount: int
+    mode: typing_extensions.Literal[
+        "MODE_UNSPECIFIED", "DROP_CROWDED_RESULTS", "DEMOTE_CROWDED_RESULTS_TO_END"
+    ]
+
+@typing.type_check_only
 class GoogleCloudDiscoveryengineV1betaSearchRequestDataStoreSpec(
     typing_extensions.TypedDict, total=False
 ):
@@ -7862,6 +8430,22 @@ class GoogleCloudDiscoveryengineV1betaSearchRequestQueryExpansionSpec(
 ):
     condition: typing_extensions.Literal["CONDITION_UNSPECIFIED", "DISABLED", "AUTO"]
     pinUnexpandedResults: bool
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1betaSearchRequestRelevanceFilterSpec(
+    typing_extensions.TypedDict, total=False
+):
+    keywordSearchThreshold: GoogleCloudDiscoveryengineV1betaSearchRequestRelevanceFilterSpecRelevanceThresholdSpec
+    semanticSearchThreshold: GoogleCloudDiscoveryengineV1betaSearchRequestRelevanceFilterSpecRelevanceThresholdSpec
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1betaSearchRequestRelevanceFilterSpecRelevanceThresholdSpec(
+    typing_extensions.TypedDict, total=False
+):
+    relevanceThreshold: typing_extensions.Literal[
+        "RELEVANCE_THRESHOLD_UNSPECIFIED", "LOWEST", "LOW", "MEDIUM", "HIGH"
+    ]
+    semanticRelevanceThreshold: float
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1betaSearchRequestRelevanceScoreSpec(
@@ -8038,6 +8622,16 @@ class GoogleCloudDiscoveryengineV1betaUserLicense(
     userProfile: str
 
 @typing.type_check_only
+class GoogleCloudDiscoveryengineV1betaUserStore(
+    typing_extensions.TypedDict, total=False
+):
+    defaultLicenseConfig: str
+    displayName: str
+    enableExpiredLicenseAutoUpdate: bool
+    enableLicenseAutoRegister: bool
+    name: str
+
+@typing.type_check_only
 class GoogleCloudDiscoveryengineV1betaWorkspaceConfig(
     typing_extensions.TypedDict, total=False
 ):
@@ -8153,7 +8747,9 @@ class GoogleCloudNotebooklmV1alphaFailureReason(
     domainBlocked: GoogleCloudNotebooklmV1alphaFailureReasonDomainBlocked
     googleDriveError: GoogleCloudNotebooklmV1alphaFailureReasonGoogleDriveError
     ingestionError: GoogleCloudNotebooklmV1alphaFailureReasonIngestionError
+    mimeTypeBlocked: GoogleCloudNotebooklmV1alphaFailureReasonMimeTypeBlocked
     paywallError: GoogleCloudNotebooklmV1alphaFailureReasonPaywallError
+    policyCheckFailed: GoogleCloudNotebooklmV1alphaFailureReasonPolicyCheckFailed
     sourceEmpty: GoogleCloudNotebooklmV1alphaFailureReasonSourceEmpty
     sourceLimitExceeded: GoogleCloudNotebooklmV1alphaFailureReasonSourceLimitExceeded
     sourceTooLong: GoogleCloudNotebooklmV1alphaFailureReasonSourceTooLong
@@ -8205,7 +8801,17 @@ class GoogleCloudNotebooklmV1alphaFailureReasonIngestionError(
 ): ...
 
 @typing.type_check_only
+class GoogleCloudNotebooklmV1alphaFailureReasonMimeTypeBlocked(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class GoogleCloudNotebooklmV1alphaFailureReasonPaywallError(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudNotebooklmV1alphaFailureReasonPolicyCheckFailed(
     typing_extensions.TypedDict, total=False
 ): ...
 
@@ -8345,21 +8951,6 @@ class GoogleCloudNotebooklmV1alphaSourceSettings(
     ]
 
 @typing.type_check_only
-class GoogleCloudNotebooklmV1alphaUploadSourceFileRequest(
-    typing_extensions.TypedDict, total=False
-):
-    blob: GdataMedia
-    mediaRequestInfo: ApiservingMediaRequestInfo
-    sourceId: str
-
-@typing.type_check_only
-class GoogleCloudNotebooklmV1alphaUploadSourceFileResponse(
-    typing_extensions.TypedDict, total=False
-):
-    mediaResponseInfo: ApiservingMediaResponseInfo
-    sourceId: GoogleCloudNotebooklmV1alphaSourceId
-
-@typing.type_check_only
 class GoogleCloudNotebooklmV1alphaUserContent(typing_extensions.TypedDict, total=False):
     agentspaceContent: GoogleCloudNotebooklmV1alphaUserContentAgentspaceContent
     googleDriveContent: GoogleCloudNotebooklmV1alphaUserContentGoogleDriveContent
@@ -8409,6 +9000,22 @@ class GoogleCloudNotebooklmV1alphaYoutubeMetadata(
 ):
     channelName: str
     videoId: str
+
+@typing.type_check_only
+class GoogleIamV1Binding(typing_extensions.TypedDict, total=False):
+    condition: GoogleTypeExpr
+    members: _list[str]
+    role: str
+
+@typing.type_check_only
+class GoogleIamV1Policy(typing_extensions.TypedDict, total=False):
+    bindings: _list[GoogleIamV1Binding]
+    etag: str
+    version: int
+
+@typing.type_check_only
+class GoogleIamV1SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
+    policy: GoogleIamV1Policy
 
 @typing.type_check_only
 class GoogleLongrunningCancelOperationRequest(

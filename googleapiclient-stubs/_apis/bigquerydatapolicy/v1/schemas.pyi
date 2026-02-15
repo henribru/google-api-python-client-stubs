@@ -33,6 +33,7 @@ class DataMaskingPolicy(typing_extensions.TypedDict, total=False):
         "FIRST_FOUR_CHARACTERS",
         "EMAIL_MASK",
         "DATE_YEAR_MASK",
+        "RANDOM_HASH",
     ]
     routine: str
 

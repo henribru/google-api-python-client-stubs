@@ -375,6 +375,7 @@ class GoogleCloudAssuredworkloadsV1Workload(typing_extensions.TypedDict, total=F
         "SOVEREIGN_CONTROLS_BY_PSN",
         "SOVEREIGN_CONTROLS_BY_CNTXT",
         "SOVEREIGN_CONTROLS_BY_CNTXT_NO_EKM",
+        "SPAIN_DATA_BOUNDARY_BY_TELEFONICA",
     ]
     partnerPermissions: GoogleCloudAssuredworkloadsV1WorkloadPartnerPermissions
     partnerServicesBillingAccount: str

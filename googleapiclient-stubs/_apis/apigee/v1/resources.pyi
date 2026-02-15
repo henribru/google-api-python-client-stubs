@@ -63,6 +63,47 @@ class ApigeeResource(googleapiclient.discovery.Resource):
             def datastores(self) -> DatastoresResource: ...
 
         @typing.type_check_only
+        class ApimServiceExtensionsResource(googleapiclient.discovery.Resource):
+            def create(
+                self,
+                *,
+                parent: str,
+                body: GoogleCloudApigeeV1ApimServiceExtension = ...,
+                apimServiceExtensionId: str = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleLongrunningOperationHttpRequest: ...
+            def delete(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleLongrunningOperationHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleCloudApigeeV1ApimServiceExtensionHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleCloudApigeeV1ListApimServiceExtensionsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleCloudApigeeV1ListApimServiceExtensionsResponseHttpRequest,
+                previous_response: GoogleCloudApigeeV1ListApimServiceExtensionsResponse,
+            ) -> (
+                GoogleCloudApigeeV1ListApimServiceExtensionsResponseHttpRequest | None
+            ): ...
+            def patch(
+                self,
+                *,
+                name: str,
+                body: GoogleCloudApigeeV1ApimServiceExtension = ...,
+                allowMissing: bool = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleLongrunningOperationHttpRequest: ...
+
+        @typing.type_check_only
         class ApiproductsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class AttributesResource(googleapiclient.discovery.Resource):
@@ -237,6 +278,16 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> GoogleCloudApigeeV1KeyValueMapHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudApigeeV1KeyValueMapHttpRequest: ...
+                def update(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudApigeeV1KeyValueMap = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleCloudApigeeV1KeyValueMapHttpRequest: ...
                 def entries(self) -> EntriesResource: ...
 
             @typing.type_check_only
@@ -382,6 +433,61 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 ) -> GoogleCloudApigeeV1AppGroupAppHttpRequest: ...
                 def keys(self) -> KeysResource: ...
 
+            @typing.type_check_only
+            class BalanceResource(googleapiclient.discovery.Resource):
+                def adjust(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudApigeeV1AdjustAppGroupBalanceRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleCloudApigeeV1AppGroupBalanceHttpRequest: ...
+                def credit(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudApigeeV1CreditAppGroupBalanceRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleCloudApigeeV1AppGroupBalanceHttpRequest: ...
+
+            @typing.type_check_only
+            class SubscriptionsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleCloudApigeeV1AppGroupSubscription = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleCloudApigeeV1AppGroupSubscriptionHttpRequest: ...
+                def expire(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudApigeeV1ExpireAppGroupSubscriptionRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleCloudApigeeV1AppGroupSubscriptionHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudApigeeV1AppGroupSubscriptionHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> (
+                    GoogleCloudApigeeV1ListAppGroupSubscriptionsResponseHttpRequest
+                ): ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudApigeeV1ListAppGroupSubscriptionsResponseHttpRequest,
+                    previous_response: GoogleCloudApigeeV1ListAppGroupSubscriptionsResponse,
+                ) -> (
+                    GoogleCloudApigeeV1ListAppGroupSubscriptionsResponseHttpRequest
+                    | None
+                ): ...
+
             def create(
                 self,
                 *,
@@ -395,6 +501,12 @@ class ApigeeResource(googleapiclient.discovery.Resource):
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> GoogleCloudApigeeV1AppGroupHttpRequest: ...
+            def getBalance(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleCloudApigeeV1AppGroupBalanceHttpRequest: ...
+            def getMonetizationConfig(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleCloudApigeeV1AppGroupMonetizationConfigHttpRequest: ...
             def list(
                 self,
                 *,
@@ -417,7 +529,16 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 action: str = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudApigeeV1AppGroupHttpRequest: ...
+            def updateMonetizationConfig(
+                self,
+                *,
+                name: str,
+                body: GoogleCloudApigeeV1AppGroupMonetizationConfig = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleCloudApigeeV1AppGroupMonetizationConfigHttpRequest: ...
             def apps(self) -> AppsResource: ...
+            def balance(self) -> BalanceResource: ...
+            def subscriptions(self) -> SubscriptionsResource: ...
 
         @typing.type_check_only
         class AppsResource(googleapiclient.discovery.Resource):
@@ -1212,6 +1333,16 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 ) -> GoogleCloudApigeeV1KeyValueMapHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudApigeeV1KeyValueMapHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudApigeeV1KeyValueMapHttpRequest: ...
+                def update(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudApigeeV1KeyValueMap = ...,
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudApigeeV1KeyValueMapHttpRequest: ...
                 def entries(self) -> EntriesResource: ...
 
@@ -2008,6 +2139,16 @@ class ApigeeResource(googleapiclient.discovery.Resource):
             def delete(
                 self, *, name: str, **kwargs: typing.Any
             ) -> GoogleCloudApigeeV1KeyValueMapHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleCloudApigeeV1KeyValueMapHttpRequest: ...
+            def update(
+                self,
+                *,
+                name: str,
+                body: GoogleCloudApigeeV1KeyValueMap = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleCloudApigeeV1KeyValueMapHttpRequest: ...
             def entries(self) -> EntriesResource: ...
 
         @typing.type_check_only
@@ -2276,10 +2417,22 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any,
             ) -> GoogleCloudApigeeV1SecurityProfileV2HttpRequest: ...
             def delete(
-                self, *, name: str, **kwargs: typing.Any
+                self,
+                *,
+                name: str,
+                riskAssessmentType: typing_extensions.Literal[
+                    "RISK_ASSESSMENT_TYPE_UNSPECIFIED", "APIGEE", "API_HUB"
+                ] = ...,
+                **kwargs: typing.Any,
             ) -> GoogleProtobufEmptyHttpRequest: ...
             def get(
-                self, *, name: str, **kwargs: typing.Any
+                self,
+                *,
+                name: str,
+                riskAssessmentType: typing_extensions.Literal[
+                    "RISK_ASSESSMENT_TYPE_UNSPECIFIED", "APIGEE", "API_HUB"
+                ] = ...,
+                **kwargs: typing.Any,
             ) -> GoogleCloudApigeeV1SecurityProfileV2HttpRequest: ...
             def list(
                 self,
@@ -2287,6 +2440,9 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 parent: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
+                riskAssessmentType: typing_extensions.Literal[
+                    "RISK_ASSESSMENT_TYPE_UNSPECIFIED", "APIGEE", "API_HUB"
+                ] = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudApigeeV1ListSecurityProfilesV2ResponseHttpRequest: ...
             def list_next(
@@ -2596,6 +2752,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any,
         ) -> GoogleCloudApigeeV1SecuritySettingsHttpRequest: ...
         def analytics(self) -> AnalyticsResource: ...
+        def apimServiceExtensions(self) -> ApimServiceExtensionsResource: ...
         def apiproducts(self) -> ApiproductsResource: ...
         def apis(self) -> ApisResource: ...
         def appgroups(self) -> AppgroupsResource: ...
@@ -2739,6 +2896,16 @@ class GoogleCloudApigeeV1ApiSecurityRuntimeConfigHttpRequest(
     ) -> GoogleCloudApigeeV1ApiSecurityRuntimeConfig: ...
 
 @typing.type_check_only
+class GoogleCloudApigeeV1ApimServiceExtensionHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudApigeeV1ApimServiceExtension: ...
+
+@typing.type_check_only
 class GoogleCloudApigeeV1AppHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -2769,6 +2936,34 @@ class GoogleCloudApigeeV1AppGroupAppKeyHttpRequest(googleapiclient.http.HttpRequ
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudApigeeV1AppGroupAppKey: ...
+
+@typing.type_check_only
+class GoogleCloudApigeeV1AppGroupBalanceHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudApigeeV1AppGroupBalance: ...
+
+@typing.type_check_only
+class GoogleCloudApigeeV1AppGroupMonetizationConfigHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudApigeeV1AppGroupMonetizationConfig: ...
+
+@typing.type_check_only
+class GoogleCloudApigeeV1AppGroupSubscriptionHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudApigeeV1AppGroupSubscription: ...
 
 @typing.type_check_only
 class GoogleCloudApigeeV1ArchiveDeploymentHttpRequest(googleapiclient.http.HttpRequest):
@@ -3207,6 +3402,16 @@ class GoogleCloudApigeeV1ListApiProxiesResponseHttpRequest(
     ) -> GoogleCloudApigeeV1ListApiProxiesResponse: ...
 
 @typing.type_check_only
+class GoogleCloudApigeeV1ListApimServiceExtensionsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudApigeeV1ListApimServiceExtensionsResponse: ...
+
+@typing.type_check_only
 class GoogleCloudApigeeV1ListAppGroupAppsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -3215,6 +3420,16 @@ class GoogleCloudApigeeV1ListAppGroupAppsResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudApigeeV1ListAppGroupAppsResponse: ...
+
+@typing.type_check_only
+class GoogleCloudApigeeV1ListAppGroupSubscriptionsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudApigeeV1ListAppGroupSubscriptionsResponse: ...
 
 @typing.type_check_only
 class GoogleCloudApigeeV1ListAppGroupsResponseHttpRequest(

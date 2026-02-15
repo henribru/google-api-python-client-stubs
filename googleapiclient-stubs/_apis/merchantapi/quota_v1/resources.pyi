@@ -16,6 +16,26 @@ class MerchantResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class AccountsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
+        class LimitsResource(googleapiclient.discovery.Resource):
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> AccountLimitHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                filter: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any,
+            ) -> ListAccountLimitsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListAccountLimitsResponseHttpRequest,
+                previous_response: ListAccountLimitsResponse,
+            ) -> ListAccountLimitsResponseHttpRequest | None: ...
+
+        @typing.type_check_only
         class QuotasResource(googleapiclient.discovery.Resource):
             def list(
                 self,
@@ -31,6 +51,7 @@ class MerchantResource(googleapiclient.discovery.Resource):
                 previous_response: ListQuotaGroupsResponse,
             ) -> ListQuotaGroupsResponseHttpRequest | None: ...
 
+        def limits(self) -> LimitsResource: ...
         def quotas(self) -> QuotasResource: ...
 
     def new_batch_http_request(
@@ -46,6 +67,22 @@ class MerchantResource(googleapiclient.discovery.Resource):
         | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def accounts(self) -> AccountsResource: ...
+
+@typing.type_check_only
+class AccountLimitHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> AccountLimit: ...
+
+@typing.type_check_only
+class ListAccountLimitsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListAccountLimitsResponse: ...
 
 @typing.type_check_only
 class ListQuotaGroupsResponseHttpRequest(googleapiclient.http.HttpRequest):

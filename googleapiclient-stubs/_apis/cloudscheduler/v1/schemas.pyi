@@ -32,6 +32,11 @@ class AppEngineRouting(typing_extensions.TypedDict, total=False):
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class CmekConfig(typing_extensions.TypedDict, total=False):
+    kmsKeyName: str
+    name: str
+
+@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only

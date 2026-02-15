@@ -49,7 +49,21 @@ class AllocationAffinity(typing_extensions.TypedDict, total=False):
     values: _list[str]
 
 @typing.type_check_only
+class AlloyDBClusterBackupPlanAssociationProperties(
+    typing_extensions.TypedDict, total=False
+):
+    clusterUid: str
+
+@typing.type_check_only
 class AlloyDBClusterDataSourceProperties(typing_extensions.TypedDict, total=False):
+    clusterUid: str
+    name: str
+    pitrWindows: _list[AlloyDbPitrWindow]
+
+@typing.type_check_only
+class AlloyDBClusterDataSourceReferenceProperties(
+    typing_extensions.TypedDict, total=False
+):
     name: str
 
 @typing.type_check_only
@@ -58,6 +72,12 @@ class AlloyDbClusterBackupProperties(typing_extensions.TypedDict, total=False):
     databaseVersion: str
     description: str
     storedBytes: str
+
+@typing.type_check_only
+class AlloyDbPitrWindow(typing_extensions.TypedDict, total=False):
+    endTime: str
+    logRetentionDays: str
+    startTime: str
 
 @typing.type_check_only
 class AttachedDisk(typing_extensions.TypedDict, total=False):
@@ -102,6 +122,11 @@ class Backup(typing_extensions.TypedDict, total=False):
     alloyDbBackupProperties: AlloyDbClusterBackupProperties
     backupApplianceBackupProperties: BackupApplianceBackupProperties
     backupApplianceLocks: _list[BackupLock]
+    backupRetentionInheritance: typing_extensions.Literal[
+        "BACKUP_RETENTION_INHERITANCE_UNSPECIFIED",
+        "INHERIT_VAULT_RETENTION",
+        "MATCH_BACKUP_EXPIRE_TIME",
+    ]
     backupType: typing_extensions.Literal[
         "BACKUP_TYPE_UNSPECIFIED", "SCHEDULED", "ON_DEMAND", "ON_DEMAND_OPERATIONAL"
     ]
@@ -115,6 +140,8 @@ class Backup(typing_extensions.TypedDict, total=False):
     etag: str
     expireTime: str
     gcpBackupPlanInfo: GCPBackupPlanInfo
+    gcpResource: BackupGcpResource
+    kmsKeyVersions: _list[str]
     labels: dict[str, typing.Any]
     name: str
     resourceSizeBytes: str
@@ -201,6 +228,12 @@ class BackupDrTemplateConfig(typing_extensions.TypedDict, total=False):
     thirdPartyManagementUri: str
 
 @typing.type_check_only
+class BackupGcpResource(typing_extensions.TypedDict, total=False):
+    gcpResourcename: str
+    location: str
+    type: str
+
+@typing.type_check_only
 class BackupLocation(typing_extensions.TypedDict, total=False):
     locationId: str
     type: typing_extensions.Literal[
@@ -223,6 +256,7 @@ class BackupPlan(typing_extensions.TypedDict, total=False):
     etag: str
     labels: dict[str, typing.Any]
     logRetentionDays: str
+    maxCustomOnDemandRetentionDays: int
     name: str
     resourceType: str
     revisionId: str
@@ -235,6 +269,9 @@ class BackupPlan(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class BackupPlanAssociation(typing_extensions.TypedDict, total=False):
+    alloydbClusterBackupPlanAssociationProperties: (
+        AlloyDBClusterBackupPlanAssociationProperties
+    )
     backupPlan: str
     backupPlanRevisionId: str
     backupPlanRevisionName: str
@@ -243,6 +280,9 @@ class BackupPlanAssociation(typing_extensions.TypedDict, total=False):
     )
     createTime: str
     dataSource: str
+    filestoreInstanceBackupPlanAssociationProperties: (
+        FilestoreInstanceBackupPlanAssociationProperties
+    )
     name: str
     resource: str
     resourceType: str
@@ -280,10 +320,16 @@ class BackupVault(typing_extensions.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     backupCount: str
     backupMinimumEnforcedRetentionDuration: str
+    backupRetentionInheritance: typing_extensions.Literal[
+        "BACKUP_RETENTION_INHERITANCE_UNSPECIFIED",
+        "INHERIT_VAULT_RETENTION",
+        "MATCH_BACKUP_EXPIRE_TIME",
+    ]
     createTime: str
     deletable: bool
     description: str
     effectiveTime: str
+    encryptionConfig: EncryptionConfig
     etag: str
     labels: dict[str, typing.Any]
     name: str
@@ -319,6 +365,8 @@ class CloudSqlInstanceBackupPlanAssociationProperties(
 class CloudSqlInstanceBackupProperties(typing_extensions.TypedDict, total=False):
     databaseInstalledVersion: str
     finalBackup: bool
+    instanceCreateTime: str
+    instanceDeleteTime: str
     instanceTier: str
     sourceInstance: str
 
@@ -475,6 +523,7 @@ class DataSourceGcpResource(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DataSourceGcpResourceInfo(typing_extensions.TypedDict, total=False):
+    alloyDbClusterProperties: AlloyDBClusterDataSourceReferenceProperties
     cloudSqlInstanceProperties: CloudSqlInstanceDataSourceReferenceProperties
     gcpResourcename: str
     location: str
@@ -491,6 +540,7 @@ class DataSourceReference(typing_extensions.TypedDict, total=False):
     dataSourceBackupCount: str
     dataSourceGcpResourceInfo: DataSourceGcpResourceInfo
     name: str
+    totalStoredBytes: str
 
 @typing.type_check_only
 class DiskBackupProperties(typing_extensions.TypedDict, total=False):
@@ -558,6 +608,16 @@ class DisplayDevice(typing_extensions.TypedDict, total=False):
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class EncryptionConfig(typing_extensions.TypedDict, total=False):
+    kmsKeyName: str
+
+@typing.type_check_only
+class EndTrialRequest(typing_extensions.TypedDict, total=False):
+    endReason: typing_extensions.Literal[
+        "END_REASON_UNSPECIFIED", "MOVE_TO_PAID", "DISCONTINUED"
+    ]
+
+@typing.type_check_only
 class Entry(typing_extensions.TypedDict, total=False):
     key: str
     value: str
@@ -588,6 +648,11 @@ class FetchBackupPlanAssociationsForResourceTypeResponse(
     nextPageToken: str
 
 @typing.type_check_only
+class FetchBackupsForResourceTypeResponse(typing_extensions.TypedDict, total=False):
+    backups: _list[Backup]
+    nextPageToken: str
+
+@typing.type_check_only
 class FetchDataSourceReferencesForResourceTypeResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -607,6 +672,12 @@ class FetchUsableBackupVaultsResponse(typing_extensions.TypedDict, total=False):
     backupVaults: _list[BackupVault]
     nextPageToken: str
     unreachable: _list[str]
+
+@typing.type_check_only
+class FilestoreInstanceBackupPlanAssociationProperties(
+    typing_extensions.TypedDict, total=False
+):
+    instanceCreateTime: str
 
 @typing.type_check_only
 class FinalizeBackupRequest(typing_extensions.TypedDict, total=False):
@@ -713,6 +784,12 @@ class ListBackupVaultsResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ListBackupsResponse(typing_extensions.TypedDict, total=False):
     backups: _list[Backup]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListDataSourceReferencesResponse(typing_extensions.TypedDict, total=False):
+    dataSourceReferences: _list[DataSourceReference]
     nextPageToken: str
     unreachable: _list[str]
 
@@ -900,6 +977,7 @@ class ResourceBackupConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class RestoreBackupRequest(typing_extensions.TypedDict, total=False):
+    clearOverridesFieldMask: str
     computeInstanceRestoreProperties: ComputeInstanceRestoreProperties
     computeInstanceTargetEnvironment: ComputeInstanceTargetEnvironment
     diskRestoreProperties: DiskRestoreProperties
@@ -1055,6 +1133,8 @@ class Trial(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class TriggerBackupRequest(typing_extensions.TypedDict, total=False):
+    customRetentionDays: int
+    labels: dict[str, typing.Any]
     requestId: str
     ruleId: str
 

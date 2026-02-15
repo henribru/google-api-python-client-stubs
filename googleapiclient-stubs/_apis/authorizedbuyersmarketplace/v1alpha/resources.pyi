@@ -50,6 +50,13 @@ class AuthorizedBuyersMarketplaceResource(googleapiclient.discovery.Resource):
                 previous_request: ListFinalizedDealsResponseHttpRequest,
                 previous_response: ListFinalizedDealsResponse,
             ) -> ListFinalizedDealsResponseHttpRequest | None: ...
+            def setReadyToServe(
+                self,
+                *,
+                deal: str,
+                body: SetReadyToServeRequest = ...,
+                **kwargs: typing.Any,
+            ) -> FinalizedDealHttpRequest: ...
 
         def auctionPackages(self) -> AuctionPackagesResource: ...
         def finalizedDeals(self) -> FinalizedDealsResource: ...
@@ -387,6 +394,71 @@ class AuthorizedBuyersMarketplaceResource(googleapiclient.discovery.Resource):
         def proposals(self) -> ProposalsResource: ...
         def publisherProfiles(self) -> PublisherProfilesResource: ...
 
+    @typing.type_check_only
+    class CuratorsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class CuratedPackagesResource(googleapiclient.discovery.Resource):
+            def activate(
+                self,
+                *,
+                name: str,
+                body: ActivateCuratedPackageRequest = ...,
+                **kwargs: typing.Any,
+            ) -> CuratedPackageHttpRequest: ...
+            def create(
+                self, *, parent: str, body: CuratedPackage = ..., **kwargs: typing.Any
+            ) -> CuratedPackageHttpRequest: ...
+            def deactivate(
+                self,
+                *,
+                name: str,
+                body: DeactivateCuratedPackageRequest = ...,
+                **kwargs: typing.Any,
+            ) -> CuratedPackageHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> CuratedPackageHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                filter: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any,
+            ) -> ListCuratedPackagesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListCuratedPackagesResponseHttpRequest,
+                previous_response: ListCuratedPackagesResponse,
+            ) -> ListCuratedPackagesResponseHttpRequest | None: ...
+            def patch(
+                self,
+                *,
+                name: str,
+                body: CuratedPackage = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any,
+            ) -> CuratedPackageHttpRequest: ...
+
+        def curatedPackages(self) -> CuratedPackagesResource: ...
+
+    @typing.type_check_only
+    class MediaPlannersResource(googleapiclient.discovery.Resource):
+        def list(
+            self,
+            *,
+            filter: str = ...,
+            pageSize: int = ...,
+            pageToken: str = ...,
+            **kwargs: typing.Any,
+        ) -> ListMediaPlannersResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListMediaPlannersResponseHttpRequest,
+            previous_response: ListMediaPlannersResponse,
+        ) -> ListMediaPlannersResponseHttpRequest | None: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[
@@ -401,6 +473,8 @@ class AuthorizedBuyersMarketplaceResource(googleapiclient.discovery.Resource):
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def bidders(self) -> BiddersResource: ...
     def buyers(self) -> BuyersResource: ...
+    def curators(self) -> CuratorsResource: ...
+    def mediaPlanners(self) -> MediaPlannersResource: ...
 
 @typing.type_check_only
 class AuctionPackageHttpRequest(googleapiclient.http.HttpRequest):
@@ -433,6 +507,14 @@ class ClientUserHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ClientUser: ...
+
+@typing.type_check_only
+class CuratedPackageHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> CuratedPackage: ...
 
 @typing.type_check_only
 class DataSegmentHttpRequest(googleapiclient.http.HttpRequest):
@@ -491,6 +573,14 @@ class ListClientsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListClientsResponse: ...
 
 @typing.type_check_only
+class ListCuratedPackagesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListCuratedPackagesResponse: ...
+
+@typing.type_check_only
 class ListDataSegmentsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -513,6 +603,14 @@ class ListFinalizedDealsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListFinalizedDealsResponse: ...
+
+@typing.type_check_only
+class ListMediaPlannersResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListMediaPlannersResponse: ...
 
 @typing.type_check_only
 class ListProposalsResponseHttpRequest(googleapiclient.http.HttpRequest):

@@ -763,6 +763,7 @@ class V1Beta1RolloutInfo(typing_extensions.TypedDict, total=False):
 class V1Beta1ServiceIdentity(typing_extensions.TypedDict, total=False):
     email: str
     name: str
+    projectRole: str
     tag: str
     uniqueId: str
 

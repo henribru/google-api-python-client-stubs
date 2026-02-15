@@ -15,6 +15,25 @@ class BucketList(typing_extensions.TypedDict, total=False):
     buckets: _list[Bucket]
 
 @typing.type_check_only
+class BucketOperation(typing_extensions.TypedDict, total=False):
+    bucketName: str
+    completeTime: str
+    counters: Counters
+    createTime: str
+    deleteObject: DeleteObject
+    errorSummaries: _list[ErrorSummary]
+    manifest: Manifest
+    name: str
+    prefixList: PrefixList
+    putMetadata: PutMetadata
+    putObjectHold: PutObjectHold
+    rewriteObject: RewriteObject
+    startTime: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "QUEUED", "RUNNING", "SUCCEEDED", "CANCELED", "FAILED"
+    ]
+
+@typing.type_check_only
 class CancelJobRequest(typing_extensions.TypedDict, total=False):
     requestId: str
 
@@ -28,6 +47,7 @@ class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 class Counters(typing_extensions.TypedDict, total=False):
     failedObjectCount: str
     succeededObjectCount: str
+    totalBytesFound: str
     totalObjectCount: str
 
 @typing.type_check_only
@@ -74,6 +94,7 @@ class Job(typing_extensions.TypedDict, total=False):
     createTime: str
     deleteObject: DeleteObject
     description: str
+    dryRun: bool
     errorSummaries: _list[ErrorSummary]
     loggingConfig: LoggingConfig
     name: str
@@ -84,6 +105,12 @@ class Job(typing_extensions.TypedDict, total=False):
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "RUNNING", "SUCCEEDED", "CANCELED", "FAILED"
     ]
+
+@typing.type_check_only
+class ListBucketOperationsResponse(typing_extensions.TypedDict, total=False):
+    bucketOperations: _list[BucketOperation]
+    nextPageToken: str
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListJobsResponse(typing_extensions.TypedDict, total=False):

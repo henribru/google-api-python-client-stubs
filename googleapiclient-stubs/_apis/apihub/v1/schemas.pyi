@@ -22,6 +22,42 @@ class GoogleCloudApihubV1ActionExecutionDetail(
     actionId: str
 
 @typing.type_check_only
+class GoogleCloudApihubV1AdditionalSpecContent(
+    typing_extensions.TypedDict, total=False
+):
+    createTime: str
+    labels: dict[str, typing.Any]
+    specContentType: typing_extensions.Literal[
+        "SPEC_CONTENT_TYPE_UNSPECIFIED", "BOOSTED_SPEC_CONTENT", "GATEWAY_OPEN_API_SPEC"
+    ]
+    specContents: GoogleCloudApihubV1SpecContents
+    updateTime: str
+
+@typing.type_check_only
+class GoogleCloudApihubV1Addon(typing_extensions.TypedDict, total=False):
+    config: GoogleCloudApihubV1AddonConfig
+    createTime: str
+    dataSource: typing_extensions.Literal[
+        "DATA_SOURCE_UNSPECIFIED", "PLUGIN_INSTANCE", "ALL_DATA"
+    ]
+    description: str
+    displayName: str
+    name: str
+    state: typing_extensions.Literal[
+        "ADDON_STATE_UNSPECIFIED", "ACTIVE", "UPDATING", "ERROR", "INACTIVE"
+    ]
+    updateTime: str
+
+@typing.type_check_only
+class GoogleCloudApihubV1AddonConfig(typing_extensions.TypedDict, total=False):
+    allDataAddonConfig: GoogleCloudApihubV1AllDataAddonConfig
+    gatewayPluginAddonConfig: GoogleCloudApihubV1GatewayPluginAddonConfig
+
+@typing.type_check_only
+class GoogleCloudApihubV1AllDataAddonConfig(typing_extensions.TypedDict, total=False):
+    enabled: bool
+
+@typing.type_check_only
 class GoogleCloudApihubV1AllowedValue(typing_extensions.TypedDict, total=False):
     description: str
     displayName: str
@@ -104,6 +140,23 @@ class GoogleCloudApihubV1ApiOperation(typing_extensions.TypedDict, total=False):
     sourceMetadata: _list[GoogleCloudApihubV1SourceMetadata]
     spec: str
     updateTime: str
+
+@typing.type_check_only
+class GoogleCloudApihubV1ApiView(typing_extensions.TypedDict, total=False):
+    mcpServerView: GoogleCloudApihubV1FlattenedApiVersionDeploymentView
+    mcpToolView: GoogleCloudApihubV1FlattenedApiVersionOperationDeploymentView
+
+@typing.type_check_only
+class GoogleCloudApihubV1ApigeeEdgeConfig(typing_extensions.TypedDict, total=False):
+    environmentFilter: GoogleCloudApihubV1EnvironmentFilter
+
+@typing.type_check_only
+class GoogleCloudApihubV1ApigeeOPDKConfig(typing_extensions.TypedDict, total=False):
+    environmentFilter: GoogleCloudApihubV1EnvironmentFilter
+
+@typing.type_check_only
+class GoogleCloudApihubV1ApigeeXHybridConfig(typing_extensions.TypedDict, total=False):
+    environmentFilter: GoogleCloudApihubV1EnvironmentFilter
 
 @typing.type_check_only
 class GoogleCloudApihubV1ApplicationIntegrationEndpointDetails(
@@ -418,6 +471,11 @@ class GoogleCloudApihubV1EnumAttributeValues(typing_extensions.TypedDict, total=
     values: _list[GoogleCloudApihubV1AllowedValue]
 
 @typing.type_check_only
+class GoogleCloudApihubV1EnvironmentFilter(typing_extensions.TypedDict, total=False):
+    allEnvironments: bool
+    environments: _list[str]
+
+@typing.type_check_only
 class GoogleCloudApihubV1ExecutePluginInstanceActionRequest(
     typing_extensions.TypedDict, total=False
 ):
@@ -441,6 +499,42 @@ class GoogleCloudApihubV1ExternalApi(typing_extensions.TypedDict, total=False):
     name: str
     paths: _list[str]
     updateTime: str
+
+@typing.type_check_only
+class GoogleCloudApihubV1FetchAdditionalSpecContentResponse(
+    typing_extensions.TypedDict, total=False
+):
+    additionalSpecContent: GoogleCloudApihubV1AdditionalSpecContent
+
+@typing.type_check_only
+class GoogleCloudApihubV1FlattenedApiVersionDeploymentView(
+    typing_extensions.TypedDict, total=False
+):
+    api: GoogleCloudApihubV1Api
+    deployment: GoogleCloudApihubV1Deployment
+    version: GoogleCloudApihubV1Version
+
+@typing.type_check_only
+class GoogleCloudApihubV1FlattenedApiVersionOperationDeploymentView(
+    typing_extensions.TypedDict, total=False
+):
+    api: GoogleCloudApihubV1Api
+    apiOperation: GoogleCloudApihubV1ApiOperation
+    deployment: GoogleCloudApihubV1Deployment
+    version: GoogleCloudApihubV1Version
+
+@typing.type_check_only
+class GoogleCloudApihubV1GatewayPluginAddonConfig(
+    typing_extensions.TypedDict, total=False
+):
+    gatewayPluginConfigs: _list[GoogleCloudApihubV1GatewayPluginConfig]
+
+@typing.type_check_only
+class GoogleCloudApihubV1GatewayPluginConfig(typing_extensions.TypedDict, total=False):
+    apigeeEdgeConfig: GoogleCloudApihubV1ApigeeEdgeConfig
+    apigeeOpdkConfig: GoogleCloudApihubV1ApigeeOPDKConfig
+    apigeeXHybridConfig: GoogleCloudApihubV1ApigeeXHybridConfig
+    pluginInstance: str
 
 @typing.type_check_only
 class GoogleCloudApihubV1GoogleServiceAccountConfig(
@@ -519,6 +613,7 @@ class GoogleCloudApihubV1LastExecution(typing_extensions.TypedDict, total=False)
     endTime: str
     errorMessage: str
     result: typing_extensions.Literal["RESULT_UNSPECIFIED", "SUCCEEDED", "FAILED"]
+    resultMetadata: str
     startTime: str
 
 @typing.type_check_only
@@ -534,6 +629,11 @@ class GoogleCloudApihubV1LintResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleCloudApihubV1LintSpecRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class GoogleCloudApihubV1ListAddonsResponse(typing_extensions.TypedDict, total=False):
+    addons: _list[GoogleCloudApihubV1Addon]
+    nextPageToken: str
 
 @typing.type_check_only
 class GoogleCloudApihubV1ListApiOperationsResponse(
@@ -645,6 +745,12 @@ class GoogleCloudApihubV1LookupRuntimeProjectAttachmentResponse(
     runtimeProjectAttachment: GoogleCloudApihubV1RuntimeProjectAttachment
 
 @typing.type_check_only
+class GoogleCloudApihubV1ManageAddonConfigRequest(
+    typing_extensions.TypedDict, total=False
+):
+    config: GoogleCloudApihubV1AddonConfig
+
+@typing.type_check_only
 class GoogleCloudApihubV1ManagePluginInstanceSourceDataRequest(
     typing_extensions.TypedDict, total=False
 ):
@@ -667,6 +773,15 @@ class GoogleCloudApihubV1ManagePluginInstanceSourceDataResponse(
 @typing.type_check_only
 class GoogleCloudApihubV1MatchResult(typing_extensions.TypedDict, total=False):
     name: str
+
+@typing.type_check_only
+class GoogleCloudApihubV1McpTool(typing_extensions.TypedDict, total=False):
+    annotations: GoogleCloudApihubV1ToolAnnotations
+    description: str
+    inputSchema: GoogleCloudApihubV1OperationSchema
+    name: str
+    outputSchema: GoogleCloudApihubV1OperationSchema
+    title: str
 
 @typing.type_check_only
 class GoogleCloudApihubV1MultiIntValues(typing_extensions.TypedDict, total=False):
@@ -704,6 +819,7 @@ class GoogleCloudApihubV1OperationDetails(typing_extensions.TypedDict, total=Fal
     description: str
     documentation: GoogleCloudApihubV1Documentation
     httpOperation: GoogleCloudApihubV1HttpOperation
+    mcpTool: GoogleCloudApihubV1McpTool
 
 @typing.type_check_only
 class GoogleCloudApihubV1OperationMetadata(typing_extensions.TypedDict, total=False):
@@ -714,6 +830,10 @@ class GoogleCloudApihubV1OperationMetadata(typing_extensions.TypedDict, total=Fa
     statusMessage: str
     target: str
     verb: str
+
+@typing.type_check_only
+class GoogleCloudApihubV1OperationSchema(typing_extensions.TypedDict, total=False):
+    jsonSchema: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudApihubV1Owner(typing_extensions.TypedDict, total=False):
@@ -783,6 +903,7 @@ class GoogleCloudApihubV1PluginInstance(typing_extensions.TypedDict, total=False
     displayName: str
     errorMessage: str
     name: str
+    sourceEnvironmentsConfig: dict[str, typing.Any]
     sourceProjectId: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
@@ -848,6 +969,13 @@ class GoogleCloudApihubV1ResourceConfig(typing_extensions.TypedDict, total=False
     pubsubTopic: str
 
 @typing.type_check_only
+class GoogleCloudApihubV1RetrieveApiViewsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    apiViews: _list[GoogleCloudApihubV1ApiView]
+    nextPageToken: str
+
+@typing.type_check_only
 class GoogleCloudApihubV1RuntimeProjectAttachment(
     typing_extensions.TypedDict, total=False
 ):
@@ -885,6 +1013,13 @@ class GoogleCloudApihubV1Secret(typing_extensions.TypedDict, total=False):
     secretVersion: str
 
 @typing.type_check_only
+class GoogleCloudApihubV1SourceEnvironment(typing_extensions.TypedDict, total=False):
+    createTime: str
+    sourceEnvironment: str
+    sourceEnvironmentUri: str
+    updateTime: str
+
+@typing.type_check_only
 class GoogleCloudApihubV1SourceMetadata(typing_extensions.TypedDict, total=False):
     originalResourceCreateTime: str
     originalResourceId: str
@@ -894,6 +1029,7 @@ class GoogleCloudApihubV1SourceMetadata(typing_extensions.TypedDict, total=False
 
 @typing.type_check_only
 class GoogleCloudApihubV1Spec(typing_extensions.TypedDict, total=False):
+    additionalSpecContents: _list[GoogleCloudApihubV1AdditionalSpecContent]
     attributes: dict[str, typing.Any]
     contents: GoogleCloudApihubV1SpecContents
     createTime: str
@@ -954,6 +1090,15 @@ class GoogleCloudApihubV1SummaryEntry(typing_extensions.TypedDict, total=False):
         "SEVERITY_INFO",
         "SEVERITY_HINT",
     ]
+
+@typing.type_check_only
+class GoogleCloudApihubV1ToolAnnotations(typing_extensions.TypedDict, total=False):
+    additionalHints: dict[str, typing.Any]
+    destructiveHint: bool
+    idempotentHint: bool
+    openWorldHint: bool
+    readOnlyHint: bool
+    title: str
 
 @typing.type_check_only
 class GoogleCloudApihubV1UserPasswordConfig(typing_extensions.TypedDict, total=False):
@@ -1022,6 +1167,7 @@ class GoogleLongrunningCancelOperationRequest(
 class GoogleLongrunningListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[GoogleLongrunningOperation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class GoogleLongrunningOperation(typing_extensions.TypedDict, total=False):

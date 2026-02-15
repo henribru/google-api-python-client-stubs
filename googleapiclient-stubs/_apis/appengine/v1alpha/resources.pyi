@@ -295,6 +295,21 @@ class AppengineResource(googleapiclient.discovery.Resource):
                         domainMappingsId: str,
                         **kwargs: typing.Any,
                     ) -> DomainMappingHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        projectsId: str,
+                        locationsId: str,
+                        applicationsId: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> ListDomainMappingsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListDomainMappingsResponseHttpRequest,
+                        previous_response: ListDomainMappingsResponse,
+                    ) -> ListDomainMappingsResponseHttpRequest | None: ...
                     def patch(
                         self,
                         *,

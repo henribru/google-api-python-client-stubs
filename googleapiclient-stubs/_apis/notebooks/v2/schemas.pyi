@@ -18,9 +18,11 @@ class AcceleratorConfig(typing_extensions.TypedDict, total=False):
         "NVIDIA_L4",
         "NVIDIA_H100_80GB",
         "NVIDIA_H100_MEGA_80GB",
+        "NVIDIA_H200_141GB",
         "NVIDIA_TESLA_T4_VWS",
         "NVIDIA_TESLA_P100_VWS",
         "NVIDIA_TESLA_P4_VWS",
+        "NVIDIA_B200",
     ]
 
 @typing.type_check_only
@@ -40,7 +42,12 @@ class BootDisk(typing_extensions.TypedDict, total=False):
     ]
     diskSizeGb: str
     diskType: typing_extensions.Literal[
-        "DISK_TYPE_UNSPECIFIED", "PD_STANDARD", "PD_SSD", "PD_BALANCED", "PD_EXTREME"
+        "DISK_TYPE_UNSPECIFIED",
+        "PD_STANDARD",
+        "PD_SSD",
+        "PD_BALANCED",
+        "PD_EXTREME",
+        "HYPERDISK_BALANCED",
     ]
     kmsKey: str
 
@@ -89,7 +96,12 @@ class DataDisk(typing_extensions.TypedDict, total=False):
     ]
     diskSizeGb: str
     diskType: typing_extensions.Literal[
-        "DISK_TYPE_UNSPECIFIED", "PD_STANDARD", "PD_SSD", "PD_BALANCED", "PD_EXTREME"
+        "DISK_TYPE_UNSPECIFIED",
+        "PD_STANDARD",
+        "PD_SSD",
+        "PD_BALANCED",
+        "PD_EXTREME",
+        "HYPERDISK_BALANCED",
     ]
     kmsKey: str
     resourcePolicies: _list[str]
@@ -149,6 +161,7 @@ class GceSetup(typing_extensions.TypedDict, total=False):
     disablePublicIp: bool
     enableIpForwarding: bool
     gpuDriverConfig: GPUDriverConfig
+    instanceId: str
     machineType: str
     metadata: dict[str, typing.Any]
     minCpuPlatform: str

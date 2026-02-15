@@ -141,6 +141,15 @@ class FirebaseAppDistributionResource(googleapiclient.discovery.Resource):
                     body: GoogleFirebaseAppdistroV1alphaBatchUpdateTestCasesRequest = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleFirebaseAppdistroV1alphaBatchUpdateTestCasesResponseHttpRequest: ...
+                def clearTestCaseCache(
+                    self,
+                    *,
+                    testCase: str,
+                    body: GoogleFirebaseAppdistroV1alphaClearTestCaseCacheRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> (
+                    GoogleFirebaseAppdistroV1alphaClearTestCaseCacheResponseHttpRequest
+                ): ...
                 def create(
                     self,
                     *,
@@ -248,6 +257,16 @@ class GoogleFirebaseAppdistroV1alphaCancelReleaseTestResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleFirebaseAppdistroV1alphaCancelReleaseTestResponse: ...
+
+@typing.type_check_only
+class GoogleFirebaseAppdistroV1alphaClearTestCaseCacheResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleFirebaseAppdistroV1alphaClearTestCaseCacheResponse: ...
 
 @typing.type_check_only
 class GoogleFirebaseAppdistroV1alphaCreateReleaseNotesResponseHttpRequest(

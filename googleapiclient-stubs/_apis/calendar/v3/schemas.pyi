@@ -22,7 +22,9 @@ class AclRule(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Calendar(typing_extensions.TypedDict, total=False):
+    autoAcceptInvitations: bool
     conferenceProperties: ConferenceProperties
+    dataOwner: str
     description: str
     etag: str
     id: str
@@ -42,9 +44,11 @@ class CalendarList(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class CalendarListEntry(typing_extensions.TypedDict, total=False):
     accessRole: str
+    autoAcceptInvitations: bool
     backgroundColor: str
     colorId: str
     conferenceProperties: ConferenceProperties
+    dataOwner: str
     defaultReminders: _list[EventReminder]
     deleted: bool
     description: str

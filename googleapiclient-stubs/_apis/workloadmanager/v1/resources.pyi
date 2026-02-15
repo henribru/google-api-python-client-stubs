@@ -19,6 +19,15 @@ class WorkloadManagerResource(googleapiclient.discovery.Resource):
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class DiscoveredprofilesResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class HealthResource(googleapiclient.discovery.Resource):
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> WorkloadProfileHealthHttpRequest: ...
+
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> WorkloadProfileHttpRequest: ...
                 def list(
                     self,
                     *,
@@ -33,6 +42,7 @@ class WorkloadManagerResource(googleapiclient.discovery.Resource):
                     previous_request: ListDiscoveredProfilesResponseHttpRequest,
                     previous_response: ListDiscoveredProfilesResponse,
                 ) -> ListDiscoveredProfilesResponseHttpRequest | None: ...
+                def health(self) -> HealthResource: ...
 
             @typing.type_check_only
             class EvaluationsResource(googleapiclient.discovery.Resource):
@@ -358,6 +368,22 @@ class OperationHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Operation: ...
+
+@typing.type_check_only
+class WorkloadProfileHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> WorkloadProfile: ...
+
+@typing.type_check_only
+class WorkloadProfileHealthHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> WorkloadProfileHealth: ...
 
 @typing.type_check_only
 class WriteInsightResponseHttpRequest(googleapiclient.http.HttpRequest):
