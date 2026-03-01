@@ -99,6 +99,9 @@ class Backup(typing_extensions.TypedDict, total=False):
         "SQLSERVER_2022_ENTERPRISE",
         "SQLSERVER_2022_EXPRESS",
         "SQLSERVER_2022_WEB",
+        "SQLSERVER_2025_STANDARD",
+        "SQLSERVER_2025_ENTERPRISE",
+        "SQLSERVER_2025_EXPRESS",
     ]
     description: str
     error: OperationError
@@ -227,6 +230,9 @@ class BackupRun(typing_extensions.TypedDict, total=False):
         "SQLSERVER_2022_ENTERPRISE",
         "SQLSERVER_2022_EXPRESS",
         "SQLSERVER_2022_WEB",
+        "SQLSERVER_2025_STANDARD",
+        "SQLSERVER_2025_ENTERPRISE",
+        "SQLSERVER_2025_EXPRESS",
     ]
     description: str
     diskEncryptionConfiguration: DiskEncryptionConfiguration
@@ -277,6 +283,8 @@ class CloneContext(typing_extensions.TypedDict, total=False):
     binLogCoordinates: BinLogCoordinates
     databaseNames: _list[str]
     destinationInstanceName: str
+    destinationNetwork: str
+    destinationProject: str
     kind: str
     pitrTimestampMs: str
     pointInTime: str
@@ -354,6 +362,9 @@ class ConnectSettings(typing_extensions.TypedDict, total=False):
         "SQLSERVER_2022_ENTERPRISE",
         "SQLSERVER_2022_EXPRESS",
         "SQLSERVER_2022_WEB",
+        "SQLSERVER_2025_STANDARD",
+        "SQLSERVER_2025_ENTERPRISE",
+        "SQLSERVER_2025_EXPRESS",
     ]
     dnsName: str
     dnsNames: _list[DnsNameMapping]
@@ -470,6 +481,9 @@ class DatabaseInstance(typing_extensions.TypedDict, total=False):
         "SQLSERVER_2022_ENTERPRISE",
         "SQLSERVER_2022_EXPRESS",
         "SQLSERVER_2022_WEB",
+        "SQLSERVER_2025_STANDARD",
+        "SQLSERVER_2025_ENTERPRISE",
+        "SQLSERVER_2025_EXPRESS",
     ]
     diskEncryptionConfiguration: DiskEncryptionConfiguration
     diskEncryptionStatus: DiskEncryptionStatus
@@ -706,6 +720,9 @@ class Flag(typing_extensions.TypedDict, total=False):
             "SQLSERVER_2022_ENTERPRISE",
             "SQLSERVER_2022_EXPRESS",
             "SQLSERVER_2022_WEB",
+            "SQLSERVER_2025_STANDARD",
+            "SQLSERVER_2025_ENTERPRISE",
+            "SQLSERVER_2025_EXPRESS",
         ]
     ]
     flagScope: typing_extensions.Literal[
@@ -1211,6 +1228,9 @@ class PreCheckMajorVersionUpgradeContext(typing_extensions.TypedDict, total=Fals
         "SQLSERVER_2022_ENTERPRISE",
         "SQLSERVER_2022_EXPRESS",
         "SQLSERVER_2022_WEB",
+        "SQLSERVER_2025_STANDARD",
+        "SQLSERVER_2025_ENTERPRISE",
+        "SQLSERVER_2025_EXPRESS",
     ]
 
 @typing.type_check_only

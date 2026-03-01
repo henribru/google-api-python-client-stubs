@@ -22,7 +22,6 @@ class GoogleCloudRecommenderV1Impact(typing_extensions.TypedDict, total=False):
         "RELIABILITY",
     ]
     costProjection: GoogleCloudRecommenderV1CostProjection
-    impactComponents: _list[GoogleCloudRecommenderV1Impact]
     reliabilityProjection: GoogleCloudRecommenderV1ReliabilityProjection
     securityProjection: GoogleCloudRecommenderV1SecurityProjection
     service: str

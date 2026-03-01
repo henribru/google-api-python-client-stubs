@@ -229,6 +229,9 @@ class CloudRedisResource(googleapiclient.discovery.Resource):
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
+            def getSharedRegionalCertificateAuthority(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> SharedRegionalCertificateAuthorityHttpRequest: ...
             def list(
                 self,
                 *,
@@ -384,3 +387,11 @@ class OperationHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Operation: ...
+
+@typing.type_check_only
+class SharedRegionalCertificateAuthorityHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> SharedRegionalCertificateAuthority: ...

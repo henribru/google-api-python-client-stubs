@@ -19,6 +19,30 @@ class BigLakeServiceResource(googleapiclient.discovery.Resource):
         class CatalogsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class NamespacesResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class TablesResource(googleapiclient.discovery.Resource):
+                    def getIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        options_requestedPolicyVersion: int = ...,
+                        **kwargs: typing.Any,
+                    ) -> PolicyHttpRequest: ...
+                    def setIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        body: SetIamPolicyRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> PolicyHttpRequest: ...
+                    def testIamPermissions(
+                        self,
+                        *,
+                        resource: str,
+                        body: TestIamPermissionsRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> TestIamPermissionsResponseHttpRequest: ...
+
                 def getIamPolicy(
                     self,
                     *,
@@ -33,6 +57,14 @@ class BigLakeServiceResource(googleapiclient.discovery.Resource):
                     body: SetIamPolicyRequest = ...,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
+                def testIamPermissions(
+                    self,
+                    *,
+                    resource: str,
+                    body: TestIamPermissionsRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> TestIamPermissionsResponseHttpRequest: ...
+                def tables(self) -> TablesResource: ...
 
             def getIamPolicy(
                 self,
@@ -48,6 +80,13 @@ class BigLakeServiceResource(googleapiclient.discovery.Resource):
                 body: SetIamPolicyRequest = ...,
                 **kwargs: typing.Any,
             ) -> PolicyHttpRequest: ...
+            def testIamPermissions(
+                self,
+                *,
+                resource: str,
+                body: TestIamPermissionsRequest = ...,
+                **kwargs: typing.Any,
+            ) -> TestIamPermissionsResponseHttpRequest: ...
             def namespaces(self) -> NamespacesResource: ...
 
         @typing.type_check_only
@@ -244,3 +283,11 @@ class TableHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Table: ...
+
+@typing.type_check_only
+class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> TestIamPermissionsResponse: ...

@@ -836,6 +836,7 @@ class GoogleCloudAiplatformV1CandidateResponse(
     typing_extensions.TypedDict, total=False
 ):
     candidate: str
+    error: GoogleRpcStatus
     text: str
     value: typing.Any
 

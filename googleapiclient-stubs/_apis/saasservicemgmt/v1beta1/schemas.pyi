@@ -371,6 +371,8 @@ class UnitOperationCondition(typing_extensions.TypedDict, total=False):
         "TYPE_RUNNING",
         "TYPE_SUCCEEDED",
         "TYPE_CANCELLED",
+        "TYPE_APP_CREATED",
+        "TYPE_APP_COMPONENTS_REGISTERED",
     ]
 
 @typing.type_check_only

@@ -2288,10 +2288,22 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any,
             ) -> GoogleCloudApigeeV1SecurityMonitoringConditionHttpRequest: ...
             def delete(
-                self, *, name: str, **kwargs: typing.Any
+                self,
+                *,
+                name: str,
+                riskAssessmentType: typing_extensions.Literal[
+                    "RISK_ASSESSMENT_TYPE_UNSPECIFIED", "APIGEE", "API_HUB"
+                ] = ...,
+                **kwargs: typing.Any,
             ) -> GoogleProtobufEmptyHttpRequest: ...
             def get(
-                self, *, name: str, **kwargs: typing.Any
+                self,
+                *,
+                name: str,
+                riskAssessmentType: typing_extensions.Literal[
+                    "RISK_ASSESSMENT_TYPE_UNSPECIFIED", "APIGEE", "API_HUB"
+                ] = ...,
+                **kwargs: typing.Any,
             ) -> GoogleCloudApigeeV1SecurityMonitoringConditionHttpRequest: ...
             def list(
                 self,
@@ -2300,6 +2312,9 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
+                riskAssessmentType: typing_extensions.Literal[
+                    "RISK_ASSESSMENT_TYPE_UNSPECIFIED", "APIGEE", "API_HUB"
+                ] = ...,
                 **kwargs: typing.Any,
             ) -> (
                 GoogleCloudApigeeV1ListSecurityMonitoringConditionsResponseHttpRequest

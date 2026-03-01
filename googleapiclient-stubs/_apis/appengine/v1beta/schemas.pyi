@@ -619,11 +619,6 @@ class Status(typing_extensions.TypedDict, total=False):
     message: str
 
 @typing.type_check_only
-class SubnetworkKey(typing_extensions.TypedDict, total=False):
-    hostProjectId: str
-    subnet: str
-
-@typing.type_check_only
 class TrafficSplit(typing_extensions.TypedDict, total=False):
     allocations: dict[str, typing.Any]
     shardBy: typing_extensions.Literal["UNSPECIFIED", "COOKIE", "IP", "RANDOM"]
@@ -741,7 +736,6 @@ class Version(typing_extensions.TypedDict, total=False):
     vm: bool
     vpcAccess: VpcAccess
     vpcAccessConnector: VpcAccessConnector
-    vpcEgress: VpcEgress
     zones: _list[str]
 
 @typing.type_check_only
@@ -765,22 +759,10 @@ class VpcAccessConnector(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class VpcEgress(typing_extensions.TypedDict, total=False):
-    egressSetting: typing_extensions.Literal[
-        "EGRESS_SETTING_UNSPECIFIED", "ALL_TRAFFIC", "PRIVATE_IP_RANGES"
-    ]
-    networkTags: _list[VpcNetworkTag]
-    subnetworkKey: SubnetworkKey
-
-@typing.type_check_only
 class VpcNetworkInterface(typing_extensions.TypedDict, total=False):
     network: str
     subnet: str
     tags: _list[str]
-
-@typing.type_check_only
-class VpcNetworkTag(typing_extensions.TypedDict, total=False):
-    value: str
 
 @typing.type_check_only
 class ZipInfo(typing_extensions.TypedDict, total=False):

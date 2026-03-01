@@ -542,6 +542,7 @@ class Job(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     location: str
     name: str
+    pausable: bool
     pipelineDescription: PipelineDescription
     projectId: str
     replaceJobId: str
@@ -997,6 +998,7 @@ class RuntimeMetadata(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class RuntimeUpdatableParams(typing_extensions.TypedDict, total=False):
     acceptableBacklogDuration: str
+    autoscalingTier: str
     maxNumWorkers: int
     minNumWorkers: int
     workerUtilizationHint: float
@@ -1581,6 +1583,8 @@ class WorkerPool(typing_extensions.TypedDict, total=False):
         "DEFAULT_PACKAGE_SET_JAVA",
         "DEFAULT_PACKAGE_SET_PYTHON",
     ]
+    diskProvisionedIops: str
+    diskProvisionedThroughputMibps: str
     diskSizeGb: int
     diskSourceImage: str
     diskType: str

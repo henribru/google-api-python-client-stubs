@@ -359,7 +359,7 @@ class Cluster(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ClusterAutoscaling(typing_extensions.TypedDict, total=False):
     autopilotGeneralProfile: typing_extensions.Literal[
-        "AUTOPILOT_GENERAL_PROFILE_UNSPECIFIED", "NO_PERFORMANCE"
+        "AUTOPILOT_GENERAL_PROFILE_UNSPECIFIED", "NO_PERFORMANCE", "NONE"
     ]
     autoprovisioningLocations: _list[str]
     autoprovisioningNodePoolDefaults: AutoprovisioningNodePoolDefaults
@@ -564,6 +564,10 @@ class CostManagementConfig(typing_extensions.TypedDict, total=False):
     enabled: bool
 
 @typing.type_check_only
+class CrashLoopBackOffConfig(typing_extensions.TypedDict, total=False):
+    maxContainerRestartPeriod: str
+
+@typing.type_check_only
 class CreateClusterRequest(typing_extensions.TypedDict, total=False):
     cluster: Cluster
     parent: str
@@ -644,6 +648,13 @@ class DesiredEnterpriseConfig(typing_extensions.TypedDict, total=False):
     desiredTier: typing_extensions.Literal[
         "CLUSTER_TIER_UNSPECIFIED", "STANDARD", "ENTERPRISE"
     ]
+
+@typing.type_check_only
+class DisruptionBudget(typing_extensions.TypedDict, total=False):
+    lastDisruptionTime: str
+    lastMinorVersionDisruptionTime: str
+    minorVersionDisruptionInterval: str
+    patchVersionDisruptionInterval: str
 
 @typing.type_check_only
 class DisruptionEvent(typing_extensions.TypedDict, total=False):
@@ -1043,6 +1054,7 @@ class MaintenanceExclusionOptions(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class MaintenancePolicy(typing_extensions.TypedDict, total=False):
+    disruptionBudget: DisruptionBudget
     resourceVersion: str
     window: MaintenanceWindow
 
@@ -1283,6 +1295,7 @@ class NodeKubeletConfig(typing_extensions.TypedDict, total=False):
     cpuCfsQuota: bool
     cpuCfsQuotaPeriod: str
     cpuManagerPolicy: str
+    crashLoopBackOff: CrashLoopBackOffConfig
     evictionMaxPodGracePeriodSeconds: int
     evictionMinimumReclaim: EvictionMinimumReclaim
     evictionSoft: EvictionSignals
@@ -1295,6 +1308,8 @@ class NodeKubeletConfig(typing_extensions.TypedDict, total=False):
     maxParallelImagePulls: int
     memoryManager: MemoryManager
     podPidsLimit: str
+    shutdownGracePeriodCriticalPodsSeconds: int
+    shutdownGracePeriodSeconds: int
     singleProcessOomKill: bool
     topologyManager: TopologyManager
 

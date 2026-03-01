@@ -323,6 +323,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: GoogleCloudRunV2Service = ...,
                     allowMissing: bool = ...,
+                    forceNewRevision: bool = ...,
                     updateMask: str = ...,
                     validateOnly: bool = ...,
                     **kwargs: typing.Any,

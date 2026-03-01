@@ -1362,6 +1362,7 @@ class StorageDatabasecenterPartnerapiV1mainResourceMaintenanceDenySchedule(
 class StorageDatabasecenterPartnerapiV1mainResourceMaintenanceInfo(
     typing_extensions.TypedDict, total=False
 ):
+    currentVersionReleaseDate: GoogleTypeDate
     denyMaintenanceSchedules: _list[
         StorageDatabasecenterPartnerapiV1mainResourceMaintenanceDenySchedule
     ]
@@ -1380,7 +1381,6 @@ class StorageDatabasecenterPartnerapiV1mainResourceMaintenanceInfo(
     ]
     maintenanceVersion: str
     upcomingMaintenance: StorageDatabasecenterPartnerapiV1mainUpcomingMaintenance
-    versionUpdateTime: str
 
 @typing.type_check_only
 class StorageDatabasecenterPartnerapiV1mainResourceMaintenanceSchedule(

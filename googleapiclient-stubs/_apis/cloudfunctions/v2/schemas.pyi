@@ -66,6 +66,12 @@ class Date(typing_extensions.TypedDict, total=False):
 class DetachFunctionRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class DirectVpcNetworkInterface(typing_extensions.TypedDict, total=False):
+    network: str
+    subnetwork: str
+    tags: _list[str]
+
+@typing.type_check_only
 class EventFilter(typing_extensions.TypedDict, total=False):
     attribute: str
     operator: str
@@ -321,6 +327,12 @@ class ServiceConfig(typing_extensions.TypedDict, total=False):
     availableCpu: str
     availableMemory: str
     binaryAuthorizationPolicy: str
+    directVpcEgress: typing_extensions.Literal[
+        "DIRECT_VPC_EGRESS_UNSPECIFIED",
+        "VPC_EGRESS_PRIVATE_RANGES_ONLY",
+        "VPC_EGRESS_ALL_TRAFFIC",
+    ]
+    directVpcNetworkInterface: _list[DirectVpcNetworkInterface]
     environmentVariables: dict[str, typing.Any]
     ingressSettings: typing_extensions.Literal[
         "INGRESS_SETTINGS_UNSPECIFIED",

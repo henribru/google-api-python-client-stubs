@@ -246,6 +246,7 @@ class Blob(typing_extensions.TypedDict, total=False):
 class Callback(typing_extensions.TypedDict, total=False):
     description: str
     disabled: bool
+    proactiveExecutionEnabled: bool
     pythonCode: str
 
 @typing.type_check_only
@@ -379,6 +380,8 @@ class Conversation(typing_extensions.TypedDict, total=False):
             "INPUT_TYPE_AUDIO",
             "INPUT_TYPE_IMAGE",
             "INPUT_TYPE_BLOB",
+            "INPUT_TYPE_TOOL_RESPONSE",
+            "INPUT_TYPE_VARIABLES",
         ]
     ]
     languageCode: str
@@ -1088,6 +1091,12 @@ class GoogleSearchTool(typing_extensions.TypedDict, total=False):
     excludeDomains: _list[str]
     name: str
     preferredDomains: _list[str]
+    promptConfig: GoogleSearchToolPromptConfig
+
+@typing.type_check_only
+class GoogleSearchToolPromptConfig(typing_extensions.TypedDict, total=False):
+    textPrompt: str
+    voicePrompt: str
 
 @typing.type_check_only
 class Guardrail(typing_extensions.TypedDict, total=False):
@@ -1184,6 +1193,7 @@ class ImportAppRequest(typing_extensions.TypedDict, total=False):
     appId: str
     displayName: str
     gcsUri: str
+    ignoreAppLock: bool
     importOptions: ImportAppRequestImportOptions
 
 @typing.type_check_only
@@ -1907,4 +1917,5 @@ class WidgetTool(typing_extensions.TypedDict, total=False):
         "SHORT_FORM",
         "OVERALL_SATISFACTION",
         "ORDER_SUMMARY",
+        "APPOINTMENT_DETAILS",
     ]

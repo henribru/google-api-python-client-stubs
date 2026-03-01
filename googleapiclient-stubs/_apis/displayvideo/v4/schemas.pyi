@@ -5214,3 +5214,4 @@ class YoutubeVideoDetails(typing_extensions.TypedDict, total=False):
         "VIDEO_UNAVAILABLE_REASON_PRIVATE",
         "VIDEO_UNAVAILABLE_REASON_DELETED",
     ]
+    videoAssetId: str

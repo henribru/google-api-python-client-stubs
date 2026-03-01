@@ -283,6 +283,17 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
         def gcpUserAccessBindings(self) -> GcpUserAccessBindingsResource: ...
 
     @typing.type_check_only
+    class PermissionsResource(googleapiclient.discovery.Resource):
+        def list(
+            self, *, pageSize: int = ..., pageToken: str = ..., **kwargs: typing.Any
+        ) -> ListSupportedPermissionsResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListSupportedPermissionsResponseHttpRequest,
+            previous_response: ListSupportedPermissionsResponse,
+        ) -> ListSupportedPermissionsResponseHttpRequest | None: ...
+
+    @typing.type_check_only
     class ServicesResource(googleapiclient.discovery.Resource):
         def get(
             self, *, name: str, **kwargs: typing.Any
@@ -311,6 +322,7 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
     def accessPolicies(self) -> AccessPoliciesResource: ...
     def operations(self) -> OperationsResource: ...
     def organizations(self) -> OrganizationsResource: ...
+    def permissions(self) -> PermissionsResource: ...
     def services(self) -> ServicesResource: ...
 
 @typing.type_check_only
@@ -400,6 +412,14 @@ class ListServicePerimetersResponseHttpRequest(googleapiclient.http.HttpRequest)
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListServicePerimetersResponse: ...
+
+@typing.type_check_only
+class ListSupportedPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListSupportedPermissionsResponse: ...
 
 @typing.type_check_only
 class ListSupportedServicesResponseHttpRequest(googleapiclient.http.HttpRequest):

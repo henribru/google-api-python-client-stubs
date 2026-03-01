@@ -5,6 +5,60 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class ActiveDirectory(typing_extensions.TypedDict, total=False):
+    dnsAddress: str
+    domain: str
+    domainUsername: str
+    secretManagerSecret: str
+    type: typing_extensions.Literal[
+        "ACTIVE_DIRECTORY_TYPE_UNSPECIFIED", "GCP_MANAGED", "SELF_MANAGED"
+    ]
+
+@typing.type_check_only
+class Actuation(typing_extensions.TypedDict, total=False):
+    actuationOutput: ActuationOutput
+    deploymentOutput: _list[DeploymentOutput]
+    endTime: str
+    name: str
+    startTime: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "INFRA_CREATING",
+        "SUCCEEDED",
+        "FAILED",
+        "POST_INFRA_CONFIGURING",
+        "INFRA_DESTROYING",
+        "TIMEOUT",
+    ]
+
+@typing.type_check_only
+class ActuationOutput(typing_extensions.TypedDict, total=False):
+    actuateLogs: str
+    ansibleError: str
+    ansibleFailedTask: _list[str]
+    blueprintId: str
+    cloudbuildId: str
+    errorCode: typing_extensions.Literal[
+        "ERROR_CODE_UNSPECIFIED",
+        "TERRAFORM_FAILED",
+        "PERMISSION_DENIED_IN_TERRAFORM",
+        "QUOTA_EXCEED_IN_TERRAFORM",
+        "ANSIBLE_FAILED",
+        "CONSTRAINT_VIOLATION_IN_TERRAFORM",
+        "RESOURCE_ALREADY_EXISTS_IN_TERRAFORM",
+        "RESOURCE_UNAVAILABLE_IN_TERRAFORM",
+        "PERMISSION_DENIED_IN_ANSIBLE",
+        "INVALID_SECRET_IN_ANSIBLE",
+        "TERRAFORM_DELETION_FAILED",
+        "RESOURCE_IN_USE_IN_TERRAFORM_DELETION",
+        "ANSIBLE_START_FAILED",
+    ]
+    errorLogs: str
+    hasUserFacingErrorMsg: bool
+    terraformError: str
+    terraformTemplate: str
+
+@typing.type_check_only
 class AgentCommand(typing_extensions.TypedDict, total=False):
     command: str
     parameters: dict[str, typing.Any]
@@ -75,6 +129,25 @@ class AgentStatusServiceStatus(typing_extensions.TypedDict, total=False):
     unspecifiedStateMessage: str
 
 @typing.type_check_only
+class AppDetails(typing_extensions.TypedDict, total=False):
+    appInstanceId: str
+    appServiceAccount: str
+    appVmNames: _list[str]
+    ascsImage: str
+    ascsInstanceId: str
+    ascsMachineType: str
+    ascsServiceAccount: str
+    ascsVm: str
+    ersInstanceId: str
+    ersVm: str
+    image: str
+    machineType: str
+    secretManagerSecret: str
+    sharedStorage: str
+    sid: str
+    vmsMultiplier: int
+
+@typing.type_check_only
 class BackupProperties(typing_extensions.TypedDict, total=False):
     latestBackupStatus: typing_extensions.Literal[
         "BACKUP_STATE_UNSPECIFIED", "BACKUP_STATE_SUCCESS", "BACKUP_STATE_FAILURE"
@@ -126,6 +199,34 @@ class ComponentHealth(typing_extensions.TypedDict, total=False):
     subComponentsHealth: _list[ComponentHealth]
 
 @typing.type_check_only
+class Database(typing_extensions.TypedDict, total=False):
+    diskType: str
+    floatingIpAddress: str
+    machineType: str
+    secondarySoleTenantNode: str
+    secondarySoleTenantNodeType: str
+    secretManagerSecret: str
+    smt: bool
+    soleTenantNode: str
+    soleTenantNodeType: str
+    tempdbOnSsd: bool
+    tenancyModel: typing_extensions.Literal[
+        "TENANCY_MODEL_UNSPECIFIED", "SHARED", "SOLE_TENANT"
+    ]
+
+@typing.type_check_only
+class DatabaseDetails(typing_extensions.TypedDict, total=False):
+    databaseServiceAccount: str
+    diskType: str
+    image: str
+    instanceId: str
+    machineType: str
+    primaryDbVm: str
+    secondaryDbVm: str
+    secretManagerSecret: str
+    sid: str
+
+@typing.type_check_only
 class DatabaseProperties(typing_extensions.TypedDict, total=False):
     backupProperties: BackupProperties
     databaseType: typing_extensions.Literal[
@@ -137,6 +238,29 @@ class DatabaseProperties(typing_extensions.TypedDict, total=False):
         "SQLSERVER",
         "ASE",
     ]
+
+@typing.type_check_only
+class Deployment(typing_extensions.TypedDict, total=False):
+    createTime: str
+    description: str
+    name: str
+    sapSystemS4Config: SapSystemS4Config
+    serviceAccount: str
+    sqlServerWorkload: SqlServerWorkload
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "UPDATING", "DELETING", "FAILED"
+    ]
+    terraformVariables: dict[str, typing.Any]
+    updateTime: str
+    workerPool: str
+    workloadType: typing_extensions.Literal[
+        "WORKLOAD_TYPE_UNSPECIFIED", "SAP_S4", "SQL_SERVER", "ORACLE"
+    ]
+
+@typing.type_check_only
+class DeploymentOutput(typing_extensions.TypedDict, total=False):
+    name: str
+    type: str
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
@@ -256,6 +380,18 @@ class InvalidRulesWrapper(typing_extensions.TypedDict, total=False):
     invalidRules: _list[InvalidRule]
 
 @typing.type_check_only
+class ListActuationsResponse(typing_extensions.TypedDict, total=False):
+    actuations: _list[Actuation]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListDeploymentsResponse(typing_extensions.TypedDict, total=False):
+    deployments: _list[Deployment]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
 class ListDiscoveredProfilesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     unreachable: _list[str]
@@ -308,6 +444,23 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
+class LocationDetails(typing_extensions.TypedDict, total=False):
+    createCommsFirewall: bool
+    customTags: _list[str]
+    deploymentDnsEnabled: bool
+    dnsZone: str
+    dnsZoneNameSuffix: str
+    internetAccess: typing_extensions.Literal[
+        "INTERNETACCESS_UNSPECIFIED", "ALLOW_EXTERNAL_IP", "CONFIGURE_NAT"
+    ]
+    networkProject: str
+    regionName: str
+    subnetName: str
+    vpcName: str
+    zone1Name: str
+    zone2Name: str
+
+@typing.type_check_only
 class Notice(typing_extensions.TypedDict, total=False):
     message: str
 
@@ -333,6 +486,15 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     statusMessage: str
     target: str
     verb: str
+
+@typing.type_check_only
+class Pacemaker(typing_extensions.TypedDict, total=False):
+    bucketNameNodeCertificates: str
+    pacemakerCluster: str
+    pacemakerClusterSecret: str
+    pacemakerClusterUsername: str
+    sqlPacemakerSecret: str
+    sqlPacemakerUsername: str
 
 @typing.type_check_only
 class Product(typing_extensions.TypedDict, total=False):
@@ -593,6 +755,30 @@ class SapInstanceProperties(typing_extensions.TypedDict, total=False):
     numbers: _list[str]
 
 @typing.type_check_only
+class SapSystemS4Config(typing_extensions.TypedDict, total=False):
+    allowStoppingForUpdate: bool
+    ansibleRunnerServiceAccount: str
+    app: AppDetails
+    database: DatabaseDetails
+    deploymentModel: typing_extensions.Literal[
+        "DEPLOYMENT_MODEL_UNSPECIFIED", "DISTRIBUTED", "DISTRIBUTED_HA"
+    ]
+    environmentType: typing_extensions.Literal[
+        "ENVIRONMENT_TYPE_UNSPECIFIED", "NON_PRODUCTION", "PRODUCTION"
+    ]
+    gcpProjectId: str
+    location: LocationDetails
+    mediaBucketName: str
+    sapBootDiskImage: str
+    scalingMethod: typing_extensions.Literal[
+        "SCALE_METHOD_UNSPECIFIED", "SCALE_UP", "SCALE_OUT"
+    ]
+    version: typing_extensions.Literal[
+        "VERSION_UNSPECIFIED", "S4_HANA_2021", "S4_HANA_2022", "S4_HANA_2023"
+    ]
+    vmPrefix: str
+
+@typing.type_check_only
 class SapValidation(typing_extensions.TypedDict, total=False):
     projectId: str
     validationDetails: _list[SapValidationValidationDetail]
@@ -653,6 +839,63 @@ class ShellCommand(typing_extensions.TypedDict, total=False):
     timeoutSeconds: int
 
 @typing.type_check_only
+class SqlLocationDetails(typing_extensions.TypedDict, total=False):
+    dnsZone: str
+    gcpProjectId: str
+    internetAccess: typing_extensions.Literal[
+        "INTERNET_ACCESS_UNSPECIFIED", "ALLOW_EXTERNAL_IP", "CONFIGURE_NAT"
+    ]
+    network: str
+    primaryZone: str
+    region: str
+    secondaryZone: str
+    subnetwork: str
+    tertiaryZone: str
+
+@typing.type_check_only
+class SqlServerWorkload(typing_extensions.TypedDict, total=False):
+    activeDirectory: ActiveDirectory
+    computeEngineServiceAccount: str
+    database: Database
+    deploymentModel: typing_extensions.Literal[
+        "DEPLOYMENT_MODEL_UNSPECIFIED", "HIGH_AVAILABILITY", "SINGLE_INSTANCE"
+    ]
+    environmentType: typing_extensions.Literal[
+        "ENVIRONMENT_TYPE_UNSPECIFIED", "NON_PRODUCTION", "PRODUCTION"
+    ]
+    fciType: typing_extensions.Literal["FCI_TYPE_UNSPECIFIED", "SHARED_DISK", "S2D"]
+    haType: typing_extensions.Literal["HA_TYPE_UNSPECIFIED", "AOAG", "FCI"]
+    isSqlPayg: bool
+    location: SqlLocationDetails
+    mediaBucket: str
+    operatingSystemType: typing_extensions.Literal[
+        "OPERATING_SYSTEM_TYPE_UNSPECIFIED",
+        "WINDOWS",
+        "UBUNTU",
+        "RED_HAT_ENTERPRISE_LINUX",
+        "SUSE",
+    ]
+    osImage: str
+    osImageType: typing_extensions.Literal[
+        "OS_IMAGE_TYPE_UNSPECIFIED", "PUBLIC_IMAGE", "CUSTOM_IMAGE"
+    ]
+    pacemaker: Pacemaker
+    sqlServerEdition: typing_extensions.Literal[
+        "SQL_SERVER_EDITION_TYPE_UNSPECIFIED",
+        "SQL_SERVER_EDITION_TYPE_DEVELOPER",
+        "SQL_SERVER_EDITION_TYPE_ENTERPRISE",
+        "SQL_SERVER_EDITION_TYPE_STANDARD",
+        "SQL_SERVER_EDITION_TYPE_WEB",
+    ]
+    sqlServerVersion: typing_extensions.Literal[
+        "SQL_SERVER_VERSION_TYPE_UNSPECIFIED",
+        "SQL_SERVER_VERSION_TYPE_2017",
+        "SQL_SERVER_VERSION_TYPE_2019",
+        "SQL_SERVER_VERSION_TYPE_2022",
+    ]
+    vmPrefix: str
+
+@typing.type_check_only
 class SqlserverValidation(typing_extensions.TypedDict, total=False):
     agentVersion: str
     instance: str
@@ -693,6 +936,10 @@ class Summary(typing_extensions.TypedDict, total=False):
     failures: str
     newFailures: str
     newFixes: str
+
+@typing.type_check_only
+class TerraformVariable(typing_extensions.TypedDict, total=False):
+    inputValue: typing.Any
 
 @typing.type_check_only
 class TorsoValidation(typing_extensions.TypedDict, total=False):

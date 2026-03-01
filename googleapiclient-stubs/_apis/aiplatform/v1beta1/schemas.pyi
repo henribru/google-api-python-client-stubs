@@ -955,6 +955,7 @@ class GoogleCloudAiplatformV1beta1CandidateResponse(
 ):
     agentData: GoogleCloudAiplatformV1beta1AgentData
     candidate: str
+    error: GoogleRpcStatus
     events: _list[GoogleCloudAiplatformV1beta1Content]
     text: str
     value: typing.Any
@@ -4199,6 +4200,7 @@ class GoogleCloudAiplatformV1beta1GeminiExample(
     generationConfig: GoogleCloudAiplatformV1beta1GenerationConfig
     labels: dict[str, typing.Any]
     model: str
+    modelArmorConfig: GoogleCloudAiplatformV1beta1ModelArmorConfig
     safetySettings: _list[GoogleCloudAiplatformV1beta1SafetySetting]
     systemInstruction: GoogleCloudAiplatformV1beta1Content
     toolConfig: GoogleCloudAiplatformV1beta1ToolConfig
@@ -9671,6 +9673,7 @@ class GoogleCloudAiplatformV1beta1Schedule(typing_extensions.TypedDict, total=Fa
     lastPauseTime: str
     lastResumeTime: str
     lastScheduledRunResponse: GoogleCloudAiplatformV1beta1ScheduleRunResponse
+    maxConcurrentActiveRunCount: str
     maxConcurrentRunCount: str
     maxRunCount: str
     name: str

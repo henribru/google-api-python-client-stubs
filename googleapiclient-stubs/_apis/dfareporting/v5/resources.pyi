@@ -1909,7 +1909,24 @@ class DfareportingResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class TvCampaignDetailsResource(googleapiclient.discovery.Resource):
         def get(
-            self, *, profileId: str, id: str, accountId: str = ..., **kwargs: typing.Any
+            self,
+            *,
+            profileId: str,
+            id: str,
+            accountId: str = ...,
+            countryDartId: str = ...,
+            tvDataProvider: typing_extensions.Literal[
+                "INVALID_TV_DATA_PROVIDER",
+                "IBOPE_AR",
+                "IBOPE_BR",
+                "IBOPE_CL",
+                "IBOPE_CO",
+                "TNS_VN",
+                "COMSCORE_NATIONAL_US",
+                "COMSCORE_CA",
+                "SAMBA_AU",
+            ] = ...,
+            **kwargs: typing.Any,
         ) -> TvCampaignDetailHttpRequest: ...
 
     @typing.type_check_only
@@ -1919,7 +1936,19 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             *,
             profileId: str,
             accountId: str = ...,
+            countryDartId: str = ...,
             name: str = ...,
+            tvDataProvider: typing_extensions.Literal[
+                "INVALID_TV_DATA_PROVIDER",
+                "IBOPE_AR",
+                "IBOPE_BR",
+                "IBOPE_CL",
+                "IBOPE_CO",
+                "TNS_VN",
+                "COMSCORE_NATIONAL_US",
+                "COMSCORE_CA",
+                "SAMBA_AU",
+            ] = ...,
             **kwargs: typing.Any,
         ) -> TvCampaignSummariesListResponseHttpRequest: ...
 

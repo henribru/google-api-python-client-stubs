@@ -343,7 +343,9 @@ class GoogleCloudDocumentaiUiv1beta3DocumentSchemaEntityTypeProperty(
 ):
     description: str
     displayName: str
-    method: typing_extensions.Literal["METHOD_UNSPECIFIED", "EXTRACT", "DERIVE"]
+    method: typing_extensions.Literal[
+        "METHOD_UNSPECIFIED", "EXTRACT", "DERIVE", "RELAXED_EXTRACT"
+    ]
     name: str
     occurrenceType: typing_extensions.Literal[
         "OCCURRENCE_TYPE_UNSPECIFIED",
@@ -758,7 +760,9 @@ class GoogleCloudDocumentaiUiv1beta3SchemaEntityType(
     description: str
     enumValues: _list[str]
     hide: bool
-    method: typing_extensions.Literal["METHOD_UNSPECIFIED", "EXTRACT", "DERIVE"]
+    method: typing_extensions.Literal[
+        "METHOD_UNSPECIFIED", "EXTRACT", "DERIVE", "RELAXED_EXTRACT"
+    ]
     occurrenceType: typing_extensions.Literal[
         "OCCURRENCE_TYPE_UNSPECIFIED",
         "OPTIONAL_ONCE",
@@ -1895,7 +1899,9 @@ class GoogleCloudDocumentaiV1beta3DocumentSchemaEntityTypeProperty(
 ):
     description: str
     displayName: str
-    method: typing_extensions.Literal["METHOD_UNSPECIFIED", "EXTRACT", "DERIVE"]
+    method: typing_extensions.Literal[
+        "METHOD_UNSPECIFIED", "EXTRACT", "DERIVE", "RELAXED_EXTRACT"
+    ]
     name: str
     occurrenceType: typing_extensions.Literal[
         "OCCURRENCE_TYPE_UNSPECIFIED",

@@ -2326,6 +2326,13 @@ class GoogleCloudApigeeV1SecurityAssessmentResultResource(
     apiHubDeploymentDetails: (
         GoogleCloudApigeeV1SecurityAssessmentResultResourceApiHubDeploymentDetails
     )
+    apiHubGatewayType: typing_extensions.Literal[
+        "API_HUB_GATEWAY_TYPE_UNSPECIFIED",
+        "APIGEE_X",
+        "APIGEE_HYBRID",
+        "APIGEE_EDGE",
+        "APIGEE_OPDK",
+    ]
     name: str
     resourceRevisionId: str
     type: typing_extensions.Literal[
@@ -2439,6 +2446,7 @@ class GoogleCloudApigeeV1SecurityIncident(typing_extensions.TypedDict, total=Fal
 class GoogleCloudApigeeV1SecurityMonitoringCondition(
     typing_extensions.TypedDict, total=False
 ):
+    apiHubGateway: str
     createTime: str
     include: (
         GoogleCloudApigeeV1BatchComputeSecurityAssessmentResultsRequestResourceArray
@@ -2448,6 +2456,9 @@ class GoogleCloudApigeeV1SecurityMonitoringCondition(
     )
     name: str
     profile: str
+    riskAssessmentType: typing_extensions.Literal[
+        "RISK_ASSESSMENT_TYPE_UNSPECIFIED", "APIGEE", "API_HUB"
+    ]
     scope: str
     totalDeployedResources: int
     totalMonitoredResources: int

@@ -60,6 +60,7 @@ class ProductChange(typing_extensions.TypedDict, total=False):
         "LOCAL_INVENTORY_ADS",
         "VEHICLE_INVENTORY_ADS",
         "FREE_LISTINGS",
+        "FREE_LISTINGS_UCP_CHECKOUT",
         "FREE_LOCAL_LISTINGS",
         "FREE_LOCAL_VEHICLE_LISTINGS",
         "YOUTUBE_AFFILIATE",

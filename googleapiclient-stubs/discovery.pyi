@@ -303,6 +303,7 @@ import googleapiclient._apis.gkeonprem.v1
 import googleapiclient._apis.gmail.v1
 import googleapiclient._apis.gmailpostmastertools.v1
 import googleapiclient._apis.gmailpostmastertools.v1beta1
+import googleapiclient._apis.gmailpostmastertools.v2
 import googleapiclient._apis.groupsmigration.v1
 import googleapiclient._apis.groupssettings.v1
 import googleapiclient._apis.healthcare.v1
@@ -6541,6 +6542,26 @@ def build(
     num_retries: int = 1,
     static_discovery: bool | None = None,
 ) -> googleapiclient._apis.gmailpostmastertools.v1beta1.PostmasterToolsResource: ...
+@overload
+def build(
+    serviceName: Literal["gmailpostmastertools"],
+    version: Literal["v2"],
+    http: httplib2.Http | HttpMock | None = None,
+    discoveryServiceUrl: str | None = None,
+    developerKey: str | None = None,
+    model: Model | None = None,
+    requestBuilder: _RequestBuilder = HttpRequest,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
+    cache_discovery: bool = True,
+    cache: Cache | None = None,
+    client_options: dict[str, Any] | ClientOptions | None = None,
+    adc_cert_path: str | None = None,
+    adc_key_path: str | None = None,
+    num_retries: int = 1,
+    static_discovery: bool | None = None,
+) -> googleapiclient._apis.gmailpostmastertools.v2.PostmasterToolsResource: ...
 @overload
 def build(
     serviceName: Literal["groupsmigration"],

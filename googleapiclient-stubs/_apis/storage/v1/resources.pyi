@@ -339,6 +339,15 @@ class StorageResource(googleapiclient.discovery.Resource):
             ifMetagenerationNotMatch: str = ...,
             **kwargs: typing.Any,
         ) -> googleapiclient.http.HttpRequest: ...
+        def deleteRecursive(
+            self,
+            *,
+            bucket: str,
+            folder: str,
+            ifMetagenerationMatch: str = ...,
+            ifMetagenerationNotMatch: str = ...,
+            **kwargs: typing.Any,
+        ) -> GoogleLongrunningOperationHttpRequest: ...
         def get(
             self,
             *,
