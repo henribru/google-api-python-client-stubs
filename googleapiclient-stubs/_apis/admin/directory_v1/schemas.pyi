@@ -302,6 +302,10 @@ class ChromeOsMoveDevicesToOu(typing_extensions.TypedDict, total=False):
     deviceIds: _list[str]
 
 @typing.type_check_only
+class CountChromeOsDevicesResponse(typing_extensions.TypedDict, total=False):
+    count: str
+
+@typing.type_check_only
 class CreatePrintServerRequest(typing_extensions.TypedDict, total=False):
     parent: str
     printServer: PrintServer

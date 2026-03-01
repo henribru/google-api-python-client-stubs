@@ -78,6 +78,7 @@ class Backup(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     manual: bool
     name: str
+    namespaceCount: int
     permissiveMode: bool
     podCount: int
     resourceCount: int
@@ -148,6 +149,7 @@ class BackupPlan(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     lastSuccessfulBackupTime: str
     name: str
+    protectedNamespaceCount: int
     protectedPodCount: int
     retentionPolicy: RetentionPolicy
     rpoRiskLevel: int

@@ -84,20 +84,6 @@ class ThreatIntelligenceServiceResource(googleapiclient.discovery.Resource):
                 body: MarkAlertAsReadRequest = ...,
                 **kwargs: typing.Any,
             ) -> AlertHttpRequest: ...
-            def refreshUriStatus(
-                self,
-                *,
-                name: str,
-                body: RefreshAlertUriStatusRequest = ...,
-                **kwargs: typing.Any,
-            ) -> RefreshAlertUriStatusResponseHttpRequest: ...
-            def reportAlertUri(
-                self,
-                *,
-                name: str,
-                body: ReportAlertUriRequest = ...,
-                **kwargs: typing.Any,
-            ) -> ReportAlertUriResponseHttpRequest: ...
             def resolve(
                 self,
                 *,
@@ -307,22 +293,6 @@ class OperationHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Operation: ...
-
-@typing.type_check_only
-class RefreshAlertUriStatusResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> RefreshAlertUriStatusResponse: ...
-
-@typing.type_check_only
-class ReportAlertUriResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> ReportAlertUriResponse: ...
 
 @typing.type_check_only
 class SearchFindingsResponseHttpRequest(googleapiclient.http.HttpRequest):

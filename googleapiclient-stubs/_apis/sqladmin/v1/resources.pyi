@@ -343,14 +343,6 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
             body: InstancesRestoreBackupRequest = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
-        def restoreBackupMcp(
-            self,
-            *,
-            targetProject: str,
-            targetInstance: str,
-            body: SqlInstancesRestoreBackupMcpRequest = ...,
-            **kwargs: typing.Any,
-        ) -> OperationHttpRequest: ...
         def rotateServerCa(
             self,
             *,
@@ -550,6 +542,7 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
             databaseRoles: str | _list[str] = ...,
             host: str = ...,
             name: str = ...,
+            revokeExistingRoles: bool = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
 

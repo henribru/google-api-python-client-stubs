@@ -128,10 +128,7 @@ class GoogleIamAdminV1WorkforcePoolProviderExtraAttributesOAuth2Client(
     typing_extensions.TypedDict, total=False
 ):
     attributesType: typing_extensions.Literal[
-        "ATTRIBUTES_TYPE_UNSPECIFIED",
-        "AZURE_AD_GROUPS_MAIL",
-        "AZURE_AD_GROUPS_ID",
-        "AZURE_AD_GROUPS_DISPLAY_NAME",
+        "ATTRIBUTES_TYPE_UNSPECIFIED", "AZURE_AD_GROUPS_MAIL", "AZURE_AD_GROUPS_ID"
     ]
     clientId: str
     clientSecret: GoogleIamAdminV1WorkforcePoolProviderOidcClientSecret
@@ -707,7 +704,7 @@ class WorkloadIdentityPool(typing_extensions.TypedDict, total=False):
     inlineCertificateIssuanceConfig: InlineCertificateIssuanceConfig
     inlineTrustConfig: InlineTrustConfig
     mode: typing_extensions.Literal[
-        "MODE_UNSPECIFIED", "FEDERATION_ONLY", "TRUST_DOMAIN"
+        "MODE_UNSPECIFIED", "FEDERATION_ONLY", "TRUST_DOMAIN", "SYSTEM_TRUST_DOMAIN"
     ]
     name: str
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "DELETED"]

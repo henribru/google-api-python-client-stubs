@@ -71,6 +71,9 @@ class ClusterSelector(typing_extensions.TypedDict, total=False):
 class ClusterUpgradeFleetSpec(typing_extensions.TypedDict, total=False):
     gkeUpgradeOverrides: _list[ClusterUpgradeGKEUpgradeOverride]
     postConditions: ClusterUpgradePostConditions
+    upgradeEngine: typing_extensions.Literal[
+        "UPGRADE_ENGINE_UNSPECIFIED", "SEQUENCING_V1", "SEQUENCING_V2"
+    ]
     upstreamFleets: _list[str]
 
 @typing.type_check_only
@@ -516,16 +519,6 @@ class EdgeCluster(typing_extensions.TypedDict, total=False):
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ExcludedCluster(typing_extensions.TypedDict, total=False):
-    membership: str
-    reason: typing_extensions.Literal[
-        "REASON_UNSPECIFIED",
-        "EXCLUDED_BY_FILTER",
-        "ALREADY_UPGRADED",
-        "VERSION_TOO_OLD",
-    ]
-
-@typing.type_check_only
 class Expr(typing_extensions.TypedDict, total=False):
     description: str
     expression: str
@@ -576,11 +569,6 @@ class FeatureState(typing_extensions.TypedDict, total=False):
     code: typing_extensions.Literal["CODE_UNSPECIFIED", "OK", "WARNING", "ERROR"]
     description: str
     updateTime: str
-
-@typing.type_check_only
-class FeatureUpdate(typing_extensions.TypedDict, total=False):
-    binaryAuthorizationConfig: BinaryAuthorizationConfig
-    securityPostureConfig: SecurityPostureConfig
 
 @typing.type_check_only
 class Fleet(typing_extensions.TypedDict, total=False):
@@ -1256,16 +1244,13 @@ class Rollout(typing_extensions.TypedDict, total=False):
     deleteTime: str
     displayName: str
     etag: str
-    excludedClusters: _list[ExcludedCluster]
-    feature: FeatureUpdate
     labels: dict[str, typing.Any]
     membershipStates: dict[str, typing.Any]
     name: str
     rolloutSequence: str
-    schedule: Schedule
     stages: _list[RolloutStage]
     state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "RUNNING", "PAUSED", "CANCELLED", "COMPLETED", "SCHEDULED"
+        "STATE_UNSPECIFIED", "RUNNING", "PAUSED", "CANCELLED", "COMPLETED"
     ]
     stateReason: str
     uid: str
@@ -1287,8 +1272,28 @@ class RolloutSequence(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     name: str
     stages: _list[Stage]
+    state: RolloutSequenceState
     uid: str
     updateTime: str
+
+@typing.type_check_only
+class RolloutSequenceState(typing_extensions.TypedDict, total=False):
+    lifecycleState: typing_extensions.Literal[
+        "LIFECYCLE_STATE_UNSPECIFIED",
+        "LIFECYCLE_STATE_ACTIVE",
+        "LIFECYCLE_STATE_WARNING",
+        "LIFECYCLE_STATE_ERROR",
+    ]
+    stateReasons: _list[
+        typing_extensions.Literal[
+            "STATE_REASON_UNSPECIFIED",
+            "FLEET_FEATURE_DELETED_ERROR",
+            "FLEET_DELETED_ERROR",
+            "EMPTY_STAGE_WARNING",
+            "MIXED_RELEASE_CHANNELS_WARNING",
+            "INTERNAL_ERROR",
+        ]
+    ]
 
 @typing.type_check_only
 class RolloutStage(typing_extensions.TypedDict, total=False):
@@ -1321,10 +1326,6 @@ class RolloutTarget(typing_extensions.TypedDict, total=False):
         "REMOVED",
         "INELIGIBLE",
     ]
-
-@typing.type_check_only
-class Schedule(typing_extensions.TypedDict, total=False):
-    waves: _list[WaveSchedule]
 
 @typing.type_check_only
 class Scope(typing_extensions.TypedDict, total=False):
@@ -1634,14 +1635,8 @@ class ValidationResult(typing_extensions.TypedDict, total=False):
 class VersionUpgrade(typing_extensions.TypedDict, total=False):
     desiredVersion: str
     type: typing_extensions.Literal[
-        "TYPE_UNSPECIFIED", "TYPE_CONTROL_PLANE", "TYPE_NODE_POOL", "TYPE_CONFIG_SYNC"
+        "TYPE_UNSPECIFIED", "TYPE_CONTROL_PLANE", "TYPE_NODE_POOL"
     ]
-
-@typing.type_check_only
-class WaveSchedule(typing_extensions.TypedDict, total=False):
-    waveEndTime: str
-    waveNumber: int
-    waveStartTime: str
 
 @typing.type_check_only
 class WorkloadIdentityFeatureSpec(typing_extensions.TypedDict, total=False):

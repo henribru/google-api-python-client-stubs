@@ -172,6 +172,12 @@ class CachePrePopulate(typing_extensions.TypedDict, total=False):
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class CloneDetails(typing_extensions.TypedDict, total=False):
+    sharedSpaceGib: str
+    sourceSnapshot: str
+    sourceVolume: str
+
+@typing.type_check_only
 class DailySchedule(typing_extensions.TypedDict, total=False):
     hour: float
     minute: float
@@ -201,6 +207,30 @@ class EstablishVolumePeeringRequest(typing_extensions.TypedDict, total=False):
     peerIpAddresses: _list[str]
     peerSvmName: str
     peerVolumeName: str
+
+@typing.type_check_only
+class ExecuteOntapDeleteResponse(typing_extensions.TypedDict, total=False):
+    body: dict[str, typing.Any]
+
+@typing.type_check_only
+class ExecuteOntapGetResponse(typing_extensions.TypedDict, total=False):
+    body: dict[str, typing.Any]
+
+@typing.type_check_only
+class ExecuteOntapPatchRequest(typing_extensions.TypedDict, total=False):
+    body: dict[str, typing.Any]
+
+@typing.type_check_only
+class ExecuteOntapPatchResponse(typing_extensions.TypedDict, total=False):
+    body: dict[str, typing.Any]
+
+@typing.type_check_only
+class ExecuteOntapPostRequest(typing_extensions.TypedDict, total=False):
+    body: dict[str, typing.Any]
+
+@typing.type_check_only
+class ExecuteOntapPostResponse(typing_extensions.TypedDict, total=False):
+    body: dict[str, typing.Any]
 
 @typing.type_check_only
 class ExportPolicy(typing_extensions.TypedDict, total=False):
@@ -283,6 +313,10 @@ class KmsConfig(typing_extensions.TypedDict, total=False):
         "MIGRATING",
     ]
     stateDetails: str
+
+@typing.type_check_only
+class LargeCapacityConfig(typing_extensions.TypedDict, total=False):
+    constituentCount: int
 
 @typing.type_check_only
 class ListActiveDirectoriesResponse(typing_extensions.TypedDict, total=False):
@@ -590,6 +624,7 @@ class StoragePool(typing_extensions.TypedDict, total=False):
     kmsConfig: str
     labels: dict[str, typing.Any]
     ldapEnabled: bool
+    mode: typing_extensions.Literal["MODE_UNSPECIFIED", "DEFAULT", "ONTAP"]
     name: str
     network: str
     psaRange: str
@@ -597,6 +632,9 @@ class StoragePool(typing_extensions.TypedDict, total=False):
     replicaZone: str
     satisfiesPzi: bool
     satisfiesPzs: bool
+    scaleTier: typing_extensions.Literal[
+        "SCALE_TIER_UNSPECIFIED", "SCALE_TIER_STANDARD", "SCALE_TIER_ENTERPRISE"
+    ]
     serviceLevel: typing_extensions.Literal[
         "SERVICE_LEVEL_UNSPECIFIED", "PREMIUM", "EXTREME", "STANDARD", "FLEX"
     ]
@@ -671,6 +709,7 @@ class Volume(typing_extensions.TypedDict, total=False):
     blockDevices: _list[BlockDevice]
     cacheParameters: CacheParameters
     capacityGib: str
+    cloneDetails: CloneDetails
     coldTierSizeGib: str
     createTime: str
     description: str
@@ -685,6 +724,7 @@ class Volume(typing_extensions.TypedDict, total=False):
     kmsConfig: str
     labels: dict[str, typing.Any]
     largeCapacity: bool
+    largeCapacityConfig: LargeCapacityConfig
     ldapEnabled: bool
     mountOptions: _list[MountOption]
     multipleEndpoints: bool

@@ -346,6 +346,7 @@ class DestroyCryptoKeyVersionRequest(typing_extensions.TypedDict, total=False): 
 
 @typing.type_check_only
 class Digest(typing_extensions.TypedDict, total=False):
+    externalMu: str
     sha256: str
     sha384: str
     sha512: str
@@ -608,6 +609,12 @@ class ListLocationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class ListRetiredResourcesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    retiredResources: _list[RetiredResource]
+    totalSize: str
+
+@typing.type_check_only
 class ListSingleTenantHsmInstanceProposalsResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -857,6 +864,13 @@ class RequiredActionQuorumReply(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class RestoreCryptoKeyVersionRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class RetiredResource(typing_extensions.TypedDict, total=False):
+    deleteTime: str
+    name: str
+    originalResource: str
+    resourceType: str
 
 @typing.type_check_only
 class ServiceResolver(typing_extensions.TypedDict, total=False):

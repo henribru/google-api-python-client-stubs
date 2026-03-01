@@ -41,6 +41,10 @@ class BackfillJob(typing_extensions.TypedDict, total=False):
 class BackfillNoneStrategy(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class BadRequest(typing_extensions.TypedDict, total=False):
+    fieldViolations: _list[FieldViolation]
+
+@typing.type_check_only
 class BasicEncryption(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -125,6 +129,11 @@ class DatasetTemplate(typing_extensions.TypedDict, total=False):
     location: str
 
 @typing.type_check_only
+class DebugInfo(typing_extensions.TypedDict, total=False):
+    detail: str
+    stackEntries: _list[str]
+
+@typing.type_check_only
 class DestinationConfig(typing_extensions.TypedDict, total=False):
     bigqueryDestinationConfig: BigQueryDestinationConfig
     destinationConnectionProfile: str
@@ -177,6 +186,12 @@ class Error(typing_extensions.TypedDict, total=False):
     reason: str
 
 @typing.type_check_only
+class ErrorInfo(typing_extensions.TypedDict, total=False):
+    domain: str
+    metadata: dict[str, typing.Any]
+    reason: str
+
+@typing.type_check_only
 class EventFilter(typing_extensions.TypedDict, total=False):
     sqlWhereClause: str
 
@@ -184,6 +199,13 @@ class EventFilter(typing_extensions.TypedDict, total=False):
 class FetchStaticIpsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     staticIps: _list[str]
+
+@typing.type_check_only
+class FieldViolation(typing_extensions.TypedDict, total=False):
+    description: str
+    field: str
+    localizedMessage: LocalizedMessage
+    reason: str
 
 @typing.type_check_only
 class ForwardSshTunnelConnectivity(typing_extensions.TypedDict, total=False):
@@ -208,6 +230,10 @@ class GcsProfile(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Gtid(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class Help(typing_extensions.TypedDict, total=False):
+    links: _list[Link]
 
 @typing.type_check_only
 class HostAddress(typing_extensions.TypedDict, total=False):
@@ -239,6 +265,11 @@ class JsonFileFormat(typing_extensions.TypedDict, total=False):
     schemaFileFormat: typing_extensions.Literal[
         "SCHEMA_FILE_FORMAT_UNSPECIFIED", "NO_SCHEMA_FILE", "AVRO_SCHEMA_FILE"
     ]
+
+@typing.type_check_only
+class Link(typing_extensions.TypedDict, total=False):
+    description: str
+    url: str
 
 @typing.type_check_only
 class ListConnectionProfilesResponse(typing_extensions.TypedDict, total=False):
@@ -279,6 +310,11 @@ class ListStreamsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     streams: _list[Stream]
     unreachable: _list[str]
+
+@typing.type_check_only
+class LocalizedMessage(typing_extensions.TypedDict, total=False):
+    locale: str
+    message: str
 
 @typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):
@@ -595,6 +631,16 @@ class PostgresqlTable(typing_extensions.TypedDict, total=False):
     table: str
 
 @typing.type_check_only
+class PreconditionFailure(typing_extensions.TypedDict, total=False):
+    violations: _list[PreconditionFailureViolation]
+
+@typing.type_check_only
+class PreconditionFailureViolation(typing_extensions.TypedDict, total=False):
+    description: str
+    subject: str
+    type: str
+
+@typing.type_check_only
 class PrivateConnection(typing_extensions.TypedDict, total=False):
     createTime: str
     displayName: str
@@ -622,6 +668,37 @@ class PrivateConnectivity(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class PscInterfaceConfig(typing_extensions.TypedDict, total=False):
     networkAttachment: str
+
+@typing.type_check_only
+class QuotaFailure(typing_extensions.TypedDict, total=False):
+    violations: _list[QuotaFailureViolation]
+
+@typing.type_check_only
+class QuotaFailureViolation(typing_extensions.TypedDict, total=False):
+    apiService: str
+    description: str
+    futureQuotaValue: str
+    quotaDimensions: dict[str, typing.Any]
+    quotaId: str
+    quotaMetric: str
+    quotaValue: str
+    subject: str
+
+@typing.type_check_only
+class RequestInfo(typing_extensions.TypedDict, total=False):
+    requestId: str
+    servingData: str
+
+@typing.type_check_only
+class ResourceInfo(typing_extensions.TypedDict, total=False):
+    description: str
+    owner: str
+    resourceName: str
+    resourceType: str
+
+@typing.type_check_only
+class RetryInfo(typing_extensions.TypedDict, total=False):
+    retryDelay: str
 
 @typing.type_check_only
 class Route(typing_extensions.TypedDict, total=False):

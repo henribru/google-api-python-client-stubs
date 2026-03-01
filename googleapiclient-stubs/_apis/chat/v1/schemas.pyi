@@ -431,6 +431,7 @@ class GoogleAppsCardV1Condition(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleAppsCardV1DataSourceConfig(typing_extensions.TypedDict, total=False):
+    minCharactersTrigger: int
     platformDataSource: GoogleAppsCardV1PlatformDataSource
     remoteDataSource: GoogleAppsCardV1Action
 

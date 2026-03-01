@@ -302,6 +302,7 @@ class GoogleMapsPlacesV1Place(typing_extensions.TypedDict, total=False):
     goodForGroups: bool
     goodForWatchingSports: bool
     googleMapsLinks: GoogleMapsPlacesV1PlaceGoogleMapsLinks
+    googleMapsTypeLabel: GoogleTypeLocalizedText
     googleMapsUri: str
     iconBackgroundColor: str
     iconMaskBaseUri: str

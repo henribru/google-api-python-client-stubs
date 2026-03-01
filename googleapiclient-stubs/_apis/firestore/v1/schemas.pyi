@@ -623,8 +623,9 @@ class GoogleFirestoreAdminV1ListUserCredsResponse(
     userCreds: _list[GoogleFirestoreAdminV1UserCreds]
 
 @typing.type_check_only
-class GoogleFirestoreAdminV1LocationMetadata(typing_extensions.TypedDict, total=False):
-    availableStoragePlacements: _list[str]
+class GoogleFirestoreAdminV1LocationMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class GoogleFirestoreAdminV1PitrSnapshot(typing_extensions.TypedDict, total=False):

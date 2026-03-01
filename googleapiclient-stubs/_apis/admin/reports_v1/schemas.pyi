@@ -24,6 +24,13 @@ class Activity(typing_extensions.TypedDict, total=False):
     resourceDetails: _list[ResourceDetails]
 
 @typing.type_check_only
+class ActivityEventsStatus(typing_extensions.TypedDict, total=False):
+    errorCode: str
+    errorMessage: str
+    eventStatus: str
+    httpStatusCode: int
+
+@typing.type_check_only
 class ActivityNetworkInfo(typing_extensions.TypedDict, total=False):
     ipAsn: _list[int]
     regionCode: str

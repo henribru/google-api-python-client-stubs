@@ -18,6 +18,72 @@ class WorkloadManagerResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
+            class DeploymentsResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class ActuationsResource(googleapiclient.discovery.Resource):
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: Actuation = ...,
+                        requestId: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> OperationHttpRequest: ...
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> ActuationHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        filter: str = ...,
+                        orderBy: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> ListActuationsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListActuationsResponseHttpRequest,
+                        previous_response: ListActuationsResponse,
+                    ) -> ListActuationsResponseHttpRequest | None: ...
+
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: Deployment = ...,
+                    deploymentId: str = ...,
+                    requestId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, force: bool = ..., **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> DeploymentHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListDeploymentsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListDeploymentsResponseHttpRequest,
+                    previous_response: ListDeploymentsResponse,
+                ) -> ListDeploymentsResponseHttpRequest | None: ...
+                def actuations(self) -> ActuationsResource: ...
+
+            @typing.type_check_only
             class DiscoveredprofilesResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class HealthResource(googleapiclient.discovery.Resource):
@@ -243,6 +309,7 @@ class WorkloadManagerResource(googleapiclient.discovery.Resource):
                 previous_request: ListLocationsResponseHttpRequest,
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
+            def deployments(self) -> DeploymentsResource: ...
             def discoveredprofiles(self) -> DiscoveredprofilesResource: ...
             def evaluations(self) -> EvaluationsResource: ...
             def insights(self) -> InsightsResource: ...
@@ -264,6 +331,22 @@ class WorkloadManagerResource(googleapiclient.discovery.Resource):
         | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def projects(self) -> ProjectsResource: ...
+
+@typing.type_check_only
+class ActuationHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> Actuation: ...
+
+@typing.type_check_only
+class DeploymentHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> Deployment: ...
 
 @typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
@@ -288,6 +371,22 @@ class ExecutionHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Execution: ...
+
+@typing.type_check_only
+class ListActuationsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListActuationsResponse: ...
+
+@typing.type_check_only
+class ListDeploymentsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListDeploymentsResponse: ...
 
 @typing.type_check_only
 class ListDiscoveredProfilesResponseHttpRequest(googleapiclient.http.HttpRequest):

@@ -124,6 +124,15 @@ class DirectoryResource(googleapiclient.discovery.Resource):
                     body: BatchChangeChromeOsDeviceStatusRequest = ...,
                     **kwargs: typing.Any,
                 ) -> BatchChangeChromeOsDeviceStatusResponseHttpRequest: ...
+                def countChromeOsDevices(
+                    self,
+                    *,
+                    customerId: str,
+                    filter: str = ...,
+                    includeChildOrgunits: bool = ...,
+                    orgUnitPath: str = ...,
+                    **kwargs: typing.Any,
+                ) -> CountChromeOsDevicesResponseHttpRequest: ...
                 def issueCommand(
                     self,
                     *,
@@ -1034,6 +1043,14 @@ class ChromeOsDevicesHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ChromeOsDevices: ...
+
+@typing.type_check_only
+class CountChromeOsDevicesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> CountChromeOsDevicesResponse: ...
 
 @typing.type_check_only
 class CustomerHttpRequest(googleapiclient.http.HttpRequest):
