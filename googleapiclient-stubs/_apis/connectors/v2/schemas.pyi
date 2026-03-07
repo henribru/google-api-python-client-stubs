@@ -182,6 +182,14 @@ class Field(typing_extensions.TypedDict, total=False):
     reference: Reference
 
 @typing.type_check_only
+class GenerateCustomToolspecRequest(typing_extensions.TypedDict, total=False):
+    toolNames: _list[ToolName]
+
+@typing.type_check_only
+class GenerateCustomToolspecResponse(typing_extensions.TypedDict, total=False):
+    toolSpec: ToolSpec
+
+@typing.type_check_only
 class GetResourcePostRequest(typing_extensions.TypedDict, total=False):
     executionConfig: ExecutionConfig
     toolSpec: ToolSpec
@@ -342,6 +350,10 @@ class ListActionsResponse(typing_extensions.TypedDict, total=False):
     metadata: dict[str, typing.Any]
     nextPageToken: str
     unsupportedActionNames: _list[str]
+
+@typing.type_check_only
+class ListCustomToolNamesResponse(typing_extensions.TypedDict, total=False):
+    toolNames: _list[ToolName]
 
 @typing.type_check_only
 class ListEntitiesResponse(typing_extensions.TypedDict, total=False):
@@ -615,6 +627,14 @@ class ToolAnnotations(typing_extensions.TypedDict, total=False):
     openWorldHint: bool
     readOnlyHint: bool
     title: str
+
+@typing.type_check_only
+class ToolName(typing_extensions.TypedDict, total=False):
+    entityName: str
+    name: str
+    operation: typing_extensions.Literal[
+        "OPERATION_UNSPECIFIED", "LIST", "GET", "CREATE", "UPDATE", "DELETE"
+    ]
 
 @typing.type_check_only
 class ToolSpec(typing_extensions.TypedDict, total=False):

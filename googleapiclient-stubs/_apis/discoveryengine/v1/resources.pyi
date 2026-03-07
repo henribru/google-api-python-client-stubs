@@ -901,6 +901,23 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                         @typing.type_check_only
                         class AgentsResource(googleapiclient.discovery.Resource):
                             @typing.type_check_only
+                            class MessageResource(googleapiclient.discovery.Resource):
+                                def send(
+                                    self,
+                                    *,
+                                    tenant: str,
+                                    body: A2aV1SendMessageRequest = ...,
+                                    **kwargs: typing.Any,
+                                ) -> A2aV1SendMessageResponseHttpRequest: ...
+                                def stream(
+                                    self,
+                                    *,
+                                    tenant: str,
+                                    body: A2aV1SendMessageRequest = ...,
+                                    **kwargs: typing.Any,
+                                ) -> A2aV1StreamResponseHttpRequest: ...
+
+                            @typing.type_check_only
                             class OperationsResource(
                                 googleapiclient.discovery.Resource
                             ):
@@ -908,7 +925,86 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                                     self, *, name: str, **kwargs: typing.Any
                                 ) -> GoogleLongrunningOperationHttpRequest: ...
 
+                            @typing.type_check_only
+                            class TasksResource(googleapiclient.discovery.Resource):
+                                @typing.type_check_only
+                                class PushNotificationConfigsResource(
+                                    googleapiclient.discovery.Resource
+                                ):
+                                    def create(
+                                        self,
+                                        *,
+                                        tenant: str,
+                                        parent: str,
+                                        body: A2aV1TaskPushNotificationConfig = ...,
+                                        configId: str = ...,
+                                        **kwargs: typing.Any,
+                                    ) -> A2aV1TaskPushNotificationConfigHttpRequest: ...
+                                    def delete(
+                                        self,
+                                        *,
+                                        tenant: str,
+                                        name: str,
+                                        **kwargs: typing.Any,
+                                    ) -> GoogleProtobufEmptyHttpRequest: ...
+                                    def get(
+                                        self,
+                                        *,
+                                        tenant: str,
+                                        name: str,
+                                        **kwargs: typing.Any,
+                                    ) -> A2aV1TaskPushNotificationConfigHttpRequest: ...
+                                    def list(
+                                        self,
+                                        *,
+                                        tenant: str,
+                                        parent: str,
+                                        pageSize: int = ...,
+                                        pageToken: str = ...,
+                                        **kwargs: typing.Any,
+                                    ) -> A2aV1ListTaskPushNotificationConfigResponseHttpRequest: ...
+                                    def list_next(
+                                        self,
+                                        previous_request: A2aV1ListTaskPushNotificationConfigResponseHttpRequest,
+                                        previous_response: A2aV1ListTaskPushNotificationConfigResponse,
+                                    ) -> (
+                                        A2aV1ListTaskPushNotificationConfigResponseHttpRequest
+                                        | None
+                                    ): ...
+
+                                def cancel(
+                                    self,
+                                    *,
+                                    tenant: str,
+                                    name: str,
+                                    body: A2aV1CancelTaskRequest = ...,
+                                    **kwargs: typing.Any,
+                                ) -> A2aV1TaskHttpRequest: ...
+                                def get(
+                                    self,
+                                    *,
+                                    tenant: str,
+                                    name: str,
+                                    historyLength: int = ...,
+                                    **kwargs: typing.Any,
+                                ) -> A2aV1TaskHttpRequest: ...
+                                def subscribe(
+                                    self,
+                                    *,
+                                    tenant: str,
+                                    name: str,
+                                    **kwargs: typing.Any,
+                                ) -> A2aV1StreamResponseHttpRequest: ...
+                                def pushNotificationConfigs(
+                                    self,
+                                ) -> PushNotificationConfigsResource: ...
+
+                            def getCard(
+                                self, *, tenant: str, **kwargs: typing.Any
+                            ) -> A2aV1AgentCardHttpRequest: ...
+                            def message(self) -> MessageResource: ...
                             def operations(self) -> OperationsResource: ...
+                            def tasks(self) -> TasksResource: ...
 
                         def create(
                             self,
@@ -1276,6 +1372,13 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                     def get(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> GoogleCloudDiscoveryengineV1EngineHttpRequest: ...
+                    def getIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        options_requestedPolicyVersion: int = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleIamV1PolicyHttpRequest: ...
                     def list(
                         self,
                         *,
@@ -1301,6 +1404,13 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                         updateMask: str = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudDiscoveryengineV1EngineHttpRequest: ...
+                    def setIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        body: GoogleIamV1SetIamPolicyRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleIamV1PolicyHttpRequest: ...
                     def assistants(self) -> AssistantsResource: ...
                     def completionConfig(self) -> CompletionConfigResource: ...
                     def controls(self) -> ControlsResource: ...
@@ -2404,6 +2514,56 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
     def projects(self) -> ProjectsResource: ...
 
 @typing.type_check_only
+class A2aV1AgentCardHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> A2aV1AgentCard: ...
+
+@typing.type_check_only
+class A2aV1ListTaskPushNotificationConfigResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> A2aV1ListTaskPushNotificationConfigResponse: ...
+
+@typing.type_check_only
+class A2aV1SendMessageResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> A2aV1SendMessageResponse: ...
+
+@typing.type_check_only
+class A2aV1StreamResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> A2aV1StreamResponse: ...
+
+@typing.type_check_only
+class A2aV1TaskHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> A2aV1Task: ...
+
+@typing.type_check_only
+class A2aV1TaskPushNotificationConfigHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> A2aV1TaskPushNotificationConfig: ...
+
+@typing.type_check_only
 class GoogleApiHttpBodyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -2878,6 +3038,14 @@ class GoogleCloudDiscoveryengineV1WidgetConfigHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudDiscoveryengineV1WidgetConfig: ...
+
+@typing.type_check_only
+class GoogleIamV1PolicyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleIamV1Policy: ...
 
 @typing.type_check_only
 class GoogleLongrunningListOperationsResponseHttpRequest(

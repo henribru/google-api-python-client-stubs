@@ -698,6 +698,7 @@ class InstanceSpec(typing_extensions.TypedDict, total=False):
     containers: _list[Container]
     nodeSelector: dict[str, typing.Any]
     serviceAccountName: str
+    timeout: str
     volumes: _list[Volume]
 
 @typing.type_check_only

@@ -47,7 +47,9 @@ class GoogleDevtoolsArtifactregistryV1beta2File(
 
 @typing.type_check_only
 class Hash(typing_extensions.TypedDict, total=False):
-    type: typing_extensions.Literal["HASH_TYPE_UNSPECIFIED", "SHA256", "MD5"]
+    type: typing_extensions.Literal[
+        "HASH_TYPE_UNSPECIFIED", "SHA256", "MD5", "DIRSUM_SHA256"
+    ]
     value: str
 
 @typing.type_check_only

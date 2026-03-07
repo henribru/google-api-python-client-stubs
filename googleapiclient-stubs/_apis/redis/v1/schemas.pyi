@@ -158,8 +158,16 @@ class Cluster(typing_extensions.TypedDict, total=False):
     pscServiceAttachments: _list[PscServiceAttachment]
     redisConfigs: dict[str, typing.Any]
     replicaCount: int
+    rotateServerCertificate: bool
     satisfiesPzi: bool
     satisfiesPzs: bool
+    serverCaMode: typing_extensions.Literal[
+        "SERVER_CA_MODE_UNSPECIFIED",
+        "SERVER_CA_MODE_GOOGLE_MANAGED_PER_INSTANCE_CA",
+        "SERVER_CA_MODE_GOOGLE_MANAGED_SHARED_CA",
+        "SERVER_CA_MODE_CUSTOMER_MANAGED_CAS_CA",
+    ]
+    serverCaPool: str
     shardCount: int
     simulateMaintenanceEvent: bool
     sizeGb: int
@@ -1097,6 +1105,14 @@ class ReconciliationOperationMetadata(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class RegionalCertChain(typing_extensions.TypedDict, total=False):
+    certificates: _list[str]
+
+@typing.type_check_only
+class RegionalManagedCertificateAuthority(typing_extensions.TypedDict, total=False):
+    caCerts: _list[RegionalCertChain]
+
+@typing.type_check_only
 class RemoteCluster(typing_extensions.TypedDict, total=False):
     cluster: str
     uid: str
@@ -1131,6 +1147,7 @@ class ResourceMaintenanceDenySchedule(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ResourceMaintenanceInfo(typing_extensions.TypedDict, total=False):
+    currentVersionReleaseDate: Date
     denyMaintenanceSchedules: _list[ResourceMaintenanceDenySchedule]
     isInstanceStopped: bool
     maintenanceSchedule: ResourceMaintenanceSchedule
@@ -1145,7 +1162,6 @@ class ResourceMaintenanceInfo(typing_extensions.TypedDict, total=False):
     ]
     maintenanceVersion: str
     upcomingMaintenance: UpcomingMaintenance
-    versionUpdateTime: str
 
 @typing.type_check_only
 class ResourceMaintenanceSchedule(typing_extensions.TypedDict, total=False):
@@ -1177,6 +1193,11 @@ class RetentionSettings(typing_extensions.TypedDict, total=False):
     ]
     timeBasedRetention: str
     timestampBasedRetentionTime: str
+
+@typing.type_check_only
+class SharedRegionalCertificateAuthority(typing_extensions.TypedDict, total=False):
+    managedServerCa: RegionalManagedCertificateAuthority
+    name: str
 
 @typing.type_check_only
 class StateInfo(typing_extensions.TypedDict, total=False):

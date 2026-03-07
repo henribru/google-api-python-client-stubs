@@ -96,6 +96,7 @@ class Job(typing_extensions.TypedDict, total=False):
     description: str
     dryRun: bool
     errorSummaries: _list[ErrorSummary]
+    isMultiBucketJob: bool
     loggingConfig: LoggingConfig
     name: str
     putMetadata: PutMetadata
@@ -103,7 +104,7 @@ class Job(typing_extensions.TypedDict, total=False):
     rewriteObject: RewriteObject
     scheduleTime: str
     state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "RUNNING", "SUCCEEDED", "CANCELED", "FAILED"
+        "STATE_UNSPECIFIED", "RUNNING", "SUCCEEDED", "CANCELED", "FAILED", "QUEUED"
     ]
 
 @typing.type_check_only

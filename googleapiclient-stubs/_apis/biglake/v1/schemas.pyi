@@ -110,3 +110,11 @@ class Table(typing_extensions.TypedDict, total=False):
     name: str
     type: typing_extensions.Literal["TYPE_UNSPECIFIED", "HIVE"]
     updateTime: str
+
+@typing.type_check_only
+class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
+    permissions: _list[str]
+
+@typing.type_check_only
+class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
+    permissions: _list[str]

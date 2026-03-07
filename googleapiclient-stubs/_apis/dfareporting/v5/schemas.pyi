@@ -645,6 +645,19 @@ class Country(typing_extensions.TypedDict, total=False):
     kind: str
     name: str
     sslEnabled: bool
+    tvDataProviders: _list[
+        typing_extensions.Literal[
+            "INVALID_TV_DATA_PROVIDER",
+            "IBOPE_AR",
+            "IBOPE_BR",
+            "IBOPE_CL",
+            "IBOPE_CO",
+            "TNS_VN",
+            "COMSCORE_NATIONAL_US",
+            "COMSCORE_CA",
+            "SAMBA_AU",
+        ]
+    ]
 
 @typing.type_check_only
 class Creative(typing_extensions.TypedDict, total=False):

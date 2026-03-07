@@ -329,6 +329,7 @@ class GoogleCloudRunV2Instance(typing_extensions.TypedDict, total=False):
     satisfiesPzs: bool
     serviceAccount: str
     terminalCondition: GoogleCloudRunV2Condition
+    timeout: str
     uid: str
     updateTime: str
     urls: _list[str]
@@ -532,6 +533,8 @@ class GoogleCloudRunV2Revision(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleCloudRunV2RevisionScaling(typing_extensions.TypedDict, total=False):
+    concurrencyUtilization: float
+    cpuUtilization: float
     maxInstanceCount: int
     minInstanceCount: int
 

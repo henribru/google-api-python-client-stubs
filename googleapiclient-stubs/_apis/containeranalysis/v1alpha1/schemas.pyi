@@ -45,6 +45,7 @@ class AttestationAuthorityHint(typing_extensions.TypedDict, total=False):
 class BaseImage(typing_extensions.TypedDict, total=False):
     layerCount: int
     name: str
+    registry: str
     repository: str
 
 @typing.type_check_only

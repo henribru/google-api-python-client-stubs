@@ -707,6 +707,16 @@ class ComputeResource(googleapiclient.discovery.Resource):
             resource: str = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
+        def convert(
+            self,
+            *,
+            project: str,
+            zone: str,
+            disk: str,
+            body: DisksConvertRequest = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
         def createSnapshot(
             self,
             *,
@@ -2277,6 +2287,16 @@ class ComputeResource(googleapiclient.discovery.Resource):
             zone: str,
             instanceGroupManager: str,
             body: InstanceGroupManagersApplyUpdatesRequest = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
+        def configureAcceleratorTopologies(
+            self,
+            *,
+            project: str,
+            zone: str,
+            instanceGroupManager: str,
+            body: InstanceGroupManagersConfigureAcceleratorTopologiesRequest = ...,
+            requestId: str = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def createInstances(
@@ -6199,7 +6219,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             region: str,
             compositeHealthCheck: str,
             **kwargs: typing.Any,
-        ) -> CompositeHealthChecksGetHealthResponseHttpRequest: ...
+        ) -> CompositeHealthCheckHealthHttpRequest: ...
         def insert(
             self,
             *,
@@ -6742,6 +6762,9 @@ class ComputeResource(googleapiclient.discovery.Resource):
         def get(
             self, *, project: str, region: str, healthSource: str, **kwargs: typing.Any
         ) -> HealthSourceHttpRequest: ...
+        def getHealth(
+            self, *, project: str, region: str, healthSource: str, **kwargs: typing.Any
+        ) -> HealthSourceHealthHttpRequest: ...
         def insert(
             self,
             *,
@@ -8833,6 +8856,17 @@ class ComputeResource(googleapiclient.discovery.Resource):
             reservationSlot: str,
             **kwargs: typing.Any,
         ) -> ReservationSlotsGetResponseHttpRequest: ...
+        def getVersion(
+            self,
+            *,
+            project: str,
+            zone: str,
+            parentName: str,
+            reservationSlot: str,
+            body: ReservationSlotsGetVersionRequest = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
         def list(
             self,
             *,
@@ -8851,6 +8885,17 @@ class ComputeResource(googleapiclient.discovery.Resource):
             previous_request: ReservationSlotsListResponseHttpRequest,
             previous_response: ReservationSlotsListResponse,
         ) -> ReservationSlotsListResponseHttpRequest | None: ...
+        def update(
+            self,
+            *,
+            project: str,
+            zone: str,
+            parentName: str,
+            reservationSlot: str,
+            body: ReservationSlot = ...,
+            updateMask: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
 
     @typing.type_check_only
     class ReservationSubBlocksResource(googleapiclient.discovery.Resource):
@@ -8868,6 +8913,17 @@ class ComputeResource(googleapiclient.discovery.Resource):
             ] = ...,
             **kwargs: typing.Any,
         ) -> ReservationSubBlocksGetResponseHttpRequest: ...
+        def getVersion(
+            self,
+            *,
+            project: str,
+            zone: str,
+            parentName: str,
+            reservationSubBlock: str,
+            body: ReservationSubBlocksGetVersionRequest = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
         def list(
             self,
             *,
@@ -9205,6 +9261,24 @@ class ComputeResource(googleapiclient.discovery.Resource):
             previous_request: RolloutsListResponseHttpRequest,
             previous_response: RolloutsListResponse,
         ) -> RolloutsListResponseHttpRequest | None: ...
+        def pause(
+            self,
+            *,
+            project: str,
+            rollout: str,
+            etag: str = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
+        def resume(
+            self,
+            *,
+            project: str,
+            rollout: str,
+            etag: str = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
 
     @typing.type_check_only
     class RoutersResource(googleapiclient.discovery.Resource):
@@ -12058,22 +12132,20 @@ class CompositeHealthCheckAggregatedListHttpRequest(googleapiclient.http.HttpReq
     ) -> CompositeHealthCheckAggregatedList: ...
 
 @typing.type_check_only
+class CompositeHealthCheckHealthHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> CompositeHealthCheckHealth: ...
+
+@typing.type_check_only
 class CompositeHealthCheckListHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> CompositeHealthCheckList: ...
-
-@typing.type_check_only
-class CompositeHealthChecksGetHealthResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> CompositeHealthChecksGetHealthResponse: ...
 
 @typing.type_check_only
 class CrossSiteNetworkHttpRequest(googleapiclient.http.HttpRequest):
@@ -12448,6 +12520,14 @@ class HealthSourceAggregatedListHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> HealthSourceAggregatedList: ...
+
+@typing.type_check_only
+class HealthSourceHealthHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> HealthSourceHealth: ...
 
 @typing.type_check_only
 class HealthSourceListHttpRequest(googleapiclient.http.HttpRequest):

@@ -242,6 +242,16 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                     body: ExecuteSqlQueryRequest = ...,
                     **kwargs: typing.Any,
                 ) -> ExecuteSqlQueryResponseHttpRequest: ...
+                def generateConnectionToolspecOverride(
+                    self,
+                    *,
+                    name: str,
+                    body: GenerateCustomToolspecRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> GenerateCustomToolspecResponseHttpRequest: ...
+                def listCustomToolNames(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> ListCustomToolNamesResponseHttpRequest: ...
                 def refreshAccessToken(
                     self,
                     *,
@@ -353,6 +363,14 @@ class ExecuteToolResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ExecuteToolResponse: ...
 
 @typing.type_check_only
+class GenerateCustomToolspecResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GenerateCustomToolspecResponse: ...
+
+@typing.type_check_only
 class GetResourceResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -367,6 +385,14 @@ class ListActionsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListActionsResponse: ...
+
+@typing.type_check_only
+class ListCustomToolNamesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListCustomToolNamesResponse: ...
 
 @typing.type_check_only
 class ListEntitiesResponseHttpRequest(googleapiclient.http.HttpRequest):

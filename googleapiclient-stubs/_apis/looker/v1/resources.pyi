@@ -112,13 +112,6 @@ class LookerResource(googleapiclient.discovery.Resource):
                     body: RestoreInstanceRequest = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
-                def undelete(
-                    self,
-                    *,
-                    name: str,
-                    body: UndeleteInstanceRequest = ...,
-                    **kwargs: typing.Any,
-                ) -> OperationHttpRequest: ...
                 def backups(self) -> BackupsResource: ...
 
             @typing.type_check_only

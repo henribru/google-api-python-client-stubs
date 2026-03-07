@@ -836,8 +836,10 @@ class SecurityProfile(typing_extensions.TypedDict, total=False):
         "THREAT_PREVENTION",
         "CUSTOM_MIRRORING",
         "CUSTOM_INTERCEPT",
+        "URL_FILTERING",
     ]
     updateTime: str
+    urlFilteringProfile: UrlFilteringProfile
 
 @typing.type_check_only
 class SecurityProfileGroup(typing_extensions.TypedDict, total=False):
@@ -851,6 +853,7 @@ class SecurityProfileGroup(typing_extensions.TypedDict, total=False):
     name: str
     threatPreventionProfile: str
     updateTime: str
+    urlFilteringProfile: str
 
 @typing.type_check_only
 class ServerTlsPolicy(typing_extensions.TypedDict, total=False):
@@ -924,6 +927,18 @@ class TlsInspectionPolicy(typing_extensions.TypedDict, total=False):
     ]
     trustConfig: str
     updateTime: str
+
+@typing.type_check_only
+class UrlFilter(typing_extensions.TypedDict, total=False):
+    filteringAction: typing_extensions.Literal[
+        "URL_FILTERING_ACTION_UNSPECIFIED", "ALLOW", "DENY"
+    ]
+    priority: int
+    urls: _list[str]
+
+@typing.type_check_only
+class UrlFilteringProfile(typing_extensions.TypedDict, total=False):
+    urlFilters: _list[UrlFilter]
 
 @typing.type_check_only
 class UrlList(typing_extensions.TypedDict, total=False):

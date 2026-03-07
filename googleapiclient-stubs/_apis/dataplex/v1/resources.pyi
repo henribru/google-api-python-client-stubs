@@ -1866,6 +1866,30 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                     previous_response: GoogleLongrunningListOperationsResponse,
                 ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
 
+            @typing.type_check_only
+            class PolicyIntentsResource(googleapiclient.discovery.Resource):
+                def getIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    options_requestedPolicyVersion: int = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleIamV1PolicyHttpRequest: ...
+                def setIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    body: GoogleIamV1SetIamPolicyRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleIamV1PolicyHttpRequest: ...
+                def testIamPermissions(
+                    self,
+                    *,
+                    resource: str,
+                    body: GoogleIamV1TestIamPermissionsRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
+
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> GoogleCloudLocationLocationHttpRequest: ...
@@ -1896,6 +1920,24 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                 ] = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudDataplexV1EntryHttpRequest: ...
+            def lookupEntryLinks(
+                self,
+                *,
+                name: str,
+                entry: str = ...,
+                entryLinkTypes: str | _list[str] = ...,
+                entryMode: typing_extensions.Literal[
+                    "ENTRY_MODE_UNSPECIFIED", "SOURCE", "TARGET"
+                ] = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleCloudDataplexV1LookupEntryLinksResponseHttpRequest: ...
+            def lookupEntryLinks_next(
+                self,
+                previous_request: GoogleCloudDataplexV1LookupEntryLinksResponseHttpRequest,
+                previous_response: GoogleCloudDataplexV1LookupEntryLinksResponse,
+            ) -> GoogleCloudDataplexV1LookupEntryLinksResponseHttpRequest | None: ...
             def searchEntries(
                 self,
                 *,
@@ -1928,6 +1970,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
             def metadataFeeds(self) -> MetadataFeedsResource: ...
             def metadataJobs(self) -> MetadataJobsResource: ...
             def operations(self) -> OperationsResource: ...
+            def policyIntents(self) -> PolicyIntentsResource: ...
 
         def locations(self) -> LocationsResource: ...
 
@@ -2425,6 +2468,16 @@ class GoogleCloudDataplexV1ListZonesResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudDataplexV1ListZonesResponse: ...
+
+@typing.type_check_only
+class GoogleCloudDataplexV1LookupEntryLinksResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudDataplexV1LookupEntryLinksResponse: ...
 
 @typing.type_check_only
 class GoogleCloudDataplexV1MetadataFeedHttpRequest(googleapiclient.http.HttpRequest):

@@ -257,6 +257,11 @@ class ListServicePerimetersResponse(typing_extensions.TypedDict, total=False):
     servicePerimeters: _list[ServicePerimeter]
 
 @typing.type_check_only
+class ListSupportedPermissionsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    supportedPermissions: _list[str]
+
+@typing.type_check_only
 class ListSupportedServicesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     supportedServices: _list[SupportedService]

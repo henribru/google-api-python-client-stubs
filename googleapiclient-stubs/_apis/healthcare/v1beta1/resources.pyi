@@ -886,6 +886,13 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                         x_type: str = ...,
                         **kwargs: typing.Any,
                     ) -> HttpBodyHttpRequest: ...
+                    def bulkDelete(
+                        self,
+                        *,
+                        name: str,
+                        body: BulkDeleteResourcesRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> OperationHttpRequest: ...
                     def configureSearch(
                         self,
                         *,

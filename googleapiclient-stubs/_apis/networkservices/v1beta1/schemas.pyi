@@ -696,6 +696,7 @@ class TlsRoute(typing_extensions.TypedDict, total=False):
     name: str
     rules: _list[TlsRouteRouteRule]
     selfLink: str
+    targetProxies: _list[str]
     updateTime: str
 
 @typing.type_check_only

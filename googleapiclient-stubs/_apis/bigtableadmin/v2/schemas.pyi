@@ -391,6 +391,9 @@ class GoogleBigtableAdminV2TypeFloat32(typing_extensions.TypedDict, total=False)
 class GoogleBigtableAdminV2TypeFloat64(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class GoogleBigtableAdminV2TypeGeography(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class GoogleBigtableAdminV2TypeInt64(typing_extensions.TypedDict, total=False):
     encoding: GoogleBigtableAdminV2TypeInt64Encoding
 
@@ -772,6 +775,7 @@ class Type(typing_extensions.TypedDict, total=False):
     enumType: GoogleBigtableAdminV2TypeEnum
     float32Type: GoogleBigtableAdminV2TypeFloat32
     float64Type: GoogleBigtableAdminV2TypeFloat64
+    geographyType: GoogleBigtableAdminV2TypeGeography
     int64Type: GoogleBigtableAdminV2TypeInt64
     mapType: GoogleBigtableAdminV2TypeMap
     protoType: GoogleBigtableAdminV2TypeProto

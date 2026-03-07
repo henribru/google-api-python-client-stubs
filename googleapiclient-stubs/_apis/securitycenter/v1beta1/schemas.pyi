@@ -462,6 +462,21 @@ class Expr(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
+class ExternalExposure(typing_extensions.TypedDict, total=False):
+    backendService: str
+    exposedEndpoint: str
+    exposedService: str
+    forwardingRule: str
+    instanceGroup: str
+    loadBalancerFirewallPolicy: str
+    networkEndpointGroup: str
+    privateIpAddress: str
+    privatePort: str
+    publicIpAddress: str
+    publicPort: str
+    serviceFirewallPolicy: str
+
+@typing.type_check_only
 class File(typing_extensions.TypedDict, total=False):
     contents: str
     diskPath: DiskPath
@@ -510,6 +525,7 @@ class Finding(typing_extensions.TypedDict, total=False):
     disk: Disk
     eventTime: str
     exfiltration: Exfiltration
+    externalExposure: ExternalExposure
     externalSystems: dict[str, typing.Any]
     externalUri: str
     files: _list[File]
@@ -524,6 +540,7 @@ class Finding(typing_extensions.TypedDict, total=False):
         "TOXIC_COMBINATION",
         "SENSITIVE_DATA_RISK",
         "CHOKEPOINT",
+        "EXTERNAL_EXPOSURE",
     ]
     groupMemberships: _list[GroupMembership]
     iamBindings: _list[IamBinding]
@@ -1420,6 +1437,23 @@ class GoogleCloudSecuritycenterV2Exfiltration(typing_extensions.TypedDict, total
     totalExfiltratedBytes: str
 
 @typing.type_check_only
+class GoogleCloudSecuritycenterV2ExternalExposure(
+    typing_extensions.TypedDict, total=False
+):
+    backendService: str
+    exposedEndpoint: str
+    exposedService: str
+    forwardingRule: str
+    instanceGroup: str
+    loadBalancerFirewallPolicy: str
+    networkEndpointGroup: str
+    privateIpAddress: str
+    privatePort: str
+    publicIpAddress: str
+    publicPort: str
+    serviceFirewallPolicy: str
+
+@typing.type_check_only
 class GoogleCloudSecuritycenterV2ExternalSystem(
     typing_extensions.TypedDict, total=False
 ):
@@ -1489,6 +1523,7 @@ class GoogleCloudSecuritycenterV2Finding(typing_extensions.TypedDict, total=Fals
     disk: GoogleCloudSecuritycenterV2Disk
     eventTime: str
     exfiltration: GoogleCloudSecuritycenterV2Exfiltration
+    externalExposure: GoogleCloudSecuritycenterV2ExternalExposure
     externalSystems: dict[str, typing.Any]
     externalUri: str
     files: _list[GoogleCloudSecuritycenterV2File]
@@ -1503,6 +1538,7 @@ class GoogleCloudSecuritycenterV2Finding(typing_extensions.TypedDict, total=Fals
         "TOXIC_COMBINATION",
         "SENSITIVE_DATA_RISK",
         "CHOKEPOINT",
+        "EXTERNAL_EXPOSURE",
     ]
     groupMemberships: _list[GoogleCloudSecuritycenterV2GroupMembership]
     iamBindings: _list[GoogleCloudSecuritycenterV2IamBinding]

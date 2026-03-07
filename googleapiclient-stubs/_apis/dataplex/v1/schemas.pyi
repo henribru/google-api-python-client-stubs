@@ -716,6 +716,7 @@ class GoogleCloudDataplexV1DataQualityResultPostScanActionsResultBigQueryExportR
 @typing.type_check_only
 class GoogleCloudDataplexV1DataQualityRule(typing_extensions.TypedDict, total=False):
     column: str
+    debugQueries: _list[GoogleCloudDataplexV1DataQualityRuleDebugQuery]
     description: str
     dimension: str
     ignoreNull: bool
@@ -735,6 +736,13 @@ class GoogleCloudDataplexV1DataQualityRule(typing_extensions.TypedDict, total=Fa
     )
     threshold: float
     uniquenessExpectation: GoogleCloudDataplexV1DataQualityRuleUniquenessExpectation
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataQualityRuleDebugQuery(
+    typing_extensions.TypedDict, total=False
+):
+    description: str
+    sqlStatement: str
 
 @typing.type_check_only
 class GoogleCloudDataplexV1DataQualityRuleNonNullExpectation(
@@ -761,6 +769,9 @@ class GoogleCloudDataplexV1DataQualityRuleResult(
     typing_extensions.TypedDict, total=False
 ):
     assertionRowCount: str
+    debugQueriesResultSets: _list[
+        GoogleCloudDataplexV1DataQualityRuleResultDebugQueryResultSet
+    ]
     evaluatedCount: str
     failingRowsQuery: str
     nullCount: str
@@ -768,6 +779,20 @@ class GoogleCloudDataplexV1DataQualityRuleResult(
     passed: bool
     passedCount: str
     rule: GoogleCloudDataplexV1DataQualityRule
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataQualityRuleResultDebugQueryResult(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
+    type: str
+    value: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataQualityRuleResultDebugQueryResultSet(
+    typing_extensions.TypedDict, total=False
+):
+    results: _list[GoogleCloudDataplexV1DataQualityRuleResultDebugQueryResult]
 
 @typing.type_check_only
 class GoogleCloudDataplexV1DataQualityRuleRowConditionExpectation(
@@ -1721,6 +1746,13 @@ class GoogleCloudDataplexV1ListTasksResponse(typing_extensions.TypedDict, total=
 class GoogleCloudDataplexV1ListZonesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     zones: _list[GoogleCloudDataplexV1Zone]
+
+@typing.type_check_only
+class GoogleCloudDataplexV1LookupEntryLinksResponse(
+    typing_extensions.TypedDict, total=False
+):
+    entryLinks: _list[GoogleCloudDataplexV1EntryLink]
+    nextPageToken: str
 
 @typing.type_check_only
 class GoogleCloudDataplexV1MetadataFeed(typing_extensions.TypedDict, total=False):

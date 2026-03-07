@@ -203,6 +203,9 @@ class CloudKMSResource(googleapiclient.discovery.Resource):
                             body: DecapsulateRequest = ...,
                             **kwargs: typing.Any,
                         ) -> DecapsulateResponseHttpRequest: ...
+                        def delete(
+                            self, *, name: str, **kwargs: typing.Any
+                        ) -> OperationHttpRequest: ...
                         def destroy(
                             self,
                             *,
@@ -311,6 +314,9 @@ class CloudKMSResource(googleapiclient.discovery.Resource):
                         body: DecryptRequest = ...,
                         **kwargs: typing.Any,
                     ) -> DecryptResponseHttpRequest: ...
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
                     def encrypt(
                         self,
                         *,
@@ -484,6 +490,25 @@ class CloudKMSResource(googleapiclient.discovery.Resource):
                 ) -> OperationHttpRequest: ...
 
             @typing.type_check_only
+            class RetiredResourcesResource(googleapiclient.discovery.Resource):
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> RetiredResourceHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListRetiredResourcesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListRetiredResourcesResponseHttpRequest,
+                    previous_response: ListRetiredResourcesResponse,
+                ) -> ListRetiredResourcesResponseHttpRequest | None: ...
+
+            @typing.type_check_only
             class SingleTenantHsmInstancesResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class ProposalsResource(googleapiclient.discovery.Resource):
@@ -604,6 +629,7 @@ class CloudKMSResource(googleapiclient.discovery.Resource):
             def keyHandles(self) -> KeyHandlesResource: ...
             def keyRings(self) -> KeyRingsResource: ...
             def operations(self) -> OperationsResource: ...
+            def retiredResources(self) -> RetiredResourcesResource: ...
             def singleTenantHsmInstances(self) -> SingleTenantHsmInstancesResource: ...
 
         def getAutokeyConfig(
@@ -852,6 +878,14 @@ class ListLocationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListLocationsResponse: ...
 
 @typing.type_check_only
+class ListRetiredResourcesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListRetiredResourcesResponse: ...
+
+@typing.type_check_only
 class ListSingleTenantHsmInstanceProposalsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -932,6 +966,14 @@ class RawEncryptResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> RawEncryptResponse: ...
+
+@typing.type_check_only
+class RetiredResourceHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> RetiredResource: ...
 
 @typing.type_check_only
 class ShowEffectiveAutokeyConfigResponseHttpRequest(googleapiclient.http.HttpRequest):

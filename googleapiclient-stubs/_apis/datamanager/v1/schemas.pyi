@@ -25,7 +25,9 @@ class AudienceMember(typing_extensions.TypedDict, total=False):
     destinationReferences: _list[str]
     mobileData: MobileData
     pairData: PairData
+    ppidData: PpidData
     userData: UserData
+    userIdData: UserIdData
 
 @typing.type_check_only
 class AwsWrappedKeyInfo(typing_extensions.TypedDict, total=False):
@@ -33,6 +35,11 @@ class AwsWrappedKeyInfo(typing_extensions.TypedDict, total=False):
     kekUri: str
     keyType: typing_extensions.Literal["KEY_TYPE_UNSPECIFIED", "XCHACHA20_POLY1305"]
     roleArn: str
+
+@typing.type_check_only
+class Baseline(typing_extensions.TypedDict, total=False):
+    baselineLocation: Location
+    locationAutoDetectionEnabled: bool
 
 @typing.type_check_only
 class CartData(typing_extensions.TypedDict, total=False):
@@ -52,6 +59,17 @@ class Consent(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class ContactIdInfo(typing_extensions.TypedDict, total=False):
+    dataSourceType: typing_extensions.Literal[
+        "DATA_SOURCE_TYPE_UNSPECIFIED",
+        "DATA_SOURCE_TYPE_FIRST_PARTY",
+        "DATA_SOURCE_TYPE_THIRD_PARTY_CREDIT_BUREAU",
+        "DATA_SOURCE_TYPE_THIRD_PARTY_VOTER_FILE",
+        "DATA_SOURCE_TYPE_THIRD_PARTY_PARTNER_DATA",
+    ]
+    matchRatePercentage: int
+
+@typing.type_check_only
 class CustomVariable(typing_extensions.TypedDict, total=False):
     destinationReferences: _list[str]
     value: str
@@ -69,6 +87,9 @@ class Destination(typing_extensions.TypedDict, total=False):
 class DeviceInfo(typing_extensions.TypedDict, total=False):
     ipAddress: str
     userAgent: str
+
+@typing.type_check_only
+class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class EncryptionInfo(typing_extensions.TypedDict, total=False):
@@ -172,7 +193,9 @@ class IngestAudienceMembersResponse(typing_extensions.TypedDict, total=False):
 class IngestAudienceMembersStatus(typing_extensions.TypedDict, total=False):
     mobileDataIngestionStatus: IngestMobileDataStatus
     pairDataIngestionStatus: IngestPairDataStatus
+    ppidDataIngestionStatus: IngestPpidDataStatus
     userDataIngestionStatus: IngestUserDataStatus
+    userIdDataIngestionStatus: IngestUserIdDataStatus
 
 @typing.type_check_only
 class IngestEventsRequest(typing_extensions.TypedDict, total=False):
@@ -202,6 +225,11 @@ class IngestPairDataStatus(typing_extensions.TypedDict, total=False):
     recordCount: str
 
 @typing.type_check_only
+class IngestPpidDataStatus(typing_extensions.TypedDict, total=False):
+    ppidCount: str
+    recordCount: str
+
+@typing.type_check_only
 class IngestUserDataStatus(typing_extensions.TypedDict, total=False):
     recordCount: str
     uploadMatchRateRange: typing_extensions.Literal[
@@ -220,6 +248,30 @@ class IngestUserDataStatus(typing_extensions.TypedDict, total=False):
     userIdentifierCount: str
 
 @typing.type_check_only
+class IngestUserIdDataStatus(typing_extensions.TypedDict, total=False):
+    recordCount: str
+    userIdCount: str
+
+@typing.type_check_only
+class IngestedUserListInfo(typing_extensions.TypedDict, total=False):
+    contactIdInfo: ContactIdInfo
+    mobileIdInfo: MobileIdInfo
+    pairIdInfo: PairIdInfo
+    partnerAudienceInfo: PartnerAudienceInfo
+    pseudonymousIdInfo: PseudonymousIdInfo
+    uploadKeyTypes: _list[
+        typing_extensions.Literal[
+            "UPLOAD_KEY_TYPE_UNSPECIFIED",
+            "CONTACT_ID",
+            "MOBILE_ID",
+            "USER_ID",
+            "PAIR_ID",
+            "PSEUDONYMOUS_ID",
+        ]
+    ]
+    userIdInfo: UserIdInfo
+
+@typing.type_check_only
 class Item(typing_extensions.TypedDict, total=False):
     additionalItemParameters: _list[ItemParameter]
     itemId: str
@@ -233,12 +285,109 @@ class ItemParameter(typing_extensions.TypedDict, total=False):
     value: str
 
 @typing.type_check_only
+class ListUserListDirectLicensesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    userListDirectLicenses: _list[UserListDirectLicense]
+
+@typing.type_check_only
+class ListUserListGlobalLicenseCustomerInfosResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    userListGlobalLicenseCustomerInfos: _list[UserListGlobalLicenseCustomerInfo]
+
+@typing.type_check_only
+class ListUserListGlobalLicensesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    userListGlobalLicenses: _list[UserListGlobalLicense]
+
+@typing.type_check_only
+class ListUserListsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    userLists: _list[UserList]
+
+@typing.type_check_only
+class Location(typing_extensions.TypedDict, total=False):
+    regionCodes: _list[str]
+
+@typing.type_check_only
+class MarketingDataInsight(typing_extensions.TypedDict, total=False):
+    attributes: _list[MarketingDataInsightsAttribute]
+    dimension: typing_extensions.Literal[
+        "AUDIENCE_INSIGHTS_DIMENSION_UNSPECIFIED",
+        "AUDIENCE_INSIGHTS_DIMENSION_UNKNOWN",
+        "AFFINITY_USER_INTEREST",
+        "IN_MARKET_USER_INTEREST",
+        "AGE_RANGE",
+        "GENDER",
+    ]
+
+@typing.type_check_only
+class MarketingDataInsightsAttribute(typing_extensions.TypedDict, total=False):
+    ageRange: typing_extensions.Literal[
+        "AGE_RANGE_UNSPECIFIED",
+        "AGE_RANGE_UNKNOWN",
+        "AGE_RANGE_18_24",
+        "AGE_RANGE_25_34",
+        "AGE_RANGE_35_44",
+        "AGE_RANGE_45_54",
+        "AGE_RANGE_55_64",
+        "AGE_RANGE_65_UP",
+    ]
+    gender: typing_extensions.Literal[
+        "GENDER_UNSPECIFIED", "GENDER_UNKNOWN", "GENDER_MALE", "GENDER_FEMALE"
+    ]
+    lift: float
+    userInterestId: str
+
+@typing.type_check_only
 class MobileData(typing_extensions.TypedDict, total=False):
     mobileIds: _list[str]
 
 @typing.type_check_only
+class MobileIdInfo(typing_extensions.TypedDict, total=False):
+    appId: str
+    dataSourceType: typing_extensions.Literal[
+        "DATA_SOURCE_TYPE_UNSPECIFIED",
+        "DATA_SOURCE_TYPE_FIRST_PARTY",
+        "DATA_SOURCE_TYPE_THIRD_PARTY_CREDIT_BUREAU",
+        "DATA_SOURCE_TYPE_THIRD_PARTY_VOTER_FILE",
+        "DATA_SOURCE_TYPE_THIRD_PARTY_PARTNER_DATA",
+    ]
+    keySpace: typing_extensions.Literal["KEY_SPACE_UNSPECIFIED", "IOS", "ANDROID"]
+
+@typing.type_check_only
 class PairData(typing_extensions.TypedDict, total=False):
     pairIds: _list[str]
+
+@typing.type_check_only
+class PairIdInfo(typing_extensions.TypedDict, total=False):
+    advertiserIdentifierCount: str
+    cleanRoomIdentifier: str
+    matchRatePercentage: int
+    publisherId: str
+    publisherName: str
+
+@typing.type_check_only
+class PartnerAudienceInfo(typing_extensions.TypedDict, total=False):
+    commercePartner: str
+    partnerAudienceSource: typing_extensions.Literal[
+        "PARTNER_AUDIENCE_SOURCE_UNSPECIFIED",
+        "COMMERCE_AUDIENCE",
+        "LINEAR_TV_AUDIENCE",
+        "AGENCY_PROVIDER_AUDIENCE",
+    ]
+
+@typing.type_check_only
+class PartnerLink(typing_extensions.TypedDict, total=False):
+    name: str
+    owningAccount: ProductAccount
+    partnerAccount: ProductAccount
+    partnerLinkId: str
+
+@typing.type_check_only
+class PpidData(typing_extensions.TypedDict, total=False):
+    ppids: _list[str]
 
 @typing.type_check_only
 class ProductAccount(typing_extensions.TypedDict, total=False):
@@ -250,6 +399,7 @@ class ProductAccount(typing_extensions.TypedDict, total=False):
         "DISPLAY_VIDEO_ADVERTISER",
         "DATA_PARTNER",
         "GOOGLE_ANALYTICS_PROPERTY",
+        "GOOGLE_AD_MANAGER_AUDIENCE_LINK",
     ]
     product: typing_extensions.Literal[
         "PRODUCT_UNSPECIFIED",
@@ -257,6 +407,13 @@ class ProductAccount(typing_extensions.TypedDict, total=False):
         "DISPLAY_VIDEO_PARTNER",
         "DISPLAY_VIDEO_ADVERTISER",
         "DATA_PARTNER",
+    ]
+
+@typing.type_check_only
+class PseudonymousIdInfo(typing_extensions.TypedDict, total=False):
+    billableRecordCount: str
+    syncStatus: typing_extensions.Literal[
+        "SYNC_STATUS_UNSPECIFIED", "CREATED", "READY_FOR_USE", "FAILED"
     ]
 
 @typing.type_check_only
@@ -275,7 +432,9 @@ class RemoveAudienceMembersResponse(typing_extensions.TypedDict, total=False):
 class RemoveAudienceMembersStatus(typing_extensions.TypedDict, total=False):
     mobileDataRemovalStatus: RemoveMobileDataStatus
     pairDataRemovalStatus: RemovePairDataStatus
+    ppidDataRemovalStatus: RemovePpidDataStatus
     userDataRemovalStatus: RemoveUserDataStatus
+    userIdDataRemovalStatus: RemoveUserIdDataStatus
 
 @typing.type_check_only
 class RemoveMobileDataStatus(typing_extensions.TypedDict, total=False):
@@ -288,9 +447,19 @@ class RemovePairDataStatus(typing_extensions.TypedDict, total=False):
     recordCount: str
 
 @typing.type_check_only
+class RemovePpidDataStatus(typing_extensions.TypedDict, total=False):
+    ppidCount: str
+    recordCount: str
+
+@typing.type_check_only
 class RemoveUserDataStatus(typing_extensions.TypedDict, total=False):
     recordCount: str
     userIdentifierCount: str
+
+@typing.type_check_only
+class RemoveUserIdDataStatus(typing_extensions.TypedDict, total=False):
+    recordCount: str
+    userIdCount: str
 
 @typing.type_check_only
 class RequestStatusPerDestination(typing_extensions.TypedDict, total=False):
@@ -305,14 +474,38 @@ class RequestStatusPerDestination(typing_extensions.TypedDict, total=False):
     warningInfo: WarningInfo
 
 @typing.type_check_only
+class RetrieveInsightsRequest(typing_extensions.TypedDict, total=False):
+    baseline: Baseline
+    userListId: str
+
+@typing.type_check_only
+class RetrieveInsightsResponse(typing_extensions.TypedDict, total=False):
+    marketingDataInsights: _list[MarketingDataInsight]
+
+@typing.type_check_only
 class RetrieveRequestStatusResponse(typing_extensions.TypedDict, total=False):
     requestStatusPerDestination: _list[RequestStatusPerDestination]
+
+@typing.type_check_only
+class SearchPartnerLinksResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    partnerLinks: _list[PartnerLink]
+
+@typing.type_check_only
+class SizeInfo(typing_extensions.TypedDict, total=False):
+    displayNetworkMembersCount: str
+    searchNetworkMembersCount: str
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
+
+@typing.type_check_only
+class TargetNetworkInfo(typing_extensions.TypedDict, total=False):
+    eligibleForDisplay: bool
+    eligibleForSearch: bool
 
 @typing.type_check_only
 class TermsOfService(typing_extensions.TypedDict, total=False):
@@ -325,10 +518,151 @@ class UserData(typing_extensions.TypedDict, total=False):
     userIdentifiers: _list[UserIdentifier]
 
 @typing.type_check_only
+class UserIdData(typing_extensions.TypedDict, total=False):
+    userId: str
+
+@typing.type_check_only
+class UserIdInfo(typing_extensions.TypedDict, total=False):
+    dataSourceType: typing_extensions.Literal[
+        "DATA_SOURCE_TYPE_UNSPECIFIED",
+        "DATA_SOURCE_TYPE_FIRST_PARTY",
+        "DATA_SOURCE_TYPE_THIRD_PARTY_CREDIT_BUREAU",
+        "DATA_SOURCE_TYPE_THIRD_PARTY_VOTER_FILE",
+        "DATA_SOURCE_TYPE_THIRD_PARTY_PARTNER_DATA",
+    ]
+
+@typing.type_check_only
 class UserIdentifier(typing_extensions.TypedDict, total=False):
     address: AddressInfo
     emailAddress: str
     phoneNumber: str
+
+@typing.type_check_only
+class UserList(typing_extensions.TypedDict, total=False):
+    accessReason: typing_extensions.Literal[
+        "ACCESS_REASON_UNSPECIFIED",
+        "OWNED",
+        "SHARED",
+        "LICENSED",
+        "SUBSCRIBED",
+        "AFFILIATED",
+    ]
+    accountAccessStatus: typing_extensions.Literal[
+        "ACCESS_STATUS_UNSPECIFIED", "ENABLED", "DISABLED"
+    ]
+    closingReason: typing_extensions.Literal["CLOSING_REASON_UNSPECIFIED", "UNUSED"]
+    description: str
+    displayName: str
+    id: str
+    ingestedUserListInfo: IngestedUserListInfo
+    integrationCode: str
+    membershipDuration: str
+    membershipStatus: typing_extensions.Literal[
+        "MEMBERSHIP_STATUS_UNSPECIFIED", "OPEN", "CLOSED"
+    ]
+    name: str
+    readOnly: bool
+    sizeInfo: SizeInfo
+    targetNetworkInfo: TargetNetworkInfo
+
+@typing.type_check_only
+class UserListDirectLicense(typing_extensions.TypedDict, total=False):
+    clientAccountDisplayName: str
+    clientAccountId: str
+    clientAccountType: typing_extensions.Literal[
+        "USER_LIST_LICENSE_CLIENT_ACCOUNT_TYPE_UNKNOWN",
+        "USER_LIST_LICENSE_CLIENT_ACCOUNT_TYPE_GOOGLE_ADS",
+        "USER_LIST_LICENSE_CLIENT_ACCOUNT_TYPE_DISPLAY_VIDEO_PARTNER",
+        "USER_LIST_LICENSE_CLIENT_ACCOUNT_TYPE_DISPLAY_VIDEO_ADVERTISER",
+        "USER_LIST_LICENSE_CLIENT_ACCOUNT_TYPE_GOOGLE_AD_MANAGER_AUDIENCE_LINK",
+    ]
+    historicalPricings: _list[UserListLicensePricing]
+    metrics: UserListLicenseMetrics
+    name: str
+    pricing: UserListLicensePricing
+    status: typing_extensions.Literal[
+        "USER_LIST_LICENSE_STATUS_UNSPECIFIED",
+        "USER_LIST_LICENSE_STATUS_ENABLED",
+        "USER_LIST_LICENSE_STATUS_DISABLED",
+    ]
+    userListDisplayName: str
+    userListId: str
+
+@typing.type_check_only
+class UserListGlobalLicense(typing_extensions.TypedDict, total=False):
+    historicalPricings: _list[UserListLicensePricing]
+    licenseType: typing_extensions.Literal[
+        "USER_LIST_GLOBAL_LICENSE_TYPE_UNSPECIFIED",
+        "USER_LIST_GLOBAL_LICENSE_TYPE_RESELLER",
+        "USER_LIST_GLOBAL_LICENSE_TYPE_DATA_MART_SELL_SIDE",
+        "USER_LIST_GLOBAL_LICENSE_TYPE_DATA_MART_BUY_SIDE",
+    ]
+    metrics: UserListLicenseMetrics
+    name: str
+    pricing: UserListLicensePricing
+    status: typing_extensions.Literal[
+        "USER_LIST_LICENSE_STATUS_UNSPECIFIED",
+        "USER_LIST_LICENSE_STATUS_ENABLED",
+        "USER_LIST_LICENSE_STATUS_DISABLED",
+    ]
+    userListDisplayName: str
+    userListId: str
+
+@typing.type_check_only
+class UserListGlobalLicenseCustomerInfo(typing_extensions.TypedDict, total=False):
+    clientAccountDisplayName: str
+    clientAccountId: str
+    clientAccountType: typing_extensions.Literal[
+        "USER_LIST_LICENSE_CLIENT_ACCOUNT_TYPE_UNKNOWN",
+        "USER_LIST_LICENSE_CLIENT_ACCOUNT_TYPE_GOOGLE_ADS",
+        "USER_LIST_LICENSE_CLIENT_ACCOUNT_TYPE_DISPLAY_VIDEO_PARTNER",
+        "USER_LIST_LICENSE_CLIENT_ACCOUNT_TYPE_DISPLAY_VIDEO_ADVERTISER",
+        "USER_LIST_LICENSE_CLIENT_ACCOUNT_TYPE_GOOGLE_AD_MANAGER_AUDIENCE_LINK",
+    ]
+    historicalPricings: _list[UserListLicensePricing]
+    licenseType: typing_extensions.Literal[
+        "USER_LIST_GLOBAL_LICENSE_TYPE_UNSPECIFIED",
+        "USER_LIST_GLOBAL_LICENSE_TYPE_RESELLER",
+        "USER_LIST_GLOBAL_LICENSE_TYPE_DATA_MART_SELL_SIDE",
+        "USER_LIST_GLOBAL_LICENSE_TYPE_DATA_MART_BUY_SIDE",
+    ]
+    metrics: UserListLicenseMetrics
+    name: str
+    pricing: UserListLicensePricing
+    status: typing_extensions.Literal[
+        "USER_LIST_LICENSE_STATUS_UNSPECIFIED",
+        "USER_LIST_LICENSE_STATUS_ENABLED",
+        "USER_LIST_LICENSE_STATUS_DISABLED",
+    ]
+    userListDisplayName: str
+    userListId: str
+
+@typing.type_check_only
+class UserListLicenseMetrics(typing_extensions.TypedDict, total=False):
+    clickCount: str
+    endDate: str
+    impressionCount: str
+    revenueUsdMicros: str
+    startDate: str
+
+@typing.type_check_only
+class UserListLicensePricing(typing_extensions.TypedDict, total=False):
+    buyerApprovalState: typing_extensions.Literal[
+        "USER_LIST_PRICING_BUYER_APPROVAL_STATE_UNSPECIFIED",
+        "PENDING",
+        "APPROVED",
+        "REJECTED",
+    ]
+    costMicros: str
+    costType: typing_extensions.Literal[
+        "USER_LIST_PRICING_COST_TYPE_UNSPECIFIED", "CPC", "CPM", "MEDIA_SHARE"
+    ]
+    currencyCode: str
+    endTime: str
+    maxCostMicros: str
+    pricingActive: bool
+    pricingId: str
+    startTime: str
 
 @typing.type_check_only
 class UserProperties(typing_extensions.TypedDict, total=False):

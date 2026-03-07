@@ -668,6 +668,10 @@ class NetworkInfo(typing_extensions.TypedDict, total=False):
     uri: str
 
 @typing.type_check_only
+class NgfwPacketInspectionInfo(typing_extensions.TypedDict, total=False):
+    securityProfileGroupUri: str
+
+@typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
@@ -885,6 +889,7 @@ class Step(typing_extensions.TypedDict, total=False):
     loadBalancerBackendInfo: LoadBalancerBackendInfo
     nat: NatInfo
     network: NetworkInfo
+    ngfwPacketInspection: NgfwPacketInspectionInfo
     projectId: str
     proxyConnection: ProxyConnectionInfo
     redisCluster: RedisClusterInfo
@@ -925,6 +930,7 @@ class Step(typing_extensions.TypedDict, total=False):
         "ARRIVE_AT_VPC_CONNECTOR",
         "DIRECT_VPC_EGRESS_CONNECTION",
         "SERVERLESS_EXTERNAL_CONNECTION",
+        "NGFW_PACKET_INSPECTION",
         "NAT",
         "SKIP_GKE_POD_IP_MASQUERADING",
         "PROXY_CONNECTION",

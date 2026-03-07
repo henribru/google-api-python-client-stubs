@@ -121,6 +121,15 @@ class BlobStorageSettings(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class BulkDeleteResourcesRequest(typing_extensions.TypedDict, total=False):
+    gcsDestination: GoogleCloudHealthcareV1FhirGcsDestination
+    type: str
+    until: str
+    versionConfig: typing_extensions.Literal[
+        "VERSION_CONFIG_UNSPECIFIED", "ALL", "CURRENT_ONLY", "HISTORY_ONLY"
+    ]
+
+@typing.type_check_only
 class BulkExportGcsDestination(typing_extensions.TypedDict, total=False):
     uriPrefix: str
 

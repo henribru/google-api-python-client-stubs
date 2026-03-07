@@ -172,6 +172,12 @@ class CachePrePopulate(typing_extensions.TypedDict, total=False):
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class CloneDetails(typing_extensions.TypedDict, total=False):
+    sharedSpaceGib: str
+    sourceSnapshot: str
+    sourceVolume: str
+
+@typing.type_check_only
 class DailySchedule(typing_extensions.TypedDict, total=False):
     hour: float
     minute: float
@@ -671,6 +677,7 @@ class Volume(typing_extensions.TypedDict, total=False):
     blockDevices: _list[BlockDevice]
     cacheParameters: CacheParameters
     capacityGib: str
+    cloneDetails: CloneDetails
     coldTierSizeGib: str
     createTime: str
     description: str

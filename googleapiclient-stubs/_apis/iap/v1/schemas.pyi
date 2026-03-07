@@ -131,6 +131,9 @@ class OAuth2(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class OAuthSettings(typing_extensions.TypedDict, total=False):
+    clientId: str
+    clientSecret: str
+    clientSecretSha256: str
     loginHint: str
     programmaticClients: _list[str]
 

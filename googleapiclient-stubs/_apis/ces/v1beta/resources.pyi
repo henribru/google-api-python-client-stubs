@@ -129,6 +129,14 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                         source: typing_extensions.Literal[
                             "SOURCE_UNSPECIFIED", "LIVE", "SIMULATOR", "EVAL"
                         ] = ...,
+                        sources: typing_extensions.Literal[
+                            "SOURCE_UNSPECIFIED", "LIVE", "SIMULATOR", "EVAL"
+                        ]
+                        | _list[
+                            typing_extensions.Literal[
+                                "SOURCE_UNSPECIFIED", "LIVE", "SIMULATOR", "EVAL"
+                            ]
+                        ] = ...,
                         **kwargs: typing.Any,
                     ) -> ListConversationsResponseHttpRequest: ...
                     def list_next(

@@ -30,7 +30,13 @@ class ApplyTenantProjectConfigRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Aspect(typing_extensions.TypedDict, total=False):
     kind: str
+    rules: _list[AspectRule]
     spec: dict[str, typing.Any]
+
+@typing.type_check_only
+class AspectRule(typing_extensions.TypedDict, total=False):
+    config: dict[str, typing.Any]
+    selector: str
 
 @typing.type_check_only
 class AttachTenantProjectRequest(typing_extensions.TypedDict, total=False):

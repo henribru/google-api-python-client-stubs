@@ -3439,6 +3439,7 @@ class GoogleCloudDialogflowV2beta1ConversationProfile(
     timeZone: str
     ttsConfig: GoogleCloudDialogflowV2beta1SynthesizeSpeechConfig
     updateTime: str
+    useBidiStreaming: bool
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1ConversationTelephonyConnectionInfo(

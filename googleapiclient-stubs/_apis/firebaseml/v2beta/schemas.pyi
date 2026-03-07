@@ -268,6 +268,9 @@ class GoogleCloudAiplatformV1beta1FunctionResponse(
     name: str
     parts: _list[GoogleCloudAiplatformV1beta1FunctionResponsePart]
     response: dict[str, typing.Any]
+    scheduling: typing_extensions.Literal[
+        "SCHEDULING_UNSPECIFIED", "SILENT", "WHEN_IDLE", "INTERRUPT"
+    ]
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1FunctionResponseBlob(
