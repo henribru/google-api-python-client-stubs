@@ -176,13 +176,16 @@ class GoogleCloudSaasacceleratorManagementProvidersV1SloMetadata(
 @typing.type_check_only
 class Instance(typing_extensions.TypedDict, total=False):
     authorizedNetwork: str
+    availableMaintenanceVersions: _list[str]
     createTime: str
     discoveryEndpoint: str
     displayName: str
+    effectiveMaintenanceVersion: str
     instanceMessages: _list[InstanceMessage]
     labels: dict[str, typing.Any]
     maintenancePolicy: GoogleCloudMemcacheV1MaintenancePolicy
     maintenanceSchedule: MaintenanceSchedule
+    maintenanceVersion: str
     memcacheFullVersion: str
     memcacheNodes: _list[Node]
     memcacheVersion: typing_extensions.Literal[

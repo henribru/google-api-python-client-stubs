@@ -738,6 +738,7 @@ class InitializeParams(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class InitializeServiceRequest(typing_extensions.TypedDict, total=False):
+    backupPlanLocation: str
     cloudSqlInstanceInitializationConfig: CloudSqlInstanceInitializationConfig
     requestId: str
     resourceType: str

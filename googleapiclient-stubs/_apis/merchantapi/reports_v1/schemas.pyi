@@ -142,6 +142,7 @@ class IssueSeverityPerReportingContext(typing_extensions.TypedDict, total=False)
         "LOCAL_INVENTORY_ADS",
         "VEHICLE_INVENTORY_ADS",
         "FREE_LISTINGS",
+        "FREE_LISTINGS_UCP_CHECKOUT",
         "FREE_LOCAL_LISTINGS",
         "FREE_LOCAL_VEHICLE_LISTINGS",
         "YOUTUBE_AFFILIATE",
@@ -247,6 +248,7 @@ class ProductChange(typing_extensions.TypedDict, total=False):
         "LOCAL_INVENTORY_ADS",
         "VEHICLE_INVENTORY_ADS",
         "FREE_LISTINGS",
+        "FREE_LISTINGS_UCP_CHECKOUT",
         "FREE_LOCAL_LISTINGS",
         "FREE_LOCAL_VEHICLE_LISTINGS",
         "YOUTUBE_AFFILIATE",
@@ -340,7 +342,30 @@ class ProductView(typing_extensions.TypedDict, total=False):
     productTypeL3: str
     productTypeL4: str
     productTypeL5: str
+    reportingContext: typing_extensions.Literal[
+        "REPORTING_CONTEXT_ENUM_UNSPECIFIED",
+        "SHOPPING_ADS",
+        "DISCOVERY_ADS",
+        "DEMAND_GEN_ADS",
+        "DEMAND_GEN_ADS_DISCOVER_SURFACE",
+        "VIDEO_ADS",
+        "DISPLAY_ADS",
+        "LOCAL_INVENTORY_ADS",
+        "VEHICLE_INVENTORY_ADS",
+        "FREE_LISTINGS",
+        "FREE_LISTINGS_UCP_CHECKOUT",
+        "FREE_LOCAL_LISTINGS",
+        "FREE_LOCAL_VEHICLE_LISTINGS",
+        "YOUTUBE_AFFILIATE",
+        "YOUTUBE_SHOPPING",
+        "CLOUD_RETAIL",
+        "LOCAL_CLOUD_RETAIL",
+        "PRODUCT_REVIEWS",
+        "MERCHANT_REVIEWS",
+        "YOUTUBE_CHECKOUT",
+    ]
     shippingLabel: str
+    statusPerReportingContext: _list[StatusPerReportingContext]
     thumbnailLink: str
     title: str
 
@@ -367,3 +392,31 @@ class SearchRequest(typing_extensions.TypedDict, total=False):
 class SearchResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     results: _list[ReportRow]
+
+@typing.type_check_only
+class StatusPerReportingContext(typing_extensions.TypedDict, total=False):
+    approvedCountries: _list[str]
+    disapprovedCountries: _list[str]
+    pendingCountries: _list[str]
+    reportingContext: typing_extensions.Literal[
+        "REPORTING_CONTEXT_ENUM_UNSPECIFIED",
+        "SHOPPING_ADS",
+        "DISCOVERY_ADS",
+        "DEMAND_GEN_ADS",
+        "DEMAND_GEN_ADS_DISCOVER_SURFACE",
+        "VIDEO_ADS",
+        "DISPLAY_ADS",
+        "LOCAL_INVENTORY_ADS",
+        "VEHICLE_INVENTORY_ADS",
+        "FREE_LISTINGS",
+        "FREE_LISTINGS_UCP_CHECKOUT",
+        "FREE_LOCAL_LISTINGS",
+        "FREE_LOCAL_VEHICLE_LISTINGS",
+        "YOUTUBE_AFFILIATE",
+        "YOUTUBE_SHOPPING",
+        "CLOUD_RETAIL",
+        "LOCAL_CLOUD_RETAIL",
+        "PRODUCT_REVIEWS",
+        "MERCHANT_REVIEWS",
+        "YOUTUBE_CHECKOUT",
+    ]

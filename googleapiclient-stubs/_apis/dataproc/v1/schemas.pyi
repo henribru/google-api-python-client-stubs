@@ -156,6 +156,19 @@ class ApplicationInfo(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class AttachedDiskConfig(typing_extensions.TypedDict, total=False):
+    diskSizeGb: int
+    diskType: typing_extensions.Literal[
+        "DISK_TYPE_UNSPECIFIED",
+        "HYPERDISK_BALANCED",
+        "HYPERDISK_EXTREME",
+        "HYPERDISK_ML",
+        "HYPERDISK_THROUGHPUT",
+    ]
+    provisionedIops: str
+    provisionedThroughput: str
+
+@typing.type_check_only
 class AuthenticationConfig(typing_extensions.TypedDict, total=False):
     userWorkloadAuthenticationType: typing_extensions.Literal[
         "AUTHENTICATION_TYPE_UNSPECIFIED", "SERVICE_ACCOUNT", "END_USER_CREDENTIALS"
@@ -415,6 +428,7 @@ class DiagnoseClusterResults(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DiskConfig(typing_extensions.TypedDict, total=False):
+    attachedDiskConfigs: _list[AttachedDiskConfig]
     bootDiskProvisionedIops: str
     bootDiskProvisionedThroughput: str
     bootDiskSizeGb: int

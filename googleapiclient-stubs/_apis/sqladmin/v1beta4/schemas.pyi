@@ -1329,6 +1329,7 @@ class SelectedObjects(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Settings(typing_extensions.TypedDict, total=False):
+    acceleratedReplicaMode: bool
     activationPolicy: typing_extensions.Literal[
         "SQL_ACTIVATION_POLICY_UNSPECIFIED", "ALWAYS", "NEVER", "ON_DEMAND"
     ]

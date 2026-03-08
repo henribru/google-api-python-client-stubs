@@ -452,9 +452,19 @@ class GoogleCloudAiplatformV1beta1GoogleSearchRetrieval(
 class GoogleCloudAiplatformV1beta1GroundingChunk(
     typing_extensions.TypedDict, total=False
 ):
+    image: GoogleCloudAiplatformV1beta1GroundingChunkImage
     maps: GoogleCloudAiplatformV1beta1GroundingChunkMaps
     retrievedContext: GoogleCloudAiplatformV1beta1GroundingChunkRetrievedContext
     web: GoogleCloudAiplatformV1beta1GroundingChunkWeb
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1GroundingChunkImage(
+    typing_extensions.TypedDict, total=False
+):
+    domain: str
+    imageUri: str
+    sourceUri: str
+    title: str
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1GroundingChunkMaps(
@@ -462,6 +472,7 @@ class GoogleCloudAiplatformV1beta1GroundingChunkMaps(
 ):
     placeAnswerSources: GoogleCloudAiplatformV1beta1GroundingChunkMapsPlaceAnswerSources
     placeId: str
+    route: GoogleCloudAiplatformV1beta1GroundingChunkMapsRoute
     text: str
     title: str
     uri: str
@@ -481,6 +492,14 @@ class GoogleCloudAiplatformV1beta1GroundingChunkMapsPlaceAnswerSourcesReviewSnip
     googleMapsUri: str
     reviewId: str
     title: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1GroundingChunkMapsRoute(
+    typing_extensions.TypedDict, total=False
+):
+    distanceMeters: int
+    duration: str
+    encodedPolyline: str
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1GroundingChunkRetrievedContext(
@@ -507,6 +526,7 @@ class GoogleCloudAiplatformV1beta1GroundingMetadata(
     googleMapsWidgetContextToken: str
     groundingChunks: _list[GoogleCloudAiplatformV1beta1GroundingChunk]
     groundingSupports: _list[GoogleCloudAiplatformV1beta1GroundingSupport]
+    imageSearchQueries: _list[str]
     retrievalMetadata: GoogleCloudAiplatformV1beta1RetrievalMetadata
     retrievalQueries: _list[str]
     searchEntryPoint: GoogleCloudAiplatformV1beta1SearchEntryPoint
@@ -528,6 +548,7 @@ class GoogleCloudAiplatformV1beta1GroundingSupport(
 ):
     confidenceScores: _list[float]
     groundingChunkIndices: _list[int]
+    renderedParts: _list[int]
     segment: GoogleCloudAiplatformV1beta1Segment
 
 @typing.type_check_only
@@ -891,6 +912,24 @@ class GoogleCloudAiplatformV1beta1ToolGoogleSearch(
         "BLOCK_ONLY_EXTREMELY_HIGH",
     ]
     excludeDomains: _list[str]
+    searchTypes: GoogleCloudAiplatformV1beta1ToolGoogleSearchSearchTypes
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ToolGoogleSearchImageSearch(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ToolGoogleSearchSearchTypes(
+    typing_extensions.TypedDict, total=False
+):
+    imageSearch: GoogleCloudAiplatformV1beta1ToolGoogleSearchImageSearch
+    webSearch: GoogleCloudAiplatformV1beta1ToolGoogleSearchWebSearch
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ToolGoogleSearchWebSearch(
+    typing_extensions.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1ToolParallelAiSearch(

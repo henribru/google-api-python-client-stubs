@@ -224,6 +224,7 @@ class ConsumerConfig(typing_extensions.TypedDict, total=False):
     consumerExportSubnetRoutesWithPublicIp: bool
     consumerImportCustomRoutes: bool
     consumerImportSubnetRoutesWithPublicIp: bool
+    consumerPeeringActive: bool
     producerExportCustomRoutes: bool
     producerExportSubnetRoutesWithPublicIp: bool
     producerImportCustomRoutes: bool

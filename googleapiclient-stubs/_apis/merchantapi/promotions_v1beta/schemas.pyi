@@ -6,6 +6,9 @@ _list = list
 
 @typing.type_check_only
 class Attributes(typing_extensions.TypedDict, total=False):
+    audience: typing_extensions.Literal[
+        "AUDIENCE_UNSPECIFIED", "NEW_CUSTOMERS", "LOCATION"
+    ]
     brandExclusion: _list[str]
     brandInclusion: _list[str]
     couponValueType: typing_extensions.Literal[
@@ -81,6 +84,7 @@ class Attributes(typing_extensions.TypedDict, total=False):
         "SIGNUP_FOR_TEXT",
         "CUSTOM",
     ]
+    regionIdInclusion: _list[str]
     storeApplicability: typing_extensions.Literal[
         "STORE_APPLICABILITY_UNSPECIFIED", "ALL_STORES", "SPECIFIC_STORES"
     ]
@@ -106,6 +110,7 @@ class DestinationStatus(typing_extensions.TypedDict, total=False):
         "LOCAL_INVENTORY_ADS",
         "VEHICLE_INVENTORY_ADS",
         "FREE_LISTINGS",
+        "FREE_LISTINGS_UCP_CHECKOUT",
         "FREE_LOCAL_LISTINGS",
         "FREE_LOCAL_VEHICLE_LISTINGS",
         "YOUTUBE_AFFILIATE",
@@ -155,6 +160,7 @@ class ItemLevelIssue(typing_extensions.TypedDict, total=False):
         "LOCAL_INVENTORY_ADS",
         "VEHICLE_INVENTORY_ADS",
         "FREE_LISTINGS",
+        "FREE_LISTINGS_UCP_CHECKOUT",
         "FREE_LOCAL_LISTINGS",
         "FREE_LOCAL_VEHICLE_LISTINGS",
         "YOUTUBE_AFFILIATE",
@@ -196,6 +202,7 @@ class ProductChange(typing_extensions.TypedDict, total=False):
         "LOCAL_INVENTORY_ADS",
         "VEHICLE_INVENTORY_ADS",
         "FREE_LISTINGS",
+        "FREE_LISTINGS_UCP_CHECKOUT",
         "FREE_LOCAL_LISTINGS",
         "FREE_LOCAL_VEHICLE_LISTINGS",
         "YOUTUBE_AFFILIATE",

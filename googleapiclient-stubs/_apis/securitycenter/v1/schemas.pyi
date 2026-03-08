@@ -450,8 +450,10 @@ class DataRetentionDeletionEvent(typing_extensions.TypedDict, total=False):
         "EVENT_TYPE_MAX_TTL_EXCEEDED",
         "EVENT_TYPE_MAX_TTL_FROM_CREATION",
         "EVENT_TYPE_MAX_TTL_FROM_LAST_MODIFICATION",
+        "EVENT_TYPE_MIN_TTL_FROM_CREATION",
     ]
     maxRetentionAllowed: str
+    minRetentionAllowed: str
 
 @typing.type_check_only
 class Database(typing_extensions.TypedDict, total=False):
@@ -1456,8 +1458,10 @@ class GoogleCloudSecuritycenterV2DataRetentionDeletionEvent(
         "EVENT_TYPE_MAX_TTL_EXCEEDED",
         "EVENT_TYPE_MAX_TTL_FROM_CREATION",
         "EVENT_TYPE_MAX_TTL_FROM_LAST_MODIFICATION",
+        "EVENT_TYPE_MIN_TTL_FROM_CREATION",
     ]
     maxRetentionAllowed: str
+    minRetentionAllowed: str
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV2Database(typing_extensions.TypedDict, total=False):

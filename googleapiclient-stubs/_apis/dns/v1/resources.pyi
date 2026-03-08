@@ -285,6 +285,7 @@ class DnsResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             managedZone: str,
+            filter: str = ...,
             maxResults: int = ...,
             name: str = ...,
             pageToken: str = ...,

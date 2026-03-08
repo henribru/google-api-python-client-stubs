@@ -340,6 +340,9 @@ class PrivateEnvironmentConfig(typing_extensions.TypedDict, total=False):
     enablePrivateEnvironment: bool
     enablePrivatelyUsedPublicIps: bool
     networkingConfig: NetworkingConfig
+    networkingType: typing_extensions.Literal[
+        "NETWORKING_TYPE_UNSPECIFIED", "PRIVATE", "PUBLIC"
+    ]
     privateClusterConfig: PrivateClusterConfig
     webServerIpv4CidrBlock: str
     webServerIpv4ReservedRange: str

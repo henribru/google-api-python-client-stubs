@@ -679,6 +679,7 @@ class DeviceConnectivityManagement(typing_extensions.TypedDict, total=False):
         "DISALLOW_CONFIGURING_WIFI",
     ]
     preferentialNetworkServiceSettings: PreferentialNetworkServiceSettings
+    privateDnsSettings: PrivateDnsSettings
     tetheringSettings: typing_extensions.Literal[
         "TETHERING_SETTINGS_UNSPECIFIED",
         "ALLOW_ALL_TETHERING",
@@ -1689,6 +1690,16 @@ class PreferentialNetworkServiceSettings(typing_extensions.TypedDict, total=Fals
         "PREFERENTIAL_NETWORK_ID_FIVE",
     ]
     preferentialNetworkServiceConfigs: _list[PreferentialNetworkServiceConfig]
+
+@typing.type_check_only
+class PrivateDnsSettings(typing_extensions.TypedDict, total=False):
+    privateDnsHost: str
+    privateDnsMode: typing_extensions.Literal[
+        "PRIVATE_DNS_MODE_UNSPECIFIED",
+        "PRIVATE_DNS_USER_CHOICE",
+        "PRIVATE_DNS_AUTOMATIC",
+        "PRIVATE_DNS_SPECIFIED_HOST",
+    ]
 
 @typing.type_check_only
 class ProvisioningInfo(typing_extensions.TypedDict, total=False):

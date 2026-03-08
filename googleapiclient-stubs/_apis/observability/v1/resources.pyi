@@ -51,6 +51,9 @@ class CloudObservabilityResource(googleapiclient.discovery.Resource):
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
+            def getSettings(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> SettingsHttpRequest: ...
             def list(
                 self,
                 *,
@@ -66,6 +69,14 @@ class CloudObservabilityResource(googleapiclient.discovery.Resource):
                 previous_request: ListLocationsResponseHttpRequest,
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
+            def updateSettings(
+                self,
+                *,
+                name: str,
+                body: Settings = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any,
+            ) -> OperationHttpRequest: ...
             def operations(self) -> OperationsResource: ...
 
         def locations(self) -> LocationsResource: ...
@@ -108,6 +119,9 @@ class CloudObservabilityResource(googleapiclient.discovery.Resource):
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
+            def getSettings(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> SettingsHttpRequest: ...
             def list(
                 self,
                 *,
@@ -123,6 +137,14 @@ class CloudObservabilityResource(googleapiclient.discovery.Resource):
                 previous_request: ListLocationsResponseHttpRequest,
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
+            def updateSettings(
+                self,
+                *,
+                name: str,
+                body: Settings = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any,
+            ) -> OperationHttpRequest: ...
             def operations(self) -> OperationsResource: ...
 
         def locations(self) -> LocationsResource: ...
@@ -317,6 +339,9 @@ class CloudObservabilityResource(googleapiclient.discovery.Resource):
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
+            def getSettings(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> SettingsHttpRequest: ...
             def list(
                 self,
                 *,
@@ -332,6 +357,14 @@ class CloudObservabilityResource(googleapiclient.discovery.Resource):
                 previous_request: ListLocationsResponseHttpRequest,
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
+            def updateSettings(
+                self,
+                *,
+                name: str,
+                body: Settings = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any,
+            ) -> OperationHttpRequest: ...
             def buckets(self) -> BucketsResource: ...
             def operations(self) -> OperationsResource: ...
             def scopes(self) -> ScopesResource: ...
@@ -466,6 +499,14 @@ class ScopeHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Scope: ...
+
+@typing.type_check_only
+class SettingsHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> Settings: ...
 
 @typing.type_check_only
 class TraceScopeHttpRequest(googleapiclient.http.HttpRequest):

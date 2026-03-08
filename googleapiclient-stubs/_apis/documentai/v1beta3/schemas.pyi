@@ -1926,6 +1926,7 @@ class GoogleCloudDocumentaiV1beta3DocumentSchemaMetadata(
 class GoogleCloudDocumentaiV1beta3DocumentShardInfo(
     typing_extensions.TypedDict, total=False
 ):
+    pageOffset: int
     shardCount: str
     shardIndex: str
     textOffset: str

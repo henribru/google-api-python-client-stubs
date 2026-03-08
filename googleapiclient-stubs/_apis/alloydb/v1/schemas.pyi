@@ -33,6 +33,7 @@ class Backup(typing_extensions.TypedDict, total=False):
         "POSTGRES_15",
         "POSTGRES_16",
         "POSTGRES_17",
+        "POSTGRES_18",
     ]
     deleteTime: str
     description: str
@@ -132,6 +133,7 @@ class Cluster(typing_extensions.TypedDict, total=False):
         "POSTGRES_15",
         "POSTGRES_16",
         "POSTGRES_17",
+        "POSTGRES_18",
     ]
     dataplexConfig: DataplexConfig
     deleteTime: str
@@ -191,6 +193,7 @@ class ClusterUpgradeDetails(typing_extensions.TypedDict, total=False):
         "POSTGRES_15",
         "POSTGRES_16",
         "POSTGRES_17",
+        "POSTGRES_18",
     ]
     instanceUpgradeDetails: _list[InstanceUpgradeDetails]
     name: str
@@ -1462,6 +1465,7 @@ class SupportedDatabaseFlag(typing_extensions.TypedDict, total=False):
             "POSTGRES_15",
             "POSTGRES_16",
             "POSTGRES_17",
+            "POSTGRES_18",
         ]
     ]
     valueType: typing_extensions.Literal[
@@ -1496,6 +1500,7 @@ class UpgradeClusterRequest(typing_extensions.TypedDict, total=False):
         "POSTGRES_15",
         "POSTGRES_16",
         "POSTGRES_17",
+        "POSTGRES_18",
     ]
 
 @typing.type_check_only
@@ -1523,6 +1528,7 @@ class UpgradeClusterStatus(typing_extensions.TypedDict, total=False):
         "POSTGRES_15",
         "POSTGRES_16",
         "POSTGRES_17",
+        "POSTGRES_18",
     ]
     stages: _list[StageStatus]
     state: typing_extensions.Literal[
@@ -1542,6 +1548,7 @@ class UpgradeClusterStatus(typing_extensions.TypedDict, total=False):
         "POSTGRES_15",
         "POSTGRES_16",
         "POSTGRES_17",
+        "POSTGRES_18",
     ]
 
 @typing.type_check_only

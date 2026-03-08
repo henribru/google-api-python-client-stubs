@@ -4806,6 +4806,17 @@ class AiplatformResource(googleapiclient.discovery.Resource):
             class PublishersResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class ModelsResource(googleapiclient.discovery.Resource):
+                    @typing.type_check_only
+                    class InvokeResource(googleapiclient.discovery.Resource):
+                        def invoke(
+                            self,
+                            *,
+                            endpoint: str,
+                            invokeId: str,
+                            body: GoogleCloudAiplatformV1InvokeRequest = ...,
+                            **kwargs: typing.Any,
+                        ) -> GoogleApiHttpBodyHttpRequest: ...
+
                     def computeTokens(
                         self,
                         *,
@@ -4883,6 +4894,7 @@ class AiplatformResource(googleapiclient.discovery.Resource):
                         body: GoogleCloudAiplatformV1StreamRawPredictRequest = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleApiHttpBodyHttpRequest: ...
+                    def invoke(self) -> InvokeResource: ...
 
                 def models(self) -> ModelsResource: ...
 

@@ -32,6 +32,7 @@ class BucketOperation(typing_extensions.TypedDict, total=False):
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "QUEUED", "RUNNING", "SUCCEEDED", "CANCELED", "FAILED"
     ]
+    updateObjectCustomContext: UpdateObjectCustomContext
 
 @typing.type_check_only
 class CancelJobRequest(typing_extensions.TypedDict, total=False):
@@ -49,6 +50,11 @@ class Counters(typing_extensions.TypedDict, total=False):
     succeededObjectCount: str
     totalBytesFound: str
     totalObjectCount: str
+
+@typing.type_check_only
+class CustomContextUpdates(typing_extensions.TypedDict, total=False):
+    keysToClear: _list[str]
+    updates: dict[str, typing.Any]
 
 @typing.type_check_only
 class DeleteObject(typing_extensions.TypedDict, total=False):
@@ -106,6 +112,7 @@ class Job(typing_extensions.TypedDict, total=False):
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "RUNNING", "SUCCEEDED", "CANCELED", "FAILED", "QUEUED"
     ]
+    updateObjectCustomContext: UpdateObjectCustomContext
 
 @typing.type_check_only
 class ListBucketOperationsResponse(typing_extensions.TypedDict, total=False):
@@ -152,6 +159,10 @@ class LoggingConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Manifest(typing_extensions.TypedDict, total=False):
     manifestLocation: str
+
+@typing.type_check_only
+class ObjectCustomContextPayload(typing_extensions.TypedDict, total=False):
+    value: str
 
 @typing.type_check_only
 class ObjectRetention(typing_extensions.TypedDict, total=False):
@@ -206,3 +217,8 @@ class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
+
+@typing.type_check_only
+class UpdateObjectCustomContext(typing_extensions.TypedDict, total=False):
+    clearAll: bool
+    customContextUpdates: CustomContextUpdates
