@@ -1170,7 +1170,6 @@ class NonCompliantFile(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Note(typing_extensions.TypedDict, total=False):
-    advisoryPublishTime: str
     attestation: AttestationNote
     build: BuildNote
     compliance: ComplianceNote
@@ -1606,6 +1605,7 @@ class VulnerabilityAssessmentNote(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class VulnerabilityNote(typing_extensions.TypedDict, total=False):
+    advisoryPublishTime: str
     cvssScore: float
     cvssV2: CVSS
     cvssV3: CVSSv3

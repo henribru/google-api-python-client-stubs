@@ -1260,20 +1260,6 @@ class BulkListAssignedTargetingOptionsResponse(
     nextPageToken: str
 
 @typing.type_check_only
-class BulkListCampaignAssignedTargetingOptionsResponse(
-    typing_extensions.TypedDict, total=False
-):
-    assignedTargetingOptions: _list[AssignedTargetingOption]
-    nextPageToken: str
-
-@typing.type_check_only
-class BulkListInsertionOrderAssignedTargetingOptionsResponse(
-    typing_extensions.TypedDict, total=False
-):
-    assignedTargetingOptions: _list[AssignedTargetingOption]
-    nextPageToken: str
-
-@typing.type_check_only
 class BulkUpdateLineItemsRequest(typing_extensions.TypedDict, total=False):
     lineItemIds: _list[str]
     targetLineItem: LineItem
@@ -2959,41 +2945,6 @@ class GenderTargetingOptionDetails(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class GenerateDefaultLineItemRequest(typing_extensions.TypedDict, total=False):
-    containsEuPoliticalAds: typing_extensions.Literal[
-        "EU_POLITICAL_ADVERTISING_STATUS_UNKNOWN",
-        "CONTAINS_EU_POLITICAL_ADVERTISING",
-        "DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING",
-    ]
-    displayName: str
-    insertionOrderId: str
-    lineItemType: typing_extensions.Literal[
-        "LINE_ITEM_TYPE_UNSPECIFIED",
-        "LINE_ITEM_TYPE_DISPLAY_DEFAULT",
-        "LINE_ITEM_TYPE_DISPLAY_MOBILE_APP_INSTALL",
-        "LINE_ITEM_TYPE_VIDEO_DEFAULT",
-        "LINE_ITEM_TYPE_VIDEO_MOBILE_APP_INSTALL",
-        "LINE_ITEM_TYPE_DISPLAY_MOBILE_APP_INVENTORY",
-        "LINE_ITEM_TYPE_VIDEO_MOBILE_APP_INVENTORY",
-        "LINE_ITEM_TYPE_AUDIO_DEFAULT",
-        "LINE_ITEM_TYPE_VIDEO_OVER_THE_TOP",
-        "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_ACTION",
-        "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_NON_SKIPPABLE",
-        "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_VIDEO_SEQUENCE",
-        "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_AUDIO",
-        "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_REACH",
-        "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_SIMPLE",
-        "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_NON_SKIPPABLE_OVER_THE_TOP",
-        "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_REACH_OVER_THE_TOP",
-        "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_SIMPLE_OVER_THE_TOP",
-        "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_TARGET_FREQUENCY",
-        "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_VIEW",
-        "LINE_ITEM_TYPE_DISPLAY_OUT_OF_HOME",
-        "LINE_ITEM_TYPE_VIDEO_OUT_OF_HOME",
-    ]
-    mobileApp: MobileApp
-
-@typing.type_check_only
 class GeoRegionAssignedTargetingOptionDetails(typing_extensions.TypedDict, total=False):
     displayName: str
     geoRegionType: typing_extensions.Literal[
@@ -3848,13 +3799,6 @@ class ListAssignedLocationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
-class ListCampaignAssignedTargetingOptionsResponse(
-    typing_extensions.TypedDict, total=False
-):
-    assignedTargetingOptions: _list[AssignedTargetingOption]
-    nextPageToken: str
-
-@typing.type_check_only
 class ListCampaignsResponse(typing_extensions.TypedDict, total=False):
     campaigns: _list[Campaign]
     nextPageToken: str
@@ -3914,13 +3858,6 @@ class ListGoogleAudiencesResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ListGuaranteedOrdersResponse(typing_extensions.TypedDict, total=False):
     guaranteedOrders: _list[GuaranteedOrder]
-    nextPageToken: str
-
-@typing.type_check_only
-class ListInsertionOrderAssignedTargetingOptionsResponse(
-    typing_extensions.TypedDict, total=False
-):
-    assignedTargetingOptions: _list[AssignedTargetingOption]
     nextPageToken: str
 
 @typing.type_check_only

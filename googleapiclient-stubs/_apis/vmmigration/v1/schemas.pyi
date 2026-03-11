@@ -186,6 +186,7 @@ class BootDiskDefaults(typing_extensions.TypedDict, total=False):
         "COMPUTE_ENGINE_DISK_TYPE_SSD",
         "COMPUTE_ENGINE_DISK_TYPE_BALANCED",
         "COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED",
+        "COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED_HIGH_AVAILABILITY",
     ]
     encryption: Encryption
     image: DiskImageDefaults
@@ -249,6 +250,7 @@ class ComputeEngineDisk(typing_extensions.TypedDict, total=False):
         "COMPUTE_ENGINE_DISK_TYPE_SSD",
         "COMPUTE_ENGINE_DISK_TYPE_BALANCED",
         "COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED",
+        "COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED_HIGH_AVAILABILITY",
     ]
     replicaZones: _list[str]
     zone: str
@@ -288,6 +290,7 @@ class ComputeEngineTargetDefaults(typing_extensions.TypedDict, total=False):
         "COMPUTE_ENGINE_DISK_TYPE_SSD",
         "COMPUTE_ENGINE_DISK_TYPE_BALANCED",
         "COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED",
+        "COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED_HIGH_AVAILABILITY",
     ]
     enableIntegrityMonitoring: bool
     enableVtpm: bool
@@ -332,6 +335,7 @@ class ComputeEngineTargetDetails(typing_extensions.TypedDict, total=False):
         "COMPUTE_ENGINE_DISK_TYPE_SSD",
         "COMPUTE_ENGINE_DISK_TYPE_BALANCED",
         "COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED",
+        "COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED_HIGH_AVAILABILITY",
     ]
     enableIntegrityMonitoring: bool
     enableVtpm: bool
@@ -895,6 +899,7 @@ class PersistentDiskDefaults(typing_extensions.TypedDict, total=False):
         "COMPUTE_ENGINE_DISK_TYPE_SSD",
         "COMPUTE_ENGINE_DISK_TYPE_BALANCED",
         "COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED",
+        "COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED_HIGH_AVAILABILITY",
     ]
     encryption: Encryption
     sourceDiskNumber: int

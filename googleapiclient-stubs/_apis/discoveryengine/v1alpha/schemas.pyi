@@ -548,6 +548,7 @@ class GoogleCloudDiscoveryengineV1DataConnector(
     createTime: str
     dataSource: str
     destinationConfigs: _list[GoogleCloudDiscoveryengineV1DestinationConfig]
+    egressFqdns: _list[str]
     endUserConfig: GoogleCloudDiscoveryengineV1DataConnectorEndUserConfig
     entities: _list[GoogleCloudDiscoveryengineV1DataConnectorSourceEntity]
     errors: _list[GoogleRpcStatus]
@@ -592,6 +593,7 @@ class GoogleCloudDiscoveryengineV1DataConnector(
     staticIpEnabled: bool
     syncMode: typing_extensions.Literal["PERIODIC", "STREAMING", "UNSPECIFIED"]
     updateTime: str
+    vpcscEnabled: bool
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1DataConnectorEndUserConfig(
@@ -883,12 +885,20 @@ class GoogleCloudDiscoveryengineV1Engine(typing_extensions.TypedDict, total=Fals
         "INDUSTRY_VERTICAL_UNSPECIFIED", "GENERIC", "MEDIA", "HEALTHCARE_FHIR"
     ]
     knowledgeGraphConfig: GoogleCloudDiscoveryengineV1EngineKnowledgeGraphConfig
+    marketplaceAgentVisibility: typing_extensions.Literal[
+        "MARKETPLACE_AGENT_VISIBILITY_UNSPECIFIED",
+        "SHOW_AVAILABLE_AGENTS_ONLY",
+        "SHOW_AGENTS_ALREADY_INTEGRATED",
+        "SHOW_AGENTS_ALREADY_PURCHASED",
+        "SHOW_ALL_AGENTS",
+    ]
     mediaRecommendationEngineConfig: (
         GoogleCloudDiscoveryengineV1EngineMediaRecommendationEngineConfig
     )
     modelConfigs: dict[str, typing.Any]
     name: str
     observabilityConfig: GoogleCloudDiscoveryengineV1ObservabilityConfig
+    procurementContactEmail: str
     searchEngineConfig: GoogleCloudDiscoveryengineV1EngineSearchEngineConfig
     solutionType: typing_extensions.Literal[
         "SOLUTION_TYPE_UNSPECIFIED",
@@ -3555,6 +3565,7 @@ class GoogleCloudDiscoveryengineV1alphaDataConnector(
     dataProtectionPolicy: GoogleCloudDiscoveryengineV1alphaDataProtectionPolicy
     dataSource: str
     destinationConfigs: _list[GoogleCloudDiscoveryengineV1alphaDestinationConfig]
+    egressFqdns: _list[str]
     endUserConfig: GoogleCloudDiscoveryengineV1alphaDataConnectorEndUserConfig
     entities: _list[GoogleCloudDiscoveryengineV1alphaDataConnectorSourceEntity]
     errors: _list[GoogleRpcStatus]
@@ -3599,6 +3610,7 @@ class GoogleCloudDiscoveryengineV1alphaDataConnector(
     staticIpEnabled: bool
     syncMode: typing_extensions.Literal["PERIODIC", "STREAMING", "UNSPECIFIED"]
     updateTime: str
+    vpcscEnabled: bool
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1alphaDataConnectorEndUserConfig(
@@ -4045,12 +4057,20 @@ class GoogleCloudDiscoveryengineV1alphaEngine(typing_extensions.TypedDict, total
         "INDUSTRY_VERTICAL_UNSPECIFIED", "GENERIC", "MEDIA", "HEALTHCARE_FHIR"
     ]
     knowledgeGraphConfig: GoogleCloudDiscoveryengineV1alphaEngineKnowledgeGraphConfig
+    marketplaceAgentVisibility: typing_extensions.Literal[
+        "MARKETPLACE_AGENT_VISIBILITY_UNSPECIFIED",
+        "SHOW_AVAILABLE_AGENTS_ONLY",
+        "SHOW_AGENTS_ALREADY_INTEGRATED",
+        "SHOW_AGENTS_ALREADY_PURCHASED",
+        "SHOW_ALL_AGENTS",
+    ]
     mediaRecommendationEngineConfig: (
         GoogleCloudDiscoveryengineV1alphaEngineMediaRecommendationEngineConfig
     )
     modelConfigs: dict[str, typing.Any]
     name: str
     observabilityConfig: GoogleCloudDiscoveryengineV1alphaObservabilityConfig
+    procurementContactEmail: str
     recommendationMetadata: (
         GoogleCloudDiscoveryengineV1alphaEngineRecommendationMetadata
     )
@@ -7726,12 +7746,20 @@ class GoogleCloudDiscoveryengineV1betaEngine(typing_extensions.TypedDict, total=
         "INDUSTRY_VERTICAL_UNSPECIFIED", "GENERIC", "MEDIA", "HEALTHCARE_FHIR"
     ]
     knowledgeGraphConfig: GoogleCloudDiscoveryengineV1betaEngineKnowledgeGraphConfig
+    marketplaceAgentVisibility: typing_extensions.Literal[
+        "MARKETPLACE_AGENT_VISIBILITY_UNSPECIFIED",
+        "SHOW_AVAILABLE_AGENTS_ONLY",
+        "SHOW_AGENTS_ALREADY_INTEGRATED",
+        "SHOW_AGENTS_ALREADY_PURCHASED",
+        "SHOW_ALL_AGENTS",
+    ]
     mediaRecommendationEngineConfig: (
         GoogleCloudDiscoveryengineV1betaEngineMediaRecommendationEngineConfig
     )
     modelConfigs: dict[str, typing.Any]
     name: str
     observabilityConfig: GoogleCloudDiscoveryengineV1betaObservabilityConfig
+    procurementContactEmail: str
     searchEngineConfig: GoogleCloudDiscoveryengineV1betaEngineSearchEngineConfig
     solutionType: typing_extensions.Literal[
         "SOLUTION_TYPE_UNSPECIFIED",

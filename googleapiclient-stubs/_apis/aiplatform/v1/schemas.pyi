@@ -3455,6 +3455,9 @@ class GoogleCloudAiplatformV1FunctionResponse(typing_extensions.TypedDict, total
     name: str
     parts: _list[GoogleCloudAiplatformV1FunctionResponsePart]
     response: dict[str, typing.Any]
+    scheduling: typing_extensions.Literal[
+        "SCHEDULING_UNSPECIFIED", "SILENT", "WHEN_IDLE", "INTERRUPT"
+    ]
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1FunctionResponseBlob(
@@ -7386,6 +7389,7 @@ class GoogleCloudAiplatformV1ReasoningEngineSpecSourceCodeSpec(
     developerConnectSource: (
         GoogleCloudAiplatformV1ReasoningEngineSpecSourceCodeSpecDeveloperConnectSource
     )
+    imageSpec: GoogleCloudAiplatformV1ReasoningEngineSpecSourceCodeSpecImageSpec
     inlineSource: GoogleCloudAiplatformV1ReasoningEngineSpecSourceCodeSpecInlineSource
     pythonSpec: GoogleCloudAiplatformV1ReasoningEngineSpecSourceCodeSpecPythonSpec
 
@@ -7404,6 +7408,12 @@ class GoogleCloudAiplatformV1ReasoningEngineSpecSourceCodeSpecDeveloperConnectSo
     config: (
         GoogleCloudAiplatformV1ReasoningEngineSpecSourceCodeSpecDeveloperConnectConfig
     )
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1ReasoningEngineSpecSourceCodeSpecImageSpec(
+    typing_extensions.TypedDict, total=False
+):
+    buildArgs: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1ReasoningEngineSpecSourceCodeSpecInlineSource(
@@ -7915,6 +7925,7 @@ class GoogleCloudAiplatformV1Schedule(typing_extensions.TypedDict, total=False):
     lastPauseTime: str
     lastResumeTime: str
     lastScheduledRunResponse: GoogleCloudAiplatformV1ScheduleRunResponse
+    maxConcurrentActiveRunCount: str
     maxConcurrentRunCount: str
     maxRunCount: str
     name: str

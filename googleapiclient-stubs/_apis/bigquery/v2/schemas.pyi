@@ -716,6 +716,10 @@ class IncrementalResultStats(typing_extensions.TypedDict, total=False):
     disabledReason: typing_extensions.Literal[
         "DISABLED_REASON_UNSPECIFIED", "OTHER", "UNSUPPORTED_OPERATOR"
     ]
+    disabledReasonDetails: str
+    firstIncrementalRowTime: str
+    incrementalRowCount: str
+    lastIncrementalRowTime: str
     resultSetLastModifyTime: str
     resultSetLastReplaceTime: str
 

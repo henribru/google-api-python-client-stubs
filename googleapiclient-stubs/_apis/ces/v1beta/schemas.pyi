@@ -277,6 +277,7 @@ class ChannelProfile(typing_extensions.TypedDict, total=False):
         "GOOGLE_TELEPHONY_PLATFORM",
         "CONTACT_CENTER_AS_A_SERVICE",
         "FIVE9",
+        "CONTACT_CENTER_INTEGRATION",
     ]
     disableBargeInControl: bool
     disableDtmf: bool
@@ -667,6 +668,7 @@ class EvaluationMetricsThresholdsGoldenEvaluationMetricsThresholds(
     typing_extensions.TypedDict, total=False
 ):
     expectationLevelMetricsThresholds: EvaluationMetricsThresholdsGoldenEvaluationMetricsThresholdsExpectationLevelMetricsThresholds
+    toolMatchingSettings: EvaluationMetricsThresholdsToolMatchingSettings
     turnLevelMetricsThresholds: EvaluationMetricsThresholdsGoldenEvaluationMetricsThresholdsTurnLevelMetricsThresholds
 
 @typing.type_check_only
@@ -684,6 +686,14 @@ class EvaluationMetricsThresholdsGoldenEvaluationMetricsThresholdsTurnLevelMetri
         "SEMANTIC_SIMILARITY_CHANNEL_UNSPECIFIED", "TEXT", "AUDIO"
     ]
     semanticSimilaritySuccessThreshold: int
+
+@typing.type_check_only
+class EvaluationMetricsThresholdsToolMatchingSettings(
+    typing_extensions.TypedDict, total=False
+):
+    extraToolCallBehavior: typing_extensions.Literal[
+        "EXTRA_TOOL_CALL_BEHAVIOR_UNSPECIFIED", "FAIL", "ALLOW"
+    ]
 
 @typing.type_check_only
 class EvaluationPersona(typing_extensions.TypedDict, total=False):
@@ -1003,12 +1013,14 @@ class ExecuteToolRequest(typing_extensions.TypedDict, total=False):
     args: dict[str, typing.Any]
     tool: str
     toolsetTool: ToolsetTool
+    variables: dict[str, typing.Any]
 
 @typing.type_check_only
 class ExecuteToolResponse(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
     tool: str
     toolsetTool: ToolsetTool
+    variables: dict[str, typing.Any]
 
 @typing.type_check_only
 class ExportAppRequest(typing_extensions.TypedDict, total=False):
@@ -1918,4 +1930,6 @@ class WidgetTool(typing_extensions.TypedDict, total=False):
         "OVERALL_SATISFACTION",
         "ORDER_SUMMARY",
         "APPOINTMENT_DETAILS",
+        "APPOINTMENT_SCHEDULER",
+        "CONTACT_FORM",
     ]

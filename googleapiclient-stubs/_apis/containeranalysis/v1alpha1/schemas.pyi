@@ -1870,6 +1870,7 @@ class VulnerabilityLocation(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class VulnerabilityType(typing_extensions.TypedDict, total=False):
+    advisoryPublishTime: str
     cvssScore: float
     cvssV2: CVSS
     cvssVersion: typing_extensions.Literal[

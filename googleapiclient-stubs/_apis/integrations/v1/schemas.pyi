@@ -1950,6 +1950,7 @@ class GoogleCloudConnectorsV1EnrichmentConfig(typing_extensions.TypedDict, total
 @typing.type_check_only
 class GoogleCloudConnectorsV1EventingConfig(typing_extensions.TypedDict, total=False):
     additionalVariables: _list[GoogleCloudConnectorsV1ConfigVariable]
+    allowedEventTypes: _list[str]
     authConfig: GoogleCloudConnectorsV1AuthConfig
     deadLetterConfig: GoogleCloudConnectorsV1EventingConfigDeadLetterConfig
     enrichmentConfig: GoogleCloudConnectorsV1EnrichmentConfig

@@ -109,7 +109,6 @@ class DatastoreMountConfig(typing_extensions.TypedDict, total=False):
     datastoreNetwork: DatastoreNetwork
     fileShare: str
     nfsVersion: typing_extensions.Literal["NFS_VERSION_UNSPECIFIED", "NFS_V3"]
-    securityType: typing_extensions.Literal["SECURITY_TYPE_UNSPECIFIED"]
     servers: _list[str]
 
 @typing.type_check_only
@@ -797,6 +796,7 @@ class VmwareUpgradeComponent(typing_extensions.TypedDict, total=False):
         "WITNESS_VM",
         "NSXT",
         "CLUSTER",
+        "VM_TOOLS",
     ]
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",

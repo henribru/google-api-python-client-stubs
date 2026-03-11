@@ -1191,7 +1191,6 @@ class Location(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Note(typing_extensions.TypedDict, total=False):
-    advisoryPublishTime: str
     attestationAuthority: Authority
     baseImage: Basis
     build: Build
@@ -1693,6 +1692,7 @@ class Volume(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Vulnerability(typing_extensions.TypedDict, total=False):
+    advisoryPublishTime: str
     cvssScore: float
     cvssV2: CVSS
     cvssV3: CVSSv3

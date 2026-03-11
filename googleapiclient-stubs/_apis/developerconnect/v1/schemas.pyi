@@ -186,7 +186,11 @@ class GitHubConfig(typing_extensions.TypedDict, total=False):
     appInstallationId: str
     authorizerCredential: OAuthCredential
     githubApp: typing_extensions.Literal[
-        "GIT_HUB_APP_UNSPECIFIED", "DEVELOPER_CONNECT", "FIREBASE", "GEMINI_CODE_ASSIST"
+        "GIT_HUB_APP_UNSPECIFIED",
+        "DEVELOPER_CONNECT",
+        "FIREBASE",
+        "GEMINI_CODE_ASSIST",
+        "DATAFORM",
     ]
     installationUri: str
 

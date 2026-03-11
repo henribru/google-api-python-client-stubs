@@ -113,6 +113,13 @@ class Scope(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
+class Settings(typing_extensions.TypedDict, total=False):
+    defaultStorageLocation: str
+    kmsKeyName: str
+    name: str
+    serviceAccountId: str
+
+@typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]

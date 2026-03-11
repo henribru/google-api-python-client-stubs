@@ -339,6 +339,8 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
+                        evaluationFilter: str = ...,
+                        evaluationRunFilter: str = ...,
                         filter: str = ...,
                         lastTenResults: bool = ...,
                         orderBy: str = ...,

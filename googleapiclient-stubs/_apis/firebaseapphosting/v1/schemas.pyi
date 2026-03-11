@@ -87,6 +87,7 @@ class CodebaseSource(typing_extensions.TypedDict, total=False):
     commitTime: str
     displayName: str
     hash: str
+    repository: str
     uri: str
 
 @typing.type_check_only
