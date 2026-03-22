@@ -871,6 +871,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             disk: str,
+            body: DiskUpdateKmsKeyRequest = ...,
             requestId: str = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -6480,6 +6481,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             disk: str,
+            body: RegionDiskUpdateKmsKeyRequest = ...,
             requestId: str = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -8318,6 +8320,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             snapshot: str,
+            body: RegionSnapshotUpdateKmsKeyRequest = ...,
             requestId: str = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -10011,6 +10014,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             snapshot: str,
+            body: SnapshotUpdateKmsKeyRequest = ...,
             requestId: str = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...

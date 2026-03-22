@@ -63,6 +63,14 @@ class APIHubResource(googleapiclient.discovery.Resource):
                 def lookup(
                     self, *, parent: str, **kwargs: typing.Any
                 ) -> GoogleCloudApihubV1LookupApiHubInstanceResponseHttpRequest: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudApihubV1ApiHubInstance = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleLongrunningOperationHttpRequest: ...
 
             @typing.type_check_only
             class ApisResource(googleapiclient.discovery.Resource):

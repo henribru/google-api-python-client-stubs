@@ -465,6 +465,8 @@ class Database(typing_extensions.TypedDict, total=False):
         "FAILED_ENABLING",
         "FAILED_DISABLING",
     ]
+    pluggableDatabaseId: str
+    pluggableDatabaseName: str
     properties: DatabaseProperties
     tdeWalletPassword: str
 

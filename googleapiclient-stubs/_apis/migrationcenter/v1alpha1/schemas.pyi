@@ -75,17 +75,28 @@ class AggregationSum(typing_extensions.TypedDict, total=False): ...
 class Asset(typing_extensions.TypedDict, total=False):
     assignedGroups: _list[str]
     attributes: dict[str, typing.Any]
+    awsApiGatewayRestApiDetails: AwsApiGatewayRestApiDetails
+    awsAppSyncGraphqlApiDetails: AwsAppSyncGraphqlApiDetails
+    awsApplicationLoadBalancerDetails: AwsApplicationLoadBalancerDetails
+    awsAutoscalingGroupDetails: AwsAutoscalingGroupDetails
+    awsBatchComputeEnvironmentDetails: AwsBatchComputeEnvironmentDetails
     awsCloudFrontDistributionDetails: AwsCloudFrontDistributionDetails
     awsDynamodbTableDetails: AwsDynamoDBTableDetails
+    awsEbsVolumeDetails: AwsEbsVolumeDetails
+    awsEcrRepositoryDetails: AwsEcrRepositoryDetails
     awsEcsClusterDetails: AwsEcsClusterDetails
     awsEfsFileSystemDetails: AwsEfsFileSystemDetails
     awsEksClusterDetails: AwsEksClusterDetails
+    awsElasticIpAddressDetails: AwsElasticIpAddressDetails
+    awsElasticNetworkInterfaceDetails: AwsElasticNetworkInterfaceDetails
     awsElbLoadBalancerDetails: AwsElbLoadBalancerDetails
+    awsInternetGatewayDetails: AwsInternetGatewayDetails
     awsLambdaFunctionDetails: AwsLambdaFunctionDetails
     awsNatGatewayDetails: AwsNatGatewayDetails
     awsRedshiftDetails: AwsRedshiftDetails
     awsRoute53HostedZoneDetails: AwsRoute53HostedZoneDetails
     awsS3BucketDetails: AwsS3BucketDetails
+    awsSnsTopicDetails: AwsSnsTopicDetails
     awsVpcDetails: AwsVpcDetails
     createTime: str
     databaseDeploymentDetails: DatabaseDeploymentDetails
@@ -108,17 +119,28 @@ class Asset(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class AssetFrame(typing_extensions.TypedDict, total=False):
     attributes: dict[str, typing.Any]
+    awsApiGatewayRestApiDetails: AwsApiGatewayRestApiDetails
+    awsAppSyncGraphqlApiDetails: AwsAppSyncGraphqlApiDetails
+    awsApplicationLoadBalancerDetails: AwsApplicationLoadBalancerDetails
+    awsAutoscalingGroupDetails: AwsAutoscalingGroupDetails
+    awsBatchComputeEnvironmentDetails: AwsBatchComputeEnvironmentDetails
     awsCloudFrontDistributionDetails: AwsCloudFrontDistributionDetails
     awsDynamodbTableDetails: AwsDynamoDBTableDetails
+    awsEbsVolumeDetails: AwsEbsVolumeDetails
+    awsEcrRepositoryDetails: AwsEcrRepositoryDetails
     awsEcsClusterDetails: AwsEcsClusterDetails
     awsEfsFileSystemDetails: AwsEfsFileSystemDetails
     awsEksClusterDetails: AwsEksClusterDetails
+    awsElasticIpAddressDetails: AwsElasticIpAddressDetails
+    awsElasticNetworkInterfaceDetails: AwsElasticNetworkInterfaceDetails
     awsElbLoadBalancerDetails: AwsElbLoadBalancerDetails
+    awsInternetGatewayDetails: AwsInternetGatewayDetails
     awsLambdaFunctionDetails: AwsLambdaFunctionDetails
     awsNatGatewayDetails: AwsNatGatewayDetails
     awsRedshiftDetails: AwsRedshiftDetails
     awsRoute53HostedZoneDetails: AwsRoute53HostedZoneDetails
     awsS3BucketDetails: AwsS3BucketDetails
+    awsSnsTopicDetails: AwsSnsTopicDetails
     awsVpcDetails: AwsVpcDetails
     collectionType: typing_extensions.Literal[
         "SOURCE_TYPE_UNKNOWN",
@@ -191,10 +213,28 @@ class AssetsExportJobPerformanceData(typing_extensions.TypedDict, total=False):
     maxDays: int
 
 @typing.type_check_only
+class AwsApiGatewayRestApiDetails(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class AwsAppSyncGraphqlApiDetails(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class AwsApplicationLoadBalancerDetails(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class AwsAutoscalingGroupDetails(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class AwsBatchComputeEnvironmentDetails(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class AwsCloudFrontDistributionDetails(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class AwsDynamoDBTableDetails(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class AwsEbsVolumeDetails(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class AwsEc2PlatformDetails(typing_extensions.TypedDict, total=False):
@@ -207,6 +247,9 @@ class AwsEc2PlatformDetails(typing_extensions.TypedDict, total=False):
     machineTypeLabel: str
 
 @typing.type_check_only
+class AwsEcrRepositoryDetails(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class AwsEcsClusterDetails(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -216,7 +259,16 @@ class AwsEfsFileSystemDetails(typing_extensions.TypedDict, total=False): ...
 class AwsEksClusterDetails(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class AwsElasticIpAddressDetails(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class AwsElasticNetworkInterfaceDetails(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class AwsElbLoadBalancerDetails(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class AwsInternetGatewayDetails(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class AwsLambdaFunctionDetails(typing_extensions.TypedDict, total=False): ...
@@ -268,6 +320,9 @@ class AwsS3BucketDetailsStorageClass(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class AwsS3BucketDetailsVersioning(typing_extensions.TypedDict, total=False):
     enabled: bool
+
+@typing.type_check_only
+class AwsSnsTopicDetails(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class AwsVpcDetails(typing_extensions.TypedDict, total=False): ...
@@ -761,6 +816,12 @@ class ErrorFrame(typing_extensions.TypedDict, total=False):
     name: str
     originalFrame: AssetFrame
     violations: _list[FrameViolationEntry]
+
+@typing.type_check_only
+class EstimatedUsage(typing_extensions.TypedDict, total=False):
+    estimatedCpuPercentage: float
+    estimatedDiskPercentage: float
+    estimatedMemoryPercentage: float
 
 @typing.type_check_only
 class ExecutionReport(typing_extensions.TypedDict, total=False):
@@ -1532,6 +1593,7 @@ class ReportSummaryAssetAggregateStats(typing_extensions.TypedDict, total=False)
     assetAge: ReportSummaryChartData
     coreCountHistogram: ReportSummaryHistogramChartData
     databaseTypes: ReportSummaryChartData
+    estimatedUsageStats: ReportSummaryAssetAggregateStatsEstimatedUsageStats
     memoryBytesHistogram: ReportSummaryHistogramChartData
     memoryUtilization: ReportSummaryChartData
     memoryUtilizationChart: ReportSummaryUtilizationChartData
@@ -1544,6 +1606,13 @@ class ReportSummaryAssetAggregateStats(typing_extensions.TypedDict, total=False)
     totalCores: str
     totalMemoryBytes: str
     totalStorageBytes: str
+
+@typing.type_check_only
+class ReportSummaryAssetAggregateStatsEstimatedUsageStats(
+    typing_extensions.TypedDict, total=False
+):
+    totalAssetsUsingEstimatedUsage: str
+    totalVirtualMachinesUsingEstimatedUsage: str
 
 @typing.type_check_only
 class ReportSummaryChartData(typing_extensions.TypedDict, total=False):
@@ -1939,6 +2008,7 @@ class VirtualMachinePreferences(typing_extensions.TypedDict, total=False):
         "COMMITMENT_PLAN_FLEXIBLE_THREE_YEARS",
     ]
     computeEnginePreferences: ComputeEnginePreferences
+    estimatedUsage: EstimatedUsage
     networkCostParameters: VirtualMachinePreferencesNetworkCostParameters
     regionPreferences: RegionPreferences
     sizingOptimizationCustomParameters: (

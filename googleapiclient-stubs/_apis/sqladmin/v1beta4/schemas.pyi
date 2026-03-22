@@ -1149,7 +1149,10 @@ class PointInTimeRestoreContext(typing_extensions.TypedDict, total=False):
     preferredSecondaryZone: str
     preferredZone: str
     privateNetwork: str
+    region: str
     targetInstance: str
+    targetInstanceClearSettingsFieldNames: _list[str]
+    targetInstanceSettings: DatabaseInstance
 
 @typing.type_check_only
 class PoolNodeConfig(typing_extensions.TypedDict, total=False):

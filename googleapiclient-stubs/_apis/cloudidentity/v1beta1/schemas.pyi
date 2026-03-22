@@ -76,6 +76,7 @@ class BrowserInfo(typing_extensions.TypedDict, total=False):
         "PASSWORD_REUSE",
         "PHISHING_REUSE",
     ]
+    policies: _list[ChromePolicy]
     safeBrowsingProtectionLevel: typing_extensions.Literal[
         "SAFE_BROWSING_LEVEL_UNSPECIFIED", "DISABLED", "STANDARD", "ENHANCED"
     ]
@@ -124,6 +125,26 @@ class CertificateTemplate(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class CheckTransitiveMembershipResponse(typing_extensions.TypedDict, total=False):
     hasMembership: bool
+
+@typing.type_check_only
+class ChromePolicy(typing_extensions.TypedDict, total=False):
+    conflicts: _list[PolicyConflict]
+    name: str
+    scope: typing_extensions.Literal["SCOPE_UNKNOWN", "USER", "MACHINE"]
+    source: typing_extensions.Literal[
+        "SOURCE_UNKNOWN",
+        "ENTERPRISE_DEFAULT",
+        "CLOUD",
+        "ACTIVE_DIRECTORY",
+        "DEVICE_LOCAL_ACCOUNT_OVERRIDE_DEPRECATED",
+        "PLATFORM",
+        "PRIORITY_CLOUD_DEPRECATED",
+        "MERGED",
+        "COMMAND_LINE",
+        "CLOUD_FROM_ASH",
+        "RESTRICTED_MANAGED_GUEST_SESSION_OVERRIDE",
+    ]
+    value: str
 
 @typing.type_check_only
 class ClientState(typing_extensions.TypedDict, total=False):
@@ -203,6 +224,7 @@ class Device(typing_extensions.TypedDict, total=False):
     basebandVersion: str
     bootloaderVersion: str
     brand: str
+    browserProfiles: _list[BrowserAttributes]
     buildNumber: str
     clientTypes: _list[
         typing_extensions.Literal[
@@ -916,6 +938,24 @@ class Policy(typing_extensions.TypedDict, total=False):
     policyQuery: PolicyQuery
     setting: Setting
     type: typing_extensions.Literal["POLICY_TYPE_UNSPECIFIED", "SYSTEM", "ADMIN"]
+
+@typing.type_check_only
+class PolicyConflict(typing_extensions.TypedDict, total=False):
+    scope: typing_extensions.Literal["SCOPE_UNKNOWN", "USER", "MACHINE"]
+    source: typing_extensions.Literal[
+        "SOURCE_UNKNOWN",
+        "ENTERPRISE_DEFAULT",
+        "CLOUD",
+        "ACTIVE_DIRECTORY",
+        "DEVICE_LOCAL_ACCOUNT_OVERRIDE_DEPRECATED",
+        "PLATFORM",
+        "PRIORITY_CLOUD_DEPRECATED",
+        "MERGED",
+        "COMMAND_LINE",
+        "CLOUD_FROM_ASH",
+        "RESTRICTED_MANAGED_GUEST_SESSION_OVERRIDE",
+    ]
+    value: str
 
 @typing.type_check_only
 class PolicyQuery(typing_extensions.TypedDict, total=False):

@@ -111,11 +111,6 @@ class ColumnSortingOptions(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class CoordinatedWidget(typing_extensions.TypedDict, total=False):
-    primary: Widget
-    secondary: Widget
-
-@typing.type_check_only
 class Dashboard(typing_extensions.TypedDict, total=False):
     annotations: DashboardAnnotations
     columnLayout: ColumnLayout
@@ -647,7 +642,6 @@ class Widget(typing_extensions.TypedDict, total=False):
     alertChart: AlertChart
     blank: Empty
     collapsibleGroup: CollapsibleGroup
-    coordinatedWidget: CoordinatedWidget
     errorReportingPanel: ErrorReportingPanel
     filterControl: FilterControl
     id: str

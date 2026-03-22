@@ -653,6 +653,7 @@ class Value(typing_extensions.TypedDict, total=False):
     referenceValue: str
     stringValue: str
     timestampValue: str
+    variableReferenceValue: str
 
 @typing.type_check_only
 class Write(typing_extensions.TypedDict, total=False):

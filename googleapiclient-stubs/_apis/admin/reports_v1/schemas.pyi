@@ -57,6 +57,10 @@ class Channel(typing_extensions.TypedDict, total=False):
     type: str
 
 @typing.type_check_only
+class CustomerIdentity(typing_extensions.TypedDict, total=False):
+    id: str
+
+@typing.type_check_only
 class Date(typing_extensions.TypedDict, total=False):
     day: int
     month: int
@@ -102,6 +106,11 @@ class FieldValueUserValue(typing_extensions.TypedDict, total=False):
     email: str
 
 @typing.type_check_only
+class GroupIdentity(typing_extensions.TypedDict, total=False):
+    groupEmail: str
+    id: str
+
+@typing.type_check_only
 class NestedParameter(typing_extensions.TypedDict, total=False):
     boolValue: bool
     intValue: str
@@ -112,6 +121,17 @@ class NestedParameter(typing_extensions.TypedDict, total=False):
     value: str
 
 @typing.type_check_only
+class OwnerDetails(typing_extensions.TypedDict, total=False):
+    ownerIdentity: _list[OwnerIdentity]
+    ownerType: str
+
+@typing.type_check_only
+class OwnerIdentity(typing_extensions.TypedDict, total=False):
+    customerIdentity: CustomerIdentity
+    groupIdentity: GroupIdentity
+    userIdentity: UserIdentity
+
+@typing.type_check_only
 class Reason(typing_extensions.TypedDict, total=False):
     reasonType: str
 
@@ -119,6 +139,7 @@ class Reason(typing_extensions.TypedDict, total=False):
 class ResourceDetails(typing_extensions.TypedDict, total=False):
     appliedLabels: _list[AppliedLabel]
     id: str
+    ownerDetails: OwnerDetails
     relation: str
     title: str
     type: str
@@ -138,3 +159,8 @@ class UsageReports(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     usageReports: _list[UsageReport]
     warnings: _list[dict[str, typing.Any]]
+
+@typing.type_check_only
+class UserIdentity(typing_extensions.TypedDict, total=False):
+    id: str
+    userEmail: str

@@ -3130,6 +3130,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             zone: str,
             instance: str,
             body: Instance = ...,
+            discardLocalSsd: bool = ...,
             minimalAction: typing_extensions.Literal[
                 "INVALID", "NO_EFFECT", "REFRESH", "RESTART"
             ] = ...,
@@ -6109,6 +6110,24 @@ class ComputeResource(googleapiclient.discovery.Resource):
 
     @typing.type_check_only
     class RegionHealthCheckServicesResource(googleapiclient.discovery.Resource):
+        def aggregatedList(
+            self,
+            *,
+            project: str,
+            filter: str = ...,
+            includeAllScopes: bool = ...,
+            maxResults: int = ...,
+            orderBy: str = ...,
+            pageToken: str = ...,
+            returnPartialSuccess: bool = ...,
+            serviceProjectNumber: str = ...,
+            **kwargs: typing.Any,
+        ) -> HealthCheckServiceAggregatedListHttpRequest: ...
+        def aggregatedList_next(
+            self,
+            previous_request: HealthCheckServiceAggregatedListHttpRequest,
+            previous_response: HealthCheckServiceAggregatedList,
+        ) -> HealthCheckServiceAggregatedListHttpRequest | None: ...
         def delete(
             self,
             *,
@@ -7445,6 +7464,24 @@ class ComputeResource(googleapiclient.discovery.Resource):
 
     @typing.type_check_only
     class RegionNotificationEndpointsResource(googleapiclient.discovery.Resource):
+        def aggregatedList(
+            self,
+            *,
+            project: str,
+            filter: str = ...,
+            includeAllScopes: bool = ...,
+            maxResults: int = ...,
+            orderBy: str = ...,
+            pageToken: str = ...,
+            returnPartialSuccess: bool = ...,
+            serviceProjectNumber: str = ...,
+            **kwargs: typing.Any,
+        ) -> NotificationEndpointAggregatedListHttpRequest: ...
+        def aggregatedList_next(
+            self,
+            previous_request: NotificationEndpointAggregatedListHttpRequest,
+            previous_response: NotificationEndpointAggregatedList,
+        ) -> NotificationEndpointAggregatedListHttpRequest | None: ...
         def delete(
             self,
             *,
@@ -8271,6 +8308,17 @@ class ComputeResource(googleapiclient.discovery.Resource):
             reservationSlot: str,
             **kwargs: typing.Any,
         ) -> ReservationSlotsGetResponseHttpRequest: ...
+        def getVersion(
+            self,
+            *,
+            project: str,
+            zone: str,
+            parentName: str,
+            reservationSlot: str,
+            body: ReservationSlotsGetVersionRequest = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
         def list(
             self,
             *,
@@ -8327,6 +8375,17 @@ class ComputeResource(googleapiclient.discovery.Resource):
             optionsRequestedPolicyVersion: int = ...,
             **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
+        def getVersion(
+            self,
+            *,
+            project: str,
+            zone: str,
+            parentName: str,
+            reservationSubBlock: str,
+            body: ReservationSubBlocksGetVersionRequest = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
         def list(
             self,
             *,
@@ -11631,6 +11690,14 @@ class HealthCheckServiceHttpRequest(googleapiclient.http.HttpRequest):
     ) -> HealthCheckService: ...
 
 @typing.type_check_only
+class HealthCheckServiceAggregatedListHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> HealthCheckServiceAggregatedList: ...
+
+@typing.type_check_only
 class HealthCheckServicesListHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -12463,6 +12530,14 @@ class NotificationEndpointHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> NotificationEndpoint: ...
+
+@typing.type_check_only
+class NotificationEndpointAggregatedListHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> NotificationEndpointAggregatedList: ...
 
 @typing.type_check_only
 class NotificationEndpointListHttpRequest(googleapiclient.http.HttpRequest):

@@ -423,6 +423,15 @@ class DimensionalityReductionMetrics(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class DmlStatistics(typing_extensions.TypedDict, total=False):
     deletedRowCount: str
+    dmlMode: typing_extensions.Literal[
+        "DML_MODE_UNSPECIFIED", "COARSE_GRAINED_DML", "FINE_GRAINED_DML"
+    ]
+    fineGrainedDmlUnusedReason: typing_extensions.Literal[
+        "FINE_GRAINED_DML_UNUSED_REASON_UNSPECIFIED",
+        "MAX_PARTITION_SIZE_EXCEEDED",
+        "TABLE_NOT_ENROLLED",
+        "DML_IN_MULTI_STATEMENT_TRANSACTION",
+    ]
     insertedRowCount: str
     updatedRowCount: str
 
@@ -1024,6 +1033,7 @@ class JobStatistics2(typing_extensions.TypedDict, total=False):
     performanceInsights: PerformanceInsights
     queryInfo: QueryInfo
     queryPlan: _list[ExplainQueryStage]
+    referencedPropertyGraphs: _list[PropertyGraphReference]
     referencedRoutines: _list[RoutineReference]
     referencedTables: _list[TableReference]
     reservationUsage: _list[dict[str, typing.Any]]
@@ -1332,6 +1342,12 @@ class ProjectList(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ProjectReference(typing_extensions.TypedDict, total=False):
     projectId: str
+
+@typing.type_check_only
+class PropertyGraphReference(typing_extensions.TypedDict, total=False):
+    datasetId: str
+    projectId: str
+    propertyGraphId: str
 
 @typing.type_check_only
 class PruningStats(typing_extensions.TypedDict, total=False):
