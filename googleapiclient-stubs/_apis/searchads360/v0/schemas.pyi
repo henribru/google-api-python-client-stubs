@@ -96,6 +96,16 @@ class GoogleAdsSearchads360V0Common__AssetUsage(
         "LEAD_FORM",
         "BUSINESS_LOGO",
         "DESCRIPTION_PREFIX",
+        "APP_ICON",
+        "APP_TITLE",
+        "APP_SCREENSHOT",
+        "APP_COVER_PHOTO",
+        "APP_SHORT_DESCRIPTION",
+        "APP_DEVELOPER_NAME",
+        "HEADLINE_AS_SITELINK_POSITION_ONE",
+        "HEADLINE_AS_SITELINK_POSITION_TWO",
+        "DESCRIPTION_LINE_HEADLINE_AS_SITELINK_POSITION_ONE",
+        "DESCRIPTION_LINE_HEADLINE_AS_SITELINK_POSITION_TWO",
     ]
 
 @typing.type_check_only
@@ -468,6 +478,13 @@ class GoogleAdsSearchads360V0Common__SearchAds360TextAdInfo(
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Common__Segments(typing_extensions.TypedDict, total=False):
+    adFormatType: typing_extensions.Literal[
+        "UNSPECIFIED",
+        "UNKNOWN",
+        "VERTICAL_ADS_PROMOTION",
+        "VERTICAL_ADS_BOOKING_LINK",
+        "TEXT",
+    ]
     adNetworkType: typing_extensions.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
@@ -505,6 +522,7 @@ class GoogleAdsSearchads360V0Common__Segments(typing_extensions.TypedDict, total
         "STORE_SALE",
         "QUALIFIED_LEAD",
         "CONVERTED_LEAD",
+        "YOUTUBE_FOLLOW_ON_VIEWS",
     ]
     conversionActionName: str
     conversionCustomDimensions: _list[GoogleAdsSearchads360V0Common__Value]
@@ -584,6 +602,24 @@ class GoogleAdsSearchads360V0Common__Segments(typing_extensions.TypedDict, total
     productTypeL5: str
     quarter: str
     rawEventConversionDimensions: _list[GoogleAdsSearchads360V0Common__Value]
+    verticalAdsEventParticipantDisplayNames: str
+    verticalAdsHotelClass: str
+    verticalAdsListing: str
+    verticalAdsListingBrand: str
+    verticalAdsListingCity: str
+    verticalAdsListingCountry: str
+    verticalAdsListingRegion: str
+    verticalAdsPartnerAccount: str
+    verticalAdsVertical: typing_extensions.Literal[
+        "UNSPECIFIED",
+        "UNKNOWN",
+        "HOTELS",
+        "VACATION_RENTALS",
+        "RENTAL_CARS",
+        "EVENTS",
+        "THINGS_TO_DO",
+        "FLIGHTS",
+    ]
     week: str
     year: int
 
@@ -950,6 +986,7 @@ class GoogleAdsSearchads360V0Errors__ErrorCode(
         "UNEXPECTED_INPUT",
         "REQUESTED_METRICS_FOR_MANAGER",
         "FILTER_HAS_TOO_MANY_VALUES",
+        "REQUIRED_SEGMENT_FIELD_MISSING",
     ]
     quotaError: typing_extensions.Literal[
         "UNSPECIFIED", "UNKNOWN", "RESOURCE_EXHAUSTED", "RESOURCE_TEMPORARILY_EXHAUSTED"
@@ -2332,6 +2369,7 @@ class GoogleAdsSearchads360V0Resources__ConversionAction(
         "STORE_SALE",
         "QUALIFIED_LEAD",
         "CONVERTED_LEAD",
+        "YOUTUBE_FOLLOW_ON_VIEWS",
     ]
     clickThroughLookbackWindowDays: str
     creationTime: str

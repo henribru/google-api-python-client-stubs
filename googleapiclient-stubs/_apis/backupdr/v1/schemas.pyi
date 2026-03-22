@@ -253,6 +253,7 @@ class BackupPlan(typing_extensions.TypedDict, total=False):
     backupVaultServiceAccount: str
     createTime: str
     description: str
+    diskBackupPlanProperties: DiskBackupPlanProperties
     etag: str
     labels: dict[str, typing.Any]
     logRetentionDays: str
@@ -543,6 +544,10 @@ class DataSourceReference(typing_extensions.TypedDict, total=False):
     totalStoredBytes: str
 
 @typing.type_check_only
+class DiskBackupPlanProperties(typing_extensions.TypedDict, total=False):
+    guestFlush: bool
+
+@typing.type_check_only
 class DiskBackupProperties(typing_extensions.TypedDict, total=False):
     accessMode: str
     architecture: typing_extensions.Literal[
@@ -550,6 +555,7 @@ class DiskBackupProperties(typing_extensions.TypedDict, total=False):
     ]
     description: str
     enableConfidentialCompute: bool
+    guestFlush: bool
     guestOsFeature: _list[GuestOsFeature]
     labels: dict[str, typing.Any]
     licenses: _list[str]
@@ -712,6 +718,17 @@ class GcpResource(typing_extensions.TypedDict, total=False):
     type: str
 
 @typing.type_check_only
+class GoogleCloudBackupdrV1OperationMetadata(typing_extensions.TypedDict, total=False):
+    additionalInfo: dict[str, typing.Any]
+    apiVersion: str
+    createTime: str
+    endTime: str
+    requestedCancellation: bool
+    statusMessage: str
+    target: str
+    verb: str
+
+@typing.type_check_only
 class GuestOsFeature(typing_extensions.TypedDict, total=False):
     type: typing_extensions.Literal[
         "FEATURE_TYPE_UNSPECIFIED",
@@ -838,6 +855,11 @@ class LocationMetadata(typing_extensions.TypedDict, total=False):
             "MANAGEMENT_SERVER",
             "COMPUTE_INSTANCE",
             "PROTECTION_SUMMARY",
+            "DISK",
+            "CLOUD_SQL",
+            "ALLOY_DB",
+            "FILESTORE",
+            "SAAS_PLATFORM",
         ]
     ]
 
@@ -925,17 +947,6 @@ class Operation(typing_extensions.TypedDict, total=False):
     metadata: dict[str, typing.Any]
     name: str
     response: dict[str, typing.Any]
-
-@typing.type_check_only
-class OperationMetadata(typing_extensions.TypedDict, total=False):
-    additionalInfo: dict[str, typing.Any]
-    apiVersion: str
-    createTime: str
-    endTime: str
-    requestedCancellation: bool
-    statusMessage: str
-    target: str
-    verb: str
 
 @typing.type_check_only
 class PitrSettings(typing_extensions.TypedDict, total=False):

@@ -20,6 +20,7 @@ class Assignment(typing_extensions.TypedDict, total=False):
         "BACKGROUND_SEARCH_INDEX_REFRESH",
     ]
     name: str
+    principal: str
     schedulingPolicy: SchedulingPolicy
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "PENDING", "ACTIVE"]
 

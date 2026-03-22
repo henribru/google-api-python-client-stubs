@@ -54,6 +54,12 @@ class GoogleCloudApihubV1AddonConfig(typing_extensions.TypedDict, total=False):
     gatewayPluginAddonConfig: GoogleCloudApihubV1GatewayPluginAddonConfig
 
 @typing.type_check_only
+class GoogleCloudApihubV1AgentRegistrySyncConfig(
+    typing_extensions.TypedDict, total=False
+):
+    disabled: bool
+
+@typing.type_check_only
 class GoogleCloudApihubV1AllDataAddonConfig(typing_extensions.TypedDict, total=False):
     enabled: bool
 
@@ -246,6 +252,7 @@ class GoogleCloudApihubV1CollectApiDataRequest(
 
 @typing.type_check_only
 class GoogleCloudApihubV1Config(typing_extensions.TypedDict, total=False):
+    agentRegistrySyncConfig: GoogleCloudApihubV1AgentRegistrySyncConfig
     cmekKeyName: str
     disableSearch: bool
     encryptionType: typing_extensions.Literal[

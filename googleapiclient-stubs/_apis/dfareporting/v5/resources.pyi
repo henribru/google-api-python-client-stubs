@@ -1453,6 +1453,9 @@ class DfareportingResource(googleapiclient.discovery.Resource):
                     "PLACEMENT_TAG_TRACKING_THIRD_PARTY_MEASUREMENT",
                 ]
             ] = ...,
+            tagProperties_dcDbmMacroIncluded: bool = ...,
+            tagProperties_gppMacrosIncluded: bool = ...,
+            tagProperties_tcfGdprMacrosIncluded: bool = ...,
             **kwargs: typing.Any,
         ) -> PlacementsGenerateTagsResponseHttpRequest: ...
         def get(
@@ -1917,6 +1920,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             countryDartId: str = ...,
             tvDataProvider: typing_extensions.Literal[
                 "INVALID_TV_DATA_PROVIDER",
+                "INTAGE_JP",
                 "IBOPE_AR",
                 "IBOPE_BR",
                 "IBOPE_CL",
@@ -1940,6 +1944,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             name: str = ...,
             tvDataProvider: typing_extensions.Literal[
                 "INVALID_TV_DATA_PROVIDER",
+                "INTAGE_JP",
                 "IBOPE_AR",
                 "IBOPE_BR",
                 "IBOPE_CL",

@@ -1187,6 +1187,7 @@ class ServiceMeshCondition(typing_extensions.TypedDict, total=False):
         "QUOTA_EXCEEDED_HTTP_FILTERS",
         "QUOTA_EXCEEDED_TCP_FILTERS",
         "QUOTA_EXCEEDED_NETWORK_ENDPOINT_GROUPS",
+        "CONFIG_APPLY_BLOCKED",
         "LEGACY_MC_SECRETS",
         "WORKLOAD_IDENTITY_REQUIRED",
         "NON_STANDARD_BINARY_USAGE",

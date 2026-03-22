@@ -279,11 +279,7 @@ class WorkloadManagerResource(googleapiclient.discovery.Resource):
                     parent: str,
                     customRulesBucket: str = ...,
                     evaluationType: typing_extensions.Literal[
-                        "EVALUATION_TYPE_UNSPECIFIED",
-                        "SAP",
-                        "SQL_SERVER",
-                        "OTHER",
-                        "SCC_IAC",
+                        "EVALUATION_TYPE_UNSPECIFIED", "SAP", "SQL_SERVER", "OTHER"
                     ] = ...,
                     filter: str = ...,
                     pageSize: int = ...,

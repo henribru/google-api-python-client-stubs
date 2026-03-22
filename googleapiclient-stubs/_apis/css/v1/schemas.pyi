@@ -72,6 +72,8 @@ class Attributes(typing_extensions.TypedDict, total=False):
     itemGroupId: str
     lowPrice: Price
     material: str
+    maxRating: str
+    minRating: str
     mpn: str
     multipack: str
     numberOfOffers: str
@@ -84,6 +86,8 @@ class Attributes(typing_extensions.TypedDict, total=False):
     productTypes: _list[str]
     productWeight: ProductWeight
     productWidth: ProductDimension
+    rating: float
+    reviewCount: str
     size: str
     sizeSystem: str
     sizeTypes: _list[str]

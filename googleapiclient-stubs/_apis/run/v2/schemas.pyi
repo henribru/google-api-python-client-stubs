@@ -279,6 +279,10 @@ class GoogleCloudRunV2ImageExportStatus(typing_extensions.TypedDict, total=False
     tag: str
 
 @typing.type_check_only
+class GoogleCloudRunV2InlinedSource(typing_extensions.TypedDict, total=False):
+    sources: _list[GoogleCloudRunV2SourceFile]
+
+@typing.type_check_only
 class GoogleCloudRunV2Instance(typing_extensions.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     binaryAuthorization: GoogleCloudRunV2BinaryAuthorization
@@ -661,6 +665,12 @@ class GoogleCloudRunV2ServiceScaling(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GoogleCloudRunV2SourceCode(typing_extensions.TypedDict, total=False):
     cloudStorageSource: GoogleCloudRunV2CloudStorageSource
+    inlinedSource: GoogleCloudRunV2InlinedSource
+
+@typing.type_check_only
+class GoogleCloudRunV2SourceFile(typing_extensions.TypedDict, total=False):
+    content: str
+    filename: str
 
 @typing.type_check_only
 class GoogleCloudRunV2StartInstanceRequest(typing_extensions.TypedDict, total=False):
@@ -1021,7 +1031,9 @@ class GoogleDevtoolsCloudbuildV1BuildOptions(typing_extensions.TypedDict, total=
     requestedVerifyOption: typing_extensions.Literal["NOT_VERIFIED", "VERIFIED"]
     secretEnv: _list[str]
     sourceProvenanceHash: _list[
-        typing_extensions.Literal["NONE", "SHA256", "MD5", "GO_MODULE_H1", "SHA512"]
+        typing_extensions.Literal[
+            "NONE", "SHA256", "MD5", "GO_MODULE_H1", "SHA512", "DIRSUM_SHA256"
+        ]
     ]
     substitutionOption: typing_extensions.Literal["MUST_MATCH", "ALLOW_LOOSE"]
     volumes: _list[GoogleDevtoolsCloudbuildV1Volume]
@@ -1142,7 +1154,9 @@ class GoogleDevtoolsCloudbuildV1GoModule(typing_extensions.TypedDict, total=Fals
 
 @typing.type_check_only
 class GoogleDevtoolsCloudbuildV1Hash(typing_extensions.TypedDict, total=False):
-    type: typing_extensions.Literal["NONE", "SHA256", "MD5", "GO_MODULE_H1", "SHA512"]
+    type: typing_extensions.Literal[
+        "NONE", "SHA256", "MD5", "GO_MODULE_H1", "SHA512", "DIRSUM_SHA256"
+    ]
     value: str
 
 @typing.type_check_only

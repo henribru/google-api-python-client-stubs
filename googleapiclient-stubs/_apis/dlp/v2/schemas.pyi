@@ -608,6 +608,7 @@ class GooglePrivacyDlpV2CustomInfoType(typing_extensions.TypedDict, total=False)
         "LIKELY",
         "VERY_LIKELY",
     ]
+    metadataKeyValueExpression: GooglePrivacyDlpV2MetadataKeyValueExpression
     regex: GooglePrivacyDlpV2Regex
     sensitivityScore: GooglePrivacyDlpV2SensitivityScore
     storedType: GooglePrivacyDlpV2StoredType
@@ -1210,6 +1211,7 @@ class GooglePrivacyDlpV2Domain(typing_extensions.TypedDict, total=False):
             "SIGNAL_UNSPECIFIED",
             "MODEL",
             "TEXT_EMBEDDING",
+            "EMBEDDING",
             "VERTEX_PLUGIN",
             "VECTOR_PLUGIN",
             "SOURCE_CODE",
@@ -1800,6 +1802,10 @@ class GooglePrivacyDlpV2Key(typing_extensions.TypedDict, total=False):
     path: _list[GooglePrivacyDlpV2PathElement]
 
 @typing.type_check_only
+class GooglePrivacyDlpV2KeyValueMetadataLabel(typing_extensions.TypedDict, total=False):
+    key: str
+
+@typing.type_check_only
 class GooglePrivacyDlpV2KindExpression(typing_extensions.TypedDict, total=False):
     name: str
 
@@ -1966,9 +1972,19 @@ class GooglePrivacyDlpV2LocationSupport(typing_extensions.TypedDict, total=False
 class GooglePrivacyDlpV2Manual(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class GooglePrivacyDlpV2MetadataKeyValueExpression(
+    typing_extensions.TypedDict, total=False
+):
+    keyRegex: str
+    valueRegex: str
+
+@typing.type_check_only
 class GooglePrivacyDlpV2MetadataLocation(typing_extensions.TypedDict, total=False):
+    keyValueMetadataLabel: GooglePrivacyDlpV2KeyValueMetadataLabel
     storageLabel: GooglePrivacyDlpV2StorageMetadataLabel
-    type: typing_extensions.Literal["METADATATYPE_UNSPECIFIED", "STORAGE_METADATA"]
+    type: typing_extensions.Literal[
+        "METADATATYPE_UNSPECIFIED", "STORAGE_METADATA", "CONTENT_METADATA"
+    ]
 
 @typing.type_check_only
 class GooglePrivacyDlpV2MultiRegionProcessing(

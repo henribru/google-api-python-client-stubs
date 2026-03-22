@@ -480,6 +480,7 @@ class AuthorizedSellerStatusTargetingOptionDetails(
 
 @typing.type_check_only
 class BiddingStrategy(typing_extensions.TypedDict, total=False):
+    demandGenBid: DemandGenBiddingStrategy
     fixedBid: FixedBidStrategy
     maximizeSpendAutoBid: MaximizeSpendBidStrategy
     performanceGoalAutoBid: PerformanceGoalBidStrategy
@@ -690,6 +691,7 @@ class BusinessChainTargetingOptionDetails(typing_extensions.TypedDict, total=Fal
         "GEO_REGION_TYPE_DIVISION",
         "GEO_REGION_TYPE_COMMUNE",
         "GEO_REGION_TYPE_COLLOQUIAL_AREA",
+        "GEO_REGION_TYPE_POST_TOWN",
     ]
 
 @typing.type_check_only
@@ -944,6 +946,7 @@ class ContentStreamTypeTargetingOptionDetails(typing_extensions.TypedDict, total
 class ConversionCountingConfig(typing_extensions.TypedDict, total=False):
     floodlightActivityConfigs: _list[TrackingFloodlightActivityConfig]
     postViewCountPercentageMillis: str
+    primaryAttributionModelId: str
 
 @typing.type_check_only
 class CounterEvent(typing_extensions.TypedDict, total=False):
@@ -1337,6 +1340,30 @@ class DeleteAssignedTargetingOptionsRequest(typing_extensions.TypedDict, total=F
         "TARGETING_TYPE_YOUTUBE_CHANNEL",
         "TARGETING_TYPE_SESSION_POSITION",
     ]
+
+@typing.type_check_only
+class DemandGenBiddingStrategy(typing_extensions.TypedDict, total=False):
+    effectiveBiddingValue: str
+    effectiveBiddingValueSource: typing_extensions.Literal[
+        "BIDDING_SOURCE_UNSPECIFIED",
+        "BIDDING_SOURCE_LINE_ITEM",
+        "BIDDING_SOURCE_AD_GROUP",
+    ]
+    type: typing_extensions.Literal[
+        "DEMAND_GEN_BIDDING_STRATEGY_TYPE_UNSPECIFIED",
+        "DEMAND_GEN_BIDDING_STRATEGY_TYPE_TARGET_CPA",
+        "DEMAND_GEN_BIDDING_STRATEGY_TYPE_TARGET_ROAS",
+        "DEMAND_GEN_BIDDING_STRATEGY_TYPE_MAXIMIZE_CONVERSIONS",
+        "DEMAND_GEN_BIDDING_STRATEGY_TYPE_MAXIMIZE_CONVERSION_VALUE",
+        "DEMAND_GEN_BIDDING_STRATEGY_TYPE_MAXIMIZE_CLICKS",
+    ]
+    value: str
+
+@typing.type_check_only
+class DemandGenSettings(typing_extensions.TypedDict, total=False):
+    geoLanguageTargetingEnabled: bool
+    linkedMerchantId: str
+    thirdPartyMeasurementConfigs: ThirdPartyMeasurementConfigs
 
 @typing.type_check_only
 class DeviceMakeModelAssignedTargetingOptionDetails(
@@ -2123,6 +2150,7 @@ class GeoRegionAssignedTargetingOptionDetails(typing_extensions.TypedDict, total
         "GEO_REGION_TYPE_DIVISION",
         "GEO_REGION_TYPE_COMMUNE",
         "GEO_REGION_TYPE_COLLOQUIAL_AREA",
+        "GEO_REGION_TYPE_POST_TOWN",
     ]
     negative: bool
     targetingOptionId: str
@@ -2173,6 +2201,7 @@ class GeoRegionTargetingOptionDetails(typing_extensions.TypedDict, total=False):
         "GEO_REGION_TYPE_DIVISION",
         "GEO_REGION_TYPE_COMMUNE",
         "GEO_REGION_TYPE_COLLOQUIAL_AREA",
+        "GEO_REGION_TYPE_POST_TOWN",
     ]
 
 @typing.type_check_only
@@ -2363,6 +2392,7 @@ class IdFilter(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ImageAsset(typing_extensions.TypedDict, total=False):
+    assetId: str
     fileSize: str
     fullSize: Dimensions
     mimeType: str
@@ -2732,6 +2762,7 @@ class Invoice(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class KeywordAssignedTargetingOptionDetails(typing_extensions.TypedDict, total=False):
+    exemptedPolicyNames: _list[str]
     keyword: str
     negative: bool
 
@@ -2758,6 +2789,7 @@ class LineItem(typing_extensions.TypedDict, total=False):
     ]
     conversionCounting: ConversionCountingConfig
     creativeIds: _list[str]
+    demandGenSettings: DemandGenSettings
     displayName: str
     entityStatus: typing_extensions.Literal[
         "ENTITY_STATUS_UNSPECIFIED",
@@ -2796,6 +2828,7 @@ class LineItem(typing_extensions.TypedDict, total=False):
         "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_VIEW",
         "LINE_ITEM_TYPE_DISPLAY_OUT_OF_HOME",
         "LINE_ITEM_TYPE_VIDEO_OUT_OF_HOME",
+        "LINE_ITEM_TYPE_DEMAND_GEN",
     ]
     mobileApp: MobileApp
     name: str
@@ -3736,6 +3769,7 @@ class TargetFrequency(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class TargetingExpansionConfig(typing_extensions.TypedDict, total=False):
+    excludeDemographicExpansion: bool
     excludeFirstPartyAudience: bool
     targetingExpansionLevel: typing_extensions.Literal[
         "TARGETING_EXPANSION_LEVEL_UNSPECIFIED",
@@ -3837,6 +3871,13 @@ class TargetingOption(typing_extensions.TypedDict, total=False):
     viewabilityDetails: ViewabilityTargetingOptionDetails
 
 @typing.type_check_only
+class ThirdPartyMeasurementConfigs(typing_extensions.TypedDict, total=False):
+    brandLiftVendorConfigs: _list[ThirdPartyVendorConfig]
+    brandSafetyVendorConfigs: _list[ThirdPartyVendorConfig]
+    reachVendorConfigs: _list[ThirdPartyVendorConfig]
+    viewabilityVendorConfigs: _list[ThirdPartyVendorConfig]
+
+@typing.type_check_only
 class ThirdPartyOnlyConfig(typing_extensions.TypedDict, total=False):
     pixelOrderIdReportingEnabled: bool
 
@@ -3878,6 +3919,15 @@ class ThirdPartyVendorConfig(typing_extensions.TypedDict, total=False):
         "THIRD_PARTY_VENDOR_KANTAR",
         "THIRD_PARTY_VENDOR_DYNATA",
         "THIRD_PARTY_VENDOR_TRANSUNION",
+        "THIRD_PARTY_VENDOR_ORIGIN",
+        "THIRD_PARTY_VENDOR_GEMIUS",
+        "THIRD_PARTY_VENDOR_MEDIA_SCOPE",
+        "THIRD_PARTY_VENDOR_AUDIENCE_PROJECT",
+        "THIRD_PARTY_VENDOR_VIDEO_AMP",
+        "THIRD_PARTY_VENDOR_ISPOT_TV",
+        "THIRD_PARTY_VENDOR_INTAGE",
+        "THIRD_PARTY_VENDOR_MACROMILL",
+        "THIRD_PARTY_VENDOR_VIDEO_RESEARCH",
     ]
 
 @typing.type_check_only

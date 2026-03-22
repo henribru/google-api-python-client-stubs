@@ -355,6 +355,9 @@ class InternalRange(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class LinkedInterconnectAttachments(typing_extensions.TypedDict, total=False):
+    excludeExportRanges: _list[str]
+    excludeImportRanges: _list[str]
+    includeExportRanges: _list[str]
     includeImportRanges: _list[str]
     siteToSiteDataTransfer: bool
     uris: _list[str]
@@ -373,6 +376,9 @@ class LinkedProducerVpcNetwork(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class LinkedRouterApplianceInstances(typing_extensions.TypedDict, total=False):
+    excludeExportRanges: _list[str]
+    excludeImportRanges: _list[str]
+    includeExportRanges: _list[str]
     includeImportRanges: _list[str]
     instances: _list[RouterApplianceInstance]
     siteToSiteDataTransfer: bool
@@ -389,6 +395,9 @@ class LinkedVpcNetwork(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class LinkedVpnTunnels(typing_extensions.TypedDict, total=False):
+    excludeExportRanges: _list[str]
+    excludeImportRanges: _list[str]
+    includeExportRanges: _list[str]
     includeImportRanges: _list[str]
     siteToSiteDataTransfer: bool
     uris: _list[str]
@@ -522,6 +531,7 @@ class LocationMetadata(typing_extensions.TypedDict, total=False):
             "SITE_TO_CLOUD_SPOKES",
             "SITE_TO_SITE_SPOKES",
             "GATEWAY_SPOKES",
+            "TRANSPORTS",
         ]
     ]
 

@@ -212,6 +212,7 @@ import googleapiclient._apis.deploymentmanager.alpha
 import googleapiclient._apis.deploymentmanager.v2
 import googleapiclient._apis.deploymentmanager.v2beta
 import googleapiclient._apis.developerconnect.v1
+import googleapiclient._apis.developerknowledge.v1alpha
 import googleapiclient._apis.dfareporting.v3_3
 import googleapiclient._apis.dfareporting.v3_4
 import googleapiclient._apis.dfareporting.v3_5
@@ -4718,6 +4719,26 @@ def build(
     num_retries: int = 1,
     static_discovery: bool | None = None,
 ) -> googleapiclient._apis.developerconnect.v1.DeveloperConnectResource: ...
+@overload
+def build(
+    serviceName: Literal["developerknowledge"],
+    version: Literal["v1alpha"],
+    http: httplib2.Http | HttpMock | None = None,
+    discoveryServiceUrl: str | None = None,
+    developerKey: str | None = None,
+    model: Model | None = None,
+    requestBuilder: _RequestBuilder = HttpRequest,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
+    cache_discovery: bool = True,
+    cache: Cache | None = None,
+    client_options: dict[str, Any] | ClientOptions | None = None,
+    adc_cert_path: str | None = None,
+    adc_key_path: str | None = None,
+    num_retries: int = 1,
+    static_discovery: bool | None = None,
+) -> googleapiclient._apis.developerknowledge.v1alpha.DeveloperKnowledgeResource: ...
 @overload
 def build(
     serviceName: Literal["dfareporting"],

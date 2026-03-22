@@ -120,6 +120,7 @@ class CertificateAuthority(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Cluster(typing_extensions.TypedDict, total=False):
+    aclPolicy: str
     allowFewerZonesDeployment: bool
     asyncClusterEndpointsDeletionEnabled: bool
     authorizationMode: typing_extensions.Literal[
@@ -240,6 +241,9 @@ class ConfigBasedSignalData(typing_extensions.TypedDict, total=False):
         "SIGNAL_TYPE_UNENCRYPTED_CONNECTIONS",
         "SIGNAL_TYPE_EXTENDED_SUPPORT",
         "SIGNAL_TYPE_NO_AUTOMATED_BACKUP_POLICY",
+        "SIGNAL_TYPE_VERSION_NEARING_END_OF_LIFE",
+        "SIGNAL_TYPE_LAST_BACKUP_OLD",
+        "SIGNAL_TYPE_NOT_PROTECTED_BY_AUTOMATIC_FAILOVER",
     ]
 
 @typing.type_check_only
@@ -423,6 +427,7 @@ class DatabaseResourceHealthSignalData(typing_extensions.TypedDict, total=False)
         "SIGNAL_TYPE_RECOMMENDED_MAINTENANCE_POLICIES",
         "SIGNAL_TYPE_EXTENDED_SUPPORT",
         "SIGNAL_TYPE_PERFORMANCE_KPI_CHANGE",
+        "SIGNAL_TYPE_VERSION_NEARING_END_OF_LIFE",
     ]
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "RESOLVED", "MUTED"]
 
@@ -487,6 +492,9 @@ class DatabaseResourceMetadata(typing_extensions.TypedDict, total=False):
         "SUB_RESOURCE_TYPE_SECONDARY",
         "SUB_RESOURCE_TYPE_READ_REPLICA",
         "SUB_RESOURCE_TYPE_EXTERNAL_PRIMARY",
+        "SUB_RESOURCE_TYPE_READ_POOL",
+        "SUB_RESOURCE_TYPE_RESERVATION",
+        "SUB_RESOURCE_TYPE_DATASET",
         "SUB_RESOURCE_TYPE_OTHER",
     ]
     isDeletionProtectionEnabled: bool
@@ -633,14 +641,18 @@ class DatabaseResourceRecommendationSignalData(
         "SIGNAL_TYPE_RECOMMENDED_MAINTENANCE_POLICIES",
         "SIGNAL_TYPE_EXTENDED_SUPPORT",
         "SIGNAL_TYPE_PERFORMANCE_KPI_CHANGE",
+        "SIGNAL_TYPE_VERSION_NEARING_END_OF_LIFE",
     ]
 
 @typing.type_check_only
 class DatabaseResourceSignalData(typing_extensions.TypedDict, total=False):
+    backupRun: BackupRun
     fullResourceName: str
     lastRefreshTime: str
+    location: str
     resourceId: DatabaseResourceId
     signalBoolValue: bool
+    signalMetadataList: _list[SignalMetadata]
     signalState: typing_extensions.Literal[
         "SIGNAL_STATE_UNSPECIFIED", "ACTIVE", "INACTIVE", "DISMISSED"
     ]
@@ -653,6 +665,9 @@ class DatabaseResourceSignalData(typing_extensions.TypedDict, total=False):
         "SIGNAL_TYPE_UNENCRYPTED_CONNECTIONS",
         "SIGNAL_TYPE_EXTENDED_SUPPORT",
         "SIGNAL_TYPE_NO_AUTOMATED_BACKUP_POLICY",
+        "SIGNAL_TYPE_VERSION_NEARING_END_OF_LIFE",
+        "SIGNAL_TYPE_LAST_BACKUP_OLD",
+        "SIGNAL_TYPE_NOT_PROTECTED_BY_AUTOMATIC_FAILOVER",
     ]
 
 @typing.type_check_only
@@ -1198,6 +1213,11 @@ class RetentionSettings(typing_extensions.TypedDict, total=False):
 class SharedRegionalCertificateAuthority(typing_extensions.TypedDict, total=False):
     managedServerCa: RegionalManagedCertificateAuthority
     name: str
+
+@typing.type_check_only
+class SignalMetadata(typing_extensions.TypedDict, total=False):
+    backupRun: BackupRun
+    signalBoolValue: bool
 
 @typing.type_check_only
 class StateInfo(typing_extensions.TypedDict, total=False):

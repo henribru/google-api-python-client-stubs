@@ -30,6 +30,7 @@ class AddOnAttachmentStudentSubmission(typing_extensions.TypedDict, total=False)
         "RETURNED",
         "RECLAIMED_BY_STUDENT",
     ]
+    userId: str
 
 @typing.type_check_only
 class AddOnContext(typing_extensions.TypedDict, total=False):

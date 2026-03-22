@@ -296,27 +296,6 @@ class GoogleCloudDataplexV1CancelMetadataJobRequest(
 ): ...
 
 @typing.type_check_only
-class GoogleCloudDataplexV1Content(typing_extensions.TypedDict, total=False):
-    createTime: str
-    dataText: str
-    description: str
-    labels: dict[str, typing.Any]
-    name: str
-    notebook: GoogleCloudDataplexV1ContentNotebook
-    path: str
-    sqlScript: GoogleCloudDataplexV1ContentSqlScript
-    uid: str
-    updateTime: str
-
-@typing.type_check_only
-class GoogleCloudDataplexV1ContentNotebook(typing_extensions.TypedDict, total=False):
-    kernelType: typing_extensions.Literal["KERNEL_TYPE_UNSPECIFIED", "PYTHON3"]
-
-@typing.type_check_only
-class GoogleCloudDataplexV1ContentSqlScript(typing_extensions.TypedDict, total=False):
-    engine: typing_extensions.Literal["QUERY_ENGINE_UNSPECIFIED", "SPARK"]
-
-@typing.type_check_only
 class GoogleCloudDataplexV1DataAccessSpec(typing_extensions.TypedDict, total=False):
     readers: _list[str]
 
@@ -1256,6 +1235,7 @@ class GoogleCloudDataplexV1EntryGroup(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleCloudDataplexV1EntryLink(typing_extensions.TypedDict, total=False):
+    aspects: dict[str, typing.Any]
     createTime: str
     entryLinkType: str
     entryReferences: _list[GoogleCloudDataplexV1EntryLinkEntryReference]
@@ -1325,67 +1305,6 @@ class GoogleCloudDataplexV1EntryTypeAuthorization(
     typing_extensions.TypedDict, total=False
 ):
     alternateUsePermission: str
-
-@typing.type_check_only
-class GoogleCloudDataplexV1Environment(typing_extensions.TypedDict, total=False):
-    createTime: str
-    description: str
-    displayName: str
-    endpoints: GoogleCloudDataplexV1EnvironmentEndpoints
-    infrastructureSpec: GoogleCloudDataplexV1EnvironmentInfrastructureSpec
-    labels: dict[str, typing.Any]
-    name: str
-    sessionSpec: GoogleCloudDataplexV1EnvironmentSessionSpec
-    sessionStatus: GoogleCloudDataplexV1EnvironmentSessionStatus
-    state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "ACTIVE", "CREATING", "DELETING", "ACTION_REQUIRED"
-    ]
-    uid: str
-    updateTime: str
-
-@typing.type_check_only
-class GoogleCloudDataplexV1EnvironmentEndpoints(
-    typing_extensions.TypedDict, total=False
-):
-    notebooks: str
-    sql: str
-
-@typing.type_check_only
-class GoogleCloudDataplexV1EnvironmentInfrastructureSpec(
-    typing_extensions.TypedDict, total=False
-):
-    compute: GoogleCloudDataplexV1EnvironmentInfrastructureSpecComputeResources
-    osImage: GoogleCloudDataplexV1EnvironmentInfrastructureSpecOsImageRuntime
-
-@typing.type_check_only
-class GoogleCloudDataplexV1EnvironmentInfrastructureSpecComputeResources(
-    typing_extensions.TypedDict, total=False
-):
-    diskSizeGb: int
-    maxNodeCount: int
-    nodeCount: int
-
-@typing.type_check_only
-class GoogleCloudDataplexV1EnvironmentInfrastructureSpecOsImageRuntime(
-    typing_extensions.TypedDict, total=False
-):
-    imageVersion: str
-    javaLibraries: _list[str]
-    properties: dict[str, typing.Any]
-    pythonPackages: _list[str]
-
-@typing.type_check_only
-class GoogleCloudDataplexV1EnvironmentSessionSpec(
-    typing_extensions.TypedDict, total=False
-):
-    enableFastStartup: bool
-    maxIdleDuration: str
-
-@typing.type_check_only
-class GoogleCloudDataplexV1EnvironmentSessionStatus(
-    typing_extensions.TypedDict, total=False
-):
-    active: bool
 
 @typing.type_check_only
 class GoogleCloudDataplexV1GenerateDataQualityRulesRequest(
@@ -1566,13 +1485,6 @@ class GoogleCloudDataplexV1ListAssetsResponse(typing_extensions.TypedDict, total
     nextPageToken: str
 
 @typing.type_check_only
-class GoogleCloudDataplexV1ListContentResponse(
-    typing_extensions.TypedDict, total=False
-):
-    content: _list[GoogleCloudDataplexV1Content]
-    nextPageToken: str
-
-@typing.type_check_only
 class GoogleCloudDataplexV1ListDataAssetsResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -1665,13 +1577,6 @@ class GoogleCloudDataplexV1ListEntryTypesResponse(
     unreachableLocations: _list[str]
 
 @typing.type_check_only
-class GoogleCloudDataplexV1ListEnvironmentsResponse(
-    typing_extensions.TypedDict, total=False
-):
-    environments: _list[GoogleCloudDataplexV1Environment]
-    nextPageToken: str
-
-@typing.type_check_only
 class GoogleCloudDataplexV1ListGlossariesResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -1730,13 +1635,6 @@ class GoogleCloudDataplexV1ListPartitionsResponse(
     partitions: _list[GoogleCloudDataplexV1Partition]
 
 @typing.type_check_only
-class GoogleCloudDataplexV1ListSessionsResponse(
-    typing_extensions.TypedDict, total=False
-):
-    nextPageToken: str
-    sessions: _list[GoogleCloudDataplexV1Session]
-
-@typing.type_check_only
 class GoogleCloudDataplexV1ListTasksResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     tasks: _list[GoogleCloudDataplexV1Task]
@@ -1746,6 +1644,19 @@ class GoogleCloudDataplexV1ListTasksResponse(typing_extensions.TypedDict, total=
 class GoogleCloudDataplexV1ListZonesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     zones: _list[GoogleCloudDataplexV1Zone]
+
+@typing.type_check_only
+class GoogleCloudDataplexV1LookupContextRequest(
+    typing_extensions.TypedDict, total=False
+):
+    options: dict[str, typing.Any]
+    resources: _list[str]
+
+@typing.type_check_only
+class GoogleCloudDataplexV1LookupContextResponse(
+    typing_extensions.TypedDict, total=False
+):
+    context: str
 
 @typing.type_check_only
 class GoogleCloudDataplexV1LookupEntryLinksResponse(
@@ -2014,15 +1925,6 @@ class GoogleCloudDataplexV1SearchEntriesResultSnippets(
     typing_extensions.TypedDict, total=False
 ):
     dataplexEntry: GoogleCloudDataplexV1Entry
-
-@typing.type_check_only
-class GoogleCloudDataplexV1Session(typing_extensions.TypedDict, total=False):
-    createTime: str
-    name: str
-    state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "ACTIVE", "CREATING", "DELETING", "ACTION_REQUIRED"
-    ]
-    userId: str
 
 @typing.type_check_only
 class GoogleCloudDataplexV1SessionEvent(typing_extensions.TypedDict, total=False):

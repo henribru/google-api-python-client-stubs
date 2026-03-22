@@ -63,6 +63,7 @@ class CloudVideoIntelligenceResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
+                    returnPartialSuccess: bool = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunning_ListOperationsResponseHttpRequest: ...
                 def list_next(

@@ -559,6 +559,11 @@ class GoogleCloudAiplatformV1beta1ImageConfig(typing_extensions.TypedDict, total
     personGeneration: typing_extensions.Literal[
         "PERSON_GENERATION_UNSPECIFIED", "ALLOW_ALL", "ALLOW_ADULT", "ALLOW_NONE"
     ]
+    prominentPeople: typing_extensions.Literal[
+        "PROMINENT_PEOPLE_UNSPECIFIED",
+        "ALLOW_PROMINENT_PEOPLE",
+        "BLOCK_PROMINENT_PEOPLE",
+    ]
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1ImageConfigImageOutputOptions(

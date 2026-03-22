@@ -42,6 +42,16 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 previous_response: ListDeviceTierConfigsResponse,
             ) -> ListDeviceTierConfigsResponseHttpRequest | None: ...
 
+        @typing.type_check_only
+        class TracksResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class ReleasesResource(googleapiclient.discovery.Resource):
+                def list(
+                    self, *, parent: str, **kwargs: typing.Any
+                ) -> ListReleaseSummariesResponseHttpRequest: ...
+
+            def releases(self) -> ReleasesResource: ...
+
         def dataSafety(
             self,
             *,
@@ -50,6 +60,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any,
         ) -> SafetyLabelsUpdateResponseHttpRequest: ...
         def deviceTierConfigs(self) -> DeviceTierConfigsResource: ...
+        def tracks(self) -> TracksResource: ...
 
     @typing.type_check_only
     class ApprecoveryResource(googleapiclient.discovery.Resource):
@@ -400,6 +411,11 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
             *,
             packageName: str,
             editId: str,
+            changesInReviewBehavior: typing_extensions.Literal[
+                "CHANGES_IN_REVIEW_BEHAVIOR_TYPE_UNSPECIFIED",
+                "CANCEL_IN_REVIEW_AND_SUBMIT",
+                "ERROR_IF_IN_REVIEW",
+            ] = ...,
             changesNotSentForReview: bool = ...,
             **kwargs: typing.Any,
         ) -> AppEditHttpRequest: ...
@@ -1674,6 +1690,14 @@ class ListOneTimeProductsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListOneTimeProductsResponse: ...
+
+@typing.type_check_only
+class ListReleaseSummariesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListReleaseSummariesResponse: ...
 
 @typing.type_check_only
 class ListSubscriptionOffersResponseHttpRequest(googleapiclient.http.HttpRequest):
