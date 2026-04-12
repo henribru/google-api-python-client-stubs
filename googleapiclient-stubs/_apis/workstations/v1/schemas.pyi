@@ -306,6 +306,8 @@ class Workstation(typing_extensions.TypedDict, total=False):
         "STATE_RUNNING",
         "STATE_STOPPING",
         "STATE_STOPPED",
+        "STATE_SUSPENDING",
+        "STATE_SUSPENDED",
     ]
     uid: str
     updateTime: str

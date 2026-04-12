@@ -278,6 +278,13 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                         body: RunSessionRequest = ...,
                         **kwargs: typing.Any,
                     ) -> RunSessionResponseHttpRequest: ...
+                    def streamRunSession(
+                        self,
+                        *,
+                        session: str,
+                        body: RunSessionRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> RunSessionResponseHttpRequest: ...
 
                 @typing.type_check_only
                 class ToolsResource(googleapiclient.discovery.Resource):

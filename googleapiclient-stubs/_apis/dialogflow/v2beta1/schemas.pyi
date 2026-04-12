@@ -411,6 +411,7 @@ class GoogleCloudDialogflowCxV3InputAudioConfig(
 class GoogleCloudDialogflowCxV3Intent(typing_extensions.TypedDict, total=False):
     description: str
     displayName: str
+    dtmfPattern: str
     isFallback: bool
     labels: dict[str, typing.Any]
     name: str
@@ -1287,6 +1288,7 @@ class GoogleCloudDialogflowCxV3beta1InputAudioConfig(
 class GoogleCloudDialogflowCxV3beta1Intent(typing_extensions.TypedDict, total=False):
     description: str
     displayName: str
+    dtmfPattern: str
     isFallback: bool
     labels: dict[str, typing.Any]
     name: str
@@ -2827,6 +2829,9 @@ class GoogleCloudDialogflowV2SummarySuggestionSummarySection(
 class GoogleCloudDialogflowV2ToolCall(typing_extensions.TypedDict, total=False):
     action: str
     answerRecord: str
+    cesApp: str
+    cesTool: str
+    cesToolset: str
     createTime: str
     inputParameters: dict[str, typing.Any]
     state: typing_extensions.Literal[
@@ -2840,6 +2845,9 @@ class GoogleCloudDialogflowV2ToolCall(typing_extensions.TypedDict, total=False):
 class GoogleCloudDialogflowV2ToolCallResult(typing_extensions.TypedDict, total=False):
     action: str
     answerRecord: str
+    cesApp: str
+    cesTool: str
+    cesToolset: str
     content: str
     createTime: str
     error: GoogleCloudDialogflowV2ToolCallResultError
@@ -3249,6 +3257,20 @@ class GoogleCloudDialogflowV2beta1BatchUpdateIntentsResponse(
     intents: _list[GoogleCloudDialogflowV2beta1Intent]
 
 @typing.type_check_only
+class GoogleCloudDialogflowV2beta1CesAppSpec(typing_extensions.TypedDict, total=False):
+    cesApp: str
+    confirmationRequirement: typing_extensions.Literal[
+        "CONFIRMATION_REQUIREMENT_UNSPECIFIED", "REQUIRED", "NOT_REQUIRED"
+    ]
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1CesToolSpec(typing_extensions.TypedDict, total=False):
+    cesTool: str
+    confirmationRequirement: typing_extensions.Literal[
+        "CONFIRMATION_REQUIREMENT_UNSPECIFIED", "REQUIRED", "NOT_REQUIRED"
+    ]
+
+@typing.type_check_only
 class GoogleCloudDialogflowV2beta1ClearSuggestionFeatureConfigOperationMetadata(
     typing_extensions.TypedDict, total=False
 ):
@@ -3352,6 +3374,8 @@ class GoogleCloudDialogflowV2beta1Conversation(
     ]
     endTime: str
     ingestedContextReferences: dict[str, typing.Any]
+    initialConversationProfile: GoogleCloudDialogflowV2beta1ConversationProfile
+    initialGeneratorContexts: dict[str, typing.Any]
     lifecycleState: typing_extensions.Literal[
         "LIFECYCLE_STATE_UNSPECIFIED", "IN_PROGRESS", "COMPLETED"
     ]
@@ -3408,6 +3432,20 @@ class GoogleCloudDialogflowV2beta1ConversationEvent(
         "NEW_MESSAGE",
         "NEW_RECOGNITION_RESULT",
         "UNRECOVERABLE_ERROR",
+    ]
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1ConversationGeneratorContext(
+    typing_extensions.TypedDict, total=False
+):
+    generatorType: typing_extensions.Literal[
+        "GENERATOR_TYPE_UNSPECIFIED",
+        "FREE_FORM",
+        "AGENT_COACHING",
+        "SUMMARIZATION",
+        "TRANSLATION",
+        "AGENT_FEEDBACK",
+        "CUSTOMER_MESSAGE_GENERATION",
     ]
 
 @typing.type_check_only
@@ -3808,6 +3846,8 @@ class GoogleCloudDialogflowV2beta1GenerateSuggestionsResponseGeneratorSuggestion
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1Generator(typing_extensions.TypedDict, total=False):
     agentCoachingContext: GoogleCloudDialogflowV2beta1AgentCoachingContext
+    cesAppSpecs: _list[GoogleCloudDialogflowV2beta1CesAppSpec]
+    cesToolSpecs: _list[GoogleCloudDialogflowV2beta1CesToolSpec]
     createTime: str
     description: str
     freeFormContext: GoogleCloudDialogflowV2beta1FreeFormContext
@@ -3817,6 +3857,7 @@ class GoogleCloudDialogflowV2beta1Generator(typing_extensions.TypedDict, total=F
     suggestionDedupingConfig: GoogleCloudDialogflowV2beta1SuggestionDedupingConfig
     summarizationContext: GoogleCloudDialogflowV2beta1SummarizationContext
     tools: _list[str]
+    toolsetTools: _list[GoogleCloudDialogflowV2beta1ToolsetTool]
     triggerEvent: typing_extensions.Literal[
         "TRIGGER_EVENT_UNSPECIFIED",
         "END_OF_UTTERANCE",
@@ -5065,12 +5106,21 @@ class GoogleCloudDialogflowV2beta1Participant(typing_extensions.TypedDict, total
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1PhoneNumber(typing_extensions.TypedDict, total=False):
+    allowedSipTrunks: GoogleCloudDialogflowV2beta1PhoneNumberAllowedSipTrunks
     conversationProfile: str
     lifecycleState: typing_extensions.Literal[
         "LIFECYCLE_STATE_UNSPECIFIED", "ACTIVE", "DELETE_REQUESTED"
     ]
     name: str
     phoneNumber: str
+    purgeTime: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1PhoneNumberAllowedSipTrunks(
+    typing_extensions.TypedDict, total=False
+):
+    carrierIds: _list[str]
+    sipTrunks: _list[str]
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1QueryInput(typing_extensions.TypedDict, total=False):
@@ -6018,6 +6068,9 @@ class GoogleCloudDialogflowV2beta1ToolAuthenticationServiceAgentAuthConfig(
 class GoogleCloudDialogflowV2beta1ToolCall(typing_extensions.TypedDict, total=False):
     action: str
     answerRecord: str
+    cesApp: str
+    cesTool: str
+    cesToolset: str
     createTime: str
     inputParameters: dict[str, typing.Any]
     state: typing_extensions.Literal[
@@ -6033,6 +6086,9 @@ class GoogleCloudDialogflowV2beta1ToolCallResult(
 ):
     action: str
     answerRecord: str
+    cesApp: str
+    cesTool: str
+    cesToolset: str
     content: str
     createTime: str
     error: GoogleCloudDialogflowV2beta1ToolCallResultError
@@ -6113,6 +6169,14 @@ class GoogleCloudDialogflowV2beta1ToolTLSConfigCACert(
 ):
     cert: str
     displayName: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1ToolsetTool(typing_extensions.TypedDict, total=False):
+    confirmationRequirement: typing_extensions.Literal[
+        "CONFIRMATION_REQUIREMENT_UNSPECIFIED", "REQUIRED", "NOT_REQUIRED"
+    ]
+    operationId: str
+    toolset: str
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1TrainAgentRequest(

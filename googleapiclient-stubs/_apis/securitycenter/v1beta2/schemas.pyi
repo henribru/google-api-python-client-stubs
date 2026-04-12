@@ -50,6 +50,15 @@ class AffectedResources(typing_extensions.TypedDict, total=False):
     count: str
 
 @typing.type_check_only
+class AgentDataAccessEvent(typing_extensions.TypedDict, total=False):
+    eventId: str
+    eventTime: str
+    operation: typing_extensions.Literal[
+        "OPERATION_UNSPECIFIED", "READ", "MOVE", "COPY"
+    ]
+    principalSubject: str
+
+@typing.type_check_only
 class AiModel(typing_extensions.TypedDict, total=False):
     deploymentPlatform: typing_extensions.Literal[
         "DEPLOYMENT_PLATFORM_UNSPECIFIED", "VERTEX_AI", "GKE", "GCE", "FINE_TUNED_MODEL"
@@ -404,6 +413,16 @@ class Detection(typing_extensions.TypedDict, total=False):
     percentPagesMatched: float
 
 @typing.type_check_only
+class DiscoveredWorkload(typing_extensions.TypedDict, total=False):
+    confidence: typing_extensions.Literal["CONFIDENCE_UNSPECIFIED", "CONFIDENCE_HIGH"]
+    detectedRelevantHardware: bool
+    detectedRelevantKeywords: bool
+    detectedRelevantPackages: bool
+    workloadType: typing_extensions.Literal[
+        "WORKLOAD_TYPE_UNSPECIFIED", "MCP_SERVER", "AI_INFERENCE", "AGENT"
+    ]
+
+@typing.type_check_only
 class Disk(typing_extensions.TypedDict, total=False):
     name: str
 
@@ -496,6 +515,7 @@ class FileOperation(typing_extensions.TypedDict, total=False):
 class Finding(typing_extensions.TypedDict, total=False):
     access: Access
     affectedResources: AffectedResources
+    agentDataAccessEvents: _list[AgentDataAccessEvent]
     aiModel: AiModel
     application: Application
     artifactGuardPolicies: ArtifactGuardPolicies
@@ -518,6 +538,7 @@ class Finding(typing_extensions.TypedDict, total=False):
     dataRetentionDeletionEvents: _list[DataRetentionDeletionEvent]
     database: Database
     description: str
+    discoveredWorkload: DiscoveredWorkload
     disk: Disk
     eventTime: str
     exfiltration: Exfiltration
@@ -560,6 +581,7 @@ class Finding(typing_extensions.TypedDict, total=False):
     orgPolicies: _list[OrgPolicy]
     parent: str
     parentDisplayName: str
+    policyViolationSummary: PolicyViolationSummary
     processes: _list[Process]
     resourceName: str
     secret: Secret
@@ -984,6 +1006,17 @@ class GoogleCloudSecuritycenterV2AffectedResources(
     count: str
 
 @typing.type_check_only
+class GoogleCloudSecuritycenterV2AgentDataAccessEvent(
+    typing_extensions.TypedDict, total=False
+):
+    eventId: str
+    eventTime: str
+    operation: typing_extensions.Literal[
+        "OPERATION_UNSPECIFIED", "READ", "MOVE", "COPY"
+    ]
+    principalSubject: str
+
+@typing.type_check_only
 class GoogleCloudSecuritycenterV2AiModel(typing_extensions.TypedDict, total=False):
     deploymentPlatform: typing_extensions.Literal[
         "DEPLOYMENT_PLATFORM_UNSPECIFIED", "VERTEX_AI", "GKE", "GCE", "FINE_TUNED_MODEL"
@@ -1371,6 +1404,18 @@ class GoogleCloudSecuritycenterV2Detection(typing_extensions.TypedDict, total=Fa
     percentPagesMatched: float
 
 @typing.type_check_only
+class GoogleCloudSecuritycenterV2DiscoveredWorkload(
+    typing_extensions.TypedDict, total=False
+):
+    confidence: typing_extensions.Literal["CONFIDENCE_UNSPECIFIED", "CONFIDENCE_HIGH"]
+    detectedRelevantHardware: bool
+    detectedRelevantKeywords: bool
+    detectedRelevantPackages: bool
+    workloadType: typing_extensions.Literal[
+        "WORKLOAD_TYPE_UNSPECIFIED", "MCP_SERVER", "AI_INFERENCE", "AGENT"
+    ]
+
+@typing.type_check_only
 class GoogleCloudSecuritycenterV2Disk(typing_extensions.TypedDict, total=False):
     name: str
 
@@ -1465,6 +1510,7 @@ class GoogleCloudSecuritycenterV2FileOperation(
 class GoogleCloudSecuritycenterV2Finding(typing_extensions.TypedDict, total=False):
     access: GoogleCloudSecuritycenterV2Access
     affectedResources: GoogleCloudSecuritycenterV2AffectedResources
+    agentDataAccessEvents: _list[GoogleCloudSecuritycenterV2AgentDataAccessEvent]
     aiModel: GoogleCloudSecuritycenterV2AiModel
     application: GoogleCloudSecuritycenterV2Application
     artifactGuardPolicies: GoogleCloudSecuritycenterV2ArtifactGuardPolicies
@@ -1490,6 +1536,7 @@ class GoogleCloudSecuritycenterV2Finding(typing_extensions.TypedDict, total=Fals
     ]
     database: GoogleCloudSecuritycenterV2Database
     description: str
+    discoveredWorkload: GoogleCloudSecuritycenterV2DiscoveredWorkload
     disk: GoogleCloudSecuritycenterV2Disk
     eventTime: str
     exfiltration: GoogleCloudSecuritycenterV2Exfiltration
@@ -1532,6 +1579,7 @@ class GoogleCloudSecuritycenterV2Finding(typing_extensions.TypedDict, total=Fals
     orgPolicies: _list[GoogleCloudSecuritycenterV2OrgPolicy]
     parent: str
     parentDisplayName: str
+    policyViolationSummary: GoogleCloudSecuritycenterV2PolicyViolationSummary
     processes: _list[GoogleCloudSecuritycenterV2Process]
     resourceName: str
     secret: GoogleCloudSecuritycenterV2Secret
@@ -2286,6 +2334,15 @@ class GoogleCloudSecuritycenterV2PolicyDriftDetails(
     detectedValue: str
     expectedValue: str
     field: str
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2PolicyViolationSummary(
+    typing_extensions.TypedDict, total=False
+):
+    conformantResourcesCount: str
+    evaluationErrorsCount: str
+    outOfScopeResourcesCount: str
+    policyViolationsCount: str
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV2PortRange(typing_extensions.TypedDict, total=False):
@@ -3079,6 +3136,13 @@ class PolicyDriftDetails(typing_extensions.TypedDict, total=False):
     detectedValue: str
     expectedValue: str
     field: str
+
+@typing.type_check_only
+class PolicyViolationSummary(typing_extensions.TypedDict, total=False):
+    conformantResourcesCount: str
+    evaluationErrorsCount: str
+    outOfScopeResourcesCount: str
+    policyViolationsCount: str
 
 @typing.type_check_only
 class PortRange(typing_extensions.TypedDict, total=False):

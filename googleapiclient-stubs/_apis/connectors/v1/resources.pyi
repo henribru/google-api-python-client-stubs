@@ -214,6 +214,13 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                 def delete(
                     self, *, name: str, force: bool = ..., **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+                def fetchToolspecOverride(
+                    self,
+                    *,
+                    name: str,
+                    body: FetchConnectionToolspecOverrideRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> FetchConnectionToolspecOverrideResponseHttpRequest: ...
                 def generateToolspecOverride(
                     self,
                     *,
@@ -860,6 +867,16 @@ class FetchAuthSchemaResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> FetchAuthSchemaResponse: ...
+
+@typing.type_check_only
+class FetchConnectionToolspecOverrideResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> FetchConnectionToolspecOverrideResponse: ...
 
 @typing.type_check_only
 class GenerateConnectionToolspecOverrideResponseHttpRequest(

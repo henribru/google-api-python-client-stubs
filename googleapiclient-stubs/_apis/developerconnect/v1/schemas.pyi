@@ -8,11 +8,13 @@ _list = list
 class AccountConnector(typing_extensions.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     createTime: str
+    customOauthConfig: CustomOAuthConfig
     etag: str
     labels: dict[str, typing.Any]
     name: str
     oauthStartUri: str
     providerOauthConfig: ProviderOAuthConfig
+    proxyConfig: ProxyConfig
     updateTime: str
 
 @typing.type_check_only
@@ -101,6 +103,25 @@ class CryptoKeyConfig(typing_extensions.TypedDict, total=False):
     keyReference: str
 
 @typing.type_check_only
+class CustomOAuthConfig(typing_extensions.TypedDict, total=False):
+    authUri: str
+    clientId: str
+    clientSecret: str
+    hostUri: str
+    pkceDisabled: bool
+    scmProvider: typing_extensions.Literal[
+        "SCM_PROVIDER_UNKNOWN",
+        "GITHUB_ENTERPRISE",
+        "GITLAB_ENTERPRISE",
+        "BITBUCKET_DATA_CENTER",
+    ]
+    scopes: _list[str]
+    serverVersion: str
+    serviceDirectoryConfig: ServiceDirectoryConfig
+    sslCaCertificate: str
+    tokenUri: str
+
+@typing.type_check_only
 class DeploymentEvent(typing_extensions.TypedDict, total=False):
     artifactDeployments: _list[ArtifactDeployment]
     createTime: str
@@ -163,6 +184,11 @@ class FetchReadWriteTokenResponse(typing_extensions.TypedDict, total=False):
     expirationTime: str
     gitUsername: str
     token: str
+
+@typing.type_check_only
+class FetchUserRepositoriesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    userRepos: _list[UserRepository]
 
 @typing.type_check_only
 class FinishOAuthResponse(typing_extensions.TypedDict, total=False):
@@ -421,6 +447,10 @@ class ProviderOAuthConfig(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class ProxyConfig(typing_extensions.TypedDict, total=False):
+    enabled: bool
+
+@typing.type_check_only
 class RuntimeConfig(typing_extensions.TypedDict, total=False):
     appHubService: AppHubService
     appHubWorkload: AppHubWorkload
@@ -474,3 +504,9 @@ class User(typing_extensions.TypedDict, total=False):
 class UserCredential(typing_extensions.TypedDict, total=False):
     userTokenSecretVersion: str
     username: str
+
+@typing.type_check_only
+class UserRepository(typing_extensions.TypedDict, total=False):
+    cloneUri: str
+    displayName: str
+    gitProxyUri: str

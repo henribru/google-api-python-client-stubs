@@ -1034,6 +1034,7 @@ class PostgreSqlConnectionProfile(typing_extensions.TypedDict, total=False):
     alloydbClusterId: str
     cloudSqlId: str
     database: str
+    enableIamAuthentication: bool
     forwardSshConnectivity: ForwardSshTunnelConnectivity
     host: str
     networkArchitecture: typing_extensions.Literal[

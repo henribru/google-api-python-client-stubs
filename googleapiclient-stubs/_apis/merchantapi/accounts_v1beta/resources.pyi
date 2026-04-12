@@ -502,6 +502,9 @@ class MerchantResource(googleapiclient.discovery.Resource):
         def createAndConfigure(
             self, *, body: CreateAndConfigureAccountRequest = ..., **kwargs: typing.Any
         ) -> AccountHttpRequest: ...
+        def createTestAccount(
+            self, *, parent: str, body: Account = ..., **kwargs: typing.Any
+        ) -> AccountHttpRequest: ...
         def delete(
             self, *, name: str, force: bool = ..., **kwargs: typing.Any
         ) -> EmptyHttpRequest: ...

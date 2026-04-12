@@ -102,14 +102,6 @@ class IaCValidationReport(typing_extensions.TypedDict, total=False):
     violations: _list[Violation]
 
 @typing.type_check_only
-class IacValidationFailureCriteria(typing_extensions.TypedDict, total=False):
-    createTime: str
-    etag: str
-    name: str
-    severityCountThresholds: _list[SeverityCountThreshold]
-    updateTime: str
-
-@typing.type_check_only
 class ListLocationsResponse(typing_extensions.TypedDict, total=False):
     locations: _list[Location]
     nextPageToken: str
@@ -313,13 +305,6 @@ class SecurityHealthAnalyticsModule(typing_extensions.TypedDict, total=False):
         "ENABLEMENT_STATE_UNSPECIFIED", "ENABLED", "DISABLED"
     ]
     moduleName: str
-
-@typing.type_check_only
-class SeverityCountThreshold(typing_extensions.TypedDict, total=False):
-    severity: typing_extensions.Literal[
-        "SEVERITY_UNSPECIFIED", "CRITICAL", "HIGH", "MEDIUM", "LOW"
-    ]
-    thresholdCount: int
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):

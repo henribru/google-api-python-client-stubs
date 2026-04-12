@@ -30,6 +30,13 @@ class DataformResource(googleapiclient.discovery.Resource):
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> EmptyHttpRequest: ...
+                def deleteTree(
+                    self,
+                    *,
+                    name: str,
+                    body: DeleteFolderTreeRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> FolderHttpRequest: ...
@@ -394,6 +401,11 @@ class DataformResource(googleapiclient.discovery.Resource):
                         pageSize: int = ...,
                         pageToken: str = ...,
                         path: str = ...,
+                        view: typing_extensions.Literal[
+                            "DIRECTORY_CONTENTS_VIEW_UNSPECIFIED",
+                            "DIRECTORY_CONTENTS_VIEW_BASIC",
+                            "DIRECTORY_CONTENTS_VIEW_METADATA",
+                        ] = ...,
                         **kwargs: typing.Any,
                     ) -> QueryDirectoryContentsResponseHttpRequest: ...
                     def queryDirectoryContents_next(
@@ -599,6 +611,13 @@ class DataformResource(googleapiclient.discovery.Resource):
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> EmptyHttpRequest: ...
+                def deleteTree(
+                    self,
+                    *,
+                    name: str,
+                    body: DeleteTeamFolderTreeRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> TeamFolderHttpRequest: ...

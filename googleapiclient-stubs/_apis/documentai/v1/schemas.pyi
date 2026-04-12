@@ -2121,6 +2121,7 @@ class GoogleCloudDocumentaiV1TrainProcessorVersionRequestFoundationModelTuningOp
     typing_extensions.TypedDict, total=False
 ):
     learningRateMultiplier: float
+    previousFineTunedProcessorVersionName: str
     trainSteps: int
 
 @typing.type_check_only

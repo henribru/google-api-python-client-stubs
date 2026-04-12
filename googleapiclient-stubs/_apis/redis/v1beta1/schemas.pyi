@@ -11,6 +11,38 @@ class AOFConfig(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class AclPolicy(typing_extensions.TypedDict, total=False):
+    etag: str
+    name: str
+    rules: _list[AclRule]
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "ACTIVE", "UPDATING", "DELETING"
+    ]
+    version: str
+
+@typing.type_check_only
+class AclRule(typing_extensions.TypedDict, total=False):
+    rule: str
+    username: str
+
+@typing.type_check_only
+class AddAuthTokenRequest(typing_extensions.TypedDict, total=False):
+    authToken: AuthToken
+
+@typing.type_check_only
+class AddTokenAuthUserRequest(typing_extensions.TypedDict, total=False):
+    tokenAuthUser: str
+
+@typing.type_check_only
+class AuthToken(typing_extensions.TypedDict, total=False):
+    createTime: str
+    name: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "ACTIVE", "CREATING", "DELETING"
+    ]
+    token: str
+
+@typing.type_check_only
 class AutomatedBackupConfig(typing_extensions.TypedDict, total=False):
     automatedBackupMode: typing_extensions.Literal[
         "AUTOMATED_BACKUP_MODE_UNSPECIFIED", "DISABLED", "ENABLED"
@@ -120,10 +152,15 @@ class CertificateAuthority(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Cluster(typing_extensions.TypedDict, total=False):
+    aclPolicy: str
+    aclPolicyInSync: bool
     allowFewerZonesDeployment: bool
     asyncClusterEndpointsDeletionEnabled: bool
     authorizationMode: typing_extensions.Literal[
-        "AUTH_MODE_UNSPECIFIED", "AUTH_MODE_IAM_AUTH", "AUTH_MODE_DISABLED"
+        "AUTH_MODE_UNSPECIFIED",
+        "AUTH_MODE_IAM_AUTH",
+        "AUTH_MODE_DISABLED",
+        "AUTH_MODE_TOKEN_AUTH",
     ]
     automatedBackupConfig: AutomatedBackupConfig
     availableMaintenanceVersions: _list[str]
@@ -240,6 +277,9 @@ class ConfigBasedSignalData(typing_extensions.TypedDict, total=False):
         "SIGNAL_TYPE_UNENCRYPTED_CONNECTIONS",
         "SIGNAL_TYPE_EXTENDED_SUPPORT",
         "SIGNAL_TYPE_NO_AUTOMATED_BACKUP_POLICY",
+        "SIGNAL_TYPE_VERSION_NEARING_END_OF_LIFE",
+        "SIGNAL_TYPE_LAST_BACKUP_OLD",
+        "SIGNAL_TYPE_NOT_PROTECTED_BY_AUTOMATIC_FAILOVER",
     ]
 
 @typing.type_check_only
@@ -423,6 +463,7 @@ class DatabaseResourceHealthSignalData(typing_extensions.TypedDict, total=False)
         "SIGNAL_TYPE_RECOMMENDED_MAINTENANCE_POLICIES",
         "SIGNAL_TYPE_EXTENDED_SUPPORT",
         "SIGNAL_TYPE_PERFORMANCE_KPI_CHANGE",
+        "SIGNAL_TYPE_VERSION_NEARING_END_OF_LIFE",
     ]
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "RESOLVED", "MUTED"]
 
@@ -487,12 +528,20 @@ class DatabaseResourceMetadata(typing_extensions.TypedDict, total=False):
         "SUB_RESOURCE_TYPE_SECONDARY",
         "SUB_RESOURCE_TYPE_READ_REPLICA",
         "SUB_RESOURCE_TYPE_EXTERNAL_PRIMARY",
+        "SUB_RESOURCE_TYPE_READ_POOL",
+        "SUB_RESOURCE_TYPE_RESERVATION",
+        "SUB_RESOURCE_TYPE_DATASET",
         "SUB_RESOURCE_TYPE_OTHER",
     ]
     isDeletionProtectionEnabled: bool
     location: str
     machineConfiguration: MachineConfiguration
     maintenanceInfo: ResourceMaintenanceInfo
+    modes: _list[
+        typing_extensions.Literal[
+            "MODE_UNSPECIFIED", "MODE_NATIVE", "MODE_MONGODB_COMPATIBLE"
+        ]
+    ]
     primaryResourceId: DatabaseResourceId
     primaryResourceLocation: str
     product: Product
@@ -633,14 +682,18 @@ class DatabaseResourceRecommendationSignalData(
         "SIGNAL_TYPE_RECOMMENDED_MAINTENANCE_POLICIES",
         "SIGNAL_TYPE_EXTENDED_SUPPORT",
         "SIGNAL_TYPE_PERFORMANCE_KPI_CHANGE",
+        "SIGNAL_TYPE_VERSION_NEARING_END_OF_LIFE",
     ]
 
 @typing.type_check_only
 class DatabaseResourceSignalData(typing_extensions.TypedDict, total=False):
+    backupRun: BackupRun
     fullResourceName: str
     lastRefreshTime: str
+    location: str
     resourceId: DatabaseResourceId
     signalBoolValue: bool
+    signalMetadataList: _list[SignalMetadata]
     signalState: typing_extensions.Literal[
         "SIGNAL_STATE_UNSPECIFIED", "ACTIVE", "INACTIVE", "DISMISSED"
     ]
@@ -653,6 +706,9 @@ class DatabaseResourceSignalData(typing_extensions.TypedDict, total=False):
         "SIGNAL_TYPE_UNENCRYPTED_CONNECTIONS",
         "SIGNAL_TYPE_EXTENDED_SUPPORT",
         "SIGNAL_TYPE_NO_AUTOMATED_BACKUP_POLICY",
+        "SIGNAL_TYPE_VERSION_NEARING_END_OF_LIFE",
+        "SIGNAL_TYPE_LAST_BACKUP_OLD",
+        "SIGNAL_TYPE_NOT_PROTECTED_BY_AUTOMATIC_FAILOVER",
     ]
 
 @typing.type_check_only
@@ -834,6 +890,18 @@ class InternalResourceMetadata(typing_extensions.TypedDict, total=False):
     resourceName: str
 
 @typing.type_check_only
+class ListAclPoliciesResponse(typing_extensions.TypedDict, total=False):
+    aclPolicies: _list[AclPolicy]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListAuthTokensResponse(typing_extensions.TypedDict, total=False):
+    authTokens: _list[AuthToken]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
 class ListBackupCollectionsResponse(typing_extensions.TypedDict, total=False):
     backupCollections: _list[BackupCollection]
     nextPageToken: str
@@ -866,6 +934,12 @@ class ListLocationsResponse(typing_extensions.TypedDict, total=False):
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListTokenAuthUsersResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    tokenAuthUsers: _list[TokenAuthUser]
     unreachable: _list[str]
 
 @typing.type_check_only
@@ -1200,6 +1274,11 @@ class SharedRegionalCertificateAuthority(typing_extensions.TypedDict, total=Fals
     name: str
 
 @typing.type_check_only
+class SignalMetadata(typing_extensions.TypedDict, total=False):
+    backupRun: BackupRun
+    signalBoolValue: bool
+
+@typing.type_check_only
 class StateInfo(typing_extensions.TypedDict, total=False):
     updateInfo: UpdateInfo
 
@@ -1227,6 +1306,13 @@ class TlsCertificate(typing_extensions.TypedDict, total=False):
     expireTime: str
     serialNumber: str
     sha1Fingerprint: str
+
+@typing.type_check_only
+class TokenAuthUser(typing_extensions.TypedDict, total=False):
+    name: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "ACTIVE", "CREATING", "UPDATING", "DELETING"
+    ]
 
 @typing.type_check_only
 class TypedValue(typing_extensions.TypedDict, total=False):

@@ -177,6 +177,7 @@ class Cluster(typing_extensions.TypedDict, total=False):
         "MAINTENANCE",
         "PROMOTING",
         "SWITCHOVER",
+        "RECREATING",
     ]
     subscriptionType: typing_extensions.Literal[
         "SUBSCRIPTION_TYPE_UNSPECIFIED", "STANDARD", "TRIAL"
@@ -278,6 +279,11 @@ class CsvImportOptions(typing_extensions.TypedDict, total=False):
     table: str
 
 @typing.type_check_only
+class DNSConfig(typing_extensions.TypedDict, total=False):
+    dnsName: str
+    dnsRecordType: str
+
+@typing.type_check_only
 class DataplexConfig(typing_extensions.TypedDict, total=False):
     enabled: bool
 
@@ -300,6 +306,27 @@ class EncryptionInfo(typing_extensions.TypedDict, total=False):
         "TYPE_UNSPECIFIED", "GOOGLE_DEFAULT_ENCRYPTION", "CUSTOMER_MANAGED_ENCRYPTION"
     ]
     kmsKeyVersions: _list[str]
+
+@typing.type_check_only
+class Endpoint(typing_extensions.TypedDict, total=False):
+    annotations: dict[str, typing.Any]
+    createTime: str
+    deleteTime: str
+    displayName: str
+    dnsConfig: DNSConfig
+    effectiveTargetInstances: _list[str]
+    endpointType: typing_extensions.Literal[
+        "ENDPOINT_TYPE_UNSPECIFIED", "WRITE_ENDPOINT", "READ_ENDPOINT"
+    ]
+    etag: str
+    name: str
+    reconciling: bool
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "READY", "CREATING", "UPDATING", "DELETING"
+    ]
+    targetInstances: _list[str]
+    uid: str
+    updateTime: str
 
 @typing.type_check_only
 class ExportClusterRequest(typing_extensions.TypedDict, total=False):
@@ -475,6 +502,12 @@ class ListClustersResponse(typing_extensions.TypedDict, total=False):
     unreachable: _list[str]
 
 @typing.type_check_only
+class ListEndpointsResponse(typing_extensions.TypedDict, total=False):
+    endpoints: _list[Endpoint]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
 class ListInstancesResponse(typing_extensions.TypedDict, total=False):
     instances: _list[Instance]
     nextPageToken: str
@@ -540,6 +573,7 @@ class NetworkConfig(typing_extensions.TypedDict, total=False):
 class Node(typing_extensions.TypedDict, total=False):
     id: str
     ip: str
+    isHotStandby: bool
     state: str
     zoneId: str
 
@@ -552,6 +586,7 @@ class ObservabilityInstanceConfig(typing_extensions.TypedDict, total=False):
     queryPlansPerMinute: int
     recordApplicationTags: bool
     trackActiveQueries: bool
+    trackActiveQueryPlan: bool
     trackClientAddress: bool
     trackWaitEventTypes: bool
     trackWaitEvents: bool
@@ -589,6 +624,7 @@ class PrimaryConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class PromoteClusterRequest(typing_extensions.TypedDict, total=False):
     etag: str
+    failover: bool
     requestId: str
     validateOnly: bool
 
@@ -836,6 +872,9 @@ class StorageDatabasecenterPartnerapiV1mainConfigBasedSignalData(
         "SIGNAL_TYPE_UNENCRYPTED_CONNECTIONS",
         "SIGNAL_TYPE_EXTENDED_SUPPORT",
         "SIGNAL_TYPE_NO_AUTOMATED_BACKUP_POLICY",
+        "SIGNAL_TYPE_VERSION_NEARING_END_OF_LIFE",
+        "SIGNAL_TYPE_LAST_BACKUP_OLD",
+        "SIGNAL_TYPE_NOT_PROTECTED_BY_AUTOMATIC_FAILOVER",
     ]
 
 @typing.type_check_only
@@ -1020,6 +1059,7 @@ class StorageDatabasecenterPartnerapiV1mainDatabaseResourceHealthSignalData(
         "SIGNAL_TYPE_RECOMMENDED_MAINTENANCE_POLICIES",
         "SIGNAL_TYPE_EXTENDED_SUPPORT",
         "SIGNAL_TYPE_PERFORMANCE_KPI_CHANGE",
+        "SIGNAL_TYPE_VERSION_NEARING_END_OF_LIFE",
     ]
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "RESOLVED", "MUTED"]
 
@@ -1090,12 +1130,20 @@ class StorageDatabasecenterPartnerapiV1mainDatabaseResourceMetadata(
         "SUB_RESOURCE_TYPE_SECONDARY",
         "SUB_RESOURCE_TYPE_READ_REPLICA",
         "SUB_RESOURCE_TYPE_EXTERNAL_PRIMARY",
+        "SUB_RESOURCE_TYPE_READ_POOL",
+        "SUB_RESOURCE_TYPE_RESERVATION",
+        "SUB_RESOURCE_TYPE_DATASET",
         "SUB_RESOURCE_TYPE_OTHER",
     ]
     isDeletionProtectionEnabled: bool
     location: str
     machineConfiguration: StorageDatabasecenterPartnerapiV1mainMachineConfiguration
     maintenanceInfo: StorageDatabasecenterPartnerapiV1mainResourceMaintenanceInfo
+    modes: _list[
+        typing_extensions.Literal[
+            "MODE_UNSPECIFIED", "MODE_NATIVE", "MODE_MONGODB_COMPATIBLE"
+        ]
+    ]
     primaryResourceId: StorageDatabasecenterPartnerapiV1mainDatabaseResourceId
     primaryResourceLocation: str
     product: StorageDatabasecenterProtoCommonProduct
@@ -1236,16 +1284,20 @@ class StorageDatabasecenterPartnerapiV1mainDatabaseResourceRecommendationSignalD
         "SIGNAL_TYPE_RECOMMENDED_MAINTENANCE_POLICIES",
         "SIGNAL_TYPE_EXTENDED_SUPPORT",
         "SIGNAL_TYPE_PERFORMANCE_KPI_CHANGE",
+        "SIGNAL_TYPE_VERSION_NEARING_END_OF_LIFE",
     ]
 
 @typing.type_check_only
 class StorageDatabasecenterPartnerapiV1mainDatabaseResourceSignalData(
     typing_extensions.TypedDict, total=False
 ):
+    backupRun: StorageDatabasecenterPartnerapiV1mainBackupRun
     fullResourceName: str
     lastRefreshTime: str
+    location: str
     resourceId: StorageDatabasecenterPartnerapiV1mainDatabaseResourceId
     signalBoolValue: bool
+    signalMetadataList: _list[StorageDatabasecenterPartnerapiV1mainSignalMetadata]
     signalState: typing_extensions.Literal[
         "SIGNAL_STATE_UNSPECIFIED", "ACTIVE", "INACTIVE", "DISMISSED"
     ]
@@ -1258,6 +1310,9 @@ class StorageDatabasecenterPartnerapiV1mainDatabaseResourceSignalData(
         "SIGNAL_TYPE_UNENCRYPTED_CONNECTIONS",
         "SIGNAL_TYPE_EXTENDED_SUPPORT",
         "SIGNAL_TYPE_NO_AUTOMATED_BACKUP_POLICY",
+        "SIGNAL_TYPE_VERSION_NEARING_END_OF_LIFE",
+        "SIGNAL_TYPE_LAST_BACKUP_OLD",
+        "SIGNAL_TYPE_NOT_PROTECTED_BY_AUTOMATIC_FAILOVER",
     ]
 
 @typing.type_check_only
@@ -1410,6 +1465,13 @@ class StorageDatabasecenterPartnerapiV1mainRetentionSettings(
     ]
     timeBasedRetention: str
     timestampBasedRetentionTime: str
+
+@typing.type_check_only
+class StorageDatabasecenterPartnerapiV1mainSignalMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    backupRun: StorageDatabasecenterPartnerapiV1mainBackupRun
+    signalBoolValue: bool
 
 @typing.type_check_only
 class StorageDatabasecenterPartnerapiV1mainTags(

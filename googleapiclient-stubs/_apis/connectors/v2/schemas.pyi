@@ -116,6 +116,7 @@ class ExecuteToolRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ExecuteToolResponse(typing_extensions.TypedDict, total=False):
+    _meta: dict[str, typing.Any]
     metadata: dict[str, typing.Any]
     result: dict[str, typing.Any]
 
@@ -196,6 +197,7 @@ class GetResourcePostRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GetResourceResponse(typing_extensions.TypedDict, total=False):
+    _meta: dict[str, typing.Any]
     data: str
     metadata: dict[str, typing.Any]
     mimeType: str
@@ -291,6 +293,8 @@ class JsonSchema(typing_extensions.TypedDict, total=False):
     default: typing.Any
     description: str
     enum: _list[typing.Any]
+    exclusiveMaximum: bool
+    exclusiveMinimum: bool
     format: str
     items: JsonSchema
     jdbcType: typing_extensions.Literal[
@@ -340,9 +344,17 @@ class JsonSchema(typing_extensions.TypedDict, total=False):
         "TIME_WITH_TIMEZONE",
         "TIMESTAMP_WITH_TIMEZONE",
     ]
+    maxItems: int
+    maxLength: int
+    maximum: typing.Any
+    minItems: int
+    minLength: int
+    minimum: typing.Any
+    pattern: str
     properties: dict[str, typing.Any]
     required: _list[str]
     type: _list[str]
+    uniqueItems: bool
 
 @typing.type_check_only
 class ListActionsResponse(typing_extensions.TypedDict, total=False):
@@ -517,6 +529,7 @@ class RefreshAccessTokenResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Resource(typing_extensions.TypedDict, total=False):
+    _meta: dict[str, typing.Any]
     description: str
     mimeType: str
     name: str
@@ -613,6 +626,7 @@ class TimeOfDay(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Tool(typing_extensions.TypedDict, total=False):
+    _meta: dict[str, typing.Any]
     annotations: ToolAnnotations
     dependsOn: _list[str]
     description: str

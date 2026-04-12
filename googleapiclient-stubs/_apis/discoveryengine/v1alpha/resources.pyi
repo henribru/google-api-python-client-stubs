@@ -1218,6 +1218,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                                 self,
                                 *,
                                 parent: str,
+                                filter: str = ...,
                                 orderBy: str = ...,
                                 pageSize: int = ...,
                                 pageToken: str = ...,
@@ -3164,17 +3165,6 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                     parent: str,
                     body: GoogleCloudDiscoveryengineV1alphaBatchUpdateUserLicensesRequest = ...,
                     **kwargs: typing.Any,
-                ) -> GoogleLongrunningOperationHttpRequest: ...
-                def create(
-                    self,
-                    *,
-                    parent: str,
-                    body: GoogleCloudDiscoveryengineV1alphaUserStore = ...,
-                    userStoreId: str = ...,
-                    **kwargs: typing.Any,
-                ) -> GoogleCloudDiscoveryengineV1alphaUserStoreHttpRequest: ...
-                def delete(
-                    self, *, name: str, **kwargs: typing.Any
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any

@@ -670,6 +670,7 @@ class EventSubscription(typing_extensions.TypedDict, total=False):
     createTime: str
     destinations: EventSubscriptionDestination
     eventTypeId: str
+    filter: str
     jms: JMS
     name: str
     status: EventSubscriptionStatus
@@ -706,6 +707,7 @@ class EventType(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class EventingConfig(typing_extensions.TypedDict, total=False):
     additionalVariables: _list[ConfigVariable]
+    allowedEventTypes: _list[str]
     authConfig: AuthConfig
     deadLetterConfig: DeadLetterConfig
     enrichmentConfig: EnrichmentConfig
@@ -790,6 +792,14 @@ class ExtractionRules(typing_extensions.TypedDict, total=False):
 class FetchAuthSchemaResponse(typing_extensions.TypedDict, total=False):
     authSchemas: _list[AuthSchema]
     jsonSchema: JsonAuthSchema
+
+@typing.type_check_only
+class FetchConnectionToolspecOverrideRequest(typing_extensions.TypedDict, total=False):
+    toolNames: _list[ToolName]
+
+@typing.type_check_only
+class FetchConnectionToolspecOverrideResponse(typing_extensions.TypedDict, total=False):
+    toolspecOverride: ToolspecOverride
 
 @typing.type_check_only
 class Field(typing_extensions.TypedDict, total=False):
@@ -988,6 +998,8 @@ class JsonSchema(typing_extensions.TypedDict, total=False):
     default: typing.Any
     description: str
     enum: _list[typing.Any]
+    exclusiveMaximum: bool
+    exclusiveMinimum: bool
     format: str
     items: JsonSchema
     jdbcType: typing_extensions.Literal[
@@ -1037,9 +1049,17 @@ class JsonSchema(typing_extensions.TypedDict, total=False):
         "DATA_TYPE_TIME_WITH_TIMEZONE",
         "DATA_TYPE_TIMESTAMP_WITH_TIMEZONE",
     ]
+    maxItems: int
+    maxLength: int
+    maximum: typing.Any
+    minItems: int
+    minLength: int
+    minimum: typing.Any
+    pattern: str
     properties: dict[str, typing.Any]
     required: _list[str]
     type: _list[str]
+    uniqueItems: bool
 
 @typing.type_check_only
 class JwtClaims(typing_extensions.TypedDict, total=False):

@@ -5,36 +5,6 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
-class ApiservingMcpMcpToolDataHandlingProfile(typing_extensions.TypedDict, total=False):
-    inputDataAccessLevel: typing_extensions.Literal[
-        "DATA_ACCESS_LEVEL_UNSPECIFIED",
-        "DATA_ACCESS_LEVEL_PUBLIC",
-        "DATA_ACCESS_LEVEL_CONFIDENTIAL",
-        "DATA_ACCESS_LEVEL_NEED_TO_KNOW",
-        "DATA_ACCESS_LEVEL_PII",
-        "DATA_ACCESS_LEVEL_USER",
-        "DATA_ACCESS_LEVEL_NO_DATA_ACCESS",
-    ]
-    outputDataAccessLevel: typing_extensions.Literal[
-        "DATA_ACCESS_LEVEL_UNSPECIFIED",
-        "DATA_ACCESS_LEVEL_PUBLIC",
-        "DATA_ACCESS_LEVEL_CONFIDENTIAL",
-        "DATA_ACCESS_LEVEL_NEED_TO_KNOW",
-        "DATA_ACCESS_LEVEL_PII",
-        "DATA_ACCESS_LEVEL_USER",
-        "DATA_ACCESS_LEVEL_NO_DATA_ACCESS",
-    ]
-
-@typing.type_check_only
-class ApiservingMcpMcpToolLifecycleProfile(typing_extensions.TypedDict, total=False):
-    launchState: typing_extensions.Literal[
-        "LAUNCH_STATE_UNSPECIFIED",
-        "LAUNCH_STATE_DEVELOPMENT",
-        "LAUNCH_STATE_PRODUCTION_PREVIEW",
-        "LAUNCH_STATE_GENERAL_AVAILABILITY",
-    ]
-
-@typing.type_check_only
 class GoogleCloudDatacatalogLineageConfigmanagementV1Config(
     typing_extensions.TypedDict, total=False
 ):
@@ -61,7 +31,9 @@ class GoogleCloudDatacatalogLineageConfigmanagementV1ConfigIngestionIngestionRul
 class GoogleCloudDatacatalogLineageConfigmanagementV1ConfigIngestionIngestionRuleIntegrationSelector(
     typing_extensions.TypedDict, total=False
 ):
-    integration: typing_extensions.Literal["INTEGRATION_UNSPECIFIED", "DATAPROC"]
+    integration: typing_extensions.Literal[
+        "INTEGRATION_UNSPECIFIED", "DATAPROC", "LOOKER_CORE"
+    ]
 
 @typing.type_check_only
 class GoogleCloudDatacatalogLineageConfigmanagementV1ConfigIngestionIngestionRuleLineageEnablement(
@@ -160,6 +132,7 @@ class GoogleCloudDatacatalogLineageV1Origin(typing_extensions.TypedDict, total=F
         "LOOKER_STUDIO",
         "DATAPROC",
         "VERTEX_AI",
+        "LOOKER_CORE",
     ]
 
 @typing.type_check_only

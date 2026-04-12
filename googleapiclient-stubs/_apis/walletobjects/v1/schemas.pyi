@@ -760,6 +760,12 @@ class GenericObject(typing_extensions.TypedDict, total=False):
         "GENERIC_ENTRY_TICKET",
         "GENERIC_RECEIPT",
         "GENERIC_LOYALTY_CARD",
+        "GENERIC_BUSINESS_CARD",
+        "GENERIC_BARCODE_PASS",
+        "GENERIC_MEMBERSHIP_CARD",
+        "GENERIC_STUDENT_CARD",
+        "GENERIC_TRANSIT_PASS",
+        "GENERIC_VEHICLE_REGISTRATION",
         "GENERIC_OTHER",
     ]
     groupingInfo: GroupingInfo

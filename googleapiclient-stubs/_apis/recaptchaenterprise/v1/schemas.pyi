@@ -8,6 +8,9 @@ _list = list
 class GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment(
     typing_extensions.TypedDict, total=False
 ):
+    accountTakeoverVerdict: (
+        GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessmentAccountTakeoverVerdict
+    )
     labels: _list[
         typing_extensions.Literal[
             "ACCOUNT_DEFENDER_LABEL_UNSPECIFIED",
@@ -16,6 +19,37 @@ class GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment(
             "SUSPICIOUS_ACCOUNT_CREATION",
             "RELATED_ACCOUNTS_NUMBER_HIGH",
         ]
+    ]
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessmentAccountRiskReason(
+    typing_extensions.TypedDict, total=False
+):
+    reason: typing_extensions.Literal[
+        "RISK_REASON_UNSPECIFIED",
+        "CLIENT_HISTORICAL_BOT_ACTIVITY",
+        "ACCOUNT_IN_LARGE_RELATED_GROUP",
+        "CLIENT_ACCESSED_MANY_ACCOUNTS",
+    ]
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessmentAccountTakeoverVerdict(
+    typing_extensions.TypedDict, total=False
+):
+    risk: float
+    riskReasons: _list[
+        GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessmentAccountRiskReason
+    ]
+    trustReasons: _list[
+        GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessmentAccountTrustReason
+    ]
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessmentAccountTrustReason(
+    typing_extensions.TypedDict, total=False
+):
+    reason: typing_extensions.Literal[
+        "TRUST_REASON_UNSPECIFIED", "PROFILE_MATCH", "ACCOUNT_HISTORY_REPUTABLE"
     ]
 
 @typing.type_check_only

@@ -435,6 +435,7 @@ class ProductAttributes(typing_extensions.TypedDict, total=False):
     productWeight: ProductWeight
     productWidth: ProductDimension
     promotionIds: _list[str]
+    returnPolicyLabel: str
     salePrice: Price
     salePriceEffectiveDate: Interval
     sellOnGoogleQuantity: str

@@ -41,6 +41,38 @@ class AdvanceRolloutRule(typing_extensions.TypedDict, total=False):
     wait: str
 
 @typing.type_check_only
+class AlertPolicyCheck(typing_extensions.TypedDict, total=False):
+    alertPolicies: _list[str]
+    id: str
+    labels: dict[str, typing.Any]
+
+@typing.type_check_only
+class AlertPolicyCheckStatus(typing_extensions.TypedDict, total=False):
+    alertPolicies: _list[str]
+    failedAlertPolicies: _list[FailedAlertPolicy]
+    failureMessage: str
+    id: str
+    labels: dict[str, typing.Any]
+
+@typing.type_check_only
+class Analysis(typing_extensions.TypedDict, total=False):
+    customChecks: _list[CustomCheck]
+    duration: str
+    googleCloud: GoogleCloudAnalysis
+
+@typing.type_check_only
+class AnalysisJob(typing_extensions.TypedDict, total=False):
+    customChecks: _list[CustomCheck]
+    duration: str
+    googleCloud: GoogleCloudAnalysis
+
+@typing.type_check_only
+class AnalysisJobRun(typing_extensions.TypedDict, total=False):
+    alertPolicyAnalyses: _list[AlertPolicyCheckStatus]
+    customCheckAnalyses: _list[CustomCheckStatus]
+    failedCheckId: str
+
+@typing.type_check_only
 class AnthosCluster(typing_extensions.TypedDict, total=False):
     membership: str
 
@@ -192,10 +224,12 @@ class Canary(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CanaryDeployment(typing_extensions.TypedDict, total=False):
+    analysis: Analysis
     percentages: _list[int]
     postdeploy: Postdeploy
     predeploy: Predeploy
     verify: bool
+    verifyConfig: Verify
 
 @typing.type_check_only
 class CancelAutomationRunRequest(typing_extensions.TypedDict, total=False): ...
@@ -232,6 +266,7 @@ class CloudRunLocation(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class CloudRunMetadata(typing_extensions.TypedDict, total=False):
     job: str
+    previousRevision: str
     revision: str
     service: str
     serviceUrls: _list[str]
@@ -239,6 +274,8 @@ class CloudRunMetadata(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CloudRunRenderMetadata(typing_extensions.TypedDict, total=False):
+    job: str
+    revision: str
     service: str
     workerPool: str
 
@@ -248,6 +285,13 @@ class Config(typing_extensions.TypedDict, total=False):
     defaultToolVersions: ToolVersions
     name: str
     supportedVersions: _list[SkaffoldVersion]
+
+@typing.type_check_only
+class ContainerTask(typing_extensions.TypedDict, total=False):
+    args: _list[str]
+    command: _list[str]
+    env: dict[str, typing.Any]
+    image: str
 
 @typing.type_check_only
 class CreateChildRolloutJob(typing_extensions.TypedDict, total=False): ...
@@ -260,6 +304,28 @@ class CreateChildRolloutJobRun(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class CustomCanaryDeployment(typing_extensions.TypedDict, total=False):
     phaseConfigs: _list[PhaseConfig]
+
+@typing.type_check_only
+class CustomCheck(typing_extensions.TypedDict, total=False):
+    frequency: str
+    id: str
+    task: Task
+
+@typing.type_check_only
+class CustomCheckStatus(typing_extensions.TypedDict, total=False):
+    failureCause: typing_extensions.Literal[
+        "FAILURE_CAUSE_UNSPECIFIED",
+        "CLOUD_BUILD_UNAVAILABLE",
+        "EXECUTION_FAILED",
+        "DEADLINE_EXCEEDED",
+        "CLOUD_BUILD_REQUEST_FAILED",
+    ]
+    failureMessage: str
+    frequency: str
+    id: str
+    latestBuild: str
+    metadata: CustomMetadata
+    task: Task
 
 @typing.type_check_only
 class CustomMetadata(typing_extensions.TypedDict, total=False):
@@ -280,6 +346,11 @@ class CustomTargetSkaffoldActions(typing_extensions.TypedDict, total=False):
     renderAction: str
 
 @typing.type_check_only
+class CustomTargetTasks(typing_extensions.TypedDict, total=False):
+    deploy: Task
+    render: Task
+
+@typing.type_check_only
 class CustomTargetType(typing_extensions.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     createTime: str
@@ -289,6 +360,7 @@ class CustomTargetType(typing_extensions.TypedDict, total=False):
     etag: str
     labels: dict[str, typing.Any]
     name: str
+    tasks: CustomTargetTasks
     uid: str
     updateTime: str
 
@@ -455,6 +527,7 @@ class DeployPolicyResourceSelector(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DeploymentJobs(typing_extensions.TypedDict, total=False):
+    analysisJob: Job
     deployJob: Job
     postdeployJob: Job
     predeployJob: Job
@@ -478,6 +551,7 @@ class ExecutionConfig(typing_extensions.TypedDict, total=False):
             "VERIFY",
             "PREDEPLOY",
             "POSTDEPLOY",
+            "ANALYSIS",
         ]
     ]
     verbose: bool
@@ -489,6 +563,11 @@ class Expr(typing_extensions.TypedDict, total=False):
     expression: str
     location: str
     title: str
+
+@typing.type_check_only
+class FailedAlertPolicy(typing_extensions.TypedDict, total=False):
+    alertPolicy: str
+    alerts: _list[str]
 
 @typing.type_check_only
 class GatewayServiceMesh(typing_extensions.TypedDict, total=False):
@@ -508,6 +587,10 @@ class GkeCluster(typing_extensions.TypedDict, total=False):
     proxyUrl: str
 
 @typing.type_check_only
+class GoogleCloudAnalysis(typing_extensions.TypedDict, total=False):
+    alertPolicyChecks: _list[AlertPolicyCheck]
+
+@typing.type_check_only
 class IgnoreJobRequest(typing_extensions.TypedDict, total=False):
     jobId: str
     overrideDeployPolicy: _list[str]
@@ -519,6 +602,7 @@ class IgnoreJobResponse(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class Job(typing_extensions.TypedDict, total=False):
     advanceChildRolloutJob: AdvanceChildRolloutJob
+    analysisJob: AnalysisJob
     createChildRolloutJob: CreateChildRolloutJob
     deployJob: DeployJob
     id: str
@@ -542,6 +626,7 @@ class Job(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class JobRun(typing_extensions.TypedDict, total=False):
     advanceChildRolloutJobRun: AdvanceChildRolloutJobRun
+    analysisJobRun: AnalysisJobRun
     createChildRolloutJobRun: CreateChildRolloutJobRun
     createTime: str
     deployJobRun: DeployJobRun
@@ -590,6 +675,12 @@ class JobRunNotificationEvent(typing_extensions.TypedDict, total=False):
 class KubernetesConfig(typing_extensions.TypedDict, total=False):
     gatewayServiceMesh: GatewayServiceMesh
     serviceNetworking: ServiceNetworking
+
+@typing.type_check_only
+class KubernetesRenderMetadata(typing_extensions.TypedDict, total=False):
+    canaryDeployment: str
+    deployment: str
+    kubernetesNamespace: str
 
 @typing.type_check_only
 class ListAutomationRunsResponse(typing_extensions.TypedDict, total=False):
@@ -723,12 +814,14 @@ class PhaseArtifact(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PhaseConfig(typing_extensions.TypedDict, total=False):
+    analysis: Analysis
     percentage: int
     phaseId: str
     postdeploy: Postdeploy
     predeploy: Predeploy
     profiles: _list[str]
     verify: bool
+    verifyConfig: Verify
 
 @typing.type_check_only
 class PipelineCondition(typing_extensions.TypedDict, total=False):
@@ -765,10 +858,12 @@ class PolicyViolationDetails(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Postdeploy(typing_extensions.TypedDict, total=False):
     actions: _list[str]
+    tasks: _list[Task]
 
 @typing.type_check_only
 class PostdeployJob(typing_extensions.TypedDict, total=False):
     actions: _list[str]
+    tasks: _list[Task]
 
 @typing.type_check_only
 class PostdeployJobRun(typing_extensions.TypedDict, total=False):
@@ -781,14 +876,21 @@ class PostdeployJobRun(typing_extensions.TypedDict, total=False):
         "CLOUD_BUILD_REQUEST_FAILED",
     ]
     failureMessage: str
+    metadata: PostdeployJobRunMetadata
+
+@typing.type_check_only
+class PostdeployJobRunMetadata(typing_extensions.TypedDict, total=False):
+    custom: CustomMetadata
 
 @typing.type_check_only
 class Predeploy(typing_extensions.TypedDict, total=False):
     actions: _list[str]
+    tasks: _list[Task]
 
 @typing.type_check_only
 class PredeployJob(typing_extensions.TypedDict, total=False):
     actions: _list[str]
+    tasks: _list[Task]
 
 @typing.type_check_only
 class PredeployJobRun(typing_extensions.TypedDict, total=False):
@@ -801,6 +903,11 @@ class PredeployJobRun(typing_extensions.TypedDict, total=False):
         "CLOUD_BUILD_REQUEST_FAILED",
     ]
     failureMessage: str
+    metadata: PredeployJobRunMetadata
+
+@typing.type_check_only
+class PredeployJobRunMetadata(typing_extensions.TypedDict, total=False):
+    custom: CustomMetadata
 
 @typing.type_check_only
 class PrivatePool(typing_extensions.TypedDict, total=False):
@@ -908,6 +1015,7 @@ class ReleaseRenderEvent(typing_extensions.TypedDict, total=False):
 class RenderMetadata(typing_extensions.TypedDict, total=False):
     cloudRun: CloudRunRenderMetadata
     custom: CustomMetadata
+    kubernetes: KubernetesRenderMetadata
 
 @typing.type_check_only
 class RepairPhase(typing_extensions.TypedDict, total=False):
@@ -1225,9 +1333,11 @@ class Stage(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Standard(typing_extensions.TypedDict, total=False):
+    analysis: Analysis
     postdeploy: Postdeploy
     predeploy: Predeploy
     verify: bool
+    verifyConfig: Verify
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
@@ -1325,6 +1435,10 @@ class TargetsTypeCondition(typing_extensions.TypedDict, total=False):
     status: bool
 
 @typing.type_check_only
+class Task(typing_extensions.TypedDict, total=False):
+    container: ContainerTask
+
+@typing.type_check_only
 class TerminateJobRunRequest(typing_extensions.TypedDict, total=False):
     overrideDeployPolicy: _list[str]
 
@@ -1394,7 +1508,12 @@ class ToolVersions(typing_extensions.TypedDict, total=False):
     skaffold: str
 
 @typing.type_check_only
-class VerifyJob(typing_extensions.TypedDict, total=False): ...
+class Verify(typing_extensions.TypedDict, total=False):
+    tasks: _list[Task]
+
+@typing.type_check_only
+class VerifyJob(typing_extensions.TypedDict, total=False):
+    tasks: _list[Task]
 
 @typing.type_check_only
 class VerifyJobRun(typing_extensions.TypedDict, total=False):
@@ -1410,6 +1529,11 @@ class VerifyJobRun(typing_extensions.TypedDict, total=False):
         "CLOUD_BUILD_REQUEST_FAILED",
     ]
     failureMessage: str
+    metadata: VerifyJobRunMetadata
+
+@typing.type_check_only
+class VerifyJobRunMetadata(typing_extensions.TypedDict, total=False):
+    custom: CustomMetadata
 
 @typing.type_check_only
 class WeeklyWindow(typing_extensions.TypedDict, total=False):

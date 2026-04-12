@@ -43,6 +43,11 @@ class Empty(typing_extensions.TypedDict, total=False): ...
 class EndActiveConferenceRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class GatewaySipAccess(typing_extensions.TypedDict, total=False):
+    sipAccessCode: str
+    uri: str
+
+@typing.type_check_only
 class ListConferenceRecordsResponse(typing_extensions.TypedDict, total=False):
     conferenceRecords: _list[ConferenceRecord]
     nextPageToken: str
@@ -62,6 +67,11 @@ class ListParticipantsResponse(typing_extensions.TypedDict, total=False):
 class ListRecordingsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     recordings: _list[Recording]
+
+@typing.type_check_only
+class ListSmartNotesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    smartNotes: _list[SmartNote]
 
 @typing.type_check_only
 class ListTranscriptEntriesResponse(typing_extensions.TypedDict, total=False):
@@ -104,6 +114,13 @@ class ParticipantSession(typing_extensions.TypedDict, total=False):
     startTime: str
 
 @typing.type_check_only
+class PhoneAccess(typing_extensions.TypedDict, total=False):
+    languageCode: str
+    phoneNumber: str
+    pin: str
+    regionCode: str
+
+@typing.type_check_only
 class PhoneUser(typing_extensions.TypedDict, total=False):
     displayName: str
 
@@ -129,6 +146,16 @@ class SignedinUser(typing_extensions.TypedDict, total=False):
     user: str
 
 @typing.type_check_only
+class SmartNote(typing_extensions.TypedDict, total=False):
+    docsDestination: DocsDestination
+    endTime: str
+    name: str
+    startTime: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "STARTED", "ENDED", "FILE_GENERATED"
+    ]
+
+@typing.type_check_only
 class SmartNotesConfig(typing_extensions.TypedDict, total=False):
     autoSmartNotesGeneration: typing_extensions.Literal[
         "AUTO_GENERATION_TYPE_UNSPECIFIED", "ON", "OFF"
@@ -138,9 +165,11 @@ class SmartNotesConfig(typing_extensions.TypedDict, total=False):
 class Space(typing_extensions.TypedDict, total=False):
     activeConference: ActiveConference
     config: SpaceConfig
+    gatewaySipAccess: _list[GatewaySipAccess]
     meetingCode: str
     meetingUri: str
     name: str
+    phoneAccess: _list[PhoneAccess]
 
 @typing.type_check_only
 class SpaceConfig(typing_extensions.TypedDict, total=False):

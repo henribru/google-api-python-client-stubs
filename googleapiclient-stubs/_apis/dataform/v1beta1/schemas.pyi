@@ -153,7 +153,7 @@ class ComputeRepositoryAccessTokenStatusResponse(
     typing_extensions.TypedDict, total=False
 ):
     tokenStatus: typing_extensions.Literal[
-        "TOKEN_STATUS_UNSPECIFIED", "NOT_FOUND", "INVALID", "VALID"
+        "TOKEN_STATUS_UNSPECIFIED", "NOT_FOUND", "INVALID", "VALID", "PERMISSION_DENIED"
     ]
 
 @typing.type_check_only
@@ -189,9 +189,18 @@ class Declaration(typing_extensions.TypedDict, total=False):
 class DeleteFile(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class DeleteFolderTreeRequest(typing_extensions.TypedDict, total=False):
+    force: bool
+
+@typing.type_check_only
+class DeleteTeamFolderTreeRequest(typing_extensions.TypedDict, total=False):
+    force: bool
+
+@typing.type_check_only
 class DirectoryEntry(typing_extensions.TypedDict, total=False):
     directory: str
     file: str
+    metadata: FilesystemEntryMetadata
 
 @typing.type_check_only
 class DirectorySearchResult(typing_extensions.TypedDict, total=False):
@@ -242,6 +251,11 @@ class FileOperation(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class FileSearchResult(typing_extensions.TypedDict, total=False):
     path: str
+
+@typing.type_check_only
+class FilesystemEntryMetadata(typing_extensions.TypedDict, total=False):
+    sizeBytes: str
+    updateTime: str
 
 @typing.type_check_only
 class Folder(typing_extensions.TypedDict, total=False):

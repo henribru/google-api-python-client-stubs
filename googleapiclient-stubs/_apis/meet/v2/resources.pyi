@@ -76,6 +76,25 @@ class MeetResource(googleapiclient.discovery.Resource):
             ) -> ListRecordingsResponseHttpRequest | None: ...
 
         @typing.type_check_only
+        class SmartNotesResource(googleapiclient.discovery.Resource):
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> SmartNoteHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any,
+            ) -> ListSmartNotesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListSmartNotesResponseHttpRequest,
+                previous_response: ListSmartNotesResponse,
+            ) -> ListSmartNotesResponseHttpRequest | None: ...
+
+        @typing.type_check_only
         class TranscriptsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class EntriesResource(googleapiclient.discovery.Resource):
@@ -132,6 +151,7 @@ class MeetResource(googleapiclient.discovery.Resource):
         ) -> ListConferenceRecordsResponseHttpRequest | None: ...
         def participants(self) -> ParticipantsResource: ...
         def recordings(self) -> RecordingsResource: ...
+        def smartNotes(self) -> SmartNotesResource: ...
         def transcripts(self) -> TranscriptsResource: ...
 
     @typing.type_check_only
@@ -220,6 +240,14 @@ class ListRecordingsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListRecordingsResponse: ...
 
 @typing.type_check_only
+class ListSmartNotesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListSmartNotesResponse: ...
+
+@typing.type_check_only
 class ListTranscriptEntriesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -258,6 +286,14 @@ class RecordingHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Recording: ...
+
+@typing.type_check_only
+class SmartNoteHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> SmartNote: ...
 
 @typing.type_check_only
 class SpaceHttpRequest(googleapiclient.http.HttpRequest):

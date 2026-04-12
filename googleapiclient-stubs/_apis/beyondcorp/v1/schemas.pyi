@@ -502,6 +502,11 @@ class GoogleCloudBeyondcorpSecuritygatewaysV1ListSecurityGatewaysResponse(
     unreachable: _list[str]
 
 @typing.type_check_only
+class GoogleCloudBeyondcorpSecuritygatewaysV1LoggingConfig(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class GoogleCloudBeyondcorpSecuritygatewaysV1ProxyProtocolConfig(
     typing_extensions.TypedDict, total=False
 ):
@@ -522,6 +527,7 @@ class GoogleCloudBeyondcorpSecuritygatewaysV1SecurityGateway(
     displayName: str
     externalIps: _list[str]
     hubs: dict[str, typing.Any]
+    logging: GoogleCloudBeyondcorpSecuritygatewaysV1LoggingConfig
     name: str
     proxyProtocolConfig: GoogleCloudBeyondcorpSecuritygatewaysV1ProxyProtocolConfig
     serviceDiscovery: GoogleCloudBeyondcorpSecuritygatewaysV1ServiceDiscovery

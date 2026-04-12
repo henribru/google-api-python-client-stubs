@@ -13,6 +13,7 @@ class AllConnectionStrings(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class AutonomousDatabase(typing_extensions.TypedDict, total=False):
     adminPassword: str
+    adminPasswordSecretVersion: str
     cidr: str
     createTime: str
     database: str
@@ -157,8 +158,13 @@ class AutonomousDatabaseProperties(typing_extensions.TypedDict, total=False):
     ]
     lifecycleDetails: str
     localAdgAutoFailoverMaxDataLossLimit: int
+    localAdgAutoFailoverMaxDataLossLimitDuration: int
+    localDataGuardEnabled: bool
     localDisasterRecoveryType: typing_extensions.Literal[
-        "LOCAL_DISASTER_RECOVERY_TYPE_UNSPECIFIED", "ADG", "BACKUP_BASED"
+        "LOCAL_DISASTER_RECOVERY_TYPE_UNSPECIFIED",
+        "ADG",
+        "BACKUP_BASED",
+        "NOT_AVAILABLE",
     ]
     localStandbyDb: AutonomousDatabaseStandbySummary
     maintenanceBeginTime: str
@@ -446,6 +452,7 @@ class DataCollectionOptionsDbSystem(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Database(typing_extensions.TypedDict, total=False):
     adminPassword: str
+    adminPasswordSecretVersion: str
     characterSet: str
     createTime: str
     databaseId: str
@@ -465,8 +472,11 @@ class Database(typing_extensions.TypedDict, total=False):
         "FAILED_ENABLING",
         "FAILED_DISABLING",
     ]
+    pluggableDatabaseId: str
+    pluggableDatabaseName: str
     properties: DatabaseProperties
     tdeWalletPassword: str
+    tdeWalletPasswordSecretVersion: str
 
 @typing.type_check_only
 class DatabaseCharacterSet(typing_extensions.TypedDict, total=False):

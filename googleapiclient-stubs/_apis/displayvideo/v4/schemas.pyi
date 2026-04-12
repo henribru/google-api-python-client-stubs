@@ -83,8 +83,10 @@ class AdGroup(typing_extensions.TypedDict, total=False):
         "AD_GROUP_FORMAT_RESPONSIVE",
         "AD_GROUP_FORMAT_REACH",
         "AD_GROUP_FORMAT_MASTHEAD",
+        "AD_GROUP_FORMAT_DEMAND_GEN",
     ]
     adGroupId: str
+    adGroupInventoryControl: AdGroupInventoryControl
     advertiserId: str
     bidStrategy: BiddingStrategy
     displayName: str
@@ -110,6 +112,11 @@ class AdGroupAd(typing_extensions.TypedDict, total=False):
     advertiserId: str
     audioAd: AudioAd
     bumperAd: BumperAd
+    dcmTrackingInfo: DcmTrackingInfo
+    demandGenCarouselAd: DemandGenCarouselAd
+    demandGenImageAd: DemandGenImageAd
+    demandGenProductAd: DemandGenProductAd
+    demandGenVideoAd: DemandGenVideoAd
     displayName: str
     displayVideoSourceAd: DisplayVideoSourceAd
     entityStatus: typing_extensions.Literal[
@@ -131,6 +138,15 @@ class AdGroupAd(typing_extensions.TypedDict, total=False):
 class AdGroupAssignedTargetingOption(typing_extensions.TypedDict, total=False):
     adGroupId: str
     assignedTargetingOption: AssignedTargetingOption
+
+@typing.type_check_only
+class AdGroupInventoryControl(typing_extensions.TypedDict, total=False):
+    adGroupInventoryStrategy: typing_extensions.Literal[
+        "AD_GROUP_INVENTORY_STRATEGY_UNSPECIFIED",
+        "AD_GROUP_INVENTORY_STRATEGY_ALL_GOOGLE_AND_DISPLAY_NETWORK_INVENTORY",
+        "AD_GROUP_INVENTORY_STRATEGY_ALL_GOOGLE_INVENTORY",
+    ]
+    selectedInventories: SelectedInventories
 
 @typing.type_check_only
 class AdPolicy(typing_extensions.TypedDict, total=False):
@@ -1116,6 +1132,7 @@ class AuthorizedSellerStatusTargetingOptionDetails(
 
 @typing.type_check_only
 class BiddingStrategy(typing_extensions.TypedDict, total=False):
+    demandGenBid: DemandGenBiddingStrategy
     fixedBid: FixedBidStrategy
     maximizeSpendAutoBid: MaximizeSpendBidStrategy
     performanceGoalAutoBid: PerformanceGoalBidStrategy
@@ -1146,6 +1163,22 @@ class BulkCreateAdAssetsRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class BulkCreateAdAssetsResponse(typing_extensions.TypedDict, total=False):
     adAssets: _list[AdAsset]
+
+@typing.type_check_only
+class BulkEditAdGroupAssignedTargetingOptionsRequest(
+    typing_extensions.TypedDict, total=False
+):
+    adGroupIds: _list[str]
+    createRequests: _list[CreateAssignedTargetingOptionsRequest]
+    deleteRequests: _list[DeleteAssignedTargetingOptionsRequest]
+
+@typing.type_check_only
+class BulkEditAdGroupAssignedTargetingOptionsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    errors: _list[Status]
+    failedAdGroupIds: _list[str]
+    updatedAdGroupIds: _list[str]
 
 @typing.type_check_only
 class BulkEditAdvertiserAssignedTargetingOptionsRequest(
@@ -1335,6 +1368,7 @@ class BusinessChainTargetingOptionDetails(typing_extensions.TypedDict, total=Fal
         "GEO_REGION_TYPE_DIVISION",
         "GEO_REGION_TYPE_COMMUNE",
         "GEO_REGION_TYPE_COLLOQUIAL_AREA",
+        "GEO_REGION_TYPE_POST_TOWN",
     ]
 
 @typing.type_check_only
@@ -1390,6 +1424,16 @@ class CampaignGoal(typing_extensions.TypedDict, total=False):
         "CAMPAIGN_GOAL_TYPE_ONLINE_ACTION",
     ]
     performanceGoal: PerformanceGoal
+
+@typing.type_check_only
+class CarouselCard(typing_extensions.TypedDict, total=False):
+    callToAction: str
+    finalMobileUrl: str
+    finalUrl: str
+    headline: str
+    marketingImage: ImageAsset
+    portraitMarketingImage: ImageAsset
+    squareMarketingImage: ImageAsset
 
 @typing.type_check_only
 class CarrierAndIspAssignedTargetingOptionDetails(
@@ -1657,6 +1701,7 @@ class ContentThemeTargetingOptionDetails(typing_extensions.TypedDict, total=Fals
 class ConversionCountingConfig(typing_extensions.TypedDict, total=False):
     floodlightActivityConfigs: _list[TrackingFloodlightActivityConfig]
     postViewCountPercentageMillis: str
+    primaryAttributionModelId: str
 
 @typing.type_check_only
 class CounterEvent(typing_extensions.TypedDict, total=False):
@@ -2046,6 +2091,12 @@ class DayAndTimeAssignedTargetingOptionDetails(
     ]
 
 @typing.type_check_only
+class DcmTrackingInfo(typing_extensions.TypedDict, total=False):
+    creativeId: str
+    placementId: str
+    trackingAdId: str
+
+@typing.type_check_only
 class DeleteAssignedTargetingOptionsRequest(typing_extensions.TypedDict, total=False):
     assignedTargetingOptionIds: _list[str]
     targetingType: typing_extensions.Literal[
@@ -2100,6 +2151,134 @@ class DeleteAssignedTargetingOptionsRequest(typing_extensions.TypedDict, total=F
         "TARGETING_TYPE_SESSION_POSITION",
         "TARGETING_TYPE_CONTENT_THEME_EXCLUSION",
     ]
+
+@typing.type_check_only
+class DemandGenBiddingStrategy(typing_extensions.TypedDict, total=False):
+    effectiveBiddingValue: str
+    effectiveBiddingValueSource: typing_extensions.Literal[
+        "BIDDING_SOURCE_UNSPECIFIED",
+        "BIDDING_SOURCE_LINE_ITEM",
+        "BIDDING_SOURCE_AD_GROUP",
+    ]
+    type: typing_extensions.Literal[
+        "DEMAND_GEN_BIDDING_STRATEGY_TYPE_UNSPECIFIED",
+        "DEMAND_GEN_BIDDING_STRATEGY_TYPE_TARGET_CPA",
+        "DEMAND_GEN_BIDDING_STRATEGY_TYPE_TARGET_ROAS",
+        "DEMAND_GEN_BIDDING_STRATEGY_TYPE_MAXIMIZE_CONVERSIONS",
+        "DEMAND_GEN_BIDDING_STRATEGY_TYPE_MAXIMIZE_CONVERSION_VALUE",
+        "DEMAND_GEN_BIDDING_STRATEGY_TYPE_MAXIMIZE_CLICKS",
+    ]
+    value: str
+
+@typing.type_check_only
+class DemandGenCarouselAd(typing_extensions.TypedDict, total=False):
+    businessName: str
+    cards: _list[CarouselCard]
+    customParameters: dict[str, typing.Any]
+    description: str
+    finalUrl: str
+    finalUrlSuffix: str
+    headline: str
+    logo: ImageAsset
+    trackingUrl: str
+    userSpecifiedTrackingUrl: str
+
+@typing.type_check_only
+class DemandGenImageAd(typing_extensions.TypedDict, total=False):
+    businessName: str
+    callToAction: str
+    customParameters: dict[str, typing.Any]
+    descriptions: _list[str]
+    finalMobileUrl: str
+    finalUrl: str
+    finalUrlSuffix: str
+    headlines: _list[str]
+    logoImages: _list[ImageAsset]
+    marketingImages: _list[ImageAsset]
+    portraitMarketingImages: _list[ImageAsset]
+    squareMarketingImages: _list[ImageAsset]
+    trackingUrl: str
+    userSpecifiedTrackingUrl: str
+
+@typing.type_check_only
+class DemandGenProductAd(typing_extensions.TypedDict, total=False):
+    businessName: str
+    callToAction: typing_extensions.Literal[
+        "CALL_TO_ACTION_UNSPECIFIED",
+        "AUTOMATED",
+        "LEARN_MORE",
+        "GET_QUOTE",
+        "APPLY_NOW",
+        "SIGN_UP",
+        "CONTACT_US",
+        "SUBSCRIBE",
+        "DOWNLOAD",
+        "BOOK_NOW",
+        "SHOP_NOW",
+        "BUY_NOW",
+        "DONATE_NOW",
+        "ORDER_NOW",
+        "PLAY_NOW",
+        "SEE_MORE",
+        "START_NOW",
+        "VISIT_SITE",
+        "WATCH_NOW",
+    ]
+    customParameters: dict[str, typing.Any]
+    description: str
+    displayUrlBreadcrumb1: str
+    displayUrlBreadcrumb2: str
+    finalUrl: str
+    finalUrlSuffix: str
+    headline: str
+    logo: ImageAsset
+    trackingUrl: str
+    userSpecifiedTrackingUrl: str
+
+@typing.type_check_only
+class DemandGenSettings(typing_extensions.TypedDict, total=False):
+    geoLanguageTargetingEnabled: bool
+    linkedMerchantId: str
+    thirdPartyMeasurementConfigs: ThirdPartyMeasurementConfigs
+
+@typing.type_check_only
+class DemandGenVideoAd(typing_extensions.TypedDict, total=False):
+    businessName: str
+    callToAction: typing_extensions.Literal[
+        "CALL_TO_ACTION_UNSPECIFIED",
+        "AUTOMATED",
+        "LEARN_MORE",
+        "GET_QUOTE",
+        "APPLY_NOW",
+        "SIGN_UP",
+        "CONTACT_US",
+        "SUBSCRIBE",
+        "DOWNLOAD",
+        "BOOK_NOW",
+        "SHOP_NOW",
+        "BUY_NOW",
+        "DONATE_NOW",
+        "ORDER_NOW",
+        "PLAY_NOW",
+        "SEE_MORE",
+        "START_NOW",
+        "VISIT_SITE",
+        "WATCH_NOW",
+    ]
+    companionBanner: ImageAsset
+    customParameters: dict[str, typing.Any]
+    descriptions: _list[str]
+    displayUrlBreadcrumb1: str
+    displayUrlBreadcrumb2: str
+    finalMobileUrl: str
+    finalUrl: str
+    finalUrlSuffix: str
+    headlines: _list[str]
+    logo: ImageAsset
+    longHeadlines: _list[str]
+    trackingUrl: str
+    userSpecifiedTrackingUrl: str
+    videos: _list[YoutubeVideoDetails]
 
 @typing.type_check_only
 class DeviceMakeModelAssignedTargetingOptionDetails(
@@ -2986,6 +3165,7 @@ class GeoRegionAssignedTargetingOptionDetails(typing_extensions.TypedDict, total
         "GEO_REGION_TYPE_DIVISION",
         "GEO_REGION_TYPE_COMMUNE",
         "GEO_REGION_TYPE_COLLOQUIAL_AREA",
+        "GEO_REGION_TYPE_POST_TOWN",
     ]
     negative: bool
     targetingOptionId: str
@@ -3036,6 +3216,7 @@ class GeoRegionTargetingOptionDetails(typing_extensions.TypedDict, total=False):
         "GEO_REGION_TYPE_DIVISION",
         "GEO_REGION_TYPE_COMMUNE",
         "GEO_REGION_TYPE_COLLOQUIAL_AREA",
+        "GEO_REGION_TYPE_POST_TOWN",
     ]
 
 @typing.type_check_only
@@ -3228,6 +3409,7 @@ class IdFilter(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ImageAsset(typing_extensions.TypedDict, total=False):
+    assetId: str
     fileSize: str
     fullSize: Dimensions
     mimeType: str
@@ -3600,6 +3782,7 @@ class Invoice(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class KeywordAssignedTargetingOptionDetails(typing_extensions.TypedDict, total=False):
+    exemptedPolicyNames: _list[str]
     keyword: str
     negative: bool
 
@@ -3656,6 +3839,7 @@ class LineItem(typing_extensions.TypedDict, total=False):
     ]
     conversionCounting: ConversionCountingConfig
     creativeIds: _list[str]
+    demandGenSettings: DemandGenSettings
     displayName: str
     entityStatus: typing_extensions.Literal[
         "ENTITY_STATUS_UNSPECIFIED",
@@ -3694,6 +3878,7 @@ class LineItem(typing_extensions.TypedDict, total=False):
         "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_VIEW",
         "LINE_ITEM_TYPE_DISPLAY_OUT_OF_HOME",
         "LINE_ITEM_TYPE_VIDEO_OUT_OF_HOME",
+        "LINE_ITEM_TYPE_DEMAND_GEN",
     ]
     mobileApp: MobileApp
     name: str
@@ -4547,6 +4732,15 @@ class SearchTargetingOptionsResponse(typing_extensions.TypedDict, total=False):
     targetingOptions: _list[TargetingOption]
 
 @typing.type_check_only
+class SelectedInventories(typing_extensions.TypedDict, total=False):
+    allowDiscover: bool
+    allowGmail: bool
+    allowGoogleDisplayNetwork: bool
+    allowYoutubeFeed: bool
+    allowYoutubeShorts: bool
+    allowYoutubeStream: bool
+
+@typing.type_check_only
 class SensitiveCategoryAssignedTargetingOptionDetails(
     typing_extensions.TypedDict, total=False
 ):
@@ -4648,6 +4842,7 @@ class TargetingExpansionConfig(typing_extensions.TypedDict, total=False):
     ]
     audienceExpansionSeedListExcluded: bool
     enableOptimizedTargeting: bool
+    excludeDemographicExpansion: bool
 
 @typing.type_check_only
 class TargetingOption(typing_extensions.TypedDict, total=False):
@@ -4789,6 +4984,15 @@ class ThirdPartyVendorConfig(typing_extensions.TypedDict, total=False):
         "THIRD_PARTY_VENDOR_KANTAR",
         "THIRD_PARTY_VENDOR_DYNATA",
         "THIRD_PARTY_VENDOR_TRANSUNION",
+        "THIRD_PARTY_VENDOR_ORIGIN",
+        "THIRD_PARTY_VENDOR_GEMIUS",
+        "THIRD_PARTY_VENDOR_MEDIA_SCOPE",
+        "THIRD_PARTY_VENDOR_AUDIENCE_PROJECT",
+        "THIRD_PARTY_VENDOR_VIDEO_AMP",
+        "THIRD_PARTY_VENDOR_ISPOT_TV",
+        "THIRD_PARTY_VENDOR_INTAGE",
+        "THIRD_PARTY_VENDOR_MACROMILL",
+        "THIRD_PARTY_VENDOR_VIDEO_RESEARCH",
     ]
 
 @typing.type_check_only

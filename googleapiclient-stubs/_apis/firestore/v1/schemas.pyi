@@ -537,6 +537,7 @@ class GoogleFirestoreAdminV1Index(typing_extensions.TypedDict, total=False):
         "COLLECTION_GROUP",
         "COLLECTION_RECURSIVE",
     ]
+    searchIndexOptions: GoogleFirestoreAdminV1SearchIndexOptions
     shardCount: int
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "CREATING", "READY", "NEEDS_REPAIR"
@@ -560,6 +561,7 @@ class GoogleFirestoreAdminV1IndexField(typing_extensions.TypedDict, total=False)
     arrayConfig: typing_extensions.Literal["ARRAY_CONFIG_UNSPECIFIED", "CONTAINS"]
     fieldPath: str
     order: typing_extensions.Literal["ORDER_UNSPECIFIED", "ASCENDING", "DESCENDING"]
+    searchConfig: GoogleFirestoreAdminV1SearchConfig
     vectorConfig: GoogleFirestoreAdminV1VectorConfig
 
 @typing.type_check_only
@@ -677,6 +679,50 @@ class GoogleFirestoreAdminV1RestoreDatabaseRequest(
     tags: dict[str, typing.Any]
 
 @typing.type_check_only
+class GoogleFirestoreAdminV1SearchConfig(typing_extensions.TypedDict, total=False):
+    geoSpec: GoogleFirestoreAdminV1SearchGeoSpec
+    numberSpec: GoogleFirestoreAdminV1SearchNumberSpec
+    textSpec: GoogleFirestoreAdminV1SearchTextSpec
+
+@typing.type_check_only
+class GoogleFirestoreAdminV1SearchGeoSpec(typing_extensions.TypedDict, total=False):
+    geoJsonIndexingDisabled: bool
+
+@typing.type_check_only
+class GoogleFirestoreAdminV1SearchIndexOptions(
+    typing_extensions.TypedDict, total=False
+):
+    customPartitionFieldPaths: _list[str]
+    textLanguage: str
+    textLanguageOverrideFieldPath: str
+
+@typing.type_check_only
+class GoogleFirestoreAdminV1SearchNumberSpec(typing_extensions.TypedDict, total=False):
+    indexType: typing_extensions.Literal[
+        "NUMBER_INDEX_TYPE_UNSPECIFIED",
+        "FLOAT64",
+        "INT32_LOG_TREE",
+        "INT64_LOG_TREE",
+        "INT32_PREFIX_TREE",
+        "INT64_PREFIX_TREE",
+    ]
+
+@typing.type_check_only
+class GoogleFirestoreAdminV1SearchTextIndexSpec(
+    typing_extensions.TypedDict, total=False
+):
+    indexType: typing_extensions.Literal[
+        "TEXT_INDEX_TYPE_UNSPECIFIED", "TOKENIZED", "NGRAMS", "EXACT_MATCH"
+    ]
+    matchType: typing_extensions.Literal[
+        "TEXT_MATCH_TYPE_UNSPECIFIED", "MATCH_GLOBALLY", "MATCH_FIELD"
+    ]
+
+@typing.type_check_only
+class GoogleFirestoreAdminV1SearchTextSpec(typing_extensions.TypedDict, total=False):
+    indexSpecs: _list[GoogleFirestoreAdminV1SearchTextIndexSpec]
+
+@typing.type_check_only
 class GoogleFirestoreAdminV1SourceEncryptionOptions(
     typing_extensions.TypedDict, total=False
 ): ...
@@ -694,6 +740,7 @@ class GoogleFirestoreAdminV1Stats(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleFirestoreAdminV1TtlConfig(typing_extensions.TypedDict, total=False):
+    expirationOffset: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "NEEDS_REPAIR"
     ]
@@ -701,6 +748,7 @@ class GoogleFirestoreAdminV1TtlConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GoogleFirestoreAdminV1TtlConfigDelta(typing_extensions.TypedDict, total=False):
     changeType: typing_extensions.Literal["CHANGE_TYPE_UNSPECIFIED", "ADD", "REMOVE"]
+    expirationOffset: str
 
 @typing.type_check_only
 class GoogleFirestoreAdminV1UpdateDatabaseMetadata(
@@ -984,6 +1032,7 @@ class Value(typing_extensions.TypedDict, total=False):
     referenceValue: str
     stringValue: str
     timestampValue: str
+    variableReferenceValue: str
 
 @typing.type_check_only
 class Write(typing_extensions.TypedDict, total=False):

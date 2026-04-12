@@ -692,22 +692,6 @@ class LongRunning(typing_extensions.TypedDict, total=False):
     totalPollTimeout: str
 
 @typing.type_check_only
-class McpEnableRule(typing_extensions.TypedDict, total=False):
-    mcpServices: _list[McpService]
-
-@typing.type_check_only
-class McpPolicy(typing_extensions.TypedDict, total=False):
-    createTime: str
-    etag: str
-    mcpEnableRules: _list[McpEnableRule]
-    name: str
-    updateTime: str
-
-@typing.type_check_only
-class McpService(typing_extensions.TypedDict, total=False):
-    service: str
-
-@typing.type_check_only
 class Method(typing_extensions.TypedDict, total=False):
     edition: str
     name: str
@@ -988,9 +972,6 @@ class UpdateConsumerPolicyMetadata(typing_extensions.TypedDict, total=False): ..
 
 @typing.type_check_only
 class UpdateContentSecurityPolicyMetadata(typing_extensions.TypedDict, total=False): ...
-
-@typing.type_check_only
-class UpdateMcpPolicyMetadata(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Usage(typing_extensions.TypedDict, total=False):

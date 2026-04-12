@@ -5,36 +5,6 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
-class ApiservingMcpMcpToolDataHandlingProfile(typing_extensions.TypedDict, total=False):
-    inputDataAccessLevel: typing_extensions.Literal[
-        "DATA_ACCESS_LEVEL_UNSPECIFIED",
-        "DATA_ACCESS_LEVEL_PUBLIC",
-        "DATA_ACCESS_LEVEL_CONFIDENTIAL",
-        "DATA_ACCESS_LEVEL_NEED_TO_KNOW",
-        "DATA_ACCESS_LEVEL_PII",
-        "DATA_ACCESS_LEVEL_USER",
-        "DATA_ACCESS_LEVEL_NO_DATA_ACCESS",
-    ]
-    outputDataAccessLevel: typing_extensions.Literal[
-        "DATA_ACCESS_LEVEL_UNSPECIFIED",
-        "DATA_ACCESS_LEVEL_PUBLIC",
-        "DATA_ACCESS_LEVEL_CONFIDENTIAL",
-        "DATA_ACCESS_LEVEL_NEED_TO_KNOW",
-        "DATA_ACCESS_LEVEL_PII",
-        "DATA_ACCESS_LEVEL_USER",
-        "DATA_ACCESS_LEVEL_NO_DATA_ACCESS",
-    ]
-
-@typing.type_check_only
-class ApiservingMcpMcpToolLifecycleProfile(typing_extensions.TypedDict, total=False):
-    launchState: typing_extensions.Literal[
-        "LAUNCH_STATE_UNSPECIFIED",
-        "LAUNCH_STATE_DEVELOPMENT",
-        "LAUNCH_STATE_PRODUCTION_PREVIEW",
-        "LAUNCH_STATE_GENERAL_AVAILABILITY",
-    ]
-
-@typing.type_check_only
 class EdgeConfigstoreBundleBadBundle(typing_extensions.TypedDict, total=False):
     violations: _list[EdgeConfigstoreBundleBadBundleViolation]
 
@@ -2165,7 +2135,11 @@ class GoogleCloudApigeeV1RuntimeConfig(typing_extensions.TypedDict, total=False)
 class GoogleCloudApigeeV1RuntimeTraceConfig(typing_extensions.TypedDict, total=False):
     endpoint: str
     exporter: typing_extensions.Literal[
-        "EXPORTER_UNSPECIFIED", "JAEGER", "CLOUD_TRACE", "OPEN_TELEMETRY_COLLECTOR"
+        "EXPORTER_UNSPECIFIED",
+        "JAEGER",
+        "CLOUD_TRACE",
+        "OPEN_TELEMETRY_COLLECTOR",
+        "OPEN_TELEMETRY_CLOUD_TRACE",
     ]
     name: str
     openTelemetryProtocolEnabled: bool
@@ -2173,6 +2147,9 @@ class GoogleCloudApigeeV1RuntimeTraceConfig(typing_extensions.TypedDict, total=F
     revisionCreateTime: str
     revisionId: str
     samplingConfig: GoogleCloudApigeeV1RuntimeTraceSamplingConfig
+    traceProtocol: typing_extensions.Literal[
+        "TRACE_PROTOCOL_UNSPECIFIED", "OPEN_CENSUS", "OTLP"
+    ]
 
 @typing.type_check_only
 class GoogleCloudApigeeV1RuntimeTraceConfigOverride(
@@ -2184,6 +2161,9 @@ class GoogleCloudApigeeV1RuntimeTraceConfigOverride(
     revisionCreateTime: str
     revisionId: str
     samplingConfig: GoogleCloudApigeeV1RuntimeTraceSamplingConfig
+    traceProtocol: typing_extensions.Literal[
+        "TRACE_PROTOCOL_UNSPECIFIED", "OPEN_CENSUS", "OTLP"
+    ]
     uid: str
 
 @typing.type_check_only
@@ -2769,7 +2749,11 @@ class GoogleCloudApigeeV1TlsInfoConfig(typing_extensions.TypedDict, total=False)
 class GoogleCloudApigeeV1TraceConfig(typing_extensions.TypedDict, total=False):
     endpoint: str
     exporter: typing_extensions.Literal[
-        "EXPORTER_UNSPECIFIED", "JAEGER", "CLOUD_TRACE", "OPEN_TELEMETRY_COLLECTOR"
+        "EXPORTER_UNSPECIFIED",
+        "JAEGER",
+        "CLOUD_TRACE",
+        "OPEN_TELEMETRY_COLLECTOR",
+        "OPEN_TELEMETRY_CLOUD_TRACE",
     ]
     samplingConfig: GoogleCloudApigeeV1TraceSamplingConfig
 

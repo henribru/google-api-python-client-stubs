@@ -151,7 +151,7 @@ class GoogleCloudRunV2DockerBuild(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class GoogleCloudRunV2EmptyDirVolumeSource(typing_extensions.TypedDict, total=False):
-    medium: typing_extensions.Literal["MEDIUM_UNSPECIFIED", "MEMORY"]
+    medium: typing_extensions.Literal["MEDIUM_UNSPECIFIED", "MEMORY", "DISK"]
     sizeLimit: str
 
 @typing.type_check_only
@@ -277,6 +277,10 @@ class GoogleCloudRunV2ImageExportStatus(typing_extensions.TypedDict, total=False
     exportedImageDigest: str
     status: UtilStatusProto
     tag: str
+
+@typing.type_check_only
+class GoogleCloudRunV2InlinedSource(typing_extensions.TypedDict, total=False):
+    sources: _list[GoogleCloudRunV2SourceFile]
 
 @typing.type_check_only
 class GoogleCloudRunV2Instance(typing_extensions.TypedDict, total=False):
@@ -661,6 +665,12 @@ class GoogleCloudRunV2ServiceScaling(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GoogleCloudRunV2SourceCode(typing_extensions.TypedDict, total=False):
     cloudStorageSource: GoogleCloudRunV2CloudStorageSource
+    inlinedSource: GoogleCloudRunV2InlinedSource
+
+@typing.type_check_only
+class GoogleCloudRunV2SourceFile(typing_extensions.TypedDict, total=False):
+    content: str
+    filename: str
 
 @typing.type_check_only
 class GoogleCloudRunV2StartInstanceRequest(typing_extensions.TypedDict, total=False):
@@ -919,11 +929,13 @@ class GoogleDevtoolsCloudbuildV1ArtifactObjects(
 
 @typing.type_check_only
 class GoogleDevtoolsCloudbuildV1Artifacts(typing_extensions.TypedDict, total=False):
+    genericArtifacts: _list[GoogleDevtoolsCloudbuildV1GenericArtifact]
     goModules: _list[GoogleDevtoolsCloudbuildV1GoModule]
     images: _list[str]
     mavenArtifacts: _list[GoogleDevtoolsCloudbuildV1MavenArtifact]
     npmPackages: _list[GoogleDevtoolsCloudbuildV1NpmPackage]
     objects: GoogleDevtoolsCloudbuildV1ArtifactObjects
+    oci: _list[GoogleDevtoolsCloudbuildV1Oci]
     pythonPackages: _list[GoogleDevtoolsCloudbuildV1PythonPackage]
 
 @typing.type_check_only
@@ -1021,7 +1033,9 @@ class GoogleDevtoolsCloudbuildV1BuildOptions(typing_extensions.TypedDict, total=
     requestedVerifyOption: typing_extensions.Literal["NOT_VERIFIED", "VERIFIED"]
     secretEnv: _list[str]
     sourceProvenanceHash: _list[
-        typing_extensions.Literal["NONE", "SHA256", "MD5", "GO_MODULE_H1", "SHA512"]
+        typing_extensions.Literal[
+            "NONE", "SHA256", "MD5", "GO_MODULE_H1", "SHA512", "DIRSUM_SHA256"
+        ]
     ]
     substitutionOption: typing_extensions.Literal["MUST_MATCH", "ALLOW_LOOSE"]
     volumes: _list[GoogleDevtoolsCloudbuildV1Volume]
@@ -1064,6 +1078,9 @@ class GoogleDevtoolsCloudbuildV1BuiltImage(typing_extensions.TypedDict, total=Fa
     artifactRegistryPackage: str
     digest: str
     name: str
+    ociMediaType: typing_extensions.Literal[
+        "OCI_MEDIA_TYPE_UNSPECIFIED", "IMAGE_MANIFEST", "IMAGE_INDEX"
+    ]
     pushTiming: GoogleDevtoolsCloudbuildV1TimeSpan
 
 @typing.type_check_only
@@ -1077,6 +1094,7 @@ class GoogleDevtoolsCloudbuildV1ConnectedRepository(
 @typing.type_check_only
 class GoogleDevtoolsCloudbuildV1Dependency(typing_extensions.TypedDict, total=False):
     empty: bool
+    genericArtifact: GoogleDevtoolsCloudbuildV1GenericArtifactDependency
     gitSource: GoogleDevtoolsCloudbuildV1GitSourceDependency
 
 @typing.type_check_only
@@ -1103,6 +1121,20 @@ class GoogleDevtoolsCloudbuildV1FailureInfo(typing_extensions.TypedDict, total=F
 @typing.type_check_only
 class GoogleDevtoolsCloudbuildV1FileHashes(typing_extensions.TypedDict, total=False):
     fileHash: _list[GoogleDevtoolsCloudbuildV1Hash]
+
+@typing.type_check_only
+class GoogleDevtoolsCloudbuildV1GenericArtifact(
+    typing_extensions.TypedDict, total=False
+):
+    folder: str
+    registryPath: str
+
+@typing.type_check_only
+class GoogleDevtoolsCloudbuildV1GenericArtifactDependency(
+    typing_extensions.TypedDict, total=False
+):
+    destPath: str
+    resource: str
 
 @typing.type_check_only
 class GoogleDevtoolsCloudbuildV1GitConfig(typing_extensions.TypedDict, total=False):
@@ -1142,7 +1174,9 @@ class GoogleDevtoolsCloudbuildV1GoModule(typing_extensions.TypedDict, total=Fals
 
 @typing.type_check_only
 class GoogleDevtoolsCloudbuildV1Hash(typing_extensions.TypedDict, total=False):
-    type: typing_extensions.Literal["NONE", "SHA256", "MD5", "GO_MODULE_H1", "SHA512"]
+    type: typing_extensions.Literal[
+        "NONE", "SHA256", "MD5", "GO_MODULE_H1", "SHA512", "DIRSUM_SHA256"
+    ]
     value: str
 
 @typing.type_check_only
@@ -1167,6 +1201,12 @@ class GoogleDevtoolsCloudbuildV1MavenArtifact(typing_extensions.TypedDict, total
 class GoogleDevtoolsCloudbuildV1NpmPackage(typing_extensions.TypedDict, total=False):
     packagePath: str
     repository: str
+
+@typing.type_check_only
+class GoogleDevtoolsCloudbuildV1Oci(typing_extensions.TypedDict, total=False):
+    file: str
+    registryPath: str
+    tags: _list[str]
 
 @typing.type_check_only
 class GoogleDevtoolsCloudbuildV1PoolOption(typing_extensions.TypedDict, total=False):
@@ -1194,6 +1234,7 @@ class GoogleDevtoolsCloudbuildV1Results(typing_extensions.TypedDict, total=False
     artifactTiming: GoogleDevtoolsCloudbuildV1TimeSpan
     buildStepImages: _list[str]
     buildStepOutputs: _list[str]
+    genericArtifacts: _list[GoogleDevtoolsCloudbuildV1UploadedGenericArtifact]
     goModules: _list[GoogleDevtoolsCloudbuildV1UploadedGoModule]
     images: _list[GoogleDevtoolsCloudbuildV1BuiltImage]
     mavenArtifacts: _list[GoogleDevtoolsCloudbuildV1UploadedMavenArtifact]
@@ -1259,6 +1300,16 @@ class GoogleDevtoolsCloudbuildV1StorageSourceManifest(
 class GoogleDevtoolsCloudbuildV1TimeSpan(typing_extensions.TypedDict, total=False):
     endTime: str
     startTime: str
+
+@typing.type_check_only
+class GoogleDevtoolsCloudbuildV1UploadedGenericArtifact(
+    typing_extensions.TypedDict, total=False
+):
+    artifactFingerprint: GoogleDevtoolsCloudbuildV1FileHashes
+    artifactRegistryPackage: str
+    fileHashes: dict[str, typing.Any]
+    pushTiming: GoogleDevtoolsCloudbuildV1TimeSpan
+    uri: str
 
 @typing.type_check_only
 class GoogleDevtoolsCloudbuildV1UploadedGoModule(

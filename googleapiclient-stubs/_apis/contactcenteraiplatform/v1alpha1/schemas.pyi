@@ -52,6 +52,7 @@ class ContactCenter(typing_extensions.TypedDict, total=False):
         "STATE_FAILING_OVER",
         "STATE_DEGRADED",
         "STATE_REPAIRING",
+        "STATE_EXPIRING",
     ]
     updateTime: str
     uris: URIs

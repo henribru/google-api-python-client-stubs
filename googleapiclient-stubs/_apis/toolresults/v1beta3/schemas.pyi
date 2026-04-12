@@ -508,6 +508,7 @@ class SkippedDetail(typing_extensions.TypedDict, total=False):
     incompatibleAppVersion: bool
     incompatibleArchitecture: bool
     incompatibleDevice: bool
+    pendingTimeout: bool
 
 @typing.type_check_only
 class Specification(typing_extensions.TypedDict, total=False):

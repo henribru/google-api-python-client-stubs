@@ -128,7 +128,10 @@ class GoogleIamAdminV1WorkforcePoolProviderExtraAttributesOAuth2Client(
     typing_extensions.TypedDict, total=False
 ):
     attributesType: typing_extensions.Literal[
-        "ATTRIBUTES_TYPE_UNSPECIFIED", "AZURE_AD_GROUPS_MAIL", "AZURE_AD_GROUPS_ID"
+        "ATTRIBUTES_TYPE_UNSPECIFIED",
+        "AZURE_AD_GROUPS_MAIL",
+        "AZURE_AD_GROUPS_ID",
+        "AZURE_AD_GROUPS_DISPLAY_NAME",
     ]
     clientId: str
     clientSecret: GoogleIamAdminV1WorkforcePoolProviderOidcClientSecret
@@ -199,6 +202,7 @@ class InlineCertificateIssuanceConfig(typing_extensions.TypedDict, total=False):
     ]
     lifetime: str
     rotationWindowPercentage: int
+    useDefaultSharedCa: bool
 
 @typing.type_check_only
 class InlineTrustConfig(typing_extensions.TypedDict, total=False):
@@ -568,6 +572,7 @@ class TrustAnchor(typing_extensions.TypedDict, total=False):
 class TrustStore(typing_extensions.TypedDict, total=False):
     intermediateCas: _list[IntermediateCA]
     trustAnchors: _list[TrustAnchor]
+    trustDefaultSharedCa: bool
 
 @typing.type_check_only
 class UndeleteOauthClientRequest(typing_extensions.TypedDict, total=False): ...
@@ -595,11 +600,6 @@ class UndeleteWorkforcePoolProviderRequest(
 
 @typing.type_check_only
 class UndeleteWorkforcePoolProviderScimTenantRequest(
-    typing_extensions.TypedDict, total=False
-): ...
-
-@typing.type_check_only
-class UndeleteWorkforcePoolProviderScimTokenRequest(
     typing_extensions.TypedDict, total=False
 ): ...
 

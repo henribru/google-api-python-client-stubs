@@ -272,7 +272,7 @@ class Evaluation(typing_extensions.TypedDict, total=False):
     customRulesBucket: str
     description: str
     evaluationType: typing_extensions.Literal[
-        "EVALUATION_TYPE_UNSPECIFIED", "SAP", "SQL_SERVER", "OTHER", "SCC_IAC"
+        "EVALUATION_TYPE_UNSPECIFIED", "SAP", "SQL_SERVER", "OTHER"
     ]
     kmsKey: str
     labels: dict[str, typing.Any]
@@ -280,7 +280,6 @@ class Evaluation(typing_extensions.TypedDict, total=False):
     resourceFilter: ResourceFilter
     resourceStatus: ResourceStatus
     ruleNames: _list[str]
-    ruleVersions: _list[str]
     schedule: str
     updateTime: str
 
@@ -369,17 +368,6 @@ class InstanceProperties(typing_extensions.TypedDict, total=False):
     upcomingMaintenanceEvent: UpcomingMaintenanceEvent
 
 @typing.type_check_only
-class InvalidRule(typing_extensions.TypedDict, total=False):
-    displayName: str
-    gcsUri: str
-    name: str
-    valiadtionError: str
-
-@typing.type_check_only
-class InvalidRulesWrapper(typing_extensions.TypedDict, total=False):
-    invalidRules: _list[InvalidRule]
-
-@typing.type_check_only
 class ListActuationsResponse(typing_extensions.TypedDict, total=False):
     actuations: _list[Actuation]
     nextPageToken: str
@@ -427,7 +415,6 @@ class ListOperationsResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ListRulesResponse(typing_extensions.TypedDict, total=False):
-    invalidRulesWrapper: InvalidRulesWrapper
     rules: _list[Rule]
 
 @typing.type_check_only
@@ -516,7 +503,6 @@ class ResourceFilter(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ResourceStatus(typing_extensions.TypedDict, total=False):
-    rulesNewerVersions: _list[str]
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "DELETING"
     ]

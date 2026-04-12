@@ -401,6 +401,7 @@ class MountDatastoreRequest(typing_extensions.TypedDict, total=False):
     datastoreMountConfig: DatastoreMountConfig
     ignoreColocation: bool
     requestId: str
+    validateOnly: bool
 
 @typing.type_check_only
 class NetworkConfig(typing_extensions.TypedDict, total=False):
@@ -720,6 +721,7 @@ class UndeletePrivateCloudRequest(typing_extensions.TypedDict, total=False):
 class UnmountDatastoreRequest(typing_extensions.TypedDict, total=False):
     datastore: str
     requestId: str
+    validateOnly: bool
 
 @typing.type_check_only
 class Upgrade(typing_extensions.TypedDict, total=False):

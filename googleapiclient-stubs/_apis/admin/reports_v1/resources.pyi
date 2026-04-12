@@ -66,6 +66,7 @@ class ReportsResource(googleapiclient.discovery.Resource):
             eventName: str = ...,
             filters: str = ...,
             groupIdFilter: str = ...,
+            includeSensitiveData: bool = ...,
             maxResults: int = ...,
             networkInfoFilter: str = ...,
             orgUnitID: str = ...,

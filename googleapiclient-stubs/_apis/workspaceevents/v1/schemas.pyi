@@ -128,14 +128,17 @@ class Subscription(typing_extensions.TypedDict, total=False):
     notificationEndpoint: NotificationEndpoint
     payloadOptions: PayloadOptions
     reconciling: bool
+    serviceAccountAuthority: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "ACTIVE", "SUSPENDED", "DELETED"
     ]
     suspensionReason: typing_extensions.Literal[
         "ERROR_TYPE_UNSPECIFIED",
         "USER_SCOPE_REVOKED",
+        "APP_SCOPE_REVOKED",
         "RESOURCE_DELETED",
         "USER_AUTHORIZATION_FAILURE",
+        "APP_AUTHORIZATION_FAILURE",
         "ENDPOINT_PERMISSION_DENIED",
         "ENDPOINT_NOT_FOUND",
         "ENDPOINT_RESOURCE_EXHAUSTED",
@@ -145,6 +148,7 @@ class Subscription(typing_extensions.TypedDict, total=False):
     ttl: str
     uid: str
     updateTime: str
+    userAuthority: str
 
 @typing.type_check_only
 class Task(typing_extensions.TypedDict, total=False):

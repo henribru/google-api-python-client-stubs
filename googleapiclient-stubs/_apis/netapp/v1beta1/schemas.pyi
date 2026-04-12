@@ -103,6 +103,7 @@ class BackupVault(typing_extensions.TypedDict, total=False):
     ]
     backupsCryptoKeyVersion: str
     createTime: str
+    crossProjectVault: bool
     description: str
     destinationBackupVault: str
     encryptionState: typing_extensions.Literal[
@@ -635,6 +636,9 @@ class StoragePool(typing_extensions.TypedDict, total=False):
     scaleTier: typing_extensions.Literal[
         "SCALE_TIER_UNSPECIFIED", "SCALE_TIER_STANDARD", "SCALE_TIER_ENTERPRISE"
     ]
+    scaleType: typing_extensions.Literal[
+        "SCALE_TYPE_UNSPECIFIED", "SCALE_TYPE_DEFAULT", "SCALE_TYPE_SCALEOUT"
+    ]
     serviceLevel: typing_extensions.Literal[
         "SERVICE_LEVEL_UNSPECIFIED", "PREMIUM", "EXTREME", "STANDARD", "FLEX"
     ]
@@ -651,9 +655,7 @@ class StoragePool(typing_extensions.TypedDict, total=False):
     stateDetails: str
     totalIops: str
     totalThroughputMibps: str
-    type: typing_extensions.Literal[
-        "STORAGE_POOL_TYPE_UNSPECIFIED", "FILE", "UNIFIED", "UNIFIED_LARGE_CAPACITY"
-    ]
+    type: typing_extensions.Literal["STORAGE_POOL_TYPE_UNSPECIFIED", "FILE", "UNIFIED"]
     volumeCapacityGib: str
     volumeCount: int
     zone: str

@@ -276,6 +276,30 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                 ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
 
             @typing.type_check_only
+            class DataDomainsResource(googleapiclient.discovery.Resource):
+                def getIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    options_requestedPolicyVersion: int = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleIamV1PolicyHttpRequest: ...
+                def setIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    body: GoogleIamV1SetIamPolicyRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleIamV1PolicyHttpRequest: ...
+                def testIamPermissions(
+                    self,
+                    *,
+                    resource: str,
+                    body: GoogleIamV1TestIamPermissionsRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
+
+            @typing.type_check_only
             class DataProductsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class DataAssetsResource(googleapiclient.discovery.Resource):
@@ -718,6 +742,15 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                     def get(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> GoogleCloudDataplexV1EntryLinkHttpRequest: ...
+                    def patch(
+                        self,
+                        *,
+                        name: str,
+                        body: GoogleCloudDataplexV1EntryLink = ...,
+                        allowMissing: bool = ...,
+                        aspectKeys: str | _list[str] = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleCloudDataplexV1EntryLinkHttpRequest: ...
 
                 def create(
                     self,
@@ -1104,225 +1137,6 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                         previous_request: GoogleCloudDataplexV1ListActionsResponseHttpRequest,
                         previous_response: GoogleCloudDataplexV1ListActionsResponse,
                     ) -> GoogleCloudDataplexV1ListActionsResponseHttpRequest | None: ...
-
-                @typing.type_check_only
-                class ContentResource(googleapiclient.discovery.Resource):
-                    def create(
-                        self,
-                        *,
-                        parent: str,
-                        body: GoogleCloudDataplexV1Content = ...,
-                        validateOnly: bool = ...,
-                        **kwargs: typing.Any,
-                    ) -> GoogleCloudDataplexV1ContentHttpRequest: ...
-                    def delete(
-                        self, *, name: str, **kwargs: typing.Any
-                    ) -> EmptyHttpRequest: ...
-                    def get(
-                        self,
-                        *,
-                        name: str,
-                        view: typing_extensions.Literal[
-                            "CONTENT_VIEW_UNSPECIFIED", "BASIC", "FULL"
-                        ] = ...,
-                        **kwargs: typing.Any,
-                    ) -> GoogleCloudDataplexV1ContentHttpRequest: ...
-                    def getIamPolicy(
-                        self,
-                        *,
-                        resource: str,
-                        options_requestedPolicyVersion: int = ...,
-                        **kwargs: typing.Any,
-                    ) -> GoogleIamV1PolicyHttpRequest: ...
-                    def list(
-                        self,
-                        *,
-                        parent: str,
-                        filter: str = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
-                        **kwargs: typing.Any,
-                    ) -> GoogleCloudDataplexV1ListContentResponseHttpRequest: ...
-                    def list_next(
-                        self,
-                        previous_request: GoogleCloudDataplexV1ListContentResponseHttpRequest,
-                        previous_response: GoogleCloudDataplexV1ListContentResponse,
-                    ) -> GoogleCloudDataplexV1ListContentResponseHttpRequest | None: ...
-                    def patch(
-                        self,
-                        *,
-                        name: str,
-                        body: GoogleCloudDataplexV1Content = ...,
-                        updateMask: str = ...,
-                        validateOnly: bool = ...,
-                        **kwargs: typing.Any,
-                    ) -> GoogleCloudDataplexV1ContentHttpRequest: ...
-                    def setIamPolicy(
-                        self,
-                        *,
-                        resource: str,
-                        body: GoogleIamV1SetIamPolicyRequest = ...,
-                        **kwargs: typing.Any,
-                    ) -> GoogleIamV1PolicyHttpRequest: ...
-                    def testIamPermissions(
-                        self,
-                        *,
-                        resource: str,
-                        body: GoogleIamV1TestIamPermissionsRequest = ...,
-                        **kwargs: typing.Any,
-                    ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
-
-                @typing.type_check_only
-                class ContentitemsResource(googleapiclient.discovery.Resource):
-                    def create(
-                        self,
-                        *,
-                        parent: str,
-                        body: GoogleCloudDataplexV1Content = ...,
-                        validateOnly: bool = ...,
-                        **kwargs: typing.Any,
-                    ) -> GoogleCloudDataplexV1ContentHttpRequest: ...
-                    def delete(
-                        self, *, name: str, **kwargs: typing.Any
-                    ) -> EmptyHttpRequest: ...
-                    def get(
-                        self,
-                        *,
-                        name: str,
-                        view: typing_extensions.Literal[
-                            "CONTENT_VIEW_UNSPECIFIED", "BASIC", "FULL"
-                        ] = ...,
-                        **kwargs: typing.Any,
-                    ) -> GoogleCloudDataplexV1ContentHttpRequest: ...
-                    def getIamPolicy(
-                        self,
-                        *,
-                        resource: str,
-                        options_requestedPolicyVersion: int = ...,
-                        **kwargs: typing.Any,
-                    ) -> GoogleIamV1PolicyHttpRequest: ...
-                    def list(
-                        self,
-                        *,
-                        parent: str,
-                        filter: str = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
-                        **kwargs: typing.Any,
-                    ) -> GoogleCloudDataplexV1ListContentResponseHttpRequest: ...
-                    def list_next(
-                        self,
-                        previous_request: GoogleCloudDataplexV1ListContentResponseHttpRequest,
-                        previous_response: GoogleCloudDataplexV1ListContentResponse,
-                    ) -> GoogleCloudDataplexV1ListContentResponseHttpRequest | None: ...
-                    def patch(
-                        self,
-                        *,
-                        name: str,
-                        body: GoogleCloudDataplexV1Content = ...,
-                        updateMask: str = ...,
-                        validateOnly: bool = ...,
-                        **kwargs: typing.Any,
-                    ) -> GoogleCloudDataplexV1ContentHttpRequest: ...
-                    def setIamPolicy(
-                        self,
-                        *,
-                        resource: str,
-                        body: GoogleIamV1SetIamPolicyRequest = ...,
-                        **kwargs: typing.Any,
-                    ) -> GoogleIamV1PolicyHttpRequest: ...
-                    def testIamPermissions(
-                        self,
-                        *,
-                        resource: str,
-                        body: GoogleIamV1TestIamPermissionsRequest = ...,
-                        **kwargs: typing.Any,
-                    ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
-
-                @typing.type_check_only
-                class EnvironmentsResource(googleapiclient.discovery.Resource):
-                    @typing.type_check_only
-                    class SessionsResource(googleapiclient.discovery.Resource):
-                        def list(
-                            self,
-                            *,
-                            parent: str,
-                            filter: str = ...,
-                            pageSize: int = ...,
-                            pageToken: str = ...,
-                            **kwargs: typing.Any,
-                        ) -> GoogleCloudDataplexV1ListSessionsResponseHttpRequest: ...
-                        def list_next(
-                            self,
-                            previous_request: GoogleCloudDataplexV1ListSessionsResponseHttpRequest,
-                            previous_response: GoogleCloudDataplexV1ListSessionsResponse,
-                        ) -> (
-                            GoogleCloudDataplexV1ListSessionsResponseHttpRequest | None
-                        ): ...
-
-                    def create(
-                        self,
-                        *,
-                        parent: str,
-                        body: GoogleCloudDataplexV1Environment = ...,
-                        environmentId: str = ...,
-                        validateOnly: bool = ...,
-                        **kwargs: typing.Any,
-                    ) -> GoogleLongrunningOperationHttpRequest: ...
-                    def delete(
-                        self, *, name: str, **kwargs: typing.Any
-                    ) -> GoogleLongrunningOperationHttpRequest: ...
-                    def get(
-                        self, *, name: str, **kwargs: typing.Any
-                    ) -> GoogleCloudDataplexV1EnvironmentHttpRequest: ...
-                    def getIamPolicy(
-                        self,
-                        *,
-                        resource: str,
-                        options_requestedPolicyVersion: int = ...,
-                        **kwargs: typing.Any,
-                    ) -> GoogleIamV1PolicyHttpRequest: ...
-                    def list(
-                        self,
-                        *,
-                        parent: str,
-                        filter: str = ...,
-                        orderBy: str = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
-                        **kwargs: typing.Any,
-                    ) -> GoogleCloudDataplexV1ListEnvironmentsResponseHttpRequest: ...
-                    def list_next(
-                        self,
-                        previous_request: GoogleCloudDataplexV1ListEnvironmentsResponseHttpRequest,
-                        previous_response: GoogleCloudDataplexV1ListEnvironmentsResponse,
-                    ) -> (
-                        GoogleCloudDataplexV1ListEnvironmentsResponseHttpRequest | None
-                    ): ...
-                    def patch(
-                        self,
-                        *,
-                        name: str,
-                        body: GoogleCloudDataplexV1Environment = ...,
-                        updateMask: str = ...,
-                        validateOnly: bool = ...,
-                        **kwargs: typing.Any,
-                    ) -> GoogleLongrunningOperationHttpRequest: ...
-                    def setIamPolicy(
-                        self,
-                        *,
-                        resource: str,
-                        body: GoogleIamV1SetIamPolicyRequest = ...,
-                        **kwargs: typing.Any,
-                    ) -> GoogleIamV1PolicyHttpRequest: ...
-                    def testIamPermissions(
-                        self,
-                        *,
-                        resource: str,
-                        body: GoogleIamV1TestIamPermissionsRequest = ...,
-                        **kwargs: typing.Any,
-                    ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
-                    def sessions(self) -> SessionsResource: ...
 
                 @typing.type_check_only
                 class TasksResource(googleapiclient.discovery.Resource):
@@ -1746,9 +1560,6 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any,
                 ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
                 def actions(self) -> ActionsResource: ...
-                def content(self) -> ContentResource: ...
-                def contentitems(self) -> ContentitemsResource: ...
-                def environments(self) -> EnvironmentsResource: ...
                 def tasks(self) -> TasksResource: ...
                 def zones(self) -> ZonesResource: ...
 
@@ -1908,6 +1719,13 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                 previous_request: GoogleCloudLocationListLocationsResponseHttpRequest,
                 previous_response: GoogleCloudLocationListLocationsResponse,
             ) -> GoogleCloudLocationListLocationsResponseHttpRequest | None: ...
+            def lookupContext(
+                self,
+                *,
+                name: str,
+                body: GoogleCloudDataplexV1LookupContextRequest = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleCloudDataplexV1LookupContextResponseHttpRequest: ...
             def lookupEntry(
                 self,
                 *,
@@ -1938,6 +1756,13 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                 previous_request: GoogleCloudDataplexV1LookupEntryLinksResponseHttpRequest,
                 previous_response: GoogleCloudDataplexV1LookupEntryLinksResponse,
             ) -> GoogleCloudDataplexV1LookupEntryLinksResponseHttpRequest | None: ...
+            def modifyEntry(
+                self,
+                *,
+                name: str,
+                body: GoogleCloudDataplexV1ModifyEntryRequest = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleCloudDataplexV1EntryHttpRequest: ...
             def searchEntries(
                 self,
                 *,
@@ -1958,6 +1783,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
             def aspectTypes(self) -> AspectTypesResource: ...
             def changeRequests(self) -> ChangeRequestsResource: ...
             def dataAttributeBindings(self) -> DataAttributeBindingsResource: ...
+            def dataDomains(self) -> DataDomainsResource: ...
             def dataProducts(self) -> DataProductsResource: ...
             def dataScans(self) -> DataScansResource: ...
             def dataTaxonomies(self) -> DataTaxonomiesResource: ...
@@ -2012,14 +1838,6 @@ class GoogleCloudDataplexV1AssetHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudDataplexV1Asset: ...
-
-@typing.type_check_only
-class GoogleCloudDataplexV1ContentHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> GoogleCloudDataplexV1Content: ...
 
 @typing.type_check_only
 class GoogleCloudDataplexV1DataAssetHttpRequest(googleapiclient.http.HttpRequest):
@@ -2130,14 +1948,6 @@ class GoogleCloudDataplexV1EntryTypeHttpRequest(googleapiclient.http.HttpRequest
     ) -> GoogleCloudDataplexV1EntryType: ...
 
 @typing.type_check_only
-class GoogleCloudDataplexV1EnvironmentHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> GoogleCloudDataplexV1Environment: ...
-
-@typing.type_check_only
 class GoogleCloudDataplexV1GenerateDataQualityRulesResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -2218,16 +2028,6 @@ class GoogleCloudDataplexV1ListAssetsResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudDataplexV1ListAssetsResponse: ...
-
-@typing.type_check_only
-class GoogleCloudDataplexV1ListContentResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> GoogleCloudDataplexV1ListContentResponse: ...
 
 @typing.type_check_only
 class GoogleCloudDataplexV1ListDataAssetsResponseHttpRequest(
@@ -2350,16 +2150,6 @@ class GoogleCloudDataplexV1ListEntryTypesResponseHttpRequest(
     ) -> GoogleCloudDataplexV1ListEntryTypesResponse: ...
 
 @typing.type_check_only
-class GoogleCloudDataplexV1ListEnvironmentsResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> GoogleCloudDataplexV1ListEnvironmentsResponse: ...
-
-@typing.type_check_only
 class GoogleCloudDataplexV1ListGlossariesResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -2440,16 +2230,6 @@ class GoogleCloudDataplexV1ListPartitionsResponseHttpRequest(
     ) -> GoogleCloudDataplexV1ListPartitionsResponse: ...
 
 @typing.type_check_only
-class GoogleCloudDataplexV1ListSessionsResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> GoogleCloudDataplexV1ListSessionsResponse: ...
-
-@typing.type_check_only
 class GoogleCloudDataplexV1ListTasksResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -2468,6 +2248,16 @@ class GoogleCloudDataplexV1ListZonesResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudDataplexV1ListZonesResponse: ...
+
+@typing.type_check_only
+class GoogleCloudDataplexV1LookupContextResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudDataplexV1LookupContextResponse: ...
 
 @typing.type_check_only
 class GoogleCloudDataplexV1LookupEntryLinksResponseHttpRequest(

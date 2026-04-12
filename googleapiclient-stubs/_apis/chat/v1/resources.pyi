@@ -268,6 +268,72 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class UsersResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
+        class SectionsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class ItemsResource(googleapiclient.discovery.Resource):
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListSectionItemsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListSectionItemsResponseHttpRequest,
+                    previous_response: ListSectionItemsResponse,
+                ) -> ListSectionItemsResponseHttpRequest | None: ...
+                def move(
+                    self,
+                    *,
+                    name: str,
+                    body: MoveSectionItemRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> MoveSectionItemResponseHttpRequest: ...
+
+            def create(
+                self,
+                *,
+                parent: str,
+                body: GoogleChatV1Section = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleChatV1SectionHttpRequest: ...
+            def delete(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> EmptyHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any,
+            ) -> ListSectionsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListSectionsResponseHttpRequest,
+                previous_response: ListSectionsResponse,
+            ) -> ListSectionsResponseHttpRequest | None: ...
+            def patch(
+                self,
+                *,
+                name: str,
+                body: GoogleChatV1Section = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleChatV1SectionHttpRequest: ...
+            def position(
+                self,
+                *,
+                name: str,
+                body: PositionSectionRequest = ...,
+                **kwargs: typing.Any,
+            ) -> PositionSectionResponseHttpRequest: ...
+            def items(self) -> ItemsResource: ...
+
+        @typing.type_check_only
         class SpacesResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class SpaceNotificationSettingResource(googleapiclient.discovery.Resource):
@@ -303,6 +369,7 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
             def spaceNotificationSetting(self) -> SpaceNotificationSettingResource: ...
             def threads(self) -> ThreadsResource: ...
 
+        def sections(self) -> SectionsResource: ...
         def spaces(self) -> SpacesResource: ...
 
     def new_batch_http_request(
@@ -355,6 +422,14 @@ class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Empty: ...
 
 @typing.type_check_only
+class GoogleChatV1SectionHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleChatV1Section: ...
+
+@typing.type_check_only
 class ListCustomEmojisResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -385,6 +460,22 @@ class ListReactionsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListReactionsResponse: ...
+
+@typing.type_check_only
+class ListSectionItemsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListSectionItemsResponse: ...
+
+@typing.type_check_only
+class ListSectionsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListSectionsResponse: ...
 
 @typing.type_check_only
 class ListSpaceEventsResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -425,6 +516,22 @@ class MessageHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Message: ...
+
+@typing.type_check_only
+class MoveSectionItemResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> MoveSectionItemResponse: ...
+
+@typing.type_check_only
+class PositionSectionResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> PositionSectionResponse: ...
 
 @typing.type_check_only
 class ReactionHttpRequest(googleapiclient.http.HttpRequest):

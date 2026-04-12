@@ -63,6 +63,7 @@ class GoogleCloudContactcenterinsightsV1AnnotatorSelector(
     issueModels: _list[str]
     phraseMatchers: _list[str]
     qaConfig: GoogleCloudContactcenterinsightsV1AnnotatorSelectorQaConfig
+    runAutoLabelingAnnotator: bool
     runEntityAnnotator: bool
     runIntentAnnotator: bool
     runInterruptionAnnotator: bool
@@ -206,6 +207,7 @@ class GoogleCloudContactcenterinsightsV1BulkAnalyzeConversationsMetadata(
     endTime: str
     failedAnalysesCount: int
     partialErrors: _list[GoogleRpcStatus]
+    relabel: bool
     request: GoogleCloudContactcenterinsightsV1BulkAnalyzeConversationsRequest
     totalRequestedAnalysesCount: int
 
@@ -217,6 +219,7 @@ class GoogleCloudContactcenterinsightsV1BulkAnalyzeConversationsRequest(
     annotatorSelector: GoogleCloudContactcenterinsightsV1AnnotatorSelector
     filter: str
     parent: str
+    relabel: bool
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1BulkAnalyzeConversationsResponse(
@@ -412,6 +415,7 @@ class GoogleCloudContactcenterinsightsV1CallAnnotation(
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1Chart(typing_extensions.TypedDict, total=False):
+    action: GoogleCloudContactcenterinsightsV1ChartAction
     chartType: typing_extensions.Literal[
         "CHART_TYPE_UNSPECIFIED", "SYSTEM_DEFINED", "USER_DEFINED"
     ]
@@ -438,6 +442,12 @@ class GoogleCloudContactcenterinsightsV1Chart(typing_extensions.TypedDict, total
     name: str
     updateTime: str
     width: int
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1ChartAction(
+    typing_extensions.TypedDict, total=False
+):
+    redirectAction: GoogleCloudContactcenterinsightsV1RedirectAction
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1ChartDataSource(
@@ -556,6 +566,9 @@ class GoogleCloudContactcenterinsightsV1ConversationDataSource(
     dialogflowSource: GoogleCloudContactcenterinsightsV1DialogflowSource
     gcsSource: GoogleCloudContactcenterinsightsV1GcsSource
     metadataUri: str
+    turnLevelAudios: _list[
+        GoogleCloudContactcenterinsightsV1ConversationDataSourceTurnLevelAudio
+    ]
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1ConversationDataSourceTurnLevelAudio(
@@ -614,6 +627,7 @@ class GoogleCloudContactcenterinsightsV1ConversationQualityMetadataAgentInfo(
     deploymentId: str
     displayName: str
     dispositionCode: str
+    entrySubagentDisplayName: str
     location: str
     team: str
     teams: _list[str]
@@ -652,6 +666,9 @@ class GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegment(
     segmentParticipant: GoogleCloudContactcenterinsightsV1ConversationParticipant
     sentiment: GoogleCloudContactcenterinsightsV1SentimentData
     text: str
+    turnLevelAudio: (
+        GoogleCloudContactcenterinsightsV1ConversationDataSourceTurnLevelAudio
+    )
     words: _list[
         GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentWordInfo
     ]
@@ -885,6 +902,7 @@ class GoogleCloudContactcenterinsightsV1Dimension(
         "LABEL_KEY",
         "LABEL_VALUE",
         "LABEL_KEY_AND_VALUE",
+        "LAST_TRANSFER_SUB_AGENT_NAME",
     ]
     issueDimensionMetadata: (
         GoogleCloudContactcenterinsightsV1DimensionIssueDimensionMetadata
@@ -2154,6 +2172,12 @@ class GoogleCloudContactcenterinsightsV1RedactionConfig(
     inspectTemplate: str
 
 @typing.type_check_only
+class GoogleCloudContactcenterinsightsV1RedirectAction(
+    typing_extensions.TypedDict, total=False
+):
+    relativePath: str
+
+@typing.type_check_only
 class GoogleCloudContactcenterinsightsV1RegexMatchConfig(
     typing_extensions.TypedDict, total=False
 ): ...
@@ -2262,6 +2286,7 @@ class GoogleCloudContactcenterinsightsV1Settings(
     redactionConfig: GoogleCloudContactcenterinsightsV1RedactionConfig
     screenRecordingBucketUri: str
     speechConfig: GoogleCloudContactcenterinsightsV1SpeechConfig
+    timeZone: str
     updateTime: str
 
 @typing.type_check_only
@@ -2524,6 +2549,7 @@ class GoogleCloudContactcenterinsightsV1alpha1AnnotatorSelector(
     issueModels: _list[str]
     phraseMatchers: _list[str]
     qaConfig: GoogleCloudContactcenterinsightsV1alpha1AnnotatorSelectorQaConfig
+    runAutoLabelingAnnotator: bool
     runEntityAnnotator: bool
     runIntentAnnotator: bool
     runInterruptionAnnotator: bool
@@ -2594,6 +2620,7 @@ class GoogleCloudContactcenterinsightsV1alpha1BulkAnalyzeConversationsMetadata(
     endTime: str
     failedAnalysesCount: int
     partialErrors: _list[GoogleRpcStatus]
+    relabel: bool
     request: GoogleCloudContactcenterinsightsV1alpha1BulkAnalyzeConversationsRequest
     totalRequestedAnalysesCount: int
 
@@ -2605,6 +2632,7 @@ class GoogleCloudContactcenterinsightsV1alpha1BulkAnalyzeConversationsRequest(
     annotatorSelector: GoogleCloudContactcenterinsightsV1alpha1AnnotatorSelector
     filter: str
     parent: str
+    relabel: bool
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1alpha1BulkAnalyzeConversationsResponse(
@@ -2762,6 +2790,16 @@ class GoogleCloudContactcenterinsightsV1alpha1ConversationDataSource(
     dialogflowSource: GoogleCloudContactcenterinsightsV1alpha1DialogflowSource
     gcsSource: GoogleCloudContactcenterinsightsV1alpha1GcsSource
     metadataUri: str
+    turnLevelAudios: _list[
+        GoogleCloudContactcenterinsightsV1alpha1ConversationDataSourceTurnLevelAudio
+    ]
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1alpha1ConversationDataSourceTurnLevelAudio(
+    typing_extensions.TypedDict, total=False
+):
+    audioDuration: str
+    audioGcsUri: str
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1alpha1ConversationLevelSentiment(
@@ -2813,6 +2851,7 @@ class GoogleCloudContactcenterinsightsV1alpha1ConversationQualityMetadataAgentIn
     deploymentId: str
     displayName: str
     dispositionCode: str
+    entrySubagentDisplayName: str
     location: str
     team: str
     teams: _list[str]
@@ -2851,6 +2890,9 @@ class GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSe
     segmentParticipant: GoogleCloudContactcenterinsightsV1alpha1ConversationParticipant
     sentiment: GoogleCloudContactcenterinsightsV1alpha1SentimentData
     text: str
+    turnLevelAudio: (
+        GoogleCloudContactcenterinsightsV1alpha1ConversationDataSourceTurnLevelAudio
+    )
     words: _list[
         GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentWordInfo
     ]
@@ -3021,6 +3063,7 @@ class GoogleCloudContactcenterinsightsV1alpha1Dimension(
         "LABEL_KEY",
         "LABEL_VALUE",
         "LABEL_KEY_AND_VALUE",
+        "LAST_TRANSFER_SUB_AGENT_NAME",
     ]
     issueDimensionMetadata: (
         GoogleCloudContactcenterinsightsV1alpha1DimensionIssueDimensionMetadata
@@ -4085,6 +4128,7 @@ class GoogleCloudContactcenterinsightsV1mainAnnotatorSelector(
     issueModels: _list[str]
     phraseMatchers: _list[str]
     qaConfig: GoogleCloudContactcenterinsightsV1mainAnnotatorSelectorQaConfig
+    runAutoLabelingAnnotator: bool
     runEntityAnnotator: bool
     runIntentAnnotator: bool
     runInterruptionAnnotator: bool
@@ -4155,6 +4199,7 @@ class GoogleCloudContactcenterinsightsV1mainBulkAnalyzeConversationsMetadata(
     endTime: str
     failedAnalysesCount: int
     partialErrors: _list[GoogleRpcStatus]
+    relabel: bool
     request: GoogleCloudContactcenterinsightsV1mainBulkAnalyzeConversationsRequest
     totalRequestedAnalysesCount: int
 
@@ -4166,6 +4211,7 @@ class GoogleCloudContactcenterinsightsV1mainBulkAnalyzeConversationsRequest(
     annotatorSelector: GoogleCloudContactcenterinsightsV1mainAnnotatorSelector
     filter: str
     parent: str
+    relabel: bool
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1mainBulkAnalyzeConversationsResponse(
@@ -4382,6 +4428,16 @@ class GoogleCloudContactcenterinsightsV1mainConversationDataSource(
     dialogflowSource: GoogleCloudContactcenterinsightsV1mainDialogflowSource
     gcsSource: GoogleCloudContactcenterinsightsV1mainGcsSource
     metadataUri: str
+    turnLevelAudios: _list[
+        GoogleCloudContactcenterinsightsV1mainConversationDataSourceTurnLevelAudio
+    ]
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1mainConversationDataSourceTurnLevelAudio(
+    typing_extensions.TypedDict, total=False
+):
+    audioDuration: str
+    audioGcsUri: str
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1mainConversationLevelSentiment(
@@ -4433,6 +4489,7 @@ class GoogleCloudContactcenterinsightsV1mainConversationQualityMetadataAgentInfo
     deploymentId: str
     displayName: str
     dispositionCode: str
+    entrySubagentDisplayName: str
     location: str
     team: str
     teams: _list[str]
@@ -4471,6 +4528,9 @@ class GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegm
     segmentParticipant: GoogleCloudContactcenterinsightsV1mainConversationParticipant
     sentiment: GoogleCloudContactcenterinsightsV1mainSentimentData
     text: str
+    turnLevelAudio: (
+        GoogleCloudContactcenterinsightsV1mainConversationDataSourceTurnLevelAudio
+    )
     words: _list[
         GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentWordInfo
     ]
@@ -4641,6 +4701,7 @@ class GoogleCloudContactcenterinsightsV1mainDimension(
         "LABEL_KEY",
         "LABEL_VALUE",
         "LABEL_KEY_AND_VALUE",
+        "LAST_TRANSFER_SUB_AGENT_NAME",
     ]
     issueDimensionMetadata: (
         GoogleCloudContactcenterinsightsV1mainDimensionIssueDimensionMetadata

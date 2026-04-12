@@ -361,6 +361,13 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                         updateMask: str = ...,
                         **kwargs: typing.Any,
                     ) -> EvaluationHttpRequest: ...
+                    def uploadEvaluationAudio(
+                        self,
+                        *,
+                        name: str,
+                        body: UploadEvaluationAudioRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> UploadEvaluationAudioResponseHttpRequest: ...
                     def results(self) -> ResultsResource: ...
 
                 @typing.type_check_only
@@ -500,6 +507,13 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                         **kwargs: typing.Any,
                     ) -> GenerateChatTokenResponseHttpRequest: ...
                     def runSession(
+                        self,
+                        *,
+                        session: str,
+                        body: RunSessionRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> RunSessionResponseHttpRequest: ...
+                    def streamRunSession(
                         self,
                         *,
                         session: str,
@@ -668,6 +682,13 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                     body: ExportAppRequest = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
+                def generateAppResource(
+                    self,
+                    *,
+                    parent: str,
+                    body: GenerateAppResourceRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
                 def get(self, *, name: str, **kwargs: typing.Any) -> AppHttpRequest: ...
                 def importApp(
                     self,
@@ -779,6 +800,9 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
+            def getSecuritySettings(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> SecuritySettingsHttpRequest: ...
             def list(
                 self,
                 *,
@@ -794,6 +818,14 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                 previous_request: ListLocationsResponseHttpRequest,
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
+            def updateSecuritySettings(
+                self,
+                *,
+                name: str,
+                body: SecuritySettings = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any,
+            ) -> SecuritySettingsHttpRequest: ...
             def apps(self) -> AppsResource: ...
             def operations(self) -> OperationsResource: ...
 
@@ -1134,6 +1166,14 @@ class ScheduledEvaluationRunHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ScheduledEvaluationRun: ...
 
 @typing.type_check_only
+class SecuritySettingsHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> SecuritySettings: ...
+
+@typing.type_check_only
 class TestPersonaVoiceResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -1156,3 +1196,11 @@ class ToolsetHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Toolset: ...
+
+@typing.type_check_only
+class UploadEvaluationAudioResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> UploadEvaluationAudioResponse: ...

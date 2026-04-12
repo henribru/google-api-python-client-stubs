@@ -292,6 +292,7 @@ class GoogleCloudVideointelligenceV1_VideoSegment(
 class GoogleCloudVideointelligenceV1_WordInfo(typing_extensions.TypedDict, total=False):
     confidence: float
     endTime: str
+    speakerLabel: str
     speakerTag: int
     startTime: str
     word: str
@@ -600,6 +601,7 @@ class GoogleCloudVideointelligenceV1beta2_WordInfo(
 ):
     confidence: float
     endTime: str
+    speakerLabel: str
     speakerTag: int
     startTime: str
     word: str
@@ -914,6 +916,7 @@ class GoogleCloudVideointelligenceV1p1beta1_WordInfo(
 ):
     confidence: float
     endTime: str
+    speakerLabel: str
     speakerTag: int
     startTime: str
     word: str
@@ -1228,6 +1231,7 @@ class GoogleCloudVideointelligenceV1p2beta1_WordInfo(
 ):
     confidence: float
     endTime: str
+    speakerLabel: str
     speakerTag: int
     startTime: str
     word: str
@@ -1540,6 +1544,7 @@ class GoogleCloudVideointelligenceV1p3beta1_SpeechTranscription(
 class GoogleCloudVideointelligenceV1p3beta1_SpeechTranscriptionConfig(
     typing_extensions.TypedDict, total=False
 ):
+    audioOutputUriPrefix: str
     audioTracks: _list[int]
     diarizationSpeakerCount: int
     enableAutomaticPunctuation: bool
@@ -1718,6 +1723,7 @@ class GoogleCloudVideointelligenceV1p3beta1_WordInfo(
 ):
     confidence: float
     endTime: str
+    speakerLabel: str
     speakerTag: int
     startTime: str
     word: str

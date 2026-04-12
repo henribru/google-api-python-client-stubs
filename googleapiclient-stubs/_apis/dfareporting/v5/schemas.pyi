@@ -648,6 +648,7 @@ class Country(typing_extensions.TypedDict, total=False):
     tvDataProviders: _list[
         typing_extensions.Literal[
             "INVALID_TV_DATA_PROVIDER",
+            "INTAGE_JP",
             "IBOPE_AR",
             "IBOPE_BR",
             "IBOPE_CL",
@@ -3235,7 +3236,12 @@ class TvCampaignSummary(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class TvCampaignTimepoint(typing_extensions.TypedDict, total=False):
     dateWindow: typing_extensions.Literal[
-        "WEEKS_UNSPECIFIED", "WEEKS_ONE", "WEEKS_FOUR", "WEEKS_EIGHT", "WEEKS_TWELVE"
+        "WEEKS_UNSPECIFIED",
+        "DAYS_ONE",
+        "WEEKS_ONE",
+        "WEEKS_FOUR",
+        "WEEKS_EIGHT",
+        "WEEKS_TWELVE",
     ]
     spend: float
     startDate: str

@@ -309,6 +309,7 @@ class ClusterConfig(typing_extensions.TypedDict, total=False):
     diagnosticBucket: str
     encryptionConfig: EncryptionConfig
     endpointConfig: EndpointConfig
+    engine: typing_extensions.Literal["ENGINE_UNSPECIFIED", "DEFAULT", "LIGHTNING"]
     gceClusterConfig: GceClusterConfig
     gkeClusterConfig: GkeClusterConfig
     initializationActions: _list[NodeInitializationAction]
@@ -380,6 +381,13 @@ class ClusterStatus(typing_extensions.TypedDict, total=False):
 class ClusterToRepair(typing_extensions.TypedDict, total=False):
     clusterRepairAction: typing_extensions.Literal[
         "CLUSTER_REPAIR_ACTION_UNSPECIFIED", "REPAIR_ERROR_DUE_TO_UPDATE_CLUSTER"
+    ]
+
+@typing.type_check_only
+class CohortInfo(typing_extensions.TypedDict, total=False):
+    cohort: str
+    cohortSource: typing_extensions.Literal[
+        "COHORT_SOURCE_UNSPECIFIED", "USER_PROVIDED", "AIRFLOW"
     ]
 
 @typing.type_check_only
@@ -707,6 +715,7 @@ class InputQuantileMetrics(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class InstanceFlexibilityPolicy(typing_extensions.TypedDict, total=False):
+    instanceMachineTypes: dict[str, typing.Any]
     instanceSelectionList: _list[InstanceSelection]
     instanceSelectionResults: _list[InstanceSelectionResult]
     provisioningModelMix: ProvisioningModelMix
@@ -1325,6 +1334,7 @@ class RuntimeConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class RuntimeInfo(typing_extensions.TypedDict, total=False):
     approximateUsage: UsageMetrics
+    cohortInfo: CohortInfo
     currentUsage: UsageSnapshot
     diagnosticOutputUri: str
     endpoints: dict[str, typing.Any]
@@ -1684,6 +1694,7 @@ class SparkPlanGraph(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SparkPlanGraphCluster(typing_extensions.TypedDict, total=False):
     desc: str
+    metadata: dict[str, typing.Any]
     metrics: _list[SqlPlanMetric]
     name: str
     nodes: _list[SparkPlanGraphNodeWrapper]
@@ -1697,6 +1708,7 @@ class SparkPlanGraphEdge(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SparkPlanGraphNode(typing_extensions.TypedDict, total=False):
     desc: str
+    metadata: dict[str, typing.Any]
     metrics: _list[SqlPlanMetric]
     name: str
     sparkPlanGraphNodeId: str

@@ -44,6 +44,7 @@ class BDRBackupRestoreJobLog(typing_extensions.TypedDict, total=False):
     backupRetentionDays: int
     backupRule: str
     backupVaultName: str
+    dataSourceName: str
     endTime: str
     errorCode: int
     errorMessage: str

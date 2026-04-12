@@ -278,6 +278,15 @@ class AppengineResource(googleapiclient.discovery.Resource):
                     versionsId: str,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
+                def exportAppImage(
+                    self,
+                    *,
+                    appsId: str,
+                    servicesId: str,
+                    versionsId: str,
+                    body: ExportAppImageRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
                 def get(
                     self,
                     *,
@@ -590,6 +599,17 @@ class AppengineResource(googleapiclient.discovery.Resource):
                             applicationsId: str,
                             servicesId: str,
                             versionsId: str,
+                            **kwargs: typing.Any,
+                        ) -> OperationHttpRequest: ...
+                        def exportAppImage(
+                            self,
+                            *,
+                            projectsId: str,
+                            locationsId: str,
+                            applicationsId: str,
+                            servicesId: str,
+                            versionsId: str,
+                            body: ExportAppImageRequest = ...,
                             **kwargs: typing.Any,
                         ) -> OperationHttpRequest: ...
                         def patch(

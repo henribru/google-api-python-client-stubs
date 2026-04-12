@@ -821,6 +821,13 @@ class GoogleCloudDialogflowCxV3FlowMultiLanguageSettings(
     supportedResponseLanguageCodes: _list[str]
 
 @typing.type_check_only
+class GoogleCloudDialogflowCxV3FlowTraceMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    displayName: str
+    flow: str
+
+@typing.type_check_only
 class GoogleCloudDialogflowCxV3FlowTransition(typing_extensions.TypedDict, total=False):
     displayName: str
     flow: str
@@ -1180,6 +1187,7 @@ class GoogleCloudDialogflowCxV3InputAudioConfig(
 class GoogleCloudDialogflowCxV3Intent(typing_extensions.TypedDict, total=False):
     description: str
     displayName: str
+    dtmfPattern: str
     isFallback: bool
     labels: dict[str, typing.Any]
     name: str
@@ -1637,6 +1645,13 @@ class GoogleCloudDialogflowCxV3PlaybookStep(typing_extensions.TypedDict, total=F
     text: str
 
 @typing.type_check_only
+class GoogleCloudDialogflowCxV3PlaybookTraceMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    displayName: str
+    playbook: str
+
+@typing.type_check_only
 class GoogleCloudDialogflowCxV3PlaybookTransition(
     typing_extensions.TypedDict, total=False
 ):
@@ -1703,6 +1718,7 @@ class GoogleCloudDialogflowCxV3QueryResult(typing_extensions.TypedDict, total=Fa
     responseMessages: _list[GoogleCloudDialogflowCxV3ResponseMessage]
     sentimentAnalysisResult: GoogleCloudDialogflowCxV3SentimentAnalysisResult
     text: str
+    traceBlocks: _list[GoogleCloudDialogflowCxV3TraceBlock]
     transcript: str
     triggerEvent: str
     triggerIntent: str
@@ -2020,6 +2036,12 @@ class GoogleCloudDialogflowCxV3SessionInfo(typing_extensions.TypedDict, total=Fa
     session: str
 
 @typing.type_check_only
+class GoogleCloudDialogflowCxV3SpeechProcessingMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    displayName: str
+
+@typing.type_check_only
 class GoogleCloudDialogflowCxV3SpeechToTextSettings(
     typing_extensions.TypedDict, total=False
 ):
@@ -2258,6 +2280,25 @@ class GoogleCloudDialogflowCxV3ToolVersion(typing_extensions.TypedDict, total=Fa
     name: str
     tool: GoogleCloudDialogflowCxV3Tool
     updateTime: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3TraceBlock(typing_extensions.TypedDict, total=False):
+    actions: _list[GoogleCloudDialogflowCxV3Action]
+    completeTime: str
+    endState: typing_extensions.Literal[
+        "OUTPUT_STATE_UNSPECIFIED",
+        "OUTPUT_STATE_OK",
+        "OUTPUT_STATE_CANCELLED",
+        "OUTPUT_STATE_FAILED",
+        "OUTPUT_STATE_ESCALATED",
+        "OUTPUT_STATE_PENDING",
+    ]
+    flowTraceMetadata: GoogleCloudDialogflowCxV3FlowTraceMetadata
+    inputParameters: dict[str, typing.Any]
+    outputParameters: dict[str, typing.Any]
+    playbookTraceMetadata: GoogleCloudDialogflowCxV3PlaybookTraceMetadata
+    speechProcessingMetadata: GoogleCloudDialogflowCxV3SpeechProcessingMetadata
+    startTime: str
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3TrainFlowRequest(
@@ -3016,6 +3057,7 @@ class GoogleCloudDialogflowCxV3beta1InputAudioConfig(
 class GoogleCloudDialogflowCxV3beta1Intent(typing_extensions.TypedDict, total=False):
     description: str
     displayName: str
+    dtmfPattern: str
     isFallback: bool
     labels: dict[str, typing.Any]
     name: str
@@ -4556,6 +4598,9 @@ class GoogleCloudDialogflowV2SummarySuggestionSummarySection(
 class GoogleCloudDialogflowV2ToolCall(typing_extensions.TypedDict, total=False):
     action: str
     answerRecord: str
+    cesApp: str
+    cesTool: str
+    cesToolset: str
     createTime: str
     inputParameters: dict[str, typing.Any]
     state: typing_extensions.Literal[
@@ -4569,6 +4614,9 @@ class GoogleCloudDialogflowV2ToolCall(typing_extensions.TypedDict, total=False):
 class GoogleCloudDialogflowV2ToolCallResult(typing_extensions.TypedDict, total=False):
     action: str
     answerRecord: str
+    cesApp: str
+    cesTool: str
+    cesToolset: str
     content: str
     createTime: str
     error: GoogleCloudDialogflowV2ToolCallResultError
@@ -5823,6 +5871,9 @@ class GoogleCloudDialogflowV2beta1TelephonyDtmfEvents(
 class GoogleCloudDialogflowV2beta1ToolCall(typing_extensions.TypedDict, total=False):
     action: str
     answerRecord: str
+    cesApp: str
+    cesTool: str
+    cesToolset: str
     createTime: str
     inputParameters: dict[str, typing.Any]
     state: typing_extensions.Literal[
@@ -5838,6 +5889,9 @@ class GoogleCloudDialogflowV2beta1ToolCallResult(
 ):
     action: str
     answerRecord: str
+    cesApp: str
+    cesTool: str
+    cesToolset: str
     content: str
     createTime: str
     error: GoogleCloudDialogflowV2beta1ToolCallResultError

@@ -139,6 +139,7 @@ class Backup(typing_extensions.TypedDict, total=False):
     enforcedRetentionEndTime: str
     etag: str
     expireTime: str
+    filestoreInstanceBackupProperties: FilestoreInstanceBackupProperties
     gcpBackupPlanInfo: GCPBackupPlanInfo
     gcpResource: BackupGcpResource
     kmsKeyVersions: _list[str]
@@ -251,8 +252,10 @@ class BackupPlan(typing_extensions.TypedDict, total=False):
     backupRules: _list[BackupRule]
     backupVault: str
     backupVaultServiceAccount: str
+    computeInstanceBackupPlanProperties: ComputeInstanceBackupPlanProperties
     createTime: str
     description: str
+    diskBackupPlanProperties: DiskBackupPlanProperties
     etag: str
     labels: dict[str, typing.Any]
     logRetentionDays: str
@@ -393,11 +396,16 @@ class CloudSqlInstanceInitializationConfig(typing_extensions.TypedDict, total=Fa
     ]
 
 @typing.type_check_only
+class ComputeInstanceBackupPlanProperties(typing_extensions.TypedDict, total=False):
+    guestFlush: bool
+
+@typing.type_check_only
 class ComputeInstanceBackupProperties(typing_extensions.TypedDict, total=False):
     canIpForward: bool
     description: str
     disk: _list[AttachedDisk]
     guestAccelerator: _list[AcceleratorConfig]
+    guestFlush: bool
     keyRevocationActionType: typing_extensions.Literal[
         "KEY_REVOCATION_ACTION_TYPE_UNSPECIFIED", "NONE", "STOP"
     ]
@@ -517,6 +525,7 @@ class DataSourceGcpResource(typing_extensions.TypedDict, total=False):
     cloudSqlInstanceDatasourceProperties: CloudSqlInstanceDataSourceProperties
     computeInstanceDatasourceProperties: ComputeInstanceDataSourceProperties
     diskDatasourceProperties: DiskDataSourceProperties
+    filestoreInstanceDatasourceProperties: FilestoreInstanceDataSourceProperties
     gcpResourcename: str
     location: str
     type: str
@@ -525,6 +534,7 @@ class DataSourceGcpResource(typing_extensions.TypedDict, total=False):
 class DataSourceGcpResourceInfo(typing_extensions.TypedDict, total=False):
     alloyDbClusterProperties: AlloyDBClusterDataSourceReferenceProperties
     cloudSqlInstanceProperties: CloudSqlInstanceDataSourceReferenceProperties
+    filestoreInstanceProperties: FilestoreInstanceDataSourceReferenceProperties
     gcpResourcename: str
     location: str
     type: str
@@ -543,6 +553,10 @@ class DataSourceReference(typing_extensions.TypedDict, total=False):
     totalStoredBytes: str
 
 @typing.type_check_only
+class DiskBackupPlanProperties(typing_extensions.TypedDict, total=False):
+    guestFlush: bool
+
+@typing.type_check_only
 class DiskBackupProperties(typing_extensions.TypedDict, total=False):
     accessMode: str
     architecture: typing_extensions.Literal[
@@ -550,6 +564,7 @@ class DiskBackupProperties(typing_extensions.TypedDict, total=False):
     ]
     description: str
     enableConfidentialCompute: bool
+    guestFlush: bool
     guestOsFeature: _list[GuestOsFeature]
     labels: dict[str, typing.Any]
     licenses: _list[str]
@@ -680,6 +695,22 @@ class FilestoreInstanceBackupPlanAssociationProperties(
     instanceCreateTime: str
 
 @typing.type_check_only
+class FilestoreInstanceBackupProperties(typing_extensions.TypedDict, total=False):
+    sourceInstance: str
+
+@typing.type_check_only
+class FilestoreInstanceDataSourceProperties(typing_extensions.TypedDict, total=False):
+    instanceCreateTime: str
+    name: str
+
+@typing.type_check_only
+class FilestoreInstanceDataSourceReferenceProperties(
+    typing_extensions.TypedDict, total=False
+):
+    instanceCreateTime: str
+    name: str
+
+@typing.type_check_only
 class FinalizeBackupRequest(typing_extensions.TypedDict, total=False):
     backupId: str
     consistencyTime: str
@@ -710,6 +741,17 @@ class GcpResource(typing_extensions.TypedDict, total=False):
     gcpResourcename: str
     location: str
     type: str
+
+@typing.type_check_only
+class GoogleCloudBackupdrV1OperationMetadata(typing_extensions.TypedDict, total=False):
+    additionalInfo: dict[str, typing.Any]
+    apiVersion: str
+    createTime: str
+    endTime: str
+    requestedCancellation: bool
+    statusMessage: str
+    target: str
+    verb: str
 
 @typing.type_check_only
 class GuestOsFeature(typing_extensions.TypedDict, total=False):
@@ -838,6 +880,14 @@ class LocationMetadata(typing_extensions.TypedDict, total=False):
             "MANAGEMENT_SERVER",
             "COMPUTE_INSTANCE",
             "PROTECTION_SUMMARY",
+            "DISK",
+            "CLOUD_SQL",
+            "ALLOY_DB",
+            "FILESTORE",
+            "BV_AF",
+            "CEP_MONITORING_COMPUTE_INSTANCE",
+            "CEP_MONITORING_DISK",
+            "BV_CUSTOM_PROBERS",
         ]
     ]
 
@@ -927,17 +977,6 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class OperationMetadata(typing_extensions.TypedDict, total=False):
-    additionalInfo: dict[str, typing.Any]
-    apiVersion: str
-    createTime: str
-    endTime: str
-    requestedCancellation: bool
-    statusMessage: str
-    target: str
-    verb: str
-
-@typing.type_check_only
 class PitrSettings(typing_extensions.TypedDict, total=False):
     retentionDays: int
 
@@ -972,6 +1011,7 @@ class ResourceBackupConfig(typing_extensions.TypedDict, total=False):
         "COMPUTE_ENGINE_VM",
         "COMPUTE_ENGINE_DISK",
         "COMPUTE_ENGINE_REGIONAL_DISK",
+        "FILESTORE_INSTANCE",
     ]
     uid: str
     vaulted: bool

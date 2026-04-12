@@ -14,6 +14,10 @@ class AcceleratorConfig(typing_extensions.TypedDict, total=False):
     maxTimeSharedClientsPerGpu: str
 
 @typing.type_check_only
+class AccurateTimeConfig(typing_extensions.TypedDict, total=False):
+    enablePtpKvmTimeSync: bool
+
+@typing.type_check_only
 class AdditionalIPRangesConfig(typing_extensions.TypedDict, total=False):
     podIpv4RangeNames: _list[str]
     status: typing_extensions.Literal["STATUS_UNSPECIFIED", "ACTIVE", "DRAINING"]
@@ -38,6 +42,7 @@ class AdditionalPodRangesConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AddonsConfig(typing_extensions.TypedDict, total=False):
+    agentSandboxConfig: AgentSandboxConfig
     cloudRunConfig: CloudRunConfig
     configConnectorConfig: ConfigConnectorConfig
     dnsCacheConfig: DnsCacheConfig
@@ -79,6 +84,10 @@ class AdvancedMachineFeatures(typing_extensions.TypedDict, total=False):
     threadsPerCore: str
 
 @typing.type_check_only
+class AgentSandboxConfig(typing_extensions.TypedDict, total=False):
+    enabled: bool
+
+@typing.type_check_only
 class AnonymousAuthenticationConfig(typing_extensions.TypedDict, total=False):
     mode: typing_extensions.Literal["MODE_UNSPECIFIED", "ENABLED", "LIMITED"]
 
@@ -102,6 +111,7 @@ class AutoUpgradeOptions(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Autopilot(typing_extensions.TypedDict, total=False):
+    clusterPolicyConfig: ClusterPolicyConfig
     conversionStatus: AutopilotConversionStatus
     enabled: bool
     privilegedAdmissionConfig: PrivilegedAdmissionConfig
@@ -267,6 +277,7 @@ class Cluster(typing_extensions.TypedDict, total=False):
     compliancePostureConfig: CompliancePostureConfig
     conditions: _list[StatusCondition]
     confidentialNodes: ConfidentialNodes
+    controlPlaneEgress: ControlPlaneEgress
     controlPlaneEndpointsConfig: ControlPlaneEndpointsConfig
     costManagementConfig: CostManagementConfig
     createTime: str
@@ -299,6 +310,7 @@ class Cluster(typing_extensions.TypedDict, total=False):
     loggingConfig: LoggingConfig
     loggingService: str
     maintenancePolicy: MaintenancePolicy
+    managedMachineLearningDiagnosticsConfig: ManagedMachineLearningDiagnosticsConfig
     managedOpentelemetryConfig: ManagedOpenTelemetryConfig
     master: Master
     masterAuth: MasterAuth
@@ -330,6 +342,7 @@ class Cluster(typing_extensions.TypedDict, total=False):
     rollbackSafeUpgrade: RollbackSafeUpgrade
     satisfiesPzi: bool
     satisfiesPzs: bool
+    scheduleUpgradeConfig: ScheduleUpgradeConfig
     secretManagerConfig: SecretManagerConfig
     secretSyncConfig: SecretSyncConfig
     securityPostureConfig: SecurityPostureConfig
@@ -375,6 +388,13 @@ class ClusterNetworkPerformanceConfig(typing_extensions.TypedDict, total=False):
     totalEgressBandwidthTier: typing_extensions.Literal["TIER_UNSPECIFIED", "TIER_1"]
 
 @typing.type_check_only
+class ClusterPolicyConfig(typing_extensions.TypedDict, total=False):
+    noStandardNodePools: bool
+    noSystemImpersonation: bool
+    noSystemMutation: bool
+    noUnsafeWebhooks: bool
+
+@typing.type_check_only
 class ClusterTelemetry(typing_extensions.TypedDict, total=False):
     type: typing_extensions.Literal["UNSPECIFIED", "DISABLED", "ENABLED", "SYSTEM_ONLY"]
 
@@ -386,12 +406,14 @@ class ClusterUpdate(typing_extensions.TypedDict, total=False):
     desiredAnonymousAuthenticationConfig: AnonymousAuthenticationConfig
     desiredAuthenticatorGroupsConfig: AuthenticatorGroupsConfig
     desiredAutoIpamConfig: AutoIpamConfig
+    desiredAutopilotClusterPolicyConfig: ClusterPolicyConfig
     desiredAutopilotWorkloadPolicyConfig: WorkloadPolicyConfig
     desiredBinaryAuthorization: BinaryAuthorization
     desiredClusterAutoscaling: ClusterAutoscaling
     desiredClusterTelemetry: ClusterTelemetry
     desiredCompliancePostureConfig: CompliancePostureConfig
     desiredContainerdConfig: ContainerdConfig
+    desiredControlPlaneEgress: ControlPlaneEgress
     desiredControlPlaneEndpointsConfig: ControlPlaneEndpointsConfig
     desiredCostManagementConfig: CostManagementConfig
     desiredDatabaseEncryption: DatabaseEncryption
@@ -424,6 +446,9 @@ class ClusterUpdate(typing_extensions.TypedDict, total=False):
     desiredLocations: _list[str]
     desiredLoggingConfig: LoggingConfig
     desiredLoggingService: str
+    desiredManagedMachineLearningDiagnosticsConfig: (
+        ManagedMachineLearningDiagnosticsConfig
+    )
     desiredManagedOpentelemetryConfig: ManagedOpenTelemetryConfig
     desiredMaster: Master
     desiredMasterAuthorizedNetworksConfig: MasterAuthorizedNetworksConfig
@@ -459,6 +484,7 @@ class ClusterUpdate(typing_extensions.TypedDict, total=False):
     desiredReleaseChannel: ReleaseChannel
     desiredResourceUsageExportConfig: ResourceUsageExportConfig
     desiredRollbackSafeUpgrade: RollbackSafeUpgrade
+    desiredScheduleUpgradeConfig: ScheduleUpgradeConfig
     desiredSecretManagerConfig: SecretManagerConfig
     desiredSecretSyncConfig: SecretSyncConfig
     desiredSecurityPostureConfig: SecurityPostureConfig
@@ -555,6 +581,10 @@ class ContainerdConfig(typing_extensions.TypedDict, total=False):
     writableCgroups: WritableCgroups
 
 @typing.type_check_only
+class ControlPlaneEgress(typing_extensions.TypedDict, total=False):
+    mode: typing_extensions.Literal["MODE_UNSPECIFIED", "VIA_CONTROL_PLANE", "NONE"]
+
+@typing.type_check_only
 class ControlPlaneEndpointsConfig(typing_extensions.TypedDict, total=False):
     dnsEndpointConfig: DNSEndpointConfig
     ipEndpointsConfig: IPEndpointsConfig
@@ -615,11 +645,16 @@ class DatabaseEncryption(typing_extensions.TypedDict, total=False):
         "CURRENT_STATE_ENCRYPTION_ERROR",
         "CURRENT_STATE_DECRYPTION_PENDING",
         "CURRENT_STATE_DECRYPTION_ERROR",
+        "CURRENT_STATE_ALL_OBJECTS_ENCRYPTION_ENABLED",
+        "CURRENT_STATE_ALL_OBJECTS_ENCRYPTION_PENDING",
+        "CURRENT_STATE_ALL_OBJECTS_ENCRYPTION_ERROR",
     ]
     decryptionKeys: _list[str]
     keyName: str
     lastOperationErrors: _list[OperationError]
-    state: typing_extensions.Literal["UNKNOWN", "ENCRYPTED", "DECRYPTED"]
+    state: typing_extensions.Literal[
+        "UNKNOWN", "ENCRYPTED", "DECRYPTED", "ALL_OBJECTS_ENCRYPTION_ENABLED"
+    ]
 
 @typing.type_check_only
 class Date(typing_extensions.TypedDict, total=False):
@@ -956,6 +991,7 @@ class LegacyAbac(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class LinuxNodeConfig(typing_extensions.TypedDict, total=False):
+    accurateTimeConfig: AccurateTimeConfig
     cgroupMode: typing_extensions.Literal[
         "CGROUP_MODE_UNSPECIFIED", "CGROUP_MODE_V1", "CGROUP_MODE_V2"
     ]
@@ -1040,6 +1076,7 @@ class LoggingVariantConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class LustreCsiDriverConfig(typing_extensions.TypedDict, total=False):
+    disableMultiNic: bool
     enableLegacyLustrePort: bool
     enabled: bool
 
@@ -1063,6 +1100,10 @@ class MaintenanceWindow(typing_extensions.TypedDict, total=False):
     dailyMaintenanceWindow: DailyMaintenanceWindow
     maintenanceExclusions: dict[str, typing.Any]
     recurringWindow: RecurringTimeWindow
+
+@typing.type_check_only
+class ManagedMachineLearningDiagnosticsConfig(typing_extensions.TypedDict, total=False):
+    enabled: bool
 
 @typing.type_check_only
 class ManagedOpenTelemetryConfig(typing_extensions.TypedDict, total=False):
@@ -1265,6 +1306,7 @@ class NodeConfig(typing_extensions.TypedDict, total=False):
     spot: bool
     storagePools: _list[str]
     tags: _list[str]
+    taintConfig: TaintConfig
     taints: _list[NodeTaint]
     windowsNodeConfig: WindowsNodeConfig
     workloadMetadataConfig: WorkloadMetadataConfig
@@ -1696,6 +1738,10 @@ class SandboxConfig(typing_extensions.TypedDict, total=False):
     type: typing_extensions.Literal["UNSPECIFIED", "GVISOR"]
 
 @typing.type_check_only
+class ScheduleUpgradeConfig(typing_extensions.TypedDict, total=False):
+    enabled: bool
+
+@typing.type_check_only
 class SecondaryBootDisk(typing_extensions.TypedDict, total=False):
     diskImage: str
     mode: typing_extensions.Literal["MODE_UNSPECIFIED", "CONTAINER_IMAGE_CACHE"]
@@ -1946,6 +1992,12 @@ class SyncRotationConfig(typing_extensions.TypedDict, total=False):
     rotationInterval: str
 
 @typing.type_check_only
+class TaintConfig(typing_extensions.TypedDict, total=False):
+    architectureTaintBehavior: typing_extensions.Literal[
+        "ARCHITECTURE_TAINT_BEHAVIOR_UNSPECIFIED", "NONE", "ARM"
+    ]
+
+@typing.type_check_only
 class TimeWindow(typing_extensions.TypedDict, total=False):
     endTime: str
     maintenanceExclusionOptions: MaintenanceExclusionOptions
@@ -2083,7 +2135,7 @@ class UpgradeInfoEvent(typing_extensions.TypedDict, total=False):
     standardSupportEndTime: str
     startTime: str
     state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "STARTED", "SUCCEEDED", "FAILED", "CANCELED"
+        "STATE_UNSPECIFIED", "SCHEDULED", "STARTED", "SUCCEEDED", "FAILED", "CANCELED"
     ]
     targetEmulatedVersion: str
     targetVersion: str

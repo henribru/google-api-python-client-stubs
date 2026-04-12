@@ -153,7 +153,7 @@ class ComputeRepositoryAccessTokenStatusResponse(
     typing_extensions.TypedDict, total=False
 ):
     tokenStatus: typing_extensions.Literal[
-        "TOKEN_STATUS_UNSPECIFIED", "NOT_FOUND", "INVALID", "VALID"
+        "TOKEN_STATUS_UNSPECIFIED", "NOT_FOUND", "INVALID", "VALID", "PERMISSION_DENIED"
     ]
 
 @typing.type_check_only
@@ -189,9 +189,18 @@ class Declaration(typing_extensions.TypedDict, total=False):
 class DeleteFile(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class DeleteFolderTreeRequest(typing_extensions.TypedDict, total=False):
+    force: bool
+
+@typing.type_check_only
+class DeleteTeamFolderTreeRequest(typing_extensions.TypedDict, total=False):
+    force: bool
+
+@typing.type_check_only
 class DirectoryEntry(typing_extensions.TypedDict, total=False):
     directory: str
     file: str
+    metadata: FilesystemEntryMetadata
 
 @typing.type_check_only
 class DirectorySearchResult(typing_extensions.TypedDict, total=False):
@@ -242,6 +251,27 @@ class FileOperation(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class FileSearchResult(typing_extensions.TypedDict, total=False):
     path: str
+
+@typing.type_check_only
+class FilesystemEntryMetadata(typing_extensions.TypedDict, total=False):
+    sizeBytes: str
+    updateTime: str
+
+@typing.type_check_only
+class Folder(typing_extensions.TypedDict, total=False):
+    containingFolder: str
+    createTime: str
+    creatorIamPrincipal: str
+    displayName: str
+    internalMetadata: str
+    name: str
+    teamFolderName: str
+    updateTime: str
+
+@typing.type_check_only
+class FolderContentsEntry(typing_extensions.TypedDict, total=False):
+    folder: Folder
+    repository: Repository
 
 @typing.type_check_only
 class GitRemoteSettings(typing_extensions.TypedDict, total=False):
@@ -380,6 +410,14 @@ class MoveFileRequest(typing_extensions.TypedDict, total=False):
 class MoveFileResponse(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class MoveFolderRequest(typing_extensions.TypedDict, total=False):
+    destinationContainingFolder: str
+
+@typing.type_check_only
+class MoveRepositoryRequest(typing_extensions.TypedDict, total=False):
+    destinationContainingFolder: str
+
+@typing.type_check_only
 class Notebook(typing_extensions.TypedDict, total=False):
     contents: str
     dependencyTargets: _list[Target]
@@ -465,10 +503,25 @@ class QueryDirectoryContentsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class QueryFolderContentsResponse(typing_extensions.TypedDict, total=False):
+    entries: _list[FolderContentsEntry]
+    nextPageToken: str
+
+@typing.type_check_only
 class QueryRepositoryDirectoryContentsResponse(
     typing_extensions.TypedDict, total=False
 ):
     directoryEntries: _list[DirectoryEntry]
+    nextPageToken: str
+
+@typing.type_check_only
+class QueryTeamFolderContentsResponse(typing_extensions.TypedDict, total=False):
+    entries: _list[TeamFolderContentsEntry]
+    nextPageToken: str
+
+@typing.type_check_only
+class QueryUserRootContentsResponse(typing_extensions.TypedDict, total=False):
+    entries: _list[RootContentsEntry]
     nextPageToken: str
 
 @typing.type_check_only
@@ -545,6 +598,7 @@ class RemoveFileResponse(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Repository(typing_extensions.TypedDict, total=False):
+    containingFolder: str
     createTime: str
     dataEncryptionState: DataEncryptionState
     displayName: str
@@ -556,6 +610,7 @@ class Repository(typing_extensions.TypedDict, total=False):
     npmrcEnvironmentVariablesSecretVersion: str
     serviceAccount: str
     setAuthenticatedUserAdmin: bool
+    teamFolderName: str
     workspaceCompilationOverrides: WorkspaceCompilationOverrides
 
 @typing.type_check_only
@@ -565,6 +620,11 @@ class ResetWorkspaceChangesRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ResetWorkspaceChangesResponse(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class RootContentsEntry(typing_extensions.TypedDict, total=False):
+    folder: Folder
+    repository: Repository
 
 @typing.type_check_only
 class ScheduledExecutionRecord(typing_extensions.TypedDict, total=False):
@@ -587,6 +647,11 @@ class SearchFilesResponse(typing_extensions.TypedDict, total=False):
 class SearchResult(typing_extensions.TypedDict, total=False):
     directory: DirectorySearchResult
     file: FileSearchResult
+
+@typing.type_check_only
+class SearchTeamFoldersResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    results: _list[TeamFolderSearchResult]
 
 @typing.type_check_only
 class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
@@ -617,6 +682,24 @@ class Target(typing_extensions.TypedDict, total=False):
     database: str
     name: str
     schema: str
+
+@typing.type_check_only
+class TeamFolder(typing_extensions.TypedDict, total=False):
+    createTime: str
+    creatorIamPrincipal: str
+    displayName: str
+    internalMetadata: str
+    name: str
+    updateTime: str
+
+@typing.type_check_only
+class TeamFolderContentsEntry(typing_extensions.TypedDict, total=False):
+    folder: Folder
+    repository: Repository
+
+@typing.type_check_only
+class TeamFolderSearchResult(typing_extensions.TypedDict, total=False):
+    teamFolder: TeamFolder
 
 @typing.type_check_only
 class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
@@ -679,6 +762,7 @@ class WorkflowInvocationAction(typing_extensions.TypedDict, total=False):
 class Workspace(typing_extensions.TypedDict, total=False):
     createTime: str
     dataEncryptionState: DataEncryptionState
+    disableMoves: bool
     internalMetadata: str
     name: str
     privateResourceMetadata: PrivateResourceMetadata

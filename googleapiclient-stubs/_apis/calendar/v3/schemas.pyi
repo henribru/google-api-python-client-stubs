@@ -241,6 +241,9 @@ class EventFocusTimeProperties(typing_extensions.TypedDict, total=False):
     declineMessage: str
 
 @typing.type_check_only
+class EventLabel(dict[str, typing.Any]): ...
+
+@typing.type_check_only
 class EventOutOfOfficeProperties(typing_extensions.TypedDict, total=False):
     autoDeclineMode: str
     declineMessage: str
@@ -301,6 +304,9 @@ class FreeBusyResponse(typing_extensions.TypedDict, total=False):
     kind: str
     timeMax: str
     timeMin: str
+
+@typing.type_check_only
+class LabelProperties(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class Setting(typing_extensions.TypedDict, total=False):
