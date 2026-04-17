@@ -698,6 +698,19 @@ class GoogleAppsCardV1Widgets(typing_extensions.TypedDict, total=False):
     textParagraph: GoogleAppsCardV1TextParagraph
 
 @typing.type_check_only
+class GoogleChatV1Section(typing_extensions.TypedDict, total=False):
+    displayName: str
+    name: str
+    sortOrder: int
+    type: typing_extensions.Literal[
+        "SECTION_TYPE_UNSPECIFIED",
+        "CUSTOM_SECTION",
+        "DEFAULT_DIRECT_MESSAGES",
+        "DEFAULT_SPACES",
+        "DEFAULT_APPS",
+    ]
+
+@typing.type_check_only
 class Group(typing_extensions.TypedDict, total=False):
     name: str
 
@@ -820,6 +833,16 @@ class ListMessagesResponse(typing_extensions.TypedDict, total=False):
 class ListReactionsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     reactions: _list[Reaction]
+
+@typing.type_check_only
+class ListSectionItemsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    sectionItems: _list[SectionItem]
+
+@typing.type_check_only
+class ListSectionsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    sections: _list[GoogleChatV1Section]
 
 @typing.type_check_only
 class ListSpaceEventsResponse(typing_extensions.TypedDict, total=False):
@@ -947,6 +970,14 @@ class MessageUpdatedEventData(typing_extensions.TypedDict, total=False):
     message: Message
 
 @typing.type_check_only
+class MoveSectionItemRequest(typing_extensions.TypedDict, total=False):
+    targetSection: str
+
+@typing.type_check_only
+class MoveSectionItemResponse(typing_extensions.TypedDict, total=False):
+    sectionItem: SectionItem
+
+@typing.type_check_only
 class OnClick(typing_extensions.TypedDict, total=False):
     action: FormAction
     openLink: OpenLink
@@ -971,6 +1002,15 @@ class PermissionSettings(typing_extensions.TypedDict, total=False):
     replyMessages: PermissionSetting
     toggleHistory: PermissionSetting
     useAtMentionAll: PermissionSetting
+
+@typing.type_check_only
+class PositionSectionRequest(typing_extensions.TypedDict, total=False):
+    relativePosition: typing_extensions.Literal["POSITION_UNSPECIFIED", "START", "END"]
+    sortOrder: int
+
+@typing.type_check_only
+class PositionSectionResponse(typing_extensions.TypedDict, total=False):
+    section: GoogleChatV1Section
 
 @typing.type_check_only
 class QuotedMessageMetadata(typing_extensions.TypedDict, total=False):
@@ -1036,6 +1076,11 @@ class SearchSpacesResponse(typing_extensions.TypedDict, total=False):
 class Section(typing_extensions.TypedDict, total=False):
     header: str
     widgets: _list[WidgetMarkup]
+
+@typing.type_check_only
+class SectionItem(typing_extensions.TypedDict, total=False):
+    name: str
+    space: str
 
 @typing.type_check_only
 class SelectionItems(typing_extensions.TypedDict, total=False):

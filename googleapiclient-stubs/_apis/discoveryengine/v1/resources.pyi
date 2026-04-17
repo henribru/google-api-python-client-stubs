@@ -901,21 +901,111 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                         @typing.type_check_only
                         class AgentsResource(googleapiclient.discovery.Resource):
                             @typing.type_check_only
-                            class MessageResource(googleapiclient.discovery.Resource):
-                                def send(
-                                    self,
-                                    *,
-                                    tenant: str,
-                                    body: A2aV1SendMessageRequest = ...,
-                                    **kwargs: typing.Any,
-                                ) -> A2aV1SendMessageResponseHttpRequest: ...
-                                def stream(
-                                    self,
-                                    *,
-                                    tenant: str,
-                                    body: A2aV1SendMessageRequest = ...,
-                                    **kwargs: typing.Any,
-                                ) -> A2aV1StreamResponseHttpRequest: ...
+                            class A2aResource(googleapiclient.discovery.Resource):
+                                @typing.type_check_only
+                                class V1Resource(googleapiclient.discovery.Resource):
+                                    @typing.type_check_only
+                                    class MessageResource(
+                                        googleapiclient.discovery.Resource
+                                    ):
+                                        def send(
+                                            self,
+                                            *,
+                                            tenant: str,
+                                            body: A2aV1SendMessageRequest = ...,
+                                            **kwargs: typing.Any,
+                                        ) -> A2aV1SendMessageResponseHttpRequest: ...
+                                        def stream(
+                                            self,
+                                            *,
+                                            tenant: str,
+                                            body: A2aV1SendMessageRequest = ...,
+                                            **kwargs: typing.Any,
+                                        ) -> A2aV1StreamResponseHttpRequest: ...
+
+                                    @typing.type_check_only
+                                    class TasksResource(
+                                        googleapiclient.discovery.Resource
+                                    ):
+                                        @typing.type_check_only
+                                        class PushNotificationConfigsResource(
+                                            googleapiclient.discovery.Resource
+                                        ):
+                                            def create(
+                                                self,
+                                                *,
+                                                tenant: str,
+                                                parent: str,
+                                                body: A2aV1TaskPushNotificationConfig = ...,
+                                                configId: str = ...,
+                                                **kwargs: typing.Any,
+                                            ) -> A2aV1TaskPushNotificationConfigHttpRequest: ...
+                                            def delete(
+                                                self,
+                                                *,
+                                                tenant: str,
+                                                name: str,
+                                                **kwargs: typing.Any,
+                                            ) -> GoogleProtobufEmptyHttpRequest: ...
+                                            def get(
+                                                self,
+                                                *,
+                                                tenant: str,
+                                                name: str,
+                                                **kwargs: typing.Any,
+                                            ) -> A2aV1TaskPushNotificationConfigHttpRequest: ...
+                                            def list(
+                                                self,
+                                                *,
+                                                tenant: str,
+                                                parent: str,
+                                                pageSize: int = ...,
+                                                pageToken: str = ...,
+                                                **kwargs: typing.Any,
+                                            ) -> A2aV1ListTaskPushNotificationConfigResponseHttpRequest: ...
+                                            def list_next(
+                                                self,
+                                                previous_request: A2aV1ListTaskPushNotificationConfigResponseHttpRequest,
+                                                previous_response: A2aV1ListTaskPushNotificationConfigResponse,
+                                            ) -> (
+                                                A2aV1ListTaskPushNotificationConfigResponseHttpRequest
+                                                | None
+                                            ): ...
+
+                                        def cancel(
+                                            self,
+                                            *,
+                                            tenant: str,
+                                            name: str,
+                                            body: A2aV1CancelTaskRequest = ...,
+                                            **kwargs: typing.Any,
+                                        ) -> A2aV1TaskHttpRequest: ...
+                                        def get(
+                                            self,
+                                            *,
+                                            tenant: str,
+                                            name: str,
+                                            historyLength: int = ...,
+                                            **kwargs: typing.Any,
+                                        ) -> A2aV1TaskHttpRequest: ...
+                                        def subscribe(
+                                            self,
+                                            *,
+                                            tenant: str,
+                                            name: str,
+                                            **kwargs: typing.Any,
+                                        ) -> A2aV1StreamResponseHttpRequest: ...
+                                        def pushNotificationConfigs(
+                                            self,
+                                        ) -> PushNotificationConfigsResource: ...
+
+                                    def getCard(
+                                        self, *, tenant: str, **kwargs: typing.Any
+                                    ) -> A2aV1AgentCardHttpRequest: ...
+                                    def message(self) -> MessageResource: ...
+                                    def tasks(self) -> TasksResource: ...
+
+                                def v1(self) -> V1Resource: ...
 
                             @typing.type_check_only
                             class OperationsResource(
@@ -925,86 +1015,8 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                                     self, *, name: str, **kwargs: typing.Any
                                 ) -> GoogleLongrunningOperationHttpRequest: ...
 
-                            @typing.type_check_only
-                            class TasksResource(googleapiclient.discovery.Resource):
-                                @typing.type_check_only
-                                class PushNotificationConfigsResource(
-                                    googleapiclient.discovery.Resource
-                                ):
-                                    def create(
-                                        self,
-                                        *,
-                                        tenant: str,
-                                        parent: str,
-                                        body: A2aV1TaskPushNotificationConfig = ...,
-                                        configId: str = ...,
-                                        **kwargs: typing.Any,
-                                    ) -> A2aV1TaskPushNotificationConfigHttpRequest: ...
-                                    def delete(
-                                        self,
-                                        *,
-                                        tenant: str,
-                                        name: str,
-                                        **kwargs: typing.Any,
-                                    ) -> GoogleProtobufEmptyHttpRequest: ...
-                                    def get(
-                                        self,
-                                        *,
-                                        tenant: str,
-                                        name: str,
-                                        **kwargs: typing.Any,
-                                    ) -> A2aV1TaskPushNotificationConfigHttpRequest: ...
-                                    def list(
-                                        self,
-                                        *,
-                                        tenant: str,
-                                        parent: str,
-                                        pageSize: int = ...,
-                                        pageToken: str = ...,
-                                        **kwargs: typing.Any,
-                                    ) -> A2aV1ListTaskPushNotificationConfigResponseHttpRequest: ...
-                                    def list_next(
-                                        self,
-                                        previous_request: A2aV1ListTaskPushNotificationConfigResponseHttpRequest,
-                                        previous_response: A2aV1ListTaskPushNotificationConfigResponse,
-                                    ) -> (
-                                        A2aV1ListTaskPushNotificationConfigResponseHttpRequest
-                                        | None
-                                    ): ...
-
-                                def cancel(
-                                    self,
-                                    *,
-                                    tenant: str,
-                                    name: str,
-                                    body: A2aV1CancelTaskRequest = ...,
-                                    **kwargs: typing.Any,
-                                ) -> A2aV1TaskHttpRequest: ...
-                                def get(
-                                    self,
-                                    *,
-                                    tenant: str,
-                                    name: str,
-                                    historyLength: int = ...,
-                                    **kwargs: typing.Any,
-                                ) -> A2aV1TaskHttpRequest: ...
-                                def subscribe(
-                                    self,
-                                    *,
-                                    tenant: str,
-                                    name: str,
-                                    **kwargs: typing.Any,
-                                ) -> A2aV1StreamResponseHttpRequest: ...
-                                def pushNotificationConfigs(
-                                    self,
-                                ) -> PushNotificationConfigsResource: ...
-
-                            def getCard(
-                                self, *, tenant: str, **kwargs: typing.Any
-                            ) -> A2aV1AgentCardHttpRequest: ...
-                            def message(self) -> MessageResource: ...
+                            def a2a(self) -> A2aResource: ...
                             def operations(self) -> OperationsResource: ...
-                            def tasks(self) -> TasksResource: ...
 
                         def create(
                             self,
@@ -2384,17 +2396,6 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                     parent: str,
                     body: GoogleCloudDiscoveryengineV1BatchUpdateUserLicensesRequest = ...,
                     **kwargs: typing.Any,
-                ) -> GoogleLongrunningOperationHttpRequest: ...
-                def create(
-                    self,
-                    *,
-                    parent: str,
-                    body: GoogleCloudDiscoveryengineV1UserStore = ...,
-                    userStoreId: str = ...,
-                    **kwargs: typing.Any,
-                ) -> GoogleCloudDiscoveryengineV1UserStoreHttpRequest: ...
-                def delete(
-                    self, *, name: str, **kwargs: typing.Any
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any

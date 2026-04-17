@@ -773,6 +773,7 @@ class YouTubeResource(googleapiclient.discovery.Resource):
             part: str | _list[str],
             body: TestItem = ...,
             externalChannelId: str = ...,
+            onBehalfOfContentOwnerChannel: str = ...,
             **kwargs: typing.Any,
         ) -> TestItemHttpRequest: ...
 

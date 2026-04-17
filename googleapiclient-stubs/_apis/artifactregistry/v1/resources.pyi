@@ -19,6 +19,13 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
+                def cancel(
+                    self,
+                    *,
+                    name: str,
+                    body: CancelOperationRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> EmptyHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
@@ -501,6 +508,9 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
+            def getProjectConfig(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> ProjectConfigHttpRequest: ...
             def getVpcscConfig(
                 self, *, name: str, **kwargs: typing.Any
             ) -> VPCSCConfigHttpRequest: ...
@@ -519,6 +529,14 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                 previous_request: ListLocationsResponseHttpRequest,
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
+            def updateProjectConfig(
+                self,
+                *,
+                name: str,
+                body: ProjectConfig = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any,
+            ) -> ProjectConfigHttpRequest: ...
             def updateVpcscConfig(
                 self,
                 *,
@@ -748,6 +766,14 @@ class PolicyHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Policy: ...
+
+@typing.type_check_only
+class ProjectConfigHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ProjectConfig: ...
 
 @typing.type_check_only
 class ProjectSettingsHttpRequest(googleapiclient.http.HttpRequest):

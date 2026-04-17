@@ -53,6 +53,7 @@ class GoogleMapsPlacesV1AuthorAttribution(typing_extensions.TypedDict, total=Fal
 class GoogleMapsPlacesV1AutocompletePlacesRequest(
     typing_extensions.TypedDict, total=False
 ):
+    includeFutureOpeningBusinesses: bool
     includePureServiceAreaBusinesses: bool
     includeQueryPredictions: bool
     includedPrimaryTypes: _list[str]
@@ -283,6 +284,7 @@ class GoogleMapsPlacesV1Place(typing_extensions.TypedDict, total=False):
         "OPERATIONAL",
         "CLOSED_TEMPORARILY",
         "CLOSED_PERMANENTLY",
+        "FUTURE_OPENING",
     ]
     consumerAlert: GoogleMapsPlacesV1PlaceConsumerAlert
     containingPlaces: _list[GoogleMapsPlacesV1PlaceContainingPlace]
@@ -316,6 +318,7 @@ class GoogleMapsPlacesV1Place(typing_extensions.TypedDict, total=False):
     name: str
     nationalPhoneNumber: str
     neighborhoodSummary: GoogleMapsPlacesV1PlaceNeighborhoodSummary
+    openingDate: GoogleTypeDate
     outdoorSeating: bool
     parkingOptions: GoogleMapsPlacesV1PlaceParkingOptions
     paymentOptions: GoogleMapsPlacesV1PlacePaymentOptions
@@ -583,6 +586,7 @@ class GoogleMapsPlacesV1RoutingSummaryLeg(typing_extensions.TypedDict, total=Fal
 class GoogleMapsPlacesV1SearchNearbyRequest(typing_extensions.TypedDict, total=False):
     excludedPrimaryTypes: _list[str]
     excludedTypes: _list[str]
+    includeFutureOpeningBusinesses: bool
     includedPrimaryTypes: _list[str]
     includedTypes: _list[str]
     languageCode: str
@@ -608,6 +612,7 @@ class GoogleMapsPlacesV1SearchNearbyResponse(typing_extensions.TypedDict, total=
 @typing.type_check_only
 class GoogleMapsPlacesV1SearchTextRequest(typing_extensions.TypedDict, total=False):
     evOptions: GoogleMapsPlacesV1SearchTextRequestEVOptions
+    includeFutureOpeningBusinesses: bool
     includePureServiceAreaBusinesses: bool
     includedType: str
     languageCode: str

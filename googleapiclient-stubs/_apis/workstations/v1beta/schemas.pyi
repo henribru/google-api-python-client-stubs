@@ -314,6 +314,8 @@ class Workstation(typing_extensions.TypedDict, total=False):
         "STATE_RUNNING",
         "STATE_STOPPING",
         "STATE_STOPPED",
+        "STATE_SUSPENDING",
+        "STATE_SUSPENDED",
     ]
     uid: str
     updateTime: str
@@ -346,6 +348,8 @@ class WorkstationCluster(typing_extensions.TypedDict, total=False):
     tags: dict[str, typing.Any]
     uid: str
     updateTime: str
+    workstationAuthorizationUrl: str
+    workstationLaunchUrl: str
 
 @typing.type_check_only
 class WorkstationConfig(typing_extensions.TypedDict, total=False):

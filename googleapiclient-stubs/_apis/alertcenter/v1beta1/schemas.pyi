@@ -67,7 +67,8 @@ class AccountWarning(typing_extensions.TypedDict, total=False):
     loginDetails: LoginDetails
 
 @typing.type_check_only
-class ActionInfo(typing_extensions.TypedDict, total=False): ...
+class ActionInfo(typing_extensions.TypedDict, total=False):
+    evidenceLockerFilePath: str
 
 @typing.type_check_only
 class ActivityRule(typing_extensions.TypedDict, total=False):
@@ -190,6 +191,11 @@ class BatchUndeleteAlertsResponse(typing_extensions.TypedDict, total=False):
     successAlertIds: _list[str]
 
 @typing.type_check_only
+class ClientSideEncryptionServiceUnavailable(typing_extensions.TypedDict, total=False):
+    idpError: _list[IdentityProviderError]
+    keyServiceError: _list[KeyServiceError]
+
+@typing.type_check_only
 class CloudPubsubTopic(typing_extensions.TypedDict, total=False):
     payloadFormat: typing_extensions.Literal["PAYLOAD_FORMAT_UNSPECIFIED", "JSON"]
     topicName: str
@@ -279,6 +285,39 @@ class GoogleOperations(typing_extensions.TypedDict, total=False):
     domain: str
     header: str
     title: str
+
+@typing.type_check_only
+class IdentityProviderError(typing_extensions.TypedDict, total=False):
+    authorizationBaseUrl: str
+    errorCount: str
+    errorInfo: typing_extensions.Literal[
+        "IDENTITY_PROVIDER_ERROR_INFO_UNSPECIFIED",
+        "EMAIL_MISMATCH",
+        "UNAVAILABLE_DISCOVERY_CONTENT",
+        "INVALID_DISCOVERY_CONTENT",
+        "UNAVAILABLE_CSE_CONFIGURATION_CONTENT",
+        "INVALID_CSE_CONFIGURATION_CONTENT",
+        "INVALID_ID_TOKEN",
+        "INVALID_OIDC_SETUP",
+        "UNAVAILABLE_IDP",
+        "AUTH_CODE_EXCHANGE_ERROR",
+        "AUTHENTICATION_TOKEN_MISSING_CLAIM_EMAIL",
+    ]
+
+@typing.type_check_only
+class KeyServiceError(typing_extensions.TypedDict, total=False):
+    errorCount: str
+    errorInfo: typing_extensions.Literal[
+        "KEY_SERVICE_ERROR_INFO_UNSPECIFIED",
+        "MALFORMED_JSON",
+        "MISSING_KEY",
+        "MISSING_SIGNATURE",
+        "MISSING_ALGORITHM_NAME",
+        "UNSUPPORTED_ALGORITHM",
+        "FETCH_REQUEST_ERROR",
+    ]
+    httpResponseCode: str
+    keyServiceUrl: str
 
 @typing.type_check_only
 class ListAlertFeedbackResponse(typing_extensions.TypedDict, total=False):
@@ -375,7 +414,7 @@ class RuleInfo(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class RuleViolationInfo(typing_extensions.TypedDict, total=False):
     dataSource: typing_extensions.Literal[
-        "DATA_SOURCE_UNSPECIFIED", "DRIVE", "CHROME", "CHAT"
+        "DATA_SOURCE_UNSPECIFIED", "DRIVE", "GMAIL", "CHROME", "CHAT"
     ]
     eventType: typing_extensions.Literal[
         "EVENT_TYPE_UNSPECIFIED", "ACCESS_BLOCKED", "SHARING_BLOCKED"
@@ -390,7 +429,12 @@ class RuleViolationInfo(typing_extensions.TypedDict, total=False):
             "DRIVE_BLOCK_EXTERNAL_SHARING",
             "DRIVE_WARN_ON_EXTERNAL_SHARING",
             "DRIVE_RESTRICT_DOWNLOAD_PRINT_COPY",
+            "DRIVE_RESTRICT_DOWNLOAD_PRINT_COPY_FOR_ALL",
             "DRIVE_APPLY_DRIVE_LABELS",
+            "GMAIL_QUARANTINE_MESSAGE",
+            "GMAIL_BLOCK_MESSAGE",
+            "GMAIL_WARN_USERS",
+            "GMAIL_APPLY_CLASSIFICATION_LABELS",
             "CHROME_BLOCK_FILE_DOWNLOAD",
             "CHROME_WARN_FILE_DOWNLOAD",
             "CHROME_BLOCK_FILE_UPLOAD",
@@ -399,10 +443,14 @@ class RuleViolationInfo(typing_extensions.TypedDict, total=False):
             "CHROME_WARN_WEB_CONTENT_UPLOAD",
             "CHROME_BLOCK_PAGE_PRINT",
             "CHROME_WARN_PAGE_PRINT",
+            "CHROME_BLOCK_FILE_TRANSFER",
+            "CHROME_WARN_FILE_TRANSFER",
             "CHROME_BLOCK_URL_VISITED",
             "CHROME_WARN_URL_VISITED",
             "CHROME_BLOCK_SCREENSHOT",
             "CHROME_STORE_CONTENT",
+            "CHROME_WATERMARK",
+            "CHROME_FORCE_SAVE_TO_CLOUD",
             "DELETE_WEBPROTECT_EVIDENCE",
             "CHAT_BLOCK_CONTENT",
             "CHAT_WARN_USER",
@@ -414,6 +462,7 @@ class RuleViolationInfo(typing_extensions.TypedDict, total=False):
     trigger: typing_extensions.Literal[
         "TRIGGER_UNSPECIFIED",
         "DRIVE_SHARE",
+        "MAIL_BEING_SENT",
         "CHROME_FILE_DOWNLOAD",
         "CHROME_FILE_UPLOAD",
         "CHROME_WEB_CONTENT_UPLOAD",
@@ -421,6 +470,7 @@ class RuleViolationInfo(typing_extensions.TypedDict, total=False):
         "CHAT_ATTACHMENT_UPLOADED",
         "CHROME_PAGE_PRINT",
         "CHROME_URL_VISITED",
+        "CHROMEOS_FILE_TRANSFER",
     ]
     triggeredActionInfo: _list[ActionInfo]
     triggeredActionTypes: _list[
@@ -429,7 +479,12 @@ class RuleViolationInfo(typing_extensions.TypedDict, total=False):
             "DRIVE_BLOCK_EXTERNAL_SHARING",
             "DRIVE_WARN_ON_EXTERNAL_SHARING",
             "DRIVE_RESTRICT_DOWNLOAD_PRINT_COPY",
+            "DRIVE_RESTRICT_DOWNLOAD_PRINT_COPY_FOR_ALL",
             "DRIVE_APPLY_DRIVE_LABELS",
+            "GMAIL_QUARANTINE_MESSAGE",
+            "GMAIL_BLOCK_MESSAGE",
+            "GMAIL_WARN_USERS",
+            "GMAIL_APPLY_CLASSIFICATION_LABELS",
             "CHROME_BLOCK_FILE_DOWNLOAD",
             "CHROME_WARN_FILE_DOWNLOAD",
             "CHROME_BLOCK_FILE_UPLOAD",
@@ -438,10 +493,14 @@ class RuleViolationInfo(typing_extensions.TypedDict, total=False):
             "CHROME_WARN_WEB_CONTENT_UPLOAD",
             "CHROME_BLOCK_PAGE_PRINT",
             "CHROME_WARN_PAGE_PRINT",
+            "CHROME_BLOCK_FILE_TRANSFER",
+            "CHROME_WARN_FILE_TRANSFER",
             "CHROME_BLOCK_URL_VISITED",
             "CHROME_WARN_URL_VISITED",
             "CHROME_BLOCK_SCREENSHOT",
             "CHROME_STORE_CONTENT",
+            "CHROME_WATERMARK",
+            "CHROME_FORCE_SAVE_TO_CLOUD",
             "DELETE_WEBPROTECT_EVIDENCE",
             "CHAT_BLOCK_CONTENT",
             "CHAT_WARN_USER",

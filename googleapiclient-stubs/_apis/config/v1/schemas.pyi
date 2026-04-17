@@ -97,6 +97,44 @@ class Deployment(typing_extensions.TypedDict, total=False):
     workerPool: str
 
 @typing.type_check_only
+class DeploymentGroup(typing_extensions.TypedDict, total=False):
+    annotations: dict[str, typing.Any]
+    createTime: str
+    deploymentUnits: _list[DeploymentUnit]
+    labels: dict[str, typing.Any]
+    name: str
+    provisioningError: Status
+    provisioningState: typing_extensions.Literal[
+        "PROVISIONING_STATE_UNSPECIFIED",
+        "PROVISIONING",
+        "PROVISIONED",
+        "FAILED_TO_PROVISION",
+        "DEPROVISIONING",
+        "DEPROVISIONED",
+        "FAILED_TO_DEPROVISION",
+    ]
+    provisioningStateDescription: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "CREATING",
+        "ACTIVE",
+        "UPDATING",
+        "DELETING",
+        "FAILED",
+        "SUSPENDED",
+        "DELETED",
+    ]
+    stateDescription: str
+    updateTime: str
+
+@typing.type_check_only
+class DeploymentGroupRevision(typing_extensions.TypedDict, total=False):
+    alternativeIds: _list[str]
+    createTime: str
+    name: str
+    snapshot: DeploymentGroup
+
+@typing.type_check_only
 class DeploymentOperationMetadata(typing_extensions.TypedDict, total=False):
     applyResults: ApplyResults
     build: str
@@ -116,6 +154,79 @@ class DeploymentOperationMetadata(typing_extensions.TypedDict, total=False):
         "VALIDATING_REPOSITORY",
         "RUNNING_QUOTA_VALIDATION",
     ]
+
+@typing.type_check_only
+class DeploymentOperationSummary(typing_extensions.TypedDict, total=False):
+    artifacts: str
+    build: str
+    content: str
+    deploymentStep: typing_extensions.Literal[
+        "DEPLOYMENT_STEP_UNSPECIFIED",
+        "PREPARING_STORAGE_BUCKET",
+        "DOWNLOADING_BLUEPRINT",
+        "RUNNING_TF_INIT",
+        "RUNNING_TF_PLAN",
+        "RUNNING_TF_APPLY",
+        "RUNNING_TF_DESTROY",
+        "RUNNING_TF_VALIDATE",
+        "UNLOCKING_DEPLOYMENT",
+        "SUCCEEDED",
+        "FAILED",
+        "VALIDATING_REPOSITORY",
+        "RUNNING_QUOTA_VALIDATION",
+    ]
+    logs: str
+
+@typing.type_check_only
+class DeploymentSource(typing_extensions.TypedDict, total=False):
+    deployment: str
+    outputName: str
+
+@typing.type_check_only
+class DeploymentSpec(typing_extensions.TypedDict, total=False):
+    deployment: Deployment
+    deploymentId: str
+
+@typing.type_check_only
+class DeploymentUnit(typing_extensions.TypedDict, total=False):
+    dependencies: _list[str]
+    deployment: str
+    id: str
+
+@typing.type_check_only
+class DeploymentUnitProgress(typing_extensions.TypedDict, total=False):
+    deployment: str
+    deploymentOperationSummary: DeploymentOperationSummary
+    error: Status
+    intent: typing_extensions.Literal[
+        "INTENT_UNSPECIFIED",
+        "CREATE_DEPLOYMENT",
+        "UPDATE_DEPLOYMENT",
+        "DELETE_DEPLOYMENT",
+        "RECREATE_DEPLOYMENT",
+        "CLEAN_UP",
+        "UNCHANGED",
+    ]
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "QUEUED",
+        "APPLYING_DEPLOYMENT",
+        "SUCCEEDED",
+        "FAILED",
+        "ABORTED",
+        "SKIPPED",
+        "DELETING_DEPLOYMENT",
+        "PREVIEWING_DEPLOYMENT",
+    ]
+    stateDescription: str
+    unitId: str
+
+@typing.type_check_only
+class DeprovisionDeploymentGroupRequest(typing_extensions.TypedDict, total=False):
+    deletePolicy: typing_extensions.Literal[
+        "DELETE_POLICY_UNSPECIFIED", "DELETE", "ABANDON"
+    ]
+    force: bool
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
@@ -142,6 +253,10 @@ class Expr(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
+class ExternalValueSource(typing_extensions.TypedDict, total=False):
+    deploymentSource: DeploymentSource
+
+@typing.type_check_only
 class GitSource(typing_extensions.TypedDict, total=False):
     directory: str
     ref: str
@@ -150,6 +265,18 @@ class GitSource(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ImportStatefileRequest(typing_extensions.TypedDict, total=False):
     lockId: str
+
+@typing.type_check_only
+class ListDeploymentGroupRevisionsResponse(typing_extensions.TypedDict, total=False):
+    deploymentGroupRevisions: _list[DeploymentGroupRevision]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListDeploymentGroupsResponse(typing_extensions.TypedDict, total=False):
+    deploymentGroups: _list[DeploymentGroup]
+    nextPageToken: str
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListDeploymentsResponse(typing_extensions.TypedDict, total=False):
@@ -239,6 +366,7 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     deploymentMetadata: DeploymentOperationMetadata
     endTime: str
     previewMetadata: PreviewOperationMetadata
+    provisionDeploymentGroupMetadata: ProvisionDeploymentGroupOperationMetadata
     requestedCancellation: bool
     statusMessage: str
     target: str
@@ -347,6 +475,26 @@ class ProviderConfig(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class ProvisionDeploymentGroupOperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    deploymentUnitProgresses: _list[DeploymentUnitProgress]
+    step: typing_extensions.Literal[
+        "PROVISION_DEPLOYMENT_GROUP_STEP_UNSPECIFIED",
+        "VALIDATING_DEPLOYMENT_GROUP",
+        "ASSOCIATING_DEPLOYMENTS_TO_DEPLOYMENT_GROUP",
+        "PROVISIONING_DEPLOYMENT_UNITS",
+        "DISASSOCIATING_DEPLOYMENTS_FROM_DEPLOYMENT_GROUP",
+        "SUCCEEDED",
+        "FAILED",
+        "DEPROVISIONING_DEPLOYMENT_UNITS",
+    ]
+
+@typing.type_check_only
+class ProvisionDeploymentGroupRequest(typing_extensions.TypedDict, total=False):
+    deploymentSpecs: dict[str, typing.Any]
+
+@typing.type_check_only
 class Resource(typing_extensions.TypedDict, total=False):
     caiAssets: dict[str, typing.Any]
     intent: typing_extensions.Literal[
@@ -452,6 +600,7 @@ class Status(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class TerraformBlueprint(typing_extensions.TypedDict, total=False):
+    externalValues: dict[str, typing.Any]
     gcsSource: str
     gitSource: GitSource
     inputValues: dict[str, typing.Any]

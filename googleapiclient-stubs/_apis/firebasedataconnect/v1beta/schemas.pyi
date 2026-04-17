@@ -209,6 +209,7 @@ class PostgreSql(typing_extensions.TypedDict, total=False):
     cloudSql: CloudSqlInstance
     database: str
     ephemeral: bool
+    schema: str
     schemaMigration: typing_extensions.Literal[
         "SQL_SCHEMA_MIGRATION_UNSPECIFIED", "MIGRATE_COMPATIBLE"
     ]

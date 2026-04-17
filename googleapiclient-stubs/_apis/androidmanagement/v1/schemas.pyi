@@ -1900,7 +1900,6 @@ class StopLostModeUserAttemptEvent(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SystemUpdate(typing_extensions.TypedDict, total=False):
-    allowedDaysWithoutUpdate: int
     endMinutes: int
     freezePeriods: _list[FreezePeriod]
     startMinutes: int

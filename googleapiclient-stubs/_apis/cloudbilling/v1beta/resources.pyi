@@ -208,6 +208,12 @@ class CloudbillingResource(googleapiclient.discovery.Resource):
         def price(self) -> PriceResource: ...
         def prices(self) -> PricesResource: ...
 
+    @typing.type_check_only
+    class V1betaResource(googleapiclient.discovery.Resource):
+        def generateInsights(
+            self, *, body: GenerateInsightsRequest = ..., **kwargs: typing.Any
+        ) -> GenerateInsightsResponseHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[
@@ -223,6 +229,15 @@ class CloudbillingResource(googleapiclient.discovery.Resource):
     def billingAccounts(self) -> BillingAccountsResource: ...
     def skuGroups(self) -> SkuGroupsResource: ...
     def skus(self) -> SkusResource: ...
+    def v1beta(self) -> V1betaResource: ...
+
+@typing.type_check_only
+class GenerateInsightsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GenerateInsightsResponse: ...
 
 @typing.type_check_only
 class GoogleCloudBillingBillingaccountpricesV1betaBillingAccountPriceHttpRequest(

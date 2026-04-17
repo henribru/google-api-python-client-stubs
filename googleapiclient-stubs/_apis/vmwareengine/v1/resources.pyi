@@ -129,6 +129,7 @@ class VMwareEngineResource(googleapiclient.discovery.Resource):
                     body: NetworkPeering = ...,
                     networkPeeringId: str = ...,
                     requestId: str = ...,
+                    validateOnly: bool = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
@@ -159,6 +160,7 @@ class VMwareEngineResource(googleapiclient.discovery.Resource):
                     body: NetworkPeering = ...,
                     requestId: str = ...,
                     updateMask: str = ...,
+                    validateOnly: bool = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def peeringRoutes(self) -> PeeringRoutesResource: ...
@@ -174,6 +176,7 @@ class VMwareEngineResource(googleapiclient.discovery.Resource):
                         body: ExternalAccessRule = ...,
                         externalAccessRuleId: str = ...,
                         requestId: str = ...,
+                        validateOnly: bool = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def delete(
@@ -204,6 +207,7 @@ class VMwareEngineResource(googleapiclient.discovery.Resource):
                         body: ExternalAccessRule = ...,
                         requestId: str = ...,
                         updateMask: str = ...,
+                        validateOnly: bool = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
 
@@ -214,6 +218,7 @@ class VMwareEngineResource(googleapiclient.discovery.Resource):
                     body: NetworkPolicy = ...,
                     networkPolicyId: str = ...,
                     requestId: str = ...,
+                    validateOnly: bool = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
@@ -257,6 +262,7 @@ class VMwareEngineResource(googleapiclient.discovery.Resource):
                     body: NetworkPolicy = ...,
                     requestId: str = ...,
                     updateMask: str = ...,
+                    validateOnly: bool = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def externalAccessRules(self) -> ExternalAccessRulesResource: ...
@@ -415,6 +421,7 @@ class VMwareEngineResource(googleapiclient.discovery.Resource):
                         body: ExternalAddress = ...,
                         externalAddressId: str = ...,
                         requestId: str = ...,
+                        validateOnly: bool = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def delete(
@@ -445,6 +452,7 @@ class VMwareEngineResource(googleapiclient.discovery.Resource):
                         body: ExternalAddress = ...,
                         requestId: str = ...,
                         updateMask: str = ...,
+                        validateOnly: bool = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
 
@@ -701,6 +709,7 @@ class VMwareEngineResource(googleapiclient.discovery.Resource):
                     body: PrivateCloud = ...,
                     requestId: str = ...,
                     updateMask: str = ...,
+                    validateOnly: bool = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def privateCloudDeletionNow(
@@ -801,6 +810,7 @@ class VMwareEngineResource(googleapiclient.discovery.Resource):
                     body: PrivateConnection = ...,
                     privateConnectionId: str = ...,
                     requestId: str = ...,
+                    validateOnly: bool = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
@@ -831,6 +841,7 @@ class VMwareEngineResource(googleapiclient.discovery.Resource):
                     body: PrivateConnection = ...,
                     requestId: str = ...,
                     updateMask: str = ...,
+                    validateOnly: bool = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def peeringRoutes(self) -> PeeringRoutesResource: ...
@@ -843,6 +854,7 @@ class VMwareEngineResource(googleapiclient.discovery.Resource):
                     parent: str,
                     body: VmwareEngineNetwork = ...,
                     requestId: str = ...,
+                    validateOnly: bool = ...,
                     vmwareEngineNetworkId: str = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -879,6 +891,7 @@ class VMwareEngineResource(googleapiclient.discovery.Resource):
                     body: VmwareEngineNetwork = ...,
                     requestId: str = ...,
                     updateMask: str = ...,
+                    validateOnly: bool = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
 

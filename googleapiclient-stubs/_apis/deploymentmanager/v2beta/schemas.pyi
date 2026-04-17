@@ -160,6 +160,15 @@ class FirewallPolicyRuleOperationMetadata(typing_extensions.TypedDict, total=Fal
     allocatedPriority: int
 
 @typing.type_check_only
+class GetVersionOperationMetadata(typing_extensions.TypedDict, total=False):
+    inlineSbomInfo: GetVersionOperationMetadataSbomInfo
+
+@typing.type_check_only
+class GetVersionOperationMetadataSbomInfo(typing_extensions.TypedDict, total=False):
+    currentComponentVersions: dict[str, typing.Any]
+    targetComponentVersions: dict[str, typing.Any]
+
+@typing.type_check_only
 class GlobalSetPolicyRequest(typing_extensions.TypedDict, total=False):
     bindings: _list[Binding]
     etag: str
@@ -223,6 +232,7 @@ class Operation(typing_extensions.TypedDict, total=False):
     endTime: str
     error: dict[str, typing.Any]
     firewallPolicyRuleOperationMetadata: FirewallPolicyRuleOperationMetadata
+    getVersionOperationMetadata: GetVersionOperationMetadata
     httpErrorMessage: str
     httpErrorStatusCode: int
     id: str

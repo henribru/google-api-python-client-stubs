@@ -118,7 +118,9 @@ class ExtendedMetadataSchema(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class FunctionalType(typing_extensions.TypedDict, total=False):
-    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "AGENT", "MCP_SERVER"]
+    type: typing_extensions.Literal[
+        "TYPE_UNSPECIFIED", "AGENT", "MCP_SERVER", "ENDPOINT"
+    ]
 
 @typing.type_check_only
 class Identity(typing_extensions.TypedDict, total=False):

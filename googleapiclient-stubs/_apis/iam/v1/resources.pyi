@@ -128,13 +128,6 @@ class IamResource(googleapiclient.discovery.Resource):
                             updateMask: str = ...,
                             **kwargs: typing.Any,
                         ) -> WorkforcePoolProviderScimTokenHttpRequest: ...
-                        def undelete(
-                            self,
-                            *,
-                            name: str,
-                            body: UndeleteWorkforcePoolProviderScimTokenRequest = ...,
-                            **kwargs: typing.Any,
-                        ) -> WorkforcePoolProviderScimTokenHttpRequest: ...
 
                     def create(
                         self,
@@ -737,6 +730,13 @@ class IamResource(googleapiclient.discovery.Resource):
                     def keys(self) -> KeysResource: ...
                     def operations(self) -> OperationsResource: ...
 
+                def addAttestationRule(
+                    self,
+                    *,
+                    resource: str,
+                    body: AddAttestationRuleRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
                 def create(
                     self,
                     *,
@@ -772,12 +772,40 @@ class IamResource(googleapiclient.discovery.Resource):
                     previous_request: ListWorkloadIdentityPoolsResponseHttpRequest,
                     previous_response: ListWorkloadIdentityPoolsResponse,
                 ) -> ListWorkloadIdentityPoolsResponseHttpRequest | None: ...
+                def listAttestationRules(
+                    self,
+                    *,
+                    resource: str,
+                    filter: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListAttestationRulesResponseHttpRequest: ...
+                def listAttestationRules_next(
+                    self,
+                    previous_request: ListAttestationRulesResponseHttpRequest,
+                    previous_response: ListAttestationRulesResponse,
+                ) -> ListAttestationRulesResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
                     name: str,
                     body: WorkloadIdentityPool = ...,
                     updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def removeAttestationRule(
+                    self,
+                    *,
+                    resource: str,
+                    body: RemoveAttestationRuleRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def setAttestationRules(
+                    self,
+                    *,
+                    resource: str,
+                    body: SetAttestationRulesRequest = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def setIamPolicy(

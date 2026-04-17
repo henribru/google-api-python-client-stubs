@@ -5,8 +5,71 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class AgenticQueryInfo(typing_extensions.TypedDict, total=False):
+    columns: str
+    filter: str
+    groupBy: str
+    limit: int
+    orderBy: str
+    parents: _list[str]
+    view: str
+
+@typing.type_check_only
+class Array(typing_extensions.TypedDict, total=False):
+    element: _list[ValueProto]
+
+@typing.type_check_only
+class BillingData(typing_extensions.TypedDict, total=False):
+    columnInfo: _list[ColumnInfo]
+    rows: _list[Row]
+
+@typing.type_check_only
+class BillingDataResource(typing_extensions.TypedDict, total=False):
+    billingAccount: str
+    resource: str
+
+@typing.type_check_only
+class ColumnInfo(typing_extensions.TypedDict, total=False):
+    column: str
+
+@typing.type_check_only
+class DataSet(typing_extensions.TypedDict, total=False):
+    billingData: BillingData
+    queryInfo: AgenticQueryInfo
+    suggestedChart: SuggestedChart
+
+@typing.type_check_only
+class Datetime(typing_extensions.TypedDict, total=False):
+    bitFieldDatetimeSeconds: str
+    nanos: int
+
+@typing.type_check_only
 class Decimal(typing_extensions.TypedDict, total=False):
     value: str
+
+@typing.type_check_only
+class FinalResult(typing_extensions.TypedDict, total=False):
+    dataSets: _list[DataSet]
+    fullAnalysis: str
+    insights: _list[Insight]
+    interopLinks: _list[InteropLink]
+    suggestedQueries: _list[SuggestedQuery]
+    summary: str
+
+@typing.type_check_only
+class GenerateInsightsRequest(typing_extensions.TypedDict, total=False):
+    filter: str
+    overriddenMaxIterationCounts: int
+    parents: _list[BillingDataResource]
+    prompt: str
+    userContext: UserContext
+
+@typing.type_check_only
+class GenerateInsightsResponse(typing_extensions.TypedDict, total=False):
+    finalResult: FinalResult
+    rejection: Rejection
+    summaryChunk: str
+    thoughtChunk: str
 
 @typing.type_check_only
 class GoogleCloudBillingBillingaccountpricesV1betaAggregationInfo(
@@ -415,7 +478,104 @@ class GoogleCloudBillingSkugroupskusV1betaTaxonomyCategory(
     category: str
 
 @typing.type_check_only
+class Insight(typing_extensions.TypedDict, total=False):
+    description: str
+    severity: typing_extensions.Literal[
+        "SEVERITY_UNSPECIFIED", "INFO", "WARNING", "CRITICAL"
+    ]
+    title: str
+
+@typing.type_check_only
+class InteropLink(typing_extensions.TypedDict, total=False):
+    label: str
+    linkType: typing_extensions.Literal[
+        "LINK_TYPE_UNSPECIFIED", "COST_REPORT", "BQE_QUERY", "FINOPS_HUB"
+    ]
+    url: str
+
+@typing.type_check_only
+class Map(typing_extensions.TypedDict, total=False):
+    entry: _list[MapEntry]
+
+@typing.type_check_only
+class MapEntry(typing_extensions.TypedDict, total=False):
+    key: ValueProto
+    value: ValueProto
+
+@typing.type_check_only
 class Money(typing_extensions.TypedDict, total=False):
     currencyCode: str
     nanos: int
     units: str
+
+@typing.type_check_only
+class Range(typing_extensions.TypedDict, total=False):
+    end: ValueProto
+    start: ValueProto
+
+@typing.type_check_only
+class Rejection(typing_extensions.TypedDict, total=False):
+    displayMessage: str
+    reason: typing_extensions.Literal["REASON_UNSPECIFIED", "EXPLICIT_OUT_OF_SCOPE"]
+
+@typing.type_check_only
+class Row(typing_extensions.TypedDict, total=False):
+    values: _list[ValueProto]
+
+@typing.type_check_only
+class Struct(typing_extensions.TypedDict, total=False):
+    field: _list[ValueProto]
+
+@typing.type_check_only
+class SuggestedChart(typing_extensions.TypedDict, total=False):
+    chartTitle: str
+    chartType: typing_extensions.Literal[
+        "CHART_TYPE_UNSPECIFIED", "BAR_CHART", "UNCHARTABLE", "LINE_CHART", "AREA_CHART"
+    ]
+    seriesField: str
+    xAxisField: str
+    xAxisLabel: str
+    yAxisField: str
+    yAxisLabel: str
+
+@typing.type_check_only
+class SuggestedQuery(typing_extensions.TypedDict, total=False):
+    query: str
+
+@typing.type_check_only
+class UserContext(typing_extensions.TypedDict, total=False):
+    persona: typing_extensions.Literal[
+        "PERSONA_UNSPECIFIED", "FINOPS_MANAGER", "DEVELOPER"
+    ]
+    role: str
+
+@typing.type_check_only
+class ValueProto(typing_extensions.TypedDict, total=False):
+    ValueProtoSwitchMustHaveADefault: bool
+    arrayValue: Array
+    bignumericValue: str
+    boolValue: bool
+    bytesValue: str
+    dateValue: int
+    datetimeValue: Datetime
+    doubleValue: float
+    enumValue: int
+    floatValue: float
+    geographyValue: str
+    int32Value: int
+    int64Value: str
+    intervalValue: str
+    jsonValue: str
+    mapValue: Map
+    numericValue: str
+    protoValue: str
+    rangeValue: Range
+    stringValue: str
+    structValue: Struct
+    timeValue: str
+    timestampPicoValue: str
+    timestampValue: str
+    tokenlistValue: str
+    uint32Value: int
+    uint64Value: str
+    uuidValue: str

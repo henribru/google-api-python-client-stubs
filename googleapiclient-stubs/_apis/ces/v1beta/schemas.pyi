@@ -61,6 +61,12 @@ class AgentRemoteDialogflowAgent(typing_extensions.TypedDict, total=False):
     respectResponseInterruptionSettings: bool
 
 @typing.type_check_only
+class AgentTool(typing_extensions.TypedDict, total=False):
+    description: str
+    name: str
+    rootAgent: str
+
+@typing.type_check_only
 class AgentTransfer(typing_extensions.TypedDict, total=False):
     displayName: str
     targetAgent: str
@@ -153,6 +159,7 @@ class App(typing_extensions.TypedDict, total=False):
     deploymentCount: int
     description: str
     displayName: str
+    errorHandlingSettings: ErrorHandlingSettings
     etag: str
     evaluationMetricsThresholds: EvaluationMetricsThresholds
     evaluationPersonas: _list[EvaluationPersona]
@@ -293,7 +300,11 @@ class ChannelProfilePersonaProperty(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ChannelProfileWebWidgetConfig(typing_extensions.TypedDict, total=False):
     modality: typing_extensions.Literal[
-        "MODALITY_UNSPECIFIED", "CHAT_AND_VOICE", "VOICE_ONLY", "CHAT_ONLY"
+        "MODALITY_UNSPECIFIED",
+        "CHAT_AND_VOICE",
+        "VOICE_ONLY",
+        "CHAT_ONLY",
+        "CHAT_VOICE_AND_VIDEO",
     ]
     securitySettings: ChannelProfileWebWidgetConfigSecuritySettings
     theme: typing_extensions.Literal["THEME_UNSPECIFIED", "LIGHT", "DARK"]
@@ -311,6 +322,7 @@ class ChannelProfileWebWidgetConfigSecuritySettings(
 @typing.type_check_only
 class Chunk(typing_extensions.TypedDict, total=False):
     agentTransfer: AgentTransfer
+    blob: Blob
     defaultVariables: dict[str, typing.Any]
     image: Image
     payload: dict[str, typing.Any]
@@ -556,6 +568,22 @@ class EndUserAuthConfigOauth2JwtBearerConfig(typing_extensions.TypedDict, total=
     clientKey: str
     issuer: str
     subject: str
+
+@typing.type_check_only
+class EndpointControlPolicy(typing_extensions.TypedDict, total=False):
+    allowedOrigins: _list[str]
+    enforcementScope: typing_extensions.Literal[
+        "ENFORCEMENT_SCOPE_UNSPECIFIED", "VPCSC_ONLY", "ALWAYS"
+    ]
+
+@typing.type_check_only
+class ErrorHandlingSettings(typing_extensions.TypedDict, total=False):
+    errorHandlingStrategy: typing_extensions.Literal[
+        "ERROR_HANDLING_STRATEGY_UNSPECIFIED",
+        "NONE",
+        "FALLBACK_RESPONSE",
+        "END_SESSION",
+    ]
 
 @typing.type_check_only
 class Evaluation(typing_extensions.TypedDict, total=False):
@@ -1011,6 +1039,7 @@ class Example(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ExecuteToolRequest(typing_extensions.TypedDict, total=False):
     args: dict[str, typing.Any]
+    context: dict[str, typing.Any]
     tool: str
     toolsetTool: ToolsetTool
     variables: dict[str, typing.Any]
@@ -1024,6 +1053,7 @@ class ExecuteToolResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ExportAppRequest(typing_extensions.TypedDict, total=False):
+    appVersion: str
     exportFormat: typing_extensions.Literal["EXPORT_FORMAT_UNSPECIFIED", "JSON", "YAML"]
     gcsUri: str
 
@@ -1037,6 +1067,16 @@ class ExpressionCondition(typing_extensions.TypedDict, total=False):
     expression: str
 
 @typing.type_check_only
+class FileContext(typing_extensions.TypedDict, total=False):
+    fileBytes: FileContextFileBytes
+
+@typing.type_check_only
+class FileContextFileBytes(typing_extensions.TypedDict, total=False):
+    data: str
+    fileName: str
+    mimeType: str
+
+@typing.type_check_only
 class FileSearchTool(typing_extensions.TypedDict, total=False):
     corpusType: typing_extensions.Literal[
         "CORPUS_TYPE_UNSPECIFIED", "USER_OWNED", "FULLY_MANAGED"
@@ -1046,12 +1086,100 @@ class FileSearchTool(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
+class GenerateAppResourceRequest(typing_extensions.TypedDict, total=False):
+    agent: Agent
+    appGenerationConfig: GenerateAppResourceRequestAppGenerationConfig
+    evaluationGenerationConfig: GenerateAppResourceRequestEvaluationGenerationConfig
+    evaluationPersonasGenerationConfig: (
+        GenerateAppResourceRequestEvaluationPersonasGenerationConfig
+    )
+    hillClimbingFixConfig: GenerateAppResourceRequestHillClimbingFixConfig
+    qualityReportGenerationConfig: (
+        GenerateAppResourceRequestQualityReportGenerationConfig
+    )
+    refineInstructions: _list[GenerateAppResourceRequestRefineInstructions]
+    tool: Tool
+    toolGenerationConfig: GenerateAppResourceRequestToolGenerationConfig
+    toolset: Toolset
+
+@typing.type_check_only
+class GenerateAppResourceRequestAppGenerationConfig(
+    typing_extensions.TypedDict, total=False
+):
+    context: str
+    datasetId: str
+    fileContexts: _list[FileContext]
+    gcsLocation: str
+    generateEvaluations: bool
+
+@typing.type_check_only
+class GenerateAppResourceRequestEvaluationGenerationConfig(
+    typing_extensions.TypedDict, total=False
+):
+    datasetId: str
+
+@typing.type_check_only
+class GenerateAppResourceRequestEvaluationPersonasGenerationConfig(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GenerateAppResourceRequestHillClimbingFixConfig(
+    typing_extensions.TypedDict, total=False
+):
+    qualityReport: QualityReport
+
+@typing.type_check_only
+class GenerateAppResourceRequestQualityReportGenerationConfig(
+    typing_extensions.TypedDict, total=False
+):
+    evaluationRun: str
+
+@typing.type_check_only
+class GenerateAppResourceRequestRefineInstructions(
+    typing_extensions.TypedDict, total=False
+):
+    endIndex: str
+    fieldMask: str
+    instructions: str
+    startIndex: str
+
+@typing.type_check_only
+class GenerateAppResourceRequestToolGenerationConfig(
+    typing_extensions.TypedDict, total=False
+):
+    context: str
+    fileContexts: _list[FileContext]
+    openApiToolsetGenerationConfig: (
+        GenerateAppResourceRequestToolGenerationConfigOpenApiToolsetGenerationConfig
+    )
+
+@typing.type_check_only
+class GenerateAppResourceRequestToolGenerationConfigOpenApiToolsetGenerationConfig(
+    typing_extensions.TypedDict, total=False
+):
+    operationGenerationConfigs: _list[
+        GenerateAppResourceRequestToolGenerationConfigOpenApiToolsetGenerationConfigOperationGenerationConfig
+    ]
+    uri: str
+
+@typing.type_check_only
+class GenerateAppResourceRequestToolGenerationConfigOpenApiToolsetGenerationConfigOperationGenerationConfig(
+    typing_extensions.TypedDict, total=False
+):
+    method: str
+    path: str
+    requestJson: str
+    responseJson: str
+
+@typing.type_check_only
 class GenerateAppResourceResponse(typing_extensions.TypedDict, total=False):
     agent: Agent
     appResources: GenerateAppResourceResponseAppResources
     appSnapshot: AppSnapshot
     evaluations: GenerateAppResourceResponseEvaluations
     generateResultInfo: GenerateAppResourceResponseGenerateResultInfo
+    qualityReport: QualityReport
     tools: GenerateAppResourceResponseTools
     toolset: Toolset
 
@@ -1077,6 +1205,7 @@ class GenerateAppResourceResponseTools(typing_extensions.TypedDict, total=False)
 @typing.type_check_only
 class GenerateChatTokenRequest(typing_extensions.TypedDict, total=False):
     deployment: str
+    liveHandoffEnabled: bool
     recaptchaToken: str
 
 @typing.type_check_only
@@ -1416,6 +1545,7 @@ class LoggingSettings(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class McpTool(typing_extensions.TypedDict, total=False):
     apiAuthentication: ApiAuthentication
+    customHeaders: dict[str, typing.Any]
     description: str
     inputSchema: Schema
     name: str
@@ -1427,6 +1557,7 @@ class McpTool(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class McpToolset(typing_extensions.TypedDict, total=False):
     apiAuthentication: ApiAuthentication
+    customHeaders: dict[str, typing.Any]
     serverAddress: str
     serviceDirectoryConfig: ServiceDirectoryConfig
     tlsConfig: TlsConfig
@@ -1584,6 +1715,23 @@ class PythonFunction(typing_extensions.TypedDict, total=False):
     pythonCode: str
 
 @typing.type_check_only
+class QualityReport(typing_extensions.TypedDict, total=False):
+    evaluationRuns: _list[str]
+    generalIssues: _list[QualityReportIssue]
+    issues: _list[QualityReportAgentIssues]
+
+@typing.type_check_only
+class QualityReportAgentIssues(typing_extensions.TypedDict, total=False):
+    agent: str
+    issues: _list[QualityReportIssue]
+
+@typing.type_check_only
+class QualityReportIssue(typing_extensions.TypedDict, total=False):
+    description: str
+    occurrenceCount: int
+    proposedSolution: str
+
+@typing.type_check_only
 class RedactionConfig(typing_extensions.TypedDict, total=False):
     deidentifyTemplate: str
     enableRedaction: bool
@@ -1688,6 +1836,14 @@ class Schema(typing_extensions.TypedDict, total=False):
     uniqueItems: bool
 
 @typing.type_check_only
+class SecuritySettings(typing_extensions.TypedDict, total=False):
+    createTime: str
+    endpointControlPolicy: EndpointControlPolicy
+    etag: str
+    name: str
+    updateTime: str
+
+@typing.type_check_only
 class ServiceAccountAuthConfig(typing_extensions.TypedDict, total=False):
     scopes: _list[str]
     serviceAccount: str
@@ -1702,12 +1858,14 @@ class ServiceDirectoryConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SessionConfig(typing_extensions.TypedDict, total=False):
     deployment: str
+    enableTextStreaming: bool
     entryAgent: str
     historicalContexts: _list[Message]
     inputAudioConfig: InputAudioConfig
     outputAudioConfig: OutputAudioConfig
     remoteDialogflowQueryParameters: SessionConfigRemoteDialogflowQueryParameters
     timeZone: str
+    useToolFakes: bool
 
 @typing.type_check_only
 class SessionConfigRemoteDialogflowQueryParameters(
@@ -1796,6 +1954,7 @@ class TlsConfigCaCert(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Tool(typing_extensions.TypedDict, total=False):
+    agentTool: AgentTool
     clientFunction: ClientFunction
     connectorTool: ConnectorTool
     createTime: str
@@ -1909,15 +2068,28 @@ class TriggerActionTransferAgent(typing_extensions.TypedDict, total=False):
     agent: str
 
 @typing.type_check_only
+class UploadEvaluationAudioRequest(typing_extensions.TypedDict, total=False):
+    audioContent: str
+    previousAudioGcsUri: str
+
+@typing.type_check_only
+class UploadEvaluationAudioResponse(typing_extensions.TypedDict, total=False):
+    audioGcsUri: str
+    duration: str
+    transcript: str
+
+@typing.type_check_only
 class WebSearchQuery(typing_extensions.TypedDict, total=False):
     query: str
     uri: str
 
 @typing.type_check_only
 class WidgetTool(typing_extensions.TypedDict, total=False):
+    dataMapping: WidgetToolDataMapping
     description: str
     name: str
     parameters: Schema
+    uiConfig: dict[str, typing.Any]
     widgetType: typing_extensions.Literal[
         "WIDGET_TYPE_UNSPECIFIED",
         "CUSTOM",
@@ -1933,3 +2105,13 @@ class WidgetTool(typing_extensions.TypedDict, total=False):
         "APPOINTMENT_SCHEDULER",
         "CONTACT_FORM",
     ]
+
+@typing.type_check_only
+class WidgetToolDataMapping(typing_extensions.TypedDict, total=False):
+    fieldMappings: dict[str, typing.Any]
+    mode: typing_extensions.Literal[
+        "MODE_UNSPECIFIED", "FIELD_MAPPING", "PYTHON_SCRIPT"
+    ]
+    pythonFunction: PythonFunction
+    pythonScript: str
+    sourceToolName: str

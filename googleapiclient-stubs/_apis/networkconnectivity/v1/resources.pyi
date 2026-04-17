@@ -593,6 +593,27 @@ class NetworkconnectivityResource(googleapiclient.discovery.Resource):
                 ) -> ListRegionalEndpointsResponseHttpRequest | None: ...
 
             @typing.type_check_only
+            class RemoteTransportProfilesResource(googleapiclient.discovery.Resource):
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> RemoteTransportProfileHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListRemoteTransportProfilesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListRemoteTransportProfilesResponseHttpRequest,
+                    previous_response: ListRemoteTransportProfilesResponse,
+                ) -> ListRemoteTransportProfilesResponseHttpRequest | None: ...
+
+            @typing.type_check_only
             class ServiceClassesResource(googleapiclient.discovery.Resource):
                 def delete(
                     self,
@@ -605,13 +626,6 @@ class NetworkconnectivityResource(googleapiclient.discovery.Resource):
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> ServiceClassHttpRequest: ...
-                def getIamPolicy(
-                    self,
-                    *,
-                    resource: str,
-                    options_requestedPolicyVersion: int = ...,
-                    **kwargs: typing.Any,
-                ) -> PolicyHttpRequest: ...
                 def list(
                     self,
                     *,
@@ -636,20 +650,6 @@ class NetworkconnectivityResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
-                def setIamPolicy(
-                    self,
-                    *,
-                    resource: str,
-                    body: SetIamPolicyRequest = ...,
-                    **kwargs: typing.Any,
-                ) -> PolicyHttpRequest: ...
-                def testIamPermissions(
-                    self,
-                    *,
-                    resource: str,
-                    body: TestIamPermissionsRequest = ...,
-                    **kwargs: typing.Any,
-                ) -> TestIamPermissionsResponseHttpRequest: ...
 
             @typing.type_check_only
             class ServiceConnectionMapsResource(googleapiclient.discovery.Resource):
@@ -673,13 +673,6 @@ class NetworkconnectivityResource(googleapiclient.discovery.Resource):
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> ServiceConnectionMapHttpRequest: ...
-                def getIamPolicy(
-                    self,
-                    *,
-                    resource: str,
-                    options_requestedPolicyVersion: int = ...,
-                    **kwargs: typing.Any,
-                ) -> PolicyHttpRequest: ...
                 def list(
                     self,
                     *,
@@ -704,20 +697,6 @@ class NetworkconnectivityResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
-                def setIamPolicy(
-                    self,
-                    *,
-                    resource: str,
-                    body: SetIamPolicyRequest = ...,
-                    **kwargs: typing.Any,
-                ) -> PolicyHttpRequest: ...
-                def testIamPermissions(
-                    self,
-                    *,
-                    resource: str,
-                    body: TestIamPermissionsRequest = ...,
-                    **kwargs: typing.Any,
-                ) -> TestIamPermissionsResponseHttpRequest: ...
 
             @typing.type_check_only
             class ServiceConnectionPoliciesResource(googleapiclient.discovery.Resource):
@@ -752,13 +731,6 @@ class NetworkconnectivityResource(googleapiclient.discovery.Resource):
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> ServiceConnectionPolicyHttpRequest: ...
-                def getIamPolicy(
-                    self,
-                    *,
-                    resource: str,
-                    options_requestedPolicyVersion: int = ...,
-                    **kwargs: typing.Any,
-                ) -> PolicyHttpRequest: ...
                 def list(
                     self,
                     *,
@@ -783,20 +755,6 @@ class NetworkconnectivityResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
-                def setIamPolicy(
-                    self,
-                    *,
-                    resource: str,
-                    body: SetIamPolicyRequest = ...,
-                    **kwargs: typing.Any,
-                ) -> PolicyHttpRequest: ...
-                def testIamPermissions(
-                    self,
-                    *,
-                    resource: str,
-                    body: TestIamPermissionsRequest = ...,
-                    **kwargs: typing.Any,
-                ) -> TestIamPermissionsResponseHttpRequest: ...
 
             @typing.type_check_only
             class ServiceConnectionTokensResource(googleapiclient.discovery.Resource):
@@ -899,6 +857,48 @@ class NetworkconnectivityResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
 
+            @typing.type_check_only
+            class TransportsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: Transport = ...,
+                    requestId: str = ...,
+                    transportId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, requestId: str = ..., **kwargs: typing.Any
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> TransportHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListTransportsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListTransportsResponseHttpRequest,
+                    previous_response: ListTransportsResponse,
+                ) -> ListTransportsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: Transport = ...,
+                    requestId: str = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+
             def checkConsumerConfig(
                 self,
                 *,
@@ -935,6 +935,7 @@ class NetworkconnectivityResource(googleapiclient.discovery.Resource):
             ) -> MulticloudDataTransferSupportedServicesResource: ...
             def operations(self) -> OperationsResource: ...
             def regionalEndpoints(self) -> RegionalEndpointsResource: ...
+            def remoteTransportProfiles(self) -> RemoteTransportProfilesResource: ...
             def serviceClasses(self) -> ServiceClassesResource: ...
             def serviceConnectionMaps(self) -> ServiceConnectionMapsResource: ...
             def serviceConnectionPolicies(
@@ -942,6 +943,7 @@ class NetworkconnectivityResource(googleapiclient.discovery.Resource):
             ) -> ServiceConnectionPoliciesResource: ...
             def serviceConnectionTokens(self) -> ServiceConnectionTokensResource: ...
             def spokes(self) -> SpokesResource: ...
+            def transports(self) -> TransportsResource: ...
 
         def locations(self) -> LocationsResource: ...
 
@@ -1126,6 +1128,14 @@ class ListRegionalEndpointsResponseHttpRequest(googleapiclient.http.HttpRequest)
     ) -> ListRegionalEndpointsResponse: ...
 
 @typing.type_check_only
+class ListRemoteTransportProfilesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListRemoteTransportProfilesResponse: ...
+
+@typing.type_check_only
 class ListRouteTablesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -1184,6 +1194,14 @@ class ListSpokesResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListSpokesResponse: ...
 
 @typing.type_check_only
+class ListTransportsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListTransportsResponse: ...
+
+@typing.type_check_only
 class LocationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -1240,6 +1258,14 @@ class RegionalEndpointHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> RegionalEndpoint: ...
+
+@typing.type_check_only
+class RemoteTransportProfileHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> RemoteTransportProfile: ...
 
 @typing.type_check_only
 class RouteHttpRequest(googleapiclient.http.HttpRequest):
@@ -1304,3 +1330,11 @@ class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> TestIamPermissionsResponse: ...
+
+@typing.type_check_only
+class TransportHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> Transport: ...

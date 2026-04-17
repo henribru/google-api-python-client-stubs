@@ -84,8 +84,20 @@ class ImportInstanceRequest(typing_extensions.TypedDict, total=False):
     gcsUri: str
 
 @typing.type_check_only
+class IngressIpAllowlistConfig(typing_extensions.TypedDict, total=False):
+    allowlistRules: _list[IngressIpAllowlistRule]
+    enabled: bool
+    googleServicesEnabled: bool
+
+@typing.type_check_only
+class IngressIpAllowlistRule(typing_extensions.TypedDict, total=False):
+    description: str
+    ipRange: str
+
+@typing.type_check_only
 class Instance(typing_extensions.TypedDict, total=False):
     adminSettings: AdminSettings
+    catalogIntegrationOptOut: bool
     classType: typing_extensions.Literal["CLASS_TYPE_UNSPECIFIED", "R1", "P1"]
     consumerNetwork: str
     controlledEgressConfig: ControlledEgressConfig
@@ -97,6 +109,7 @@ class Instance(typing_extensions.TypedDict, total=False):
     encryptionConfig: EncryptionConfig
     fipsEnabled: bool
     geminiEnabled: bool
+    ingressIpAllowlistConfig: IngressIpAllowlistConfig
     ingressPrivateIp: str
     ingressPublicIp: str
     lastDenyMaintenancePeriod: DenyMaintenancePeriod

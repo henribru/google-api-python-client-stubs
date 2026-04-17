@@ -2424,17 +2424,6 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                     body: GoogleCloudDiscoveryengineV1betaBatchUpdateUserLicensesRequest = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
-                def create(
-                    self,
-                    *,
-                    parent: str,
-                    body: GoogleCloudDiscoveryengineV1betaUserStore = ...,
-                    userStoreId: str = ...,
-                    **kwargs: typing.Any,
-                ) -> GoogleCloudDiscoveryengineV1betaUserStoreHttpRequest: ...
-                def delete(
-                    self, *, name: str, **kwargs: typing.Any
-                ) -> GoogleLongrunningOperationHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> GoogleCloudDiscoveryengineV1betaUserStoreHttpRequest: ...

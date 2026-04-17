@@ -346,6 +346,57 @@ class CloudAlloyDBAdminResource(googleapiclient.discovery.Resource):
                 def users(self) -> UsersResource: ...
 
             @typing.type_check_only
+            class EndpointsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: Endpoint = ...,
+                    endpointId: str = ...,
+                    requestId: str = ...,
+                    validateOnly: bool = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self,
+                    *,
+                    name: str,
+                    etag: str = ...,
+                    requestId: str = ...,
+                    validateOnly: bool = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EndpointHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListEndpointsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListEndpointsResponseHttpRequest,
+                    previous_response: ListEndpointsResponse,
+                ) -> ListEndpointsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: Endpoint = ...,
+                    allowMissing: bool = ...,
+                    requestId: str = ...,
+                    updateMask: str = ...,
+                    validateOnly: bool = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+
+            @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def cancel(
                     self,
@@ -415,6 +466,7 @@ class CloudAlloyDBAdminResource(googleapiclient.discovery.Resource):
             ) -> GoogleCloudLocationListLocationsResponseHttpRequest | None: ...
             def backups(self) -> BackupsResource: ...
             def clusters(self) -> ClustersResource: ...
+            def endpoints(self) -> EndpointsResource: ...
             def operations(self) -> OperationsResource: ...
             def supportedDatabaseFlags(self) -> SupportedDatabaseFlagsResource: ...
 
@@ -467,6 +519,14 @@ class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Empty: ...
 
 @typing.type_check_only
+class EndpointHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> Endpoint: ...
+
+@typing.type_check_only
 class GoogleCloudLocationListLocationsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -507,6 +567,14 @@ class ListClustersResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListClustersResponse: ...
+
+@typing.type_check_only
+class ListEndpointsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListEndpointsResponse: ...
 
 @typing.type_check_only
 class ListInstancesResponseHttpRequest(googleapiclient.http.HttpRequest):

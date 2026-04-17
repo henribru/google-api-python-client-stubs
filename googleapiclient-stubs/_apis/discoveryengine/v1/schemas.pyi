@@ -416,6 +416,13 @@ class GoogleCloudDiscoveryengineV1ActionConfig(
     jsonActionParams: str
     serviceName: str
     useStaticSecrets: bool
+    userDefinedScopesMapping: dict[str, typing.Any]
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1ActionConfigScopeList(
+    typing_extensions.TypedDict, total=False
+):
+    scopes: _list[str]
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1AdvancedCompleteQueryRequest(
@@ -540,6 +547,20 @@ class GoogleCloudDiscoveryengineV1AdvancedSiteSearchConfig(
 ):
     disableAutomaticRefresh: bool
     disableInitialIndex: bool
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1AgentGatewaySetting(
+    typing_extensions.TypedDict, total=False
+):
+    defaultEgressAgentGateway: (
+        GoogleCloudDiscoveryengineV1AgentGatewaySettingAgentGatewayReference
+    )
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1AgentGatewaySettingAgentGatewayReference(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1AlertPolicyConfig(
@@ -1918,6 +1939,7 @@ class GoogleCloudDiscoveryengineV1DataConnector(
     createTime: str
     dataSource: str
     destinationConfigs: _list[GoogleCloudDiscoveryengineV1DestinationConfig]
+    dynamicTools: _list[GoogleCloudDiscoveryengineV1DynamicTool]
     egressFqdns: _list[str]
     endUserConfig: GoogleCloudDiscoveryengineV1DataConnectorEndUserConfig
     entities: _list[GoogleCloudDiscoveryengineV1DataConnectorSourceEntity]
@@ -2039,6 +2061,7 @@ class GoogleCloudDiscoveryengineV1DataStore(typing_extensions.TypedDict, total=F
     defaultSchemaId: str
     displayName: str
     documentProcessingConfig: GoogleCloudDiscoveryengineV1DocumentProcessingConfig
+    federatedSearchConfig: GoogleCloudDiscoveryengineV1DataStoreFederatedSearchConfig
     healthcareFhirConfig: GoogleCloudDiscoveryengineV1HealthcareFhirConfig
     identityMappingStore: str
     industryVertical: typing_extensions.Literal[
@@ -2074,6 +2097,62 @@ class GoogleCloudDiscoveryengineV1DataStoreBillingEstimation(
     unstructuredDataUpdateTime: str
     websiteDataSize: str
     websiteDataUpdateTime: str
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1DataStoreFederatedSearchConfig(
+    typing_extensions.TypedDict, total=False
+):
+    alloyDbConfig: (
+        GoogleCloudDiscoveryengineV1DataStoreFederatedSearchConfigAlloyDbConfig
+    )
+    notebooklmConfig: (
+        GoogleCloudDiscoveryengineV1DataStoreFederatedSearchConfigNotebooklmConfig
+    )
+    thirdPartyOauthConfig: (
+        GoogleCloudDiscoveryengineV1DataStoreFederatedSearchConfigThirdPartyOauthConfig
+    )
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1DataStoreFederatedSearchConfigAlloyDbConfig(
+    typing_extensions.TypedDict, total=False
+):
+    alloydbAiNlConfig: GoogleCloudDiscoveryengineV1DataStoreFederatedSearchConfigAlloyDbConfigAlloyDbAiNaturalLanguageConfig
+    alloydbConnectionConfig: GoogleCloudDiscoveryengineV1DataStoreFederatedSearchConfigAlloyDbConfigAlloyDbConnectionConfig
+    returnedFields: _list[str]
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1DataStoreFederatedSearchConfigAlloyDbConfigAlloyDbAiNaturalLanguageConfig(
+    typing_extensions.TypedDict, total=False
+):
+    nlConfigId: str
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1DataStoreFederatedSearchConfigAlloyDbConfigAlloyDbConnectionConfig(
+    typing_extensions.TypedDict, total=False
+):
+    authMode: typing_extensions.Literal[
+        "AUTH_MODE_UNSPECIFIED",
+        "AUTH_MODE_SERVICE_ACCOUNT",
+        "AUTH_MODE_END_USER_ACCOUNT",
+    ]
+    database: str
+    enablePsvs: bool
+    instance: str
+    password: str
+    user: str
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1DataStoreFederatedSearchConfigNotebooklmConfig(
+    typing_extensions.TypedDict, total=False
+):
+    searchConfig: str
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1DataStoreFederatedSearchConfigThirdPartyOauthConfig(
+    typing_extensions.TypedDict, total=False
+):
+    appName: str
+    instanceName: str
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1DataStoreServingConfigDataStore(
@@ -2287,6 +2366,13 @@ class GoogleCloudDiscoveryengineV1DoubleList(typing_extensions.TypedDict, total=
     values: _list[float]
 
 @typing.type_check_only
+class GoogleCloudDiscoveryengineV1DynamicTool(typing_extensions.TypedDict, total=False):
+    description: str
+    displayName: str
+    enabled: bool
+    name: str
+
+@typing.type_check_only
 class GoogleCloudDiscoveryengineV1EnableAdvancedSiteSearchMetadata(
     typing_extensions.TypedDict, total=False
 ):
@@ -2305,6 +2391,7 @@ class GoogleCloudDiscoveryengineV1EnableAdvancedSiteSearchResponse(
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1Engine(typing_extensions.TypedDict, total=False):
+    agentGatewaySetting: GoogleCloudDiscoveryengineV1AgentGatewaySetting
     appType: typing_extensions.Literal["APP_TYPE_UNSPECIFIED", "APP_TYPE_INTRANET"]
     chatEngineConfig: GoogleCloudDiscoveryengineV1EngineChatEngineConfig
     chatEngineMetadata: GoogleCloudDiscoveryengineV1EngineChatEngineMetadata
@@ -2337,7 +2424,7 @@ class GoogleCloudDiscoveryengineV1Engine(typing_extensions.TypedDict, total=Fals
     modelConfigs: dict[str, typing.Any]
     name: str
     observabilityConfig: GoogleCloudDiscoveryengineV1ObservabilityConfig
-    procurementContactEmail: str
+    procurementContactEmails: _list[str]
     searchEngineConfig: GoogleCloudDiscoveryengineV1EngineSearchEngineConfig
     solutionType: typing_extensions.Literal[
         "SOLUTION_TYPE_UNSPECIFIED",
@@ -3273,6 +3360,7 @@ class GoogleCloudDiscoveryengineV1SearchRequest(
     naturalLanguageQueryUnderstandingSpec: (
         GoogleCloudDiscoveryengineV1SearchRequestNaturalLanguageQueryUnderstandingSpec
     )
+    numResultsPerDataStore: int
     offset: int
     oneBoxPageSize: int
     orderBy: str
@@ -3427,6 +3515,7 @@ class GoogleCloudDiscoveryengineV1SearchRequestDataStoreSpec(
     customSearchOperators: str
     dataStore: str
     filter: str
+    numResults: int
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1SearchRequestDisplaySpec(
@@ -4070,6 +4159,7 @@ class GoogleCloudDiscoveryengineV1UserEvent(typing_extensions.TypedDict, total=F
     directUserRequest: bool
     documents: _list[GoogleCloudDiscoveryengineV1DocumentInfo]
     engine: str
+    entity: str
     eventTime: str
     eventType: str
     filter: str
@@ -4385,6 +4475,13 @@ class GoogleCloudDiscoveryengineV1alphaActionConfig(
     jsonActionParams: str
     serviceName: str
     useStaticSecrets: bool
+    userDefinedScopesMapping: dict[str, typing.Any]
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaActionConfigScopeList(
+    typing_extensions.TypedDict, total=False
+):
+    scopes: _list[str]
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1alphaAddPatientFilterRequest(
@@ -4399,6 +4496,20 @@ class GoogleCloudDiscoveryengineV1alphaAdvancedSiteSearchConfig(
 ):
     disableAutomaticRefresh: bool
     disableInitialIndex: bool
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaAgentGatewaySetting(
+    typing_extensions.TypedDict, total=False
+):
+    defaultEgressAgentGateway: (
+        GoogleCloudDiscoveryengineV1alphaAgentGatewaySettingAgentGatewayReference
+    )
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaAgentGatewaySettingAgentGatewayReference(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1alphaAlertPolicyConfig(
@@ -5206,6 +5317,7 @@ class GoogleCloudDiscoveryengineV1alphaDataConnector(
     dataProtectionPolicy: GoogleCloudDiscoveryengineV1alphaDataProtectionPolicy
     dataSource: str
     destinationConfigs: _list[GoogleCloudDiscoveryengineV1alphaDestinationConfig]
+    dynamicTools: _list[GoogleCloudDiscoveryengineV1alphaDynamicTool]
     egressFqdns: _list[str]
     endUserConfig: GoogleCloudDiscoveryengineV1alphaDataConnectorEndUserConfig
     entities: _list[GoogleCloudDiscoveryengineV1alphaDataConnectorSourceEntity]
@@ -5341,6 +5453,9 @@ class GoogleCloudDiscoveryengineV1alphaDataStore(
     defaultSchemaId: str
     displayName: str
     documentProcessingConfig: GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfig
+    federatedSearchConfig: (
+        GoogleCloudDiscoveryengineV1alphaDataStoreFederatedSearchConfig
+    )
     healthcareFhirConfig: GoogleCloudDiscoveryengineV1alphaHealthcareFhirConfig
     identityMappingStore: str
     idpConfig: GoogleCloudDiscoveryengineV1alphaIdpConfig
@@ -5380,6 +5495,60 @@ class GoogleCloudDiscoveryengineV1alphaDataStoreBillingEstimation(
     unstructuredDataUpdateTime: str
     websiteDataSize: str
     websiteDataUpdateTime: str
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaDataStoreFederatedSearchConfig(
+    typing_extensions.TypedDict, total=False
+):
+    alloyDbConfig: (
+        GoogleCloudDiscoveryengineV1alphaDataStoreFederatedSearchConfigAlloyDbConfig
+    )
+    notebooklmConfig: (
+        GoogleCloudDiscoveryengineV1alphaDataStoreFederatedSearchConfigNotebooklmConfig
+    )
+    thirdPartyOauthConfig: GoogleCloudDiscoveryengineV1alphaDataStoreFederatedSearchConfigThirdPartyOauthConfig
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaDataStoreFederatedSearchConfigAlloyDbConfig(
+    typing_extensions.TypedDict, total=False
+):
+    alloydbAiNlConfig: GoogleCloudDiscoveryengineV1alphaDataStoreFederatedSearchConfigAlloyDbConfigAlloyDbAiNaturalLanguageConfig
+    alloydbConnectionConfig: GoogleCloudDiscoveryengineV1alphaDataStoreFederatedSearchConfigAlloyDbConfigAlloyDbConnectionConfig
+    returnedFields: _list[str]
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaDataStoreFederatedSearchConfigAlloyDbConfigAlloyDbAiNaturalLanguageConfig(
+    typing_extensions.TypedDict, total=False
+):
+    nlConfigId: str
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaDataStoreFederatedSearchConfigAlloyDbConfigAlloyDbConnectionConfig(
+    typing_extensions.TypedDict, total=False
+):
+    authMode: typing_extensions.Literal[
+        "AUTH_MODE_UNSPECIFIED",
+        "AUTH_MODE_SERVICE_ACCOUNT",
+        "AUTH_MODE_END_USER_ACCOUNT",
+    ]
+    database: str
+    enablePsvs: bool
+    instance: str
+    password: str
+    user: str
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaDataStoreFederatedSearchConfigNotebooklmConfig(
+    typing_extensions.TypedDict, total=False
+):
+    searchConfig: str
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaDataStoreFederatedSearchConfigThirdPartyOauthConfig(
+    typing_extensions.TypedDict, total=False
+):
+    appName: str
+    instanceName: str
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1alphaDataStoreServingConfigDataStore(
@@ -5566,6 +5735,15 @@ class GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigParsingConfigOcrP
     useNativeText: bool
 
 @typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaDynamicTool(
+    typing_extensions.TypedDict, total=False
+):
+    description: str
+    displayName: str
+    enabled: bool
+    name: str
+
+@typing.type_check_only
 class GoogleCloudDiscoveryengineV1alphaEnableAdvancedSiteSearchMetadata(
     typing_extensions.TypedDict, total=False
 ):
@@ -5579,6 +5757,7 @@ class GoogleCloudDiscoveryengineV1alphaEnableAdvancedSiteSearchResponse(
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1alphaEngine(typing_extensions.TypedDict, total=False):
+    agentGatewaySetting: GoogleCloudDiscoveryengineV1alphaAgentGatewaySetting
     appType: typing_extensions.Literal["APP_TYPE_UNSPECIFIED", "APP_TYPE_INTRANET"]
     chatEngineConfig: GoogleCloudDiscoveryengineV1alphaEngineChatEngineConfig
     chatEngineMetadata: GoogleCloudDiscoveryengineV1alphaEngineChatEngineMetadata
@@ -5611,7 +5790,7 @@ class GoogleCloudDiscoveryengineV1alphaEngine(typing_extensions.TypedDict, total
     modelConfigs: dict[str, typing.Any]
     name: str
     observabilityConfig: GoogleCloudDiscoveryengineV1alphaObservabilityConfig
-    procurementContactEmail: str
+    procurementContactEmails: _list[str]
     recommendationMetadata: (
         GoogleCloudDiscoveryengineV1alphaEngineRecommendationMetadata
     )
@@ -5862,6 +6041,14 @@ class GoogleCloudDiscoveryengineV1alphaFieldConfig(
         "RETRIEVABLE_OPTION_UNSPECIFIED", "RETRIEVABLE_ENABLED", "RETRIEVABLE_DISABLED"
     ]
     schemaOrgPaths: _list[str]
+    searchableFieldImportance: typing_extensions.Literal[
+        "SEARCHABLE_FIELD_IMPORTANCE_UNSPECIFIED",
+        "VERY_LOW_IMPORTANCE",
+        "LOW_IMPORTANCE",
+        "DEFAULT_IMPORTANCE",
+        "HIGH_IMPORTANCE",
+        "VERY_HIGH_IMPORTANCE",
+    ]
     searchableOption: typing_extensions.Literal[
         "SEARCHABLE_OPTION_UNSPECIFIED", "SEARCHABLE_ENABLED", "SEARCHABLE_DISABLED"
     ]
@@ -7035,6 +7222,20 @@ class GoogleCloudDiscoveryengineV1betaAdvancedSiteSearchConfig(
     disableInitialIndex: bool
 
 @typing.type_check_only
+class GoogleCloudDiscoveryengineV1betaAgentGatewaySetting(
+    typing_extensions.TypedDict, total=False
+):
+    defaultEgressAgentGateway: (
+        GoogleCloudDiscoveryengineV1betaAgentGatewaySettingAgentGatewayReference
+    )
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1betaAgentGatewaySettingAgentGatewayReference(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
+
+@typing.type_check_only
 class GoogleCloudDiscoveryengineV1betaBatchCreateTargetSiteMetadata(
     typing_extensions.TypedDict, total=False
 ):
@@ -7272,6 +7473,9 @@ class GoogleCloudDiscoveryengineV1betaDataStore(
     defaultSchemaId: str
     displayName: str
     documentProcessingConfig: GoogleCloudDiscoveryengineV1betaDocumentProcessingConfig
+    federatedSearchConfig: (
+        GoogleCloudDiscoveryengineV1betaDataStoreFederatedSearchConfig
+    )
     healthcareFhirConfig: GoogleCloudDiscoveryengineV1betaHealthcareFhirConfig
     identityMappingStore: str
     industryVertical: typing_extensions.Literal[
@@ -7310,6 +7514,60 @@ class GoogleCloudDiscoveryengineV1betaDataStoreBillingEstimation(
     unstructuredDataUpdateTime: str
     websiteDataSize: str
     websiteDataUpdateTime: str
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1betaDataStoreFederatedSearchConfig(
+    typing_extensions.TypedDict, total=False
+):
+    alloyDbConfig: (
+        GoogleCloudDiscoveryengineV1betaDataStoreFederatedSearchConfigAlloyDbConfig
+    )
+    notebooklmConfig: (
+        GoogleCloudDiscoveryengineV1betaDataStoreFederatedSearchConfigNotebooklmConfig
+    )
+    thirdPartyOauthConfig: GoogleCloudDiscoveryengineV1betaDataStoreFederatedSearchConfigThirdPartyOauthConfig
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1betaDataStoreFederatedSearchConfigAlloyDbConfig(
+    typing_extensions.TypedDict, total=False
+):
+    alloydbAiNlConfig: GoogleCloudDiscoveryengineV1betaDataStoreFederatedSearchConfigAlloyDbConfigAlloyDbAiNaturalLanguageConfig
+    alloydbConnectionConfig: GoogleCloudDiscoveryengineV1betaDataStoreFederatedSearchConfigAlloyDbConfigAlloyDbConnectionConfig
+    returnedFields: _list[str]
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1betaDataStoreFederatedSearchConfigAlloyDbConfigAlloyDbAiNaturalLanguageConfig(
+    typing_extensions.TypedDict, total=False
+):
+    nlConfigId: str
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1betaDataStoreFederatedSearchConfigAlloyDbConfigAlloyDbConnectionConfig(
+    typing_extensions.TypedDict, total=False
+):
+    authMode: typing_extensions.Literal[
+        "AUTH_MODE_UNSPECIFIED",
+        "AUTH_MODE_SERVICE_ACCOUNT",
+        "AUTH_MODE_END_USER_ACCOUNT",
+    ]
+    database: str
+    enablePsvs: bool
+    instance: str
+    password: str
+    user: str
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1betaDataStoreFederatedSearchConfigNotebooklmConfig(
+    typing_extensions.TypedDict, total=False
+):
+    searchConfig: str
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1betaDataStoreFederatedSearchConfigThirdPartyOauthConfig(
+    typing_extensions.TypedDict, total=False
+):
+    appName: str
+    instanceName: str
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1betaDataStoreServingConfigDataStore(
@@ -7453,6 +7711,7 @@ class GoogleCloudDiscoveryengineV1betaEnableAdvancedSiteSearchResponse(
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1betaEngine(typing_extensions.TypedDict, total=False):
+    agentGatewaySetting: GoogleCloudDiscoveryengineV1betaAgentGatewaySetting
     appType: typing_extensions.Literal["APP_TYPE_UNSPECIFIED", "APP_TYPE_INTRANET"]
     chatEngineConfig: GoogleCloudDiscoveryengineV1betaEngineChatEngineConfig
     chatEngineMetadata: GoogleCloudDiscoveryengineV1betaEngineChatEngineMetadata
@@ -7485,7 +7744,7 @@ class GoogleCloudDiscoveryengineV1betaEngine(typing_extensions.TypedDict, total=
     modelConfigs: dict[str, typing.Any]
     name: str
     observabilityConfig: GoogleCloudDiscoveryengineV1betaObservabilityConfig
-    procurementContactEmail: str
+    procurementContactEmails: _list[str]
     searchEngineConfig: GoogleCloudDiscoveryengineV1betaEngineSearchEngineConfig
     solutionType: typing_extensions.Literal[
         "SOLUTION_TYPE_UNSPECIFIED",

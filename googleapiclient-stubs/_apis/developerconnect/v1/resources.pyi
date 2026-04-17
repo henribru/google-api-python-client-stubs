@@ -93,6 +93,20 @@ class DeveloperConnectResource(googleapiclient.discovery.Resource):
                     validateOnly: bool = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
+                def fetchUserRepositories(
+                    self,
+                    *,
+                    accountConnector: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    repository: str = ...,
+                    **kwargs: typing.Any,
+                ) -> FetchUserRepositoriesResponseHttpRequest: ...
+                def fetchUserRepositories_next(
+                    self,
+                    previous_request: FetchUserRepositoriesResponseHttpRequest,
+                    previous_response: FetchUserRepositoriesResponse,
+                ) -> FetchUserRepositoriesResponseHttpRequest | None: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> AccountConnectorHttpRequest: ...
@@ -516,6 +530,14 @@ class FetchReadWriteTokenResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> FetchReadWriteTokenResponse: ...
+
+@typing.type_check_only
+class FetchUserRepositoriesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> FetchUserRepositoriesResponse: ...
 
 @typing.type_check_only
 class FinishOAuthResponseHttpRequest(googleapiclient.http.HttpRequest):

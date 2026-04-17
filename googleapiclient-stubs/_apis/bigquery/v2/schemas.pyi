@@ -344,6 +344,7 @@ class DataSplitResult(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Dataset(typing_extensions.TypedDict, total=False):
     access: _list[dict[str, typing.Any]]
+    catalogSource: str
     creationTime: str
     datasetReference: DatasetReference
     defaultCollation: str
@@ -423,6 +424,15 @@ class DimensionalityReductionMetrics(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class DmlStatistics(typing_extensions.TypedDict, total=False):
     deletedRowCount: str
+    dmlMode: typing_extensions.Literal[
+        "DML_MODE_UNSPECIFIED", "COARSE_GRAINED_DML", "FINE_GRAINED_DML"
+    ]
+    fineGrainedDmlUnusedReason: typing_extensions.Literal[
+        "FINE_GRAINED_DML_UNUSED_REASON_UNSPECIFIED",
+        "MAX_PARTITION_SIZE_EXCEEDED",
+        "TABLE_NOT_ENROLLED",
+        "DML_IN_MULTI_STATEMENT_TRANSACTION",
+    ]
     insertedRowCount: str
     updatedRowCount: str
 
@@ -612,6 +622,46 @@ class ForeignTypeInfo(typing_extensions.TypedDict, total=False):
 class ForeignViewDefinition(typing_extensions.TypedDict, total=False):
     dialect: str
     query: str
+
+@typing.type_check_only
+class GenAiErrorStats(typing_extensions.TypedDict, total=False):
+    errors: _list[str]
+
+@typing.type_check_only
+class GenAiFunctionCostOptimizationStats(typing_extensions.TypedDict, total=False):
+    message: str
+    numCostOptimizedRows: str
+
+@typing.type_check_only
+class GenAiFunctionErrorStats(typing_extensions.TypedDict, total=False):
+    errors: _list[str]
+    numFailedRows: str
+
+@typing.type_check_only
+class GenAiFunctionStats(typing_extensions.TypedDict, total=False):
+    costOptimizationStats: GenAiFunctionCostOptimizationStats
+    errorStats: GenAiFunctionErrorStats
+    functionName: str
+    numProcessedRows: str
+    prompt: str
+
+@typing.type_check_only
+class GenAiStats(typing_extensions.TypedDict, total=False):
+    errorStats: GenAiErrorStats
+    functionStats: _list[GenAiFunctionStats]
+
+@typing.type_check_only
+class GeneratedColumn(typing_extensions.TypedDict, total=False):
+    generatedExpressionInfo: GeneratedExpressionInfo
+    generatedMode: typing_extensions.Literal[
+        "GENERATED_MODE_UNSPECIFIED", "GENERATED_ALWAYS", "GENERATED_BY_DEFAULT"
+    ]
+
+@typing.type_check_only
+class GeneratedExpressionInfo(typing_extensions.TypedDict, total=False):
+    asynchronous: bool
+    generationExpression: str
+    stored: bool
 
 @typing.type_check_only
 class GetIamPolicyRequest(typing_extensions.TypedDict, total=False):
@@ -1012,6 +1062,7 @@ class JobStatistics2(typing_extensions.TypedDict, total=False):
     estimatedBytesProcessed: str
     exportDataStatistics: ExportDataStatistics
     externalServiceCosts: _list[ExternalServiceCost]
+    genAiStats: GenAiStats
     incrementalResultStats: IncrementalResultStats
     loadQueryStatistics: LoadQueryStatistics
     materializedViewStatistics: MaterializedViewStatistics
@@ -1024,6 +1075,7 @@ class JobStatistics2(typing_extensions.TypedDict, total=False):
     performanceInsights: PerformanceInsights
     queryInfo: QueryInfo
     queryPlan: _list[ExplainQueryStage]
+    referencedPropertyGraphs: _list[PropertyGraphReference]
     referencedRoutines: _list[RoutineReference]
     referencedTables: _list[TableReference]
     reservationUsage: _list[dict[str, typing.Any]]
@@ -1334,6 +1386,12 @@ class ProjectReference(typing_extensions.TypedDict, total=False):
     projectId: str
 
 @typing.type_check_only
+class PropertyGraphReference(typing_extensions.TypedDict, total=False):
+    datasetId: str
+    projectId: str
+    propertyGraphId: str
+
+@typing.type_check_only
 class PruningStats(typing_extensions.TypedDict, total=False):
     postCmetaPruningParallelInputCount: str
     postCmetaPruningPartitionCount: str
@@ -1491,6 +1549,7 @@ class RestrictionConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Routine(typing_extensions.TypedDict, total=False):
     arguments: _list[Argument]
+    buildStatus: RoutineBuildStatus
     creationTime: str
     dataGovernanceType: typing_extensions.Literal[
         "DATA_GOVERNANCE_TYPE_UNSPECIFIED", "DATA_MASKING"
@@ -1524,6 +1583,16 @@ class Routine(typing_extensions.TypedDict, total=False):
     ]
     sparkOptions: SparkOptions
     strictMode: bool
+
+@typing.type_check_only
+class RoutineBuildStatus(typing_extensions.TypedDict, total=False):
+    buildDuration: str
+    buildState: typing_extensions.Literal[
+        "BUILD_STATE_UNSPECIFIED", "IN_PROGRESS", "SUCCEEDED", "FAILED"
+    ]
+    buildStateUpdateTime: str
+    errorResult: ErrorProto
+    imageSizeBytes: str
 
 @typing.type_check_only
 class RoutineReference(typing_extensions.TypedDict, total=False):
@@ -1833,6 +1902,7 @@ class TableFieldSchema(typing_extensions.TypedDict, total=False):
     description: str
     fields: _list[TableFieldSchema]
     foreignTypeDefinition: str
+    generatedColumn: GeneratedColumn
     maxLength: str
     mode: str
     name: str

@@ -401,6 +401,7 @@ class LogEntry(typing_extensions.TypedDict, total=False):
     logName: str
     metadata: MonitoredResourceMetadata
     operation: LogEntryOperation
+    otel: dict[str, typing.Any]
     protoPayload: dict[str, typing.Any]
     receiveTimestamp: str
     resource: MonitoredResource

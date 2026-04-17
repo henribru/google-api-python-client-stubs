@@ -5,27 +5,6 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
-class ApiservingMcpMcpToolDataHandlingProfile(typing_extensions.TypedDict, total=False):
-    inputDataAccessLevel: typing_extensions.Literal[
-        "DATA_ACCESS_LEVEL_UNSPECIFIED",
-        "DATA_ACCESS_LEVEL_PUBLIC",
-        "DATA_ACCESS_LEVEL_CONFIDENTIAL",
-        "DATA_ACCESS_LEVEL_NEED_TO_KNOW",
-        "DATA_ACCESS_LEVEL_PII",
-        "DATA_ACCESS_LEVEL_USER",
-        "DATA_ACCESS_LEVEL_NO_DATA_ACCESS",
-    ]
-    outputDataAccessLevel: typing_extensions.Literal[
-        "DATA_ACCESS_LEVEL_UNSPECIFIED",
-        "DATA_ACCESS_LEVEL_PUBLIC",
-        "DATA_ACCESS_LEVEL_CONFIDENTIAL",
-        "DATA_ACCESS_LEVEL_NEED_TO_KNOW",
-        "DATA_ACCESS_LEVEL_PII",
-        "DATA_ACCESS_LEVEL_USER",
-        "DATA_ACCESS_LEVEL_NO_DATA_ACCESS",
-    ]
-
-@typing.type_check_only
 class GooglePlayDeveloperReportingV1beta1Anomaly(
     typing_extensions.TypedDict, total=False
 ):

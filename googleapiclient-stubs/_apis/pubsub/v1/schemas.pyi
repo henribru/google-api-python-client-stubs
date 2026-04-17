@@ -39,6 +39,7 @@ class AwsKinesis(typing_extensions.TypedDict, total=False):
         "PUBLISH_PERMISSION_DENIED",
         "STREAM_NOT_FOUND",
         "CONSUMER_NOT_FOUND",
+        "CONFLICTING_REGION_CONSTRAINTS",
     ]
     streamArn: str
 
@@ -54,6 +55,7 @@ class AwsMsk(typing_extensions.TypedDict, total=False):
         "PUBLISH_PERMISSION_DENIED",
         "CLUSTER_NOT_FOUND",
         "TOPIC_NOT_FOUND",
+        "CONFLICTING_REGION_CONSTRAINTS",
     ]
     topic: str
 
@@ -73,6 +75,7 @@ class AzureEventHubs(typing_extensions.TypedDict, total=False):
         "EVENT_HUB_NOT_FOUND",
         "SUBSCRIPTION_NOT_FOUND",
         "RESOURCE_GROUP_NOT_FOUND",
+        "CONFLICTING_REGION_CONSTRAINTS",
     ]
     subscriptionId: str
     tenantId: str
@@ -96,6 +99,23 @@ class BigQueryConfig(typing_extensions.TypedDict, total=False):
     writeMetadata: bool
 
 @typing.type_check_only
+class BigtableConfig(typing_extensions.TypedDict, total=False):
+    appProfileId: str
+    serviceAccountEmail: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "ACTIVE",
+        "NOT_FOUND",
+        "APP_PROFILE_MISCONFIGURED",
+        "PERMISSION_DENIED",
+        "SCHEMA_MISMATCH",
+        "IN_TRANSIT_LOCATION_RESTRICTION",
+        "VERTEX_AI_LOCATION_RESTRICTION",
+    ]
+    table: str
+    writeMetadata: bool
+
+@typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
     condition: Expr
     members: _list[str]
@@ -115,6 +135,7 @@ class CloudStorage(typing_extensions.TypedDict, total=False):
         "PUBLISH_PERMISSION_DENIED",
         "BUCKET_NOT_FOUND",
         "TOO_MANY_OBJECTS",
+        "CONFLICTING_REGION_CONSTRAINTS",
     ]
     textFormat: TextFormat
 
@@ -158,6 +179,7 @@ class ConfluentCloud(typing_extensions.TypedDict, total=False):
         "UNREACHABLE_BOOTSTRAP_SERVER",
         "CLUSTER_NOT_FOUND",
         "TOPIC_NOT_FOUND",
+        "CONFLICTING_REGION_CONSTRAINTS",
     ]
     topic: str
 
@@ -373,6 +395,7 @@ class Subscription(typing_extensions.TypedDict, total=False):
     ackDeadlineSeconds: int
     analyticsHubSubscriptionInfo: AnalyticsHubSubscriptionInfo
     bigqueryConfig: BigQueryConfig
+    bigtableConfig: BigtableConfig
     cloudStorageConfig: CloudStorageConfig
     deadLetterPolicy: DeadLetterPolicy
     detached: bool

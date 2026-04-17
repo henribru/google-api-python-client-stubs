@@ -48,6 +48,13 @@ class BigQueryDatasetSource(typing_extensions.TypedDict, total=False):
     selectedResources: _list[SelectedResource]
 
 @typing.type_check_only
+class BigtableConfig(typing_extensions.TypedDict, total=False):
+    appProfileId: str
+    serviceAccountEmail: str
+    table: str
+    writeMetadata: bool
+
+@typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
     condition: Expr
     members: _list[str]
@@ -172,6 +179,7 @@ class GoogleCloudBigqueryAnalyticshubV1SubscriptionCommercialInfoGoogleCloudMark
 class GooglePubsubV1Subscription(typing_extensions.TypedDict, total=False):
     ackDeadlineSeconds: int
     bigqueryConfig: BigQueryConfig
+    bigtableConfig: BigtableConfig
     cloudStorageConfig: CloudStorageConfig
     deadLetterPolicy: DeadLetterPolicy
     detached: bool

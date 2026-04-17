@@ -172,6 +172,22 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
                         previous_response: ListHotTabletsResponse,
                     ) -> ListHotTabletsResponseHttpRequest | None: ...
 
+                @typing.type_check_only
+                class MemoryLayersResource(googleapiclient.discovery.Resource):
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> ListMemoryLayersResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListMemoryLayersResponseHttpRequest,
+                        previous_response: ListMemoryLayersResponse,
+                    ) -> ListMemoryLayersResponseHttpRequest | None: ...
+
                 def create(
                     self,
                     *,
@@ -186,6 +202,9 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> ClusterHttpRequest: ...
+                def getMemoryLayer(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> MemoryLayerHttpRequest: ...
                 def list(
                     self, *, parent: str, pageToken: str = ..., **kwargs: typing.Any
                 ) -> ListClustersResponseHttpRequest: ...
@@ -205,8 +224,17 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
                 def update(
                     self, *, name: str, body: Cluster = ..., **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+                def updateMemoryLayer(
+                    self,
+                    *,
+                    name: str,
+                    body: MemoryLayer = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
                 def backups(self) -> BackupsResource: ...
                 def hotTablets(self) -> HotTabletsResource: ...
+                def memoryLayers(self) -> MemoryLayersResource: ...
 
             @typing.type_check_only
             class LogicalViewsResource(googleapiclient.discovery.Resource):
@@ -826,6 +854,14 @@ class ListMaterializedViewsResponseHttpRequest(googleapiclient.http.HttpRequest)
     ) -> ListMaterializedViewsResponse: ...
 
 @typing.type_check_only
+class ListMemoryLayersResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListMemoryLayersResponse: ...
+
+@typing.type_check_only
 class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -864,6 +900,14 @@ class MaterializedViewHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> MaterializedView: ...
+
+@typing.type_check_only
+class MemoryLayerHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> MemoryLayer: ...
 
 @typing.type_check_only
 class OperationHttpRequest(googleapiclient.http.HttpRequest):

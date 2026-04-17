@@ -212,6 +212,10 @@ class ErrorHandler(typing_extensions.TypedDict, total=False):
     staticFile: str
 
 @typing.type_check_only
+class ExportAppImageRequest(typing_extensions.TypedDict, total=False):
+    destinationRepository: str
+
+@typing.type_check_only
 class FeatureSettings(typing_extensions.TypedDict, total=False):
     splitHealthChecks: bool
     useContainerOptimizedOs: bool

@@ -48,6 +48,9 @@ class Binding(typing_extensions.TypedDict, total=False):
     role: str
 
 @typing.type_check_only
+class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class CleanupPolicy(typing_extensions.TypedDict, total=False):
     action: typing_extensions.Literal["ACTION_UNSPECIFIED", "DELETE", "KEEP"]
     condition: CleanupPolicyCondition
@@ -446,10 +449,32 @@ class Package(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
+class PlatformLogsConfig(typing_extensions.TypedDict, total=False):
+    loggingState: typing_extensions.Literal[
+        "LOGGING_STATE_UNSPECIFIED", "ENABLED", "DISABLED"
+    ]
+    severityLevel: typing_extensions.Literal[
+        "SEVERITY_LEVEL_UNSPECIFIED",
+        "DEBUG",
+        "INFO",
+        "NOTICE",
+        "WARNING",
+        "ERROR",
+        "CRITICAL",
+        "ALERT",
+        "EMERGENCY",
+    ]
+
+@typing.type_check_only
 class Policy(typing_extensions.TypedDict, total=False):
     bindings: _list[Binding]
     etag: str
     version: int
+
+@typing.type_check_only
+class ProjectConfig(typing_extensions.TypedDict, total=False):
+    name: str
+    platformLogsConfig: PlatformLogsConfig
 
 @typing.type_check_only
 class ProjectSettings(typing_extensions.TypedDict, total=False):
@@ -525,6 +550,7 @@ class Repository(typing_extensions.TypedDict, total=False):
         "ASSURED_OSS_REPOSITORY",
     ]
     name: str
+    platformLogsConfig: PlatformLogsConfig
     registryUri: str
     remoteRepositoryConfig: RemoteRepositoryConfig
     satisfiesPzi: bool

@@ -355,6 +355,9 @@ class InternalRange(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class LinkedInterconnectAttachments(typing_extensions.TypedDict, total=False):
+    excludeExportRanges: _list[str]
+    excludeImportRanges: _list[str]
+    includeExportRanges: _list[str]
     includeImportRanges: _list[str]
     siteToSiteDataTransfer: bool
     uris: _list[str]
@@ -373,6 +376,9 @@ class LinkedProducerVpcNetwork(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class LinkedRouterApplianceInstances(typing_extensions.TypedDict, total=False):
+    excludeExportRanges: _list[str]
+    excludeImportRanges: _list[str]
+    includeExportRanges: _list[str]
     includeImportRanges: _list[str]
     instances: _list[RouterApplianceInstance]
     siteToSiteDataTransfer: bool
@@ -389,6 +395,9 @@ class LinkedVpcNetwork(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class LinkedVpnTunnels(typing_extensions.TypedDict, total=False):
+    excludeExportRanges: _list[str]
+    excludeImportRanges: _list[str]
+    includeExportRanges: _list[str]
     includeImportRanges: _list[str]
     siteToSiteDataTransfer: bool
     uris: _list[str]
@@ -465,6 +474,12 @@ class ListRegionalEndpointsResponse(typing_extensions.TypedDict, total=False):
     unreachable: _list[str]
 
 @typing.type_check_only
+class ListRemoteTransportProfilesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    remoteTransportProfiles: _list[RemoteTransportProfile]
+    unreachable: _list[str]
+
+@typing.type_check_only
 class ListRouteTablesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     routeTables: _list[RouteTable]
@@ -507,6 +522,12 @@ class ListSpokesResponse(typing_extensions.TypedDict, total=False):
     unreachable: _list[str]
 
 @typing.type_check_only
+class ListTransportsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    transports: _list[Transport]
+    unreachable: _list[str]
+
+@typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):
     displayName: str
     labels: dict[str, typing.Any]
@@ -522,6 +543,7 @@ class LocationMetadata(typing_extensions.TypedDict, total=False):
             "SITE_TO_CLOUD_SPOKES",
             "SITE_TO_SITE_SPOKES",
             "GATEWAY_SPOKES",
+            "TRANSPORTS",
         ]
     ]
 
@@ -712,6 +734,43 @@ class RejectSpokeUpdateRequest(typing_extensions.TypedDict, total=False):
     requestId: str
     spokeEtag: str
     spokeUri: str
+
+@typing.type_check_only
+class RemoteTransportProfile(typing_extensions.TypedDict, total=False):
+    description: str
+    displayName: str
+    flow: typing_extensions.Literal[
+        "KEY_PROVISIONING_FLOW_UNSPECIFIED",
+        "INPUT_ONLY",
+        "OUTPUT_ONLY",
+        "INPUT_OR_OUTPUT",
+    ]
+    labels: dict[str, typing.Any]
+    name: str
+    orderState: typing_extensions.Literal["STATE_UNSPECIFIED", "CLOSED", "OPEN"]
+    provider: str
+    providerSite: str
+    sla: typing_extensions.Literal[
+        "SERVICE_LEVEL_AVAILABILITY_UNSPECIFIED", "HIGH", "MAXIMUM"
+    ]
+    supportedBandwidths: _list[
+        typing_extensions.Literal[
+            "BANDWIDTH_UNSPECIFIED",
+            "BPS_50M",
+            "BPS_100M",
+            "BPS_200M",
+            "BPS_300M",
+            "BPS_400M",
+            "BPS_500M",
+            "BPS_1G",
+            "BPS_2G",
+            "BPS_5G",
+            "BPS_10G",
+            "BPS_20G",
+            "BPS_50G",
+            "BPS_100G",
+        ]
+    ]
 
 @typing.type_check_only
 class Route(typing_extensions.TypedDict, total=False):
@@ -968,6 +1027,50 @@ class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
     permissions: _list[str]
+
+@typing.type_check_only
+class Transport(typing_extensions.TypedDict, total=False):
+    advertisedRoutes: _list[str]
+    bandwidth: typing_extensions.Literal[
+        "BANDWIDTH_UNSPECIFIED",
+        "BPS_50M",
+        "BPS_100M",
+        "BPS_200M",
+        "BPS_300M",
+        "BPS_400M",
+        "BPS_500M",
+        "BPS_1G",
+        "BPS_2G",
+        "BPS_5G",
+        "BPS_10G",
+        "BPS_20G",
+        "BPS_50G",
+        "BPS_100G",
+    ]
+    createTime: str
+    description: str
+    generatedActivationKey: str
+    labels: dict[str, typing.Any]
+    mtuLimit: int
+    name: str
+    network: str
+    peeringNetwork: str
+    providedActivationKey: str
+    remoteAccountId: str
+    remoteProfile: str
+    stackType: typing_extensions.Literal[
+        "STACK_TYPE_UNSPECIFIED", "IPV4_ONLY", "IPV4_IPV6"
+    ]
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "CREATING",
+        "PENDING_CONFIG",
+        "PENDING_KEY",
+        "ACTIVE",
+        "DELETING",
+        "DEPROVISIONED",
+    ]
+    updateTime: str
 
 @typing.type_check_only
 class VirtualMachine(typing_extensions.TypedDict, total=False):

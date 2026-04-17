@@ -1253,6 +1253,12 @@ class Rollout(typing_extensions.TypedDict, total=False):
         "STATE_UNSPECIFIED", "RUNNING", "PAUSED", "CANCELLED", "COMPLETED"
     ]
     stateReason: str
+    stateReasonType: typing_extensions.Literal[
+        "STATE_REASON_TYPE_UNSPECIFIED",
+        "PAUSED_BY_USER",
+        "PAUSED_BY_SYSTEM_CONFIG",
+        "PAUSED_WAITING_FOR_NEXT_STAGE",
+    ]
     uid: str
     updateTime: str
     versionUpgrade: VersionUpgrade
@@ -1278,6 +1284,7 @@ class RolloutSequence(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class RolloutSequenceState(typing_extensions.TypedDict, total=False):
+    lastStateChangeTime: str
     lifecycleState: typing_extensions.Literal[
         "LIFECYCLE_STATE_UNSPECIFIED",
         "LIFECYCLE_STATE_ACTIVE",
@@ -1308,6 +1315,7 @@ class RolloutStage(typing_extensions.TypedDict, total=False):
         "SOAKING",
         "COMPLETED",
         "FORCED_SOAKING",
+        "PAUSED",
     ]
 
 @typing.type_check_only
@@ -1413,6 +1421,7 @@ class ServiceMeshCondition(typing_extensions.TypedDict, total=False):
         "QUOTA_EXCEEDED_HTTP_FILTERS",
         "QUOTA_EXCEEDED_TCP_FILTERS",
         "QUOTA_EXCEEDED_NETWORK_ENDPOINT_GROUPS",
+        "CONFIG_APPLY_BLOCKED",
         "LEGACY_MC_SECRETS",
         "WORKLOAD_IDENTITY_REQUIRED",
         "NON_STANDARD_BINARY_USAGE",
@@ -1509,6 +1518,7 @@ class ServiceMeshFeatureCondition(typing_extensions.TypedDict, total=False):
         "QUOTA_EXCEEDED_HTTP_FILTERS",
         "QUOTA_EXCEEDED_TCP_FILTERS",
         "QUOTA_EXCEEDED_NETWORK_ENDPOINT_GROUPS",
+        "CONFIG_APPLY_BLOCKED",
         "LEGACY_MC_SECRETS",
         "WORKLOAD_IDENTITY_REQUIRED",
         "NON_STANDARD_BINARY_USAGE",

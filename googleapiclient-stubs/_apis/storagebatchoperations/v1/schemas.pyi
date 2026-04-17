@@ -47,6 +47,9 @@ class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class Counters(typing_extensions.TypedDict, total=False):
     failedObjectCount: str
+    objectCustomContextsCreated: str
+    objectCustomContextsDeleted: str
+    objectCustomContextsUpdated: str
     succeededObjectCount: str
     totalBytesFound: str
     totalObjectCount: str

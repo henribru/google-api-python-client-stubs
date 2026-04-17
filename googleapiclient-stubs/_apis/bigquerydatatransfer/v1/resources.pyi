@@ -145,6 +145,26 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                     ) -> ListTransferRunsResponseHttpRequest | None: ...
                     def transferLogs(self) -> TransferLogsResource: ...
 
+                @typing.type_check_only
+                class TransferResourcesResource(googleapiclient.discovery.Resource):
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> TransferResourceHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        filter: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> ListTransferResourcesResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListTransferResourcesResponseHttpRequest,
+                        previous_response: ListTransferResourcesResponse,
+                    ) -> ListTransferResourcesResponseHttpRequest | None: ...
+
                 def create(
                     self,
                     *,
@@ -201,6 +221,7 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any,
                 ) -> StartManualTransferRunsResponseHttpRequest: ...
                 def runs(self) -> RunsResource: ...
+                def transferResources(self) -> TransferResourcesResource: ...
 
             def enrollDataSources(
                 self,
@@ -310,6 +331,26 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                 ) -> ListTransferRunsResponseHttpRequest | None: ...
                 def transferLogs(self) -> TransferLogsResource: ...
 
+            @typing.type_check_only
+            class TransferResourcesResource(googleapiclient.discovery.Resource):
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> TransferResourceHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListTransferResourcesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListTransferResourcesResponseHttpRequest,
+                    previous_response: ListTransferResourcesResponse,
+                ) -> ListTransferResourcesResponseHttpRequest | None: ...
+
             def create(
                 self,
                 *,
@@ -366,6 +407,7 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any,
             ) -> StartManualTransferRunsResponseHttpRequest: ...
             def runs(self) -> RunsResource: ...
+            def transferResources(self) -> TransferResourcesResource: ...
 
         def enrollDataSources(
             self,
@@ -449,6 +491,14 @@ class ListTransferLogsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListTransferLogsResponse: ...
 
 @typing.type_check_only
+class ListTransferResourcesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListTransferResourcesResponse: ...
+
+@typing.type_check_only
 class ListTransferRunsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -487,6 +537,14 @@ class TransferConfigHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> TransferConfig: ...
+
+@typing.type_check_only
+class TransferResourceHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> TransferResource: ...
 
 @typing.type_check_only
 class TransferRunHttpRequest(googleapiclient.http.HttpRequest):

@@ -10,6 +10,7 @@ class AuthzExtension(typing_extensions.TypedDict, total=False):
     createTime: str
     description: str
     failOpen: bool
+    forwardAttributes: _list[str]
     forwardHeaders: _list[str]
     labels: dict[str, typing.Any]
     loadBalancingScheme: typing_extensions.Literal[
@@ -62,6 +63,7 @@ class ExtensionChainExtension(typing_extensions.TypedDict, total=False):
     allowDynamicForwarding: bool
     authority: str
     failOpen: bool
+    forwardAttributes: _list[str]
     forwardHeaders: _list[str]
     metadata: dict[str, typing.Any]
     name: str
@@ -97,6 +99,8 @@ class ExtensionChainMatchCondition(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Gateway(typing_extensions.TypedDict, total=False):
     addresses: _list[str]
+    allPorts: bool
+    allowGlobalAccess: bool
     certificateUrls: _list[str]
     createTime: str
     description: str

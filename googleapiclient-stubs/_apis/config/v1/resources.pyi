@@ -18,6 +18,93 @@ class ConfigResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
+            class DeploymentGroupsResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class RevisionsResource(googleapiclient.discovery.Resource):
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> DeploymentGroupRevisionHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> ListDeploymentGroupRevisionsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListDeploymentGroupRevisionsResponseHttpRequest,
+                        previous_response: ListDeploymentGroupRevisionsResponse,
+                    ) -> ListDeploymentGroupRevisionsResponseHttpRequest | None: ...
+
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: DeploymentGroup = ...,
+                    deploymentGroupId: str = ...,
+                    requestId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self,
+                    *,
+                    name: str,
+                    deploymentReferencePolicy: typing_extensions.Literal[
+                        "DEPLOYMENT_REFERENCE_POLICY_UNSPECIFIED",
+                        "FAIL_IF_ANY_REFERENCES_EXIST",
+                        "FAIL_IF_METADATA_REFERENCES_EXIST",
+                        "IGNORE_DEPLOYMENT_REFERENCES",
+                    ] = ...,
+                    force: bool = ...,
+                    requestId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def deprovision(
+                    self,
+                    *,
+                    name: str,
+                    body: DeprovisionDeploymentGroupRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> DeploymentGroupHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListDeploymentGroupsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListDeploymentGroupsResponseHttpRequest,
+                    previous_response: ListDeploymentGroupsResponse,
+                ) -> ListDeploymentGroupsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: DeploymentGroup = ...,
+                    requestId: str = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def provision(
+                    self,
+                    *,
+                    name: str,
+                    body: ProvisionDeploymentGroupRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def revisions(self) -> RevisionsResource: ...
+
+            @typing.type_check_only
             class DeploymentsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class RevisionsResource(googleapiclient.discovery.Resource):
@@ -342,6 +429,7 @@ class ConfigResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
+            def deploymentGroups(self) -> DeploymentGroupsResource: ...
             def deployments(self) -> DeploymentsResource: ...
             def operations(self) -> OperationsResource: ...
             def previews(self) -> PreviewsResource: ...
@@ -380,6 +468,22 @@ class DeploymentHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Deployment: ...
 
 @typing.type_check_only
+class DeploymentGroupHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> DeploymentGroup: ...
+
+@typing.type_check_only
+class DeploymentGroupRevisionHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> DeploymentGroupRevision: ...
+
+@typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -394,6 +498,22 @@ class ExportPreviewResultResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ExportPreviewResultResponse: ...
+
+@typing.type_check_only
+class ListDeploymentGroupRevisionsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListDeploymentGroupRevisionsResponse: ...
+
+@typing.type_check_only
+class ListDeploymentGroupsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListDeploymentGroupsResponse: ...
 
 @typing.type_check_only
 class ListDeploymentsResponseHttpRequest(googleapiclient.http.HttpRequest):

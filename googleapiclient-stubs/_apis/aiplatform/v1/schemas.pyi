@@ -5,6 +5,36 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class CloudAiLargeModelsVisionGenerateVideoExperiments(
+    typing_extensions.TypedDict, total=False
+):
+    conditioningFrames: _list[
+        CloudAiLargeModelsVisionGenerateVideoExperimentsConditioningFrame
+    ]
+    humanPose: CloudAiLargeModelsVisionHumanPose
+    modelName: str
+    numDiffusionSteps: int
+    promptInputs: CloudAiLargeModelsVisionPromptInputs
+    videoTransformMaskGcsUri: str
+    videoTransformStrength: float
+
+@typing.type_check_only
+class CloudAiLargeModelsVisionGenerateVideoExperimentsConditioningFrame(
+    typing_extensions.TypedDict, total=False
+):
+    frameNum: int
+    image: CloudAiLargeModelsVisionGenerateVideoRequestImage
+
+@typing.type_check_only
+class CloudAiLargeModelsVisionGenerateVideoRequestImage(
+    typing_extensions.TypedDict, total=False
+):
+    blobId: str
+    bytesBase64Encoded: str
+    gcsUri: str
+    mimeType: str
+
+@typing.type_check_only
 class CloudAiLargeModelsVisionGenerateVideoResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -18,8 +48,15 @@ class CloudAiLargeModelsVisionGenerateVideoResponseVideo(
     typing_extensions.TypedDict, total=False
 ):
     bytesBase64Encoded: str
+    experimentsMetadata: CloudAiLargeModelsVisionGenerateVideoExperiments
     gcsUri: str
     mimeType: str
+
+@typing.type_check_only
+class CloudAiLargeModelsVisionHumanPose(typing_extensions.TypedDict, total=False):
+    bodyLandmarksGcsUri: str
+    faceLandmarksGcsUri: str
+    perfMeshGcsUri: str
 
 @typing.type_check_only
 class CloudAiLargeModelsVisionImage(typing_extensions.TypedDict, total=False):
@@ -59,6 +96,14 @@ class CloudAiLargeModelsVisionNamedBoundingBox(
     x2: float
     y1: float
     y2: float
+
+@typing.type_check_only
+class CloudAiLargeModelsVisionPromptInputs(typing_extensions.TypedDict, total=False):
+    audioPrompt: str
+    negativeAudioPrompt: str
+    negativePrompt: str
+    promptChunks: _list[str]
+    transcript: str
 
 @typing.type_check_only
 class CloudAiLargeModelsVisionRaiInfo(typing_extensions.TypedDict, total=False):
@@ -279,6 +324,20 @@ class GoogleCloudAiplatformV1Artifact(typing_extensions.TypedDict, total=False):
     uri: str
 
 @typing.type_check_only
+class GoogleCloudAiplatformV1AskContextsRequest(
+    typing_extensions.TypedDict, total=False
+):
+    query: GoogleCloudAiplatformV1RagQuery
+    tools: _list[GoogleCloudAiplatformV1Tool]
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1AskContextsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    contexts: GoogleCloudAiplatformV1RagContexts
+    response: str
+
+@typing.type_check_only
 class GoogleCloudAiplatformV1AssignNotebookRuntimeOperationMetadata(
     typing_extensions.TypedDict, total=False
 ):
@@ -292,6 +351,13 @@ class GoogleCloudAiplatformV1AssignNotebookRuntimeRequest(
     notebookRuntime: GoogleCloudAiplatformV1NotebookRuntime
     notebookRuntimeId: str
     notebookRuntimeTemplate: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1AsyncRetrieveContextsRequest(
+    typing_extensions.TypedDict, total=False
+):
+    query: GoogleCloudAiplatformV1RagQuery
+    tools: _list[GoogleCloudAiplatformV1Tool]
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1Attribution(typing_extensions.TypedDict, total=False):
@@ -1438,6 +1504,13 @@ class GoogleCloudAiplatformV1Dataset(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
+class GoogleCloudAiplatformV1DatasetCustomMetric(
+    typing_extensions.TypedDict, total=False
+):
+    aggregationFunction: str
+    displayName: str
+
+@typing.type_check_only
 class GoogleCloudAiplatformV1DatasetDistribution(
     typing_extensions.TypedDict, total=False
 ):
@@ -1806,6 +1879,28 @@ class GoogleCloudAiplatformV1EmbedContentRequest(
 ):
     autoTruncate: bool
     content: GoogleCloudAiplatformV1Content
+    embedContentConfig: GoogleCloudAiplatformV1EmbedContentRequestEmbedContentConfig
+    outputDimensionality: int
+    taskType: typing_extensions.Literal[
+        "UNSPECIFIED",
+        "RETRIEVAL_QUERY",
+        "RETRIEVAL_DOCUMENT",
+        "SEMANTIC_SIMILARITY",
+        "CLASSIFICATION",
+        "CLUSTERING",
+        "QUESTION_ANSWERING",
+        "FACT_VERIFICATION",
+        "CODE_RETRIEVAL_QUERY",
+    ]
+    title: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1EmbedContentRequestEmbedContentConfig(
+    typing_extensions.TypedDict, total=False
+):
+    audioTrackExtraction: bool
+    autoTruncate: bool
+    documentOcr: bool
     outputDimensionality: int
     taskType: typing_extensions.Literal[
         "UNSPECIFIED",
@@ -1942,6 +2037,16 @@ class GoogleCloudAiplatformV1EvaluateDatasetResponse(
     outputInfo: GoogleCloudAiplatformV1OutputInfo
 
 @typing.type_check_only
+class GoogleCloudAiplatformV1EvaluateDatasetRun(
+    typing_extensions.TypedDict, total=False
+):
+    checkpointId: str
+    error: GoogleRpcStatus
+    evaluateDatasetResponse: GoogleCloudAiplatformV1EvaluateDatasetResponse
+    evaluationRun: str
+    operationName: str
+
+@typing.type_check_only
 class GoogleCloudAiplatformV1EvaluateInstancesRequest(
     typing_extensions.TypedDict, total=False
 ):
@@ -1955,6 +2060,7 @@ class GoogleCloudAiplatformV1EvaluateInstancesRequest(
     groundednessInput: GoogleCloudAiplatformV1GroundednessInput
     instance: GoogleCloudAiplatformV1EvaluationInstance
     location: str
+    metricSources: _list[GoogleCloudAiplatformV1MetricSource]
     metrics: _list[GoogleCloudAiplatformV1Metric]
     metricxInput: GoogleCloudAiplatformV1MetricxInput
     pairwiseMetricInput: GoogleCloudAiplatformV1PairwiseMetricInput
@@ -2077,6 +2183,14 @@ class GoogleCloudAiplatformV1EvaluatedAnnotationExplanation(
     explanationType: str
 
 @typing.type_check_only
+class GoogleCloudAiplatformV1EvaluationConfig(typing_extensions.TypedDict, total=False):
+    autoraterConfig: GoogleCloudAiplatformV1AutoraterConfig
+    datasetCustomMetrics: _list[GoogleCloudAiplatformV1DatasetCustomMetric]
+    inferenceGenerationConfig: GoogleCloudAiplatformV1GenerationConfig
+    metrics: _list[GoogleCloudAiplatformV1Metric]
+    outputConfig: GoogleCloudAiplatformV1OutputConfig
+
+@typing.type_check_only
 class GoogleCloudAiplatformV1EvaluationDataset(
     typing_extensions.TypedDict, total=False
 ):
@@ -2087,8 +2201,7 @@ class GoogleCloudAiplatformV1EvaluationDataset(
 class GoogleCloudAiplatformV1EvaluationInstance(
     typing_extensions.TypedDict, total=False
 ):
-    agentData: GoogleCloudAiplatformV1EvaluationInstanceAgentData
-    agentEvalData: GoogleCloudAiplatformV1EvaluationInstanceAgentData
+    agentData: GoogleCloudAiplatformV1EvaluationInstanceDeprecatedAgentData
     otherData: GoogleCloudAiplatformV1EvaluationInstanceMapInstance
     prompt: GoogleCloudAiplatformV1EvaluationInstanceInstanceData
     reference: GoogleCloudAiplatformV1EvaluationInstanceInstanceData
@@ -2096,7 +2209,7 @@ class GoogleCloudAiplatformV1EvaluationInstance(
     rubricGroups: dict[str, typing.Any]
 
 @typing.type_check_only
-class GoogleCloudAiplatformV1EvaluationInstanceAgentConfig(
+class GoogleCloudAiplatformV1EvaluationInstanceDeprecatedAgentConfig(
     typing_extensions.TypedDict, total=False
 ):
     agentId: str
@@ -2104,29 +2217,31 @@ class GoogleCloudAiplatformV1EvaluationInstanceAgentConfig(
     description: str
     developerInstruction: GoogleCloudAiplatformV1EvaluationInstanceInstanceData
     subAgents: _list[str]
-    tools: GoogleCloudAiplatformV1EvaluationInstanceAgentConfigTools
+    tools: GoogleCloudAiplatformV1EvaluationInstanceDeprecatedAgentConfigTools
     toolsText: str
 
 @typing.type_check_only
-class GoogleCloudAiplatformV1EvaluationInstanceAgentConfigTools(
+class GoogleCloudAiplatformV1EvaluationInstanceDeprecatedAgentConfigTools(
     typing_extensions.TypedDict, total=False
 ):
     tool: _list[GoogleCloudAiplatformV1Tool]
 
 @typing.type_check_only
-class GoogleCloudAiplatformV1EvaluationInstanceAgentData(
+class GoogleCloudAiplatformV1EvaluationInstanceDeprecatedAgentData(
     typing_extensions.TypedDict, total=False
 ):
-    agentConfig: GoogleCloudAiplatformV1EvaluationInstanceAgentConfig
+    agentConfig: GoogleCloudAiplatformV1EvaluationInstanceDeprecatedAgentConfig
     agents: dict[str, typing.Any]
     developerInstruction: GoogleCloudAiplatformV1EvaluationInstanceInstanceData
-    events: GoogleCloudAiplatformV1EvaluationInstanceAgentDataEvents
-    tools: GoogleCloudAiplatformV1EvaluationInstanceAgentDataTools
+    events: GoogleCloudAiplatformV1EvaluationInstanceDeprecatedAgentDataEvents
+    tools: GoogleCloudAiplatformV1EvaluationInstanceDeprecatedAgentDataTools
     toolsText: str
-    turns: _list[GoogleCloudAiplatformV1EvaluationInstanceAgentDataConversationTurn]
+    turns: _list[
+        GoogleCloudAiplatformV1EvaluationInstanceDeprecatedAgentDataConversationTurn
+    ]
 
 @typing.type_check_only
-class GoogleCloudAiplatformV1EvaluationInstanceAgentDataAgentEvent(
+class GoogleCloudAiplatformV1EvaluationInstanceDeprecatedAgentDataAgentEvent(
     typing_extensions.TypedDict, total=False
 ):
     activeTools: _list[GoogleCloudAiplatformV1Tool]
@@ -2136,21 +2251,23 @@ class GoogleCloudAiplatformV1EvaluationInstanceAgentDataAgentEvent(
     stateDelta: dict[str, typing.Any]
 
 @typing.type_check_only
-class GoogleCloudAiplatformV1EvaluationInstanceAgentDataConversationTurn(
+class GoogleCloudAiplatformV1EvaluationInstanceDeprecatedAgentDataConversationTurn(
     typing_extensions.TypedDict, total=False
 ):
-    events: _list[GoogleCloudAiplatformV1EvaluationInstanceAgentDataAgentEvent]
+    events: _list[
+        GoogleCloudAiplatformV1EvaluationInstanceDeprecatedAgentDataAgentEvent
+    ]
     turnId: str
     turnIndex: int
 
 @typing.type_check_only
-class GoogleCloudAiplatformV1EvaluationInstanceAgentDataEvents(
+class GoogleCloudAiplatformV1EvaluationInstanceDeprecatedAgentDataEvents(
     typing_extensions.TypedDict, total=False
 ):
     event: _list[GoogleCloudAiplatformV1Content]
 
 @typing.type_check_only
-class GoogleCloudAiplatformV1EvaluationInstanceAgentDataTools(
+class GoogleCloudAiplatformV1EvaluationInstanceDeprecatedAgentDataTools(
     typing_extensions.TypedDict, total=False
 ):
     tool: _list[GoogleCloudAiplatformV1Tool]
@@ -2259,6 +2376,7 @@ class GoogleCloudAiplatformV1EvaluationRun(typing_extensions.TypedDict, total=Fa
         "CANCELLED",
         "INFERENCE",
         "GENERATING_RUBRICS",
+        "GENERATING_LOSS_CLUSTERS",
     ]
 
 @typing.type_check_only
@@ -2273,6 +2391,7 @@ class GoogleCloudAiplatformV1EvaluationRunEvaluationConfig(
     typing_extensions.TypedDict, total=False
 ):
     autoraterConfig: GoogleCloudAiplatformV1EvaluationRunEvaluationConfigAutoraterConfig
+    datasetCustomMetrics: _list[GoogleCloudAiplatformV1DatasetCustomMetric]
     metrics: _list[GoogleCloudAiplatformV1EvaluationRunMetric]
     outputConfig: GoogleCloudAiplatformV1EvaluationRunEvaluationConfigOutputConfig
     promptTemplate: GoogleCloudAiplatformV1EvaluationRunEvaluationConfigPromptTemplate
@@ -2304,8 +2423,33 @@ class GoogleCloudAiplatformV1EvaluationRunEvaluationConfigPromptTemplate(
 class GoogleCloudAiplatformV1EvaluationRunInferenceConfig(
     typing_extensions.TypedDict, total=False
 ):
+    agentRunConfig: GoogleCloudAiplatformV1EvaluationRunInferenceConfigAgentRunConfig
     generationConfig: GoogleCloudAiplatformV1GenerationConfig
     model: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1EvaluationRunInferenceConfigAgentRunConfig(
+    typing_extensions.TypedDict, total=False
+):
+    agentEngine: str
+    sessionInput: GoogleCloudAiplatformV1EvaluationRunInferenceConfigSessionInput
+    userSimulatorConfig: GoogleCloudAiplatformV1EvaluationRunInferenceConfigAgentRunConfigUserSimulatorConfig
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1EvaluationRunInferenceConfigAgentRunConfigUserSimulatorConfig(
+    typing_extensions.TypedDict, total=False
+):
+    maxTurn: int
+    modelConfig: GoogleCloudAiplatformV1GenerationConfig
+    modelName: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1EvaluationRunInferenceConfigSessionInput(
+    typing_extensions.TypedDict, total=False
+):
+    parameters: dict[str, typing.Any]
+    sessionState: dict[str, typing.Any]
+    userId: str
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1EvaluationRunMetric(
@@ -2317,6 +2461,7 @@ class GoogleCloudAiplatformV1EvaluationRunMetric(
     llmBasedMetricSpec: GoogleCloudAiplatformV1EvaluationRunMetricLLMBasedMetricSpec
     metric: str
     metricConfig: GoogleCloudAiplatformV1Metric
+    metricResourceName: str
     predefinedMetricSpec: GoogleCloudAiplatformV1EvaluationRunMetricPredefinedMetricSpec
     rubricBasedMetricSpec: (
         GoogleCloudAiplatformV1EvaluationRunMetricRubricBasedMetricSpec
@@ -2378,6 +2523,7 @@ class GoogleCloudAiplatformV1EvaluationRunMetricRubricBasedMetricSpecRepeatedRub
 class GoogleCloudAiplatformV1EvaluationRunMetricRubricGenerationSpec(
     typing_extensions.TypedDict, total=False
 ):
+    metricResourceName: str
     modelConfig: GoogleCloudAiplatformV1EvaluationRunEvaluationConfigAutoraterConfig
     promptTemplate: str
     rubricContentType: typing_extensions.Literal[
@@ -2419,8 +2565,10 @@ class GoogleCloudAiplatformV1EventMetadata(typing_extensions.TypedDict, total=Fa
     branch: str
     customMetadata: dict[str, typing.Any]
     groundingMetadata: GoogleCloudAiplatformV1GroundingMetadata
+    inputTranscription: GoogleCloudAiplatformV1Transcription
     interrupted: bool
     longRunningToolIds: _list[str]
+    outputTranscription: GoogleCloudAiplatformV1Transcription
     partial: bool
     turnComplete: bool
 
@@ -3436,7 +3584,9 @@ class GoogleCloudAiplatformV1FunctionCallingConfig(
     typing_extensions.TypedDict, total=False
 ):
     allowedFunctionNames: _list[str]
-    mode: typing_extensions.Literal["MODE_UNSPECIFIED", "AUTO", "ANY", "NONE"]
+    mode: typing_extensions.Literal[
+        "MODE_UNSPECIFIED", "AUTO", "ANY", "NONE", "VALIDATED"
+    ]
     streamFunctionCallArguments: bool
 
 @typing.type_check_only
@@ -3600,9 +3750,10 @@ class GoogleCloudAiplatformV1GenerateFetchAccessTokenResponse(
 class GoogleCloudAiplatformV1GenerateInstanceRubricsRequest(
     typing_extensions.TypedDict, total=False
 ):
-    agentConfig: GoogleCloudAiplatformV1EvaluationInstanceAgentConfig
+    agentConfig: GoogleCloudAiplatformV1EvaluationInstanceDeprecatedAgentConfig
     contents: _list[GoogleCloudAiplatformV1Content]
     location: str
+    metricResourceName: str
     predefinedRubricGenerationSpec: GoogleCloudAiplatformV1PredefinedMetricSpec
     rubricGenerationSpec: GoogleCloudAiplatformV1RubricGenerationSpec
 
@@ -3836,9 +3987,19 @@ class GoogleCloudAiplatformV1GroundednessSpec(typing_extensions.TypedDict, total
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1GroundingChunk(typing_extensions.TypedDict, total=False):
+    image: GoogleCloudAiplatformV1GroundingChunkImage
     maps: GoogleCloudAiplatformV1GroundingChunkMaps
     retrievedContext: GoogleCloudAiplatformV1GroundingChunkRetrievedContext
     web: GoogleCloudAiplatformV1GroundingChunkWeb
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1GroundingChunkImage(
+    typing_extensions.TypedDict, total=False
+):
+    domain: str
+    imageUri: str
+    sourceUri: str
+    title: str
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1GroundingChunkMaps(
@@ -3846,6 +4007,7 @@ class GoogleCloudAiplatformV1GroundingChunkMaps(
 ):
     placeAnswerSources: GoogleCloudAiplatformV1GroundingChunkMapsPlaceAnswerSources
     placeId: str
+    route: GoogleCloudAiplatformV1GroundingChunkMapsRoute
     text: str
     title: str
     uri: str
@@ -3865,6 +4027,14 @@ class GoogleCloudAiplatformV1GroundingChunkMapsPlaceAnswerSourcesReviewSnippet(
     googleMapsUri: str
     reviewId: str
     title: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1GroundingChunkMapsRoute(
+    typing_extensions.TypedDict, total=False
+):
+    distanceMeters: int
+    duration: str
+    encodedPolyline: str
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1GroundingChunkRetrievedContext(
@@ -3891,6 +4061,7 @@ class GoogleCloudAiplatformV1GroundingMetadata(
     googleMapsWidgetContextToken: str
     groundingChunks: _list[GoogleCloudAiplatformV1GroundingChunk]
     groundingSupports: _list[GoogleCloudAiplatformV1GroundingSupport]
+    imageSearchQueries: _list[str]
     retrievalMetadata: GoogleCloudAiplatformV1RetrievalMetadata
     searchEntryPoint: GoogleCloudAiplatformV1SearchEntryPoint
     sourceFlaggingUris: _list[GoogleCloudAiplatformV1GroundingMetadataSourceFlaggingUri]
@@ -3907,6 +4078,7 @@ class GoogleCloudAiplatformV1GroundingMetadataSourceFlaggingUri(
 class GoogleCloudAiplatformV1GroundingSupport(typing_extensions.TypedDict, total=False):
     confidenceScores: _list[float]
     groundingChunkIndices: _list[int]
+    renderedParts: _list[int]
     segment: GoogleCloudAiplatformV1Segment
 
 @typing.type_check_only
@@ -3956,6 +4128,11 @@ class GoogleCloudAiplatformV1ImageConfig(typing_extensions.TypedDict, total=Fals
     imageSize: str
     personGeneration: typing_extensions.Literal[
         "PERSON_GENERATION_UNSPECIFIED", "ALLOW_ALL", "ALLOW_ADULT", "ALLOW_NONE"
+    ]
+    prominentPeople: typing_extensions.Literal[
+        "PROMINENT_PEOPLE_UNSPECIFIED",
+        "ALLOW_PROMINENT_PEOPLE",
+        "BLOCK_PROMINENT_PEOPLE",
     ]
 
 @typing.type_check_only
@@ -4215,6 +4392,18 @@ class GoogleCloudAiplatformV1JiraSourceJiraQueries(
     email: str
     projects: _list[str]
     serverUri: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1KeepAliveProbe(typing_extensions.TypedDict, total=False):
+    httpGet: GoogleCloudAiplatformV1KeepAliveProbeHttpGet
+    maxSeconds: int
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1KeepAliveProbeHttpGet(
+    typing_extensions.TypedDict, total=False
+):
+    path: str
+    port: int
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1LLMBasedMetricSpec(
@@ -4775,12 +4964,21 @@ class GoogleCloudAiplatformV1Memory(typing_extensions.TypedDict, total=False):
 class GoogleCloudAiplatformV1MemoryBankCustomizationConfig(
     typing_extensions.TypedDict, total=False
 ):
+    consolidationConfig: (
+        GoogleCloudAiplatformV1MemoryBankCustomizationConfigConsolidationConfig
+    )
     enableThirdPersonMemories: bool
     generateMemoriesExamples: _list[
         GoogleCloudAiplatformV1MemoryBankCustomizationConfigGenerateMemoriesExample
     ]
     memoryTopics: _list[GoogleCloudAiplatformV1MemoryBankCustomizationConfigMemoryTopic]
     scopeKeys: _list[str]
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1MemoryBankCustomizationConfigConsolidationConfig(
+    typing_extensions.TypedDict, total=False
+):
+    revisionsPerCandidateCount: int
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1MemoryBankCustomizationConfigGenerateMemoriesExample(
@@ -4952,10 +5150,26 @@ class GoogleCloudAiplatformV1Metric(typing_extensions.TypedDict, total=False):
     customCodeExecutionSpec: GoogleCloudAiplatformV1CustomCodeExecutionSpec
     exactMatchSpec: GoogleCloudAiplatformV1ExactMatchSpec
     llmBasedMetricSpec: GoogleCloudAiplatformV1LLMBasedMetricSpec
+    metadata: GoogleCloudAiplatformV1MetricMetadata
     pairwiseMetricSpec: GoogleCloudAiplatformV1PairwiseMetricSpec
     pointwiseMetricSpec: GoogleCloudAiplatformV1PointwiseMetricSpec
     predefinedMetricSpec: GoogleCloudAiplatformV1PredefinedMetricSpec
     rougeSpec: GoogleCloudAiplatformV1RougeSpec
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1MetricMetadata(typing_extensions.TypedDict, total=False):
+    otherMetadata: dict[str, typing.Any]
+    scoreRange: GoogleCloudAiplatformV1MetricMetadataScoreRange
+    title: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1MetricMetadataScoreRange(
+    typing_extensions.TypedDict, total=False
+):
+    description: str
+    max: float
+    min: float
+    step: float
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1MetricResult(typing_extensions.TypedDict, total=False):
@@ -4963,6 +5177,11 @@ class GoogleCloudAiplatformV1MetricResult(typing_extensions.TypedDict, total=Fal
     explanation: str
     rubricVerdicts: _list[GoogleCloudAiplatformV1RubricVerdict]
     score: float
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1MetricSource(typing_extensions.TypedDict, total=False):
+    metric: GoogleCloudAiplatformV1Metric
+    metricResourceName: str
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1MetricxInput(typing_extensions.TypedDict, total=False):
@@ -6400,6 +6619,7 @@ class GoogleCloudAiplatformV1PredictLongRunningRequest(
     typing_extensions.TypedDict, total=False
 ):
     instances: _list[typing.Any]
+    labels: dict[str, typing.Any]
     parameters: typing.Any
 
 @typing.type_check_only
@@ -7352,6 +7572,7 @@ class GoogleCloudAiplatformV1ReasoningEngineSpec(
 ):
     agentFramework: str
     classMethods: _list[dict[str, typing.Any]]
+    containerSpec: GoogleCloudAiplatformV1ReasoningEngineSpecContainerSpec
     deploymentSpec: GoogleCloudAiplatformV1ReasoningEngineSpecDeploymentSpec
     effectiveIdentity: str
     identityType: typing_extensions.Literal[
@@ -7362,11 +7583,18 @@ class GoogleCloudAiplatformV1ReasoningEngineSpec(
     sourceCodeSpec: GoogleCloudAiplatformV1ReasoningEngineSpecSourceCodeSpec
 
 @typing.type_check_only
+class GoogleCloudAiplatformV1ReasoningEngineSpecContainerSpec(
+    typing_extensions.TypedDict, total=False
+):
+    imageUri: str
+
+@typing.type_check_only
 class GoogleCloudAiplatformV1ReasoningEngineSpecDeploymentSpec(
     typing_extensions.TypedDict, total=False
 ):
     containerConcurrency: int
     env: _list[GoogleCloudAiplatformV1EnvVar]
+    keepAliveProbe: GoogleCloudAiplatformV1KeepAliveProbe
     maxInstances: int
     minInstances: int
     pscInterfaceConfig: GoogleCloudAiplatformV1PscInterfaceConfig
@@ -7386,12 +7614,28 @@ class GoogleCloudAiplatformV1ReasoningEngineSpecPackageSpec(
 class GoogleCloudAiplatformV1ReasoningEngineSpecSourceCodeSpec(
     typing_extensions.TypedDict, total=False
 ):
+    agentConfigSource: (
+        GoogleCloudAiplatformV1ReasoningEngineSpecSourceCodeSpecAgentConfigSource
+    )
     developerConnectSource: (
         GoogleCloudAiplatformV1ReasoningEngineSpecSourceCodeSpecDeveloperConnectSource
     )
     imageSpec: GoogleCloudAiplatformV1ReasoningEngineSpecSourceCodeSpecImageSpec
     inlineSource: GoogleCloudAiplatformV1ReasoningEngineSpecSourceCodeSpecInlineSource
     pythonSpec: GoogleCloudAiplatformV1ReasoningEngineSpecSourceCodeSpecPythonSpec
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1ReasoningEngineSpecSourceCodeSpecAgentConfigSource(
+    typing_extensions.TypedDict, total=False
+):
+    adkConfig: GoogleCloudAiplatformV1ReasoningEngineSpecSourceCodeSpecAgentConfigSourceAdkConfig
+    inlineSource: GoogleCloudAiplatformV1ReasoningEngineSpecSourceCodeSpecInlineSource
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1ReasoningEngineSpecSourceCodeSpecAgentConfigSourceAdkConfig(
+    typing_extensions.TypedDict, total=False
+):
+    jsonConfig: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1ReasoningEngineSpecSourceCodeSpecDeveloperConnectConfig(
@@ -8669,6 +8913,12 @@ class GoogleCloudAiplatformV1SchemaPromptSpecAppBuilderDataLinkedResource(
     type: str
 
 @typing.type_check_only
+class GoogleCloudAiplatformV1SchemaPromptSpecInteractionData(
+    typing_extensions.TypedDict, total=False
+):
+    interactionIds: _list[str]
+
+@typing.type_check_only
 class GoogleCloudAiplatformV1SchemaPromptSpecMultimodalPrompt(
     typing_extensions.TypedDict, total=False
 ):
@@ -8717,6 +8967,7 @@ class GoogleCloudAiplatformV1SchemaPromptSpecStructuredPrompt(
     infillPrefix: str
     infillSuffix: str
     inputPrefixes: _list[str]
+    interactionData: GoogleCloudAiplatformV1SchemaPromptSpecInteractionData
     outputPrefixes: _list[str]
     predictionInputs: _list[GoogleCloudAiplatformV1SchemaPromptSpecPartList]
     promptMessage: GoogleCloudAiplatformV1SchemaPromptSpecPromptMessage
@@ -9741,6 +9992,7 @@ class GoogleCloudAiplatformV1SessionEvent(typing_extensions.TypedDict, total=Fal
     eventMetadata: GoogleCloudAiplatformV1EventMetadata
     invocationId: str
     name: str
+    rawEvent: dict[str, typing.Any]
     timestamp: str
 
 @typing.type_check_only
@@ -10274,6 +10526,7 @@ class GoogleCloudAiplatformV1SupervisedTuningDatasetDistributionDatasetBucket(
 class GoogleCloudAiplatformV1SupervisedTuningSpec(
     typing_extensions.TypedDict, total=False
 ):
+    evaluationConfig: GoogleCloudAiplatformV1EvaluationConfig
     exportLastCheckpointOnly: bool
     hyperParameters: GoogleCloudAiplatformV1SupervisedHyperParameters
     trainingDatasetUri: str
@@ -10537,6 +10790,24 @@ class GoogleCloudAiplatformV1ToolGoogleSearch(typing_extensions.TypedDict, total
         "BLOCK_ONLY_EXTREMELY_HIGH",
     ]
     excludeDomains: _list[str]
+    searchTypes: GoogleCloudAiplatformV1ToolGoogleSearchSearchTypes
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1ToolGoogleSearchImageSearch(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1ToolGoogleSearchSearchTypes(
+    typing_extensions.TypedDict, total=False
+):
+    imageSearch: GoogleCloudAiplatformV1ToolGoogleSearchImageSearch
+    webSearch: GoogleCloudAiplatformV1ToolGoogleSearchWebSearch
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1ToolGoogleSearchWebSearch(
+    typing_extensions.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1ToolNameMatchInput(
@@ -10880,6 +11151,11 @@ class GoogleCloudAiplatformV1TrajectorySingleToolUseSpec(
     toolName: str
 
 @typing.type_check_only
+class GoogleCloudAiplatformV1Transcription(typing_extensions.TypedDict, total=False):
+    finished: bool
+    text: str
+
+@typing.type_check_only
 class GoogleCloudAiplatformV1Trial(typing_extensions.TypedDict, total=False):
     clientId: str
     customJob: str
@@ -10947,6 +11223,7 @@ class GoogleCloudAiplatformV1TuningJob(typing_extensions.TypedDict, total=False)
     encryptionSpec: GoogleCloudAiplatformV1EncryptionSpec
     endTime: str
     error: GoogleRpcStatus
+    evaluateDatasetRuns: _list[GoogleCloudAiplatformV1EvaluateDatasetRun]
     experiment: str
     labels: dict[str, typing.Any]
     name: str

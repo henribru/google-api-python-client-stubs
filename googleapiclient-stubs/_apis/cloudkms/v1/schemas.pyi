@@ -547,6 +547,7 @@ class KeyAccessJustificationsPolicy(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class KeyAccessJustificationsPolicyConfig(typing_extensions.TypedDict, total=False):
     defaultKeyAccessJustificationPolicy: KeyAccessJustificationsPolicy
+    defaultPolicyAvailable: bool
     name: str
 
 @typing.type_check_only

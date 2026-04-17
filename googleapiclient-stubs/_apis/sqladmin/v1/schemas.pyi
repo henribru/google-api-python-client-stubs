@@ -1071,6 +1071,7 @@ class Operation(typing_extensions.TypedDict, total=False):
         "ENHANCED_BACKUP",
         "REPAIR_READ_POOL",
         "CREATE_READ_POOL",
+        "PRE_CHECK_MAJOR_VERSION_UPGRADE",
     ]
     preCheckMajorVersionUpgradeContext: PreCheckMajorVersionUpgradeContext
     selfLink: str
@@ -1149,7 +1150,10 @@ class PointInTimeRestoreContext(typing_extensions.TypedDict, total=False):
     preferredSecondaryZone: str
     preferredZone: str
     privateNetwork: str
+    region: str
     targetInstance: str
+    targetInstanceClearSettingsFieldNames: _list[str]
+    targetInstanceSettings: DatabaseInstance
 
 @typing.type_check_only
 class PoolNodeConfig(typing_extensions.TypedDict, total=False):
@@ -1254,7 +1258,9 @@ class PscConfig(typing_extensions.TypedDict, total=False):
     allowedConsumerProjects: _list[str]
     networkAttachmentUri: str
     pscAutoConnections: _list[PscAutoConnectionConfig]
+    pscAutoDnsEnabled: bool
     pscEnabled: bool
+    pscWriteEndpointDnsEnabled: bool
 
 @typing.type_check_only
 class QueryResult(typing_extensions.TypedDict, total=False):

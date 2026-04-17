@@ -288,6 +288,7 @@ class DropInfo(typing_extensions.TypedDict, total=False):
         "NCC_ROUTE_WITHIN_HYBRID_SUBNET_UNSUPPORTED",
         "HYBRID_SUBNET_REGION_MISMATCH",
         "HYBRID_SUBNET_NO_ROUTE",
+        "GKE_NETWORK_POLICY",
         "NO_VALID_ROUTE_FROM_GOOGLE_MANAGED_NETWORK_TO_DESTINATION",
     ]
     destinationGeolocationCode: str
@@ -475,6 +476,24 @@ class GKEMasterInfo(typing_extensions.TypedDict, total=False):
     dnsEndpoint: str
     externalIp: str
     internalIp: str
+
+@typing.type_check_only
+class GkeNetworkPolicyInfo(typing_extensions.TypedDict, total=False):
+    action: str
+    direction: str
+    displayName: str
+    uri: str
+
+@typing.type_check_only
+class GkeNetworkPolicySkippedInfo(typing_extensions.TypedDict, total=False):
+    reason: typing_extensions.Literal[
+        "REASON_UNSPECIFIED",
+        "NETWORK_POLICY_DISABLED",
+        "INGRESS_SOURCE_ON_SAME_NODE",
+        "EGRESS_FROM_NODE_NETWORK_NAMESPACE_POD",
+        "NETWORK_POLICY_NOT_APPLIED_TO_RESPONSE_TRAFFIC",
+        "NETWORK_POLICY_ANALYSIS_UNSUPPORTED",
+    ]
 
 @typing.type_check_only
 class GkePodInfo(typing_extensions.TypedDict, total=False):
@@ -879,6 +898,8 @@ class Step(typing_extensions.TypedDict, total=False):
     forward: ForwardInfo
     forwardingRule: ForwardingRuleInfo
     gkeMaster: GKEMasterInfo
+    gkeNetworkPolicy: GkeNetworkPolicyInfo
+    gkeNetworkPolicySkipped: GkeNetworkPolicySkippedInfo
     gkePod: GkePodInfo
     googleService: GoogleServiceInfo
     hybridSubnet: HybridSubnetInfo
@@ -928,11 +949,16 @@ class Step(typing_extensions.TypedDict, total=False):
         "ARRIVE_AT_VPN_TUNNEL",
         "ARRIVE_AT_INTERCONNECT_ATTACHMENT",
         "ARRIVE_AT_VPC_CONNECTOR",
+        "ARRIVE_AT_GKE_POD",
         "DIRECT_VPC_EGRESS_CONNECTION",
         "SERVERLESS_EXTERNAL_CONNECTION",
         "NGFW_PACKET_INSPECTION",
         "NAT",
         "SKIP_GKE_POD_IP_MASQUERADING",
+        "SKIP_GKE_INGRESS_NETWORK_POLICY",
+        "SKIP_GKE_EGRESS_NETWORK_POLICY",
+        "APPLY_INGRESS_GKE_NETWORK_POLICY",
+        "APPLY_EGRESS_GKE_NETWORK_POLICY",
         "PROXY_CONNECTION",
         "DELIVER",
         "DROP",

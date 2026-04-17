@@ -10,10 +10,27 @@ class Aggregate(typing_extensions.TypedDict, total=False):
     group: str
 
 @typing.type_check_only
+class AppParams(typing_extensions.TypedDict, total=False):
+    group: str
+    scope: Scope
+
+@typing.type_check_only
 class Blueprint(typing_extensions.TypedDict, total=False):
     engine: str
     package: str
     version: str
+
+@typing.type_check_only
+class ComponentRef(typing_extensions.TypedDict, total=False):
+    component: str
+    compositeRef: CompositeRef
+    revision: str
+
+@typing.type_check_only
+class CompositeRef(typing_extensions.TypedDict, total=False):
+    applicationTemplate: str
+    revision: str
+    syncOperation: str
 
 @typing.type_check_only
 class Dependency(typing_extensions.TypedDict, total=False):
@@ -113,6 +130,7 @@ class Provision(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Release(typing_extensions.TypedDict, total=False):
     annotations: dict[str, typing.Any]
+    applicationTemplateComponent: ComponentRef
     blueprint: Blueprint
     createTime: str
     etag: str
@@ -183,12 +201,6 @@ class RolloutKind(typing_extensions.TypedDict, total=False):
     errorBudget: ErrorBudget
     etag: str
     labels: dict[str, typing.Any]
-    maintenancePolicyEnforcement: typing_extensions.Literal[
-        "MAINTENANCE_POLICY_ENFORCEMENT_UNSPECIFIED",
-        "MAINTENANCE_POLICY_ENFORCEMENT_STRICT",
-        "MAINTENANCE_POLICY_ENFORCEMENT_IGNORED",
-        "MAINTENANCE_POLICY_ENFORCEMENT_SKIPPED",
-    ]
     name: str
     rolloutOrchestrationStrategy: str
     uid: str
@@ -203,6 +215,7 @@ class RolloutKind(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class RolloutStats(typing_extensions.TypedDict, total=False):
+    estimatedTotalUnitCount: str
     operationsByState: _list[Aggregate]
 
 @typing.type_check_only
@@ -212,17 +225,54 @@ class RunRolloutActionParams(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Saas(typing_extensions.TypedDict, total=False):
     annotations: dict[str, typing.Any]
+    applicationTemplate: CompositeRef
+    blueprintRepo: str
+    conditions: _list[SaasCondition]
     createTime: str
+    error: Status
     etag: str
     labels: dict[str, typing.Any]
     locations: _list[Location]
     name: str
+    state: typing_extensions.Literal[
+        "STATE_TYPE_UNSPECIFIED",
+        "ACTIVE",
+        "RUNNING",
+        "FAILED",
+        "STATE_ACTIVE",
+        "STATE_RUNNING",
+        "STATE_FAILED",
+    ]
     uid: str
     updateTime: str
 
 @typing.type_check_only
+class SaasCondition(typing_extensions.TypedDict, total=False):
+    lastTransitionTime: str
+    message: str
+    reason: str
+    status: typing_extensions.Literal[
+        "STATUS_UNSPECIFIED", "STATUS_UNKNOWN", "STATUS_TRUE", "STATUS_FALSE"
+    ]
+    type: typing_extensions.Literal[
+        "TYPE_UNSPECIFIED", "TYPE_READY", "TYPE_SYNCHRONIZED"
+    ]
+
+@typing.type_check_only
 class Schedule(typing_extensions.TypedDict, total=False):
     startTime: str
+
+@typing.type_check_only
+class Scope(typing_extensions.TypedDict, total=False):
+    type: typing_extensions.Literal[
+        "TYPE_UNSPECIFIED", "REGIONAL", "GLOBAL", "TYPE_REGIONAL", "TYPE_GLOBAL"
+    ]
+
+@typing.type_check_only
+class Status(typing_extensions.TypedDict, total=False):
+    code: int
+    details: _list[dict[str, typing.Any]]
+    message: str
 
 @typing.type_check_only
 class Tenant(typing_extensions.TypedDict, total=False):
@@ -245,6 +295,7 @@ class ToMapping(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Unit(typing_extensions.TypedDict, total=False):
     annotations: dict[str, typing.Any]
+    application: str
     conditions: _list[UnitCondition]
     createTime: str
     dependencies: _list[UnitDependency]
@@ -261,6 +312,8 @@ class Unit(typing_extensions.TypedDict, total=False):
     outputVariables: _list[UnitVariable]
     pendingOperations: _list[str]
     release: str
+    satisfiesPzi: bool
+    satisfiesPzs: bool
     scheduledOperations: _list[str]
     state: typing_extensions.Literal[
         "UNIT_STATE_UNSPECIFIED",
@@ -307,6 +360,8 @@ class UnitDependency(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class UnitKind(typing_extensions.TypedDict, total=False):
     annotations: dict[str, typing.Any]
+    appParams: AppParams
+    applicationTemplateComponent: ComponentRef
     createTime: str
     defaultRelease: str
     dependencies: _list[Dependency]

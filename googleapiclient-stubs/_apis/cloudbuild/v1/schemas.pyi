@@ -33,11 +33,13 @@ class ArtifactResult(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Artifacts(typing_extensions.TypedDict, total=False):
+    genericArtifacts: _list[GenericArtifact]
     goModules: _list[GoModule]
     images: _list[str]
     mavenArtifacts: _list[MavenArtifact]
     npmPackages: _list[NpmPackage]
     objects: ArtifactObjects
+    oci: _list[Oci]
     pythonPackages: _list[PythonPackage]
 
 @typing.type_check_only
@@ -222,7 +224,9 @@ class BuildOptions(typing_extensions.TypedDict, total=False):
     requestedVerifyOption: typing_extensions.Literal["NOT_VERIFIED", "VERIFIED"]
     secretEnv: _list[str]
     sourceProvenanceHash: _list[
-        typing_extensions.Literal["NONE", "SHA256", "MD5", "GO_MODULE_H1", "SHA512"]
+        typing_extensions.Literal[
+            "NONE", "SHA256", "MD5", "GO_MODULE_H1", "SHA512", "DIRSUM_SHA256"
+        ]
     ]
     substitutionOption: typing_extensions.Literal["MUST_MATCH", "ALLOW_LOOSE"]
     volumes: _list[Volume]
@@ -300,6 +304,9 @@ class BuiltImage(typing_extensions.TypedDict, total=False):
     artifactRegistryPackage: str
     digest: str
     name: str
+    ociMediaType: typing_extensions.Literal[
+        "OCI_MEDIA_TYPE_UNSPECIFIED", "IMAGE_MANIFEST", "IMAGE_INDEX"
+    ]
     pushTiming: TimeSpan
 
 @typing.type_check_only
@@ -393,6 +400,7 @@ class DeleteWorkerPoolOperationMetadata(typing_extensions.TypedDict, total=False
 @typing.type_check_only
 class Dependency(typing_extensions.TypedDict, total=False):
     empty: bool
+    genericArtifact: GenericArtifactDependency
     gitSource: GitSourceDependency
 
 @typing.type_check_only
@@ -435,6 +443,16 @@ class FailureInfo(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class FileHashes(typing_extensions.TypedDict, total=False):
     fileHash: _list[Hash]
+
+@typing.type_check_only
+class GenericArtifact(typing_extensions.TypedDict, total=False):
+    folder: str
+    registryPath: str
+
+@typing.type_check_only
+class GenericArtifactDependency(typing_extensions.TypedDict, total=False):
+    destPath: str
+    resource: str
 
 @typing.type_check_only
 class GitConfig(typing_extensions.TypedDict, total=False):
@@ -585,7 +603,9 @@ class GoModule(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Hash(typing_extensions.TypedDict, total=False):
-    type: typing_extensions.Literal["NONE", "SHA256", "MD5", "GO_MODULE_H1", "SHA512"]
+    type: typing_extensions.Literal[
+        "NONE", "SHA256", "MD5", "GO_MODULE_H1", "SHA512", "DIRSUM_SHA256"
+    ]
     value: str
 
 @typing.type_check_only
@@ -663,6 +683,12 @@ class NetworkConfig(typing_extensions.TypedDict, total=False):
 class NpmPackage(typing_extensions.TypedDict, total=False):
     packagePath: str
     repository: str
+
+@typing.type_check_only
+class Oci(typing_extensions.TypedDict, total=False):
+    file: str
+    registryPath: str
+    tags: _list[str]
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
@@ -784,6 +810,7 @@ class Results(typing_extensions.TypedDict, total=False):
     artifactTiming: TimeSpan
     buildStepImages: _list[str]
     buildStepOutputs: _list[str]
+    genericArtifacts: _list[UploadedGenericArtifact]
     goModules: _list[UploadedGoModule]
     images: _list[BuiltImage]
     mavenArtifacts: _list[UploadedMavenArtifact]
@@ -893,6 +920,14 @@ class UpdateWorkerPoolOperationMetadata(typing_extensions.TypedDict, total=False
     completeTime: str
     createTime: str
     workerPool: str
+
+@typing.type_check_only
+class UploadedGenericArtifact(typing_extensions.TypedDict, total=False):
+    artifactFingerprint: FileHashes
+    artifactRegistryPackage: str
+    fileHashes: dict[str, typing.Any]
+    pushTiming: TimeSpan
+    uri: str
 
 @typing.type_check_only
 class UploadedGoModule(typing_extensions.TypedDict, total=False):

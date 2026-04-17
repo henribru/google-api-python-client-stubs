@@ -160,6 +160,14 @@ class ComputeResource(googleapiclient.discovery.Resource):
             body: CapacityAdviceRequest = ...,
             **kwargs: typing.Any,
         ) -> CapacityAdviceResponseHttpRequest: ...
+        def capacityHistory(
+            self,
+            *,
+            project: str,
+            region: str,
+            body: CapacityHistoryRequest = ...,
+            **kwargs: typing.Any,
+        ) -> CapacityHistoryResponseHttpRequest: ...
 
     @typing.type_check_only
     class AutoscalersResource(googleapiclient.discovery.Resource):
@@ -871,6 +879,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             disk: str,
+            body: DiskUpdateKmsKeyRequest = ...,
             requestId: str = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -1962,6 +1971,47 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
+
+    @typing.type_check_only
+    class HostsResource(googleapiclient.discovery.Resource):
+        def get(
+            self,
+            *,
+            project: str,
+            zone: str,
+            association: str,
+            host: str,
+            **kwargs: typing.Any,
+        ) -> HostHttpRequest: ...
+        def getVersion(
+            self,
+            *,
+            project: str,
+            zone: str,
+            association: str,
+            host: str,
+            body: HostsGetVersionRequest = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
+        def list(
+            self,
+            *,
+            project: str,
+            zone: str,
+            association: str,
+            filter: str = ...,
+            maxResults: int = ...,
+            orderBy: str = ...,
+            pageToken: str = ...,
+            returnPartialSuccess: bool = ...,
+            **kwargs: typing.Any,
+        ) -> HostsListResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: HostsListResponseHttpRequest,
+            previous_response: HostsListResponse,
+        ) -> HostsListResponseHttpRequest | None: ...
 
     @typing.type_check_only
     class HttpHealthChecksResource(googleapiclient.discovery.Resource):
@@ -5301,7 +5351,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             organization: str,
             body: SnapshotRecycleBinPolicy = ...,
             requestId: str = ...,
-            updateMask: str = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
 
@@ -6480,6 +6529,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             disk: str,
+            body: RegionDiskUpdateKmsKeyRequest = ...,
             requestId: str = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -8318,6 +8368,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             snapshot: str,
+            body: RegionSnapshotUpdateKmsKeyRequest = ...,
             requestId: str = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -9279,6 +9330,15 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
+        def startNextWave(
+            self,
+            *,
+            project: str,
+            rollout: str,
+            requestId: str = ...,
+            waveNumber: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
 
     @typing.type_check_only
     class RoutersResource(googleapiclient.discovery.Resource):
@@ -9897,7 +9957,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             body: SnapshotRecycleBinPolicy = ...,
             requestId: str = ...,
-            updateMask: str = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
 
@@ -10011,6 +10070,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             snapshot: str,
+            body: SnapshotUpdateKmsKeyRequest = ...,
             requestId: str = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -11794,6 +11854,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
     def globalVmExtensionPolicies(self) -> GlobalVmExtensionPoliciesResource: ...
     def haControllers(self) -> HaControllersResource: ...
     def healthChecks(self) -> HealthChecksResource: ...
+    def hosts(self) -> HostsResource: ...
     def httpHealthChecks(self) -> HttpHealthChecksResource: ...
     def httpsHealthChecks(self) -> HttpsHealthChecksResource: ...
     def imageFamilyViews(self) -> ImageFamilyViewsResource: ...
@@ -12090,6 +12151,14 @@ class CapacityAdviceResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> CapacityAdviceResponse: ...
+
+@typing.type_check_only
+class CapacityHistoryResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> CapacityHistoryResponse: ...
 
 @typing.type_check_only
 class CommitmentHttpRequest(googleapiclient.http.HttpRequest):
@@ -12536,6 +12605,22 @@ class HealthSourceListHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> HealthSourceList: ...
+
+@typing.type_check_only
+class HostHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> Host: ...
+
+@typing.type_check_only
+class HostsListResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> HostsListResponse: ...
 
 @typing.type_check_only
 class HttpHealthCheckHttpRequest(googleapiclient.http.HttpRequest):

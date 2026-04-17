@@ -1417,7 +1417,7 @@ class LiveChatGiftDetails(typing_extensions.TypedDict, total=False):
     giftName: str
     giftUrl: str
     hasVisualEffect: bool
-    jewelsCount: int
+    jewelsAmount: int
     language: str
 
 @typing.type_check_only

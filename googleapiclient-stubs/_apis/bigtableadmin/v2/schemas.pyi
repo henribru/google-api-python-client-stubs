@@ -39,6 +39,7 @@ class AuthorizedView(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class AutomatedBackupPolicy(typing_extensions.TypedDict, total=False):
     frequency: str
+    locations: _list[str]
     retentionPeriod: str
 
 @typing.type_check_only
@@ -327,6 +328,12 @@ class GoogleBigtableAdminV2MaterializedViewClusterState(
     ]
 
 @typing.type_check_only
+class GoogleBigtableAdminV2MemoryLayerMemoryConfig(
+    typing_extensions.TypedDict, total=False
+):
+    storageSizeGib: int
+
+@typing.type_check_only
 class GoogleBigtableAdminV2TypeAggregate(typing_extensions.TypedDict, total=False):
     hllppUniqueCount: GoogleBigtableAdminV2TypeAggregateHyperLogLogPlusPlusUniqueCount
     inputType: Type
@@ -360,7 +367,13 @@ class GoogleBigtableAdminV2TypeArray(typing_extensions.TypedDict, total=False):
     elementType: Type
 
 @typing.type_check_only
-class GoogleBigtableAdminV2TypeBool(typing_extensions.TypedDict, total=False): ...
+class GoogleBigtableAdminV2TypeBool(typing_extensions.TypedDict, total=False):
+    encoding: GoogleBigtableAdminV2TypeBoolEncoding
+
+@typing.type_check_only
+class GoogleBigtableAdminV2TypeBoolEncoding(
+    typing_extensions.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class GoogleBigtableAdminV2TypeBytes(typing_extensions.TypedDict, total=False):
@@ -392,6 +405,25 @@ class GoogleBigtableAdminV2TypeFloat64(typing_extensions.TypedDict, total=False)
 
 @typing.type_check_only
 class GoogleBigtableAdminV2TypeGeography(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class GoogleBigtableAdminV2TypeInt32(typing_extensions.TypedDict, total=False):
+    encoding: GoogleBigtableAdminV2TypeInt32Encoding
+
+@typing.type_check_only
+class GoogleBigtableAdminV2TypeInt32Encoding(typing_extensions.TypedDict, total=False):
+    bigEndianBytes: GoogleBigtableAdminV2TypeInt32EncodingBigEndianBytes
+    orderedCodeBytes: GoogleBigtableAdminV2TypeInt32EncodingOrderedCodeBytes
+
+@typing.type_check_only
+class GoogleBigtableAdminV2TypeInt32EncodingBigEndianBytes(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleBigtableAdminV2TypeInt32EncodingOrderedCodeBytes(
+    typing_extensions.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class GoogleBigtableAdminV2TypeInt64(typing_extensions.TypedDict, total=False):
@@ -499,6 +531,9 @@ class HotTablet(typing_extensions.TypedDict, total=False):
 class Instance(typing_extensions.TypedDict, total=False):
     createTime: str
     displayName: str
+    edition: typing_extensions.Literal[
+        "EDITION_UNSPECIFIED", "ENTERPRISE", "ENTERPRISE_PLUS"
+    ]
     labels: dict[str, typing.Any]
     name: str
     satisfiesPzi: bool
@@ -560,6 +595,12 @@ class ListMaterializedViewsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class ListMemoryLayersResponse(typing_extensions.TypedDict, total=False):
+    failedLocations: _list[str]
+    memoryLayers: _list[MemoryLayer]
+    nextPageToken: str
+
+@typing.type_check_only
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
@@ -597,6 +638,18 @@ class MaterializedView(typing_extensions.TypedDict, total=False):
     etag: str
     name: str
     query: str
+
+@typing.type_check_only
+class MemoryConfig(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class MemoryLayer(typing_extensions.TypedDict, total=False):
+    etag: str
+    memoryConfig: GoogleBigtableAdminV2MemoryLayerMemoryConfig
+    name: str
+    state: typing_extensions.Literal[
+        "STATE_NOT_KNOWN", "READY", "ENABLING", "RESIZING", "DISABLED"
+    ]
 
 @typing.type_check_only
 class Modification(typing_extensions.TypedDict, total=False):
@@ -705,6 +758,7 @@ class Split(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class StandardIsolation(typing_extensions.TypedDict, total=False):
+    memoryConfig: MemoryConfig
     priority: typing_extensions.Literal[
         "PRIORITY_UNSPECIFIED", "PRIORITY_LOW", "PRIORITY_MEDIUM", "PRIORITY_HIGH"
     ]
@@ -776,6 +830,7 @@ class Type(typing_extensions.TypedDict, total=False):
     float32Type: GoogleBigtableAdminV2TypeFloat32
     float64Type: GoogleBigtableAdminV2TypeFloat64
     geographyType: GoogleBigtableAdminV2TypeGeography
+    int32Type: GoogleBigtableAdminV2TypeInt32
     int64Type: GoogleBigtableAdminV2TypeInt64
     mapType: GoogleBigtableAdminV2TypeMap
     protoType: GoogleBigtableAdminV2TypeProto
@@ -836,6 +891,17 @@ class UpdateLogicalViewMetadata(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class UpdateLogicalViewRequest(typing_extensions.TypedDict, total=False):
     logicalView: LogicalView
+    updateMask: str
+
+@typing.type_check_only
+class UpdateMemoryLayerMetadata(typing_extensions.TypedDict, total=False):
+    finishTime: str
+    originalRequest: UpdateMemoryLayerRequest
+    requestTime: str
+
+@typing.type_check_only
+class UpdateMemoryLayerRequest(typing_extensions.TypedDict, total=False):
+    memoryLayer: MemoryLayer
     updateMask: str
 
 @typing.type_check_only

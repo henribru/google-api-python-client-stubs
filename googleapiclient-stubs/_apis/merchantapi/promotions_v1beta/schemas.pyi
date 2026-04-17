@@ -25,6 +25,8 @@ class Attributes(typing_extensions.TypedDict, total=False):
         "FREE_SHIPPING_STANDARD",
         "FREE_SHIPPING_OVERNIGHT",
         "FREE_SHIPPING_TWO_DAY",
+        "MONEY_OFF_RANGE",
+        "PERCENT_OFF_RANGE",
     ]
     customRedemptionRestriction: str
     eventApplicability: typing_extensions.Literal[
@@ -44,6 +46,10 @@ class Attributes(typing_extensions.TypedDict, total=False):
     limitValue: Price
     longTitle: str
     maxDiscountAmount: Price
+    maxMoneyOffAmount: Price
+    maxPercentOff: str
+    minMoneyOffAmount: Price
+    minPercentOff: str
     minimumPurchaseAmount: Price
     minimumPurchaseQuantity: str
     moneyOffAmount: Price

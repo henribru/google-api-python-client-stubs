@@ -305,6 +305,29 @@ class NetAppFilesResource(googleapiclient.discovery.Resource):
 
             @typing.type_check_only
             class StoragePoolsResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class OntapResource(googleapiclient.discovery.Resource):
+                    def executeOntapDelete(
+                        self, *, ontapPath: str, **kwargs: typing.Any
+                    ) -> ExecuteOntapDeleteResponseHttpRequest: ...
+                    def executeOntapGet(
+                        self, *, ontapPath: str, **kwargs: typing.Any
+                    ) -> ExecuteOntapGetResponseHttpRequest: ...
+                    def executeOntapPatch(
+                        self,
+                        *,
+                        ontapPath: str,
+                        body: ExecuteOntapPatchRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> ExecuteOntapPatchResponseHttpRequest: ...
+                    def executeOntapPost(
+                        self,
+                        *,
+                        ontapPath: str,
+                        body: ExecuteOntapPostRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> ExecuteOntapPostResponseHttpRequest: ...
+
                 def create(
                     self,
                     *,
@@ -356,6 +379,7 @@ class NetAppFilesResource(googleapiclient.discovery.Resource):
                     body: ValidateDirectoryServiceRequest = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
+                def ontap(self) -> OntapResource: ...
 
             @typing.type_check_only
             class VolumesResource(googleapiclient.discovery.Resource):
@@ -650,6 +674,38 @@ class BackupVaultHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> BackupVault: ...
+
+@typing.type_check_only
+class ExecuteOntapDeleteResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ExecuteOntapDeleteResponse: ...
+
+@typing.type_check_only
+class ExecuteOntapGetResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ExecuteOntapGetResponse: ...
+
+@typing.type_check_only
+class ExecuteOntapPatchResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ExecuteOntapPatchResponse: ...
+
+@typing.type_check_only
+class ExecuteOntapPostResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ExecuteOntapPostResponse: ...
 
 @typing.type_check_only
 class GoogleProtobufEmptyHttpRequest(googleapiclient.http.HttpRequest):

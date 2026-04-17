@@ -5,6 +5,11 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class AISkillAnalysisOccurrence(typing_extensions.TypedDict, total=False):
+    findings: _list[Finding]
+    skillName: str
+
+@typing.type_check_only
 class AliasContext(typing_extensions.TypedDict, total=False):
     kind: typing_extensions.Literal["KIND_UNSPECIFIED", "FIXED", "MOVABLE", "OTHER"]
     name: str
@@ -280,6 +285,16 @@ class FileLocation(typing_extensions.TypedDict, total=False):
     layerDetails: LayerDetails
 
 @typing.type_check_only
+class Finding(typing_extensions.TypedDict, total=False):
+    category: str
+    description: str
+    filePath: str
+    ruleId: str
+    severity: str
+    snippet: str
+    title: str
+
+@typing.type_check_only
 class Fingerprint(typing_extensions.TypedDict, total=False):
     v1Name: str
     v2Blob: _list[str]
@@ -308,6 +323,7 @@ class GrafeasV1BaseImage(typing_extensions.TypedDict, total=False):
 class GrafeasV1FileLocation(typing_extensions.TypedDict, total=False):
     filePath: str
     layerDetails: GrafeasV1LayerDetails
+    lineNumber: int
 
 @typing.type_check_only
 class GrafeasV1LayerDetails(typing_extensions.TypedDict, total=False):
@@ -488,6 +504,8 @@ class NonCompliantFile(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Occurrence(typing_extensions.TypedDict, total=False):
+    advisoryPublishTime: str
+    aiSkillAnalysis: AISkillAnalysisOccurrence
     attestation: AttestationOccurrence
     build: BuildOccurrence
     compliance: ComplianceOccurrence
@@ -512,6 +530,7 @@ class Occurrence(typing_extensions.TypedDict, total=False):
         "VULNERABILITY_ASSESSMENT",
         "SBOM_REFERENCE",
         "SECRET",
+        "AI_SKILL_ANALYSIS",
     ]
     name: str
     noteName: str

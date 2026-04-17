@@ -90,6 +90,11 @@ class EventDrivenSchedule(typing_extensions.TypedDict, total=False):
     pubsubSubscription: str
 
 @typing.type_check_only
+class HierarchyDetail(typing_extensions.TypedDict, total=False):
+    partitionDetail: PartitionDetail
+    tableDetail: TableDetail
+
+@typing.type_check_only
 class ListDataSourcesResponse(typing_extensions.TypedDict, total=False):
     dataSources: _list[DataSource]
     nextPageToken: str
@@ -110,6 +115,11 @@ class ListTransferLogsResponse(typing_extensions.TypedDict, total=False):
     transferMessages: _list[TransferMessage]
 
 @typing.type_check_only
+class ListTransferResourcesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    transferResources: _list[TransferResource]
+
+@typing.type_check_only
 class ListTransferRunsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     transferRuns: _list[TransferRun]
@@ -124,6 +134,10 @@ class Location(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ManualSchedule(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class PartitionDetail(typing_extensions.TypedDict, total=False):
+    table: str
 
 @typing.type_check_only
 class ScheduleOptions(typing_extensions.TypedDict, total=False):
@@ -160,6 +174,10 @@ class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
+
+@typing.type_check_only
+class TableDetail(typing_extensions.TypedDict, total=False):
+    partitionCount: str
 
 @typing.type_check_only
 class TimeBasedSchedule(typing_extensions.TypedDict, total=False):
@@ -214,6 +232,40 @@ class TransferMessage(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class TransferResource(typing_extensions.TypedDict, total=False):
+    destination: typing_extensions.Literal[
+        "RESOURCE_DESTINATION_UNSPECIFIED",
+        "RESOURCE_DESTINATION_BIGQUERY",
+        "RESOURCE_DESTINATION_DATAPROC_METASTORE",
+        "RESOURCE_DESTINATION_BIGLAKE_METASTORE",
+        "RESOURCE_DESTINATION_BIGLAKE_REST_CATALOG",
+        "RESOURCE_DESTINATION_BIGLAKE_HIVE_CATALOG",
+    ]
+    hierarchyDetail: HierarchyDetail
+    lastSuccessfulRun: TransferRunBrief
+    latestRun: TransferRunBrief
+    latestStatusDetail: TransferResourceStatusDetail
+    name: str
+    type: typing_extensions.Literal[
+        "RESOURCE_TYPE_UNSPECIFIED", "RESOURCE_TYPE_TABLE", "RESOURCE_TYPE_PARTITION"
+    ]
+    updateTime: str
+
+@typing.type_check_only
+class TransferResourceStatusDetail(typing_extensions.TypedDict, total=False):
+    completedPercentage: float
+    error: Status
+    state: typing_extensions.Literal[
+        "RESOURCE_TRANSFER_STATE_UNSPECIFIED",
+        "RESOURCE_TRANSFER_PENDING",
+        "RESOURCE_TRANSFER_RUNNING",
+        "RESOURCE_TRANSFER_SUCCEEDED",
+        "RESOURCE_TRANSFER_FAILED",
+        "RESOURCE_TRANSFER_CANCELLED",
+    ]
+    summary: TransferStatusSummary
+
+@typing.type_check_only
 class TransferRun(typing_extensions.TypedDict, total=False):
     dataSourceId: str
     destinationDatasetId: str
@@ -237,6 +289,32 @@ class TransferRun(typing_extensions.TypedDict, total=False):
     ]
     updateTime: str
     userId: str
+
+@typing.type_check_only
+class TransferRunBrief(typing_extensions.TypedDict, total=False):
+    run: str
+    startTime: str
+
+@typing.type_check_only
+class TransferStatusMetric(typing_extensions.TypedDict, total=False):
+    completed: str
+    failed: str
+    pending: str
+    total: str
+    unit: typing_extensions.Literal[
+        "TRANSFER_STATUS_UNIT_UNSPECIFIED",
+        "TRANSFER_STATUS_UNIT_BYTES",
+        "TRANSFER_STATUS_UNIT_OBJECTS",
+    ]
+
+@typing.type_check_only
+class TransferStatusSummary(typing_extensions.TypedDict, total=False):
+    metrics: _list[TransferStatusMetric]
+    progressUnit: typing_extensions.Literal[
+        "TRANSFER_STATUS_UNIT_UNSPECIFIED",
+        "TRANSFER_STATUS_UNIT_BYTES",
+        "TRANSFER_STATUS_UNIT_OBJECTS",
+    ]
 
 @typing.type_check_only
 class UnenrollDataSourcesRequest(typing_extensions.TypedDict, total=False):

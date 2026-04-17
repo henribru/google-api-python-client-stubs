@@ -2100,6 +2100,14 @@ class AiplatformResource(googleapiclient.discovery.Resource):
                         deployedModelId: str = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleApiHttpBodyHttpRequest: ...
+                    def responses(
+                        self,
+                        *,
+                        endpoint: str,
+                        body: GoogleApiHttpBody = ...,
+                        deployedModelId: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleApiHttpBodyHttpRequest: ...
 
                 @typing.type_check_only
                 class OperationsResource(googleapiclient.discovery.Resource):
@@ -5134,6 +5142,7 @@ class AiplatformResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: GoogleCloudAiplatformV1Memory = ...,
+                        memoryId: str = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
                     def delete(
@@ -5350,6 +5359,7 @@ class AiplatformResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: GoogleCloudAiplatformV1Session = ...,
+                        sessionId: str = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
                     def delete(
@@ -6345,6 +6355,20 @@ class AiplatformResource(googleapiclient.discovery.Resource):
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def operations(self) -> OperationsResource: ...
 
+            def askContexts(
+                self,
+                *,
+                parent: str,
+                body: GoogleCloudAiplatformV1AskContextsRequest = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleCloudAiplatformV1AskContextsResponseHttpRequest: ...
+            def asyncRetrieveContexts(
+                self,
+                *,
+                parent: str,
+                body: GoogleCloudAiplatformV1AsyncRetrieveContextsRequest = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleLongrunningOperationHttpRequest: ...
             def augmentPrompt(
                 self,
                 *,
@@ -7352,6 +7376,16 @@ class GoogleCloudAiplatformV1ArtifactHttpRequest(googleapiclient.http.HttpReques
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1Artifact: ...
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1AskContextsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudAiplatformV1AskContextsResponse: ...
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1AugmentPromptResponseHttpRequest(

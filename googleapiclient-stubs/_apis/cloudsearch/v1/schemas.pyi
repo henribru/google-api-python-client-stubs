@@ -1368,7 +1368,11 @@ class QuerySource(typing_extensions.TypedDict, total=False):
     source: Source
 
 @typing.type_check_only
-class QuerySuggestion(typing_extensions.TypedDict, total=False): ...
+class QuerySuggestion(typing_extensions.TypedDict, total=False):
+    lastQueryTime: str
+    sourceCorpus: typing_extensions.Literal[
+        "SOURCE_CORPUS_UNSPECIFIED", "GMAIL", "DRIVE", "CHAT", "CALENDAR"
+    ]
 
 @typing.type_check_only
 class RemoveActivityRequest(typing_extensions.TypedDict, total=False):

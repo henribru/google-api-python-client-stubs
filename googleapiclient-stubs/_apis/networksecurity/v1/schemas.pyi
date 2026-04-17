@@ -54,6 +54,9 @@ class AuthzPolicy(typing_extensions.TypedDict, total=False):
     httpRules: _list[AuthzPolicyAuthzRule]
     labels: dict[str, typing.Any]
     name: str
+    policyProfile: typing_extensions.Literal[
+        "POLICY_PROFILE_UNSPECIFIED", "REQUEST_AUTHZ", "CONTENT_AUTHZ"
+    ]
     target: AuthzPolicyTarget
     updateTime: str
 
@@ -129,6 +132,7 @@ class AuthzPolicyAuthzRuleTo(typing_extensions.TypedDict, total=False):
 class AuthzPolicyAuthzRuleToRequestOperation(typing_extensions.TypedDict, total=False):
     headerSet: AuthzPolicyAuthzRuleToRequestOperationHeaderSet
     hosts: _list[AuthzPolicyAuthzRuleStringMatch]
+    mcp: AuthzPolicyAuthzRuleToRequestOperationMCP
     methods: _list[str]
     paths: _list[AuthzPolicyAuthzRuleStringMatch]
 
@@ -137,6 +141,24 @@ class AuthzPolicyAuthzRuleToRequestOperationHeaderSet(
     typing_extensions.TypedDict, total=False
 ):
     headers: _list[AuthzPolicyAuthzRuleHeaderMatch]
+
+@typing.type_check_only
+class AuthzPolicyAuthzRuleToRequestOperationMCP(
+    typing_extensions.TypedDict, total=False
+):
+    baseProtocolMethodsOption: typing_extensions.Literal[
+        "BASE_PROTOCOL_METHODS_OPTION_UNSPECIFIED",
+        "SKIP_BASE_PROTOCOL_METHODS",
+        "MATCH_BASE_PROTOCOL_METHODS",
+    ]
+    methods: _list[AuthzPolicyAuthzRuleToRequestOperationMCPMethod]
+
+@typing.type_check_only
+class AuthzPolicyAuthzRuleToRequestOperationMCPMethod(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
+    params: _list[AuthzPolicyAuthzRuleStringMatch]
 
 @typing.type_check_only
 class AuthzPolicyCustomProvider(typing_extensions.TypedDict, total=False):
@@ -435,6 +457,7 @@ class InterceptEndpointGroupAssociation(typing_extensions.TypedDict, total=False
     locationsDetails: _list[InterceptEndpointGroupAssociationLocationDetails]
     name: str
     network: str
+    networkCookie: int
     reconciling: bool
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",

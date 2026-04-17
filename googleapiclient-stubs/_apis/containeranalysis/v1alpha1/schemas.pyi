@@ -288,6 +288,7 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1Artifacts(
     ]
     npmPackages: _list[ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsNpmPackage]
     objects: ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsArtifactObjects
+    oci: _list[ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsOci]
     pythonPackages: _list[
         ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsPythonPackage
     ]
@@ -328,6 +329,14 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsNpmPackage(
 ):
     packagePath: str
     repository: str
+
+@typing.type_check_only
+class ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsOci(
+    typing_extensions.TypedDict, total=False
+):
+    file: str
+    registryPath: str
+    tags: _list[str]
 
 @typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsPythonPackage(
@@ -446,7 +455,9 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1BuildOptions(
     requestedVerifyOption: typing_extensions.Literal["NOT_VERIFIED", "VERIFIED"]
     secretEnv: _list[str]
     sourceProvenanceHash: _list[
-        typing_extensions.Literal["NONE", "SHA256", "MD5", "GO_MODULE_H1", "SHA512"]
+        typing_extensions.Literal[
+            "NONE", "SHA256", "MD5", "GO_MODULE_H1", "SHA512", "DIRSUM_SHA256"
+        ]
     ]
     substitutionOption: typing_extensions.Literal["MUST_MATCH", "ALLOW_LOOSE"]
     volumes: _list[ContaineranalysisGoogleDevtoolsCloudbuildV1Volume]
@@ -508,6 +519,9 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1BuiltImage(
     artifactRegistryPackage: str
     digest: str
     name: str
+    ociMediaType: typing_extensions.Literal[
+        "OCI_MEDIA_TYPE_UNSPECIFIED", "IMAGE_MANIFEST", "IMAGE_INDEX"
+    ]
     pushTiming: ContaineranalysisGoogleDevtoolsCloudbuildV1TimeSpan
 
 @typing.type_check_only
@@ -580,7 +594,9 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1GitSource(
 class ContaineranalysisGoogleDevtoolsCloudbuildV1Hash(
     typing_extensions.TypedDict, total=False
 ):
-    type: typing_extensions.Literal["NONE", "SHA256", "MD5", "GO_MODULE_H1", "SHA512"]
+    type: typing_extensions.Literal[
+        "NONE", "SHA256", "MD5", "GO_MODULE_H1", "SHA512", "DIRSUM_SHA256"
+    ]
     value: str
 
 @typing.type_check_only
@@ -923,6 +939,7 @@ class FileHashes(typing_extensions.TypedDict, total=False):
 class FileLocation(typing_extensions.TypedDict, total=False):
     filePath: str
     layerDetails: LayerDetails
+    lineNumber: int
 
 @typing.type_check_only
 class FileNote(typing_extensions.TypedDict, total=False):

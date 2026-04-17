@@ -747,6 +747,10 @@ class VariableFormatValue(typing_extensions.TypedDict, total=False):
     caseConversionType: typing_extensions.Literal["none", "lowercase", "uppercase"]
     convertFalseToValue: Parameter
     convertNullToValue: Parameter
+    convertToBoolean: bool
+    convertToNumber: typing_extensions.Literal[
+        "decimalSeparatorTypeUnspecified", "period", "comma"
+    ]
     convertTrueToValue: Parameter
     convertUndefinedToValue: Parameter
 

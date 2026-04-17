@@ -209,6 +209,30 @@ class EstablishVolumePeeringRequest(typing_extensions.TypedDict, total=False):
     peerVolumeName: str
 
 @typing.type_check_only
+class ExecuteOntapDeleteResponse(typing_extensions.TypedDict, total=False):
+    body: dict[str, typing.Any]
+
+@typing.type_check_only
+class ExecuteOntapGetResponse(typing_extensions.TypedDict, total=False):
+    body: dict[str, typing.Any]
+
+@typing.type_check_only
+class ExecuteOntapPatchRequest(typing_extensions.TypedDict, total=False):
+    body: dict[str, typing.Any]
+
+@typing.type_check_only
+class ExecuteOntapPatchResponse(typing_extensions.TypedDict, total=False):
+    body: dict[str, typing.Any]
+
+@typing.type_check_only
+class ExecuteOntapPostRequest(typing_extensions.TypedDict, total=False):
+    body: dict[str, typing.Any]
+
+@typing.type_check_only
+class ExecuteOntapPostResponse(typing_extensions.TypedDict, total=False):
+    body: dict[str, typing.Any]
+
+@typing.type_check_only
 class ExportPolicy(typing_extensions.TypedDict, total=False):
     rules: _list[SimpleExportPolicyRule]
 
@@ -289,6 +313,10 @@ class KmsConfig(typing_extensions.TypedDict, total=False):
         "MIGRATING",
     ]
     stateDetails: str
+
+@typing.type_check_only
+class LargeCapacityConfig(typing_extensions.TypedDict, total=False):
+    constituentCount: int
 
 @typing.type_check_only
 class ListActiveDirectoriesResponse(typing_extensions.TypedDict, total=False):
@@ -596,6 +624,7 @@ class StoragePool(typing_extensions.TypedDict, total=False):
     kmsConfig: str
     labels: dict[str, typing.Any]
     ldapEnabled: bool
+    mode: typing_extensions.Literal["MODE_UNSPECIFIED", "DEFAULT", "ONTAP"]
     name: str
     network: str
     psaRange: str
@@ -603,6 +632,9 @@ class StoragePool(typing_extensions.TypedDict, total=False):
     replicaZone: str
     satisfiesPzi: bool
     satisfiesPzs: bool
+    scaleType: typing_extensions.Literal[
+        "SCALE_TYPE_UNSPECIFIED", "SCALE_TYPE_DEFAULT", "SCALE_TYPE_SCALEOUT"
+    ]
     serviceLevel: typing_extensions.Literal[
         "SERVICE_LEVEL_UNSPECIFIED", "PREMIUM", "EXTREME", "STANDARD", "FLEX"
     ]
@@ -619,9 +651,7 @@ class StoragePool(typing_extensions.TypedDict, total=False):
     stateDetails: str
     totalIops: str
     totalThroughputMibps: str
-    type: typing_extensions.Literal[
-        "STORAGE_POOL_TYPE_UNSPECIFIED", "FILE", "UNIFIED", "UNIFIED_LARGE_CAPACITY"
-    ]
+    type: typing_extensions.Literal["STORAGE_POOL_TYPE_UNSPECIFIED", "FILE", "UNIFIED"]
     volumeCapacityGib: str
     volumeCount: int
     zone: str
@@ -692,6 +722,7 @@ class Volume(typing_extensions.TypedDict, total=False):
     kmsConfig: str
     labels: dict[str, typing.Any]
     largeCapacity: bool
+    largeCapacityConfig: LargeCapacityConfig
     ldapEnabled: bool
     mountOptions: _list[MountOption]
     multipleEndpoints: bool

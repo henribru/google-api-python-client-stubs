@@ -31,6 +31,7 @@ import googleapiclient._apis.adsensehost.v4_1
 import googleapiclient._apis.adsenseplatform.v1
 import googleapiclient._apis.adsenseplatform.v1alpha
 import googleapiclient._apis.advisorynotifications.v1
+import googleapiclient._apis.agentregistry.v1alpha
 import googleapiclient._apis.aiplatform.v1
 import googleapiclient._apis.aiplatform.v1beta1
 import googleapiclient._apis.airquality.v1
@@ -212,6 +213,7 @@ import googleapiclient._apis.deploymentmanager.alpha
 import googleapiclient._apis.deploymentmanager.v2
 import googleapiclient._apis.deploymentmanager.v2beta
 import googleapiclient._apis.developerconnect.v1
+import googleapiclient._apis.developerknowledge.v1alpha
 import googleapiclient._apis.dfareporting.v3_3
 import googleapiclient._apis.dfareporting.v3_4
 import googleapiclient._apis.dfareporting.v3_5
@@ -306,6 +308,7 @@ import googleapiclient._apis.gmailpostmastertools.v1beta1
 import googleapiclient._apis.gmailpostmastertools.v2
 import googleapiclient._apis.groupsmigration.v1
 import googleapiclient._apis.groupssettings.v1
+import googleapiclient._apis.health.v4
 import googleapiclient._apis.healthcare.v1
 import googleapiclient._apis.healthcare.v1beta1
 import googleapiclient._apis.homegraph.v1
@@ -480,6 +483,7 @@ import googleapiclient._apis.run.v1beta1
 import googleapiclient._apis.run.v2
 import googleapiclient._apis.runtimeconfig.v1
 import googleapiclient._apis.runtimeconfig.v1beta1
+import googleapiclient._apis.saasservicemgmt.v1
 import googleapiclient._apis.saasservicemgmt.v1beta1
 import googleapiclient._apis.safebrowsing.v4
 import googleapiclient._apis.safebrowsing.v5
@@ -1090,6 +1094,26 @@ def build(
     num_retries: int = 1,
     static_discovery: bool | None = None,
 ) -> googleapiclient._apis.advisorynotifications.v1.AdvisorynotificationsResource: ...
+@overload
+def build(
+    serviceName: Literal["agentregistry"],
+    version: Literal["v1alpha"],
+    http: httplib2.Http | HttpMock | None = None,
+    discoveryServiceUrl: str | None = None,
+    developerKey: str | None = None,
+    model: Model | None = None,
+    requestBuilder: _RequestBuilder = HttpRequest,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
+    cache_discovery: bool = True,
+    cache: Cache | None = None,
+    client_options: dict[str, Any] | ClientOptions | None = None,
+    adc_cert_path: str | None = None,
+    adc_key_path: str | None = None,
+    num_retries: int = 1,
+    static_discovery: bool | None = None,
+) -> googleapiclient._apis.agentregistry.v1alpha.AgentRegistryResource: ...
 @overload
 def build(
     serviceName: Literal["aiplatform"],
@@ -4720,6 +4744,26 @@ def build(
 ) -> googleapiclient._apis.developerconnect.v1.DeveloperConnectResource: ...
 @overload
 def build(
+    serviceName: Literal["developerknowledge"],
+    version: Literal["v1alpha"],
+    http: httplib2.Http | HttpMock | None = None,
+    discoveryServiceUrl: str | None = None,
+    developerKey: str | None = None,
+    model: Model | None = None,
+    requestBuilder: _RequestBuilder = HttpRequest,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
+    cache_discovery: bool = True,
+    cache: Cache | None = None,
+    client_options: dict[str, Any] | ClientOptions | None = None,
+    adc_cert_path: str | None = None,
+    adc_key_path: str | None = None,
+    num_retries: int = 1,
+    static_discovery: bool | None = None,
+) -> googleapiclient._apis.developerknowledge.v1alpha.DeveloperKnowledgeResource: ...
+@overload
+def build(
     serviceName: Literal["dfareporting"],
     version: Literal["v3.3"],
     http: httplib2.Http | HttpMock | None = None,
@@ -6602,6 +6646,26 @@ def build(
     num_retries: int = 1,
     static_discovery: bool | None = None,
 ) -> googleapiclient._apis.groupssettings.v1.GroupssettingsResource: ...
+@overload
+def build(
+    serviceName: Literal["health"],
+    version: Literal["v4"],
+    http: httplib2.Http | HttpMock | None = None,
+    discoveryServiceUrl: str | None = None,
+    developerKey: str | None = None,
+    model: Model | None = None,
+    requestBuilder: _RequestBuilder = HttpRequest,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
+    cache_discovery: bool = True,
+    cache: Cache | None = None,
+    client_options: dict[str, Any] | ClientOptions | None = None,
+    adc_cert_path: str | None = None,
+    adc_key_path: str | None = None,
+    num_retries: int = 1,
+    static_discovery: bool | None = None,
+) -> googleapiclient._apis.health.v4.GoogleHealthAPIResource: ...
 @overload
 def build(
     serviceName: Literal["healthcare"],
@@ -10094,6 +10158,26 @@ def build(
     num_retries: int = 1,
     static_discovery: bool | None = None,
 ) -> googleapiclient._apis.runtimeconfig.v1beta1.CloudRuntimeConfigResource: ...
+@overload
+def build(
+    serviceName: Literal["saasservicemgmt"],
+    version: Literal["v1"],
+    http: httplib2.Http | HttpMock | None = None,
+    discoveryServiceUrl: str | None = None,
+    developerKey: str | None = None,
+    model: Model | None = None,
+    requestBuilder: _RequestBuilder = HttpRequest,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
+    cache_discovery: bool = True,
+    cache: Cache | None = None,
+    client_options: dict[str, Any] | ClientOptions | None = None,
+    adc_cert_path: str | None = None,
+    adc_key_path: str | None = None,
+    num_retries: int = 1,
+    static_discovery: bool | None = None,
+) -> googleapiclient._apis.saasservicemgmt.v1.SaaSServiceManagementResource: ...
 @overload
 def build(
     serviceName: Literal["saasservicemgmt"],

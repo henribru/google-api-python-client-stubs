@@ -175,6 +175,10 @@ class AppVersionRange(typing_extensions.TypedDict, total=False):
 class ArchiveSubscriptionRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class ArtifactSummary(typing_extensions.TypedDict, total=False):
+    versionCode: int
+
+@typing.type_check_only
 class AssetModuleMetadata(typing_extensions.TypedDict, total=False):
     deliveryType: typing_extensions.Literal[
         "UNKNOWN_DELIVERY_TYPE", "INSTALL_TIME", "ON_DEMAND", "FAST_FOLLOW"
@@ -1029,6 +1033,10 @@ class ListOneTimeProductsResponse(typing_extensions.TypedDict, total=False):
     oneTimeProducts: _list[OneTimeProduct]
 
 @typing.type_check_only
+class ListReleaseSummariesResponse(typing_extensions.TypedDict, total=False):
+    releases: _list[ReleaseSummary]
+
+@typing.type_check_only
 class ListSubscriptionOffersResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     subscriptionOffers: _list[SubscriptionOffer]
@@ -1649,6 +1657,21 @@ class Regions(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class RegionsVersion(typing_extensions.TypedDict, total=False):
     version: str
+
+@typing.type_check_only
+class ReleaseSummary(typing_extensions.TypedDict, total=False):
+    activeArtifacts: _list[ArtifactSummary]
+    releaseLifecycleState: typing_extensions.Literal[
+        "RELEASE_LIFECYCLE_STATE_UNSPECIFIED",
+        "RELEASE_LIFECYCLE_STATE_DRAFT",
+        "RELEASE_LIFECYCLE_STATE_NOT_SENT_FOR_REVIEW",
+        "RELEASE_LIFECYCLE_STATE_IN_REVIEW",
+        "RELEASE_LIFECYCLE_STATE_APPROVED_NOT_PUBLISHED",
+        "RELEASE_LIFECYCLE_STATE_NOT_APPROVED",
+        "RELEASE_LIFECYCLE_STATE_PUBLISHED",
+    ]
+    releaseName: str
+    track: str
 
 @typing.type_check_only
 class RemoteInAppUpdate(typing_extensions.TypedDict, total=False):

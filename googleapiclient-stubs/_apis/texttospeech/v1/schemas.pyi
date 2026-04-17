@@ -9,6 +9,7 @@ class AdvancedVoiceOptions(typing_extensions.TypedDict, total=False):
     enableTextnorm: bool
     lowLatencyJourneySynthesis: bool
     relaxSafetyFilters: bool
+    safetySettings: SafetySettings
 
 @typing.type_check_only
 class AudioConfig(typing_extensions.TypedDict, total=False):
@@ -95,6 +96,28 @@ class Operation(typing_extensions.TypedDict, total=False):
     metadata: dict[str, typing.Any]
     name: str
     response: dict[str, typing.Any]
+
+@typing.type_check_only
+class SafetySetting(typing_extensions.TypedDict, total=False):
+    category: typing_extensions.Literal[
+        "HARM_CATEGORY_UNSPECIFIED",
+        "HARM_CATEGORY_HATE_SPEECH",
+        "HARM_CATEGORY_DANGEROUS_CONTENT",
+        "HARM_CATEGORY_HARASSMENT",
+        "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+    ]
+    threshold: typing_extensions.Literal[
+        "HARM_BLOCK_THRESHOLD_UNSPECIFIED",
+        "BLOCK_LOW_AND_ABOVE",
+        "BLOCK_MEDIUM_AND_ABOVE",
+        "BLOCK_ONLY_HIGH",
+        "BLOCK_NONE",
+        "OFF",
+    ]
+
+@typing.type_check_only
+class SafetySettings(typing_extensions.TypedDict, total=False):
+    settings: _list[SafetySetting]
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):

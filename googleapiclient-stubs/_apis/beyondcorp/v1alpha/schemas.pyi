@@ -558,7 +558,7 @@ class GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaSubscription(
         "STATE_UNSPECIFIED", "ACTIVE", "INACTIVE", "COMPLETED"
     ]
     subscriberType: typing_extensions.Literal[
-        "SUBSCRIBER_TYPE_UNSPECIFIED", "ONLINE", "OFFLINE"
+        "SUBSCRIBER_TYPE_UNSPECIFIED", "ONLINE", "OFFLINE", "CEP_TRIAL"
     ]
     type: typing_extensions.Literal["TYPE_UNSPECIFIED", "TRIAL", "PAID", "ALLOWLIST"]
 
@@ -699,6 +699,11 @@ class GoogleCloudBeyondcorpSecuritygatewaysV1alphaListSecurityGatewaysResponse(
     unreachable: _list[str]
 
 @typing.type_check_only
+class GoogleCloudBeyondcorpSecuritygatewaysV1alphaLoggingConfig(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class GoogleCloudBeyondcorpSecuritygatewaysV1alphaProxyProtocolConfig(
     typing_extensions.TypedDict, total=False
 ):
@@ -719,6 +724,7 @@ class GoogleCloudBeyondcorpSecuritygatewaysV1alphaSecurityGateway(
     displayName: str
     externalIps: _list[str]
     hubs: dict[str, typing.Any]
+    logging: GoogleCloudBeyondcorpSecuritygatewaysV1alphaLoggingConfig
     name: str
     proxyProtocolConfig: GoogleCloudBeyondcorpSecuritygatewaysV1alphaProxyProtocolConfig
     serviceDiscovery: GoogleCloudBeyondcorpSecuritygatewaysV1alphaServiceDiscovery
