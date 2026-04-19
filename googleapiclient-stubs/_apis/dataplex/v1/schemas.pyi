@@ -286,6 +286,16 @@ class GoogleCloudDataplexV1BusinessGlossaryEvent(
     resource: str
 
 @typing.type_check_only
+class GoogleCloudDataplexV1CancelDataScanJobRequest(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudDataplexV1CancelDataScanJobResponse(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class GoogleCloudDataplexV1CancelJobRequest(
     typing_extensions.TypedDict, total=False
 ): ...
@@ -740,6 +750,7 @@ class GoogleCloudDataplexV1DataQualityResultPostScanActionsResultBigQueryExportR
 
 @typing.type_check_only
 class GoogleCloudDataplexV1DataQualityRule(typing_extensions.TypedDict, total=False):
+    attributes: dict[str, typing.Any]
     column: str
     debugQueries: _list[GoogleCloudDataplexV1DataQualityRuleDebugQuery]
     description: str
@@ -750,6 +761,7 @@ class GoogleCloudDataplexV1DataQualityRule(typing_extensions.TypedDict, total=Fa
     rangeExpectation: GoogleCloudDataplexV1DataQualityRuleRangeExpectation
     regexExpectation: GoogleCloudDataplexV1DataQualityRuleRegexExpectation
     rowConditionExpectation: GoogleCloudDataplexV1DataQualityRuleRowConditionExpectation
+    ruleSource: GoogleCloudDataplexV1DataQualityRuleRuleSource
     setExpectation: GoogleCloudDataplexV1DataQualityRuleSetExpectation
     sqlAssertion: GoogleCloudDataplexV1DataQualityRuleSqlAssertion
     statisticRangeExpectation: (
@@ -759,6 +771,7 @@ class GoogleCloudDataplexV1DataQualityRule(typing_extensions.TypedDict, total=Fa
     tableConditionExpectation: (
         GoogleCloudDataplexV1DataQualityRuleTableConditionExpectation
     )
+    templateReference: GoogleCloudDataplexV1DataQualityRuleTemplateReference
     threshold: float
     uniquenessExpectation: GoogleCloudDataplexV1DataQualityRuleUniquenessExpectation
 
@@ -826,6 +839,40 @@ class GoogleCloudDataplexV1DataQualityRuleRowConditionExpectation(
     sqlExpression: str
 
 @typing.type_check_only
+class GoogleCloudDataplexV1DataQualityRuleRuleSource(
+    typing_extensions.TypedDict, total=False
+):
+    rulePathElements: _list[
+        GoogleCloudDataplexV1DataQualityRuleRuleSourceRulePathElement
+    ]
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataQualityRuleRuleSourceRulePathElement(
+    typing_extensions.TypedDict, total=False
+):
+    entryLinkSource: (
+        GoogleCloudDataplexV1DataQualityRuleRuleSourceRulePathElementEntryLinkSource
+    )
+    entrySource: (
+        GoogleCloudDataplexV1DataQualityRuleRuleSourceRulePathElementEntrySource
+    )
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataQualityRuleRuleSourceRulePathElementEntryLinkSource(
+    typing_extensions.TypedDict, total=False
+):
+    entryLink: str
+    entryLinkType: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataQualityRuleRuleSourceRulePathElementEntrySource(
+    typing_extensions.TypedDict, total=False
+):
+    displayName: str
+    entry: str
+    entryType: str
+
+@typing.type_check_only
 class GoogleCloudDataplexV1DataQualityRuleSetExpectation(
     typing_extensions.TypedDict, total=False
 ):
@@ -852,6 +899,44 @@ class GoogleCloudDataplexV1DataQualityRuleTableConditionExpectation(
     typing_extensions.TypedDict, total=False
 ):
     sqlExpression: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataQualityRuleTemplate(
+    typing_extensions.TypedDict, total=False
+):
+    capabilities: _list[str]
+    dimension: str
+    inputParameters: dict[str, typing.Any]
+    name: str
+    sqlCollection: _list[GoogleCloudDataplexV1DataQualityRuleTemplateSql]
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataQualityRuleTemplateParameterDescription(
+    typing_extensions.TypedDict, total=False
+):
+    defaultValue: str
+    description: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataQualityRuleTemplateReference(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
+    resolvedSql: str
+    ruleTemplate: GoogleCloudDataplexV1DataQualityRuleTemplate
+    values: dict[str, typing.Any]
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataQualityRuleTemplateReferenceParameterValue(
+    typing_extensions.TypedDict, total=False
+):
+    value: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataQualityRuleTemplateSql(
+    typing_extensions.TypedDict, total=False
+):
+    query: str
 
 @typing.type_check_only
 class GoogleCloudDataplexV1DataQualityRuleUniquenessExpectation(
@@ -886,12 +971,15 @@ class GoogleCloudDataplexV1DataQualityScanRuleResult(
         "TABLE_CONDITION_EXPECTATION",
         "UNIQUENESS_EXPECTATION",
         "SQL_ASSERTION",
+        "TEMPLATE_REFERENCE",
     ]
     thresholdPercent: float
 
 @typing.type_check_only
 class GoogleCloudDataplexV1DataQualitySpec(typing_extensions.TypedDict, total=False):
     catalogPublishingEnabled: bool
+    enableCatalogBasedRules: bool
+    filter: str
     postScanActions: GoogleCloudDataplexV1DataQualitySpecPostScanActions
     rowFilter: str
     rules: _list[GoogleCloudDataplexV1DataQualityRule]

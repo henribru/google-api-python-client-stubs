@@ -288,6 +288,11 @@ class EmojiReactionSummary(typing_extensions.TypedDict, total=False):
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class FindGroupChatsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    spaces: _list[Space]
+
+@typing.type_check_only
 class FormAction(typing_extensions.TypedDict, total=False):
     actionMethodName: str
     parameters: _list[ActionParameter]

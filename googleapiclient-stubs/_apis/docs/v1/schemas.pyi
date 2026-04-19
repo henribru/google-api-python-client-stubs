@@ -496,6 +496,12 @@ class InsertPersonRequest(typing_extensions.TypedDict, total=False):
     personProperties: PersonProperties
 
 @typing.type_check_only
+class InsertRichLinkRequest(typing_extensions.TypedDict, total=False):
+    endOfSegmentLocation: EndOfSegmentLocation
+    location: Location
+    richLinkProperties: RichLinkProperties
+
+@typing.type_check_only
 class InsertSectionBreakRequest(typing_extensions.TypedDict, total=False):
     endOfSegmentLocation: EndOfSegmentLocation
     location: Location
@@ -885,6 +891,7 @@ class Request(typing_extensions.TypedDict, total=False):
     insertInlineImage: InsertInlineImageRequest
     insertPageBreak: InsertPageBreakRequest
     insertPerson: InsertPersonRequest
+    insertRichLink: InsertRichLinkRequest
     insertSectionBreak: InsertSectionBreakRequest
     insertTable: InsertTableRequest
     insertTableColumn: InsertTableColumnRequest

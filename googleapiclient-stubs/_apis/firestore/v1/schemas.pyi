@@ -681,7 +681,6 @@ class GoogleFirestoreAdminV1RestoreDatabaseRequest(
 @typing.type_check_only
 class GoogleFirestoreAdminV1SearchConfig(typing_extensions.TypedDict, total=False):
     geoSpec: GoogleFirestoreAdminV1SearchGeoSpec
-    numberSpec: GoogleFirestoreAdminV1SearchNumberSpec
     textSpec: GoogleFirestoreAdminV1SearchTextSpec
 
 @typing.type_check_only
@@ -692,30 +691,16 @@ class GoogleFirestoreAdminV1SearchGeoSpec(typing_extensions.TypedDict, total=Fal
 class GoogleFirestoreAdminV1SearchIndexOptions(
     typing_extensions.TypedDict, total=False
 ):
-    customPartitionFieldPaths: _list[str]
     textLanguage: str
     textLanguageOverrideFieldPath: str
-
-@typing.type_check_only
-class GoogleFirestoreAdminV1SearchNumberSpec(typing_extensions.TypedDict, total=False):
-    indexType: typing_extensions.Literal[
-        "NUMBER_INDEX_TYPE_UNSPECIFIED",
-        "FLOAT64",
-        "INT32_LOG_TREE",
-        "INT64_LOG_TREE",
-        "INT32_PREFIX_TREE",
-        "INT64_PREFIX_TREE",
-    ]
 
 @typing.type_check_only
 class GoogleFirestoreAdminV1SearchTextIndexSpec(
     typing_extensions.TypedDict, total=False
 ):
-    indexType: typing_extensions.Literal[
-        "TEXT_INDEX_TYPE_UNSPECIFIED", "TOKENIZED", "NGRAMS", "EXACT_MATCH"
-    ]
+    indexType: typing_extensions.Literal["TEXT_INDEX_TYPE_UNSPECIFIED", "TOKENIZED"]
     matchType: typing_extensions.Literal[
-        "TEXT_MATCH_TYPE_UNSPECIFIED", "MATCH_GLOBALLY", "MATCH_FIELD"
+        "TEXT_MATCH_TYPE_UNSPECIFIED", "MATCH_GLOBALLY"
     ]
 
 @typing.type_check_only

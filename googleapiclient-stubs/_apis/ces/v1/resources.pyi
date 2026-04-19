@@ -99,7 +99,11 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         source: typing_extensions.Literal[
-                            "SOURCE_UNSPECIFIED", "LIVE", "SIMULATOR", "EVAL"
+                            "SOURCE_UNSPECIFIED",
+                            "LIVE",
+                            "SIMULATOR",
+                            "EVAL",
+                            "AGENT_TOOL",
                         ] = ...,
                         **kwargs: typing.Any,
                     ) -> EmptyHttpRequest: ...
@@ -108,7 +112,11 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         source: typing_extensions.Literal[
-                            "SOURCE_UNSPECIFIED", "LIVE", "SIMULATOR", "EVAL"
+                            "SOURCE_UNSPECIFIED",
+                            "LIVE",
+                            "SIMULATOR",
+                            "EVAL",
+                            "AGENT_TOOL",
                         ] = ...,
                         **kwargs: typing.Any,
                     ) -> ConversationHttpRequest: ...
@@ -120,14 +128,26 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                         pageSize: int = ...,
                         pageToken: str = ...,
                         source: typing_extensions.Literal[
-                            "SOURCE_UNSPECIFIED", "LIVE", "SIMULATOR", "EVAL"
+                            "SOURCE_UNSPECIFIED",
+                            "LIVE",
+                            "SIMULATOR",
+                            "EVAL",
+                            "AGENT_TOOL",
                         ] = ...,
                         sources: typing_extensions.Literal[
-                            "SOURCE_UNSPECIFIED", "LIVE", "SIMULATOR", "EVAL"
+                            "SOURCE_UNSPECIFIED",
+                            "LIVE",
+                            "SIMULATOR",
+                            "EVAL",
+                            "AGENT_TOOL",
                         ]
                         | _list[
                             typing_extensions.Literal[
-                                "SOURCE_UNSPECIFIED", "LIVE", "SIMULATOR", "EVAL"
+                                "SOURCE_UNSPECIFIED",
+                                "LIVE",
+                                "SIMULATOR",
+                                "EVAL",
+                                "AGENT_TOOL",
                             ]
                         ] = ...,
                         **kwargs: typing.Any,

@@ -131,6 +131,11 @@ class Channel(typing_extensions.TypedDict, total=False):
     type: str
 
 @typing.type_check_only
+class ClientEncryptionDetails(typing_extensions.TypedDict, total=False):
+    decryptionMetadata: DecryptionMetadata
+    encryptionState: str
+
+@typing.type_check_only
 class Comment(typing_extensions.TypedDict, total=False):
     anchor: str
     assigneeEmailAddress: str
@@ -162,6 +167,16 @@ class ContentRestriction(typing_extensions.TypedDict, total=False):
     restrictionTime: str
     systemRestricted: bool
     type: str
+
+@typing.type_check_only
+class DecryptionMetadata(typing_extensions.TypedDict, total=False):
+    aes256GcmChunkSize: str
+    encryptionResourceKeyHash: str
+    jwt: str
+    kaclsId: str
+    kaclsName: str
+    keyFormat: str
+    wrappedKey: str
 
 @typing.type_check_only
 class DownloadRestriction(typing_extensions.TypedDict, total=False):
@@ -198,6 +213,7 @@ class DriveList(typing_extensions.TypedDict, total=False):
 class File(typing_extensions.TypedDict, total=False):
     appProperties: dict[str, typing.Any]
     capabilities: dict[str, typing.Any]
+    clientEncryptionDetails: ClientEncryptionDetails
     contentHints: dict[str, typing.Any]
     contentRestrictions: _list[ContentRestriction]
     copyRequiresWriterPermission: bool
@@ -267,6 +283,14 @@ class FileList(typing_extensions.TypedDict, total=False):
     incompleteSearch: bool
     kind: str
     nextPageToken: str
+
+@typing.type_check_only
+class GenerateCseTokenResponse(typing_extensions.TypedDict, total=False):
+    currentKaclsId: str
+    currentKaclsName: str
+    fileId: str
+    jwt: str
+    kind: str
 
 @typing.type_check_only
 class GeneratedIds(typing_extensions.TypedDict, total=False):

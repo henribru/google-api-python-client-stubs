@@ -259,6 +259,7 @@ class Price(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Product(typing_extensions.TypedDict, total=False):
     automatedDiscounts: AutomatedDiscounts
+    base64EncodedName: str
     contentLanguage: str
     customAttributes: _list[CustomAttribute]
     dataSource: str
@@ -542,6 +543,8 @@ class ProductDimension(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ProductInput(typing_extensions.TypedDict, total=False):
+    base64EncodedName: str
+    base64EncodedProduct: str
     contentLanguage: str
     customAttributes: _list[CustomAttribute]
     feedLabel: str

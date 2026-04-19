@@ -197,7 +197,7 @@ wheels = [
 
 [[package]]
 name = "google-api-python-client-stubs"
-version = "1.35.0"
+version = "1.36.0"
 source = { editable = "." }
 dependencies = [
     { name = "google-api-python-client" },

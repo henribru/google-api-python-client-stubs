@@ -471,6 +471,7 @@ class RuleViolationInfo(typing_extensions.TypedDict, total=False):
         "CHROME_PAGE_PRINT",
         "CHROME_URL_VISITED",
         "CHROMEOS_FILE_TRANSFER",
+        "GEMINI_ACCESS",
     ]
     triggeredActionInfo: _list[ActionInfo]
     triggeredActionTypes: _list[
