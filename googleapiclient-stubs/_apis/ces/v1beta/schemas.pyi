@@ -62,6 +62,7 @@ class AgentRemoteDialogflowAgent(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AgentTool(typing_extensions.TypedDict, total=False):
+    agent: str
     description: str
     name: str
     rootAgent: str
@@ -400,7 +401,9 @@ class Conversation(typing_extensions.TypedDict, total=False):
     languageCode: str
     messages: _list[Message]
     name: str
-    source: typing_extensions.Literal["SOURCE_UNSPECIFIED", "LIVE", "SIMULATOR", "EVAL"]
+    source: typing_extensions.Literal[
+        "SOURCE_UNSPECIFIED", "LIVE", "SIMULATOR", "EVAL", "AGENT_TOOL"
+    ]
     startTime: str
     turnCount: int
     turns: _list[ConversationTurn]
@@ -408,6 +411,7 @@ class Conversation(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ConversationLoggingSettings(typing_extensions.TypedDict, total=False):
     disableConversationLogging: bool
+    retentionWindow: str
 
 @typing.type_check_only
 class ConversationTurn(typing_extensions.TypedDict, total=False):
@@ -578,12 +582,25 @@ class EndpointControlPolicy(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ErrorHandlingSettings(typing_extensions.TypedDict, total=False):
+    endSessionConfig: ErrorHandlingSettingsEndSessionConfig
     errorHandlingStrategy: typing_extensions.Literal[
         "ERROR_HANDLING_STRATEGY_UNSPECIFIED",
         "NONE",
         "FALLBACK_RESPONSE",
         "END_SESSION",
     ]
+    fallbackResponseConfig: ErrorHandlingSettingsFallbackResponseConfig
+
+@typing.type_check_only
+class ErrorHandlingSettingsEndSessionConfig(typing_extensions.TypedDict, total=False):
+    escalateSession: bool
+
+@typing.type_check_only
+class ErrorHandlingSettingsFallbackResponseConfig(
+    typing_extensions.TypedDict, total=False
+):
+    customFallbackMessages: dict[str, typing.Any]
+    maxFallbackAttempts: int
 
 @typing.type_check_only
 class Evaluation(typing_extensions.TypedDict, total=False):
@@ -756,7 +773,9 @@ class EvaluationResult(typing_extensions.TypedDict, total=False):
     errorInfo: EvaluationErrorInfo
     evaluationMetricsThresholds: EvaluationMetricsThresholds
     evaluationRun: str
-    evaluationStatus: typing_extensions.Literal["OUTCOME_UNSPECIFIED", "PASS", "FAIL"]
+    evaluationStatus: typing_extensions.Literal[
+        "OUTCOME_UNSPECIFIED", "PASS", "FAIL", "SKIPPED"
+    ]
     executionState: typing_extensions.Literal[
         "EXECUTION_STATE_UNSPECIFIED", "RUNNING", "COMPLETED", "ERROR"
     ]
@@ -775,7 +794,7 @@ class EvaluationResultEvaluationExpectationResult(
 ):
     evaluationExpectation: str
     explanation: str
-    outcome: typing_extensions.Literal["OUTCOME_UNSPECIFIED", "PASS", "FAIL"]
+    outcome: typing_extensions.Literal["OUTCOME_UNSPECIFIED", "PASS", "FAIL", "SKIPPED"]
     prompt: str
 
 @typing.type_check_only
@@ -787,7 +806,7 @@ class EvaluationResultGoldenExpectationOutcome(
     observedAgentTransfer: AgentTransfer
     observedToolCall: ToolCall
     observedToolResponse: ToolResponse
-    outcome: typing_extensions.Literal["OUTCOME_UNSPECIFIED", "PASS", "FAIL"]
+    outcome: typing_extensions.Literal["OUTCOME_UNSPECIFIED", "PASS", "FAIL", "SKIPPED"]
     semanticSimilarityResult: EvaluationResultSemanticSimilarityResult
     toolInvocationResult: EvaluationResultGoldenExpectationOutcomeToolInvocationResult
 
@@ -796,7 +815,7 @@ class EvaluationResultGoldenExpectationOutcomeToolInvocationResult(
     typing_extensions.TypedDict, total=False
 ):
     explanation: str
-    outcome: typing_extensions.Literal["OUTCOME_UNSPECIFIED", "PASS", "FAIL"]
+    outcome: typing_extensions.Literal["OUTCOME_UNSPECIFIED", "PASS", "FAIL", "SKIPPED"]
     parameterCorrectnessScore: float
 
 @typing.type_check_only
@@ -830,7 +849,7 @@ class EvaluationResultHallucinationResult(typing_extensions.TypedDict, total=Fal
 class EvaluationResultOverallToolInvocationResult(
     typing_extensions.TypedDict, total=False
 ):
-    outcome: typing_extensions.Literal["OUTCOME_UNSPECIFIED", "PASS", "FAIL"]
+    outcome: typing_extensions.Literal["OUTCOME_UNSPECIFIED", "PASS", "FAIL", "SKIPPED"]
     toolInvocationScore: float
 
 @typing.type_check_only
@@ -840,7 +859,7 @@ class EvaluationResultScenarioExpectationOutcome(
     expectation: EvaluationScenarioExpectation
     observedAgentResponse: Message
     observedToolCall: EvaluationResultScenarioExpectationOutcomeObservedToolCall
-    outcome: typing_extensions.Literal["OUTCOME_UNSPECIFIED", "PASS", "FAIL"]
+    outcome: typing_extensions.Literal["OUTCOME_UNSPECIFIED", "PASS", "FAIL", "SKIPPED"]
 
 @typing.type_check_only
 class EvaluationResultScenarioExpectationOutcomeObservedToolCall(
@@ -877,7 +896,7 @@ class EvaluationResultSemanticSimilarityResult(
 ):
     explanation: str
     label: str
-    outcome: typing_extensions.Literal["OUTCOME_UNSPECIFIED", "PASS", "FAIL"]
+    outcome: typing_extensions.Literal["OUTCOME_UNSPECIFIED", "PASS", "FAIL", "SKIPPED"]
     score: int
 
 @typing.type_check_only
@@ -1040,6 +1059,7 @@ class Example(typing_extensions.TypedDict, total=False):
 class ExecuteToolRequest(typing_extensions.TypedDict, total=False):
     args: dict[str, typing.Any]
     context: dict[str, typing.Any]
+    mockConfig: MockConfig
     tool: str
     toolsetTool: ToolsetTool
     variables: dict[str, typing.Any]
@@ -1061,6 +1081,24 @@ class ExportAppRequest(typing_extensions.TypedDict, total=False):
 class ExportAppResponse(typing_extensions.TypedDict, total=False):
     appContent: str
     appUri: str
+
+@typing.type_check_only
+class ExportEvaluationsRequest(typing_extensions.TypedDict, total=False):
+    exportOptions: ExportOptions
+    includeEvaluationResults: bool
+    includeEvaluations: bool
+    names: _list[str]
+
+@typing.type_check_only
+class ExportEvaluationsResponse(typing_extensions.TypedDict, total=False):
+    evaluationsContent: str
+    evaluationsUri: str
+    failedEvaluations: dict[str, typing.Any]
+
+@typing.type_check_only
+class ExportOptions(typing_extensions.TypedDict, total=False):
+    exportFormat: typing_extensions.Literal["EXPORT_FORMAT_UNSPECIFIED", "JSON", "YAML"]
+    gcsUri: str
 
 @typing.type_check_only
 class ExpressionCondition(typing_extensions.TypedDict, total=False):
@@ -1218,7 +1256,9 @@ class GenerateEvaluationOperationMetadata(typing_extensions.TypedDict, total=Fal
 
 @typing.type_check_only
 class GenerateEvaluationRequest(typing_extensions.TypedDict, total=False):
-    source: typing_extensions.Literal["SOURCE_UNSPECIFIED", "LIVE", "SIMULATOR", "EVAL"]
+    source: typing_extensions.Literal[
+        "SOURCE_UNSPECIFIED", "LIVE", "SIMULATOR", "EVAL", "AGENT_TOOL"
+    ]
 
 @typing.type_check_only
 class GoogleSearchSuggestions(typing_extensions.TypedDict, total=False):
@@ -1376,6 +1416,10 @@ class ImportEvaluationsRequestImportOptions(typing_extensions.TypedDict, total=F
 @typing.type_check_only
 class ImportEvaluationsResponse(typing_extensions.TypedDict, total=False):
     errorMessages: _list[str]
+    evaluationResultImportFailureCount: int
+    evaluationResults: _list[EvaluationResult]
+    evaluationRunImportFailureCount: int
+    evaluationRuns: _list[EvaluationRun]
     evaluations: _list[Evaluation]
     importFailureCount: int
 
@@ -1571,6 +1615,21 @@ class Message(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class MetricAnalysisSettings(typing_extensions.TypedDict, total=False):
     llmMetricsOptedOut: bool
+
+@typing.type_check_only
+class MockConfig(typing_extensions.TypedDict, total=False):
+    mockedToolCalls: _list[MockedToolCall]
+    unmatchedToolCallBehavior: typing_extensions.Literal[
+        "UNMATCHED_TOOL_CALL_BEHAVIOR_UNSPECIFIED", "FAIL", "PASS_THROUGH"
+    ]
+
+@typing.type_check_only
+class MockedToolCall(typing_extensions.TypedDict, total=False):
+    expectedArgsPattern: dict[str, typing.Any]
+    mockResponse: dict[str, typing.Any]
+    tool: str
+    toolId: str
+    toolset: ToolsetTool
 
 @typing.type_check_only
 class ModelSettings(typing_extensions.TypedDict, total=False):

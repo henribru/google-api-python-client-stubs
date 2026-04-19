@@ -999,6 +999,7 @@ class RuntimeMetadata(typing_extensions.TypedDict, total=False):
 class RuntimeUpdatableParams(typing_extensions.TypedDict, total=False):
     acceptableBacklogDuration: str
     autoscalingTier: str
+    latencyTier: str
     maxNumWorkers: int
     minNumWorkers: int
     workerUtilizationHint: float

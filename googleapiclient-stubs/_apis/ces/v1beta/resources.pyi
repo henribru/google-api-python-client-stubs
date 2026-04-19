@@ -99,7 +99,11 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         source: typing_extensions.Literal[
-                            "SOURCE_UNSPECIFIED", "LIVE", "SIMULATOR", "EVAL"
+                            "SOURCE_UNSPECIFIED",
+                            "LIVE",
+                            "SIMULATOR",
+                            "EVAL",
+                            "AGENT_TOOL",
                         ] = ...,
                         **kwargs: typing.Any,
                     ) -> EmptyHttpRequest: ...
@@ -115,7 +119,11 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         source: typing_extensions.Literal[
-                            "SOURCE_UNSPECIFIED", "LIVE", "SIMULATOR", "EVAL"
+                            "SOURCE_UNSPECIFIED",
+                            "LIVE",
+                            "SIMULATOR",
+                            "EVAL",
+                            "AGENT_TOOL",
                         ] = ...,
                         **kwargs: typing.Any,
                     ) -> ConversationHttpRequest: ...
@@ -127,14 +135,26 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                         pageSize: int = ...,
                         pageToken: str = ...,
                         source: typing_extensions.Literal[
-                            "SOURCE_UNSPECIFIED", "LIVE", "SIMULATOR", "EVAL"
+                            "SOURCE_UNSPECIFIED",
+                            "LIVE",
+                            "SIMULATOR",
+                            "EVAL",
+                            "AGENT_TOOL",
                         ] = ...,
                         sources: typing_extensions.Literal[
-                            "SOURCE_UNSPECIFIED", "LIVE", "SIMULATOR", "EVAL"
+                            "SOURCE_UNSPECIFIED",
+                            "LIVE",
+                            "SIMULATOR",
+                            "EVAL",
+                            "AGENT_TOOL",
                         ]
                         | _list[
                             typing_extensions.Literal[
-                                "SOURCE_UNSPECIFIED", "LIVE", "SIMULATOR", "EVAL"
+                                "SOURCE_UNSPECIFIED",
+                                "LIVE",
+                                "SIMULATOR",
+                                "EVAL",
+                                "AGENT_TOOL",
                             ]
                         ] = ...,
                         **kwargs: typing.Any,
@@ -332,6 +352,13 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                         force: bool = ...,
                         **kwargs: typing.Any,
                     ) -> EmptyHttpRequest: ...
+                    def export(
+                        self,
+                        *,
+                        parent: str,
+                        body: ExportEvaluationsRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> OperationHttpRequest: ...
                     def get(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> EvaluationHttpRequest: ...

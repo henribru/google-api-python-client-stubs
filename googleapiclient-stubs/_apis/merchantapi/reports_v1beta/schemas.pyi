@@ -290,6 +290,9 @@ class ProductPerformanceView(typing_extensions.TypedDict, total=False):
     productTypeL3: str
     productTypeL4: str
     productTypeL5: str
+    storeType: typing_extensions.Literal[
+        "STORE_TYPE_ENUM_UNSPECIFIED", "ONLINE_STORE", "LOCAL_STORES"
+    ]
     title: str
     week: Date
 

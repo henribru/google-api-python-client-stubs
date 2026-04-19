@@ -51,6 +51,63 @@ class AgentRegistryResource(googleapiclient.discovery.Resource):
                 ) -> SearchAgentsResponseHttpRequest | None: ...
 
             @typing.type_check_only
+            class BindingsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: Binding = ...,
+                    bindingId: str = ...,
+                    requestId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, requestId: str = ..., **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def fetchAvailable(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    sourceIdentifier: str = ...,
+                    targetIdentifier: str = ...,
+                    **kwargs: typing.Any,
+                ) -> FetchAvailableBindingsResponseHttpRequest: ...
+                def fetchAvailable_next(
+                    self,
+                    previous_request: FetchAvailableBindingsResponseHttpRequest,
+                    previous_response: FetchAvailableBindingsResponse,
+                ) -> FetchAvailableBindingsResponseHttpRequest | None: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> BindingHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListBindingsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListBindingsResponseHttpRequest,
+                    previous_response: ListBindingsResponse,
+                ) -> ListBindingsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: Binding = ...,
+                    requestId: str = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+
+            @typing.type_check_only
             class EndpointsResource(googleapiclient.discovery.Resource):
                 def get(
                     self, *, name: str, **kwargs: typing.Any
@@ -194,6 +251,7 @@ class AgentRegistryResource(googleapiclient.discovery.Resource):
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
             def agents(self) -> AgentsResource: ...
+            def bindings(self) -> BindingsResource: ...
             def endpoints(self) -> EndpointsResource: ...
             def mcpServers(self) -> McpServersResource: ...
             def operations(self) -> OperationsResource: ...
@@ -224,6 +282,14 @@ class AgentHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Agent: ...
 
 @typing.type_check_only
+class BindingHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> Binding: ...
+
+@typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -240,12 +306,28 @@ class EndpointHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Endpoint: ...
 
 @typing.type_check_only
+class FetchAvailableBindingsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> FetchAvailableBindingsResponse: ...
+
+@typing.type_check_only
 class ListAgentsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListAgentsResponse: ...
+
+@typing.type_check_only
+class ListBindingsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListBindingsResponse: ...
 
 @typing.type_check_only
 class ListEndpointsResponseHttpRequest(googleapiclient.http.HttpRequest):

@@ -2167,6 +2167,7 @@ class DemandGenBiddingStrategy(typing_extensions.TypedDict, total=False):
         "DEMAND_GEN_BIDDING_STRATEGY_TYPE_MAXIMIZE_CONVERSIONS",
         "DEMAND_GEN_BIDDING_STRATEGY_TYPE_MAXIMIZE_CONVERSION_VALUE",
         "DEMAND_GEN_BIDDING_STRATEGY_TYPE_MAXIMIZE_CLICKS",
+        "DEMAND_GEN_BIDDING_STRATEGY_TYPE_TARGET_CPC",
     ]
     value: str
 
@@ -3882,6 +3883,7 @@ class LineItem(typing_extensions.TypedDict, total=False):
     ]
     mobileApp: MobileApp
     name: str
+    optimizeFixedBidding: bool
     pacing: Pacing
     partnerCosts: _list[PartnerCost]
     partnerRevenueModel: PartnerRevenueModel

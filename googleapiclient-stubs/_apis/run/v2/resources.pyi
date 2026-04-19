@@ -63,6 +63,16 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                     previous_request: GoogleCloudRunV2ListInstancesResponseHttpRequest,
                     previous_response: GoogleCloudRunV2ListInstancesResponse,
                 ) -> GoogleCloudRunV2ListInstancesResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudRunV2Instance = ...,
+                    allowMissing: bool = ...,
+                    updateMask: str = ...,
+                    validateOnly: bool = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleLongrunningOperationHttpRequest: ...
                 def start(
                     self,
                     *,

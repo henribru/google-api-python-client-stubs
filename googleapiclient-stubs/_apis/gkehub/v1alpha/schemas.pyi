@@ -1275,6 +1275,7 @@ class RolloutSequence(typing_extensions.TypedDict, total=False):
     deleteTime: str
     displayName: str
     etag: str
+    ignoredClustersSelector: ClusterSelector
     labels: dict[str, typing.Any]
     name: str
     stages: _list[Stage]

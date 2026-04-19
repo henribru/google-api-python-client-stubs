@@ -1708,53 +1708,6 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
         def assignedInventorySources(self) -> AssignedInventorySourcesResource: ...
 
     @typing.type_check_only
-    class InventorySourcesResource(googleapiclient.discovery.Resource):
-        def create(
-            self,
-            *,
-            body: InventorySource = ...,
-            advertiserId: str = ...,
-            partnerId: str = ...,
-            **kwargs: typing.Any,
-        ) -> InventorySourceHttpRequest: ...
-        def editInventorySourceReadWriteAccessors(
-            self,
-            *,
-            inventorySourceId: str,
-            body: EditInventorySourceReadWriteAccessorsRequest = ...,
-            **kwargs: typing.Any,
-        ) -> InventorySourceAccessorsHttpRequest: ...
-        def get(
-            self, *, inventorySourceId: str, partnerId: str = ..., **kwargs: typing.Any
-        ) -> InventorySourceHttpRequest: ...
-        def list(
-            self,
-            *,
-            advertiserId: str = ...,
-            filter: str = ...,
-            orderBy: str = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
-            partnerId: str = ...,
-            **kwargs: typing.Any,
-        ) -> ListInventorySourcesResponseHttpRequest: ...
-        def list_next(
-            self,
-            previous_request: ListInventorySourcesResponseHttpRequest,
-            previous_response: ListInventorySourcesResponse,
-        ) -> ListInventorySourcesResponseHttpRequest | None: ...
-        def patch(
-            self,
-            *,
-            inventorySourceId: str,
-            body: InventorySource = ...,
-            advertiserId: str = ...,
-            partnerId: str = ...,
-            updateMask: str = ...,
-            **kwargs: typing.Any,
-        ) -> InventorySourceHttpRequest: ...
-
-    @typing.type_check_only
     class MediaResource(googleapiclient.discovery.Resource):
         def download(
             self, *, resourceName: str, **kwargs: typing.Any
@@ -2409,7 +2362,6 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
     def googleAudiences(self) -> GoogleAudiencesResource: ...
     def guaranteedOrders(self) -> GuaranteedOrdersResource: ...
     def inventorySourceGroups(self) -> InventorySourceGroupsResource: ...
-    def inventorySources(self) -> InventorySourcesResource: ...
     def media(self) -> MediaResource: ...
     def partners(self) -> PartnersResource: ...
     def sdfdownloadtasks(self) -> SdfdownloadtasksResource: ...
@@ -2713,22 +2665,6 @@ class InsertionOrderHttpRequest(googleapiclient.http.HttpRequest):
     ) -> InsertionOrder: ...
 
 @typing.type_check_only
-class InventorySourceHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> InventorySource: ...
-
-@typing.type_check_only
-class InventorySourceAccessorsHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> InventorySourceAccessors: ...
-
-@typing.type_check_only
 class InventorySourceGroupHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -2873,14 +2809,6 @@ class ListInventorySourceGroupsResponseHttpRequest(googleapiclient.http.HttpRequ
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListInventorySourceGroupsResponse: ...
-
-@typing.type_check_only
-class ListInventorySourcesResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> ListInventorySourcesResponse: ...
 
 @typing.type_check_only
 class ListInvoicesResponseHttpRequest(googleapiclient.http.HttpRequest):
