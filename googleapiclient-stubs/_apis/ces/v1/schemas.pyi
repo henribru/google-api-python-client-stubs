@@ -62,6 +62,7 @@ class AgentRemoteDialogflowAgent(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AgentTool(typing_extensions.TypedDict, total=False):
+    agent: str
     description: str
     name: str
     rootAgent: str
@@ -342,7 +343,9 @@ class Conversation(typing_extensions.TypedDict, total=False):
     languageCode: str
     messages: _list[Message]
     name: str
-    source: typing_extensions.Literal["SOURCE_UNSPECIFIED", "LIVE", "SIMULATOR", "EVAL"]
+    source: typing_extensions.Literal[
+        "SOURCE_UNSPECIFIED", "LIVE", "SIMULATOR", "EVAL", "AGENT_TOOL"
+    ]
     startTime: str
     turnCount: int
     turns: _list[ConversationTurn]
@@ -350,6 +353,7 @@ class Conversation(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ConversationLoggingSettings(typing_extensions.TypedDict, total=False):
     disableConversationLogging: bool
+    retentionWindow: str
 
 @typing.type_check_only
 class ConversationTurn(typing_extensions.TypedDict, total=False):
@@ -515,12 +519,25 @@ class EndpointControlPolicy(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ErrorHandlingSettings(typing_extensions.TypedDict, total=False):
+    endSessionConfig: ErrorHandlingSettingsEndSessionConfig
     errorHandlingStrategy: typing_extensions.Literal[
         "ERROR_HANDLING_STRATEGY_UNSPECIFIED",
         "NONE",
         "FALLBACK_RESPONSE",
         "END_SESSION",
     ]
+    fallbackResponseConfig: ErrorHandlingSettingsFallbackResponseConfig
+
+@typing.type_check_only
+class ErrorHandlingSettingsEndSessionConfig(typing_extensions.TypedDict, total=False):
+    escalateSession: bool
+
+@typing.type_check_only
+class ErrorHandlingSettingsFallbackResponseConfig(
+    typing_extensions.TypedDict, total=False
+):
+    customFallbackMessages: dict[str, typing.Any]
+    maxFallbackAttempts: int
 
 @typing.type_check_only
 class EvaluationMetricsThresholds(typing_extensions.TypedDict, total=False):
@@ -589,6 +606,7 @@ class Example(typing_extensions.TypedDict, total=False):
 class ExecuteToolRequest(typing_extensions.TypedDict, total=False):
     args: dict[str, typing.Any]
     context: dict[str, typing.Any]
+    mockConfig: MockConfig
     tool: str
     toolsetTool: ToolsetTool
     variables: dict[str, typing.Any]
@@ -887,6 +905,21 @@ class Message(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class MetricAnalysisSettings(typing_extensions.TypedDict, total=False):
     llmMetricsOptedOut: bool
+
+@typing.type_check_only
+class MockConfig(typing_extensions.TypedDict, total=False):
+    mockedToolCalls: _list[MockedToolCall]
+    unmatchedToolCallBehavior: typing_extensions.Literal[
+        "UNMATCHED_TOOL_CALL_BEHAVIOR_UNSPECIFIED", "FAIL", "PASS_THROUGH"
+    ]
+
+@typing.type_check_only
+class MockedToolCall(typing_extensions.TypedDict, total=False):
+    expectedArgsPattern: dict[str, typing.Any]
+    mockResponse: dict[str, typing.Any]
+    tool: str
+    toolId: str
+    toolset: ToolsetTool
 
 @typing.type_check_only
 class ModelSettings(typing_extensions.TypedDict, total=False):

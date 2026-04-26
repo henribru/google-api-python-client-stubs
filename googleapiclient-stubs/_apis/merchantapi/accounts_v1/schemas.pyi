@@ -349,7 +349,7 @@ class GetAccountForGcpRegistrationResponse(typing_extensions.TypedDict, total=Fa
 class Handshake(typing_extensions.TypedDict, total=False):
     actor: typing_extensions.Literal["ACTOR_UNSPECIFIED", "ACCOUNT", "OTHER_PARTY"]
     approvalState: typing_extensions.Literal[
-        "APPROVAL_STATE_UNSPECIFIED", "PENDING", "ESTABLISHED", "REJECTED"
+        "APPROVAL_STATE_UNSPECIFIED", "PENDING", "WAITING", "ESTABLISHED", "REJECTED"
     ]
 
 @typing.type_check_only

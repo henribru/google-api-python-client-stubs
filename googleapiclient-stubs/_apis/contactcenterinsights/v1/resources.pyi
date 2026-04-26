@@ -1096,6 +1096,34 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                 def insightsdata(self) -> InsightsdataResource: ...
 
             @typing.type_check_only
+            class DiagnosticsResource(googleapiclient.discovery.Resource):
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleProtobufEmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudContactcenterinsightsV1DiagnosticHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> (
+                    GoogleCloudContactcenterinsightsV1ListDiagnosticsResponseHttpRequest
+                ): ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudContactcenterinsightsV1ListDiagnosticsResponseHttpRequest,
+                    previous_response: GoogleCloudContactcenterinsightsV1ListDiagnosticsResponse,
+                ) -> (
+                    GoogleCloudContactcenterinsightsV1ListDiagnosticsResponseHttpRequest
+                    | None
+                ): ...
+
+            @typing.type_check_only
             class EncryptionSpecResource(googleapiclient.discovery.Resource):
                 def initialize(
                     self,
@@ -1536,6 +1564,13 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                 body: GoogleCloudContactcenterinsightsV1BulkUploadFeedbackLabelsRequest = ...,
                 **kwargs: typing.Any,
             ) -> GoogleLongrunningOperationHttpRequest: ...
+            def diagnoseConversations(
+                self,
+                *,
+                parent: str,
+                body: GoogleCloudContactcenterinsightsV1DiagnoseConversationsRequest = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleLongrunningOperationHttpRequest: ...
             def generativeInsights(
                 self,
                 *,
@@ -1613,6 +1648,7 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
             def conversations(self) -> ConversationsResource: ...
             def dashboards(self) -> DashboardsResource: ...
             def datasets(self) -> DatasetsResource: ...
+            def diagnostics(self) -> DiagnosticsResource: ...
             def encryptionSpec(self) -> EncryptionSpecResource: ...
             def insightsdata(self) -> InsightsdataResource: ...
             def issueModels(self) -> IssueModelsResource: ...
@@ -1777,6 +1813,16 @@ class GoogleCloudContactcenterinsightsV1DatasetHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudContactcenterinsightsV1Dataset: ...
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1DiagnosticHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudContactcenterinsightsV1Diagnostic: ...
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1EncryptionSpecHttpRequest(
@@ -1947,6 +1993,16 @@ class GoogleCloudContactcenterinsightsV1ListDatasetsResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudContactcenterinsightsV1ListDatasetsResponse: ...
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1ListDiagnosticsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudContactcenterinsightsV1ListDiagnosticsResponse: ...
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1ListFeedbackLabelsResponseHttpRequest(

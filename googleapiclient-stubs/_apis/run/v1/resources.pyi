@@ -148,6 +148,9 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                 watch: bool = ...,
                 **kwargs: typing.Any,
             ) -> ListInstancesResponseHttpRequest: ...
+            def replaceInstance(
+                self, *, name: str, body: Instance = ..., **kwargs: typing.Any
+            ) -> InstanceHttpRequest: ...
             def start(
                 self,
                 *,

@@ -107,6 +107,7 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     apiVersion: str
     createTime: str
     endTime: str
+    progress: Progress
     requestedCancellation: bool
     statusMessage: str
     target: str
@@ -118,6 +119,12 @@ class Policy(typing_extensions.TypedDict, total=False):
     bindings: _list[Binding]
     etag: str
     version: int
+
+@typing.type_check_only
+class Progress(typing_extensions.TypedDict, total=False):
+    completedVersionCount: int
+    failedVersionCount: int
+    totalVersionCount: int
 
 @typing.type_check_only
 class Replica(typing_extensions.TypedDict, total=False):
