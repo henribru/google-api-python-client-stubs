@@ -251,6 +251,18 @@ class DomainWideTakeoutInitiated(typing_extensions.TypedDict, total=False):
     takeoutRequestId: str
 
 @typing.type_check_only
+class DriveSyncStateChanged(typing_extensions.TypedDict, total=False):
+    email: str
+    syncPauseStartTime: str
+    syncState: typing_extensions.Literal["SYNC_STATE_UNSPECIFIED", "PAUSED", "RESUMED"]
+    syncStateChangeReason: typing_extensions.Literal[
+        "SYNC_STATE_CHANGE_REASON_UNSPECIFIED",
+        "UNUSUAL_ACTIVITY",
+        "USER_FEEDBACK_TRUE_POSITIVE",
+        "USER_FEEDBACK_FALSE_POSITIVE",
+    ]
+
+@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -471,6 +483,7 @@ class RuleViolationInfo(typing_extensions.TypedDict, total=False):
         "CHROME_PAGE_PRINT",
         "CHROME_URL_VISITED",
         "CHROMEOS_FILE_TRANSFER",
+        "GEMINI_ACCESS",
     ]
     triggeredActionInfo: _list[ActionInfo]
     triggeredActionTypes: _list[

@@ -95,7 +95,6 @@ class Verification(typing_extensions.TypedDict, total=False):
         "PHONE_CALL",
         "SMS",
         "AUTO",
-        "VETTED_PARTNER",
         "TRUSTED_PARTNER",
     ]
     name: str
@@ -116,7 +115,6 @@ class VerificationOption(typing_extensions.TypedDict, total=False):
         "PHONE_CALL",
         "SMS",
         "AUTO",
-        "VETTED_PARTNER",
         "TRUSTED_PARTNER",
     ]
 
@@ -141,7 +139,6 @@ class VerifyLocationRequest(typing_extensions.TypedDict, total=False):
         "PHONE_CALL",
         "SMS",
         "AUTO",
-        "VETTED_PARTNER",
         "TRUSTED_PARTNER",
     ]
     phoneNumber: str

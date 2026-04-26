@@ -32,6 +32,7 @@ class ListRegionalInventoriesResponse(typing_extensions.TypedDict, total=False):
 class LocalInventory(typing_extensions.TypedDict, total=False):
     account: str
     availability: str
+    base64EncodedName: str
     customAttributes: _list[CustomAttribute]
     instoreProductLocation: str
     name: str
@@ -92,6 +93,7 @@ class ProductStatusChangeMessage(typing_extensions.TypedDict, total=False):
 class RegionalInventory(typing_extensions.TypedDict, total=False):
     account: str
     availability: str
+    base64EncodedName: str
     customAttributes: _list[CustomAttribute]
     name: str
     price: Price

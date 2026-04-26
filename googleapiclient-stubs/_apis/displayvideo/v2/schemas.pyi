@@ -1147,29 +1147,6 @@ class Creative(typing_extensions.TypedDict, total=False):
     vpaid: bool
 
 @typing.type_check_only
-class CreativeConfig(typing_extensions.TypedDict, total=False):
-    creativeType: typing_extensions.Literal[
-        "CREATIVE_TYPE_UNSPECIFIED",
-        "CREATIVE_TYPE_STANDARD",
-        "CREATIVE_TYPE_EXPANDABLE",
-        "CREATIVE_TYPE_VIDEO",
-        "CREATIVE_TYPE_NATIVE",
-        "CREATIVE_TYPE_TEMPLATED_APP_INSTALL",
-        "CREATIVE_TYPE_NATIVE_SITE_SQUARE",
-        "CREATIVE_TYPE_TEMPLATED_APP_INSTALL_INTERSTITIAL",
-        "CREATIVE_TYPE_LIGHTBOX",
-        "CREATIVE_TYPE_NATIVE_APP_INSTALL",
-        "CREATIVE_TYPE_NATIVE_APP_INSTALL_SQUARE",
-        "CREATIVE_TYPE_AUDIO",
-        "CREATIVE_TYPE_PUBLISHER_HOSTED",
-        "CREATIVE_TYPE_NATIVE_VIDEO",
-        "CREATIVE_TYPE_TEMPLATED_APP_INSTALL_VIDEO",
-        "CREATIVE_TYPE_ASSET_BASED_CREATIVE",
-    ]
-    displayCreativeConfig: InventorySourceDisplayCreativeConfig
-    videoCreativeConfig: InventorySourceVideoCreativeConfig
-
-@typing.type_check_only
 class CustomBiddingAlgorithm(typing_extensions.TypedDict, total=False):
     advertiserId: str
     customBiddingAlgorithmId: str
@@ -1356,6 +1333,7 @@ class DemandGenBiddingStrategy(typing_extensions.TypedDict, total=False):
         "DEMAND_GEN_BIDDING_STRATEGY_TYPE_MAXIMIZE_CONVERSIONS",
         "DEMAND_GEN_BIDDING_STRATEGY_TYPE_MAXIMIZE_CONVERSION_VALUE",
         "DEMAND_GEN_BIDDING_STRATEGY_TYPE_MAXIMIZE_CLICKS",
+        "DEMAND_GEN_BIDDING_STRATEGY_TYPE_TARGET_CPC",
     ]
     value: str
 
@@ -1607,21 +1585,6 @@ class EditGuaranteedOrderReadAccessorsResponse(
 ):
     readAccessInherited: bool
     readAdvertiserIds: _list[str]
-
-@typing.type_check_only
-class EditInventorySourceReadWriteAccessorsRequest(
-    typing_extensions.TypedDict, total=False
-):
-    advertisersUpdate: EditInventorySourceReadWriteAccessorsRequestAdvertisersUpdate
-    assignPartner: bool
-    partnerId: str
-
-@typing.type_check_only
-class EditInventorySourceReadWriteAccessorsRequestAdvertisersUpdate(
-    typing_extensions.TypedDict, total=False
-):
-    addedAdvertisers: _list[str]
-    removedAdvertisers: _list[str]
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
@@ -2530,164 +2493,10 @@ class IntegrationDetails(typing_extensions.TypedDict, total=False):
     integrationCode: str
 
 @typing.type_check_only
-class InventorySource(typing_extensions.TypedDict, total=False):
-    commitment: typing_extensions.Literal[
-        "INVENTORY_SOURCE_COMMITMENT_UNSPECIFIED",
-        "INVENTORY_SOURCE_COMMITMENT_GUARANTEED",
-        "INVENTORY_SOURCE_COMMITMENT_NON_GUARANTEED",
-    ]
-    creativeConfigs: _list[CreativeConfig]
-    dealId: str
-    deliveryMethod: typing_extensions.Literal[
-        "INVENTORY_SOURCE_DELIVERY_METHOD_UNSPECIFIED",
-        "INVENTORY_SOURCE_DELIVERY_METHOD_PROGRAMMATIC",
-        "INVENTORY_SOURCE_DELIVERY_METHOD_TAG",
-    ]
-    displayName: str
-    exchange: typing_extensions.Literal[
-        "EXCHANGE_UNSPECIFIED",
-        "EXCHANGE_GOOGLE_AD_MANAGER",
-        "EXCHANGE_APPNEXUS",
-        "EXCHANGE_BRIGHTROLL",
-        "EXCHANGE_ADFORM",
-        "EXCHANGE_ADMETA",
-        "EXCHANGE_ADMIXER",
-        "EXCHANGE_ADSMOGO",
-        "EXCHANGE_ADSWIZZ",
-        "EXCHANGE_BIDSWITCH",
-        "EXCHANGE_BRIGHTROLL_DISPLAY",
-        "EXCHANGE_CADREON",
-        "EXCHANGE_DAILYMOTION",
-        "EXCHANGE_FIVE",
-        "EXCHANGE_FLUCT",
-        "EXCHANGE_FREEWHEEL",
-        "EXCHANGE_GENIEE",
-        "EXCHANGE_GUMGUM",
-        "EXCHANGE_IMOBILE",
-        "EXCHANGE_IBILLBOARD",
-        "EXCHANGE_IMPROVE_DIGITAL",
-        "EXCHANGE_INDEX",
-        "EXCHANGE_KARGO",
-        "EXCHANGE_MICROAD",
-        "EXCHANGE_MOPUB",
-        "EXCHANGE_NEND",
-        "EXCHANGE_ONE_BY_AOL_DISPLAY",
-        "EXCHANGE_ONE_BY_AOL_MOBILE",
-        "EXCHANGE_ONE_BY_AOL_VIDEO",
-        "EXCHANGE_OOYALA",
-        "EXCHANGE_OPENX",
-        "EXCHANGE_PERMODO",
-        "EXCHANGE_PLATFORMONE",
-        "EXCHANGE_PLATFORMID",
-        "EXCHANGE_PUBMATIC",
-        "EXCHANGE_PULSEPOINT",
-        "EXCHANGE_REVENUEMAX",
-        "EXCHANGE_RUBICON",
-        "EXCHANGE_SMARTCLIP",
-        "EXCHANGE_SMARTRTB",
-        "EXCHANGE_SMARTSTREAMTV",
-        "EXCHANGE_SOVRN",
-        "EXCHANGE_SPOTXCHANGE",
-        "EXCHANGE_STROER",
-        "EXCHANGE_TEADSTV",
-        "EXCHANGE_TELARIA",
-        "EXCHANGE_TVN",
-        "EXCHANGE_UNITED",
-        "EXCHANGE_YIELDLAB",
-        "EXCHANGE_YIELDMO",
-        "EXCHANGE_UNRULYX",
-        "EXCHANGE_OPEN8",
-        "EXCHANGE_TRITON",
-        "EXCHANGE_TRIPLELIFT",
-        "EXCHANGE_TABOOLA",
-        "EXCHANGE_INMOBI",
-        "EXCHANGE_SMAATO",
-        "EXCHANGE_AJA",
-        "EXCHANGE_SUPERSHIP",
-        "EXCHANGE_NEXSTAR_DIGITAL",
-        "EXCHANGE_WAZE",
-        "EXCHANGE_SOUNDCAST",
-        "EXCHANGE_SHARETHROUGH",
-        "EXCHANGE_FYBER",
-        "EXCHANGE_RED_FOR_PUBLISHERS",
-        "EXCHANGE_MEDIANET",
-        "EXCHANGE_TAPJOY",
-        "EXCHANGE_VISTAR",
-        "EXCHANGE_DAX",
-        "EXCHANGE_JCD",
-        "EXCHANGE_PLACE_EXCHANGE",
-        "EXCHANGE_APPLOVIN",
-        "EXCHANGE_CONNATIX",
-        "EXCHANGE_RESET_DIGITAL",
-        "EXCHANGE_HIVESTACK",
-        "EXCHANGE_DRAX",
-        "EXCHANGE_APPLOVIN_GBID",
-        "EXCHANGE_FYBER_GBID",
-        "EXCHANGE_UNITY_GBID",
-        "EXCHANGE_CHARTBOOST_GBID",
-        "EXCHANGE_ADMOST_GBID",
-        "EXCHANGE_TOPON_GBID",
-        "EXCHANGE_NETFLIX",
-        "EXCHANGE_CORE",
-        "EXCHANGE_COMMERCE_GRID",
-        "EXCHANGE_SPOTIFY",
-        "EXCHANGE_TUBI",
-        "EXCHANGE_SNAP",
-        "EXCHANGE_CADENT",
-    ]
-    guaranteedOrderId: str
-    inventorySourceId: str
-    inventorySourceProductType: typing_extensions.Literal[
-        "INVENTORY_SOURCE_PRODUCT_TYPE_UNSPECIFIED",
-        "PREFERRED_DEAL",
-        "PRIVATE_AUCTION",
-        "PROGRAMMATIC_GUARANTEED",
-        "TAG_GUARANTEED",
-        "YOUTUBE_RESERVE",
-        "INSTANT_RESERVE",
-        "GUARANTEED_PACKAGE",
-        "PROGRAMMATIC_TV",
-        "AUCTION_PACKAGE",
-    ]
-    inventorySourceType: typing_extensions.Literal[
-        "INVENTORY_SOURCE_TYPE_UNSPECIFIED",
-        "INVENTORY_SOURCE_TYPE_PRIVATE",
-        "INVENTORY_SOURCE_TYPE_AUCTION_PACKAGE",
-    ]
-    name: str
-    publisherName: str
-    rateDetails: RateDetails
-    readAdvertiserIds: _list[str]
-    readPartnerIds: _list[str]
-    readWriteAccessors: InventorySourceAccessors
-    status: InventorySourceStatus
-    timeRange: TimeRange
-    updateTime: str
-
-@typing.type_check_only
-class InventorySourceAccessors(typing_extensions.TypedDict, total=False):
-    advertisers: InventorySourceAccessorsAdvertiserAccessors
-    partner: InventorySourceAccessorsPartnerAccessor
-
-@typing.type_check_only
-class InventorySourceAccessorsAdvertiserAccessors(
-    typing_extensions.TypedDict, total=False
-):
-    advertiserIds: _list[str]
-
-@typing.type_check_only
-class InventorySourceAccessorsPartnerAccessor(typing_extensions.TypedDict, total=False):
-    partnerId: str
-
-@typing.type_check_only
 class InventorySourceAssignedTargetingOptionDetails(
     typing_extensions.TypedDict, total=False
 ):
     inventorySourceId: str
-
-@typing.type_check_only
-class InventorySourceDisplayCreativeConfig(typing_extensions.TypedDict, total=False):
-    creativeSize: Dimensions
 
 @typing.type_check_only
 class InventorySourceFilter(typing_extensions.TypedDict, total=False):
@@ -2704,36 +2513,6 @@ class InventorySourceGroupAssignedTargetingOptionDetails(
     typing_extensions.TypedDict, total=False
 ):
     inventorySourceGroupId: str
-
-@typing.type_check_only
-class InventorySourceStatus(typing_extensions.TypedDict, total=False):
-    configStatus: typing_extensions.Literal[
-        "INVENTORY_SOURCE_CONFIG_STATUS_UNSPECIFIED",
-        "INVENTORY_SOURCE_CONFIG_STATUS_PENDING",
-        "INVENTORY_SOURCE_CONFIG_STATUS_COMPLETED",
-    ]
-    entityPauseReason: str
-    entityStatus: typing_extensions.Literal[
-        "ENTITY_STATUS_UNSPECIFIED",
-        "ENTITY_STATUS_ACTIVE",
-        "ENTITY_STATUS_ARCHIVED",
-        "ENTITY_STATUS_DRAFT",
-        "ENTITY_STATUS_PAUSED",
-        "ENTITY_STATUS_SCHEDULED_FOR_DELETION",
-    ]
-    sellerPauseReason: str
-    sellerStatus: typing_extensions.Literal[
-        "ENTITY_STATUS_UNSPECIFIED",
-        "ENTITY_STATUS_ACTIVE",
-        "ENTITY_STATUS_ARCHIVED",
-        "ENTITY_STATUS_DRAFT",
-        "ENTITY_STATUS_PAUSED",
-        "ENTITY_STATUS_SCHEDULED_FOR_DELETION",
-    ]
-
-@typing.type_check_only
-class InventorySourceVideoCreativeConfig(typing_extensions.TypedDict, total=False):
-    duration: str
 
 @typing.type_check_only
 class Invoice(typing_extensions.TypedDict, total=False):
@@ -2832,6 +2611,7 @@ class LineItem(typing_extensions.TypedDict, total=False):
     ]
     mobileApp: MobileApp
     name: str
+    optimizeFixedBidding: bool
     pacing: Pacing
     partnerCosts: _list[PartnerCost]
     partnerRevenueModel: PartnerRevenueModel
@@ -2970,11 +2750,6 @@ class ListInsertionOrdersResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ListInventorySourceGroupsResponse(typing_extensions.TypedDict, total=False):
     inventorySourceGroups: _list[InventorySourceGroup]
-    nextPageToken: str
-
-@typing.type_check_only
-class ListInventorySourcesResponse(typing_extensions.TypedDict, total=False):
-    inventorySources: _list[InventorySource]
     nextPageToken: str
 
 @typing.type_check_only
@@ -3134,12 +2909,6 @@ class MobileApp(typing_extensions.TypedDict, total=False):
     displayName: str
     platform: typing_extensions.Literal["PLATFORM_UNSPECIFIED", "IOS", "ANDROID"]
     publisher: str
-
-@typing.type_check_only
-class Money(typing_extensions.TypedDict, total=False):
-    currencyCode: str
-    nanos: int
-    units: str
 
 @typing.type_check_only
 class NativeContentPositionAssignedTargetingOptionDetails(
@@ -3525,20 +3294,6 @@ class PublisherReviewStatus(typing_extensions.TypedDict, total=False):
         "REVIEW_STATUS_REJECTED",
         "REVIEW_STATUS_PENDING",
     ]
-
-@typing.type_check_only
-class RateDetails(typing_extensions.TypedDict, total=False):
-    inventorySourceRateType: typing_extensions.Literal[
-        "INVENTORY_SOURCE_RATE_TYPE_UNSPECIFIED",
-        "INVENTORY_SOURCE_RATE_TYPE_CPM_FIXED",
-        "INVENTORY_SOURCE_RATE_TYPE_CPM_FLOOR",
-        "INVENTORY_SOURCE_RATE_TYPE_CPD",
-        "INVENTORY_SOURCE_RATE_TYPE_CPH",
-        "INVENTORY_SOURCE_RATE_TYPE_FLAT",
-    ]
-    minimumSpend: Money
-    rate: Money
-    unitsPurchased: str
 
 @typing.type_check_only
 class RegionalLocationListAssignedTargetingOptionDetails(
@@ -3937,11 +3692,6 @@ class ThirdPartyVerifierAssignedTargetingOptionDetails(
     adloox: Adloox
     doubleVerify: DoubleVerify
     integralAdScience: IntegralAdScience
-
-@typing.type_check_only
-class TimeRange(typing_extensions.TypedDict, total=False):
-    endTime: str
-    startTime: str
 
 @typing.type_check_only
 class TimerEvent(typing_extensions.TypedDict, total=False):

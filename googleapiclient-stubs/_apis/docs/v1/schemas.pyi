@@ -496,6 +496,12 @@ class InsertPersonRequest(typing_extensions.TypedDict, total=False):
     personProperties: PersonProperties
 
 @typing.type_check_only
+class InsertRichLinkRequest(typing_extensions.TypedDict, total=False):
+    endOfSegmentLocation: EndOfSegmentLocation
+    location: Location
+    richLinkProperties: RichLinkProperties
+
+@typing.type_check_only
 class InsertSectionBreakRequest(typing_extensions.TypedDict, total=False):
     endOfSegmentLocation: EndOfSegmentLocation
     location: Location
@@ -885,6 +891,7 @@ class Request(typing_extensions.TypedDict, total=False):
     insertInlineImage: InsertInlineImageRequest
     insertPageBreak: InsertPageBreakRequest
     insertPerson: InsertPersonRequest
+    insertRichLink: InsertRichLinkRequest
     insertSectionBreak: InsertSectionBreakRequest
     insertTable: InsertTableRequest
     insertTableColumn: InsertTableColumnRequest
@@ -898,6 +905,7 @@ class Request(typing_extensions.TypedDict, total=False):
     unmergeTableCells: UnmergeTableCellsRequest
     updateDocumentStyle: UpdateDocumentStyleRequest
     updateDocumentTabProperties: UpdateDocumentTabPropertiesRequest
+    updateNamedStyle: UpdateNamedStyleRequest
     updateParagraphStyle: UpdateParagraphStyleRequest
     updateSectionStyle: UpdateSectionStyleRequest
     updateTableCellStyle: UpdateTableCellStyleRequest
@@ -1264,6 +1272,12 @@ class UpdateDocumentStyleRequest(typing_extensions.TypedDict, total=False):
 class UpdateDocumentTabPropertiesRequest(typing_extensions.TypedDict, total=False):
     fields: str
     tabProperties: TabProperties
+
+@typing.type_check_only
+class UpdateNamedStyleRequest(typing_extensions.TypedDict, total=False):
+    fields: str
+    namedStyle: NamedStyle
+    tabId: str
 
 @typing.type_check_only
 class UpdateParagraphStyleRequest(typing_extensions.TypedDict, total=False):

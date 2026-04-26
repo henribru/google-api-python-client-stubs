@@ -908,6 +908,7 @@ class SingleTenantHsmInstance(typing_extensions.TypedDict, total=False):
     createTime: str
     deleteTime: str
     disableTime: str
+    keyPortabilityEnabled: bool
     name: str
     quorumAuth: QuorumAuth
     state: typing_extensions.Literal[

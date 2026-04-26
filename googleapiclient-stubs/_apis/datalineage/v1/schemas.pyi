@@ -132,6 +132,7 @@ class GoogleCloudDatacatalogLineageV1Origin(typing_extensions.TypedDict, total=F
         "LOOKER_STUDIO",
         "DATAPROC",
         "VERTEX_AI",
+        "DATAFLOW",
         "LOOKER_CORE",
     ]
 

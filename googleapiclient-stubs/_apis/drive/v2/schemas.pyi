@@ -127,6 +127,11 @@ class ChildReference(typing_extensions.TypedDict, total=False):
     selfLink: str
 
 @typing.type_check_only
+class ClientEncryptionDetails(typing_extensions.TypedDict, total=False):
+    decryptionMetadata: DecryptionMetadata
+    encryptionState: str
+
+@typing.type_check_only
 class Comment(typing_extensions.TypedDict, total=False):
     anchor: str
     author: User
@@ -183,6 +188,16 @@ class ContentRestriction(typing_extensions.TypedDict, total=False):
     type: str
 
 @typing.type_check_only
+class DecryptionMetadata(typing_extensions.TypedDict, total=False):
+    aes256GcmChunkSize: str
+    encryptionResourceKeyHash: str
+    jwt: str
+    kaclsId: str
+    kaclsName: str
+    keyFormat: str
+    wrappedKey: str
+
+@typing.type_check_only
 class Drive(typing_extensions.TypedDict, total=False):
     backgroundImageFile: dict[str, typing.Any]
     backgroundImageLink: str
@@ -210,6 +225,7 @@ class File(typing_extensions.TypedDict, total=False):
     canComment: bool
     canReadRevisions: bool
     capabilities: dict[str, typing.Any]
+    clientEncryptionDetails: ClientEncryptionDetails
     contentRestrictions: _list[ContentRestriction]
     copyRequiresWriterPermission: bool
     copyable: bool
@@ -291,6 +307,14 @@ class FileList(typing_extensions.TypedDict, total=False):
     nextLink: str
     nextPageToken: str
     selfLink: str
+
+@typing.type_check_only
+class GenerateCseTokenResponse(typing_extensions.TypedDict, total=False):
+    currentKaclsId: str
+    currentKaclsName: str
+    fileId: str
+    jwt: str
+    kind: str
 
 @typing.type_check_only
 class GeneratedIds(typing_extensions.TypedDict, total=False):

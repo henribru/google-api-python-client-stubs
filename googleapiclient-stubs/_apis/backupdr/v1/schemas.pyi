@@ -784,6 +784,7 @@ class InitializeServiceRequest(typing_extensions.TypedDict, total=False):
     cloudSqlInstanceInitializationConfig: CloudSqlInstanceInitializationConfig
     requestId: str
     resourceType: str
+    validateOnly: bool
 
 @typing.type_check_only
 class InitiateBackupRequest(typing_extensions.TypedDict, total=False):
@@ -888,6 +889,7 @@ class LocationMetadata(typing_extensions.TypedDict, total=False):
             "CEP_MONITORING_COMPUTE_INSTANCE",
             "CEP_MONITORING_DISK",
             "BV_CUSTOM_PROBERS",
+            "FT_CUSTOM_PROBERS",
         ]
     ]
 

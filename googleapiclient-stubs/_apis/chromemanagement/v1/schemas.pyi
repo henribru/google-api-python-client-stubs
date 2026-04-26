@@ -18,6 +18,7 @@ class GoogleChromeManagementV1AndroidAppPermission(
 class GoogleChromeManagementV1AppDetails(typing_extensions.TypedDict, total=False):
     androidAppInfo: GoogleChromeManagementV1AndroidAppInfo
     appId: str
+    categoryIds: _list[str]
     chromeAppInfo: GoogleChromeManagementV1ChromeAppInfo
     description: str
     detailUri: str
@@ -1344,6 +1345,75 @@ class GoogleChromeManagementVersionsV1ClaimCertificateProvisioningProcessRespons
 ): ...
 
 @typing.type_check_only
+class GoogleChromeManagementVersionsV1ConnectorConfig(
+    typing_extensions.TypedDict, total=False
+):
+    details: GoogleChromeManagementVersionsV1ConnectorConfigDetails
+    displayName: str
+    etag: str
+    name: str
+    status: GoogleChromeManagementVersionsV1ConnectorConfigStatus
+    type: typing_extensions.Literal[
+        "CONNECTOR_TYPE_UNSPECIFIED",
+        "REPORTING",
+        "DEVICE_TRUST",
+        "XDR",
+        "IDENTITY_BASED_ENROLLMENT",
+        "CERTIFICATE_AUTHORITY",
+        "ROOT_STORE",
+    ]
+
+@typing.type_check_only
+class GoogleChromeManagementVersionsV1ConnectorConfigDetails(
+    typing_extensions.TypedDict, total=False
+):
+    crowdStrikeConfig: GoogleChromeManagementVersionsV1CrowdStrikeConfig
+    crowdStrikeFalconNextGenConfig: (
+        GoogleChromeManagementVersionsV1CrowdStrikeFalconNextGenConfig
+    )
+    crowdStrikeXdrConfig: GoogleChromeManagementVersionsV1CrowdStrikeXdrConfig
+    deviceTrustConfig: GoogleChromeManagementVersionsV1DeviceTrustConfig
+    googleSecOpsConfig: GoogleChromeManagementVersionsV1GoogleSecOpsConfig
+    paloAltoNetworksConfig: GoogleChromeManagementVersionsV1PaloAltoNetworksConfig
+    pubSubConfig: GoogleChromeManagementVersionsV1PubSubConfig
+    pubSubXdrConfig: GoogleChromeManagementVersionsV1PubSubXdrConfig
+    splunkConfig: GoogleChromeManagementVersionsV1SplunkConfig
+
+@typing.type_check_only
+class GoogleChromeManagementVersionsV1ConnectorConfigStatus(
+    typing_extensions.TypedDict, total=False
+):
+    failureStartTime: str
+    state: typing_extensions.Literal[
+        "CONFIG_STATE_UNKNOWN", "ENABLED", "DISABLED_BY_FAILURES"
+    ]
+    updateTime: str
+
+@typing.type_check_only
+class GoogleChromeManagementVersionsV1CrowdStrikeConfig(
+    typing_extensions.TypedDict, total=False
+):
+    apiKey: str
+    host: str
+    reportingSettings: GoogleChromeManagementVersionsV1ReportingSettings
+
+@typing.type_check_only
+class GoogleChromeManagementVersionsV1CrowdStrikeFalconNextGenConfig(
+    typing_extensions.TypedDict, total=False
+):
+    apiKey: str
+    host: str
+    reportingSettings: GoogleChromeManagementVersionsV1ReportingSettings
+
+@typing.type_check_only
+class GoogleChromeManagementVersionsV1CrowdStrikeXdrConfig(
+    typing_extensions.TypedDict, total=False
+):
+    apiKey: str
+    host: str
+    xdrSettings: GoogleChromeManagementVersionsV1XdrSettings
+
+@typing.type_check_only
 class GoogleChromeManagementVersionsV1DeviceInfo(
     typing_extensions.TypedDict, total=False
 ):
@@ -1351,6 +1421,30 @@ class GoogleChromeManagementVersionsV1DeviceInfo(
     deviceType: typing_extensions.Literal["DEVICE_TYPE_UNSPECIFIED", "CHROME_BROWSER"]
     hostname: str
     machine: str
+
+@typing.type_check_only
+class GoogleChromeManagementVersionsV1DeviceTrustConfig(
+    typing_extensions.TypedDict, total=False
+):
+    scope: typing_extensions.Literal[
+        "BROWSER_ENFORCEMENT_SCOPE_UNSPECIFIED",
+        "BROWSERS_ONLY",
+        "PROFILES_ONLY",
+        "BROWSERS_AND_PROFILES",
+    ]
+    serviceAccounts: _list[str]
+    serviceProvider: typing_extensions.Literal[
+        "SERVICE_PROVIDER_UNSPECIFIED",
+        "UNIVERSAL_DEVICE_TRUST",
+        "OKTA",
+        "PING_IDENTITY",
+        "ONELOGIN",
+        "DUO",
+        "ZSCALER",
+        "OMNISSA",
+        "JUMPCLOUD",
+    ]
+    urlMatchers: _list[str]
 
 @typing.type_check_only
 class GoogleChromeManagementVersionsV1GenericCaConnection(
@@ -1363,6 +1457,14 @@ class GoogleChromeManagementVersionsV1GenericProfile(
     typing_extensions.TypedDict, total=False
 ):
     profileAdapterConfigReference: str
+
+@typing.type_check_only
+class GoogleChromeManagementVersionsV1GoogleSecOpsConfig(
+    typing_extensions.TypedDict, total=False
+):
+    apiKey: str
+    host: str
+    reportingSettings: GoogleChromeManagementVersionsV1ReportingSettings
 
 @typing.type_check_only
 class GoogleChromeManagementVersionsV1ListChromeBrowserProfileCommandsResponse(
@@ -1383,6 +1485,14 @@ class GoogleChromeManagementVersionsV1ListChromeBrowserProfilesResponse(
     totalSize: str
 
 @typing.type_check_only
+class GoogleChromeManagementVersionsV1ListConnectorConfigsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    connectorConfigs: _list[GoogleChromeManagementVersionsV1ConnectorConfig]
+    nextPageToken: str
+    totalSize: int
+
+@typing.type_check_only
 class GoogleChromeManagementVersionsV1MoveThirdPartyProfileUserRequest(
     typing_extensions.TypedDict, total=False
 ):
@@ -1393,6 +1503,28 @@ class GoogleChromeManagementVersionsV1MoveThirdPartyProfileUserResponse(
     typing_extensions.TypedDict, total=False
 ):
     thirdPartyProfileUser: GoogleChromeManagementVersionsV1ThirdPartyProfileUser
+
+@typing.type_check_only
+class GoogleChromeManagementVersionsV1PaloAltoNetworksConfig(
+    typing_extensions.TypedDict, total=False
+):
+    apiKey: str
+    host: str
+    reportingSettings: GoogleChromeManagementVersionsV1ReportingSettings
+
+@typing.type_check_only
+class GoogleChromeManagementVersionsV1PubSubConfig(
+    typing_extensions.TypedDict, total=False
+):
+    reportingSettings: GoogleChromeManagementVersionsV1ReportingSettings
+    topicFullPath: str
+
+@typing.type_check_only
+class GoogleChromeManagementVersionsV1PubSubXdrConfig(
+    typing_extensions.TypedDict, total=False
+):
+    topicFullPath: str
+    xdrSettings: GoogleChromeManagementVersionsV1XdrSettings
 
 @typing.type_check_only
 class GoogleChromeManagementVersionsV1ReportingData(
@@ -1472,6 +1604,49 @@ class GoogleChromeManagementVersionsV1ReportingDataPolicyData(
     value: str
 
 @typing.type_check_only
+class GoogleChromeManagementVersionsV1ReportingSettings(
+    typing_extensions.TypedDict, total=False
+):
+    enabledDefaultEvents: _list[
+        typing_extensions.Literal[
+            "DEFAULT_EVENT_UNSPECIFIED",
+            "ALL_DEFAULT_EVENTS",
+            "BROWSER_CRASH_EVENT",
+            "BROWSER_EXTENSION_INSTALL_EVENT",
+            "CONTENT_TRANSFER_EVENT",
+            "CONTENT_UNSCANNED_EVENT",
+            "DATA_ACCESS_CONTROL_EVENT",
+            "MALWARE_TRANSFER_EVENT",
+            "PASSWORD_CHANGED_EVENT",
+            "PASSWORD_REUSE_EVENT",
+            "SENSITIVE_DATA_TRANSFER_EVENT",
+            "SUSPICIOUS_URL_EVENT",
+            "UNSAFE_SITE_VISIT_EVENT",
+            "URL_FILTERING_INTERSTITIAL_EVENT",
+        ]
+    ]
+    enabledDeviceEvents: _list[
+        typing_extensions.Literal[
+            "DEVICE_EVENT_UNSPECIFIED",
+            "ALL_DEVICE_EVENTS",
+            "ADD_REMOVE_USER_EVENT",
+            "LOGIN_LOGOUT_EVENT",
+            "CRD_EVENT",
+            "PERIPHERAL_EVENT",
+        ]
+    ]
+    enabledOptInEvents: _list[
+        typing_extensions.Literal[
+            "OPT_IN_EVENT_UNSPECIFIED",
+            "ALL_OPT_IN_EVENTS",
+            "LOGIN_EVENT",
+            "PASSWORD_BREACH_EVENT",
+            "URL_NAVIGATION_EVENT",
+            "EXTENSION_TELEMETRY_EVENT",
+        ]
+    ]
+
+@typing.type_check_only
 class GoogleChromeManagementVersionsV1ScepCaConnection(
     typing_extensions.TypedDict, total=False
 ):
@@ -1532,6 +1707,17 @@ class GoogleChromeManagementVersionsV1SignDataResponse(
     )
 
 @typing.type_check_only
+class GoogleChromeManagementVersionsV1SplunkConfig(
+    typing_extensions.TypedDict, total=False
+):
+    hecToken: str
+    host: str
+    portNumber: int
+    reportingSettings: GoogleChromeManagementVersionsV1ReportingSettings
+    source: str
+    unsecureScheme: bool
+
+@typing.type_check_only
 class GoogleChromeManagementVersionsV1SubjectAltName(
     typing_extensions.TypedDict, total=False
 ):
@@ -1561,6 +1747,12 @@ class GoogleChromeManagementVersionsV1UploadCertificateRequest(
 class GoogleChromeManagementVersionsV1UploadCertificateResponse(
     typing_extensions.TypedDict, total=False
 ): ...
+
+@typing.type_check_only
+class GoogleChromeManagementVersionsV1XdrSettings(
+    typing_extensions.TypedDict, total=False
+):
+    enableAllXdrEvents: bool
 
 @typing.type_check_only
 class GoogleLongrunningCancelOperationRequest(

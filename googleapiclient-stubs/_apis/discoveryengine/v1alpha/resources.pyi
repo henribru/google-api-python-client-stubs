@@ -185,6 +185,18 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                     def getConnectorSecret(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> GoogleCloudDiscoveryengineV1alphaGetConnectorSecretResponseHttpRequest: ...
+                    def mcp(
+                        self,
+                        *,
+                        projectsId: str,
+                        locationsId: str,
+                        collectionsId: str,
+                        contentType: str = ...,
+                        data: str = ...,
+                        extensions: dict[str, typing.Any]
+                        | _list[dict[str, typing.Any]] = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleApiHttpBodyHttpRequest: ...
                     def startConnectorRun(
                         self,
                         *,
@@ -731,6 +743,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             *,
                             parent: str,
                             body: GoogleCloudDiscoveryengineV1alphaSession = ...,
+                            sessionId: str = ...,
                             **kwargs: typing.Any,
                         ) -> GoogleCloudDiscoveryengineV1alphaSessionHttpRequest: ...
                         def delete(
@@ -1632,6 +1645,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             *,
                             parent: str,
                             body: GoogleCloudDiscoveryengineV1alphaSession = ...,
+                            sessionId: str = ...,
                             **kwargs: typing.Any,
                         ) -> GoogleCloudDiscoveryengineV1alphaSessionHttpRequest: ...
                         def delete(
@@ -2348,6 +2362,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: GoogleCloudDiscoveryengineV1alphaSession = ...,
+                        sessionId: str = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudDiscoveryengineV1alphaSessionHttpRequest: ...
                     def delete(
@@ -3145,6 +3160,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
+                        filter: str = ...,
                         orderBy: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,

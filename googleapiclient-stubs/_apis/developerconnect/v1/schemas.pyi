@@ -15,6 +15,7 @@ class AccountConnector(typing_extensions.TypedDict, total=False):
     oauthStartUri: str
     providerOauthConfig: ProviderOAuthConfig
     proxyConfig: ProxyConfig
+    uid: str
     updateTime: str
 
 @typing.type_check_only
@@ -449,6 +450,7 @@ class ProviderOAuthConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ProxyConfig(typing_extensions.TypedDict, total=False):
     enabled: bool
+    httpProxyBaseUri: str
 
 @typing.type_check_only
 class RuntimeConfig(typing_extensions.TypedDict, total=False):

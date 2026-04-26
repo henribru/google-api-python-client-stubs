@@ -97,6 +97,7 @@ class GoogleFirebaseAppcheckV1betaBatchUpdateServicesResponse(
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1betaDebugToken(typing_extensions.TypedDict, total=False):
     displayName: str
+    etag: str
     name: str
     token: str
     updateTime: str
@@ -343,6 +344,7 @@ class GoogleFirebaseAppcheckV1betaService(typing_extensions.TypedDict, total=Fal
     enforcementMode: typing_extensions.Literal["OFF", "UNENFORCED", "ENFORCED"]
     etag: str
     name: str
+    replayProtection: typing_extensions.Literal["OFF", "UNENFORCED", "ENFORCED"]
     updateTime: str
 
 @typing.type_check_only

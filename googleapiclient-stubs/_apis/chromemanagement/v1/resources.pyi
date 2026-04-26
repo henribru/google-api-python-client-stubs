@@ -140,6 +140,41 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
             def operations(self) -> OperationsResource: ...
 
         @typing.type_check_only
+        class ConnectorConfigsResource(googleapiclient.discovery.Resource):
+            def create(
+                self,
+                *,
+                parent: str,
+                body: GoogleChromeManagementVersionsV1ConnectorConfig = ...,
+                connectorConfigId: str = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleChromeManagementVersionsV1ConnectorConfigHttpRequest: ...
+            def delete(
+                self, *, name: str, etag: str = ..., **kwargs: typing.Any
+            ) -> GoogleProtobufEmptyHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleChromeManagementVersionsV1ConnectorConfigHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any,
+            ) -> (
+                GoogleChromeManagementVersionsV1ListConnectorConfigsResponseHttpRequest
+            ): ...
+            def list_next(
+                self,
+                previous_request: GoogleChromeManagementVersionsV1ListConnectorConfigsResponseHttpRequest,
+                previous_response: GoogleChromeManagementVersionsV1ListConnectorConfigsResponse,
+            ) -> (
+                GoogleChromeManagementVersionsV1ListConnectorConfigsResponseHttpRequest
+                | None
+            ): ...
+
+        @typing.type_check_only
         class ProfilesResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class CommandsResource(googleapiclient.discovery.Resource):
@@ -503,6 +538,7 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
         def certificateProvisioningProcesses(
             self,
         ) -> CertificateProvisioningProcessesResource: ...
+        def connectorConfigs(self) -> ConnectorConfigsResource: ...
         def profiles(self) -> ProfilesResource: ...
         def reports(self) -> ReportsResource: ...
         def telemetry(self) -> TelemetryResource: ...
@@ -844,6 +880,16 @@ class GoogleChromeManagementVersionsV1ClaimCertificateProvisioningProcessRespons
     ): ...
 
 @typing.type_check_only
+class GoogleChromeManagementVersionsV1ConnectorConfigHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleChromeManagementVersionsV1ConnectorConfig: ...
+
+@typing.type_check_only
 class GoogleChromeManagementVersionsV1ListChromeBrowserProfileCommandsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -862,6 +908,16 @@ class GoogleChromeManagementVersionsV1ListChromeBrowserProfilesResponseHttpReque
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleChromeManagementVersionsV1ListChromeBrowserProfilesResponse: ...
+
+@typing.type_check_only
+class GoogleChromeManagementVersionsV1ListConnectorConfigsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleChromeManagementVersionsV1ListConnectorConfigsResponse: ...
 
 @typing.type_check_only
 class GoogleChromeManagementVersionsV1MoveThirdPartyProfileUserResponseHttpRequest(
