@@ -35,6 +35,7 @@ class ListRegionalInventoriesResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class LocalInventory(typing_extensions.TypedDict, total=False):
     account: str
+    base64EncodedName: str
     localInventoryAttributes: LocalInventoryAttributes
     name: str
     storeCode: str
@@ -118,6 +119,7 @@ class ProductStatusChangeMessage(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class RegionalInventory(typing_extensions.TypedDict, total=False):
     account: str
+    base64EncodedName: str
     name: str
     region: str
     regionalInventoryAttributes: RegionalInventoryAttributes

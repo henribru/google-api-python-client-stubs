@@ -642,6 +642,7 @@ class Publishing(typing_extensions.TypedDict, total=False):
         "SHOPPING",
         "GEO",
         "GENERATIVE_AI",
+        "HEALTH",
     ]
     protoReferenceDocumentationUri: str
     restReferenceDocumentationUri: str

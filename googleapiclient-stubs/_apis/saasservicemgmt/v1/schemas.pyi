@@ -32,6 +32,10 @@ class ErrorBudget(typing_extensions.TypedDict, total=False):
     allowedPercentage: int
 
 @typing.type_check_only
+class FlagUpdate(typing_extensions.TypedDict, total=False):
+    flagRelease: str
+
+@typing.type_check_only
 class FromMapping(typing_extensions.TypedDict, total=False):
     dependency: str
     outputVariable: str
@@ -139,6 +143,7 @@ class Rollout(typing_extensions.TypedDict, total=False):
     effectiveUnitFilter: str
     endTime: str
     etag: str
+    flagRelease: str
     labels: dict[str, typing.Any]
     name: str
     parentRollout: str
@@ -216,12 +221,12 @@ class Saas(typing_extensions.TypedDict, total=False):
     name: str
     state: typing_extensions.Literal[
         "STATE_TYPE_UNSPECIFIED",
-        "ACTIVE",
-        "RUNNING",
-        "FAILED",
         "STATE_ACTIVE",
         "STATE_RUNNING",
         "STATE_FAILED",
+        "ACTIVE",
+        "RUNNING",
+        "FAILED",
     ]
     uid: str
     updateTime: str
@@ -274,6 +279,7 @@ class Unit(typing_extensions.TypedDict, total=False):
     dependencies: _list[UnitDependency]
     dependents: _list[UnitDependency]
     etag: str
+    flagRevisions: _list[str]
     inputVariables: _list[UnitVariable]
     labels: dict[str, typing.Any]
     maintenance: MaintenanceSettings
@@ -334,6 +340,7 @@ class UnitDependency(typing_extensions.TypedDict, total=False):
 class UnitKind(typing_extensions.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     createTime: str
+    defaultFlagRevisions: _list[str]
     defaultRelease: str
     dependencies: _list[Dependency]
     etag: str
@@ -363,6 +370,7 @@ class UnitOperation(typing_extensions.TypedDict, total=False):
         "STANDARD",
     ]
     etag: str
+    flagUpdate: FlagUpdate
     labels: dict[str, typing.Any]
     name: str
     parentUnitOperation: str
@@ -403,7 +411,9 @@ class UnitOperationCondition(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class UnitVariable(typing_extensions.TypedDict, total=False):
-    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "STRING", "INT", "BOOL"]
+    type: typing_extensions.Literal[
+        "TYPE_UNSPECIFIED", "STRING", "INT", "BOOL", "STRUCT", "LIST"
+    ]
     value: str
     variable: str
 

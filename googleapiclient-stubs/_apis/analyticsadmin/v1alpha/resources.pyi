@@ -1272,6 +1272,9 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
         def getReportingIdentitySettings(
             self, *, name: str, **kwargs: typing.Any
         ) -> GoogleAnalyticsAdminV1alphaReportingIdentitySettingsHttpRequest: ...
+        def getUserProvidedDataSettings(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> GoogleAnalyticsAdminV1alphaUserProvidedDataSettingsHttpRequest: ...
         def list(
             self,
             *,
@@ -2115,6 +2118,16 @@ class GoogleAnalyticsAdminV1alphaSubpropertySyncConfigHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaSubpropertySyncConfig: ...
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaUserProvidedDataSettingsHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleAnalyticsAdminV1alphaUserProvidedDataSettings: ...
 
 @typing.type_check_only
 class GoogleProtobufEmptyHttpRequest(googleapiclient.http.HttpRequest):

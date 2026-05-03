@@ -62,6 +62,7 @@ class AddonsConfig(typing_extensions.TypedDict, total=False):
     podSnapshotConfig: PodSnapshotConfig
     rayOperatorConfig: RayOperatorConfig
     sliceControllerConfig: SliceControllerConfig
+    slurmOperatorConfig: SlurmOperatorConfig
     statefulHaConfig: StatefulHAConfig
 
 @typing.type_check_only
@@ -1913,6 +1914,10 @@ class ShieldedNodes(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SliceControllerConfig(typing_extensions.TypedDict, total=False):
+    enabled: bool
+
+@typing.type_check_only
+class SlurmOperatorConfig(typing_extensions.TypedDict, total=False):
     enabled: bool
 
 @typing.type_check_only

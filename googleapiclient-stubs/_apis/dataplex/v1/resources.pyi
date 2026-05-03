@@ -423,6 +423,13 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
             class DataScansResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class JobsResource(googleapiclient.discovery.Resource):
+                    def cancel(
+                        self,
+                        *,
+                        name: str,
+                        body: GoogleCloudDataplexV1CancelDataScanJobRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleCloudDataplexV1CancelDataScanJobResponseHttpRequest: ...
                     def generateDataQualityRules(
                         self,
                         *,
@@ -1838,6 +1845,16 @@ class GoogleCloudDataplexV1AssetHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudDataplexV1Asset: ...
+
+@typing.type_check_only
+class GoogleCloudDataplexV1CancelDataScanJobResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudDataplexV1CancelDataScanJobResponse: ...
 
 @typing.type_check_only
 class GoogleCloudDataplexV1DataAssetHttpRequest(googleapiclient.http.HttpRequest):

@@ -16,6 +16,7 @@ class AnywhereCache(typing_extensions.TypedDict, total=False):
     bucket: str
     createTime: str
     id: str
+    ingestOnWrite: bool
     kind: str
     pendingUpdate: bool
     selfLink: str

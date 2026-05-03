@@ -34,6 +34,23 @@ class Annotations(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
+class AuthProviderBinding(typing_extensions.TypedDict, total=False):
+    authProvider: str
+    continueUri: str
+    scopes: _list[str]
+
+@typing.type_check_only
+class Binding(typing_extensions.TypedDict, total=False):
+    authProviderBinding: AuthProviderBinding
+    createTime: str
+    description: str
+    displayName: str
+    name: str
+    source: Source
+    target: Target
+    updateTime: str
+
+@typing.type_check_only
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -61,6 +78,11 @@ class EndpointSpec(typing_extensions.TypedDict, total=False):
     type: typing_extensions.Literal["TYPE_UNSPECIFIED", "NO_SPEC"]
 
 @typing.type_check_only
+class FetchAvailableBindingsResponse(typing_extensions.TypedDict, total=False):
+    bindings: _list[Binding]
+    nextPageToken: str
+
+@typing.type_check_only
 class Interface(typing_extensions.TypedDict, total=False):
     protocolBinding: typing_extensions.Literal[
         "PROTOCOL_BINDING_UNSPECIFIED", "JSONRPC", "GRPC", "HTTP_JSON"
@@ -70,6 +92,11 @@ class Interface(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ListAgentsResponse(typing_extensions.TypedDict, total=False):
     agents: _list[Agent]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListBindingsResponse(typing_extensions.TypedDict, total=False):
+    bindings: _list[Binding]
     nextPageToken: str
 
 @typing.type_check_only
@@ -191,10 +218,18 @@ class Skill(typing_extensions.TypedDict, total=False):
     tags: _list[str]
 
 @typing.type_check_only
+class Source(typing_extensions.TypedDict, total=False):
+    identifier: str
+
+@typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
+
+@typing.type_check_only
+class Target(typing_extensions.TypedDict, total=False):
+    identifier: str
 
 @typing.type_check_only
 class Tool(typing_extensions.TypedDict, total=False):

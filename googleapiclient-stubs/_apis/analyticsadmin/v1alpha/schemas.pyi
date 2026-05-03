@@ -555,6 +555,7 @@ class GoogleAnalyticsAdminV1alphaChangeHistoryChangeChangeHistoryResource(
         GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchema
     )
     subpropertySyncConfig: GoogleAnalyticsAdminV1alphaSubpropertySyncConfig
+    userProvidedDataSettings: GoogleAnalyticsAdminV1alphaUserProvidedDataSettings
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaChangeHistoryEvent(
@@ -1505,6 +1506,7 @@ class GoogleAnalyticsAdminV1alphaSearchChangeHistoryEventsRequest(
             "REPORTING_DATA_ANNOTATION",
             "SUBPROPERTY_SYNC_CONFIG",
             "REPORTING_IDENTITY_SETTINGS",
+            "USER_PROVIDED_DATA_SETTINGS",
         ]
     ]
 
@@ -1602,6 +1604,14 @@ class GoogleAnalyticsAdminV1alphaUpdateAccessBindingRequest(
     typing_extensions.TypedDict, total=False
 ):
     accessBinding: GoogleAnalyticsAdminV1alphaAccessBinding
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaUserProvidedDataSettings(
+    typing_extensions.TypedDict, total=False
+):
+    automaticallyDetectedDataCollectionEnabled: bool
+    name: str
+    userProvidedDataCollectionEnabled: bool
 
 @typing.type_check_only
 class GoogleProtobufEmpty(typing_extensions.TypedDict, total=False): ...

@@ -1027,6 +1027,36 @@ class CacheKeyPolicy(typing_extensions.TypedDict, total=False):
     queryStringWhitelist: _list[str]
 
 @typing.type_check_only
+class CachePolicy(typing_extensions.TypedDict, total=False):
+    cacheBypassRequestHeaderNames: _list[str]
+    cacheKeyPolicy: CachePolicyCacheKeyPolicy
+    cacheMode: typing_extensions.Literal[
+        "CACHE_ALL_STATIC", "FORCE_CACHE_ALL", "USE_ORIGIN_HEADERS"
+    ]
+    clientTtl: Duration
+    defaultTtl: Duration
+    maxTtl: Duration
+    negativeCaching: bool
+    negativeCachingPolicy: _list[CachePolicyNegativeCachingPolicy]
+    requestCoalescing: bool
+    serveWhileStale: Duration
+
+@typing.type_check_only
+class CachePolicyCacheKeyPolicy(typing_extensions.TypedDict, total=False):
+    excludedQueryParameters: _list[str]
+    includeHost: bool
+    includeProtocol: bool
+    includeQueryString: bool
+    includedCookieNames: _list[str]
+    includedHeaderNames: _list[str]
+    includedQueryParameters: _list[str]
+
+@typing.type_check_only
+class CachePolicyNegativeCachingPolicy(typing_extensions.TypedDict, total=False):
+    code: int
+    ttl: Duration
+
+@typing.type_check_only
 class CalendarModeAdviceRequest(typing_extensions.TypedDict, total=False):
     futureResourcesSpecs: dict[str, typing.Any]
 
@@ -2565,6 +2595,7 @@ class HttpRetryPolicy(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class HttpRouteAction(typing_extensions.TypedDict, total=False):
+    cachePolicy: CachePolicy
     corsPolicy: CorsPolicy
     faultInjectionPolicy: HttpFaultInjection
     maxStreamDuration: Duration

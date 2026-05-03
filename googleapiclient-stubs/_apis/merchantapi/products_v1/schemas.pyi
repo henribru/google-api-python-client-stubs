@@ -259,6 +259,7 @@ class Price(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Product(typing_extensions.TypedDict, total=False):
     automatedDiscounts: AutomatedDiscounts
+    base64EncodedName: str
     contentLanguage: str
     customAttributes: _list[CustomAttribute]
     dataSource: str
@@ -406,6 +407,7 @@ class ProductAttributes(typing_extensions.TypedDict, total=False):
         "G",
     ]
     minHandlingTime: str
+    minimumOrderValues: _list[ProductMinimumOrderValue]
     mobileLink: str
     mobileLinkTemplate: str
     mpn: str
@@ -482,6 +484,7 @@ class ProductAttributes(typing_extensions.TypedDict, total=False):
     transitTimeLabel: str
     unitPricingBaseMeasure: UnitPricingBaseMeasure
     unitPricingMeasure: UnitPricingMeasure
+    videoLinks: _list[str]
     virtualModelLink: str
 
 @typing.type_check_only
@@ -542,6 +545,8 @@ class ProductDimension(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ProductInput(typing_extensions.TypedDict, total=False):
+    base64EncodedName: str
+    base64EncodedProduct: str
     contentLanguage: str
     customAttributes: _list[CustomAttribute]
     feedLabel: str
@@ -555,9 +560,19 @@ class ProductInput(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ProductInstallment(typing_extensions.TypedDict, total=False):
     amount: Price
+    annualPercentageRate: float
     creditType: typing_extensions.Literal["CREDIT_TYPE_UNSPECIFIED", "FINANCE", "LEASE"]
     downpayment: Price
     months: str
+
+@typing.type_check_only
+class ProductMinimumOrderValue(typing_extensions.TypedDict, total=False):
+    country: str
+    price: Price
+    service: str
+    surface: typing_extensions.Literal[
+        "SURFACE_UNSPECIFIED", "ONLINE", "LOCAL", "ONLINE_LOCAL"
+    ]
 
 @typing.type_check_only
 class ProductStatus(typing_extensions.TypedDict, total=False):
@@ -599,6 +614,8 @@ class Shipping(typing_extensions.TypedDict, total=False):
     handlingCutoffTimezone: str
     locationGroupName: str
     locationId: str
+    loyaltyProgramLabel: str
+    loyaltyTierLabel: str
     maxHandlingTime: str
     maxTransitTime: str
     minHandlingTime: str

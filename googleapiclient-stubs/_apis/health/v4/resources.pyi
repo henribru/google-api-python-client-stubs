@@ -14,6 +14,45 @@ _list = list
 @typing.type_check_only
 class GoogleHealthAPIResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
+    class ProjectsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class SubscribersResource(googleapiclient.discovery.Resource):
+            def create(
+                self,
+                *,
+                parent: str,
+                body: CreateSubscriberPayload = ...,
+                subscriberId: str = ...,
+                **kwargs: typing.Any,
+            ) -> OperationHttpRequest: ...
+            def delete(
+                self, *, name: str, force: bool = ..., **kwargs: typing.Any
+            ) -> OperationHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any,
+            ) -> ListSubscribersResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListSubscribersResponseHttpRequest,
+                previous_response: ListSubscribersResponse,
+            ) -> ListSubscribersResponseHttpRequest | None: ...
+            def patch(
+                self,
+                *,
+                name: str,
+                body: Subscriber = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any,
+            ) -> OperationHttpRequest: ...
+
+        def subscribers(self) -> SubscribersResource: ...
+
+    @typing.type_check_only
     class UsersResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class DataTypesResource(googleapiclient.discovery.Resource):
@@ -42,6 +81,9 @@ class GoogleHealthAPIResource(googleapiclient.discovery.Resource):
                 def exportExerciseTcx_media(
                     self, *, name: str, partialData: bool = ..., **kwargs: typing.Any
                 ) -> BytesHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> DataPointHttpRequest: ...
                 def list(
                     self,
                     *,
@@ -128,6 +170,7 @@ class GoogleHealthAPIResource(googleapiclient.discovery.Resource):
         ]
         | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
+    def projects(self) -> ProjectsResource: ...
     def users(self) -> UsersResource: ...
 
 @typing.type_check_only
@@ -137,6 +180,14 @@ class DailyRollUpDataPointsResponseHttpRequest(googleapiclient.http.HttpRequest)
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> DailyRollUpDataPointsResponse: ...
+
+@typing.type_check_only
+class DataPointHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> DataPoint: ...
 
 @typing.type_check_only
 class ExportExerciseTcxResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -161,6 +212,14 @@ class ListDataPointsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListDataPointsResponse: ...
+
+@typing.type_check_only
+class ListSubscribersResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListSubscribersResponse: ...
 
 @typing.type_check_only
 class OperationHttpRequest(googleapiclient.http.HttpRequest):

@@ -14,6 +14,11 @@ class AgentOtherDeviceId(typing_extensions.TypedDict, total=False):
     deviceId: str
 
 @typing.type_check_only
+class ComponentTraitUpdates(typing_extensions.TypedDict, total=False):
+    componentId: str
+    traitData: _list[TraitData]
+
+@typing.type_check_only
 class Device(typing_extensions.TypedDict, total=False):
     attributes: dict[str, typing.Any]
     customData: dict[str, typing.Any]
@@ -45,6 +50,27 @@ class DeviceNames(typing_extensions.TypedDict, total=False):
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class EventData(typing_extensions.TypedDict, total=False):
+    event: dict[str, typing.Any]
+    eventId: str
+    eventTime: str
+
+@typing.type_check_only
+class Events(typing_extensions.TypedDict, total=False):
+    componentId: str
+    events: _list[EventData]
+
+@typing.type_check_only
+class HomeEvents(typing_extensions.TypedDict, total=False):
+    deviceId: str
+    events: _list[Events]
+
+@typing.type_check_only
+class HomeTraitUpdates(typing_extensions.TypedDict, total=False):
+    components: _list[ComponentTraitUpdates]
+    deviceId: str
+
+@typing.type_check_only
 class QueryRequest(typing_extensions.TypedDict, total=False):
     agentUserId: str
     inputs: _list[QueryRequestInput]
@@ -69,6 +95,8 @@ class QueryResponsePayload(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ReportStateAndNotificationDevice(typing_extensions.TypedDict, total=False):
+    homeEvents: _list[HomeEvents]
+    homeTraits: _list[HomeTraitUpdates]
     notifications: dict[str, typing.Any]
     states: dict[str, typing.Any]
 
@@ -117,3 +145,7 @@ class SyncResponse(typing_extensions.TypedDict, total=False):
 class SyncResponsePayload(typing_extensions.TypedDict, total=False):
     agentUserId: str
     devices: _list[Device]
+
+@typing.type_check_only
+class TraitData(typing_extensions.TypedDict, total=False):
+    trait: dict[str, typing.Any]
