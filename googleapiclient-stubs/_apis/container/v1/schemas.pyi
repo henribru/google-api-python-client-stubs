@@ -55,8 +55,10 @@ class AddonsConfig(typing_extensions.TypedDict, total=False):
     lustreCsiDriverConfig: LustreCsiDriverConfig
     networkPolicyConfig: NetworkPolicyConfig
     parallelstoreCsiDriverConfig: ParallelstoreCsiDriverConfig
+    podSnapshotConfig: PodSnapshotConfig
     rayOperatorConfig: RayOperatorConfig
     sliceControllerConfig: SliceControllerConfig
+    slurmOperatorConfig: SlurmOperatorConfig
     statefulHaConfig: StatefulHAConfig
 
 @typing.type_check_only
@@ -1455,6 +1457,10 @@ class PodCIDROverprovisionConfig(typing_extensions.TypedDict, total=False):
     disable: bool
 
 @typing.type_check_only
+class PodSnapshotConfig(typing_extensions.TypedDict, total=False):
+    enabled: bool
+
+@typing.type_check_only
 class PrivateClusterConfig(typing_extensions.TypedDict, total=False):
     enablePrivateEndpoint: bool
     enablePrivateNodes: bool
@@ -1763,6 +1769,10 @@ class ShieldedNodes(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SliceControllerConfig(typing_extensions.TypedDict, total=False):
+    enabled: bool
+
+@typing.type_check_only
+class SlurmOperatorConfig(typing_extensions.TypedDict, total=False):
     enabled: bool
 
 @typing.type_check_only

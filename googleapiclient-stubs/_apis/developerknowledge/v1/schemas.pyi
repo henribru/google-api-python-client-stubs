@@ -5,18 +5,6 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
-class Answer(typing_extensions.TypedDict, total=False):
-    answerText: str
-
-@typing.type_check_only
-class AnswerQueryRequest(typing_extensions.TypedDict, total=False):
-    query: str
-
-@typing.type_check_only
-class AnswerQueryResponse(typing_extensions.TypedDict, total=False):
-    answer: Answer
-
-@typing.type_check_only
 class BatchGetDocumentsResponse(typing_extensions.TypedDict, total=False):
     documents: _list[Document]
 

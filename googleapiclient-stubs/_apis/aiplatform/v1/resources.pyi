@@ -5238,6 +5238,124 @@ class AiplatformResource(googleapiclient.discovery.Resource):
                     ) -> GoogleLongrunningOperationHttpRequest: ...
 
                 @typing.type_check_only
+                class RuntimeRevisionsResource(googleapiclient.discovery.Resource):
+                    def query(
+                        self,
+                        *,
+                        name: str,
+                        body: GoogleCloudAiplatformV1QueryReasoningEngineRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> (
+                        GoogleCloudAiplatformV1QueryReasoningEngineResponseHttpRequest
+                    ): ...
+                    def streamQuery(
+                        self,
+                        *,
+                        name: str,
+                        body: GoogleCloudAiplatformV1StreamQueryReasoningEngineRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleApiHttpBodyHttpRequest: ...
+
+                @typing.type_check_only
+                class SandboxEnvironmentSnapshotsResource(
+                    googleapiclient.discovery.Resource
+                ):
+                    @typing.type_check_only
+                    class OperationsResource(googleapiclient.discovery.Resource):
+                        def cancel(
+                            self, *, name: str, **kwargs: typing.Any
+                        ) -> GoogleProtobufEmptyHttpRequest: ...
+                        def delete(
+                            self, *, name: str, **kwargs: typing.Any
+                        ) -> GoogleProtobufEmptyHttpRequest: ...
+                        def get(
+                            self, *, name: str, **kwargs: typing.Any
+                        ) -> GoogleLongrunningOperationHttpRequest: ...
+                        def wait(
+                            self, *, name: str, timeout: str = ..., **kwargs: typing.Any
+                        ) -> GoogleLongrunningOperationHttpRequest: ...
+
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> (
+                        GoogleCloudAiplatformV1SandboxEnvironmentSnapshotHttpRequest
+                    ): ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        filter: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleCloudAiplatformV1ListSandboxEnvironmentSnapshotsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: GoogleCloudAiplatformV1ListSandboxEnvironmentSnapshotsResponseHttpRequest,
+                        previous_response: GoogleCloudAiplatformV1ListSandboxEnvironmentSnapshotsResponse,
+                    ) -> (
+                        GoogleCloudAiplatformV1ListSandboxEnvironmentSnapshotsResponseHttpRequest
+                        | None
+                    ): ...
+                    def operations(self) -> OperationsResource: ...
+
+                @typing.type_check_only
+                class SandboxEnvironmentTemplatesResource(
+                    googleapiclient.discovery.Resource
+                ):
+                    @typing.type_check_only
+                    class OperationsResource(googleapiclient.discovery.Resource):
+                        def cancel(
+                            self, *, name: str, **kwargs: typing.Any
+                        ) -> GoogleProtobufEmptyHttpRequest: ...
+                        def delete(
+                            self, *, name: str, **kwargs: typing.Any
+                        ) -> GoogleProtobufEmptyHttpRequest: ...
+                        def get(
+                            self, *, name: str, **kwargs: typing.Any
+                        ) -> GoogleLongrunningOperationHttpRequest: ...
+                        def wait(
+                            self, *, name: str, timeout: str = ..., **kwargs: typing.Any
+                        ) -> GoogleLongrunningOperationHttpRequest: ...
+
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: GoogleCloudAiplatformV1SandboxEnvironmentTemplate = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> (
+                        GoogleCloudAiplatformV1SandboxEnvironmentTemplateHttpRequest
+                    ): ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        filter: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleCloudAiplatformV1ListSandboxEnvironmentTemplatesResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: GoogleCloudAiplatformV1ListSandboxEnvironmentTemplatesResponseHttpRequest,
+                        previous_response: GoogleCloudAiplatformV1ListSandboxEnvironmentTemplatesResponse,
+                    ) -> (
+                        GoogleCloudAiplatformV1ListSandboxEnvironmentTemplatesResponseHttpRequest
+                        | None
+                    ): ...
+                    def operations(self) -> OperationsResource: ...
+
+                @typing.type_check_only
                 class SandboxEnvironmentsResource(googleapiclient.discovery.Resource):
                     @typing.type_check_only
                     class OperationsResource(googleapiclient.discovery.Resource):
@@ -5291,6 +5409,13 @@ class AiplatformResource(googleapiclient.discovery.Resource):
                         GoogleCloudAiplatformV1ListSandboxEnvironmentsResponseHttpRequest
                         | None
                     ): ...
+                    def snapshot(
+                        self,
+                        *,
+                        name: str,
+                        body: GoogleCloudAiplatformV1SandboxEnvironmentSnapshot = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
                     def operations(self) -> OperationsResource: ...
 
                 @typing.type_check_only
@@ -5478,6 +5603,13 @@ class AiplatformResource(googleapiclient.discovery.Resource):
                 ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
                 def memories(self) -> MemoriesResource: ...
                 def operations(self) -> OperationsResource: ...
+                def runtimeRevisions(self) -> RuntimeRevisionsResource: ...
+                def sandboxEnvironmentSnapshots(
+                    self,
+                ) -> SandboxEnvironmentSnapshotsResource: ...
+                def sandboxEnvironmentTemplates(
+                    self,
+                ) -> SandboxEnvironmentTemplatesResource: ...
                 def sandboxEnvironments(self) -> SandboxEnvironmentsResource: ...
                 def sessions(self) -> SessionsResource: ...
 
@@ -6746,6 +6878,114 @@ class AiplatformResource(googleapiclient.discovery.Resource):
             ) -> GoogleLongrunningOperationHttpRequest: ...
 
         @typing.type_check_only
+        class RuntimeRevisionsResource(googleapiclient.discovery.Resource):
+            def query(
+                self,
+                *,
+                name: str,
+                body: GoogleCloudAiplatformV1QueryReasoningEngineRequest = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleCloudAiplatformV1QueryReasoningEngineResponseHttpRequest: ...
+            def streamQuery(
+                self,
+                *,
+                name: str,
+                body: GoogleCloudAiplatformV1StreamQueryReasoningEngineRequest = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleApiHttpBodyHttpRequest: ...
+
+        @typing.type_check_only
+        class SandboxEnvironmentSnapshotsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class OperationsResource(googleapiclient.discovery.Resource):
+                def cancel(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleProtobufEmptyHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleProtobufEmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+                def wait(
+                    self, *, name: str, timeout: str = ..., **kwargs: typing.Any
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+
+            def delete(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleLongrunningOperationHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleCloudAiplatformV1SandboxEnvironmentSnapshotHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                filter: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleCloudAiplatformV1ListSandboxEnvironmentSnapshotsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleCloudAiplatformV1ListSandboxEnvironmentSnapshotsResponseHttpRequest,
+                previous_response: GoogleCloudAiplatformV1ListSandboxEnvironmentSnapshotsResponse,
+            ) -> (
+                GoogleCloudAiplatformV1ListSandboxEnvironmentSnapshotsResponseHttpRequest
+                | None
+            ): ...
+            def operations(self) -> OperationsResource: ...
+
+        @typing.type_check_only
+        class SandboxEnvironmentTemplatesResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class OperationsResource(googleapiclient.discovery.Resource):
+                def cancel(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleProtobufEmptyHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleProtobufEmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+                def wait(
+                    self, *, name: str, timeout: str = ..., **kwargs: typing.Any
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+
+            def create(
+                self,
+                *,
+                parent: str,
+                body: GoogleCloudAiplatformV1SandboxEnvironmentTemplate = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleLongrunningOperationHttpRequest: ...
+            def delete(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleLongrunningOperationHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleCloudAiplatformV1SandboxEnvironmentTemplateHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                filter: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleCloudAiplatformV1ListSandboxEnvironmentTemplatesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleCloudAiplatformV1ListSandboxEnvironmentTemplatesResponseHttpRequest,
+                previous_response: GoogleCloudAiplatformV1ListSandboxEnvironmentTemplatesResponse,
+            ) -> (
+                GoogleCloudAiplatformV1ListSandboxEnvironmentTemplatesResponseHttpRequest
+                | None
+            ): ...
+            def operations(self) -> OperationsResource: ...
+
+        @typing.type_check_only
         class SandboxEnvironmentsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
@@ -6800,6 +7040,13 @@ class AiplatformResource(googleapiclient.discovery.Resource):
             ) -> (
                 GoogleCloudAiplatformV1ListSandboxEnvironmentsResponseHttpRequest | None
             ): ...
+            def snapshot(
+                self,
+                *,
+                name: str,
+                body: GoogleCloudAiplatformV1SandboxEnvironmentSnapshot = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleLongrunningOperationHttpRequest: ...
             def operations(self) -> OperationsResource: ...
 
         @typing.type_check_only
@@ -6894,6 +7141,13 @@ class AiplatformResource(googleapiclient.discovery.Resource):
         ) -> GoogleApiHttpBodyHttpRequest: ...
         def memories(self) -> MemoriesResource: ...
         def operations(self) -> OperationsResource: ...
+        def runtimeRevisions(self) -> RuntimeRevisionsResource: ...
+        def sandboxEnvironmentSnapshots(
+            self,
+        ) -> SandboxEnvironmentSnapshotsResource: ...
+        def sandboxEnvironmentTemplates(
+            self,
+        ) -> SandboxEnvironmentTemplatesResource: ...
         def sandboxEnvironments(self) -> SandboxEnvironmentsResource: ...
         def sessions(self) -> SessionsResource: ...
 
@@ -8316,6 +8570,26 @@ class GoogleCloudAiplatformV1ListReasoningEnginesResponseHttpRequest(
     ) -> GoogleCloudAiplatformV1ListReasoningEnginesResponse: ...
 
 @typing.type_check_only
+class GoogleCloudAiplatformV1ListSandboxEnvironmentSnapshotsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudAiplatformV1ListSandboxEnvironmentSnapshotsResponse: ...
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1ListSandboxEnvironmentTemplatesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudAiplatformV1ListSandboxEnvironmentTemplatesResponse: ...
+
+@typing.type_check_only
 class GoogleCloudAiplatformV1ListSandboxEnvironmentsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -8770,6 +9044,26 @@ class GoogleCloudAiplatformV1SandboxEnvironmentHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1SandboxEnvironment: ...
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1SandboxEnvironmentSnapshotHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudAiplatformV1SandboxEnvironmentSnapshot: ...
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1SandboxEnvironmentTemplateHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudAiplatformV1SandboxEnvironmentTemplate: ...
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1ScheduleHttpRequest(googleapiclient.http.HttpRequest):

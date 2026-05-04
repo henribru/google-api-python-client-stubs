@@ -10,6 +10,18 @@ class Aggregate(typing_extensions.TypedDict, total=False):
     group: str
 
 @typing.type_check_only
+class Allocation(typing_extensions.TypedDict, total=False):
+    description: str
+    id: str
+    randomizedOn: str
+    slots: _list[AllocationSlot]
+
+@typing.type_check_only
+class AllocationSlot(typing_extensions.TypedDict, total=False):
+    variant: str
+    weight: int
+
+@typing.type_check_only
 class AppParams(typing_extensions.TypedDict, total=False):
     group: str
     scope: Scope
@@ -49,6 +61,136 @@ class ErrorBudget(typing_extensions.TypedDict, total=False):
     allowedPercentage: int
 
 @typing.type_check_only
+class EvaluationRule(typing_extensions.TypedDict, total=False):
+    condition: str
+    id: str
+    target: str
+
+@typing.type_check_only
+class EvaluationSpec(typing_extensions.TypedDict, total=False):
+    allocations: _list[Allocation]
+    attributes: _list[str]
+    defaultTarget: str
+    rules: _list[EvaluationRule]
+    variants: _list[Variant]
+
+@typing.type_check_only
+class Flag(typing_extensions.TypedDict, total=False):
+    annotations: dict[str, typing.Any]
+    createTime: str
+    description: str
+    etag: str
+    evaluationSpec: EvaluationSpec
+    flagSet: str
+    flagValueType: typing_extensions.Literal[
+        "FLAG_VALUE_TYPE_UNSPECIFIED",
+        "FLAG_VALUE_TYPE_BOOLEAN",
+        "FLAG_VALUE_TYPE_INTEGER",
+        "FLAG_VALUE_TYPE_STRING",
+        "FLAG_VALUE_TYPE_DOUBLE",
+    ]
+    key: str
+    labels: dict[str, typing.Any]
+    name: str
+    state: typing_extensions.Literal[
+        "FLAG_STATE_UNSPECIFIED",
+        "FLAG_STATE_IN_DEVELOPMENT",
+        "FLAG_STATE_ACTIVE",
+        "FLAG_STATE_SUNSETTING",
+        "FLAG_STATE_CLEANUP",
+    ]
+    uid: str
+    unitKind: str
+    updateTime: str
+    valueType: typing_extensions.Literal[
+        "FLAG_VALUE_TYPE_UNSPECIFIED",
+        "FLAG_VALUE_TYPE_BOOL",
+        "FLAG_VALUE_TYPE_INT",
+        "FLAG_VALUE_TYPE_STRING",
+        "FLAG_VALUE_TYPE_DOUBLE",
+    ]
+    variants: _list[FlagVariant]
+
+@typing.type_check_only
+class FlagAttribute(typing_extensions.TypedDict, total=False):
+    annotations: dict[str, typing.Any]
+    attributeValueType: typing_extensions.Literal[
+        "FLAG_ATTRIBUTE_VALUE_TYPE_UNSPECIFIED",
+        "FLAG_ATTRIBUTE_VALUE_TYPE_BOOLEAN",
+        "FLAG_ATTRIBUTE_VALUE_TYPE_INTEGER",
+        "FLAG_ATTRIBUTE_VALUE_TYPE_STRING",
+        "FLAG_ATTRIBUTE_VALUE_TYPE_DOUBLE",
+    ]
+    createTime: str
+    etag: str
+    key: str
+    labels: dict[str, typing.Any]
+    name: str
+    uid: str
+    updateTime: str
+    valueType: typing_extensions.Literal[
+        "FLAG_ATTRIBUTE_VALUE_TYPE_UNSPECIFIED",
+        "BOOLEAN",
+        "INTEGER",
+        "STRING",
+        "DOUBLE",
+    ]
+
+@typing.type_check_only
+class FlagRelease(typing_extensions.TypedDict, total=False):
+    allFlags: bool
+    allFlagsRelease: bool
+    annotations: dict[str, typing.Any]
+    createTime: str
+    effectiveFlagRevisions: _list[str]
+    etag: str
+    flagRevisions: _list[str]
+    flagRevisionsRelease: FlagRevisionList
+    flagSets: _list[str]
+    flagSetsRelease: FlagSetList
+    labels: dict[str, typing.Any]
+    name: str
+    obsoleteFlags: _list[str]
+    uid: str
+    unitKind: str
+    updateTime: str
+
+@typing.type_check_only
+class FlagRevision(typing_extensions.TypedDict, total=False):
+    annotations: dict[str, typing.Any]
+    createTime: str
+    etag: str
+    evaluationSpec: EvaluationSpec
+    flag: str
+    labels: dict[str, typing.Any]
+    name: str
+    snapshot: Flag
+    uid: str
+    updateTime: str
+
+@typing.type_check_only
+class FlagRevisionList(typing_extensions.TypedDict, total=False):
+    revisions: _list[str]
+
+@typing.type_check_only
+class FlagSetList(typing_extensions.TypedDict, total=False):
+    sets: _list[str]
+
+@typing.type_check_only
+class FlagUpdate(typing_extensions.TypedDict, total=False):
+    flagRelease: str
+
+@typing.type_check_only
+class FlagVariant(typing_extensions.TypedDict, total=False):
+    booleanValue: bool
+    description: str
+    doubleValue: float
+    id: str
+    integerValue: str
+    stringValue: str
+    trackingId: str
+
+@typing.type_check_only
 class FromMapping(typing_extensions.TypedDict, total=False):
     dependency: str
     outputVariable: str
@@ -60,6 +202,30 @@ class GoogleCloudLocationLocation(typing_extensions.TypedDict, total=False):
     locationId: str
     metadata: dict[str, typing.Any]
     name: str
+
+@typing.type_check_only
+class ListFlagAttributesResponse(typing_extensions.TypedDict, total=False):
+    flagAttributes: _list[FlagAttribute]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListFlagReleasesResponse(typing_extensions.TypedDict, total=False):
+    flagReleases: _list[FlagRelease]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListFlagRevisionsResponse(typing_extensions.TypedDict, total=False):
+    flagRevisions: _list[FlagRevision]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListFlagsResponse(typing_extensions.TypedDict, total=False):
+    flags: _list[Flag]
+    nextPageToken: str
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListLocationsResponse(typing_extensions.TypedDict, total=False):
@@ -157,6 +323,7 @@ class Rollout(typing_extensions.TypedDict, total=False):
     effectiveUnitFilter: str
     endTime: str
     etag: str
+    flagRelease: str
     labels: dict[str, typing.Any]
     name: str
     parentRollout: str
@@ -236,12 +403,12 @@ class Saas(typing_extensions.TypedDict, total=False):
     name: str
     state: typing_extensions.Literal[
         "STATE_TYPE_UNSPECIFIED",
-        "ACTIVE",
-        "RUNNING",
-        "FAILED",
         "STATE_ACTIVE",
         "STATE_RUNNING",
         "STATE_FAILED",
+        "ACTIVE",
+        "RUNNING",
+        "FAILED",
     ]
     uid: str
     updateTime: str
@@ -265,7 +432,7 @@ class Schedule(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Scope(typing_extensions.TypedDict, total=False):
     type: typing_extensions.Literal[
-        "TYPE_UNSPECIFIED", "REGIONAL", "GLOBAL", "TYPE_REGIONAL", "TYPE_GLOBAL"
+        "TYPE_UNSPECIFIED", "TYPE_REGIONAL", "TYPE_GLOBAL", "REGIONAL", "GLOBAL"
     ]
 
 @typing.type_check_only
@@ -301,6 +468,8 @@ class Unit(typing_extensions.TypedDict, total=False):
     dependencies: _list[UnitDependency]
     dependents: _list[UnitDependency]
     etag: str
+    flagConfigName: str
+    flagRevisions: _list[str]
     inputVariables: _list[UnitVariable]
     labels: dict[str, typing.Any]
     maintenance: MaintenanceSettings
@@ -363,6 +532,7 @@ class UnitKind(typing_extensions.TypedDict, total=False):
     appParams: AppParams
     applicationTemplateComponent: ComponentRef
     createTime: str
+    defaultFlagRevisions: _list[str]
     defaultRelease: str
     dependencies: _list[Dependency]
     etag: str
@@ -392,6 +562,7 @@ class UnitOperation(typing_extensions.TypedDict, total=False):
         "STANDARD",
     ]
     etag: str
+    flagUpdate: FlagUpdate
     labels: dict[str, typing.Any]
     name: str
     parentUnitOperation: str
@@ -432,7 +603,9 @@ class UnitOperationCondition(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class UnitVariable(typing_extensions.TypedDict, total=False):
-    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "STRING", "INT", "BOOL"]
+    type: typing_extensions.Literal[
+        "TYPE_UNSPECIFIED", "STRING", "INT", "BOOL", "STRUCT", "LIST"
+    ]
     value: str
     variable: str
 
@@ -453,3 +626,11 @@ AlternativeVariableMapping = typing_extensions.TypedDict(
 
 @typing.type_check_only
 class VariableMapping(AlternativeVariableMapping): ...
+
+@typing.type_check_only
+class Variant(typing_extensions.TypedDict, total=False):
+    boolValue: bool
+    doubleValue: float
+    intValue: str
+    name: str
+    stringValue: str

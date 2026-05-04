@@ -119,6 +119,12 @@ class CivilTimeInterval(typing_extensions.TypedDict, total=False):
     start: CivilDateTime
 
 @typing.type_check_only
+class CreateSubscriberPayload(typing_extensions.TypedDict, total=False):
+    endpointAuthorization: EndpointAuthorization
+    endpointUri: str
+    subscriberConfigs: _list[SubscriberConfig]
+
+@typing.type_check_only
 class DailyHeartRateVariability(typing_extensions.TypedDict, total=False):
     averageHeartRateVariabilityMilliseconds: float
     date: Date
@@ -187,6 +193,7 @@ class DailyRollupDataPoint(typing_extensions.TypedDict, total=False):
     runVo2Max: RunVO2MaxRollupValue
     sedentaryPeriod: SedentaryPeriodRollupValue
     steps: StepsRollupValue
+    swimLengthsData: SwimLengthsDataRollupValue
     timeInHeartRateZone: TimeInHeartRateZoneRollupValue
     totalCalories: TotalCaloriesRollupValue
     weight: WeightRollupValue
@@ -234,6 +241,7 @@ class DataPoint(typing_extensions.TypedDict, total=False):
     floors: Floors
     heartRate: HeartRate
     heartRateVariability: HeartRateVariability
+    height: Height
     hydrationLog: HydrationLog
     name: str
     oxygenSaturation: OxygenSaturation
@@ -242,6 +250,7 @@ class DataPoint(typing_extensions.TypedDict, total=False):
     sedentaryPeriod: SedentaryPeriod
     sleep: Sleep
     steps: Steps
+    swimLengthsData: SwimLengthsData
     timeInHeartRateZone: TimeInHeartRateZone
     vo2Max: VO2Max
     weight: Weight
@@ -313,6 +322,11 @@ class Distance(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class DistanceRollupValue(typing_extensions.TypedDict, total=False):
     millimetersSum: str
+
+@typing.type_check_only
+class EndpointAuthorization(typing_extensions.TypedDict, total=False):
+    secret: str
+    secretSet: bool
 
 @typing.type_check_only
 class Exercise(typing_extensions.TypedDict, total=False):
@@ -430,6 +444,23 @@ class HeartRateZone(typing_extensions.TypedDict, total=False):
     minBeatsPerMinute: str
 
 @typing.type_check_only
+class Height(typing_extensions.TypedDict, total=False):
+    heightMillimeters: str
+    sampleTime: ObservationSampleTime
+
+@typing.type_check_only
+class HttpHeader(typing_extensions.TypedDict, total=False):
+    key: str
+    value: str
+
+@typing.type_check_only
+class HttpResponse(typing_extensions.TypedDict, total=False):
+    body: str
+    headers: _list[HttpHeader]
+    reason: str
+    status: int
+
+@typing.type_check_only
 class HydrationLog(typing_extensions.TypedDict, total=False):
     amountConsumed: VolumeQuantity
     interval: SessionTimeInterval
@@ -453,6 +484,12 @@ class Interval(typing_extensions.TypedDict, total=False):
 class ListDataPointsResponse(typing_extensions.TypedDict, total=False):
     dataPoints: _list[DataPoint]
     nextPageToken: str
+
+@typing.type_check_only
+class ListSubscribersResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    subscribers: _list[Subscriber]
+    totalSize: int
 
 @typing.type_check_only
 class MetricsSummary(typing_extensions.TypedDict, total=False):
@@ -547,6 +584,7 @@ class ReconciledDataPoint(typing_extensions.TypedDict, total=False):
     floors: Floors
     heartRate: HeartRate
     heartRateVariability: HeartRateVariability
+    height: Height
     hydrationLog: HydrationLog
     oxygenSaturation: OxygenSaturation
     respiratoryRateSleepSummary: RespiratoryRateSleepSummary
@@ -554,6 +592,7 @@ class ReconciledDataPoint(typing_extensions.TypedDict, total=False):
     sedentaryPeriod: SedentaryPeriod
     sleep: Sleep
     steps: Steps
+    swimLengthsData: SwimLengthsData
     timeInHeartRateZone: TimeInHeartRateZone
     vo2Max: VO2Max
     weight: Weight
@@ -609,6 +648,7 @@ class RollupDataPoint(typing_extensions.TypedDict, total=False):
     sedentaryPeriod: SedentaryPeriodRollupValue
     startTime: str
     steps: StepsRollupValue
+    swimLengthsData: SwimLengthsDataRollupValue
     timeInHeartRateZone: TimeInHeartRateZoneRollupValue
     totalCalories: TotalCaloriesRollupValue
     weight: WeightRollupValue
@@ -786,6 +826,41 @@ class StepsRollupValue(typing_extensions.TypedDict, total=False):
     countSum: str
 
 @typing.type_check_only
+class Subscriber(typing_extensions.TypedDict, total=False):
+    createTime: str
+    endpointAuthorization: EndpointAuthorization
+    endpointUri: str
+    name: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "UNVERIFIED", "ACTIVE", "INACTIVE"
+    ]
+    subscriberConfigs: _list[SubscriberConfig]
+    updateTime: str
+
+@typing.type_check_only
+class SubscriberConfig(typing_extensions.TypedDict, total=False):
+    dataTypes: _list[str]
+    subscriptionCreatePolicy: typing_extensions.Literal[
+        "SUBSCRIPTION_CREATE_POLICY_UNSPECIFIED", "AUTOMATIC", "MANUAL"
+    ]
+
+@typing.type_check_only
+class SwimLengthsData(typing_extensions.TypedDict, total=False):
+    interval: ObservationTimeInterval
+    strokeCount: str
+    swimStrokeType: typing_extensions.Literal[
+        "SWIM_STROKE_TYPE_UNSPECIFIED",
+        "FREESTYLE",
+        "BACKSTROKE",
+        "BREASTSTROKE",
+        "BUTTERFLY",
+    ]
+
+@typing.type_check_only
+class SwimLengthsDataRollupValue(typing_extensions.TypedDict, total=False):
+    strokeCountSum: str
+
+@typing.type_check_only
 class TimeInHeartRateZone(typing_extensions.TypedDict, total=False):
     heartRateZoneType: typing_extensions.Literal[
         "HEART_RATE_ZONE_TYPE_UNSPECIFIED", "LIGHT", "MODERATE", "VIGOROUS", "PEAK"
@@ -874,6 +949,10 @@ class VolumeQuantityRollup(typing_extensions.TypedDict, total=False):
         "PINT_IMPERIAL",
         "PINT_US",
     ]
+
+@typing.type_check_only
+class WebhookNotificationCloudLog(typing_extensions.TypedDict, total=False):
+    httpResponse: HttpResponse
 
 @typing.type_check_only
 class Weight(typing_extensions.TypedDict, total=False):

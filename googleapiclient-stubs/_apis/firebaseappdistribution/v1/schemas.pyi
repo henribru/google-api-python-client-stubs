@@ -35,8 +35,10 @@ class GdataContentTypeInfo(typing_extensions.TypedDict, total=False):
     bestGuess: str
     fromBytes: str
     fromFileName: str
+    fromFusionId: str
     fromHeader: str
     fromUrlPath: str
+    fusionIdDetectionMetadata: str
 
 @typing.type_check_only
 class GdataDiffChecksumsResponse(typing_extensions.TypedDict, total=False):

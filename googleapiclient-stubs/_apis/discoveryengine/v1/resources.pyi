@@ -14,6 +14,33 @@ _list = list
 @typing.type_check_only
 class DiscoveryEngineResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
+    class BillingAccountsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class BillingAccountLicenseConfigsResource(googleapiclient.discovery.Resource):
+            def distributeLicenseConfig(
+                self,
+                *,
+                billingAccountLicenseConfig: str,
+                body: GoogleCloudDiscoveryengineV1DistributeLicenseConfigRequest = ...,
+                **kwargs: typing.Any,
+            ) -> (
+                GoogleCloudDiscoveryengineV1DistributeLicenseConfigResponseHttpRequest
+            ): ...
+            def retractLicenseConfig(
+                self,
+                *,
+                billingAccountLicenseConfig: str,
+                body: GoogleCloudDiscoveryengineV1RetractLicenseConfigRequest = ...,
+                **kwargs: typing.Any,
+            ) -> (
+                GoogleCloudDiscoveryengineV1RetractLicenseConfigResponseHttpRequest
+            ): ...
+
+        def billingAccountLicenseConfigs(
+            self,
+        ) -> BillingAccountLicenseConfigsResource: ...
+
+    @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
@@ -64,6 +91,18 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             GoogleLongrunningListOperationsResponseHttpRequest | None
                         ): ...
 
+                    def mcp(
+                        self,
+                        *,
+                        projectsId: str,
+                        locationsId: str,
+                        collectionsId: str,
+                        contentType: str = ...,
+                        data: str = ...,
+                        extensions: dict[str, typing.Any]
+                        | _list[dict[str, typing.Any]] = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleApiHttpBodyHttpRequest: ...
                     def operations(self) -> OperationsResource: ...
 
                 @typing.type_check_only
@@ -524,6 +563,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             *,
                             parent: str,
                             body: GoogleCloudDiscoveryengineV1Session = ...,
+                            sessionId: str = ...,
                             **kwargs: typing.Any,
                         ) -> GoogleCloudDiscoveryengineV1SessionHttpRequest: ...
                         def delete(
@@ -1309,6 +1349,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             *,
                             parent: str,
                             body: GoogleCloudDiscoveryengineV1Session = ...,
+                            sessionId: str = ...,
                             **kwargs: typing.Any,
                         ) -> GoogleCloudDiscoveryengineV1SessionHttpRequest: ...
                         def delete(
@@ -1889,6 +1930,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: GoogleCloudDiscoveryengineV1Session = ...,
+                        sessionId: str = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudDiscoveryengineV1SessionHttpRequest: ...
                     def delete(
@@ -2374,6 +2416,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
+                        filter: str = ...,
                         orderBy: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
@@ -2512,6 +2555,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
         ]
         | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
+    def billingAccounts(self) -> BillingAccountsResource: ...
     def projects(self) -> ProjectsResource: ...
 
 @typing.type_check_only
@@ -2707,6 +2751,16 @@ class GoogleCloudDiscoveryengineV1DataStoreHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudDiscoveryengineV1DataStore: ...
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1DistributeLicenseConfigResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudDiscoveryengineV1DistributeLicenseConfigResponse: ...
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1DocumentHttpRequest(googleapiclient.http.HttpRequest):
@@ -2943,6 +2997,16 @@ class GoogleCloudDiscoveryengineV1RecommendResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudDiscoveryengineV1RecommendResponse: ...
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1RetractLicenseConfigResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudDiscoveryengineV1RetractLicenseConfigResponse: ...
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1SchemaHttpRequest(googleapiclient.http.HttpRequest):

@@ -352,6 +352,8 @@ class Endpoint(typing_extensions.TypedDict, total=False):
     cloudFunction: CloudFunctionEndpoint
     cloudRunRevision: CloudRunRevisionEndpoint
     cloudSqlInstance: str
+    datastreamPrivateConnection: str
+    dmsPrivateConnection: str
     forwardingRule: str
     forwardingRuleTarget: typing_extensions.Literal[
         "FORWARDING_RULE_TARGET_UNSPECIFIED",

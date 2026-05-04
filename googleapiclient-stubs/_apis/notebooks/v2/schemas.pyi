@@ -48,6 +48,10 @@ class BootDisk(typing_extensions.TypedDict, total=False):
         "PD_BALANCED",
         "PD_EXTREME",
         "HYPERDISK_BALANCED",
+        "HYPERDISK_EXTREME",
+        "HYPERDISK_THROUGHPUT",
+        "HYPERDISK_BALANCED_HIGH_AVAILABILITY",
+        "HYPERDISK_ML",
     ]
     kmsKey: str
 
@@ -102,6 +106,10 @@ class DataDisk(typing_extensions.TypedDict, total=False):
         "PD_BALANCED",
         "PD_EXTREME",
         "HYPERDISK_BALANCED",
+        "HYPERDISK_EXTREME",
+        "HYPERDISK_THROUGHPUT",
+        "HYPERDISK_BALANCED_HIGH_AVAILABILITY",
+        "HYPERDISK_ML",
     ]
     kmsKey: str
     resourcePolicies: _list[str]

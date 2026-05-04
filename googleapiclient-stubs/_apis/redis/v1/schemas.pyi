@@ -83,6 +83,9 @@ class Backup(typing_extensions.TypedDict, total=False):
         "REDIS_HIGHMEM_MEDIUM",
         "REDIS_HIGHMEM_XLARGE",
         "REDIS_STANDARD_SMALL",
+        "REDIS_HIGHCPU_MEDIUM",
+        "REDIS_STANDARD_LARGE",
+        "REDIS_HIGHMEM_2XLARGE",
     ]
     replicaCount: int
     shardCount: int
@@ -186,6 +189,9 @@ class Cluster(typing_extensions.TypedDict, total=False):
         "REDIS_HIGHMEM_MEDIUM",
         "REDIS_HIGHMEM_XLARGE",
         "REDIS_STANDARD_SMALL",
+        "REDIS_HIGHCPU_MEDIUM",
+        "REDIS_STANDARD_LARGE",
+        "REDIS_HIGHMEM_2XLARGE",
     ]
     ondemandMaintenance: bool
     persistenceConfig: ClusterPersistenceConfig
@@ -1334,6 +1340,9 @@ class UpdateInfo(typing_extensions.TypedDict, total=False):
         "REDIS_HIGHMEM_MEDIUM",
         "REDIS_HIGHMEM_XLARGE",
         "REDIS_STANDARD_SMALL",
+        "REDIS_HIGHCPU_MEDIUM",
+        "REDIS_STANDARD_LARGE",
+        "REDIS_HIGHMEM_2XLARGE",
     ]
     targetReplicaCount: int
     targetShardCount: int

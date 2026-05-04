@@ -236,6 +236,7 @@ class Batch(typing_extensions.TypedDict, total=False):
     name: str
     operation: str
     pysparkBatch: PySparkBatch
+    pysparkNotebookBatch: PySparkNotebookBatch
     runtimeConfig: RuntimeConfig
     runtimeInfo: RuntimeInfo
     sparkBatch: SparkBatch
@@ -1191,6 +1192,15 @@ class PySparkJob(typing_extensions.TypedDict, total=False):
     loggingConfig: LoggingConfig
     mainPythonFileUri: str
     properties: dict[str, typing.Any]
+    pythonFileUris: _list[str]
+
+@typing.type_check_only
+class PySparkNotebookBatch(typing_extensions.TypedDict, total=False):
+    archiveUris: _list[str]
+    fileUris: _list[str]
+    jarFileUris: _list[str]
+    notebookFileUri: str
+    params: dict[str, typing.Any]
     pythonFileUris: _list[str]
 
 @typing.type_check_only

@@ -27,7 +27,11 @@ class SlidesResource(googleapiclient.discovery.Resource):
                 pageObjectId: str,
                 thumbnailProperties_mimeType: typing_extensions.Literal["PNG"] = ...,
                 thumbnailProperties_thumbnailSize: typing_extensions.Literal[
-                    "THUMBNAIL_SIZE_UNSPECIFIED", "LARGE", "MEDIUM", "SMALL"
+                    "THUMBNAIL_SIZE_UNSPECIFIED",
+                    "LARGE",
+                    "MEDIUM",
+                    "SMALL",
+                    "WIDTH2000_PX",
                 ] = ...,
                 **kwargs: typing.Any,
             ) -> ThumbnailHttpRequest: ...

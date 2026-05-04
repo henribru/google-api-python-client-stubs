@@ -18,6 +18,45 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
+            class AgentGatewaysResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: AgentGateway = ...,
+                    agentGatewayId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, etag: str = ..., **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> AgentGatewayHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    returnPartialSuccess: bool = ...,
+                    **kwargs: typing.Any,
+                ) -> ListAgentGatewaysResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListAgentGatewaysResponseHttpRequest,
+                    previous_response: ListAgentGatewaysResponse,
+                ) -> ListAgentGatewaysResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: AgentGateway = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+
+            @typing.type_check_only
             class AuthzExtensionsResource(googleapiclient.discovery.Resource):
                 def create(
                     self,
@@ -741,6 +780,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                 previous_request: ListLocationsResponseHttpRequest,
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
+            def agentGateways(self) -> AgentGatewaysResource: ...
             def authzExtensions(self) -> AuthzExtensionsResource: ...
             def endpointPolicies(self) -> EndpointPoliciesResource: ...
             def gateways(self) -> GatewaysResource: ...
@@ -773,6 +813,14 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
         | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def projects(self) -> ProjectsResource: ...
+
+@typing.type_check_only
+class AgentGatewayHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> AgentGateway: ...
 
 @typing.type_check_only
 class AuthzExtensionHttpRequest(googleapiclient.http.HttpRequest):
@@ -861,6 +909,14 @@ class LbTrafficExtensionHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> LbTrafficExtension: ...
+
+@typing.type_check_only
+class ListAgentGatewaysResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListAgentGatewaysResponse: ...
 
 @typing.type_check_only
 class ListAuthzExtensionsResponseHttpRequest(googleapiclient.http.HttpRequest):

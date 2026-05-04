@@ -6,6 +6,11 @@ _list = list
 
 @typing.type_check_only
 class AchievementDefinition(typing_extensions.TypedDict, total=False):
+    achievementLifecycleState: typing_extensions.Literal[
+        "ACHIEVEMENT_LIFECYCLE_STATE_UNSPECIFIED",
+        "ACHIEVEMENT_LIFECYCLE_STATE_ACTIVE",
+        "ACHIEVEMENT_LIFECYCLE_STATE_ARCHIVED",
+    ]
     achievementType: typing_extensions.Literal["STANDARD", "INCREMENTAL"]
     description: str
     experiencePoints: str

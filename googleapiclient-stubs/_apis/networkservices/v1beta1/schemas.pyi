@@ -5,6 +5,54 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class AgentGateway(typing_extensions.TypedDict, total=False):
+    agentGatewayCard: AgentGatewayAgentGatewayOutputCard
+    createTime: str
+    description: str
+    etag: str
+    googleManaged: AgentGatewayGoogleManaged
+    labels: dict[str, typing.Any]
+    name: str
+    networkConfig: AgentGatewayNetworkConfig
+    protocols: _list[typing_extensions.Literal["PROTOCOL_UNSPECIFIED", "MCP"]]
+    registries: _list[str]
+    selfManaged: AgentGatewaySelfManaged
+    updateTime: str
+
+@typing.type_check_only
+class AgentGatewayAgentGatewayOutputCard(typing_extensions.TypedDict, total=False):
+    mtlsEndpoint: str
+    rootCertificates: _list[str]
+    serviceExtensionsServiceAccount: str
+
+@typing.type_check_only
+class AgentGatewayGoogleManaged(typing_extensions.TypedDict, total=False):
+    governedAccessPath: typing_extensions.Literal[
+        "GOVERNED_ACCESS_PATH_UNSPECIFIED", "AGENT_TO_ANYWHERE", "CLIENT_TO_AGENT"
+    ]
+
+@typing.type_check_only
+class AgentGatewayNetworkConfig(typing_extensions.TypedDict, total=False):
+    dnsPeeringConfig: AgentGatewayNetworkConfigDnsPeeringConfig
+    egress: AgentGatewayNetworkConfigEgress
+
+@typing.type_check_only
+class AgentGatewayNetworkConfigDnsPeeringConfig(
+    typing_extensions.TypedDict, total=False
+):
+    domains: _list[str]
+    targetNetwork: str
+    targetProject: str
+
+@typing.type_check_only
+class AgentGatewayNetworkConfigEgress(typing_extensions.TypedDict, total=False):
+    networkAttachment: str
+
+@typing.type_check_only
+class AgentGatewaySelfManaged(typing_extensions.TypedDict, total=False):
+    resourceUri: str
+
+@typing.type_check_only
 class AuthzExtension(typing_extensions.TypedDict, total=False):
     authority: str
     createTime: str
@@ -408,6 +456,12 @@ class LbTrafficExtension(typing_extensions.TypedDict, total=False):
     metadata: dict[str, typing.Any]
     name: str
     updateTime: str
+
+@typing.type_check_only
+class ListAgentGatewaysResponse(typing_extensions.TypedDict, total=False):
+    agentGateways: _list[AgentGateway]
+    nextPageToken: str
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListAuthzExtensionsResponse(typing_extensions.TypedDict, total=False):

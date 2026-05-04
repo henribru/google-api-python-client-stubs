@@ -218,6 +218,24 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
         def findDirectMessage(
             self, *, name: str = ..., **kwargs: typing.Any
         ) -> SpaceHttpRequest: ...
+        def findGroupChats(
+            self,
+            *,
+            pageSize: int = ...,
+            pageToken: str = ...,
+            spaceView: typing_extensions.Literal[
+                "SPACE_VIEW_UNSPECIFIED",
+                "SPACE_VIEW_RESOURCE_NAME_ONLY",
+                "SPACE_VIEW_EXPANDED",
+            ] = ...,
+            users: str | _list[str] = ...,
+            **kwargs: typing.Any,
+        ) -> FindGroupChatsResponseHttpRequest: ...
+        def findGroupChats_next(
+            self,
+            previous_request: FindGroupChatsResponseHttpRequest,
+            previous_response: FindGroupChatsResponse,
+        ) -> FindGroupChatsResponseHttpRequest | None: ...
         def get(
             self, *, name: str, useAdminAccess: bool = ..., **kwargs: typing.Any
         ) -> SpaceHttpRequest: ...
@@ -420,6 +438,14 @@ class EmptyHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Empty: ...
+
+@typing.type_check_only
+class FindGroupChatsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> FindGroupChatsResponse: ...
 
 @typing.type_check_only
 class GoogleChatV1SectionHttpRequest(googleapiclient.http.HttpRequest):

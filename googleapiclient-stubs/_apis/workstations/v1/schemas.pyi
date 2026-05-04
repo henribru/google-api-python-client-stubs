@@ -333,6 +333,8 @@ class WorkstationCluster(typing_extensions.TypedDict, total=False):
     tags: dict[str, typing.Any]
     uid: str
     updateTime: str
+    workstationAuthorizationUrl: str
+    workstationLaunchUrl: str
 
 @typing.type_check_only
 class WorkstationConfig(typing_extensions.TypedDict, total=False):

@@ -280,6 +280,9 @@ class DriveResource(googleapiclient.discovery.Resource):
         def export_media(
             self, *, fileId: str, mimeType: str, **kwargs: typing.Any
         ) -> BytesHttpRequest: ...
+        def generateCseToken(
+            self, *, fileId: str = ..., parent: str = ..., **kwargs: typing.Any
+        ) -> GenerateCseTokenResponseHttpRequest: ...
         def generateIds(
             self,
             *,
@@ -716,6 +719,14 @@ class FileListHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> FileList: ...
+
+@typing.type_check_only
+class GenerateCseTokenResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GenerateCseTokenResponse: ...
 
 @typing.type_check_only
 class GeneratedIdsHttpRequest(googleapiclient.http.HttpRequest):

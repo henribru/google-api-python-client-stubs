@@ -546,7 +546,15 @@ class GoogleIamV3PrincipalAccessBoundaryPolicyRule(
 ):
     description: str
     effect: typing_extensions.Literal["EFFECT_UNSPECIFIED", "ALLOW"]
+    operation: GoogleIamV3PrincipalAccessBoundaryPolicyRuleOperation
     resources: _list[str]
+
+@typing.type_check_only
+class GoogleIamV3PrincipalAccessBoundaryPolicyRuleOperation(
+    typing_extensions.TypedDict, total=False
+):
+    excludedPermissions: _list[str]
+    permissions: _list[str]
 
 @typing.type_check_only
 class GoogleRpcStatus(typing_extensions.TypedDict, total=False):

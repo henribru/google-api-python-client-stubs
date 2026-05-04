@@ -585,6 +585,8 @@ class GoogleCloudRecaptchaenterpriseV1TokenProperties(
         "MISSING",
         "BROWSER_ERROR",
         "UNEXPECTED_ACTION",
+        "KEY_MISMATCH",
+        "DOMAIN_MISMATCH",
     ]
     iosBundleId: str
     valid: bool

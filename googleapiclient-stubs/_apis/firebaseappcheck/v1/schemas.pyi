@@ -79,6 +79,7 @@ class GoogleFirebaseAppcheckV1BatchUpdateServicesResponse(
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1DebugToken(typing_extensions.TypedDict, total=False):
     displayName: str
+    etag: str
     name: str
     token: str
     updateTime: str
@@ -299,7 +300,10 @@ class GoogleFirebaseAppcheckV1SafetyNetConfig(typing_extensions.TypedDict, total
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1Service(typing_extensions.TypedDict, total=False):
     enforcementMode: typing_extensions.Literal["OFF", "UNENFORCED", "ENFORCED"]
+    etag: str
     name: str
+    replayProtection: typing_extensions.Literal["OFF", "UNENFORCED", "ENFORCED"]
+    updateTime: str
 
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1UpdateResourcePolicyRequest(

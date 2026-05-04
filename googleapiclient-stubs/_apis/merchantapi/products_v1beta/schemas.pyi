@@ -245,6 +245,7 @@ class Price(typing_extensions.TypedDict, total=False):
 class Product(typing_extensions.TypedDict, total=False):
     attributes: Attributes
     automatedDiscounts: AutomatedDiscounts
+    base64EncodedName: str
     channel: typing_extensions.Literal["CHANNEL_ENUM_UNSPECIFIED", "ONLINE", "LOCAL"]
     contentLanguage: str
     customAttributes: _list[CustomAttribute]
@@ -297,6 +298,8 @@ class ProductDimension(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ProductInput(typing_extensions.TypedDict, total=False):
     attributes: Attributes
+    base64EncodedName: str
+    base64EncodedProduct: str
     channel: typing_extensions.Literal["CHANNEL_ENUM_UNSPECIFIED", "ONLINE", "LOCAL"]
     contentLanguage: str
     customAttributes: _list[CustomAttribute]
@@ -356,6 +359,8 @@ class Shipping(typing_extensions.TypedDict, total=False):
     handlingCutoffTimezone: str
     locationGroupName: str
     locationId: str
+    loyaltyProgramLabel: str
+    loyaltyTierLabel: str
     maxHandlingTime: str
     maxTransitTime: str
     minHandlingTime: str
