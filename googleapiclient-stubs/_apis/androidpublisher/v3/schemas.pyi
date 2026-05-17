@@ -764,6 +764,8 @@ class GeneratedApksPerSigningKey(typing_extensions.TypedDict, total=False):
     generatedStandaloneApks: _list[GeneratedStandaloneApk]
     generatedUniversalApk: GeneratedUniversalApk
     targetingInfo: TargetingInfo
+    unprotectedGeneratedSplitApks: _list[GeneratedSplitApk]
+    unprotectedGeneratedStandaloneApks: _list[GeneratedStandaloneApk]
 
 @typing.type_check_only
 class GeneratedAssetPackSlice(typing_extensions.TypedDict, total=False):

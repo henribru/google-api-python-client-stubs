@@ -27,6 +27,10 @@ class DataPart(typing_extensions.TypedDict, total=False):
     data: dict[str, typing.Any]
 
 @typing.type_check_only
+class DriveOptions(typing_extensions.TypedDict, total=False):
+    includeDescendants: bool
+
+@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -121,6 +125,7 @@ class StreamResponse(typing_extensions.TypedDict, total=False):
 class Subscription(typing_extensions.TypedDict, total=False):
     authority: str
     createTime: str
+    driveOptions: DriveOptions
     etag: str
     eventTypes: _list[str]
     expireTime: str

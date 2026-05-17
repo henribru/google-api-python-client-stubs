@@ -1243,6 +1243,7 @@ class Media(typing_extensions.TypedDict, total=False):
     ]
     sha1Hash: str
     sha256Hash: str
+    sha512Hash: str
     timestamp: str
     token: str
 

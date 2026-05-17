@@ -478,15 +478,23 @@ class Expr(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ExternalExposure(typing_extensions.TypedDict, total=False):
+    backendBucket: str
     backendService: str
+    exposedApplication: str
     exposedEndpoint: str
     exposedService: str
     forwardingRule: str
+    hostnameUri: str
+    httpResponse: _list[HttpResponse]
     instanceGroup: str
+    internalBackendService: str
     loadBalancerFirewallPolicy: str
     networkEndpointGroup: str
+    networkIngressFirewallPolicy: str
     privateIpAddress: str
     privatePort: str
+    pscNetworkAttachment: str
+    pscServiceAttachment: str
     publicIpAddress: str
     publicPort: str
     serviceFirewallPolicy: str
@@ -558,6 +566,7 @@ class Finding(typing_extensions.TypedDict, total=False):
         "SENSITIVE_DATA_RISK",
         "CHOKEPOINT",
         "EXTERNAL_EXPOSURE",
+        "SECRET",
     ]
     groupMemberships: _list[GroupMembership]
     iamBindings: _list[IamBinding]
@@ -1455,15 +1464,23 @@ class GoogleCloudSecuritycenterV2Exfiltration(typing_extensions.TypedDict, total
 class GoogleCloudSecuritycenterV2ExternalExposure(
     typing_extensions.TypedDict, total=False
 ):
+    backendBucket: str
     backendService: str
+    exposedApplication: str
     exposedEndpoint: str
     exposedService: str
     forwardingRule: str
+    hostnameUri: str
+    httpResponse: _list[GoogleCloudSecuritycenterV2HttpResponse]
     instanceGroup: str
+    internalBackendService: str
     loadBalancerFirewallPolicy: str
     networkEndpointGroup: str
+    networkIngressFirewallPolicy: str
     privateIpAddress: str
     privatePort: str
+    pscNetworkAttachment: str
+    pscServiceAttachment: str
     publicIpAddress: str
     publicPort: str
     serviceFirewallPolicy: str
@@ -1556,6 +1573,7 @@ class GoogleCloudSecuritycenterV2Finding(typing_extensions.TypedDict, total=Fals
         "SENSITIVE_DATA_RISK",
         "CHOKEPOINT",
         "EXTERNAL_EXPOSURE",
+        "SECRET",
     ]
     groupMemberships: _list[GoogleCloudSecuritycenterV2GroupMembership]
     iamBindings: _list[GoogleCloudSecuritycenterV2IamBinding]
@@ -1632,6 +1650,11 @@ class GoogleCloudSecuritycenterV2GroupMembership(
         "GROUP_TYPE_TOXIC_COMBINATION",
         "GROUP_TYPE_CHOKEPOINT",
     ]
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2HttpResponse(typing_extensions.TypedDict, total=False):
+    path: str
+    statusCode: str
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV2IamBinding(typing_extensions.TypedDict, total=False):
@@ -2666,6 +2689,11 @@ class GroupMembership(typing_extensions.TypedDict, total=False):
         "GROUP_TYPE_TOXIC_COMBINATION",
         "GROUP_TYPE_CHOKEPOINT",
     ]
+
+@typing.type_check_only
+class HttpResponse(typing_extensions.TypedDict, total=False):
+    path: str
+    statusCode: str
 
 @typing.type_check_only
 class IamBinding(typing_extensions.TypedDict, total=False):

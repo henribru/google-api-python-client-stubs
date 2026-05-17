@@ -16,6 +16,7 @@ class CloudAiLargeModelsVisionGenerateVideoExperiments(
     numDiffusionSteps: int
     promptInputs: CloudAiLargeModelsVisionPromptInputs
     requestOriginTag: str
+    truncateInputVideo: bool
     videoTransformMaskGcsUri: str
     videoTransformStrength: float
 
@@ -485,6 +486,13 @@ class GoogleCloudAiplatformV1beta1AssignNotebookRuntimeRequest(
     notebookRuntime: GoogleCloudAiplatformV1beta1NotebookRuntime
     notebookRuntimeId: str
     notebookRuntimeTemplate: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1AsyncQueryReasoningEngineRequest(
+    typing_extensions.TypedDict, total=False
+):
+    inputGcsUri: str
+    outputGcsUri: str
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1AsyncRetrieveContextsRequest(
@@ -1012,6 +1020,11 @@ class GoogleCloudAiplatformV1beta1CachedContentUsageMetadata(
     videoDurationSeconds: int
 
 @typing.type_check_only
+class GoogleCloudAiplatformV1beta1CancelAsyncQueryReasoningEngineResponse(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class GoogleCloudAiplatformV1beta1CancelBatchPredictionJobRequest(
     typing_extensions.TypedDict, total=False
 ): ...
@@ -1114,6 +1127,14 @@ class GoogleCloudAiplatformV1beta1CheckPublisherModelEulaAcceptanceRequest(
     typing_extensions.TypedDict, total=False
 ):
     publisherModel: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1CheckSignUpEligibilityResponse(
+    typing_extensions.TypedDict, total=False
+):
+    eligibility: typing_extensions.Literal[
+        "ELIGIBILITY_STATUS_UNSPECIFIED", "ELIGIBLE", "IN_SCOPE", "INELIGIBLE"
+    ]
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1CheckTrialEarlyStoppingStateMetatdata(
@@ -1356,6 +1377,7 @@ class GoogleCloudAiplatformV1beta1CopyModelOperationMetadata(
 class GoogleCloudAiplatformV1beta1CopyModelRequest(
     typing_extensions.TypedDict, total=False
 ):
+    customServiceAccount: str
     encryptionSpec: GoogleCloudAiplatformV1beta1EncryptionSpec
     modelId: str
     parentModel: str
@@ -7877,7 +7899,7 @@ class GoogleCloudAiplatformV1beta1OnlineEvaluator(
     metricSources: _list[GoogleCloudAiplatformV1beta1MetricSource]
     name: str
     state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "ACTIVE", "SUSPENDED", "FAILED"
+        "STATE_UNSPECIFIED", "ACTIVE", "SUSPENDED", "FAILED", "WARNING"
     ]
     stateDetails: _list[GoogleCloudAiplatformV1beta1OnlineEvaluatorStateDetails]
     updateTime: str
@@ -10109,6 +10131,12 @@ class GoogleCloudAiplatformV1beta1RetrieveContextsResponse(
     contexts: GoogleCloudAiplatformV1beta1RagContexts
 
 @typing.type_check_only
+class GoogleCloudAiplatformV1beta1RetrieveExpressProjectResponse(
+    typing_extensions.TypedDict, total=False
+):
+    expressProject: GoogleCloudAiplatformV1beta1ExpressProject
+
+@typing.type_check_only
 class GoogleCloudAiplatformV1beta1RetrieveMemoriesRequest(
     typing_extensions.TypedDict, total=False
 ):
@@ -10487,7 +10515,6 @@ class GoogleCloudAiplatformV1beta1SandboxEnvironmentConnectionInfo(
     loadBalancerHostname: str
     loadBalancerIp: str
     routingToken: str
-    sandboxHostname: str
     sandboxInternalIp: str
 
 @typing.type_check_only
@@ -10553,7 +10580,6 @@ class GoogleCloudAiplatformV1beta1SandboxEnvironmentTemplate(
         "UNSPECIFIED", "PROVISIONING", "ACTIVE", "DEPROVISIONING", "DELETED", "FAILED"
     ]
     updateTime: str
-    warmPoolConfig: GoogleCloudAiplatformV1beta1SandboxEnvironmentTemplateWarmPoolConfig
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1SandboxEnvironmentTemplateCustomContainerEnvironment(
@@ -10601,12 +10627,6 @@ class GoogleCloudAiplatformV1beta1SandboxEnvironmentTemplateResourceRequirements
 ):
     limits: dict[str, typing.Any]
     requests: dict[str, typing.Any]
-
-@typing.type_check_only
-class GoogleCloudAiplatformV1beta1SandboxEnvironmentTemplateWarmPoolConfig(
-    typing_extensions.TypedDict, total=False
-):
-    targetInstanceCount: int
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1SavedQuery(typing_extensions.TypedDict, total=False):
@@ -11073,6 +11093,28 @@ class GoogleCloudAiplatformV1beta1SchemaModelevaluationMetricsVideoObjectTrackin
     trackMetrics: _list[
         GoogleCloudAiplatformV1beta1SchemaModelevaluationMetricsTrackMetrics
     ]
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1SchemaMultimodalDatasetMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    geminiRequestReadConfig: GoogleCloudAiplatformV1beta1GeminiRequestReadConfig
+    inputConfig: GoogleCloudAiplatformV1beta1SchemaMultimodalDatasetMetadataMultimodalDatasetInputConfig
+    keyColumnName: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1SchemaMultimodalDatasetMetadataBigQuerySource(
+    typing_extensions.TypedDict, total=False
+):
+    uri: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1SchemaMultimodalDatasetMetadataMultimodalDatasetInputConfig(
+    typing_extensions.TypedDict, total=False
+):
+    bigquerySource: (
+        GoogleCloudAiplatformV1beta1SchemaMultimodalDatasetMetadataBigQuerySource
+    )
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1SchemaPredictInstanceImageClassificationPredictionInstance(
@@ -12611,6 +12653,14 @@ class GoogleCloudAiplatformV1beta1ShieldedVmConfig(
     enableSecureBoot: bool
 
 @typing.type_check_only
+class GoogleCloudAiplatformV1beta1SignUpRequest(
+    typing_extensions.TypedDict, total=False
+):
+    getDefaultApiKey: bool
+    region: str
+    tosAccepted: bool
+
+@typing.type_check_only
 class GoogleCloudAiplatformV1beta1SlackSource(typing_extensions.TypedDict, total=False):
     channels: _list[GoogleCloudAiplatformV1beta1SlackSourceSlackChannels]
 
@@ -14132,6 +14182,7 @@ class GoogleCloudAiplatformV1beta1TuningJob(typing_extensions.TypedDict, total=F
         "TUNING_JOB_STATE_POST_PROCESSING",
     ]
     updateTime: str
+    veoLoraTuningSpec: GoogleCloudAiplatformV1beta1VeoLoraTuningSpec
     veoTuningSpec: GoogleCloudAiplatformV1beta1VeoTuningSpec
 
 @typing.type_check_only
@@ -14487,6 +14538,17 @@ class GoogleCloudAiplatformV1beta1VeoHyperParameters(
         "TUNING_TASK_R2V",
     ]
     veoDataMixtureRatio: float
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1VeoLoraTuningSpec(
+    typing_extensions.TypedDict, total=False
+):
+    hyperParameters: GoogleCloudAiplatformV1beta1VeoHyperParameters
+    trainingDatasetUri: str
+    validationDatasetUri: str
+    videoOrientation: typing_extensions.Literal[
+        "VIDEO_ORIENTATION_UNSPECIFIED", "LANDSCAPE", "PORTRAIT"
+    ]
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1VeoTuningSpec(

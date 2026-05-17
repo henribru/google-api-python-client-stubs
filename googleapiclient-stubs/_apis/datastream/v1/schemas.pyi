@@ -23,6 +23,7 @@ class BackfillAllStrategy(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class BackfillJob(typing_extensions.TypedDict, total=False):
     errors: _list[Error]
+    eventFilter: EventFilter
     lastEndTime: str
     lastStartTime: str
     state: typing_extensions.Literal[

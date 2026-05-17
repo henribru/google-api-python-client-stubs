@@ -329,6 +329,7 @@ class UnitCondition(typing_extensions.TypedDict, total=False):
         "TYPE_UPDATING",
         "TYPE_PROVISIONED",
         "TYPE_OPERATION_ERROR",
+        "TYPE_FLAGS_CONFIG_INITIALIZED",
     ]
 
 @typing.type_check_only
@@ -407,6 +408,7 @@ class UnitOperationCondition(typing_extensions.TypedDict, total=False):
         "TYPE_CANCELLED",
         "TYPE_APP_CREATED",
         "TYPE_APP_COMPONENTS_REGISTERED",
+        "TYPE_WORKLOAD_SUCCEEDED",
     ]
 
 @typing.type_check_only

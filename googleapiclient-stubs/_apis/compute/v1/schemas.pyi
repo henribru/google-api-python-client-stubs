@@ -390,6 +390,7 @@ class AutoscalingPolicy(typing_extensions.TypedDict, total=False):
     mode: typing_extensions.Literal["OFF", "ON", "ONLY_SCALE_OUT", "ONLY_UP"]
     scaleInControl: AutoscalingPolicyScaleInControl
     scalingSchedules: dict[str, typing.Any]
+    stabilizationPeriodSec: int
 
 @typing.type_check_only
 class AutoscalingPolicyCpuUtilization(typing_extensions.TypedDict, total=False):
@@ -1128,6 +1129,7 @@ class Commitment(typing_extensions.TypedDict, total=False):
         "GENERAL_PURPOSE_T2D",
         "GRAPHICS_OPTIMIZED",
         "GRAPHICS_OPTIMIZED_G4",
+        "GRAPHICS_OPTIMIZED_G4_VGPU",
         "MEMORY_OPTIMIZED",
         "MEMORY_OPTIMIZED_M3",
         "MEMORY_OPTIMIZED_M4",
@@ -1673,7 +1675,9 @@ class FirewallPolicy(typing_extensions.TypedDict, total=False):
     name: str
     packetMirroringRules: _list[FirewallPolicyRule]
     parent: str
-    policyType: typing_extensions.Literal["RDMA_ROCE_POLICY", "VPC_POLICY"]
+    policyType: typing_extensions.Literal[
+        "RDMA_ROCE_POLICY", "ULL_POLICY", "VPC_POLICY"
+    ]
     region: str
     ruleTupleCount: int
     rules: _list[FirewallPolicyRule]
@@ -2165,6 +2169,102 @@ class GlobalSetPolicyRequest(typing_extensions.TypedDict, total=False):
     bindings: _list[Binding]
     etag: str
     policy: Policy
+
+@typing.type_check_only
+class GlobalVmExtensionPolicy(typing_extensions.TypedDict, total=False):
+    creationTimestamp: str
+    description: str
+    extensionPolicies: dict[str, typing.Any]
+    id: str
+    instanceSelectors: _list[GlobalVmExtensionPolicyInstanceSelector]
+    kind: str
+    name: str
+    priority: int
+    rolloutOperation: GlobalVmExtensionPolicyRolloutOperation
+    scopedResourceStatus: typing_extensions.Literal[
+        "SCOPED_RESOURCE_STATUS_DELETING", "SCOPED_RESOURCE_STATUS_UNSPECIFIED"
+    ]
+    selfLink: str
+    selfLinkWithId: str
+    updateTimestamp: str
+
+@typing.type_check_only
+class GlobalVmExtensionPolicyExtensionPolicy(typing_extensions.TypedDict, total=False):
+    pinnedVersion: str
+    stringConfig: str
+
+@typing.type_check_only
+class GlobalVmExtensionPolicyInstanceSelector(typing_extensions.TypedDict, total=False):
+    labelSelector: GlobalVmExtensionPolicyLabelSelector
+
+@typing.type_check_only
+class GlobalVmExtensionPolicyLabelSelector(typing_extensions.TypedDict, total=False):
+    inclusionLabels: dict[str, typing.Any]
+
+@typing.type_check_only
+class GlobalVmExtensionPolicyList(typing_extensions.TypedDict, total=False):
+    etag: str
+    id: str
+    items: _list[GlobalVmExtensionPolicy]
+    kind: str
+    nextPageToken: str
+    selfLink: str
+    unreachables: _list[str]
+    warning: dict[str, typing.Any]
+
+@typing.type_check_only
+class GlobalVmExtensionPolicyRolloutOperation(typing_extensions.TypedDict, total=False):
+    rolloutInput: GlobalVmExtensionPolicyRolloutOperationRolloutInput
+    rolloutStatus: GlobalVmExtensionPolicyRolloutOperationRolloutStatus
+
+@typing.type_check_only
+class GlobalVmExtensionPolicyRolloutOperationRolloutInput(
+    typing_extensions.TypedDict, total=False
+):
+    conflictBehavior: str
+    name: str
+    predefinedRolloutPlan: typing_extensions.Literal[
+        "FAST_ROLLOUT", "ROLLOUT_PLAN_UNSPECIFIED", "SLOW_ROLLOUT"
+    ]
+    retryUuid: str
+
+@typing.type_check_only
+class GlobalVmExtensionPolicyRolloutOperationRolloutStatus(
+    typing_extensions.TypedDict, total=False
+):
+    currentRollouts: _list[
+        GlobalVmExtensionPolicyRolloutOperationRolloutStatusRolloutMetadata
+    ]
+    previousRollout: GlobalVmExtensionPolicyRolloutOperationRolloutStatusRolloutMetadata
+
+@typing.type_check_only
+class GlobalVmExtensionPolicyRolloutOperationRolloutStatusRolloutMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    locationRolloutStatus: dict[str, typing.Any]
+    rollout: str
+    rolloutPlan: str
+    state: typing_extensions.Literal[
+        "STATE_CANCELLED",
+        "STATE_COMPLETED",
+        "STATE_FAILED",
+        "STATE_PAUSED",
+        "STATE_PROCESSING",
+        "STATE_UNKNOWN",
+        "STATE_UNSPECIFIED",
+    ]
+
+@typing.type_check_only
+class GlobalVmExtensionPolicyRolloutOperationRolloutStatusRolloutMetadataLocationRolloutStatus(
+    typing_extensions.TypedDict, total=False
+):
+    state: typing_extensions.Literal[
+        "LOCATION_ROLLOUT_STATE_COMPLETED",
+        "LOCATION_ROLLOUT_STATE_FAILED",
+        "LOCATION_ROLLOUT_STATE_NOT_STARTED",
+        "LOCATION_ROLLOUT_STATE_SKIPPED",
+        "LOCATION_ROLLOUT_STATE_UNSPECIFIED",
+    ]
 
 @typing.type_check_only
 class GroupMaintenanceInfo(typing_extensions.TypedDict, total=False):
@@ -4449,17 +4549,27 @@ class License(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class LicenseCode(typing_extensions.TypedDict, total=False):
+    allowedReplacementLicenses: _list[str]
+    appendableToDisk: bool
     creationTimestamp: str
     description: str
     id: str
+    incompatibleLicenses: _list[str]
     kind: str
     licenseAlias: _list[LicenseCodeLicenseAlias]
+    minimumRetention: Duration
+    multiTenantOnly: bool
     name: str
+    osLicense: bool
+    removableFromDisk: bool
+    requiredCoattachedLicenses: _list[str]
     selfLink: str
+    soleTenantOnly: bool
     state: typing_extensions.Literal[
         "DISABLED", "ENABLED", "RESTRICTED", "STATE_UNSPECIFIED", "TERMINATED"
     ]
     transferable: bool
+    updateTimestamp: str
 
 @typing.type_check_only
 class LicenseCodeLicenseAlias(typing_extensions.TypedDict, total=False):
@@ -5038,7 +5148,9 @@ class NetworkPeeringConnectionStatusConsensusState(
     deleteStatus: typing_extensions.Literal[
         "DELETE_ACKNOWLEDGED",
         "DELETE_STATUS_UNSPECIFIED",
+        "LOCAL_CANCEL_REQUESTED",
         "LOCAL_DELETE_REQUESTED",
+        "PEER_CANCEL_REQUESTED",
         "PEER_DELETE_REQUESTED",
     ]
     updateStatus: typing_extensions.Literal[
@@ -5166,7 +5278,7 @@ class NetworkProfileNetworkFeatures(typing_extensions.TypedDict, total=False):
     ]
     allowVpn: typing_extensions.Literal["VPN_ALLOWED", "VPN_BLOCKED"]
     firewallPolicyTypes: _list[
-        typing_extensions.Literal["RDMA_ROCE_POLICY", "VPC_POLICY"]
+        typing_extensions.Literal["RDMA_ROCE_POLICY", "ULL_POLICY", "VPC_POLICY"]
     ]
     interfaceTypes: _list[
         typing_extensions.Literal[
@@ -5247,6 +5359,12 @@ class NetworksAddPeeringRequest(typing_extensions.TypedDict, total=False):
     name: str
     networkPeering: NetworkPeering
     peerNetwork: str
+
+@typing.type_check_only
+class NetworksCancelRequestRemovePeeringRequest(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
 
 @typing.type_check_only
 class NetworksGetEffectiveFirewallsResponse(typing_extensions.TypedDict, total=False):
@@ -6984,6 +7102,169 @@ class ResourceStatusScheduling(typing_extensions.TypedDict, total=False):
     availabilityDomain: int
 
 @typing.type_check_only
+class Rollout(typing_extensions.TypedDict, total=False):
+    cancellationTime: str
+    completionTime: str
+    creationTimestamp: str
+    currentWaveNumber: str
+    description: str
+    etag: str
+    id: str
+    kind: str
+    name: str
+    rolloutEntity: RolloutRolloutEntity
+    rolloutPlan: str
+    selfLink: str
+    selfLinkWithId: str
+    state: typing_extensions.Literal[
+        "CANCELLED",
+        "CANCELLING",
+        "CANCEL_FAILED",
+        "COMPLETED",
+        "COMPLETE_FAILED",
+        "COMPLETING",
+        "FAILED",
+        "PAUSED",
+        "PAUSE_FAILED",
+        "PAUSING",
+        "PROCESSING",
+        "READY",
+        "RESUMING",
+        "ROLLBACK_WAVE_FAILED",
+        "ROLLING_BACK",
+        "STATE_UNSPECIFIED",
+        "UNINITIALIZED",
+        "WAVE_FAILED",
+    ]
+    waveDetails: _list[RolloutWaveDetails]
+
+@typing.type_check_only
+class RolloutPlan(typing_extensions.TypedDict, total=False):
+    creationTimestamp: str
+    description: str
+    id: str
+    kind: str
+    locationScope: typing_extensions.Literal[
+        "LOCATION_SCOPE_UNSPECIFIED", "REGIONAL", "ZONAL"
+    ]
+    name: str
+    selfLink: str
+    selfLinkWithId: str
+    waves: _list[RolloutPlanWave]
+
+@typing.type_check_only
+class RolloutPlanWave(typing_extensions.TypedDict, total=False):
+    displayName: str
+    number: str
+    orchestrationOptions: RolloutPlanWaveOrchestrationOptions
+    selectors: _list[RolloutPlanWaveSelector]
+    validation: RolloutPlanWaveValidation
+
+@typing.type_check_only
+class RolloutPlanWaveOrchestrationOptions(typing_extensions.TypedDict, total=False):
+    delays: _list[RolloutPlanWaveOrchestrationOptionsDelay]
+    maxConcurrentLocations: str
+    maxConcurrentResourcesPerLocation: str
+
+@typing.type_check_only
+class RolloutPlanWaveOrchestrationOptionsDelay(
+    typing_extensions.TypedDict, total=False
+):
+    delimiter: typing_extensions.Literal[
+        "DELIMITER_BATCH", "DELIMITER_LOCATION", "DELIMITER_UNSPECIFIED"
+    ]
+    duration: str
+    type: typing_extensions.Literal["TYPE_MINIMUM", "TYPE_OFFSET", "TYPE_UNSPECIFIED"]
+
+@typing.type_check_only
+class RolloutPlanWaveSelector(typing_extensions.TypedDict, total=False):
+    locationSelector: RolloutPlanWaveSelectorLocationSelector
+    resourceHierarchySelector: RolloutPlanWaveSelectorResourceHierarchySelector
+
+@typing.type_check_only
+class RolloutPlanWaveSelectorLocationSelector(typing_extensions.TypedDict, total=False):
+    includedLocations: _list[str]
+
+@typing.type_check_only
+class RolloutPlanWaveSelectorResourceHierarchySelector(
+    typing_extensions.TypedDict, total=False
+):
+    includedFolders: _list[str]
+    includedOrganizations: _list[str]
+    includedProjects: _list[str]
+
+@typing.type_check_only
+class RolloutPlanWaveValidation(typing_extensions.TypedDict, total=False):
+    timeBasedValidationMetadata: RolloutPlanWaveValidationTimeBasedValidationMetadata
+    type: str
+
+@typing.type_check_only
+class RolloutPlanWaveValidationTimeBasedValidationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    waitDuration: str
+
+@typing.type_check_only
+class RolloutPlansListResponse(typing_extensions.TypedDict, total=False):
+    etag: str
+    id: str
+    items: _list[RolloutPlan]
+    nextPageToken: str
+    selfLink: str
+    unreachables: _list[str]
+    warning: dict[str, typing.Any]
+
+@typing.type_check_only
+class RolloutRolloutEntity(typing_extensions.TypedDict, total=False):
+    orchestratedEntity: RolloutRolloutEntityOrchestratedEntity
+
+@typing.type_check_only
+class RolloutRolloutEntityOrchestratedEntity(typing_extensions.TypedDict, total=False):
+    conflictBehavior: str
+    orchestrationAction: str
+    orchestrationSource: str
+
+@typing.type_check_only
+class RolloutWaveDetails(typing_extensions.TypedDict, total=False):
+    orchestratedWaveDetails: RolloutWaveDetailsOrchestratedWaveDetails
+    waveDisplayName: str
+    waveNumber: str
+
+@typing.type_check_only
+class RolloutWaveDetailsOrchestratedWaveDetails(
+    typing_extensions.TypedDict, total=False
+):
+    completedResourcesCount: str
+    estimatedCompletionTime: str
+    estimatedTotalResourcesCount: str
+    failedLocations: _list[str]
+    failedResourcesCount: str
+    locationStatus: dict[str, typing.Any]
+
+@typing.type_check_only
+class RolloutWaveDetailsOrchestratedWaveDetailsLocationStatus(
+    typing_extensions.TypedDict, total=False
+):
+    state: typing_extensions.Literal[
+        "STATE_FAILED",
+        "STATE_IN_PROGRESS",
+        "STATE_PENDING",
+        "STATE_SKIPPED",
+        "STATE_SUCCEEDED",
+        "STATE_UNSPECIFIED",
+    ]
+
+@typing.type_check_only
+class RolloutsListResponse(typing_extensions.TypedDict, total=False):
+    etag: str
+    id: str
+    items: _list[Rollout]
+    nextPageToken: str
+    selfLink: str
+    unreachables: _list[str]
+    warning: dict[str, typing.Any]
+
+@typing.type_check_only
 class Route(typing_extensions.TypedDict, total=False):
     asPaths: _list[RouteAsPath]
     creationTimestamp: str
@@ -8108,6 +8389,7 @@ class SslPolicy(typing_extensions.TypedDict, total=False):
     kind: str
     minTlsVersion: typing_extensions.Literal["TLS_1_0", "TLS_1_1", "TLS_1_2", "TLS_1_3"]
     name: str
+    postQuantumKeyExchange: typing_extensions.Literal["DEFAULT", "DEFERRED", "ENABLED"]
     profile: typing_extensions.Literal[
         "COMPATIBLE", "CUSTOM", "FIPS_202205", "MODERN", "RESTRICTED"
     ]
@@ -9053,6 +9335,11 @@ class VmEndpointNatMappingsList(typing_extensions.TypedDict, total=False):
     warning: dict[str, typing.Any]
 
 @typing.type_check_only
+class VmExtensionPoliciesScopedList(typing_extensions.TypedDict, total=False):
+    vmExtensionPolicies: _list[VmExtensionPolicy]
+    warning: dict[str, typing.Any]
+
+@typing.type_check_only
 class VmExtensionPolicy(typing_extensions.TypedDict, total=False):
     creationTimestamp: str
     description: str
@@ -9068,6 +9355,17 @@ class VmExtensionPolicy(typing_extensions.TypedDict, total=False):
     selfLinkWithId: str
     state: typing_extensions.Literal["ACTIVE", "DELETING", "STATE_UNSPECIFIED"]
     updateTimestamp: str
+
+@typing.type_check_only
+class VmExtensionPolicyAggregatedListResponse(typing_extensions.TypedDict, total=False):
+    etag: str
+    id: str
+    items: dict[str, typing.Any]
+    kind: str
+    nextPageToken: str
+    selfLink: str
+    unreachables: _list[str]
+    warning: dict[str, typing.Any]
 
 @typing.type_check_only
 class VmExtensionPolicyExtensionPolicy(typing_extensions.TypedDict, total=False):

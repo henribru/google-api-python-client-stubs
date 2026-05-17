@@ -1506,6 +1506,7 @@ class DeliverySchedule(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DependentFieldValue(typing_extensions.TypedDict, total=False):
+    dynamicFeedId: str
     elementId: str
     fieldId: int
 

@@ -458,6 +458,14 @@ class GoogleChromeManagementV1FindInstalledAppDevicesResponse(
     totalSize: int
 
 @typing.type_check_only
+class GoogleChromeManagementV1FindInstalledAppProfilesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    profiles: _list[GoogleChromeManagementV1ProfileAppInstallInstance]
+    totalSize: int
+
+@typing.type_check_only
 class GoogleChromeManagementV1GraphicsAdapterInfo(
     typing_extensions.TypedDict, total=False
 ):
@@ -699,6 +707,15 @@ class GoogleChromeManagementV1PrinterReport(typing_extensions.TypedDict, total=F
     printerId: str
     printerModel: str
     userCount: str
+
+@typing.type_check_only
+class GoogleChromeManagementV1ProfileAppInstallInstance(
+    typing_extensions.TypedDict, total=False
+):
+    email: str
+    profileId: str
+    profileOrgUnitId: str
+    profilePermanentId: str
 
 @typing.type_check_only
 class GoogleChromeManagementV1RiskAssessment(typing_extensions.TypedDict, total=False):
@@ -1360,6 +1377,7 @@ class GoogleChromeManagementVersionsV1ConnectorConfig(
         "IDENTITY_BASED_ENROLLMENT",
         "CERTIFICATE_AUTHORITY",
         "ROOT_STORE",
+        "CONTENT_ANALYSIS",
     ]
 
 @typing.type_check_only
@@ -1373,6 +1391,7 @@ class GoogleChromeManagementVersionsV1ConnectorConfigDetails(
     crowdStrikeXdrConfig: GoogleChromeManagementVersionsV1CrowdStrikeXdrConfig
     deviceTrustConfig: GoogleChromeManagementVersionsV1DeviceTrustConfig
     googleSecOpsConfig: GoogleChromeManagementVersionsV1GoogleSecOpsConfig
+    mipLabelConfig: GoogleChromeManagementVersionsV1MipLabelConfig
     paloAltoNetworksConfig: GoogleChromeManagementVersionsV1PaloAltoNetworksConfig
     pubSubConfig: GoogleChromeManagementVersionsV1PubSubConfig
     pubSubXdrConfig: GoogleChromeManagementVersionsV1PubSubXdrConfig
@@ -1489,6 +1508,13 @@ class GoogleChromeManagementVersionsV1ListConnectorConfigsResponse(
 ):
     connectorConfigs: _list[GoogleChromeManagementVersionsV1ConnectorConfig]
     nextPageToken: str
+
+@typing.type_check_only
+class GoogleChromeManagementVersionsV1MipLabelConfig(
+    typing_extensions.TypedDict, total=False
+):
+    domains: _list[str]
+    microsoftTenantId: str
 
 @typing.type_check_only
 class GoogleChromeManagementVersionsV1MoveThirdPartyProfileUserRequest(

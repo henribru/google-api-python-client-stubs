@@ -292,6 +292,7 @@ class ContainerTask(typing_extensions.TypedDict, total=False):
     command: _list[str]
     env: dict[str, typing.Any]
     image: str
+    script: str
 
 @typing.type_check_only
 class CreateChildRolloutJob(typing_extensions.TypedDict, total=False): ...

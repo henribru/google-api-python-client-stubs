@@ -275,6 +275,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     parent: str,
                     body: HttpRoute = ...,
                     httpRouteId: str = ...,
+                    requestId: str = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
@@ -287,6 +288,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
+                    filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
                     returnPartialSuccess: bool = ...,

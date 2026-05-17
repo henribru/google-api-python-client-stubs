@@ -384,6 +384,7 @@ class GoogleDevtoolsCloudbuildV1BuildStep(typing_extensions.TypedDict, total=Fal
     id: str
     name: str
     pullTiming: GoogleDevtoolsCloudbuildV1TimeSpan
+    results: _list[GoogleDevtoolsCloudbuildV1StepResult]
     script: str
     secretEnv: _list[str]
     status: typing_extensions.Literal[
@@ -402,6 +403,12 @@ class GoogleDevtoolsCloudbuildV1BuildStep(typing_extensions.TypedDict, total=Fal
     timing: GoogleDevtoolsCloudbuildV1TimeSpan
     volumes: _list[GoogleDevtoolsCloudbuildV1Volume]
     waitFor: _list[str]
+
+@typing.type_check_only
+class GoogleDevtoolsCloudbuildV1BuildStepResults(
+    typing_extensions.TypedDict, total=False
+):
+    results: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleDevtoolsCloudbuildV1BuiltImage(typing_extensions.TypedDict, total=False):
@@ -564,6 +571,7 @@ class GoogleDevtoolsCloudbuildV1Results(typing_extensions.TypedDict, total=False
     artifactTiming: GoogleDevtoolsCloudbuildV1TimeSpan
     buildStepImages: _list[str]
     buildStepOutputs: _list[str]
+    buildStepResults: dict[str, typing.Any]
     genericArtifacts: _list[GoogleDevtoolsCloudbuildV1UploadedGenericArtifact]
     goModules: _list[GoogleDevtoolsCloudbuildV1UploadedGoModule]
     images: _list[GoogleDevtoolsCloudbuildV1BuiltImage]
@@ -608,6 +616,12 @@ class GoogleDevtoolsCloudbuildV1SourceProvenance(
     resolvedRepoSource: GoogleDevtoolsCloudbuildV1RepoSource
     resolvedStorageSource: GoogleDevtoolsCloudbuildV1StorageSource
     resolvedStorageSourceManifest: GoogleDevtoolsCloudbuildV1StorageSourceManifest
+
+@typing.type_check_only
+class GoogleDevtoolsCloudbuildV1StepResult(typing_extensions.TypedDict, total=False):
+    attestationContent: str
+    attestationType: str
+    name: str
 
 @typing.type_check_only
 class GoogleDevtoolsCloudbuildV1StorageSource(typing_extensions.TypedDict, total=False):

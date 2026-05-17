@@ -146,6 +146,7 @@ class ContainerAnalysisResource(googleapiclient.discovery.Resource):
                     "VULNERABILITY_ASSESSMENT",
                     "SBOM_REFERENCE",
                     "SECRET",
+                    "AI_SKILL_ANALYSIS",
                 ] = ...,
                 name: str = ...,
                 pageSize: int = ...,

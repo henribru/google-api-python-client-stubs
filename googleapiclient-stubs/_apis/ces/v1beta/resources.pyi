@@ -291,6 +291,13 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                     def delete(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> OperationHttpRequest: ...
+                    def export(
+                        self,
+                        *,
+                        parent: str,
+                        body: ExportEvaluationRunsRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> OperationHttpRequest: ...
                     def get(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> EvaluationRunHttpRequest: ...
@@ -317,6 +324,13 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                         def delete(
                             self, *, name: str, **kwargs: typing.Any
                         ) -> EmptyHttpRequest: ...
+                        def export(
+                            self,
+                            *,
+                            parent: str,
+                            body: ExportEvaluationResultsRequest = ...,
+                            **kwargs: typing.Any,
+                        ) -> OperationHttpRequest: ...
                         def get(
                             self, *, name: str, **kwargs: typing.Any
                         ) -> EvaluationResultHttpRequest: ...

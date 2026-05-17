@@ -14,6 +14,23 @@ _list = list
 @typing.type_check_only
 class AssuredworkloadsResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
+    class AssuredworkloadsResource(googleapiclient.discovery.Resource):
+        def archiveResourceEvents(
+            self,
+            *,
+            body: GoogleCloudAssuredworkloadsV1beta1ArchiveResourceEventsRequest = ...,
+            **kwargs: typing.Any,
+        ) -> (
+            GoogleCloudAssuredworkloadsV1beta1ArchiveResourceEventsResponseHttpRequest
+        ): ...
+        def revertArchivedResourceEvents(
+            self,
+            *,
+            body: GoogleCloudAssuredworkloadsV1beta1RevertArchivedResourceEventsRequest = ...,
+            **kwargs: typing.Any,
+        ) -> GoogleCloudAssuredworkloadsV1beta1RevertArchivedResourceEventsResponseHttpRequest: ...
+
+    @typing.type_check_only
     class OrganizationsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
@@ -190,6 +207,7 @@ class AssuredworkloadsResource(googleapiclient.discovery.Resource):
         ]
         | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
+    def assuredworkloads(self) -> AssuredworkloadsResource: ...
     def organizations(self) -> OrganizationsResource: ...
 
 @typing.type_check_only
@@ -211,6 +229,16 @@ class GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse: ...
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1beta1ArchiveResourceEventsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudAssuredworkloadsV1beta1ArchiveResourceEventsResponse: ...
 
 @typing.type_check_only
 class GoogleCloudAssuredworkloadsV1beta1EnableComplianceUpdatesResponseHttpRequest(
@@ -271,6 +299,16 @@ class GoogleCloudAssuredworkloadsV1beta1RestrictAllowedResourcesResponseHttpRequ
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudAssuredworkloadsV1beta1RestrictAllowedResourcesResponse: ...
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1beta1RevertArchivedResourceEventsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudAssuredworkloadsV1beta1RevertArchivedResourceEventsResponse: ...
 
 @typing.type_check_only
 class GoogleCloudAssuredworkloadsV1beta1ViolationHttpRequest(

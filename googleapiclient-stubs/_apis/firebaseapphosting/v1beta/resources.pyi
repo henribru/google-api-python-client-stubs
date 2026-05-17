@@ -242,6 +242,12 @@ class FirebaseAppHostingResource(googleapiclient.discovery.Resource):
                     previous_response: ListOperationsResponse,
                 ) -> ListOperationsResponseHttpRequest | None: ...
 
+            @typing.type_check_only
+            class SupportedRuntimesResource(googleapiclient.discovery.Resource):
+                def list(
+                    self, *, parent: str, pageSize: int = ..., **kwargs: typing.Any
+                ) -> ListSupportedRuntimesResponseHttpRequest: ...
+
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
@@ -262,6 +268,7 @@ class FirebaseAppHostingResource(googleapiclient.discovery.Resource):
             ) -> ListLocationsResponseHttpRequest | None: ...
             def backends(self) -> BackendsResource: ...
             def operations(self) -> OperationsResource: ...
+            def supportedRuntimes(self) -> SupportedRuntimesResource: ...
 
         def locations(self) -> LocationsResource: ...
 
@@ -358,6 +365,14 @@ class ListRolloutsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListRolloutsResponse: ...
+
+@typing.type_check_only
+class ListSupportedRuntimesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListSupportedRuntimesResponse: ...
 
 @typing.type_check_only
 class LocationHttpRequest(googleapiclient.http.HttpRequest):

@@ -52,6 +52,7 @@ class Counters(typing_extensions.TypedDict, total=False):
     objectCustomContextsUpdated: str
     succeededObjectCount: str
     totalBytesFound: str
+    totalBytesTransformed: str
     totalObjectCount: str
 
 @typing.type_check_only

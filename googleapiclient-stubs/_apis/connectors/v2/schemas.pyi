@@ -287,74 +287,110 @@ class Instance(typing_extensions.TypedDict, total=False):
     tenantProjectId: str
     updateTime: str
 
+AlternativeJsonSchema = typing_extensions.TypedDict(
+    "AlternativeJsonSchema",
+    {
+        "$comment": str,
+        "$defs": dict[str, typing.Any],
+        "$id": str,
+        "$ref": str,
+        "$schema": str,
+        "additionalDetails": dict[str, typing.Any],
+        "additionalItems": JsonSchema,
+        "additionalProperties": JsonSchema,
+        "allOf": _list[JsonSchema],
+        "anyOf": _list[JsonSchema],
+        "const": typing.Any,
+        "contains": JsonSchema,
+        "contentEncoding": str,
+        "contentMediaType": str,
+        "default": typing.Any,
+        "definitions": dict[str, typing.Any],
+        "dependencies": dict[str, typing.Any],
+        "description": str,
+        "else": JsonSchema,
+        "enum": _list[typing.Any],
+        "examples": _list[typing.Any],
+        "exclusiveMaximum": typing.Any,
+        "exclusiveMinimum": typing.Any,
+        "format": str,
+        "if": JsonSchema,
+        "items": JsonSchema,
+        "jdbcType": typing_extensions.Literal[
+            "DATA_TYPE_UNSPECIFIED",
+            "INT",
+            "SMALLINT",
+            "DOUBLE",
+            "DATE",
+            "DATETIME",
+            "TIME",
+            "STRING",
+            "LONG",
+            "BOOLEAN",
+            "DECIMAL",
+            "UUID",
+            "BLOB",
+            "BIT",
+            "TINYINT",
+            "INTEGER",
+            "BIGINT",
+            "FLOAT",
+            "REAL",
+            "NUMERIC",
+            "CHAR",
+            "VARCHAR",
+            "LONGVARCHAR",
+            "TIMESTAMP",
+            "NCHAR",
+            "NVARCHAR",
+            "LONGNVARCHAR",
+            "NULL",
+            "OTHER",
+            "JAVA_OBJECT",
+            "DISTINCT",
+            "STRUCT",
+            "ARRAY",
+            "CLOB",
+            "REF",
+            "DATALINK",
+            "ROWID",
+            "BINARY",
+            "VARBINARY",
+            "LONGVARBINARY",
+            "NCLOB",
+            "SQLXML",
+            "REF_CURSOR",
+            "TIME_WITH_TIMEZONE",
+            "TIMESTAMP_WITH_TIMEZONE",
+        ],
+        "maxItems": int,
+        "maxLength": int,
+        "maxProperties": int,
+        "maximum": typing.Any,
+        "minItems": int,
+        "minLength": int,
+        "minProperties": int,
+        "minimum": typing.Any,
+        "multipleOf": float,
+        "not": JsonSchema,
+        "oneOf": _list[JsonSchema],
+        "pattern": str,
+        "patternProperties": dict[str, typing.Any],
+        "properties": dict[str, typing.Any],
+        "propertyNames": JsonSchema,
+        "readOnly": bool,
+        "required": _list[str],
+        "then": JsonSchema,
+        "title": str,
+        "type": _list[str],
+        "uniqueItems": bool,
+        "writeOnly": bool,
+    },
+    total=False,
+)
+
 @typing.type_check_only
-class JsonSchema(typing_extensions.TypedDict, total=False):
-    additionalDetails: dict[str, typing.Any]
-    default: typing.Any
-    description: str
-    enum: _list[typing.Any]
-    exclusiveMaximum: bool
-    exclusiveMinimum: bool
-    format: str
-    items: JsonSchema
-    jdbcType: typing_extensions.Literal[
-        "DATA_TYPE_UNSPECIFIED",
-        "INT",
-        "SMALLINT",
-        "DOUBLE",
-        "DATE",
-        "DATETIME",
-        "TIME",
-        "STRING",
-        "LONG",
-        "BOOLEAN",
-        "DECIMAL",
-        "UUID",
-        "BLOB",
-        "BIT",
-        "TINYINT",
-        "INTEGER",
-        "BIGINT",
-        "FLOAT",
-        "REAL",
-        "NUMERIC",
-        "CHAR",
-        "VARCHAR",
-        "LONGVARCHAR",
-        "TIMESTAMP",
-        "NCHAR",
-        "NVARCHAR",
-        "LONGNVARCHAR",
-        "NULL",
-        "OTHER",
-        "JAVA_OBJECT",
-        "DISTINCT",
-        "STRUCT",
-        "ARRAY",
-        "CLOB",
-        "REF",
-        "DATALINK",
-        "ROWID",
-        "BINARY",
-        "VARBINARY",
-        "LONGVARBINARY",
-        "NCLOB",
-        "SQLXML",
-        "REF_CURSOR",
-        "TIME_WITH_TIMEZONE",
-        "TIMESTAMP_WITH_TIMEZONE",
-    ]
-    maxItems: int
-    maxLength: int
-    maximum: typing.Any
-    minItems: int
-    minLength: int
-    minimum: typing.Any
-    pattern: str
-    properties: dict[str, typing.Any]
-    required: _list[str]
-    type: _list[str]
-    uniqueItems: bool
+class JsonSchema(AlternativeJsonSchema): ...
 
 @typing.type_check_only
 class ListActionsResponse(typing_extensions.TypedDict, total=False):
@@ -391,6 +427,7 @@ class ListToolsPostRequest(typing_extensions.TypedDict, total=False):
     executionConfig: ExecutionConfig
     pageSize: int
     pageToken: str
+    toolNames: _list[str]
     toolSpec: ToolSpec
 
 @typing.type_check_only

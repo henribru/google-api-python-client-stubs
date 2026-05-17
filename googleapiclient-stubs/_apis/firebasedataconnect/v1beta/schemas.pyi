@@ -17,6 +17,11 @@ class CloudSqlInstance(typing_extensions.TypedDict, total=False):
     instance: str
 
 @typing.type_check_only
+class CodeChunk(typing_extensions.TypedDict, total=False):
+    code: str
+    languageCode: str
+
+@typing.type_check_only
 class Connector(typing_extensions.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     clientCache: ClientCache
@@ -71,6 +76,32 @@ class ExecuteQueryResponse(typing_extensions.TypedDict, total=False):
 class File(typing_extensions.TypedDict, total=False):
     content: str
     path: str
+
+@typing.type_check_only
+class GenerateQueryRequest(typing_extensions.TypedDict, total=False):
+    prompt: str
+    schemas: _list[Schema]
+
+@typing.type_check_only
+class GenerateQueryResponse(typing_extensions.TypedDict, total=False):
+    part: Part
+    status: GenerationStatus
+
+@typing.type_check_only
+class GenerateSchemaRequest(typing_extensions.TypedDict, total=False):
+    prompt: str
+
+@typing.type_check_only
+class GenerateSchemaResponse(typing_extensions.TypedDict, total=False):
+    part: Part
+    status: GenerationStatus
+
+@typing.type_check_only
+class GenerationStatus(typing_extensions.TypedDict, total=False):
+    message: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "ANALYZING_CODE", "GENERATING_CODE", "COMPLETED"
+    ]
 
 @typing.type_check_only
 class GraphqlError(typing_extensions.TypedDict, total=False):
@@ -205,6 +236,11 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
+class Part(typing_extensions.TypedDict, total=False):
+    codeChunk: CodeChunk
+    textChunk: TextChunk
+
+@typing.type_check_only
 class PostgreSql(typing_extensions.TypedDict, total=False):
     cloudSql: CloudSqlInstance
     database: str
@@ -258,6 +294,10 @@ class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
+
+@typing.type_check_only
+class TextChunk(typing_extensions.TypedDict, total=False):
+    text: str
 
 @typing.type_check_only
 class Workaround(typing_extensions.TypedDict, total=False):

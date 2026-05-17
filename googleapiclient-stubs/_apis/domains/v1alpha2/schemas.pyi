@@ -47,6 +47,7 @@ class ConfigureDnsSettingsRequest(typing_extensions.TypedDict, total=False):
 class ConfigureManagementSettingsRequest(typing_extensions.TypedDict, total=False):
     managementSettings: ManagementSettings
     updateMask: str
+    validateOnly: bool
 
 @typing.type_check_only
 class Contact(typing_extensions.TypedDict, total=False):

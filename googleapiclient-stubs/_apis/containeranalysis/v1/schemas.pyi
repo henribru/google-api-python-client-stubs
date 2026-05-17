@@ -5,6 +5,15 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class AISkillAnalysisNote(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class AISkillAnalysisOccurrence(typing_extensions.TypedDict, total=False):
+    findings: _list[Finding]
+    maxSeverity: str
+    skillName: str
+
+@typing.type_check_only
 class AliasContext(typing_extensions.TypedDict, total=False):
     kind: typing_extensions.Literal["KIND_UNSPECIFIED", "FIXED", "MOVABLE", "OTHER"]
     name: str
@@ -339,6 +348,9 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1ApprovalResult(
 class ContaineranalysisGoogleDevtoolsCloudbuildV1Artifacts(
     typing_extensions.TypedDict, total=False
 ):
+    genericArtifacts: _list[
+        ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsGenericArtifact
+    ]
     goModules: _list[ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsGoModule]
     images: _list[str]
     mavenArtifacts: _list[
@@ -358,6 +370,13 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsArtifactObjects(
     location: str
     paths: _list[str]
     timing: ContaineranalysisGoogleDevtoolsCloudbuildV1TimeSpan
+
+@typing.type_check_only
+class ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsGenericArtifact(
+    typing_extensions.TypedDict, total=False
+):
+    folder: str
+    registryPath: str
 
 @typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsGoModule(
@@ -542,6 +561,7 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1BuildStep(
     id: str
     name: str
     pullTiming: ContaineranalysisGoogleDevtoolsCloudbuildV1TimeSpan
+    results: _list[ContaineranalysisGoogleDevtoolsCloudbuildV1StepResult]
     script: str
     secretEnv: _list[str]
     status: typing_extensions.Literal[
@@ -560,6 +580,12 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1BuildStep(
     timing: ContaineranalysisGoogleDevtoolsCloudbuildV1TimeSpan
     volumes: _list[ContaineranalysisGoogleDevtoolsCloudbuildV1Volume]
     waitFor: _list[str]
+
+@typing.type_check_only
+class ContaineranalysisGoogleDevtoolsCloudbuildV1BuildStepResults(
+    typing_extensions.TypedDict, total=False
+):
+    results: dict[str, typing.Any]
 
 @typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1BuildWarning(
@@ -595,7 +621,17 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1Dependency(
     typing_extensions.TypedDict, total=False
 ):
     empty: bool
+    genericArtifact: (
+        ContaineranalysisGoogleDevtoolsCloudbuildV1DependencyGenericArtifactDependency
+    )
     gitSource: ContaineranalysisGoogleDevtoolsCloudbuildV1DependencyGitSourceDependency
+
+@typing.type_check_only
+class ContaineranalysisGoogleDevtoolsCloudbuildV1DependencyGenericArtifactDependency(
+    typing_extensions.TypedDict, total=False
+):
+    destPath: str
+    resource: str
 
 @typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1DependencyGitSourceDependency(
@@ -685,6 +721,10 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1Results(
     artifactTiming: ContaineranalysisGoogleDevtoolsCloudbuildV1TimeSpan
     buildStepImages: _list[str]
     buildStepOutputs: _list[str]
+    buildStepResults: dict[str, typing.Any]
+    genericArtifacts: _list[
+        ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedGenericArtifact
+    ]
     goModules: _list[ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedGoModule]
     images: _list[ContaineranalysisGoogleDevtoolsCloudbuildV1BuiltImage]
     mavenArtifacts: _list[
@@ -748,6 +788,14 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1SourceProvenance(
     )
 
 @typing.type_check_only
+class ContaineranalysisGoogleDevtoolsCloudbuildV1StepResult(
+    typing_extensions.TypedDict, total=False
+):
+    attestationContent: str
+    attestationType: str
+    name: str
+
+@typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1StorageSource(
     typing_extensions.TypedDict, total=False
 ):
@@ -772,6 +820,16 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1TimeSpan(
 ):
     endTime: str
     startTime: str
+
+@typing.type_check_only
+class ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedGenericArtifact(
+    typing_extensions.TypedDict, total=False
+):
+    artifactFingerprint: ContaineranalysisGoogleDevtoolsCloudbuildV1FileHashes
+    artifactRegistryPackage: str
+    fileHashes: dict[str, typing.Any]
+    pushTiming: ContaineranalysisGoogleDevtoolsCloudbuildV1TimeSpan
+    uri: str
 
 @typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedGoModule(
@@ -882,6 +940,7 @@ class DiscoveryNote(typing_extensions.TypedDict, total=False):
         "VULNERABILITY_ASSESSMENT",
         "SBOM_REFERENCE",
         "SECRET",
+        "AI_SKILL_ANALYSIS",
     ]
 
 @typing.type_check_only
@@ -959,6 +1018,18 @@ class File(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class FileHashes(typing_extensions.TypedDict, total=False):
     fileHash: _list[Hash]
+
+@typing.type_check_only
+class Finding(typing_extensions.TypedDict, total=False):
+    category: str
+    location: FindingLocation
+    scanner: str
+    severity: str
+
+@typing.type_check_only
+class FindingLocation(typing_extensions.TypedDict, total=False):
+    filePath: str
+    lineNumber: str
 
 @typing.type_check_only
 class Fingerprint(typing_extensions.TypedDict, total=False):
@@ -1187,6 +1258,7 @@ class NonCompliantFile(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Note(typing_extensions.TypedDict, total=False):
+    aiSkillAnalysis: AISkillAnalysisNote
     attestation: AttestationNote
     build: BuildNote
     compliance: ComplianceNote
@@ -1211,6 +1283,7 @@ class Note(typing_extensions.TypedDict, total=False):
         "VULNERABILITY_ASSESSMENT",
         "SBOM_REFERENCE",
         "SECRET",
+        "AI_SKILL_ANALYSIS",
     ]
     longDescription: str
     name: str
@@ -1228,6 +1301,7 @@ class Note(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Occurrence(typing_extensions.TypedDict, total=False):
     advisoryPublishTime: str
+    aiSkillAnalysis: AISkillAnalysisOccurrence
     attestation: AttestationOccurrence
     build: BuildOccurrence
     compliance: ComplianceOccurrence
@@ -1252,6 +1326,7 @@ class Occurrence(typing_extensions.TypedDict, total=False):
         "VULNERABILITY_ASSESSMENT",
         "SBOM_REFERENCE",
         "SECRET",
+        "AI_SKILL_ANALYSIS",
     ]
     name: str
     noteName: str

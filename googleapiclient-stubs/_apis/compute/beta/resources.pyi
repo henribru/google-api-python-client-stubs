@@ -152,6 +152,22 @@ class ComputeResource(googleapiclient.discovery.Resource):
             body: CalendarModeAdviceRequest = ...,
             **kwargs: typing.Any,
         ) -> CalendarModeAdviceResponseHttpRequest: ...
+        def capacity(
+            self,
+            *,
+            project: str,
+            region: str,
+            body: CapacityAdviceRequest = ...,
+            **kwargs: typing.Any,
+        ) -> CapacityAdviceResponseHttpRequest: ...
+        def capacityHistory(
+            self,
+            *,
+            project: str,
+            region: str,
+            body: CapacityHistoryRequest = ...,
+            **kwargs: typing.Any,
+        ) -> CapacityHistoryResponseHttpRequest: ...
 
     @typing.type_check_only
     class AutoscalersResource(googleapiclient.discovery.Resource):
@@ -1169,6 +1185,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             forwardingRule: str,
+            view: typing_extensions.Literal["BASIC", "FULL"] = ...,
             **kwargs: typing.Any,
         ) -> ForwardingRuleHttpRequest: ...
         def insert(
@@ -1395,7 +1412,12 @@ class ComputeResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def get(
-            self, *, project: str, forwardingRule: str, **kwargs: typing.Any
+            self,
+            *,
+            project: str,
+            forwardingRule: str,
+            view: typing_extensions.Literal["BASIC", "FULL"] = ...,
+            **kwargs: typing.Any,
         ) -> ForwardingRuleHttpRequest: ...
         def insert(
             self,
@@ -2147,6 +2169,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             instanceGroupManager: str,
+            noGracefulShutdown: bool = ...,
             requestId: str = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -2157,6 +2180,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             zone: str,
             instanceGroupManager: str,
             body: InstanceGroupManagersDeleteInstancesRequest = ...,
+            noGracefulShutdown: bool = ...,
             requestId: str = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -2289,6 +2313,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             zone: str,
             instanceGroupManager: str,
             body: InstanceGroupManagersRecreateInstancesRequest = ...,
+            noGracefulShutdown: bool = ...,
             requestId: str = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -2369,6 +2394,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             zone: str,
             instanceGroupManager: str,
             body: InstanceGroupManagersStopInstancesRequest = ...,
+            noGracefulShutdown: bool = ...,
             requestId: str = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -3751,6 +3777,22 @@ class ComputeResource(googleapiclient.discovery.Resource):
         def get(
             self, *, project: str, licenseCode: str, **kwargs: typing.Any
         ) -> LicenseCodeHttpRequest: ...
+        def getIamPolicy(
+            self,
+            *,
+            project: str,
+            resource: str,
+            optionsRequestedPolicyVersion: int = ...,
+            **kwargs: typing.Any,
+        ) -> PolicyHttpRequest: ...
+        def setIamPolicy(
+            self,
+            *,
+            project: str,
+            resource: str,
+            body: GlobalSetPolicyRequest = ...,
+            **kwargs: typing.Any,
+        ) -> PolicyHttpRequest: ...
         def testIamPermissions(
             self,
             *,
@@ -6479,6 +6521,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             instanceGroupManager: str,
+            noGracefulShutdown: bool = ...,
             requestId: str = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -6489,6 +6532,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             region: str,
             instanceGroupManager: str,
             body: RegionInstanceGroupManagersDeleteInstancesRequest = ...,
+            noGracefulShutdown: bool = ...,
             requestId: str = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -6616,6 +6660,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             region: str,
             instanceGroupManager: str,
             body: RegionInstanceGroupManagersRecreateRequest = ...,
+            noGracefulShutdown: bool = ...,
             requestId: str = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -6696,6 +6741,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             region: str,
             instanceGroupManager: str,
             body: RegionInstanceGroupManagersStopInstancesRequest = ...,
+            noGracefulShutdown: bool = ...,
             requestId: str = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -11412,6 +11458,22 @@ class CalendarModeAdviceResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> CalendarModeAdviceResponse: ...
+
+@typing.type_check_only
+class CapacityAdviceResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> CapacityAdviceResponse: ...
+
+@typing.type_check_only
+class CapacityHistoryResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> CapacityHistoryResponse: ...
 
 @typing.type_check_only
 class CommitmentHttpRequest(googleapiclient.http.HttpRequest):

@@ -253,6 +253,7 @@ class GoogleCloudAiplatformV1beta1FunctionCallingConfig(
 class GoogleCloudAiplatformV1beta1FunctionDeclaration(
     typing_extensions.TypedDict, total=False
 ):
+    behavior: typing_extensions.Literal["UNSPECIFIED", "BLOCKING", "NON_BLOCKING"]
     description: str
     name: str
     parameters: GoogleCloudAiplatformV1beta1Schema

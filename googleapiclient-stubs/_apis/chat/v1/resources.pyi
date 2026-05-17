@@ -131,6 +131,11 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: Message = ...,
+                createMessageNotificationOptions_notificationType: typing_extensions.Literal[
+                    "NOTIFICATION_TYPE_NONE",
+                    "NOTIFICATION_TYPE_FORCE_NOTIFY",
+                    "NOTIFICATION_TYPE_SILENT",
+                ] = ...,
                 messageId: str = ...,
                 messageReplyOption: typing_extensions.Literal[
                     "MESSAGE_REPLY_OPTION_UNSPECIFIED",

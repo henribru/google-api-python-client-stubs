@@ -9,6 +9,7 @@ class AdIdentifiers(typing_extensions.TypedDict, total=False):
     gbraid: str
     gclid: str
     landingPageDeviceInfo: DeviceInfo
+    mobileDeviceId: str
     sessionAttributes: str
     wbraid: str
 
@@ -43,6 +44,7 @@ class Baseline(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CartData(typing_extensions.TypedDict, total=False):
+    couponCodes: _list[str]
     items: _list[Item]
     merchantFeedLabel: str
     merchantFeedLanguageCode: str
@@ -85,7 +87,17 @@ class Destination(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DeviceInfo(typing_extensions.TypedDict, total=False):
+    brand: str
+    browser: str
+    browserVersion: str
+    category: str
     ipAddress: str
+    languageCode: str
+    model: str
+    operatingSystem: str
+    operatingSystemVersion: str
+    screenHeight: int
+    screenWidth: int
     userAgent: str
 
 @typing.type_check_only
@@ -139,6 +151,7 @@ class ErrorInfo(typing_extensions.TypedDict, total=False):
 class Event(typing_extensions.TypedDict, total=False):
     adIdentifiers: AdIdentifiers
     additionalEventParameters: _list[EventParameter]
+    appInstanceId: str
     cartData: CartData
     clientId: str
     consent: Consent
@@ -147,17 +160,34 @@ class Event(typing_extensions.TypedDict, total=False):
     customVariables: _list[CustomVariable]
     destinationReferences: _list[str]
     eventDeviceInfo: DeviceInfo
+    eventLocation: EventLocation
     eventName: str
     eventSource: typing_extensions.Literal[
-        "EVENT_SOURCE_UNSPECIFIED", "WEB", "APP", "IN_STORE", "PHONE", "OTHER"
+        "EVENT_SOURCE_UNSPECIFIED",
+        "WEB",
+        "APP",
+        "IN_STORE",
+        "PHONE",
+        "MESSAGE",
+        "OTHER",
     ]
     eventTimestamp: str
     experimentalFields: _list[ExperimentalField]
     lastUpdatedTimestamp: str
+    thirdPartyUserData: UserData
     transactionId: str
     userData: UserData
     userId: str
     userProperties: UserProperties
+
+@typing.type_check_only
+class EventLocation(typing_extensions.TypedDict, total=False):
+    city: str
+    continentCode: str
+    regionCode: str
+    storeId: str
+    subcontinentCode: str
+    subdivisionCode: str
 
 @typing.type_check_only
 class EventParameter(typing_extensions.TypedDict, total=False):
@@ -275,10 +305,21 @@ class IngestedUserListInfo(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Item(typing_extensions.TypedDict, total=False):
     additionalItemParameters: _list[ItemParameter]
+    conversionValue: float
+    customVariables: _list[ItemCustomVariable]
     itemId: str
+    merchantFeedLabel: str
+    merchantFeedLanguageCode: str
+    merchantId: str
     merchantProductId: str
     quantity: str
     unitPrice: float
+
+@typing.type_check_only
+class ItemCustomVariable(typing_extensions.TypedDict, total=False):
+    destinationReferences: _list[str]
+    value: str
+    variable: str
 
 @typing.type_check_only
 class ItemParameter(typing_extensions.TypedDict, total=False):
@@ -495,7 +536,9 @@ class SearchPartnerLinksResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SizeInfo(typing_extensions.TypedDict, total=False):
     displayNetworkMembersCount: str
+    gmailMembersCount: str
     searchNetworkMembersCount: str
+    youtubeMembersCount: str
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):

@@ -683,6 +683,11 @@ class FetchMsComplianceMetadataResponse(typing_extensions.TypedDict, total=False
     isAssuredWorkload: bool
 
 @typing.type_check_only
+class FetchResourceBackupConfigsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    resourceBackupConfigs: _list[ResourceBackupConfig]
+
+@typing.type_check_only
 class FetchUsableBackupVaultsResponse(typing_extensions.TypedDict, total=False):
     backupVaults: _list[BackupVault]
     nextPageToken: str
@@ -977,6 +982,17 @@ class Operation(typing_extensions.TypedDict, total=False):
     metadata: dict[str, typing.Any]
     name: str
     response: dict[str, typing.Any]
+
+@typing.type_check_only
+class OperationMetadata(typing_extensions.TypedDict, total=False):
+    additionalInfo: dict[str, typing.Any]
+    apiVersion: str
+    createTime: str
+    endTime: str
+    requestedCancellation: bool
+    statusMessage: str
+    target: str
+    verb: str
 
 @typing.type_check_only
 class PitrSettings(typing_extensions.TypedDict, total=False):

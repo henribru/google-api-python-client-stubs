@@ -886,6 +886,9 @@ class ReadOnly(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ReadWrite(typing_extensions.TypedDict, total=False):
+    concurrencyMode: typing_extensions.Literal[
+        "CONCURRENCY_MODE_UNSPECIFIED", "OPTIMISTIC", "PESSIMISTIC"
+    ]
     retryTransaction: str
 
 @typing.type_check_only

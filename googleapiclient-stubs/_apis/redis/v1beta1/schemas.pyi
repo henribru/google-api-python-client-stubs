@@ -545,7 +545,10 @@ class DatabaseResourceMetadata(typing_extensions.TypedDict, total=False):
     maintenanceInfo: ResourceMaintenanceInfo
     modes: _list[
         typing_extensions.Literal[
-            "MODE_UNSPECIFIED", "MODE_NATIVE", "MODE_MONGODB_COMPATIBLE"
+            "MODE_UNSPECIFIED",
+            "MODE_NATIVE",
+            "MODE_MONGODB_COMPATIBLE",
+            "MODE_DATASTORE",
         ]
     ]
     primaryResourceId: DatabaseResourceId

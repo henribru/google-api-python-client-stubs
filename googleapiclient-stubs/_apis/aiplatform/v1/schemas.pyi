@@ -16,6 +16,7 @@ class CloudAiLargeModelsVisionGenerateVideoExperiments(
     numDiffusionSteps: int
     promptInputs: CloudAiLargeModelsVisionPromptInputs
     requestOriginTag: str
+    truncateInputVideo: bool
     videoTransformMaskGcsUri: str
     videoTransformStrength: float
 
@@ -352,6 +353,13 @@ class GoogleCloudAiplatformV1AssignNotebookRuntimeRequest(
     notebookRuntime: GoogleCloudAiplatformV1NotebookRuntime
     notebookRuntimeId: str
     notebookRuntimeTemplate: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1AsyncQueryReasoningEngineRequest(
+    typing_extensions.TypedDict, total=False
+):
+    inputGcsUri: str
+    outputGcsUri: str
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1AsyncRetrieveContextsRequest(
@@ -823,6 +831,11 @@ class GoogleCloudAiplatformV1CachedContentUsageMetadata(
     videoDurationSeconds: int
 
 @typing.type_check_only
+class GoogleCloudAiplatformV1CancelAsyncQueryReasoningEngineResponse(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class GoogleCloudAiplatformV1CancelBatchPredictionJobRequest(
     typing_extensions.TypedDict, total=False
 ): ...
@@ -1120,6 +1133,7 @@ class GoogleCloudAiplatformV1CopyModelOperationMetadata(
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1CopyModelRequest(typing_extensions.TypedDict, total=False):
+    customServiceAccount: str
     encryptionSpec: GoogleCloudAiplatformV1EncryptionSpec
     modelId: str
     parentModel: str
@@ -8187,7 +8201,6 @@ class GoogleCloudAiplatformV1SandboxEnvironmentConnectionInfo(
     loadBalancerHostname: str
     loadBalancerIp: str
     routingToken: str
-    sandboxHostname: str
     sandboxInternalIp: str
 
 @typing.type_check_only
@@ -8247,7 +8260,6 @@ class GoogleCloudAiplatformV1SandboxEnvironmentTemplate(
         "UNSPECIFIED", "PROVISIONING", "ACTIVE", "DEPROVISIONING", "DELETED", "FAILED"
     ]
     updateTime: str
-    warmPoolConfig: GoogleCloudAiplatformV1SandboxEnvironmentTemplateWarmPoolConfig
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1SandboxEnvironmentTemplateCustomContainerEnvironment(
@@ -8293,12 +8305,6 @@ class GoogleCloudAiplatformV1SandboxEnvironmentTemplateResourceRequirements(
 ):
     limits: dict[str, typing.Any]
     requests: dict[str, typing.Any]
-
-@typing.type_check_only
-class GoogleCloudAiplatformV1SandboxEnvironmentTemplateWarmPoolConfig(
-    typing_extensions.TypedDict, total=False
-):
-    targetInstanceCount: int
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1SavedQuery(typing_extensions.TypedDict, total=False):

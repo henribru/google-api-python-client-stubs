@@ -198,6 +198,13 @@ class ListWorkstationsResponse(typing_extensions.TypedDict, total=False):
     workstations: _list[Workstation]
 
 @typing.type_check_only
+class OAuthToken(typing_extensions.TypedDict, total=False):
+    accessToken: str
+    email: str
+    expireTime: str
+    scopes: str
+
+@typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
@@ -239,6 +246,10 @@ class PrivateClusterConfig(typing_extensions.TypedDict, total=False):
     clusterHostname: str
     enablePrivateEndpoint: bool
     serviceAttachmentUri: str
+
+@typing.type_check_only
+class PushCredentialsRequest(typing_extensions.TypedDict, total=False):
+    applicationDefaultCredentials: OAuthToken
 
 @typing.type_check_only
 class ReadinessCheck(typing_extensions.TypedDict, total=False):
@@ -314,8 +325,6 @@ class Workstation(typing_extensions.TypedDict, total=False):
         "STATE_RUNNING",
         "STATE_STOPPING",
         "STATE_STOPPED",
-        "STATE_SUSPENDING",
-        "STATE_SUSPENDED",
     ]
     uid: str
     updateTime: str
@@ -363,6 +372,7 @@ class WorkstationConfig(typing_extensions.TypedDict, total=False):
     disableTcpConnections: bool
     displayName: str
     enableAuditAgent: bool
+    enablePushingCredentials: bool
     encryptionKey: CustomerEncryptionKey
     ephemeralDirectories: _list[EphemeralDirectory]
     etag: str

@@ -46,6 +46,38 @@ class DriveResource(googleapiclient.discovery.Resource):
 
     @typing.type_check_only
     class ApprovalsResource(googleapiclient.discovery.Resource):
+        def approve(
+            self,
+            *,
+            fileId: str,
+            approvalId: str,
+            body: ApproveApprovalRequest = ...,
+            **kwargs: typing.Any,
+        ) -> ApprovalHttpRequest: ...
+        def cancel(
+            self,
+            *,
+            fileId: str,
+            approvalId: str,
+            body: CancelApprovalRequest = ...,
+            **kwargs: typing.Any,
+        ) -> ApprovalHttpRequest: ...
+        def comment(
+            self,
+            *,
+            fileId: str,
+            approvalId: str,
+            body: CommentApprovalRequest = ...,
+            **kwargs: typing.Any,
+        ) -> ApprovalHttpRequest: ...
+        def decline(
+            self,
+            *,
+            fileId: str,
+            approvalId: str,
+            body: DeclineApprovalRequest = ...,
+            **kwargs: typing.Any,
+        ) -> ApprovalHttpRequest: ...
         def get(
             self, *, fileId: str, approvalId: str, **kwargs: typing.Any
         ) -> ApprovalHttpRequest: ...
@@ -62,6 +94,17 @@ class DriveResource(googleapiclient.discovery.Resource):
             previous_request: ApprovalListHttpRequest,
             previous_response: ApprovalList,
         ) -> ApprovalListHttpRequest | None: ...
+        def reassign(
+            self,
+            *,
+            fileId: str,
+            approvalId: str,
+            body: ReassignApprovalRequest = ...,
+            **kwargs: typing.Any,
+        ) -> ApprovalHttpRequest: ...
+        def start(
+            self, *, fileId: str, body: StartApprovalRequest = ..., **kwargs: typing.Any
+        ) -> ApprovalHttpRequest: ...
 
     @typing.type_check_only
     class AppsResource(googleapiclient.discovery.Resource):

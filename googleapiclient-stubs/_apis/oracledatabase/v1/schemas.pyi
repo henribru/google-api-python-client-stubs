@@ -936,6 +936,7 @@ class ListAutonomousDatabaseCharacterSetsResponse(
 class ListAutonomousDatabasesResponse(typing_extensions.TypedDict, total=False):
     autonomousDatabases: _list[AutonomousDatabase]
     nextPageToken: str
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListAutonomousDbVersionsResponse(typing_extensions.TypedDict, total=False):
@@ -946,11 +947,13 @@ class ListAutonomousDbVersionsResponse(typing_extensions.TypedDict, total=False)
 class ListCloudExadataInfrastructuresResponse(typing_extensions.TypedDict, total=False):
     cloudExadataInfrastructures: _list[CloudExadataInfrastructure]
     nextPageToken: str
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListCloudVmClustersResponse(typing_extensions.TypedDict, total=False):
     cloudVmClusters: _list[CloudVmCluster]
     nextPageToken: str
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListDatabaseCharacterSetsResponse(typing_extensions.TypedDict, total=False):
@@ -986,6 +989,7 @@ class ListDbSystemShapesResponse(typing_extensions.TypedDict, total=False):
 class ListDbSystemsResponse(typing_extensions.TypedDict, total=False):
     dbSystems: _list[DbSystem]
     nextPageToken: str
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListDbVersionsResponse(typing_extensions.TypedDict, total=False):
@@ -1001,11 +1005,13 @@ class ListEntitlementsResponse(typing_extensions.TypedDict, total=False):
 class ListExadbVmClustersResponse(typing_extensions.TypedDict, total=False):
     exadbVmClusters: _list[ExadbVmCluster]
     nextPageToken: str
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListExascaleDbStorageVaultsResponse(typing_extensions.TypedDict, total=False):
     exascaleDbStorageVaults: _list[ExascaleDbStorageVault]
     nextPageToken: str
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListGiVersionsResponse(typing_extensions.TypedDict, total=False):

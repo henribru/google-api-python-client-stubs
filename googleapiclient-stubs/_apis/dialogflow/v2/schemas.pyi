@@ -2111,6 +2111,8 @@ class GoogleCloudDialogflowV2CesAppSpec(typing_extensions.TypedDict, total=False
     confirmationRequirement: typing_extensions.Literal[
         "CONFIRMATION_REQUIREMENT_UNSPECIFIED", "REQUIRED", "NOT_REQUIRED"
     ]
+    proactiveEnabled: bool
+    reactiveEnabled: bool
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2CesToolSpec(typing_extensions.TypedDict, total=False):
@@ -3584,8 +3586,21 @@ class GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswer(
     typing_extensions.TypedDict, total=False
 ):
     answerText: str
+    eventSource: GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswerEventSource
     faqSource: GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswerFaqSource
     generativeSource: (
+        GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswerGenerativeSource
+    )
+    playbookSource: (
+        GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswerGenerativeSource
+    )
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswerEventSource(
+    typing_extensions.TypedDict, total=False
+):
+    event: str
+    snippets: (
         GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswerGenerativeSource
     )
 
@@ -4022,7 +4037,7 @@ class GoogleCloudDialogflowV2SearchKnowledgeAnswer(
     answerRecord: str
     answerSources: _list[GoogleCloudDialogflowV2SearchKnowledgeAnswerAnswerSource]
     answerType: typing_extensions.Literal[
-        "ANSWER_TYPE_UNSPECIFIED", "FAQ", "GENERATIVE", "INTENT"
+        "ANSWER_TYPE_UNSPECIFIED", "FAQ", "GENERATIVE", "INTENT", "PLAYBOOK", "EVENT"
     ]
 
 @typing.type_check_only
@@ -5729,8 +5744,23 @@ class GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswer(
     typing_extensions.TypedDict, total=False
 ):
     answerText: str
+    eventSource: (
+        GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswerEventSource
+    )
     faqSource: GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswerFaqSource
     generativeSource: (
+        GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswerGenerativeSource
+    )
+    playbookSource: (
+        GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswerGenerativeSource
+    )
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswerEventSource(
+    typing_extensions.TypedDict, total=False
+):
+    event: str
+    snippets: (
         GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswerGenerativeSource
     )
 

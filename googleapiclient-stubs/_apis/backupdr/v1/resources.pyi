@@ -14,6 +14,58 @@ _list = list
 @typing.type_check_only
 class BackupdrResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
+    class FoldersResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class LocationsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class ResourceBackupConfigsResource(googleapiclient.discovery.Resource):
+                def fetch(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> FetchResourceBackupConfigsResponseHttpRequest: ...
+                def fetch_next(
+                    self,
+                    previous_request: FetchResourceBackupConfigsResponseHttpRequest,
+                    previous_response: FetchResourceBackupConfigsResponse,
+                ) -> FetchResourceBackupConfigsResponseHttpRequest | None: ...
+
+            def resourceBackupConfigs(self) -> ResourceBackupConfigsResource: ...
+
+        def locations(self) -> LocationsResource: ...
+
+    @typing.type_check_only
+    class OrganizationsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class LocationsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class ResourceBackupConfigsResource(googleapiclient.discovery.Resource):
+                def fetch(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> FetchResourceBackupConfigsResponseHttpRequest: ...
+                def fetch_next(
+                    self,
+                    previous_request: FetchResourceBackupConfigsResponseHttpRequest,
+                    previous_response: FetchResourceBackupConfigsResponse,
+                ) -> FetchResourceBackupConfigsResponseHttpRequest | None: ...
+
+            def resourceBackupConfigs(self) -> ResourceBackupConfigsResource: ...
+
+        def locations(self) -> LocationsResource: ...
+
+    @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
@@ -521,6 +573,21 @@ class BackupdrResource(googleapiclient.discovery.Resource):
 
             @typing.type_check_only
             class ResourceBackupConfigsResource(googleapiclient.discovery.Resource):
+                def fetch(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> FetchResourceBackupConfigsResponseHttpRequest: ...
+                def fetch_next(
+                    self,
+                    previous_request: FetchResourceBackupConfigsResponseHttpRequest,
+                    previous_response: FetchResourceBackupConfigsResponse,
+                ) -> FetchResourceBackupConfigsResponseHttpRequest | None: ...
                 def list(
                     self,
                     *,
@@ -609,6 +676,8 @@ class BackupdrResource(googleapiclient.discovery.Resource):
         ]
         | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
+    def folders(self) -> FoldersResource: ...
+    def organizations(self) -> OrganizationsResource: ...
     def projects(self) -> ProjectsResource: ...
 
 @typing.type_check_only
@@ -718,6 +787,14 @@ class FetchMsComplianceMetadataResponseHttpRequest(googleapiclient.http.HttpRequ
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> FetchMsComplianceMetadataResponse: ...
+
+@typing.type_check_only
+class FetchResourceBackupConfigsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> FetchResourceBackupConfigsResponse: ...
 
 @typing.type_check_only
 class FetchUsableBackupVaultsResponseHttpRequest(googleapiclient.http.HttpRequest):

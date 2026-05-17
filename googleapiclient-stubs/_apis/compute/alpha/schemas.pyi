@@ -3535,6 +3535,21 @@ class ImageParams(typing_extensions.TypedDict, total=False):
     resourceManagerTags: dict[str, typing.Any]
 
 @typing.type_check_only
+class ImageView(typing_extensions.TypedDict, total=False):
+    image: Image
+
+@typing.type_check_only
+class ImageViewsListResponse(typing_extensions.TypedDict, total=False):
+    etag: str
+    id: str
+    items: _list[ImageView]
+    kind: str
+    nextPageToken: str
+    selfLink: str
+    unreachables: _list[str]
+    warning: dict[str, typing.Any]
+
+@typing.type_check_only
 class InitialStateConfig(typing_extensions.TypedDict, total=False):
     dbs: _list[FileContentBuffer]
     dbxs: _list[FileContentBuffer]
@@ -3656,6 +3671,7 @@ class InstanceFlexibilityPolicyInstanceSelection(
 ):
     disks: _list[AttachedDisk]
     machineTypes: _list[str]
+    minCpuPlatform: str
     rank: str
 
 @typing.type_check_only
@@ -4288,6 +4304,7 @@ class InstanceManagedByIgmErrorInstanceActionDetails(
         "RECREATING",
         "REFRESHING",
         "RESTARTING",
+        "RESTARTING_IN_PLACE",
         "RESUMING",
         "STARTING",
         "STOPPING",
@@ -5839,6 +5856,7 @@ class ManagedInstance(typing_extensions.TypedDict, total=False):
         "RECREATING",
         "REFRESHING",
         "RESTARTING",
+        "RESTARTING_IN_PLACE",
         "RESUMING",
         "STARTING",
         "STOPPING",
@@ -5871,6 +5889,7 @@ class ManagedInstance(typing_extensions.TypedDict, total=False):
     preservedStateFromPolicy: PreservedState
     propertiesFromFlexibilityPolicy: ManagedInstancePropertiesFromFlexibilityPolicy
     scheduling: ManagedInstanceScheduling
+    shutdownDetails: ManagedInstanceShutdownDetails
     sizeInUnit: float
     tag: str
     targetStatus: typing_extensions.Literal[
@@ -5935,7 +5954,13 @@ class ManagedInstancePropertiesFromFlexibilityPolicy(
 
 @typing.type_check_only
 class ManagedInstanceScheduling(typing_extensions.TypedDict, total=False):
+    gracefulShutdownTimestamp: str
     terminationTimestamp: str
+
+@typing.type_check_only
+class ManagedInstanceShutdownDetails(typing_extensions.TypedDict, total=False):
+    maxDuration: Duration
+    requestTimestamp: str
 
 @typing.type_check_only
 class ManagedInstanceVersion(typing_extensions.TypedDict, total=False):
@@ -6221,6 +6246,7 @@ class NetworkEndpointGroup(typing_extensions.TypedDict, total=False):
     network: str
     networkEndpointType: typing_extensions.Literal[
         "GCE_VM_IP",
+        "GCE_VM_IP_DEDICATED_BACKEND",
         "GCE_VM_IP_PORT",
         "GCE_VM_IP_PORTMAP",
         "INTERNET_FQDN_PORT",
@@ -6371,6 +6397,7 @@ class NetworkInterface(typing_extensions.TypedDict, total=False):
     accessConfigs: _list[AccessConfig]
     aliasIpRanges: _list[AliasIpRange]
     aliasIpv6Ranges: _list[AliasIpRange]
+    dns64Eligible: bool
     enableVpcScopedDns: bool
     fingerprint: str
     igmpQuery: typing_extensions.Literal["IGMP_QUERY_DISABLED", "IGMP_QUERY_V2"]
@@ -6381,6 +6408,7 @@ class NetworkInterface(typing_extensions.TypedDict, total=False):
     kind: str
     macAddress: str
     name: str
+    nat64Eligible: bool
     network: str
     networkAttachment: str
     networkIP: str
@@ -6431,7 +6459,9 @@ class NetworkPeering(typing_extensions.TypedDict, total=False):
     network: str
     peerMtu: int
     stackType: typing_extensions.Literal["IPV4_IPV6", "IPV4_ONLY"]
-    state: typing_extensions.Literal["ACTIVE", "INACTIVE"]
+    state: typing_extensions.Literal[
+        "ACTIVE", "INACTIVE", "NCC_MIGRATION_COMPLETE", "NCC_MIGRATION_IN_PROGRESS"
+    ]
     stateDetails: str
     updateStrategy: typing_extensions.Literal["CONSENSUS", "INDEPENDENT", "UNSPECIFIED"]
 
@@ -7426,6 +7456,10 @@ class Project(typing_extensions.TypedDict, total=False):
     xpnProjectStatus: typing_extensions.Literal[
         "HOST", "UNSPECIFIED_XPN_PROJECT_STATUS"
     ]
+
+@typing.type_check_only
+class ProjectView(typing_extensions.TypedDict, total=False):
+    project: Project
 
 @typing.type_check_only
 class ProjectsDisableXpnResourceRequest(typing_extensions.TypedDict, total=False):
@@ -10630,6 +10664,7 @@ class StoragePool(typing_extensions.TypedDict, total=False):
     resourceStatus: StoragePoolResourceStatus
     selfLink: str
     selfLinkWithId: str
+    shareSettings: StoragePoolShareSettings
     sizeGb: str
     state: typing_extensions.Literal["CREATING", "DELETING", "FAILED", "READY"]
     status: StoragePoolResourceStatus
@@ -10718,6 +10753,14 @@ class StoragePoolResourceStatus(typing_extensions.TypedDict, total=False):
     usedBytes: str
     usedReducedBytes: str
     usedThroughput: str
+
+@typing.type_check_only
+class StoragePoolShareSettings(typing_extensions.TypedDict, total=False):
+    projectMap: dict[str, typing.Any]
+
+@typing.type_check_only
+class StoragePoolShareSettingsProjectConfig(typing_extensions.TypedDict, total=False):
+    projectId: str
 
 @typing.type_check_only
 class StoragePoolType(typing_extensions.TypedDict, total=False):
@@ -10832,7 +10875,12 @@ class Subnetwork(typing_extensions.TypedDict, total=False):
     ]
     region: str
     reservedInternalRange: str
-    resolveSubnetMask: typing_extensions.Literal["ARP_ALL_RANGES", "ARP_PRIMARY_RANGE"]
+    resolveSubnetMask: typing_extensions.Literal[
+        "ARP_ALL_RANGES",
+        "ARP_BROADCAST_PRIMARY_RANGE",
+        "ARP_BROADCAST_PRIMARY_RANGE_WITH_LEARNING",
+        "ARP_PRIMARY_RANGE",
+    ]
     role: typing_extensions.Literal["ACTIVE", "BACKUP"]
     secondaryIpRanges: _list[SubnetworkSecondaryRange]
     selfLink: str

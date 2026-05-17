@@ -110,6 +110,14 @@ class GoogleIamV1TestIamPermissionsResponse(typing_extensions.TypedDict, total=F
     permissions: _list[str]
 
 @typing.type_check_only
+class GoogleLongrunningOperation(typing_extensions.TypedDict, total=False):
+    done: bool
+    error: Status
+    metadata: dict[str, typing.Any]
+    name: str
+    response: dict[str, typing.Any]
+
+@typing.type_check_only
 class ManagedZone(typing_extensions.TypedDict, total=False):
     cloudLoggingConfig: ManagedZoneCloudLoggingConfig
     creationTime: str
@@ -467,3 +475,9 @@ class ResponsePolicyRulesPatchResponse(typing_extensions.TypedDict, total=False)
 @typing.type_check_only
 class ResponsePolicyRulesUpdateResponse(typing_extensions.TypedDict, total=False):
     responsePolicyRule: ResponsePolicyRule
+
+@typing.type_check_only
+class Status(typing_extensions.TypedDict, total=False):
+    code: int
+    details: _list[dict[str, typing.Any]]
+    message: str

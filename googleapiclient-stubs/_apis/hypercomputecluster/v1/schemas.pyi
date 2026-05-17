@@ -152,7 +152,7 @@ class FilestoreReference(typing_extensions.TypedDict, total=False):
 class GcsAutoclassConfig(typing_extensions.TypedDict, total=False):
     enabled: bool
     terminalStorageClass: typing_extensions.Literal[
-        "TERMINAL_STORAGE_CLASS_UNSPECIFIED"
+        "TERMINAL_STORAGE_CLASS_UNSPECIFIED", "NEARLINE", "ARCHIVE"
     ]
 
 @typing.type_check_only
@@ -232,6 +232,7 @@ class NewLustreConfig(typing_extensions.TypedDict, total=False):
     description: str
     filesystem: str
     lustre: str
+    perUnitStorageThroughput: str
 
 @typing.type_check_only
 class NewNetworkConfig(typing_extensions.TypedDict, total=False):

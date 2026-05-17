@@ -42,11 +42,27 @@ class Agent(typing_extensions.TypedDict, total=False):
     toolsets: _list[AgentAgentToolset]
     transferRules: _list[TransferRule]
     updateTime: str
+    validationErrors: _list[str]
 
 @typing.type_check_only
 class AgentAgentToolset(typing_extensions.TypedDict, total=False):
     toolIds: _list[str]
     toolset: str
+
+@typing.type_check_only
+class AgentCard(typing_extensions.TypedDict, total=False):
+    description: str
+    name: str
+    skills: _list[AgentSkill]
+    supportedInterfaces: _list[AgentInterface]
+    version: str
+
+@typing.type_check_only
+class AgentInterface(typing_extensions.TypedDict, total=False):
+    protocolBinding: str
+    protocolVersion: str
+    tenant: str
+    url: str
 
 @typing.type_check_only
 class AgentLlmAgent(typing_extensions.TypedDict, total=False): ...
@@ -59,6 +75,16 @@ class AgentRemoteDialogflowAgent(typing_extensions.TypedDict, total=False):
     inputVariableMapping: dict[str, typing.Any]
     outputVariableMapping: dict[str, typing.Any]
     respectResponseInterruptionSettings: bool
+
+@typing.type_check_only
+class AgentSkill(typing_extensions.TypedDict, total=False):
+    description: str
+    examples: _list[str]
+    id: str
+    inputModes: _list[str]
+    name: str
+    outputModes: _list[str]
+    tags: _list[str]
 
 @typing.type_check_only
 class AgentTool(typing_extensions.TypedDict, total=False):
@@ -129,7 +155,9 @@ class App(typing_extensions.TypedDict, total=False):
         "TOOL_EXECUTION_MODE_UNSPECIFIED", "PARALLEL", "SEQUENTIAL"
     ]
     updateTime: str
+    validationErrors: _list[str]
     variableDeclarations: _list[AppVariableDeclaration]
+    vpcScSettings: VpcScSettings
 
 @typing.type_check_only
 class AppSnapshot(typing_extensions.TypedDict, total=False):
@@ -1075,6 +1103,12 @@ class RedactionConfig(typing_extensions.TypedDict, total=False):
     inspectTemplate: str
 
 @typing.type_check_only
+class RemoteAgentTool(typing_extensions.TypedDict, total=False):
+    agentCard: AgentCard
+    description: str
+    name: str
+
+@typing.type_check_only
 class RestoreAppVersionRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -1257,7 +1291,9 @@ class Tool(typing_extensions.TypedDict, total=False):
     name: str
     openApiTool: OpenApiTool
     pythonFunction: PythonFunction
+    remoteAgentTool: RemoteAgentTool
     systemTool: SystemTool
+    timeout: str
     toolFakeConfig: ToolFakeConfig
     updateTime: str
     widgetTool: WidgetTool
@@ -1352,6 +1388,10 @@ class TriggerActionResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class TriggerActionTransferAgent(typing_extensions.TypedDict, total=False):
     agent: str
+
+@typing.type_check_only
+class VpcScSettings(typing_extensions.TypedDict, total=False):
+    allowedOrigins: _list[str]
 
 @typing.type_check_only
 class WebSearchQuery(typing_extensions.TypedDict, total=False):
