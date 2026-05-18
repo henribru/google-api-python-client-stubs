@@ -62,15 +62,19 @@ class ErrorBudget(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class EvaluationRule(typing_extensions.TypedDict, total=False):
+    allocationId: str
     condition: str
     id: str
     target: str
+    variantId: str
 
 @typing.type_check_only
 class EvaluationSpec(typing_extensions.TypedDict, total=False):
     allocations: _list[Allocation]
     attributes: _list[str]
+    defaultAllocation: str
     defaultTarget: str
+    defaultVariant: str
     rules: _list[EvaluationRule]
     variants: _list[Variant]
 
@@ -519,6 +523,7 @@ class UnitCondition(typing_extensions.TypedDict, total=False):
         "TYPE_UPDATING",
         "TYPE_PROVISIONED",
         "TYPE_OPERATION_ERROR",
+        "TYPE_FLAGS_CONFIG_INITIALIZED",
     ]
 
 @typing.type_check_only
@@ -599,6 +604,7 @@ class UnitOperationCondition(typing_extensions.TypedDict, total=False):
         "TYPE_CANCELLED",
         "TYPE_APP_CREATED",
         "TYPE_APP_COMPONENTS_REGISTERED",
+        "TYPE_WORKLOAD_SUCCEEDED",
     ]
 
 @typing.type_check_only

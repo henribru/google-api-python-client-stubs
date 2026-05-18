@@ -49,6 +49,23 @@ class GoogleCloudAssuredworkloadsV1beta1ApplyWorkloadUpdateResponse(
     appliedUpdate: GoogleCloudAssuredworkloadsV1beta1WorkloadUpdate
 
 @typing.type_check_only
+class GoogleCloudAssuredworkloadsV1beta1ArchiveResourceEventsRequest(
+    typing_extensions.TypedDict, total=False
+):
+    archiveTime: str
+    batchSize: int
+    eventCutoffTime: str
+    maxEventsMove: int
+    organizationId: str
+    region: str
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1beta1ArchiveResourceEventsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    movedEventsCount: int
+
+@typing.type_check_only
 class GoogleCloudAssuredworkloadsV1beta1AssetMoveAnalysis(
     typing_extensions.TypedDict, total=False
 ):
@@ -212,6 +229,23 @@ class GoogleCloudAssuredworkloadsV1beta1RestrictAllowedResourcesRequest(
 class GoogleCloudAssuredworkloadsV1beta1RestrictAllowedResourcesResponse(
     typing_extensions.TypedDict, total=False
 ): ...
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1beta1RevertArchivedResourceEventsRequest(
+    typing_extensions.TypedDict, total=False
+):
+    archiveEndTime: str
+    archiveStartTime: str
+    batchSize: int
+    maxEventsMove: int
+    organizationId: str
+    region: str
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1beta1RevertArchivedResourceEventsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    movedEventsCount: int
 
 @typing.type_check_only
 class GoogleCloudAssuredworkloadsV1beta1UpdateDetails(

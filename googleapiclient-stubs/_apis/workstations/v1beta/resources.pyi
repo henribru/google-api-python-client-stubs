@@ -125,6 +125,13 @@ class CloudWorkstationsResource(googleapiclient.discovery.Resource):
                             validateOnly: bool = ...,
                             **kwargs: typing.Any,
                         ) -> OperationHttpRequest: ...
+                        def pushCredentials(
+                            self,
+                            *,
+                            workstation: str,
+                            body: PushCredentialsRequest = ...,
+                            **kwargs: typing.Any,
+                        ) -> OperationHttpRequest: ...
                         def setIamPolicy(
                             self,
                             *,

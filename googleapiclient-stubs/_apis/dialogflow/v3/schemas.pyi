@@ -4288,8 +4288,21 @@ class GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswer(
     typing_extensions.TypedDict, total=False
 ):
     answerText: str
+    eventSource: GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswerEventSource
     faqSource: GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswerFaqSource
     generativeSource: (
+        GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswerGenerativeSource
+    )
+    playbookSource: (
+        GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswerGenerativeSource
+    )
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswerEventSource(
+    typing_extensions.TypedDict, total=False
+):
+    event: str
+    snippets: (
         GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswerGenerativeSource
     )
 
@@ -5463,8 +5476,23 @@ class GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswer(
     typing_extensions.TypedDict, total=False
 ):
     answerText: str
+    eventSource: (
+        GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswerEventSource
+    )
     faqSource: GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswerFaqSource
     generativeSource: (
+        GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswerGenerativeSource
+    )
+    playbookSource: (
+        GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswerGenerativeSource
+    )
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswerEventSource(
+    typing_extensions.TypedDict, total=False
+):
+    event: str
+    snippets: (
         GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswerGenerativeSource
     )
 

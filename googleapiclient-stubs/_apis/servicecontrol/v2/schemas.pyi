@@ -24,6 +24,7 @@ class AttributeContext(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AuditLog(typing_extensions.TypedDict, total=False):
+    apiVersionIdentifier: str
     authenticationInfo: AuthenticationInfo
     authorizationInfo: _list[AuthorizationInfo]
     metadata: dict[str, typing.Any]

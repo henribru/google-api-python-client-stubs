@@ -424,6 +424,13 @@ class GKEHubResource(googleapiclient.discovery.Resource):
 
             @typing.type_check_only
             class RolloutsResource(googleapiclient.discovery.Resource):
+                def forceCompleteStage(
+                    self,
+                    *,
+                    name: str,
+                    body: ForceCompleteRolloutStageRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> RolloutHttpRequest: ...

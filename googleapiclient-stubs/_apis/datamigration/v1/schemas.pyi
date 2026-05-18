@@ -818,6 +818,7 @@ class MigrationJob(typing_extensions.TypedDict, total=False):
         "PREPARING_THE_DUMP",
         "READY_FOR_PROMOTE",
     ]
+    postgresHomogeneousConfig: PostgresHomogeneousConfig
     postgresToSqlserverConfig: PostgresToSqlServerConfig
     purpose: typing_extensions.Literal["PURPOSE_UNSPECIFIED", "MIGRATE", "FAILBACK"]
     reverseSshConnectivity: ReverseSshConnectivity
@@ -1055,6 +1056,11 @@ class PostgreSqlConnectionProfile(typing_extensions.TypedDict, total=False):
 class PostgresDestinationConfig(typing_extensions.TypedDict, total=False):
     maxConcurrentConnections: int
     transactionTimeout: str
+
+@typing.type_check_only
+class PostgresHomogeneousConfig(typing_extensions.TypedDict, total=False):
+    isNativeLogical: bool
+    maxAdditionalSubscriptions: int
 
 @typing.type_check_only
 class PostgresSourceConfig(typing_extensions.TypedDict, total=False):

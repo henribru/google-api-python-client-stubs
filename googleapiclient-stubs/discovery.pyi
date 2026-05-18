@@ -147,6 +147,7 @@ import googleapiclient._apis.cloudiot.v1
 import googleapiclient._apis.cloudkms.v1
 import googleapiclient._apis.cloudlocationfinder.v1
 import googleapiclient._apis.cloudlocationfinder.v1alpha
+import googleapiclient._apis.cloudnumberregistry.v1alpha
 import googleapiclient._apis.cloudprofiler.v2
 import googleapiclient._apis.cloudresourcemanager.v1
 import googleapiclient._apis.cloudresourcemanager.v1beta1
@@ -3419,6 +3420,26 @@ def build(
     num_retries: int = 1,
     static_discovery: bool | None = None,
 ) -> googleapiclient._apis.cloudlocationfinder.v1alpha.CloudLocationFinderResource: ...
+@overload
+def build(
+    serviceName: Literal["cloudnumberregistry"],
+    version: Literal["v1alpha"],
+    http: httplib2.Http | HttpMock | None = None,
+    discoveryServiceUrl: str | None = None,
+    developerKey: str | None = None,
+    model: Model | None = None,
+    requestBuilder: _RequestBuilder = HttpRequest,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
+    cache_discovery: bool = True,
+    cache: Cache | None = None,
+    client_options: dict[str, Any] | ClientOptions | None = None,
+    adc_cert_path: str | None = None,
+    adc_key_path: str | None = None,
+    num_retries: int = 1,
+    static_discovery: bool | None = None,
+) -> googleapiclient._apis.cloudnumberregistry.v1alpha.CloudNumberRegistryResource: ...
 @overload
 def build(
     serviceName: Literal["cloudprofiler"],

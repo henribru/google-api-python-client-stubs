@@ -211,6 +211,20 @@ class FirebaseDataConnectResource(googleapiclient.discovery.Resource):
                 def executeGraphqlRead(
                     self, *, name: str, body: GraphqlRequest = ..., **kwargs: typing.Any
                 ) -> GraphqlResponseHttpRequest: ...
+                def generateQuery(
+                    self,
+                    *,
+                    name: str,
+                    body: GenerateQueryRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> GenerateQueryResponseHttpRequest: ...
+                def generateSchema(
+                    self,
+                    *,
+                    name: str,
+                    body: GenerateSchemaRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> GenerateSchemaResponseHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> ServiceHttpRequest: ...
@@ -314,6 +328,22 @@ class ExecuteQueryResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ExecuteQueryResponse: ...
+
+@typing.type_check_only
+class GenerateQueryResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GenerateQueryResponse: ...
+
+@typing.type_check_only
+class GenerateSchemaResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GenerateSchemaResponse: ...
 
 @typing.type_check_only
 class GraphqlResponseHttpRequest(googleapiclient.http.HttpRequest):

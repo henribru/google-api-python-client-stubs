@@ -29,6 +29,18 @@ class AndroidAttributes(typing_extensions.TypedDict, total=False):
     verifyAppsEnabled: bool
 
 @typing.type_check_only
+class AntivirusInfo(typing_extensions.TypedDict, total=False):
+    displayName: str
+    productGuid: str
+    productState: typing_extensions.Literal[
+        "PRODUCT_STATE_UNSPECIFIED",
+        "PRODUCT_STATE_ON",
+        "PRODUCT_STATE_OFF",
+        "PRODUCT_STATE_SNOOZED",
+        "PRODUCT_STATE_EXPIRED",
+    ]
+
+@typing.type_check_only
 class ApproveDeviceUserRequest(typing_extensions.TypedDict, total=False):
     customer: str
 
@@ -220,6 +232,7 @@ class DeleteInboundSsoAssignmentOperationMetadata(
 @typing.type_check_only
 class Device(typing_extensions.TypedDict, total=False):
     androidSpecificAttributes: AndroidAttributes
+    antivirusInfo: _list[AntivirusInfo]
     assetTag: str
     basebandVersion: str
     bootloaderVersion: str
@@ -278,6 +291,12 @@ class Device(typing_extensions.TypedDict, total=False):
     model: str
     name: str
     networkOperator: str
+    osFirewallStatus: typing_extensions.Literal[
+        "OS_FIREWALL_STATUS_UNSPECIFIED",
+        "OS_FIREWALL_STATUS_UNKNOWN",
+        "OS_FIREWALL_STATUS_ENABLED",
+        "OS_FIREWALL_STATUS_DISABLED",
+    ]
     osVersion: str
     otherAccounts: _list[str]
     ownerType: typing_extensions.Literal[
@@ -288,6 +307,7 @@ class Device(typing_extensions.TypedDict, total=False):
     serialNumber: str
     unifiedDeviceId: str
     wifiMacAddresses: _list[str]
+    windowsSpecificDeviceAttributes: WindowsSpecificDeviceAttributes
 
 @typing.type_check_only
 class DeviceUser(typing_extensions.TypedDict, total=False):
@@ -1083,6 +1103,18 @@ class UserInvitation(typing_extensions.TypedDict, total=False):
         "STATE_UNSPECIFIED", "NOT_YET_SENT", "INVITED", "ACCEPTED", "DECLINED"
     ]
     updateTime: str
+
+@typing.type_check_only
+class WindowsSpecificDeviceAttributes(typing_extensions.TypedDict, total=False):
+    hotfixes: _list[str]
+    secureBootMode: typing_extensions.Literal[
+        "SECURE_BOOT_MODE_UNSPECIFIED",
+        "SECURE_BOOT_MODE_UNKNOWN",
+        "SECURE_BOOT_MODE_ENABLED",
+        "SECURE_BOOT_MODE_DISABLED",
+    ]
+    windowsMachineDomain: str
+    windowsUserDomain: str
 
 @typing.type_check_only
 class WipeDeviceRequest(typing_extensions.TypedDict, total=False):

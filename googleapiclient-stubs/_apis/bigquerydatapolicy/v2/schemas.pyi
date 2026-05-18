@@ -32,6 +32,11 @@ class CreateDataPolicyRequest(typing_extensions.TypedDict, total=False):
     dataPolicyId: str
 
 @typing.type_check_only
+class DataGovernanceTag(typing_extensions.TypedDict, total=False):
+    key: str
+    value: str
+
+@typing.type_check_only
 class DataMaskingPolicy(typing_extensions.TypedDict, total=False):
     predefinedExpression: typing_extensions.Literal[
         "PREDEFINED_EXPRESSION_UNSPECIFIED",
@@ -48,6 +53,7 @@ class DataMaskingPolicy(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DataPolicy(typing_extensions.TypedDict, total=False):
+    dataGovernanceTag: DataGovernanceTag
     dataMaskingPolicy: DataMaskingPolicy
     dataPolicyId: str
     dataPolicyType: typing_extensions.Literal[

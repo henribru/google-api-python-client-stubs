@@ -5,6 +5,15 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class AISkillAnalysisNote(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class AISkillAnalysisOccurrence(typing_extensions.TypedDict, total=False):
+    findings: _list[Finding]
+    maxSeverity: str
+    skillName: str
+
+@typing.type_check_only
 class AnalysisCompleted(typing_extensions.TypedDict, total=False):
     analysisType: _list[str]
 
@@ -161,6 +170,11 @@ class CVSS(typing_extensions.TypedDict, total=False):
         "ATTACK_COMPLEXITY_HIGH",
         "ATTACK_COMPLEXITY_MEDIUM",
     ]
+    attackRequirements: typing_extensions.Literal[
+        "ATTACK_REQUIREMENTS_UNSPECIFIED",
+        "ATTACK_REQUIREMENTS_NONE",
+        "ATTACK_REQUIREMENTS_PRESENT",
+    ]
     attackVector: typing_extensions.Literal[
         "ATTACK_VECTOR_UNSPECIFIED",
         "ATTACK_VECTOR_NETWORK",
@@ -210,10 +224,60 @@ class CVSS(typing_extensions.TypedDict, total=False):
     scope: typing_extensions.Literal[
         "SCOPE_UNSPECIFIED", "SCOPE_UNCHANGED", "SCOPE_CHANGED"
     ]
+    subsequentSystemAvailabilityImpact: typing_extensions.Literal[
+        "IMPACT_UNSPECIFIED",
+        "IMPACT_HIGH",
+        "IMPACT_LOW",
+        "IMPACT_NONE",
+        "IMPACT_PARTIAL",
+        "IMPACT_COMPLETE",
+    ]
+    subsequentSystemConfidentialityImpact: typing_extensions.Literal[
+        "IMPACT_UNSPECIFIED",
+        "IMPACT_HIGH",
+        "IMPACT_LOW",
+        "IMPACT_NONE",
+        "IMPACT_PARTIAL",
+        "IMPACT_COMPLETE",
+    ]
+    subsequentSystemIntegrityImpact: typing_extensions.Literal[
+        "IMPACT_UNSPECIFIED",
+        "IMPACT_HIGH",
+        "IMPACT_LOW",
+        "IMPACT_NONE",
+        "IMPACT_PARTIAL",
+        "IMPACT_COMPLETE",
+    ]
     userInteraction: typing_extensions.Literal[
         "USER_INTERACTION_UNSPECIFIED",
         "USER_INTERACTION_NONE",
         "USER_INTERACTION_REQUIRED",
+        "USER_INTERACTION_PASSIVE",
+        "USER_INTERACTION_ACTIVE",
+    ]
+    vulnerableSystemAvailabilityImpact: typing_extensions.Literal[
+        "IMPACT_UNSPECIFIED",
+        "IMPACT_HIGH",
+        "IMPACT_LOW",
+        "IMPACT_NONE",
+        "IMPACT_PARTIAL",
+        "IMPACT_COMPLETE",
+    ]
+    vulnerableSystemConfidentialityImpact: typing_extensions.Literal[
+        "IMPACT_UNSPECIFIED",
+        "IMPACT_HIGH",
+        "IMPACT_LOW",
+        "IMPACT_NONE",
+        "IMPACT_PARTIAL",
+        "IMPACT_COMPLETE",
+    ]
+    vulnerableSystemIntegrityImpact: typing_extensions.Literal[
+        "IMPACT_UNSPECIFIED",
+        "IMPACT_HIGH",
+        "IMPACT_LOW",
+        "IMPACT_NONE",
+        "IMPACT_PARTIAL",
+        "IMPACT_COMPLETE",
     ]
 
 @typing.type_check_only
@@ -281,6 +345,9 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1ApprovalResult(
 class ContaineranalysisGoogleDevtoolsCloudbuildV1Artifacts(
     typing_extensions.TypedDict, total=False
 ):
+    genericArtifacts: _list[
+        ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsGenericArtifact
+    ]
     goModules: _list[ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsGoModule]
     images: _list[str]
     mavenArtifacts: _list[
@@ -300,6 +367,13 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsArtifactObjects(
     location: str
     paths: _list[str]
     timing: ContaineranalysisGoogleDevtoolsCloudbuildV1TimeSpan
+
+@typing.type_check_only
+class ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsGenericArtifact(
+    typing_extensions.TypedDict, total=False
+):
+    folder: str
+    registryPath: str
 
 @typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsGoModule(
@@ -484,6 +558,7 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1BuildStep(
     id: str
     name: str
     pullTiming: ContaineranalysisGoogleDevtoolsCloudbuildV1TimeSpan
+    results: _list[ContaineranalysisGoogleDevtoolsCloudbuildV1StepResult]
     script: str
     secretEnv: _list[str]
     status: typing_extensions.Literal[
@@ -502,6 +577,12 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1BuildStep(
     timing: ContaineranalysisGoogleDevtoolsCloudbuildV1TimeSpan
     volumes: _list[ContaineranalysisGoogleDevtoolsCloudbuildV1Volume]
     waitFor: _list[str]
+
+@typing.type_check_only
+class ContaineranalysisGoogleDevtoolsCloudbuildV1BuildStepResults(
+    typing_extensions.TypedDict, total=False
+):
+    results: dict[str, typing.Any]
 
 @typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1BuildWarning(
@@ -537,7 +618,17 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1Dependency(
     typing_extensions.TypedDict, total=False
 ):
     empty: bool
+    genericArtifact: (
+        ContaineranalysisGoogleDevtoolsCloudbuildV1DependencyGenericArtifactDependency
+    )
     gitSource: ContaineranalysisGoogleDevtoolsCloudbuildV1DependencyGitSourceDependency
+
+@typing.type_check_only
+class ContaineranalysisGoogleDevtoolsCloudbuildV1DependencyGenericArtifactDependency(
+    typing_extensions.TypedDict, total=False
+):
+    destPath: str
+    resource: str
 
 @typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1DependencyGitSourceDependency(
@@ -627,6 +718,10 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1Results(
     artifactTiming: ContaineranalysisGoogleDevtoolsCloudbuildV1TimeSpan
     buildStepImages: _list[str]
     buildStepOutputs: _list[str]
+    buildStepResults: dict[str, typing.Any]
+    genericArtifacts: _list[
+        ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedGenericArtifact
+    ]
     goModules: _list[ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedGoModule]
     images: _list[ContaineranalysisGoogleDevtoolsCloudbuildV1BuiltImage]
     mavenArtifacts: _list[
@@ -690,6 +785,14 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1SourceProvenance(
     )
 
 @typing.type_check_only
+class ContaineranalysisGoogleDevtoolsCloudbuildV1StepResult(
+    typing_extensions.TypedDict, total=False
+):
+    attestationContent: str
+    attestationType: str
+    name: str
+
+@typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1StorageSource(
     typing_extensions.TypedDict, total=False
 ):
@@ -714,6 +817,16 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1TimeSpan(
 ):
     endTime: str
     startTime: str
+
+@typing.type_check_only
+class ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedGenericArtifact(
+    typing_extensions.TypedDict, total=False
+):
+    artifactFingerprint: ContaineranalysisGoogleDevtoolsCloudbuildV1FileHashes
+    artifactRegistryPackage: str
+    fileHashes: dict[str, typing.Any]
+    pushTiming: ContaineranalysisGoogleDevtoolsCloudbuildV1TimeSpan
+    uri: str
 
 @typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedGoModule(
@@ -863,6 +976,7 @@ class Discovery(typing_extensions.TypedDict, total=False):
         "VULNERABILITY_ASSESSMENT",
         "SBOM_REFERENCE",
         "SECRET",
+        "AI_SKILL_ANALYSIS",
     ]
 
 @typing.type_check_only
@@ -970,6 +1084,18 @@ class FileOccurrence(typing_extensions.TypedDict, total=False):
     id: str
     licenseConcluded: License
     notice: str
+
+@typing.type_check_only
+class Finding(typing_extensions.TypedDict, total=False):
+    category: str
+    location: FindingLocation
+    scanner: str
+    severity: str
+
+@typing.type_check_only
+class FindingLocation(typing_extensions.TypedDict, total=False):
+    filePath: str
+    lineNumber: str
 
 @typing.type_check_only
 class Fingerprint(typing_extensions.TypedDict, total=False):
@@ -1242,6 +1368,7 @@ class NonCompliantFile(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Note(typing_extensions.TypedDict, total=False):
+    aiSkillAnalysis: AISkillAnalysisNote
     attestationAuthority: AttestationAuthority
     baseImage: Basis
     buildType: BuildType
@@ -1270,6 +1397,7 @@ class Note(typing_extensions.TypedDict, total=False):
         "VULNERABILITY_ASSESSMENT",
         "SBOM_REFERENCE",
         "SECRET",
+        "AI_SKILL_ANALYSIS",
     ]
     longDescription: str
     name: str
@@ -1289,6 +1417,7 @@ class Note(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Occurrence(typing_extensions.TypedDict, total=False):
+    aiSkillAnalysis: AISkillAnalysisOccurrence
     attestation: Attestation
     buildDetails: BuildDetails
     compliance: ComplianceOccurrence
@@ -1318,6 +1447,7 @@ class Occurrence(typing_extensions.TypedDict, total=False):
         "VULNERABILITY_ASSESSMENT",
         "SBOM_REFERENCE",
         "SECRET",
+        "AI_SKILL_ANALYSIS",
     ]
     name: str
     noteName: str
@@ -1864,7 +1994,7 @@ class VulnerabilityDetails(typing_extensions.TypedDict, total=False):
     cvssV2: CVSS
     cvssV3: CVSS
     cvssVersion: typing_extensions.Literal[
-        "CVSS_VERSION_UNSPECIFIED", "CVSS_VERSION_2", "CVSS_VERSION_3"
+        "CVSS_VERSION_UNSPECIFIED", "CVSS_VERSION_2", "CVSS_VERSION_3", "CVSS_VERSION_4"
     ]
     effectiveSeverity: typing_extensions.Literal[
         "SEVERITY_UNSPECIFIED", "MINIMAL", "LOW", "MEDIUM", "HIGH", "CRITICAL"
@@ -1891,7 +2021,7 @@ class VulnerabilityType(typing_extensions.TypedDict, total=False):
     cvssScore: float
     cvssV2: CVSS
     cvssVersion: typing_extensions.Literal[
-        "CVSS_VERSION_UNSPECIFIED", "CVSS_VERSION_2", "CVSS_VERSION_3"
+        "CVSS_VERSION_UNSPECIFIED", "CVSS_VERSION_2", "CVSS_VERSION_3", "CVSS_VERSION_4"
     ]
     cwe: _list[str]
     details: _list[Detail]

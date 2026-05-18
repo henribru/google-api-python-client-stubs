@@ -60,6 +60,7 @@ class Build(typing_extensions.TypedDict, total=False):
         "READY",
         "FAILED",
         "SKIPPED",
+        "EXPIRED",
     ]
     uid: str
     updateTime: str

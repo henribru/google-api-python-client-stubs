@@ -88,6 +88,7 @@ class Certificate(typing_extensions.TypedDict, total=False):
     pemCertificate: str
     pemCertificateChain: _list[str]
     pemCsr: str
+    requestedNotBeforeTime: str
     revocationDetails: RevocationDetails
     subjectMode: typing_extensions.Literal[
         "SUBJECT_REQUEST_MODE_UNSPECIFIED",
@@ -257,6 +258,7 @@ class IssuanceModes(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class IssuancePolicy(typing_extensions.TypedDict, total=False):
+    allowRequesterSpecifiedNotBeforeTime: bool
     allowedIssuanceModes: IssuanceModes
     allowedKeyTypes: _list[AllowedKeyType]
     backdateDuration: str

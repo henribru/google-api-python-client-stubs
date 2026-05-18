@@ -231,6 +231,10 @@ class GoogleFirebaseAppdistroV1alphaDeviceInteraction(
     screenshot: GoogleFirebaseAppdistroV1alphaScreenshot
     swipe: GoogleFirebaseAppdistroV1alphaDeviceInteractionSwipe
     tap: AndroidxCrawlerOutputPoint
+    targetFoldedState: str
+    targetOrientation: typing_extensions.Literal[
+        "ORIENTATION_UNSPECIFIED", "PORTRAIT", "LANDSCAPE"
+    ]
     textInput: str
     wait: GoogleFirebaseAppdistroV1alphaDeviceInteractionWait
 
@@ -320,6 +324,7 @@ class GoogleFirebaseAppdistroV1alphaGetUploadStatusResponse(
         "AAB_NO_APP_WITH_GIVEN_PACKAGE_NAME_IN_ACCOUNT",
         "AAB_UPLOAD_ERROR",
         "APP_NOT_FOUND",
+        "AAB_ADHOC_SHARING_KEY_NOT_REGISTERED",
     ]
     message: str
     release: GoogleFirebaseAppdistroV1alphaRelease
@@ -417,6 +422,7 @@ class GoogleFirebaseAppdistroV1alphaReleaseTest(
     displayName: str
     loginCredential: GoogleFirebaseAppdistroV1alphaLoginCredential
     name: str
+    resultsBucket: str
     testCase: str
     testState: typing_extensions.Literal[
         "TEST_STATE_UNSPECIFIED", "IN_PROGRESS", "PASSED", "FAILED", "INCONCLUSIVE"
@@ -468,6 +474,7 @@ class GoogleFirebaseAppdistroV1alphaTestConfig(
 ):
     displayName: str
     name: str
+    resultsBucket: str
     roboCrawler: GoogleFirebaseAppdistroV1alphaRoboCrawler
     testDevices: _list[GoogleFirebaseAppdistroV1alphaTestDevice]
 

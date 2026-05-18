@@ -1684,30 +1684,6 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                     previous_response: GoogleLongrunningListOperationsResponse,
                 ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
 
-            @typing.type_check_only
-            class PolicyIntentsResource(googleapiclient.discovery.Resource):
-                def getIamPolicy(
-                    self,
-                    *,
-                    resource: str,
-                    options_requestedPolicyVersion: int = ...,
-                    **kwargs: typing.Any,
-                ) -> GoogleIamV1PolicyHttpRequest: ...
-                def setIamPolicy(
-                    self,
-                    *,
-                    resource: str,
-                    body: GoogleIamV1SetIamPolicyRequest = ...,
-                    **kwargs: typing.Any,
-                ) -> GoogleIamV1PolicyHttpRequest: ...
-                def testIamPermissions(
-                    self,
-                    *,
-                    resource: str,
-                    body: GoogleIamV1TestIamPermissionsRequest = ...,
-                    **kwargs: typing.Any,
-                ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
-
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> GoogleCloudLocationLocationHttpRequest: ...
@@ -1803,7 +1779,6 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
             def metadataFeeds(self) -> MetadataFeedsResource: ...
             def metadataJobs(self) -> MetadataJobsResource: ...
             def operations(self) -> OperationsResource: ...
-            def policyIntents(self) -> PolicyIntentsResource: ...
 
         def locations(self) -> LocationsResource: ...
 

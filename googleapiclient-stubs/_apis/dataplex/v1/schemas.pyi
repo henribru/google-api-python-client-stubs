@@ -1808,6 +1808,7 @@ class GoogleCloudDataplexV1ListZonesResponse(typing_extensions.TypedDict, total=
 class GoogleCloudDataplexV1LookupContextRequest(
     typing_extensions.TypedDict, total=False
 ):
+    context: str
     options: dict[str, typing.Any]
     resources: _list[str]
 

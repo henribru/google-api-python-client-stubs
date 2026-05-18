@@ -121,6 +121,7 @@ class GcePersistentDisk(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GceRegionalPersistentDisk(typing_extensions.TypedDict, total=False):
+    archiveTimeout: str
     diskType: str
     fsType: str
     reclaimPolicy: typing_extensions.Literal[
@@ -306,8 +307,6 @@ class Workstation(typing_extensions.TypedDict, total=False):
         "STATE_RUNNING",
         "STATE_STOPPING",
         "STATE_STOPPED",
-        "STATE_SUSPENDING",
-        "STATE_SUSPENDED",
     ]
     uid: str
     updateTime: str

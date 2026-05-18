@@ -142,6 +142,11 @@ class CloudExportAdditionalProperties(typing_extensions.TypedDict, total=False):
     unitCode: str
 
 @typing.type_check_only
+class Co2Emissions(typing_extensions.TypedDict, total=False):
+    unit: typing_extensions.Literal["UNIT_UNSPECIFIED", "GPERKM"]
+    value: str
+
+@typing.type_check_only
 class CustomAttribute(typing_extensions.TypedDict, total=False):
     groupValues: _list[CustomAttribute]
     name: str
@@ -179,9 +184,19 @@ class DestinationStatus(typing_extensions.TypedDict, total=False):
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class EnergyConsumption(typing_extensions.TypedDict, total=False):
+    unit: typing_extensions.Literal["UNIT_UNSPECIFIED", "KWHPER100KM"]
+    value: float
+
+@typing.type_check_only
 class FreeShippingThreshold(typing_extensions.TypedDict, total=False):
     country: str
     priceThreshold: Price
+
+@typing.type_check_only
+class FuelConsumption(typing_extensions.TypedDict, total=False):
+    unit: typing_extensions.Literal["UNIT_UNSPECIFIED", "LPER100KM", "KGPER100KM"]
+    value: float
 
 @typing.type_check_only
 class HandlingCutoffTime(typing_extensions.TypedDict, total=False):
@@ -252,6 +267,16 @@ class LoyaltyProgram(typing_extensions.TypedDict, total=False):
     tierLabel: str
 
 @typing.type_check_only
+class Mileage(typing_extensions.TypedDict, total=False):
+    unit: typing_extensions.Literal["UNIT_UNSPECIFIED", "MILES", "KM"]
+    value: str
+
+@typing.type_check_only
+class PickupCost(typing_extensions.TypedDict, total=False):
+    flatRate: Price
+    freeThreshold: Price
+
+@typing.type_check_only
 class Price(typing_extensions.TypedDict, total=False):
     amountMicros: str
     currencyCode: str
@@ -291,11 +316,47 @@ class ProductAttributes(typing_extensions.TypedDict, total=False):
         "BACKORDER",
     ]
     availabilityDate: str
+    bodyStyle: typing_extensions.Literal[
+        "VEHICLE_BODY_STYLE_UNSPECIFIED",
+        "ATV_SPORT",
+        "ATV_TOURING",
+        "ATV_UTILITY",
+        "ATV_YOUTH",
+        "CITY_CAR",
+        "CLASS_A_MOTORHOME",
+        "CLASS_B_MOTORHOME",
+        "CLASS_C_MOTORHOME",
+        "COMPACT_SUV",
+        "CONVERTIBLE",
+        "COUPE",
+        "CROSSOVER",
+        "FIFTH_WHEEL",
+        "FULL_SIZE_VAN",
+        "HATCHBACK",
+        "LIMOUSINE",
+        "MINIVAN",
+        "NOTCHBACK",
+        "POP_UP_CAMPER",
+        "SEDAN",
+        "SIDE_BY_SIDE",
+        "STATION_WAGON",
+        "SUV",
+        "TRAVEL_TRAILER",
+        "TRUCK",
+        "TRUCK_CAMPER",
+        "UTE",
+        "UTV_RECREATIONAL_UTILITY",
+        "UTV_SPORT",
+        "UTV_UTILITY",
+        "UTV_YOUTH",
+    ]
     brand: str
     canonicalLink: str
     carrierShipping: _list[CarrierShipping]
     certifications: _list[ProductCertification]
+    certifiedPreOwned: bool
     cloudExportAdditionalProperties: _list[CloudExportAdditionalProperties]
+    co2Emissions: Co2Emissions
     color: str
     condition: typing_extensions.Literal[
         "CONDITION_UNSPECIFIED", "NEW", "USED", "REFURBISHED"
@@ -306,6 +367,7 @@ class ProductAttributes(typing_extensions.TypedDict, total=False):
     customLabel2: str
     customLabel3: str
     customLabel4: str
+    dateFirstRegistered: str
     description: str
     disclosureDate: str
     displayAdsId: str
@@ -313,6 +375,23 @@ class ProductAttributes(typing_extensions.TypedDict, total=False):
     displayAdsSimilarIds: _list[str]
     displayAdsTitle: str
     displayAdsValue: float
+    electricRange: Mileage
+    emissionsStandard: typing_extensions.Literal[
+        "EMISSIONS_STANDARD_UNSPECIFIED",
+        "ZERO_EMISSIONS",
+        "EURO1",
+        "EURO2",
+        "EURO3",
+        "EURO4",
+        "EURO5",
+        "EURO5B",
+        "EURO6",
+        "EURO6C",
+        "EURO6D",
+        "EURO6D_TEMP",
+        "EURO6E",
+    ]
+    energyConsumption: EnergyConsumption
     energyEfficiencyClass: typing_extensions.Literal[
         "ENERGY_EFFICIENCY_CLASS_UNSPECIFIED",
         "APPP",
@@ -325,6 +404,18 @@ class ProductAttributes(typing_extensions.TypedDict, total=False):
         "E",
         "F",
         "G",
+    ]
+    engine: typing_extensions.Literal[
+        "ENGINE_TYPE_UNSPECIFIED",
+        "GASOLINE",
+        "DIESEL",
+        "ELECTRIC",
+        "HYBRID",
+        "PLUG_IN_HYBRID",
+        "NATURAL_GAS",
+        "LPG",
+        "METHANE",
+        "OTHER",
     ]
     excludedDestinations: _list[
         typing_extensions.Literal[
@@ -346,6 +437,8 @@ class ProductAttributes(typing_extensions.TypedDict, total=False):
     expirationDate: str
     externalSellerId: str
     freeShippingThreshold: _list[FreeShippingThreshold]
+    fuelConsumption: FuelConsumption
+    fuelConsumptionDischargedBattery: FuelConsumption
     gender: typing_extensions.Literal["GENDER_UNSPECIFIED", "MALE", "FEMALE", "UNISEX"]
     googleProductCategory: str
     gtins: _list[str]
@@ -393,6 +486,7 @@ class ProductAttributes(typing_extensions.TypedDict, total=False):
     ]
     maxHandlingTime: str
     maximumRetailPrice: Price
+    mileage: Mileage
     minEnergyEfficiencyClass: typing_extensions.Literal[
         "ENERGY_EFFICIENCY_CLASS_UNSPECIFIED",
         "APPP",
@@ -410,10 +504,12 @@ class ProductAttributes(typing_extensions.TypedDict, total=False):
     minimumOrderValues: _list[ProductMinimumOrderValue]
     mobileLink: str
     mobileLinkTemplate: str
+    model: str
     mpn: str
     multipack: str
     pattern: str
     pause: typing_extensions.Literal["PAUSE_UNSPECIFIED", "ADS", "ALL"]
+    pickupCost: PickupCost
     pickupMethod: typing_extensions.Literal[
         "PICKUP_METHOD_UNSPECIFIED", "NOT_SUPPORTED", "BUY", "RESERVE", "SHIP_TO_STORE"
     ]
@@ -482,10 +578,26 @@ class ProductAttributes(typing_extensions.TypedDict, total=False):
     sustainabilityIncentives: _list[ProductSustainabilityIncentive]
     title: str
     transitTimeLabel: str
+    trim: str
     unitPricingBaseMeasure: UnitPricingBaseMeasure
     unitPricingMeasure: UnitPricingMeasure
+    vehicleAllInPrice: Price
+    vehicleExpenses: Price
+    vehicleMandatoryInspectionIncluded: bool
+    vehicleMsrp: Price
+    vehiclePriceType: typing_extensions.Literal[
+        "VEHICLE_PRICE_TYPE_UNSPECIFIED",
+        "ALL_IN_PRICE",
+        "DRIVE_AWAY_PRICE",
+        "ESTIMATED_DRIVE_AWAY_PRICE",
+        "EXCLUDING_GOVERNMENT_CHARGES_PRICE",
+        "VEHICLE_BASE_PRICE",
+    ]
     videoLinks: _list[str]
+    vin: str
     virtualModelLink: str
+    warranty: Warranty
+    year: str
 
 @typing.type_check_only
 class ProductCertification(typing_extensions.TypedDict, total=False):
@@ -564,6 +676,7 @@ class ProductInstallment(typing_extensions.TypedDict, total=False):
     creditType: typing_extensions.Literal["CREDIT_TYPE_UNSPECIFIED", "FINANCE", "LEASE"]
     downpayment: Price
     months: str
+    totalAmount: Price
 
 @typing.type_check_only
 class ProductMinimumOrderValue(typing_extensions.TypedDict, total=False):
@@ -671,3 +784,8 @@ class UnitPricingBaseMeasure(typing_extensions.TypedDict, total=False):
 class UnitPricingMeasure(typing_extensions.TypedDict, total=False):
     unit: str
     value: float
+
+@typing.type_check_only
+class Warranty(typing_extensions.TypedDict, total=False):
+    duration: str
+    mileage: Mileage

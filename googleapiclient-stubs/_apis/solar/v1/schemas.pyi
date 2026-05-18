@@ -9,6 +9,7 @@ class BuildingInsights(typing_extensions.TypedDict, total=False):
     administrativeArea: str
     boundingBox: LatLngBox
     center: LatLng
+    detectedArrays: BuildingInsightsDetectedArrays
     imageryDate: Date
     imageryProcessedDate: Date
     imageryQuality: typing_extensions.Literal[
@@ -19,6 +20,16 @@ class BuildingInsights(typing_extensions.TypedDict, total=False):
     regionCode: str
     solarPotential: SolarPotential
     statisticalArea: str
+
+@typing.type_check_only
+class BuildingInsightsDetectedArrays(typing_extensions.TypedDict, total=False):
+    detectionStatus: typing_extensions.Literal[
+        "DETECTION_STATUS_UNSPECIFIED",
+        "DETECTION_STATUS_DATA_UNAVAILABLE",
+        "DETECTION_STATUS_ARRAYS_DETECTED",
+        "DETECTION_STATUS_NO_ARRAYS_DETECTED",
+    ]
+    latestCaptureDate: Date
 
 @typing.type_check_only
 class CashPurchaseSavings(typing_extensions.TypedDict, total=False):

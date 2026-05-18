@@ -91,6 +91,7 @@ class Backup(typing_extensions.TypedDict, total=False):
         "POSTGRES_16",
         "POSTGRES_17",
         "POSTGRES_18",
+        "POSTGRES_19",
         "SQLSERVER_2019_STANDARD",
         "SQLSERVER_2019_ENTERPRISE",
         "SQLSERVER_2019_EXPRESS",
@@ -222,6 +223,7 @@ class BackupRun(typing_extensions.TypedDict, total=False):
         "POSTGRES_16",
         "POSTGRES_17",
         "POSTGRES_18",
+        "POSTGRES_19",
         "SQLSERVER_2019_STANDARD",
         "SQLSERVER_2019_ENTERPRISE",
         "SQLSERVER_2019_EXPRESS",
@@ -354,6 +356,7 @@ class ConnectSettings(typing_extensions.TypedDict, total=False):
         "POSTGRES_16",
         "POSTGRES_17",
         "POSTGRES_18",
+        "POSTGRES_19",
         "SQLSERVER_2019_STANDARD",
         "SQLSERVER_2019_ENTERPRISE",
         "SQLSERVER_2019_EXPRESS",
@@ -473,6 +476,7 @@ class DatabaseInstance(typing_extensions.TypedDict, total=False):
         "POSTGRES_16",
         "POSTGRES_17",
         "POSTGRES_18",
+        "POSTGRES_19",
         "SQLSERVER_2019_STANDARD",
         "SQLSERVER_2019_ENTERPRISE",
         "SQLSERVER_2019_EXPRESS",
@@ -551,6 +555,7 @@ class DatabaseInstance(typing_extensions.TypedDict, total=False):
             "LEGAL_ISSUE",
             "OPERATIONAL_ISSUE",
             "KMS_KEY_ISSUE",
+            "PROJECT_ABUSE",
         ]
     ]
     switchTransactionLogsToCloudStorageEnabled: bool
@@ -712,6 +717,7 @@ class Flag(typing_extensions.TypedDict, total=False):
             "POSTGRES_16",
             "POSTGRES_17",
             "POSTGRES_18",
+            "POSTGRES_19",
             "SQLSERVER_2019_STANDARD",
             "SQLSERVER_2019_ENTERPRISE",
             "SQLSERVER_2019_EXPRESS",
@@ -1072,6 +1078,9 @@ class Operation(typing_extensions.TypedDict, total=False):
         "REPAIR_READ_POOL",
         "CREATE_READ_POOL",
         "PRE_CHECK_MAJOR_VERSION_UPGRADE",
+        "CREATE_BLUE_GREEN_DEPLOYMENT",
+        "SWITCHOVER_BLUE_GREEN_DEPLOYMENT",
+        "DELETE_BLUE_GREEN_DEPLOYMENT",
     ]
     preCheckMajorVersionUpgradeContext: PreCheckMajorVersionUpgradeContext
     selfLink: str
@@ -1224,6 +1233,7 @@ class PreCheckMajorVersionUpgradeContext(typing_extensions.TypedDict, total=Fals
         "POSTGRES_16",
         "POSTGRES_17",
         "POSTGRES_18",
+        "POSTGRES_19",
         "SQLSERVER_2019_STANDARD",
         "SQLSERVER_2019_ENTERPRISE",
         "SQLSERVER_2019_EXPRESS",

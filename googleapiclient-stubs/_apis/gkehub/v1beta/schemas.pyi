@@ -37,6 +37,10 @@ class Authority(typing_extensions.TypedDict, total=False):
     workloadIdentityPool: str
 
 @typing.type_check_only
+class AutoUpgradeConfig(typing_extensions.TypedDict, total=False):
+    rolloutCreationScope: RolloutCreationScope
+
+@typing.type_check_only
 class BinaryAuthorizationConfig(typing_extensions.TypedDict, total=False):
     evaluationMode: typing_extensions.Literal[
         "EVALUATION_MODE_UNSPECIFIED", "DISABLED", "POLICY_BINDINGS"
@@ -593,6 +597,10 @@ class FleetObservabilityMembershipState(typing_extensions.TypedDict, total=False
 @typing.type_check_only
 class FleetObservabilityRoutingConfig(typing_extensions.TypedDict, total=False):
     mode: typing_extensions.Literal["MODE_UNSPECIFIED", "COPY", "MOVE"]
+
+@typing.type_check_only
+class ForceCompleteRolloutStageRequest(typing_extensions.TypedDict, total=False):
+    stageNumber: int
 
 @typing.type_check_only
 class GenerateConnectManifestResponse(typing_extensions.TypedDict, total=False):
@@ -1191,6 +1199,18 @@ class Rollout(typing_extensions.TypedDict, total=False):
     versionUpgrade: VersionUpgrade
 
 @typing.type_check_only
+class RolloutCreationScope(typing_extensions.TypedDict, total=False):
+    upgradeTypes: _list[
+        typing_extensions.Literal[
+            "UPGRADE_TYPE_UNSPECIFIED",
+            "CONTROL_PLANE_MINOR",
+            "CONTROL_PLANE_PATCH",
+            "NODE_MINOR",
+            "NODE_PATCH",
+        ]
+    ]
+
+@typing.type_check_only
 class RolloutMembershipState(typing_extensions.TypedDict, total=False):
     lastUpdateTime: str
     stageAssignment: int
@@ -1198,9 +1218,11 @@ class RolloutMembershipState(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class RolloutSequence(typing_extensions.TypedDict, total=False):
+    autoUpgradeConfig: AutoUpgradeConfig
     createTime: str
     deleteTime: str
     displayName: str
+    effectiveAutoUpgradeConfig: AutoUpgradeConfig
     etag: str
     ignoredClustersSelector: ClusterSelector
     labels: dict[str, typing.Any]
@@ -1218,6 +1240,7 @@ class RolloutSequenceState(typing_extensions.TypedDict, total=False):
         "LIFECYCLE_STATE_ACTIVE",
         "LIFECYCLE_STATE_WARNING",
         "LIFECYCLE_STATE_ERROR",
+        "LIFECYCLE_STATE_INITIALIZING",
     ]
     stateReasons: _list[
         typing_extensions.Literal[

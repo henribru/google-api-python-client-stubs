@@ -107,6 +107,7 @@ class Course(typing_extensions.TypedDict, total=False):
     gradebookSettings: GradebookSettings
     guardiansEnabled: bool
     id: str
+    levels: str
     name: str
     ownerId: str
     room: str

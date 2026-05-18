@@ -36,6 +36,10 @@ class AccessProposalRoleAndView(typing_extensions.TypedDict, total=False):
     view: str
 
 @typing.type_check_only
+class AddReviewer(typing_extensions.TypedDict, total=False):
+    addedReviewerEmail: str
+
+@typing.type_check_only
 class App(typing_extensions.TypedDict, total=False):
     authorized: bool
     createInFolderTemplate: str
@@ -97,6 +101,14 @@ class ApprovalList(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class ApproveApprovalRequest(typing_extensions.TypedDict, total=False):
+    message: str
+
+@typing.type_check_only
+class CancelApprovalRequest(typing_extensions.TypedDict, total=False):
+    message: str
+
+@typing.type_check_only
 class Change(typing_extensions.TypedDict, total=False):
     changeType: str
     drive: Drive
@@ -153,6 +165,10 @@ class Comment(typing_extensions.TypedDict, total=False):
     resolved: bool
 
 @typing.type_check_only
+class CommentApprovalRequest(typing_extensions.TypedDict, total=False):
+    message: str
+
+@typing.type_check_only
 class CommentList(typing_extensions.TypedDict, total=False):
     comments: _list[Comment]
     kind: str
@@ -167,6 +183,10 @@ class ContentRestriction(typing_extensions.TypedDict, total=False):
     restrictionTime: str
     systemRestricted: bool
     type: str
+
+@typing.type_check_only
+class DeclineApprovalRequest(typing_extensions.TypedDict, total=False):
+    message: str
 
 @typing.type_check_only
 class DecryptionMetadata(typing_extensions.TypedDict, total=False):
@@ -389,6 +409,17 @@ class PermissionList(typing_extensions.TypedDict, total=False):
     permissions: _list[Permission]
 
 @typing.type_check_only
+class ReassignApprovalRequest(typing_extensions.TypedDict, total=False):
+    addReviewers: _list[AddReviewer]
+    message: str
+    replaceReviewers: _list[ReplaceReviewer]
+
+@typing.type_check_only
+class ReplaceReviewer(typing_extensions.TypedDict, total=False):
+    addedReviewerEmail: str
+    removedReviewerEmail: str
+
+@typing.type_check_only
 class Reply(typing_extensions.TypedDict, total=False):
     action: str
     assigneeEmailAddress: str
@@ -445,6 +476,13 @@ class RevisionList(typing_extensions.TypedDict, total=False):
     kind: str
     nextPageToken: str
     revisions: _list[Revision]
+
+@typing.type_check_only
+class StartApprovalRequest(typing_extensions.TypedDict, total=False):
+    dueTime: str
+    lockFile: bool
+    message: str
+    reviewerEmails: _list[str]
 
 @typing.type_check_only
 class StartPageToken(typing_extensions.TypedDict, total=False):

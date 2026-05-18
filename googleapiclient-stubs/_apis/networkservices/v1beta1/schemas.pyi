@@ -51,6 +51,7 @@ class AgentGatewayNetworkConfigEgress(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class AgentGatewaySelfManaged(typing_extensions.TypedDict, total=False):
     resourceUri: str
+    resourceUris: _list[str]
 
 @typing.type_check_only
 class AuthzExtension(typing_extensions.TypedDict, total=False):

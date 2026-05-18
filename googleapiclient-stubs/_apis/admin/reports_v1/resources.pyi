@@ -58,6 +58,8 @@ class ReportsResource(googleapiclient.discovery.Resource):
                 "contacts",
                 "takeout",
                 "graduation",
+                "voice",
+                "chrome_sync",
             ],
             actorIpAddress: str = ...,
             applicationInfoFilter: str = ...,

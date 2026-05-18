@@ -65,6 +65,7 @@ class Build(typing_extensions.TypedDict, total=False):
         "READY",
         "FAILED",
         "SKIPPED",
+        "EXPIRED",
     ]
     uid: str
     updateTime: str
@@ -290,6 +291,10 @@ class ListRolloutsResponse(typing_extensions.TypedDict, total=False):
     unreachable: _list[str]
 
 @typing.type_check_only
+class ListSupportedRuntimesResponse(typing_extensions.TypedDict, total=False):
+    supportedRuntimes: _list[SupportedRuntime]
+
+@typing.type_check_only
 class LiveMigrationStep(typing_extensions.TypedDict, total=False):
     dnsUpdates: _list[DnsUpdates]
     issues: _list[Status]
@@ -411,6 +416,14 @@ class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
+
+@typing.type_check_only
+class SupportedRuntime(typing_extensions.TypedDict, total=False):
+    automaticBaseImageUpdatesSupported: bool
+    decommissionTime: str
+    deprecateTime: str
+    name: str
+    runtimeId: str
 
 @typing.type_check_only
 class Traffic(typing_extensions.TypedDict, total=False):

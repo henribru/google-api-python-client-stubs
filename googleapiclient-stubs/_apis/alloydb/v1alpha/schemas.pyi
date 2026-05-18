@@ -1147,7 +1147,10 @@ class StorageDatabasecenterPartnerapiV1mainDatabaseResourceMetadata(
     maintenanceInfo: StorageDatabasecenterPartnerapiV1mainResourceMaintenanceInfo
     modes: _list[
         typing_extensions.Literal[
-            "MODE_UNSPECIFIED", "MODE_NATIVE", "MODE_MONGODB_COMPATIBLE"
+            "MODE_UNSPECIFIED",
+            "MODE_NATIVE",
+            "MODE_MONGODB_COMPATIBLE",
+            "MODE_DATASTORE",
         ]
     ]
     primaryResourceId: StorageDatabasecenterPartnerapiV1mainDatabaseResourceId

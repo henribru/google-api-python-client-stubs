@@ -5,6 +5,16 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class AdminFilters(typing_extensions.TypedDict, total=False):
+    filterKey: str
+    filterType: typing_extensions.Literal[
+        "FILTER_TYPE_UNSPECIFIED", "INCLUSION", "EXCLUSION"
+    ]
+    intValue: str
+    stringListValues: StringListValues
+    stringValue: str
+
+@typing.type_check_only
 class AuditConfig(typing_extensions.TypedDict, total=False):
     auditLogConfigs: _list[AuditLogConfig]
     service: str
@@ -161,6 +171,7 @@ class ConfigVariableTemplate(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Connection(typing_extensions.TypedDict, total=False):
+    adminFilters: _list[AdminFilters]
     asyncOperationsEnabled: bool
     authConfig: AuthConfig
     authOverrideEnabled: bool
@@ -713,6 +724,7 @@ class EventingConfig(typing_extensions.TypedDict, total=False):
     enrichmentConfig: EnrichmentConfig
     enrichmentEnabled: bool
     eventsListenerIngressEndpoint: str
+    globalEventFilter: str
     listenerAuthConfig: AuthConfig
     privateConnectivityAllowlistedProjects: _list[str]
     privateConnectivityEnabled: bool
@@ -754,6 +766,9 @@ class EventingDetails(typing_extensions.TypedDict, total=False):
     ]
     name: str
     searchTags: _list[str]
+    subscriptionType: typing_extensions.Literal[
+        "SUBSCRIPTION_TYPE_UNSPECIFIED", "SHARED", "USER_SPECIFIC"
+    ]
     type: typing_extensions.Literal["TYPE_UNSPECIFIED", "WEBHOOK", "JMS"]
 
 @typing.type_check_only
@@ -992,74 +1007,110 @@ AlternativeJsonAuthSchema = typing_extensions.TypedDict(
 @typing.type_check_only
 class JsonAuthSchema(AlternativeJsonAuthSchema): ...
 
+AlternativeJsonSchema = typing_extensions.TypedDict(
+    "AlternativeJsonSchema",
+    {
+        "$comment": str,
+        "$defs": dict[str, typing.Any],
+        "$id": str,
+        "$ref": str,
+        "$schema": str,
+        "additionalDetails": dict[str, typing.Any],
+        "additionalItems": JsonSchema,
+        "additionalProperties": JsonSchema,
+        "allOf": _list[JsonSchema],
+        "anyOf": _list[JsonSchema],
+        "const": typing.Any,
+        "contains": JsonSchema,
+        "contentEncoding": str,
+        "contentMediaType": str,
+        "default": typing.Any,
+        "definitions": dict[str, typing.Any],
+        "dependencies": dict[str, typing.Any],
+        "description": str,
+        "else": JsonSchema,
+        "enum": _list[typing.Any],
+        "examples": _list[typing.Any],
+        "exclusiveMaximum": typing.Any,
+        "exclusiveMinimum": typing.Any,
+        "format": str,
+        "if": JsonSchema,
+        "items": JsonSchema,
+        "jdbcType": typing_extensions.Literal[
+            "DATA_TYPE_UNSPECIFIED",
+            "DATA_TYPE_INT",
+            "DATA_TYPE_SMALLINT",
+            "DATA_TYPE_DOUBLE",
+            "DATA_TYPE_DATE",
+            "DATA_TYPE_DATETIME",
+            "DATA_TYPE_TIME",
+            "DATA_TYPE_STRING",
+            "DATA_TYPE_LONG",
+            "DATA_TYPE_BOOLEAN",
+            "DATA_TYPE_DECIMAL",
+            "DATA_TYPE_UUID",
+            "DATA_TYPE_BLOB",
+            "DATA_TYPE_BIT",
+            "DATA_TYPE_TINYINT",
+            "DATA_TYPE_INTEGER",
+            "DATA_TYPE_BIGINT",
+            "DATA_TYPE_FLOAT",
+            "DATA_TYPE_REAL",
+            "DATA_TYPE_NUMERIC",
+            "DATA_TYPE_CHAR",
+            "DATA_TYPE_VARCHAR",
+            "DATA_TYPE_LONGVARCHAR",
+            "DATA_TYPE_TIMESTAMP",
+            "DATA_TYPE_NCHAR",
+            "DATA_TYPE_NVARCHAR",
+            "DATA_TYPE_LONGNVARCHAR",
+            "DATA_TYPE_NULL",
+            "DATA_TYPE_OTHER",
+            "DATA_TYPE_JAVA_OBJECT",
+            "DATA_TYPE_DISTINCT",
+            "DATA_TYPE_STRUCT",
+            "DATA_TYPE_ARRAY",
+            "DATA_TYPE_CLOB",
+            "DATA_TYPE_REF",
+            "DATA_TYPE_DATALINK",
+            "DATA_TYPE_ROWID",
+            "DATA_TYPE_BINARY",
+            "DATA_TYPE_VARBINARY",
+            "DATA_TYPE_LONGVARBINARY",
+            "DATA_TYPE_NCLOB",
+            "DATA_TYPE_SQLXML",
+            "DATA_TYPE_REF_CURSOR",
+            "DATA_TYPE_TIME_WITH_TIMEZONE",
+            "DATA_TYPE_TIMESTAMP_WITH_TIMEZONE",
+        ],
+        "maxItems": int,
+        "maxLength": int,
+        "maxProperties": int,
+        "maximum": typing.Any,
+        "minItems": int,
+        "minLength": int,
+        "minProperties": int,
+        "minimum": typing.Any,
+        "multipleOf": float,
+        "not": JsonSchema,
+        "oneOf": _list[JsonSchema],
+        "pattern": str,
+        "patternProperties": dict[str, typing.Any],
+        "properties": dict[str, typing.Any],
+        "propertyNames": JsonSchema,
+        "readOnly": bool,
+        "required": _list[str],
+        "then": JsonSchema,
+        "title": str,
+        "type": _list[str],
+        "uniqueItems": bool,
+        "writeOnly": bool,
+    },
+    total=False,
+)
+
 @typing.type_check_only
-class JsonSchema(typing_extensions.TypedDict, total=False):
-    additionalDetails: dict[str, typing.Any]
-    default: typing.Any
-    description: str
-    enum: _list[typing.Any]
-    exclusiveMaximum: bool
-    exclusiveMinimum: bool
-    format: str
-    items: JsonSchema
-    jdbcType: typing_extensions.Literal[
-        "DATA_TYPE_UNSPECIFIED",
-        "DATA_TYPE_INT",
-        "DATA_TYPE_SMALLINT",
-        "DATA_TYPE_DOUBLE",
-        "DATA_TYPE_DATE",
-        "DATA_TYPE_DATETIME",
-        "DATA_TYPE_TIME",
-        "DATA_TYPE_STRING",
-        "DATA_TYPE_LONG",
-        "DATA_TYPE_BOOLEAN",
-        "DATA_TYPE_DECIMAL",
-        "DATA_TYPE_UUID",
-        "DATA_TYPE_BLOB",
-        "DATA_TYPE_BIT",
-        "DATA_TYPE_TINYINT",
-        "DATA_TYPE_INTEGER",
-        "DATA_TYPE_BIGINT",
-        "DATA_TYPE_FLOAT",
-        "DATA_TYPE_REAL",
-        "DATA_TYPE_NUMERIC",
-        "DATA_TYPE_CHAR",
-        "DATA_TYPE_VARCHAR",
-        "DATA_TYPE_LONGVARCHAR",
-        "DATA_TYPE_TIMESTAMP",
-        "DATA_TYPE_NCHAR",
-        "DATA_TYPE_NVARCHAR",
-        "DATA_TYPE_LONGNVARCHAR",
-        "DATA_TYPE_NULL",
-        "DATA_TYPE_OTHER",
-        "DATA_TYPE_JAVA_OBJECT",
-        "DATA_TYPE_DISTINCT",
-        "DATA_TYPE_STRUCT",
-        "DATA_TYPE_ARRAY",
-        "DATA_TYPE_CLOB",
-        "DATA_TYPE_REF",
-        "DATA_TYPE_DATALINK",
-        "DATA_TYPE_ROWID",
-        "DATA_TYPE_BINARY",
-        "DATA_TYPE_VARBINARY",
-        "DATA_TYPE_LONGVARBINARY",
-        "DATA_TYPE_NCLOB",
-        "DATA_TYPE_SQLXML",
-        "DATA_TYPE_REF_CURSOR",
-        "DATA_TYPE_TIME_WITH_TIMEZONE",
-        "DATA_TYPE_TIMESTAMP_WITH_TIMEZONE",
-    ]
-    maxItems: int
-    maxLength: int
-    maximum: typing.Any
-    minItems: int
-    minLength: int
-    minimum: typing.Any
-    pattern: str
-    properties: dict[str, typing.Any]
-    required: _list[str]
-    type: _list[str]
-    uniqueItems: bool
+class JsonSchema(AlternativeJsonSchema): ...
 
 @typing.type_check_only
 class JwtClaims(typing_extensions.TypedDict, total=False):
@@ -1426,6 +1477,7 @@ class RefreshConnectionSchemaMetadataRequest(
 
 @typing.type_check_only
 class RegionalSettings(typing_extensions.TypedDict, total=False):
+    client: str
     encryptionConfig: EncryptionConfig
     name: str
     networkConfig: NetworkConfig
@@ -1678,6 +1730,10 @@ class Status(typing_extensions.TypedDict, total=False):
     message: str
 
 @typing.type_check_only
+class StringListValues(typing_extensions.TypedDict, total=False):
+    listValues: _list[str]
+
+@typing.type_check_only
 class SupportedRuntimeFeatures(typing_extensions.TypedDict, total=False):
     actionApis: bool
     asyncOperations: bool
@@ -1709,6 +1765,7 @@ class ToolName(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ToolspecOverride(typing_extensions.TypedDict, total=False):
+    baseVersion: str
     createTime: str
     tools: _list[dict[str, typing.Any]]
     updateTime: str
@@ -1752,6 +1809,8 @@ class VpcscConfig(typing_extensions.TypedDict, total=False):
 class WebhookData(typing_extensions.TypedDict, total=False):
     additionalVariables: _list[ConfigVariable]
     createTime: str
+    eventSubscriptions: _list[str]
+    eventTypes: _list[str]
     id: str
     name: str
     nextRefreshTime: str

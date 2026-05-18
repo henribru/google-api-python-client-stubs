@@ -85,6 +85,11 @@ class Application(typing_extensions.TypedDict, total=False):
     webClientId: str
 
 @typing.type_check_only
+class BasalEnergyBurned(typing_extensions.TypedDict, total=False):
+    interval: ObservationTimeInterval
+    kcal: float
+
+@typing.type_check_only
 class BatchDeleteDataPointsRequest(typing_extensions.TypedDict, total=False):
     names: _list[str]
 
@@ -227,6 +232,7 @@ class DataPoint(typing_extensions.TypedDict, total=False):
     activeZoneMinutes: ActiveZoneMinutes
     activityLevel: ActivityLevel
     altitude: Altitude
+    basalEnergyBurned: BasalEnergyBurned
     bodyFat: BodyFat
     dailyHeartRateVariability: DailyHeartRateVariability
     dailyHeartRateZones: DailyHeartRateZones
@@ -394,6 +400,12 @@ class GoogleDevicesandservicesHealthV4DataType(
     typing_extensions.TypedDict, total=False
 ):
     name: str
+
+@typing.type_check_only
+class GoogleDevicesandservicesHealthV4WebhookNotificationCloudLog(
+    typing_extensions.TypedDict, total=False
+):
+    httpResponse: HttpResponse
 
 @typing.type_check_only
 class HeartRate(typing_extensions.TypedDict, total=False):
@@ -570,6 +582,7 @@ class ReconciledDataPoint(typing_extensions.TypedDict, total=False):
     activeZoneMinutes: ActiveZoneMinutes
     activityLevel: ActivityLevel
     altitude: Altitude
+    basalEnergyBurned: BasalEnergyBurned
     bodyFat: BodyFat
     dailyHeartRateVariability: DailyHeartRateVariability
     dailyHeartRateZones: DailyHeartRateZones
@@ -949,10 +962,6 @@ class VolumeQuantityRollup(typing_extensions.TypedDict, total=False):
         "PINT_IMPERIAL",
         "PINT_US",
     ]
-
-@typing.type_check_only
-class WebhookNotificationCloudLog(typing_extensions.TypedDict, total=False):
-    httpResponse: HttpResponse
 
 @typing.type_check_only
 class Weight(typing_extensions.TypedDict, total=False):

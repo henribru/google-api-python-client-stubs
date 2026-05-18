@@ -281,6 +281,7 @@ class NodeConfig(typing_extensions.TypedDict, total=False):
     serviceAccount: str
     subnetwork: str
     tags: _list[str]
+    trafficRoutingConfig: TrafficRoutingConfig
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
@@ -417,6 +418,12 @@ class TaskLogsRetentionConfig(typing_extensions.TypedDict, total=False):
         "TASK_LOGS_STORAGE_MODE_UNSPECIFIED",
         "CLOUD_LOGGING_AND_CLOUD_STORAGE",
         "CLOUD_LOGGING_ONLY",
+    ]
+
+@typing.type_check_only
+class TrafficRoutingConfig(typing_extensions.TypedDict, total=False):
+    cloudRunFunctionsRouting: typing_extensions.Literal[
+        "ROUTING_MODE_UNSPECIFIED", "DIRECT", "VIA_NETWORK_ATTACHMENT"
     ]
 
 @typing.type_check_only

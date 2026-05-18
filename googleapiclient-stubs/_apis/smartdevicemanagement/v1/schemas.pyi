@@ -6,7 +6,6 @@ _list = list
 
 @typing.type_check_only
 class GoogleHomeEnterpriseSdmV1Device(typing_extensions.TypedDict, total=False):
-    ghpName: str
     name: str
     parentRelations: _list[GoogleHomeEnterpriseSdmV1ParentRelation]
     traits: dict[str, typing.Any]
@@ -46,7 +45,6 @@ class GoogleHomeEnterpriseSdmV1ListStructuresResponse(
 @typing.type_check_only
 class GoogleHomeEnterpriseSdmV1ParentRelation(typing_extensions.TypedDict, total=False):
     displayName: str
-    ghpParent: str
     parent: str
 
 @typing.type_check_only
@@ -56,6 +54,5 @@ class GoogleHomeEnterpriseSdmV1Room(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleHomeEnterpriseSdmV1Structure(typing_extensions.TypedDict, total=False):
-    ghpName: str
     name: str
     traits: dict[str, typing.Any]

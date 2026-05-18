@@ -7,6 +7,7 @@ _list = list
 @typing.type_check_only
 class AISkillAnalysisOccurrence(typing_extensions.TypedDict, total=False):
     findings: _list[Finding]
+    maxSeverity: str
     skillName: str
 
 @typing.type_check_only
@@ -283,16 +284,19 @@ class FileHashes(typing_extensions.TypedDict, total=False):
 class FileLocation(typing_extensions.TypedDict, total=False):
     filePath: str
     layerDetails: LayerDetails
+    lineNumber: int
 
 @typing.type_check_only
 class Finding(typing_extensions.TypedDict, total=False):
     category: str
-    description: str
-    filePath: str
-    ruleId: str
+    location: FindingLocation
+    scanner: str
     severity: str
-    snippet: str
-    title: str
+
+@typing.type_check_only
+class FindingLocation(typing_extensions.TypedDict, total=False):
+    filePath: str
+    lineNumber: str
 
 @typing.type_check_only
 class Fingerprint(typing_extensions.TypedDict, total=False):

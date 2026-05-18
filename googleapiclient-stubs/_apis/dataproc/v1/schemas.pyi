@@ -475,6 +475,7 @@ class ExecutionConfig(typing_extensions.TypedDict, total=False):
     kmsKey: str
     networkTags: _list[str]
     networkUri: str
+    resourceManagerTags: dict[str, typing.Any]
     serviceAccount: str
     stagingBucket: str
     subnetworkUri: str

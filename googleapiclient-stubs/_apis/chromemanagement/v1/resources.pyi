@@ -425,6 +425,36 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
                 GoogleChromeManagementV1FindInstalledAppDevicesResponseHttpRequest
                 | None
             ): ...
+            def findInstalledAppProfiles(
+                self,
+                *,
+                customer: str,
+                appId: str = ...,
+                appType: typing_extensions.Literal[
+                    "APP_TYPE_UNSPECIFIED",
+                    "EXTENSION",
+                    "APP",
+                    "THEME",
+                    "HOSTED_APP",
+                    "ANDROID_APP",
+                ] = ...,
+                filter: str = ...,
+                orderBy: str = ...,
+                orgUnitId: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any,
+            ) -> (
+                GoogleChromeManagementV1FindInstalledAppProfilesResponseHttpRequest
+            ): ...
+            def findInstalledAppProfiles_next(
+                self,
+                previous_request: GoogleChromeManagementV1FindInstalledAppProfilesResponseHttpRequest,
+                previous_response: GoogleChromeManagementV1FindInstalledAppProfilesResponse,
+            ) -> (
+                GoogleChromeManagementV1FindInstalledAppProfilesResponseHttpRequest
+                | None
+            ): ...
 
         @typing.type_check_only
         class TelemetryResource(googleapiclient.discovery.Resource):
@@ -774,6 +804,16 @@ class GoogleChromeManagementV1FindInstalledAppDevicesResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleChromeManagementV1FindInstalledAppDevicesResponse: ...
+
+@typing.type_check_only
+class GoogleChromeManagementV1FindInstalledAppProfilesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleChromeManagementV1FindInstalledAppProfilesResponse: ...
 
 @typing.type_check_only
 class GoogleChromeManagementV1ListTelemetryDevicesResponseHttpRequest(

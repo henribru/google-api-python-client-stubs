@@ -18,6 +18,14 @@ class SolarResource(googleapiclient.discovery.Resource):
         def findClosest(
             self,
             *,
+            additionalInsights: typing_extensions.Literal[
+                "ADDITIONAL_INSIGHTS_UNSPECIFIED", "DETECTED_ARRAYS"
+            ]
+            | _list[
+                typing_extensions.Literal[
+                    "ADDITIONAL_INSIGHTS_UNSPECIFIED", "DETECTED_ARRAYS"
+                ]
+            ] = ...,
             exactQualityRequired: bool = ...,
             experiments: typing_extensions.Literal[
                 "EXPERIMENT_UNSPECIFIED", "EXPANDED_COVERAGE"

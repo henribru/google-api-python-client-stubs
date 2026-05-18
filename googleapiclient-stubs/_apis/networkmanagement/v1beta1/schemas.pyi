@@ -51,6 +51,7 @@ class AbortInfo(typing_extensions.TypedDict, total=False):
         "NO_SERVERLESS_IP_RANGES",
         "IP_VERSION_PROTOCOL_MISMATCH",
         "GKE_POD_UNKNOWN_ENDPOINT_LOCATION",
+        "RESPONSE_TOO_LARGE",
     ]
     ipAddress: str
     projectsMissingPermission: _list[str]
@@ -290,6 +291,7 @@ class DropInfo(typing_extensions.TypedDict, total=False):
         "HYBRID_SUBNET_NO_ROUTE",
         "GKE_NETWORK_POLICY",
         "NO_VALID_ROUTE_FROM_GOOGLE_MANAGED_NETWORK_TO_DESTINATION",
+        "PRIVATE_CONNECTION_NO_RUNNING_INSTANCE",
     ]
     destinationGeolocationCode: str
     destinationIp: str
@@ -718,6 +720,10 @@ class Policy(typing_extensions.TypedDict, total=False):
     version: int
 
 @typing.type_check_only
+class PrivateConnectionInfo(typing_extensions.TypedDict, total=False):
+    uri: str
+
+@typing.type_check_only
 class ProbingDetails(typing_extensions.TypedDict, total=False):
     abortCause: typing_extensions.Literal[
         "PROBING_ABORT_CAUSE_UNSPECIFIED", "PERMISSION_DENIED", "NO_SOURCE_LOCATION"
@@ -891,9 +897,11 @@ class Step(typing_extensions.TypedDict, total=False):
     cloudFunction: CloudFunctionInfo
     cloudRunRevision: CloudRunRevisionInfo
     cloudSqlInstance: CloudSQLInstanceInfo
+    datastreamPrivateConnection: PrivateConnectionInfo
     deliver: DeliverInfo
     description: str
     directVpcEgressConnection: DirectVpcEgressConnectionInfo
+    dmsPrivateConnection: PrivateConnectionInfo
     drop: DropInfo
     endpoint: EndpointInfo
     firewall: FirewallInfo
@@ -937,6 +945,8 @@ class Step(typing_extensions.TypedDict, total=False):
         "START_FROM_STORAGE_BUCKET",
         "START_FROM_PSC_PUBLISHED_SERVICE",
         "START_FROM_SERVERLESS_NEG",
+        "START_FROM_DMS_PRIVATE_CONNECTION",
+        "START_FROM_DATASTREAM_PRIVATE_CONNECTION",
         "APPLY_INGRESS_FIREWALL_RULE",
         "APPLY_EGRESS_FIREWALL_RULE",
         "APPLY_ROUTE",

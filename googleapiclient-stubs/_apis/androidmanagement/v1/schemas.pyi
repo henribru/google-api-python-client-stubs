@@ -1475,6 +1475,9 @@ class Policy(typing_extensions.TypedDict, total=False):
         "AUTO_DATE_AND_TIME_ZONE_ENFORCED",
     ]
     autoTimeRequired: bool
+    autofillPolicy: typing_extensions.Literal[
+        "AUTOFILL_POLICY_UNSPECIFIED", "AUTOFILL_USER_CHOICE", "AUTOFILL_DISABLED"
+    ]
     blockApplicationsEnabled: bool
     bluetoothConfigDisabled: bool
     bluetoothContactSharingDisabled: bool

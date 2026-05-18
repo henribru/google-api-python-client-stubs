@@ -790,6 +790,7 @@ class OutlierStats(typing_extensions.TypedDict, total=False):
 class Package(typing_extensions.TypedDict, total=False):
     location: str
     name: str
+    sha256: str
 
 @typing.type_check_only
 class ParDoInstruction(typing_extensions.TypedDict, total=False):

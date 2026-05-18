@@ -49,6 +49,13 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> GoogleCloudRunV2InstanceHttpRequest: ...
+                def getIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    options_requestedPolicyVersion: int = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleIamV1PolicyHttpRequest: ...
                 def list(
                     self,
                     *,
@@ -73,6 +80,13 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                     validateOnly: bool = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
+                def setIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    body: GoogleIamV1SetIamPolicyRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleIamV1PolicyHttpRequest: ...
                 def start(
                     self,
                     *,
@@ -87,6 +101,13 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                     body: GoogleCloudRunV2StopInstanceRequest = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
+                def testIamPermissions(
+                    self,
+                    *,
+                    resource: str,
+                    body: GoogleIamV1TestIamPermissionsRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
 
             @typing.type_check_only
             class JobsResource(googleapiclient.discovery.Resource):

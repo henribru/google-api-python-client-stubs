@@ -58,6 +58,7 @@ class AddonsConfig(typing_extensions.TypedDict, total=False):
     kubernetesDashboard: KubernetesDashboard
     lustreCsiDriverConfig: LustreCsiDriverConfig
     networkPolicyConfig: NetworkPolicyConfig
+    nodeReadinessConfig: NodeReadinessConfig
     parallelstoreCsiDriverConfig: ParallelstoreCsiDriverConfig
     podSnapshotConfig: PodSnapshotConfig
     rayOperatorConfig: RayOperatorConfig
@@ -328,6 +329,7 @@ class Cluster(typing_extensions.TypedDict, total=False):
     nodeIpv4CidrSize: int
     nodePoolAutoConfig: NodePoolAutoConfig
     nodePoolDefaults: NodePoolDefaults
+    nodePoolUpgradeConcurrencyConfig: NodePoolUpgradeConcurrencyConfig
     nodePools: _list[NodePool]
     notificationConfig: NotificationConfig
     parentProductConfig: ParentProductConfig
@@ -467,6 +469,7 @@ class ClusterUpdate(typing_extensions.TypedDict, total=False):
     desiredNodePoolAutoscaling: NodePoolAutoscaling
     desiredNodePoolId: str
     desiredNodePoolLoggingConfig: NodePoolLoggingConfig
+    desiredNodePoolUpgradeConcurrencyConfig: NodePoolUpgradeConcurrencyConfig
     desiredNodeVersion: str
     desiredNotificationConfig: NotificationConfig
     desiredParentProductConfig: ParentProductConfig
@@ -612,6 +615,10 @@ class CreateNodePoolRequest(typing_extensions.TypedDict, total=False):
     parent: str
     projectId: str
     zone: str
+
+@typing.type_check_only
+class CustomNodeInit(typing_extensions.TypedDict, total=False):
+    initScript: InitScript
 
 @typing.type_check_only
 class DNSConfig(typing_extensions.TypedDict, total=False):
@@ -954,6 +961,13 @@ class IdentityServiceConfig(typing_extensions.TypedDict, total=False):
     enabled: bool
 
 @typing.type_check_only
+class InitScript(typing_extensions.TypedDict, total=False):
+    args: _list[str]
+    gcpSecretManagerSecretUri: str
+    gcsGeneration: str
+    gcsUri: str
+
+@typing.type_check_only
 class IntraNodeVisibilityConfig(typing_extensions.TypedDict, total=False):
     enabled: bool
 
@@ -996,6 +1010,7 @@ class LinuxNodeConfig(typing_extensions.TypedDict, total=False):
     cgroupMode: typing_extensions.Literal[
         "CGROUP_MODE_UNSPECIFIED", "CGROUP_MODE_V1", "CGROUP_MODE_V2"
     ]
+    customNodeInit: CustomNodeInit
     hugepages: HugepagesConfig
     nodeKernelModuleLoading: NodeKernelModuleLoading
     swapConfig: SwapConfig
@@ -1100,6 +1115,7 @@ class MaintenancePolicy(typing_extensions.TypedDict, total=False):
 class MaintenanceWindow(typing_extensions.TypedDict, total=False):
     dailyMaintenanceWindow: DailyMaintenanceWindow
     maintenanceExclusions: dict[str, typing.Any]
+    recurringMaintenanceWindow: RecurringMaintenanceWindow
     recurringWindow: RecurringTimeWindow
 
 @typing.type_check_only
@@ -1443,6 +1459,10 @@ class NodePoolLoggingConfig(typing_extensions.TypedDict, total=False):
     variantConfig: LoggingVariantConfig
 
 @typing.type_check_only
+class NodePoolUpgradeConcurrencyConfig(typing_extensions.TypedDict, total=False):
+    maxCount: str
+
+@typing.type_check_only
 class NodePoolUpgradeInfo(typing_extensions.TypedDict, total=False):
     autoUpgradeStatus: _list[
         typing_extensions.Literal[
@@ -1463,6 +1483,10 @@ class NodePoolUpgradeInfo(typing_extensions.TypedDict, total=False):
         ]
     ]
     upgradeDetails: _list[UpgradeDetails]
+
+@typing.type_check_only
+class NodeReadinessConfig(typing_extensions.TypedDict, total=False):
+    enabled: bool
 
 @typing.type_check_only
 class NodeTaint(typing_extensions.TypedDict, total=False):
@@ -1647,6 +1671,13 @@ class RayOperatorConfig(typing_extensions.TypedDict, total=False):
     enabled: bool
     rayClusterLoggingConfig: RayClusterLoggingConfig
     rayClusterMonitoringConfig: RayClusterMonitoringConfig
+
+@typing.type_check_only
+class RecurringMaintenanceWindow(typing_extensions.TypedDict, total=False):
+    delayUntil: Date
+    recurrence: str
+    windowDuration: str
+    windowStartTime: TimeOfDay
 
 @typing.type_check_only
 class RecurringTimeWindow(typing_extensions.TypedDict, total=False):
@@ -2003,6 +2034,13 @@ class TaintConfig(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class TimeOfDay(typing_extensions.TypedDict, total=False):
+    hours: int
+    minutes: int
+    nanos: int
+    seconds: int
+
+@typing.type_check_only
 class TimeWindow(typing_extensions.TypedDict, total=False):
     endTime: str
     maintenanceExclusionOptions: MaintenanceExclusionOptions
@@ -2073,6 +2111,7 @@ class UpdateNodePoolRequest(typing_extensions.TypedDict, total=False):
     resourceManagerTags: ResourceManagerTags
     storagePools: _list[str]
     tags: NetworkTags
+    taintConfig: TaintConfig
     taints: NodeTaints
     upgradeSettings: UpgradeSettings
     windowsNodeConfig: WindowsNodeConfig

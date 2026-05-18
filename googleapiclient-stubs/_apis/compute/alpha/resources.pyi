@@ -1836,6 +1836,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             haController: str,
+            force: bool = ...,
             requestId: str = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -2148,6 +2149,29 @@ class ComputeResource(googleapiclient.discovery.Resource):
         ) -> ImageFamilyViewHttpRequest: ...
 
     @typing.type_check_only
+    class ImageViewsResource(googleapiclient.discovery.Resource):
+        def get(
+            self, *, project: str, region: str, resourceId: str, **kwargs: typing.Any
+        ) -> ImageViewHttpRequest: ...
+        def list(
+            self,
+            *,
+            project: str,
+            region: str,
+            filter: str = ...,
+            maxResults: int = ...,
+            orderBy: str = ...,
+            pageToken: str = ...,
+            returnPartialSuccess: bool = ...,
+            **kwargs: typing.Any,
+        ) -> ImageViewsListResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ImageViewsListResponseHttpRequest,
+            previous_response: ImageViewsListResponse,
+        ) -> ImageViewsListResponseHttpRequest | None: ...
+
+    @typing.type_check_only
     class ImagesResource(googleapiclient.discovery.Resource):
         def delete(
             self,
@@ -2365,6 +2389,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             instanceGroupManager: str,
+            noGracefulShutdown: bool = ...,
             requestId: str = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -2375,6 +2400,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             zone: str,
             instanceGroupManager: str,
             body: InstanceGroupManagersDeleteInstancesRequest = ...,
+            noGracefulShutdown: bool = ...,
             requestId: str = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -2507,6 +2533,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             zone: str,
             instanceGroupManager: str,
             body: InstanceGroupManagersRecreateInstancesRequest = ...,
+            noGracefulShutdown: bool = ...,
             requestId: str = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -2587,6 +2614,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             zone: str,
             instanceGroupManager: str,
             body: InstanceGroupManagersStopInstancesRequest = ...,
+            noGracefulShutdown: bool = ...,
             requestId: str = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -5469,6 +5497,12 @@ class ComputeResource(googleapiclient.discovery.Resource):
         ) -> OperationHttpRequest: ...
 
     @typing.type_check_only
+    class ProjectViewsResource(googleapiclient.discovery.Resource):
+        def get(
+            self, *, project: str, region: str, **kwargs: typing.Any
+        ) -> ProjectViewHttpRequest: ...
+
+    @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         def disableXpnHost(
             self, *, project: str, requestId: str = ..., **kwargs: typing.Any
@@ -6970,6 +7004,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             instanceGroupManager: str,
+            noGracefulShutdown: bool = ...,
             requestId: str = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -6980,6 +7015,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             region: str,
             instanceGroupManager: str,
             body: RegionInstanceGroupManagersDeleteInstancesRequest = ...,
+            noGracefulShutdown: bool = ...,
             requestId: str = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -7107,6 +7143,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             region: str,
             instanceGroupManager: str,
             body: RegionInstanceGroupManagersRecreateRequest = ...,
+            noGracefulShutdown: bool = ...,
             requestId: str = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -7187,6 +7224,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             region: str,
             instanceGroupManager: str,
             body: RegionInstanceGroupManagersStopInstancesRequest = ...,
+            noGracefulShutdown: bool = ...,
             requestId: str = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -9276,6 +9314,15 @@ class ComputeResource(googleapiclient.discovery.Resource):
 
     @typing.type_check_only
     class RolloutsResource(googleapiclient.discovery.Resource):
+        def advance(
+            self,
+            *,
+            project: str,
+            rollout: str,
+            currentWaveNumber: str = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
         def cancel(
             self,
             *,
@@ -9328,15 +9375,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             rollout: str,
             etag: str = ...,
             requestId: str = ...,
-            **kwargs: typing.Any,
-        ) -> OperationHttpRequest: ...
-        def startNextWave(
-            self,
-            *,
-            project: str,
-            rollout: str,
-            requestId: str = ...,
-            waveNumber: str = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
 
@@ -11858,6 +11896,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
     def httpHealthChecks(self) -> HttpHealthChecksResource: ...
     def httpsHealthChecks(self) -> HttpsHealthChecksResource: ...
     def imageFamilyViews(self) -> ImageFamilyViewsResource: ...
+    def imageViews(self) -> ImageViewsResource: ...
     def images(self) -> ImagesResource: ...
     def instanceGroupManagerResizeRequests(
         self,
@@ -11894,6 +11933,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
     ) -> OrganizationSnapshotRecycleBinPolicyResource: ...
     def packetMirrorings(self) -> PacketMirroringsResource: ...
     def previewFeatures(self) -> PreviewFeaturesResource: ...
+    def projectViews(self) -> ProjectViewsResource: ...
     def projects(self) -> ProjectsResource: ...
     def publicAdvertisedPrefixes(self) -> PublicAdvertisedPrefixesResource: ...
     def publicDelegatedPrefixes(self) -> PublicDelegatedPrefixesResource: ...
@@ -12677,6 +12717,22 @@ class ImageListHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ImageList: ...
+
+@typing.type_check_only
+class ImageViewHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ImageView: ...
+
+@typing.type_check_only
+class ImageViewsListResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ImageViewsListResponse: ...
 
 @typing.type_check_only
 class InstanceHttpRequest(googleapiclient.http.HttpRequest):
@@ -13561,6 +13617,14 @@ class ProjectHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Project: ...
+
+@typing.type_check_only
+class ProjectViewHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ProjectView: ...
 
 @typing.type_check_only
 class ProjectsGetXpnResourcesHttpRequest(googleapiclient.http.HttpRequest):

@@ -239,6 +239,7 @@ class ResumeSubscriptionRequest(typing_extensions.TypedDict, total=False):
         "RESUME_MODE_UNSPECIFIED",
         "RESUME_MODE_CYCLE_OPTIONS",
         "RESUME_MODE_RESTORE_EXISTING_BILLING_SCHEDULE",
+        "RESUME_MODE_IMMEDIATE_NEW_CYCLE",
     ]
 
 @typing.type_check_only
@@ -375,7 +376,12 @@ class SubscriptionUpgradeDowngradeDetails(typing_extensions.TypedDict, total=Fal
     previousSubscriptionId: str
 
 @typing.type_check_only
-class SuspendSubscriptionRequest(typing_extensions.TypedDict, total=False): ...
+class SuspendSubscriptionRequest(typing_extensions.TypedDict, total=False):
+    suspendMode: typing_extensions.Literal[
+        "SUSPEND_MODE_UNSPECIFIED",
+        "SUSPEND_MODE_CANCEL_AFTER_GRACE_PERIOD",
+        "SUSPEND_MODE_CANCEL_AFTER_RETENTION_PERIOD",
+    ]
 
 @typing.type_check_only
 class SuspendSubscriptionResponse(typing_extensions.TypedDict, total=False):

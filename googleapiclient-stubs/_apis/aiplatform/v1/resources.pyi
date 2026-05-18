@@ -5521,6 +5521,16 @@ class AiplatformResource(googleapiclient.discovery.Resource):
                     def events(self) -> EventsResource: ...
                     def operations(self) -> OperationsResource: ...
 
+                def asyncQuery(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudAiplatformV1AsyncQueryReasoningEngineRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+                def cancelAsyncQuery(
+                    self, *, name: str, operationName: str = ..., **kwargs: typing.Any
+                ) -> GoogleCloudAiplatformV1CancelAsyncQueryReasoningEngineResponseHttpRequest: ...
                 def create(
                     self,
                     *,
@@ -5695,6 +5705,40 @@ class AiplatformResource(googleapiclient.discovery.Resource):
                     body: GoogleCloudAiplatformV1ResumeScheduleRequest = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleProtobufEmptyHttpRequest: ...
+                def operations(self) -> OperationsResource: ...
+
+            @typing.type_check_only
+            class SkillsResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class OperationsResource(googleapiclient.discovery.Resource):
+                    def cancel(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleProtobufEmptyHttpRequest: ...
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleProtobufEmptyHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        name: str,
+                        filter: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        returnPartialSuccess: bool = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
+                        previous_response: GoogleLongrunningListOperationsResponse,
+                    ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
+                    def wait(
+                        self, *, name: str, timeout: str = ..., **kwargs: typing.Any
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
+
                 def operations(self) -> OperationsResource: ...
 
             @typing.type_check_only
@@ -6619,6 +6663,7 @@ class AiplatformResource(googleapiclient.discovery.Resource):
             def ragEngineConfig(self) -> RagEngineConfigResource: ...
             def reasoningEngines(self) -> ReasoningEnginesResource: ...
             def schedules(self) -> SchedulesResource: ...
+            def skills(self) -> SkillsResource: ...
             def specialistPools(self) -> SpecialistPoolsResource: ...
             def studies(self) -> StudiesResource: ...
             def tensorboards(self) -> TensorboardsResource: ...
@@ -7083,6 +7128,18 @@ class AiplatformResource(googleapiclient.discovery.Resource):
 
             def operations(self) -> OperationsResource: ...
 
+        def asyncQuery(
+            self,
+            *,
+            name: str,
+            body: GoogleCloudAiplatformV1AsyncQueryReasoningEngineRequest = ...,
+            **kwargs: typing.Any,
+        ) -> GoogleLongrunningOperationHttpRequest: ...
+        def cancelAsyncQuery(
+            self, *, name: str, operationName: str = ..., **kwargs: typing.Any
+        ) -> (
+            GoogleCloudAiplatformV1CancelAsyncQueryReasoningEngineResponseHttpRequest
+        ): ...
         def create(
             self,
             *,
@@ -7153,6 +7210,40 @@ class AiplatformResource(googleapiclient.discovery.Resource):
 
     @typing.type_check_only
     class SchedulesResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class OperationsResource(googleapiclient.discovery.Resource):
+            def cancel(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleProtobufEmptyHttpRequest: ...
+            def delete(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleProtobufEmptyHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleLongrunningOperationHttpRequest: ...
+            def list(
+                self,
+                *,
+                name: str,
+                filter: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                returnPartialSuccess: bool = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
+                previous_response: GoogleLongrunningListOperationsResponse,
+            ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
+            def wait(
+                self, *, name: str, timeout: str = ..., **kwargs: typing.Any
+            ) -> GoogleLongrunningOperationHttpRequest: ...
+
+        def operations(self) -> OperationsResource: ...
+
+    @typing.type_check_only
+    class SkillsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class OperationsResource(googleapiclient.discovery.Resource):
             def cancel(
@@ -7558,6 +7649,7 @@ class AiplatformResource(googleapiclient.discovery.Resource):
     def ragEngineConfig(self) -> RagEngineConfigResource: ...
     def reasoningEngines(self) -> ReasoningEnginesResource: ...
     def schedules(self) -> SchedulesResource: ...
+    def skills(self) -> SkillsResource: ...
     def specialistPools(self) -> SpecialistPoolsResource: ...
     def studies(self) -> StudiesResource: ...
     def tensorboards(self) -> TensorboardsResource: ...
@@ -7716,6 +7808,16 @@ class GoogleCloudAiplatformV1CachedContentHttpRequest(googleapiclient.http.HttpR
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1CachedContent: ...
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1CancelAsyncQueryReasoningEngineResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudAiplatformV1CancelAsyncQueryReasoningEngineResponse: ...
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1ComputeTokensResponseHttpRequest(

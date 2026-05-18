@@ -117,6 +117,7 @@ class GdataMedia(typing_extensions.TypedDict, total=False):
     ]
     sha1Hash: str
     sha256Hash: str
+    sha512Hash: str
     timestamp: str
     token: str
 
@@ -136,6 +137,8 @@ class GoogleFirebaseAppdistroV1AabInfo(typing_extensions.TypedDict, total=False)
         "APP_NOT_PUBLISHED",
         "AAB_STATE_UNAVAILABLE",
         "PLAY_IAS_TERMS_NOT_ACCEPTED",
+        "ADHOC_SHARING_KEY_NOT_GENERATED",
+        "ADHOC_SHARING_KEY_NOT_REGISTERED",
     ]
     name: str
     testCertificate: GoogleFirebaseAppdistroV1TestCertificate

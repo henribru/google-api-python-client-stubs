@@ -1342,6 +1342,7 @@ class BusinessChainTargetingOptionDetails(typing_extensions.TypedDict, total=Fal
         "GEO_REGION_TYPE_COMMUNE",
         "GEO_REGION_TYPE_COLLOQUIAL_AREA",
         "GEO_REGION_TYPE_POST_TOWN",
+        "GEO_REGION_TYPE_WARD",
     ]
 
 @typing.type_check_only
@@ -3096,6 +3097,7 @@ class GeoRegionAssignedTargetingOptionDetails(typing_extensions.TypedDict, total
         "GEO_REGION_TYPE_COMMUNE",
         "GEO_REGION_TYPE_COLLOQUIAL_AREA",
         "GEO_REGION_TYPE_POST_TOWN",
+        "GEO_REGION_TYPE_WARD",
     ]
     negative: bool
     targetingOptionId: str
@@ -3147,6 +3149,7 @@ class GeoRegionTargetingOptionDetails(typing_extensions.TypedDict, total=False):
         "GEO_REGION_TYPE_COMMUNE",
         "GEO_REGION_TYPE_COLLOQUIAL_AREA",
         "GEO_REGION_TYPE_POST_TOWN",
+        "GEO_REGION_TYPE_WARD",
     ]
 
 @typing.type_check_only

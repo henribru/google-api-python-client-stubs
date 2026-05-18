@@ -1311,6 +1311,9 @@ class GoogleCloudDiscoveryengineV1ProjectConfigurableBillingStatus(
     searchQpmThresholdNextUpdateTime: str
     startTime: str
     terminateTime: str
+    updateType: typing_extensions.Literal[
+        "UPDATE_TYPE_UNSPECIFIED", "CREATE", "DELETE", "SCALE_UP", "SCALE_DOWN"
+    ]
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1ProjectCustomerProvidedConfig(
@@ -2131,11 +2134,15 @@ class GoogleCloudDiscoveryengineV1alphaAssistantGroundedContentTextGroundingMeta
     segments: _list[
         GoogleCloudDiscoveryengineV1alphaAssistantGroundedContentTextGroundingMetadataSegment
     ]
+    visualSegments: _list[
+        GoogleCloudDiscoveryengineV1alphaAssistantGroundedContentTextGroundingMetadataVisualSegment
+    ]
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1alphaAssistantGroundedContentTextGroundingMetadataReference(
     typing_extensions.TypedDict, total=False
 ):
+    codeSnippet: str
     content: str
     documentMetadata: GoogleCloudDiscoveryengineV1alphaAssistantGroundedContentTextGroundingMetadataReferenceDocumentMetadata
 
@@ -2145,6 +2152,7 @@ class GoogleCloudDiscoveryengineV1alphaAssistantGroundedContentTextGroundingMeta
 ):
     document: str
     domain: str
+    language: typing_extensions.Literal["LANGUAGE_UNSPECIFIED", "PYTHON", "SQL"]
     mimeType: str
     pageIdentifier: str
     title: str
@@ -2159,6 +2167,13 @@ class GoogleCloudDiscoveryengineV1alphaAssistantGroundedContentTextGroundingMeta
     referenceIndices: _list[int]
     startIndex: str
     text: str
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaAssistantGroundedContentTextGroundingMetadataVisualSegment(
+    typing_extensions.TypedDict, total=False
+):
+    contentId: str
+    referenceIndices: _list[int]
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1alphaBAPConfig(
@@ -3588,6 +3603,9 @@ class GoogleCloudDiscoveryengineV1alphaProjectConfigurableBillingStatus(
     searchQpmThresholdNextUpdateTime: str
     startTime: str
     terminateTime: str
+    updateType: typing_extensions.Literal[
+        "UPDATE_TYPE_UNSPECIFIED", "CREATE", "DELETE", "SCALE_UP", "SCALE_DOWN"
+    ]
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1alphaProjectCustomerProvidedConfig(
@@ -4251,6 +4269,7 @@ class GoogleCloudDiscoveryengineV1alphaSessionTurn(
     answer: str
     detailedAnswer: GoogleCloudDiscoveryengineV1alphaAnswer
     detailedAssistAnswer: GoogleCloudDiscoveryengineV1alphaAssistAnswer
+    live: bool
     query: GoogleCloudDiscoveryengineV1alphaQuery
     queryConfig: dict[str, typing.Any]
 
@@ -5339,11 +5358,15 @@ class GoogleCloudDiscoveryengineV1betaAssistantGroundedContentTextGroundingMetad
     segments: _list[
         GoogleCloudDiscoveryengineV1betaAssistantGroundedContentTextGroundingMetadataSegment
     ]
+    visualSegments: _list[
+        GoogleCloudDiscoveryengineV1betaAssistantGroundedContentTextGroundingMetadataVisualSegment
+    ]
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1betaAssistantGroundedContentTextGroundingMetadataReference(
     typing_extensions.TypedDict, total=False
 ):
+    codeSnippet: str
     content: str
     documentMetadata: GoogleCloudDiscoveryengineV1betaAssistantGroundedContentTextGroundingMetadataReferenceDocumentMetadata
 
@@ -5353,6 +5376,7 @@ class GoogleCloudDiscoveryengineV1betaAssistantGroundedContentTextGroundingMetad
 ):
     document: str
     domain: str
+    language: typing_extensions.Literal["LANGUAGE_UNSPECIFIED", "PYTHON", "SQL"]
     mimeType: str
     pageIdentifier: str
     title: str
@@ -5367,6 +5391,13 @@ class GoogleCloudDiscoveryengineV1betaAssistantGroundedContentTextGroundingMetad
     referenceIndices: _list[int]
     startIndex: str
     text: str
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1betaAssistantGroundedContentTextGroundingMetadataVisualSegment(
+    typing_extensions.TypedDict, total=False
+):
+    contentId: str
+    referenceIndices: _list[int]
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1betaAssistantToolInfo(
@@ -7135,6 +7166,9 @@ class GoogleCloudDiscoveryengineV1betaProjectConfigurableBillingStatus(
     searchQpmThresholdNextUpdateTime: str
     startTime: str
     terminateTime: str
+    updateType: typing_extensions.Literal[
+        "UPDATE_TYPE_UNSPECIFIED", "CREATE", "DELETE", "SCALE_UP", "SCALE_DOWN"
+    ]
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1betaProjectCustomerProvidedConfig(
@@ -8238,6 +8272,7 @@ class GoogleCloudDiscoveryengineV1betaSessionTurn(
     answer: str
     detailedAnswer: GoogleCloudDiscoveryengineV1betaAnswer
     detailedAssistAnswer: GoogleCloudDiscoveryengineV1betaAssistAnswer
+    live: bool
     query: GoogleCloudDiscoveryengineV1betaQuery
     queryConfig: dict[str, typing.Any]
 

@@ -944,6 +944,7 @@ class Message(typing_extensions.TypedDict, total=False):
     privateMessageViewer: User
     quotedMessageMetadata: QuotedMessageMetadata
     sender: User
+    silent: bool
     slashCommand: SlashCommand
     space: Space
     text: str
