@@ -246,6 +246,23 @@ class CloudFilestoreResource(googleapiclient.discovery.Resource):
                     previous_response: ListOperationsResponse,
                 ) -> ListOperationsResponseHttpRequest | None: ...
 
+            @typing.type_check_only
+            class SharePoolsResource(googleapiclient.discovery.Resource):
+                def acquireShare(
+                    self,
+                    *,
+                    parent: str,
+                    body: AcquireShareRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> AcquireShareResponseHttpRequest: ...
+                def releaseShare(
+                    self,
+                    *,
+                    parent: str,
+                    body: ReleaseShareRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> ReleaseShareResponseHttpRequest: ...
+
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
@@ -267,6 +284,7 @@ class CloudFilestoreResource(googleapiclient.discovery.Resource):
             def backups(self) -> BackupsResource: ...
             def instances(self) -> InstancesResource: ...
             def operations(self) -> OperationsResource: ...
+            def sharePools(self) -> SharePoolsResource: ...
 
         def locations(self) -> LocationsResource: ...
 
@@ -283,6 +301,14 @@ class CloudFilestoreResource(googleapiclient.discovery.Resource):
         | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def projects(self) -> ProjectsResource: ...
+
+@typing.type_check_only
+class AcquireShareResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> AcquireShareResponse: ...
 
 @typing.type_check_only
 class BackupHttpRequest(googleapiclient.http.HttpRequest):
@@ -371,6 +397,14 @@ class OperationHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Operation: ...
+
+@typing.type_check_only
+class ReleaseShareResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ReleaseShareResponse: ...
 
 @typing.type_check_only
 class ShareHttpRequest(googleapiclient.http.HttpRequest):

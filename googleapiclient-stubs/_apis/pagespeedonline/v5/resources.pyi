@@ -27,6 +27,7 @@ class PagespeedInsightsResource(googleapiclient.discovery.Resource):
                 "PERFORMANCE",
                 "PWA",
                 "SEO",
+                "AGENTIC_BROWSING",
             ]
             | _list[
                 typing_extensions.Literal[
@@ -36,6 +37,7 @@ class PagespeedInsightsResource(googleapiclient.discovery.Resource):
                     "PERFORMANCE",
                     "PWA",
                     "SEO",
+                    "AGENTIC_BROWSING",
                 ]
             ] = ...,
             locale: str = ...,

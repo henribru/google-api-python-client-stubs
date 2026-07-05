@@ -231,6 +231,39 @@ class Filter(typing_extensions.TypedDict, total=False):
     srcRange: str
 
 @typing.type_check_only
+class Gateway(typing_extensions.TypedDict, total=False):
+    capacity: typing_extensions.Literal[
+        "GATEWAY_CAPACITY_UNSPECIFIED", "CAPACITY_1_GBPS", "CAPACITY_10_GBPS"
+    ]
+    cloudRouters: _list[str]
+    ipRangeReservations: _list[IpRangeReservation]
+    sacAttachment: str
+
+@typing.type_check_only
+class GatewayAdvertisedRoute(typing_extensions.TypedDict, total=False):
+    createTime: str
+    description: str
+    ipRange: str
+    labels: dict[str, typing.Any]
+    name: str
+    priority: int
+    recipient: typing_extensions.Literal["RECIPIENT_UNSPECIFIED", "ADVERTISE_TO_HUB"]
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "CREATING",
+        "ACTIVE",
+        "DELETING",
+        "ACCEPTING",
+        "REJECTING",
+        "UPDATING",
+        "INACTIVE",
+        "OBSOLETE",
+        "FAILED",
+    ]
+    uniqueId: str
+    updateTime: str
+
+@typing.type_check_only
 class GoogleLongrunningCancelOperationRequest(
     typing_extensions.TypedDict, total=False
 ): ...
@@ -293,7 +326,7 @@ class Hub(typing_extensions.TypedDict, total=False):
     name: str
     policyMode: typing_extensions.Literal["POLICY_MODE_UNSPECIFIED", "PRESET"]
     presetTopology: typing_extensions.Literal[
-        "PRESET_TOPOLOGY_UNSPECIFIED", "MESH", "STAR"
+        "PRESET_TOPOLOGY_UNSPECIFIED", "MESH", "STAR", "HYBRID_INSPECTION"
     ]
     routeTables: _list[str]
     routingVpcs: _list[RoutingVPC]
@@ -354,6 +387,10 @@ class InternalRange(typing_extensions.TypedDict, total=False):
     users: _list[str]
 
 @typing.type_check_only
+class IpRangeReservation(typing_extensions.TypedDict, total=False):
+    ipRange: str
+
+@typing.type_check_only
 class LinkedInterconnectAttachments(typing_extensions.TypedDict, total=False):
     excludeExportRanges: _list[str]
     excludeImportRanges: _list[str]
@@ -412,6 +449,12 @@ class ListAutomatedDnsRecordsResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ListDestinationsResponse(typing_extensions.TypedDict, total=False):
     destinations: _list[Destination]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListGatewayAdvertisedRoutesResponse(typing_extensions.TypedDict, total=False):
+    gatewayAdvertisedRoutes: _list[GatewayAdvertisedRoute]
     nextPageToken: str
     unreachable: _list[str]
 
@@ -913,6 +956,7 @@ class Spoke(typing_extensions.TypedDict, total=False):
     description: str
     etag: str
     fieldPathsPendingUpdate: _list[str]
+    gateway: Gateway
     group: str
     hub: str
     labels: dict[str, typing.Any]
@@ -929,6 +973,7 @@ class Spoke(typing_extensions.TypedDict, total=False):
         "INTERCONNECT_ATTACHMENT",
         "ROUTER_APPLIANCE",
         "VPC_NETWORK",
+        "GATEWAY",
         "PRODUCER_VPC_NETWORK",
     ]
     state: typing_extensions.Literal[
@@ -991,6 +1036,7 @@ class SpokeTypeCount(typing_extensions.TypedDict, total=False):
         "INTERCONNECT_ATTACHMENT",
         "ROUTER_APPLIANCE",
         "VPC_NETWORK",
+        "GATEWAY",
         "PRODUCER_VPC_NETWORK",
     ]
 

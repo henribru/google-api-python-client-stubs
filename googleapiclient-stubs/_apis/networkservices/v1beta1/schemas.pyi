@@ -47,11 +47,17 @@ class AgentGatewayNetworkConfigDnsPeeringConfig(
 @typing.type_check_only
 class AgentGatewayNetworkConfigEgress(typing_extensions.TypedDict, total=False):
     networkAttachment: str
+    trustConfig: AgentGatewayNetworkConfigEgressTrustConfig
+
+@typing.type_check_only
+class AgentGatewayNetworkConfigEgressTrustConfig(
+    typing_extensions.TypedDict, total=False
+):
+    pemCertificates: _list[str]
 
 @typing.type_check_only
 class AgentGatewaySelfManaged(typing_extensions.TypedDict, total=False):
     resourceUri: str
-    resourceUris: _list[str]
 
 @typing.type_check_only
 class AuthzExtension(typing_extensions.TypedDict, total=False):

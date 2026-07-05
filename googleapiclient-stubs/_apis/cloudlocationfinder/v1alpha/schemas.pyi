@@ -11,7 +11,6 @@ class CloudLocation(typing_extensions.TypedDict, total=False):
         "CLOUD_LOCATION_TYPE_UNSPECIFIED",
         "CLOUD_LOCATION_TYPE_REGION",
         "CLOUD_LOCATION_TYPE_ZONE",
-        "CLOUD_LOCATION_TYPE_REGION_EXTENSION",
         "CLOUD_LOCATION_TYPE_GDCC_ZONE",
     ]
     cloudProvider: typing_extensions.Literal[

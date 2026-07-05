@@ -30,6 +30,7 @@ class GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessmentAccountRiskReason
         "CLIENT_HISTORICAL_BOT_ACTIVITY",
         "ACCOUNT_IN_LARGE_RELATED_GROUP",
         "CLIENT_ACCESSED_MANY_ACCOUNTS",
+        "DISPOSABLE_EMAIL_DOMAIN",
     ]
 
 @typing.type_check_only

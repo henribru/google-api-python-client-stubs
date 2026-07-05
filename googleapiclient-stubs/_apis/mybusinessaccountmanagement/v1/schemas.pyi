@@ -106,6 +106,7 @@ class PostalAddress(typing_extensions.TypedDict, total=False):
 class TargetLocation(typing_extensions.TypedDict, total=False):
     address: str
     locationName: str
+    placeId: str
 
 @typing.type_check_only
 class TransferLocationRequest(typing_extensions.TypedDict, total=False):

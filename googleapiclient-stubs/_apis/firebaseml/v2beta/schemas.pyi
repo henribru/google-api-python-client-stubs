@@ -22,6 +22,23 @@ class GoogleCloudAiplatformV1beta1ApiAuthApiKeyConfig(
     apiKeyString: str
 
 @typing.type_check_only
+class GoogleCloudAiplatformV1beta1AudioResponseFormat(
+    typing_extensions.TypedDict, total=False
+):
+    bitRate: int
+    delivery: typing_extensions.Literal["DELIVERY_UNSPECIFIED", "INLINE", "URI"]
+    mimeType: typing_extensions.Literal[
+        "MIME_TYPE_UNSPECIFIED",
+        "AUDIO_MP3",
+        "AUDIO_OGG_OPUS",
+        "AUDIO_L16",
+        "AUDIO_WAV",
+        "AUDIO_ALAW",
+        "AUDIO_MULAW",
+    ]
+    sampleRate: int
+
+@typing.type_check_only
 class GoogleCloudAiplatformV1beta1AuthConfig(typing_extensions.TypedDict, total=False):
     apiKeyConfig: GoogleCloudAiplatformV1beta1AuthConfigApiKeyConfig
     authType: typing_extensions.Literal[
@@ -379,6 +396,7 @@ class GoogleCloudAiplatformV1beta1GenerationConfig(
     ]
     modelConfig: GoogleCloudAiplatformV1beta1GenerationConfigModelConfig
     presencePenalty: float
+    responseFormat: _list[GoogleCloudAiplatformV1beta1ResponseFormat]
     responseJsonSchema: typing.Any
     responseLogprobs: bool
     responseMimeType: str
@@ -576,6 +594,37 @@ class GoogleCloudAiplatformV1beta1ImageConfigImageOutputOptions(
     mimeType: str
 
 @typing.type_check_only
+class GoogleCloudAiplatformV1beta1ImageResponseFormat(
+    typing_extensions.TypedDict, total=False
+):
+    aspectRatio: typing_extensions.Literal[
+        "ASPECT_RATIO_UNSPECIFIED",
+        "ASPECT_RATIO_ONE_BY_ONE",
+        "ASPECT_RATIO_TWO_BY_THREE",
+        "ASPECT_RATIO_THREE_BY_TWO",
+        "ASPECT_RATIO_THREE_BY_FOUR",
+        "ASPECT_RATIO_FOUR_BY_THREE",
+        "ASPECT_RATIO_FOUR_BY_FIVE",
+        "ASPECT_RATIO_FIVE_BY_FOUR",
+        "ASPECT_RATIO_NINE_BY_SIXTEEN",
+        "ASPECT_RATIO_SIXTEEN_BY_NINE",
+        "ASPECT_RATIO_TWENTY_ONE_BY_NINE",
+        "ASPECT_RATIO_ONE_BY_EIGHT",
+        "ASPECT_RATIO_EIGHT_BY_ONE",
+        "ASPECT_RATIO_ONE_BY_FOUR",
+        "ASPECT_RATIO_FOUR_BY_ONE",
+    ]
+    delivery: typing_extensions.Literal["DELIVERY_UNSPECIFIED", "INLINE", "URI"]
+    imageSize: typing_extensions.Literal[
+        "IMAGE_SIZE_UNSPECIFIED",
+        "IMAGE_SIZE_FIVE_TWELVE",
+        "IMAGE_SIZE_ONE_K",
+        "IMAGE_SIZE_TWO_K",
+        "IMAGE_SIZE_FOUR_K",
+    ]
+    mimeType: typing_extensions.Literal["MIME_TYPE_UNSPECIFIED", "IMAGE_JPEG"]
+
+@typing.type_check_only
 class GoogleCloudAiplatformV1beta1LogprobsResult(
     typing_extensions.TypedDict, total=False
 ):
@@ -721,6 +770,15 @@ class GoogleCloudAiplatformV1beta1ReplicatedVoiceConfig(
 ):
     mimeType: str
     voiceSampleAudio: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ResponseFormat(
+    typing_extensions.TypedDict, total=False
+):
+    audio: GoogleCloudAiplatformV1beta1AudioResponseFormat
+    image: GoogleCloudAiplatformV1beta1ImageResponseFormat
+    text: GoogleCloudAiplatformV1beta1TextResponseFormat
+    video: GoogleCloudAiplatformV1beta1VideoResponseFormat
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1Retrieval(typing_extensions.TypedDict, total=False):
@@ -877,10 +935,20 @@ class GoogleCloudAiplatformV1beta1SpeechConfig(
     voiceConfig: GoogleCloudAiplatformV1beta1VoiceConfig
 
 @typing.type_check_only
+class GoogleCloudAiplatformV1beta1TextResponseFormat(
+    typing_extensions.TypedDict, total=False
+):
+    mimeType: typing_extensions.Literal[
+        "MIME_TYPE_UNSPECIFIED", "APPLICATION_JSON", "TEXT_PLAIN"
+    ]
+    schema: typing.Any
+
+@typing.type_check_only
 class GoogleCloudAiplatformV1beta1Tool(typing_extensions.TypedDict, total=False):
     codeExecution: GoogleCloudAiplatformV1beta1ToolCodeExecution
     computerUse: GoogleCloudAiplatformV1beta1ToolComputerUse
     enterpriseWebSearch: GoogleCloudAiplatformV1beta1EnterpriseWebSearch
+    exaAiSearch: GoogleCloudAiplatformV1beta1ToolExaAiSearch
     functionDeclarations: _list[GoogleCloudAiplatformV1beta1FunctionDeclaration]
     googleMaps: GoogleCloudAiplatformV1beta1GoogleMaps
     googleSearch: GoogleCloudAiplatformV1beta1ToolGoogleSearch
@@ -898,8 +966,12 @@ class GoogleCloudAiplatformV1beta1ToolCodeExecution(
 class GoogleCloudAiplatformV1beta1ToolComputerUse(
     typing_extensions.TypedDict, total=False
 ):
+    enablePromptInjectionDetection: bool
     environment: typing_extensions.Literal[
-        "ENVIRONMENT_UNSPECIFIED", "ENVIRONMENT_BROWSER"
+        "ENVIRONMENT_UNSPECIFIED",
+        "ENVIRONMENT_BROWSER",
+        "ENVIRONMENT_MOBILE",
+        "ENVIRONMENT_DESKTOP",
     ]
     excludedPredefinedFunctions: _list[str]
 
@@ -907,6 +979,13 @@ class GoogleCloudAiplatformV1beta1ToolComputerUse(
 class GoogleCloudAiplatformV1beta1ToolConfig(typing_extensions.TypedDict, total=False):
     functionCallingConfig: GoogleCloudAiplatformV1beta1FunctionCallingConfig
     retrievalConfig: GoogleCloudAiplatformV1beta1RetrievalConfig
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ToolExaAiSearch(
+    typing_extensions.TypedDict, total=False
+):
+    apiKey: str
+    customConfigs: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1ToolGoogleSearch(
@@ -947,6 +1026,7 @@ class GoogleCloudAiplatformV1beta1ToolParallelAiSearch(
 ):
     apiKey: str
     customConfigs: dict[str, typing.Any]
+    enableDataRetention: bool
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1UrlContext(
@@ -1010,6 +1090,19 @@ class GoogleCloudAiplatformV1beta1VideoMetadata(
     endOffset: str
     fps: float
     startOffset: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1VideoResponseFormat(
+    typing_extensions.TypedDict, total=False
+):
+    aspectRatio: typing_extensions.Literal[
+        "ASPECT_RATIO_UNSPECIFIED",
+        "ASPECT_RATIO_SIXTEEN_BY_NINE",
+        "ASPECT_RATIO_NINE_BY_SIXTEEN",
+    ]
+    delivery: typing_extensions.Literal["DELIVERY_UNSPECIFIED", "INLINE", "URI"]
+    duration: str
+    gcsUri: str
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1VoiceConfig(typing_extensions.TypedDict, total=False):

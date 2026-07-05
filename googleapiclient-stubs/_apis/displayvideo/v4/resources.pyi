@@ -157,6 +157,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                             "TARGETING_TYPE_YOUTUBE_CHANNEL",
                             "TARGETING_TYPE_SESSION_POSITION",
                             "TARGETING_TYPE_CONTENT_THEME_EXCLUSION",
+                            "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK",
                         ],
                         body: AssignedTargetingOption = ...,
                         **kwargs: typing.Any,
@@ -217,6 +218,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                             "TARGETING_TYPE_YOUTUBE_CHANNEL",
                             "TARGETING_TYPE_SESSION_POSITION",
                             "TARGETING_TYPE_CONTENT_THEME_EXCLUSION",
+                            "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK",
                         ],
                         assignedTargetingOptionId: str,
                         **kwargs: typing.Any,
@@ -277,6 +279,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                             "TARGETING_TYPE_YOUTUBE_CHANNEL",
                             "TARGETING_TYPE_SESSION_POSITION",
                             "TARGETING_TYPE_CONTENT_THEME_EXCLUSION",
+                            "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK",
                         ],
                         assignedTargetingOptionId: str,
                         **kwargs: typing.Any,
@@ -337,6 +340,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                             "TARGETING_TYPE_YOUTUBE_CHANNEL",
                             "TARGETING_TYPE_SESSION_POSITION",
                             "TARGETING_TYPE_CONTENT_THEME_EXCLUSION",
+                            "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK",
                         ],
                         filter: str = ...,
                         orderBy: str = ...,
@@ -793,6 +797,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                             "TARGETING_TYPE_YOUTUBE_CHANNEL",
                             "TARGETING_TYPE_SESSION_POSITION",
                             "TARGETING_TYPE_CONTENT_THEME_EXCLUSION",
+                            "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK",
                         ],
                         body: AssignedTargetingOption = ...,
                         **kwargs: typing.Any,
@@ -853,6 +858,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                             "TARGETING_TYPE_YOUTUBE_CHANNEL",
                             "TARGETING_TYPE_SESSION_POSITION",
                             "TARGETING_TYPE_CONTENT_THEME_EXCLUSION",
+                            "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK",
                         ],
                         assignedTargetingOptionId: str,
                         **kwargs: typing.Any,
@@ -913,6 +919,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                             "TARGETING_TYPE_YOUTUBE_CHANNEL",
                             "TARGETING_TYPE_SESSION_POSITION",
                             "TARGETING_TYPE_CONTENT_THEME_EXCLUSION",
+                            "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK",
                         ],
                         assignedTargetingOptionId: str,
                         **kwargs: typing.Any,
@@ -973,6 +980,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                             "TARGETING_TYPE_YOUTUBE_CHANNEL",
                             "TARGETING_TYPE_SESSION_POSITION",
                             "TARGETING_TYPE_CONTENT_THEME_EXCLUSION",
+                            "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK",
                         ],
                         filter: str = ...,
                         orderBy: str = ...,
@@ -1309,6 +1317,49 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
             def negativeKeywords(self) -> NegativeKeywordsResource: ...
 
         @typing.type_check_only
+        class ReachForecastResource(googleapiclient.discovery.Resource):
+            def generateReachForecast(
+                self,
+                *,
+                advertiserId: str,
+                body: GenerateReachForecastRequest = ...,
+                **kwargs: typing.Any,
+            ) -> GenerateReachForecastResponseHttpRequest: ...
+            def retrievePlannableLocations(
+                self, *, advertiserId: str, **kwargs: typing.Any
+            ) -> RetrievePlannableLocationsResponseHttpRequest: ...
+            def retrievePlannableProducts(
+                self,
+                *,
+                advertiserId: str,
+                plannableLocationId: str = ...,
+                **kwargs: typing.Any,
+            ) -> RetrievePlannableProductsResponseHttpRequest: ...
+            def retrievePlannableUserInterests(
+                self,
+                *,
+                advertiserId: str,
+                productCategory: typing_extensions.Literal[
+                    "PLANNABLE_PRODUCT_CATEGORY_UNSPECIFIED", "YOUTUBE", "OPEN_AUCTION"
+                ] = ...,
+                **kwargs: typing.Any,
+            ) -> RetrievePlannableUserInterestsResponseHttpRequest: ...
+            def retrievePlannableUserLists(
+                self,
+                *,
+                advertiserId: str,
+                filter: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any,
+            ) -> RetrievePlannableUserListsResponseHttpRequest: ...
+            def retrievePlannableUserLists_next(
+                self,
+                previous_request: RetrievePlannableUserListsResponseHttpRequest,
+                previous_response: RetrievePlannableUserListsResponse,
+            ) -> RetrievePlannableUserListsResponseHttpRequest | None: ...
+
+        @typing.type_check_only
         class TargetingTypesResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class AssignedTargetingOptionsResource(googleapiclient.discovery.Resource):
@@ -1367,6 +1418,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                         "TARGETING_TYPE_YOUTUBE_CHANNEL",
                         "TARGETING_TYPE_SESSION_POSITION",
                         "TARGETING_TYPE_CONTENT_THEME_EXCLUSION",
+                        "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK",
                     ],
                     body: AssignedTargetingOption = ...,
                     **kwargs: typing.Any,
@@ -1426,6 +1478,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                         "TARGETING_TYPE_YOUTUBE_CHANNEL",
                         "TARGETING_TYPE_SESSION_POSITION",
                         "TARGETING_TYPE_CONTENT_THEME_EXCLUSION",
+                        "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK",
                     ],
                     assignedTargetingOptionId: str,
                     **kwargs: typing.Any,
@@ -1485,6 +1538,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                         "TARGETING_TYPE_YOUTUBE_CHANNEL",
                         "TARGETING_TYPE_SESSION_POSITION",
                         "TARGETING_TYPE_CONTENT_THEME_EXCLUSION",
+                        "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK",
                     ],
                     assignedTargetingOptionId: str,
                     **kwargs: typing.Any,
@@ -1544,6 +1598,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                         "TARGETING_TYPE_YOUTUBE_CHANNEL",
                         "TARGETING_TYPE_SESSION_POSITION",
                         "TARGETING_TYPE_CONTENT_THEME_EXCLUSION",
+                        "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK",
                     ],
                     filter: str = ...,
                     orderBy: str = ...,
@@ -1630,6 +1685,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
         def lineItems(self) -> LineItemsResource: ...
         def locationLists(self) -> LocationListsResource: ...
         def negativeKeywordLists(self) -> NegativeKeywordListsResource: ...
+        def reachForecast(self) -> ReachForecastResource: ...
         def targetingTypes(self) -> TargetingTypesResource: ...
 
     @typing.type_check_only
@@ -2309,6 +2365,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                         "TARGETING_TYPE_YOUTUBE_CHANNEL",
                         "TARGETING_TYPE_SESSION_POSITION",
                         "TARGETING_TYPE_CONTENT_THEME_EXCLUSION",
+                        "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK",
                     ],
                     body: AssignedTargetingOption = ...,
                     **kwargs: typing.Any,
@@ -2368,6 +2425,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                         "TARGETING_TYPE_YOUTUBE_CHANNEL",
                         "TARGETING_TYPE_SESSION_POSITION",
                         "TARGETING_TYPE_CONTENT_THEME_EXCLUSION",
+                        "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK",
                     ],
                     assignedTargetingOptionId: str,
                     **kwargs: typing.Any,
@@ -2427,6 +2485,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                         "TARGETING_TYPE_YOUTUBE_CHANNEL",
                         "TARGETING_TYPE_SESSION_POSITION",
                         "TARGETING_TYPE_CONTENT_THEME_EXCLUSION",
+                        "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK",
                     ],
                     assignedTargetingOptionId: str,
                     **kwargs: typing.Any,
@@ -2486,6 +2545,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                         "TARGETING_TYPE_YOUTUBE_CHANNEL",
                         "TARGETING_TYPE_SESSION_POSITION",
                         "TARGETING_TYPE_CONTENT_THEME_EXCLUSION",
+                        "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK",
                     ],
                     filter: str = ...,
                     orderBy: str = ...,
@@ -2609,6 +2669,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                     "TARGETING_TYPE_YOUTUBE_CHANNEL",
                     "TARGETING_TYPE_SESSION_POSITION",
                     "TARGETING_TYPE_CONTENT_THEME_EXCLUSION",
+                    "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK",
                 ],
                 targetingOptionId: str,
                 advertiserId: str = ...,
@@ -2668,6 +2729,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                     "TARGETING_TYPE_YOUTUBE_CHANNEL",
                     "TARGETING_TYPE_SESSION_POSITION",
                     "TARGETING_TYPE_CONTENT_THEME_EXCLUSION",
+                    "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK",
                 ],
                 advertiserId: str = ...,
                 filter: str = ...,
@@ -2735,6 +2797,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                     "TARGETING_TYPE_YOUTUBE_CHANNEL",
                     "TARGETING_TYPE_SESSION_POSITION",
                     "TARGETING_TYPE_CONTENT_THEME_EXCLUSION",
+                    "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK",
                 ],
                 body: SearchTargetingOptionsRequest = ...,
                 **kwargs: typing.Any,
@@ -3152,6 +3215,14 @@ class FloodlightGroupHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> FloodlightGroup: ...
+
+@typing.type_check_only
+class GenerateReachForecastResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GenerateReachForecastResponse: ...
 
 @typing.type_check_only
 class GoogleAudienceHttpRequest(googleapiclient.http.HttpRequest):
@@ -3572,6 +3643,40 @@ class ReplaceSitesResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ReplaceSitesResponse: ...
+
+@typing.type_check_only
+class RetrievePlannableLocationsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> RetrievePlannableLocationsResponse: ...
+
+@typing.type_check_only
+class RetrievePlannableProductsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> RetrievePlannableProductsResponse: ...
+
+@typing.type_check_only
+class RetrievePlannableUserInterestsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> RetrievePlannableUserInterestsResponse: ...
+
+@typing.type_check_only
+class RetrievePlannableUserListsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> RetrievePlannableUserListsResponse: ...
 
 @typing.type_check_only
 class SearchTargetingOptionsResponseHttpRequest(googleapiclient.http.HttpRequest):

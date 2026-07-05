@@ -5,6 +5,11 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class AccessControlsUpdates(typing_extensions.TypedDict, total=False):
+    grants: _list[ObjectAccessControl]
+    removeEntities: _list[str]
+
+@typing.type_check_only
 class Bucket(typing_extensions.TypedDict, total=False):
     bucket: str
     manifest: Manifest
@@ -25,9 +30,11 @@ class BucketOperation(typing_extensions.TypedDict, total=False):
     manifest: Manifest
     name: str
     prefixList: PrefixList
+    projectSource: ProjectSource
     putMetadata: PutMetadata
     putObjectHold: PutObjectHold
     rewriteObject: RewriteObject
+    setObjectAcls: SetObjectAcls
     startTime: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "QUEUED", "RUNNING", "SUCCEEDED", "CANCELED", "FAILED"
@@ -97,6 +104,13 @@ class ErrorSummary(typing_extensions.TypedDict, total=False):
     errorLogEntries: _list[ErrorLogEntry]
 
 @typing.type_check_only
+class Expr(typing_extensions.TypedDict, total=False):
+    description: str
+    expression: str
+    location: str
+    title: str
+
+@typing.type_check_only
 class Job(typing_extensions.TypedDict, total=False):
     bucketList: BucketList
     completeTime: str
@@ -109,10 +123,12 @@ class Job(typing_extensions.TypedDict, total=False):
     isMultiBucketJob: bool
     loggingConfig: LoggingConfig
     name: str
+    projectSource: ProjectSource
     putMetadata: PutMetadata
     putObjectHold: PutObjectHold
     rewriteObject: RewriteObject
     scheduleTime: str
+    setObjectAcls: SetObjectAcls
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "RUNNING", "SUCCEEDED", "CANCELED", "FAILED", "QUEUED"
     ]
@@ -165,6 +181,11 @@ class Manifest(typing_extensions.TypedDict, total=False):
     manifestLocation: str
 
 @typing.type_check_only
+class ObjectAccessControl(typing_extensions.TypedDict, total=False):
+    entity: str
+    role: str
+
+@typing.type_check_only
 class ObjectCustomContextPayload(typing_extensions.TypedDict, total=False):
     value: str
 
@@ -197,6 +218,16 @@ class PrefixList(typing_extensions.TypedDict, total=False):
     includedObjectPrefixes: _list[str]
 
 @typing.type_check_only
+class ProjectSource(typing_extensions.TypedDict, total=False):
+    bucketFilters: Expr
+    dryRunJobId: str
+    insightsDatasetConfig: str
+    objectFilters: Expr
+    project: str
+    snapshotTime: str
+    targetLocations: TargetLocations
+
+@typing.type_check_only
 class PutMetadata(typing_extensions.TypedDict, total=False):
     cacheControl: str
     contentDisposition: str
@@ -215,12 +246,24 @@ class PutObjectHold(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class RewriteObject(typing_extensions.TypedDict, total=False):
     kmsKey: str
+    storageClass: typing_extensions.Literal[
+        "STORAGE_CLASS_UNSPECIFIED", "STANDARD", "NEARLINE", "COLDLINE", "ARCHIVE"
+    ]
+
+@typing.type_check_only
+class SetObjectAcls(typing_extensions.TypedDict, total=False):
+    accessControlsUpdates: AccessControlsUpdates
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
+
+@typing.type_check_only
+class TargetLocations(typing_extensions.TypedDict, total=False):
+    locations: _list[str]
+    snapshotTime: str
 
 @typing.type_check_only
 class UpdateObjectCustomContext(typing_extensions.TypedDict, total=False):

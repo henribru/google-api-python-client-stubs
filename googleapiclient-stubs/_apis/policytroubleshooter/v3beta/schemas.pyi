@@ -5,6 +5,15 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class GoogleCloudPolicytroubleshooterIamV3betaAccessContext(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
+    parent: str
+    permission: str
+    principal: str
+
+@typing.type_check_only
 class GoogleCloudPolicytroubleshooterIamV3betaAccessTuple(
     typing_extensions.TypedDict, total=False
 ):
@@ -351,6 +360,11 @@ class GoogleCloudPolicytroubleshooterIamV3betaExplainedPABRule(
         "RESOURCE_INCLUSION_STATE_UNKNOWN_INFO",
         "RESOURCE_INCLUSION_STATE_UNKNOWN_UNSUPPORTED",
     ]
+    combinedResourceRelevance: typing_extensions.Literal[
+        "HEURISTIC_RELEVANCE_UNSPECIFIED",
+        "HEURISTIC_RELEVANCE_NORMAL",
+        "HEURISTIC_RELEVANCE_HIGH",
+    ]
     effect: typing_extensions.Literal["EFFECT_UNSPECIFIED", "ALLOW"]
     explainedResources: _list[
         GoogleCloudPolicytroubleshooterIamV3betaExplainedPABRuleExplainedResource
@@ -422,6 +436,30 @@ class GoogleCloudPolicytroubleshooterIamV3betaPABPolicyExplanation(
         "HEURISTIC_RELEVANCE_NORMAL",
         "HEURISTIC_RELEVANCE_HIGH",
     ]
+
+@typing.type_check_only
+class GoogleCloudPolicytroubleshooterIamV3betaTroubleshootIamPolicyErrorRequest(
+    typing_extensions.TypedDict, total=False
+):
+    errorInfoId: str
+
+@typing.type_check_only
+class GoogleCloudPolicytroubleshooterIamV3betaTroubleshootIamPolicyErrorResponse(
+    typing_extensions.TypedDict, total=False
+):
+    accessContext: GoogleCloudPolicytroubleshooterIamV3betaAccessContext
+    allowPolicyExplanation: (
+        GoogleCloudPolicytroubleshooterIamV3betaAllowPolicyExplanation
+    )
+    denyPolicyExplanation: GoogleCloudPolicytroubleshooterIamV3betaDenyPolicyExplanation
+    overallAccessState: typing_extensions.Literal[
+        "OVERALL_ACCESS_STATE_UNSPECIFIED",
+        "OVERALL_ACCESS_STATE_CAN_ACCESS",
+        "OVERALL_ACCESS_STATE_CANNOT_ACCESS",
+        "OVERALL_ACCESS_STATE_UNKNOWN_INFO",
+        "OVERALL_ACCESS_STATE_UNKNOWN_CONDITIONAL",
+    ]
+    pabPolicyExplanation: GoogleCloudPolicytroubleshooterIamV3betaPABPolicyExplanation
 
 @typing.type_check_only
 class GoogleCloudPolicytroubleshooterIamV3betaTroubleshootIamPolicyRequest(

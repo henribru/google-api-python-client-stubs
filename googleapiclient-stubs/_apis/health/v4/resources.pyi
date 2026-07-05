@@ -17,6 +17,42 @@ class GoogleHealthAPIResource(googleapiclient.discovery.Resource):
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class SubscribersResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class SubscriptionsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: CreateSubscriptionPayload = ...,
+                    subscriptionId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> SubscriptionHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListSubscriptionsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListSubscriptionsResponseHttpRequest,
+                    previous_response: ListSubscriptionsResponse,
+                ) -> ListSubscriptionsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: Subscription = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> SubscriptionHttpRequest: ...
+
             def create(
                 self,
                 *,
@@ -49,6 +85,7 @@ class GoogleHealthAPIResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
+            def subscriptions(self) -> SubscriptionsResource: ...
 
         def subscribers(self) -> SubscribersResource: ...
 
@@ -131,9 +168,31 @@ class GoogleHealthAPIResource(googleapiclient.discovery.Resource):
 
             def dataPoints(self) -> DataPointsResource: ...
 
+        @typing.type_check_only
+        class PairedDevicesResource(googleapiclient.discovery.Resource):
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> PairedDeviceHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any,
+            ) -> ListPairedDevicesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListPairedDevicesResponseHttpRequest,
+                previous_response: ListPairedDevicesResponse,
+            ) -> ListPairedDevicesResponseHttpRequest | None: ...
+
         def getIdentity(
             self, *, name: str, **kwargs: typing.Any
         ) -> IdentityHttpRequest: ...
+        def getIrnProfile(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> IrnProfileHttpRequest: ...
         def getProfile(
             self, *, name: str, **kwargs: typing.Any
         ) -> ProfileHttpRequest: ...
@@ -157,6 +216,7 @@ class GoogleHealthAPIResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any,
         ) -> SettingsHttpRequest: ...
         def dataTypes(self) -> DataTypesResource: ...
+        def pairedDevices(self) -> PairedDevicesResource: ...
 
     def new_batch_http_request(
         self,
@@ -190,6 +250,14 @@ class DataPointHttpRequest(googleapiclient.http.HttpRequest):
     ) -> DataPoint: ...
 
 @typing.type_check_only
+class EmptyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> Empty: ...
+
+@typing.type_check_only
 class ExportExerciseTcxResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -206,12 +274,28 @@ class IdentityHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Identity: ...
 
 @typing.type_check_only
+class IrnProfileHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> IrnProfile: ...
+
+@typing.type_check_only
 class ListDataPointsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListDataPointsResponse: ...
+
+@typing.type_check_only
+class ListPairedDevicesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListPairedDevicesResponse: ...
 
 @typing.type_check_only
 class ListSubscribersResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -222,12 +306,28 @@ class ListSubscribersResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListSubscribersResponse: ...
 
 @typing.type_check_only
+class ListSubscriptionsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListSubscriptionsResponse: ...
+
+@typing.type_check_only
 class OperationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Operation: ...
+
+@typing.type_check_only
+class PairedDeviceHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> PairedDevice: ...
 
 @typing.type_check_only
 class ProfileHttpRequest(googleapiclient.http.HttpRequest):
@@ -260,6 +360,14 @@ class SettingsHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Settings: ...
+
+@typing.type_check_only
+class SubscriptionHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> Subscription: ...
 
 @typing.type_check_only
 class BytesHttpRequest(googleapiclient.http.HttpRequest):

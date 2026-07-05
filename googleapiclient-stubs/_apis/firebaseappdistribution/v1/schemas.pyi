@@ -139,6 +139,7 @@ class GoogleFirebaseAppdistroV1AabInfo(typing_extensions.TypedDict, total=False)
         "PLAY_IAS_TERMS_NOT_ACCEPTED",
         "ADHOC_SHARING_KEY_NOT_GENERATED",
         "ADHOC_SHARING_KEY_NOT_REGISTERED",
+        "PLAY_ANDROID_DEVELOPER_CONSOLE_ACCOUNT_NOT_FOUND",
     ]
     name: str
     testCertificate: GoogleFirebaseAppdistroV1TestCertificate

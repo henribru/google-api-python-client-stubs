@@ -104,6 +104,9 @@ class InternalRange(typing_extensions.TypedDict, total=False):
         "PEERING_UNSPECIFIED", "FOR_SELF", "FOR_PEER", "NOT_SHARED"
     ]
     prefixLength: int
+    rangeStatus: typing_extensions.Literal[
+        "RANGE_STATUS_UNSPECIFIED", "ACTIVE", "OBSOLETE"
+    ]
     targetCidrRange: _list[str]
     updateTime: str
     usage: typing_extensions.Literal[

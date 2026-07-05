@@ -21,6 +21,8 @@ class AddOnAttachment(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AddOnAttachmentStudentSubmission(typing_extensions.TypedDict, total=False):
+    courseWorkSubmissionId: str
+    id: str
     pointsEarned: float
     postSubmissionState: typing_extensions.Literal[
         "SUBMISSION_STATE_UNSPECIFIED",

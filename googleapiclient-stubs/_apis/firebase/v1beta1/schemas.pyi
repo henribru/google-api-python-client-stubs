@@ -273,5 +273,6 @@ class WebAppConfig(typing_extensions.TypedDict, total=False):
     projectId: str
     projectNumber: str
     realtimeDatabaseUrl: str
+    recaptchaSiteKey: str
     storageBucket: str
     version: str

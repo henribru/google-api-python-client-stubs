@@ -92,7 +92,11 @@ class CalendarResource(googleapiclient.discovery.Resource):
             *,
             maxResults: int = ...,
             minAccessRole: typing_extensions.Literal[
-                "freeBusyReader", "owner", "reader", "writer"
+                "freeBusyReader",
+                "owner",
+                "reader",
+                "writer",
+                "writerWithoutPrivateAccess",
             ] = ...,
             pageToken: str = ...,
             showDeleted: bool = ...,
@@ -127,7 +131,11 @@ class CalendarResource(googleapiclient.discovery.Resource):
             body: Channel = ...,
             maxResults: int = ...,
             minAccessRole: typing_extensions.Literal[
-                "freeBusyReader", "owner", "reader", "writer"
+                "freeBusyReader",
+                "owner",
+                "reader",
+                "writer",
+                "writerWithoutPrivateAccess",
             ] = ...,
             pageToken: str = ...,
             showDeleted: bool = ...,

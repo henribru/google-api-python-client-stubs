@@ -91,9 +91,47 @@ class NetworkSecurityResource(googleapiclient.discovery.Resource):
                     body: RemoveAddressGroupItemsRequest = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
+                def testIamPermissions(
+                    self,
+                    *,
+                    resource: str,
+                    body: GoogleIamV1TestIamPermissionsRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
 
             @typing.type_check_only
             class FirewallEndpointsResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class WildfireVerdictChangeRequestsResource(
+                    googleapiclient.discovery.Resource
+                ):
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: WildfireVerdictChangeRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> WildfireVerdictChangeRequestHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> WildfireVerdictChangeRequestHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        filter: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> ListWildfireVerdictChangeRequestsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListWildfireVerdictChangeRequestsResponseHttpRequest,
+                        previous_response: ListWildfireVerdictChangeRequestsResponse,
+                    ) -> (
+                        ListWildfireVerdictChangeRequestsResponseHttpRequest | None
+                    ): ...
+
                 def create(
                     self,
                     *,
@@ -133,6 +171,9 @@ class NetworkSecurityResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
+                def wildfireVerdictChangeRequests(
+                    self,
+                ) -> WildfireVerdictChangeRequestsResource: ...
 
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
@@ -241,6 +282,24 @@ class NetworkSecurityResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
 
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> LocationHttpRequest: ...
+            def list(
+                self,
+                *,
+                name: str,
+                extraLocationTypes: str | _list[str] = ...,
+                filter: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any,
+            ) -> ListLocationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListLocationsResponseHttpRequest,
+                previous_response: ListLocationsResponse,
+            ) -> ListLocationsResponseHttpRequest | None: ...
             def addressGroups(self) -> AddressGroupsResource: ...
             def firewallEndpoints(self) -> FirewallEndpointsResource: ...
             def operations(self) -> OperationsResource: ...
@@ -654,6 +713,37 @@ class NetworkSecurityResource(googleapiclient.discovery.Resource):
 
             @typing.type_check_only
             class FirewallEndpointsResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class WildfireVerdictChangeRequestsResource(
+                    googleapiclient.discovery.Resource
+                ):
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: WildfireVerdictChangeRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> WildfireVerdictChangeRequestHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> WildfireVerdictChangeRequestHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        filter: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> ListWildfireVerdictChangeRequestsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListWildfireVerdictChangeRequestsResponseHttpRequest,
+                        previous_response: ListWildfireVerdictChangeRequestsResponse,
+                    ) -> (
+                        ListWildfireVerdictChangeRequestsResponseHttpRequest | None
+                    ): ...
+
                 def create(
                     self,
                     *,
@@ -693,6 +783,9 @@ class NetworkSecurityResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
+                def wildfireVerdictChangeRequests(
+                    self,
+                ) -> WildfireVerdictChangeRequestsResource: ...
 
             @typing.type_check_only
             class GatewaySecurityPoliciesResource(googleapiclient.discovery.Resource):
@@ -1874,6 +1967,16 @@ class ListUrlListsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListUrlListsResponse: ...
 
 @typing.type_check_only
+class ListWildfireVerdictChangeRequestsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListWildfireVerdictChangeRequestsResponse: ...
+
+@typing.type_check_only
 class LocationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -1976,3 +2079,11 @@ class UrlListHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> UrlList: ...
+
+@typing.type_check_only
+class WildfireVerdictChangeRequestHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> WildfireVerdictChangeRequest: ...

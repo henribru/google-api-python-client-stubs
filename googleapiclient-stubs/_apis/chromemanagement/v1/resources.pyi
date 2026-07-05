@@ -183,6 +183,119 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
             ) -> GoogleChromeManagementVersionsV1ConnectorConfigHttpRequest: ...
 
         @typing.type_check_only
+        class EnterpriseResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class SecurityInsightsResource(googleapiclient.discovery.Resource):
+                def checkEnablementStatus(
+                    self, *, customer: str, **kwargs: typing.Any
+                ) -> GoogleChromeManagementVersionsV1CheckEnablementStatusResponseHttpRequest: ...
+                def disable(
+                    self,
+                    *,
+                    customer: str,
+                    body: GoogleChromeManagementVersionsV1DisableInsightsRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> (
+                    GoogleChromeManagementVersionsV1DisableInsightsResponseHttpRequest
+                ): ...
+                def enable(
+                    self,
+                    *,
+                    customer: str,
+                    body: GoogleChromeManagementVersionsV1EnableInsightsRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> (
+                    GoogleChromeManagementVersionsV1EnableInsightsResponseHttpRequest
+                ): ...
+                def queryContentTransfers(
+                    self, *, customer: str, filter: str = ..., **kwargs: typing.Any
+                ) -> GoogleChromeManagementVersionsV1QueryContentTransfersResponseHttpRequest: ...
+                def queryContentTransfersBreakdowns(
+                    self,
+                    *,
+                    customer: str,
+                    breakdown: typing_extensions.Literal[
+                        "CONTENT_TRANSFERS_BREAKDOWN_DIMENSION_UNSPECIFIED",
+                        "USER",
+                        "EVENT_DOMAIN",
+                        "CONTENT_CATEGORY",
+                    ] = ...,
+                    filter: str = ...,
+                    fixedTimeRange: typing_extensions.Literal[
+                        "FIXED_TIME_RANGE_UNSPECIFIED",
+                        "FIXED_TIME_RANGE_FOUR_HOURS",
+                        "FIXED_TIME_RANGE_ONE_DAY",
+                        "FIXED_TIME_RANGE_ONE_WEEK",
+                        "FIXED_TIME_RANGE_FOUR_WEEKS",
+                    ] = ...,
+                    metric: typing_extensions.Literal[
+                        "CONTENT_TRANSFERS_METRIC_UNSPECIFIED",
+                        "CONTENT_TRANSFERS_METRIC_TOTAL_TRANSFERS",
+                        "CONTENT_TRANSFERS_METRIC_TOTAL_UPLOADS",
+                        "CONTENT_TRANSFERS_METRIC_TOTAL_DOWNLOADS",
+                        "CONTENT_TRANSFERS_METRIC_TOTAL_PRINTS",
+                        "CONTENT_TRANSFERS_METRIC_TOTAL_SENSITIVE_TRANSFERS",
+                        "CONTENT_TRANSFERS_METRIC_SENSITIVE_UPLOADS",
+                        "CONTENT_TRANSFERS_METRIC_SENSITIVE_DOWNLOADS",
+                        "CONTENT_TRANSFERS_METRIC_SENSITIVE_PRINTS",
+                    ] = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleChromeManagementVersionsV1QueryContentTransfersBreakdownsResponseHttpRequest: ...
+                def queryContentTransfersBreakdowns_next(
+                    self,
+                    previous_request: GoogleChromeManagementVersionsV1QueryContentTransfersBreakdownsResponseHttpRequest,
+                    previous_response: GoogleChromeManagementVersionsV1QueryContentTransfersBreakdownsResponse,
+                ) -> (
+                    GoogleChromeManagementVersionsV1QueryContentTransfersBreakdownsResponseHttpRequest
+                    | None
+                ): ...
+                def queryUrlVisits(
+                    self, *, customer: str, filter: str = ..., **kwargs: typing.Any
+                ) -> (
+                    GoogleChromeManagementVersionsV1QueryUrlVisitsResponseHttpRequest
+                ): ...
+                def queryUrlVisitsBreakdowns(
+                    self,
+                    *,
+                    customer: str,
+                    breakdown: typing_extensions.Literal[
+                        "URL_VISITS_BREAKDOWN_DIMENSION_UNSPECIFIED",
+                        "USER",
+                        "EVENT_DOMAIN",
+                    ] = ...,
+                    filter: str = ...,
+                    fixedTimeRange: typing_extensions.Literal[
+                        "FIXED_TIME_RANGE_UNSPECIFIED",
+                        "FIXED_TIME_RANGE_FOUR_HOURS",
+                        "FIXED_TIME_RANGE_ONE_DAY",
+                        "FIXED_TIME_RANGE_ONE_WEEK",
+                        "FIXED_TIME_RANGE_FOUR_WEEKS",
+                    ] = ...,
+                    metric: typing_extensions.Literal[
+                        "URL_VISITS_METRIC_UNSPECIFIED",
+                        "URL_VISITS_METRIC_TOTAL_SUSPICIOUS_URL_VISITS",
+                        "URL_VISITS_METRIC_HIGH_RISK_URL_VISITS",
+                        "URL_VISITS_METRIC_MEDIUM_RISK_URL_VISITS",
+                        "URL_VISITS_METRIC_LOW_RISK_URL_VISITS",
+                    ] = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleChromeManagementVersionsV1QueryUrlVisitsBreakdownsResponseHttpRequest: ...
+                def queryUrlVisitsBreakdowns_next(
+                    self,
+                    previous_request: GoogleChromeManagementVersionsV1QueryUrlVisitsBreakdownsResponseHttpRequest,
+                    previous_response: GoogleChromeManagementVersionsV1QueryUrlVisitsBreakdownsResponse,
+                ) -> (
+                    GoogleChromeManagementVersionsV1QueryUrlVisitsBreakdownsResponseHttpRequest
+                    | None
+                ): ...
+
+            def securityInsights(self) -> SecurityInsightsResource: ...
+
+        @typing.type_check_only
         class ProfilesResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class CommandsResource(googleapiclient.discovery.Resource):
@@ -287,6 +400,26 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
                 readMask: str = ...,
                 **kwargs: typing.Any,
             ) -> GoogleChromeManagementV1CountChromeHardwareFleetDevicesResponseHttpRequest: ...
+            def countChromeProfileVersions(
+                self,
+                *,
+                customer: str,
+                filter: str = ...,
+                orgUnitId: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any,
+            ) -> (
+                GoogleChromeManagementV1CountChromeProfileVersionsResponseHttpRequest
+            ): ...
+            def countChromeProfileVersions_next(
+                self,
+                previous_request: GoogleChromeManagementV1CountChromeProfileVersionsResponseHttpRequest,
+                previous_response: GoogleChromeManagementV1CountChromeProfileVersionsResponse,
+            ) -> (
+                GoogleChromeManagementV1CountChromeProfileVersionsResponseHttpRequest
+                | None
+            ): ...
             def countChromeVersions(
                 self,
                 *,
@@ -577,6 +710,7 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
             self,
         ) -> CertificateProvisioningProcessesResource: ...
         def connectorConfigs(self) -> ConnectorConfigsResource: ...
+        def enterprise(self) -> EnterpriseResource: ...
         def profiles(self) -> ProfilesResource: ...
         def reports(self) -> ReportsResource: ...
         def telemetry(self) -> TelemetryResource: ...
@@ -704,6 +838,16 @@ class GoogleChromeManagementV1CountChromeHardwareFleetDevicesResponseHttpRequest
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleChromeManagementV1CountChromeHardwareFleetDevicesResponse: ...
+
+@typing.type_check_only
+class GoogleChromeManagementV1CountChromeProfileVersionsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleChromeManagementV1CountChromeProfileVersionsResponse: ...
 
 @typing.type_check_only
 class GoogleChromeManagementV1CountChromeVersionsResponseHttpRequest(
@@ -896,6 +1040,16 @@ class GoogleChromeManagementVersionsV1CertificateProvisioningProcessHttpRequest(
     ) -> GoogleChromeManagementVersionsV1CertificateProvisioningProcess: ...
 
 @typing.type_check_only
+class GoogleChromeManagementVersionsV1CheckEnablementStatusResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleChromeManagementVersionsV1CheckEnablementStatusResponse: ...
+
+@typing.type_check_only
 class GoogleChromeManagementVersionsV1ChromeBrowserProfileHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -938,6 +1092,26 @@ class GoogleChromeManagementVersionsV1ConnectorConfigHttpRequest(
     ) -> GoogleChromeManagementVersionsV1ConnectorConfig: ...
 
 @typing.type_check_only
+class GoogleChromeManagementVersionsV1DisableInsightsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleChromeManagementVersionsV1DisableInsightsResponse: ...
+
+@typing.type_check_only
+class GoogleChromeManagementVersionsV1EnableInsightsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleChromeManagementVersionsV1EnableInsightsResponse: ...
+
+@typing.type_check_only
 class GoogleChromeManagementVersionsV1ListChromeBrowserProfileCommandsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -976,6 +1150,46 @@ class GoogleChromeManagementVersionsV1MoveThirdPartyProfileUserResponseHttpReque
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleChromeManagementVersionsV1MoveThirdPartyProfileUserResponse: ...
+
+@typing.type_check_only
+class GoogleChromeManagementVersionsV1QueryContentTransfersBreakdownsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleChromeManagementVersionsV1QueryContentTransfersBreakdownsResponse: ...
+
+@typing.type_check_only
+class GoogleChromeManagementVersionsV1QueryContentTransfersResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleChromeManagementVersionsV1QueryContentTransfersResponse: ...
+
+@typing.type_check_only
+class GoogleChromeManagementVersionsV1QueryUrlVisitsBreakdownsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleChromeManagementVersionsV1QueryUrlVisitsBreakdownsResponse: ...
+
+@typing.type_check_only
+class GoogleChromeManagementVersionsV1QueryUrlVisitsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleChromeManagementVersionsV1QueryUrlVisitsResponse: ...
 
 @typing.type_check_only
 class GoogleChromeManagementVersionsV1SetFailureResponseHttpRequest(

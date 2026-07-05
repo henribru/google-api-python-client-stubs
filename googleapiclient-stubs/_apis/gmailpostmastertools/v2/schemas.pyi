@@ -54,6 +54,17 @@ class ComplianceStatus(typing_extensions.TypedDict, total=False):
     status: typing_extensions.Literal["STATE_UNSPECIFIED", "COMPLIANT", "NEEDS_WORK"]
 
 @typing.type_check_only
+class CreateDomainRequest(typing_extensions.TypedDict, total=False):
+    domainId: str
+
+@typing.type_check_only
+class CreateUserRequest(typing_extensions.TypedDict, total=False):
+    permission: typing_extensions.Literal[
+        "PERMISSION_UNSPECIFIED", "READER", "ADMIN", "OWNER", "NONE"
+    ]
+    userId: str
+
+@typing.type_check_only
 class Date(typing_extensions.TypedDict, total=False):
     day: int
     month: int
@@ -73,12 +84,26 @@ class DateRanges(typing_extensions.TypedDict, total=False):
     dateRanges: _list[DateRange]
 
 @typing.type_check_only
+class DeliverabilityStatusVerdict(typing_extensions.TypedDict, total=False):
+    reason: typing_extensions.Literal[
+        "REASON_UNSPECIFIED",
+        "MESSAGE_VOLUME_LOW",
+        "SMTP_ERRORS_HIGH",
+        "SENDER_NOT_COMPLIANT",
+        "SPAM_RATE_HIGH",
+        "USER_FEEDBACK_NEGATIVE",
+        "USER_FEEDBACK_LOW",
+        "USER_FEEDBACK_POSITIVE",
+    ]
+    state: ComplianceStatus
+
+@typing.type_check_only
 class Domain(typing_extensions.TypedDict, total=False):
     createTime: str
     lastVerifyTime: str
     name: str
     permission: typing_extensions.Literal[
-        "PERMISSION_UNSPECIFIED", "READER", "OWNER", "NONE"
+        "PERMISSION_UNSPECIFIED", "READER", "ADMIN", "OWNER", "NONE"
     ]
     verificationState: typing_extensions.Literal[
         "VERIFICATION_STATE_UNSPECIFIED", "UNVERIFIED", "VERIFIED"
@@ -86,6 +111,7 @@ class Domain(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DomainComplianceData(typing_extensions.TypedDict, total=False):
+    deliverabilityStatusVerdict: DeliverabilityStatusVerdict
     domainId: str
     honorUnsubscribeVerdict: HonorUnsubscribeVerdict
     oneClickUnsubscribeVerdict: OneClickUnsubscribeVerdict
@@ -105,6 +131,17 @@ class DomainStat(typing_extensions.TypedDict, total=False):
     value: StatisticValue
 
 @typing.type_check_only
+class DomainVerificationToken(typing_extensions.TypedDict, total=False):
+    name: str
+    token: str
+    verificationMethod: typing_extensions.Literal[
+        "DOMAIN_VERIFICATION_METHOD_UNSPECIFIED", "TXT", "CNAME"
+    ]
+
+@typing.type_check_only
+class Empty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class HonorUnsubscribeVerdict(typing_extensions.TypedDict, total=False):
     reason: typing_extensions.Literal[
         "REASON_UNSPECIFIED",
@@ -118,6 +155,11 @@ class HonorUnsubscribeVerdict(typing_extensions.TypedDict, total=False):
 class ListDomainsResponse(typing_extensions.TypedDict, total=False):
     domains: _list[Domain]
     nextPageToken: str
+
+@typing.type_check_only
+class ListUsersResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    users: _list[User]
 
 @typing.type_check_only
 class MetricDefinition(typing_extensions.TypedDict, total=False):
@@ -173,3 +215,22 @@ class StringList(typing_extensions.TypedDict, total=False):
 class TimeQuery(typing_extensions.TypedDict, total=False):
     dateList: DateList
     dateRanges: DateRanges
+
+@typing.type_check_only
+class User(typing_extensions.TypedDict, total=False):
+    accessGranter: str
+    createTime: str
+    name: str
+    permission: typing_extensions.Literal[
+        "PERMISSION_UNSPECIFIED", "READER", "ADMIN", "OWNER", "NONE"
+    ]
+    user: str
+
+@typing.type_check_only
+class VerifyDomainRequest(typing_extensions.TypedDict, total=False):
+    verificationMethod: typing_extensions.Literal[
+        "DOMAIN_VERIFICATION_METHOD_UNSPECIFIED", "TXT", "CNAME"
+    ]
+
+@typing.type_check_only
+class VerifyDomainResponse(typing_extensions.TypedDict, total=False): ...

@@ -101,6 +101,29 @@ class ExecuteActionResponse(typing_extensions.TypedDict, total=False):
     results: _list[dict[str, typing.Any]]
 
 @typing.type_check_only
+class ExecuteHttpRequestRequest(typing_extensions.TypedDict, total=False):
+    headers: _list[HttpHeader]
+    httpMethod: typing_extensions.Literal[
+        "HTTP_METHOD_UNSPECIFIED",
+        "HTTP_METHOD_GET",
+        "HTTP_METHOD_POST",
+        "HTTP_METHOD_PUT",
+        "HTTP_METHOD_PATCH",
+        "HTTP_METHOD_DELETE",
+        "HTTP_METHOD_HEAD",
+        "HTTP_METHOD_OPTIONS",
+    ]
+    rawBody: str
+    url: str
+
+@typing.type_check_only
+class ExecuteHttpRequestResponse(typing_extensions.TypedDict, total=False):
+    body: str
+    headers: _list[HttpHeader]
+    reason: str
+    statusCode: int
+
+@typing.type_check_only
 class ExecuteSqlQueryRequest(typing_extensions.TypedDict, total=False):
     query: Query
 
@@ -201,6 +224,11 @@ class GetResourceResponse(typing_extensions.TypedDict, total=False):
     data: str
     metadata: dict[str, typing.Any]
     mimeType: str
+
+@typing.type_check_only
+class HttpHeader(typing_extensions.TypedDict, total=False):
+    key: str
+    value: str
 
 @typing.type_check_only
 class InputParameter(typing_extensions.TypedDict, total=False):

@@ -332,6 +332,10 @@ class DataMaskingStatistics(typing_extensions.TypedDict, total=False):
     dataMaskingApplied: bool
 
 @typing.type_check_only
+class DataPolicyList(typing_extensions.TypedDict, total=False):
+    dataPolicies: _list[DataPolicyOption]
+
+@typing.type_check_only
 class DataPolicyOption(typing_extensions.TypedDict, total=False):
     name: str
 
@@ -595,6 +599,7 @@ class ExternalDatasetReference(typing_extensions.TypedDict, total=False):
 class ExternalRuntimeOptions(typing_extensions.TypedDict, total=False):
     containerCpu: float
     containerMemory: str
+    containerRequestConcurrency: str
     maxBatchingRows: str
     runtimeConnection: str
     runtimeVersion: str
@@ -628,6 +633,10 @@ class GenAiErrorStats(typing_extensions.TypedDict, total=False):
     errors: _list[str]
 
 @typing.type_check_only
+class GenAiFunctionCacheStats(typing_extensions.TypedDict, total=False):
+    numCacheHitRows: str
+
+@typing.type_check_only
 class GenAiFunctionCostOptimizationStats(typing_extensions.TypedDict, total=False):
     message: str
     numCostOptimizedRows: str
@@ -639,6 +648,7 @@ class GenAiFunctionErrorStats(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GenAiFunctionStats(typing_extensions.TypedDict, total=False):
+    cacheStats: GenAiFunctionCacheStats
     costOptimizationStats: GenAiFunctionCostOptimizationStats
     errorStats: GenAiFunctionErrorStats
     functionName: str
@@ -1216,6 +1226,11 @@ class MaterializedViewStatus(typing_extensions.TypedDict, total=False):
     refreshWatermark: str
 
 @typing.type_check_only
+class MetadataCacheStalenessInsight(typing_extensions.TypedDict, total=False):
+    avgPreviousStalenessMs: str
+    stalenessPercentageIncrease: float
+
+@typing.type_check_only
 class MetadataCacheStatistics(typing_extensions.TypedDict, total=False):
     tableMetadataCacheUsage: _list[TableMetadataCacheUsage]
 
@@ -1352,6 +1367,7 @@ class PerformanceInsights(typing_extensions.TypedDict, total=False):
     avgPreviousExecutionMs: str
     stagePerformanceChangeInsights: _list[StagePerformanceChangeInsight]
     stagePerformanceStandaloneInsights: _list[StagePerformanceStandaloneInsight]
+    tableChangeInsights: _list[TableChangeInsight]
 
 @typing.type_check_only
 class Policy(typing_extensions.TypedDict, total=False):
@@ -1867,6 +1883,12 @@ class TableCell(typing_extensions.TypedDict, total=False):
     v: typing.Any
 
 @typing.type_check_only
+class TableChangeInsight(typing_extensions.TypedDict, total=False):
+    metadataCacheNotUsedButUsedPreviously: bool
+    metadataCacheStalenessInsight: MetadataCacheStalenessInsight
+    tableReference: TableReference
+
+@typing.type_check_only
 class TableConstraints(typing_extensions.TypedDict, total=False):
     foreignKeys: _list[dict[str, typing.Any]]
     primaryKey: dict[str, typing.Any]
@@ -1897,7 +1919,9 @@ class TableDataList(typing_extensions.TypedDict, total=False):
 class TableFieldSchema(typing_extensions.TypedDict, total=False):
     categories: dict[str, typing.Any]
     collation: str
+    dataGovernanceTagsInfo: dict[str, typing.Any]
     dataPolicies: _list[DataPolicyOption]
+    dataPolicyList: DataPolicyList
     defaultValueExpression: str
     description: str
     fields: _list[TableFieldSchema]

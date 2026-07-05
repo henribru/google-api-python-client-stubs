@@ -15,6 +15,12 @@ _list = list
 class TravelImpactModelResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class FlightsResource(googleapiclient.discovery.Resource):
+        def computeDetailedFlightEmissions(
+            self,
+            *,
+            body: ComputeDetailedFlightEmissionsRequest = ...,
+            **kwargs: typing.Any,
+        ) -> ComputeDetailedFlightEmissionsResponseHttpRequest: ...
         def computeFlightEmissions(
             self, *, body: ComputeFlightEmissionsRequest = ..., **kwargs: typing.Any
         ) -> ComputeFlightEmissionsResponseHttpRequest: ...
@@ -44,6 +50,16 @@ class TravelImpactModelResource(googleapiclient.discovery.Resource):
         | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def flights(self) -> FlightsResource: ...
+
+@typing.type_check_only
+class ComputeDetailedFlightEmissionsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ComputeDetailedFlightEmissionsResponse: ...
 
 @typing.type_check_only
 class ComputeFlightEmissionsResponseHttpRequest(googleapiclient.http.HttpRequest):

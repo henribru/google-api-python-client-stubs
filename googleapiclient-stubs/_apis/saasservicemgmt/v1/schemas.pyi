@@ -16,6 +16,10 @@ class Blueprint(typing_extensions.TypedDict, total=False):
     version: str
 
 @typing.type_check_only
+class Decimal(typing_extensions.TypedDict, total=False):
+    value: str
+
+@typing.type_check_only
 class Dependency(typing_extensions.TypedDict, total=False):
     alias: str
     unitKind: str
@@ -193,6 +197,7 @@ class RolloutKind(typing_extensions.TypedDict, total=False):
     uid: str
     unitFilter: str
     unitKind: str
+    unitUpdatePacing: UnitUpdatePacing
     updateTime: str
     updateUnitKindStrategy: typing_extensions.Literal[
         "UPDATE_UNIT_KIND_STRATEGY_UNSPECIFIED",
@@ -220,13 +225,7 @@ class Saas(typing_extensions.TypedDict, total=False):
     locations: _list[Location]
     name: str
     state: typing_extensions.Literal[
-        "STATE_TYPE_UNSPECIFIED",
-        "STATE_ACTIVE",
-        "STATE_RUNNING",
-        "STATE_FAILED",
-        "ACTIVE",
-        "RUNNING",
-        "FAILED",
+        "STATE_TYPE_UNSPECIFIED", "STATE_ACTIVE", "STATE_RUNNING", "STATE_FAILED"
     ]
     uid: str
     updateTime: str
@@ -330,6 +329,8 @@ class UnitCondition(typing_extensions.TypedDict, total=False):
         "TYPE_PROVISIONED",
         "TYPE_OPERATION_ERROR",
         "TYPE_FLAGS_CONFIG_INITIALIZED",
+        "TYPE_APP_CREATED_OR_ALREADY_EXISTS",
+        "TYPE_APP_COMPONENTS_REGISTERED",
     ]
 
 @typing.type_check_only
@@ -340,6 +341,11 @@ class UnitDependency(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class UnitKind(typing_extensions.TypedDict, total=False):
     annotations: dict[str, typing.Any]
+    boundaryType: typing_extensions.Literal[
+        "BOUNDARY_TYPE_UNSPECIFIED",
+        "BOUNDARY_TYPE_TENANT_PROJECT",
+        "BOUNDARY_TYPE_MANAGED_PROJECT",
+    ]
     createTime: str
     defaultFlagRevisions: _list[str]
     defaultRelease: str
@@ -410,6 +416,11 @@ class UnitOperationCondition(typing_extensions.TypedDict, total=False):
         "TYPE_APP_COMPONENTS_REGISTERED",
         "TYPE_WORKLOAD_SUCCEEDED",
     ]
+
+@typing.type_check_only
+class UnitUpdatePacing(typing_extensions.TypedDict, total=False):
+    maxConcurrentOperationsCount: int
+    maxConcurrentOperationsPercent: Decimal
 
 @typing.type_check_only
 class UnitVariable(typing_extensions.TypedDict, total=False):

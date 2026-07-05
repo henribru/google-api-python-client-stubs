@@ -1125,6 +1125,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             forwardingRule: str,
+            view: typing_extensions.Literal["BASIC", "FULL"] = ...,
             **kwargs: typing.Any,
         ) -> ForwardingRuleHttpRequest: ...
         def insert(
@@ -1342,7 +1343,12 @@ class ComputeResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def get(
-            self, *, project: str, forwardingRule: str, **kwargs: typing.Any
+            self,
+            *,
+            project: str,
+            forwardingRule: str,
+            view: typing_extensions.Literal["BASIC", "FULL"] = ...,
+            **kwargs: typing.Any,
         ) -> ForwardingRuleHttpRequest: ...
         def insert(
             self,
@@ -8171,6 +8177,15 @@ class ComputeResource(googleapiclient.discovery.Resource):
 
     @typing.type_check_only
     class RolloutsResource(googleapiclient.discovery.Resource):
+        def advance(
+            self,
+            *,
+            project: str,
+            rollout: str,
+            currentWaveNumber: str = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
         def cancel(
             self,
             *,
@@ -8207,6 +8222,24 @@ class ComputeResource(googleapiclient.discovery.Resource):
             previous_request: RolloutsListResponseHttpRequest,
             previous_response: RolloutsListResponse,
         ) -> RolloutsListResponseHttpRequest | None: ...
+        def pause(
+            self,
+            *,
+            project: str,
+            rollout: str,
+            etag: str = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
+        def resume(
+            self,
+            *,
+            project: str,
+            rollout: str,
+            etag: str = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
 
     @typing.type_check_only
     class RoutersResource(googleapiclient.discovery.Resource):

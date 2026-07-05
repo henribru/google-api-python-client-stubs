@@ -1177,6 +1177,167 @@ class ComputeResource(googleapiclient.discovery.Resource):
         ) -> OperationHttpRequest: ...
 
     @typing.type_check_only
+    class FolderGlobalVmExtensionPoliciesResource(googleapiclient.discovery.Resource):
+        def aggregatedList(
+            self,
+            *,
+            folder: str,
+            filter: str = ...,
+            includeAllScopes: bool = ...,
+            maxResults: int = ...,
+            orderBy: str = ...,
+            pageToken: str = ...,
+            returnPartialSuccess: bool = ...,
+            serviceProjectNumber: str = ...,
+            **kwargs: typing.Any,
+        ) -> FolderVmExtensionPolicyAggregatedListResponseHttpRequest: ...
+        def aggregatedList_next(
+            self,
+            previous_request: FolderVmExtensionPolicyAggregatedListResponseHttpRequest,
+            previous_response: FolderVmExtensionPolicyAggregatedListResponse,
+        ) -> FolderVmExtensionPolicyAggregatedListResponseHttpRequest | None: ...
+        def delete(
+            self,
+            *,
+            folder: str,
+            globalVmExtensionPolicy: str,
+            body: GlobalVmExtensionPolicyRolloutOperationRolloutInput = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
+        def get(
+            self, *, folder: str, globalVmExtensionPolicy: str, **kwargs: typing.Any
+        ) -> GlobalVmExtensionPolicyHttpRequest: ...
+        def getVmExtension(
+            self, *, folder: str, extensionName: str, **kwargs: typing.Any
+        ) -> GlobalVmExtensionHttpRequest: ...
+        def insert(
+            self,
+            *,
+            folder: str,
+            body: GlobalVmExtensionPolicy = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
+        def list(
+            self,
+            *,
+            folder: str,
+            filter: str = ...,
+            maxResults: int = ...,
+            orderBy: str = ...,
+            pageToken: str = ...,
+            returnPartialSuccess: bool = ...,
+            **kwargs: typing.Any,
+        ) -> GlobalVmExtensionPolicyListHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: GlobalVmExtensionPolicyListHttpRequest,
+            previous_response: GlobalVmExtensionPolicyList,
+        ) -> GlobalVmExtensionPolicyListHttpRequest | None: ...
+        def listVmExtensions(
+            self,
+            *,
+            folder: str,
+            filter: str = ...,
+            maxResults: int = ...,
+            orderBy: str = ...,
+            pageToken: str = ...,
+            returnPartialSuccess: bool = ...,
+            **kwargs: typing.Any,
+        ) -> GlobalListVmExtensionsResponseHttpRequest: ...
+        def listVmExtensions_next(
+            self,
+            previous_request: GlobalListVmExtensionsResponseHttpRequest,
+            previous_response: GlobalListVmExtensionsResponse,
+        ) -> GlobalListVmExtensionsResponseHttpRequest | None: ...
+        def update(
+            self,
+            *,
+            folder: str,
+            globalVmExtensionPolicy: str,
+            body: GlobalVmExtensionPolicy = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
+
+    @typing.type_check_only
+    class FolderZoneVmExtensionPoliciesResource(googleapiclient.discovery.Resource):
+        def delete(
+            self,
+            *,
+            folder: str,
+            zone: str,
+            vmExtensionPolicy: str,
+            requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
+        def get(
+            self,
+            *,
+            folder: str,
+            zone: str,
+            vmExtensionPolicy: str,
+            **kwargs: typing.Any,
+        ) -> VmExtensionPolicyHttpRequest: ...
+        def getVmExtension(
+            self, *, folder: str, zone: str, extensionName: str, **kwargs: typing.Any
+        ) -> VmExtensionHttpRequest: ...
+        def insert(
+            self,
+            *,
+            folder: str,
+            zone: str,
+            body: VmExtensionPolicy = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
+        def list(
+            self,
+            *,
+            folder: str,
+            zone: str,
+            filter: str = ...,
+            maxResults: int = ...,
+            orderBy: str = ...,
+            pageToken: str = ...,
+            returnPartialSuccess: bool = ...,
+            **kwargs: typing.Any,
+        ) -> VmExtensionPolicyListHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: VmExtensionPolicyListHttpRequest,
+            previous_response: VmExtensionPolicyList,
+        ) -> VmExtensionPolicyListHttpRequest | None: ...
+        def listVmExtensions(
+            self,
+            *,
+            folder: str,
+            zone: str,
+            filter: str = ...,
+            maxResults: int = ...,
+            orderBy: str = ...,
+            pageToken: str = ...,
+            returnPartialSuccess: bool = ...,
+            **kwargs: typing.Any,
+        ) -> ListVmExtensionsResponseHttpRequest: ...
+        def listVmExtensions_next(
+            self,
+            previous_request: ListVmExtensionsResponseHttpRequest,
+            previous_response: ListVmExtensionsResponse,
+        ) -> ListVmExtensionsResponseHttpRequest | None: ...
+        def update(
+            self,
+            *,
+            folder: str,
+            zone: str,
+            vmExtensionPolicy: str,
+            body: VmExtensionPolicy = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
+
+    @typing.type_check_only
     class ForwardingRulesResource(googleapiclient.discovery.Resource):
         def aggregatedList(
             self,
@@ -5246,6 +5407,213 @@ class ComputeResource(googleapiclient.discovery.Resource):
         ) -> NodeTypeListHttpRequest | None: ...
 
     @typing.type_check_only
+    class OrgVmExtensionPoliciesResource(googleapiclient.discovery.Resource):
+        def delete(
+            self,
+            *,
+            organization: str,
+            zone: str,
+            vmExtensionPolicy: str,
+            requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
+
+    @typing.type_check_only
+    class OrganizationGlobalVmExtensionPoliciesResource(
+        googleapiclient.discovery.Resource
+    ):
+        def aggregatedList(
+            self,
+            *,
+            organization: str,
+            filter: str = ...,
+            includeAllScopes: bool = ...,
+            maxResults: int = ...,
+            orderBy: str = ...,
+            pageToken: str = ...,
+            returnPartialSuccess: bool = ...,
+            serviceProjectNumber: str = ...,
+            **kwargs: typing.Any,
+        ) -> OrganizationVmExtensionPolicyAggregatedListResponseHttpRequest: ...
+        def aggregatedList_next(
+            self,
+            previous_request: OrganizationVmExtensionPolicyAggregatedListResponseHttpRequest,
+            previous_response: OrganizationVmExtensionPolicyAggregatedListResponse,
+        ) -> OrganizationVmExtensionPolicyAggregatedListResponseHttpRequest | None: ...
+        def delete(
+            self,
+            *,
+            organization: str,
+            globalVmExtensionPolicy: str,
+            body: GlobalVmExtensionPolicyRolloutOperationRolloutInput = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
+        def get(
+            self,
+            *,
+            organization: str,
+            globalVmExtensionPolicy: str,
+            **kwargs: typing.Any,
+        ) -> GlobalVmExtensionPolicyHttpRequest: ...
+        def getVmExtension(
+            self, *, organization: str, extensionName: str, **kwargs: typing.Any
+        ) -> GlobalVmExtensionHttpRequest: ...
+        def insert(
+            self,
+            *,
+            organization: str,
+            body: GlobalVmExtensionPolicy = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
+        def list(
+            self,
+            *,
+            organization: str,
+            filter: str = ...,
+            maxResults: int = ...,
+            orderBy: str = ...,
+            pageToken: str = ...,
+            returnPartialSuccess: bool = ...,
+            **kwargs: typing.Any,
+        ) -> GlobalVmExtensionPolicyListHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: GlobalVmExtensionPolicyListHttpRequest,
+            previous_response: GlobalVmExtensionPolicyList,
+        ) -> GlobalVmExtensionPolicyListHttpRequest | None: ...
+        def listVmExtensions(
+            self,
+            *,
+            organization: str,
+            filter: str = ...,
+            maxResults: int = ...,
+            orderBy: str = ...,
+            pageToken: str = ...,
+            returnPartialSuccess: bool = ...,
+            **kwargs: typing.Any,
+        ) -> GlobalListVmExtensionsResponseHttpRequest: ...
+        def listVmExtensions_next(
+            self,
+            previous_request: GlobalListVmExtensionsResponseHttpRequest,
+            previous_response: GlobalListVmExtensionsResponse,
+        ) -> GlobalListVmExtensionsResponseHttpRequest | None: ...
+        def update(
+            self,
+            *,
+            organization: str,
+            globalVmExtensionPolicy: str,
+            body: GlobalVmExtensionPolicy = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
+
+    @typing.type_check_only
+    class OrganizationRolloutPlansResource(googleapiclient.discovery.Resource):
+        def delete(
+            self,
+            *,
+            organization: str,
+            rolloutPlan: str,
+            requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
+        def get(
+            self, *, organization: str, rolloutPlan: str, **kwargs: typing.Any
+        ) -> RolloutPlanHttpRequest: ...
+        def insert(
+            self,
+            *,
+            organization: str,
+            body: RolloutPlan = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
+        def list(
+            self,
+            *,
+            organization: str,
+            filter: str = ...,
+            maxResults: int = ...,
+            orderBy: str = ...,
+            pageToken: str = ...,
+            returnPartialSuccess: bool = ...,
+            **kwargs: typing.Any,
+        ) -> RolloutPlansListResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: RolloutPlansListResponseHttpRequest,
+            previous_response: RolloutPlansListResponse,
+        ) -> RolloutPlansListResponseHttpRequest | None: ...
+
+    @typing.type_check_only
+    class OrganizationRolloutsResource(googleapiclient.discovery.Resource):
+        def advance(
+            self,
+            *,
+            organization: str,
+            rollout: str,
+            currentWaveNumber: str = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
+        def cancel(
+            self,
+            *,
+            organization: str,
+            rollout: str,
+            requestId: str = ...,
+            rollback: bool = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
+        def delete(
+            self,
+            *,
+            organization: str,
+            rollout: str,
+            requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
+        def get(
+            self, *, organization: str, rollout: str, **kwargs: typing.Any
+        ) -> RolloutHttpRequest: ...
+        def list(
+            self,
+            *,
+            organization: str,
+            filter: str = ...,
+            maxResults: int = ...,
+            orderBy: str = ...,
+            pageToken: str = ...,
+            returnPartialSuccess: bool = ...,
+            **kwargs: typing.Any,
+        ) -> OrganizationRolloutsListResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: OrganizationRolloutsListResponseHttpRequest,
+            previous_response: OrganizationRolloutsListResponse,
+        ) -> OrganizationRolloutsListResponseHttpRequest | None: ...
+        def pause(
+            self,
+            *,
+            organization: str,
+            rollout: str,
+            etag: str = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
+        def resume(
+            self,
+            *,
+            organization: str,
+            rollout: str,
+            etag: str = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
+
+    @typing.type_check_only
     class OrganizationSecurityPoliciesResource(googleapiclient.discovery.Resource):
         def addAssociation(
             self,
@@ -5378,6 +5746,80 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             organization: str,
             body: SnapshotRecycleBinPolicy = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
+
+    @typing.type_check_only
+    class OrganizationZoneVmExtensionPoliciesResource(
+        googleapiclient.discovery.Resource
+    ):
+        def get(
+            self,
+            *,
+            organization: str,
+            zone: str,
+            vmExtensionPolicy: str,
+            **kwargs: typing.Any,
+        ) -> VmExtensionPolicyHttpRequest: ...
+        def getVmExtension(
+            self,
+            *,
+            organization: str,
+            zone: str,
+            extensionName: str,
+            **kwargs: typing.Any,
+        ) -> VmExtensionHttpRequest: ...
+        def insert(
+            self,
+            *,
+            organization: str,
+            zone: str,
+            body: VmExtensionPolicy = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
+        def list(
+            self,
+            *,
+            organization: str,
+            zone: str,
+            filter: str = ...,
+            maxResults: int = ...,
+            orderBy: str = ...,
+            pageToken: str = ...,
+            returnPartialSuccess: bool = ...,
+            **kwargs: typing.Any,
+        ) -> VmExtensionPolicyListHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: VmExtensionPolicyListHttpRequest,
+            previous_response: VmExtensionPolicyList,
+        ) -> VmExtensionPolicyListHttpRequest | None: ...
+        def listVmExtensions(
+            self,
+            *,
+            organization: str,
+            zone: str,
+            filter: str = ...,
+            maxResults: int = ...,
+            orderBy: str = ...,
+            pageToken: str = ...,
+            returnPartialSuccess: bool = ...,
+            **kwargs: typing.Any,
+        ) -> ListVmExtensionsResponseHttpRequest: ...
+        def listVmExtensions_next(
+            self,
+            previous_request: ListVmExtensionsResponseHttpRequest,
+            previous_response: ListVmExtensionsResponse,
+        ) -> ListVmExtensionsResponseHttpRequest | None: ...
+        def update(
+            self,
+            *,
+            organization: str,
+            zone: str,
+            vmExtensionPolicy: str,
+            body: VmExtensionPolicy = ...,
             requestId: str = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -9052,6 +9494,18 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
+        def update(
+            self,
+            *,
+            project: str,
+            zone: str,
+            parentName: str,
+            reservationSubBlock: str,
+            body: ReservationSubBlock = ...,
+            requestId: str = ...,
+            updateMask: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
 
     @typing.type_check_only
     class ReservationsResource(googleapiclient.discovery.Resource):
@@ -11878,6 +12332,12 @@ class ComputeResource(googleapiclient.discovery.Resource):
     def externalVpnGateways(self) -> ExternalVpnGatewaysResource: ...
     def firewallPolicies(self) -> FirewallPoliciesResource: ...
     def firewalls(self) -> FirewallsResource: ...
+    def folderGlobalVmExtensionPolicies(
+        self,
+    ) -> FolderGlobalVmExtensionPoliciesResource: ...
+    def folderZoneVmExtensionPolicies(
+        self,
+    ) -> FolderZoneVmExtensionPoliciesResource: ...
     def forwardingRules(self) -> ForwardingRulesResource: ...
     def futureReservations(self) -> FutureReservationsResource: ...
     def globalAddresses(self) -> GlobalAddressesResource: ...
@@ -11927,10 +12387,19 @@ class ComputeResource(googleapiclient.discovery.Resource):
     def nodeGroups(self) -> NodeGroupsResource: ...
     def nodeTemplates(self) -> NodeTemplatesResource: ...
     def nodeTypes(self) -> NodeTypesResource: ...
+    def orgVmExtensionPolicies(self) -> OrgVmExtensionPoliciesResource: ...
+    def organizationGlobalVmExtensionPolicies(
+        self,
+    ) -> OrganizationGlobalVmExtensionPoliciesResource: ...
+    def organizationRolloutPlans(self) -> OrganizationRolloutPlansResource: ...
+    def organizationRollouts(self) -> OrganizationRolloutsResource: ...
     def organizationSecurityPolicies(self) -> OrganizationSecurityPoliciesResource: ...
     def organizationSnapshotRecycleBinPolicy(
         self,
     ) -> OrganizationSnapshotRecycleBinPolicyResource: ...
+    def organizationZoneVmExtensionPolicies(
+        self,
+    ) -> OrganizationZoneVmExtensionPoliciesResource: ...
     def packetMirrorings(self) -> PacketMirroringsResource: ...
     def previewFeatures(self) -> PreviewFeaturesResource: ...
     def projectViews(self) -> ProjectViewsResource: ...
@@ -12409,6 +12878,16 @@ class FirewallPolicyRuleHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> FirewallPolicyRule: ...
+
+@typing.type_check_only
+class FolderVmExtensionPolicyAggregatedListResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> FolderVmExtensionPolicyAggregatedListResponse: ...
 
 @typing.type_check_only
 class ForwardingRuleHttpRequest(googleapiclient.http.HttpRequest):
@@ -13545,6 +14024,14 @@ class OperationListHttpRequest(googleapiclient.http.HttpRequest):
     ) -> OperationList: ...
 
 @typing.type_check_only
+class OrganizationRolloutsListResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> OrganizationRolloutsListResponse: ...
+
+@typing.type_check_only
 class OrganizationSecurityPoliciesListAssociationsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -13553,6 +14040,16 @@ class OrganizationSecurityPoliciesListAssociationsResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> OrganizationSecurityPoliciesListAssociationsResponse: ...
+
+@typing.type_check_only
+class OrganizationVmExtensionPolicyAggregatedListResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> OrganizationVmExtensionPolicyAggregatedListResponse: ...
 
 @typing.type_check_only
 class PacketMirroringHttpRequest(googleapiclient.http.HttpRequest):

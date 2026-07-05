@@ -243,6 +243,7 @@ class Price(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Product(typing_extensions.TypedDict, total=False):
+    archived: bool
     attributes: Attributes
     automatedDiscounts: AutomatedDiscounts
     base64EncodedName: str
@@ -327,7 +328,9 @@ class ProductStatusChangeMessage(typing_extensions.TypedDict, total=False):
     managingAccount: str
     resource: str
     resourceId: str
-    resourceType: typing_extensions.Literal["RESOURCE_UNSPECIFIED", "PRODUCT"]
+    resourceType: typing_extensions.Literal[
+        "RESOURCE_UNSPECIFIED", "PRODUCT", "ACCOUNT_SERVICE"
+    ]
 
 @typing.type_check_only
 class ProductStructuredDescription(typing_extensions.TypedDict, total=False):

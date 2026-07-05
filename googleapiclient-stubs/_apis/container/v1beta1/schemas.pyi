@@ -326,6 +326,7 @@ class Cluster(typing_extensions.TypedDict, total=False):
     networkConfig: NetworkConfig
     networkPolicy: NetworkPolicy
     nodeConfig: NodeConfig
+    nodeCreationConfig: NodeCreationConfig
     nodeIpv4CidrSize: int
     nodePoolAutoConfig: NodePoolAutoConfig
     nodePoolDefaults: NodePoolDefaults
@@ -437,6 +438,8 @@ class ClusterUpdate(typing_extensions.TypedDict, total=False):
     desiredGcfsConfig: GcfsConfig
     desiredHostMaintenancePolicy: HostMaintenancePolicy
     desiredIdentityServiceConfig: IdentityServiceConfig
+    desiredImage: str
+    desiredImageProject: str
     desiredImageType: str
     desiredInTransitEncryptionConfig: typing_extensions.Literal[
         "IN_TRANSIT_ENCRYPTION_CONFIG_UNSPECIFIED",
@@ -461,6 +464,7 @@ class ClusterUpdate(typing_extensions.TypedDict, total=False):
     desiredMonitoringService: str
     desiredNetworkPerformanceConfig: ClusterNetworkPerformanceConfig
     desiredNetworkTierConfig: NetworkTierConfig
+    desiredNodeCreationConfig: NodeCreationConfig
     desiredNodeKubeletConfig: NodeKubeletConfig
     desiredNodePoolAutoConfigKubeletConfig: NodeKubeletConfig
     desiredNodePoolAutoConfigLinuxNodeConfig: LinuxNodeConfig
@@ -617,6 +621,15 @@ class CreateNodePoolRequest(typing_extensions.TypedDict, total=False):
     zone: str
 
 @typing.type_check_only
+class CustomImageConfig(typing_extensions.TypedDict, total=False):
+    image: str
+    imageProject: str
+
+@typing.type_check_only
+class CustomImageInfo(typing_extensions.TypedDict, total=False):
+    upgradeMessage: str
+
+@typing.type_check_only
 class CustomNodeInit(typing_extensions.TypedDict, total=False):
     initScript: InitScript
 
@@ -662,6 +675,12 @@ class DatabaseEncryption(typing_extensions.TypedDict, total=False):
     lastOperationErrors: _list[OperationError]
     state: typing_extensions.Literal[
         "UNKNOWN", "ENCRYPTED", "DECRYPTED", "ALL_OBJECTS_ENCRYPTION_ENABLED"
+    ]
+
+@typing.type_check_only
+class DataplaneV2Config(typing_extensions.TypedDict, total=False):
+    scalabilityMode: typing_extensions.Literal[
+        "SCALABILITY_MODE_UNSPECIFIED", "DISABLED", "SCALE_OPTIMIZED"
     ]
 
 @typing.type_check_only
@@ -768,6 +787,12 @@ class EvictionSignals(typing_extensions.TypedDict, total=False):
     nodefsAvailable: str
     nodefsInodesFree: str
     pidAvailable: str
+
+@typing.type_check_only
+class ExclusionUntilEndOfSupport(typing_extensions.TypedDict, total=False):
+    enabled: bool
+    endTime: str
+    startTime: str
 
 @typing.type_check_only
 class FastSocket(typing_extensions.TypedDict, total=False):
@@ -1077,6 +1102,7 @@ class LoggingComponentConfig(typing_extensions.TypedDict, total=False):
             "KCP_SSHD",
             "KCP_CONNECTION",
             "KCP_HPA",
+            "KCP_VPA",
         ]
     ]
 
@@ -1206,6 +1232,7 @@ class NetworkConfig(typing_extensions.TypedDict, total=False):
     datapathProvider: typing_extensions.Literal[
         "DATAPATH_PROVIDER_UNSPECIFIED", "LEGACY_DATAPATH", "ADVANCED_DATAPATH"
     ]
+    dataplaneV2Config: DataplaneV2Config
     defaultEnablePrivateNodes: bool
     defaultSnatStatus: DefaultSnatStatus
     disableL4LbFirewallReconciliation: bool
@@ -1309,6 +1336,7 @@ class NodeConfig(typing_extensions.TypedDict, total=False):
     metadata: dict[str, typing.Any]
     minCpuPlatform: str
     nodeGroup: str
+    nodeImageConfig: CustomImageConfig
     oauthScopes: _list[str]
     preemptible: bool
     reservationAffinity: ReservationAffinity
@@ -1337,7 +1365,15 @@ class NodeConfigDefaults(typing_extensions.TypedDict, total=False):
     nodeKubeletConfig: NodeKubeletConfig
 
 @typing.type_check_only
+class NodeCreationConfig(typing_extensions.TypedDict, total=False):
+    nodeCreationMode: typing_extensions.Literal[
+        "MODE_UNSPECIFIED", "VIA_KUBELET", "VIA_CONTROL_PLANE"
+    ]
+
+@typing.type_check_only
 class NodeDrainConfig(typing_extensions.TypedDict, total=False):
+    graceTerminationDuration: str
+    pdbTimeoutDuration: str
     respectPdbDuringNodePoolDeletion: bool
 
 @typing.type_check_only
@@ -1389,6 +1425,7 @@ class NodeNetworkConfig(typing_extensions.TypedDict, total=False):
     additionalPodNetworkConfigs: _list[AdditionalPodNetworkConfig]
     createPodRange: bool
     enablePrivateNodes: bool
+    network: str
     networkPerformanceConfig: NetworkPerformanceConfig
     networkTierConfig: NetworkTierConfig
     podCidrOverprovisionConfig: PodCIDROverprovisionConfig
@@ -1408,6 +1445,7 @@ class NodePool(typing_extensions.TypedDict, total=False):
     initialNodeCount: int
     instanceGroupUrls: _list[str]
     locations: _list[str]
+    maintenancePolicy: NodePoolMaintenancePolicy
     management: NodeManagement
     maxPodsConstraint: MaxPodsConstraint
     name: str
@@ -1459,6 +1497,10 @@ class NodePoolLoggingConfig(typing_extensions.TypedDict, total=False):
     variantConfig: LoggingVariantConfig
 
 @typing.type_check_only
+class NodePoolMaintenancePolicy(typing_extensions.TypedDict, total=False):
+    exclusionUntilEndOfSupport: ExclusionUntilEndOfSupport
+
+@typing.type_check_only
 class NodePoolUpgradeConcurrencyConfig(typing_extensions.TypedDict, total=False):
     maxCount: str
 
@@ -1469,6 +1511,7 @@ class NodePoolUpgradeInfo(typing_extensions.TypedDict, total=False):
             "UNKNOWN", "ACTIVE", "MINOR_UPGRADE_PAUSED", "UPGRADE_PAUSED"
         ]
     ]
+    customImageInfo: CustomImageInfo
     endOfExtendedSupportTimestamp: str
     endOfStandardSupportTimestamp: str
     minorTargetVersion: str
@@ -1713,7 +1756,11 @@ class ReleaseChannelConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ReservationAffinity(typing_extensions.TypedDict, total=False):
     consumeReservationType: typing_extensions.Literal[
-        "UNSPECIFIED", "NO_RESERVATION", "ANY_RESERVATION", "SPECIFIC_RESERVATION"
+        "UNSPECIFIED",
+        "NO_RESERVATION",
+        "ANY_RESERVATION",
+        "SPECIFIC_RESERVATION",
+        "ANY_RESERVATION_THEN_FAIL",
     ]
     key: str
     values: _list[str]
@@ -2092,6 +2139,8 @@ class UpdateNodePoolRequest(typing_extensions.TypedDict, total=False):
     flexStart: bool
     gcfsConfig: GcfsConfig
     gvnic: VirtualNIC
+    image: str
+    imageProject: str
     imageType: str
     kubeletConfig: NodeKubeletConfig
     labels: NodeLabels
@@ -2099,6 +2148,7 @@ class UpdateNodePoolRequest(typing_extensions.TypedDict, total=False):
     locations: _list[str]
     loggingConfig: NodePoolLoggingConfig
     machineType: str
+    maintenancePolicy: NodePoolMaintenancePolicy
     maxRunDuration: str
     name: str
     nodeDrainConfig: NodeDrainConfig

@@ -808,6 +808,7 @@ class User(typing_extensions.TypedDict, total=False):
     addresses: typing.Any
     agreedToTerms: bool
     aliases: _list[str]
+    archivalTime: str
     archived: bool
     changePasswordAtNextLogin: bool
     creationTime: str
@@ -850,6 +851,7 @@ class User(typing_extensions.TypedDict, total=False):
     sshPublicKeys: typing.Any
     suspended: bool
     suspensionReason: str
+    suspensionTime: str
     thumbnailPhotoEtag: str
     thumbnailPhotoUrl: str
     websites: typing.Any

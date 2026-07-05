@@ -14,6 +14,13 @@ class AgentOtherDeviceId(typing_extensions.TypedDict, total=False):
     deviceId: str
 
 @typing.type_check_only
+class Component(typing_extensions.TypedDict, total=False):
+    childComponents: _list[Component]
+    deviceTypes: _list[str]
+    id: str
+    traitData: _list[TraitData]
+
+@typing.type_check_only
 class ComponentTraitUpdates(typing_extensions.TypedDict, total=False):
     componentId: str
     traitData: _list[TraitData]
@@ -41,6 +48,10 @@ class DeviceInfo(typing_extensions.TypedDict, total=False):
     swVersion: str
 
 @typing.type_check_only
+class DeviceMetadata(typing_extensions.TypedDict, total=False):
+    traitCommitTimestamps: dict[str, typing.Any]
+
+@typing.type_check_only
 class DeviceNames(typing_extensions.TypedDict, total=False):
     defaultNames: _list[str]
     name: str
@@ -66,6 +77,10 @@ class HomeEvents(typing_extensions.TypedDict, total=False):
     events: _list[Events]
 
 @typing.type_check_only
+class HomeTraitPayload(typing_extensions.TypedDict, total=False):
+    rootComponent: Component
+
+@typing.type_check_only
 class HomeTraitUpdates(typing_extensions.TypedDict, total=False):
     components: _list[ComponentTraitUpdates]
     deviceId: str
@@ -73,6 +88,13 @@ class HomeTraitUpdates(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class QueryRequest(typing_extensions.TypedDict, total=False):
     agentUserId: str
+    deviceView: typing_extensions.Literal[
+        "DEVICE_VIEW_UNSPECIFIED",
+        "SMART_HOME_TRAIT_ONLY",
+        "HOME_TRAIT_ONLY",
+        "HOME_TRAIT_AND_SMART_HOME_TRAIT",
+    ]
+    includeDeviceMetadata: bool
     inputs: _list[QueryRequestInput]
     requestId: str
 
@@ -91,7 +113,9 @@ class QueryResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class QueryResponsePayload(typing_extensions.TypedDict, total=False):
+    deviceMetadata: dict[str, typing.Any]
     devices: dict[str, typing.Any]
+    homeTraitPayload: dict[str, typing.Any]
 
 @typing.type_check_only
 class ReportStateAndNotificationDevice(typing_extensions.TypedDict, total=False):
@@ -148,4 +172,5 @@ class SyncResponsePayload(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class TraitData(typing_extensions.TypedDict, total=False):
+    commitTime: str
     trait: dict[str, typing.Any]

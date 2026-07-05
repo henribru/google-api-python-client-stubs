@@ -173,6 +173,59 @@ class Client(typing_extensions.TypedDict, total=False):
     workspaceId: str
 
 @typing.type_check_only
+class CompilerErrorLite(typing_extensions.TypedDict, total=False):
+    errorMessage: str
+    errorType: typing_extensions.Literal[
+        "unknownErrorType",
+        "duplicateAutoEventName",
+        "duplicateConditionId",
+        "duplicateDefaultMacro",
+        "duplicateTagName",
+        "internalCompilerError",
+        "invalidMacroKey",
+        "invalidNumberPredicateArgs",
+        "invalidMacroFormat",
+        "invalidMacroNameReference",
+        "invalidMacroParameter",
+        "invalidUsageContext",
+        "invalidRegex",
+        "macroCycle",
+        "unknownConditionId",
+        "unknownMacroInstance",
+        "invalidManualEscaping",
+        "invalidHtmlCssJs",
+        "macroInCommentsError",
+        "jsCompilerError",
+        "jsonError",
+        "invalidTagParameter",
+        "javascriptTooLong",
+        "unknownTagInstance",
+        "invalidTagReference",
+        "unknownTriggerId",
+        "customTriggerMissingEventFilter",
+        "duplicateTriggerId",
+        "unsupportedTriggerType",
+        "invalidTriggerParameter",
+        "duplicateExperimentId",
+        "pixieCompilerError",
+        "macroNotServerSideResolvable",
+        "invalidBlockingTrigger",
+        "lineTooLong",
+        "invalidTypeInSelect",
+        "gaExperimentMacroIsDeprecated",
+        "unsafeHtmlContent",
+        "unsafeHtmlAttributeValue",
+        "unsafeCssContent",
+        "parameterReferenceNotFound",
+        "invalidCustomTemplateRuntimeCode",
+        "conflictingDestinationRouting",
+        "missingRequiredActivity",
+        "unresolvableDestinationTag",
+        "invalidDestinationTag",
+        "tosRequiredForThirdPartyTags",
+    ]
+
+@typing.type_check_only
 class Condition(typing_extensions.TypedDict, total=False):
     parameter: _list[Parameter]
     type: typing_extensions.Literal[
@@ -300,6 +353,7 @@ class CreateContainerVersionRequestVersionOptions(
 @typing.type_check_only
 class CreateContainerVersionResponse(typing_extensions.TypedDict, total=False):
     compilerError: bool
+    compilerErrors: _list[CompilerErrorLite]
     containerVersion: ContainerVersion
     newWorkspacePath: str
     syncStatus: SyncStatus
@@ -529,11 +583,13 @@ class ProposedChange(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class PublishContainerVersionResponse(typing_extensions.TypedDict, total=False):
     compilerError: bool
+    compilerErrors: _list[CompilerErrorLite]
     containerVersion: ContainerVersion
 
 @typing.type_check_only
 class QuickPreviewResponse(typing_extensions.TypedDict, total=False):
     compilerError: bool
+    compilerErrors: _list[CompilerErrorLite]
     containerVersion: ContainerVersion
     syncStatus: SyncStatus
 

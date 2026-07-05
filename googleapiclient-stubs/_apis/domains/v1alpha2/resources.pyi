@@ -115,6 +115,7 @@ class CloudDomainsResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: Registration = ...,
                     updateMask: str = ...,
+                    validateOnly: bool = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def register(

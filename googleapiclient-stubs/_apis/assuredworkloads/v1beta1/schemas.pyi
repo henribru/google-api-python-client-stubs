@@ -74,6 +74,24 @@ class GoogleCloudAssuredworkloadsV1beta1AssetMoveAnalysis(
     assetType: str
 
 @typing.type_check_only
+class GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsRequest(
+    typing_extensions.TypedDict, total=False
+):
+    acknowledgeType: typing_extensions.Literal[
+        "ACKNOWLEDGE_TYPE_UNSPECIFIED",
+        "SINGLE_VIOLATION",
+        "EXISTING_CHILD_RESOURCE_VIOLATIONS",
+    ]
+    comment: str
+    names: _list[str]
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    acknowledgedViolationsCount: int
+
+@typing.type_check_only
 class GoogleCloudAssuredworkloadsV1beta1CreateWorkloadOperationMetadata(
     typing_extensions.TypedDict, total=False
 ):
@@ -95,6 +113,7 @@ class GoogleCloudAssuredworkloadsV1beta1CreateWorkloadOperationMetadata(
         "EU_DATA_BOUNDARY_AND_SUPPORT",
         "ISRAEL_DATA_BOUNDARY_AND_SUPPORT",
         "JAPAN_DATA_BOUNDARY",
+        "SWITZERLAND_DATA_BOUNDARY_WITH_ACCESS_JUSTIFICATIONS",
         "KSA_DATA_BOUNDARY_WITH_ACCESS_JUSTIFICATIONS",
         "REGIONAL_DATA_BOUNDARY",
         "US_DATA_BOUNDARY_AND_SUPPORT",
@@ -144,6 +163,7 @@ class GoogleCloudAssuredworkloadsV1beta1ListViolationsResponse(
     typing_extensions.TypedDict, total=False
 ):
     nextPageToken: str
+    totalSize: int
     violations: _list[GoogleCloudAssuredworkloadsV1beta1Violation]
 
 @typing.type_check_only
@@ -360,6 +380,7 @@ class GoogleCloudAssuredworkloadsV1beta1Workload(
         "EU_DATA_BOUNDARY_AND_SUPPORT",
         "ISRAEL_DATA_BOUNDARY_AND_SUPPORT",
         "JAPAN_DATA_BOUNDARY",
+        "SWITZERLAND_DATA_BOUNDARY_WITH_ACCESS_JUSTIFICATIONS",
         "KSA_DATA_BOUNDARY_WITH_ACCESS_JUSTIFICATIONS",
         "REGIONAL_DATA_BOUNDARY",
         "US_DATA_BOUNDARY_AND_SUPPORT",

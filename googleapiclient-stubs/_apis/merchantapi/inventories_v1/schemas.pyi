@@ -50,6 +50,7 @@ class LocalInventoryAttributes(typing_extensions.TypedDict, total=False):
         "OUT_OF_STOCK",
     ]
     instoreProductLocation: str
+    localShippingLabel: str
     loyaltyPrograms: _list[InventoryLoyaltyProgram]
     pickupMethod: typing_extensions.Literal[
         "PICKUP_METHOD_UNSPECIFIED", "BUY", "RESERVE", "SHIP_TO_STORE", "NOT_SUPPORTED"
@@ -114,7 +115,9 @@ class ProductStatusChangeMessage(typing_extensions.TypedDict, total=False):
     managingAccount: str
     resource: str
     resourceId: str
-    resourceType: typing_extensions.Literal["RESOURCE_UNSPECIFIED", "PRODUCT"]
+    resourceType: typing_extensions.Literal[
+        "RESOURCE_UNSPECIFIED", "PRODUCT", "ACCOUNT_SERVICE"
+    ]
 
 @typing.type_check_only
 class RegionalInventory(typing_extensions.TypedDict, total=False):

@@ -18,8 +18,10 @@ class BatchDeleteMessagesRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class BatchModifyMessagesRequest(typing_extensions.TypedDict, total=False):
+    addClassificationLabels: _list[ClassificationLabelValue]
     addLabelIds: _list[str]
     ids: _list[str]
+    removeClassificationLabelIds: _list[str]
     removeLabelIds: _list[str]
 
 @typing.type_check_only
@@ -274,7 +276,9 @@ class MessagePartHeader(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ModifyMessageRequest(typing_extensions.TypedDict, total=False):
+    addClassificationLabels: _list[ClassificationLabelValue]
     addLabelIds: _list[str]
+    removeClassificationLabelIds: _list[str]
     removeLabelIds: _list[str]
 
 @typing.type_check_only

@@ -267,6 +267,7 @@ class Subscription(typing_extensions.TypedDict, total=False):
         "PROCESSING_STATE_CANCELLING",
         "PROCESSING_STATE_RECURRING",
         "PROCESSING_STATE_RESUMING",
+        "PROCESSING_STATE_SUSPENDING",
     ]
     products: _list[str]
     promotionSpecs: _list[SubscriptionPromotionSpec]

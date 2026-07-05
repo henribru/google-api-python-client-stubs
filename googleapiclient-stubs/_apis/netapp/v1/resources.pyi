@@ -306,6 +306,24 @@ class NetAppFilesResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class StoragePoolsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
+                class BackupConfigsResource(googleapiclient.discovery.Resource):
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        filter: str = ...,
+                        orderBy: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> ListBackupConfigsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListBackupConfigsResponseHttpRequest,
+                        previous_response: ListBackupConfigsResponse,
+                    ) -> ListBackupConfigsResponseHttpRequest | None: ...
+
+                @typing.type_check_only
                 class OntapResource(googleapiclient.discovery.Resource):
                     def executeOntapDelete(
                         self, *, ontapPath: str, **kwargs: typing.Any
@@ -365,11 +383,25 @@ class NetAppFilesResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
+                def restoreVolume(
+                    self,
+                    *,
+                    name: str,
+                    body: RestoreVolumeRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
                 def switch(
                     self,
                     *,
                     name: str,
                     body: SwitchActiveReplicaZoneRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def updateBackupConfig(
+                    self,
+                    *,
+                    name: str,
+                    body: UpdateBackupConfigRequest = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def validateDirectoryService(
@@ -379,6 +411,7 @@ class NetAppFilesResource(googleapiclient.discovery.Resource):
                     body: ValidateDirectoryServiceRequest = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
+                def backupConfigs(self) -> BackupConfigsResource: ...
                 def ontap(self) -> OntapResource: ...
 
             @typing.type_check_only
@@ -738,6 +771,14 @@ class ListActiveDirectoriesResponseHttpRequest(googleapiclient.http.HttpRequest)
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListActiveDirectoriesResponse: ...
+
+@typing.type_check_only
+class ListBackupConfigsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListBackupConfigsResponse: ...
 
 @typing.type_check_only
 class ListBackupPoliciesResponseHttpRequest(googleapiclient.http.HttpRequest):

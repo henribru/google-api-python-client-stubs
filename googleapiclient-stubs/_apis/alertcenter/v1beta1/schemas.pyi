@@ -425,6 +425,7 @@ class RuleInfo(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class RuleViolationInfo(typing_extensions.TypedDict, total=False):
+    agentType: typing_extensions.Literal["AGENT_TYPE_UNSPECIFIED", "STUDIO"]
     dataSource: typing_extensions.Literal[
         "DATA_SOURCE_UNSPECIFIED", "DRIVE", "GMAIL", "CHROME", "CHAT"
     ]
@@ -484,6 +485,7 @@ class RuleViolationInfo(typing_extensions.TypedDict, total=False):
         "CHROME_URL_VISITED",
         "CHROMEOS_FILE_TRANSFER",
         "GEMINI_ACCESS",
+        "AGENT_EXECUTION",
     ]
     triggeredActionInfo: _list[ActionInfo]
     triggeredActionTypes: _list[

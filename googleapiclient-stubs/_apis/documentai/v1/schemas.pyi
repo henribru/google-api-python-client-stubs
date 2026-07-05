@@ -982,6 +982,7 @@ class GoogleCloudDocumentaiV1DisableProcessorResponse(
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1Document(typing_extensions.TypedDict, total=False):
+    blobAssets: _list[GoogleCloudDocumentaiV1DocumentBlobAsset]
     chunkedDocument: GoogleCloudDocumentaiV1DocumentChunkedDocument
     content: str
     docid: str
@@ -1002,6 +1003,20 @@ class GoogleCloudDocumentaiV1Document(typing_extensions.TypedDict, total=False):
     uri: str
 
 @typing.type_check_only
+class GoogleCloudDocumentaiV1DocumentAnnotations(
+    typing_extensions.TypedDict, total=False
+):
+    description: str
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1DocumentBlobAsset(
+    typing_extensions.TypedDict, total=False
+):
+    assetId: str
+    content: str
+    mimeType: str
+
+@typing.type_check_only
 class GoogleCloudDocumentaiV1DocumentChunkedDocument(
     typing_extensions.TypedDict, total=False
 ):
@@ -1011,6 +1026,7 @@ class GoogleCloudDocumentaiV1DocumentChunkedDocument(
 class GoogleCloudDocumentaiV1DocumentChunkedDocumentChunk(
     typing_extensions.TypedDict, total=False
 ):
+    chunkFields: _list[GoogleCloudDocumentaiV1DocumentChunkedDocumentChunkChunkField]
     chunkId: str
     content: str
     pageFooters: _list[
@@ -1021,6 +1037,13 @@ class GoogleCloudDocumentaiV1DocumentChunkedDocumentChunk(
     ]
     pageSpan: GoogleCloudDocumentaiV1DocumentChunkedDocumentChunkChunkPageSpan
     sourceBlockIds: _list[str]
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1DocumentChunkedDocumentChunkChunkField(
+    typing_extensions.TypedDict, total=False
+):
+    imageChunkField: GoogleCloudDocumentaiV1DocumentChunkedDocumentChunkImageChunkField
+    tableChunkField: GoogleCloudDocumentaiV1DocumentChunkedDocumentChunkTableChunkField
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1DocumentChunkedDocumentChunkChunkPageFooter(
@@ -1044,6 +1067,21 @@ class GoogleCloudDocumentaiV1DocumentChunkedDocumentChunkChunkPageSpan(
     pageStart: int
 
 @typing.type_check_only
+class GoogleCloudDocumentaiV1DocumentChunkedDocumentChunkImageChunkField(
+    typing_extensions.TypedDict, total=False
+):
+    annotations: GoogleCloudDocumentaiV1DocumentAnnotations
+    blobAssetId: str
+    dataUri: str
+    gcsUri: str
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1DocumentChunkedDocumentChunkTableChunkField(
+    typing_extensions.TypedDict, total=False
+):
+    annotations: GoogleCloudDocumentaiV1DocumentAnnotations
+
+@typing.type_check_only
 class GoogleCloudDocumentaiV1DocumentDocumentLayout(
     typing_extensions.TypedDict, total=False
 ):
@@ -1055,6 +1093,9 @@ class GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlock(
 ):
     blockId: str
     boundingBox: GoogleCloudDocumentaiV1BoundingPoly
+    imageBlock: (
+        GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlockLayoutImageBlock
+    )
     listBlock: (
         GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlockLayoutListBlock
     )
@@ -1067,6 +1108,17 @@ class GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlock(
     textBlock: (
         GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlockLayoutTextBlock
     )
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlockLayoutImageBlock(
+    typing_extensions.TypedDict, total=False
+):
+    annotations: GoogleCloudDocumentaiV1DocumentAnnotations
+    blobAssetId: str
+    dataUri: str
+    gcsUri: str
+    imageText: str
+    mimeType: str
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlockLayoutListBlock(
@@ -1094,6 +1146,7 @@ class GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlockLayoutPage
 class GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlockLayoutTableBlock(
     typing_extensions.TypedDict, total=False
 ):
+    annotations: GoogleCloudDocumentaiV1DocumentAnnotations
     bodyRows: _list[
         GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlockLayoutTableRow
     ]
@@ -1122,6 +1175,7 @@ class GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlockLayoutTabl
 class GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlockLayoutTextBlock(
     typing_extensions.TypedDict, total=False
 ):
+    annotations: GoogleCloudDocumentaiV1DocumentAnnotations
     blocks: _list[GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlock]
     text: str
     type: str

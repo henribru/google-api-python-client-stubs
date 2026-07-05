@@ -844,6 +844,11 @@ class Grant(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Image(typing_extensions.TypedDict, total=False):
+    aiGeneratedState: typing_extensions.Literal[
+        "aiGeneratedStateUnspecified",
+        "aiGeneratedStateNotAiGenerated",
+        "aiGeneratedStateAiGeneratedDeveloperAttested",
+    ]
     id: str
     sha1: str
     sha256: str
@@ -884,6 +889,10 @@ class InAppProductListing(typing_extensions.TypedDict, total=False):
     benefits: _list[str]
     description: str
     title: str
+
+@typing.type_check_only
+class InGracePeriodStateContext(typing_extensions.TypedDict, total=False):
+    renewalDeclined: RenewalDeclinedContext
 
 @typing.type_check_only
 class InappproductsBatchDeleteRequest(typing_extensions.TypedDict, total=False):
@@ -1153,6 +1162,10 @@ class OfferPhaseDetails(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class OfferTag(typing_extensions.TypedDict, total=False):
     tag: str
+
+@typing.type_check_only
+class OnHoldStateContext(typing_extensions.TypedDict, total=False):
+    renewalDeclined: RenewalDeclinedContext
 
 @typing.type_check_only
 class OneTimeCode(typing_extensions.TypedDict, total=False): ...
@@ -1690,6 +1703,10 @@ class RemoteInAppUpdateDataPerBundle(typing_extensions.TypedDict, total=False):
     versionCode: str
 
 @typing.type_check_only
+class RenewalDeclinedContext(typing_extensions.TypedDict, total=False):
+    pendingOrderId: str
+
+@typing.type_check_only
 class RentOfferDetails(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -1956,10 +1973,12 @@ class SubscriptionPurchaseV2(typing_extensions.TypedDict, total=False):
     canceledStateContext: CanceledStateContext
     etag: str
     externalAccountIdentifiers: ExternalAccountIdentifiers
+    inGracePeriodStateContext: InGracePeriodStateContext
     kind: str
     latestOrderId: str
     lineItems: _list[SubscriptionPurchaseLineItem]
     linkedPurchaseToken: str
+    onHoldStateContext: OnHoldStateContext
     outOfAppPurchaseContext: OutOfAppPurchaseContext
     pausedStateContext: PausedStateContext
     regionCode: str
@@ -2246,6 +2265,8 @@ class User(typing_extensions.TypedDict, total=False):
             "CAN_VIEW_NON_FINANCIAL_DATA_GLOBAL",
             "CAN_VIEW_APP_QUALITY_GLOBAL",
             "CAN_MANAGE_DEEPLINKS_GLOBAL",
+            "CAN_VIEW_CONNECTED_APPS_GLOBAL",
+            "CAN_EDIT_CONNECTED_APPS_GLOBAL",
         ]
     ]
     email: str

@@ -92,6 +92,7 @@ class Backup(typing_extensions.TypedDict, total=False):
         "POSTGRES_17",
         "POSTGRES_18",
         "POSTGRES_19",
+        "POSTGRES_20",
         "SQLSERVER_2019_STANDARD",
         "SQLSERVER_2019_ENTERPRISE",
         "SQLSERVER_2019_EXPRESS",
@@ -224,6 +225,7 @@ class BackupRun(typing_extensions.TypedDict, total=False):
         "POSTGRES_17",
         "POSTGRES_18",
         "POSTGRES_19",
+        "POSTGRES_20",
         "SQLSERVER_2019_STANDARD",
         "SQLSERVER_2019_ENTERPRISE",
         "SQLSERVER_2019_EXPRESS",
@@ -357,6 +359,7 @@ class ConnectSettings(typing_extensions.TypedDict, total=False):
         "POSTGRES_17",
         "POSTGRES_18",
         "POSTGRES_19",
+        "POSTGRES_20",
         "SQLSERVER_2019_STANDARD",
         "SQLSERVER_2019_ENTERPRISE",
         "SQLSERVER_2019_EXPRESS",
@@ -477,6 +480,7 @@ class DatabaseInstance(typing_extensions.TypedDict, total=False):
         "POSTGRES_17",
         "POSTGRES_18",
         "POSTGRES_19",
+        "POSTGRES_20",
         "SQLSERVER_2019_STANDARD",
         "SQLSERVER_2019_ENTERPRISE",
         "SQLSERVER_2019_EXPRESS",
@@ -718,6 +722,7 @@ class Flag(typing_extensions.TypedDict, total=False):
             "POSTGRES_17",
             "POSTGRES_18",
             "POSTGRES_19",
+            "POSTGRES_20",
             "SQLSERVER_2019_STANDARD",
             "SQLSERVER_2019_ENTERPRISE",
             "SQLSERVER_2019_EXPRESS",
@@ -1078,6 +1083,7 @@ class Operation(typing_extensions.TypedDict, total=False):
         "REPAIR_READ_POOL",
         "CREATE_READ_POOL",
         "PRE_CHECK_MAJOR_VERSION_UPGRADE",
+        "SETUP_MIGRATION",
     ]
     preCheckMajorVersionUpgradeContext: PreCheckMajorVersionUpgradeContext
     selfLink: str
@@ -1231,6 +1237,7 @@ class PreCheckMajorVersionUpgradeContext(typing_extensions.TypedDict, total=Fals
         "POSTGRES_17",
         "POSTGRES_18",
         "POSTGRES_19",
+        "POSTGRES_20",
         "SQLSERVER_2019_STANDARD",
         "SQLSERVER_2019_ENTERPRISE",
         "SQLSERVER_2019_EXPRESS",
@@ -1258,12 +1265,15 @@ class PscAutoConnectionConfig(typing_extensions.TypedDict, total=False):
     consumerNetworkStatus: str
     consumerProject: str
     ipAddress: str
+    serviceConnectionPolicy: str
+    serviceConnectionPolicyCreationResult: str
     status: str
 
 @typing.type_check_only
 class PscConfig(typing_extensions.TypedDict, total=False):
     allowedConsumerProjects: _list[str]
     networkAttachmentUri: str
+    pscAutoConnectionPolicyEnabled: bool
     pscAutoConnections: _list[PscAutoConnectionConfig]
     pscAutoDnsEnabled: bool
     pscEnabled: bool
@@ -1379,7 +1389,7 @@ class Settings(typing_extensions.TypedDict, total=False):
     deletionProtectionEnabled: bool
     denyMaintenancePeriods: _list[DenyMaintenancePeriod]
     edition: typing_extensions.Literal[
-        "EDITION_UNSPECIFIED", "ENTERPRISE", "ENTERPRISE_PLUS"
+        "EDITION_UNSPECIFIED", "ENTERPRISE", "ENTERPRISE_PLUS", "DEVELOPER"
     ]
     enableDataplexIntegration: bool
     enableGoogleMlIntegration: bool
@@ -1714,6 +1724,7 @@ class User(typing_extensions.TypedDict, total=False):
         "CLOUD_IAM_GROUP",
         "CLOUD_IAM_GROUP_USER",
         "CLOUD_IAM_GROUP_SERVICE_ACCOUNT",
+        "CLOUD_IAM_WORKFORCE_IDENTITY",
         "ENTRAID_USER",
     ]
 

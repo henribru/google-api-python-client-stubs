@@ -92,6 +92,7 @@ class ConnectorConfiguration(typing_extensions.TypedDict, total=False):
     connectorId: str
     endpoint: ConnectorConfigurationEndpoint
     network: ConnectorConfigurationNetwork
+    parameters: dict[str, typing.Any]
 
 @typing.type_check_only
 class ConnectorConfigurationAsset(typing_extensions.TypedDict, total=False):
@@ -100,6 +101,7 @@ class ConnectorConfigurationAsset(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ConnectorConfigurationAuthentication(typing_extensions.TypedDict, total=False):
+    parameters: dict[str, typing.Any]
     serviceAccount: str
     usernamePassword: ConnectorConfigurationUsernamePassword
 
@@ -110,6 +112,14 @@ class ConnectorConfigurationEndpoint(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ConnectorConfigurationNetwork(typing_extensions.TypedDict, total=False):
     privateServiceConnect: ConnectorConfigurationPrivateServiceConnect
+
+@typing.type_check_only
+class ConnectorConfigurationParameterValue(typing_extensions.TypedDict, total=False):
+    boolValue: bool
+    doubleValue: float
+    int32Value: int
+    secretValue: ConnectorConfigurationSecret
+    stringValue: str
 
 @typing.type_check_only
 class ConnectorConfigurationPrivateServiceConnect(

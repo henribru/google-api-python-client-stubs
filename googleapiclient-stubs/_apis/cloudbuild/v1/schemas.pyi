@@ -245,6 +245,7 @@ class BuildStep(typing_extensions.TypedDict, total=False):
     id: str
     name: str
     pullTiming: TimeSpan
+    results: _list[StepResult]
     script: str
     secretEnv: _list[str]
     status: typing_extensions.Literal[
@@ -263,6 +264,10 @@ class BuildStep(typing_extensions.TypedDict, total=False):
     timing: TimeSpan
     volumes: _list[Volume]
     waitFor: _list[str]
+
+@typing.type_check_only
+class BuildStepResults(typing_extensions.TypedDict, total=False):
+    results: dict[str, typing.Any]
 
 @typing.type_check_only
 class BuildTrigger(typing_extensions.TypedDict, total=False):
@@ -810,6 +815,7 @@ class Results(typing_extensions.TypedDict, total=False):
     artifactTiming: TimeSpan
     buildStepImages: _list[str]
     buildStepOutputs: _list[str]
+    buildStepResults: dict[str, typing.Any]
     genericArtifacts: _list[UploadedGenericArtifact]
     goModules: _list[UploadedGoModule]
     images: _list[BuiltImage]
@@ -872,6 +878,12 @@ class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
+
+@typing.type_check_only
+class StepResult(typing_extensions.TypedDict, total=False):
+    attestationContent: str
+    attestationType: str
+    name: str
 
 @typing.type_check_only
 class StorageSource(typing_extensions.TypedDict, total=False):

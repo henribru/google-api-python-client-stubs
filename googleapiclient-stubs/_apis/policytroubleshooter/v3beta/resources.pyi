@@ -21,6 +21,12 @@ class PolicyTroubleshooterResource(googleapiclient.discovery.Resource):
             body: GoogleCloudPolicytroubleshooterIamV3betaTroubleshootIamPolicyRequest = ...,
             **kwargs: typing.Any,
         ) -> GoogleCloudPolicytroubleshooterIamV3betaTroubleshootIamPolicyResponseHttpRequest: ...
+        def troubleshootError(
+            self,
+            *,
+            body: GoogleCloudPolicytroubleshooterIamV3betaTroubleshootIamPolicyErrorRequest = ...,
+            **kwargs: typing.Any,
+        ) -> GoogleCloudPolicytroubleshooterIamV3betaTroubleshootIamPolicyErrorResponseHttpRequest: ...
 
     def new_batch_http_request(
         self,
@@ -35,6 +41,16 @@ class PolicyTroubleshooterResource(googleapiclient.discovery.Resource):
         | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def iam(self) -> IamResource: ...
+
+@typing.type_check_only
+class GoogleCloudPolicytroubleshooterIamV3betaTroubleshootIamPolicyErrorResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudPolicytroubleshooterIamV3betaTroubleshootIamPolicyErrorResponse: ...
 
 @typing.type_check_only
 class GoogleCloudPolicytroubleshooterIamV3betaTroubleshootIamPolicyResponseHttpRequest(

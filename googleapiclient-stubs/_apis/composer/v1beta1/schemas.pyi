@@ -441,6 +441,7 @@ class UserWorkloadsConfigMap(typing_extensions.TypedDict, total=False):
 class UserWorkloadsSecret(typing_extensions.TypedDict, total=False):
     data: dict[str, typing.Any]
     name: str
+    type: str
 
 @typing.type_check_only
 class WebServerConfig(typing_extensions.TypedDict, total=False):

@@ -326,6 +326,7 @@ class ApplicationReport(typing_extensions.TypedDict, total=False):
     packageName: str
     packageSha256Hash: str
     signingKeyCertFingerprints: _list[str]
+    signingKeyCerts: _list[ApplicationSigningKeyCert]
     state: typing_extensions.Literal[
         "APPLICATION_STATE_UNSPECIFIED", "REMOVED", "INSTALLED"
     ]
@@ -806,6 +807,7 @@ class EnrollmentToken(typing_extensions.TypedDict, total=False):
     ]
     duration: str
     expirationTimestamp: str
+    googleAuthenticationOptions: GoogleAuthenticationOptions
     name: str
     oneTimeOnly: bool
     policyName: str
@@ -912,6 +914,13 @@ class GenerateEnterpriseUpgradeUrlRequest(typing_extensions.TypedDict, total=Fal
 @typing.type_check_only
 class GenerateEnterpriseUpgradeUrlResponse(typing_extensions.TypedDict, total=False):
     url: str
+
+@typing.type_check_only
+class GoogleAuthenticationOptions(typing_extensions.TypedDict, total=False):
+    authenticationRequirement: typing_extensions.Literal[
+        "AUTHENTICATION_REQUIREMENT_UNSPECIFIED", "OPTIONAL", "REQUIRED"
+    ]
+    requiredAccountEmail: str
 
 @typing.type_check_only
 class GoogleAuthenticationSettings(typing_extensions.TypedDict, total=False):
@@ -1817,10 +1826,17 @@ class SigninDetail(typing_extensions.TypedDict, total=False):
         "SIGNIN_DETAIL_IS_DEFAULT",
         "SIGNIN_DETAIL_IS_NOT_DEFAULT",
     ]
+    googleAuthenticationOptions: SigninDetailGoogleAuthenticationOptions
     qrCode: str
     signinEnrollmentToken: str
     signinUrl: str
     tokenTag: str
+
+@typing.type_check_only
+class SigninDetailGoogleAuthenticationOptions(typing_extensions.TypedDict, total=False):
+    authenticationRequirement: typing_extensions.Literal[
+        "AUTHENTICATION_REQUIREMENT_UNSPECIFIED", "OPTIONAL", "REQUIRED"
+    ]
 
 @typing.type_check_only
 class SignupUrl(typing_extensions.TypedDict, total=False):

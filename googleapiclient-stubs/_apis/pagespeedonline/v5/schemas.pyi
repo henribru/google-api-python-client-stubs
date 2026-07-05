@@ -22,6 +22,7 @@ AlternativeCategories = typing_extensions.TypedDict(
     "AlternativeCategories",
     {
         "accessibility": LighthouseCategoryV5,
+        "agentic-browsing": LighthouseCategoryV5,
         "best-practices": LighthouseCategoryV5,
         "performance": LighthouseCategoryV5,
         "pwa": LighthouseCategoryV5,

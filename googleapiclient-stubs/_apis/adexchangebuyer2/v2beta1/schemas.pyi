@@ -116,7 +116,8 @@ class ClientUserInvitation(typing_extensions.TypedDict, total=False):
     invitationId: str
 
 @typing.type_check_only
-class CompleteSetupRequest(typing_extensions.TypedDict, total=False): ...
+class CompleteSetupRequest(typing_extensions.TypedDict, total=False):
+    externalDealIds: _list[str]
 
 @typing.type_check_only
 class ContactInformation(typing_extensions.TypedDict, total=False):

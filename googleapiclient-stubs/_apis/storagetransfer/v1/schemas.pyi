@@ -207,6 +207,7 @@ class NotificationConfig(typing_extensions.TypedDict, total=False):
 class ObjectConditions(typing_extensions.TypedDict, total=False):
     excludePrefixes: _list[str]
     includePrefixes: _list[str]
+    includeStorageClasses: _list[str]
     lastModifiedBefore: str
     lastModifiedSince: str
     matchGlob: str

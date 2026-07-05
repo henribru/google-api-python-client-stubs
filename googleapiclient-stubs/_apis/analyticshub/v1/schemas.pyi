@@ -74,6 +74,15 @@ class CloudStorageConfig(typing_extensions.TypedDict, total=False):
     textConfig: TextConfig
 
 @typing.type_check_only
+class Compression(typing_extensions.TypedDict, total=False):
+    compressionAlgorithm: typing_extensions.Literal[
+        "COMPRESSION_ALGORITHM_UNSPECIFIED", "ZLIB"
+    ]
+    compressionMode: typing_extensions.Literal[
+        "COMPRESSION_MODE_UNSPECIFIED", "COMPRESS", "DECOMPRESS"
+    ]
+
+@typing.type_check_only
 class DataExchange(typing_extensions.TypedDict, total=False):
     description: str
     discoveryType: typing_extensions.Literal[
@@ -291,6 +300,7 @@ class Listing(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class MessageTransform(typing_extensions.TypedDict, total=False):
     aiInference: AIInference
+    compression: Compression
     disabled: bool
     enabled: bool
     javascriptUdf: JavaScriptUDF

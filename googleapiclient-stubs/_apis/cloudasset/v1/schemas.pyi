@@ -463,6 +463,13 @@ class GoogleIdentityAccesscontextmanagerV1AccessPolicy(
     title: str
 
 @typing.type_check_only
+class GoogleIdentityAccesscontextmanagerV1AddRequestHeader(
+    typing_extensions.TypedDict, total=False
+):
+    key: str
+    value: str
+
+@typing.type_check_only
 class GoogleIdentityAccesscontextmanagerV1ApiOperation(
     typing_extensions.TypedDict, total=False
 ):
@@ -545,6 +552,7 @@ class GoogleIdentityAccesscontextmanagerV1EgressSource(
     typing_extensions.TypedDict, total=False
 ):
     accessLevel: str
+    pscEndpoint: GoogleIdentityAccesscontextmanagerV1PrivateServiceConnectEndpoint
     resource: str
 
 @typing.type_check_only
@@ -582,6 +590,7 @@ class GoogleIdentityAccesscontextmanagerV1IngressSource(
     typing_extensions.TypedDict, total=False
 ):
     accessLevel: str
+    pscEndpoint: GoogleIdentityAccesscontextmanagerV1PrivateServiceConnectEndpoint
     resource: str
 
 @typing.type_check_only
@@ -600,6 +609,12 @@ class GoogleIdentityAccesscontextmanagerV1MethodSelector(
     permission: str
 
 @typing.type_check_only
+class GoogleIdentityAccesscontextmanagerV1Modifier(
+    typing_extensions.TypedDict, total=False
+):
+    addRequestHeader: GoogleIdentityAccesscontextmanagerV1AddRequestHeader
+
+@typing.type_check_only
 class GoogleIdentityAccesscontextmanagerV1OsConstraint(
     typing_extensions.TypedDict, total=False
 ):
@@ -614,6 +629,20 @@ class GoogleIdentityAccesscontextmanagerV1OsConstraint(
         "IOS",
     ]
     requireVerifiedChromeOs: bool
+
+@typing.type_check_only
+class GoogleIdentityAccesscontextmanagerV1PrivateServiceConnectEndpoint(
+    typing_extensions.TypedDict, total=False
+):
+    forwardingRule: str
+
+@typing.type_check_only
+class GoogleIdentityAccesscontextmanagerV1ServicePattern(
+    typing_extensions.TypedDict, total=False
+):
+    modifiers: _list[GoogleIdentityAccesscontextmanagerV1Modifier]
+    pattern: str
+    service: str
 
 @typing.type_check_only
 class GoogleIdentityAccesscontextmanagerV1ServicePerimeter(
@@ -645,8 +674,15 @@ class GoogleIdentityAccesscontextmanagerV1ServicePerimeterConfig(
 class GoogleIdentityAccesscontextmanagerV1VpcAccessibleServices(
     typing_extensions.TypedDict, total=False
 ):
+    allowedServicePatterns: _list[GoogleIdentityAccesscontextmanagerV1ServicePattern]
     allowedServices: _list[str]
     enableRestriction: bool
+    servicePatternsEnforcementScopes: _list[
+        typing_extensions.Literal[
+            "SERVICE_PATTERNS_ENFORCEMENT_SCOPE_UNSPECIFIED",
+            "GOOGLE_APIS_VIA_PRIVATE_PATH",
+        ]
+    ]
 
 @typing.type_check_only
 class GoogleIdentityAccesscontextmanagerV1VpcNetworkSource(

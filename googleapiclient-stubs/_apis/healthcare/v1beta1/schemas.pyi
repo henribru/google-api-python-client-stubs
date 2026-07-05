@@ -141,6 +141,7 @@ class BulkDeleteResourcesRequest(typing_extensions.TypedDict, total=False):
     gcsDestination: GoogleCloudHealthcareV1beta1FhirGcsDestination
     type: str
     until: str
+    validateOnly: bool
     versionConfig: typing_extensions.Literal[
         "VERSION_CONFIG_UNSPECIFIED", "ALL", "CURRENT_ONLY", "HISTORY_ONLY"
     ]
@@ -273,6 +274,11 @@ class CryptoHashConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CryptoHashField(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class CustomRegex(typing_extensions.TypedDict, total=False):
+    groupIndexes: _list[int]
+    pattern: str
 
 @typing.type_check_only
 class Dataset(typing_extensions.TypedDict, total=False):
@@ -792,6 +798,7 @@ class Image(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ImageConfig(typing_extensions.TypedDict, total=False):
     additionalInfoTypes: _list[str]
+    customRegexes: _list[CustomRegex]
     excludeInfoTypes: _list[str]
     textRedactionMode: typing_extensions.Literal[
         "TEXT_REDACTION_MODE_UNSPECIFIED",

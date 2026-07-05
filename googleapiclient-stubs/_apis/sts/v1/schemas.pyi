@@ -41,6 +41,28 @@ class GoogleIdentityStsV1ExchangeTokenResponse(
     token_type: str
 
 @typing.type_check_only
+class GoogleIdentityStsV1Jwk(typing_extensions.TypedDict, total=False):
+    e: str
+    kid: str
+    kty: str
+    n: str
+    use: str
+
+@typing.type_check_only
+class GoogleIdentityStsV1Jwks(typing_extensions.TypedDict, total=False):
+    keys: _list[GoogleIdentityStsV1Jwk]
+
+@typing.type_check_only
+class GoogleIdentityStsV1OpenIdProviderConfig(typing_extensions.TypedDict, total=False):
+    authorization_endpoint: str
+    id_token_signing_alg_values_supported: _list[str]
+    issuer: str
+    jwks_uri: str
+    response_types_supported: _list[str]
+    subject_types_supported: _list[str]
+    token_endpoint: str
+
+@typing.type_check_only
 class GoogleIdentityStsV1Options(typing_extensions.TypedDict, total=False):
     accessBoundary: GoogleIdentityStsV1AccessBoundary
     bindCertFingerprint: str

@@ -18,6 +18,45 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
+            class AgentGatewaysResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: AgentGateway = ...,
+                    agentGatewayId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, etag: str = ..., **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> AgentGatewayHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    returnPartialSuccess: bool = ...,
+                    **kwargs: typing.Any,
+                ) -> ListAgentGatewaysResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListAgentGatewaysResponseHttpRequest,
+                    previous_response: ListAgentGatewaysResponse,
+                ) -> ListAgentGatewaysResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: AgentGateway = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+
+            @typing.type_check_only
             class AuthzExtensionsResource(googleapiclient.discovery.Resource):
                 def create(
                     self,
@@ -494,6 +533,96 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                 def routeViews(self) -> RouteViewsResource: ...
 
             @typing.type_check_only
+            class MulticastConsumerAssociationsResource(
+                googleapiclient.discovery.Resource
+            ):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: MulticastConsumerAssociation = ...,
+                    multicastConsumerAssociationId: str = ...,
+                    requestId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, requestId: str = ..., **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> MulticastConsumerAssociationHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListMulticastConsumerAssociationsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListMulticastConsumerAssociationsResponseHttpRequest,
+                    previous_response: ListMulticastConsumerAssociationsResponse,
+                ) -> ListMulticastConsumerAssociationsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: MulticastConsumerAssociation = ...,
+                    requestId: str = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+
+            @typing.type_check_only
+            class MulticastGroupConsumerActivationsResource(
+                googleapiclient.discovery.Resource
+            ):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: MulticastGroupConsumerActivation = ...,
+                    multicastGroupConsumerActivationId: str = ...,
+                    requestId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, requestId: str = ..., **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> MulticastGroupConsumerActivationHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListMulticastGroupConsumerActivationsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListMulticastGroupConsumerActivationsResponseHttpRequest,
+                    previous_response: ListMulticastGroupConsumerActivationsResponse,
+                ) -> (
+                    ListMulticastGroupConsumerActivationsResponseHttpRequest | None
+                ): ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: MulticastGroupConsumerActivation = ...,
+                    requestId: str = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+
+            @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def cancel(
                     self,
@@ -773,6 +902,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                 previous_request: ListLocationsResponseHttpRequest,
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
+            def agentGateways(self) -> AgentGatewaysResource: ...
             def authzExtensions(self) -> AuthzExtensionsResource: ...
             def edgeCacheKeysets(self) -> EdgeCacheKeysetsResource: ...
             def edgeCacheOrigins(self) -> EdgeCacheOriginsResource: ...
@@ -785,6 +915,12 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
             def lbRouteExtensions(self) -> LbRouteExtensionsResource: ...
             def lbTrafficExtensions(self) -> LbTrafficExtensionsResource: ...
             def meshes(self) -> MeshesResource: ...
+            def multicastConsumerAssociations(
+                self,
+            ) -> MulticastConsumerAssociationsResource: ...
+            def multicastGroupConsumerActivations(
+                self,
+            ) -> MulticastGroupConsumerActivationsResource: ...
             def operations(self) -> OperationsResource: ...
             def serviceBindings(self) -> ServiceBindingsResource: ...
             def serviceLbPolicies(self) -> ServiceLbPoliciesResource: ...
@@ -807,6 +943,14 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
         | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def projects(self) -> ProjectsResource: ...
+
+@typing.type_check_only
+class AgentGatewayHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> AgentGateway: ...
 
 @typing.type_check_only
 class AuthzExtensionHttpRequest(googleapiclient.http.HttpRequest):
@@ -887,6 +1031,14 @@ class LbTrafficExtensionHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> LbTrafficExtension: ...
+
+@typing.type_check_only
+class ListAgentGatewaysResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListAgentGatewaysResponse: ...
 
 @typing.type_check_only
 class ListAuthzExtensionsResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -985,6 +1137,26 @@ class ListMeshesResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListMeshesResponse: ...
 
 @typing.type_check_only
+class ListMulticastConsumerAssociationsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListMulticastConsumerAssociationsResponse: ...
+
+@typing.type_check_only
+class ListMulticastGroupConsumerActivationsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListMulticastGroupConsumerActivationsResponse: ...
+
+@typing.type_check_only
 class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -1063,6 +1235,22 @@ class MeshRouteViewHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> MeshRouteView: ...
+
+@typing.type_check_only
+class MulticastConsumerAssociationHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> MulticastConsumerAssociation: ...
+
+@typing.type_check_only
+class MulticastGroupConsumerActivationHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> MulticastGroupConsumerActivation: ...
 
 @typing.type_check_only
 class OperationHttpRequest(googleapiclient.http.HttpRequest):

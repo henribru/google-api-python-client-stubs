@@ -702,6 +702,13 @@ class VMwareEngineResource(googleapiclient.discovery.Resource):
                     previous_request: ListPrivateCloudsResponseHttpRequest,
                     previous_response: ListPrivateCloudsResponse,
                 ) -> ListPrivateCloudsResponseHttpRequest | None: ...
+                def migrateManagementVms(
+                    self,
+                    *,
+                    name: str,
+                    body: MigrateManagementVmsRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
                 def patch(
                     self,
                     *,

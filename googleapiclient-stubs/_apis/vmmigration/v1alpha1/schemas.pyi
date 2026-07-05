@@ -294,6 +294,7 @@ class ComputeEngineTargetDefaults(typing_extensions.TypedDict, total=False):
         "COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED",
         "COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED_HIGH_AVAILABILITY",
     ]
+    disks: _list[PersistentDiskDefaults]
     enableIntegrityMonitoring: bool
     enableVtpm: bool
     encryption: Encryption

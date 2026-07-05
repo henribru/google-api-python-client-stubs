@@ -16,6 +16,7 @@ class ArchiveSource(typing_extensions.TypedDict, total=False):
 class Backend(typing_extensions.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     appId: str
+    automaticBaseImageUpdatesDisabled: bool
     codebase: Codebase
     createTime: str
     deleteTime: str
@@ -29,6 +30,7 @@ class Backend(typing_extensions.TypedDict, total=False):
     overrideEnv: _list[EnvironmentVariable]
     reconciling: bool
     requestLogsDisabled: bool
+    runtime: BackendRuntime
     serviceAccount: str
     servingLocality: typing_extensions.Literal[
         "SERVING_LOCALITY_UNSPECIFIED", "REGIONAL_STRICT", "GLOBAL_ACCESS"
@@ -36,6 +38,10 @@ class Backend(typing_extensions.TypedDict, total=False):
     uid: str
     updateTime: str
     uri: str
+
+@typing.type_check_only
+class BackendRuntime(typing_extensions.TypedDict, total=False):
+    value: str
 
 @typing.type_check_only
 class Build(typing_extensions.TypedDict, total=False):
@@ -75,6 +81,7 @@ class BuildSource(typing_extensions.TypedDict, total=False):
     archive: ArchiveSource
     codebase: CodebaseSource
     container: ContainerSource
+    locallyBuilt: LocallyBuiltSource
 
 @typing.type_check_only
 class Codebase(typing_extensions.TypedDict, total=False):
@@ -314,6 +321,15 @@ class LiveMigrationStep(typing_extensions.TypedDict, total=False):
         "PROCESSING",
         "COMPLETE",
     ]
+
+@typing.type_check_only
+class LocallyBuiltSource(typing_extensions.TypedDict, total=False):
+    description: str
+    env: _list[EnvironmentVariable]
+    rootDirectory: str
+    runCommand: str
+    runConfig: RunConfig
+    userStorageUri: str
 
 @typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):

@@ -166,6 +166,15 @@ class CommitSchemaRequest(typing_extensions.TypedDict, total=False):
     schema: Schema
 
 @typing.type_check_only
+class Compression(typing_extensions.TypedDict, total=False):
+    compressionAlgorithm: typing_extensions.Literal[
+        "COMPRESSION_ALGORITHM_UNSPECIFIED", "ZLIB"
+    ]
+    compressionMode: typing_extensions.Literal[
+        "COMPRESSION_MODE_UNSPECIFIED", "COMPRESS", "DECOMPRESS"
+    ]
+
+@typing.type_check_only
 class ConfluentCloud(typing_extensions.TypedDict, total=False):
     bootstrapServer: str
     clusterId: str
@@ -268,6 +277,7 @@ class MessageStoragePolicy(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class MessageTransform(typing_extensions.TypedDict, total=False):
     aiInference: AIInference
+    compression: Compression
     disabled: bool
     enabled: bool
     javascriptUdf: JavaScriptUDF

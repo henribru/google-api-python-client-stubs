@@ -96,6 +96,9 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
             readTime: str = ...,
             **kwargs: typing.Any,
         ) -> ConnectSettingsHttpRequest: ...
+        def resolve(
+            self, *, dnsName: str, location: str, **kwargs: typing.Any
+        ) -> ConnectSettingsHttpRequest: ...
 
     @typing.type_check_only
     class DatabasesResource(googleapiclient.discovery.Resource):

@@ -704,6 +704,7 @@ class AlgorithmRulesComparisonValue(typing_extensions.TypedDict, total=False):
         "EXCHANGE_TUBI",
         "EXCHANGE_SNAP",
         "EXCHANGE_CADENT",
+        "EXCHANGE_EXTE",
     ]
     int64Value: str
     onScreenPositionValue: typing_extensions.Literal[
@@ -768,6 +769,7 @@ class AlgorithmRulesSignal(typing_extensions.TypedDict, total=False):
         "TIME_ON_SCREEN",
         "VIDEO_PLAYER_SIZE",
         "COMPLETED_IN_VIEW_AUDIBLE",
+        "AUDIO_COMPLETED",
     ]
     clickSignal: typing_extensions.Literal["CLICK_SIGNAL_UNSPECIFIED", "CLICK"]
     impressionSignal: typing_extensions.Literal[
@@ -812,6 +814,7 @@ class AlgorithmRulesSignalValue(typing_extensions.TypedDict, total=False):
         "TIME_ON_SCREEN",
         "VIDEO_PLAYER_SIZE",
         "COMPLETED_IN_VIEW_AUDIBLE",
+        "AUDIO_COMPLETED",
     ]
     floodlightActivityConversionSignal: AlgorithmRulesFloodlightActivityConversionSignal
     number: float
@@ -1005,6 +1008,7 @@ class AssignedTargetingOption(typing_extensions.TypedDict, total=False):
         "TARGETING_TYPE_YOUTUBE_CHANNEL",
         "TARGETING_TYPE_SESSION_POSITION",
         "TARGETING_TYPE_CONTENT_THEME_EXCLUSION",
+        "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK",
     ]
     thirdPartyVerifierDetails: ThirdPartyVerifierAssignedTargetingOptionDetails
     urlDetails: UrlAssignedTargetingOptionDetails
@@ -1012,6 +1016,7 @@ class AssignedTargetingOption(typing_extensions.TypedDict, total=False):
     videoPlayerSizeDetails: VideoPlayerSizeAssignedTargetingOptionDetails
     viewabilityDetails: ViewabilityAssignedTargetingOptionDetails
     youtubeChannelDetails: YoutubeChannelAssignedTargetingOptionDetails
+    youtubeChannelPackDetails: YoutubeChannelPackAssignedTargetingOptionDetails
     youtubeVideoDetails: YoutubeVideoAssignedTargetingOptionDetails
 
 @typing.type_check_only
@@ -1062,6 +1067,10 @@ class AudioContentTypeAssignedTargetingOptionDetails(
         "AUDIO_CONTENT_TYPE_MUSIC",
         "AUDIO_CONTENT_TYPE_BROADCAST",
         "AUDIO_CONTENT_TYPE_PODCAST",
+        "AUDIO_CONTENT_TYPE_CATCH_UP_RADIO",
+        "AUDIO_CONTENT_TYPE_WEB_RADIO",
+        "AUDIO_CONTENT_TYPE_VIDEO_GAME",
+        "AUDIO_CONTENT_TYPE_TEXT_TO_SPEECH",
     ]
 
 @typing.type_check_only
@@ -1072,6 +1081,10 @@ class AudioContentTypeTargetingOptionDetails(typing_extensions.TypedDict, total=
         "AUDIO_CONTENT_TYPE_MUSIC",
         "AUDIO_CONTENT_TYPE_BROADCAST",
         "AUDIO_CONTENT_TYPE_PODCAST",
+        "AUDIO_CONTENT_TYPE_CATCH_UP_RADIO",
+        "AUDIO_CONTENT_TYPE_WEB_RADIO",
+        "AUDIO_CONTENT_TYPE_VIDEO_GAME",
+        "AUDIO_CONTENT_TYPE_TEXT_TO_SPEECH",
     ]
 
 @typing.type_check_only
@@ -1744,6 +1757,7 @@ class CreateAssignedTargetingOptionsRequest(typing_extensions.TypedDict, total=F
         "TARGETING_TYPE_YOUTUBE_CHANNEL",
         "TARGETING_TYPE_SESSION_POSITION",
         "TARGETING_TYPE_CONTENT_THEME_EXCLUSION",
+        "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK",
     ]
 
 @typing.type_check_only
@@ -1773,6 +1787,7 @@ class CreateSdfDownloadTaskRequest(typing_extensions.TypedDict, total=False):
         "SDF_VERSION_9",
         "SDF_VERSION_9_1",
         "SDF_VERSION_9_2",
+        "SDF_VERSION_10",
     ]
 
 @typing.type_check_only
@@ -2098,6 +2113,7 @@ class DeleteAssignedTargetingOptionsRequest(typing_extensions.TypedDict, total=F
         "TARGETING_TYPE_YOUTUBE_CHANNEL",
         "TARGETING_TYPE_SESSION_POSITION",
         "TARGETING_TYPE_CONTENT_THEME_EXCLUSION",
+        "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK",
     ]
 
 @typing.type_check_only
@@ -2599,6 +2615,7 @@ class ExchangeAssignedTargetingOptionDetails(typing_extensions.TypedDict, total=
         "EXCHANGE_TUBI",
         "EXCHANGE_SNAP",
         "EXCHANGE_CADENT",
+        "EXCHANGE_EXTE",
     ]
 
 @typing.type_check_only
@@ -2697,6 +2714,7 @@ class ExchangeConfigEnabledExchange(typing_extensions.TypedDict, total=False):
         "EXCHANGE_TUBI",
         "EXCHANGE_SNAP",
         "EXCHANGE_CADENT",
+        "EXCHANGE_EXTE",
     ]
     googleAdManagerAgencyId: str
     googleAdManagerBuyerNetworkId: str
@@ -2794,6 +2812,7 @@ class ExchangeReviewStatus(typing_extensions.TypedDict, total=False):
         "EXCHANGE_TUBI",
         "EXCHANGE_SNAP",
         "EXCHANGE_CADENT",
+        "EXCHANGE_EXTE",
     ]
     status: typing_extensions.Literal[
         "REVIEW_STATUS_UNSPECIFIED",
@@ -2894,6 +2913,7 @@ class ExchangeTargetingOptionDetails(typing_extensions.TypedDict, total=False):
         "EXCHANGE_TUBI",
         "EXCHANGE_SNAP",
         "EXCHANGE_CADENT",
+        "EXCHANGE_EXTE",
     ]
 
 @typing.type_check_only
@@ -3274,6 +3294,7 @@ class GuaranteedOrder(typing_extensions.TypedDict, total=False):
         "EXCHANGE_TUBI",
         "EXCHANGE_SNAP",
         "EXCHANGE_CADENT",
+        "EXCHANGE_EXTE",
     ]
     guaranteedOrderId: str
     legacyGuaranteedOrderId: str
@@ -4408,6 +4429,7 @@ class SdfConfig(typing_extensions.TypedDict, total=False):
         "SDF_VERSION_9",
         "SDF_VERSION_9_1",
         "SDF_VERSION_9_2",
+        "SDF_VERSION_10",
     ]
 
 @typing.type_check_only
@@ -4438,6 +4460,7 @@ class SdfDownloadTaskMetadata(typing_extensions.TypedDict, total=False):
         "SDF_VERSION_9",
         "SDF_VERSION_9_1",
         "SDF_VERSION_9_2",
+        "SDF_VERSION_10",
     ]
 
 @typing.type_check_only
@@ -4653,6 +4676,7 @@ class TargetingOption(typing_extensions.TypedDict, total=False):
         "TARGETING_TYPE_YOUTUBE_CHANNEL",
         "TARGETING_TYPE_SESSION_POSITION",
         "TARGETING_TYPE_CONTENT_THEME_EXCLUSION",
+        "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK",
     ]
     userRewardedContentDetails: UserRewardedContentTargetingOptionDetails
     videoPlayerSizeDetails: VideoPlayerSizeTargetingOptionDetails
@@ -4966,6 +4990,13 @@ class YoutubeChannelAssignedTargetingOptionDetails(
     typing_extensions.TypedDict, total=False
 ):
     channelId: str
+    negative: bool
+
+@typing.type_check_only
+class YoutubeChannelPackAssignedTargetingOptionDetails(
+    typing_extensions.TypedDict, total=False
+):
+    channelPackId: str
     negative: bool
 
 @typing.type_check_only

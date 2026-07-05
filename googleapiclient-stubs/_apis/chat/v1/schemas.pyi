@@ -104,6 +104,15 @@ class AttachmentDataRef(typing_extensions.TypedDict, total=False):
     resourceName: str
 
 @typing.type_check_only
+class Availability(typing_extensions.TypedDict, total=False):
+    customStatus: CustomStatus
+    doNotDisturbMetadata: DoNotDisturbMetadata
+    name: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "ACTIVE", "IDLE", "AWAY", "DO_NOT_DISTURB"
+    ]
+
+@typing.type_check_only
 class Button(typing_extensions.TypedDict, total=False):
     imageButton: ImageButton
     textButton: TextButton
@@ -207,6 +216,13 @@ class CustomEmojiPayload(typing_extensions.TypedDict, total=False):
     filename: str
 
 @typing.type_check_only
+class CustomStatus(typing_extensions.TypedDict, total=False):
+    emoji: Emoji
+    expireTime: str
+    text: str
+    ttl: str
+
+@typing.type_check_only
 class DateInput(typing_extensions.TypedDict, total=False):
     msSinceEpoch: str
 
@@ -264,6 +280,10 @@ class Dialog(typing_extensions.TypedDict, total=False):
 class DialogAction(typing_extensions.TypedDict, total=False):
     actionStatus: ActionStatus
     dialog: Dialog
+
+@typing.type_check_only
+class DoNotDisturbMetadata(typing_extensions.TypedDict, total=False):
+    expirationTime: str
 
 @typing.type_check_only
 class DriveDataRef(typing_extensions.TypedDict, total=False):
@@ -860,6 +880,19 @@ class ListSpacesResponse(typing_extensions.TypedDict, total=False):
     spaces: _list[Space]
 
 @typing.type_check_only
+class MarkAsActiveRequest(typing_extensions.TypedDict, total=False):
+    expireTime: str
+    ttl: str
+
+@typing.type_check_only
+class MarkAsAwayRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class MarkAsDoNotDisturbRequest(typing_extensions.TypedDict, total=False):
+    expireTime: str
+    ttl: str
+
+@typing.type_check_only
 class MatchedUrl(typing_extensions.TypedDict, total=False):
     url: str
 
@@ -877,6 +910,9 @@ class MeetSpaceLinkData(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Membership(typing_extensions.TypedDict, total=False):
+    affiliation: typing_extensions.Literal[
+        "AFFILIATION_UNSPECIFIED", "INTERNAL", "EXTERNAL", "MANAGED_EXTERNAL"
+    ]
     createTime: str
     deleteTime: str
     groupMember: Group
@@ -1023,7 +1059,7 @@ class QuotedMessageMetadata(typing_extensions.TypedDict, total=False):
     forwardedMetadata: ForwardedMetadata
     lastUpdateTime: str
     name: str
-    quoteType: typing_extensions.Literal["QUOTE_TYPE_UNSPECIFIED", "REPLY"]
+    quoteType: typing_extensions.Literal["QUOTE_TYPE_UNSPECIFIED", "REPLY", "FORWARD"]
     quotedMessageSnapshot: QuotedMessageSnapshot
 
 @typing.type_check_only

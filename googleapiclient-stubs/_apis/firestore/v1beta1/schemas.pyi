@@ -138,6 +138,7 @@ class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class ExecutePipelineRequest(typing_extensions.TypedDict, total=False):
+    autoCommitTransaction: bool
     newTransaction: TransactionOptions
     readTime: str
     structuredPipeline: StructuredPipeline

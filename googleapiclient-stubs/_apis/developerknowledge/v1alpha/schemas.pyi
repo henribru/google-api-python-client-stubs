@@ -7,6 +7,14 @@ _list = list
 @typing.type_check_only
 class Answer(typing_extensions.TypedDict, total=False):
     answerText: str
+    citations: _list[AnswerCitation]
+    references: _list[AnswerReference]
+
+@typing.type_check_only
+class AnswerCitation(typing_extensions.TypedDict, total=False):
+    endIndex: int
+    sources: _list[CitationSource]
+    startIndex: int
 
 @typing.type_check_only
 class AnswerQueryRequest(typing_extensions.TypedDict, total=False):
@@ -17,8 +25,16 @@ class AnswerQueryResponse(typing_extensions.TypedDict, total=False):
     answer: Answer
 
 @typing.type_check_only
+class AnswerReference(typing_extensions.TypedDict, total=False):
+    documentReference: DocumentReference
+
+@typing.type_check_only
 class BatchGetDocumentsResponse(typing_extensions.TypedDict, total=False):
     documents: _list[Document]
+
+@typing.type_check_only
+class CitationSource(typing_extensions.TypedDict, total=False):
+    referenceIndex: int
 
 @typing.type_check_only
 class Document(typing_extensions.TypedDict, total=False):
@@ -42,6 +58,10 @@ class DocumentChunk(typing_extensions.TypedDict, total=False):
     document: Document
     id: str
     parent: str
+
+@typing.type_check_only
+class DocumentReference(typing_extensions.TypedDict, total=False):
+    documentChunk: DocumentChunk
 
 @typing.type_check_only
 class SearchDocumentChunksResponse(typing_extensions.TypedDict, total=False):

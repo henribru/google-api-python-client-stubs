@@ -78,6 +78,7 @@ class Asset(typing_extensions.TypedDict, total=False):
     awsApiGatewayRestApiDetails: AwsApiGatewayRestApiDetails
     awsAppSyncGraphqlApiDetails: AwsAppSyncGraphqlApiDetails
     awsApplicationLoadBalancerDetails: AwsApplicationLoadBalancerDetails
+    awsAthenaWorkGroupDetails: AwsAthenaWorkGroupDetails
     awsAutoscalingGroupDetails: AwsAutoscalingGroupDetails
     awsBatchComputeEnvironmentDetails: AwsBatchComputeEnvironmentDetails
     awsCloudFrontDistributionDetails: AwsCloudFrontDistributionDetails
@@ -89,8 +90,13 @@ class Asset(typing_extensions.TypedDict, total=False):
     awsEksClusterDetails: AwsEksClusterDetails
     awsElasticIpAddressDetails: AwsElasticIpAddressDetails
     awsElasticNetworkInterfaceDetails: AwsElasticNetworkInterfaceDetails
+    awsElasticacheClusterDetails: AwsElastiCacheClusterDetails
     awsElbLoadBalancerDetails: AwsElbLoadBalancerDetails
+    awsEmrClusterDetails: AwsEmrClusterDetails
+    awsFirehoseDetails: AwsFirehoseDetails
+    awsGlueJobDetails: AwsGlueJobDetails
     awsInternetGatewayDetails: AwsInternetGatewayDetails
+    awsKinesisStreamDetails: AwsKinesisStreamDetails
     awsLambdaFunctionDetails: AwsLambdaFunctionDetails
     awsNatGatewayDetails: AwsNatGatewayDetails
     awsRedshiftDetails: AwsRedshiftDetails
@@ -122,6 +128,7 @@ class AssetFrame(typing_extensions.TypedDict, total=False):
     awsApiGatewayRestApiDetails: AwsApiGatewayRestApiDetails
     awsAppSyncGraphqlApiDetails: AwsAppSyncGraphqlApiDetails
     awsApplicationLoadBalancerDetails: AwsApplicationLoadBalancerDetails
+    awsAthenaWorkGroupDetails: AwsAthenaWorkGroupDetails
     awsAutoscalingGroupDetails: AwsAutoscalingGroupDetails
     awsBatchComputeEnvironmentDetails: AwsBatchComputeEnvironmentDetails
     awsCloudFrontDistributionDetails: AwsCloudFrontDistributionDetails
@@ -133,8 +140,13 @@ class AssetFrame(typing_extensions.TypedDict, total=False):
     awsEksClusterDetails: AwsEksClusterDetails
     awsElasticIpAddressDetails: AwsElasticIpAddressDetails
     awsElasticNetworkInterfaceDetails: AwsElasticNetworkInterfaceDetails
+    awsElasticacheClusterDetails: AwsElastiCacheClusterDetails
     awsElbLoadBalancerDetails: AwsElbLoadBalancerDetails
+    awsEmrClusterDetails: AwsEmrClusterDetails
+    awsFirehoseDetails: AwsFirehoseDetails
+    awsGlueJobDetails: AwsGlueJobDetails
     awsInternetGatewayDetails: AwsInternetGatewayDetails
+    awsKinesisStreamDetails: AwsKinesisStreamDetails
     awsLambdaFunctionDetails: AwsLambdaFunctionDetails
     awsNatGatewayDetails: AwsNatGatewayDetails
     awsRedshiftDetails: AwsRedshiftDetails
@@ -222,6 +234,9 @@ class AwsAppSyncGraphqlApiDetails(typing_extensions.TypedDict, total=False): ...
 class AwsApplicationLoadBalancerDetails(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class AwsAthenaWorkGroupDetails(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class AwsAutoscalingGroupDetails(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -259,6 +274,9 @@ class AwsEfsFileSystemDetails(typing_extensions.TypedDict, total=False): ...
 class AwsEksClusterDetails(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class AwsElastiCacheClusterDetails(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class AwsElasticIpAddressDetails(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -268,7 +286,19 @@ class AwsElasticNetworkInterfaceDetails(typing_extensions.TypedDict, total=False
 class AwsElbLoadBalancerDetails(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class AwsEmrClusterDetails(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class AwsFirehoseDetails(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class AwsGlueJobDetails(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class AwsInternetGatewayDetails(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class AwsKinesisStreamDetails(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class AwsLambdaFunctionDetails(typing_extensions.TypedDict, total=False): ...

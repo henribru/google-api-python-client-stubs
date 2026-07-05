@@ -325,6 +325,7 @@ class GoogleFirebaseAppdistroV1alphaGetUploadStatusResponse(
         "AAB_UPLOAD_ERROR",
         "APP_NOT_FOUND",
         "AAB_ADHOC_SHARING_KEY_NOT_REGISTERED",
+        "AAB_ANDROID_DEVELOPER_CONSOLE_ACCOUNT_NOT_FOUND",
     ]
     message: str
     release: GoogleFirebaseAppdistroV1alphaRelease

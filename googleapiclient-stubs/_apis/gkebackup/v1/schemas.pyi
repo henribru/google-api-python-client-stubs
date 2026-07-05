@@ -61,6 +61,7 @@ class BDRBackupRestoreJobLog(typing_extensions.TypedDict, total=False):
     sourceResourceLocation: str
     sourceResourceName: str
     startTime: str
+    targetResourceType: str
 
 @typing.type_check_only
 class Backup(typing_extensions.TypedDict, total=False):

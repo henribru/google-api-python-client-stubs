@@ -796,6 +796,50 @@ class NetworkconnectivityResource(googleapiclient.discovery.Resource):
 
             @typing.type_check_only
             class SpokesResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class GatewayAdvertisedRoutesResource(
+                    googleapiclient.discovery.Resource
+                ):
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: GatewayAdvertisedRoute = ...,
+                        gatewayAdvertisedRouteId: str = ...,
+                        requestId: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
+                    def delete(
+                        self, *, name: str, requestId: str = ..., **kwargs: typing.Any
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GatewayAdvertisedRouteHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        filter: str = ...,
+                        orderBy: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> ListGatewayAdvertisedRoutesResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListGatewayAdvertisedRoutesResponseHttpRequest,
+                        previous_response: ListGatewayAdvertisedRoutesResponse,
+                    ) -> ListGatewayAdvertisedRoutesResponseHttpRequest | None: ...
+                    def patch(
+                        self,
+                        *,
+                        name: str,
+                        body: GatewayAdvertisedRoute = ...,
+                        requestId: str = ...,
+                        updateMask: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
+
                 def create(
                     self,
                     *,
@@ -856,6 +900,9 @@ class NetworkconnectivityResource(googleapiclient.discovery.Resource):
                     body: TestIamPermissionsRequest = ...,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
+                def gatewayAdvertisedRoutes(
+                    self,
+                ) -> GatewayAdvertisedRoutesResource: ...
 
             @typing.type_check_only
             class TransportsResource(googleapiclient.discovery.Resource):
@@ -994,6 +1041,14 @@ class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Empty: ...
 
 @typing.type_check_only
+class GatewayAdvertisedRouteHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GatewayAdvertisedRoute: ...
+
+@typing.type_check_only
 class GoogleLongrunningListOperationsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -1050,6 +1105,14 @@ class ListDestinationsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListDestinationsResponse: ...
+
+@typing.type_check_only
+class ListGatewayAdvertisedRoutesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListGatewayAdvertisedRoutesResponse: ...
 
 @typing.type_check_only
 class ListGroupsResponseHttpRequest(googleapiclient.http.HttpRequest):

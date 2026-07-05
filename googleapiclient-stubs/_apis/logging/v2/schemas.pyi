@@ -645,6 +645,7 @@ class ProjectedField(typing_extensions.TypedDict, total=False):
     regexExtraction: str
     sqlAggregationFunction: FunctionApplication
     truncationGranularity: str
+    virtualField: VirtualField
 
 @typing.type_check_only
 class QueryBuilderConfig(typing_extensions.TypedDict, total=False):
@@ -790,6 +791,13 @@ class UpdateBucketRequest(typing_extensions.TypedDict, total=False):
     bucket: LogBucket
     name: str
     updateMask: str
+
+@typing.type_check_only
+class VirtualField(typing_extensions.TypedDict, total=False):
+    underlyingFieldSources: _list[FieldSource]
+    virtualFieldType: typing_extensions.Literal[
+        "VIRTUAL_FIELD_TYPE_UNSPECIFIED", "COALESCE"
+    ]
 
 @typing.type_check_only
 class WriteLogEntriesRequest(typing_extensions.TypedDict, total=False):
