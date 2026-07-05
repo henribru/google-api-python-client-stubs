@@ -42,9 +42,9 @@ class CloudTalentSolutionResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
-                requireOpenJobs: bool = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
+                requireOpenJobs: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> ListCompaniesResponseHttpRequest: ...
             def list_next(
@@ -80,16 +80,17 @@ class CloudTalentSolutionResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                filter: str = ...,
+                filter: str | None = ...,
                 jobView: typing_extensions.Literal[
                     "JOB_VIEW_UNSPECIFIED",
                     "JOB_VIEW_ID_ONLY",
                     "JOB_VIEW_MINIMAL",
                     "JOB_VIEW_SMALL",
                     "JOB_VIEW_FULL",
-                ] = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                ]
+                | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListJobsResponseHttpRequest: ...
             def list_next(
@@ -129,17 +130,19 @@ class CloudTalentSolutionResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            companyName: str = ...,
-            languageCode: str = ...,
-            languageCodes: str | _list[str] = ...,
-            pageSize: int = ...,
-            query: str = ...,
+            companyName: str | None = ...,
+            languageCode: str | None = ...,
+            languageCodes: str | _list[str] | None = ...,
+            pageSize: int | None = ...,
+            query: str | None = ...,
             scope: typing_extensions.Literal[
                 "COMPLETION_SCOPE_UNSPECIFIED", "TENANT", "PUBLIC"
-            ] = ...,
+            ]
+            | None = ...,
             type: typing_extensions.Literal[
                 "COMPLETION_TYPE_UNSPECIFIED", "JOB_TITLE", "COMPANY_NAME", "COMBINED"
-            ] = ...,
+            ]
+            | None = ...,
             **kwargs: typing.Any,
         ) -> CompleteQueryResponseHttpRequest: ...
         def clientEvents(self) -> ClientEventsResource: ...

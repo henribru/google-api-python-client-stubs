@@ -19,8 +19,8 @@ class SafebrowsingResource(googleapiclient.discovery.Resource):
             self,
             *,
             encodedRequest: str,
-            clientId: str = ...,
-            clientVersion: str = ...,
+            clientId: str | None = ...,
+            clientVersion: str | None = ...,
             **kwargs: typing.Any,
         ) -> GoogleSecuritySafebrowsingV4FindFullHashesResponseHttpRequest: ...
 
@@ -30,8 +30,8 @@ class SafebrowsingResource(googleapiclient.discovery.Resource):
             self,
             *,
             encodedRequest: str,
-            clientId: str = ...,
-            clientVersion: str = ...,
+            clientId: str | None = ...,
+            clientVersion: str | None = ...,
             **kwargs: typing.Any,
         ) -> GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponseHttpRequest: ...
 

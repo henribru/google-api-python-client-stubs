@@ -22,7 +22,7 @@ class BinaryAuthorizationResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: Attestor = ...,
-                attestorId: str = ...,
+                attestorId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> AttestorHttpRequest: ...
             def delete(
@@ -35,15 +35,15 @@ class BinaryAuthorizationResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 resource: str,
-                options_requestedPolicyVersion: int = ...,
+                options_requestedPolicyVersion: int | None = ...,
                 **kwargs: typing.Any,
             ) -> IamPolicyHttpRequest: ...
             def list(
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListAttestorsResponseHttpRequest: ...
             def list_next(
@@ -82,7 +82,7 @@ class BinaryAuthorizationResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 resource: str,
-                options_requestedPolicyVersion: int = ...,
+                options_requestedPolicyVersion: int | None = ...,
                 **kwargs: typing.Any,
             ) -> IamPolicyHttpRequest: ...
             def setIamPolicy(

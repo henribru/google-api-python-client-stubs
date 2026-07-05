@@ -52,10 +52,10 @@ class VisionResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            filter: str = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
-            returnPartialSuccess: bool = ...,
+            filter: str | None = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> ListOperationsResponseHttpRequest: ...
         def list_next(
@@ -150,8 +150,8 @@ class VisionResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListProductsInProductSetResponseHttpRequest: ...
                     def list_next(
@@ -172,7 +172,7 @@ class VisionResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: ProductSet = ...,
-                    productSetId: str = ...,
+                    productSetId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ProductSetHttpRequest: ...
                 def delete(
@@ -192,8 +192,8 @@ class VisionResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListProductSetsResponseHttpRequest: ...
                 def list_next(
@@ -206,7 +206,7 @@ class VisionResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: ProductSet = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ProductSetHttpRequest: ...
                 def removeProduct(
@@ -227,7 +227,7 @@ class VisionResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: ReferenceImage = ...,
-                        referenceImageId: str = ...,
+                        referenceImageId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ReferenceImageHttpRequest: ...
                     def delete(
@@ -240,8 +240,8 @@ class VisionResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListReferenceImagesResponseHttpRequest: ...
                     def list_next(
@@ -255,7 +255,7 @@ class VisionResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: Product = ...,
-                    productId: str = ...,
+                    productId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ProductHttpRequest: ...
                 def delete(
@@ -268,8 +268,8 @@ class VisionResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListProductsResponseHttpRequest: ...
                 def list_next(
@@ -282,7 +282,7 @@ class VisionResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: Product = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ProductHttpRequest: ...
                 def purge(

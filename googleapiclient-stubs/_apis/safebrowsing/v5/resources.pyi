@@ -19,9 +19,9 @@ class SafebrowsingResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            sizeConstraints_maxDatabaseEntries: int = ...,
-            sizeConstraints_maxUpdateEntries: int = ...,
-            version: str = ...,
+            sizeConstraints_maxDatabaseEntries: int | None = ...,
+            sizeConstraints_maxUpdateEntries: int | None = ...,
+            version: str | None = ...,
             **kwargs: typing.Any,
         ) -> GoogleSecuritySafebrowsingV5HashListHttpRequest: ...
 
@@ -30,14 +30,18 @@ class SafebrowsingResource(googleapiclient.discovery.Resource):
         def batchGet(
             self,
             *,
-            names: str | _list[str] = ...,
-            sizeConstraints_maxDatabaseEntries: int = ...,
-            sizeConstraints_maxUpdateEntries: int = ...,
-            version: str | _list[str] = ...,
+            names: str | _list[str] | None = ...,
+            sizeConstraints_maxDatabaseEntries: int | None = ...,
+            sizeConstraints_maxUpdateEntries: int | None = ...,
+            version: str | _list[str] | None = ...,
             **kwargs: typing.Any,
         ) -> GoogleSecuritySafebrowsingV5BatchGetHashListsResponseHttpRequest: ...
         def list(
-            self, *, pageSize: int = ..., pageToken: str = ..., **kwargs: typing.Any
+            self,
+            *,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            **kwargs: typing.Any,
         ) -> GoogleSecuritySafebrowsingV5ListHashListsResponseHttpRequest: ...
         def list_next(
             self,
@@ -48,13 +52,13 @@ class SafebrowsingResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class HashesResource(googleapiclient.discovery.Resource):
         def search(
-            self, *, hashPrefixes: str | _list[str] = ..., **kwargs: typing.Any
+            self, *, hashPrefixes: str | _list[str] | None = ..., **kwargs: typing.Any
         ) -> GoogleSecuritySafebrowsingV5SearchHashesResponseHttpRequest: ...
 
     @typing.type_check_only
     class UrlsResource(googleapiclient.discovery.Resource):
         def search(
-            self, *, urls: str | _list[str] = ..., **kwargs: typing.Any
+            self, *, urls: str | _list[str] | None = ..., **kwargs: typing.Any
         ) -> GoogleSecuritySafebrowsingV5SearchUrlsResponseHttpRequest: ...
 
     def new_batch_http_request(

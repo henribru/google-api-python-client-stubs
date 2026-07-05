@@ -16,7 +16,7 @@ class HomeGraphServiceResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class AgentUsersResource(googleapiclient.discovery.Resource):
         def delete(
-            self, *, agentUserId: str, requestId: str = ..., **kwargs: typing.Any
+            self, *, agentUserId: str, requestId: str | None = ..., **kwargs: typing.Any
         ) -> EmptyHttpRequest: ...
 
     @typing.type_check_only

@@ -22,15 +22,15 @@ class AlertCenterResource(googleapiclient.discovery.Resource):
                 *,
                 alertId: str,
                 body: AlertFeedback = ...,
-                customerId: str = ...,
+                customerId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> AlertFeedbackHttpRequest: ...
             def list(
                 self,
                 *,
                 alertId: str,
-                customerId: str = ...,
-                filter: str = ...,
+                customerId: str | None = ...,
+                filter: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListAlertFeedbackResponseHttpRequest: ...
 
@@ -41,22 +41,22 @@ class AlertCenterResource(googleapiclient.discovery.Resource):
             self, *, body: BatchUndeleteAlertsRequest = ..., **kwargs: typing.Any
         ) -> BatchUndeleteAlertsResponseHttpRequest: ...
         def delete(
-            self, *, alertId: str, customerId: str = ..., **kwargs: typing.Any
+            self, *, alertId: str, customerId: str | None = ..., **kwargs: typing.Any
         ) -> EmptyHttpRequest: ...
         def get(
-            self, *, alertId: str, customerId: str = ..., **kwargs: typing.Any
+            self, *, alertId: str, customerId: str | None = ..., **kwargs: typing.Any
         ) -> AlertHttpRequest: ...
         def getMetadata(
-            self, *, alertId: str, customerId: str = ..., **kwargs: typing.Any
+            self, *, alertId: str, customerId: str | None = ..., **kwargs: typing.Any
         ) -> AlertMetadataHttpRequest: ...
         def list(
             self,
             *,
-            customerId: str = ...,
-            filter: str = ...,
-            orderBy: str = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
+            customerId: str | None = ...,
+            filter: str | None = ...,
+            orderBy: str | None = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> ListAlertsResponseHttpRequest: ...
         def list_next(
@@ -76,10 +76,14 @@ class AlertCenterResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class V1beta1Resource(googleapiclient.discovery.Resource):
         def getSettings(
-            self, *, customerId: str = ..., **kwargs: typing.Any
+            self, *, customerId: str | None = ..., **kwargs: typing.Any
         ) -> SettingsHttpRequest: ...
         def updateSettings(
-            self, *, body: Settings = ..., customerId: str = ..., **kwargs: typing.Any
+            self,
+            *,
+            body: Settings = ...,
+            customerId: str | None = ...,
+            **kwargs: typing.Any,
         ) -> SettingsHttpRequest: ...
 
     def new_batch_http_request(

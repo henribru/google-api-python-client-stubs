@@ -18,13 +18,14 @@ class DeveloperKnowledgeResource(googleapiclient.discovery.Resource):
         def batchGet(
             self,
             *,
-            names: str | _list[str] = ...,
+            names: str | _list[str] | None = ...,
             view: typing_extensions.Literal[
                 "DOCUMENT_VIEW_UNSPECIFIED",
                 "DOCUMENT_VIEW_BASIC",
                 "DOCUMENT_VIEW_FULL",
                 "DOCUMENT_VIEW_CONTENT",
-            ] = ...,
+            ]
+            | None = ...,
             **kwargs: typing.Any,
         ) -> BatchGetDocumentsResponseHttpRequest: ...
         def get(
@@ -36,16 +37,17 @@ class DeveloperKnowledgeResource(googleapiclient.discovery.Resource):
                 "DOCUMENT_VIEW_BASIC",
                 "DOCUMENT_VIEW_FULL",
                 "DOCUMENT_VIEW_CONTENT",
-            ] = ...,
+            ]
+            | None = ...,
             **kwargs: typing.Any,
         ) -> DocumentHttpRequest: ...
         def searchDocumentChunks(
             self,
             *,
-            filter: str = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
-            query: str = ...,
+            filter: str | None = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            query: str | None = ...,
             **kwargs: typing.Any,
         ) -> SearchDocumentChunksResponseHttpRequest: ...
         def searchDocumentChunks_next(

@@ -18,11 +18,11 @@ class FactCheckToolsResource(googleapiclient.discovery.Resource):
         def imageSearch(
             self,
             *,
-            imageUri: str = ...,
-            languageCode: str = ...,
-            offset: int = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
+            imageUri: str | None = ...,
+            languageCode: str | None = ...,
+            offset: int | None = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimImageSearchResponseHttpRequest: ...
         def imageSearch_next(
@@ -36,13 +36,13 @@ class FactCheckToolsResource(googleapiclient.discovery.Resource):
         def search(
             self,
             *,
-            languageCode: str = ...,
-            maxAgeDays: int = ...,
-            offset: int = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
-            query: str = ...,
-            reviewPublisherSiteFilter: str = ...,
+            languageCode: str | None = ...,
+            maxAgeDays: int | None = ...,
+            offset: int | None = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            query: str | None = ...,
+            reviewPublisherSiteFilter: str | None = ...,
             **kwargs: typing.Any,
         ) -> GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimSearchResponseHttpRequest: ...
         def search_next(
@@ -75,11 +75,11 @@ class FactCheckToolsResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            offset: int = ...,
-            organization: str = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
-            url: str = ...,
+            offset: int | None = ...,
+            organization: str | None = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            url: str | None = ...,
             **kwargs: typing.Any,
         ) -> GoogleFactcheckingFactchecktoolsV1alpha1ListClaimReviewMarkupPagesResponseHttpRequest: ...
         def list_next(

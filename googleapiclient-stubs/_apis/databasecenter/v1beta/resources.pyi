@@ -63,15 +63,15 @@ class DatabaseCenterResource(googleapiclient.discovery.Resource):
         def aggregateFleet(
             self,
             *,
-            baselineDate_day: int = ...,
-            baselineDate_month: int = ...,
-            baselineDate_year: int = ...,
-            filter: str = ...,
-            groupBy: str = ...,
-            orderBy: str = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
-            parent: str = ...,
+            baselineDate_day: int | None = ...,
+            baselineDate_month: int | None = ...,
+            baselineDate_year: int | None = ...,
+            filter: str | None = ...,
+            groupBy: str | None = ...,
+            orderBy: str | None = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            parent: str | None = ...,
             **kwargs: typing.Any,
         ) -> AggregateFleetResponseHttpRequest: ...
         def aggregateFleet_next(
@@ -104,9 +104,9 @@ class DatabaseCenterResource(googleapiclient.discovery.Resource):
         def queryProducts(
             self,
             *,
-            pageSize: int = ...,
-            pageToken: str = ...,
-            parent: str = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            parent: str | None = ...,
             **kwargs: typing.Any,
         ) -> QueryProductsResponseHttpRequest: ...
         def queryProducts_next(

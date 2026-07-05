@@ -21,9 +21,9 @@ class MapsPlacesResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                maxHeightPx: int = ...,
-                maxWidthPx: int = ...,
-                skipHttpRedirect: bool = ...,
+                maxHeightPx: int | None = ...,
+                maxWidthPx: int | None = ...,
+                skipHttpRedirect: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleMapsPlacesV1PhotoMediaHttpRequest: ...
 
@@ -37,9 +37,9 @@ class MapsPlacesResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            languageCode: str = ...,
-            regionCode: str = ...,
-            sessionToken: str = ...,
+            languageCode: str | None = ...,
+            regionCode: str | None = ...,
+            sessionToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> GoogleMapsPlacesV1PlaceHttpRequest: ...
         def searchNearby(

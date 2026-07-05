@@ -16,7 +16,7 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class OrganizationsResource(googleapiclient.discovery.Resource):
         def get(
-            self, *, name: str, organizationId: str = ..., **kwargs: typing.Any
+            self, *, name: str, organizationId: str | None = ..., **kwargs: typing.Any
         ) -> OrganizationHttpRequest: ...
         def getIamPolicy(
             self,
@@ -28,9 +28,9 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            filter: str = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
+            filter: str | None = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> ListOrganizationsResponseHttpRequest: ...
         def list_next(
@@ -62,7 +62,7 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
             self,
             *,
             body: Project = ...,
-            useLegacyStack: bool = ...,
+            useLegacyStack: bool | None = ...,
             **kwargs: typing.Any,
         ) -> ProjectHttpRequest: ...
         def delete(
@@ -88,9 +88,9 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            filter: str = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
+            filter: str | None = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> ListProjectsResponseHttpRequest: ...
         def list_next(

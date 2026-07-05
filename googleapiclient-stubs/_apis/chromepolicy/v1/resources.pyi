@@ -125,9 +125,9 @@ class ChromePolicyResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleChromePolicyVersionsV1ListPolicySchemasResponseHttpRequest: ...
             def list_next(

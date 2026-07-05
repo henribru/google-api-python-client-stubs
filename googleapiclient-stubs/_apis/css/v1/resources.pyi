@@ -18,14 +18,18 @@ class CssResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class CssProductInputsResource(googleapiclient.discovery.Resource):
             def delete(
-                self, *, name: str, supplementalFeedId: str = ..., **kwargs: typing.Any
+                self,
+                *,
+                name: str,
+                supplementalFeedId: str | None = ...,
+                **kwargs: typing.Any,
             ) -> EmptyHttpRequest: ...
             def insert(
                 self,
                 *,
                 parent: str,
                 body: CssProductInput = ...,
-                feedId: str = ...,
+                feedId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> CssProductInputHttpRequest: ...
             def patch(
@@ -33,7 +37,7 @@ class CssResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: CssProductInput = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> CssProductInputHttpRequest: ...
 
@@ -46,8 +50,8 @@ class CssResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListCssProductsResponseHttpRequest: ...
             def list_next(
@@ -68,8 +72,8 @@ class CssResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListAccountLabelsResponseHttpRequest: ...
             def list_next(
@@ -87,8 +91,8 @@ class CssResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListQuotaGroupsResponseHttpRequest: ...
             def list_next(
@@ -98,16 +102,16 @@ class CssResource(googleapiclient.discovery.Resource):
             ) -> ListQuotaGroupsResponseHttpRequest | None: ...
 
         def get(
-            self, *, name: str, parent: str = ..., **kwargs: typing.Any
+            self, *, name: str, parent: str | None = ..., **kwargs: typing.Any
         ) -> AccountHttpRequest: ...
         def listChildAccounts(
             self,
             *,
             parent: str,
-            fullName: str = ...,
-            labelId: str = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
+            fullName: str | None = ...,
+            labelId: str | None = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> ListChildAccountsResponseHttpRequest: ...
         def listChildAccounts_next(

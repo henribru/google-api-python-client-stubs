@@ -32,10 +32,10 @@ class OnDemandScanningResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    returnPartialSuccess: bool = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    returnPartialSuccess: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListOperationsResponseHttpRequest: ...
                 def list_next(
@@ -44,7 +44,7 @@ class OnDemandScanningResource(googleapiclient.discovery.Resource):
                     previous_response: ListOperationsResponse,
                 ) -> ListOperationsResponseHttpRequest | None: ...
                 def wait(
-                    self, *, name: str, timeout: str = ..., **kwargs: typing.Any
+                    self, *, name: str, timeout: str | None = ..., **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
 
             @typing.type_check_only
@@ -55,8 +55,8 @@ class OnDemandScanningResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListVulnerabilitiesResponseV1HttpRequest: ...
                     def list_next(

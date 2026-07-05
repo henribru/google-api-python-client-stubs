@@ -30,8 +30,8 @@ class CloudTraceResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListTraceSinksResponseHttpRequest: ...
             def list_next(
@@ -44,7 +44,7 @@ class CloudTraceResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: TraceSink = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> TraceSinkHttpRequest: ...
 

@@ -27,8 +27,8 @@ class WorkflowExecutionsResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             parent: str,
-                            pageSize: int = ...,
-                            pageToken: str = ...,
+                            pageSize: int | None = ...,
+                            pageToken: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> ListCallbacksResponseHttpRequest: ...
                         def list_next(
@@ -47,23 +47,25 @@ class WorkflowExecutionsResource(googleapiclient.discovery.Resource):
                                 "EXECUTION_ENTRY_VIEW_UNSPECIFIED",
                                 "EXECUTION_ENTRY_VIEW_BASIC",
                                 "EXECUTION_ENTRY_VIEW_DETAILED",
-                            ] = ...,
+                            ]
+                            | None = ...,
                             **kwargs: typing.Any,
                         ) -> StepEntryHttpRequest: ...
                         def list(
                             self,
                             *,
                             parent: str,
-                            filter: str = ...,
-                            orderBy: str = ...,
-                            pageSize: int = ...,
-                            pageToken: str = ...,
-                            skip: int = ...,
+                            filter: str | None = ...,
+                            orderBy: str | None = ...,
+                            pageSize: int | None = ...,
+                            pageToken: str | None = ...,
+                            skip: int | None = ...,
                             view: typing_extensions.Literal[
                                 "EXECUTION_ENTRY_VIEW_UNSPECIFIED",
                                 "EXECUTION_ENTRY_VIEW_BASIC",
                                 "EXECUTION_ENTRY_VIEW_DETAILED",
-                            ] = ...,
+                            ]
+                            | None = ...,
                             **kwargs: typing.Any,
                         ) -> ListStepEntriesResponseHttpRequest: ...
                         def list_next(
@@ -102,20 +104,22 @@ class WorkflowExecutionsResource(googleapiclient.discovery.Resource):
                         name: str,
                         view: typing_extensions.Literal[
                             "EXECUTION_VIEW_UNSPECIFIED", "BASIC", "FULL"
-                        ] = ...,
+                        ]
+                        | None = ...,
                         **kwargs: typing.Any,
                     ) -> ExecutionHttpRequest: ...
                     def list(
                         self,
                         *,
                         parent: str,
-                        filter: str = ...,
-                        orderBy: str = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        filter: str | None = ...,
+                        orderBy: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         view: typing_extensions.Literal[
                             "EXECUTION_VIEW_UNSPECIFIED", "BASIC", "FULL"
-                        ] = ...,
+                        ]
+                        | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListExecutionsResponseHttpRequest: ...
                     def list_next(

@@ -25,13 +25,15 @@ class WebfontsResource(googleapiclient.discovery.Resource):
                 typing_extensions.Literal[
                     "CAPABILITY_UNSPECIFIED", "WOFF2", "VF", "FAMILY_TAGS"
                 ]
-            ] = ...,
-            category: str = ...,
-            family: str | _list[str] = ...,
+            ]
+            | None = ...,
+            category: str | None = ...,
+            family: str | _list[str] | None = ...,
             sort: typing_extensions.Literal[
                 "SORT_UNDEFINED", "ALPHA", "DATE", "POPULARITY", "STYLE", "TRENDING"
-            ] = ...,
-            subset: str = ...,
+            ]
+            | None = ...,
+            subset: str | None = ...,
             **kwargs: typing.Any,
         ) -> WebfontListHttpRequest: ...
 

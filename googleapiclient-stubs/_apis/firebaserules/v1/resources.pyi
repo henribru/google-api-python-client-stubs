@@ -32,16 +32,17 @@ class FirebaseRulesResource(googleapiclient.discovery.Resource):
                     "RELEASE_EXECUTABLE_VERSION_UNSPECIFIED",
                     "FIREBASE_RULES_EXECUTABLE_V1",
                     "FIREBASE_RULES_EXECUTABLE_V2",
-                ] = ...,
+                ]
+                | None = ...,
                 **kwargs: typing.Any,
             ) -> GetReleaseExecutableResponseHttpRequest: ...
             def list(
                 self,
                 *,
                 name: str,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListReleasesResponseHttpRequest: ...
             def list_next(
@@ -70,9 +71,9 @@ class FirebaseRulesResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListRulesetsResponseHttpRequest: ...
             def list_next(

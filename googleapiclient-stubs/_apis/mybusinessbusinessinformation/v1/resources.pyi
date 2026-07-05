@@ -22,19 +22,19 @@ class MyBusinessBusinessInformationResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: Location = ...,
-                requestId: str = ...,
-                validateOnly: bool = ...,
+                requestId: str | None = ...,
+                validateOnly: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> LocationHttpRequest: ...
             def list(
                 self,
                 *,
                 parent: str,
-                filter: str = ...,
-                orderBy: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
-                readMask: str = ...,
+                filter: str | None = ...,
+                orderBy: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
+                readMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListLocationsResponseHttpRequest: ...
             def list_next(
@@ -50,13 +50,13 @@ class MyBusinessBusinessInformationResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            categoryName: str = ...,
-            languageCode: str = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
-            parent: str = ...,
-            regionCode: str = ...,
-            showAll: bool = ...,
+            categoryName: str | None = ...,
+            languageCode: str | None = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            parent: str | None = ...,
+            regionCode: str | None = ...,
+            showAll: bool | None = ...,
             **kwargs: typing.Any,
         ) -> ListAttributeMetadataResponseHttpRequest: ...
         def list_next(
@@ -70,25 +70,27 @@ class MyBusinessBusinessInformationResource(googleapiclient.discovery.Resource):
         def batchGet(
             self,
             *,
-            languageCode: str = ...,
-            names: str | _list[str] = ...,
-            regionCode: str = ...,
+            languageCode: str | None = ...,
+            names: str | _list[str] | None = ...,
+            regionCode: str | None = ...,
             view: typing_extensions.Literal[
                 "CATEGORY_VIEW_UNSPECIFIED", "BASIC", "FULL"
-            ] = ...,
+            ]
+            | None = ...,
             **kwargs: typing.Any,
         ) -> BatchGetCategoriesResponseHttpRequest: ...
         def list(
             self,
             *,
-            filter: str = ...,
-            languageCode: str = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
-            regionCode: str = ...,
+            filter: str | None = ...,
+            languageCode: str | None = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            regionCode: str | None = ...,
             view: typing_extensions.Literal[
                 "CATEGORY_VIEW_UNSPECIFIED", "BASIC", "FULL"
-            ] = ...,
+            ]
+            | None = ...,
             **kwargs: typing.Any,
         ) -> ListCategoriesResponseHttpRequest: ...
         def list_next(
@@ -101,7 +103,11 @@ class MyBusinessBusinessInformationResource(googleapiclient.discovery.Resource):
     class ChainsResource(googleapiclient.discovery.Resource):
         def get(self, *, name: str, **kwargs: typing.Any) -> ChainHttpRequest: ...
         def search(
-            self, *, chainName: str = ..., pageSize: int = ..., **kwargs: typing.Any
+            self,
+            *,
+            chainName: str | None = ...,
+            pageSize: int | None = ...,
+            **kwargs: typing.Any,
         ) -> SearchChainsResponseHttpRequest: ...
 
     @typing.type_check_only
@@ -120,21 +126,21 @@ class MyBusinessBusinessInformationResource(googleapiclient.discovery.Resource):
 
         def delete(self, *, name: str, **kwargs: typing.Any) -> EmptyHttpRequest: ...
         def get(
-            self, *, name: str, readMask: str = ..., **kwargs: typing.Any
+            self, *, name: str, readMask: str | None = ..., **kwargs: typing.Any
         ) -> LocationHttpRequest: ...
         def getAttributes(
             self, *, name: str, **kwargs: typing.Any
         ) -> AttributesHttpRequest: ...
         def getGoogleUpdated(
-            self, *, name: str, readMask: str = ..., **kwargs: typing.Any
+            self, *, name: str, readMask: str | None = ..., **kwargs: typing.Any
         ) -> GoogleUpdatedLocationHttpRequest: ...
         def patch(
             self,
             *,
             name: str,
             body: Location = ...,
-            updateMask: str = ...,
-            validateOnly: bool = ...,
+            updateMask: str | None = ...,
+            validateOnly: bool | None = ...,
             **kwargs: typing.Any,
         ) -> LocationHttpRequest: ...
         def updateAttributes(
@@ -142,7 +148,7 @@ class MyBusinessBusinessInformationResource(googleapiclient.discovery.Resource):
             *,
             name: str,
             body: Attributes = ...,
-            attributeMask: str = ...,
+            attributeMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> AttributesHttpRequest: ...
         def attributes(self) -> AttributesResource: ...

@@ -18,14 +18,14 @@ class MerchantResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class ProductInputsResource(googleapiclient.discovery.Resource):
             def delete(
-                self, *, name: str, dataSource: str = ..., **kwargs: typing.Any
+                self, *, name: str, dataSource: str | None = ..., **kwargs: typing.Any
             ) -> EmptyHttpRequest: ...
             def insert(
                 self,
                 *,
                 parent: str,
                 body: ProductInput = ...,
-                dataSource: str = ...,
+                dataSource: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ProductInputHttpRequest: ...
             def patch(
@@ -33,8 +33,8 @@ class MerchantResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: ProductInput = ...,
-                dataSource: str = ...,
-                updateMask: str = ...,
+                dataSource: str | None = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ProductInputHttpRequest: ...
 
@@ -45,8 +45,8 @@ class MerchantResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListProductsResponseHttpRequest: ...
             def list_next(

@@ -33,8 +33,8 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudDiscoveryengineV1alphaListBillingAccountLicenseConfigsResponseHttpRequest: ...
             def list_next(
@@ -70,7 +70,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: GoogleCloudDiscoveryengineV1alphaAuthorization = ...,
-                    authorizationId: str = ...,
+                    authorizationId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudDiscoveryengineV1alphaAuthorizationHttpRequest: ...
                 def delete(
@@ -83,8 +83,8 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudDiscoveryengineV1alphaListAuthorizationsResponseHttpRequest: ...
                 def list_next(
@@ -100,7 +100,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: GoogleCloudDiscoveryengineV1alphaAuthorization = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudDiscoveryengineV1alphaAuthorizationHttpRequest: ...
 
@@ -122,7 +122,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: GoogleCloudDiscoveryengineV1alphaCmekConfig = ...,
-                    setDefault: bool = ...,
+                    setDefault: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
 
@@ -136,8 +136,8 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             parent: str,
-                            pageSize: int = ...,
-                            pageToken: str = ...,
+                            pageSize: int | None = ...,
+                            pageToken: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> GoogleCloudDiscoveryengineV1alphaListConnectorRunsResponseHttpRequest: ...
                         def list_next(
@@ -158,10 +158,10 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             name: str,
-                            filter: str = ...,
-                            pageSize: int = ...,
-                            pageToken: str = ...,
-                            returnPartialSuccess: bool = ...,
+                            filter: str | None = ...,
+                            pageSize: int | None = ...,
+                            pageToken: str | None = ...,
+                            returnPartialSuccess: bool | None = ...,
                             **kwargs: typing.Any,
                         ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
                         def list_next(
@@ -191,10 +191,11 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                         projectsId: str,
                         locationsId: str,
                         collectionsId: str,
-                        contentType: str = ...,
-                        data: str = ...,
+                        contentType: str | None = ...,
+                        data: str | None = ...,
                         extensions: dict[str, typing.Any]
-                        | _list[dict[str, typing.Any]] = ...,
+                        | _list[dict[str, typing.Any]]
+                        | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleApiHttpBodyHttpRequest: ...
                     def startConnectorRun(
@@ -224,8 +225,8 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                                     self,
                                     *,
                                     parent: str,
-                                    pageSize: int = ...,
-                                    pageToken: str = ...,
+                                    pageSize: int | None = ...,
+                                    pageToken: str | None = ...,
                                     **kwargs: typing.Any,
                                 ) -> GoogleCloudDiscoveryengineV1alphaListChunksResponseHttpRequest: ...
                                 def list_next(
@@ -242,7 +243,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                                 *,
                                 parent: str,
                                 body: GoogleCloudDiscoveryengineV1alphaDocument = ...,
-                                documentId: str = ...,
+                                documentId: str | None = ...,
                                 **kwargs: typing.Any,
                             ) -> (
                                 GoogleCloudDiscoveryengineV1alphaDocumentHttpRequest
@@ -259,17 +260,19 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                                 self,
                                 *,
                                 name: str,
-                                imageId: str = ...,
+                                imageId: str | None = ...,
                                 processedDocumentFormat: typing_extensions.Literal[
                                     "PROCESSED_DOCUMENT_FORMAT_UNSPECIFIED", "JSON"
-                                ] = ...,
+                                ]
+                                | None = ...,
                                 processedDocumentType: typing_extensions.Literal[
                                     "PROCESSED_DOCUMENT_TYPE_UNSPECIFIED",
                                     "PARSED_DOCUMENT",
                                     "CHUNKED_DOCUMENT",
                                     "IMAGE_CONVERTED_DOCUMENT",
                                     "IMAGE_BYTES",
-                                ] = ...,
+                                ]
+                                | None = ...,
                                 **kwargs: typing.Any,
                             ) -> GoogleCloudDiscoveryengineV1alphaProcessedDocumentHttpRequest: ...
                             def import_(
@@ -283,8 +286,8 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                                 self,
                                 *,
                                 parent: str,
-                                pageSize: int = ...,
-                                pageToken: str = ...,
+                                pageSize: int | None = ...,
+                                pageToken: str | None = ...,
                                 **kwargs: typing.Any,
                             ) -> GoogleCloudDiscoveryengineV1alphaListDocumentsResponseHttpRequest: ...
                             def list_next(
@@ -300,8 +303,8 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                                 *,
                                 name: str,
                                 body: GoogleCloudDiscoveryengineV1alphaDocument = ...,
-                                allowMissing: bool = ...,
-                                updateMask: str = ...,
+                                allowMissing: bool | None = ...,
+                                updateMask: str | None = ...,
                                 **kwargs: typing.Any,
                             ) -> (
                                 GoogleCloudDiscoveryengineV1alphaDocumentHttpRequest
@@ -331,10 +334,10 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                                 self,
                                 *,
                                 name: str,
-                                filter: str = ...,
-                                pageSize: int = ...,
-                                pageToken: str = ...,
-                                returnPartialSuccess: bool = ...,
+                                filter: str | None = ...,
+                                pageSize: int | None = ...,
+                                pageToken: str | None = ...,
+                                returnPartialSuccess: bool | None = ...,
                                 **kwargs: typing.Any,
                             ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
                             def list_next(
@@ -350,8 +353,10 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             parent: str,
-                            matcher_fhirMatcher_fhirResources: str | _list[str] = ...,
-                            matcher_urisMatcher_uris: str | _list[str] = ...,
+                            matcher_fhirMatcher_fhirResources: str
+                            | _list[str]
+                            | None = ...,
+                            matcher_urisMatcher_uris: str | _list[str] | None = ...,
                             **kwargs: typing.Any,
                         ) -> GoogleCloudDiscoveryengineV1alphaBatchGetDocumentsMetadataResponseHttpRequest: ...
                         def get(
@@ -362,7 +367,8 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                                 "BRANCH_VIEW_UNSPECIFIED",
                                 "BRANCH_VIEW_BASIC",
                                 "BRANCH_VIEW_FULL",
-                            ] = ...,
+                            ]
+                            | None = ...,
                             **kwargs: typing.Any,
                         ) -> GoogleCloudDiscoveryengineV1alphaBranchHttpRequest: ...
                         def list(
@@ -373,7 +379,8 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                                 "BRANCH_VIEW_UNSPECIFIED",
                                 "BRANCH_VIEW_BASIC",
                                 "BRANCH_VIEW_FULL",
-                            ] = ...,
+                            ]
+                            | None = ...,
                             **kwargs: typing.Any,
                         ) -> GoogleCloudDiscoveryengineV1alphaListBranchesResponseHttpRequest: ...
                         def documents(self) -> DocumentsResource: ...
@@ -415,7 +422,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             *,
                             parent: str,
                             body: GoogleCloudDiscoveryengineV1alphaControl = ...,
-                            controlId: str = ...,
+                            controlId: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> GoogleCloudDiscoveryengineV1alphaControlHttpRequest: ...
                         def delete(
@@ -428,9 +435,9 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             parent: str,
-                            filter: str = ...,
-                            pageSize: int = ...,
-                            pageToken: str = ...,
+                            filter: str | None = ...,
+                            pageSize: int | None = ...,
+                            pageToken: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> GoogleCloudDiscoveryengineV1alphaListControlsResponseHttpRequest: ...
                         def list_next(
@@ -446,7 +453,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             *,
                             name: str,
                             body: GoogleCloudDiscoveryengineV1alphaControl = ...,
-                            updateMask: str = ...,
+                            updateMask: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> GoogleCloudDiscoveryengineV1alphaControlHttpRequest: ...
 
@@ -480,10 +487,10 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             parent: str,
-                            filter: str = ...,
-                            orderBy: str = ...,
-                            pageSize: int = ...,
-                            pageToken: str = ...,
+                            filter: str | None = ...,
+                            orderBy: str | None = ...,
+                            pageSize: int | None = ...,
+                            pageToken: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> GoogleCloudDiscoveryengineV1alphaListConversationsResponseHttpRequest: ...
                         def list_next(
@@ -499,7 +506,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             *,
                             name: str,
                             body: GoogleCloudDiscoveryengineV1alphaConversation = ...,
-                            updateMask: str = ...,
+                            updateMask: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> (
                             GoogleCloudDiscoveryengineV1alphaConversationHttpRequest
@@ -522,10 +529,10 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                                 self,
                                 *,
                                 name: str,
-                                filter: str = ...,
-                                pageSize: int = ...,
-                                pageToken: str = ...,
-                                returnPartialSuccess: bool = ...,
+                                filter: str | None = ...,
+                                pageSize: int | None = ...,
+                                pageToken: str | None = ...,
+                                returnPartialSuccess: bool | None = ...,
                                 **kwargs: typing.Any,
                             ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
                             def list_next(
@@ -548,10 +555,10 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             name: str,
-                            filter: str = ...,
-                            pageSize: int = ...,
-                            pageToken: str = ...,
-                            returnPartialSuccess: bool = ...,
+                            filter: str | None = ...,
+                            pageSize: int | None = ...,
+                            pageToken: str | None = ...,
+                            returnPartialSuccess: bool | None = ...,
                             **kwargs: typing.Any,
                         ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
                         def list_next(
@@ -573,10 +580,10 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                                 self,
                                 *,
                                 name: str,
-                                filter: str = ...,
-                                pageSize: int = ...,
-                                pageToken: str = ...,
-                                returnPartialSuccess: bool = ...,
+                                filter: str | None = ...,
+                                pageSize: int | None = ...,
+                                pageToken: str | None = ...,
+                                returnPartialSuccess: bool | None = ...,
                                 **kwargs: typing.Any,
                             ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
                             def list_next(
@@ -593,7 +600,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             *,
                             parent: str,
                             body: GoogleCloudDiscoveryengineV1alphaSchema = ...,
-                            schemaId: str = ...,
+                            schemaId: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> GoogleLongrunningOperationHttpRequest: ...
                         def delete(
@@ -606,8 +613,8 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             parent: str,
-                            pageSize: int = ...,
-                            pageToken: str = ...,
+                            pageSize: int | None = ...,
+                            pageToken: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> GoogleCloudDiscoveryengineV1alphaListSchemasResponseHttpRequest: ...
                         def list_next(
@@ -623,7 +630,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             *,
                             name: str,
                             body: GoogleCloudDiscoveryengineV1alphaSchema = ...,
-                            allowMissing: bool = ...,
+                            allowMissing: bool | None = ...,
                             **kwargs: typing.Any,
                         ) -> GoogleLongrunningOperationHttpRequest: ...
                         def operations(self) -> OperationsResource: ...
@@ -642,7 +649,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             *,
                             parent: str,
                             body: GoogleCloudDiscoveryengineV1alphaServingConfig = ...,
-                            servingConfigId: str = ...,
+                            servingConfigId: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> (
                             GoogleCloudDiscoveryengineV1alphaServingConfigHttpRequest
@@ -659,8 +666,8 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             parent: str,
-                            pageSize: int = ...,
-                            pageToken: str = ...,
+                            pageSize: int | None = ...,
+                            pageToken: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> GoogleCloudDiscoveryengineV1alphaListServingConfigsResponseHttpRequest: ...
                         def list_next(
@@ -676,7 +683,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             *,
                             name: str,
                             body: GoogleCloudDiscoveryengineV1alphaServingConfig = ...,
-                            updateMask: str = ...,
+                            updateMask: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> (
                             GoogleCloudDiscoveryengineV1alphaServingConfigHttpRequest
@@ -743,7 +750,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             *,
                             parent: str,
                             body: GoogleCloudDiscoveryengineV1alphaSession = ...,
-                            sessionId: str = ...,
+                            sessionId: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> GoogleCloudDiscoveryengineV1alphaSessionHttpRequest: ...
                         def delete(
@@ -753,17 +760,17 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             name: str,
-                            includeAnswerDetails: bool = ...,
+                            includeAnswerDetails: bool | None = ...,
                             **kwargs: typing.Any,
                         ) -> GoogleCloudDiscoveryengineV1alphaSessionHttpRequest: ...
                         def list(
                             self,
                             *,
                             parent: str,
-                            filter: str = ...,
-                            orderBy: str = ...,
-                            pageSize: int = ...,
-                            pageToken: str = ...,
+                            filter: str | None = ...,
+                            orderBy: str | None = ...,
+                            pageSize: int | None = ...,
+                            pageToken: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> GoogleCloudDiscoveryengineV1alphaListSessionsResponseHttpRequest: ...
                         def list_next(
@@ -779,7 +786,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             *,
                             name: str,
                             body: GoogleCloudDiscoveryengineV1alphaSession = ...,
-                            updateMask: str = ...,
+                            updateMask: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> GoogleCloudDiscoveryengineV1alphaSessionHttpRequest: ...
                         def answers(self) -> AnswersResource: ...
@@ -795,10 +802,10 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                                 self,
                                 *,
                                 name: str,
-                                filter: str = ...,
-                                pageSize: int = ...,
-                                pageToken: str = ...,
-                                returnPartialSuccess: bool = ...,
+                                filter: str | None = ...,
+                                pageSize: int | None = ...,
+                                pageToken: str | None = ...,
+                                returnPartialSuccess: bool | None = ...,
                                 **kwargs: typing.Any,
                             ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
                             def list_next(
@@ -826,7 +833,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                                 self,
                                 *,
                                 parent: str,
-                                matcher_urisMatcher_uris: str | _list[str] = ...,
+                                matcher_urisMatcher_uris: str | _list[str] | None = ...,
                                 **kwargs: typing.Any,
                             ) -> GoogleCloudDiscoveryengineV1alphaFetchSitemapsResponseHttpRequest: ...
 
@@ -843,10 +850,10 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                                     self,
                                     *,
                                     name: str,
-                                    filter: str = ...,
-                                    pageSize: int = ...,
-                                    pageToken: str = ...,
-                                    returnPartialSuccess: bool = ...,
+                                    filter: str | None = ...,
+                                    pageSize: int | None = ...,
+                                    pageToken: str | None = ...,
+                                    returnPartialSuccess: bool | None = ...,
                                     **kwargs: typing.Any,
                                 ) -> (
                                     GoogleLongrunningListOperationsResponseHttpRequest
@@ -886,8 +893,8 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                                 self,
                                 *,
                                 parent: str,
-                                pageSize: int = ...,
-                                pageToken: str = ...,
+                                pageSize: int | None = ...,
+                                pageToken: str | None = ...,
                                 **kwargs: typing.Any,
                             ) -> GoogleCloudDiscoveryengineV1alphaListTargetSitesResponseHttpRequest: ...
                             def list_next(
@@ -932,8 +939,8 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             siteSearchEngine: str,
-                            pageSize: int = ...,
-                            pageToken: str = ...,
+                            pageSize: int | None = ...,
+                            pageToken: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> GoogleCloudDiscoveryengineV1alphaFetchDomainVerificationStatusResponseHttpRequest: ...
                         def fetchDomainVerificationStatus_next(
@@ -990,9 +997,9 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             parent: str,
-                            ets: str = ...,
-                            uri: str = ...,
-                            userEvent: str = ...,
+                            ets: str | None = ...,
+                            uri: str | None = ...,
+                            userEvent: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> GoogleApiHttpBodyHttpRequest: ...
                         def import_(
@@ -1014,7 +1021,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             *,
                             parent: str,
                             body: GoogleCloudDiscoveryengineV1alphaUserEvent = ...,
-                            writeAsync: bool = ...,
+                            writeAsync: bool | None = ...,
                             **kwargs: typing.Any,
                         ) -> GoogleCloudDiscoveryengineV1alphaUserEventHttpRequest: ...
 
@@ -1024,9 +1031,10 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             name: str,
-                            acceptCache: bool = ...,
-                            getWidgetConfigRequestOption_turnOffCollectionComponents: bool = ...,
-                            languageCode: str = ...,
+                            acceptCache: bool | None = ...,
+                            getWidgetConfigRequestOption_turnOffCollectionComponents: bool
+                            | None = ...,
+                            languageCode: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> (
                             GoogleCloudDiscoveryengineV1alphaWidgetConfigHttpRequest
@@ -1036,7 +1044,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             *,
                             name: str,
                             body: GoogleCloudDiscoveryengineV1alphaWidgetConfig = ...,
-                            updateMask: str = ...,
+                            updateMask: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> (
                             GoogleCloudDiscoveryengineV1alphaWidgetConfigHttpRequest
@@ -1053,10 +1061,10 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         dataStore: str,
-                        includeTailSuggestions: bool = ...,
-                        query: str = ...,
-                        queryModel: str = ...,
-                        userPseudoId: str = ...,
+                        includeTailSuggestions: bool | None = ...,
+                        query: str | None = ...,
+                        queryModel: str | None = ...,
+                        userPseudoId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudDiscoveryengineV1alphaCompleteQueryResponseHttpRequest: ...
                     def create(
@@ -1064,11 +1072,11 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: GoogleCloudDiscoveryengineV1alphaDataStore = ...,
-                        cmekConfigName: str = ...,
-                        createAdvancedSiteSearch: bool = ...,
-                        dataStoreId: str = ...,
-                        disableCmek: bool = ...,
-                        skipDefaultSchemaCreation: bool = ...,
+                        cmekConfigName: str | None = ...,
+                        createAdvancedSiteSearch: bool | None = ...,
+                        dataStoreId: str | None = ...,
+                        disableCmek: bool | None = ...,
+                        skipDefaultSchemaCreation: bool | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
                     def delete(
@@ -1101,9 +1109,9 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        filter: str = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        filter: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudDiscoveryengineV1alphaListDataStoresResponseHttpRequest: ...
                     def list_next(
@@ -1119,7 +1127,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: GoogleCloudDiscoveryengineV1alphaDataStore = ...,
-                        updateMask: str = ...,
+                        updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudDiscoveryengineV1alphaDataStoreHttpRequest: ...
                     def removePatientFilter(
@@ -1148,7 +1156,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: GoogleCloudDiscoveryengineV1alphaCompletionConfig = ...,
-                        updateMask: str = ...,
+                        updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> (
                         GoogleCloudDiscoveryengineV1alphaCompletionConfigHttpRequest
@@ -1158,7 +1166,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfig = ...,
-                        updateMask: str = ...,
+                        updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigHttpRequest: ...
                     def branches(self) -> BranchesResource: ...
@@ -1202,7 +1210,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             *,
                             name: str,
                             body: GoogleCloudDiscoveryengineV1alphaAnalyticsConfig = ...,
-                            updateMask: str = ...,
+                            updateMask: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> (
                             GoogleCloudDiscoveryengineV1alphaAnalyticsConfigHttpRequest
@@ -1247,10 +1255,10 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                                 self,
                                 *,
                                 parent: str,
-                                filter: str = ...,
-                                orderBy: str = ...,
-                                pageSize: int = ...,
-                                pageToken: str = ...,
+                                filter: str | None = ...,
+                                orderBy: str | None = ...,
+                                pageSize: int | None = ...,
+                                pageToken: str | None = ...,
                                 **kwargs: typing.Any,
                             ) -> GoogleCloudDiscoveryengineV1alphaListAgentsResponseHttpRequest: ...
                             def list_next(
@@ -1266,7 +1274,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                                 *,
                                 name: str,
                                 body: GoogleCloudDiscoveryengineV1alphaAgent = ...,
-                                updateMask: str = ...,
+                                updateMask: str | None = ...,
                                 **kwargs: typing.Any,
                             ) -> GoogleCloudDiscoveryengineV1alphaAgentHttpRequest: ...
                             def files(self) -> FilesResource: ...
@@ -1279,7 +1287,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                                 *,
                                 parent: str,
                                 body: GoogleCloudDiscoveryengineV1alphaCannedQuery = ...,
-                                cannedQueryId: str = ...,
+                                cannedQueryId: str | None = ...,
                                 **kwargs: typing.Any,
                             ) -> (
                                 GoogleCloudDiscoveryengineV1alphaCannedQueryHttpRequest
@@ -1296,9 +1304,9 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                                 self,
                                 *,
                                 parent: str,
-                                filter: str = ...,
-                                pageSize: int = ...,
-                                pageToken: str = ...,
+                                filter: str | None = ...,
+                                pageSize: int | None = ...,
+                                pageToken: str | None = ...,
                                 **kwargs: typing.Any,
                             ) -> GoogleCloudDiscoveryengineV1alphaListCannedQueriesResponseHttpRequest: ...
                             def list_next(
@@ -1314,7 +1322,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                                 *,
                                 name: str,
                                 body: GoogleCloudDiscoveryengineV1alphaCannedQuery = ...,
-                                updateMask: str = ...,
+                                updateMask: str | None = ...,
                                 **kwargs: typing.Any,
                             ) -> (
                                 GoogleCloudDiscoveryengineV1alphaCannedQueryHttpRequest
@@ -1325,7 +1333,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             *,
                             parent: str,
                             body: GoogleCloudDiscoveryengineV1alphaAssistant = ...,
-                            assistantId: str = ...,
+                            assistantId: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> GoogleCloudDiscoveryengineV1alphaAssistantHttpRequest: ...
                         def delete(
@@ -1338,8 +1346,8 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             parent: str,
-                            pageSize: int = ...,
-                            pageToken: str = ...,
+                            pageSize: int | None = ...,
+                            pageToken: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> GoogleCloudDiscoveryengineV1alphaListAssistantsResponseHttpRequest: ...
                         def list_next(
@@ -1355,7 +1363,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             *,
                             name: str,
                             body: GoogleCloudDiscoveryengineV1alphaAssistant = ...,
-                            updateMask: str = ...,
+                            updateMask: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> GoogleCloudDiscoveryengineV1alphaAssistantHttpRequest: ...
                         def streamAssist(
@@ -1392,7 +1400,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             *,
                             parent: str,
                             body: GoogleCloudDiscoveryengineV1alphaControl = ...,
-                            controlId: str = ...,
+                            controlId: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> GoogleCloudDiscoveryengineV1alphaControlHttpRequest: ...
                         def delete(
@@ -1405,9 +1413,9 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             parent: str,
-                            filter: str = ...,
-                            pageSize: int = ...,
-                            pageToken: str = ...,
+                            filter: str | None = ...,
+                            pageSize: int | None = ...,
+                            pageToken: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> GoogleCloudDiscoveryengineV1alphaListControlsResponseHttpRequest: ...
                         def list_next(
@@ -1423,7 +1431,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             *,
                             name: str,
                             body: GoogleCloudDiscoveryengineV1alphaControl = ...,
-                            updateMask: str = ...,
+                            updateMask: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> GoogleCloudDiscoveryengineV1alphaControlHttpRequest: ...
 
@@ -1457,10 +1465,10 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             parent: str,
-                            filter: str = ...,
-                            orderBy: str = ...,
-                            pageSize: int = ...,
-                            pageToken: str = ...,
+                            filter: str | None = ...,
+                            orderBy: str | None = ...,
+                            pageSize: int | None = ...,
+                            pageToken: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> GoogleCloudDiscoveryengineV1alphaListConversationsResponseHttpRequest: ...
                         def list_next(
@@ -1476,7 +1484,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             *,
                             name: str,
                             body: GoogleCloudDiscoveryengineV1alphaConversation = ...,
-                            updateMask: str = ...,
+                            updateMask: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> (
                             GoogleCloudDiscoveryengineV1alphaConversationHttpRequest
@@ -1491,10 +1499,10 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             name: str,
-                            filter: str = ...,
-                            pageSize: int = ...,
-                            pageToken: str = ...,
-                            returnPartialSuccess: bool = ...,
+                            filter: str | None = ...,
+                            pageSize: int | None = ...,
+                            pageToken: str | None = ...,
+                            returnPartialSuccess: bool | None = ...,
                             **kwargs: typing.Any,
                         ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
                         def list_next(
@@ -1519,7 +1527,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             *,
                             parent: str,
                             body: GoogleCloudDiscoveryengineV1alphaServingConfig = ...,
-                            servingConfigId: str = ...,
+                            servingConfigId: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> (
                             GoogleCloudDiscoveryengineV1alphaServingConfigHttpRequest
@@ -1536,8 +1544,8 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             parent: str,
-                            pageSize: int = ...,
-                            pageToken: str = ...,
+                            pageSize: int | None = ...,
+                            pageToken: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> GoogleCloudDiscoveryengineV1alphaListServingConfigsResponseHttpRequest: ...
                         def list_next(
@@ -1553,7 +1561,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             *,
                             name: str,
                             body: GoogleCloudDiscoveryengineV1alphaServingConfig = ...,
-                            updateMask: str = ...,
+                            updateMask: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> (
                             GoogleCloudDiscoveryengineV1alphaServingConfigHttpRequest
@@ -1635,10 +1643,10 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                                 self,
                                 *,
                                 parent: str,
-                                filter: str = ...,
-                                orderBy: str = ...,
-                                pageSize: int = ...,
-                                pageToken: str = ...,
+                                filter: str | None = ...,
+                                orderBy: str | None = ...,
+                                pageSize: int | None = ...,
+                                pageToken: str | None = ...,
                                 **kwargs: typing.Any,
                             ) -> GoogleCloudDiscoveryengineV1alphaListFilesResponseHttpRequest: ...
                             def list_next(
@@ -1661,7 +1669,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             *,
                             parent: str,
                             body: GoogleCloudDiscoveryengineV1alphaSession = ...,
-                            sessionId: str = ...,
+                            sessionId: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> GoogleCloudDiscoveryengineV1alphaSessionHttpRequest: ...
                         def delete(
@@ -1671,17 +1679,17 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             name: str,
-                            includeAnswerDetails: bool = ...,
+                            includeAnswerDetails: bool | None = ...,
                             **kwargs: typing.Any,
                         ) -> GoogleCloudDiscoveryengineV1alphaSessionHttpRequest: ...
                         def list(
                             self,
                             *,
                             parent: str,
-                            filter: str = ...,
-                            orderBy: str = ...,
-                            pageSize: int = ...,
-                            pageToken: str = ...,
+                            filter: str | None = ...,
+                            orderBy: str | None = ...,
+                            pageSize: int | None = ...,
+                            pageToken: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> GoogleCloudDiscoveryengineV1alphaListSessionsResponseHttpRequest: ...
                         def list_next(
@@ -1697,7 +1705,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             *,
                             name: str,
                             body: GoogleCloudDiscoveryengineV1alphaSession = ...,
-                            updateMask: str = ...,
+                            updateMask: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> GoogleCloudDiscoveryengineV1alphaSessionHttpRequest: ...
                         def alphaEvolveExperiments(
@@ -1713,9 +1721,10 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             name: str,
-                            acceptCache: bool = ...,
-                            getWidgetConfigRequestOption_turnOffCollectionComponents: bool = ...,
-                            languageCode: str = ...,
+                            acceptCache: bool | None = ...,
+                            getWidgetConfigRequestOption_turnOffCollectionComponents: bool
+                            | None = ...,
+                            languageCode: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> (
                             GoogleCloudDiscoveryengineV1alphaWidgetConfigHttpRequest
@@ -1725,7 +1734,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             *,
                             name: str,
                             body: GoogleCloudDiscoveryengineV1alphaWidgetConfig = ...,
-                            updateMask: str = ...,
+                            updateMask: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> (
                             GoogleCloudDiscoveryengineV1alphaWidgetConfigHttpRequest
@@ -1736,7 +1745,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: GoogleCloudDiscoveryengineV1alphaEngine = ...,
-                        engineId: str = ...,
+                        engineId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
                     def delete(
@@ -1754,7 +1763,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         resource: str,
-                        options_requestedPolicyVersion: int = ...,
+                        options_requestedPolicyVersion: int | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleIamV1PolicyHttpRequest: ...
                     def getWorkspaceSettings(
@@ -1766,9 +1775,9 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        filter: str = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        filter: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> (
                         GoogleCloudDiscoveryengineV1alphaListEnginesResponseHttpRequest
@@ -1786,7 +1795,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: GoogleCloudDiscoveryengineV1alphaEngine = ...,
-                        updateMask: str = ...,
+                        updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudDiscoveryengineV1alphaEngineHttpRequest: ...
                     def pause(
@@ -1822,7 +1831,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: GoogleCloudDiscoveryengineV1alphaCompletionConfig = ...,
-                        updateMask: str = ...,
+                        updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> (
                         GoogleCloudDiscoveryengineV1alphaCompletionConfigHttpRequest
@@ -1846,10 +1855,10 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        filter: str = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
-                        returnPartialSuccess: bool = ...,
+                        filter: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
+                        returnPartialSuccess: bool | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
                     def list_next(
@@ -1871,9 +1880,9 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> (
                     GoogleCloudDiscoveryengineV1alphaListCollectionsResponseHttpRequest
@@ -1891,7 +1900,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: GoogleCloudDiscoveryengineV1alphaCollection = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def updateDataConnector(
@@ -1899,7 +1908,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: GoogleCloudDiscoveryengineV1alphaDataConnector = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudDiscoveryengineV1alphaDataConnectorHttpRequest: ...
                 def dataConnector(self) -> DataConnectorResource: ...
@@ -1922,8 +1931,8 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                                 self,
                                 *,
                                 parent: str,
-                                pageSize: int = ...,
-                                pageToken: str = ...,
+                                pageSize: int | None = ...,
+                                pageToken: str | None = ...,
                                 **kwargs: typing.Any,
                             ) -> GoogleCloudDiscoveryengineV1alphaListChunksResponseHttpRequest: ...
                             def list_next(
@@ -1940,7 +1949,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             *,
                             parent: str,
                             body: GoogleCloudDiscoveryengineV1alphaDocument = ...,
-                            documentId: str = ...,
+                            documentId: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> GoogleCloudDiscoveryengineV1alphaDocumentHttpRequest: ...
                         def delete(
@@ -1953,17 +1962,19 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             name: str,
-                            imageId: str = ...,
+                            imageId: str | None = ...,
                             processedDocumentFormat: typing_extensions.Literal[
                                 "PROCESSED_DOCUMENT_FORMAT_UNSPECIFIED", "JSON"
-                            ] = ...,
+                            ]
+                            | None = ...,
                             processedDocumentType: typing_extensions.Literal[
                                 "PROCESSED_DOCUMENT_TYPE_UNSPECIFIED",
                                 "PARSED_DOCUMENT",
                                 "CHUNKED_DOCUMENT",
                                 "IMAGE_CONVERTED_DOCUMENT",
                                 "IMAGE_BYTES",
-                            ] = ...,
+                            ]
+                            | None = ...,
                             **kwargs: typing.Any,
                         ) -> GoogleCloudDiscoveryengineV1alphaProcessedDocumentHttpRequest: ...
                         def import_(
@@ -1977,8 +1988,8 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             parent: str,
-                            pageSize: int = ...,
-                            pageToken: str = ...,
+                            pageSize: int | None = ...,
+                            pageToken: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> GoogleCloudDiscoveryengineV1alphaListDocumentsResponseHttpRequest: ...
                         def list_next(
@@ -1994,8 +2005,8 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             *,
                             name: str,
                             body: GoogleCloudDiscoveryengineV1alphaDocument = ...,
-                            allowMissing: bool = ...,
-                            updateMask: str = ...,
+                            allowMissing: bool | None = ...,
+                            updateMask: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> GoogleCloudDiscoveryengineV1alphaDocumentHttpRequest: ...
                         def purge(
@@ -2023,10 +2034,10 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             name: str,
-                            filter: str = ...,
-                            pageSize: int = ...,
-                            pageToken: str = ...,
-                            returnPartialSuccess: bool = ...,
+                            filter: str | None = ...,
+                            pageSize: int | None = ...,
+                            pageToken: str | None = ...,
+                            returnPartialSuccess: bool | None = ...,
                             **kwargs: typing.Any,
                         ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
                         def list_next(
@@ -2041,8 +2052,10 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        matcher_fhirMatcher_fhirResources: str | _list[str] = ...,
-                        matcher_urisMatcher_uris: str | _list[str] = ...,
+                        matcher_fhirMatcher_fhirResources: str
+                        | _list[str]
+                        | None = ...,
+                        matcher_urisMatcher_uris: str | _list[str] | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudDiscoveryengineV1alphaBatchGetDocumentsMetadataResponseHttpRequest: ...
                     def get(
@@ -2053,7 +2066,8 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             "BRANCH_VIEW_UNSPECIFIED",
                             "BRANCH_VIEW_BASIC",
                             "BRANCH_VIEW_FULL",
-                        ] = ...,
+                        ]
+                        | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudDiscoveryengineV1alphaBranchHttpRequest: ...
                     def list(
@@ -2064,7 +2078,8 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             "BRANCH_VIEW_UNSPECIFIED",
                             "BRANCH_VIEW_BASIC",
                             "BRANCH_VIEW_FULL",
-                        ] = ...,
+                        ]
+                        | None = ...,
                         **kwargs: typing.Any,
                     ) -> (
                         GoogleCloudDiscoveryengineV1alphaListBranchesResponseHttpRequest
@@ -2106,7 +2121,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: GoogleCloudDiscoveryengineV1alphaControl = ...,
-                        controlId: str = ...,
+                        controlId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudDiscoveryengineV1alphaControlHttpRequest: ...
                     def delete(
@@ -2119,9 +2134,9 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        filter: str = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        filter: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> (
                         GoogleCloudDiscoveryengineV1alphaListControlsResponseHttpRequest
@@ -2139,7 +2154,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: GoogleCloudDiscoveryengineV1alphaControl = ...,
-                        updateMask: str = ...,
+                        updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudDiscoveryengineV1alphaControlHttpRequest: ...
 
@@ -2169,10 +2184,10 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        filter: str = ...,
-                        orderBy: str = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        filter: str | None = ...,
+                        orderBy: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudDiscoveryengineV1alphaListConversationsResponseHttpRequest: ...
                     def list_next(
@@ -2188,7 +2203,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: GoogleCloudDiscoveryengineV1alphaConversation = ...,
-                        updateMask: str = ...,
+                        updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudDiscoveryengineV1alphaConversationHttpRequest: ...
 
@@ -2203,10 +2218,10 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             name: str,
-                            filter: str = ...,
-                            pageSize: int = ...,
-                            pageToken: str = ...,
-                            returnPartialSuccess: bool = ...,
+                            filter: str | None = ...,
+                            pageSize: int | None = ...,
+                            pageToken: str | None = ...,
+                            returnPartialSuccess: bool | None = ...,
                             **kwargs: typing.Any,
                         ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
                         def list_next(
@@ -2228,10 +2243,10 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        filter: str = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
-                        returnPartialSuccess: bool = ...,
+                        filter: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
+                        returnPartialSuccess: bool | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
                     def list_next(
@@ -2247,7 +2262,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: GoogleCloudDiscoveryengineV1alphaSchema = ...,
-                        schemaId: str = ...,
+                        schemaId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
                     def delete(
@@ -2260,8 +2275,8 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> (
                         GoogleCloudDiscoveryengineV1alphaListSchemasResponseHttpRequest
@@ -2279,7 +2294,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: GoogleCloudDiscoveryengineV1alphaSchema = ...,
-                        allowMissing: bool = ...,
+                        allowMissing: bool | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
 
@@ -2299,7 +2314,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: GoogleCloudDiscoveryengineV1alphaServingConfig = ...,
-                        servingConfigId: str = ...,
+                        servingConfigId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudDiscoveryengineV1alphaServingConfigHttpRequest: ...
                     def delete(
@@ -2312,8 +2327,8 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudDiscoveryengineV1alphaListServingConfigsResponseHttpRequest: ...
                     def list_next(
@@ -2329,7 +2344,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: GoogleCloudDiscoveryengineV1alphaServingConfig = ...,
-                        updateMask: str = ...,
+                        updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudDiscoveryengineV1alphaServingConfigHttpRequest: ...
                     def recommend(
@@ -2394,7 +2409,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: GoogleCloudDiscoveryengineV1alphaSession = ...,
-                        sessionId: str = ...,
+                        sessionId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudDiscoveryengineV1alphaSessionHttpRequest: ...
                     def delete(
@@ -2404,17 +2419,17 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        includeAnswerDetails: bool = ...,
+                        includeAnswerDetails: bool | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudDiscoveryengineV1alphaSessionHttpRequest: ...
                     def list(
                         self,
                         *,
                         parent: str,
-                        filter: str = ...,
-                        orderBy: str = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        filter: str | None = ...,
+                        orderBy: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> (
                         GoogleCloudDiscoveryengineV1alphaListSessionsResponseHttpRequest
@@ -2432,7 +2447,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: GoogleCloudDiscoveryengineV1alphaSession = ...,
-                        updateMask: str = ...,
+                        updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudDiscoveryengineV1alphaSessionHttpRequest: ...
                     def answers(self) -> AnswersResource: ...
@@ -2455,7 +2470,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             parent: str,
-                            matcher_urisMatcher_uris: str | _list[str] = ...,
+                            matcher_urisMatcher_uris: str | _list[str] | None = ...,
                             **kwargs: typing.Any,
                         ) -> GoogleCloudDiscoveryengineV1alphaFetchSitemapsResponseHttpRequest: ...
 
@@ -2485,8 +2500,8 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             parent: str,
-                            pageSize: int = ...,
-                            pageToken: str = ...,
+                            pageSize: int | None = ...,
+                            pageToken: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> GoogleCloudDiscoveryengineV1alphaListTargetSitesResponseHttpRequest: ...
                         def list_next(
@@ -2554,9 +2569,9 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        ets: str = ...,
-                        uri: str = ...,
-                        userEvent: str = ...,
+                        ets: str | None = ...,
+                        uri: str | None = ...,
+                        userEvent: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleApiHttpBodyHttpRequest: ...
                     def import_(
@@ -2578,7 +2593,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: GoogleCloudDiscoveryengineV1alphaUserEvent = ...,
-                        writeAsync: bool = ...,
+                        writeAsync: bool | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudDiscoveryengineV1alphaUserEventHttpRequest: ...
 
@@ -2588,9 +2603,10 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        acceptCache: bool = ...,
-                        getWidgetConfigRequestOption_turnOffCollectionComponents: bool = ...,
-                        languageCode: str = ...,
+                        acceptCache: bool | None = ...,
+                        getWidgetConfigRequestOption_turnOffCollectionComponents: bool
+                        | None = ...,
+                        languageCode: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudDiscoveryengineV1alphaWidgetConfigHttpRequest: ...
                     def patch(
@@ -2598,7 +2614,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: GoogleCloudDiscoveryengineV1alphaWidgetConfig = ...,
-                        updateMask: str = ...,
+                        updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudDiscoveryengineV1alphaWidgetConfigHttpRequest: ...
 
@@ -2613,10 +2629,10 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     dataStore: str,
-                    includeTailSuggestions: bool = ...,
-                    query: str = ...,
-                    queryModel: str = ...,
-                    userPseudoId: str = ...,
+                    includeTailSuggestions: bool | None = ...,
+                    query: str | None = ...,
+                    queryModel: str | None = ...,
+                    userPseudoId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> (
                     GoogleCloudDiscoveryengineV1alphaCompleteQueryResponseHttpRequest
@@ -2626,11 +2642,11 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: GoogleCloudDiscoveryengineV1alphaDataStore = ...,
-                    cmekConfigName: str = ...,
-                    createAdvancedSiteSearch: bool = ...,
-                    dataStoreId: str = ...,
-                    disableCmek: bool = ...,
-                    skipDefaultSchemaCreation: bool = ...,
+                    cmekConfigName: str | None = ...,
+                    createAdvancedSiteSearch: bool | None = ...,
+                    dataStoreId: str | None = ...,
+                    disableCmek: bool | None = ...,
+                    skipDefaultSchemaCreation: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def delete(
@@ -2661,9 +2677,9 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> (
                     GoogleCloudDiscoveryengineV1alphaListDataStoresResponseHttpRequest
@@ -2681,7 +2697,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: GoogleCloudDiscoveryengineV1alphaDataStore = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudDiscoveryengineV1alphaDataStoreHttpRequest: ...
                 def removePatientFilter(
@@ -2703,7 +2719,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: GoogleCloudDiscoveryengineV1alphaCompletionConfig = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudDiscoveryengineV1alphaCompletionConfigHttpRequest: ...
                 def updateDocumentProcessingConfig(
@@ -2711,7 +2727,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfig = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> (
                     GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigHttpRequest
@@ -2755,8 +2771,8 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> (
                     GoogleCloudDiscoveryengineV1alphaListEvaluationsResponseHttpRequest
@@ -2773,8 +2789,8 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     evaluation: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudDiscoveryengineV1alphaListEvaluationResultsResponseHttpRequest: ...
                 def listResults_next(
@@ -2810,10 +2826,10 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        filter: str = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
-                        returnPartialSuccess: bool = ...,
+                        filter: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
+                        returnPartialSuccess: bool | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
                     def list_next(
@@ -2827,9 +2843,9 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: GoogleCloudDiscoveryengineV1alphaIdentityMappingStore = ...,
-                    cmekConfigName: str = ...,
-                    disableCmek: bool = ...,
-                    identityMappingStoreId: str = ...,
+                    cmekConfigName: str | None = ...,
+                    disableCmek: bool | None = ...,
+                    identityMappingStoreId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> (
                     GoogleCloudDiscoveryengineV1alphaIdentityMappingStoreHttpRequest
@@ -2853,8 +2869,8 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudDiscoveryengineV1alphaListIdentityMappingStoresResponseHttpRequest: ...
                 def list_next(
@@ -2869,8 +2885,8 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     identityMappingStore: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudDiscoveryengineV1alphaListIdentityMappingsResponseHttpRequest: ...
                 def listIdentityMappings_next(
@@ -2897,7 +2913,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: GoogleCloudDiscoveryengineV1alphaLicenseConfig = ...,
-                    licenseConfigId: str = ...,
+                    licenseConfigId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudDiscoveryengineV1alphaLicenseConfigHttpRequest: ...
                 def get(
@@ -2907,9 +2923,9 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudDiscoveryengineV1alphaListLicenseConfigsResponseHttpRequest: ...
                 def list_next(
@@ -2925,7 +2941,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: GoogleCloudDiscoveryengineV1alphaLicenseConfig = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudDiscoveryengineV1alphaLicenseConfigHttpRequest: ...
 
@@ -2985,8 +3001,8 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudNotebooklmV1alphaListRecentlyViewedNotebooksResponseHttpRequest: ...
                 def listRecentlyViewed_next(
@@ -3016,10 +3032,10 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    returnPartialSuccess: bool = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    returnPartialSuccess: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
                 def list_next(
@@ -3075,7 +3091,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: GoogleCloudDiscoveryengineV1alphaSampleQuery = ...,
-                        sampleQueryId: str = ...,
+                        sampleQueryId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudDiscoveryengineV1alphaSampleQueryHttpRequest: ...
                     def delete(
@@ -3095,8 +3111,8 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudDiscoveryengineV1alphaListSampleQueriesResponseHttpRequest: ...
                     def list_next(
@@ -3112,7 +3128,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: GoogleCloudDiscoveryengineV1alphaSampleQuery = ...,
-                        updateMask: str = ...,
+                        updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudDiscoveryengineV1alphaSampleQueryHttpRequest: ...
 
@@ -3121,7 +3137,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: GoogleCloudDiscoveryengineV1alphaSampleQuerySet = ...,
-                    sampleQuerySetId: str = ...,
+                    sampleQuerySetId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudDiscoveryengineV1alphaSampleQuerySetHttpRequest: ...
                 def delete(
@@ -3134,8 +3150,8 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudDiscoveryengineV1alphaListSampleQuerySetsResponseHttpRequest: ...
                 def list_next(
@@ -3151,7 +3167,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: GoogleCloudDiscoveryengineV1alphaSampleQuerySet = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudDiscoveryengineV1alphaSampleQuerySetHttpRequest: ...
                 def operations(self) -> OperationsResource: ...
@@ -3163,9 +3179,9 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    ets: str = ...,
-                    uri: str = ...,
-                    userEvent: str = ...,
+                    ets: str | None = ...,
+                    uri: str | None = ...,
+                    userEvent: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleApiHttpBodyHttpRequest: ...
                 def import_(
@@ -3180,7 +3196,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: GoogleCloudDiscoveryengineV1alphaUserEvent = ...,
-                    writeAsync: bool = ...,
+                    writeAsync: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudDiscoveryengineV1alphaUserEventHttpRequest: ...
 
@@ -3203,10 +3219,10 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        filter: str = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
-                        returnPartialSuccess: bool = ...,
+                        filter: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
+                        returnPartialSuccess: bool | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
                     def list_next(
@@ -3221,10 +3237,10 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        filter: str = ...,
-                        orderBy: str = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        filter: str | None = ...,
+                        orderBy: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudDiscoveryengineV1alphaListUserLicensesResponseHttpRequest: ...
                     def list_next(
@@ -3251,7 +3267,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: GoogleCloudDiscoveryengineV1alphaUserStore = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudDiscoveryengineV1alphaUserStoreHttpRequest: ...
                 def licenseConfigsUsageStats(
@@ -3266,10 +3282,11 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                 parent: str,
                 entityTypeFilter: typing_extensions.Literal[
                     "ENTITY_TYPE_FILTER_UNSPECIFIED", "USERS", "GROUPS"
-                ] = ...,
-                maxSuggestions: int = ...,
-                prefixQuery: str = ...,
-                useScimIdentities: bool = ...,
+                ]
+                | None = ...,
+                maxSuggestions: int | None = ...,
+                prefixQuery: str | None = ...,
+                useScimIdentities: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudDiscoveryengineV1alphaCompleteExternalIdentitiesResponseHttpRequest: ...
             def estimateDataSize(
@@ -3316,13 +3333,14 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                         "DAILY_SEARCH_REQUEST",
                         "TOTAL_STORAGE",
                     ]
-                ] = ...,
-                timeRange_endDate_day: int = ...,
-                timeRange_endDate_month: int = ...,
-                timeRange_endDate_year: int = ...,
-                timeRange_startDate_day: int = ...,
-                timeRange_startDate_month: int = ...,
-                timeRange_startDate_year: int = ...,
+                ]
+                | None = ...,
+                timeRange_endDate_day: int | None = ...,
+                timeRange_endDate_month: int | None = ...,
+                timeRange_endDate_year: int | None = ...,
+                timeRange_startDate_day: int | None = ...,
+                timeRange_startDate_month: int | None = ...,
+                timeRange_startDate_year: int | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudDiscoveryengineV1alphaQueryConfigurablePricingUsageStatsResponseHttpRequest: ...
             def removeDedicatedCrawlRate(
@@ -3351,8 +3369,8 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: GoogleCloudDiscoveryengineV1alphaDataConnector = ...,
-                collectionDisplayName: str = ...,
-                collectionId: str = ...,
+                collectionDisplayName: str | None = ...,
+                collectionId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleLongrunningOperationHttpRequest: ...
             def updateAclConfig(
@@ -3367,7 +3385,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: GoogleCloudDiscoveryengineV1alphaCmekConfig = ...,
-                setDefault: bool = ...,
+                setDefault: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleLongrunningOperationHttpRequest: ...
             def authorizations(self) -> AuthorizationsResource: ...
@@ -3396,10 +3414,10 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
-                returnPartialSuccess: bool = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
+                returnPartialSuccess: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
             def list_next(
@@ -3416,7 +3434,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
             *,
             name: str,
             body: GoogleCloudDiscoveryengineV1alphaProject = ...,
-            updateMask: str = ...,
+            updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> GoogleCloudDiscoveryengineV1alphaProjectHttpRequest: ...
         def provision(

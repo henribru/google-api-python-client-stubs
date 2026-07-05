@@ -19,9 +19,9 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             self,
             *,
             scope: str,
-            pageSize: int = ...,
-            pageToken: str = ...,
-            query: str = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            query: str | None = ...,
             **kwargs: typing.Any,
         ) -> SearchAllIamPoliciesResponseHttpRequest: ...
         def searchAll_next(
@@ -36,11 +36,11 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             self,
             *,
             scope: str,
-            assetTypes: str | _list[str] = ...,
-            orderBy: str = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
-            query: str = ...,
+            assetTypes: str | _list[str] | None = ...,
+            orderBy: str | None = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            query: str | None = ...,
             **kwargs: typing.Any,
         ) -> SearchAllResourcesResponseHttpRequest: ...
         def searchAll_next(

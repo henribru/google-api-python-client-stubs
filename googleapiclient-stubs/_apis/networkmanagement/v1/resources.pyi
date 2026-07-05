@@ -38,10 +38,10 @@ class NetworkManagementResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        filter: str = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
-                        returnPartialSuccess: bool = ...,
+                        filter: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
+                        returnPartialSuccess: bool | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListOperationsResponseHttpRequest: ...
                     def list_next(
@@ -59,7 +59,7 @@ class NetworkManagementResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: VpcFlowLogsConfig = ...,
-                    vpcFlowLogsConfigId: str = ...,
+                    vpcFlowLogsConfigId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
@@ -72,10 +72,10 @@ class NetworkManagementResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    orderBy: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListVpcFlowLogsConfigsResponseHttpRequest: ...
                 def list_next(
@@ -88,7 +88,7 @@ class NetworkManagementResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: VpcFlowLogsConfig = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
 
@@ -99,10 +99,10 @@ class NetworkManagementResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                extraLocationTypes: str | _list[str] = ...,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                extraLocationTypes: str | _list[str] | None = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListLocationsResponseHttpRequest: ...
             def list_next(
@@ -128,7 +128,7 @@ class NetworkManagementResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: ConnectivityTest = ...,
-                        testId: str = ...,
+                        testId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def delete(
@@ -141,17 +141,17 @@ class NetworkManagementResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         resource: str,
-                        options_requestedPolicyVersion: int = ...,
+                        options_requestedPolicyVersion: int | None = ...,
                         **kwargs: typing.Any,
                     ) -> PolicyHttpRequest: ...
                     def list(
                         self,
                         *,
                         parent: str,
-                        filter: str = ...,
-                        orderBy: str = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        filter: str | None = ...,
+                        orderBy: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListConnectivityTestsResponseHttpRequest: ...
                     def list_next(
@@ -164,7 +164,7 @@ class NetworkManagementResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: ConnectivityTest = ...,
-                        updateMask: str = ...,
+                        updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def rerun(
@@ -208,10 +208,10 @@ class NetworkManagementResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        filter: str = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
-                        returnPartialSuccess: bool = ...,
+                        filter: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
+                        returnPartialSuccess: bool | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListOperationsResponseHttpRequest: ...
                     def list_next(
@@ -233,7 +233,7 @@ class NetworkManagementResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        hostname: str = ...,
+                        hostname: str | None = ...,
                         monitoringPointType: typing_extensions.Literal[
                             "MONITORING_POINT_TYPE_UNSPECIFIED",
                             "CONTAINER",
@@ -243,24 +243,29 @@ class NetworkManagementResource(googleapiclient.discovery.Resource):
                             "GCE_VM",
                             "AZURE_VM",
                             "AWS_EC2",
-                        ] = ...,
-                        ntpServerAddress: str = ...,
-                        ntpServerSecondaryAddress: str = ...,
-                        privateConnectivityEnabled: bool = ...,
-                        staticIpAddress_dnsServerAddress: str = ...,
-                        staticIpAddress_dnsServerSecondaryAddress: str = ...,
-                        staticIpAddress_domain: str = ...,
-                        staticIpAddress_gatewayAddress: str = ...,
-                        staticIpAddress_ipAddress: str = ...,
-                        staticIpAddress_netmask: str = ...,
-                        timeZone_id: str = ...,
-                        timeZone_version: str = ...,
-                        useDhcp: bool = ...,
-                        x_password: str = ...,
+                        ]
+                        | None = ...,
+                        ntpServerAddress: str | None = ...,
+                        ntpServerSecondaryAddress: str | None = ...,
+                        privateConnectivityEnabled: bool | None = ...,
+                        staticIpAddress_dnsServerAddress: str | None = ...,
+                        staticIpAddress_dnsServerSecondaryAddress: str | None = ...,
+                        staticIpAddress_domain: str | None = ...,
+                        staticIpAddress_gatewayAddress: str | None = ...,
+                        staticIpAddress_ipAddress: str | None = ...,
+                        staticIpAddress_netmask: str | None = ...,
+                        timeZone_id: str | None = ...,
+                        timeZone_version: str | None = ...,
+                        useDhcp: bool | None = ...,
+                        x_password: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> HttpBodyHttpRequest: ...
                     def downloadRecreateInstallScript(
-                        self, *, name: str, hostname: str = ..., **kwargs: typing.Any
+                        self,
+                        *,
+                        name: str,
+                        hostname: str | None = ...,
+                        **kwargs: typing.Any,
                     ) -> HttpBodyHttpRequest: ...
                     def downloadServerConnectConfig(
                         self, *, parent: str, **kwargs: typing.Any
@@ -272,8 +277,8 @@ class NetworkManagementResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListMonitoringPointsResponseHttpRequest: ...
                     def list_next(
@@ -291,8 +296,8 @@ class NetworkManagementResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListNetworkPathsResponseHttpRequest: ...
                     def list_next(
@@ -310,8 +315,8 @@ class NetworkManagementResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListWebPathsResponseHttpRequest: ...
                     def list_next(
@@ -325,21 +330,25 @@ class NetworkManagementResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: NetworkMonitoringProvider = ...,
-                    networkMonitoringProviderId: str = ...,
+                    networkMonitoringProviderId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
-                    self, *, name: str, force: bool = ..., **kwargs: typing.Any
+                    self, *, name: str, force: bool | None = ..., **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def generateMonitoringPointConfig(
                     self,
                     *,
                     name: str,
-                    privateConnectivityEnabled: bool = ...,
+                    privateConnectivityEnabled: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> GenerateMonitoringPointConfigResponseHttpRequest: ...
                 def generateProviderAccessToken(
-                    self, *, name: str, gcpAccessToken: str = ..., **kwargs: typing.Any
+                    self,
+                    *,
+                    name: str,
+                    gcpAccessToken: str | None = ...,
+                    **kwargs: typing.Any,
                 ) -> GenerateProviderAccessTokenResponseHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
@@ -348,8 +357,8 @@ class NetworkManagementResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListNetworkMonitoringProvidersResponseHttpRequest: ...
                 def list_next(
@@ -368,7 +377,7 @@ class NetworkManagementResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: VpcFlowLogsConfig = ...,
-                    vpcFlowLogsConfigId: str = ...,
+                    vpcFlowLogsConfigId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
@@ -381,10 +390,10 @@ class NetworkManagementResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    orderBy: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListVpcFlowLogsConfigsResponseHttpRequest: ...
                 def list_next(
@@ -397,16 +406,16 @@ class NetworkManagementResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: VpcFlowLogsConfig = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def queryOrgVpcFlowLogsConfigs(
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> QueryOrgVpcFlowLogsConfigsResponseHttpRequest: ...
                 def queryOrgVpcFlowLogsConfigs_next(
@@ -418,10 +427,10 @@ class NetworkManagementResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    resource: str = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    resource: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ShowEffectiveFlowLogsConfigsResponseHttpRequest: ...
                 def showEffectiveFlowLogsConfigs_next(
@@ -437,10 +446,10 @@ class NetworkManagementResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                extraLocationTypes: str | _list[str] = ...,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                extraLocationTypes: str | _list[str] | None = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListLocationsResponseHttpRequest: ...
             def list_next(

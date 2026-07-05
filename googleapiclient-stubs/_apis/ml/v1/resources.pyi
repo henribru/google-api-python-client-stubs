@@ -38,16 +38,16 @@ class CloudMachineLearningEngineResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 resource: str,
-                options_requestedPolicyVersion: int = ...,
+                options_requestedPolicyVersion: int | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleIamV1__PolicyHttpRequest: ...
             def list(
                 self,
                 *,
                 parent: str,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudMlV1__ListJobsResponseHttpRequest: ...
             def list_next(
@@ -60,7 +60,7 @@ class CloudMachineLearningEngineResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: GoogleCloudMlV1__Job = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudMlV1__JobHttpRequest: ...
             def setIamPolicy(
@@ -157,7 +157,7 @@ class CloudMachineLearningEngineResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: GoogleCloudMlV1__Study = ...,
-                    studyId: str = ...,
+                    studyId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudMlV1__StudyHttpRequest: ...
                 def delete(
@@ -178,8 +178,8 @@ class CloudMachineLearningEngineResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudMlV1__ListLocationsResponseHttpRequest: ...
             def list_next(
@@ -211,9 +211,9 @@ class CloudMachineLearningEngineResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudMlV1__ListVersionsResponseHttpRequest: ...
                 def list_next(
@@ -226,7 +226,7 @@ class CloudMachineLearningEngineResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: GoogleCloudMlV1__Version = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunning__OperationHttpRequest: ...
                 def setDefault(
@@ -254,16 +254,16 @@ class CloudMachineLearningEngineResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 resource: str,
-                options_requestedPolicyVersion: int = ...,
+                options_requestedPolicyVersion: int | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleIamV1__PolicyHttpRequest: ...
             def list(
                 self,
                 *,
                 parent: str,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudMlV1__ListModelsResponseHttpRequest: ...
             def list_next(
@@ -276,7 +276,7 @@ class CloudMachineLearningEngineResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: GoogleCloudMlV1__Model = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleLongrunning__OperationHttpRequest: ...
             def setIamPolicy(
@@ -307,10 +307,10 @@ class CloudMachineLearningEngineResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
-                returnPartialSuccess: bool = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
+                returnPartialSuccess: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleLongrunning__ListOperationsResponseHttpRequest: ...
             def list_next(

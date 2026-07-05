@@ -331,11 +331,12 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 resourceName: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 responseContentType: typing_extensions.Literal[
                     "UNSPECIFIED", "RESOURCE_NAME_ONLY", "MUTABLE_RESOURCE"
-                ] = ...,
+                ]
+                | None = ...,
                 **kwargs: typing.Any,
             ) -> (
                 GoogleAdsSearchads360V23Services__ListBatchJobResultsResponseHttpRequest
@@ -483,8 +484,8 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 resourceName: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__ListCampaignDraftAsyncErrorsResponseHttpRequest: ...
             def listAsyncErrors_next(
@@ -851,8 +852,8 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 resourceName: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__ListExperimentAsyncErrorsResponseHttpRequest: ...
             def listExperimentAsyncErrors_next(
@@ -906,8 +907,8 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                billingSetup: str = ...,
-                includeGranularLevelInvoiceDetails: bool = ...,
+                billingSetup: str | None = ...,
+                includeGranularLevelInvoiceDetails: bool | None = ...,
                 issueMonth: typing_extensions.Literal[
                     "UNSPECIFIED",
                     "UNKNOWN",
@@ -923,8 +924,9 @@ class SA360Resource(googleapiclient.discovery.Resource):
                     "OCTOBER",
                     "NOVEMBER",
                     "DECEMBER",
-                ] = ...,
-                issueYear: str = ...,
+                ]
+                | None = ...,
+                issueYear: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__ListInvoicesResponseHttpRequest: ...
 
@@ -1540,12 +1542,11 @@ class SA360Resource(googleapiclient.discovery.Resource):
         def fetchIncentive(
             self,
             *,
-            countryCode: str = ...,
-            email: str = ...,
-            languageCode: str = ...,
-            type: typing_extensions.Literal[
-                "UNSPECIFIED", "UNKNOWN", "ACQUISITION"
-            ] = ...,
+            countryCode: str | None = ...,
+            email: str | None = ...,
+            languageCode: str | None = ...,
+            type: typing_extensions.Literal["UNSPECIFIED", "UNKNOWN", "ACQUISITION"]
+            | None = ...,
             **kwargs: typing.Any,
         ) -> GoogleAdsSearchads360V23Services__FetchIncentiveResponseHttpRequest: ...
 

@@ -25,9 +25,9 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        debugOptions_enableDebugging: bool = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        debugOptions_enableDebugging: bool | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListUnmappedIdentitiesResponseHttpRequest: ...
                     def list_next(
@@ -41,7 +41,7 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: Principal = ...,
-                    debugOptions_enableDebugging: bool = ...,
+                    debugOptions_enableDebugging: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> CheckAccessResponseHttpRequest: ...
                 def searchByViewUrl(
@@ -68,11 +68,11 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    debugOptions_enableDebugging: bool = ...,
-                    groupResourceName: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    userResourceName: str = ...,
+                    debugOptions_enableDebugging: bool | None = ...,
+                    groupResourceName: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    userResourceName: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListItemNamesForUnmappedIdentityResponseHttpRequest: ...
                 def listForunmappedidentity_next(
@@ -87,9 +87,9 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    debugOptions_enableDebugging: bool = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    debugOptions_enableDebugging: bool | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     resolutionStatusCode: typing_extensions.Literal[
                         "CODE_UNSPECIFIED",
                         "NOT_FOUND",
@@ -97,7 +97,8 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
                         "IDENTITY_SOURCE_MISCONFIGURED",
                         "TOO_MANY_MAPPINGS_FOUND",
                         "INTERNAL_ERROR",
-                    ] = ...,
+                    ]
+                    | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListUnmappedIdentitiesResponseHttpRequest: ...
                 def list_next(
@@ -122,12 +123,13 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    connectorName: str = ...,
-                    debugOptions_enableDebugging: bool = ...,
+                    connectorName: str | None = ...,
+                    debugOptions_enableDebugging: bool | None = ...,
                     mode: typing_extensions.Literal[
                         "UNSPECIFIED", "SYNCHRONOUS", "ASYNCHRONOUS"
-                    ] = ...,
-                    version: str = ...,
+                    ]
+                    | None = ...,
+                    version: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def deleteQueueItems(
@@ -141,8 +143,8 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    connectorName: str = ...,
-                    debugOptions_enableDebugging: bool = ...,
+                    connectorName: str | None = ...,
+                    debugOptions_enableDebugging: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> ItemHttpRequest: ...
                 def index(
@@ -156,11 +158,11 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    brief: bool = ...,
-                    connectorName: str = ...,
-                    debugOptions_enableDebugging: bool = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    brief: bool | None = ...,
+                    connectorName: str | None = ...,
+                    debugOptions_enableDebugging: bool | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListItemsResponseHttpRequest: ...
                 def list_next(
@@ -201,14 +203,14 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                debugOptions_enableDebugging: bool = ...,
+                debugOptions_enableDebugging: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def getSchema(
                 self,
                 *,
                 name: str,
-                debugOptions_enableDebugging: bool = ...,
+                debugOptions_enableDebugging: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> SchemaHttpRequest: ...
             def updateSchema(
@@ -236,10 +238,10 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
-                returnPartialSuccess: bool = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
+                returnPartialSuccess: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> ListOperationsResponseHttpRequest: ...
             def list_next(
@@ -258,12 +260,12 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
             def list(
                 self,
                 *,
-                pageToken: str = ...,
-                requestOptions_clientDisplayLanguageCode: str = ...,
-                requestOptions_debugOptions_enableDebugging: bool = ...,
-                requestOptions_languageCode: str = ...,
-                requestOptions_searchApplicationId: str = ...,
-                requestOptions_timeZone: str = ...,
+                pageToken: str | None = ...,
+                requestOptions_clientDisplayLanguageCode: str | None = ...,
+                requestOptions_debugOptions_enableDebugging: bool | None = ...,
+                requestOptions_languageCode: str | None = ...,
+                requestOptions_searchApplicationId: str | None = ...,
+                requestOptions_timeZone: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListQuerySourcesResponseHttpRequest: ...
             def list_next(
@@ -294,22 +296,22 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                debugOptions_enableDebugging: bool = ...,
+                debugOptions_enableDebugging: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def get(
                 self,
                 *,
                 name: str,
-                debugOptions_enableDebugging: bool = ...,
+                debugOptions_enableDebugging: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> DataSourceHttpRequest: ...
             def list(
                 self,
                 *,
-                debugOptions_enableDebugging: bool = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                debugOptions_enableDebugging: bool | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListDataSourceResponseHttpRequest: ...
             def list_next(
@@ -322,8 +324,8 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: DataSource = ...,
-                debugOptions_enableDebugging: bool = ...,
-                updateMask: str = ...,
+                debugOptions_enableDebugging: bool | None = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def update(
@@ -343,22 +345,22 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                debugOptions_enableDebugging: bool = ...,
+                debugOptions_enableDebugging: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def get(
                 self,
                 *,
                 name: str,
-                debugOptions_enableDebugging: bool = ...,
+                debugOptions_enableDebugging: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> SearchApplicationHttpRequest: ...
             def list(
                 self,
                 *,
-                debugOptions_enableDebugging: bool = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                debugOptions_enableDebugging: bool | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListSearchApplicationsResponseHttpRequest: ...
             def list_next(
@@ -371,7 +373,7 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: SearchApplication = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def reset(
@@ -386,7 +388,7 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: SearchApplication = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
 
@@ -395,7 +397,7 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
             self,
             *,
             body: CustomerSettings = ...,
-            updateMask: str = ...,
+            updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def datasources(self) -> DatasourcesResource: ...
@@ -411,12 +413,12 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    fromDate_day: int = ...,
-                    fromDate_month: int = ...,
-                    fromDate_year: int = ...,
-                    toDate_day: int = ...,
-                    toDate_month: int = ...,
-                    toDate_year: int = ...,
+                    fromDate_day: int | None = ...,
+                    fromDate_month: int | None = ...,
+                    fromDate_year: int | None = ...,
+                    toDate_day: int | None = ...,
+                    toDate_month: int | None = ...,
+                    toDate_year: int | None = ...,
                     **kwargs: typing.Any,
                 ) -> GetDataSourceIndexStatsResponseHttpRequest: ...
 
@@ -430,12 +432,12 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    fromDate_day: int = ...,
-                    fromDate_month: int = ...,
-                    fromDate_year: int = ...,
-                    toDate_day: int = ...,
-                    toDate_month: int = ...,
-                    toDate_year: int = ...,
+                    fromDate_day: int | None = ...,
+                    fromDate_month: int | None = ...,
+                    fromDate_year: int | None = ...,
+                    toDate_day: int | None = ...,
+                    toDate_month: int | None = ...,
+                    toDate_year: int | None = ...,
                     **kwargs: typing.Any,
                 ) -> GetSearchApplicationQueryStatsResponseHttpRequest: ...
 
@@ -449,12 +451,12 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    fromDate_day: int = ...,
-                    fromDate_month: int = ...,
-                    fromDate_year: int = ...,
-                    toDate_day: int = ...,
-                    toDate_month: int = ...,
-                    toDate_year: int = ...,
+                    fromDate_day: int | None = ...,
+                    fromDate_month: int | None = ...,
+                    fromDate_year: int | None = ...,
+                    toDate_day: int | None = ...,
+                    toDate_month: int | None = ...,
+                    toDate_year: int | None = ...,
                     **kwargs: typing.Any,
                 ) -> GetSearchApplicationSessionStatsResponseHttpRequest: ...
 
@@ -468,12 +470,12 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    fromDate_day: int = ...,
-                    fromDate_month: int = ...,
-                    fromDate_year: int = ...,
-                    toDate_day: int = ...,
-                    toDate_month: int = ...,
-                    toDate_year: int = ...,
+                    fromDate_day: int | None = ...,
+                    fromDate_month: int | None = ...,
+                    fromDate_year: int | None = ...,
+                    toDate_day: int | None = ...,
+                    toDate_month: int | None = ...,
+                    toDate_year: int | None = ...,
                     **kwargs: typing.Any,
                 ) -> GetSearchApplicationUserStatsResponseHttpRequest: ...
 
@@ -482,56 +484,56 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
         def getIndex(
             self,
             *,
-            fromDate_day: int = ...,
-            fromDate_month: int = ...,
-            fromDate_year: int = ...,
-            toDate_day: int = ...,
-            toDate_month: int = ...,
-            toDate_year: int = ...,
+            fromDate_day: int | None = ...,
+            fromDate_month: int | None = ...,
+            fromDate_year: int | None = ...,
+            toDate_day: int | None = ...,
+            toDate_month: int | None = ...,
+            toDate_year: int | None = ...,
             **kwargs: typing.Any,
         ) -> GetCustomerIndexStatsResponseHttpRequest: ...
         def getQuery(
             self,
             *,
-            fromDate_day: int = ...,
-            fromDate_month: int = ...,
-            fromDate_year: int = ...,
-            toDate_day: int = ...,
-            toDate_month: int = ...,
-            toDate_year: int = ...,
+            fromDate_day: int | None = ...,
+            fromDate_month: int | None = ...,
+            fromDate_year: int | None = ...,
+            toDate_day: int | None = ...,
+            toDate_month: int | None = ...,
+            toDate_year: int | None = ...,
             **kwargs: typing.Any,
         ) -> GetCustomerQueryStatsResponseHttpRequest: ...
         def getSearchapplication(
             self,
             *,
-            endDate_day: int = ...,
-            endDate_month: int = ...,
-            endDate_year: int = ...,
-            startDate_day: int = ...,
-            startDate_month: int = ...,
-            startDate_year: int = ...,
+            endDate_day: int | None = ...,
+            endDate_month: int | None = ...,
+            endDate_year: int | None = ...,
+            startDate_day: int | None = ...,
+            startDate_month: int | None = ...,
+            startDate_year: int | None = ...,
             **kwargs: typing.Any,
         ) -> GetCustomerSearchApplicationStatsResponseHttpRequest: ...
         def getSession(
             self,
             *,
-            fromDate_day: int = ...,
-            fromDate_month: int = ...,
-            fromDate_year: int = ...,
-            toDate_day: int = ...,
-            toDate_month: int = ...,
-            toDate_year: int = ...,
+            fromDate_day: int | None = ...,
+            fromDate_month: int | None = ...,
+            fromDate_year: int | None = ...,
+            toDate_day: int | None = ...,
+            toDate_month: int | None = ...,
+            toDate_year: int | None = ...,
             **kwargs: typing.Any,
         ) -> GetCustomerSessionStatsResponseHttpRequest: ...
         def getUser(
             self,
             *,
-            fromDate_day: int = ...,
-            fromDate_month: int = ...,
-            fromDate_year: int = ...,
-            toDate_day: int = ...,
-            toDate_month: int = ...,
-            toDate_year: int = ...,
+            fromDate_day: int | None = ...,
+            fromDate_month: int | None = ...,
+            fromDate_year: int | None = ...,
+            toDate_day: int | None = ...,
+            toDate_month: int | None = ...,
+            toDate_year: int | None = ...,
             **kwargs: typing.Any,
         ) -> GetCustomerUserStatsResponseHttpRequest: ...
         def index(self) -> IndexResource: ...

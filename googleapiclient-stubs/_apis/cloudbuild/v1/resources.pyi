@@ -16,7 +16,11 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class GithubDotComWebhookResource(googleapiclient.discovery.Resource):
         def receive(
-            self, *, body: HttpBody = ..., webhookKey: str = ..., **kwargs: typing.Any
+            self,
+            *,
+            body: HttpBody = ...,
+            webhookKey: str | None = ...,
+            **kwargs: typing.Any,
         ) -> EmptyHttpRequest: ...
 
     @typing.type_check_only
@@ -26,7 +30,7 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
             *,
             location: str,
             body: HttpBody = ...,
-            webhookKey: str = ...,
+            webhookKey: str | None = ...,
             **kwargs: typing.Any,
         ) -> EmptyHttpRequest: ...
 
@@ -61,20 +65,25 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                 *,
                 projectId: str,
                 body: Build = ...,
-                parent: str = ...,
+                parent: str | None = ...,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def get(
-                self, *, projectId: str, id: str, name: str = ..., **kwargs: typing.Any
+                self,
+                *,
+                projectId: str,
+                id: str,
+                name: str | None = ...,
+                **kwargs: typing.Any,
             ) -> BuildHttpRequest: ...
             def list(
                 self,
                 *,
                 projectId: str,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
-                parent: str = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
+                parent: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListBuildsResponseHttpRequest: ...
             def list_next(
@@ -98,35 +107,35 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: GitHubEnterpriseConfig = ...,
-                gheConfigId: str = ...,
-                projectId: str = ...,
+                gheConfigId: str | None = ...,
+                projectId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def delete(
                 self,
                 *,
                 name: str,
-                configId: str = ...,
-                projectId: str = ...,
+                configId: str | None = ...,
+                projectId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def get(
                 self,
                 *,
                 name: str,
-                configId: str = ...,
-                projectId: str = ...,
+                configId: str | None = ...,
+                projectId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GitHubEnterpriseConfigHttpRequest: ...
             def list(
-                self, *, parent: str, projectId: str = ..., **kwargs: typing.Any
+                self, *, parent: str, projectId: str | None = ..., **kwargs: typing.Any
             ) -> ListGithubEnterpriseConfigsResponseHttpRequest: ...
             def patch(
                 self,
                 *,
                 name: str,
                 body: GitHubEnterpriseConfig = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
 
@@ -150,8 +159,8 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListBitbucketServerRepositoriesResponseHttpRequest: ...
                     def list_next(
@@ -165,7 +174,7 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: BitbucketServerConfig = ...,
-                    bitbucketServerConfigId: str = ...,
+                    bitbucketServerConfigId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
@@ -178,8 +187,8 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListBitbucketServerConfigsResponseHttpRequest: ...
                 def list_next(
@@ -192,7 +201,7 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: BitbucketServerConfig = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def removeBitbucketServerConnectedRepository(
@@ -226,25 +235,25 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: Build = ...,
-                    projectId: str = ...,
+                    projectId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def get(
                     self,
                     *,
                     name: str,
-                    id: str = ...,
-                    projectId: str = ...,
+                    id: str | None = ...,
+                    projectId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> BuildHttpRequest: ...
                 def list(
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    projectId: str = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    projectId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListBuildsResponseHttpRequest: ...
                 def list_next(
@@ -278,8 +287,8 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListGitLabRepositoriesResponseHttpRequest: ...
                     def list_next(
@@ -293,7 +302,7 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: GitLabConfig = ...,
-                    gitlabConfigId: str = ...,
+                    gitlabConfigId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
@@ -306,8 +315,8 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListGitLabConfigsResponseHttpRequest: ...
                 def list_next(
@@ -320,7 +329,7 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: GitLabConfig = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def removeGitLabConnectedRepository(
@@ -340,35 +349,39 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: GitHubEnterpriseConfig = ...,
-                    gheConfigId: str = ...,
-                    projectId: str = ...,
+                    gheConfigId: str | None = ...,
+                    projectId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self,
                     *,
                     name: str,
-                    configId: str = ...,
-                    projectId: str = ...,
+                    configId: str | None = ...,
+                    projectId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def get(
                     self,
                     *,
                     name: str,
-                    configId: str = ...,
-                    projectId: str = ...,
+                    configId: str | None = ...,
+                    projectId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GitHubEnterpriseConfigHttpRequest: ...
                 def list(
-                    self, *, parent: str, projectId: str = ..., **kwargs: typing.Any
+                    self,
+                    *,
+                    parent: str,
+                    projectId: str | None = ...,
+                    **kwargs: typing.Any,
                 ) -> ListGithubEnterpriseConfigsResponseHttpRequest: ...
                 def patch(
                     self,
                     *,
                     name: str,
                     body: GitHubEnterpriseConfig = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
 
@@ -392,32 +405,32 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: BuildTrigger = ...,
-                    projectId: str = ...,
+                    projectId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> BuildTriggerHttpRequest: ...
                 def delete(
                     self,
                     *,
                     name: str,
-                    projectId: str = ...,
-                    triggerId: str = ...,
+                    projectId: str | None = ...,
+                    triggerId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def get(
                     self,
                     *,
                     name: str,
-                    projectId: str = ...,
-                    triggerId: str = ...,
+                    projectId: str | None = ...,
+                    triggerId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> BuildTriggerHttpRequest: ...
                 def list(
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    projectId: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    projectId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListBuildTriggersResponseHttpRequest: ...
                 def list_next(
@@ -430,9 +443,9 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                     *,
                     resourceName: str,
                     body: BuildTrigger = ...,
-                    projectId: str = ...,
-                    triggerId: str = ...,
-                    updateMask: str = ...,
+                    projectId: str | None = ...,
+                    triggerId: str | None = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> BuildTriggerHttpRequest: ...
                 def run(
@@ -447,9 +460,9 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: HttpBody = ...,
-                    projectId: str = ...,
-                    secret: str = ...,
-                    trigger: str = ...,
+                    projectId: str | None = ...,
+                    secret: str | None = ...,
+                    trigger: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ReceiveTriggerWebhookResponseHttpRequest: ...
 
@@ -460,17 +473,17 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: WorkerPool = ...,
-                    validateOnly: bool = ...,
-                    workerPoolId: str = ...,
+                    validateOnly: bool | None = ...,
+                    workerPoolId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self,
                     *,
                     name: str,
-                    allowMissing: bool = ...,
-                    etag: str = ...,
-                    validateOnly: bool = ...,
+                    allowMissing: bool | None = ...,
+                    etag: str | None = ...,
+                    validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def get(
@@ -480,8 +493,8 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListWorkerPoolsResponseHttpRequest: ...
                 def list_next(
@@ -494,8 +507,8 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: WorkerPool = ...,
-                    updateMask: str = ...,
-                    validateOnly: bool = ...,
+                    updateMask: str | None = ...,
+                    validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
 
@@ -517,7 +530,7 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                 *,
                 projectId: str,
                 body: BuildTrigger = ...,
-                parent: str = ...,
+                parent: str | None = ...,
                 **kwargs: typing.Any,
             ) -> BuildTriggerHttpRequest: ...
             def delete(
@@ -525,7 +538,7 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                 *,
                 projectId: str,
                 triggerId: str,
-                name: str = ...,
+                name: str | None = ...,
                 **kwargs: typing.Any,
             ) -> EmptyHttpRequest: ...
             def get(
@@ -533,16 +546,16 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                 *,
                 projectId: str,
                 triggerId: str,
-                name: str = ...,
+                name: str | None = ...,
                 **kwargs: typing.Any,
             ) -> BuildTriggerHttpRequest: ...
             def list(
                 self,
                 *,
                 projectId: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
-                parent: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
+                parent: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListBuildTriggersResponseHttpRequest: ...
             def list_next(
@@ -556,7 +569,7 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                 projectId: str,
                 triggerId: str,
                 body: BuildTrigger = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> BuildTriggerHttpRequest: ...
             def run(
@@ -565,7 +578,7 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                 projectId: str,
                 triggerId: str,
                 body: RepoSource = ...,
-                name: str = ...,
+                name: str | None = ...,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def webhook(
@@ -574,8 +587,8 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                 projectId: str,
                 trigger: str,
                 body: HttpBody = ...,
-                name: str = ...,
-                secret: str = ...,
+                name: str | None = ...,
+                secret: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ReceiveTriggerWebhookResponseHttpRequest: ...
 
@@ -587,7 +600,11 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class V1Resource(googleapiclient.discovery.Resource):
         def webhook(
-            self, *, body: HttpBody = ..., webhookKey: str = ..., **kwargs: typing.Any
+            self,
+            *,
+            body: HttpBody = ...,
+            webhookKey: str | None = ...,
+            **kwargs: typing.Any,
         ) -> EmptyHttpRequest: ...
 
     def new_batch_http_request(

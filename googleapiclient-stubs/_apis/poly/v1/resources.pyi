@@ -19,16 +19,17 @@ class PolyServiceResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            category: str = ...,
-            curated: bool = ...,
-            format: str = ...,
-            keywords: str = ...,
+            category: str | None = ...,
+            curated: bool | None = ...,
+            format: str | None = ...,
+            keywords: str | None = ...,
             maxComplexity: typing_extensions.Literal[
                 "COMPLEXITY_UNSPECIFIED", "COMPLEX", "MEDIUM", "SIMPLE"
-            ] = ...,
-            orderBy: str = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
+            ]
+            | None = ...,
+            orderBy: str | None = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> ListAssetsResponseHttpRequest: ...
         def list_next(
@@ -45,13 +46,14 @@ class PolyServiceResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                format: str = ...,
-                orderBy: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                format: str | None = ...,
+                orderBy: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 visibility: typing_extensions.Literal[
                     "VISIBILITY_UNSPECIFIED", "PUBLISHED", "PRIVATE"
-                ] = ...,
+                ]
+                | None = ...,
                 **kwargs: typing.Any,
             ) -> ListUserAssetsResponseHttpRequest: ...
             def list_next(
@@ -66,10 +68,10 @@ class PolyServiceResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                format: str = ...,
-                orderBy: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                format: str | None = ...,
+                orderBy: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListLikedAssetsResponseHttpRequest: ...
             def list_next(

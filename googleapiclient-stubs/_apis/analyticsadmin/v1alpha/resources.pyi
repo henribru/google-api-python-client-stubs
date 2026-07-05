@@ -16,7 +16,11 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class AccountSummariesResource(googleapiclient.discovery.Resource):
         def list(
-            self, *, pageSize: int = ..., pageToken: str = ..., **kwargs: typing.Any
+            self,
+            *,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            **kwargs: typing.Any,
         ) -> GoogleAnalyticsAdminV1alphaListAccountSummariesResponseHttpRequest: ...
         def list_next(
             self,
@@ -50,7 +54,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                names: str | _list[str] = ...,
+                names: str | _list[str] | None = ...,
                 **kwargs: typing.Any,
             ) -> (
                 GoogleAnalyticsAdminV1alphaBatchGetAccessBindingsResponseHttpRequest
@@ -81,8 +85,8 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleAnalyticsAdminV1alphaListAccessBindingsResponseHttpRequest: ...
             def list_next(
@@ -112,9 +116,9 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            pageSize: int = ...,
-            pageToken: str = ...,
-            showDeleted: bool = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            showDeleted: bool | None = ...,
             **kwargs: typing.Any,
         ) -> GoogleAnalyticsAdminV1alphaListAccountsResponseHttpRequest: ...
         def list_next(
@@ -127,7 +131,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
             *,
             name: str,
             body: GoogleAnalyticsAdminV1alphaAccount = ...,
-            updateMask: str = ...,
+            updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> GoogleAnalyticsAdminV1alphaAccountHttpRequest: ...
         def provisionAccountTicket(
@@ -186,7 +190,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                names: str | _list[str] = ...,
+                names: str | _list[str] | None = ...,
                 **kwargs: typing.Any,
             ) -> (
                 GoogleAnalyticsAdminV1alphaBatchGetAccessBindingsResponseHttpRequest
@@ -217,8 +221,8 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleAnalyticsAdminV1alphaListAccessBindingsResponseHttpRequest: ...
             def list_next(
@@ -255,8 +259,8 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleAnalyticsAdminV1alphaListAdSenseLinksResponseHttpRequest: ...
             def list_next(
@@ -290,8 +294,8 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleAnalyticsAdminV1alphaListAudiencesResponseHttpRequest: ...
             def list_next(
@@ -304,7 +308,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: GoogleAnalyticsAdminV1alphaAudience = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleAnalyticsAdminV1alphaAudienceHttpRequest: ...
 
@@ -327,8 +331,8 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleAnalyticsAdminV1alphaListBigQueryLinksResponseHttpRequest: ...
             def list_next(
@@ -343,7 +347,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: GoogleAnalyticsAdminV1alphaBigQueryLink = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleAnalyticsAdminV1alphaBigQueryLinkHttpRequest: ...
 
@@ -354,7 +358,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: GoogleAnalyticsAdminV1alphaCalculatedMetric = ...,
-                calculatedMetricId: str = ...,
+                calculatedMetricId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleAnalyticsAdminV1alphaCalculatedMetricHttpRequest: ...
             def delete(
@@ -367,8 +371,8 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> (
                 GoogleAnalyticsAdminV1alphaListCalculatedMetricsResponseHttpRequest
@@ -386,7 +390,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: GoogleAnalyticsAdminV1alphaCalculatedMetric = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleAnalyticsAdminV1alphaCalculatedMetricHttpRequest: ...
 
@@ -409,8 +413,8 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleAnalyticsAdminV1alphaListChannelGroupsResponseHttpRequest: ...
             def list_next(
@@ -425,7 +429,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: GoogleAnalyticsAdminV1alphaChannelGroup = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleAnalyticsAdminV1alphaChannelGroupHttpRequest: ...
 
@@ -448,8 +452,8 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleAnalyticsAdminV1alphaListConversionEventsResponseHttpRequest: ...
             def list_next(
@@ -465,7 +469,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: GoogleAnalyticsAdminV1alphaConversionEvent = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleAnalyticsAdminV1alphaConversionEventHttpRequest: ...
 
@@ -492,8 +496,8 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleAnalyticsAdminV1alphaListCustomDimensionsResponseHttpRequest: ...
             def list_next(
@@ -509,7 +513,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: GoogleAnalyticsAdminV1alphaCustomDimension = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleAnalyticsAdminV1alphaCustomDimensionHttpRequest: ...
 
@@ -536,8 +540,8 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleAnalyticsAdminV1alphaListCustomMetricsResponseHttpRequest: ...
             def list_next(
@@ -552,7 +556,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: GoogleAnalyticsAdminV1alphaCustomMetric = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleAnalyticsAdminV1alphaCustomMetricHttpRequest: ...
 
@@ -577,8 +581,8 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> (
                     GoogleAnalyticsAdminV1alphaListEventCreateRulesResponseHttpRequest
@@ -596,7 +600,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: GoogleAnalyticsAdminV1alphaEventCreateRule = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleAnalyticsAdminV1alphaEventCreateRuleHttpRequest: ...
 
@@ -619,8 +623,8 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> (
                     GoogleAnalyticsAdminV1alphaListEventEditRulesResponseHttpRequest
@@ -638,7 +642,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: GoogleAnalyticsAdminV1alphaEventEditRule = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleAnalyticsAdminV1alphaEventEditRuleHttpRequest: ...
                 def reorder(
@@ -674,8 +678,8 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponseHttpRequest: ...
                 def list_next(
@@ -691,7 +695,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> (
                     GoogleAnalyticsAdminV1alphaMeasurementProtocolSecretHttpRequest
@@ -718,8 +722,8 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleAnalyticsAdminV1alphaListSKAdNetworkConversionValueSchemasResponseHttpRequest: ...
                 def list_next(
@@ -735,7 +739,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchema = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchemaHttpRequest: ...
 
@@ -765,8 +769,8 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleAnalyticsAdminV1alphaListDataStreamsResponseHttpRequest: ...
             def list_next(
@@ -781,7 +785,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: GoogleAnalyticsAdminV1alphaDataStream = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleAnalyticsAdminV1alphaDataStreamHttpRequest: ...
             def updateDataRedactionSettings(
@@ -789,7 +793,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: GoogleAnalyticsAdminV1alphaDataRedactionSettings = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleAnalyticsAdminV1alphaDataRedactionSettingsHttpRequest: ...
             def updateEnhancedMeasurementSettings(
@@ -797,7 +801,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettingsHttpRequest: ...
             def eventCreateRules(self) -> EventCreateRulesResource: ...
@@ -844,8 +848,8 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleAnalyticsAdminV1alphaListDisplayVideo360AdvertiserLinkProposalsResponseHttpRequest: ...
             def list_next(
@@ -882,8 +886,8 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleAnalyticsAdminV1alphaListDisplayVideo360AdvertiserLinksResponseHttpRequest: ...
             def list_next(
@@ -899,7 +903,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLink = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> (
                 GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLinkHttpRequest
@@ -924,8 +928,8 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleAnalyticsAdminV1alphaListExpandedDataSetsResponseHttpRequest: ...
             def list_next(
@@ -941,7 +945,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: GoogleAnalyticsAdminV1alphaExpandedDataSet = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleAnalyticsAdminV1alphaExpandedDataSetHttpRequest: ...
 
@@ -961,8 +965,8 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleAnalyticsAdminV1alphaListFirebaseLinksResponseHttpRequest: ...
             def list_next(
@@ -989,8 +993,8 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleAnalyticsAdminV1alphaListGoogleAdsLinksResponseHttpRequest: ...
             def list_next(
@@ -1005,7 +1009,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: GoogleAnalyticsAdminV1alphaGoogleAdsLink = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleAnalyticsAdminV1alphaGoogleAdsLinkHttpRequest: ...
 
@@ -1028,8 +1032,8 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleAnalyticsAdminV1alphaListKeyEventsResponseHttpRequest: ...
             def list_next(
@@ -1042,7 +1046,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: GoogleAnalyticsAdminV1alphaKeyEvent = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleAnalyticsAdminV1alphaKeyEventHttpRequest: ...
 
@@ -1065,9 +1069,9 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleAnalyticsAdminV1alphaListReportingDataAnnotationsResponseHttpRequest: ...
             def list_next(
@@ -1083,7 +1087,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: GoogleAnalyticsAdminV1alphaReportingDataAnnotation = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleAnalyticsAdminV1alphaReportingDataAnnotationHttpRequest: ...
 
@@ -1106,8 +1110,8 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleAnalyticsAdminV1alphaListRollupPropertySourceLinksResponseHttpRequest: ...
             def list_next(
@@ -1138,8 +1142,8 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> (
                 GoogleAnalyticsAdminV1alphaListSearchAds360LinksResponseHttpRequest
@@ -1157,7 +1161,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: GoogleAnalyticsAdminV1alphaSearchAds360Link = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleAnalyticsAdminV1alphaSearchAds360LinkHttpRequest: ...
 
@@ -1180,8 +1184,8 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleAnalyticsAdminV1alphaListSubpropertyEventFiltersResponseHttpRequest: ...
             def list_next(
@@ -1197,7 +1201,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: GoogleAnalyticsAdminV1alphaSubpropertyEventFilter = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleAnalyticsAdminV1alphaSubpropertyEventFilterHttpRequest: ...
 
@@ -1210,8 +1214,8 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> (
                 GoogleAnalyticsAdminV1alphaListSubpropertySyncConfigsResponseHttpRequest
@@ -1229,7 +1233,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: GoogleAnalyticsAdminV1alphaSubpropertySyncConfig = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleAnalyticsAdminV1alphaSubpropertySyncConfigHttpRequest: ...
 
@@ -1278,10 +1282,10 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            filter: str = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
-            showDeleted: bool = ...,
+            filter: str | None = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            showDeleted: bool | None = ...,
             **kwargs: typing.Any,
         ) -> GoogleAnalyticsAdminV1alphaListPropertiesResponseHttpRequest: ...
         def list_next(
@@ -1294,7 +1298,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
             *,
             name: str,
             body: GoogleAnalyticsAdminV1alphaProperty = ...,
-            updateMask: str = ...,
+            updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> GoogleAnalyticsAdminV1alphaPropertyHttpRequest: ...
         def provisionSubproperty(
@@ -1322,7 +1326,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
             *,
             name: str,
             body: GoogleAnalyticsAdminV1alphaAttributionSettings = ...,
-            updateMask: str = ...,
+            updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> GoogleAnalyticsAdminV1alphaAttributionSettingsHttpRequest: ...
         def updateDataRetentionSettings(
@@ -1330,7 +1334,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
             *,
             name: str,
             body: GoogleAnalyticsAdminV1alphaDataRetentionSettings = ...,
-            updateMask: str = ...,
+            updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> GoogleAnalyticsAdminV1alphaDataRetentionSettingsHttpRequest: ...
         def updateGoogleSignalsSettings(
@@ -1338,7 +1342,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
             *,
             name: str,
             body: GoogleAnalyticsAdminV1alphaGoogleSignalsSettings = ...,
-            updateMask: str = ...,
+            updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> GoogleAnalyticsAdminV1alphaGoogleSignalsSettingsHttpRequest: ...
         def updateReportingIdentitySettings(
@@ -1346,7 +1350,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
             *,
             name: str,
             body: GoogleAnalyticsAdminV1alphaReportingIdentitySettings = ...,
-            updateMask: str = ...,
+            updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> GoogleAnalyticsAdminV1alphaReportingIdentitySettingsHttpRequest: ...
         def accessBindings(self) -> AccessBindingsResource: ...

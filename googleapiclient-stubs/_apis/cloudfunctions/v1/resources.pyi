@@ -19,11 +19,11 @@ class CloudFunctionsResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            filter: str = ...,
-            name: str = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
-            returnPartialSuccess: bool = ...,
+            filter: str | None = ...,
+            name: str | None = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> ListOperationsResponseHttpRequest: ...
         def list_next(
@@ -70,21 +70,25 @@ class CloudFunctionsResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any,
                 ) -> GenerateUploadUrlResponseHttpRequest: ...
                 def get(
-                    self, *, name: str, versionId: str = ..., **kwargs: typing.Any
+                    self,
+                    *,
+                    name: str,
+                    versionId: str | None = ...,
+                    **kwargs: typing.Any,
                 ) -> CloudFunctionHttpRequest: ...
                 def getIamPolicy(
                     self,
                     *,
                     resource: str,
-                    options_requestedPolicyVersion: int = ...,
+                    options_requestedPolicyVersion: int | None = ...,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def list(
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListFunctionsResponseHttpRequest: ...
                 def list_next(
@@ -97,7 +101,7 @@ class CloudFunctionsResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: CloudFunction = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def setIamPolicy(
@@ -119,10 +123,10 @@ class CloudFunctionsResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                extraLocationTypes: str | _list[str] = ...,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                extraLocationTypes: str | _list[str] | None = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListLocationsResponseHttpRequest: ...
             def list_next(

@@ -47,19 +47,21 @@ class SheetsResource(googleapiclient.discovery.Resource):
                 spreadsheetId: str,
                 range: str,
                 body: ValueRange = ...,
-                includeValuesInResponse: bool = ...,
-                insertDataOption: typing_extensions.Literal[
-                    "OVERWRITE", "INSERT_ROWS"
-                ] = ...,
+                includeValuesInResponse: bool | None = ...,
+                insertDataOption: typing_extensions.Literal["OVERWRITE", "INSERT_ROWS"]
+                | None = ...,
                 responseDateTimeRenderOption: typing_extensions.Literal[
                     "SERIAL_NUMBER", "FORMATTED_STRING"
-                ] = ...,
+                ]
+                | None = ...,
                 responseValueRenderOption: typing_extensions.Literal[
                     "FORMATTED_VALUE", "UNFORMATTED_VALUE", "FORMULA"
-                ] = ...,
+                ]
+                | None = ...,
                 valueInputOption: typing_extensions.Literal[
                     "INPUT_VALUE_OPTION_UNSPECIFIED", "RAW", "USER_ENTERED"
-                ] = ...,
+                ]
+                | None = ...,
                 **kwargs: typing.Any,
             ) -> AppendValuesResponseHttpRequest: ...
             def batchClear(
@@ -82,14 +84,17 @@ class SheetsResource(googleapiclient.discovery.Resource):
                 spreadsheetId: str,
                 dateTimeRenderOption: typing_extensions.Literal[
                     "SERIAL_NUMBER", "FORMATTED_STRING"
-                ] = ...,
+                ]
+                | None = ...,
                 majorDimension: typing_extensions.Literal[
                     "DIMENSION_UNSPECIFIED", "ROWS", "COLUMNS"
-                ] = ...,
-                ranges: str | _list[str] = ...,
+                ]
+                | None = ...,
+                ranges: str | _list[str] | None = ...,
                 valueRenderOption: typing_extensions.Literal[
                     "FORMATTED_VALUE", "UNFORMATTED_VALUE", "FORMULA"
-                ] = ...,
+                ]
+                | None = ...,
                 **kwargs: typing.Any,
             ) -> BatchGetValuesResponseHttpRequest: ...
             def batchGetByDataFilter(
@@ -128,13 +133,16 @@ class SheetsResource(googleapiclient.discovery.Resource):
                 range: str,
                 dateTimeRenderOption: typing_extensions.Literal[
                     "SERIAL_NUMBER", "FORMATTED_STRING"
-                ] = ...,
+                ]
+                | None = ...,
                 majorDimension: typing_extensions.Literal[
                     "DIMENSION_UNSPECIFIED", "ROWS", "COLUMNS"
-                ] = ...,
+                ]
+                | None = ...,
                 valueRenderOption: typing_extensions.Literal[
                     "FORMATTED_VALUE", "UNFORMATTED_VALUE", "FORMULA"
-                ] = ...,
+                ]
+                | None = ...,
                 **kwargs: typing.Any,
             ) -> ValueRangeHttpRequest: ...
             def update(
@@ -143,16 +151,19 @@ class SheetsResource(googleapiclient.discovery.Resource):
                 spreadsheetId: str,
                 range: str,
                 body: ValueRange = ...,
-                includeValuesInResponse: bool = ...,
+                includeValuesInResponse: bool | None = ...,
                 responseDateTimeRenderOption: typing_extensions.Literal[
                     "SERIAL_NUMBER", "FORMATTED_STRING"
-                ] = ...,
+                ]
+                | None = ...,
                 responseValueRenderOption: typing_extensions.Literal[
                     "FORMATTED_VALUE", "UNFORMATTED_VALUE", "FORMULA"
-                ] = ...,
+                ]
+                | None = ...,
                 valueInputOption: typing_extensions.Literal[
                     "INPUT_VALUE_OPTION_UNSPECIFIED", "RAW", "USER_ENTERED"
-                ] = ...,
+                ]
+                | None = ...,
                 **kwargs: typing.Any,
             ) -> UpdateValuesResponseHttpRequest: ...
 
@@ -170,9 +181,9 @@ class SheetsResource(googleapiclient.discovery.Resource):
             self,
             *,
             spreadsheetId: str,
-            excludeTablesInBandedRanges: bool = ...,
-            includeGridData: bool = ...,
-            ranges: str | _list[str] = ...,
+            excludeTablesInBandedRanges: bool | None = ...,
+            includeGridData: bool | None = ...,
+            ranges: str | _list[str] | None = ...,
             **kwargs: typing.Any,
         ) -> SpreadsheetHttpRequest: ...
         def getByDataFilter(

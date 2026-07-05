@@ -18,13 +18,13 @@ class PollenResource(googleapiclient.discovery.Resource):
         def lookup(
             self,
             *,
-            days: int = ...,
-            languageCode: str = ...,
-            location_latitude: float = ...,
-            location_longitude: float = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
-            plantsDescription: bool = ...,
+            days: int | None = ...,
+            languageCode: str | None = ...,
+            location_latitude: float | None = ...,
+            location_longitude: float | None = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            plantsDescription: bool | None = ...,
             **kwargs: typing.Any,
         ) -> LookupForecastResponseHttpRequest: ...
         def lookup_next(

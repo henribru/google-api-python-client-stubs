@@ -25,19 +25,22 @@ class SolarResource(googleapiclient.discovery.Resource):
                 typing_extensions.Literal[
                     "ADDITIONAL_INSIGHTS_UNSPECIFIED", "DETECTED_ARRAYS"
                 ]
-            ] = ...,
-            exactQualityRequired: bool = ...,
+            ]
+            | None = ...,
+            exactQualityRequired: bool | None = ...,
             experiments: typing_extensions.Literal[
                 "EXPERIMENT_UNSPECIFIED", "EXPANDED_COVERAGE"
             ]
             | _list[
                 typing_extensions.Literal["EXPERIMENT_UNSPECIFIED", "EXPANDED_COVERAGE"]
-            ] = ...,
-            location_latitude: float = ...,
-            location_longitude: float = ...,
+            ]
+            | None = ...,
+            location_latitude: float | None = ...,
+            location_longitude: float | None = ...,
             requiredQuality: typing_extensions.Literal[
                 "IMAGERY_QUALITY_UNSPECIFIED", "HIGH", "MEDIUM", "LOW", "BASE"
-            ] = ...,
+            ]
+            | None = ...,
             **kwargs: typing.Any,
         ) -> BuildingInsightsHttpRequest: ...
 
@@ -46,20 +49,22 @@ class SolarResource(googleapiclient.discovery.Resource):
         def get(
             self,
             *,
-            exactQualityRequired: bool = ...,
+            exactQualityRequired: bool | None = ...,
             experiments: typing_extensions.Literal[
                 "EXPERIMENT_UNSPECIFIED", "EXPANDED_COVERAGE"
             ]
             | _list[
                 typing_extensions.Literal["EXPERIMENT_UNSPECIFIED", "EXPANDED_COVERAGE"]
-            ] = ...,
-            location_latitude: float = ...,
-            location_longitude: float = ...,
-            pixelSizeMeters: float = ...,
-            radiusMeters: float = ...,
+            ]
+            | None = ...,
+            location_latitude: float | None = ...,
+            location_longitude: float | None = ...,
+            pixelSizeMeters: float | None = ...,
+            radiusMeters: float | None = ...,
             requiredQuality: typing_extensions.Literal[
                 "IMAGERY_QUALITY_UNSPECIFIED", "HIGH", "MEDIUM", "LOW", "BASE"
-            ] = ...,
+            ]
+            | None = ...,
             view: typing_extensions.Literal[
                 "DATA_LAYER_VIEW_UNSPECIFIED",
                 "DSM_LAYER",
@@ -67,14 +72,15 @@ class SolarResource(googleapiclient.discovery.Resource):
                 "IMAGERY_AND_ANNUAL_FLUX_LAYERS",
                 "IMAGERY_AND_ALL_FLUX_LAYERS",
                 "FULL_LAYERS",
-            ] = ...,
+            ]
+            | None = ...,
             **kwargs: typing.Any,
         ) -> DataLayersHttpRequest: ...
 
     @typing.type_check_only
     class GeoTiffResource(googleapiclient.discovery.Resource):
         def get(
-            self, *, id: str = ..., **kwargs: typing.Any
+            self, *, id: str | None = ..., **kwargs: typing.Any
         ) -> HttpBodyHttpRequest: ...
 
     def new_batch_http_request(

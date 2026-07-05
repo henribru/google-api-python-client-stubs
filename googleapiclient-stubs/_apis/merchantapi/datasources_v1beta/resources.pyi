@@ -43,8 +43,8 @@ class MerchantResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListDataSourcesResponseHttpRequest: ...
             def list_next(
@@ -57,7 +57,7 @@ class MerchantResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: DataSource = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> DataSourceHttpRequest: ...
             def fileUploads(self) -> FileUploadsResource: ...

@@ -80,7 +80,7 @@ class CloudOSLoginResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: SshPublicKey = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> SshPublicKeyHttpRequest: ...
 
@@ -88,11 +88,12 @@ class CloudOSLoginResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            projectId: str = ...,
-            systemId: str = ...,
+            projectId: str | None = ...,
+            systemId: str | None = ...,
             view: typing_extensions.Literal[
                 "LOGIN_PROFILE_VIEW_UNSPECIFIED", "BASIC", "SECURITY_KEY"
-            ] = ...,
+            ]
+            | None = ...,
             **kwargs: typing.Any,
         ) -> LoginProfileHttpRequest: ...
         def importSshPublicKey(
@@ -100,11 +101,12 @@ class CloudOSLoginResource(googleapiclient.discovery.Resource):
             *,
             parent: str,
             body: SshPublicKey = ...,
-            projectId: str = ...,
-            regions: str | _list[str] = ...,
+            projectId: str | None = ...,
+            regions: str | _list[str] | None = ...,
             view: typing_extensions.Literal[
                 "LOGIN_PROFILE_VIEW_UNSPECIFIED", "BASIC", "SECURITY_KEY"
-            ] = ...,
+            ]
+            | None = ...,
             **kwargs: typing.Any,
         ) -> ImportSshPublicKeyResponseHttpRequest: ...
         def projects(self) -> ProjectsResource: ...

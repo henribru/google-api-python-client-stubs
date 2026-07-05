@@ -53,8 +53,8 @@ class RecaptchaEnterpriseResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> (
                 GoogleCloudRecaptchaenterpriseV1ListFirewallPoliciesResponseHttpRequest
@@ -72,7 +72,7 @@ class RecaptchaEnterpriseResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: GoogleCloudRecaptchaenterpriseV1FirewallPolicy = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudRecaptchaenterpriseV1FirewallPolicyHttpRequest: ...
             def reorder(
@@ -112,8 +112,8 @@ class RecaptchaEnterpriseResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudRecaptchaenterpriseV1ListKeysResponseHttpRequest: ...
             def list_next(
@@ -125,8 +125,8 @@ class RecaptchaEnterpriseResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudRecaptchaenterpriseV1ListIpOverridesResponseHttpRequest: ...
             def listIpOverrides_next(
@@ -149,7 +149,7 @@ class RecaptchaEnterpriseResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: GoogleCloudRecaptchaenterpriseV1Key = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudRecaptchaenterpriseV1KeyHttpRequest: ...
             def removeIpOverride(
@@ -193,8 +193,8 @@ class RecaptchaEnterpriseResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupMembershipsResponseHttpRequest: ...
                 def list_next(
@@ -210,8 +210,8 @@ class RecaptchaEnterpriseResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupsResponseHttpRequest: ...
             def list_next(

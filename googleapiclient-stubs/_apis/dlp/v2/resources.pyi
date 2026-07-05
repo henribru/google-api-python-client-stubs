@@ -18,10 +18,10 @@ class DLPResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            filter: str = ...,
-            languageCode: str = ...,
-            locationId: str = ...,
-            parent: str = ...,
+            filter: str | None = ...,
+            languageCode: str | None = ...,
+            locationId: str | None = ...,
+            parent: str | None = ...,
             **kwargs: typing.Any,
         ) -> GooglePrivacyDlpV2ListInfoTypesResponseHttpRequest: ...
 
@@ -33,9 +33,9 @@ class DLPResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                filter: str = ...,
-                languageCode: str = ...,
-                locationId: str = ...,
+                filter: str | None = ...,
+                languageCode: str | None = ...,
+                locationId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GooglePrivacyDlpV2ListInfoTypesResponseHttpRequest: ...
 
@@ -62,10 +62,10 @@ class DLPResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                locationId: str = ...,
-                orderBy: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                locationId: str | None = ...,
+                orderBy: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GooglePrivacyDlpV2ListDeidentifyTemplatesResponseHttpRequest: ...
             def list_next(
@@ -102,10 +102,10 @@ class DLPResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                locationId: str = ...,
-                orderBy: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                locationId: str | None = ...,
+                orderBy: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GooglePrivacyDlpV2ListInspectTemplatesResponseHttpRequest: ...
             def list_next(
@@ -132,10 +132,10 @@ class DLPResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    orderBy: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2ListColumnDataProfilesResponseHttpRequest: ...
                 def list_next(
@@ -165,9 +165,9 @@ class DLPResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2ListConnectionsResponseHttpRequest: ...
                 def list_next(
@@ -186,9 +186,9 @@ class DLPResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2SearchConnectionsResponseHttpRequest: ...
                 def search_next(
@@ -216,10 +216,10 @@ class DLPResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    locationId: str = ...,
-                    orderBy: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    locationId: str | None = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2ListDeidentifyTemplatesResponseHttpRequest: ...
                 def list_next(
@@ -256,9 +256,9 @@ class DLPResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    orderBy: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2ListDiscoveryConfigsResponseHttpRequest: ...
                 def list_next(
@@ -282,14 +282,15 @@ class DLPResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    locationId: str = ...,
-                    orderBy: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    locationId: str | None = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     type: typing_extensions.Literal[
                         "DLP_JOB_TYPE_UNSPECIFIED", "INSPECT_JOB", "RISK_ANALYSIS_JOB"
-                    ] = ...,
+                    ]
+                    | None = ...,
                     **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2ListDlpJobsResponseHttpRequest: ...
                 def list_next(
@@ -310,10 +311,10 @@ class DLPResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    orderBy: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2ListFileStoreDataProfilesResponseHttpRequest: ...
                 def list_next(
@@ -331,9 +332,9 @@ class DLPResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    languageCode: str = ...,
-                    locationId: str = ...,
+                    filter: str | None = ...,
+                    languageCode: str | None = ...,
+                    locationId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2ListInfoTypesResponseHttpRequest: ...
 
@@ -356,10 +357,10 @@ class DLPResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    locationId: str = ...,
-                    orderBy: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    locationId: str | None = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2ListInspectTemplatesResponseHttpRequest: ...
                 def list_next(
@@ -396,14 +397,15 @@ class DLPResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    locationId: str = ...,
-                    orderBy: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    locationId: str | None = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     type: typing_extensions.Literal[
                         "DLP_JOB_TYPE_UNSPECIFIED", "INSPECT_JOB", "RISK_ANALYSIS_JOB"
-                    ] = ...,
+                    ]
+                    | None = ...,
                     **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2ListJobTriggersResponseHttpRequest: ...
                 def list_next(
@@ -428,10 +430,10 @@ class DLPResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    orderBy: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2ListProjectDataProfilesResponseHttpRequest: ...
                 def list_next(
@@ -461,10 +463,10 @@ class DLPResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    locationId: str = ...,
-                    orderBy: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    locationId: str | None = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2ListStoredInfoTypesResponseHttpRequest: ...
                 def list_next(
@@ -494,10 +496,10 @@ class DLPResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    orderBy: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2ListTableDataProfilesResponseHttpRequest: ...
                 def list_next(
@@ -540,10 +542,10 @@ class DLPResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                locationId: str = ...,
-                orderBy: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                locationId: str | None = ...,
+                orderBy: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GooglePrivacyDlpV2ListStoredInfoTypesResponseHttpRequest: ...
             def list_next(
@@ -609,10 +611,10 @@ class DLPResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                locationId: str = ...,
-                orderBy: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                locationId: str | None = ...,
+                orderBy: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GooglePrivacyDlpV2ListDeidentifyTemplatesResponseHttpRequest: ...
             def list_next(
@@ -656,14 +658,15 @@ class DLPResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                filter: str = ...,
-                locationId: str = ...,
-                orderBy: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                filter: str | None = ...,
+                locationId: str | None = ...,
+                orderBy: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 type: typing_extensions.Literal[
                     "DLP_JOB_TYPE_UNSPECIFIED", "INSPECT_JOB", "RISK_ANALYSIS_JOB"
-                ] = ...,
+                ]
+                | None = ...,
                 **kwargs: typing.Any,
             ) -> GooglePrivacyDlpV2ListDlpJobsResponseHttpRequest: ...
             def list_next(
@@ -701,10 +704,10 @@ class DLPResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                locationId: str = ...,
-                orderBy: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                locationId: str | None = ...,
+                orderBy: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GooglePrivacyDlpV2ListInspectTemplatesResponseHttpRequest: ...
             def list_next(
@@ -746,14 +749,15 @@ class DLPResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                filter: str = ...,
-                locationId: str = ...,
-                orderBy: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                filter: str | None = ...,
+                locationId: str | None = ...,
+                orderBy: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 type: typing_extensions.Literal[
                     "DLP_JOB_TYPE_UNSPECIFIED", "INSPECT_JOB", "RISK_ANALYSIS_JOB"
-                ] = ...,
+                ]
+                | None = ...,
                 **kwargs: typing.Any,
             ) -> GooglePrivacyDlpV2ListJobTriggersResponseHttpRequest: ...
             def list_next(
@@ -780,10 +784,10 @@ class DLPResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    orderBy: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2ListColumnDataProfilesResponseHttpRequest: ...
                 def list_next(
@@ -813,9 +817,9 @@ class DLPResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2ListConnectionsResponseHttpRequest: ...
                 def list_next(
@@ -834,9 +838,9 @@ class DLPResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2SearchConnectionsResponseHttpRequest: ...
                 def search_next(
@@ -888,8 +892,8 @@ class DLPResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2ListContentPoliciesResponseHttpRequest: ...
                 def list_next(
@@ -926,10 +930,10 @@ class DLPResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    locationId: str = ...,
-                    orderBy: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    locationId: str | None = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2ListDeidentifyTemplatesResponseHttpRequest: ...
                 def list_next(
@@ -966,9 +970,9 @@ class DLPResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    orderBy: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2ListDiscoveryConfigsResponseHttpRequest: ...
                 def list_next(
@@ -1026,14 +1030,15 @@ class DLPResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    locationId: str = ...,
-                    orderBy: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    locationId: str | None = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     type: typing_extensions.Literal[
                         "DLP_JOB_TYPE_UNSPECIFIED", "INSPECT_JOB", "RISK_ANALYSIS_JOB"
-                    ] = ...,
+                    ]
+                    | None = ...,
                     **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2ListDlpJobsResponseHttpRequest: ...
                 def list_next(
@@ -1054,10 +1059,10 @@ class DLPResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    orderBy: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2ListFileStoreDataProfilesResponseHttpRequest: ...
                 def list_next(
@@ -1085,9 +1090,9 @@ class DLPResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    languageCode: str = ...,
-                    locationId: str = ...,
+                    filter: str | None = ...,
+                    languageCode: str | None = ...,
+                    locationId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2ListInfoTypesResponseHttpRequest: ...
 
@@ -1110,10 +1115,10 @@ class DLPResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    locationId: str = ...,
-                    orderBy: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    locationId: str | None = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2ListInspectTemplatesResponseHttpRequest: ...
                 def list_next(
@@ -1164,14 +1169,15 @@ class DLPResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    locationId: str = ...,
-                    orderBy: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    locationId: str | None = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     type: typing_extensions.Literal[
                         "DLP_JOB_TYPE_UNSPECIFIED", "INSPECT_JOB", "RISK_ANALYSIS_JOB"
-                    ] = ...,
+                    ]
+                    | None = ...,
                     **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2ListJobTriggersResponseHttpRequest: ...
                 def list_next(
@@ -1196,10 +1202,10 @@ class DLPResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    orderBy: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2ListProjectDataProfilesResponseHttpRequest: ...
                 def list_next(
@@ -1229,10 +1235,10 @@ class DLPResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    locationId: str = ...,
-                    orderBy: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    locationId: str | None = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2ListStoredInfoTypesResponseHttpRequest: ...
                 def list_next(
@@ -1262,10 +1268,10 @@ class DLPResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    orderBy: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2ListTableDataProfilesResponseHttpRequest: ...
                 def list_next(
@@ -1311,10 +1317,10 @@ class DLPResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                locationId: str = ...,
-                orderBy: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                locationId: str | None = ...,
+                orderBy: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GooglePrivacyDlpV2ListStoredInfoTypesResponseHttpRequest: ...
             def list_next(

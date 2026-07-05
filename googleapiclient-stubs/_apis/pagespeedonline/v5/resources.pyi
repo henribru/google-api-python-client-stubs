@@ -19,7 +19,7 @@ class PagespeedInsightsResource(googleapiclient.discovery.Resource):
             self,
             *,
             url: str,
-            captchaToken: str = ...,
+            captchaToken: str | None = ...,
             category: typing_extensions.Literal[
                 "CATEGORY_UNSPECIFIED",
                 "ACCESSIBILITY",
@@ -39,13 +39,15 @@ class PagespeedInsightsResource(googleapiclient.discovery.Resource):
                     "SEO",
                     "AGENTIC_BROWSING",
                 ]
-            ] = ...,
-            locale: str = ...,
+            ]
+            | None = ...,
+            locale: str | None = ...,
             strategy: typing_extensions.Literal[
                 "STRATEGY_UNSPECIFIED", "DESKTOP", "MOBILE"
-            ] = ...,
-            utm_campaign: str = ...,
-            utm_source: str = ...,
+            ]
+            | None = ...,
+            utm_campaign: str | None = ...,
+            utm_source: str | None = ...,
             **kwargs: typing.Any,
         ) -> PagespeedApiPagespeedResponseV5HttpRequest: ...
 

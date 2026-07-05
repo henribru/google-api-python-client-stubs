@@ -24,8 +24,8 @@ class CloudbillingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudBillingBillingaccountservicesV1betaListBillingAccountServicesResponseHttpRequest: ...
             def list_next(
@@ -48,8 +48,8 @@ class CloudbillingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudBillingBillingaccountskugroupskusV1betaListBillingAccountSkuGroupSkusResponseHttpRequest: ...
                 def list_next(
@@ -68,8 +68,8 @@ class CloudbillingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudBillingBillingaccountskugroupsV1betaListBillingAccountSkuGroupsResponseHttpRequest: ...
             def list_next(
@@ -87,7 +87,11 @@ class CloudbillingResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class PriceResource(googleapiclient.discovery.Resource):
                 def get(
-                    self, *, name: str, currencyCode: str = ..., **kwargs: typing.Any
+                    self,
+                    *,
+                    name: str,
+                    currencyCode: str | None = ...,
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudBillingBillingaccountpricesV1betaBillingAccountPriceHttpRequest: ...
 
             @typing.type_check_only
@@ -96,9 +100,9 @@ class CloudbillingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    currencyCode: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    currencyCode: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudBillingBillingaccountpricesV1betaListBillingAccountPricesResponseHttpRequest: ...
                 def list_next(
@@ -119,9 +123,9 @@ class CloudbillingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudBillingBillingaccountskusV1betaListBillingAccountSkusResponseHttpRequest: ...
             def list_next(
@@ -150,8 +154,8 @@ class CloudbillingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> (
                 GoogleCloudBillingSkugroupskusV1betaListSkuGroupSkusResponseHttpRequest
@@ -169,7 +173,11 @@ class CloudbillingResource(googleapiclient.discovery.Resource):
             self, *, name: str, **kwargs: typing.Any
         ) -> GoogleCloudBillingSkugroupsV1betaSkuGroupHttpRequest: ...
         def list(
-            self, *, pageSize: int = ..., pageToken: str = ..., **kwargs: typing.Any
+            self,
+            *,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            **kwargs: typing.Any,
         ) -> GoogleCloudBillingSkugroupsV1betaListSkuGroupsResponseHttpRequest: ...
         def list_next(
             self,
@@ -185,7 +193,7 @@ class CloudbillingResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class PriceResource(googleapiclient.discovery.Resource):
             def get(
-                self, *, name: str, currencyCode: str = ..., **kwargs: typing.Any
+                self, *, name: str, currencyCode: str | None = ..., **kwargs: typing.Any
             ) -> GoogleCloudBillingPricesV1betaPriceHttpRequest: ...
 
         @typing.type_check_only
@@ -194,9 +202,9 @@ class CloudbillingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                currencyCode: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                currencyCode: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudBillingPricesV1betaListPricesResponseHttpRequest: ...
             def list_next(

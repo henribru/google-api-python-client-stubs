@@ -26,7 +26,7 @@ class ApigatewayResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: ApigatewayApiConfig = ...,
-                        apiConfigId: str = ...,
+                        apiConfigId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ApigatewayOperationHttpRequest: ...
                     def delete(
@@ -38,24 +38,25 @@ class ApigatewayResource(googleapiclient.discovery.Resource):
                         name: str,
                         view: typing_extensions.Literal[
                             "CONFIG_VIEW_UNSPECIFIED", "BASIC", "FULL"
-                        ] = ...,
+                        ]
+                        | None = ...,
                         **kwargs: typing.Any,
                     ) -> ApigatewayApiConfigHttpRequest: ...
                     def getIamPolicy(
                         self,
                         *,
                         resource: str,
-                        options_requestedPolicyVersion: int = ...,
+                        options_requestedPolicyVersion: int | None = ...,
                         **kwargs: typing.Any,
                     ) -> ApigatewayPolicyHttpRequest: ...
                     def list(
                         self,
                         *,
                         parent: str,
-                        filter: str = ...,
-                        orderBy: str = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        filter: str | None = ...,
+                        orderBy: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ApigatewayListApiConfigsResponseHttpRequest: ...
                     def list_next(
@@ -68,7 +69,7 @@ class ApigatewayResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: ApigatewayApiConfig = ...,
-                        updateMask: str = ...,
+                        updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ApigatewayOperationHttpRequest: ...
                     def setIamPolicy(
@@ -91,7 +92,7 @@ class ApigatewayResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: ApigatewayApi = ...,
-                    apiId: str = ...,
+                    apiId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ApigatewayOperationHttpRequest: ...
                 def delete(
@@ -104,17 +105,17 @@ class ApigatewayResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    options_requestedPolicyVersion: int = ...,
+                    options_requestedPolicyVersion: int | None = ...,
                     **kwargs: typing.Any,
                 ) -> ApigatewayPolicyHttpRequest: ...
                 def list(
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    orderBy: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ApigatewayListApisResponseHttpRequest: ...
                 def list_next(
@@ -127,7 +128,7 @@ class ApigatewayResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: ApigatewayApi = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ApigatewayOperationHttpRequest: ...
                 def setIamPolicy(
@@ -153,7 +154,7 @@ class ApigatewayResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: ApigatewayGateway = ...,
-                    gatewayId: str = ...,
+                    gatewayId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ApigatewayOperationHttpRequest: ...
                 def delete(
@@ -166,17 +167,17 @@ class ApigatewayResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    options_requestedPolicyVersion: int = ...,
+                    options_requestedPolicyVersion: int | None = ...,
                     **kwargs: typing.Any,
                 ) -> ApigatewayPolicyHttpRequest: ...
                 def list(
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    orderBy: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ApigatewayListGatewaysResponseHttpRequest: ...
                 def list_next(
@@ -189,7 +190,7 @@ class ApigatewayResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: ApigatewayGateway = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ApigatewayOperationHttpRequest: ...
                 def setIamPolicy(
@@ -226,10 +227,10 @@ class ApigatewayResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    returnPartialSuccess: bool = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    returnPartialSuccess: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> ApigatewayListOperationsResponseHttpRequest: ...
                 def list_next(
@@ -245,10 +246,10 @@ class ApigatewayResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                extraLocationTypes: str | _list[str] = ...,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                extraLocationTypes: str | _list[str] | None = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ApigatewayListLocationsResponseHttpRequest: ...
             def list_next(

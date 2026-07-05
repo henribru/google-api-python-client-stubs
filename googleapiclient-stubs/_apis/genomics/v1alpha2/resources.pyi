@@ -23,9 +23,9 @@ class GenomicsResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            filter: str = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
+            filter: str | None = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> ListOperationsResponseHttpRequest: ...
         def list_next(
@@ -48,17 +48,17 @@ class GenomicsResource(googleapiclient.discovery.Resource):
         def getControllerConfig(
             self,
             *,
-            operationId: str = ...,
-            validationToken: str = ...,
+            operationId: str | None = ...,
+            validationToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> ControllerConfigHttpRequest: ...
         def list(
             self,
             *,
-            namePrefix: str = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
-            projectId: str = ...,
+            namePrefix: str | None = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            projectId: str | None = ...,
             **kwargs: typing.Any,
         ) -> ListPipelinesResponseHttpRequest: ...
         def list_next(

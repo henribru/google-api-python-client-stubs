@@ -29,10 +29,10 @@ class CloudControlsPartnerServiceResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             parent: str,
-                            filter: str = ...,
-                            orderBy: str = ...,
-                            pageSize: int = ...,
-                            pageToken: str = ...,
+                            filter: str | None = ...,
+                            orderBy: str | None = ...,
+                            pageSize: int | None = ...,
+                            pageToken: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> ListAccessApprovalRequestsResponseHttpRequest: ...
                         def list_next(
@@ -50,12 +50,12 @@ class CloudControlsPartnerServiceResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             parent: str,
-                            filter: str = ...,
-                            interval_endTime: str = ...,
-                            interval_startTime: str = ...,
-                            orderBy: str = ...,
-                            pageSize: int = ...,
-                            pageToken: str = ...,
+                            filter: str | None = ...,
+                            interval_endTime: str | None = ...,
+                            interval_startTime: str | None = ...,
+                            orderBy: str | None = ...,
+                            pageSize: int | None = ...,
+                            pageToken: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> ListViolationsResponseHttpRequest: ...
                         def list_next(
@@ -77,10 +77,10 @@ class CloudControlsPartnerServiceResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        filter: str = ...,
-                        orderBy: str = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        filter: str | None = ...,
+                        orderBy: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListWorkloadsResponseHttpRequest: ...
                     def list_next(
@@ -98,7 +98,7 @@ class CloudControlsPartnerServiceResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: Customer = ...,
-                    customerId: str = ...,
+                    customerId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> CustomerHttpRequest: ...
                 def delete(
@@ -111,10 +111,10 @@ class CloudControlsPartnerServiceResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    orderBy: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListCustomersResponseHttpRequest: ...
                 def list_next(
@@ -127,7 +127,7 @@ class CloudControlsPartnerServiceResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: Customer = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> CustomerHttpRequest: ...
                 def workloads(self) -> WorkloadsResource: ...

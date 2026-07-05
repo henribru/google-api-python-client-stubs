@@ -30,8 +30,8 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListExclusionsResponseHttpRequest: ...
             def list_next(
@@ -44,7 +44,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: LogExclusion = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> LogExclusionHttpRequest: ...
 
@@ -59,7 +59,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: Link = ...,
-                        linkId: str = ...,
+                        linkId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def delete(
@@ -72,8 +72,8 @@ class LoggingResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListLinksResponseHttpRequest: ...
                     def list_next(
@@ -90,9 +90,9 @@ class LoggingResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             parent: str,
-                            pageSize: int = ...,
-                            pageToken: str = ...,
-                            resourceNames: str | _list[str] = ...,
+                            pageSize: int | None = ...,
+                            pageToken: str | None = ...,
+                            resourceNames: str | _list[str] | None = ...,
                             **kwargs: typing.Any,
                         ) -> ListLogsResponseHttpRequest: ...
                         def list_next(
@@ -106,7 +106,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: LogView = ...,
-                        viewId: str = ...,
+                        viewId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> LogViewHttpRequest: ...
                     def delete(
@@ -119,8 +119,8 @@ class LoggingResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListViewsResponseHttpRequest: ...
                     def list_next(
@@ -133,7 +133,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: LogView = ...,
-                        updateMask: str = ...,
+                        updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> LogViewHttpRequest: ...
                     def logs(self) -> LogsResource: ...
@@ -143,7 +143,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: LogBucket = ...,
-                    bucketId: str = ...,
+                    bucketId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> LogBucketHttpRequest: ...
                 def createAsync(
@@ -151,7 +151,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: LogBucket = ...,
-                    bucketId: str = ...,
+                    bucketId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
@@ -164,8 +164,8 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListBucketsResponseHttpRequest: ...
                 def list_next(
@@ -178,7 +178,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: LogBucket = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> LogBucketHttpRequest: ...
                 def undelete(
@@ -193,7 +193,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: LogBucket = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def links(self) -> LinksResource: ...
@@ -215,10 +215,10 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    returnPartialSuccess: bool = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    returnPartialSuccess: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListOperationsResponseHttpRequest: ...
                 def list_next(
@@ -233,9 +233,9 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListRecentQueriesResponseHttpRequest: ...
                 def list_next(
@@ -251,7 +251,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: SavedQuery = ...,
-                    savedQueryId: str = ...,
+                    savedQueryId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> SavedQueryHttpRequest: ...
                 def delete(
@@ -264,9 +264,9 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListSavedQueriesResponseHttpRequest: ...
                 def list_next(
@@ -279,7 +279,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: SavedQuery = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> SavedQueryHttpRequest: ...
 
@@ -290,10 +290,10 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                extraLocationTypes: str | _list[str] = ...,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                extraLocationTypes: str | _list[str] | None = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListLocationsResponseHttpRequest: ...
             def list_next(
@@ -315,9 +315,9 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
-                resourceNames: str | _list[str] = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
+                resourceNames: str | _list[str] | None = ...,
                 **kwargs: typing.Any,
             ) -> ListLogsResponseHttpRequest: ...
             def list_next(
@@ -333,8 +333,8 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: LogSink = ...,
-                customWriterIdentity: str = ...,
-                uniqueWriterIdentity: bool = ...,
+                customWriterIdentity: str | None = ...,
+                uniqueWriterIdentity: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> LogSinkHttpRequest: ...
             def delete(
@@ -347,9 +347,9 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListSinksResponseHttpRequest: ...
             def list_next(
@@ -362,9 +362,9 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 *,
                 sinkName: str,
                 body: LogSink = ...,
-                customWriterIdentity: str = ...,
-                uniqueWriterIdentity: bool = ...,
-                updateMask: str = ...,
+                customWriterIdentity: str | None = ...,
+                uniqueWriterIdentity: bool | None = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> LogSinkHttpRequest: ...
             def update(
@@ -372,9 +372,9 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 *,
                 sinkName: str,
                 body: LogSink = ...,
-                customWriterIdentity: str = ...,
-                uniqueWriterIdentity: bool = ...,
-                updateMask: str = ...,
+                customWriterIdentity: str | None = ...,
+                uniqueWriterIdentity: bool | None = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> LogSinkHttpRequest: ...
 
@@ -422,8 +422,8 @@ class LoggingResource(googleapiclient.discovery.Resource):
             self,
             *,
             parent: str,
-            pageSize: int = ...,
-            pageToken: str = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> ListExclusionsResponseHttpRequest: ...
         def list_next(
@@ -436,7 +436,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
             *,
             name: str,
             body: LogExclusion = ...,
-            updateMask: str = ...,
+            updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> LogExclusionHttpRequest: ...
 
@@ -457,8 +457,8 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListExclusionsResponseHttpRequest: ...
             def list_next(
@@ -471,7 +471,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: LogExclusion = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> LogExclusionHttpRequest: ...
 
@@ -486,7 +486,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: Link = ...,
-                        linkId: str = ...,
+                        linkId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def delete(
@@ -499,8 +499,8 @@ class LoggingResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListLinksResponseHttpRequest: ...
                     def list_next(
@@ -517,9 +517,9 @@ class LoggingResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             parent: str,
-                            pageSize: int = ...,
-                            pageToken: str = ...,
-                            resourceNames: str | _list[str] = ...,
+                            pageSize: int | None = ...,
+                            pageToken: str | None = ...,
+                            resourceNames: str | _list[str] | None = ...,
                             **kwargs: typing.Any,
                         ) -> ListLogsResponseHttpRequest: ...
                         def list_next(
@@ -533,7 +533,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: LogView = ...,
-                        viewId: str = ...,
+                        viewId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> LogViewHttpRequest: ...
                     def delete(
@@ -553,8 +553,8 @@ class LoggingResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListViewsResponseHttpRequest: ...
                     def list_next(
@@ -567,7 +567,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: LogView = ...,
-                        updateMask: str = ...,
+                        updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> LogViewHttpRequest: ...
                     def setIamPolicy(
@@ -591,7 +591,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: LogBucket = ...,
-                    bucketId: str = ...,
+                    bucketId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> LogBucketHttpRequest: ...
                 def createAsync(
@@ -599,7 +599,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: LogBucket = ...,
-                    bucketId: str = ...,
+                    bucketId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
@@ -612,8 +612,8 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListBucketsResponseHttpRequest: ...
                 def list_next(
@@ -626,7 +626,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: LogBucket = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> LogBucketHttpRequest: ...
                 def undelete(
@@ -641,7 +641,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: LogBucket = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def links(self) -> LinksResource: ...
@@ -654,7 +654,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: LogScope = ...,
-                    logScopeId: str = ...,
+                    logScopeId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> LogScopeHttpRequest: ...
                 def delete(
@@ -667,8 +667,8 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListLogScopesResponseHttpRequest: ...
                 def list_next(
@@ -681,7 +681,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: LogScope = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> LogScopeHttpRequest: ...
 
@@ -701,10 +701,10 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    returnPartialSuccess: bool = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    returnPartialSuccess: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListOperationsResponseHttpRequest: ...
                 def list_next(
@@ -719,9 +719,9 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListRecentQueriesResponseHttpRequest: ...
                 def list_next(
@@ -737,7 +737,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: SavedQuery = ...,
-                    savedQueryId: str = ...,
+                    savedQueryId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> SavedQueryHttpRequest: ...
                 def delete(
@@ -750,9 +750,9 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListSavedQueriesResponseHttpRequest: ...
                 def list_next(
@@ -765,7 +765,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: SavedQuery = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> SavedQueryHttpRequest: ...
 
@@ -776,10 +776,10 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                extraLocationTypes: str | _list[str] = ...,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                extraLocationTypes: str | _list[str] | None = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListLocationsResponseHttpRequest: ...
             def list_next(
@@ -802,9 +802,9 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
-                resourceNames: str | _list[str] = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
+                resourceNames: str | _list[str] | None = ...,
                 **kwargs: typing.Any,
             ) -> ListLogsResponseHttpRequest: ...
             def list_next(
@@ -820,8 +820,8 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: LogSink = ...,
-                customWriterIdentity: str = ...,
-                uniqueWriterIdentity: bool = ...,
+                customWriterIdentity: str | None = ...,
+                uniqueWriterIdentity: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> LogSinkHttpRequest: ...
             def delete(
@@ -834,9 +834,9 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListSinksResponseHttpRequest: ...
             def list_next(
@@ -849,9 +849,9 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 *,
                 sinkName: str,
                 body: LogSink = ...,
-                customWriterIdentity: str = ...,
-                uniqueWriterIdentity: bool = ...,
-                updateMask: str = ...,
+                customWriterIdentity: str | None = ...,
+                uniqueWriterIdentity: bool | None = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> LogSinkHttpRequest: ...
             def update(
@@ -859,9 +859,9 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 *,
                 sinkName: str,
                 body: LogSink = ...,
-                customWriterIdentity: str = ...,
-                uniqueWriterIdentity: bool = ...,
-                updateMask: str = ...,
+                customWriterIdentity: str | None = ...,
+                uniqueWriterIdentity: bool | None = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> LogSinkHttpRequest: ...
 
@@ -876,7 +876,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
             *,
             name: str,
             body: Settings = ...,
-            updateMask: str = ...,
+            updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> SettingsHttpRequest: ...
         def exclusions(self) -> ExclusionsResource: ...
@@ -895,7 +895,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: Link = ...,
-                    linkId: str = ...,
+                    linkId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
@@ -908,8 +908,8 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListLinksResponseHttpRequest: ...
                 def list_next(
@@ -925,7 +925,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: LogView = ...,
-                    viewId: str = ...,
+                    viewId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> LogViewHttpRequest: ...
                 def delete(
@@ -945,8 +945,8 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListViewsResponseHttpRequest: ...
                 def list_next(
@@ -959,7 +959,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: LogView = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> LogViewHttpRequest: ...
                 def setIamPolicy(
@@ -982,7 +982,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: LogBucket = ...,
-                bucketId: str = ...,
+                bucketId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> LogBucketHttpRequest: ...
             def createAsync(
@@ -990,7 +990,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: LogBucket = ...,
-                bucketId: str = ...,
+                bucketId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def delete(
@@ -1003,8 +1003,8 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListBucketsResponseHttpRequest: ...
             def list_next(
@@ -1017,7 +1017,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: LogBucket = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> LogBucketHttpRequest: ...
             def undelete(
@@ -1032,7 +1032,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: LogBucket = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def links(self) -> LinksResource: ...
@@ -1054,10 +1054,10 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
-                returnPartialSuccess: bool = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
+                returnPartialSuccess: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> ListOperationsResponseHttpRequest: ...
             def list_next(
@@ -1071,10 +1071,10 @@ class LoggingResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            extraLocationTypes: str | _list[str] = ...,
-            filter: str = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
+            extraLocationTypes: str | _list[str] | None = ...,
+            filter: str | None = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> ListLocationsResponseHttpRequest: ...
         def list_next(
@@ -1092,9 +1092,9 @@ class LoggingResource(googleapiclient.discovery.Resource):
             self,
             *,
             parent: str,
-            pageSize: int = ...,
-            pageToken: str = ...,
-            resourceNames: str | _list[str] = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            resourceNames: str | _list[str] | None = ...,
             **kwargs: typing.Any,
         ) -> ListLogsResponseHttpRequest: ...
         def list_next(
@@ -1106,7 +1106,11 @@ class LoggingResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class MonitoredResourceDescriptorsResource(googleapiclient.discovery.Resource):
         def list(
-            self, *, pageSize: int = ..., pageToken: str = ..., **kwargs: typing.Any
+            self,
+            *,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            **kwargs: typing.Any,
         ) -> ListMonitoredResourceDescriptorsResponseHttpRequest: ...
         def list_next(
             self,
@@ -1131,8 +1135,8 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListExclusionsResponseHttpRequest: ...
             def list_next(
@@ -1145,7 +1149,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: LogExclusion = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> LogExclusionHttpRequest: ...
 
@@ -1160,7 +1164,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: Link = ...,
-                        linkId: str = ...,
+                        linkId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def delete(
@@ -1173,8 +1177,8 @@ class LoggingResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListLinksResponseHttpRequest: ...
                     def list_next(
@@ -1191,9 +1195,9 @@ class LoggingResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             parent: str,
-                            pageSize: int = ...,
-                            pageToken: str = ...,
-                            resourceNames: str | _list[str] = ...,
+                            pageSize: int | None = ...,
+                            pageToken: str | None = ...,
+                            resourceNames: str | _list[str] | None = ...,
                             **kwargs: typing.Any,
                         ) -> ListLogsResponseHttpRequest: ...
                         def list_next(
@@ -1207,7 +1211,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: LogView = ...,
-                        viewId: str = ...,
+                        viewId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> LogViewHttpRequest: ...
                     def delete(
@@ -1227,8 +1231,8 @@ class LoggingResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListViewsResponseHttpRequest: ...
                     def list_next(
@@ -1241,7 +1245,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: LogView = ...,
-                        updateMask: str = ...,
+                        updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> LogViewHttpRequest: ...
                     def setIamPolicy(
@@ -1265,7 +1269,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: LogBucket = ...,
-                    bucketId: str = ...,
+                    bucketId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> LogBucketHttpRequest: ...
                 def createAsync(
@@ -1273,7 +1277,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: LogBucket = ...,
-                    bucketId: str = ...,
+                    bucketId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
@@ -1286,8 +1290,8 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListBucketsResponseHttpRequest: ...
                 def list_next(
@@ -1300,7 +1304,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: LogBucket = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> LogBucketHttpRequest: ...
                 def undelete(
@@ -1315,7 +1319,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: LogBucket = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def links(self) -> LinksResource: ...
@@ -1328,7 +1332,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: LogScope = ...,
-                    logScopeId: str = ...,
+                    logScopeId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> LogScopeHttpRequest: ...
                 def delete(
@@ -1341,8 +1345,8 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListLogScopesResponseHttpRequest: ...
                 def list_next(
@@ -1355,7 +1359,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: LogScope = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> LogScopeHttpRequest: ...
 
@@ -1375,10 +1379,10 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    returnPartialSuccess: bool = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    returnPartialSuccess: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListOperationsResponseHttpRequest: ...
                 def list_next(
@@ -1393,9 +1397,9 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListRecentQueriesResponseHttpRequest: ...
                 def list_next(
@@ -1411,7 +1415,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: SavedQuery = ...,
-                    savedQueryId: str = ...,
+                    savedQueryId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> SavedQueryHttpRequest: ...
                 def delete(
@@ -1424,9 +1428,9 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListSavedQueriesResponseHttpRequest: ...
                 def list_next(
@@ -1439,7 +1443,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: SavedQuery = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> SavedQueryHttpRequest: ...
 
@@ -1450,10 +1454,10 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                extraLocationTypes: str | _list[str] = ...,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                extraLocationTypes: str | _list[str] | None = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListLocationsResponseHttpRequest: ...
             def list_next(
@@ -1476,9 +1480,9 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
-                resourceNames: str | _list[str] = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
+                resourceNames: str | _list[str] | None = ...,
                 **kwargs: typing.Any,
             ) -> ListLogsResponseHttpRequest: ...
             def list_next(
@@ -1494,8 +1498,8 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: LogSink = ...,
-                customWriterIdentity: str = ...,
-                uniqueWriterIdentity: bool = ...,
+                customWriterIdentity: str | None = ...,
+                uniqueWriterIdentity: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> LogSinkHttpRequest: ...
             def delete(
@@ -1508,9 +1512,9 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListSinksResponseHttpRequest: ...
             def list_next(
@@ -1523,9 +1527,9 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 *,
                 sinkName: str,
                 body: LogSink = ...,
-                customWriterIdentity: str = ...,
-                uniqueWriterIdentity: bool = ...,
-                updateMask: str = ...,
+                customWriterIdentity: str | None = ...,
+                uniqueWriterIdentity: bool | None = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> LogSinkHttpRequest: ...
             def update(
@@ -1533,9 +1537,9 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 *,
                 sinkName: str,
                 body: LogSink = ...,
-                customWriterIdentity: str = ...,
-                uniqueWriterIdentity: bool = ...,
-                updateMask: str = ...,
+                customWriterIdentity: str | None = ...,
+                uniqueWriterIdentity: bool | None = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> LogSinkHttpRequest: ...
 
@@ -1550,7 +1554,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
             *,
             name: str,
             body: CmekSettings = ...,
-            updateMask: str = ...,
+            updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> CmekSettingsHttpRequest: ...
         def updateSettings(
@@ -1558,7 +1562,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
             *,
             name: str,
             body: Settings = ...,
-            updateMask: str = ...,
+            updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> SettingsHttpRequest: ...
         def exclusions(self) -> ExclusionsResource: ...
@@ -1583,8 +1587,8 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListExclusionsResponseHttpRequest: ...
             def list_next(
@@ -1597,7 +1601,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: LogExclusion = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> LogExclusionHttpRequest: ...
 
@@ -1612,7 +1616,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: Link = ...,
-                        linkId: str = ...,
+                        linkId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def delete(
@@ -1625,8 +1629,8 @@ class LoggingResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListLinksResponseHttpRequest: ...
                     def list_next(
@@ -1643,9 +1647,9 @@ class LoggingResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             parent: str,
-                            pageSize: int = ...,
-                            pageToken: str = ...,
-                            resourceNames: str | _list[str] = ...,
+                            pageSize: int | None = ...,
+                            pageToken: str | None = ...,
+                            resourceNames: str | _list[str] | None = ...,
                             **kwargs: typing.Any,
                         ) -> ListLogsResponseHttpRequest: ...
                         def list_next(
@@ -1659,7 +1663,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: LogView = ...,
-                        viewId: str = ...,
+                        viewId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> LogViewHttpRequest: ...
                     def delete(
@@ -1679,8 +1683,8 @@ class LoggingResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListViewsResponseHttpRequest: ...
                     def list_next(
@@ -1693,7 +1697,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: LogView = ...,
-                        updateMask: str = ...,
+                        updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> LogViewHttpRequest: ...
                     def setIamPolicy(
@@ -1717,7 +1721,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: LogBucket = ...,
-                    bucketId: str = ...,
+                    bucketId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> LogBucketHttpRequest: ...
                 def createAsync(
@@ -1725,7 +1729,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: LogBucket = ...,
-                    bucketId: str = ...,
+                    bucketId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
@@ -1738,8 +1742,8 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListBucketsResponseHttpRequest: ...
                 def list_next(
@@ -1752,7 +1756,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: LogBucket = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> LogBucketHttpRequest: ...
                 def undelete(
@@ -1767,7 +1771,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: LogBucket = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def links(self) -> LinksResource: ...
@@ -1780,7 +1784,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: LogScope = ...,
-                    logScopeId: str = ...,
+                    logScopeId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> LogScopeHttpRequest: ...
                 def delete(
@@ -1793,8 +1797,8 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListLogScopesResponseHttpRequest: ...
                 def list_next(
@@ -1807,7 +1811,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: LogScope = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> LogScopeHttpRequest: ...
 
@@ -1827,10 +1831,10 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    returnPartialSuccess: bool = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    returnPartialSuccess: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListOperationsResponseHttpRequest: ...
                 def list_next(
@@ -1845,9 +1849,9 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListRecentQueriesResponseHttpRequest: ...
                 def list_next(
@@ -1863,7 +1867,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: SavedQuery = ...,
-                    savedQueryId: str = ...,
+                    savedQueryId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> SavedQueryHttpRequest: ...
                 def delete(
@@ -1876,9 +1880,9 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListSavedQueriesResponseHttpRequest: ...
                 def list_next(
@@ -1891,7 +1895,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: SavedQuery = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> SavedQueryHttpRequest: ...
 
@@ -1902,10 +1906,10 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                extraLocationTypes: str | _list[str] = ...,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                extraLocationTypes: str | _list[str] | None = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListLocationsResponseHttpRequest: ...
             def list_next(
@@ -1928,9 +1932,9 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
-                resourceNames: str | _list[str] = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
+                resourceNames: str | _list[str] | None = ...,
                 **kwargs: typing.Any,
             ) -> ListLogsResponseHttpRequest: ...
             def list_next(
@@ -1954,8 +1958,8 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListLogMetricsResponseHttpRequest: ...
             def list_next(
@@ -1974,8 +1978,8 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: LogSink = ...,
-                customWriterIdentity: str = ...,
-                uniqueWriterIdentity: bool = ...,
+                customWriterIdentity: str | None = ...,
+                uniqueWriterIdentity: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> LogSinkHttpRequest: ...
             def delete(
@@ -1988,9 +1992,9 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListSinksResponseHttpRequest: ...
             def list_next(
@@ -2003,9 +2007,9 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 *,
                 sinkName: str,
                 body: LogSink = ...,
-                customWriterIdentity: str = ...,
-                uniqueWriterIdentity: bool = ...,
-                updateMask: str = ...,
+                customWriterIdentity: str | None = ...,
+                uniqueWriterIdentity: bool | None = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> LogSinkHttpRequest: ...
             def update(
@@ -2013,9 +2017,9 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 *,
                 sinkName: str,
                 body: LogSink = ...,
-                customWriterIdentity: str = ...,
-                uniqueWriterIdentity: bool = ...,
-                updateMask: str = ...,
+                customWriterIdentity: str | None = ...,
+                uniqueWriterIdentity: bool | None = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> LogSinkHttpRequest: ...
 
@@ -2038,8 +2042,8 @@ class LoggingResource(googleapiclient.discovery.Resource):
             *,
             parent: str,
             body: LogSink = ...,
-            customWriterIdentity: str = ...,
-            uniqueWriterIdentity: bool = ...,
+            customWriterIdentity: str | None = ...,
+            uniqueWriterIdentity: bool | None = ...,
             **kwargs: typing.Any,
         ) -> LogSinkHttpRequest: ...
         def delete(
@@ -2050,9 +2054,9 @@ class LoggingResource(googleapiclient.discovery.Resource):
             self,
             *,
             parent: str,
-            filter: str = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
+            filter: str | None = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> ListSinksResponseHttpRequest: ...
         def list_next(
@@ -2065,9 +2069,9 @@ class LoggingResource(googleapiclient.discovery.Resource):
             *,
             sinkName: str,
             body: LogSink = ...,
-            customWriterIdentity: str = ...,
-            uniqueWriterIdentity: bool = ...,
-            updateMask: str = ...,
+            customWriterIdentity: str | None = ...,
+            uniqueWriterIdentity: bool | None = ...,
+            updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> LogSinkHttpRequest: ...
 
@@ -2084,7 +2088,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
             *,
             name: str,
             body: CmekSettings = ...,
-            updateMask: str = ...,
+            updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> CmekSettingsHttpRequest: ...
         def updateSettings(
@@ -2092,7 +2096,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
             *,
             name: str,
             body: Settings = ...,
-            updateMask: str = ...,
+            updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> SettingsHttpRequest: ...
 

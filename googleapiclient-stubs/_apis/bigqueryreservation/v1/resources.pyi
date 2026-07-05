@@ -24,12 +24,12 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: CapacityCommitment = ...,
-                    capacityCommitmentId: str = ...,
-                    enforceSingleAdminProjectPerOrg: bool = ...,
+                    capacityCommitmentId: str | None = ...,
+                    enforceSingleAdminProjectPerOrg: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> CapacityCommitmentHttpRequest: ...
                 def delete(
-                    self, *, name: str, force: bool = ..., **kwargs: typing.Any
+                    self, *, name: str, force: bool | None = ..., **kwargs: typing.Any
                 ) -> EmptyHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
@@ -38,8 +38,8 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListCapacityCommitmentsResponseHttpRequest: ...
                 def list_next(
@@ -59,7 +59,7 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: CapacityCommitment = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> CapacityCommitmentHttpRequest: ...
                 def split(
@@ -77,7 +77,7 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: ReservationGroup = ...,
-                    reservationGroupId: str = ...,
+                    reservationGroupId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ReservationGroupHttpRequest: ...
                 def delete(
@@ -90,8 +90,8 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListReservationGroupsResponseHttpRequest: ...
                 def list_next(
@@ -109,7 +109,7 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: Assignment = ...,
-                        assignmentId: str = ...,
+                        assignmentId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> AssignmentHttpRequest: ...
                     def delete(
@@ -119,15 +119,15 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         resource: str,
-                        options_requestedPolicyVersion: int = ...,
+                        options_requestedPolicyVersion: int | None = ...,
                         **kwargs: typing.Any,
                     ) -> PolicyHttpRequest: ...
                     def list(
                         self,
                         *,
                         parent: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListAssignmentsResponseHttpRequest: ...
                     def list_next(
@@ -147,7 +147,7 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: Assignment = ...,
-                        updateMask: str = ...,
+                        updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> AssignmentHttpRequest: ...
                     def setIamPolicy(
@@ -170,7 +170,7 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: Reservation = ...,
-                    reservationId: str = ...,
+                    reservationId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ReservationHttpRequest: ...
                 def delete(
@@ -190,15 +190,15 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    options_requestedPolicyVersion: int = ...,
+                    options_requestedPolicyVersion: int | None = ...,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def list(
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListReservationsResponseHttpRequest: ...
                 def list_next(
@@ -211,7 +211,7 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: Reservation = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ReservationHttpRequest: ...
                 def setIamPolicy(
@@ -237,9 +237,9 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
-                query: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
+                query: str | None = ...,
                 **kwargs: typing.Any,
             ) -> SearchAllAssignmentsResponseHttpRequest: ...
             def searchAllAssignments_next(
@@ -251,9 +251,9 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
-                query: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
+                query: str | None = ...,
                 **kwargs: typing.Any,
             ) -> SearchAssignmentsResponseHttpRequest: ...
             def searchAssignments_next(
@@ -266,7 +266,7 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: BiReservation = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> BiReservationHttpRequest: ...
             def capacityCommitments(self) -> CapacityCommitmentsResource: ...

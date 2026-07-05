@@ -39,7 +39,7 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: WorkerPool = ...,
-                workerPoolId: str = ...,
+                workerPoolId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> WorkerPoolHttpRequest: ...
             def delete(
@@ -56,7 +56,7 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: WorkerPool = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> WorkerPoolHttpRequest: ...
 

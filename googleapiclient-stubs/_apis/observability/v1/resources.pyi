@@ -36,10 +36,10 @@ class CloudObservabilityResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    returnPartialSuccess: bool = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    returnPartialSuccess: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListOperationsResponseHttpRequest: ...
                 def list_next(
@@ -58,10 +58,10 @@ class CloudObservabilityResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                extraLocationTypes: str | _list[str] = ...,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                extraLocationTypes: str | _list[str] | None = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListLocationsResponseHttpRequest: ...
             def list_next(
@@ -74,7 +74,7 @@ class CloudObservabilityResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: Settings = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def operations(self) -> OperationsResource: ...
@@ -104,10 +104,10 @@ class CloudObservabilityResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    returnPartialSuccess: bool = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    returnPartialSuccess: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListOperationsResponseHttpRequest: ...
                 def list_next(
@@ -126,10 +126,10 @@ class CloudObservabilityResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                extraLocationTypes: str | _list[str] = ...,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                extraLocationTypes: str | _list[str] | None = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListLocationsResponseHttpRequest: ...
             def list_next(
@@ -142,7 +142,7 @@ class CloudObservabilityResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: Settings = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def operations(self) -> OperationsResource: ...
@@ -164,7 +164,7 @@ class CloudObservabilityResource(googleapiclient.discovery.Resource):
                             *,
                             parent: str,
                             body: Link = ...,
-                            linkId: str = ...,
+                            linkId: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> OperationHttpRequest: ...
                         def delete(
@@ -177,8 +177,8 @@ class CloudObservabilityResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             parent: str,
-                            pageSize: int = ...,
-                            pageToken: str = ...,
+                            pageSize: int | None = ...,
+                            pageToken: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> ListLinksResponseHttpRequest: ...
                         def list_next(
@@ -191,7 +191,7 @@ class CloudObservabilityResource(googleapiclient.discovery.Resource):
                             *,
                             name: str,
                             body: Link = ...,
-                            updateMask: str = ...,
+                            updateMask: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> OperationHttpRequest: ...
 
@@ -204,8 +204,8 @@ class CloudObservabilityResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             parent: str,
-                            pageSize: int = ...,
-                            pageToken: str = ...,
+                            pageSize: int | None = ...,
+                            pageToken: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> ListViewsResponseHttpRequest: ...
                         def list_next(
@@ -221,9 +221,9 @@ class CloudObservabilityResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
-                        showDeleted: bool = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
+                        showDeleted: bool | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListDatasetsResponseHttpRequest: ...
                     def list_next(
@@ -241,9 +241,9 @@ class CloudObservabilityResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    showDeleted: bool = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    showDeleted: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListBucketsResponseHttpRequest: ...
                 def list_next(
@@ -272,10 +272,10 @@ class CloudObservabilityResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    returnPartialSuccess: bool = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    returnPartialSuccess: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListOperationsResponseHttpRequest: ...
                 def list_next(
@@ -294,7 +294,7 @@ class CloudObservabilityResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: Scope = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ScopeHttpRequest: ...
 
@@ -305,7 +305,7 @@ class CloudObservabilityResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: TraceScope = ...,
-                    traceScopeId: str = ...,
+                    traceScopeId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> TraceScopeHttpRequest: ...
                 def delete(
@@ -318,8 +318,8 @@ class CloudObservabilityResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListTraceScopesResponseHttpRequest: ...
                 def list_next(
@@ -332,7 +332,7 @@ class CloudObservabilityResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: TraceScope = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> TraceScopeHttpRequest: ...
 
@@ -346,10 +346,10 @@ class CloudObservabilityResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                extraLocationTypes: str | _list[str] = ...,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                extraLocationTypes: str | _list[str] | None = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListLocationsResponseHttpRequest: ...
             def list_next(
@@ -362,7 +362,7 @@ class CloudObservabilityResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: Settings = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def buckets(self) -> BucketsResource: ...

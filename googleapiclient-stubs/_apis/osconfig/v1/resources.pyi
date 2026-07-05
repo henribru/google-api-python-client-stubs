@@ -27,7 +27,7 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: ProjectFeatureSettings = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ProjectFeatureSettingsHttpRequest: ...
 
@@ -41,19 +41,21 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                         name: str,
                         view: typing_extensions.Literal[
                             "INVENTORY_VIEW_UNSPECIFIED", "BASIC", "FULL"
-                        ] = ...,
+                        ]
+                        | None = ...,
                         **kwargs: typing.Any,
                     ) -> InventoryHttpRequest: ...
                     def list(
                         self,
                         *,
                         parent: str,
-                        filter: str = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        filter: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         view: typing_extensions.Literal[
                             "INVENTORY_VIEW_UNSPECIFIED", "BASIC", "FULL"
-                        ] = ...,
+                        ]
+                        | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListInventoriesResponseHttpRequest: ...
                     def list_next(
@@ -73,9 +75,9 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             parent: str,
-                            filter: str = ...,
-                            pageSize: int = ...,
-                            pageToken: str = ...,
+                            filter: str | None = ...,
+                            pageSize: int | None = ...,
+                            pageToken: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> ListOSPolicyAssignmentReportsResponseHttpRequest: ...
                         def list_next(
@@ -97,9 +99,9 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        filter: str = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        filter: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListVulnerabilityReportsResponseHttpRequest: ...
                     def list_next(
@@ -132,12 +134,16 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: OSPolicyAssignment = ...,
-                    osPolicyAssignmentId: str = ...,
-                    requestId: str = ...,
+                    osPolicyAssignmentId: str | None = ...,
+                    requestId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
-                    self, *, name: str, requestId: str = ..., **kwargs: typing.Any
+                    self,
+                    *,
+                    name: str,
+                    requestId: str | None = ...,
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
@@ -146,8 +152,8 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListOSPolicyAssignmentsResponseHttpRequest: ...
                 def list_next(
@@ -159,8 +165,8 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListOSPolicyAssignmentRevisionsResponseHttpRequest: ...
                 def listRevisions_next(
@@ -173,9 +179,9 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: OSPolicyAssignment = ...,
-                    allowMissing: bool = ...,
-                    requestId: str = ...,
-                    updateMask: str = ...,
+                    allowMissing: bool | None = ...,
+                    requestId: str | None = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def operations(self) -> OperationsResource: ...
@@ -191,7 +197,7 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: PatchDeployment = ...,
-                patchDeploymentId: str = ...,
+                patchDeploymentId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> PatchDeploymentHttpRequest: ...
             def delete(
@@ -204,8 +210,8 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListPatchDeploymentsResponseHttpRequest: ...
             def list_next(
@@ -218,7 +224,7 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: PatchDeployment = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> PatchDeploymentHttpRequest: ...
             def pause(
@@ -244,9 +250,9 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListPatchJobInstanceDetailsResponseHttpRequest: ...
                 def list_next(
@@ -276,9 +282,9 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListPatchJobsResponseHttpRequest: ...
             def list_next(

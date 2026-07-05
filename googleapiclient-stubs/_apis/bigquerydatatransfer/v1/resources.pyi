@@ -31,8 +31,8 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListDataSourcesResponseHttpRequest: ...
             def list_next(
@@ -59,8 +59,8 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListDataSourcesResponseHttpRequest: ...
                 def list_next(
@@ -92,9 +92,10 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                                     "WARNING",
                                     "ERROR",
                                 ]
-                            ] = ...,
-                            pageSize: int = ...,
-                            pageToken: str = ...,
+                            ]
+                            | None = ...,
+                            pageSize: int | None = ...,
+                            pageToken: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> ListTransferLogsResponseHttpRequest: ...
                         def list_next(
@@ -113,11 +114,12 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         runAttempt: typing_extensions.Literal[
                             "RUN_ATTEMPT_UNSPECIFIED", "LATEST"
-                        ] = ...,
+                        ]
+                        | None = ...,
                         states: typing_extensions.Literal[
                             "TRANSFER_STATE_UNSPECIFIED",
                             "PENDING",
@@ -135,7 +137,8 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                                 "FAILED",
                                 "CANCELLED",
                             ]
-                        ] = ...,
+                        ]
+                        | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListTransferRunsResponseHttpRequest: ...
                     def list_next(
@@ -154,9 +157,9 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        filter: str = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        filter: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListTransferResourcesResponseHttpRequest: ...
                     def list_next(
@@ -170,9 +173,9 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: TransferConfig = ...,
-                    authorizationCode: str = ...,
-                    serviceAccountName: str = ...,
-                    versionInfo: str = ...,
+                    authorizationCode: str | None = ...,
+                    serviceAccountName: str | None = ...,
+                    versionInfo: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> TransferConfigHttpRequest: ...
                 def delete(
@@ -185,9 +188,9 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    dataSourceIds: str | _list[str] = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    dataSourceIds: str | _list[str] | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListTransferConfigsResponseHttpRequest: ...
                 def list_next(
@@ -200,10 +203,10 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: TransferConfig = ...,
-                    authorizationCode: str = ...,
-                    serviceAccountName: str = ...,
-                    updateMask: str = ...,
-                    versionInfo: str = ...,
+                    authorizationCode: str | None = ...,
+                    serviceAccountName: str | None = ...,
+                    updateMask: str | None = ...,
+                    versionInfo: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> TransferConfigHttpRequest: ...
                 def scheduleRuns(
@@ -237,10 +240,10 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                extraLocationTypes: str | _list[str] = ...,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                extraLocationTypes: str | _list[str] | None = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListLocationsResponseHttpRequest: ...
             def list_next(
@@ -278,9 +281,10 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                                 "WARNING",
                                 "ERROR",
                             ]
-                        ] = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        ]
+                        | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListTransferLogsResponseHttpRequest: ...
                     def list_next(
@@ -299,11 +303,12 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     runAttempt: typing_extensions.Literal[
                         "RUN_ATTEMPT_UNSPECIFIED", "LATEST"
-                    ] = ...,
+                    ]
+                    | None = ...,
                     states: typing_extensions.Literal[
                         "TRANSFER_STATE_UNSPECIFIED",
                         "PENDING",
@@ -321,7 +326,8 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                             "FAILED",
                             "CANCELLED",
                         ]
-                    ] = ...,
+                    ]
+                    | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListTransferRunsResponseHttpRequest: ...
                 def list_next(
@@ -340,9 +346,9 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListTransferResourcesResponseHttpRequest: ...
                 def list_next(
@@ -356,9 +362,9 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: TransferConfig = ...,
-                authorizationCode: str = ...,
-                serviceAccountName: str = ...,
-                versionInfo: str = ...,
+                authorizationCode: str | None = ...,
+                serviceAccountName: str | None = ...,
+                versionInfo: str | None = ...,
                 **kwargs: typing.Any,
             ) -> TransferConfigHttpRequest: ...
             def delete(
@@ -371,9 +377,9 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                dataSourceIds: str | _list[str] = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                dataSourceIds: str | _list[str] | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListTransferConfigsResponseHttpRequest: ...
             def list_next(
@@ -386,10 +392,10 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: TransferConfig = ...,
-                authorizationCode: str = ...,
-                serviceAccountName: str = ...,
-                updateMask: str = ...,
-                versionInfo: str = ...,
+                authorizationCode: str | None = ...,
+                serviceAccountName: str | None = ...,
+                updateMask: str | None = ...,
+                versionInfo: str | None = ...,
                 **kwargs: typing.Any,
             ) -> TransferConfigHttpRequest: ...
             def scheduleRuns(

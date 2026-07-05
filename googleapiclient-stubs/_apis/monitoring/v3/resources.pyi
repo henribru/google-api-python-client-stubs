@@ -21,7 +21,7 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                aggregation_alignmentPeriod: str = ...,
+                aggregation_alignmentPeriod: str | None = ...,
                 aggregation_crossSeriesReducer: typing_extensions.Literal[
                     "REDUCE_NONE",
                     "REDUCE_MEAN",
@@ -37,8 +37,9 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                     "REDUCE_PERCENTILE_95",
                     "REDUCE_PERCENTILE_50",
                     "REDUCE_PERCENTILE_05",
-                ] = ...,
-                aggregation_groupByFields: str | _list[str] = ...,
+                ]
+                | None = ...,
+                aggregation_groupByFields: str | _list[str] | None = ...,
                 aggregation_perSeriesAligner: typing_extensions.Literal[
                     "ALIGN_NONE",
                     "ALIGN_DELTA",
@@ -59,14 +60,15 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                     "ALIGN_PERCENTILE_50",
                     "ALIGN_PERCENTILE_05",
                     "ALIGN_PERCENT_CHANGE",
-                ] = ...,
-                filter: str = ...,
-                interval_endTime: str = ...,
-                interval_startTime: str = ...,
-                orderBy: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
-                secondaryAggregation_alignmentPeriod: str = ...,
+                ]
+                | None = ...,
+                filter: str | None = ...,
+                interval_endTime: str | None = ...,
+                interval_startTime: str | None = ...,
+                orderBy: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
+                secondaryAggregation_alignmentPeriod: str | None = ...,
                 secondaryAggregation_crossSeriesReducer: typing_extensions.Literal[
                     "REDUCE_NONE",
                     "REDUCE_MEAN",
@@ -82,8 +84,9 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                     "REDUCE_PERCENTILE_95",
                     "REDUCE_PERCENTILE_50",
                     "REDUCE_PERCENTILE_05",
-                ] = ...,
-                secondaryAggregation_groupByFields: str | _list[str] = ...,
+                ]
+                | None = ...,
+                secondaryAggregation_groupByFields: str | _list[str] | None = ...,
                 secondaryAggregation_perSeriesAligner: typing_extensions.Literal[
                     "ALIGN_NONE",
                     "ALIGN_DELTA",
@@ -104,8 +107,9 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                     "ALIGN_PERCENTILE_50",
                     "ALIGN_PERCENTILE_05",
                     "ALIGN_PERCENT_CHANGE",
-                ] = ...,
-                view: typing_extensions.Literal["FULL", "HEADERS"] = ...,
+                ]
+                | None = ...,
+                view: typing_extensions.Literal["FULL", "HEADERS"] | None = ...,
                 **kwargs: typing.Any,
             ) -> ListTimeSeriesResponseHttpRequest: ...
             def list_next(
@@ -124,7 +128,7 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                aggregation_alignmentPeriod: str = ...,
+                aggregation_alignmentPeriod: str | None = ...,
                 aggregation_crossSeriesReducer: typing_extensions.Literal[
                     "REDUCE_NONE",
                     "REDUCE_MEAN",
@@ -140,8 +144,9 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                     "REDUCE_PERCENTILE_95",
                     "REDUCE_PERCENTILE_50",
                     "REDUCE_PERCENTILE_05",
-                ] = ...,
-                aggregation_groupByFields: str | _list[str] = ...,
+                ]
+                | None = ...,
+                aggregation_groupByFields: str | _list[str] | None = ...,
                 aggregation_perSeriesAligner: typing_extensions.Literal[
                     "ALIGN_NONE",
                     "ALIGN_DELTA",
@@ -162,14 +167,15 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                     "ALIGN_PERCENTILE_50",
                     "ALIGN_PERCENTILE_05",
                     "ALIGN_PERCENT_CHANGE",
-                ] = ...,
-                filter: str = ...,
-                interval_endTime: str = ...,
-                interval_startTime: str = ...,
-                orderBy: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
-                secondaryAggregation_alignmentPeriod: str = ...,
+                ]
+                | None = ...,
+                filter: str | None = ...,
+                interval_endTime: str | None = ...,
+                interval_startTime: str | None = ...,
+                orderBy: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
+                secondaryAggregation_alignmentPeriod: str | None = ...,
                 secondaryAggregation_crossSeriesReducer: typing_extensions.Literal[
                     "REDUCE_NONE",
                     "REDUCE_MEAN",
@@ -185,8 +191,9 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                     "REDUCE_PERCENTILE_95",
                     "REDUCE_PERCENTILE_50",
                     "REDUCE_PERCENTILE_05",
-                ] = ...,
-                secondaryAggregation_groupByFields: str | _list[str] = ...,
+                ]
+                | None = ...,
+                secondaryAggregation_groupByFields: str | _list[str] | None = ...,
                 secondaryAggregation_perSeriesAligner: typing_extensions.Literal[
                     "ALIGN_NONE",
                     "ALIGN_DELTA",
@@ -207,8 +214,9 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                     "ALIGN_PERCENTILE_50",
                     "ALIGN_PERCENTILE_05",
                     "ALIGN_PERCENT_CHANGE",
-                ] = ...,
-                view: typing_extensions.Literal["FULL", "HEADERS"] = ...,
+                ]
+                | None = ...,
+                view: typing_extensions.Literal["FULL", "HEADERS"] | None = ...,
                 **kwargs: typing.Any,
             ) -> ListTimeSeriesResponseHttpRequest: ...
             def list_next(
@@ -236,10 +244,10 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                filter: str = ...,
-                orderBy: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                filter: str | None = ...,
+                orderBy: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListAlertPoliciesResponseHttpRequest: ...
             def list_next(
@@ -252,7 +260,7 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: AlertPolicy = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> AlertPolicyHttpRequest: ...
 
@@ -263,10 +271,10 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                filter: str = ...,
-                orderBy: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                filter: str | None = ...,
+                orderBy: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListAlertsResponseHttpRequest: ...
             def list_next(
@@ -293,11 +301,11 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    filter: str = ...,
-                    interval_endTime: str = ...,
-                    interval_startTime: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    interval_endTime: str | None = ...,
+                    interval_startTime: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListGroupMembersResponseHttpRequest: ...
                 def list_next(
@@ -311,22 +319,22 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: Group = ...,
-                validateOnly: bool = ...,
+                validateOnly: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> GroupHttpRequest: ...
             def delete(
-                self, *, name: str, recursive: bool = ..., **kwargs: typing.Any
+                self, *, name: str, recursive: bool | None = ..., **kwargs: typing.Any
             ) -> EmptyHttpRequest: ...
             def get(self, *, name: str, **kwargs: typing.Any) -> GroupHttpRequest: ...
             def list(
                 self,
                 *,
                 name: str,
-                ancestorsOfGroup: str = ...,
-                childrenOfGroup: str = ...,
-                descendantsOfGroup: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                ancestorsOfGroup: str | None = ...,
+                childrenOfGroup: str | None = ...,
+                descendantsOfGroup: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListGroupsResponseHttpRequest: ...
             def list_next(
@@ -339,7 +347,7 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: Group = ...,
-                validateOnly: bool = ...,
+                validateOnly: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> GroupHttpRequest: ...
             def members(self) -> MembersResource: ...
@@ -359,10 +367,10 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                activeOnly: bool = ...,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                activeOnly: bool | None = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListMetricDescriptorsResponseHttpRequest: ...
             def list_next(
@@ -380,9 +388,9 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListMonitoredResourceDescriptorsResponseHttpRequest: ...
             def list_next(
@@ -402,8 +410,8 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListNotificationChannelDescriptorsResponseHttpRequest: ...
             def list_next(
@@ -422,7 +430,7 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any,
             ) -> NotificationChannelHttpRequest: ...
             def delete(
-                self, *, name: str, force: bool = ..., **kwargs: typing.Any
+                self, *, name: str, force: bool | None = ..., **kwargs: typing.Any
             ) -> EmptyHttpRequest: ...
             def get(
                 self, *, name: str, **kwargs: typing.Any
@@ -438,10 +446,10 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                filter: str = ...,
-                orderBy: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                filter: str | None = ...,
+                orderBy: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListNotificationChannelsResponseHttpRequest: ...
             def list_next(
@@ -454,7 +462,7 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: NotificationChannel = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> NotificationChannelHttpRequest: ...
             def sendVerificationCode(
@@ -482,9 +490,9 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListSnoozesResponseHttpRequest: ...
             def list_next(
@@ -497,7 +505,7 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: Snooze = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> SnoozeHttpRequest: ...
 
@@ -521,7 +529,7 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                aggregation_alignmentPeriod: str = ...,
+                aggregation_alignmentPeriod: str | None = ...,
                 aggregation_crossSeriesReducer: typing_extensions.Literal[
                     "REDUCE_NONE",
                     "REDUCE_MEAN",
@@ -537,8 +545,9 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                     "REDUCE_PERCENTILE_95",
                     "REDUCE_PERCENTILE_50",
                     "REDUCE_PERCENTILE_05",
-                ] = ...,
-                aggregation_groupByFields: str | _list[str] = ...,
+                ]
+                | None = ...,
+                aggregation_groupByFields: str | _list[str] | None = ...,
                 aggregation_perSeriesAligner: typing_extensions.Literal[
                     "ALIGN_NONE",
                     "ALIGN_DELTA",
@@ -559,14 +568,15 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                     "ALIGN_PERCENTILE_50",
                     "ALIGN_PERCENTILE_05",
                     "ALIGN_PERCENT_CHANGE",
-                ] = ...,
-                filter: str = ...,
-                interval_endTime: str = ...,
-                interval_startTime: str = ...,
-                orderBy: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
-                secondaryAggregation_alignmentPeriod: str = ...,
+                ]
+                | None = ...,
+                filter: str | None = ...,
+                interval_endTime: str | None = ...,
+                interval_startTime: str | None = ...,
+                orderBy: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
+                secondaryAggregation_alignmentPeriod: str | None = ...,
                 secondaryAggregation_crossSeriesReducer: typing_extensions.Literal[
                     "REDUCE_NONE",
                     "REDUCE_MEAN",
@@ -582,8 +592,9 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                     "REDUCE_PERCENTILE_95",
                     "REDUCE_PERCENTILE_50",
                     "REDUCE_PERCENTILE_05",
-                ] = ...,
-                secondaryAggregation_groupByFields: str | _list[str] = ...,
+                ]
+                | None = ...,
+                secondaryAggregation_groupByFields: str | _list[str] | None = ...,
                 secondaryAggregation_perSeriesAligner: typing_extensions.Literal[
                     "ALIGN_NONE",
                     "ALIGN_DELTA",
@@ -604,8 +615,9 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                     "ALIGN_PERCENTILE_50",
                     "ALIGN_PERCENTILE_05",
                     "ALIGN_PERCENT_CHANGE",
-                ] = ...,
-                view: typing_extensions.Literal["FULL", "HEADERS"] = ...,
+                ]
+                | None = ...,
+                view: typing_extensions.Literal["FULL", "HEADERS"] | None = ...,
                 **kwargs: typing.Any,
             ) -> ListTimeSeriesResponseHttpRequest: ...
             def list_next(
@@ -645,9 +657,9 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListUptimeCheckConfigsResponseHttpRequest: ...
             def list_next(
@@ -660,7 +672,7 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: UptimeCheckConfig = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> UptimeCheckConfigHttpRequest: ...
 
@@ -689,7 +701,7 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: ServiceLevelObjective = ...,
-                serviceLevelObjectiveId: str = ...,
+                serviceLevelObjectiveId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ServiceLevelObjectiveHttpRequest: ...
             def delete(
@@ -699,21 +711,19 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                view: typing_extensions.Literal[
-                    "VIEW_UNSPECIFIED", "FULL", "EXPLICIT"
-                ] = ...,
+                view: typing_extensions.Literal["VIEW_UNSPECIFIED", "FULL", "EXPLICIT"]
+                | None = ...,
                 **kwargs: typing.Any,
             ) -> ServiceLevelObjectiveHttpRequest: ...
             def list(
                 self,
                 *,
                 parent: str,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
-                view: typing_extensions.Literal[
-                    "VIEW_UNSPECIFIED", "FULL", "EXPLICIT"
-                ] = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
+                view: typing_extensions.Literal["VIEW_UNSPECIFIED", "FULL", "EXPLICIT"]
+                | None = ...,
                 **kwargs: typing.Any,
             ) -> ListServiceLevelObjectivesResponseHttpRequest: ...
             def list_next(
@@ -726,7 +736,7 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: ServiceLevelObjective = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ServiceLevelObjectiveHttpRequest: ...
 
@@ -735,7 +745,7 @@ class MonitoringResource(googleapiclient.discovery.Resource):
             *,
             parent: str,
             body: Service = ...,
-            serviceId: str = ...,
+            serviceId: str | None = ...,
             **kwargs: typing.Any,
         ) -> ServiceHttpRequest: ...
         def delete(self, *, name: str, **kwargs: typing.Any) -> EmptyHttpRequest: ...
@@ -744,9 +754,9 @@ class MonitoringResource(googleapiclient.discovery.Resource):
             self,
             *,
             parent: str,
-            filter: str = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
+            filter: str | None = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> ListServicesResponseHttpRequest: ...
         def list_next(
@@ -759,7 +769,7 @@ class MonitoringResource(googleapiclient.discovery.Resource):
             *,
             name: str,
             body: Service = ...,
-            updateMask: str = ...,
+            updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> ServiceHttpRequest: ...
         def serviceLevelObjectives(self) -> ServiceLevelObjectivesResource: ...
@@ -767,7 +777,11 @@ class MonitoringResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class UptimeCheckIpsResource(googleapiclient.discovery.Resource):
         def list(
-            self, *, pageSize: int = ..., pageToken: str = ..., **kwargs: typing.Any
+            self,
+            *,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            **kwargs: typing.Any,
         ) -> ListUptimeCheckIpsResponseHttpRequest: ...
         def list_next(
             self,

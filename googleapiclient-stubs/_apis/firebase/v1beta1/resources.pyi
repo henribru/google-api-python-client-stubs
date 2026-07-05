@@ -16,7 +16,11 @@ class FirebaseManagementResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class AvailableProjectsResource(googleapiclient.discovery.Resource):
         def list(
-            self, *, pageSize: int = ..., pageToken: str = ..., **kwargs: typing.Any
+            self,
+            *,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            **kwargs: typing.Any,
         ) -> ListAvailableProjectsResponseHttpRequest: ...
         def list_next(
             self,
@@ -61,9 +65,9 @@ class FirebaseManagementResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
-                showDeleted: bool = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
+                showDeleted: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> ListAndroidAppsResponseHttpRequest: ...
             def list_next(
@@ -76,7 +80,7 @@ class FirebaseManagementResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: AndroidApp = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> AndroidAppHttpRequest: ...
             def remove(
@@ -101,8 +105,8 @@ class FirebaseManagementResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListAvailableLocationsResponseHttpRequest: ...
             def list_next(
@@ -134,9 +138,9 @@ class FirebaseManagementResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
-                showDeleted: bool = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
+                showDeleted: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> ListIosAppsResponseHttpRequest: ...
             def list_next(
@@ -149,7 +153,7 @@ class FirebaseManagementResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: IosApp = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> IosAppHttpRequest: ...
             def remove(
@@ -180,9 +184,9 @@ class FirebaseManagementResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
-                showDeleted: bool = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
+                showDeleted: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> ListWebAppsResponseHttpRequest: ...
             def list_next(
@@ -195,7 +199,7 @@ class FirebaseManagementResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: WebApp = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> WebAppHttpRequest: ...
             def remove(
@@ -235,9 +239,9 @@ class FirebaseManagementResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            pageSize: int = ...,
-            pageToken: str = ...,
-            showDeleted: bool = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            showDeleted: bool | None = ...,
             **kwargs: typing.Any,
         ) -> ListFirebaseProjectsResponseHttpRequest: ...
         def list_next(
@@ -250,7 +254,7 @@ class FirebaseManagementResource(googleapiclient.discovery.Resource):
             *,
             name: str,
             body: FirebaseProject = ...,
-            updateMask: str = ...,
+            updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> FirebaseProjectHttpRequest: ...
         def removeAnalytics(
@@ -264,10 +268,10 @@ class FirebaseManagementResource(googleapiclient.discovery.Resource):
             self,
             *,
             parent: str,
-            filter: str = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
-            showDeleted: bool = ...,
+            filter: str | None = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            showDeleted: bool | None = ...,
             **kwargs: typing.Any,
         ) -> SearchFirebaseAppsResponseHttpRequest: ...
         def searchApps_next(

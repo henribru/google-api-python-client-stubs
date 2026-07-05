@@ -36,7 +36,10 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                     self, *, name: str, **kwargs: typing.Any
                 ) -> MetricsScopeHttpRequest: ...
                 def listMetricsScopesByMonitoredProject(
-                    self, *, monitoredResourceContainer: str = ..., **kwargs: typing.Any
+                    self,
+                    *,
+                    monitoredResourceContainer: str | None = ...,
+                    **kwargs: typing.Any,
                 ) -> ListMetricsScopesByMonitoredProjectResponseHttpRequest: ...
                 def projects(self) -> ProjectsResource: ...
 
@@ -57,7 +60,7 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: Dashboard = ...,
-                validateOnly: bool = ...,
+                validateOnly: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> DashboardHttpRequest: ...
             def delete(
@@ -70,8 +73,8 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListDashboardsResponseHttpRequest: ...
             def list_next(
@@ -84,7 +87,7 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: Dashboard = ...,
-                validateOnly: bool = ...,
+                validateOnly: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> DashboardHttpRequest: ...
 
@@ -104,9 +107,9 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                                 name: str,
                                 location: str,
                                 label: str,
-                                end: str = ...,
-                                match: str = ...,
-                                start: str = ...,
+                                end: str | None = ...,
+                                match: str | None = ...,
+                                start: str | None = ...,
                                 **kwargs: typing.Any,
                             ) -> HttpBodyHttpRequest: ...
 
@@ -117,8 +120,8 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                                 *,
                                 name: str,
                                 location: str,
-                                limit: str = ...,
-                                metric: str = ...,
+                                limit: str | None = ...,
+                                metric: str | None = ...,
                                 **kwargs: typing.Any,
                             ) -> HttpBodyHttpRequest: ...
 

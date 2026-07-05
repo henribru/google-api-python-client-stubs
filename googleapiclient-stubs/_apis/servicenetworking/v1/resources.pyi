@@ -24,10 +24,10 @@ class ServiceNetworkingResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            filter: str = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
-            returnPartialSuccess: bool = ...,
+            filter: str | None = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> ListOperationsResponseHttpRequest: ...
         def list_next(
@@ -51,15 +51,15 @@ class ServiceNetworkingResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def list(
-                self, *, parent: str, network: str = ..., **kwargs: typing.Any
+                self, *, parent: str, network: str | None = ..., **kwargs: typing.Any
             ) -> ListConnectionsResponseHttpRequest: ...
             def patch(
                 self,
                 *,
                 name: str,
                 body: Connection = ...,
-                force: bool = ...,
-                updateMask: str = ...,
+                force: bool | None = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
 
@@ -76,18 +76,18 @@ class ServiceNetworkingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                consumerNetwork: str = ...,
-                domain: str = ...,
-                type: str = ...,
-                zone: str = ...,
+                consumerNetwork: str | None = ...,
+                domain: str | None = ...,
+                type: str | None = ...,
+                zone: str | None = ...,
                 **kwargs: typing.Any,
             ) -> DnsRecordSetHttpRequest: ...
             def list(
                 self,
                 *,
                 parent: str,
-                consumerNetwork: str = ...,
-                zone: str = ...,
+                consumerNetwork: str | None = ...,
+                zone: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListDnsRecordSetsResponseHttpRequest: ...
             def remove(
@@ -157,7 +157,7 @@ class ServiceNetworkingResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        includeUsedIpRanges: bool = ...,
+                        includeUsedIpRanges: bool | None = ...,
                         **kwargs: typing.Any,
                     ) -> ConsumerConfigHttpRequest: ...
                     def getVpcServiceControls(

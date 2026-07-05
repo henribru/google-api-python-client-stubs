@@ -38,7 +38,7 @@ class ThreatIntelligenceServiceResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any,
             ) -> AlertHttpRequest: ...
             def enumerateFacets(
-                self, *, parent: str, filter: str = ..., **kwargs: typing.Any
+                self, *, parent: str, filter: str | None = ..., **kwargs: typing.Any
             ) -> EnumerateAlertFacetsResponseHttpRequest: ...
             def escalate(
                 self,
@@ -59,10 +59,10 @@ class ThreatIntelligenceServiceResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                filter: str = ...,
-                orderBy: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                filter: str | None = ...,
+                orderBy: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListAlertsResponseHttpRequest: ...
             def list_next(
@@ -115,10 +115,10 @@ class ThreatIntelligenceServiceResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    orderBy: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListConfigurationRevisionsResponseHttpRequest: ...
                 def list_next(
@@ -134,10 +134,10 @@ class ThreatIntelligenceServiceResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                filter: str = ...,
-                orderBy: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                filter: str | None = ...,
+                orderBy: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListConfigurationsResponseHttpRequest: ...
             def list_next(
@@ -150,7 +150,7 @@ class ThreatIntelligenceServiceResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: Configuration = ...,
-                publishTime: str = ...,
+                publishTime: str | None = ...,
                 **kwargs: typing.Any,
             ) -> UpsertConfigurationResponseHttpRequest: ...
             def revisions(self) -> RevisionsResource: ...
@@ -162,10 +162,10 @@ class ThreatIntelligenceServiceResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                filter: str = ...,
-                orderBy: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                filter: str | None = ...,
+                orderBy: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListFindingsResponseHttpRequest: ...
             def list_next(
@@ -177,10 +177,10 @@ class ThreatIntelligenceServiceResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                orderBy: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
-                query: str = ...,
+                orderBy: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
+                query: str | None = ...,
                 **kwargs: typing.Any,
             ) -> SearchFindingsResponseHttpRequest: ...
             def search_next(

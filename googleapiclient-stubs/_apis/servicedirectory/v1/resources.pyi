@@ -28,7 +28,7 @@ class ServiceDirectoryResource(googleapiclient.discovery.Resource):
                             *,
                             parent: str,
                             body: Endpoint = ...,
-                            endpointId: str = ...,
+                            endpointId: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> EndpointHttpRequest: ...
                         def delete(
@@ -41,10 +41,10 @@ class ServiceDirectoryResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             parent: str,
-                            filter: str = ...,
-                            orderBy: str = ...,
-                            pageSize: int = ...,
-                            pageToken: str = ...,
+                            filter: str | None = ...,
+                            orderBy: str | None = ...,
+                            pageSize: int | None = ...,
+                            pageToken: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> ListEndpointsResponseHttpRequest: ...
                         def list_next(
@@ -57,7 +57,7 @@ class ServiceDirectoryResource(googleapiclient.discovery.Resource):
                             *,
                             name: str,
                             body: Endpoint = ...,
-                            updateMask: str = ...,
+                            updateMask: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> EndpointHttpRequest: ...
 
@@ -66,7 +66,7 @@ class ServiceDirectoryResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: Service = ...,
-                        serviceId: str = ...,
+                        serviceId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ServiceHttpRequest: ...
                     def delete(
@@ -86,10 +86,10 @@ class ServiceDirectoryResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        filter: str = ...,
-                        orderBy: str = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        filter: str | None = ...,
+                        orderBy: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListServicesResponseHttpRequest: ...
                     def list_next(
@@ -102,7 +102,7 @@ class ServiceDirectoryResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: Service = ...,
-                        updateMask: str = ...,
+                        updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ServiceHttpRequest: ...
                     def resolve(
@@ -133,7 +133,7 @@ class ServiceDirectoryResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: Namespace = ...,
-                    namespaceId: str = ...,
+                    namespaceId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> NamespaceHttpRequest: ...
                 def delete(
@@ -153,10 +153,10 @@ class ServiceDirectoryResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    orderBy: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListNamespacesResponseHttpRequest: ...
                 def list_next(
@@ -169,7 +169,7 @@ class ServiceDirectoryResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: Namespace = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> NamespaceHttpRequest: ...
                 def setIamPolicy(
@@ -195,10 +195,10 @@ class ServiceDirectoryResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                extraLocationTypes: str | _list[str] = ...,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                extraLocationTypes: str | _list[str] | None = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListLocationsResponseHttpRequest: ...
             def list_next(

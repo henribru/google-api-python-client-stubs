@@ -31,8 +31,8 @@ class FirebaseDynamicLinksResource(googleapiclient.discovery.Resource):
             self,
             *,
             dynamicLink: str,
-            durationDays: str = ...,
-            sdkVersion: str = ...,
+            durationDays: str | None = ...,
+            sdkVersion: str | None = ...,
             **kwargs: typing.Any,
         ) -> DynamicLinkStatsHttpRequest: ...
         def installAttribution(

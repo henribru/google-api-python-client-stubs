@@ -29,7 +29,8 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
                 name: str,
                 accessLevelFormat: typing_extensions.Literal[
                     "LEVEL_FORMAT_UNSPECIFIED", "AS_DEFINED", "CEL"
-                ] = ...,
+                ]
+                | None = ...,
                 **kwargs: typing.Any,
             ) -> AccessLevelHttpRequest: ...
             def list(
@@ -38,9 +39,10 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
                 parent: str,
                 accessLevelFormat: typing_extensions.Literal[
                     "LEVEL_FORMAT_UNSPECIFIED", "AS_DEFINED", "CEL"
-                ] = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                ]
+                | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListAccessLevelsResponseHttpRequest: ...
             def list_next(
@@ -53,7 +55,7 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: AccessLevel = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
 
@@ -72,8 +74,8 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListServicePerimetersResponseHttpRequest: ...
             def list_next(
@@ -86,7 +88,7 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: ServicePerimeter = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
 
@@ -102,9 +104,9 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            pageSize: int = ...,
-            pageToken: str = ...,
-            parent: str = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            parent: str | None = ...,
             **kwargs: typing.Any,
         ) -> ListAccessPoliciesResponseHttpRequest: ...
         def list_next(
@@ -117,7 +119,7 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
             *,
             name: str,
             body: AccessPolicy = ...,
-            updateMask: str = ...,
+            updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def accessLevels(self) -> AccessLevelsResource: ...

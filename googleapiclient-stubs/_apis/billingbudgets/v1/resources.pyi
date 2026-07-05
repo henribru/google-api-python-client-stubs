@@ -34,9 +34,9 @@ class CloudBillingBudgetResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
-                scope: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
+                scope: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudBillingBudgetsV1ListBudgetsResponseHttpRequest: ...
             def list_next(
@@ -49,7 +49,7 @@ class CloudBillingBudgetResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: GoogleCloudBillingBudgetsV1Budget = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudBillingBudgetsV1BudgetHttpRequest: ...
 

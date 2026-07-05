@@ -29,16 +29,16 @@ class WorkspaceEventsResource(googleapiclient.discovery.Resource):
             self,
             *,
             body: Subscription = ...,
-            validateOnly: bool = ...,
+            validateOnly: bool | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def delete(
             self,
             *,
             name: str,
-            allowMissing: bool = ...,
-            etag: str = ...,
-            validateOnly: bool = ...,
+            allowMissing: bool | None = ...,
+            etag: str | None = ...,
+            validateOnly: bool | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def get(
@@ -47,9 +47,9 @@ class WorkspaceEventsResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            filter: str = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
+            filter: str | None = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> ListSubscriptionsResponseHttpRequest: ...
         def list_next(
@@ -62,8 +62,8 @@ class WorkspaceEventsResource(googleapiclient.discovery.Resource):
             *,
             name: str,
             body: Subscription = ...,
-            updateMask: str = ...,
-            validateOnly: bool = ...,
+            updateMask: str | None = ...,
+            validateOnly: bool | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def reactivate(
@@ -83,23 +83,23 @@ class WorkspaceEventsResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: TaskPushNotificationConfig = ...,
-                configId: str = ...,
-                tenant: str = ...,
+                configId: str | None = ...,
+                tenant: str | None = ...,
                 **kwargs: typing.Any,
             ) -> TaskPushNotificationConfigHttpRequest: ...
             def delete(
-                self, *, name: str, tenant: str = ..., **kwargs: typing.Any
+                self, *, name: str, tenant: str | None = ..., **kwargs: typing.Any
             ) -> EmptyHttpRequest: ...
             def get(
-                self, *, name: str, tenant: str = ..., **kwargs: typing.Any
+                self, *, name: str, tenant: str | None = ..., **kwargs: typing.Any
             ) -> TaskPushNotificationConfigHttpRequest: ...
             def list(
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
-                tenant: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
+                tenant: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListTaskPushNotificationConfigResponseHttpRequest: ...
             def list_next(
@@ -115,12 +115,12 @@ class WorkspaceEventsResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            historyLength: int = ...,
-            tenant: str = ...,
+            historyLength: int | None = ...,
+            tenant: str | None = ...,
             **kwargs: typing.Any,
         ) -> TaskHttpRequest: ...
         def subscribe(
-            self, *, name: str, tenant: str = ..., **kwargs: typing.Any
+            self, *, name: str, tenant: str | None = ..., **kwargs: typing.Any
         ) -> StreamResponseHttpRequest: ...
         def pushNotificationConfigs(self) -> PushNotificationConfigsResource: ...
 

@@ -34,15 +34,16 @@ class CloudCommercePartnerProcurementServiceResource(
                     "ACCOUNT_VIEW_UNSPECIFIED",
                     "ACCOUNT_VIEW_BASIC",
                     "ACCOUNT_VIEW_FULL",
-                ] = ...,
+                ]
+                | None = ...,
                 **kwargs: typing.Any,
             ) -> AccountHttpRequest: ...
             def list(
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListAccountsResponseHttpRequest: ...
             def list_next(
@@ -88,9 +89,9 @@ class CloudCommercePartnerProcurementServiceResource(
                 self,
                 *,
                 parent: str,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListEntitlementsResponseHttpRequest: ...
             def list_next(
@@ -103,7 +104,7 @@ class CloudCommercePartnerProcurementServiceResource(
                 *,
                 name: str,
                 body: Entitlement = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> EntitlementHttpRequest: ...
             def reject(

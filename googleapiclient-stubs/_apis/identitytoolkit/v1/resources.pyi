@@ -134,10 +134,10 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 targetProjectId: str,
-                delegatedProjectNumber: str = ...,
-                maxResults: int = ...,
-                nextPageToken: str = ...,
-                tenantId: str = ...,
+                delegatedProjectNumber: str | None = ...,
+                maxResults: int | None = ...,
+                nextPageToken: str | None = ...,
+                tenantId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudIdentitytoolkitV1DownloadAccountResponseHttpRequest: ...
             def batchGet_next(
@@ -210,9 +210,9 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
                     *,
                     targetProjectId: str,
                     tenantId: str,
-                    delegatedProjectNumber: str = ...,
-                    maxResults: int = ...,
-                    nextPageToken: str = ...,
+                    delegatedProjectNumber: str | None = ...,
+                    maxResults: int | None = ...,
+                    nextPageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudIdentitytoolkitV1DownloadAccountResponseHttpRequest: ...
                 def batchGet_next(
@@ -296,14 +296,14 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
         def getProjects(
             self,
             *,
-            androidPackageName: str = ...,
-            clientId: str = ...,
-            delegatedProjectNumber: str = ...,
-            firebaseAppId: str = ...,
-            iosBundleId: str = ...,
-            projectNumber: str = ...,
-            returnDynamicLink: bool = ...,
-            sha1Cert: str = ...,
+            androidPackageName: str | None = ...,
+            clientId: str | None = ...,
+            delegatedProjectNumber: str | None = ...,
+            firebaseAppId: str | None = ...,
+            iosBundleId: str | None = ...,
+            projectNumber: str | None = ...,
+            returnDynamicLink: bool | None = ...,
+            sha1Cert: str | None = ...,
             **kwargs: typing.Any,
         ) -> GoogleCloudIdentitytoolkitV1GetProjectConfigResponseHttpRequest: ...
         def getPublicKeys(

@@ -22,7 +22,7 @@ class MerchantResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: OrderTrackingSignal = ...,
-                orderTrackingSignalId: str = ...,
+                orderTrackingSignalId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> OrderTrackingSignalHttpRequest: ...
 

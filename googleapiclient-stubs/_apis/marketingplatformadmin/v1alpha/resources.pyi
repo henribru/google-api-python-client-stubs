@@ -31,8 +31,8 @@ class GoogleMarketingPlatformAdminAPIResource(googleapiclient.discovery.Resource
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListAnalyticsAccountLinksResponseHttpRequest: ...
             def list_next(
@@ -59,7 +59,11 @@ class GoogleMarketingPlatformAdminAPIResource(googleapiclient.discovery.Resource
             self, *, name: str, **kwargs: typing.Any
         ) -> OrganizationHttpRequest: ...
         def list(
-            self, *, pageSize: int = ..., pageToken: str = ..., **kwargs: typing.Any
+            self,
+            *,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            **kwargs: typing.Any,
         ) -> ListOrganizationsResponseHttpRequest: ...
         def list_next(
             self,

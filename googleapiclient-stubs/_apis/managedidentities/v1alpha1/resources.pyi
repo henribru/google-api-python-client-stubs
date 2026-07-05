@@ -30,7 +30,7 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                             *,
                             parent: str,
                             body: Backup = ...,
-                            backupId: str = ...,
+                            backupId: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> OperationHttpRequest: ...
                         def delete(
@@ -43,17 +43,17 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                             self,
                             *,
                             resource: str,
-                            options_requestedPolicyVersion: int = ...,
+                            options_requestedPolicyVersion: int | None = ...,
                             **kwargs: typing.Any,
                         ) -> PolicyHttpRequest: ...
                         def list(
                             self,
                             *,
                             parent: str,
-                            filter: str = ...,
-                            orderBy: str = ...,
-                            pageSize: int = ...,
-                            pageToken: str = ...,
+                            filter: str | None = ...,
+                            orderBy: str | None = ...,
+                            pageSize: int | None = ...,
+                            pageToken: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> ListBackupsResponseHttpRequest: ...
                         def list_next(
@@ -66,7 +66,7 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                             *,
                             name: str,
                             body: Backup = ...,
-                            updateMask: str = ...,
+                            updateMask: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> OperationHttpRequest: ...
                         def setIamPolicy(
@@ -93,10 +93,10 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                             self,
                             *,
                             parent: str,
-                            filter: str = ...,
-                            orderBy: str = ...,
-                            pageSize: int = ...,
-                            pageToken: str = ...,
+                            filter: str | None = ...,
+                            orderBy: str | None = ...,
+                            pageSize: int | None = ...,
+                            pageToken: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> ListSQLIntegrationsResponseHttpRequest: ...
                         def list_next(
@@ -124,7 +124,7 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                         *,
                         parent: str,
                         body: Domain = ...,
-                        domainName: str = ...,
+                        domainName: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def delete(
@@ -172,7 +172,7 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                         self,
                         *,
                         resource: str,
-                        options_requestedPolicyVersion: int = ...,
+                        options_requestedPolicyVersion: int | None = ...,
                         **kwargs: typing.Any,
                     ) -> PolicyHttpRequest: ...
                     def getLdapssettings(
@@ -182,10 +182,10 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                         self,
                         *,
                         parent: str,
-                        filter: str = ...,
-                        orderBy: str = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        filter: str | None = ...,
+                        orderBy: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListDomainsResponseHttpRequest: ...
                     def list_next(
@@ -198,7 +198,7 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                         *,
                         name: str,
                         body: Domain = ...,
-                        updateMask: str = ...,
+                        updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def reconfigureTrust(
@@ -241,7 +241,7 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                         *,
                         name: str,
                         body: LDAPSSettings = ...,
-                        updateMask: str = ...,
+                        updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def validateTrust(
@@ -273,10 +273,10 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                         self,
                         *,
                         name: str,
-                        filter: str = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
-                        returnPartialSuccess: bool = ...,
+                        filter: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
+                        returnPartialSuccess: bool | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListOperationsResponseHttpRequest: ...
                     def list_next(
@@ -292,7 +292,7 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                         *,
                         parent: str,
                         body: Peering = ...,
-                        peeringId: str = ...,
+                        peeringId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def delete(
@@ -305,17 +305,17 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                         self,
                         *,
                         resource: str,
-                        options_requestedPolicyVersion: int = ...,
+                        options_requestedPolicyVersion: int | None = ...,
                         **kwargs: typing.Any,
                     ) -> PolicyHttpRequest: ...
                     def list(
                         self,
                         *,
                         parent: str,
-                        filter: str = ...,
-                        orderBy: str = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        filter: str | None = ...,
+                        orderBy: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListPeeringsResponseHttpRequest: ...
                     def list_next(
@@ -328,7 +328,7 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                         *,
                         name: str,
                         body: Peering = ...,
-                        updateMask: str = ...,
+                        updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def setIamPolicy(
@@ -357,10 +357,10 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                 self,
                 *,
                 name: str,
-                extraLocationTypes: str | _list[str] = ...,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                extraLocationTypes: str | _list[str] | None = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListLocationsResponseHttpRequest: ...
             def list_next(

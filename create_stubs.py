@@ -205,12 +205,15 @@ def write_resource(writer, resource_name, resource, api, top_level=True) -> Set[
                 parameter_name = key2param(parameter_name)
                 if keyword.iskeyword(parameter_name):
                     continue
-                if parameter.get("required"):
+                required = parameter.get("required", False)
+                if required:
                     required_parameters.append(parameter_name)
                 type = get_type(parameter)
                 if parameter.get("repeated"):
                     assert "_list[" not in type and type != "_list"
                     type = f"{type} | _list[{type}]"
+                if not required:
+                    type = f"{type} | None"
                 parameters[parameter_name] = type
             ordered_parameters = [
                 key2param(param) for param in method.get("parameterOrder", [])

@@ -24,21 +24,28 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                     googleapiclient.discovery.Resource
                 ):
                     def getAction(
-                        self, *, name: str, actionId: str = ..., **kwargs: typing.Any
+                        self,
+                        *,
+                        name: str,
+                        actionId: str | None = ...,
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def getEntityType(
-                        self, *, name: str, entityId: str = ..., **kwargs: typing.Any
+                        self,
+                        *,
+                        name: str,
+                        entityId: str | None = ...,
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def listActions(
                         self,
                         *,
                         name: str,
-                        filter: str = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
-                        view: typing_extensions.Literal[
-                            "VIEW_UNSPECIFIED", "BASIC"
-                        ] = ...,
+                        filter: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
+                        view: typing_extensions.Literal["VIEW_UNSPECIFIED", "BASIC"]
+                        | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListActionsResponseHttpRequest: ...
                     def listActions_next(
@@ -50,12 +57,11 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        filter: str = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
-                        view: typing_extensions.Literal[
-                            "VIEW_UNSPECIFIED", "BASIC"
-                        ] = ...,
+                        filter: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
+                        view: typing_extensions.Literal["VIEW_UNSPECIFIED", "BASIC"]
+                        | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListEntityTypesResponseHttpRequest: ...
                     def listEntityTypes_next(
@@ -80,7 +86,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: EndUserAuthentication = ...,
-                        endUserAuthenticationId: str = ...,
+                        endUserAuthenticationId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def delete(
@@ -94,17 +100,18 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                             "END_USER_AUTHENTICATION_VIEW_UNSPECIFIED",
                             "BASIC_VIEW",
                             "FULL_VIEW",
-                        ] = ...,
+                        ]
+                        | None = ...,
                         **kwargs: typing.Any,
                     ) -> EndUserAuthenticationHttpRequest: ...
                     def list(
                         self,
                         *,
                         parent: str,
-                        filter: str = ...,
-                        orderBy: str = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        filter: str | None = ...,
+                        orderBy: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListEndUserAuthenticationsResponseHttpRequest: ...
                     def list_next(
@@ -117,7 +124,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: EndUserAuthentication = ...,
-                        updateMask: str = ...,
+                        updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
 
@@ -128,7 +135,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: EventSubscription = ...,
-                        eventSubscriptionId: str = ...,
+                        eventSubscriptionId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def delete(
@@ -141,10 +148,10 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        filter: str = ...,
-                        orderBy: str = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        filter: str | None = ...,
+                        orderBy: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListEventSubscriptionsResponseHttpRequest: ...
                     def list_next(
@@ -157,7 +164,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: EventSubscription = ...,
-                        updateMask: str = ...,
+                        updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def retry(
@@ -174,10 +181,10 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        filter: str = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
-                        schemaAsString: bool = ...,
+                        filter: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
+                        schemaAsString: bool | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListRuntimeActionSchemasResponseHttpRequest: ...
                     def list_next(
@@ -192,9 +199,9 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        filter: str = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        filter: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListRuntimeEntitySchemasResponseHttpRequest: ...
                     def list_next(
@@ -208,11 +215,11 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: Connection = ...,
-                    connectionId: str = ...,
+                    connectionId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
-                    self, *, name: str, force: bool = ..., **kwargs: typing.Any
+                    self, *, name: str, force: bool | None = ..., **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def fetchToolspecOverride(
                     self,
@@ -234,7 +241,8 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                     name: str,
                     view: typing_extensions.Literal[
                         "CONNECTION_VIEW_UNSPECIFIED", "BASIC", "FULL"
-                    ] = ...,
+                    ]
+                    | None = ...,
                     **kwargs: typing.Any,
                 ) -> ConnectionHttpRequest: ...
                 def getConnectionSchemaMetadata(
@@ -244,20 +252,21 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    options_requestedPolicyVersion: int = ...,
+                    options_requestedPolicyVersion: int | None = ...,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def list(
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    orderBy: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     view: typing_extensions.Literal[
                         "CONNECTION_VIEW_UNSPECIFIED", "BASIC", "FULL"
-                    ] = ...,
+                    ]
+                    | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListConnectionsResponseHttpRequest: ...
                 def list_next(
@@ -284,7 +293,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: Connection = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def removeToolspecOverride(
@@ -305,9 +314,9 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    query: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    query: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> SearchConnectionsResponseHttpRequest: ...
                 def search_next(
@@ -386,7 +395,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: EndpointAttachment = ...,
-                    endpointAttachmentId: str = ...,
+                    endpointAttachmentId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
@@ -400,22 +409,24 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                         "ENDPOINT_ATTACHMENT_VIEW_UNSPECIFIED",
                         "ENDPOINT_ATTACHMENT_VIEW_BASIC",
                         "ENDPOINT_ATTACHMENT_VIEW_FULL",
-                    ] = ...,
+                    ]
+                    | None = ...,
                     **kwargs: typing.Any,
                 ) -> EndpointAttachmentHttpRequest: ...
                 def list(
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    orderBy: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     view: typing_extensions.Literal[
                         "ENDPOINT_ATTACHMENT_VIEW_UNSPECIFIED",
                         "ENDPOINT_ATTACHMENT_VIEW_BASIC",
                         "ENDPOINT_ATTACHMENT_VIEW_FULL",
-                    ] = ...,
+                    ]
+                    | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListEndpointAttachmentsResponseHttpRequest: ...
                 def list_next(
@@ -428,7 +439,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: EndpointAttachment = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
 
@@ -445,7 +456,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                             *,
                             parent: str,
                             body: CustomConnectorVersion = ...,
-                            customConnectorVersionId: str = ...,
+                            customConnectorVersionId: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> OperationHttpRequest: ...
                         def get(
@@ -455,8 +466,8 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             parent: str,
-                            pageSize: int = ...,
-                            pageToken: str = ...,
+                            pageSize: int | None = ...,
+                            pageToken: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> ListCustomConnectorVersionsResponseHttpRequest: ...
                         def list_next(
@@ -470,11 +481,15 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: CustomConnector = ...,
-                        customConnectorId: str = ...,
+                        customConnectorId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def delete(
-                        self, *, name: str, force: bool = ..., **kwargs: typing.Any
+                        self,
+                        *,
+                        name: str,
+                        force: bool | None = ...,
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def get(
                         self, *, name: str, **kwargs: typing.Any
@@ -483,9 +498,9 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        filter: str = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        filter: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListCustomConnectorsResponseHttpRequest: ...
                     def list_next(
@@ -498,7 +513,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: CustomConnector = ...,
-                        updateMask: str = ...,
+                        updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def customConnectorVersions(
@@ -512,7 +527,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: ManagedZone = ...,
-                        managedZoneId: str = ...,
+                        managedZoneId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def delete(
@@ -525,11 +540,11 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        filter: str = ...,
-                        orderBy: str = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
-                        returnPartialSuccess: bool = ...,
+                        filter: str | None = ...,
+                        orderBy: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
+                        returnPartialSuccess: bool | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListManagedZonesResponseHttpRequest: ...
                     def list_next(
@@ -542,7 +557,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: ManagedZone = ...,
-                        updateMask: str = ...,
+                        updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
 
@@ -554,7 +569,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: Settings = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def customConnectors(self) -> CustomConnectorsResource: ...
@@ -579,10 +594,10 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    returnPartialSuccess: bool = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    returnPartialSuccess: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListOperationsResponseHttpRequest: ...
                 def list_next(
@@ -606,8 +621,8 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                                 self,
                                 *,
                                 parent: str,
-                                pageSize: int = ...,
-                                pageToken: str = ...,
+                                pageSize: int | None = ...,
+                                pageToken: str | None = ...,
                                 **kwargs: typing.Any,
                             ) -> ListEventTypesResponseHttpRequest: ...
                             def list_next(
@@ -625,7 +640,8 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                                 "BASIC",
                                 "JSON_SCHEMA",
                                 "EUA_SCHEMA",
-                            ] = ...,
+                            ]
+                            | None = ...,
                             **kwargs: typing.Any,
                         ) -> FetchAuthSchemaResponseHttpRequest: ...
                         def get(
@@ -636,20 +652,22 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                                 "CONNECTOR_VERSION_VIEW_UNSPECIFIED",
                                 "CONNECTOR_VERSION_VIEW_BASIC",
                                 "CONNECTOR_VERSION_VIEW_FULL",
-                            ] = ...,
+                            ]
+                            | None = ...,
                             **kwargs: typing.Any,
                         ) -> ConnectorVersionHttpRequest: ...
                         def list(
                             self,
                             *,
                             parent: str,
-                            pageSize: int = ...,
-                            pageToken: str = ...,
+                            pageSize: int | None = ...,
+                            pageToken: str | None = ...,
                             view: typing_extensions.Literal[
                                 "CONNECTOR_VERSION_VIEW_UNSPECIFIED",
                                 "CONNECTOR_VERSION_VIEW_BASIC",
                                 "CONNECTOR_VERSION_VIEW_FULL",
-                            ] = ...,
+                            ]
+                            | None = ...,
                             **kwargs: typing.Any,
                         ) -> ListConnectorVersionsResponseHttpRequest: ...
                         def list_next(
@@ -666,9 +684,9 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        filter: str = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        filter: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListConnectorsResponseHttpRequest: ...
                     def list_next(
@@ -685,15 +703,15 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    options_requestedPolicyVersion: int = ...,
+                    options_requestedPolicyVersion: int | None = ...,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def list(
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListProvidersResponseHttpRequest: ...
                 def list_next(
@@ -730,10 +748,10 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                extraLocationTypes: str | _list[str] = ...,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                extraLocationTypes: str | _list[str] | None = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListLocationsResponseHttpRequest: ...
             def list_next(
@@ -746,7 +764,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: RegionalSettings = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def connections(self) -> ConnectionsResource: ...

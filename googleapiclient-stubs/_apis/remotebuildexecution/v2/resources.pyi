@@ -21,9 +21,9 @@ class RemoteBuildExecutionResource(googleapiclient.discovery.Resource):
             instanceName: str,
             hash: str,
             sizeBytes: str,
-            inlineOutputFiles: str | _list[str] = ...,
-            inlineStderr: bool = ...,
-            inlineStdout: bool = ...,
+            inlineOutputFiles: str | _list[str] | None = ...,
+            inlineStderr: bool | None = ...,
+            inlineStdout: bool | None = ...,
             **kwargs: typing.Any,
         ) -> BuildBazelRemoteExecutionV2ActionResultHttpRequest: ...
         def update(
@@ -33,7 +33,7 @@ class RemoteBuildExecutionResource(googleapiclient.discovery.Resource):
             hash: str,
             sizeBytes: str,
             body: BuildBazelRemoteExecutionV2ActionResult = ...,
-            resultsCachePolicy_priority: int = ...,
+            resultsCachePolicy_priority: int | None = ...,
             **kwargs: typing.Any,
         ) -> BuildBazelRemoteExecutionV2ActionResultHttpRequest: ...
 
@@ -76,8 +76,8 @@ class RemoteBuildExecutionResource(googleapiclient.discovery.Resource):
             instanceName: str,
             hash: str,
             sizeBytes: str,
-            pageSize: int = ...,
-            pageToken: str = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> BuildBazelRemoteExecutionV2GetTreeResponseHttpRequest: ...
         def getTree_next(

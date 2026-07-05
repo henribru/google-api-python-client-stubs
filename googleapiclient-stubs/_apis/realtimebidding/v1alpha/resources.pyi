@@ -38,8 +38,8 @@ class RealTimeBiddingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListBiddingFunctionsResponseHttpRequest: ...
             def list_next(

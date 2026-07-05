@@ -16,7 +16,12 @@ class BloggerResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class BlogUserInfosResource(googleapiclient.discovery.Resource):
         def get(
-            self, *, userId: str, blogId: str, maxPosts: int = ..., **kwargs: typing.Any
+            self,
+            *,
+            userId: str,
+            blogId: str,
+            maxPosts: int | None = ...,
+            **kwargs: typing.Any,
         ) -> BlogUserInfoHttpRequest: ...
 
     @typing.type_check_only
@@ -25,10 +30,11 @@ class BloggerResource(googleapiclient.discovery.Resource):
             self,
             *,
             blogId: str,
-            maxPosts: int = ...,
+            maxPosts: int | None = ...,
             view: typing_extensions.Literal[
                 "VIEW_TYPE_UNSPECIFIED", "READER", "AUTHOR", "ADMIN"
-            ] = ...,
+            ]
+            | None = ...,
             **kwargs: typing.Any,
         ) -> BlogHttpRequest: ...
         def getByUrl(
@@ -37,14 +43,15 @@ class BloggerResource(googleapiclient.discovery.Resource):
             url: str,
             view: typing_extensions.Literal[
                 "VIEW_TYPE_UNSPECIFIED", "READER", "AUTHOR", "ADMIN"
-            ] = ...,
+            ]
+            | None = ...,
             **kwargs: typing.Any,
         ) -> BlogHttpRequest: ...
         def listByUser(
             self,
             *,
             userId: str,
-            fetchUserInfo: bool = ...,
+            fetchUserInfo: bool | None = ...,
             role: typing_extensions.Literal[
                 "VIEW_TYPE_UNSPECIFIED", "READER", "AUTHOR", "ADMIN"
             ]
@@ -52,12 +59,15 @@ class BloggerResource(googleapiclient.discovery.Resource):
                 typing_extensions.Literal[
                     "VIEW_TYPE_UNSPECIFIED", "READER", "AUTHOR", "ADMIN"
                 ]
-            ] = ...,
+            ]
+            | None = ...,
             status: typing_extensions.Literal["LIVE", "DELETED"]
-            | _list[typing_extensions.Literal["LIVE", "DELETED"]] = ...,
+            | _list[typing_extensions.Literal["LIVE", "DELETED"]]
+            | None = ...,
             view: typing_extensions.Literal[
                 "VIEW_TYPE_UNSPECIFIED", "READER", "AUTHOR", "ADMIN"
-            ] = ...,
+            ]
+            | None = ...,
             **kwargs: typing.Any,
         ) -> BlogListHttpRequest: ...
 
@@ -77,7 +87,8 @@ class BloggerResource(googleapiclient.discovery.Resource):
             commentId: str,
             view: typing_extensions.Literal[
                 "VIEW_TYPE_UNSPECIFIED", "READER", "AUTHOR", "ADMIN"
-            ] = ...,
+            ]
+            | None = ...,
             **kwargs: typing.Any,
         ) -> CommentHttpRequest: ...
         def list(
@@ -85,17 +96,17 @@ class BloggerResource(googleapiclient.discovery.Resource):
             *,
             blogId: str,
             postId: str,
-            endDate: str = ...,
-            fetchBodies: bool = ...,
-            maxResults: int = ...,
-            pageToken: str = ...,
-            startDate: str = ...,
-            status: typing_extensions.Literal[
-                "LIVE", "EMPTIED", "PENDING", "SPAM"
-            ] = ...,
+            endDate: str | None = ...,
+            fetchBodies: bool | None = ...,
+            maxResults: int | None = ...,
+            pageToken: str | None = ...,
+            startDate: str | None = ...,
+            status: typing_extensions.Literal["LIVE", "EMPTIED", "PENDING", "SPAM"]
+            | None = ...,
             view: typing_extensions.Literal[
                 "VIEW_TYPE_UNSPECIFIED", "READER", "AUTHOR", "ADMIN"
-            ] = ...,
+            ]
+            | None = ...,
             **kwargs: typing.Any,
         ) -> CommentListHttpRequest: ...
         def list_next(
@@ -107,15 +118,14 @@ class BloggerResource(googleapiclient.discovery.Resource):
             self,
             *,
             blogId: str,
-            endDate: str = ...,
-            fetchBodies: bool = ...,
-            maxResults: int = ...,
-            pageToken: str = ...,
-            startDate: str = ...,
+            endDate: str | None = ...,
+            fetchBodies: bool | None = ...,
+            maxResults: int | None = ...,
+            pageToken: str | None = ...,
+            startDate: str | None = ...,
             status: typing_extensions.Literal["LIVE", "EMPTIED", "PENDING", "SPAM"]
-            | _list[
-                typing_extensions.Literal["LIVE", "EMPTIED", "PENDING", "SPAM"]
-            ] = ...,
+            | _list[typing_extensions.Literal["LIVE", "EMPTIED", "PENDING", "SPAM"]]
+            | None = ...,
             **kwargs: typing.Any,
         ) -> CommentListHttpRequest: ...
         def listByBlog_next(
@@ -137,7 +147,8 @@ class BloggerResource(googleapiclient.discovery.Resource):
             *,
             blogId: str,
             range: typing_extensions.Literal["all", "30DAYS", "7DAYS"]
-            | _list[typing_extensions.Literal["all", "30DAYS", "7DAYS"]] = ...,
+            | _list[typing_extensions.Literal["all", "30DAYS", "7DAYS"]]
+            | None = ...,
             **kwargs: typing.Any,
         ) -> PageviewsHttpRequest: ...
 
@@ -148,7 +159,7 @@ class BloggerResource(googleapiclient.discovery.Resource):
             *,
             blogId: str,
             pageId: str,
-            useTrash: bool = ...,
+            useTrash: bool | None = ...,
             **kwargs: typing.Any,
         ) -> googleapiclient.http.HttpRequest: ...
         def get(
@@ -158,7 +169,8 @@ class BloggerResource(googleapiclient.discovery.Resource):
             pageId: str,
             view: typing_extensions.Literal[
                 "VIEW_TYPE_UNSPECIFIED", "READER", "AUTHOR", "ADMIN"
-            ] = ...,
+            ]
+            | None = ...,
             **kwargs: typing.Any,
         ) -> PageHttpRequest: ...
         def insert(
@@ -166,21 +178,23 @@ class BloggerResource(googleapiclient.discovery.Resource):
             *,
             blogId: str,
             body: Page = ...,
-            isDraft: bool = ...,
+            isDraft: bool | None = ...,
             **kwargs: typing.Any,
         ) -> PageHttpRequest: ...
         def list(
             self,
             *,
             blogId: str,
-            fetchBodies: bool = ...,
-            maxResults: int = ...,
-            pageToken: str = ...,
+            fetchBodies: bool | None = ...,
+            maxResults: int | None = ...,
+            pageToken: str | None = ...,
             status: typing_extensions.Literal["LIVE", "DRAFT", "SOFT_TRASHED"]
-            | _list[typing_extensions.Literal["LIVE", "DRAFT", "SOFT_TRASHED"]] = ...,
+            | _list[typing_extensions.Literal["LIVE", "DRAFT", "SOFT_TRASHED"]]
+            | None = ...,
             view: typing_extensions.Literal[
                 "VIEW_TYPE_UNSPECIFIED", "READER", "AUTHOR", "ADMIN"
-            ] = ...,
+            ]
+            | None = ...,
             **kwargs: typing.Any,
         ) -> PageListHttpRequest: ...
         def list_next(
@@ -192,8 +206,8 @@ class BloggerResource(googleapiclient.discovery.Resource):
             blogId: str,
             pageId: str,
             body: Page = ...,
-            publish: bool = ...,
-            revert: bool = ...,
+            publish: bool | None = ...,
+            revert: bool | None = ...,
             **kwargs: typing.Any,
         ) -> PageHttpRequest: ...
         def publish(
@@ -208,8 +222,8 @@ class BloggerResource(googleapiclient.discovery.Resource):
             blogId: str,
             pageId: str,
             body: Page = ...,
-            publish: bool = ...,
-            revert: bool = ...,
+            publish: bool | None = ...,
+            revert: bool | None = ...,
             **kwargs: typing.Any,
         ) -> PageHttpRequest: ...
 
@@ -221,7 +235,7 @@ class BloggerResource(googleapiclient.discovery.Resource):
             userId: str,
             blogId: str,
             postId: str,
-            maxComments: int = ...,
+            maxComments: int | None = ...,
             **kwargs: typing.Any,
         ) -> PostUserInfoHttpRequest: ...
         def list(
@@ -229,24 +243,27 @@ class BloggerResource(googleapiclient.discovery.Resource):
             *,
             userId: str,
             blogId: str,
-            endDate: str = ...,
-            fetchBodies: bool = ...,
-            labels: str = ...,
-            maxResults: int = ...,
+            endDate: str | None = ...,
+            fetchBodies: bool | None = ...,
+            labels: str | None = ...,
+            maxResults: int | None = ...,
             orderBy: typing_extensions.Literal[
                 "ORDER_BY_UNSPECIFIED", "PUBLISHED", "UPDATED"
-            ] = ...,
-            pageToken: str = ...,
-            startDate: str = ...,
+            ]
+            | None = ...,
+            pageToken: str | None = ...,
+            startDate: str | None = ...,
             status: typing_extensions.Literal[
                 "LIVE", "DRAFT", "SCHEDULED", "SOFT_TRASHED"
             ]
             | _list[
                 typing_extensions.Literal["LIVE", "DRAFT", "SCHEDULED", "SOFT_TRASHED"]
-            ] = ...,
+            ]
+            | None = ...,
             view: typing_extensions.Literal[
                 "VIEW_TYPE_UNSPECIFIED", "READER", "AUTHOR", "ADMIN"
-            ] = ...,
+            ]
+            | None = ...,
             **kwargs: typing.Any,
         ) -> PostUserInfosListHttpRequest: ...
         def list_next(
@@ -262,7 +279,7 @@ class BloggerResource(googleapiclient.discovery.Resource):
             *,
             blogId: str,
             postId: str,
-            useTrash: bool = ...,
+            useTrash: bool | None = ...,
             **kwargs: typing.Any,
         ) -> googleapiclient.http.HttpRequest: ...
         def get(
@@ -270,12 +287,13 @@ class BloggerResource(googleapiclient.discovery.Resource):
             *,
             blogId: str,
             postId: str,
-            fetchBody: bool = ...,
-            fetchImages: bool = ...,
-            maxComments: int = ...,
+            fetchBody: bool | None = ...,
+            fetchImages: bool | None = ...,
+            maxComments: int | None = ...,
             view: typing_extensions.Literal[
                 "VIEW_TYPE_UNSPECIFIED", "READER", "AUTHOR", "ADMIN"
-            ] = ...,
+            ]
+            | None = ...,
             **kwargs: typing.Any,
         ) -> PostHttpRequest: ...
         def getByPath(
@@ -283,10 +301,11 @@ class BloggerResource(googleapiclient.discovery.Resource):
             *,
             blogId: str,
             path: str,
-            maxComments: int = ...,
+            maxComments: int | None = ...,
             view: typing_extensions.Literal[
                 "VIEW_TYPE_UNSPECIFIED", "READER", "AUTHOR", "ADMIN"
-            ] = ...,
+            ]
+            | None = ...,
             **kwargs: typing.Any,
         ) -> PostHttpRequest: ...
         def insert(
@@ -294,37 +313,41 @@ class BloggerResource(googleapiclient.discovery.Resource):
             *,
             blogId: str,
             body: Post = ...,
-            fetchBody: bool = ...,
-            fetchImages: bool = ...,
-            isDraft: bool = ...,
+            fetchBody: bool | None = ...,
+            fetchImages: bool | None = ...,
+            isDraft: bool | None = ...,
             **kwargs: typing.Any,
         ) -> PostHttpRequest: ...
         def list(
             self,
             *,
             blogId: str,
-            endDate: str = ...,
-            fetchBodies: bool = ...,
-            fetchImages: bool = ...,
-            labels: str = ...,
-            maxResults: int = ...,
+            endDate: str | None = ...,
+            fetchBodies: bool | None = ...,
+            fetchImages: bool | None = ...,
+            labels: str | None = ...,
+            maxResults: int | None = ...,
             orderBy: typing_extensions.Literal[
                 "ORDER_BY_UNSPECIFIED", "PUBLISHED", "UPDATED"
-            ] = ...,
-            pageToken: str = ...,
+            ]
+            | None = ...,
+            pageToken: str | None = ...,
             sortOption: typing_extensions.Literal[
                 "SORT_OPTION_UNSPECIFIED", "DESCENDING", "ASCENDING"
-            ] = ...,
-            startDate: str = ...,
+            ]
+            | None = ...,
+            startDate: str | None = ...,
             status: typing_extensions.Literal[
                 "LIVE", "DRAFT", "SCHEDULED", "SOFT_TRASHED"
             ]
             | _list[
                 typing_extensions.Literal["LIVE", "DRAFT", "SCHEDULED", "SOFT_TRASHED"]
-            ] = ...,
+            ]
+            | None = ...,
             view: typing_extensions.Literal[
                 "VIEW_TYPE_UNSPECIFIED", "READER", "AUTHOR", "ADMIN"
-            ] = ...,
+            ]
+            | None = ...,
             **kwargs: typing.Any,
         ) -> PostListHttpRequest: ...
         def list_next(
@@ -336,11 +359,11 @@ class BloggerResource(googleapiclient.discovery.Resource):
             blogId: str,
             postId: str,
             body: Post = ...,
-            fetchBody: bool = ...,
-            fetchImages: bool = ...,
-            maxComments: int = ...,
-            publish: bool = ...,
-            revert: bool = ...,
+            fetchBody: bool | None = ...,
+            fetchImages: bool | None = ...,
+            maxComments: int | None = ...,
+            publish: bool | None = ...,
+            revert: bool | None = ...,
             **kwargs: typing.Any,
         ) -> PostHttpRequest: ...
         def publish(
@@ -348,7 +371,7 @@ class BloggerResource(googleapiclient.discovery.Resource):
             *,
             blogId: str,
             postId: str,
-            publishDate: str = ...,
+            publishDate: str | None = ...,
             **kwargs: typing.Any,
         ) -> PostHttpRequest: ...
         def revert(
@@ -359,10 +382,11 @@ class BloggerResource(googleapiclient.discovery.Resource):
             *,
             blogId: str,
             q: str,
-            fetchBodies: bool = ...,
+            fetchBodies: bool | None = ...,
             orderBy: typing_extensions.Literal[
                 "ORDER_BY_UNSPECIFIED", "PUBLISHED", "UPDATED"
-            ] = ...,
+            ]
+            | None = ...,
             **kwargs: typing.Any,
         ) -> PostListHttpRequest: ...
         def update(
@@ -371,11 +395,11 @@ class BloggerResource(googleapiclient.discovery.Resource):
             blogId: str,
             postId: str,
             body: Post = ...,
-            fetchBody: bool = ...,
-            fetchImages: bool = ...,
-            maxComments: int = ...,
-            publish: bool = ...,
-            revert: bool = ...,
+            fetchBody: bool | None = ...,
+            fetchImages: bool | None = ...,
+            maxComments: int | None = ...,
+            publish: bool | None = ...,
+            revert: bool | None = ...,
             **kwargs: typing.Any,
         ) -> PostHttpRequest: ...
 

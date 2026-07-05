@@ -34,16 +34,16 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: GoogleCloudRunV2Instance = ...,
-                    instanceId: str = ...,
-                    validateOnly: bool = ...,
+                    instanceId: str | None = ...,
+                    validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def delete(
                     self,
                     *,
                     name: str,
-                    etag: str = ...,
-                    validateOnly: bool = ...,
+                    etag: str | None = ...,
+                    validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def get(
@@ -53,16 +53,16 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    options_requestedPolicyVersion: int = ...,
+                    options_requestedPolicyVersion: int | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleIamV1PolicyHttpRequest: ...
                 def list(
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    showDeleted: bool = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    showDeleted: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudRunV2ListInstancesResponseHttpRequest: ...
                 def list_next(
@@ -75,9 +75,9 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: GoogleCloudRunV2Instance = ...,
-                    allowMissing: bool = ...,
-                    updateMask: str = ...,
-                    validateOnly: bool = ...,
+                    allowMissing: bool | None = ...,
+                    updateMask: str | None = ...,
+                    validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def setIamPolicy(
@@ -122,9 +122,9 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             parent: str,
-                            pageSize: int = ...,
-                            pageToken: str = ...,
-                            showDeleted: bool = ...,
+                            pageSize: int | None = ...,
+                            pageToken: str | None = ...,
+                            showDeleted: bool | None = ...,
                             **kwargs: typing.Any,
                         ) -> GoogleCloudRunV2ListTasksResponseHttpRequest: ...
                         def list_next(
@@ -144,8 +144,8 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        etag: str = ...,
-                        validateOnly: bool = ...,
+                        etag: str | None = ...,
+                        validateOnly: bool | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
                     def exportStatus(
@@ -158,9 +158,9 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
-                        showDeleted: bool = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
+                        showDeleted: bool | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudRunV2ListExecutionsResponseHttpRequest: ...
                     def list_next(
@@ -175,16 +175,16 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: GoogleCloudRunV2Job = ...,
-                    jobId: str = ...,
-                    validateOnly: bool = ...,
+                    jobId: str | None = ...,
+                    validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def delete(
                     self,
                     *,
                     name: str,
-                    etag: str = ...,
-                    validateOnly: bool = ...,
+                    etag: str | None = ...,
+                    validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def get(
@@ -194,16 +194,16 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    options_requestedPolicyVersion: int = ...,
+                    options_requestedPolicyVersion: int | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleIamV1PolicyHttpRequest: ...
                 def list(
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    showDeleted: bool = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    showDeleted: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudRunV2ListJobsResponseHttpRequest: ...
                 def list_next(
@@ -216,8 +216,8 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: GoogleCloudRunV2Job = ...,
-                    allowMissing: bool = ...,
-                    validateOnly: bool = ...,
+                    allowMissing: bool | None = ...,
+                    validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def run(
@@ -255,10 +255,10 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    returnPartialSuccess: bool = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    returnPartialSuccess: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
                 def list_next(
@@ -282,8 +282,8 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        etag: str = ...,
-                        validateOnly: bool = ...,
+                        etag: str | None = ...,
+                        validateOnly: bool | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
                     def exportStatus(
@@ -296,9 +296,9 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
-                        showDeleted: bool = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
+                        showDeleted: bool | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudRunV2ListRevisionsResponseHttpRequest: ...
                     def list_next(
@@ -312,16 +312,16 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: GoogleCloudRunV2Service = ...,
-                    serviceId: str = ...,
-                    validateOnly: bool = ...,
+                    serviceId: str | None = ...,
+                    validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def delete(
                     self,
                     *,
                     name: str,
-                    etag: str = ...,
-                    validateOnly: bool = ...,
+                    etag: str | None = ...,
+                    validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def get(
@@ -331,16 +331,16 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    options_requestedPolicyVersion: int = ...,
+                    options_requestedPolicyVersion: int | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleIamV1PolicyHttpRequest: ...
                 def list(
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    showDeleted: bool = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    showDeleted: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudRunV2ListServicesResponseHttpRequest: ...
                 def list_next(
@@ -353,10 +353,10 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: GoogleCloudRunV2Service = ...,
-                    allowMissing: bool = ...,
-                    forceNewRevision: bool = ...,
-                    updateMask: str = ...,
-                    validateOnly: bool = ...,
+                    allowMissing: bool | None = ...,
+                    forceNewRevision: bool | None = ...,
+                    updateMask: str | None = ...,
+                    validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def setIamPolicy(
@@ -383,8 +383,8 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        etag: str = ...,
-                        validateOnly: bool = ...,
+                        etag: str | None = ...,
+                        validateOnly: bool | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
                     def get(
@@ -394,9 +394,9 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
-                        showDeleted: bool = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
+                        showDeleted: bool | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudRunV2ListRevisionsResponseHttpRequest: ...
                     def list_next(
@@ -410,16 +410,16 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: GoogleCloudRunV2WorkerPool = ...,
-                    validateOnly: bool = ...,
-                    workerPoolId: str = ...,
+                    validateOnly: bool | None = ...,
+                    workerPoolId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def delete(
                     self,
                     *,
                     name: str,
-                    etag: str = ...,
-                    validateOnly: bool = ...,
+                    etag: str | None = ...,
+                    validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def get(
@@ -429,16 +429,16 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    options_requestedPolicyVersion: int = ...,
+                    options_requestedPolicyVersion: int | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleIamV1PolicyHttpRequest: ...
                 def list(
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    showDeleted: bool = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    showDeleted: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudRunV2ListWorkerPoolsResponseHttpRequest: ...
                 def list_next(
@@ -451,10 +451,10 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: GoogleCloudRunV2WorkerPool = ...,
-                    allowMissing: bool = ...,
-                    forceNewRevision: bool = ...,
-                    updateMask: str = ...,
-                    validateOnly: bool = ...,
+                    allowMissing: bool | None = ...,
+                    forceNewRevision: bool | None = ...,
+                    updateMask: str | None = ...,
+                    validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def setIamPolicy(

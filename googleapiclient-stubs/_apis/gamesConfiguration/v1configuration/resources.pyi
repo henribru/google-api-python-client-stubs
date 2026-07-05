@@ -32,8 +32,8 @@ class GamesConfigurationResource(googleapiclient.discovery.Resource):
             self,
             *,
             applicationId: str,
-            maxResults: int = ...,
-            pageToken: str = ...,
+            maxResults: int | None = ...,
+            pageToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> AchievementConfigurationListResponseHttpRequest: ...
         def list_next(
@@ -68,8 +68,8 @@ class GamesConfigurationResource(googleapiclient.discovery.Resource):
             self,
             *,
             applicationId: str,
-            maxResults: int = ...,
-            pageToken: str = ...,
+            maxResults: int | None = ...,
+            pageToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> LeaderboardConfigurationListResponseHttpRequest: ...
         def list_next(

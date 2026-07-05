@@ -50,9 +50,9 @@ class BigQueryDataPolicyServiceResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListDataPoliciesResponseHttpRequest: ...
                 def list_next(
@@ -65,8 +65,8 @@ class BigQueryDataPolicyServiceResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: DataPolicy = ...,
-                    allowMissing: bool = ...,
-                    updateMask: str = ...,
+                    allowMissing: bool | None = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> DataPolicyHttpRequest: ...
                 def removeGrantees(

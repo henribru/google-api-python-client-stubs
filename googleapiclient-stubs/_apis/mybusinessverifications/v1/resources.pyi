@@ -28,8 +28,8 @@ class MyBusinessVerificationsResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListVerificationsResponseHttpRequest: ...
             def list_next(

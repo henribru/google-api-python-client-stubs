@@ -24,11 +24,11 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: AgentGateway = ...,
-                    agentGatewayId: str = ...,
+                    agentGatewayId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
-                    self, *, name: str, etag: str = ..., **kwargs: typing.Any
+                    self, *, name: str, etag: str | None = ..., **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
@@ -37,9 +37,9 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    returnPartialSuccess: bool = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    returnPartialSuccess: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListAgentGatewaysResponseHttpRequest: ...
                 def list_next(
@@ -52,7 +52,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: AgentGateway = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
 
@@ -63,12 +63,16 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: AuthzExtension = ...,
-                    authzExtensionId: str = ...,
-                    requestId: str = ...,
+                    authzExtensionId: str | None = ...,
+                    requestId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
-                    self, *, name: str, requestId: str = ..., **kwargs: typing.Any
+                    self,
+                    *,
+                    name: str,
+                    requestId: str | None = ...,
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
@@ -77,10 +81,10 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    orderBy: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListAuthzExtensionsResponseHttpRequest: ...
                 def list_next(
@@ -93,8 +97,8 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: AuthzExtension = ...,
-                    requestId: str = ...,
-                    updateMask: str = ...,
+                    requestId: str | None = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
 
@@ -104,7 +108,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    options_requestedPolicyVersion: int = ...,
+                    options_requestedPolicyVersion: int | None = ...,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def setIamPolicy(
@@ -128,7 +132,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    options_requestedPolicyVersion: int = ...,
+                    options_requestedPolicyVersion: int | None = ...,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def setIamPolicy(
@@ -152,7 +156,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    options_requestedPolicyVersion: int = ...,
+                    options_requestedPolicyVersion: int | None = ...,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def setIamPolicy(
@@ -177,7 +181,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: EndpointPolicy = ...,
-                    endpointPolicyId: str = ...,
+                    endpointPolicyId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
@@ -190,9 +194,9 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    returnPartialSuccess: bool = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    returnPartialSuccess: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListEndpointPoliciesResponseHttpRequest: ...
                 def list_next(
@@ -205,7 +209,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: EndpointPolicy = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
 
@@ -220,8 +224,8 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListGatewayRouteViewsResponseHttpRequest: ...
                     def list_next(
@@ -235,7 +239,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: Gateway = ...,
-                    gatewayId: str = ...,
+                    gatewayId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
@@ -248,8 +252,8 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListGatewaysResponseHttpRequest: ...
                 def list_next(
@@ -262,7 +266,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: Gateway = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def routeViews(self) -> RouteViewsResource: ...
@@ -274,7 +278,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: GrpcRoute = ...,
-                    grpcRouteId: str = ...,
+                    grpcRouteId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
@@ -287,9 +291,9 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    returnPartialSuccess: bool = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    returnPartialSuccess: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListGrpcRoutesResponseHttpRequest: ...
                 def list_next(
@@ -302,7 +306,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: GrpcRoute = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
 
@@ -313,8 +317,8 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: HttpRoute = ...,
-                    httpRouteId: str = ...,
-                    requestId: str = ...,
+                    httpRouteId: str | None = ...,
+                    requestId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
@@ -327,10 +331,10 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    returnPartialSuccess: bool = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    returnPartialSuccess: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListHttpRoutesResponseHttpRequest: ...
                 def list_next(
@@ -343,7 +347,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: HttpRoute = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
 
@@ -354,12 +358,16 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: LbEdgeExtension = ...,
-                    lbEdgeExtensionId: str = ...,
-                    requestId: str = ...,
+                    lbEdgeExtensionId: str | None = ...,
+                    requestId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
-                    self, *, name: str, requestId: str = ..., **kwargs: typing.Any
+                    self,
+                    *,
+                    name: str,
+                    requestId: str | None = ...,
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
@@ -368,10 +376,10 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    orderBy: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListLbEdgeExtensionsResponseHttpRequest: ...
                 def list_next(
@@ -384,8 +392,8 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: LbEdgeExtension = ...,
-                    requestId: str = ...,
-                    updateMask: str = ...,
+                    requestId: str | None = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
 
@@ -396,12 +404,16 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: LbRouteExtension = ...,
-                    lbRouteExtensionId: str = ...,
-                    requestId: str = ...,
+                    lbRouteExtensionId: str | None = ...,
+                    requestId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
-                    self, *, name: str, requestId: str = ..., **kwargs: typing.Any
+                    self,
+                    *,
+                    name: str,
+                    requestId: str | None = ...,
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
@@ -410,10 +422,10 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    orderBy: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListLbRouteExtensionsResponseHttpRequest: ...
                 def list_next(
@@ -426,8 +438,8 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: LbRouteExtension = ...,
-                    requestId: str = ...,
-                    updateMask: str = ...,
+                    requestId: str | None = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
 
@@ -438,12 +450,16 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: LbTrafficExtension = ...,
-                    lbTrafficExtensionId: str = ...,
-                    requestId: str = ...,
+                    lbTrafficExtensionId: str | None = ...,
+                    requestId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
-                    self, *, name: str, requestId: str = ..., **kwargs: typing.Any
+                    self,
+                    *,
+                    name: str,
+                    requestId: str | None = ...,
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
@@ -452,10 +468,10 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    orderBy: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListLbTrafficExtensionsResponseHttpRequest: ...
                 def list_next(
@@ -468,8 +484,8 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: LbTrafficExtension = ...,
-                    requestId: str = ...,
-                    updateMask: str = ...,
+                    requestId: str | None = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
 
@@ -484,8 +500,8 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListMeshRouteViewsResponseHttpRequest: ...
                     def list_next(
@@ -499,7 +515,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: Mesh = ...,
-                    meshId: str = ...,
+                    meshId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
@@ -512,9 +528,9 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    returnPartialSuccess: bool = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    returnPartialSuccess: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListMeshesResponseHttpRequest: ...
                 def list_next(
@@ -527,7 +543,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: Mesh = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def routeViews(self) -> RouteViewsResource: ...
@@ -541,12 +557,16 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: MulticastConsumerAssociation = ...,
-                    multicastConsumerAssociationId: str = ...,
-                    requestId: str = ...,
+                    multicastConsumerAssociationId: str | None = ...,
+                    requestId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
-                    self, *, name: str, requestId: str = ..., **kwargs: typing.Any
+                    self,
+                    *,
+                    name: str,
+                    requestId: str | None = ...,
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
@@ -555,10 +575,10 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    orderBy: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListMulticastConsumerAssociationsResponseHttpRequest: ...
                 def list_next(
@@ -571,8 +591,8 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: MulticastConsumerAssociation = ...,
-                    requestId: str = ...,
-                    updateMask: str = ...,
+                    requestId: str | None = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
 
@@ -585,12 +605,16 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: MulticastGroupConsumerActivation = ...,
-                    multicastGroupConsumerActivationId: str = ...,
-                    requestId: str = ...,
+                    multicastGroupConsumerActivationId: str | None = ...,
+                    requestId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
-                    self, *, name: str, requestId: str = ..., **kwargs: typing.Any
+                    self,
+                    *,
+                    name: str,
+                    requestId: str | None = ...,
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
@@ -599,10 +623,10 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    orderBy: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListMulticastGroupConsumerActivationsResponseHttpRequest: ...
                 def list_next(
@@ -617,8 +641,8 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: MulticastGroupConsumerActivation = ...,
-                    requestId: str = ...,
-                    updateMask: str = ...,
+                    requestId: str | None = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
 
@@ -641,10 +665,10 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    returnPartialSuccess: bool = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    returnPartialSuccess: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListOperationsResponseHttpRequest: ...
                 def list_next(
@@ -660,7 +684,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: ServiceBinding = ...,
-                    serviceBindingId: str = ...,
+                    serviceBindingId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
@@ -673,8 +697,8 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListServiceBindingsResponseHttpRequest: ...
                 def list_next(
@@ -687,7 +711,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: ServiceBinding = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
 
@@ -698,7 +722,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: ServiceLbPolicy = ...,
-                    serviceLbPolicyId: str = ...,
+                    serviceLbPolicyId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
@@ -711,8 +735,8 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListServiceLbPoliciesResponseHttpRequest: ...
                 def list_next(
@@ -725,7 +749,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: ServiceLbPolicy = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
 
@@ -736,7 +760,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: TcpRoute = ...,
-                    tcpRouteId: str = ...,
+                    tcpRouteId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
@@ -749,9 +773,9 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    returnPartialSuccess: bool = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    returnPartialSuccess: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListTcpRoutesResponseHttpRequest: ...
                 def list_next(
@@ -764,7 +788,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: TcpRoute = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
 
@@ -775,7 +799,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: TlsRoute = ...,
-                    tlsRouteId: str = ...,
+                    tlsRouteId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
@@ -788,9 +812,9 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    returnPartialSuccess: bool = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    returnPartialSuccess: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListTlsRoutesResponseHttpRequest: ...
                 def list_next(
@@ -803,7 +827,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: TlsRoute = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
 
@@ -816,7 +840,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: WasmPluginVersion = ...,
-                        wasmPluginVersionId: str = ...,
+                        wasmPluginVersionId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def delete(
@@ -829,8 +853,8 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListWasmPluginVersionsResponseHttpRequest: ...
                     def list_next(
@@ -844,7 +868,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: WasmPlugin = ...,
-                    wasmPluginId: str = ...,
+                    wasmPluginId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
@@ -858,15 +882,16 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                         "WASM_PLUGIN_VIEW_UNSPECIFIED",
                         "WASM_PLUGIN_VIEW_BASIC",
                         "WASM_PLUGIN_VIEW_FULL",
-                    ] = ...,
+                    ]
+                    | None = ...,
                     **kwargs: typing.Any,
                 ) -> WasmPluginHttpRequest: ...
                 def list(
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListWasmPluginsResponseHttpRequest: ...
                 def list_next(
@@ -879,7 +904,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: WasmPlugin = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def versions(self) -> VersionsResource: ...
@@ -891,10 +916,10 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                extraLocationTypes: str | _list[str] = ...,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                extraLocationTypes: str | _list[str] | None = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListLocationsResponseHttpRequest: ...
             def list_next(

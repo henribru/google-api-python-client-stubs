@@ -38,9 +38,9 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudChannelV1ListChannelPartnerRepricingConfigsResponseHttpRequest: ...
                 def list_next(
@@ -85,9 +85,9 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudChannelV1ListCustomersResponseHttpRequest: ...
                 def list_next(
@@ -100,7 +100,7 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: GoogleCloudChannelV1Customer = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudChannelV1CustomerHttpRequest: ...
 
@@ -115,16 +115,18 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                view: typing_extensions.Literal["UNSPECIFIED", "BASIC", "FULL"] = ...,
+                view: typing_extensions.Literal["UNSPECIFIED", "BASIC", "FULL"]
+                | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudChannelV1ChannelPartnerLinkHttpRequest: ...
             def list(
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
-                view: typing_extensions.Literal["UNSPECIFIED", "BASIC", "FULL"] = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
+                view: typing_extensions.Literal["UNSPECIFIED", "BASIC", "FULL"]
+                | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudChannelV1ListChannelPartnerLinksResponseHttpRequest: ...
             def list_next(
@@ -167,9 +169,9 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> (
                     GoogleCloudChannelV1ListCustomerRepricingConfigsResponseHttpRequest
@@ -241,8 +243,8 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudChannelV1ListEntitlementsResponseHttpRequest: ...
                 def list_next(
@@ -254,9 +256,9 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudChannelV1ListEntitlementChangesResponseHttpRequest: ...
                 def listEntitlementChanges_next(
@@ -308,9 +310,9 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudChannelV1ListCustomersResponseHttpRequest: ...
             def list_next(
@@ -322,14 +324,14 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customer: str,
-                changeOfferPurchase_billingAccount: str = ...,
-                changeOfferPurchase_entitlement: str = ...,
-                changeOfferPurchase_newSku: str = ...,
-                createEntitlementPurchase_billingAccount: str = ...,
-                createEntitlementPurchase_sku: str = ...,
-                languageCode: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                changeOfferPurchase_billingAccount: str | None = ...,
+                changeOfferPurchase_entitlement: str | None = ...,
+                changeOfferPurchase_newSku: str | None = ...,
+                createEntitlementPurchase_billingAccount: str | None = ...,
+                createEntitlementPurchase_sku: str | None = ...,
+                languageCode: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudChannelV1ListPurchasableOffersResponseHttpRequest: ...
             def listPurchasableOffers_next(
@@ -345,12 +347,13 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                 customer: str,
                 changeOfferPurchase_changeType: typing_extensions.Literal[
                     "CHANGE_TYPE_UNSPECIFIED", "UPGRADE", "DOWNGRADE"
-                ] = ...,
-                changeOfferPurchase_entitlement: str = ...,
-                createEntitlementPurchase_product: str = ...,
-                languageCode: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                ]
+                | None = ...,
+                changeOfferPurchase_entitlement: str | None = ...,
+                createEntitlementPurchase_product: str | None = ...,
+                languageCode: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudChannelV1ListPurchasableSkusResponseHttpRequest: ...
             def listPurchasableSkus_next(
@@ -363,7 +366,7 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: GoogleCloudChannelV1Customer = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudChannelV1CustomerHttpRequest: ...
             def provisionCloudIdentity(
@@ -377,7 +380,7 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customer: str,
-                skus: str | _list[str] = ...,
+                skus: str | _list[str] | None = ...,
                 **kwargs: typing.Any,
             ) -> (
                 GoogleCloudChannelV1QueryEligibleBillingAccountsResponseHttpRequest
@@ -405,11 +408,11 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                filter: str = ...,
-                languageCode: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
-                showFutureOffers: bool = ...,
+                filter: str | None = ...,
+                languageCode: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
+                showFutureOffers: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudChannelV1ListOffersResponseHttpRequest: ...
             def list_next(
@@ -439,9 +442,9 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                languageCode: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                languageCode: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudChannelV1ListReportsResponseHttpRequest: ...
             def list_next(
@@ -465,8 +468,8 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> (
                     GoogleCloudChannelV1ListSkuGroupBillableSkusResponseHttpRequest
@@ -484,8 +487,8 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudChannelV1ListSkuGroupsResponseHttpRequest: ...
             def list_next(
@@ -506,9 +509,9 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
             self,
             *,
             account: str,
-            integrator: str = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
+            integrator: str | None = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> GoogleCloudChannelV1ListSubscribersResponseHttpRequest: ...
         def listSubscribers_next(
@@ -567,9 +570,9 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
             self,
             *,
             integrator: str,
-            account: str = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
+            account: str | None = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> GoogleCloudChannelV1ListSubscribersResponseHttpRequest: ...
         def listSubscribers_next(
@@ -611,10 +614,10 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            filter: str = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
-            returnPartialSuccess: bool = ...,
+            filter: str | None = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
         def list_next(
@@ -631,10 +634,10 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                account: str = ...,
-                languageCode: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                account: str | None = ...,
+                languageCode: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudChannelV1ListSkusResponseHttpRequest: ...
             def list_next(
@@ -646,10 +649,10 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            account: str = ...,
-            languageCode: str = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
+            account: str | None = ...,
+            languageCode: str | None = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> GoogleCloudChannelV1ListProductsResponseHttpRequest: ...
         def list_next(

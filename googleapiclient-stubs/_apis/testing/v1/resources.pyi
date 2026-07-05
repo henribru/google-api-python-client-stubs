@@ -19,7 +19,7 @@ class TestingResource(googleapiclient.discovery.Resource):
             self,
             *,
             body: FileReference = ...,
-            bundleLocation_gcsPath: str = ...,
+            bundleLocation_gcsPath: str | None = ...,
             **kwargs: typing.Any,
         ) -> GetApkDetailsResponseHttpRequest: ...
 
@@ -44,9 +44,9 @@ class TestingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListDeviceSessionsResponseHttpRequest: ...
             def list_next(
@@ -59,7 +59,7 @@ class TestingResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: DeviceSession = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> DeviceSessionHttpRequest: ...
 
@@ -73,7 +73,7 @@ class TestingResource(googleapiclient.discovery.Resource):
                 *,
                 projectId: str,
                 body: TestMatrix = ...,
-                requestId: str = ...,
+                requestId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> TestMatrixHttpRequest: ...
             def get(
@@ -96,8 +96,8 @@ class TestingResource(googleapiclient.discovery.Resource):
                 "PROVIDED_SOFTWARE",
                 "DEVICE_IP_BLOCKS",
             ],
-            includeViewableModels: bool = ...,
-            projectId: str = ...,
+            includeViewableModels: bool | None = ...,
+            projectId: str | None = ...,
             **kwargs: typing.Any,
         ) -> TestEnvironmentCatalogHttpRequest: ...
 

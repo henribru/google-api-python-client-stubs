@@ -21,9 +21,9 @@ class PaymentsResellerSubscriptionResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListProductsResponseHttpRequest: ...
             def list_next(
@@ -50,9 +50,9 @@ class PaymentsResellerSubscriptionResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListPromotionsResponseHttpRequest: ...
             def list_next(
@@ -70,7 +70,7 @@ class PaymentsResellerSubscriptionResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: SubscriptionLineItem = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> SubscriptionLineItemHttpRequest: ...
 
@@ -86,7 +86,7 @@ class PaymentsResellerSubscriptionResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: Subscription = ...,
-                subscriptionId: str = ...,
+                subscriptionId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> SubscriptionHttpRequest: ...
             def entitle(
@@ -111,11 +111,12 @@ class PaymentsResellerSubscriptionResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: Subscription = ...,
-                cycleOptions_initialCycleDuration_count: int = ...,
+                cycleOptions_initialCycleDuration_count: int | None = ...,
                 cycleOptions_initialCycleDuration_unit: typing_extensions.Literal[
                     "UNIT_UNSPECIFIED", "MONTH", "DAY", "HOUR"
-                ] = ...,
-                subscriptionId: str = ...,
+                ]
+                | None = ...,
+                subscriptionId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> SubscriptionHttpRequest: ...
             def resume(

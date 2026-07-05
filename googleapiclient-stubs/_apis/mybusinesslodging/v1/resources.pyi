@@ -18,18 +18,18 @@ class MyBusinessLodgingResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LodgingResource(googleapiclient.discovery.Resource):
             def getGoogleUpdated(
-                self, *, name: str, readMask: str = ..., **kwargs: typing.Any
+                self, *, name: str, readMask: str | None = ..., **kwargs: typing.Any
             ) -> GetGoogleUpdatedLodgingResponseHttpRequest: ...
 
         def getLodging(
-            self, *, name: str, readMask: str = ..., **kwargs: typing.Any
+            self, *, name: str, readMask: str | None = ..., **kwargs: typing.Any
         ) -> LodgingHttpRequest: ...
         def updateLodging(
             self,
             *,
             name: str,
             body: Lodging = ...,
-            updateMask: str = ...,
+            updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> LodgingHttpRequest: ...
         def lodging(self) -> LodgingResource: ...

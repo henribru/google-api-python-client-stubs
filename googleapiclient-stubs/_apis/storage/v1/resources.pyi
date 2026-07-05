@@ -28,8 +28,8 @@ class StorageResource(googleapiclient.discovery.Resource):
             self,
             *,
             bucket: str,
-            pageSize: int = ...,
-            pageToken: str = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> AnywhereCachesHttpRequest: ...
         def list_next(
@@ -59,7 +59,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             *,
             bucket: str,
             entity: str,
-            userProject: str = ...,
+            userProject: str | None = ...,
             **kwargs: typing.Any,
         ) -> googleapiclient.http.HttpRequest: ...
         def get(
@@ -67,7 +67,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             *,
             bucket: str,
             entity: str,
-            userProject: str = ...,
+            userProject: str | None = ...,
             **kwargs: typing.Any,
         ) -> BucketAccessControlHttpRequest: ...
         def insert(
@@ -75,11 +75,11 @@ class StorageResource(googleapiclient.discovery.Resource):
             *,
             bucket: str,
             body: BucketAccessControl = ...,
-            userProject: str = ...,
+            userProject: str | None = ...,
             **kwargs: typing.Any,
         ) -> BucketAccessControlHttpRequest: ...
         def list(
-            self, *, bucket: str, userProject: str = ..., **kwargs: typing.Any
+            self, *, bucket: str, userProject: str | None = ..., **kwargs: typing.Any
         ) -> BucketAccessControlsHttpRequest: ...
         def patch(
             self,
@@ -87,7 +87,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             bucket: str,
             entity: str,
             body: BucketAccessControl = ...,
-            userProject: str = ...,
+            userProject: str | None = ...,
             **kwargs: typing.Any,
         ) -> BucketAccessControlHttpRequest: ...
         def update(
@@ -96,7 +96,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             bucket: str,
             entity: str,
             body: BucketAccessControl = ...,
-            userProject: str = ...,
+            userProject: str | None = ...,
             **kwargs: typing.Any,
         ) -> BucketAccessControlHttpRequest: ...
 
@@ -106,47 +106,48 @@ class StorageResource(googleapiclient.discovery.Resource):
             self,
             *,
             bucket: str,
-            ifMetagenerationMatch: str = ...,
-            ifMetagenerationNotMatch: str = ...,
-            userProject: str = ...,
+            ifMetagenerationMatch: str | None = ...,
+            ifMetagenerationNotMatch: str | None = ...,
+            userProject: str | None = ...,
             **kwargs: typing.Any,
         ) -> googleapiclient.http.HttpRequest: ...
         def get(
             self,
             *,
             bucket: str,
-            generation: str = ...,
-            ifMetagenerationMatch: str = ...,
-            ifMetagenerationNotMatch: str = ...,
-            projection: typing_extensions.Literal["full", "noAcl"] = ...,
-            softDeleted: bool = ...,
-            userProject: str = ...,
+            generation: str | None = ...,
+            ifMetagenerationMatch: str | None = ...,
+            ifMetagenerationNotMatch: str | None = ...,
+            projection: typing_extensions.Literal["full", "noAcl"] | None = ...,
+            softDeleted: bool | None = ...,
+            userProject: str | None = ...,
             **kwargs: typing.Any,
         ) -> BucketHttpRequest: ...
         def getIamPolicy(
             self,
             *,
             bucket: str,
-            optionsRequestedPolicyVersion: int = ...,
-            userProject: str = ...,
+            optionsRequestedPolicyVersion: int | None = ...,
+            userProject: str | None = ...,
             **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
         def getStorageLayout(
-            self, *, bucket: str, prefix: str = ..., **kwargs: typing.Any
+            self, *, bucket: str, prefix: str | None = ..., **kwargs: typing.Any
         ) -> BucketStorageLayoutHttpRequest: ...
         def insert(
             self,
             *,
             project: str,
             body: Bucket = ...,
-            enableObjectRetention: bool = ...,
+            enableObjectRetention: bool | None = ...,
             predefinedAcl: typing_extensions.Literal[
                 "authenticatedRead",
                 "private",
                 "projectPrivate",
                 "publicRead",
                 "publicReadWrite",
-            ] = ...,
+            ]
+            | None = ...,
             predefinedDefaultObjectAcl: typing_extensions.Literal[
                 "authenticatedRead",
                 "bucketOwnerFullControl",
@@ -154,22 +155,23 @@ class StorageResource(googleapiclient.discovery.Resource):
                 "private",
                 "projectPrivate",
                 "publicRead",
-            ] = ...,
-            projection: typing_extensions.Literal["full", "noAcl"] = ...,
-            userProject: str = ...,
+            ]
+            | None = ...,
+            projection: typing_extensions.Literal["full", "noAcl"] | None = ...,
+            userProject: str | None = ...,
             **kwargs: typing.Any,
         ) -> BucketHttpRequest: ...
         def list(
             self,
             *,
             project: str,
-            maxResults: int = ...,
-            pageToken: str = ...,
-            prefix: str = ...,
-            projection: typing_extensions.Literal["full", "noAcl"] = ...,
-            returnPartialSuccess: bool = ...,
-            softDeleted: bool = ...,
-            userProject: str = ...,
+            maxResults: int | None = ...,
+            pageToken: str | None = ...,
+            prefix: str | None = ...,
+            projection: typing_extensions.Literal["full", "noAcl"] | None = ...,
+            returnPartialSuccess: bool | None = ...,
+            softDeleted: bool | None = ...,
+            userProject: str | None = ...,
             **kwargs: typing.Any,
         ) -> BucketsHttpRequest: ...
         def list_next(
@@ -180,7 +182,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             *,
             bucket: str,
             ifMetagenerationMatch: str,
-            userProject: str = ...,
+            userProject: str | None = ...,
             **kwargs: typing.Any,
         ) -> BucketHttpRequest: ...
         def patch(
@@ -188,15 +190,16 @@ class StorageResource(googleapiclient.discovery.Resource):
             *,
             bucket: str,
             body: Bucket = ...,
-            ifMetagenerationMatch: str = ...,
-            ifMetagenerationNotMatch: str = ...,
+            ifMetagenerationMatch: str | None = ...,
+            ifMetagenerationNotMatch: str | None = ...,
             predefinedAcl: typing_extensions.Literal[
                 "authenticatedRead",
                 "private",
                 "projectPrivate",
                 "publicRead",
                 "publicReadWrite",
-            ] = ...,
+            ]
+            | None = ...,
             predefinedDefaultObjectAcl: typing_extensions.Literal[
                 "authenticatedRead",
                 "bucketOwnerFullControl",
@@ -204,9 +207,10 @@ class StorageResource(googleapiclient.discovery.Resource):
                 "private",
                 "projectPrivate",
                 "publicRead",
-            ] = ...,
-            projection: typing_extensions.Literal["full", "noAcl"] = ...,
-            userProject: str = ...,
+            ]
+            | None = ...,
+            projection: typing_extensions.Literal["full", "noAcl"] | None = ...,
+            userProject: str | None = ...,
             **kwargs: typing.Any,
         ) -> BucketHttpRequest: ...
         def relocate(
@@ -221,8 +225,8 @@ class StorageResource(googleapiclient.discovery.Resource):
             *,
             bucket: str,
             generation: str,
-            projection: typing_extensions.Literal["full", "noAcl"] = ...,
-            userProject: str = ...,
+            projection: typing_extensions.Literal["full", "noAcl"] | None = ...,
+            userProject: str | None = ...,
             **kwargs: typing.Any,
         ) -> BucketHttpRequest: ...
         def setIamPolicy(
@@ -230,7 +234,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             *,
             bucket: str,
             body: Policy = ...,
-            userProject: str = ...,
+            userProject: str | None = ...,
             **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
         def testIamPermissions(
@@ -238,7 +242,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             *,
             bucket: str,
             permissions: str | _list[str],
-            userProject: str = ...,
+            userProject: str | None = ...,
             **kwargs: typing.Any,
         ) -> TestIamPermissionsResponseHttpRequest: ...
         def update(
@@ -246,15 +250,16 @@ class StorageResource(googleapiclient.discovery.Resource):
             *,
             bucket: str,
             body: Bucket = ...,
-            ifMetagenerationMatch: str = ...,
-            ifMetagenerationNotMatch: str = ...,
+            ifMetagenerationMatch: str | None = ...,
+            ifMetagenerationNotMatch: str | None = ...,
             predefinedAcl: typing_extensions.Literal[
                 "authenticatedRead",
                 "private",
                 "projectPrivate",
                 "publicRead",
                 "publicReadWrite",
-            ] = ...,
+            ]
+            | None = ...,
             predefinedDefaultObjectAcl: typing_extensions.Literal[
                 "authenticatedRead",
                 "bucketOwnerFullControl",
@@ -262,9 +267,10 @@ class StorageResource(googleapiclient.discovery.Resource):
                 "private",
                 "projectPrivate",
                 "publicRead",
-            ] = ...,
-            projection: typing_extensions.Literal["full", "noAcl"] = ...,
-            userProject: str = ...,
+            ]
+            | None = ...,
+            projection: typing_extensions.Literal["full", "noAcl"] | None = ...,
+            userProject: str | None = ...,
             **kwargs: typing.Any,
         ) -> BucketHttpRequest: ...
 
@@ -281,7 +287,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             *,
             bucket: str,
             entity: str,
-            userProject: str = ...,
+            userProject: str | None = ...,
             **kwargs: typing.Any,
         ) -> googleapiclient.http.HttpRequest: ...
         def get(
@@ -289,7 +295,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             *,
             bucket: str,
             entity: str,
-            userProject: str = ...,
+            userProject: str | None = ...,
             **kwargs: typing.Any,
         ) -> ObjectAccessControlHttpRequest: ...
         def insert(
@@ -297,16 +303,16 @@ class StorageResource(googleapiclient.discovery.Resource):
             *,
             bucket: str,
             body: ObjectAccessControl = ...,
-            userProject: str = ...,
+            userProject: str | None = ...,
             **kwargs: typing.Any,
         ) -> ObjectAccessControlHttpRequest: ...
         def list(
             self,
             *,
             bucket: str,
-            ifMetagenerationMatch: str = ...,
-            ifMetagenerationNotMatch: str = ...,
-            userProject: str = ...,
+            ifMetagenerationMatch: str | None = ...,
+            ifMetagenerationNotMatch: str | None = ...,
+            userProject: str | None = ...,
             **kwargs: typing.Any,
         ) -> ObjectAccessControlsHttpRequest: ...
         def patch(
@@ -315,7 +321,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             bucket: str,
             entity: str,
             body: ObjectAccessControl = ...,
-            userProject: str = ...,
+            userProject: str | None = ...,
             **kwargs: typing.Any,
         ) -> ObjectAccessControlHttpRequest: ...
         def update(
@@ -324,7 +330,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             bucket: str,
             entity: str,
             body: ObjectAccessControl = ...,
-            userProject: str = ...,
+            userProject: str | None = ...,
             **kwargs: typing.Any,
         ) -> ObjectAccessControlHttpRequest: ...
 
@@ -335,8 +341,8 @@ class StorageResource(googleapiclient.discovery.Resource):
             *,
             bucket: str,
             folder: str,
-            ifMetagenerationMatch: str = ...,
-            ifMetagenerationNotMatch: str = ...,
+            ifMetagenerationMatch: str | None = ...,
+            ifMetagenerationNotMatch: str | None = ...,
             **kwargs: typing.Any,
         ) -> googleapiclient.http.HttpRequest: ...
         def deleteRecursive(
@@ -344,8 +350,8 @@ class StorageResource(googleapiclient.discovery.Resource):
             *,
             bucket: str,
             folder: str,
-            ifMetagenerationMatch: str = ...,
-            ifMetagenerationNotMatch: str = ...,
+            ifMetagenerationMatch: str | None = ...,
+            ifMetagenerationNotMatch: str | None = ...,
             **kwargs: typing.Any,
         ) -> GoogleLongrunningOperationHttpRequest: ...
         def get(
@@ -353,8 +359,8 @@ class StorageResource(googleapiclient.discovery.Resource):
             *,
             bucket: str,
             folder: str,
-            ifMetagenerationMatch: str = ...,
-            ifMetagenerationNotMatch: str = ...,
+            ifMetagenerationMatch: str | None = ...,
+            ifMetagenerationNotMatch: str | None = ...,
             **kwargs: typing.Any,
         ) -> FolderHttpRequest: ...
         def insert(
@@ -362,19 +368,19 @@ class StorageResource(googleapiclient.discovery.Resource):
             *,
             bucket: str,
             body: Folder = ...,
-            recursive: bool = ...,
+            recursive: bool | None = ...,
             **kwargs: typing.Any,
         ) -> FolderHttpRequest: ...
         def list(
             self,
             *,
             bucket: str,
-            delimiter: str = ...,
-            endOffset: str = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
-            prefix: str = ...,
-            startOffset: str = ...,
+            delimiter: str | None = ...,
+            endOffset: str | None = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            prefix: str | None = ...,
+            startOffset: str | None = ...,
             **kwargs: typing.Any,
         ) -> FoldersHttpRequest: ...
         def list_next(
@@ -386,8 +392,8 @@ class StorageResource(googleapiclient.discovery.Resource):
             bucket: str,
             sourceFolder: str,
             destinationFolder: str,
-            ifSourceMetagenerationMatch: str = ...,
-            ifSourceMetagenerationNotMatch: str = ...,
+            ifSourceMetagenerationMatch: str | None = ...,
+            ifSourceMetagenerationNotMatch: str | None = ...,
             **kwargs: typing.Any,
         ) -> GoogleLongrunningOperationHttpRequest: ...
 
@@ -398,9 +404,9 @@ class StorageResource(googleapiclient.discovery.Resource):
             *,
             bucket: str,
             managedFolder: str,
-            allowNonEmpty: bool = ...,
-            ifMetagenerationMatch: str = ...,
-            ifMetagenerationNotMatch: str = ...,
+            allowNonEmpty: bool | None = ...,
+            ifMetagenerationMatch: str | None = ...,
+            ifMetagenerationNotMatch: str | None = ...,
             **kwargs: typing.Any,
         ) -> googleapiclient.http.HttpRequest: ...
         def get(
@@ -408,8 +414,8 @@ class StorageResource(googleapiclient.discovery.Resource):
             *,
             bucket: str,
             managedFolder: str,
-            ifMetagenerationMatch: str = ...,
-            ifMetagenerationNotMatch: str = ...,
+            ifMetagenerationMatch: str | None = ...,
+            ifMetagenerationNotMatch: str | None = ...,
             **kwargs: typing.Any,
         ) -> ManagedFolderHttpRequest: ...
         def getIamPolicy(
@@ -417,8 +423,8 @@ class StorageResource(googleapiclient.discovery.Resource):
             *,
             bucket: str,
             managedFolder: str,
-            optionsRequestedPolicyVersion: int = ...,
-            userProject: str = ...,
+            optionsRequestedPolicyVersion: int | None = ...,
+            userProject: str | None = ...,
             **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
         def insert(
@@ -428,9 +434,9 @@ class StorageResource(googleapiclient.discovery.Resource):
             self,
             *,
             bucket: str,
-            pageSize: int = ...,
-            pageToken: str = ...,
-            prefix: str = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            prefix: str | None = ...,
             **kwargs: typing.Any,
         ) -> ManagedFoldersHttpRequest: ...
         def list_next(
@@ -444,7 +450,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             bucket: str,
             managedFolder: str,
             body: Policy = ...,
-            userProject: str = ...,
+            userProject: str | None = ...,
             **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
         def testIamPermissions(
@@ -453,7 +459,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             bucket: str,
             managedFolder: str,
             permissions: str | _list[str],
-            userProject: str = ...,
+            userProject: str | None = ...,
             **kwargs: typing.Any,
         ) -> TestIamPermissionsResponseHttpRequest: ...
 
@@ -464,7 +470,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             *,
             bucket: str,
             notification: str,
-            userProject: str = ...,
+            userProject: str | None = ...,
             **kwargs: typing.Any,
         ) -> googleapiclient.http.HttpRequest: ...
         def get(
@@ -472,7 +478,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             *,
             bucket: str,
             notification: str,
-            userProject: str = ...,
+            userProject: str | None = ...,
             **kwargs: typing.Any,
         ) -> NotificationHttpRequest: ...
         def insert(
@@ -480,11 +486,11 @@ class StorageResource(googleapiclient.discovery.Resource):
             *,
             bucket: str,
             body: Notification = ...,
-            userProject: str = ...,
+            userProject: str | None = ...,
             **kwargs: typing.Any,
         ) -> NotificationHttpRequest: ...
         def list(
-            self, *, bucket: str, userProject: str = ..., **kwargs: typing.Any
+            self, *, bucket: str, userProject: str | None = ..., **kwargs: typing.Any
         ) -> NotificationsHttpRequest: ...
 
     @typing.type_check_only
@@ -495,8 +501,8 @@ class StorageResource(googleapiclient.discovery.Resource):
             bucket: str,
             object: str,
             entity: str,
-            generation: str = ...,
-            userProject: str = ...,
+            generation: str | None = ...,
+            userProject: str | None = ...,
             **kwargs: typing.Any,
         ) -> googleapiclient.http.HttpRequest: ...
         def get(
@@ -505,8 +511,8 @@ class StorageResource(googleapiclient.discovery.Resource):
             bucket: str,
             object: str,
             entity: str,
-            generation: str = ...,
-            userProject: str = ...,
+            generation: str | None = ...,
+            userProject: str | None = ...,
             **kwargs: typing.Any,
         ) -> ObjectAccessControlHttpRequest: ...
         def insert(
@@ -515,8 +521,8 @@ class StorageResource(googleapiclient.discovery.Resource):
             bucket: str,
             object: str,
             body: ObjectAccessControl = ...,
-            generation: str = ...,
-            userProject: str = ...,
+            generation: str | None = ...,
+            userProject: str | None = ...,
             **kwargs: typing.Any,
         ) -> ObjectAccessControlHttpRequest: ...
         def list(
@@ -524,8 +530,8 @@ class StorageResource(googleapiclient.discovery.Resource):
             *,
             bucket: str,
             object: str,
-            generation: str = ...,
-            userProject: str = ...,
+            generation: str | None = ...,
+            userProject: str | None = ...,
             **kwargs: typing.Any,
         ) -> ObjectAccessControlsHttpRequest: ...
         def patch(
@@ -535,8 +541,8 @@ class StorageResource(googleapiclient.discovery.Resource):
             object: str,
             entity: str,
             body: ObjectAccessControl = ...,
-            generation: str = ...,
-            userProject: str = ...,
+            generation: str | None = ...,
+            userProject: str | None = ...,
             **kwargs: typing.Any,
         ) -> ObjectAccessControlHttpRequest: ...
         def update(
@@ -546,8 +552,8 @@ class StorageResource(googleapiclient.discovery.Resource):
             object: str,
             entity: str,
             body: ObjectAccessControl = ...,
-            generation: str = ...,
-            userProject: str = ...,
+            generation: str | None = ...,
+            userProject: str | None = ...,
             **kwargs: typing.Any,
         ) -> ObjectAccessControlHttpRequest: ...
 
@@ -573,12 +579,13 @@ class StorageResource(googleapiclient.discovery.Resource):
                 "private",
                 "projectPrivate",
                 "publicRead",
-            ] = ...,
-            dropContextGroups: str | _list[str] = ...,
-            ifGenerationMatch: str = ...,
-            ifMetagenerationMatch: str = ...,
-            kmsKeyName: str = ...,
-            userProject: str = ...,
+            ]
+            | None = ...,
+            dropContextGroups: str | _list[str] | None = ...,
+            ifGenerationMatch: str | None = ...,
+            ifMetagenerationMatch: str | None = ...,
+            kmsKeyName: str | None = ...,
+            userProject: str | None = ...,
             **kwargs: typing.Any,
         ) -> ObjectHttpRequest: ...
         def copy(
@@ -589,7 +596,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             destinationBucket: str,
             destinationObject: str,
             body: Object = ...,
-            destinationKmsKeyName: str = ...,
+            destinationKmsKeyName: str | None = ...,
             destinationPredefinedAcl: typing_extensions.Literal[
                 "authenticatedRead",
                 "bucketOwnerFullControl",
@@ -597,18 +604,19 @@ class StorageResource(googleapiclient.discovery.Resource):
                 "private",
                 "projectPrivate",
                 "publicRead",
-            ] = ...,
-            ifGenerationMatch: str = ...,
-            ifGenerationNotMatch: str = ...,
-            ifMetagenerationMatch: str = ...,
-            ifMetagenerationNotMatch: str = ...,
-            ifSourceGenerationMatch: str = ...,
-            ifSourceGenerationNotMatch: str = ...,
-            ifSourceMetagenerationMatch: str = ...,
-            ifSourceMetagenerationNotMatch: str = ...,
-            projection: typing_extensions.Literal["full", "noAcl"] = ...,
-            sourceGeneration: str = ...,
-            userProject: str = ...,
+            ]
+            | None = ...,
+            ifGenerationMatch: str | None = ...,
+            ifGenerationNotMatch: str | None = ...,
+            ifMetagenerationMatch: str | None = ...,
+            ifMetagenerationNotMatch: str | None = ...,
+            ifSourceGenerationMatch: str | None = ...,
+            ifSourceGenerationNotMatch: str | None = ...,
+            ifSourceMetagenerationMatch: str | None = ...,
+            ifSourceMetagenerationNotMatch: str | None = ...,
+            projection: typing_extensions.Literal["full", "noAcl"] | None = ...,
+            sourceGeneration: str | None = ...,
+            userProject: str | None = ...,
             **kwargs: typing.Any,
         ) -> ObjectHttpRequest: ...
         def delete(
@@ -616,12 +624,12 @@ class StorageResource(googleapiclient.discovery.Resource):
             *,
             bucket: str,
             object: str,
-            generation: str = ...,
-            ifGenerationMatch: str = ...,
-            ifGenerationNotMatch: str = ...,
-            ifMetagenerationMatch: str = ...,
-            ifMetagenerationNotMatch: str = ...,
-            userProject: str = ...,
+            generation: str | None = ...,
+            ifGenerationMatch: str | None = ...,
+            ifGenerationNotMatch: str | None = ...,
+            ifMetagenerationMatch: str | None = ...,
+            ifMetagenerationNotMatch: str | None = ...,
+            userProject: str | None = ...,
             **kwargs: typing.Any,
         ) -> googleapiclient.http.HttpRequest: ...
         def get(
@@ -629,15 +637,15 @@ class StorageResource(googleapiclient.discovery.Resource):
             *,
             bucket: str,
             object: str,
-            generation: str = ...,
-            ifGenerationMatch: str = ...,
-            ifGenerationNotMatch: str = ...,
-            ifMetagenerationMatch: str = ...,
-            ifMetagenerationNotMatch: str = ...,
-            projection: typing_extensions.Literal["full", "noAcl"] = ...,
-            restoreToken: str = ...,
-            softDeleted: bool = ...,
-            userProject: str = ...,
+            generation: str | None = ...,
+            ifGenerationMatch: str | None = ...,
+            ifGenerationNotMatch: str | None = ...,
+            ifMetagenerationMatch: str | None = ...,
+            ifMetagenerationNotMatch: str | None = ...,
+            projection: typing_extensions.Literal["full", "noAcl"] | None = ...,
+            restoreToken: str | None = ...,
+            softDeleted: bool | None = ...,
+            userProject: str | None = ...,
             **kwargs: typing.Any,
         ) -> ObjectHttpRequest: ...
         def get_media(
@@ -645,15 +653,15 @@ class StorageResource(googleapiclient.discovery.Resource):
             *,
             bucket: str,
             object: str,
-            generation: str = ...,
-            ifGenerationMatch: str = ...,
-            ifGenerationNotMatch: str = ...,
-            ifMetagenerationMatch: str = ...,
-            ifMetagenerationNotMatch: str = ...,
-            projection: typing_extensions.Literal["full", "noAcl"] = ...,
-            restoreToken: str = ...,
-            softDeleted: bool = ...,
-            userProject: str = ...,
+            generation: str | None = ...,
+            ifGenerationMatch: str | None = ...,
+            ifGenerationNotMatch: str | None = ...,
+            ifMetagenerationMatch: str | None = ...,
+            ifMetagenerationNotMatch: str | None = ...,
+            projection: typing_extensions.Literal["full", "noAcl"] | None = ...,
+            restoreToken: str | None = ...,
+            softDeleted: bool | None = ...,
+            userProject: str | None = ...,
             **kwargs: typing.Any,
         ) -> BytesHttpRequest: ...
         def getIamPolicy(
@@ -661,8 +669,8 @@ class StorageResource(googleapiclient.discovery.Resource):
             *,
             bucket: str,
             object: str,
-            generation: str = ...,
-            userProject: str = ...,
+            generation: str | None = ...,
+            userProject: str | None = ...,
             **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
         def insert(
@@ -670,13 +678,13 @@ class StorageResource(googleapiclient.discovery.Resource):
             *,
             bucket: str,
             body: Object = ...,
-            contentEncoding: str = ...,
-            ifGenerationMatch: str = ...,
-            ifGenerationNotMatch: str = ...,
-            ifMetagenerationMatch: str = ...,
-            ifMetagenerationNotMatch: str = ...,
-            kmsKeyName: str = ...,
-            name: str = ...,
+            contentEncoding: str | None = ...,
+            ifGenerationMatch: str | None = ...,
+            ifGenerationNotMatch: str | None = ...,
+            ifMetagenerationMatch: str | None = ...,
+            ifMetagenerationNotMatch: str | None = ...,
+            kmsKeyName: str | None = ...,
+            name: str | None = ...,
             predefinedAcl: typing_extensions.Literal[
                 "authenticatedRead",
                 "bucketOwnerFullControl",
@@ -684,29 +692,30 @@ class StorageResource(googleapiclient.discovery.Resource):
                 "private",
                 "projectPrivate",
                 "publicRead",
-            ] = ...,
-            projection: typing_extensions.Literal["full", "noAcl"] = ...,
-            userProject: str = ...,
+            ]
+            | None = ...,
+            projection: typing_extensions.Literal["full", "noAcl"] | None = ...,
+            userProject: str | None = ...,
             **kwargs: typing.Any,
         ) -> ObjectHttpRequest: ...
         def list(
             self,
             *,
             bucket: str,
-            delimiter: str = ...,
-            endOffset: str = ...,
-            filter: str = ...,
-            includeFoldersAsPrefixes: bool = ...,
-            includeTrailingDelimiter: bool = ...,
-            matchGlob: str = ...,
-            maxResults: int = ...,
-            pageToken: str = ...,
-            prefix: str = ...,
-            projection: typing_extensions.Literal["full", "noAcl"] = ...,
-            softDeleted: bool = ...,
-            startOffset: str = ...,
-            userProject: str = ...,
-            versions: bool = ...,
+            delimiter: str | None = ...,
+            endOffset: str | None = ...,
+            filter: str | None = ...,
+            includeFoldersAsPrefixes: bool | None = ...,
+            includeTrailingDelimiter: bool | None = ...,
+            matchGlob: str | None = ...,
+            maxResults: int | None = ...,
+            pageToken: str | None = ...,
+            prefix: str | None = ...,
+            projection: typing_extensions.Literal["full", "noAcl"] | None = ...,
+            softDeleted: bool | None = ...,
+            startOffset: str | None = ...,
+            userProject: str | None = ...,
+            versions: bool | None = ...,
             **kwargs: typing.Any,
         ) -> ObjectsHttpRequest: ...
         def list_next(
@@ -718,16 +727,16 @@ class StorageResource(googleapiclient.discovery.Resource):
             bucket: str,
             sourceObject: str,
             destinationObject: str,
-            ifGenerationMatch: str = ...,
-            ifGenerationNotMatch: str = ...,
-            ifMetagenerationMatch: str = ...,
-            ifMetagenerationNotMatch: str = ...,
-            ifSourceGenerationMatch: str = ...,
-            ifSourceGenerationNotMatch: str = ...,
-            ifSourceMetagenerationMatch: str = ...,
-            ifSourceMetagenerationNotMatch: str = ...,
-            projection: typing_extensions.Literal["full", "noAcl"] = ...,
-            userProject: str = ...,
+            ifGenerationMatch: str | None = ...,
+            ifGenerationNotMatch: str | None = ...,
+            ifMetagenerationMatch: str | None = ...,
+            ifMetagenerationNotMatch: str | None = ...,
+            ifSourceGenerationMatch: str | None = ...,
+            ifSourceGenerationNotMatch: str | None = ...,
+            ifSourceMetagenerationMatch: str | None = ...,
+            ifSourceMetagenerationNotMatch: str | None = ...,
+            projection: typing_extensions.Literal["full", "noAcl"] | None = ...,
+            userProject: str | None = ...,
             **kwargs: typing.Any,
         ) -> ObjectHttpRequest: ...
         def patch(
@@ -736,12 +745,12 @@ class StorageResource(googleapiclient.discovery.Resource):
             bucket: str,
             object: str,
             body: Object = ...,
-            generation: str = ...,
-            ifGenerationMatch: str = ...,
-            ifGenerationNotMatch: str = ...,
-            ifMetagenerationMatch: str = ...,
-            ifMetagenerationNotMatch: str = ...,
-            overrideUnlockedRetention: bool = ...,
+            generation: str | None = ...,
+            ifGenerationMatch: str | None = ...,
+            ifGenerationNotMatch: str | None = ...,
+            ifMetagenerationMatch: str | None = ...,
+            ifMetagenerationNotMatch: str | None = ...,
+            overrideUnlockedRetention: bool | None = ...,
             predefinedAcl: typing_extensions.Literal[
                 "authenticatedRead",
                 "bucketOwnerFullControl",
@@ -749,9 +758,10 @@ class StorageResource(googleapiclient.discovery.Resource):
                 "private",
                 "projectPrivate",
                 "publicRead",
-            ] = ...,
-            projection: typing_extensions.Literal["full", "noAcl"] = ...,
-            userProject: str = ...,
+            ]
+            | None = ...,
+            projection: typing_extensions.Literal["full", "noAcl"] | None = ...,
+            userProject: str | None = ...,
             **kwargs: typing.Any,
         ) -> ObjectHttpRequest: ...
         def restore(
@@ -760,14 +770,14 @@ class StorageResource(googleapiclient.discovery.Resource):
             bucket: str,
             object: str,
             generation: str,
-            copySourceAcl: bool = ...,
-            ifGenerationMatch: str = ...,
-            ifGenerationNotMatch: str = ...,
-            ifMetagenerationMatch: str = ...,
-            ifMetagenerationNotMatch: str = ...,
-            projection: typing_extensions.Literal["full", "noAcl"] = ...,
-            restoreToken: str = ...,
-            userProject: str = ...,
+            copySourceAcl: bool | None = ...,
+            ifGenerationMatch: str | None = ...,
+            ifGenerationNotMatch: str | None = ...,
+            ifMetagenerationMatch: str | None = ...,
+            ifMetagenerationNotMatch: str | None = ...,
+            projection: typing_extensions.Literal["full", "noAcl"] | None = ...,
+            restoreToken: str | None = ...,
+            userProject: str | None = ...,
             **kwargs: typing.Any,
         ) -> ObjectHttpRequest: ...
         def rewrite(
@@ -778,7 +788,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             destinationBucket: str,
             destinationObject: str,
             body: Object = ...,
-            destinationKmsKeyName: str = ...,
+            destinationKmsKeyName: str | None = ...,
             destinationPredefinedAcl: typing_extensions.Literal[
                 "authenticatedRead",
                 "bucketOwnerFullControl",
@@ -786,21 +796,22 @@ class StorageResource(googleapiclient.discovery.Resource):
                 "private",
                 "projectPrivate",
                 "publicRead",
-            ] = ...,
-            dropContextGroups: str | _list[str] = ...,
-            ifGenerationMatch: str = ...,
-            ifGenerationNotMatch: str = ...,
-            ifMetagenerationMatch: str = ...,
-            ifMetagenerationNotMatch: str = ...,
-            ifSourceGenerationMatch: str = ...,
-            ifSourceGenerationNotMatch: str = ...,
-            ifSourceMetagenerationMatch: str = ...,
-            ifSourceMetagenerationNotMatch: str = ...,
-            maxBytesRewrittenPerCall: str = ...,
-            projection: typing_extensions.Literal["full", "noAcl"] = ...,
-            rewriteToken: str = ...,
-            sourceGeneration: str = ...,
-            userProject: str = ...,
+            ]
+            | None = ...,
+            dropContextGroups: str | _list[str] | None = ...,
+            ifGenerationMatch: str | None = ...,
+            ifGenerationNotMatch: str | None = ...,
+            ifMetagenerationMatch: str | None = ...,
+            ifMetagenerationNotMatch: str | None = ...,
+            ifSourceGenerationMatch: str | None = ...,
+            ifSourceGenerationNotMatch: str | None = ...,
+            ifSourceMetagenerationMatch: str | None = ...,
+            ifSourceMetagenerationNotMatch: str | None = ...,
+            maxBytesRewrittenPerCall: str | None = ...,
+            projection: typing_extensions.Literal["full", "noAcl"] | None = ...,
+            rewriteToken: str | None = ...,
+            sourceGeneration: str | None = ...,
+            userProject: str | None = ...,
             **kwargs: typing.Any,
         ) -> RewriteResponseHttpRequest: ...
         def setIamPolicy(
@@ -809,8 +820,8 @@ class StorageResource(googleapiclient.discovery.Resource):
             bucket: str,
             object: str,
             body: Policy = ...,
-            generation: str = ...,
-            userProject: str = ...,
+            generation: str | None = ...,
+            userProject: str | None = ...,
             **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
         def testIamPermissions(
@@ -819,8 +830,8 @@ class StorageResource(googleapiclient.discovery.Resource):
             bucket: str,
             object: str,
             permissions: str | _list[str],
-            generation: str = ...,
-            userProject: str = ...,
+            generation: str | None = ...,
+            userProject: str | None = ...,
             **kwargs: typing.Any,
         ) -> TestIamPermissionsResponseHttpRequest: ...
         def update(
@@ -829,12 +840,12 @@ class StorageResource(googleapiclient.discovery.Resource):
             bucket: str,
             object: str,
             body: Object = ...,
-            generation: str = ...,
-            ifGenerationMatch: str = ...,
-            ifGenerationNotMatch: str = ...,
-            ifMetagenerationMatch: str = ...,
-            ifMetagenerationNotMatch: str = ...,
-            overrideUnlockedRetention: bool = ...,
+            generation: str | None = ...,
+            ifGenerationMatch: str | None = ...,
+            ifGenerationNotMatch: str | None = ...,
+            ifMetagenerationMatch: str | None = ...,
+            ifMetagenerationNotMatch: str | None = ...,
+            overrideUnlockedRetention: bool | None = ...,
             predefinedAcl: typing_extensions.Literal[
                 "authenticatedRead",
                 "bucketOwnerFullControl",
@@ -842,9 +853,10 @@ class StorageResource(googleapiclient.discovery.Resource):
                 "private",
                 "projectPrivate",
                 "publicRead",
-            ] = ...,
-            projection: typing_extensions.Literal["full", "noAcl"] = ...,
-            userProject: str = ...,
+            ]
+            | None = ...,
+            projection: typing_extensions.Literal["full", "noAcl"] | None = ...,
+            userProject: str | None = ...,
             **kwargs: typing.Any,
         ) -> ObjectHttpRequest: ...
         def watchAll(
@@ -852,16 +864,16 @@ class StorageResource(googleapiclient.discovery.Resource):
             *,
             bucket: str,
             body: Channel = ...,
-            delimiter: str = ...,
-            endOffset: str = ...,
-            includeTrailingDelimiter: bool = ...,
-            maxResults: int = ...,
-            pageToken: str = ...,
-            prefix: str = ...,
-            projection: typing_extensions.Literal["full", "noAcl"] = ...,
-            startOffset: str = ...,
-            userProject: str = ...,
-            versions: bool = ...,
+            delimiter: str | None = ...,
+            endOffset: str | None = ...,
+            includeTrailingDelimiter: bool | None = ...,
+            maxResults: int | None = ...,
+            pageToken: str | None = ...,
+            prefix: str | None = ...,
+            projection: typing_extensions.Literal["full", "noAcl"] | None = ...,
+            startOffset: str | None = ...,
+            userProject: str | None = ...,
+            versions: bool | None = ...,
             **kwargs: typing.Any,
         ) -> ChannelHttpRequest: ...
 
@@ -885,9 +897,9 @@ class StorageResource(googleapiclient.discovery.Resource):
             self,
             *,
             bucket: str,
-            filter: str = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
+            filter: str | None = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
         def list_next(
@@ -905,7 +917,7 @@ class StorageResource(googleapiclient.discovery.Resource):
                 *,
                 projectId: str,
                 serviceAccountEmail: str,
-                userProject: str = ...,
+                userProject: str | None = ...,
                 **kwargs: typing.Any,
             ) -> HmacKeyHttpRequest: ...
             def delete(
@@ -913,7 +925,7 @@ class StorageResource(googleapiclient.discovery.Resource):
                 *,
                 projectId: str,
                 accessId: str,
-                userProject: str = ...,
+                userProject: str | None = ...,
                 **kwargs: typing.Any,
             ) -> googleapiclient.http.HttpRequest: ...
             def get(
@@ -921,18 +933,18 @@ class StorageResource(googleapiclient.discovery.Resource):
                 *,
                 projectId: str,
                 accessId: str,
-                userProject: str = ...,
+                userProject: str | None = ...,
                 **kwargs: typing.Any,
             ) -> HmacKeyMetadataHttpRequest: ...
             def list(
                 self,
                 *,
                 projectId: str,
-                maxResults: int = ...,
-                pageToken: str = ...,
-                serviceAccountEmail: str = ...,
-                showDeletedKeys: bool = ...,
-                userProject: str = ...,
+                maxResults: int | None = ...,
+                pageToken: str | None = ...,
+                serviceAccountEmail: str | None = ...,
+                showDeletedKeys: bool | None = ...,
+                userProject: str | None = ...,
                 **kwargs: typing.Any,
             ) -> HmacKeysMetadataHttpRequest: ...
             def list_next(
@@ -946,14 +958,18 @@ class StorageResource(googleapiclient.discovery.Resource):
                 projectId: str,
                 accessId: str,
                 body: HmacKeyMetadata = ...,
-                userProject: str = ...,
+                userProject: str | None = ...,
                 **kwargs: typing.Any,
             ) -> HmacKeyMetadataHttpRequest: ...
 
         @typing.type_check_only
         class ServiceAccountResource(googleapiclient.discovery.Resource):
             def get(
-                self, *, projectId: str, userProject: str = ..., **kwargs: typing.Any
+                self,
+                *,
+                projectId: str,
+                userProject: str | None = ...,
+                **kwargs: typing.Any,
             ) -> ServiceAccountHttpRequest: ...
 
         def hmacKeys(self) -> HmacKeysResource: ...

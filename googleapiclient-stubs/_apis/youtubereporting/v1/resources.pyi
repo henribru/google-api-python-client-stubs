@@ -22,19 +22,19 @@ class YouTubeReportingResource(googleapiclient.discovery.Resource):
                 *,
                 jobId: str,
                 reportId: str,
-                onBehalfOfContentOwner: str = ...,
+                onBehalfOfContentOwner: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ReportHttpRequest: ...
             def list(
                 self,
                 *,
                 jobId: str,
-                createdAfter: str = ...,
-                onBehalfOfContentOwner: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
-                startTimeAtOrAfter: str = ...,
-                startTimeBefore: str = ...,
+                createdAfter: str | None = ...,
+                onBehalfOfContentOwner: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
+                startTimeAtOrAfter: str | None = ...,
+                startTimeBefore: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListReportsResponseHttpRequest: ...
             def list_next(
@@ -47,22 +47,30 @@ class YouTubeReportingResource(googleapiclient.discovery.Resource):
             self,
             *,
             body: Job = ...,
-            onBehalfOfContentOwner: str = ...,
+            onBehalfOfContentOwner: str | None = ...,
             **kwargs: typing.Any,
         ) -> JobHttpRequest: ...
         def delete(
-            self, *, jobId: str, onBehalfOfContentOwner: str = ..., **kwargs: typing.Any
+            self,
+            *,
+            jobId: str,
+            onBehalfOfContentOwner: str | None = ...,
+            **kwargs: typing.Any,
         ) -> EmptyHttpRequest: ...
         def get(
-            self, *, jobId: str, onBehalfOfContentOwner: str = ..., **kwargs: typing.Any
+            self,
+            *,
+            jobId: str,
+            onBehalfOfContentOwner: str | None = ...,
+            **kwargs: typing.Any,
         ) -> JobHttpRequest: ...
         def list(
             self,
             *,
-            includeSystemManaged: bool = ...,
-            onBehalfOfContentOwner: str = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
+            includeSystemManaged: bool | None = ...,
+            onBehalfOfContentOwner: str | None = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> ListJobsResponseHttpRequest: ...
         def list_next(
@@ -86,10 +94,10 @@ class YouTubeReportingResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            includeSystemManaged: bool = ...,
-            onBehalfOfContentOwner: str = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
+            includeSystemManaged: bool | None = ...,
+            onBehalfOfContentOwner: str | None = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> ListReportTypesResponseHttpRequest: ...
         def list_next(

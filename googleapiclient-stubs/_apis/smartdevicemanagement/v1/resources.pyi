@@ -28,7 +28,7 @@ class SmartDeviceManagementResource(googleapiclient.discovery.Resource):
                 self, *, name: str, **kwargs: typing.Any
             ) -> GoogleHomeEnterpriseSdmV1DeviceHttpRequest: ...
             def list(
-                self, *, parent: str, filter: str = ..., **kwargs: typing.Any
+                self, *, parent: str, filter: str | None = ..., **kwargs: typing.Any
             ) -> GoogleHomeEnterpriseSdmV1ListDevicesResponseHttpRequest: ...
 
         @typing.type_check_only
@@ -46,7 +46,7 @@ class SmartDeviceManagementResource(googleapiclient.discovery.Resource):
                 self, *, name: str, **kwargs: typing.Any
             ) -> GoogleHomeEnterpriseSdmV1StructureHttpRequest: ...
             def list(
-                self, *, parent: str, filter: str = ..., **kwargs: typing.Any
+                self, *, parent: str, filter: str | None = ..., **kwargs: typing.Any
             ) -> GoogleHomeEnterpriseSdmV1ListStructuresResponseHttpRequest: ...
             def rooms(self) -> RoomsResource: ...
 

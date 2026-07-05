@@ -34,7 +34,7 @@ class IdeahubResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: GoogleSearchIdeahubV1betaIdeaState = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleSearchIdeahubV1betaIdeaStateHttpRequest: ...
 
@@ -44,10 +44,10 @@ class IdeahubResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    orderBy: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleSearchIdeahubV1betaListIdeasResponseHttpRequest: ...
                 def list_next(
@@ -62,8 +62,8 @@ class IdeahubResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> (
                     GoogleSearchIdeahubV1betaListAvailableLocalesResponseHttpRequest
@@ -84,7 +84,7 @@ class IdeahubResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: GoogleSearchIdeahubV1betaTopicState = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleSearchIdeahubV1betaTopicStateHttpRequest: ...
 

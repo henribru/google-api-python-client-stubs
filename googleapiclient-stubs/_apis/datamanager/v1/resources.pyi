@@ -39,9 +39,9 @@ class DataManagerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> SearchPartnerLinksResponseHttpRequest: ...
                 def search_next(
@@ -66,9 +66,9 @@ class DataManagerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListUserListDirectLicensesResponseHttpRequest: ...
                 def list_next(
@@ -81,7 +81,7 @@ class DataManagerResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: UserListDirectLicense = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> UserListDirectLicenseHttpRequest: ...
 
@@ -95,9 +95,9 @@ class DataManagerResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        filter: str = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        filter: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListUserListGlobalLicenseCustomerInfosResponseHttpRequest: ...
                     def list_next(
@@ -122,9 +122,9 @@ class DataManagerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListUserListGlobalLicensesResponseHttpRequest: ...
                 def list_next(
@@ -137,7 +137,7 @@ class DataManagerResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: UserListGlobalLicense = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> UserListGlobalLicenseHttpRequest: ...
                 def userListGlobalLicenseCustomerInfos(
@@ -151,11 +151,15 @@ class DataManagerResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: UserList = ...,
-                    validateOnly: bool = ...,
+                    validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> UserListHttpRequest: ...
                 def delete(
-                    self, *, name: str, validateOnly: bool = ..., **kwargs: typing.Any
+                    self,
+                    *,
+                    name: str,
+                    validateOnly: bool | None = ...,
+                    **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
@@ -164,9 +168,9 @@ class DataManagerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListUserListsResponseHttpRequest: ...
                 def list_next(
@@ -179,8 +183,8 @@ class DataManagerResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: UserList = ...,
-                    updateMask: str = ...,
-                    validateOnly: bool = ...,
+                    updateMask: str | None = ...,
+                    validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> UserListHttpRequest: ...
 
@@ -216,7 +220,7 @@ class DataManagerResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class RequestStatusResource(googleapiclient.discovery.Resource):
         def retrieve(
-            self, *, requestId: str = ..., **kwargs: typing.Any
+            self, *, requestId: str | None = ..., **kwargs: typing.Any
         ) -> RetrieveRequestStatusResponseHttpRequest: ...
 
     def new_batch_http_request(

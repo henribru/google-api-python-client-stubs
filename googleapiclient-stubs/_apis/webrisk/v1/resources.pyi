@@ -18,7 +18,7 @@ class WebRiskResource(googleapiclient.discovery.Resource):
         def search(
             self,
             *,
-            hashPrefix: str = ...,
+            hashPrefix: str | None = ...,
             threatTypes: typing_extensions.Literal[
                 "THREAT_TYPE_UNSPECIFIED",
                 "MALWARE",
@@ -34,7 +34,8 @@ class WebRiskResource(googleapiclient.discovery.Resource):
                     "UNWANTED_SOFTWARE",
                     "SOCIAL_ENGINEERING_EXTENDED_COVERAGE",
                 ]
-            ] = ...,
+            ]
+            | None = ...,
             **kwargs: typing.Any,
         ) -> GoogleCloudWebriskV1SearchHashesResponseHttpRequest: ...
 
@@ -59,10 +60,10 @@ class WebRiskResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
-                returnPartialSuccess: bool = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
+                returnPartialSuccess: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
             def list_next(
@@ -89,22 +90,24 @@ class WebRiskResource(googleapiclient.discovery.Resource):
         def computeDiff(
             self,
             *,
-            constraints_maxDatabaseEntries: int = ...,
-            constraints_maxDiffEntries: int = ...,
+            constraints_maxDatabaseEntries: int | None = ...,
+            constraints_maxDiffEntries: int | None = ...,
             constraints_supportedCompressions: typing_extensions.Literal[
                 "COMPRESSION_TYPE_UNSPECIFIED", "RAW", "RICE"
             ]
             | _list[
                 typing_extensions.Literal["COMPRESSION_TYPE_UNSPECIFIED", "RAW", "RICE"]
-            ] = ...,
+            ]
+            | None = ...,
             threatType: typing_extensions.Literal[
                 "THREAT_TYPE_UNSPECIFIED",
                 "MALWARE",
                 "SOCIAL_ENGINEERING",
                 "UNWANTED_SOFTWARE",
                 "SOCIAL_ENGINEERING_EXTENDED_COVERAGE",
-            ] = ...,
-            versionToken: str = ...,
+            ]
+            | None = ...,
+            versionToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> GoogleCloudWebriskV1ComputeThreatListDiffResponseHttpRequest: ...
 
@@ -128,8 +131,9 @@ class WebRiskResource(googleapiclient.discovery.Resource):
                     "UNWANTED_SOFTWARE",
                     "SOCIAL_ENGINEERING_EXTENDED_COVERAGE",
                 ]
-            ] = ...,
-            uri: str = ...,
+            ]
+            | None = ...,
+            uri: str | None = ...,
             **kwargs: typing.Any,
         ) -> GoogleCloudWebriskV1SearchUrisResponseHttpRequest: ...
 

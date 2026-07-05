@@ -57,9 +57,9 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        filter: str = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        filter: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListFilesResponseHttpRequest: ...
                     def list_next(
@@ -77,7 +77,7 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                             *,
                             parent: str,
                             body: Tag = ...,
-                            tagId: str = ...,
+                            tagId: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> TagHttpRequest: ...
                         def delete(
@@ -90,9 +90,9 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             parent: str,
-                            filter: str = ...,
-                            pageSize: int = ...,
-                            pageToken: str = ...,
+                            filter: str | None = ...,
+                            pageSize: int | None = ...,
+                            pageToken: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> ListTagsResponseHttpRequest: ...
                         def list_next(
@@ -105,14 +105,18 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                             *,
                             name: str,
                             body: Tag = ...,
-                            updateMask: str = ...,
+                            updateMask: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> TagHttpRequest: ...
 
                     @typing.type_check_only
                     class VersionsResource(googleapiclient.discovery.Resource):
                         def delete(
-                            self, *, name: str, force: bool = ..., **kwargs: typing.Any
+                            self,
+                            *,
+                            name: str,
+                            force: bool | None = ...,
+                            **kwargs: typing.Any,
                         ) -> OperationHttpRequest: ...
                         def get(
                             self,
@@ -120,19 +124,21 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                             name: str,
                             view: typing_extensions.Literal[
                                 "VERSION_VIEW_UNSPECIFIED", "BASIC", "FULL"
-                            ] = ...,
+                            ]
+                            | None = ...,
                             **kwargs: typing.Any,
                         ) -> VersionHttpRequest: ...
                         def list(
                             self,
                             *,
                             parent: str,
-                            orderBy: str = ...,
-                            pageSize: int = ...,
-                            pageToken: str = ...,
+                            orderBy: str | None = ...,
+                            pageSize: int | None = ...,
+                            pageToken: str | None = ...,
                             view: typing_extensions.Literal[
                                 "VERSION_VIEW_UNSPECIFIED", "BASIC", "FULL"
-                            ] = ...,
+                            ]
+                            | None = ...,
                             **kwargs: typing.Any,
                         ) -> ListVersionsResponseHttpRequest: ...
                         def list_next(
@@ -151,9 +157,9 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        orderBy: str = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        orderBy: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListPackagesResponseHttpRequest: ...
                     def list_next(
@@ -166,7 +172,7 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: Package = ...,
-                        updateMask: str = ...,
+                        updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> PackageHttpRequest: ...
                     def tags(self) -> TagsResource: ...
@@ -194,7 +200,7 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: Repository = ...,
-                    repositoryId: str = ...,
+                    repositoryId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
@@ -207,16 +213,16 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    options_requestedPolicyVersion: int = ...,
+                    options_requestedPolicyVersion: int | None = ...,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def list(
                     self,
                     *,
                     parent: str,
-                    orderBy: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListRepositoriesResponseHttpRequest: ...
                 def list_next(
@@ -229,7 +235,7 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: Repository = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> RepositoryHttpRequest: ...
                 def setIamPolicy(
@@ -258,10 +264,10 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                extraLocationTypes: str | _list[str] = ...,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                extraLocationTypes: str | _list[str] | None = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListLocationsResponseHttpRequest: ...
             def list_next(
@@ -280,7 +286,7 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
             *,
             name: str,
             body: ProjectSettings = ...,
-            updateMask: str = ...,
+            updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> ProjectSettingsHttpRequest: ...
         def locations(self) -> LocationsResource: ...

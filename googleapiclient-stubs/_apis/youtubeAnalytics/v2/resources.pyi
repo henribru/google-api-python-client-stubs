@@ -18,22 +18,22 @@ class YouTubeAnalyticsResource(googleapiclient.discovery.Resource):
         def delete(
             self,
             *,
-            id: str = ...,
-            onBehalfOfContentOwner: str = ...,
+            id: str | None = ...,
+            onBehalfOfContentOwner: str | None = ...,
             **kwargs: typing.Any,
         ) -> EmptyResponseHttpRequest: ...
         def insert(
             self,
             *,
             body: GroupItem = ...,
-            onBehalfOfContentOwner: str = ...,
+            onBehalfOfContentOwner: str | None = ...,
             **kwargs: typing.Any,
         ) -> GroupItemHttpRequest: ...
         def list(
             self,
             *,
-            groupId: str = ...,
-            onBehalfOfContentOwner: str = ...,
+            groupId: str | None = ...,
+            onBehalfOfContentOwner: str | None = ...,
             **kwargs: typing.Any,
         ) -> ListGroupItemsResponseHttpRequest: ...
 
@@ -42,24 +42,24 @@ class YouTubeAnalyticsResource(googleapiclient.discovery.Resource):
         def delete(
             self,
             *,
-            id: str = ...,
-            onBehalfOfContentOwner: str = ...,
+            id: str | None = ...,
+            onBehalfOfContentOwner: str | None = ...,
             **kwargs: typing.Any,
         ) -> EmptyResponseHttpRequest: ...
         def insert(
             self,
             *,
             body: Group = ...,
-            onBehalfOfContentOwner: str = ...,
+            onBehalfOfContentOwner: str | None = ...,
             **kwargs: typing.Any,
         ) -> GroupHttpRequest: ...
         def list(
             self,
             *,
-            id: str = ...,
-            mine: bool = ...,
-            onBehalfOfContentOwner: str = ...,
-            pageToken: str = ...,
+            id: str | None = ...,
+            mine: bool | None = ...,
+            onBehalfOfContentOwner: str | None = ...,
+            pageToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> ListGroupsResponseHttpRequest: ...
         def list_next(
@@ -71,7 +71,7 @@ class YouTubeAnalyticsResource(googleapiclient.discovery.Resource):
             self,
             *,
             body: Group = ...,
-            onBehalfOfContentOwner: str = ...,
+            onBehalfOfContentOwner: str | None = ...,
             **kwargs: typing.Any,
         ) -> GroupHttpRequest: ...
 
@@ -80,17 +80,17 @@ class YouTubeAnalyticsResource(googleapiclient.discovery.Resource):
         def query(
             self,
             *,
-            currency: str = ...,
-            dimensions: str = ...,
-            endDate: str = ...,
-            filters: str = ...,
-            ids: str = ...,
-            includeHistoricalChannelData: bool = ...,
-            maxResults: int = ...,
-            metrics: str = ...,
-            sort: str = ...,
-            startDate: str = ...,
-            startIndex: int = ...,
+            currency: str | None = ...,
+            dimensions: str | None = ...,
+            endDate: str | None = ...,
+            filters: str | None = ...,
+            ids: str | None = ...,
+            includeHistoricalChannelData: bool | None = ...,
+            maxResults: int | None = ...,
+            metrics: str | None = ...,
+            sort: str | None = ...,
+            startDate: str | None = ...,
+            startIndex: int | None = ...,
             **kwargs: typing.Any,
         ) -> QueryResponseHttpRequest: ...
 

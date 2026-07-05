@@ -22,7 +22,7 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: GuestPolicy = ...,
-                guestPolicyId: str = ...,
+                guestPolicyId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GuestPolicyHttpRequest: ...
             def delete(
@@ -35,8 +35,8 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListGuestPoliciesResponseHttpRequest: ...
             def list_next(
@@ -49,7 +49,7 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: GuestPolicy = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GuestPolicyHttpRequest: ...
 
@@ -60,7 +60,7 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: PatchDeployment = ...,
-                patchDeploymentId: str = ...,
+                patchDeploymentId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> PatchDeploymentHttpRequest: ...
             def delete(
@@ -73,8 +73,8 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListPatchDeploymentsResponseHttpRequest: ...
             def list_next(
@@ -87,7 +87,7 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: PatchDeployment = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> PatchDeploymentHttpRequest: ...
             def pause(
@@ -113,9 +113,9 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListPatchJobInstanceDetailsResponseHttpRequest: ...
                 def list_next(
@@ -145,9 +145,9 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListPatchJobsResponseHttpRequest: ...
             def list_next(

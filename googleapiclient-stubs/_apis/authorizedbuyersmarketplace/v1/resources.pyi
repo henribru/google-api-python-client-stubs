@@ -21,10 +21,10 @@ class AuthorizedBuyersMarketplaceResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                filter: str = ...,
-                orderBy: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                filter: str | None = ...,
+                orderBy: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListAuctionPackagesResponseHttpRequest: ...
             def list_next(
@@ -39,10 +39,10 @@ class AuthorizedBuyersMarketplaceResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                filter: str = ...,
-                orderBy: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                filter: str | None = ...,
+                orderBy: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListFinalizedDealsResponseHttpRequest: ...
             def list_next(
@@ -72,10 +72,10 @@ class AuthorizedBuyersMarketplaceResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                filter: str = ...,
-                orderBy: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                filter: str | None = ...,
+                orderBy: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListAuctionPackagesResponseHttpRequest: ...
             def list_next(
@@ -143,8 +143,8 @@ class AuthorizedBuyersMarketplaceResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListClientUsersResponseHttpRequest: ...
                 def list_next(
@@ -175,9 +175,9 @@ class AuthorizedBuyersMarketplaceResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListClientsResponseHttpRequest: ...
             def list_next(
@@ -190,7 +190,7 @@ class AuthorizedBuyersMarketplaceResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: Client = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ClientHttpRequest: ...
             def users(self) -> UsersResource: ...
@@ -207,10 +207,10 @@ class AuthorizedBuyersMarketplaceResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                filter: str = ...,
-                orderBy: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                filter: str | None = ...,
+                orderBy: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListFinalizedDealsResponseHttpRequest: ...
             def list_next(
@@ -258,8 +258,8 @@ class AuthorizedBuyersMarketplaceResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListDealsResponseHttpRequest: ...
                 def list_next(
@@ -272,7 +272,7 @@ class AuthorizedBuyersMarketplaceResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: Deal = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> DealHttpRequest: ...
 
@@ -300,9 +300,9 @@ class AuthorizedBuyersMarketplaceResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListProposalsResponseHttpRequest: ...
             def list_next(
@@ -315,7 +315,7 @@ class AuthorizedBuyersMarketplaceResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: Proposal = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ProposalHttpRequest: ...
             def sendRfp(
@@ -332,9 +332,9 @@ class AuthorizedBuyersMarketplaceResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListPublisherProfilesResponseHttpRequest: ...
             def list_next(

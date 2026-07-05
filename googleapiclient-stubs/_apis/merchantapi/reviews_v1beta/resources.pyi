@@ -28,15 +28,15 @@ class MerchantResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: MerchantReview = ...,
-                dataSource: str = ...,
+                dataSource: str | None = ...,
                 **kwargs: typing.Any,
             ) -> MerchantReviewHttpRequest: ...
             def list(
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListMerchantReviewsResponseHttpRequest: ...
             def list_next(
@@ -58,15 +58,15 @@ class MerchantResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: ProductReview = ...,
-                dataSource: str = ...,
+                dataSource: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ProductReviewHttpRequest: ...
             def list(
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListProductReviewsResponseHttpRequest: ...
             def list_next(

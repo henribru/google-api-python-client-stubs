@@ -37,11 +37,15 @@ class CloudRuntimeConfigResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: Variable = ...,
-                    requestId: str = ...,
+                    requestId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> VariableHttpRequest: ...
                 def delete(
-                    self, *, name: str, recursive: bool = ..., **kwargs: typing.Any
+                    self,
+                    *,
+                    name: str,
+                    recursive: bool | None = ...,
+                    **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
@@ -50,10 +54,10 @@ class CloudRuntimeConfigResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    returnValues: bool = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    returnValues: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListVariablesResponseHttpRequest: ...
                 def list_next(
@@ -86,7 +90,7 @@ class CloudRuntimeConfigResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: Waiter = ...,
-                    requestId: str = ...,
+                    requestId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
@@ -99,8 +103,8 @@ class CloudRuntimeConfigResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListWaitersResponseHttpRequest: ...
                 def list_next(
@@ -121,7 +125,7 @@ class CloudRuntimeConfigResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: RuntimeConfig = ...,
-                requestId: str = ...,
+                requestId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> RuntimeConfigHttpRequest: ...
             def delete(
@@ -134,15 +138,15 @@ class CloudRuntimeConfigResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 resource: str,
-                options_requestedPolicyVersion: int = ...,
+                options_requestedPolicyVersion: int | None = ...,
                 **kwargs: typing.Any,
             ) -> PolicyHttpRequest: ...
             def list(
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListConfigsResponseHttpRequest: ...
             def list_next(

@@ -47,26 +47,27 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: Repository = ...,
-                        repositoryId: str = ...,
+                        repositoryId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def delete(
                         self,
                         *,
                         name: str,
-                        etag: str = ...,
-                        validateOnly: bool = ...,
+                        etag: str | None = ...,
+                        validateOnly: bool | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def fetchGitRefs(
                         self,
                         *,
                         repository: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         refType: typing_extensions.Literal[
                             "REF_TYPE_UNSPECIFIED", "TAG", "BRANCH"
-                        ] = ...,
+                        ]
+                        | None = ...,
                         **kwargs: typing.Any,
                     ) -> FetchGitRefsResponseHttpRequest: ...
                     def fetchGitRefs_next(
@@ -81,10 +82,10 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        filter: str = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
-                        returnPartialSuccess: bool = ...,
+                        filter: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
+                        returnPartialSuccess: bool | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListRepositoriesResponseHttpRequest: ...
                     def list_next(
@@ -98,23 +99,23 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: Connection = ...,
-                    connectionId: str = ...,
+                    connectionId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self,
                     *,
                     name: str,
-                    etag: str = ...,
-                    validateOnly: bool = ...,
+                    etag: str | None = ...,
+                    validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def fetchLinkableRepositories(
                     self,
                     *,
                     connection: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> FetchLinkableRepositoriesResponseHttpRequest: ...
                 def fetchLinkableRepositories_next(
@@ -129,16 +130,16 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    options_requestedPolicyVersion: int = ...,
+                    options_requestedPolicyVersion: int | None = ...,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def list(
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    returnPartialSuccess: bool = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    returnPartialSuccess: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListConnectionsResponseHttpRequest: ...
                 def list_next(
@@ -151,9 +152,9 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: Connection = ...,
-                    allowMissing: bool = ...,
-                    etag: str = ...,
-                    updateMask: str = ...,
+                    allowMissing: bool | None = ...,
+                    etag: str | None = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def processWebhook(
@@ -161,7 +162,7 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: HttpBody = ...,
-                    webhookKey: str = ...,
+                    webhookKey: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def setIamPolicy(
@@ -200,10 +201,10 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                extraLocationTypes: str | _list[str] = ...,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                extraLocationTypes: str | _list[str] | None = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListLocationsResponseHttpRequest: ...
             def list_next(

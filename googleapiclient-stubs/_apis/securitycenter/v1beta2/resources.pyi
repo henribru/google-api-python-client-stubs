@@ -23,7 +23,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                showEligibleModulesOnly: bool = ...,
+                showEligibleModulesOnly: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> ContainerThreatDetectionSettingsHttpRequest: ...
 
@@ -33,7 +33,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                showEligibleModulesOnly: bool = ...,
+                showEligibleModulesOnly: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> EventThreatDetectionSettingsHttpRequest: ...
 
@@ -53,7 +53,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                showEligibleModulesOnly: bool = ...,
+                showEligibleModulesOnly: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> SecurityHealthAnalyticsSettingsHttpRequest: ...
 
@@ -65,7 +65,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                showEligibleModulesOnly: bool = ...,
+                showEligibleModulesOnly: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> VirtualMachineThreatDetectionSettingsHttpRequest: ...
 
@@ -75,7 +75,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                showEligibleModulesOnly: bool = ...,
+                showEligibleModulesOnly: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> WebSecurityScannerSettingsHttpRequest: ...
 
@@ -105,7 +105,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             *,
             name: str,
             body: ContainerThreatDetectionSettings = ...,
-            updateMask: str = ...,
+            updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> ContainerThreatDetectionSettingsHttpRequest: ...
         def updateEventThreatDetectionSettings(
@@ -113,7 +113,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             *,
             name: str,
             body: EventThreatDetectionSettings = ...,
-            updateMask: str = ...,
+            updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> EventThreatDetectionSettingsHttpRequest: ...
         def updateRapidVulnerabilityDetectionSettings(
@@ -121,7 +121,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             *,
             name: str,
             body: RapidVulnerabilityDetectionSettings = ...,
-            updateMask: str = ...,
+            updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> RapidVulnerabilityDetectionSettingsHttpRequest: ...
         def updateSecurityHealthAnalyticsSettings(
@@ -129,7 +129,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             *,
             name: str,
             body: SecurityHealthAnalyticsSettings = ...,
-            updateMask: str = ...,
+            updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> SecurityHealthAnalyticsSettingsHttpRequest: ...
         def updateVirtualMachineThreatDetectionSettings(
@@ -137,7 +137,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             *,
             name: str,
             body: VirtualMachineThreatDetectionSettings = ...,
-            updateMask: str = ...,
+            updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> VirtualMachineThreatDetectionSettingsHttpRequest: ...
         def updateWebSecurityScannerSettings(
@@ -145,7 +145,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             *,
             name: str,
             body: WebSecurityScannerSettings = ...,
-            updateMask: str = ...,
+            updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> WebSecurityScannerSettingsHttpRequest: ...
         def containerThreatDetectionSettings(
@@ -175,7 +175,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                showEligibleModulesOnly: bool = ...,
+                showEligibleModulesOnly: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> ContainerThreatDetectionSettingsHttpRequest: ...
 
@@ -185,7 +185,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                showEligibleModulesOnly: bool = ...,
+                showEligibleModulesOnly: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> EventThreatDetectionSettingsHttpRequest: ...
 
@@ -205,7 +205,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                showEligibleModulesOnly: bool = ...,
+                showEligibleModulesOnly: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> SecurityHealthAnalyticsSettingsHttpRequest: ...
 
@@ -217,7 +217,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                showEligibleModulesOnly: bool = ...,
+                showEligibleModulesOnly: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> VirtualMachineThreatDetectionSettingsHttpRequest: ...
 
@@ -227,7 +227,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                showEligibleModulesOnly: bool = ...,
+                showEligibleModulesOnly: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> WebSecurityScannerSettingsHttpRequest: ...
 
@@ -260,7 +260,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             *,
             name: str,
             body: ContainerThreatDetectionSettings = ...,
-            updateMask: str = ...,
+            updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> ContainerThreatDetectionSettingsHttpRequest: ...
         def updateEventThreatDetectionSettings(
@@ -268,7 +268,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             *,
             name: str,
             body: EventThreatDetectionSettings = ...,
-            updateMask: str = ...,
+            updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> EventThreatDetectionSettingsHttpRequest: ...
         def updateRapidVulnerabilityDetectionSettings(
@@ -276,7 +276,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             *,
             name: str,
             body: RapidVulnerabilityDetectionSettings = ...,
-            updateMask: str = ...,
+            updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> RapidVulnerabilityDetectionSettingsHttpRequest: ...
         def updateSecurityHealthAnalyticsSettings(
@@ -284,7 +284,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             *,
             name: str,
             body: SecurityHealthAnalyticsSettings = ...,
-            updateMask: str = ...,
+            updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> SecurityHealthAnalyticsSettingsHttpRequest: ...
         def updateVirtualMachineThreatDetectionSettings(
@@ -292,7 +292,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             *,
             name: str,
             body: VirtualMachineThreatDetectionSettings = ...,
-            updateMask: str = ...,
+            updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> VirtualMachineThreatDetectionSettingsHttpRequest: ...
         def updateWebSecurityScannerSettings(
@@ -300,7 +300,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             *,
             name: str,
             body: WebSecurityScannerSettings = ...,
-            updateMask: str = ...,
+            updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> WebSecurityScannerSettingsHttpRequest: ...
         def containerThreatDetectionSettings(
@@ -330,7 +330,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                showEligibleModulesOnly: bool = ...,
+                showEligibleModulesOnly: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> ContainerThreatDetectionSettingsHttpRequest: ...
 
@@ -340,7 +340,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                showEligibleModulesOnly: bool = ...,
+                showEligibleModulesOnly: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> EventThreatDetectionSettingsHttpRequest: ...
 
@@ -356,7 +356,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        showEligibleModulesOnly: bool = ...,
+                        showEligibleModulesOnly: bool | None = ...,
                         **kwargs: typing.Any,
                     ) -> ContainerThreatDetectionSettingsHttpRequest: ...
 
@@ -368,7 +368,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: ContainerThreatDetectionSettings = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ContainerThreatDetectionSettingsHttpRequest: ...
                 def containerThreatDetectionSettings(
@@ -393,7 +393,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                showEligibleModulesOnly: bool = ...,
+                showEligibleModulesOnly: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> SecurityHealthAnalyticsSettingsHttpRequest: ...
 
@@ -405,7 +405,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                showEligibleModulesOnly: bool = ...,
+                showEligibleModulesOnly: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> VirtualMachineThreatDetectionSettingsHttpRequest: ...
 
@@ -415,7 +415,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                showEligibleModulesOnly: bool = ...,
+                showEligibleModulesOnly: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> WebSecurityScannerSettingsHttpRequest: ...
 
@@ -445,7 +445,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             *,
             name: str,
             body: ContainerThreatDetectionSettings = ...,
-            updateMask: str = ...,
+            updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> ContainerThreatDetectionSettingsHttpRequest: ...
         def updateEventThreatDetectionSettings(
@@ -453,7 +453,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             *,
             name: str,
             body: EventThreatDetectionSettings = ...,
-            updateMask: str = ...,
+            updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> EventThreatDetectionSettingsHttpRequest: ...
         def updateRapidVulnerabilityDetectionSettings(
@@ -461,7 +461,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             *,
             name: str,
             body: RapidVulnerabilityDetectionSettings = ...,
-            updateMask: str = ...,
+            updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> RapidVulnerabilityDetectionSettingsHttpRequest: ...
         def updateSecurityHealthAnalyticsSettings(
@@ -469,7 +469,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             *,
             name: str,
             body: SecurityHealthAnalyticsSettings = ...,
-            updateMask: str = ...,
+            updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> SecurityHealthAnalyticsSettingsHttpRequest: ...
         def updateVirtualMachineThreatDetectionSettings(
@@ -477,7 +477,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             *,
             name: str,
             body: VirtualMachineThreatDetectionSettings = ...,
-            updateMask: str = ...,
+            updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> VirtualMachineThreatDetectionSettingsHttpRequest: ...
         def updateWebSecurityScannerSettings(
@@ -485,7 +485,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             *,
             name: str,
             body: WebSecurityScannerSettings = ...,
-            updateMask: str = ...,
+            updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> WebSecurityScannerSettingsHttpRequest: ...
         def containerThreatDetectionSettings(

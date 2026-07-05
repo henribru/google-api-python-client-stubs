@@ -26,18 +26,18 @@ class FirebaseAppHostingResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: Build = ...,
-                        buildId: str = ...,
-                        requestId: str = ...,
-                        validateOnly: bool = ...,
+                        buildId: str | None = ...,
+                        requestId: str | None = ...,
+                        validateOnly: bool | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def delete(
                         self,
                         *,
                         name: str,
-                        etag: str = ...,
-                        requestId: str = ...,
-                        validateOnly: bool = ...,
+                        etag: str | None = ...,
+                        requestId: str | None = ...,
+                        validateOnly: bool | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def get(
@@ -47,11 +47,11 @@ class FirebaseAppHostingResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        filter: str = ...,
-                        orderBy: str = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
-                        showDeleted: bool = ...,
+                        filter: str | None = ...,
+                        orderBy: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
+                        showDeleted: bool | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListBuildsResponseHttpRequest: ...
                     def list_next(
@@ -67,18 +67,18 @@ class FirebaseAppHostingResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: Domain = ...,
-                        domainId: str = ...,
-                        requestId: str = ...,
-                        validateOnly: bool = ...,
+                        domainId: str | None = ...,
+                        requestId: str | None = ...,
+                        validateOnly: bool | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def delete(
                         self,
                         *,
                         name: str,
-                        etag: str = ...,
-                        requestId: str = ...,
-                        validateOnly: bool = ...,
+                        etag: str | None = ...,
+                        requestId: str | None = ...,
+                        validateOnly: bool | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def get(
@@ -88,11 +88,11 @@ class FirebaseAppHostingResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        filter: str = ...,
-                        orderBy: str = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
-                        showDeleted: bool = ...,
+                        filter: str | None = ...,
+                        orderBy: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
+                        showDeleted: bool | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListDomainsResponseHttpRequest: ...
                     def list_next(
@@ -105,10 +105,10 @@ class FirebaseAppHostingResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: Domain = ...,
-                        allowMissing: bool = ...,
-                        requestId: str = ...,
-                        updateMask: str = ...,
-                        validateOnly: bool = ...,
+                        allowMissing: bool | None = ...,
+                        requestId: str | None = ...,
+                        updateMask: str | None = ...,
+                        validateOnly: bool | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
 
@@ -119,9 +119,9 @@ class FirebaseAppHostingResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: Rollout = ...,
-                        requestId: str = ...,
-                        rolloutId: str = ...,
-                        validateOnly: bool = ...,
+                        requestId: str | None = ...,
+                        rolloutId: str | None = ...,
+                        validateOnly: bool | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def get(
@@ -131,11 +131,11 @@ class FirebaseAppHostingResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        filter: str = ...,
-                        orderBy: str = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
-                        showDeleted: bool = ...,
+                        filter: str | None = ...,
+                        orderBy: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
+                        showDeleted: bool | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListRolloutsResponseHttpRequest: ...
                     def list_next(
@@ -154,9 +154,9 @@ class FirebaseAppHostingResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: Traffic = ...,
-                        requestId: str = ...,
-                        updateMask: str = ...,
-                        validateOnly: bool = ...,
+                        requestId: str | None = ...,
+                        updateMask: str | None = ...,
+                        validateOnly: bool | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
 
@@ -165,19 +165,19 @@ class FirebaseAppHostingResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: Backend = ...,
-                    backendId: str = ...,
-                    requestId: str = ...,
-                    validateOnly: bool = ...,
+                    backendId: str | None = ...,
+                    requestId: str | None = ...,
+                    validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self,
                     *,
                     name: str,
-                    etag: str = ...,
-                    force: bool = ...,
-                    requestId: str = ...,
-                    validateOnly: bool = ...,
+                    etag: str | None = ...,
+                    force: bool | None = ...,
+                    requestId: str | None = ...,
+                    validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def get(
@@ -187,11 +187,11 @@ class FirebaseAppHostingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    orderBy: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    showDeleted: bool = ...,
+                    filter: str | None = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    showDeleted: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListBackendsResponseHttpRequest: ...
                 def list_next(
@@ -204,10 +204,10 @@ class FirebaseAppHostingResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: Backend = ...,
-                    allowMissing: bool = ...,
-                    requestId: str = ...,
-                    updateMask: str = ...,
-                    validateOnly: bool = ...,
+                    allowMissing: bool | None = ...,
+                    requestId: str | None = ...,
+                    updateMask: str | None = ...,
+                    validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def builds(self) -> BuildsResource: ...
@@ -230,10 +230,10 @@ class FirebaseAppHostingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    returnPartialSuccess: bool = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    returnPartialSuccess: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListOperationsResponseHttpRequest: ...
                 def list_next(
@@ -245,7 +245,11 @@ class FirebaseAppHostingResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class SupportedRuntimesResource(googleapiclient.discovery.Resource):
                 def list(
-                    self, *, parent: str, pageSize: int = ..., **kwargs: typing.Any
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int | None = ...,
+                    **kwargs: typing.Any,
                 ) -> ListSupportedRuntimesResponseHttpRequest: ...
 
             def get(
@@ -255,10 +259,10 @@ class FirebaseAppHostingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                extraLocationTypes: str | _list[str] = ...,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                extraLocationTypes: str | _list[str] | None = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListLocationsResponseHttpRequest: ...
             def list_next(

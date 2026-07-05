@@ -24,7 +24,7 @@ class GoogleHealthAPIResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: CreateSubscriptionPayload = ...,
-                    subscriptionId: str = ...,
+                    subscriptionId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> SubscriptionHttpRequest: ...
                 def delete(
@@ -34,9 +34,9 @@ class GoogleHealthAPIResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListSubscriptionsResponseHttpRequest: ...
                 def list_next(
@@ -49,7 +49,7 @@ class GoogleHealthAPIResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: Subscription = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> SubscriptionHttpRequest: ...
 
@@ -58,18 +58,18 @@ class GoogleHealthAPIResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: CreateSubscriberPayload = ...,
-                subscriberId: str = ...,
+                subscriberId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def delete(
-                self, *, name: str, force: bool = ..., **kwargs: typing.Any
+                self, *, name: str, force: bool | None = ..., **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
             def list(
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListSubscribersResponseHttpRequest: ...
             def list_next(
@@ -82,7 +82,7 @@ class GoogleHealthAPIResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: Subscriber = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def subscriptions(self) -> SubscriptionsResource: ...
@@ -113,10 +113,18 @@ class GoogleHealthAPIResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any,
                 ) -> DailyRollUpDataPointsResponseHttpRequest: ...
                 def exportExerciseTcx(
-                    self, *, name: str, partialData: bool = ..., **kwargs: typing.Any
+                    self,
+                    *,
+                    name: str,
+                    partialData: bool | None = ...,
+                    **kwargs: typing.Any,
                 ) -> ExportExerciseTcxResponseHttpRequest: ...
                 def exportExerciseTcx_media(
-                    self, *, name: str, partialData: bool = ..., **kwargs: typing.Any
+                    self,
+                    *,
+                    name: str,
+                    partialData: bool | None = ...,
+                    **kwargs: typing.Any,
                 ) -> BytesHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
@@ -125,9 +133,9 @@ class GoogleHealthAPIResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListDataPointsResponseHttpRequest: ...
                 def list_next(
@@ -142,10 +150,10 @@ class GoogleHealthAPIResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    dataSourceFamily: str = ...,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    dataSourceFamily: str | None = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ReconcileDataPointsResponseHttpRequest: ...
                 def reconcile_next(
@@ -177,8 +185,8 @@ class GoogleHealthAPIResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListPairedDevicesResponseHttpRequest: ...
             def list_next(
@@ -204,7 +212,7 @@ class GoogleHealthAPIResource(googleapiclient.discovery.Resource):
             *,
             name: str,
             body: Profile = ...,
-            updateMask: str = ...,
+            updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> ProfileHttpRequest: ...
         def updateSettings(
@@ -212,7 +220,7 @@ class GoogleHealthAPIResource(googleapiclient.discovery.Resource):
             *,
             name: str,
             body: Settings = ...,
-            updateMask: str = ...,
+            updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> SettingsHttpRequest: ...
         def dataTypes(self) -> DataTypesResource: ...

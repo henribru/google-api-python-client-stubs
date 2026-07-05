@@ -22,7 +22,7 @@ class BinaryAuthorizationResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: Attestor = ...,
-                attestorId: str = ...,
+                attestorId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> AttestorHttpRequest: ...
             def delete(
@@ -35,15 +35,15 @@ class BinaryAuthorizationResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 resource: str,
-                options_requestedPolicyVersion: int = ...,
+                options_requestedPolicyVersion: int | None = ...,
                 **kwargs: typing.Any,
             ) -> IamPolicyHttpRequest: ...
             def list(
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListAttestorsResponseHttpRequest: ...
             def list_next(
@@ -99,11 +99,11 @@ class BinaryAuthorizationResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: PlatformPolicy = ...,
-                    policyId: str = ...,
+                    policyId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> PlatformPolicyHttpRequest: ...
                 def delete(
-                    self, *, name: str, etag: str = ..., **kwargs: typing.Any
+                    self, *, name: str, etag: str | None = ..., **kwargs: typing.Any
                 ) -> EmptyHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
@@ -112,8 +112,8 @@ class BinaryAuthorizationResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListPlatformPoliciesResponseHttpRequest: ...
                 def list_next(
@@ -134,7 +134,7 @@ class BinaryAuthorizationResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 resource: str,
-                options_requestedPolicyVersion: int = ...,
+                options_requestedPolicyVersion: int | None = ...,
                 **kwargs: typing.Any,
             ) -> IamPolicyHttpRequest: ...
             def setIamPolicy(

@@ -24,17 +24,18 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 start_date: str,
                 end_date: str,
                 metrics: str,
-                dimensions: str = ...,
-                filters: str = ...,
-                include_empty_rows: bool = ...,
-                max_results: int = ...,
-                output: typing_extensions.Literal["dataTable", "json"] = ...,
+                dimensions: str | None = ...,
+                filters: str | None = ...,
+                include_empty_rows: bool | None = ...,
+                max_results: int | None = ...,
+                output: typing_extensions.Literal["dataTable", "json"] | None = ...,
                 samplingLevel: typing_extensions.Literal[
                     "DEFAULT", "FASTER", "HIGHER_PRECISION"
-                ] = ...,
-                segment: str = ...,
-                sort: str = ...,
-                start_index: int = ...,
+                ]
+                | None = ...,
+                segment: str | None = ...,
+                sort: str | None = ...,
+                start_index: int | None = ...,
                 **kwargs: typing.Any,
             ) -> GaDataHttpRequest: ...
 
@@ -47,14 +48,15 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 start_date: str,
                 end_date: str,
                 metrics: str,
-                dimensions: str = ...,
-                filters: str = ...,
-                max_results: int = ...,
+                dimensions: str | None = ...,
+                filters: str | None = ...,
+                max_results: int | None = ...,
                 samplingLevel: typing_extensions.Literal[
                     "DEFAULT", "FASTER", "HIGHER_PRECISION"
-                ] = ...,
-                sort: str = ...,
-                start_index: int = ...,
+                ]
+                | None = ...,
+                sort: str | None = ...,
+                start_index: int | None = ...,
                 **kwargs: typing.Any,
             ) -> McfDataHttpRequest: ...
 
@@ -65,10 +67,10 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 *,
                 ids: str,
                 metrics: str,
-                dimensions: str = ...,
-                filters: str = ...,
-                max_results: int = ...,
-                sort: str = ...,
+                dimensions: str | None = ...,
+                filters: str | None = ...,
+                max_results: int | None = ...,
+                sort: str | None = ...,
                 **kwargs: typing.Any,
             ) -> RealtimeDataHttpRequest: ...
 
@@ -83,8 +85,8 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
             def list(
                 self,
                 *,
-                max_results: int = ...,
-                start_index: int = ...,
+                max_results: int | None = ...,
+                start_index: int | None = ...,
                 **kwargs: typing.Any,
             ) -> AccountSummariesHttpRequest: ...
 
@@ -104,8 +106,8 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 accountId: str,
-                max_results: int = ...,
-                start_index: int = ...,
+                max_results: int | None = ...,
+                start_index: int | None = ...,
                 **kwargs: typing.Any,
             ) -> EntityUserLinksHttpRequest: ...
             def update(
@@ -122,8 +124,8 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
             def list(
                 self,
                 *,
-                max_results: int = ...,
-                start_index: int = ...,
+                max_results: int | None = ...,
+                start_index: int | None = ...,
                 **kwargs: typing.Any,
             ) -> AccountsHttpRequest: ...
 
@@ -140,8 +142,8 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 *,
                 accountId: str,
                 webPropertyId: str,
-                max_results: int = ...,
-                start_index: int = ...,
+                max_results: int | None = ...,
+                start_index: int | None = ...,
                 **kwargs: typing.Any,
             ) -> CustomDataSourcesHttpRequest: ...
 
@@ -168,8 +170,8 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 *,
                 accountId: str,
                 webPropertyId: str,
-                max_results: int = ...,
-                start_index: int = ...,
+                max_results: int | None = ...,
+                start_index: int | None = ...,
                 **kwargs: typing.Any,
             ) -> CustomDimensionsHttpRequest: ...
             def patch(
@@ -179,7 +181,7 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 webPropertyId: str,
                 customDimensionId: str,
                 body: CustomDimension = ...,
-                ignoreCustomDataSourceLinks: bool = ...,
+                ignoreCustomDataSourceLinks: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> CustomDimensionHttpRequest: ...
             def update(
@@ -189,7 +191,7 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 webPropertyId: str,
                 customDimensionId: str,
                 body: CustomDimension = ...,
-                ignoreCustomDataSourceLinks: bool = ...,
+                ignoreCustomDataSourceLinks: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> CustomDimensionHttpRequest: ...
 
@@ -216,8 +218,8 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 *,
                 accountId: str,
                 webPropertyId: str,
-                max_results: int = ...,
-                start_index: int = ...,
+                max_results: int | None = ...,
+                start_index: int | None = ...,
                 **kwargs: typing.Any,
             ) -> CustomMetricsHttpRequest: ...
             def patch(
@@ -227,7 +229,7 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 webPropertyId: str,
                 customMetricId: str,
                 body: CustomMetric = ...,
-                ignoreCustomDataSourceLinks: bool = ...,
+                ignoreCustomDataSourceLinks: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> CustomMetricHttpRequest: ...
             def update(
@@ -237,7 +239,7 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 webPropertyId: str,
                 customMetricId: str,
                 body: CustomMetric = ...,
-                ignoreCustomDataSourceLinks: bool = ...,
+                ignoreCustomDataSourceLinks: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> CustomMetricHttpRequest: ...
 
@@ -276,8 +278,8 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 accountId: str,
                 webPropertyId: str,
                 profileId: str,
-                max_results: int = ...,
-                start_index: int = ...,
+                max_results: int | None = ...,
+                start_index: int | None = ...,
                 **kwargs: typing.Any,
             ) -> ExperimentsHttpRequest: ...
             def patch(
@@ -316,8 +318,8 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 accountId: str,
-                max_results: int = ...,
-                start_index: int = ...,
+                max_results: int | None = ...,
+                start_index: int | None = ...,
                 **kwargs: typing.Any,
             ) -> FiltersHttpRequest: ...
             def patch(
@@ -363,8 +365,8 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 accountId: str,
                 webPropertyId: str,
                 profileId: str,
-                max_results: int = ...,
-                start_index: int = ...,
+                max_results: int | None = ...,
+                start_index: int | None = ...,
                 **kwargs: typing.Any,
             ) -> GoalsHttpRequest: ...
             def patch(
@@ -423,8 +425,8 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 accountId: str,
                 webPropertyId: str,
                 profileId: str,
-                max_results: int = ...,
-                start_index: int = ...,
+                max_results: int | None = ...,
+                start_index: int | None = ...,
                 **kwargs: typing.Any,
             ) -> ProfileFilterLinksHttpRequest: ...
             def patch(
@@ -474,8 +476,8 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 accountId: str,
                 webPropertyId: str,
                 profileId: str,
-                max_results: int = ...,
-                start_index: int = ...,
+                max_results: int | None = ...,
+                start_index: int | None = ...,
                 **kwargs: typing.Any,
             ) -> EntityUserLinksHttpRequest: ...
             def update(
@@ -520,8 +522,8 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 *,
                 accountId: str,
                 webPropertyId: str,
-                max_results: int = ...,
-                start_index: int = ...,
+                max_results: int | None = ...,
+                start_index: int | None = ...,
                 **kwargs: typing.Any,
             ) -> ProfilesHttpRequest: ...
             def patch(
@@ -574,9 +576,9 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 *,
                 accountId: str,
                 webPropertyId: str,
-                max_results: int = ...,
-                start_index: int = ...,
-                type: str = ...,
+                max_results: int | None = ...,
+                start_index: int | None = ...,
+                type: str | None = ...,
                 **kwargs: typing.Any,
             ) -> RemarketingAudiencesHttpRequest: ...
             def patch(
@@ -603,8 +605,8 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
             def list(
                 self,
                 *,
-                max_results: int = ...,
-                start_index: int = ...,
+                max_results: int | None = ...,
+                start_index: int | None = ...,
                 **kwargs: typing.Any,
             ) -> SegmentsHttpRequest: ...
 
@@ -643,8 +645,8 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 accountId: str,
                 webPropertyId: str,
                 profileId: str,
-                max_results: int = ...,
-                start_index: int = ...,
+                max_results: int | None = ...,
+                start_index: int | None = ...,
                 **kwargs: typing.Any,
             ) -> UnsampledReportsHttpRequest: ...
 
@@ -674,8 +676,8 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 accountId: str,
                 webPropertyId: str,
                 customDataSourceId: str,
-                max_results: int = ...,
-                start_index: int = ...,
+                max_results: int | None = ...,
+                start_index: int | None = ...,
                 **kwargs: typing.Any,
             ) -> UploadsHttpRequest: ...
             def uploadData(
@@ -718,8 +720,8 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 *,
                 accountId: str,
                 webPropertyId: str,
-                max_results: int = ...,
-                start_index: int = ...,
+                max_results: int | None = ...,
+                start_index: int | None = ...,
                 **kwargs: typing.Any,
             ) -> EntityAdWordsLinksHttpRequest: ...
             def patch(
@@ -753,8 +755,8 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 accountId: str,
-                max_results: int = ...,
-                start_index: int = ...,
+                max_results: int | None = ...,
+                start_index: int | None = ...,
                 **kwargs: typing.Any,
             ) -> WebpropertiesHttpRequest: ...
             def patch(
@@ -797,8 +799,8 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 *,
                 accountId: str,
                 webPropertyId: str,
-                max_results: int = ...,
-                start_index: int = ...,
+                max_results: int | None = ...,
+                start_index: int | None = ...,
                 **kwargs: typing.Any,
             ) -> EntityUserLinksHttpRequest: ...
             def update(

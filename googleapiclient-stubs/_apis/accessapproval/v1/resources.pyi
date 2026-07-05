@@ -45,9 +45,9 @@ class AccessApprovalResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListApprovalRequestsResponseHttpRequest: ...
             def list_next(
@@ -70,7 +70,7 @@ class AccessApprovalResource(googleapiclient.discovery.Resource):
             *,
             name: str,
             body: AccessApprovalSettings = ...,
-            updateMask: str = ...,
+            updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> AccessApprovalSettingsHttpRequest: ...
         def approvalRequests(self) -> ApprovalRequestsResource: ...
@@ -107,9 +107,9 @@ class AccessApprovalResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListApprovalRequestsResponseHttpRequest: ...
             def list_next(
@@ -132,7 +132,7 @@ class AccessApprovalResource(googleapiclient.discovery.Resource):
             *,
             name: str,
             body: AccessApprovalSettings = ...,
-            updateMask: str = ...,
+            updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> AccessApprovalSettingsHttpRequest: ...
         def approvalRequests(self) -> ApprovalRequestsResource: ...
@@ -169,9 +169,9 @@ class AccessApprovalResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListApprovalRequestsResponseHttpRequest: ...
             def list_next(
@@ -194,7 +194,7 @@ class AccessApprovalResource(googleapiclient.discovery.Resource):
             *,
             name: str,
             body: AccessApprovalSettings = ...,
-            updateMask: str = ...,
+            updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> AccessApprovalSettingsHttpRequest: ...
         def approvalRequests(self) -> ApprovalRequestsResource: ...

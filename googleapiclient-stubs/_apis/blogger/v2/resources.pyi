@@ -28,10 +28,10 @@ class BloggerResource(googleapiclient.discovery.Resource):
             *,
             blogId: str,
             postId: str,
-            fetchBodies: bool = ...,
-            maxResults: int = ...,
-            pageToken: str = ...,
-            startDate: str = ...,
+            fetchBodies: bool | None = ...,
+            maxResults: int | None = ...,
+            pageToken: str | None = ...,
+            startDate: str | None = ...,
             **kwargs: typing.Any,
         ) -> CommentListHttpRequest: ...
         def list_next(
@@ -46,7 +46,7 @@ class BloggerResource(googleapiclient.discovery.Resource):
             self, *, blogId: str, pageId: str, **kwargs: typing.Any
         ) -> PageHttpRequest: ...
         def list(
-            self, *, blogId: str, fetchBodies: bool = ..., **kwargs: typing.Any
+            self, *, blogId: str, fetchBodies: bool | None = ..., **kwargs: typing.Any
         ) -> PageListHttpRequest: ...
 
     @typing.type_check_only
@@ -58,10 +58,10 @@ class BloggerResource(googleapiclient.discovery.Resource):
             self,
             *,
             blogId: str,
-            fetchBodies: bool = ...,
-            maxResults: int = ...,
-            pageToken: str = ...,
-            startDate: str = ...,
+            fetchBodies: bool | None = ...,
+            maxResults: int | None = ...,
+            pageToken: str | None = ...,
+            startDate: str | None = ...,
             **kwargs: typing.Any,
         ) -> PostListHttpRequest: ...
         def list_next(

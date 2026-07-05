@@ -19,20 +19,20 @@ class ChromewebstoreResource(googleapiclient.discovery.Resource):
             self,
             *,
             itemId: str,
-            projection: typing_extensions.Literal["DRAFT", "PUBLISHED"] = ...,
+            projection: typing_extensions.Literal["DRAFT", "PUBLISHED"] | None = ...,
             **kwargs: typing.Any,
         ) -> ItemHttpRequest: ...
         def insert(
-            self, *, publisherEmail: str = ..., **kwargs: typing.Any
+            self, *, publisherEmail: str | None = ..., **kwargs: typing.Any
         ) -> ItemHttpRequest: ...
         def publish(
             self,
             *,
             itemId: str,
             body: PublishRequest = ...,
-            deployPercentage: int = ...,
-            publishTarget: str = ...,
-            reviewExemption: bool = ...,
+            deployPercentage: int | None = ...,
+            publishTarget: str | None = ...,
+            reviewExemption: bool | None = ...,
             **kwargs: typing.Any,
         ) -> Item2HttpRequest: ...
         def update(

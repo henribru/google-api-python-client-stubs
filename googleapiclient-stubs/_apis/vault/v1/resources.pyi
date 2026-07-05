@@ -30,8 +30,8 @@ class VaultResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 matterId: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListExportsResponseHttpRequest: ...
             def list_next(
@@ -85,18 +85,20 @@ class VaultResource(googleapiclient.discovery.Resource):
                 holdId: str,
                 view: typing_extensions.Literal[
                     "HOLD_VIEW_UNSPECIFIED", "BASIC_HOLD", "FULL_HOLD"
-                ] = ...,
+                ]
+                | None = ...,
                 **kwargs: typing.Any,
             ) -> HoldHttpRequest: ...
             def list(
                 self,
                 *,
                 matterId: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 view: typing_extensions.Literal[
                     "HOLD_VIEW_UNSPECIFIED", "BASIC_HOLD", "FULL_HOLD"
-                ] = ...,
+                ]
+                | None = ...,
                 **kwargs: typing.Any,
             ) -> ListHoldsResponseHttpRequest: ...
             def list_next(
@@ -137,8 +139,8 @@ class VaultResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 matterId: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListSavedQueriesResponseHttpRequest: ...
             def list_next(
@@ -174,18 +176,21 @@ class VaultResource(googleapiclient.discovery.Resource):
             self,
             *,
             matterId: str,
-            view: typing_extensions.Literal["VIEW_UNSPECIFIED", "BASIC", "FULL"] = ...,
+            view: typing_extensions.Literal["VIEW_UNSPECIFIED", "BASIC", "FULL"]
+            | None = ...,
             **kwargs: typing.Any,
         ) -> MatterHttpRequest: ...
         def list(
             self,
             *,
-            pageSize: int = ...,
-            pageToken: str = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
             state: typing_extensions.Literal[
                 "STATE_UNSPECIFIED", "OPEN", "CLOSED", "DELETED"
-            ] = ...,
-            view: typing_extensions.Literal["VIEW_UNSPECIFIED", "BASIC", "FULL"] = ...,
+            ]
+            | None = ...,
+            view: typing_extensions.Literal["VIEW_UNSPECIFIED", "BASIC", "FULL"]
+            | None = ...,
             **kwargs: typing.Any,
         ) -> ListMattersResponseHttpRequest: ...
         def list_next(
@@ -232,10 +237,10 @@ class VaultResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            filter: str = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
-            returnPartialSuccess: bool = ...,
+            filter: str | None = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> ListOperationsResponseHttpRequest: ...
         def list_next(

@@ -25,7 +25,11 @@ class TranslateResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class LanguagesResource(googleapiclient.discovery.Resource):
         def list(
-            self, *, model: str = ..., target: str = ..., **kwargs: typing.Any
+            self,
+            *,
+            model: str | None = ...,
+            target: str | None = ...,
+            **kwargs: typing.Any,
         ) -> LanguagesListResponseHttpRequest: ...
 
     @typing.type_check_only
@@ -35,10 +39,10 @@ class TranslateResource(googleapiclient.discovery.Resource):
             *,
             q: str | _list[str],
             target: str,
-            cid: str | _list[str] = ...,
-            format: typing_extensions.Literal["html", "text"] = ...,
-            model: str = ...,
-            source: str = ...,
+            cid: str | _list[str] | None = ...,
+            format: typing_extensions.Literal["html", "text"] | None = ...,
+            model: str | None = ...,
+            source: str | None = ...,
             **kwargs: typing.Any,
         ) -> TranslationsListResponseHttpRequest: ...
         def translate(

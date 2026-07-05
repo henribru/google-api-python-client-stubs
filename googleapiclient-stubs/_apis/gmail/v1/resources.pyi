@@ -28,19 +28,18 @@ class GmailResource(googleapiclient.discovery.Resource):
                 *,
                 userId: str,
                 id: str,
-                format: typing_extensions.Literal[
-                    "minimal", "full", "raw", "metadata"
-                ] = ...,
+                format: typing_extensions.Literal["minimal", "full", "raw", "metadata"]
+                | None = ...,
                 **kwargs: typing.Any,
             ) -> DraftHttpRequest: ...
             def list(
                 self,
                 *,
                 userId: str,
-                includeSpamTrash: bool = ...,
-                maxResults: int = ...,
-                pageToken: str = ...,
-                q: str = ...,
+                includeSpamTrash: bool | None = ...,
+                maxResults: int | None = ...,
+                pageToken: str | None = ...,
+                q: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListDraftsResponseHttpRequest: ...
             def list_next(
@@ -68,11 +67,12 @@ class GmailResource(googleapiclient.discovery.Resource):
                     typing_extensions.Literal[
                         "messageAdded", "messageDeleted", "labelAdded", "labelRemoved"
                     ]
-                ] = ...,
-                labelId: str = ...,
-                maxResults: int = ...,
-                pageToken: str = ...,
-                startHistoryId: str = ...,
+                ]
+                | None = ...,
+                labelId: str | None = ...,
+                maxResults: int | None = ...,
+                pageToken: str | None = ...,
+                startHistoryId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListHistoryResponseHttpRequest: ...
             def list_next(
@@ -132,10 +132,9 @@ class GmailResource(googleapiclient.discovery.Resource):
                 *,
                 userId: str,
                 id: str,
-                format: typing_extensions.Literal[
-                    "minimal", "full", "raw", "metadata"
-                ] = ...,
-                metadataHeaders: str | _list[str] = ...,
+                format: typing_extensions.Literal["minimal", "full", "raw", "metadata"]
+                | None = ...,
+                metadataHeaders: str | _list[str] | None = ...,
                 **kwargs: typing.Any,
             ) -> MessageHttpRequest: ...
             def import_(
@@ -143,12 +142,13 @@ class GmailResource(googleapiclient.discovery.Resource):
                 *,
                 userId: str,
                 body: Message = ...,
-                deleted: bool = ...,
+                deleted: bool | None = ...,
                 internalDateSource: typing_extensions.Literal[
                     "receivedTime", "dateHeader"
-                ] = ...,
-                neverMarkSpam: bool = ...,
-                processForCalendar: bool = ...,
+                ]
+                | None = ...,
+                neverMarkSpam: bool | None = ...,
+                processForCalendar: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> MessageHttpRequest: ...
             def insert(
@@ -156,21 +156,22 @@ class GmailResource(googleapiclient.discovery.Resource):
                 *,
                 userId: str,
                 body: Message = ...,
-                deleted: bool = ...,
+                deleted: bool | None = ...,
                 internalDateSource: typing_extensions.Literal[
                     "receivedTime", "dateHeader"
-                ] = ...,
+                ]
+                | None = ...,
                 **kwargs: typing.Any,
             ) -> MessageHttpRequest: ...
             def list(
                 self,
                 *,
                 userId: str,
-                includeSpamTrash: bool = ...,
-                labelIds: str | _list[str] = ...,
-                maxResults: int = ...,
-                pageToken: str = ...,
-                q: str = ...,
+                includeSpamTrash: bool | None = ...,
+                labelIds: str | _list[str] | None = ...,
+                maxResults: int | None = ...,
+                pageToken: str | None = ...,
+                q: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListMessagesResponseHttpRequest: ...
             def list_next(
@@ -220,8 +221,8 @@ class GmailResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         userId: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListCseIdentitiesResponseHttpRequest: ...
                     def list_next(
@@ -270,8 +271,8 @@ class GmailResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         userId: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListCseKeyPairsResponseHttpRequest: ...
                     def list_next(
@@ -459,19 +460,20 @@ class GmailResource(googleapiclient.discovery.Resource):
                 *,
                 userId: str,
                 id: str,
-                format: typing_extensions.Literal["full", "metadata", "minimal"] = ...,
-                metadataHeaders: str | _list[str] = ...,
+                format: typing_extensions.Literal["full", "metadata", "minimal"]
+                | None = ...,
+                metadataHeaders: str | _list[str] | None = ...,
                 **kwargs: typing.Any,
             ) -> ThreadHttpRequest: ...
             def list(
                 self,
                 *,
                 userId: str,
-                includeSpamTrash: bool = ...,
-                labelIds: str | _list[str] = ...,
-                maxResults: int = ...,
-                pageToken: str = ...,
-                q: str = ...,
+                includeSpamTrash: bool | None = ...,
+                labelIds: str | _list[str] | None = ...,
+                maxResults: int | None = ...,
+                pageToken: str | None = ...,
+                q: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListThreadsResponseHttpRequest: ...
             def list_next(
