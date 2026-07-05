@@ -271,6 +271,9 @@ class IosXcTest(typing_extensions.TypedDict, total=False):
 class LauncherActivityNotFound(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class LicensingProtectionTermination(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class ListEnvironmentsResponse(typing_extensions.TypedDict, total=False):
     environments: _list[Environment]
     executionId: str
@@ -658,6 +661,7 @@ class TestIssue(typing_extensions.TypedDict, total=False):
         "logcatCollectionError",
         "detectedAppSplashScreen",
         "assetIssue",
+        "licensingProtectionTermination",
     ]
     warning_migration: Any
 

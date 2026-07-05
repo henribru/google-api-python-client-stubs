@@ -210,6 +210,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                         executionConfig_headers: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
+                        toolNames: str | _list[str] = ...,
                         **kwargs: typing.Any,
                     ) -> ListToolsResponseHttpRequest: ...
                     def list_next(
@@ -235,6 +236,13 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                     body: ExchangeAuthCodeRequest = ...,
                     **kwargs: typing.Any,
                 ) -> ExchangeAuthCodeResponseHttpRequest: ...
+                def executeHttpRequest(
+                    self,
+                    *,
+                    name: str,
+                    body: ExecuteHttpRequestRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> ExecuteHttpRequestResponseHttpRequest: ...
                 def executeSqlQuery(
                     self,
                     *,
@@ -345,6 +353,14 @@ class ExecuteActionResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ExecuteActionResponse: ...
+
+@typing.type_check_only
+class ExecuteHttpRequestResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ExecuteHttpRequestResponse: ...
 
 @typing.type_check_only
 class ExecuteSqlQueryResponseHttpRequest(googleapiclient.http.HttpRequest):

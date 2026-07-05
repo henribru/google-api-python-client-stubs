@@ -2241,6 +2241,23 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> GoogleCloudDiscoveryengineV1betaLicenseConfigHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleCloudDiscoveryengineV1betaListLicenseConfigsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudDiscoveryengineV1betaListLicenseConfigsResponseHttpRequest,
+                    previous_response: GoogleCloudDiscoveryengineV1betaListLicenseConfigsResponse,
+                ) -> (
+                    GoogleCloudDiscoveryengineV1betaListLicenseConfigsResponseHttpRequest
+                    | None
+                ): ...
                 def patch(
                     self,
                     *,
@@ -2908,6 +2925,16 @@ class GoogleCloudDiscoveryengineV1betaListIdentityMappingsResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudDiscoveryengineV1betaListIdentityMappingsResponse: ...
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1betaListLicenseConfigsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudDiscoveryengineV1betaListLicenseConfigsResponse: ...
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1betaListLicenseConfigsUsageStatsResponseHttpRequest(

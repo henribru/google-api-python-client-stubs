@@ -358,6 +358,7 @@ class GoogleMapsPlacesV1Place(typing_extensions.TypedDict, total=False):
     subDestinations: _list[GoogleMapsPlacesV1PlaceSubDestination]
     takeout: bool
     timeZone: GoogleTypeTimeZone
+    transitStation: GoogleMapsPlacesV1TransitStation
     types: _list[str]
     userRatingCount: int
     utcOffsetMinutes: int
@@ -691,6 +692,70 @@ class GoogleMapsPlacesV1SearchTextResponse(typing_extensions.TypedDict, total=Fa
     places: _list[GoogleMapsPlacesV1Place]
     routingSummaries: _list[GoogleMapsPlacesV1RoutingSummary]
     searchUri: str
+
+@typing.type_check_only
+class GoogleMapsPlacesV1TransitAgency(typing_extensions.TypedDict, total=False):
+    displayName: GoogleTypeLocalizedText
+    fareUrl: str
+    icon: GoogleMapsPlacesV1TransitIcon
+    lines: _list[GoogleMapsPlacesV1TransitLine]
+    url: str
+
+@typing.type_check_only
+class GoogleMapsPlacesV1TransitIcon(typing_extensions.TypedDict, total=False):
+    nameIncluded: bool
+    url: str
+
+@typing.type_check_only
+class GoogleMapsPlacesV1TransitLine(typing_extensions.TypedDict, total=False):
+    backgroundColor: str
+    displayName: GoogleTypeLocalizedText
+    icon: GoogleMapsPlacesV1TransitIcon
+    id: str
+    shortDisplayName: GoogleTypeLocalizedText
+    textColor: str
+    url: str
+    vehicleIcon: GoogleMapsPlacesV1TransitIcon
+    vehicleType: typing_extensions.Literal[
+        "VEHICLE_TYPE_UNSPECIFIED",
+        "RAIL",
+        "METRO_RAIL",
+        "SUBWAY",
+        "TRAM",
+        "MONORAIL",
+        "HEAVY_RAIL",
+        "COMMUTER_TRAIN",
+        "HIGH_SPEED_TRAIN",
+        "LONG_DISTANCE_TRAIN",
+        "BUS",
+        "INTERCITY_BUS",
+        "TROLLEYBUS",
+        "SHARE_TAXI",
+        "COACH",
+        "FERRY",
+        "CABLE_CAR",
+        "GONDOLA_LIFT",
+        "FUNICULAR",
+        "SPECIAL",
+        "HORSE_CARRIAGE",
+        "AIRPLANE",
+    ]
+
+@typing.type_check_only
+class GoogleMapsPlacesV1TransitStation(typing_extensions.TypedDict, total=False):
+    agencies: _list[GoogleMapsPlacesV1TransitAgency]
+    displayName: GoogleTypeLocalizedText
+    stops: _list[GoogleMapsPlacesV1TransitStop]
+
+@typing.type_check_only
+class GoogleMapsPlacesV1TransitStop(typing_extensions.TypedDict, total=False):
+    displayName: GoogleTypeLocalizedText
+    id: str
+    location: GoogleTypeLatLng
+    platformCode: GoogleTypeLocalizedText
+    signageText: GoogleTypeLocalizedText
+    stopCode: GoogleTypeLocalizedText
+    wheelchairAccessibleEntrance: bool
 
 @typing.type_check_only
 class GoogleTypeDate(typing_extensions.TypedDict, total=False):

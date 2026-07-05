@@ -134,6 +134,11 @@ class DnsForwarding(typing_extensions.TypedDict, total=False):
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class EncryptionConfig(typing_extensions.TypedDict, total=False):
+    cryptoKeyName: str
+    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "CMEK", "LEGACY_CMEK", "OTHER"]
+
+@typing.type_check_only
 class Expr(typing_extensions.TypedDict, total=False):
     description: str
     expression: str
@@ -397,6 +402,12 @@ class ManagementDnsZoneBinding(typing_extensions.TypedDict, total=False):
     vpcNetwork: str
 
 @typing.type_check_only
+class MigrateManagementVmsRequest(typing_extensions.TypedDict, total=False):
+    clusterId: str
+    etag: str
+    requestId: str
+
+@typing.type_check_only
 class MountDatastoreRequest(typing_extensions.TypedDict, total=False):
     datastoreMountConfig: DatastoreMountConfig
     ignoreColocation: bool
@@ -559,6 +570,7 @@ class PrivateCloud(typing_extensions.TypedDict, total=False):
     createTime: str
     deleteTime: str
     description: str
+    encryptionConfig: EncryptionConfig
     expireTime: str
     hcx: Hcx
     managementCluster: ManagementCluster

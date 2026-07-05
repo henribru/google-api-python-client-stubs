@@ -26,6 +26,7 @@ class AndroidNotification(typing_extensions.TypedDict, total=False):
     body: str
     bodyLocArgs: _list[str]
     bodyLocKey: str
+    bypassProxyNotification: bool
     channelId: str
     clickAction: str
     color: str
@@ -97,6 +98,7 @@ class Message(typing_extensions.TypedDict, total=False):
     condition: str
     data: dict[str, typing.Any]
     fcmOptions: FcmOptions
+    fid: str
     name: str
     notification: Notification
     token: str

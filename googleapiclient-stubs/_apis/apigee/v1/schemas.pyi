@@ -188,6 +188,7 @@ class GoogleCloudApigeeV1ApiProduct(typing_extensions.TypedDict, total=False):
     llmQuotaTimeUnit: str
     name: str
     operationGroup: GoogleCloudApigeeV1OperationGroup
+    payloadOperationGroup: GoogleCloudApigeeV1PayloadOperationGroup
     proxies: _list[str]
     quota: str
     quotaCounterScope: typing_extensions.Literal[
@@ -229,6 +230,7 @@ class GoogleCloudApigeeV1ApiProxyRevision(typing_extensions.TypedDict, total=Fal
     hasExtensiblePolicy: bool
     integrationEndpoints: _list[str]
     lastModifiedAt: str
+    mcp: bool
     name: str
     policies: _list[str]
     proxies: _list[str]
@@ -1809,6 +1811,25 @@ class GoogleCloudApigeeV1OrganizationProjectMapping(
     projectIds: _list[str]
 
 @typing.type_check_only
+class GoogleCloudApigeeV1PayloadOperation(typing_extensions.TypedDict, total=False):
+    operation: str
+
+@typing.type_check_only
+class GoogleCloudApigeeV1PayloadOperationConfig(
+    typing_extensions.TypedDict, total=False
+):
+    apiSource: str
+    attributes: _list[GoogleCloudApigeeV1Attribute]
+    operations: _list[GoogleCloudApigeeV1PayloadOperation]
+    quota: GoogleCloudApigeeV1Quota
+
+@typing.type_check_only
+class GoogleCloudApigeeV1PayloadOperationGroup(
+    typing_extensions.TypedDict, total=False
+):
+    operationConfigs: _list[GoogleCloudApigeeV1PayloadOperationConfig]
+
+@typing.type_check_only
 class GoogleCloudApigeeV1PodStatus(typing_extensions.TypedDict, total=False):
     appVersion: str
     deploymentStatus: str
@@ -2756,6 +2777,9 @@ class GoogleCloudApigeeV1TraceConfig(typing_extensions.TypedDict, total=False):
         "OPEN_TELEMETRY_CLOUD_TRACE",
     ]
     samplingConfig: GoogleCloudApigeeV1TraceSamplingConfig
+    traceProtocol: typing_extensions.Literal[
+        "TRACE_PROTOCOL_UNSPECIFIED", "OPEN_CENSUS", "OTLP"
+    ]
 
 @typing.type_check_only
 class GoogleCloudApigeeV1TraceConfigOverride(typing_extensions.TypedDict, total=False):

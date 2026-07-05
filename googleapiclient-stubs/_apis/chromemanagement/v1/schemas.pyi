@@ -260,6 +260,14 @@ class GoogleChromeManagementV1CountChromeHardwareFleetDevicesResponse(
     storageReports: _list[GoogleChromeManagementV1DeviceHardwareCountReport]
 
 @typing.type_check_only
+class GoogleChromeManagementV1CountChromeProfileVersionsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    profileBrowserVersions: _list[GoogleChromeManagementV1BrowserVersion]
+    totalSize: int
+
+@typing.type_check_only
 class GoogleChromeManagementV1CountChromeVersionsResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -534,6 +542,7 @@ class GoogleChromeManagementV1InstalledApp(typing_extensions.TypedDict, total=Fa
     homepageUri: str
     osUserCount: str
     permissions: _list[str]
+    profileCount: str
     riskAssessment: GoogleChromeManagementV1RiskAssessmentData
 
 @typing.type_check_only
@@ -1267,6 +1276,14 @@ class GoogleChromeManagementVersionsV1CertificateProvisioningProcess(
     subjectPublicKeyInfo: str
 
 @typing.type_check_only
+class GoogleChromeManagementVersionsV1CheckEnablementStatusResponse(
+    typing_extensions.TypedDict, total=False
+):
+    insightsState: typing_extensions.Literal[
+        "INSIGHTS_ENABLEMENT_STATE_UNSPECIFIED", "INSIGHTS_ENABLED", "INSIGHTS_DISABLED"
+    ]
+
+@typing.type_check_only
 class GoogleChromeManagementVersionsV1ChromeBrowserProfile(
     typing_extensions.TypedDict, total=False
 ):
@@ -1408,6 +1425,32 @@ class GoogleChromeManagementVersionsV1ConnectorConfigStatus(
     updateTime: str
 
 @typing.type_check_only
+class GoogleChromeManagementVersionsV1ContentTransfersBreakdown(
+    typing_extensions.TypedDict, total=False
+):
+    contentCategory: str
+    eventDomain: str
+    summary: GoogleChromeManagementVersionsV1ContentTransfersSummary
+    user: str
+
+@typing.type_check_only
+class GoogleChromeManagementVersionsV1ContentTransfersSummary(
+    typing_extensions.TypedDict, total=False
+):
+    count: str
+    metric: typing_extensions.Literal[
+        "CONTENT_TRANSFERS_METRIC_UNSPECIFIED",
+        "CONTENT_TRANSFERS_METRIC_TOTAL_TRANSFERS",
+        "CONTENT_TRANSFERS_METRIC_TOTAL_UPLOADS",
+        "CONTENT_TRANSFERS_METRIC_TOTAL_DOWNLOADS",
+        "CONTENT_TRANSFERS_METRIC_TOTAL_PRINTS",
+        "CONTENT_TRANSFERS_METRIC_TOTAL_SENSITIVE_TRANSFERS",
+        "CONTENT_TRANSFERS_METRIC_SENSITIVE_UPLOADS",
+        "CONTENT_TRANSFERS_METRIC_SENSITIVE_DOWNLOADS",
+        "CONTENT_TRANSFERS_METRIC_SENSITIVE_PRINTS",
+    ]
+
+@typing.type_check_only
 class GoogleChromeManagementVersionsV1CrowdStrikeConfig(
     typing_extensions.TypedDict, total=False
 ):
@@ -1463,6 +1506,33 @@ class GoogleChromeManagementVersionsV1DeviceTrustConfig(
         "JUMPCLOUD",
     ]
     urlMatchers: _list[str]
+
+@typing.type_check_only
+class GoogleChromeManagementVersionsV1DisableInsightsRequest(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleChromeManagementVersionsV1DisableInsightsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    insightsState: typing_extensions.Literal[
+        "INSIGHTS_ENABLEMENT_STATE_UNSPECIFIED", "INSIGHTS_ENABLED", "INSIGHTS_DISABLED"
+    ]
+
+@typing.type_check_only
+class GoogleChromeManagementVersionsV1EnableInsightsRequest(
+    typing_extensions.TypedDict, total=False
+):
+    targetOus: _list[str]
+
+@typing.type_check_only
+class GoogleChromeManagementVersionsV1EnableInsightsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    insightsState: typing_extensions.Literal[
+        "INSIGHTS_ENABLEMENT_STATE_UNSPECIFIED", "INSIGHTS_ENABLED", "INSIGHTS_DISABLED"
+    ]
 
 @typing.type_check_only
 class GoogleChromeManagementVersionsV1GenericCaConnection(
@@ -1549,6 +1619,34 @@ class GoogleChromeManagementVersionsV1PubSubXdrConfig(
 ):
     topicFullPath: str
     xdrSettings: GoogleChromeManagementVersionsV1XdrSettings
+
+@typing.type_check_only
+class GoogleChromeManagementVersionsV1QueryContentTransfersBreakdownsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    contentTransfersBreakdowns: _list[
+        GoogleChromeManagementVersionsV1ContentTransfersBreakdown
+    ]
+    nextPageToken: str
+
+@typing.type_check_only
+class GoogleChromeManagementVersionsV1QueryContentTransfersResponse(
+    typing_extensions.TypedDict, total=False
+):
+    summaries: _list[GoogleChromeManagementVersionsV1ContentTransfersSummary]
+
+@typing.type_check_only
+class GoogleChromeManagementVersionsV1QueryUrlVisitsBreakdownsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    urlVisitsBreakdowns: _list[GoogleChromeManagementVersionsV1UrlVisitsBreakdown]
+
+@typing.type_check_only
+class GoogleChromeManagementVersionsV1QueryUrlVisitsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    summaries: _list[GoogleChromeManagementVersionsV1UrlVisitsSummary]
 
 @typing.type_check_only
 class GoogleChromeManagementVersionsV1ReportingData(
@@ -1771,6 +1869,27 @@ class GoogleChromeManagementVersionsV1UploadCertificateRequest(
 class GoogleChromeManagementVersionsV1UploadCertificateResponse(
     typing_extensions.TypedDict, total=False
 ): ...
+
+@typing.type_check_only
+class GoogleChromeManagementVersionsV1UrlVisitsBreakdown(
+    typing_extensions.TypedDict, total=False
+):
+    eventDomain: str
+    summary: GoogleChromeManagementVersionsV1UrlVisitsSummary
+    user: str
+
+@typing.type_check_only
+class GoogleChromeManagementVersionsV1UrlVisitsSummary(
+    typing_extensions.TypedDict, total=False
+):
+    count: str
+    metric: typing_extensions.Literal[
+        "URL_VISITS_METRIC_UNSPECIFIED",
+        "URL_VISITS_METRIC_TOTAL_SUSPICIOUS_URL_VISITS",
+        "URL_VISITS_METRIC_HIGH_RISK_URL_VISITS",
+        "URL_VISITS_METRIC_MEDIUM_RISK_URL_VISITS",
+        "URL_VISITS_METRIC_LOW_RISK_URL_VISITS",
+    ]
 
 @typing.type_check_only
 class GoogleChromeManagementVersionsV1XdrSettings(

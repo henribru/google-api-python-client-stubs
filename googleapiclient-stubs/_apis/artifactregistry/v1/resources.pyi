@@ -352,6 +352,23 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                     def versions(self) -> VersionsResource: ...
 
                 @typing.type_check_only
+                class PrewarmedArtifactsResource(googleapiclient.discovery.Resource):
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        filter: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> ListPrewarmedArtifactsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListPrewarmedArtifactsResponseHttpRequest,
+                        previous_response: ListPrewarmedArtifactsResponse,
+                    ) -> ListPrewarmedArtifactsResponseHttpRequest | None: ...
+
+                @typing.type_check_only
                 class PythonPackagesResource(googleapiclient.discovery.Resource):
                     def get(
                         self, *, name: str, **kwargs: typing.Any
@@ -425,6 +442,13 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                         **kwargs: typing.Any,
                     ) -> UploadYumArtifactMediaResponseHttpRequest: ...
 
+                def checkPrewarmedArtifact(
+                    self,
+                    *,
+                    repository: str,
+                    body: CheckPrewarmedArtifactRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> CheckPrewarmedArtifactResponseHttpRequest: ...
                 def create(
                     self,
                     *,
@@ -476,6 +500,20 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any,
                 ) -> RepositoryHttpRequest: ...
+                def prewarmArtifact(
+                    self,
+                    *,
+                    repository: str,
+                    body: PrewarmArtifactRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def removePrewarmedArtifact(
+                    self,
+                    *,
+                    repository: str,
+                    body: RemovePrewarmedArtifactRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> RemovePrewarmedArtifactResponseHttpRequest: ...
                 def setIamPolicy(
                     self,
                     *,
@@ -501,6 +539,7 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                 def mavenArtifacts(self) -> MavenArtifactsResource: ...
                 def npmPackages(self) -> NpmPackagesResource: ...
                 def packages(self) -> PackagesResource: ...
+                def prewarmedArtifacts(self) -> PrewarmedArtifactsResource: ...
                 def pythonPackages(self) -> PythonPackagesResource: ...
                 def rules(self) -> RulesResource: ...
                 def yumArtifacts(self) -> YumArtifactsResource: ...
@@ -582,6 +621,14 @@ class AttachmentHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Attachment: ...
+
+@typing.type_check_only
+class CheckPrewarmedArtifactResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> CheckPrewarmedArtifactResponse: ...
 
 @typing.type_check_only
 class DockerImageHttpRequest(googleapiclient.http.HttpRequest):
@@ -678,6 +725,14 @@ class ListPackagesResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListPackagesResponse: ...
+
+@typing.type_check_only
+class ListPrewarmedArtifactsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListPrewarmedArtifactsResponse: ...
 
 @typing.type_check_only
 class ListPythonPackagesResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -790,6 +845,14 @@ class PythonPackageHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> PythonPackage: ...
+
+@typing.type_check_only
+class RemovePrewarmedArtifactResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> RemovePrewarmedArtifactResponse: ...
 
 @typing.type_check_only
 class RepositoryHttpRequest(googleapiclient.http.HttpRequest):

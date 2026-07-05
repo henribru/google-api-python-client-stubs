@@ -483,6 +483,66 @@ class Adloox(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class AdvancedProductTargeting(typing_extensions.TypedDict, total=False):
+    ageRange: typing_extensions.Literal[
+        "PLANNABLE_AGE_RANGE_UNSPECIFIED",
+        "PLANNABLE_AGE_RANGE_18_24",
+        "PLANNABLE_AGE_RANGE_18_34",
+        "PLANNABLE_AGE_RANGE_18_44",
+        "PLANNABLE_AGE_RANGE_18_49",
+        "PLANNABLE_AGE_RANGE_18_54",
+        "PLANNABLE_AGE_RANGE_18_64",
+        "PLANNABLE_AGE_RANGE_18_65_UP",
+        "PLANNABLE_AGE_RANGE_21_34",
+        "PLANNABLE_AGE_RANGE_21_44",
+        "PLANNABLE_AGE_RANGE_21_49",
+        "PLANNABLE_AGE_RANGE_21_54",
+        "PLANNABLE_AGE_RANGE_21_64",
+        "PLANNABLE_AGE_RANGE_21_65_UP",
+        "PLANNABLE_AGE_RANGE_25_34",
+        "PLANNABLE_AGE_RANGE_25_44",
+        "PLANNABLE_AGE_RANGE_25_49",
+        "PLANNABLE_AGE_RANGE_25_54",
+        "PLANNABLE_AGE_RANGE_25_64",
+        "PLANNABLE_AGE_RANGE_25_65_UP",
+        "PLANNABLE_AGE_RANGE_35_44",
+        "PLANNABLE_AGE_RANGE_35_49",
+        "PLANNABLE_AGE_RANGE_35_54",
+        "PLANNABLE_AGE_RANGE_35_64",
+        "PLANNABLE_AGE_RANGE_35_65_UP",
+        "PLANNABLE_AGE_RANGE_45_54",
+        "PLANNABLE_AGE_RANGE_45_64",
+        "PLANNABLE_AGE_RANGE_45_65_UP",
+        "PLANNABLE_AGE_RANGE_50_65_UP",
+        "PLANNABLE_AGE_RANGE_55_64",
+        "PLANNABLE_AGE_RANGE_55_65_UP",
+        "PLANNABLE_AGE_RANGE_65_UP",
+    ]
+    dateRange: DateRange
+    devices: _list[
+        typing_extensions.Literal[
+            "DEVICE_TYPE_UNSPECIFIED",
+            "DEVICE_TYPE_COMPUTER",
+            "DEVICE_TYPE_CONNECTED_TV",
+            "DEVICE_TYPE_SMART_PHONE",
+            "DEVICE_TYPE_TABLET",
+            "DEVICE_TYPE_CONNECTED_DEVICE",
+        ]
+    ]
+    frequencyCap: FrequencyCap
+    genders: _list[
+        typing_extensions.Literal[
+            "GENDER_UNSPECIFIED", "GENDER_MALE", "GENDER_FEMALE", "GENDER_UNKNOWN"
+        ]
+    ]
+    plannableLocationIds: _list[str]
+    surfaceTargetingSettings: SurfaceTargetingSettings
+    targetFrequency: TargetFrequency
+    userInterestIds: _list[str]
+    userListIds: _list[str]
+    youtubeSelectSettings: YouTubeSelectSettings
+
+@typing.type_check_only
 class Advertiser(typing_extensions.TypedDict, total=False):
     adServerConfig: AdvertiserAdServerConfig
     advertiserId: str
@@ -723,6 +783,7 @@ class AlgorithmRulesComparisonValue(typing_extensions.TypedDict, total=False):
         "EXCHANGE_TUBI",
         "EXCHANGE_SNAP",
         "EXCHANGE_CADENT",
+        "EXCHANGE_EXTE",
     ]
     int64Value: str
     onScreenPositionValue: typing_extensions.Literal[
@@ -787,6 +848,7 @@ class AlgorithmRulesSignal(typing_extensions.TypedDict, total=False):
         "TIME_ON_SCREEN",
         "VIDEO_PLAYER_SIZE",
         "COMPLETED_IN_VIEW_AUDIBLE",
+        "AUDIO_COMPLETED",
     ]
     clickSignal: typing_extensions.Literal["CLICK_SIGNAL_UNSPECIFIED", "CLICK"]
     impressionSignal: typing_extensions.Literal[
@@ -831,6 +893,7 @@ class AlgorithmRulesSignalValue(typing_extensions.TypedDict, total=False):
         "TIME_ON_SCREEN",
         "VIDEO_PLAYER_SIZE",
         "COMPLETED_IN_VIEW_AUDIBLE",
+        "AUDIO_COMPLETED",
     ]
     floodlightActivityConversionSignal: AlgorithmRulesFloodlightActivityConversionSignal
     number: float
@@ -1024,6 +1087,7 @@ class AssignedTargetingOption(typing_extensions.TypedDict, total=False):
         "TARGETING_TYPE_YOUTUBE_CHANNEL",
         "TARGETING_TYPE_SESSION_POSITION",
         "TARGETING_TYPE_CONTENT_THEME_EXCLUSION",
+        "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK",
     ]
     thirdPartyVerifierDetails: ThirdPartyVerifierAssignedTargetingOptionDetails
     urlDetails: UrlAssignedTargetingOptionDetails
@@ -1031,6 +1095,7 @@ class AssignedTargetingOption(typing_extensions.TypedDict, total=False):
     videoPlayerSizeDetails: VideoPlayerSizeAssignedTargetingOptionDetails
     viewabilityDetails: ViewabilityAssignedTargetingOptionDetails
     youtubeChannelDetails: YoutubeChannelAssignedTargetingOptionDetails
+    youtubeChannelPackDetails: YoutubeChannelPackAssignedTargetingOptionDetails
     youtubeVideoDetails: YoutubeVideoAssignedTargetingOptionDetails
 
 @typing.type_check_only
@@ -1081,6 +1146,10 @@ class AudioContentTypeAssignedTargetingOptionDetails(
         "AUDIO_CONTENT_TYPE_MUSIC",
         "AUDIO_CONTENT_TYPE_BROADCAST",
         "AUDIO_CONTENT_TYPE_PODCAST",
+        "AUDIO_CONTENT_TYPE_CATCH_UP_RADIO",
+        "AUDIO_CONTENT_TYPE_WEB_RADIO",
+        "AUDIO_CONTENT_TYPE_VIDEO_GAME",
+        "AUDIO_CONTENT_TYPE_TEXT_TO_SPEECH",
     ]
 
 @typing.type_check_only
@@ -1091,6 +1160,10 @@ class AudioContentTypeTargetingOptionDetails(typing_extensions.TypedDict, total=
         "AUDIO_CONTENT_TYPE_MUSIC",
         "AUDIO_CONTENT_TYPE_BROADCAST",
         "AUDIO_CONTENT_TYPE_PODCAST",
+        "AUDIO_CONTENT_TYPE_CATCH_UP_RADIO",
+        "AUDIO_CONTENT_TYPE_WEB_RADIO",
+        "AUDIO_CONTENT_TYPE_VIDEO_GAME",
+        "AUDIO_CONTENT_TYPE_TEXT_TO_SPEECH",
     ]
 
 @typing.type_check_only
@@ -1409,6 +1482,11 @@ class CampaignBudget(typing_extensions.TypedDict, total=False):
     ]
     invoiceGroupingId: str
     prismaConfig: PrismaConfig
+
+@typing.type_check_only
+class CampaignDuration(typing_extensions.TypedDict, total=False):
+    dateRange: DateRange
+    durationDays: int
 
 @typing.type_check_only
 class CampaignFlight(typing_extensions.TypedDict, total=False):
@@ -1775,6 +1853,7 @@ class CreateAssignedTargetingOptionsRequest(typing_extensions.TypedDict, total=F
         "TARGETING_TYPE_YOUTUBE_CHANNEL",
         "TARGETING_TYPE_SESSION_POSITION",
         "TARGETING_TYPE_CONTENT_THEME_EXCLUSION",
+        "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK",
     ]
 
 @typing.type_check_only
@@ -1804,6 +1883,7 @@ class CreateSdfDownloadTaskRequest(typing_extensions.TypedDict, total=False):
         "SDF_VERSION_9",
         "SDF_VERSION_9_1",
         "SDF_VERSION_9_2",
+        "SDF_VERSION_10",
     ]
 
 @typing.type_check_only
@@ -2151,6 +2231,7 @@ class DeleteAssignedTargetingOptionsRequest(typing_extensions.TypedDict, total=F
         "TARGETING_TYPE_YOUTUBE_CHANNEL",
         "TARGETING_TYPE_SESSION_POSITION",
         "TARGETING_TYPE_CONTENT_THEME_EXCLUSION",
+        "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK",
     ]
 
 @typing.type_check_only
@@ -2553,6 +2634,14 @@ class EditInventorySourceReadWriteAccessorsRequestAdvertisersUpdate(
     removedAdvertisers: _list[str]
 
 @typing.type_check_only
+class EffectiveFrequencyBreakdown(typing_extensions.TypedDict, total=False):
+    effectiveCoviewReach: str
+    effectiveFrequency: int
+    onTargetEffectiveCoviewReach: str
+    onTargetReach: str
+    totalReach: str
+
+@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -2667,6 +2756,7 @@ class ExchangeAssignedTargetingOptionDetails(typing_extensions.TypedDict, total=
         "EXCHANGE_TUBI",
         "EXCHANGE_SNAP",
         "EXCHANGE_CADENT",
+        "EXCHANGE_EXTE",
     ]
 
 @typing.type_check_only
@@ -2765,6 +2855,7 @@ class ExchangeConfigEnabledExchange(typing_extensions.TypedDict, total=False):
         "EXCHANGE_TUBI",
         "EXCHANGE_SNAP",
         "EXCHANGE_CADENT",
+        "EXCHANGE_EXTE",
     ]
     googleAdManagerAgencyId: str
     googleAdManagerBuyerNetworkId: str
@@ -2862,6 +2953,7 @@ class ExchangeReviewStatus(typing_extensions.TypedDict, total=False):
         "EXCHANGE_TUBI",
         "EXCHANGE_SNAP",
         "EXCHANGE_CADENT",
+        "EXCHANGE_EXTE",
     ]
     status: typing_extensions.Literal[
         "REVIEW_STATUS_UNSPECIFIED",
@@ -2962,6 +3054,7 @@ class ExchangeTargetingOptionDetails(typing_extensions.TypedDict, total=False):
         "EXCHANGE_TUBI",
         "EXCHANGE_SNAP",
         "EXCHANGE_CADENT",
+        "EXCHANGE_EXTE",
     ]
 
 @typing.type_check_only
@@ -3124,6 +3217,20 @@ class GenderTargetingOptionDetails(typing_extensions.TypedDict, total=False):
     gender: typing_extensions.Literal[
         "GENDER_UNSPECIFIED", "GENDER_MALE", "GENDER_FEMALE", "GENDER_UNKNOWN"
     ]
+
+@typing.type_check_only
+class GenerateReachForecastRequest(typing_extensions.TypedDict, total=False):
+    campaignDuration: CampaignDuration
+    currencyCode: str
+    effectiveFrequencyBreakdownLimit: int
+    minEffectiveFrequency: int
+    plannedProducts: _list[PlannedProduct]
+    targeting: Targeting
+
+@typing.type_check_only
+class GenerateReachForecastResponse(typing_extensions.TypedDict, total=False):
+    onTargetAudienceMetrics: OnTargetAudienceMetrics
+    reachCurve: ReachCurve
 
 @typing.type_check_only
 class GeoRegionAssignedTargetingOptionDetails(typing_extensions.TypedDict, total=False):
@@ -3345,6 +3452,7 @@ class GuaranteedOrder(typing_extensions.TypedDict, total=False):
         "EXCHANGE_TUBI",
         "EXCHANGE_SNAP",
         "EXCHANGE_CADENT",
+        "EXCHANGE_EXTE",
     ]
     guaranteedOrderId: str
     legacyGuaranteedOrderId: str
@@ -3658,6 +3766,7 @@ class InventorySource(typing_extensions.TypedDict, total=False):
         "EXCHANGE_TUBI",
         "EXCHANGE_SNAP",
         "EXCHANGE_CADENT",
+        "EXCHANGE_EXTE",
     ]
     guaranteedOrderId: str
     inventorySourceId: str
@@ -4308,6 +4417,11 @@ class OnScreenPositionTargetingOptionDetails(typing_extensions.TypedDict, total=
     ]
 
 @typing.type_check_only
+class OnTargetAudienceMetrics(typing_extensions.TypedDict, total=False):
+    censusAudienceSize: str
+    youtubeAudienceSize: str
+
+@typing.type_check_only
 class OperatingSystemAssignedTargetingOptionDetails(
     typing_extensions.TypedDict, total=False
 ):
@@ -4523,6 +4637,159 @@ class PerformanceGoalBidStrategy(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class PlannableLocation(typing_extensions.TypedDict, total=False):
+    displayName: str
+    geoRegionType: typing_extensions.Literal[
+        "GEO_REGION_TYPE_UNKNOWN",
+        "GEO_REGION_TYPE_OTHER",
+        "GEO_REGION_TYPE_COUNTRY",
+        "GEO_REGION_TYPE_REGION",
+        "GEO_REGION_TYPE_TERRITORY",
+        "GEO_REGION_TYPE_PROVINCE",
+        "GEO_REGION_TYPE_STATE",
+        "GEO_REGION_TYPE_PREFECTURE",
+        "GEO_REGION_TYPE_GOVERNORATE",
+        "GEO_REGION_TYPE_CANTON",
+        "GEO_REGION_TYPE_UNION_TERRITORY",
+        "GEO_REGION_TYPE_AUTONOMOUS_COMMUNITY",
+        "GEO_REGION_TYPE_DMA_REGION",
+        "GEO_REGION_TYPE_METRO",
+        "GEO_REGION_TYPE_CONGRESSIONAL_DISTRICT",
+        "GEO_REGION_TYPE_COUNTY",
+        "GEO_REGION_TYPE_MUNICIPALITY",
+        "GEO_REGION_TYPE_CITY",
+        "GEO_REGION_TYPE_POSTAL_CODE",
+        "GEO_REGION_TYPE_DEPARTMENT",
+        "GEO_REGION_TYPE_AIRPORT",
+        "GEO_REGION_TYPE_TV_REGION",
+        "GEO_REGION_TYPE_OKRUG",
+        "GEO_REGION_TYPE_BOROUGH",
+        "GEO_REGION_TYPE_CITY_REGION",
+        "GEO_REGION_TYPE_ARRONDISSEMENT",
+        "GEO_REGION_TYPE_NEIGHBORHOOD",
+        "GEO_REGION_TYPE_UNIVERSITY",
+        "GEO_REGION_TYPE_DISTRICT",
+        "GEO_REGION_TYPE_NATIONAL_PARK",
+        "GEO_REGION_TYPE_BARRIO",
+        "GEO_REGION_TYPE_SUB_WARD",
+        "GEO_REGION_TYPE_MUNICIPALITY_DISTRICT",
+        "GEO_REGION_TYPE_SUB_DISTRICT",
+        "GEO_REGION_TYPE_QUARTER",
+        "GEO_REGION_TYPE_DIVISION",
+        "GEO_REGION_TYPE_COMMUNE",
+        "GEO_REGION_TYPE_COLLOQUIAL_AREA",
+        "GEO_REGION_TYPE_POST_TOWN",
+        "GEO_REGION_TYPE_WARD",
+    ]
+    name: str
+    plannableLocationId: str
+    regionCode: str
+
+@typing.type_check_only
+class PlannableTargeting(typing_extensions.TypedDict, total=False):
+    ageRanges: _list[
+        typing_extensions.Literal[
+            "PLANNABLE_AGE_RANGE_UNSPECIFIED",
+            "PLANNABLE_AGE_RANGE_18_24",
+            "PLANNABLE_AGE_RANGE_18_34",
+            "PLANNABLE_AGE_RANGE_18_44",
+            "PLANNABLE_AGE_RANGE_18_49",
+            "PLANNABLE_AGE_RANGE_18_54",
+            "PLANNABLE_AGE_RANGE_18_64",
+            "PLANNABLE_AGE_RANGE_18_65_UP",
+            "PLANNABLE_AGE_RANGE_21_34",
+            "PLANNABLE_AGE_RANGE_21_44",
+            "PLANNABLE_AGE_RANGE_21_49",
+            "PLANNABLE_AGE_RANGE_21_54",
+            "PLANNABLE_AGE_RANGE_21_64",
+            "PLANNABLE_AGE_RANGE_21_65_UP",
+            "PLANNABLE_AGE_RANGE_25_34",
+            "PLANNABLE_AGE_RANGE_25_44",
+            "PLANNABLE_AGE_RANGE_25_49",
+            "PLANNABLE_AGE_RANGE_25_54",
+            "PLANNABLE_AGE_RANGE_25_64",
+            "PLANNABLE_AGE_RANGE_25_65_UP",
+            "PLANNABLE_AGE_RANGE_35_44",
+            "PLANNABLE_AGE_RANGE_35_49",
+            "PLANNABLE_AGE_RANGE_35_54",
+            "PLANNABLE_AGE_RANGE_35_64",
+            "PLANNABLE_AGE_RANGE_35_65_UP",
+            "PLANNABLE_AGE_RANGE_45_54",
+            "PLANNABLE_AGE_RANGE_45_64",
+            "PLANNABLE_AGE_RANGE_45_65_UP",
+            "PLANNABLE_AGE_RANGE_50_65_UP",
+            "PLANNABLE_AGE_RANGE_55_64",
+            "PLANNABLE_AGE_RANGE_55_65_UP",
+            "PLANNABLE_AGE_RANGE_65_UP",
+        ]
+    ]
+    devices: _list[
+        typing_extensions.Literal[
+            "DEVICE_TYPE_UNSPECIFIED",
+            "DEVICE_TYPE_COMPUTER",
+            "DEVICE_TYPE_CONNECTED_TV",
+            "DEVICE_TYPE_SMART_PHONE",
+            "DEVICE_TYPE_TABLET",
+            "DEVICE_TYPE_CONNECTED_DEVICE",
+        ]
+    ]
+    genders: _list[
+        typing_extensions.Literal[
+            "GENDER_UNSPECIFIED", "GENDER_MALE", "GENDER_FEMALE", "GENDER_UNKNOWN"
+        ]
+    ]
+    networks: _list[
+        typing_extensions.Literal[
+            "PLANNABLE_NETWORK_UNSPECIFIED",
+            "PLANNABLE_NETWORK_YOUTUBE",
+            "PLANNABLE_NETWORK_GOOGLE_VIDEO_PARTNERS",
+            "PLANNABLE_NETWORK_YOUTUBE_AND_GOOGLE_VIDEO_PARTNERS",
+        ]
+    ]
+    surfaceTargetingCombinations: SurfaceTargetingCombinations
+    youtubeSelectLineups: _list[YouTubeSelectLineUp]
+
+@typing.type_check_only
+class PlannableUserInterest(typing_extensions.TypedDict, total=False):
+    userInterest: UserInterest
+    userInterestDisplayName: str
+    userInterestPath: str
+    userInterestType: str
+
+@typing.type_check_only
+class PlannableUserList(typing_extensions.TypedDict, total=False):
+    displayName: str
+    name: str
+    plannableStatus: typing_extensions.Literal[
+        "PLANNABLE_STATUS_UNSPECIFIED", "PLANNABLE", "UNPLANNABLE"
+    ]
+    userListType: typing_extensions.Literal[
+        "USER_LIST_TYPE_UNSPECIFIED", "FIRST_PARTY", "THIRD_PARTY"
+    ]
+
+@typing.type_check_only
+class PlannedProduct(typing_extensions.TypedDict, total=False):
+    advancedProductTargeting: AdvancedProductTargeting
+    budgetMicros: str
+    plannableProductCode: str
+
+@typing.type_check_only
+class PlannedProductForecast(typing_extensions.TypedDict, total=False):
+    effectiveFrequencyBreakdowns: _list[EffectiveFrequencyBreakdown]
+    onTargetImpressions: str
+    onTargetReach: str
+    totalImpressions: str
+    totalReach: str
+    trueviewViews: str
+    viewableImpressions: str
+
+@typing.type_check_only
+class PlannedProductReachForecast(typing_extensions.TypedDict, total=False):
+    costMicros: str
+    plannableProductCode: str
+    plannedProductForecast: PlannedProductForecast
+
+@typing.type_check_only
 class PoiAssignedTargetingOptionDetails(typing_extensions.TypedDict, total=False):
     displayName: str
     latitude: float
@@ -4580,6 +4847,13 @@ class ProductMatchDimension(typing_extensions.TypedDict, total=False):
     productOfferId: str
 
 @typing.type_check_only
+class ProductMetadata(typing_extensions.TypedDict, total=False):
+    displayName: str
+    plannableProductCode: str
+    plannableProductDescription: str
+    plannableTargeting: PlannableTargeting
+
+@typing.type_check_only
 class ProximityLocationListAssignedTargetingOptionDetails(
     typing_extensions.TypedDict, total=False
 ):
@@ -4604,6 +4878,16 @@ class RateDetails(typing_extensions.TypedDict, total=False):
     minimumSpend: Money
     rate: Money
     unitsPurchased: str
+
+@typing.type_check_only
+class ReachCurve(typing_extensions.TypedDict, total=False):
+    reachForecasts: _list[ReachForecast]
+
+@typing.type_check_only
+class ReachForecast(typing_extensions.TypedDict, total=False):
+    costMicros: str
+    forecast: PlannedProductForecast
+    plannedProductReachForecasts: _list[PlannedProductReachForecast]
 
 @typing.type_check_only
 class RegionalLocationListAssignedTargetingOptionDetails(
@@ -4634,6 +4918,23 @@ class ReplaceSitesRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ReplaceSitesResponse(typing_extensions.TypedDict, total=False):
     sites: _list[Site]
+
+@typing.type_check_only
+class RetrievePlannableLocationsResponse(typing_extensions.TypedDict, total=False):
+    plannableLocations: _list[PlannableLocation]
+
+@typing.type_check_only
+class RetrievePlannableProductsResponse(typing_extensions.TypedDict, total=False):
+    productMetadata: _list[ProductMetadata]
+
+@typing.type_check_only
+class RetrievePlannableUserInterestsResponse(typing_extensions.TypedDict, total=False):
+    plannableUserInterests: _list[PlannableUserInterest]
+
+@typing.type_check_only
+class RetrievePlannableUserListsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    plannableUserLists: _list[PlannableUserList]
 
 @typing.type_check_only
 class ReviewStatusInfo(typing_extensions.TypedDict, total=False):
@@ -4690,6 +4991,7 @@ class SdfConfig(typing_extensions.TypedDict, total=False):
         "SDF_VERSION_9",
         "SDF_VERSION_9_1",
         "SDF_VERSION_9_2",
+        "SDF_VERSION_10",
     ]
 
 @typing.type_check_only
@@ -4720,6 +5022,7 @@ class SdfDownloadTaskMetadata(typing_extensions.TypedDict, total=False):
         "SDF_VERSION_9",
         "SDF_VERSION_9_1",
         "SDF_VERSION_9_2",
+        "SDF_VERSION_10",
     ]
 
 @typing.type_check_only
@@ -4827,6 +5130,58 @@ class SubExchangeTargetingOptionDetails(typing_extensions.TypedDict, total=False
     displayName: str
 
 @typing.type_check_only
+class SurfaceTargetingCombination(typing_extensions.TypedDict, total=False):
+    choices: _list[
+        typing_extensions.Literal[
+            "PLANNABLE_SURFACE_UNSPECIFIED",
+            "PLANNABLE_SURFACE_IN_FEED",
+            "PLANNABLE_SURFACE_IN_STREAM_BUMPER",
+            "PLANNABLE_SURFACE_IN_STREAM_NON_SKIPPABLE",
+            "PLANNABLE_SURFACE_IN_STREAM_SKIPPABLE",
+            "PLANNABLE_SURFACE_SHORTS",
+            "PLANNABLE_SURFACE_DISCOVER_FEED",
+            "PLANNABLE_SURFACE_GMAIL",
+            "PLANNABLE_SURFACE_GOOGLE_DISPLAY_NETWORK",
+            "PLANNABLE_SURFACE_IN_STREAM_NON_SKIPPABLE_THIRTY_SECONDS",
+        ]
+    ]
+
+@typing.type_check_only
+class SurfaceTargetingCombinations(typing_extensions.TypedDict, total=False):
+    availableSurfaceTypes: _list[
+        typing_extensions.Literal[
+            "PLANNABLE_SURFACE_UNSPECIFIED",
+            "PLANNABLE_SURFACE_IN_FEED",
+            "PLANNABLE_SURFACE_IN_STREAM_BUMPER",
+            "PLANNABLE_SURFACE_IN_STREAM_NON_SKIPPABLE",
+            "PLANNABLE_SURFACE_IN_STREAM_SKIPPABLE",
+            "PLANNABLE_SURFACE_SHORTS",
+            "PLANNABLE_SURFACE_DISCOVER_FEED",
+            "PLANNABLE_SURFACE_GMAIL",
+            "PLANNABLE_SURFACE_GOOGLE_DISPLAY_NETWORK",
+            "PLANNABLE_SURFACE_IN_STREAM_NON_SKIPPABLE_THIRTY_SECONDS",
+        ]
+    ]
+    validSurfaceCombinations: _list[SurfaceTargetingCombination]
+
+@typing.type_check_only
+class SurfaceTargetingSettings(typing_extensions.TypedDict, total=False):
+    surfaces: _list[
+        typing_extensions.Literal[
+            "PLANNABLE_SURFACE_UNSPECIFIED",
+            "PLANNABLE_SURFACE_IN_FEED",
+            "PLANNABLE_SURFACE_IN_STREAM_BUMPER",
+            "PLANNABLE_SURFACE_IN_STREAM_NON_SKIPPABLE",
+            "PLANNABLE_SURFACE_IN_STREAM_SKIPPABLE",
+            "PLANNABLE_SURFACE_SHORTS",
+            "PLANNABLE_SURFACE_DISCOVER_FEED",
+            "PLANNABLE_SURFACE_GMAIL",
+            "PLANNABLE_SURFACE_GOOGLE_DISPLAY_NETWORK",
+            "PLANNABLE_SURFACE_IN_STREAM_NON_SKIPPABLE_THIRTY_SECONDS",
+        ]
+    ]
+
+@typing.type_check_only
 class TargetFrequency(typing_extensions.TypedDict, total=False):
     targetCount: str
     timeUnit: typing_extensions.Literal[
@@ -4839,6 +5194,59 @@ class TargetFrequency(typing_extensions.TypedDict, total=False):
         "TIME_UNIT_MINUTES",
     ]
     timeUnitCount: int
+
+@typing.type_check_only
+class Targeting(typing_extensions.TypedDict, total=False):
+    ageRange: typing_extensions.Literal[
+        "PLANNABLE_AGE_RANGE_UNSPECIFIED",
+        "PLANNABLE_AGE_RANGE_18_24",
+        "PLANNABLE_AGE_RANGE_18_34",
+        "PLANNABLE_AGE_RANGE_18_44",
+        "PLANNABLE_AGE_RANGE_18_49",
+        "PLANNABLE_AGE_RANGE_18_54",
+        "PLANNABLE_AGE_RANGE_18_64",
+        "PLANNABLE_AGE_RANGE_18_65_UP",
+        "PLANNABLE_AGE_RANGE_21_34",
+        "PLANNABLE_AGE_RANGE_21_44",
+        "PLANNABLE_AGE_RANGE_21_49",
+        "PLANNABLE_AGE_RANGE_21_54",
+        "PLANNABLE_AGE_RANGE_21_64",
+        "PLANNABLE_AGE_RANGE_21_65_UP",
+        "PLANNABLE_AGE_RANGE_25_34",
+        "PLANNABLE_AGE_RANGE_25_44",
+        "PLANNABLE_AGE_RANGE_25_49",
+        "PLANNABLE_AGE_RANGE_25_54",
+        "PLANNABLE_AGE_RANGE_25_64",
+        "PLANNABLE_AGE_RANGE_25_65_UP",
+        "PLANNABLE_AGE_RANGE_35_44",
+        "PLANNABLE_AGE_RANGE_35_49",
+        "PLANNABLE_AGE_RANGE_35_54",
+        "PLANNABLE_AGE_RANGE_35_64",
+        "PLANNABLE_AGE_RANGE_35_65_UP",
+        "PLANNABLE_AGE_RANGE_45_54",
+        "PLANNABLE_AGE_RANGE_45_64",
+        "PLANNABLE_AGE_RANGE_45_65_UP",
+        "PLANNABLE_AGE_RANGE_50_65_UP",
+        "PLANNABLE_AGE_RANGE_55_64",
+        "PLANNABLE_AGE_RANGE_55_65_UP",
+        "PLANNABLE_AGE_RANGE_65_UP",
+    ]
+    devices: _list[
+        typing_extensions.Literal[
+            "DEVICE_TYPE_UNSPECIFIED",
+            "DEVICE_TYPE_COMPUTER",
+            "DEVICE_TYPE_CONNECTED_TV",
+            "DEVICE_TYPE_SMART_PHONE",
+            "DEVICE_TYPE_TABLET",
+            "DEVICE_TYPE_CONNECTED_DEVICE",
+        ]
+    ]
+    genders: _list[
+        typing_extensions.Literal[
+            "GENDER_UNSPECIFIED", "GENDER_MALE", "GENDER_FEMALE", "GENDER_UNKNOWN"
+        ]
+    ]
+    plannableLocationIds: _list[str]
 
 @typing.type_check_only
 class TargetingExpansionConfig(typing_extensions.TypedDict, total=False):
@@ -4935,6 +5343,7 @@ class TargetingOption(typing_extensions.TypedDict, total=False):
         "TARGETING_TYPE_YOUTUBE_CHANNEL",
         "TARGETING_TYPE_SESSION_POSITION",
         "TARGETING_TYPE_CONTENT_THEME_EXCLUSION",
+        "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK",
     ]
     userRewardedContentDetails: UserRewardedContentTargetingOptionDetails
     videoPlayerSizeDetails: VideoPlayerSizeTargetingOptionDetails
@@ -5076,6 +5485,11 @@ class User(typing_extensions.TypedDict, total=False):
     userId: str
 
 @typing.type_check_only
+class UserInterest(typing_extensions.TypedDict, total=False):
+    userInterestCategory: str
+    userInterestUserList: str
+
+@typing.type_check_only
 class UserRewardedContentAssignedTargetingOptionDetails(
     typing_extensions.TypedDict, total=False
 ):
@@ -5209,6 +5623,15 @@ class ViewabilityTargetingOptionDetails(typing_extensions.TypedDict, total=False
     ]
 
 @typing.type_check_only
+class YouTubeSelectLineUp(typing_extensions.TypedDict, total=False):
+    displayName: str
+    lineupId: str
+
+@typing.type_check_only
+class YouTubeSelectSettings(typing_extensions.TypedDict, total=False):
+    lineupId: str
+
+@typing.type_check_only
 class YoutubeAndPartnersBiddingStrategy(typing_extensions.TypedDict, total=False):
     adGroupEffectiveTargetCpaSource: typing_extensions.Literal[
         "BIDDING_SOURCE_UNSPECIFIED",
@@ -5340,6 +5763,13 @@ class YoutubeChannelAssignedTargetingOptionDetails(
     typing_extensions.TypedDict, total=False
 ):
     channelId: str
+    negative: bool
+
+@typing.type_check_only
+class YoutubeChannelPackAssignedTargetingOptionDetails(
+    typing_extensions.TypedDict, total=False
+):
+    channelPackId: str
     negative: bool
 
 @typing.type_check_only

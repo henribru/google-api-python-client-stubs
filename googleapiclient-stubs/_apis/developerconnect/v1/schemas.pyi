@@ -43,6 +43,7 @@ class ArtifactDeployment(typing_extensions.TypedDict, total=False):
     containerStatusSummary: str
     deployTime: str
     id: str
+    sourceCodeUris: _list[str]
     sourceCommitUris: _list[str]
     undeployTime: str
 

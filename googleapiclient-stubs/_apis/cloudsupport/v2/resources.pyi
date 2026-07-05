@@ -33,6 +33,9 @@ class CloudSupportResource(googleapiclient.discovery.Resource):
     class CasesResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class AttachmentsResource(googleapiclient.discovery.Resource):
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> AttachmentHttpRequest: ...
             def list(
                 self,
                 *,
@@ -52,6 +55,7 @@ class CloudSupportResource(googleapiclient.discovery.Resource):
             def create(
                 self, *, parent: str, body: Comment = ..., **kwargs: typing.Any
             ) -> CommentHttpRequest: ...
+            def get(self, *, name: str, **kwargs: typing.Any) -> CommentHttpRequest: ...
             def list(
                 self,
                 *,
@@ -129,6 +133,52 @@ class CloudSupportResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any,
         ) -> AttachmentHttpRequest: ...
 
+    @typing.type_check_only
+    class SupportEventSubscriptionsResource(googleapiclient.discovery.Resource):
+        def create(
+            self,
+            *,
+            parent: str,
+            body: SupportEventSubscription = ...,
+            **kwargs: typing.Any,
+        ) -> SupportEventSubscriptionHttpRequest: ...
+        def delete(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> SupportEventSubscriptionHttpRequest: ...
+        def get(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> SupportEventSubscriptionHttpRequest: ...
+        def list(
+            self,
+            *,
+            parent: str,
+            filter: str = ...,
+            pageSize: int = ...,
+            pageToken: str = ...,
+            showDeleted: bool = ...,
+            **kwargs: typing.Any,
+        ) -> ListSupportEventSubscriptionsResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListSupportEventSubscriptionsResponseHttpRequest,
+            previous_response: ListSupportEventSubscriptionsResponse,
+        ) -> ListSupportEventSubscriptionsResponseHttpRequest | None: ...
+        def patch(
+            self,
+            *,
+            name: str,
+            body: SupportEventSubscription = ...,
+            updateMask: str = ...,
+            **kwargs: typing.Any,
+        ) -> SupportEventSubscriptionHttpRequest: ...
+        def undelete(
+            self,
+            *,
+            name: str,
+            body: UndeleteSupportEventSubscriptionRequest = ...,
+            **kwargs: typing.Any,
+        ) -> SupportEventSubscriptionHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[
@@ -144,6 +194,7 @@ class CloudSupportResource(googleapiclient.discovery.Resource):
     def caseClassifications(self) -> CaseClassificationsResource: ...
     def cases(self) -> CasesResource: ...
     def media(self) -> MediaResource: ...
+    def supportEventSubscriptions(self) -> SupportEventSubscriptionsResource: ...
 
 @typing.type_check_only
 class AttachmentHttpRequest(googleapiclient.http.HttpRequest):
@@ -194,6 +245,16 @@ class ListCommentsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListCommentsResponse: ...
 
 @typing.type_check_only
+class ListSupportEventSubscriptionsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListSupportEventSubscriptionsResponse: ...
+
+@typing.type_check_only
 class MediaHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -216,6 +277,14 @@ class SearchCasesResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> SearchCasesResponse: ...
+
+@typing.type_check_only
+class SupportEventSubscriptionHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> SupportEventSubscription: ...
 
 @typing.type_check_only
 class BytesHttpRequest(googleapiclient.http.HttpRequest):

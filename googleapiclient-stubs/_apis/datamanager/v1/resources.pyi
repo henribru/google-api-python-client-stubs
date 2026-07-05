@@ -193,6 +193,12 @@ class DataManagerResource(googleapiclient.discovery.Resource):
         def accounts(self) -> AccountsResource: ...
 
     @typing.type_check_only
+    class AdEventsResource(googleapiclient.discovery.Resource):
+        def ingest(
+            self, *, body: IngestAdEventsRequest = ..., **kwargs: typing.Any
+        ) -> IngestAdEventsResponseHttpRequest: ...
+
+    @typing.type_check_only
     class AudienceMembersResource(googleapiclient.discovery.Resource):
         def ingest(
             self, *, body: IngestAudienceMembersRequest = ..., **kwargs: typing.Any
@@ -226,6 +232,7 @@ class DataManagerResource(googleapiclient.discovery.Resource):
         | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def accountTypes(self) -> AccountTypesResource: ...
+    def adEvents(self) -> AdEventsResource: ...
     def audienceMembers(self) -> AudienceMembersResource: ...
     def events(self) -> EventsResource: ...
     def requestStatus(self) -> RequestStatusResource: ...
@@ -237,6 +244,14 @@ class EmptyHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Empty: ...
+
+@typing.type_check_only
+class IngestAdEventsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> IngestAdEventsResponse: ...
 
 @typing.type_check_only
 class IngestAudienceMembersResponseHttpRequest(googleapiclient.http.HttpRequest):

@@ -193,6 +193,10 @@ class DeleteFolderTreeRequest(typing_extensions.TypedDict, total=False):
     force: bool
 
 @typing.type_check_only
+class DeleteRepositoryLongRunningRequest(typing_extensions.TypedDict, total=False):
+    force: bool
+
+@typing.type_check_only
 class DeleteTeamFolderTreeRequest(typing_extensions.TypedDict, total=False):
     force: bool
 
@@ -277,6 +281,8 @@ class FolderContentsEntry(typing_extensions.TypedDict, total=False):
 class GitRemoteSettings(typing_extensions.TypedDict, total=False):
     authenticationTokenSecretVersion: str
     defaultBranch: str
+    effectiveDefaultBranch: str
+    gitRepositoryLink: str
     sshAuthenticationConfig: SshAuthenticationConfig
     tokenStatus: typing_extensions.Literal[
         "TOKEN_STATUS_UNSPECIFIED", "NOT_FOUND", "INVALID", "VALID"
@@ -678,6 +684,11 @@ class Status(typing_extensions.TypedDict, total=False):
     message: str
 
 @typing.type_check_only
+class TableUpdateTrigger(typing_extensions.TypedDict, total=False):
+    table: Target
+    triggerUpdateTime: str
+
+@typing.type_check_only
 class Target(typing_extensions.TypedDict, total=False):
     database: str
     name: str
@@ -710,6 +721,11 @@ class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
+class TriggerEvaluationRecord(typing_extensions.TypedDict, total=False):
+    evaluationTime: str
+    status: Status
+
+@typing.type_check_only
 class UncommittedFileChange(typing_extensions.TypedDict, total=False):
     path: str
     state: typing_extensions.Literal[
@@ -728,6 +744,7 @@ class WorkflowConfig(typing_extensions.TypedDict, total=False):
     releaseConfig: str
     timeZone: str
     updateTime: str
+    workflowTriggerConfig: WorkflowTriggerConfig
 
 @typing.type_check_only
 class WorkflowInvocation(typing_extensions.TypedDict, total=False):
@@ -757,6 +774,19 @@ class WorkflowInvocationAction(typing_extensions.TypedDict, total=False):
         "PENDING", "RUNNING", "SKIPPED", "DISABLED", "SUCCEEDED", "CANCELLED", "FAILED"
     ]
     target: Target
+
+@typing.type_check_only
+class WorkflowTrigger(typing_extensions.TypedDict, total=False):
+    tableUpdateTrigger: TableUpdateTrigger
+
+@typing.type_check_only
+class WorkflowTriggerConfig(typing_extensions.TypedDict, total=False):
+    condition: typing_extensions.Literal["CONDITION_UNSPECIFIED", "ALL", "ANY"]
+    lastSuccessfulEvaluationTime: str
+    maxWaitDuration: str
+    minExecutionDuration: str
+    recentTriggerEvaluationRecords: _list[TriggerEvaluationRecord]
+    workflowTriggers: _list[WorkflowTrigger]
 
 @typing.type_check_only
 class Workspace(typing_extensions.TypedDict, total=False):

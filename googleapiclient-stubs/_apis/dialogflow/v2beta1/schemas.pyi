@@ -2515,6 +2515,13 @@ class GoogleCloudDialogflowV2KnowledgeAssistAnswer(
     suggestedQueryAnswer: GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswer
 
 @typing.type_check_only
+class GoogleCloudDialogflowV2KnowledgeAssistAnswerAdditionalSuggestedQueryResult(
+    typing_extensions.TypedDict, total=False
+):
+    answerRecord: str
+    suggestedQuery: GoogleCloudDialogflowV2KnowledgeAssistAnswerSuggestedQuery
+
+@typing.type_check_only
 class GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswer(
     typing_extensions.TypedDict, total=False
 ):
@@ -2565,11 +2572,22 @@ class GoogleCloudDialogflowV2KnowledgeAssistAnswerSuggestedQuery(
     typing_extensions.TypedDict, total=False
 ):
     queryText: str
+    searchContexts: _list[
+        GoogleCloudDialogflowV2KnowledgeAssistAnswerSuggestedQuerySearchContext
+    ]
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2KnowledgeAssistAnswerSuggestedQuerySearchContext(
+    typing_extensions.TypedDict, total=False
+):
+    key: str
+    value: str
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2KnowledgeAssistDebugInfo(
     typing_extensions.TypedDict, total=False
 ):
+    cesDebugInfo: dict[str, typing.Any]
     datastoreResponseReason: typing_extensions.Literal[
         "DATASTORE_RESPONSE_REASON_UNSPECIFIED",
         "NONE",
@@ -2594,6 +2612,9 @@ class GoogleCloudDialogflowV2KnowledgeAssistDebugInfo(
         "QUERY_CATEGORIZATION_RESULT_NOT_FOUND",
         "QUERY_CATEGORIZATION_FAILED",
     ]
+    queryGenerationDebugInfo: (
+        GoogleCloudDialogflowV2KnowledgeAssistDebugInfoQueryGenerationDebugInfo
+    )
     queryGenerationFailureReason: typing_extensions.Literal[
         "QUERY_GENERATION_FAILURE_REASON_UNSPECIFIED",
         "QUERY_GENERATION_OUT_OF_QUOTA",
@@ -2630,6 +2651,14 @@ class GoogleCloudDialogflowV2KnowledgeAssistDebugInfoKnowledgeAssistBehavior(
     useCustomSafetyFilterLevel: bool
     usePubsubDelivery: bool
     useTranslatedMessage: bool
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2KnowledgeAssistDebugInfoQueryGenerationDebugInfo(
+    typing_extensions.TypedDict, total=False
+):
+    candidatesTokenCount: int
+    promptTokenCount: int
+    totalTokenCount: int
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2KnowledgeOperationMetadata(
@@ -2802,6 +2831,9 @@ class GoogleCloudDialogflowV2SuggestFaqAnswersResponse(
 class GoogleCloudDialogflowV2SuggestKnowledgeAssistResponse(
     typing_extensions.TypedDict, total=False
 ):
+    additionalSuggestedQueryResults: _list[
+        GoogleCloudDialogflowV2KnowledgeAssistAnswerAdditionalSuggestedQueryResult
+    ]
     contextSize: int
     knowledgeAssistAnswer: GoogleCloudDialogflowV2KnowledgeAssistAnswer
     latestMessage: str
@@ -3488,6 +3520,7 @@ class GoogleCloudDialogflowV2beta1ConversationProfile(
     )
     notificationConfig: GoogleCloudDialogflowV2beta1NotificationConfig
     securitySettings: str
+    sipConfig: GoogleCloudDialogflowV2beta1SipConfig
     sttConfig: GoogleCloudDialogflowV2beta1SpeechToTextConfig
     timeZone: str
     ttsConfig: GoogleCloudDialogflowV2beta1SynthesizeSpeechConfig
@@ -3990,13 +4023,6 @@ class GoogleCloudDialogflowV2beta1HumanAgentAssistantConfig(
     notificationConfig: GoogleCloudDialogflowV2beta1NotificationConfig
 
 @typing.type_check_only
-class GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigConversationModelConfig(
-    typing_extensions.TypedDict, total=False
-):
-    baselineModelVersion: str
-    model: str
-
-@typing.type_check_only
 class GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigConversationProcessConfig(
     typing_extensions.TypedDict, total=False
 ):
@@ -4028,13 +4054,11 @@ class GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionConfig(
 class GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionFeatureConfig(
     typing_extensions.TypedDict, total=False
 ):
-    conversationModelConfig: (
-        GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigConversationModelConfig
-    )
     conversationProcessConfig: (
         GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigConversationProcessConfig
     )
     disableAgentQueryLogging: bool
+    disableQuerySearchContext: bool
     enableConversationAugmentedQuery: bool
     enableEventBasedSuggestion: bool
     enableQuerySuggestionOnly: bool
@@ -4045,6 +4069,13 @@ class GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionFeatureConf
     )
     raiSettings: GoogleCloudDialogflowV2beta1RaiSettings
     suggestionFeature: GoogleCloudDialogflowV2beta1SuggestionFeature
+    suggestionTriggerEvent: typing_extensions.Literal[
+        "TRIGGER_EVENT_UNSPECIFIED",
+        "END_OF_UTTERANCE",
+        "MANUAL_CALL",
+        "CUSTOMER_MESSAGE",
+        "AGENT_MESSAGE",
+    ]
     suggestionTriggerSettings: (
         GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionTriggerSettings
     )
@@ -4772,6 +4803,13 @@ class GoogleCloudDialogflowV2beta1KnowledgeAssistAnswer(
     )
 
 @typing.type_check_only
+class GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerAdditionalSuggestedQueryResult(
+    typing_extensions.TypedDict, total=False
+):
+    answerRecord: str
+    suggestedQuery: GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerSuggestedQuery
+
+@typing.type_check_only
 class GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswer(
     typing_extensions.TypedDict, total=False
 ):
@@ -4824,11 +4862,22 @@ class GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerSuggestedQuery(
     typing_extensions.TypedDict, total=False
 ):
     queryText: str
+    searchContexts: _list[
+        GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerSuggestedQuerySearchContext
+    ]
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerSuggestedQuerySearchContext(
+    typing_extensions.TypedDict, total=False
+):
+    key: str
+    value: str
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1KnowledgeAssistDebugInfo(
     typing_extensions.TypedDict, total=False
 ):
+    cesDebugInfo: dict[str, typing.Any]
     datastoreResponseReason: typing_extensions.Literal[
         "DATASTORE_RESPONSE_REASON_UNSPECIFIED",
         "NONE",
@@ -4853,6 +4902,9 @@ class GoogleCloudDialogflowV2beta1KnowledgeAssistDebugInfo(
         "QUERY_CATEGORIZATION_RESULT_NOT_FOUND",
         "QUERY_CATEGORIZATION_FAILED",
     ]
+    queryGenerationDebugInfo: (
+        GoogleCloudDialogflowV2beta1KnowledgeAssistDebugInfoQueryGenerationDebugInfo
+    )
     queryGenerationFailureReason: typing_extensions.Literal[
         "QUERY_GENERATION_FAILURE_REASON_UNSPECIFIED",
         "QUERY_GENERATION_OUT_OF_QUOTA",
@@ -4889,6 +4941,14 @@ class GoogleCloudDialogflowV2beta1KnowledgeAssistDebugInfoKnowledgeAssistBehavio
     useCustomSafetyFilterLevel: bool
     usePubsubDelivery: bool
     useTranslatedMessage: bool
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1KnowledgeAssistDebugInfoQueryGenerationDebugInfo(
+    typing_extensions.TypedDict, total=False
+):
+    candidatesTokenCount: int
+    promptTokenCount: int
+    totalTokenCount: int
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1KnowledgeBase(
@@ -5512,6 +5572,16 @@ class GoogleCloudDialogflowV2beta1SetSuggestionFeatureConfigRequest(
     )
 
 @typing.type_check_only
+class GoogleCloudDialogflowV2beta1SipConfig(typing_extensions.TypedDict, total=False):
+    allowVirtualAgentInteraction: bool
+    copyInboundCallLegHeaders: _list[str]
+    createConversationOnTheFly: bool
+    ignoreReinviteMediaDirection: bool
+    inactiveStart: bool
+    keepConversationRunning: bool
+    maxAudioRecordingDuration: str
+
+@typing.type_check_only
 class GoogleCloudDialogflowV2beta1SipTrunk(typing_extensions.TypedDict, total=False):
     connections: _list[GoogleCloudDialogflowV2beta1Connection]
     displayName: str
@@ -5682,6 +5752,9 @@ class GoogleCloudDialogflowV2beta1SuggestKnowledgeAssistRequest(
 class GoogleCloudDialogflowV2beta1SuggestKnowledgeAssistResponse(
     typing_extensions.TypedDict, total=False
 ):
+    additionalSuggestedQueryResults: _list[
+        GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerAdditionalSuggestedQueryResult
+    ]
     contextSize: int
     knowledgeAssistAnswer: GoogleCloudDialogflowV2beta1KnowledgeAssistAnswer
     latestMessage: str

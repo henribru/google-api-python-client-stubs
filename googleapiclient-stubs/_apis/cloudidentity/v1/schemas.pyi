@@ -640,6 +640,7 @@ class Membership(typing_extensions.TypedDict, total=False):
         "GROUP",
         "SHARED_DRIVE",
         "CBCM_BROWSER",
+        "CHROME_OS_DEVICE",
         "OTHER",
     ]
     updateTime: str

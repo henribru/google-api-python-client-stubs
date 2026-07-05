@@ -11,6 +11,15 @@ class AllConnectionStrings(typing_extensions.TypedDict, total=False):
     medium: str
 
 @typing.type_check_only
+class AmazonS3IcebergStorage(typing_extensions.TypedDict, total=False):
+    accessKeyId: str
+    bucket: str
+    endpoint: str
+    region: str
+    schemeType: typing_extensions.Literal["SCHEME_TYPE_UNSPECIFIED", "S3", "S3A"]
+    secretAccessKeySecret: str
+
+@typing.type_check_only
 class AutonomousDatabase(typing_extensions.TypedDict, total=False):
     adminPassword: str
     adminPasswordSecretVersion: str
@@ -286,6 +295,13 @@ class AutonomousDbVersion(typing_extensions.TypedDict, total=False):
     workloadUri: str
 
 @typing.type_check_only
+class AzureDataLakeStorageIcebergStorage(typing_extensions.TypedDict, total=False):
+    accountKeySecret: str
+    azureAccount: str
+    container: str
+    endpoint: str
+
+@typing.type_check_only
 class BackupDestinationDetails(typing_extensions.TypedDict, total=False):
     type: typing_extensions.Literal[
         "BACKUP_DESTINATION_TYPE_UNSPECIFIED",
@@ -331,6 +347,7 @@ class CloudExadataInfrastructureProperties(typing_extensions.TypedDict, total=Fa
     databaseServerType: str
     dbNodeStorageSizeGb: int
     dbServerVersion: str
+    exascaleConfig: ExascaleConfig
     maintenanceWindow: MaintenanceWindow
     maxCpuCount: int
     maxDataStorageTb: float
@@ -368,6 +385,7 @@ class CloudVmCluster(typing_extensions.TypedDict, total=False):
     createTime: str
     displayName: str
     exadataInfrastructure: str
+    exascaleDbStorageVault: str
     gcpOracleZone: str
     identityConnector: IdentityConnector
     labels: dict[str, typing.Any]
@@ -424,9 +442,19 @@ class CloudVmClusterProperties(typing_extensions.TypedDict, total=False):
         "FAILED",
         "MAINTENANCE_IN_PROGRESS",
     ]
+    storageManagementType: typing_extensions.Literal[
+        "STORAGE_MANAGEMENT_TYPE_UNSPECIFIED", "ASM", "EXASCALE"
+    ]
     storageSizeGb: int
     systemVersion: str
     timeZone: TimeZone
+
+@typing.type_check_only
+class ConfigureExascaleCloudExadataInfrastructureRequest(
+    typing_extensions.TypedDict, total=False
+):
+    requestId: str
+    totalStorageSizeGb: int
 
 @typing.type_check_only
 class CustomerContact(typing_extensions.TypedDict, total=False):
@@ -763,6 +791,17 @@ class DefinedTagValue(typing_extensions.TypedDict, total=False):
     tags: dict[str, typing.Any]
 
 @typing.type_check_only
+class DeploymentDiagnosticData(typing_extensions.TypedDict, total=False):
+    bucket: str
+    diagnosticEndTime: str
+    diagnosticStartTime: str
+    diagnosticState: typing_extensions.Literal[
+        "DIAGNOSTIC_STATE_UNSPECIFIED", "IN_PROGRESS", "SUCCEEDED", "FAILED"
+    ]
+    namespace: str
+    object: str
+
+@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -844,6 +883,11 @@ class ExadbVmClusterStorageDetails(typing_extensions.TypedDict, total=False):
     sizeInGbsPerNode: int
 
 @typing.type_check_only
+class ExascaleConfig(typing_extensions.TypedDict, total=False):
+    availableStorageSizeGb: int
+    totalStorageSizeGb: int
+
+@typing.type_check_only
 class ExascaleDbStorageDetails(typing_extensions.TypedDict, total=False):
     availableSizeGbs: int
     totalSizeGbs: int
@@ -853,6 +897,7 @@ class ExascaleDbStorageVault(typing_extensions.TypedDict, total=False):
     createTime: str
     displayName: str
     entitlementId: str
+    exadataInfrastructure: str
     gcpOracleZone: str
     labels: dict[str, typing.Any]
     name: str
@@ -910,6 +955,875 @@ class GiVersion(typing_extensions.TypedDict, total=False):
     version: str
 
 @typing.type_check_only
+class GlueIcebergCatalog(typing_extensions.TypedDict, total=False):
+    glueId: str
+
+@typing.type_check_only
+class GoldengateAmazonKinesisConnectionProperties(
+    typing_extensions.TypedDict, total=False
+):
+    accessKeyId: str
+    awsRegion: str
+    endpoint: str
+    secretAccessKeySecret: str
+    technologyType: str
+
+@typing.type_check_only
+class GoldengateAmazonRedshiftConnectionProperties(
+    typing_extensions.TypedDict, total=False
+):
+    connectionUrl: str
+    password: str
+    passwordSecretVersion: str
+    technologyType: str
+    username: str
+
+@typing.type_check_only
+class GoldengateAmazonS3ConnectionProperties(typing_extensions.TypedDict, total=False):
+    accessKeyId: str
+    endpoint: str
+    region: str
+    secretAccessKeySecret: str
+    technologyType: str
+
+@typing.type_check_only
+class GoldengateAzureDataLakeStorageConnectionProperties(
+    typing_extensions.TypedDict, total=False
+):
+    account: str
+    accountKeySecret: str
+    authenticationType: typing_extensions.Literal[
+        "AUTHENTICATION_TYPE_UNSPECIFIED",
+        "SHARED_KEY",
+        "SHARED_ACCESS_SIGNATURE",
+        "AZURE_ACTIVE_DIRECTORY",
+    ]
+    azureAuthorityHost: str
+    azureTenantId: str
+    clientId: str
+    clientSecret: str
+    endpoint: str
+    sasTokenSecret: str
+    technologyType: str
+
+@typing.type_check_only
+class GoldengateAzureSynapseAnalyticsConnectionProperties(
+    typing_extensions.TypedDict, total=False
+):
+    connectionString: str
+    password: str
+    passwordSecretVersion: str
+    technologyType: str
+    username: str
+
+@typing.type_check_only
+class GoldengateBackupSchedule(typing_extensions.TypedDict, total=False):
+    backupScheduledTime: str
+    bucket: str
+    compartmentId: str
+    frequencyBackupScheduled: typing_extensions.Literal[
+        "FREQUENCY_BACKUP_SCHEDULED_UNSPECIFIED", "DAILY", "WEEKLY", "MONTHLY"
+    ]
+    metadataOnly: bool
+    namespace: str
+
+@typing.type_check_only
+class GoldengateConnection(typing_extensions.TypedDict, total=False):
+    createTime: str
+    entitlementId: str
+    gcpOracleZone: str
+    labels: dict[str, typing.Any]
+    name: str
+    ociUrl: str
+    odbNetwork: str
+    odbSubnet: str
+    properties: GoldengateConnectionProperties
+
+@typing.type_check_only
+class GoldengateConnectionAssignment(typing_extensions.TypedDict, total=False):
+    createTime: str
+    displayName: str
+    entitlementId: str
+    labels: dict[str, typing.Any]
+    name: str
+    properties: GoldengateConnectionAssignmentProperties
+
+@typing.type_check_only
+class GoldengateConnectionAssignmentProperties(
+    typing_extensions.TypedDict, total=False
+):
+    alias: str
+    goldengateConnection: str
+    goldengateDeployment: str
+    ocid: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "FAILED", "UPDATING", "DELETING"
+    ]
+
+@typing.type_check_only
+class GoldengateConnectionProperties(typing_extensions.TypedDict, total=False):
+    amazonKinesisConnectionProperties: GoldengateAmazonKinesisConnectionProperties
+    amazonRedshiftConnectionProperties: GoldengateAmazonRedshiftConnectionProperties
+    amazonS3ConnectionProperties: GoldengateAmazonS3ConnectionProperties
+    azureDataLakeStorageConnectionProperties: (
+        GoldengateAzureDataLakeStorageConnectionProperties
+    )
+    azureSynapseAnalyticsConnectionProperties: (
+        GoldengateAzureSynapseAnalyticsConnectionProperties
+    )
+    connectionType: typing_extensions.Literal[
+        "GOLDENGATE_CONNECTION_TYPE_UNSPECIFIED",
+        "GOLDENGATE",
+        "KAFKA",
+        "KAFKA_SCHEMA_REGISTRY",
+        "MYSQL",
+        "JAVA_MESSAGE_SERVICE",
+        "MICROSOFT_SQLSERVER",
+        "OCI_OBJECT_STORAGE",
+        "ORACLE",
+        "AZURE_DATA_LAKE_STORAGE",
+        "POSTGRESQL",
+        "AZURE_SYNAPSE_ANALYTICS",
+        "SNOWFLAKE",
+        "AMAZON_S3",
+        "HDFS",
+        "ORACLE_AI_DATA_PLATFORM",
+        "ORACLE_NOSQL",
+        "MONGODB",
+        "AMAZON_KINESIS",
+        "AMAZON_REDSHIFT",
+        "DB2",
+        "REDIS",
+        "ELASTICSEARCH",
+        "GENERIC",
+        "GOOGLE_CLOUD_STORAGE",
+        "GOOGLE_BIGQUERY",
+        "DATABRICKS",
+        "GOOGLE_PUBSUB",
+        "MICROSOFT_FABRIC",
+        "ICEBERG",
+    ]
+    databricksConnectionProperties: GoldengateDatabricksConnectionProperties
+    db2ConnectionProperties: GoldengateDb2ConnectionProperties
+    description: str
+    displayName: str
+    elasticsearchConnectionProperties: GoldengateElasticsearchConnectionProperties
+    genericConnectionProperties: GoldengateGenericConnectionProperties
+    goldengateConnectionProperties: GoldengateGoldengateConnectionProperties
+    googleBigQueryConnectionProperties: GoldengateGoogleBigQueryConnectionProperties
+    googleCloudStorageConnectionProperties: (
+        GoldengateGoogleCloudStorageConnectionProperties
+    )
+    googlePubsubConnectionProperties: GoldengateGooglePubsubConnectionProperties
+    hdfsConnectionProperties: GoldengateHdfsConnectionProperties
+    icebergConnectionProperties: GoldengateIcebergConnectionProperties
+    ingressIpAddresses: _list[str]
+    javaMessageServiceConnectionProperties: (
+        GoldengateJavaMessageServiceConnectionProperties
+    )
+    kafkaConnectionProperties: GoldengateKafkaConnectionProperties
+    kafkaSchemaRegistryConnectionProperties: (
+        GoldengateKafkaSchemaRegistryConnectionProperties
+    )
+    lifecycleDetails: str
+    lifecycleState: typing_extensions.Literal[
+        "GOLDENGATE_CONNECTION_LIFECYCLE_STATE_UNSPECIFIED",
+        "CREATING",
+        "ACTIVE",
+        "UPDATING",
+        "DELETING",
+        "DELETED",
+        "FAILED",
+    ]
+    microsoftFabricConnectionProperties: GoldengateMicrosoftFabricConnectionProperties
+    microsoftSqlserverConnectionProperties: (
+        GoldengateMicrosoftSqlserverConnectionProperties
+    )
+    mongodbConnectionProperties: GoldengateMongodbConnectionProperties
+    mysqlConnectionProperties: GoldengateMysqlConnectionProperties
+    ociObjectStorageConnectionProperties: GoldengateOciObjectStorageConnectionProperties
+    ocid: str
+    oracleAiDataPlatformConnectionProperties: (
+        GoldengateOracleAIDataPlatformConnectionProperties
+    )
+    oracleConnectionProperties: GoldengateOracleConnectionProperties
+    oracleNosqlConnectionProperties: GoldengateOracleNosqlConnectionProperties
+    postgresqlConnectionProperties: GoldengatePostgresqlConnectionProperties
+    redisConnectionProperties: GoldengateRedisConnectionProperties
+    routingMethod: typing_extensions.Literal[
+        "GOLDENGATE_CONNECTION_ROUTING_METHOD_UNSPECIFIED",
+        "SHARED_DEPLOYMENT_ENDPOINT",
+        "DEDICATED_ENDPOINT",
+    ]
+    snowflakeConnectionProperties: GoldengateSnowflakeConnectionProperties
+    updateTime: str
+
+@typing.type_check_only
+class GoldengateConnectionType(typing_extensions.TypedDict, total=False):
+    connectionType: typing_extensions.Literal[
+        "CONNECTION_TYPE_UNSPECIFIED",
+        "GOLDENGATE",
+        "KAFKA",
+        "KAFKA_SCHEMA_REGISTRY",
+        "MYSQL",
+        "JAVA_MESSAGE_SERVICE",
+        "MICROSOFT_SQLSERVER",
+        "OCI_OBJECT_STORAGE",
+        "ORACLE",
+        "AZURE_DATA_LAKE_STORAGE",
+        "POSTGRESQL",
+        "AZURE_SYNAPSE_ANALYTICS",
+        "SNOWFLAKE",
+        "AMAZON_S3",
+        "HDFS",
+        "ORACLE_AI_DATA_PLATFORM",
+        "ORACLE_NOSQL",
+        "MONGODB",
+        "AMAZON_KINESIS",
+        "AMAZON_REDSHIFT",
+        "DB2",
+        "REDIS",
+        "ELASTICSEARCH",
+        "GENERIC",
+        "GOOGLE_CLOUD_STORAGE",
+        "GOOGLE_BIGQUERY",
+        "DATABRICKS",
+        "GOOGLE_PUBSUB",
+        "MICROSOFT_FABRIC",
+        "ICEBERG",
+    ]
+    name: str
+    technologyTypes: _list[str]
+
+@typing.type_check_only
+class GoldengateDatabricksConnectionProperties(
+    typing_extensions.TypedDict, total=False
+):
+    authenticationType: typing_extensions.Literal[
+        "DATABRICKS_AUTHENTICATION_TYPE_UNSPECIFIED",
+        "PERSONAL_ACCESS_TOKEN",
+        "OAUTH_M2M",
+    ]
+    clientId: str
+    clientSecret: str
+    connectionUrl: str
+    password: str
+    passwordSecretVersion: str
+    storageCredential: str
+    technologyType: str
+
+@typing.type_check_only
+class GoldengateDb2ConnectionProperties(typing_extensions.TypedDict, total=False):
+    additionalAttributes: _list[NameValuePair]
+    database: str
+    host: str
+    password: str
+    passwordSecretVersion: str
+    port: int
+    securityProtocol: typing_extensions.Literal[
+        "DB2_SECURITY_PROTOCOL_UNSPECIFIED", "PLAIN", "TLS"
+    ]
+    sslClientKeystashFile: str
+    sslClientKeystoredbFile: str
+    sslServerCertificateFile: str
+    technologyType: str
+    username: str
+
+@typing.type_check_only
+class GoldengateDeployment(typing_extensions.TypedDict, total=False):
+    createTime: str
+    displayName: str
+    entitlementId: str
+    gcpOracleZone: str
+    labels: dict[str, typing.Any]
+    name: str
+    ociUrl: str
+    odbNetwork: str
+    odbSubnet: str
+    properties: GoldengateDeploymentProperties
+
+@typing.type_check_only
+class GoldengateDeploymentEnvironment(typing_extensions.TypedDict, total=False):
+    autoScalingEnabled: bool
+    category: typing_extensions.Literal[
+        "DEPLOYMENT_CATEGORY_UNSPECIFIED",
+        "DATA_REPLICATION_CATEGORY",
+        "DATA_TRANSFORMS_CATEGORY",
+    ]
+    defaultCpuCoreCount: int
+    displayName: str
+    environmentType: typing_extensions.Literal[
+        "DEPLOYMENT_ENVIRONMENT_TYPE_UNSPECIFIED",
+        "PRODUCTION",
+        "DEVELOPMENT_OR_TESTING",
+    ]
+    maxCpuCoreCount: int
+    memoryGbPerCpuCore: int
+    minCpuCoreCount: int
+    name: str
+    networkBandwidthGbpsPerCpuCore: int
+    storageUsageLimitGbPerCpuCore: int
+
+@typing.type_check_only
+class GoldengateDeploymentLock(typing_extensions.TypedDict, total=False):
+    compartmentId: str
+    createTime: str
+    message: str
+    relatedResourceId: str
+    type: typing_extensions.Literal["LOCK_TYPE_UNSPECIFIED", "FULL", "DELETE"]
+
+@typing.type_check_only
+class GoldengateDeploymentProperties(typing_extensions.TypedDict, total=False):
+    backupSchedule: GoldengateBackupSchedule
+    category: typing_extensions.Literal[
+        "GOLDENGATE_DEPLOYMENT_CATEGORY_UNSPECIFIED",
+        "DATA_REPLICATION",
+        "DATA_TRANSFORMS",
+    ]
+    cpuCoreCount: int
+    deploymentBackupId: str
+    deploymentDiagnosticData: DeploymentDiagnosticData
+    deploymentRole: typing_extensions.Literal[
+        "GOLDENGATE_DEPLOYMENT_ROLE_TYPE_UNSPECIFIED", "PRIMARY", "STANDBY"
+    ]
+    deploymentType: str
+    deploymentUrl: str
+    description: str
+    environmentType: str
+    fqdn: str
+    healthy: bool
+    ingressIps: _list[IngressIp]
+    isAutoScalingEnabled: bool
+    isLatestVersion: bool
+    isPublic: bool
+    isStorageUtilizationLimitExceeded: bool
+    lastBackupScheduleTime: str
+    licenseModel: typing_extensions.Literal[
+        "LICENSE_MODEL_UNSPECIFIED", "LICENSE_INCLUDED", "BRING_YOUR_OWN_LICENSE"
+    ]
+    lifecycleDetails: str
+    lifecycleState: typing_extensions.Literal[
+        "GOLDENGATE_DEPLOYMENT_LIFECYCLE_STATE_UNSPECIFIED",
+        "CREATING",
+        "UPDATING",
+        "ACTIVE",
+        "INACTIVE",
+        "DELETING",
+        "DELETED",
+        "FAILED",
+        "NEEDS_ATTENTION",
+        "IN_PROGRESS",
+        "CANCELLING",
+        "CANCELLED",
+        "SUCCEEDED",
+        "WAITING",
+    ]
+    lifecycleSubState: typing_extensions.Literal[
+        "GOLDENGATE_DEPLOYMENT_LIFECYCLE_SUB_STATE_UNSPECIFIED",
+        "RECOVERING",
+        "STARTING",
+        "STOPPING",
+        "MOVING",
+        "UPGRADING",
+        "RESTORING",
+        "BACKING_UP",
+        "ROLLING_BACK",
+    ]
+    loadBalancerId: str
+    loadBalancerSubnetId: str
+    locks: _list[GoldengateDeploymentLock]
+    maintenanceConfig: GoldengateMaintenanceConfig
+    maintenanceWindow: GoldengateMaintenanceWindow
+    nextBackupScheduleTime: str
+    nextMaintenanceActionType: typing_extensions.Literal[
+        "NEXT_MAINTENANCE_ACTION_TYPE_UNSPECIFIED", "UPGRADE"
+    ]
+    nextMaintenanceDescription: str
+    nextMaintenanceTime: str
+    nsgIds: _list[str]
+    ocid: str
+    oggData: GoldengateOggDeployment
+    oggVersionSupportEndTime: str
+    placements: _list[GoldengatePlacement]
+    privateIpAddress: str
+    publicIpAddress: str
+    roleChangeTime: str
+    storageUtilizationBytes: str
+    updateTime: str
+    upgradeRequiredTime: str
+
+@typing.type_check_only
+class GoldengateDeploymentType(typing_extensions.TypedDict, total=False):
+    category: typing_extensions.Literal[
+        "DEPLOYMENT_CATEGORY_UNSPECIFIED",
+        "DATA_REPLICATION_CATEGORY",
+        "DATA_TRANSFORMS_CATEGORY",
+    ]
+    connectionTypes: _list[str]
+    defaultUsername: str
+    deploymentType: typing_extensions.Literal[
+        "DEPLOYMENT_TYPE_UNSPECIFIED",
+        "OGG",
+        "DATABASE_ORACLE",
+        "BIGDATA",
+        "DATABASE_MICROSOFT_SQLSERVER",
+        "DATABASE_MYSQL",
+        "DATABASE_POSTGRESQL",
+        "DATABASE_DB2ZOS",
+        "DATABASE_DB2I",
+        "GGSA",
+        "DATA_TRANSFORMS",
+    ]
+    displayName: str
+    name: str
+    oggVersion: str
+    sourceTechnologies: _list[str]
+    supportedCapabilities: _list[str]
+    supportedTechnologiesUrl: str
+    targetTechnologies: _list[str]
+
+@typing.type_check_only
+class GoldengateDeploymentVersion(typing_extensions.TypedDict, total=False):
+    name: str
+    ocid: str
+    properties: GoldengateDeploymentVersionProperties
+
+@typing.type_check_only
+class GoldengateDeploymentVersionProperties(typing_extensions.TypedDict, total=False):
+    deploymentType: typing_extensions.Literal[
+        "DEPLOYMENT_TYPE_UNSPECIFIED",
+        "OGG",
+        "DATABASE_ORACLE",
+        "BIGDATA",
+        "DATABASE_MICROSOFT_SQLSERVER",
+        "DATABASE_MYSQL",
+        "DATABASE_POSTGRESQL",
+        "DATABASE_DB2ZOS",
+        "DATABASE_DB2I",
+        "GGSA",
+        "DATA_TRANSFORMS",
+    ]
+    oggVersion: str
+    releaseTime: str
+    releaseType: typing_extensions.Literal[
+        "DEPLOYMENT_RELEASE_TYPE_UNSPECIFIED", "MAJOR", "BUNDLE", "MINOR"
+    ]
+    securityFix: bool
+    supportEndTime: str
+
+@typing.type_check_only
+class GoldengateElasticsearchConnectionProperties(
+    typing_extensions.TypedDict, total=False
+):
+    authenticationType: typing_extensions.Literal[
+        "ELASTICSEARCH_AUTHENTICATION_TYPE_UNSPECIFIED", "NONE", "BASIC"
+    ]
+    fingerprint: str
+    password: str
+    passwordSecretVersion: str
+    securityProtocol: typing_extensions.Literal[
+        "ELASTICSEARCH_SECURITY_PROTOCOL_UNSPECIFIED", "PLAIN", "TLS"
+    ]
+    servers: str
+    technologyType: str
+    username: str
+
+@typing.type_check_only
+class GoldengateGenericConnectionProperties(typing_extensions.TypedDict, total=False):
+    host: str
+    technologyType: str
+
+@typing.type_check_only
+class GoldengateGoldengateConnectionProperties(
+    typing_extensions.TypedDict, total=False
+):
+    goldengateDeploymentId: str
+    host: str
+    password: str
+    passwordSecretVersion: str
+    port: int
+    technologyType: str
+    username: str
+
+@typing.type_check_only
+class GoldengateGoogleBigQueryConnectionProperties(
+    typing_extensions.TypedDict, total=False
+):
+    serviceAccountKeyFile: str
+    technologyType: str
+
+@typing.type_check_only
+class GoldengateGoogleCloudStorageConnectionProperties(
+    typing_extensions.TypedDict, total=False
+):
+    serviceAccountKeyFile: str
+    technologyType: str
+
+@typing.type_check_only
+class GoldengateGooglePubsubConnectionProperties(
+    typing_extensions.TypedDict, total=False
+):
+    serviceAccountKeyFile: str
+    technologyType: str
+
+@typing.type_check_only
+class GoldengateGroupToRolesMapping(typing_extensions.TypedDict, total=False):
+    administratorGroupId: str
+    operatorGroupId: str
+    securityGroupId: str
+    userGroupId: str
+
+@typing.type_check_only
+class GoldengateHdfsConnectionProperties(typing_extensions.TypedDict, total=False):
+    coreSiteXml: str
+    technologyType: str
+
+@typing.type_check_only
+class GoldengateIcebergConnectionProperties(typing_extensions.TypedDict, total=False):
+    catalog: IcebergCatalog
+    storage: IcebergStorage
+    technologyType: str
+
+@typing.type_check_only
+class GoldengateJavaMessageServiceConnectionProperties(
+    typing_extensions.TypedDict, total=False
+):
+    authenticationType: typing_extensions.Literal[
+        "JMS_AUTHENTICATION_TYPE_UNSPECIFIED", "NONE", "BASIC"
+    ]
+    connectionFactory: str
+    connectionUrl: str
+    jndiConnectionFactory: str
+    jndiInitialContextFactory: str
+    jndiProviderUrl: str
+    jndiSecurityCredentialsSecret: str
+    jndiSecurityPrincipal: str
+    keyStoreFile: str
+    keyStorePassword: str
+    keyStorePasswordSecretVersion: str
+    password: str
+    passwordSecretVersion: str
+    securityProtocol: typing_extensions.Literal[
+        "JMS_SECURITY_PROTOCOL_UNSPECIFIED", "PLAIN", "TLS", "MTLS"
+    ]
+    sslKeyPassword: str
+    sslKeyPasswordSecretVersion: str
+    technologyType: str
+    trustStoreFile: str
+    trustStorePassword: str
+    trustStorePasswordSecretVersion: str
+    useJndi: bool
+    username: str
+
+@typing.type_check_only
+class GoldengateKafkaConnectionProperties(typing_extensions.TypedDict, total=False):
+    bootstrapServers: _list[KafkaBootstrapServer]
+    clusterId: str
+    consumerPropertiesFile: str
+    keyStoreFile: str
+    keyStorePassword: str
+    keyStorePasswordSecretVersion: str
+    password: str
+    passwordSecretVersion: str
+    producerPropertiesFile: str
+    securityProtocol: typing_extensions.Literal[
+        "KAFKA_SECURITY_PROTOCOL_UNSPECIFIED",
+        "SSL",
+        "SASL_SSL",
+        "PLAINTEXT",
+        "SASL_PLAINTEXT",
+    ]
+    sslKeyPassword: str
+    sslKeyPasswordSecretVersion: str
+    streamPoolId: str
+    technologyType: str
+    trustStoreFile: str
+    trustStorePassword: str
+    trustStorePasswordSecretVersion: str
+    useResourcePrincipal: bool
+    username: str
+
+@typing.type_check_only
+class GoldengateKafkaSchemaRegistryConnectionProperties(
+    typing_extensions.TypedDict, total=False
+):
+    authenticationType: typing_extensions.Literal[
+        "AUTHENTICATION_TYPE_UNSPECIFIED", "NONE", "BASIC", "MUTUAL"
+    ]
+    keyStoreFile: str
+    keyStorePassword: str
+    keyStorePasswordSecretVersion: str
+    password: str
+    passwordSecretVersion: str
+    sslKeyPassword: str
+    sslKeyPasswordSecretVersion: str
+    technologyType: str
+    trustStoreFile: str
+    trustStorePassword: str
+    trustStorePasswordSecretVersion: str
+    url: str
+    username: str
+
+@typing.type_check_only
+class GoldengateMaintenanceConfig(typing_extensions.TypedDict, total=False):
+    bundleReleaseUpgradePeriodDays: int
+    interimReleaseUpgradePeriodDays: int
+    isInterimReleaseAutoUpgradeEnabled: bool
+    majorReleaseUpgradePeriodDays: int
+    securityPatchUpgradePeriodDays: int
+
+@typing.type_check_only
+class GoldengateMaintenanceWindow(typing_extensions.TypedDict, total=False):
+    day: typing_extensions.Literal[
+        "DAY_OF_WEEK_UNSPECIFIED",
+        "MONDAY",
+        "TUESDAY",
+        "WEDNESDAY",
+        "THURSDAY",
+        "FRIDAY",
+        "SATURDAY",
+        "SUNDAY",
+    ]
+    startHour: int
+
+@typing.type_check_only
+class GoldengateMicrosoftFabricConnectionProperties(
+    typing_extensions.TypedDict, total=False
+):
+    clientId: str
+    clientSecret: str
+    endpoint: str
+    technologyType: str
+    tenantId: str
+
+@typing.type_check_only
+class GoldengateMicrosoftSqlserverConnectionProperties(
+    typing_extensions.TypedDict, total=False
+):
+    additionalAttributes: _list[NameValuePair]
+    database: str
+    host: str
+    password: str
+    passwordSecretVersion: str
+    port: int
+    securityProtocol: typing_extensions.Literal[
+        "MICROSOFT_SQLSERVER_SECURITY_PROTOCOL_UNSPECIFIED", "PLAIN", "TLS"
+    ]
+    serverCertificateValidationRequired: bool
+    sslCaFile: str
+    technologyType: str
+    username: str
+
+@typing.type_check_only
+class GoldengateMongodbConnectionProperties(typing_extensions.TypedDict, total=False):
+    connectionString: str
+    databaseId: str
+    password: str
+    passwordSecretVersion: str
+    securityProtocol: typing_extensions.Literal[
+        "MONGODB_SECURITY_PROTOCOL_UNSPECIFIED", "PLAIN", "TLS", "MTLS"
+    ]
+    technologyType: str
+    tlsCaFile: str
+    tlsCertificateKeyFile: str
+    tlsCertificateKeyFilePassword: str
+    tlsCertificateKeyFilePasswordSecretVersion: str
+    username: str
+
+@typing.type_check_only
+class GoldengateMysqlConnectionProperties(typing_extensions.TypedDict, total=False):
+    additionalAttributes: _list[NameValuePair]
+    database: str
+    dbSystemId: str
+    host: str
+    password: str
+    passwordSecretVersion: str
+    port: int
+    securityProtocol: typing_extensions.Literal[
+        "MYSQL_SECURITY_PROTOCOL_UNSPECIFIED", "PLAIN", "TLS", "MTLS"
+    ]
+    sslCaFile: str
+    sslCertFile: str
+    sslCrlFile: str
+    sslKeyFile: str
+    sslMode: typing_extensions.Literal[
+        "SSL_MODE_UNSPECIFIED",
+        "DISABLED",
+        "PREFERRED",
+        "REQUIRED",
+        "VERIFY_CA",
+        "VERIFY_IDENTITY",
+    ]
+    technologyType: str
+    username: str
+
+@typing.type_check_only
+class GoldengateOciObjectStorageConnectionProperties(
+    typing_extensions.TypedDict, total=False
+):
+    privateKeyFile: str
+    privateKeyPassphraseSecret: str
+    publicKeyFingerprint: str
+    region: str
+    technologyType: str
+    tenancyId: str
+    useResourcePrincipal: bool
+    userId: str
+
+@typing.type_check_only
+class GoldengateOggDeployment(typing_extensions.TypedDict, total=False):
+    adminPassword: str
+    adminPasswordSecretVersion: str
+    adminUsername: str
+    certificate: str
+    credentialStore: typing_extensions.Literal[
+        "CREDENTIAL_STORE_UNSPECIFIED", "GOLDENGATE", "IAM"
+    ]
+    deployment: str
+    groupRolesMapping: GoldengateGroupToRolesMapping
+    identityDomainId: str
+    oggVersion: str
+    passwordSecretId: str
+
+@typing.type_check_only
+class GoldengateOracleAIDataPlatformConnectionProperties(
+    typing_extensions.TypedDict, total=False
+):
+    connectionUrl: str
+    privateKeyFile: str
+    privateKeyPassphraseSecret: str
+    publicKeyFingerprint: str
+    region: str
+    technologyType: str
+    tenancyId: str
+    useResourcePrincipal: bool
+    userId: str
+
+@typing.type_check_only
+class GoldengateOracleConnectionProperties(typing_extensions.TypedDict, total=False):
+    authenticationMode: typing_extensions.Literal[
+        "ORACLE_AUTHENTICATION_MODE_UNSPECIFIED", "TLS", "MTLS"
+    ]
+    connectionString: str
+    gcpOracleDatabaseId: str
+    password: str
+    passwordSecretVersion: str
+    sessionMode: typing_extensions.Literal[
+        "SESSION_MODE_UNSPECIFIED", "DIRECT", "REDIRECT"
+    ]
+    technologyType: str
+    username: str
+    walletFile: str
+
+@typing.type_check_only
+class GoldengateOracleNosqlConnectionProperties(
+    typing_extensions.TypedDict, total=False
+):
+    privateKeyFile: str
+    privateKeyPassphraseSecret: str
+    publicKeyFingerprint: str
+    region: str
+    technologyType: str
+    tenancyId: str
+    useResourcePrincipal: bool
+    userId: str
+
+@typing.type_check_only
+class GoldengatePlacement(typing_extensions.TypedDict, total=False):
+    availabilityDomain: str
+    faultDomain: str
+
+@typing.type_check_only
+class GoldengatePostgresqlConnectionProperties(
+    typing_extensions.TypedDict, total=False
+):
+    additionalAttributes: _list[NameValuePair]
+    database: str
+    dbSystemId: str
+    host: str
+    password: str
+    passwordSecretVersion: str
+    port: int
+    securityProtocol: typing_extensions.Literal[
+        "POSTGRESQL_SECURITY_PROTOCOL_UNSPECIFIED", "PLAIN", "TLS", "MTLS"
+    ]
+    sslCaFile: str
+    sslCertFile: str
+    sslCrlFile: str
+    sslKeyFile: str
+    sslMode: typing_extensions.Literal[
+        "POSTGRESQL_SSL_MODE_UNSPECIFIED",
+        "PREFER",
+        "REQUIRE",
+        "VERIFY_CA",
+        "VERIFY_FULL",
+    ]
+    technologyType: str
+    username: str
+
+@typing.type_check_only
+class GoldengateRedisConnectionProperties(typing_extensions.TypedDict, total=False):
+    authenticationType: typing_extensions.Literal[
+        "REDIS_AUTHENTICATION_TYPE_UNSPECIFIED", "NONE", "BASIC"
+    ]
+    keyStoreFile: str
+    keyStorePassword: str
+    keyStorePasswordSecretVersion: str
+    password: str
+    passwordSecretVersion: str
+    redisClusterId: str
+    securityProtocol: typing_extensions.Literal[
+        "REDIS_SECURITY_PROTOCOL_UNSPECIFIED", "PLAIN", "TLS", "MTLS"
+    ]
+    servers: str
+    technologyType: str
+    trustStoreFile: str
+    trustStorePassword: str
+    trustStorePasswordSecretVersion: str
+    username: str
+
+@typing.type_check_only
+class GoldengateSnowflakeConnectionProperties(typing_extensions.TypedDict, total=False):
+    authenticationType: typing_extensions.Literal[
+        "AUTHENTICATION_TYPE_UNSPECIFIED", "BASIC", "KEY_PAIR"
+    ]
+    connectionUrl: str
+    password: str
+    passwordSecretVersion: str
+    privateKeyFile: str
+    privateKeyPassphraseSecret: str
+    technologyType: str
+    username: str
+
+@typing.type_check_only
+class GoogleCloudStorageIcebergStorage(typing_extensions.TypedDict, total=False):
+    bucket: str
+    projectId: str
+    serviceAccountKeyFile: str
+
+@typing.type_check_only
+class IcebergCatalog(typing_extensions.TypedDict, total=False):
+    catalogType: typing_extensions.Literal[
+        "CATALOG_TYPE_UNSPECIFIED", "GLUE", "HADOOP", "NESSIE", "POLARIS", "REST"
+    ]
+    glueIcebergCatalog: GlueIcebergCatalog
+    nessieIcebergCatalog: NessieIcebergCatalog
+    polarisIcebergCatalog: PolarisIcebergCatalog
+    restIcebergCatalog: RestIcebergCatalog
+
+@typing.type_check_only
+class IcebergStorage(typing_extensions.TypedDict, total=False):
+    amazonS3IcebergStorage: AmazonS3IcebergStorage
+    azureDataLakeStorageIcebergStorage: AzureDataLakeStorageIcebergStorage
+    googleCloudStorageIcebergStorage: GoogleCloudStorageIcebergStorage
+    storageType: typing_extensions.Literal[
+        "STORAGE_TYPE_UNSPECIFIED",
+        "AMAZON_S3",
+        "GOOGLE_CLOUD_STORAGE",
+        "AZURE_DATA_LAKE_STORAGE",
+    ]
+
+@typing.type_check_only
 class IdentityConnector(typing_extensions.TypedDict, total=False):
     connectionState: typing_extensions.Literal[
         "CONNECTION_STATE_UNSPECIFIED",
@@ -919,6 +1833,16 @@ class IdentityConnector(typing_extensions.TypedDict, total=False):
         "UNKNOWN",
     ]
     serviceAgentEmail: str
+
+@typing.type_check_only
+class IngressIp(typing_extensions.TypedDict, total=False):
+    ingressIpAddress: str
+
+@typing.type_check_only
+class KafkaBootstrapServer(typing_extensions.TypedDict, total=False):
+    host: str
+    port: int
+    privateIpAddress: str
 
 @typing.type_check_only
 class ListAutonomousDatabaseBackupsResponse(typing_extensions.TypedDict, total=False):
@@ -1019,6 +1943,54 @@ class ListGiVersionsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class ListGoldengateConnectionAssignmentsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    goldengateConnectionAssignments: _list[GoldengateConnectionAssignment]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListGoldengateConnectionTypesResponse(typing_extensions.TypedDict, total=False):
+    goldengateConnectionTypes: _list[GoldengateConnectionType]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListGoldengateConnectionsResponse(typing_extensions.TypedDict, total=False):
+    goldengateConnections: _list[GoldengateConnection]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListGoldengateDeploymentEnvironmentsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    goldengateDeploymentEnvironments: _list[GoldengateDeploymentEnvironment]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListGoldengateDeploymentTypesResponse(typing_extensions.TypedDict, total=False):
+    goldengateDeploymentTypes: _list[GoldengateDeploymentType]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListGoldengateDeploymentVersionsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    goldengateDeploymentVersions: _list[GoldengateDeploymentVersion]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListGoldengateDeploymentsResponse(typing_extensions.TypedDict, total=False):
+    goldengateDeployments: _list[GoldengateDeployment]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
 class ListLocationsResponse(typing_extensions.TypedDict, total=False):
     locations: _list[Location]
     nextPageToken: str
@@ -1113,6 +2085,16 @@ class MinorVersion(typing_extensions.TypedDict, total=False):
     gridImageId: str
     name: str
     version: str
+
+@typing.type_check_only
+class NameValuePair(typing_extensions.TypedDict, total=False):
+    key: str
+    value: str
+
+@typing.type_check_only
+class NessieIcebergCatalog(typing_extensions.TypedDict, total=False):
+    branch: str
+    uri: str
 
 @typing.type_check_only
 class OdbNetwork(typing_extensions.TypedDict, total=False):
@@ -1223,11 +2205,24 @@ class PluggableDatabaseProperties(typing_extensions.TypedDict, total=False):
     pdbNodeLevelDetails: _list[PluggableDatabaseNodeLevelDetails]
 
 @typing.type_check_only
+class PolarisIcebergCatalog(typing_extensions.TypedDict, total=False):
+    clientId: str
+    clientSecret: str
+    polarisCatalog: str
+    principalRole: str
+    uri: str
+
+@typing.type_check_only
 class RemoveVirtualMachineExadbVmClusterRequest(
     typing_extensions.TypedDict, total=False
 ):
     hostnames: _list[str]
     requestId: str
+
+@typing.type_check_only
+class RestIcebergCatalog(typing_extensions.TypedDict, total=False):
+    properties: str
+    uri: str
 
 @typing.type_check_only
 class RestartAutonomousDatabaseRequest(typing_extensions.TypedDict, total=False): ...
@@ -1260,6 +2255,9 @@ class SourceConfig(typing_extensions.TypedDict, total=False):
 class StartAutonomousDatabaseRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class StartGoldengateDeploymentRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
@@ -1269,6 +2267,9 @@ class Status(typing_extensions.TypedDict, total=False):
 class StopAutonomousDatabaseRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class StopGoldengateDeploymentRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class StorageSizeDetails(typing_extensions.TypedDict, total=False):
     dataStorageSizeInGbs: int
     recoStorageSizeInGbs: int
@@ -1276,6 +2277,29 @@ class StorageSizeDetails(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SwitchoverAutonomousDatabaseRequest(typing_extensions.TypedDict, total=False):
     peerAutonomousDatabase: str
+
+@typing.type_check_only
+class TestConnectionAssignmentError(typing_extensions.TypedDict, total=False):
+    action: str
+    code: str
+    issue: str
+    message: str
+
+@typing.type_check_only
+class TestGoldengateConnectionAssignmentRequest(
+    typing_extensions.TypedDict, total=False
+):
+    type: typing_extensions.Literal["TEST_TYPE_UNSPECIFIED", "DEFAULT"]
+
+@typing.type_check_only
+class TestGoldengateConnectionAssignmentResponse(
+    typing_extensions.TypedDict, total=False
+):
+    error: TestConnectionAssignmentError
+    errors: _list[TestConnectionAssignmentError]
+    resultType: typing_extensions.Literal[
+        "RESULT_TYPE_UNSPECIFIED", "SUCCEEDED", "FAILED", "TIMED_OUT"
+    ]
 
 @typing.type_check_only
 class TimeOfDay(typing_extensions.TypedDict, total=False):

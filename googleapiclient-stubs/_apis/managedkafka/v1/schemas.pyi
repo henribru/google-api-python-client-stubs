@@ -333,6 +333,11 @@ class SchemaRegistry(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
+class SchemaSubject(typing_extensions.TypedDict, total=False):
+    name: str
+    versions: _list[str]
+
+@typing.type_check_only
 class SchemaVersion(typing_extensions.TypedDict, total=False):
     id: int
     references: _list[SchemaReference]

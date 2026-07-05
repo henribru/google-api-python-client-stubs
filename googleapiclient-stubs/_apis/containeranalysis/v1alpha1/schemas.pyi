@@ -10,7 +10,7 @@ class AISkillAnalysisNote(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class AISkillAnalysisOccurrence(typing_extensions.TypedDict, total=False):
     findings: _list[Finding]
-    maxSeverity: str
+    maxSeverity: typing_extensions.Literal["SEVERITY_UNSPECIFIED", "CRITICAL", "HIGH"]
     skillName: str
 
 @typing.type_check_only
@@ -523,6 +523,7 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1BuildOptions(
         "E2_HIGHCPU_8",
         "E2_HIGHCPU_32",
         "E2_MEDIUM",
+        "E2_STANDARD_2",
     ]
     pool: ContaineranalysisGoogleDevtoolsCloudbuildV1BuildOptionsPoolOption
     pubsubTopic: str
@@ -1088,9 +1089,10 @@ class FileOccurrence(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Finding(typing_extensions.TypedDict, total=False):
     category: str
+    details: str
     location: FindingLocation
-    scanner: str
-    severity: str
+    scanner: typing_extensions.Literal["SCANNER_UNSPECIFIED", "STATIC", "LLM"]
+    severity: typing_extensions.Literal["SEVERITY_UNSPECIFIED", "CRITICAL", "HIGH"]
 
 @typing.type_check_only
 class FindingLocation(typing_extensions.TypedDict, total=False):
@@ -1993,6 +1995,7 @@ class VulnerabilityDetails(typing_extensions.TypedDict, total=False):
     cvssScore: float
     cvssV2: CVSS
     cvssV3: CVSS
+    cvssV4: CVSS
     cvssVersion: typing_extensions.Literal[
         "CVSS_VERSION_UNSPECIFIED", "CVSS_VERSION_2", "CVSS_VERSION_3", "CVSS_VERSION_4"
     ]
@@ -2020,6 +2023,7 @@ class VulnerabilityType(typing_extensions.TypedDict, total=False):
     advisoryPublishTime: str
     cvssScore: float
     cvssV2: CVSS
+    cvssV4: CVSS
     cvssVersion: typing_extensions.Literal[
         "CVSS_VERSION_UNSPECIFIED", "CVSS_VERSION_2", "CVSS_VERSION_3", "CVSS_VERSION_4"
     ]

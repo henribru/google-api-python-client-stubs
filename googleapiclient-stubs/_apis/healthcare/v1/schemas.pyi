@@ -125,6 +125,7 @@ class BulkDeleteResourcesRequest(typing_extensions.TypedDict, total=False):
     gcsDestination: GoogleCloudHealthcareV1FhirGcsDestination
     type: str
     until: str
+    validateOnly: bool
     versionConfig: typing_extensions.Literal[
         "VERSION_CONFIG_UNSPECIFIED", "ALL", "CURRENT_ONLY", "HISTORY_ONLY"
     ]

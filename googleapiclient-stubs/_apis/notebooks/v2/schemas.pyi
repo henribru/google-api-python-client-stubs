@@ -23,6 +23,7 @@ class AcceleratorConfig(typing_extensions.TypedDict, total=False):
         "NVIDIA_TESLA_P100_VWS",
         "NVIDIA_TESLA_P4_VWS",
         "NVIDIA_B200",
+        "NVIDIA_RTX6000",
     ]
 
 @typing.type_check_only
@@ -193,6 +194,8 @@ class GenerateAccessTokenResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ImageRelease(typing_extensions.TypedDict, total=False):
+    description: str
+    imageFamily: str
     imageName: str
     releaseName: str
 
@@ -387,7 +390,8 @@ class UpgradeHistoryEntry(typing_extensions.TypedDict, total=False):
     vmImage: str
 
 @typing.type_check_only
-class UpgradeInstanceRequest(typing_extensions.TypedDict, total=False): ...
+class UpgradeInstanceRequest(typing_extensions.TypedDict, total=False):
+    imageFamily: str
 
 @typing.type_check_only
 class UpgradeInstanceSystemRequest(typing_extensions.TypedDict, total=False):

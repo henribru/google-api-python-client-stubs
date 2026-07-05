@@ -101,6 +101,12 @@ class CloudFunctionInfo(typing_extensions.TypedDict, total=False):
     versionId: str
 
 @typing.type_check_only
+class CloudRunJobInfo(typing_extensions.TypedDict, total=False):
+    displayName: str
+    location: str
+    uri: str
+
+@typing.type_check_only
 class CloudRunRevisionEndpoint(typing_extensions.TypedDict, total=False):
     serviceUri: str
     uri: str
@@ -173,6 +179,9 @@ class DeliverInfo(typing_extensions.TypedDict, total=False):
         "REDIS_INSTANCE",
         "REDIS_CLUSTER",
         "GKE_POD",
+        "CLOUD_RUN_JOB",
+        "DMS_PRIVATE_CONNECTION",
+        "DATASTREAM_PRIVATE_CONNECTION",
     ]
 
 @typing.type_check_only
@@ -213,6 +222,7 @@ class DropInfo(typing_extensions.TypedDict, total=False):
         "FORWARDING_RULE_MISMATCH",
         "FORWARDING_RULE_NO_INSTANCES",
         "FIREWALL_BLOCKING_LOAD_BALANCER_BACKEND_HEALTH_CHECK",
+        "FIREWALL_BLOCKING_LOAD_BALANCER_ENVOY_PROXY_HEALTH_CHECK",
         "INGRESS_FIREWALL_TAGS_UNSUPPORTED_BY_DIRECT_VPC_EGRESS",
         "INSTANCE_NOT_RUNNING",
         "GKE_CLUSTER_NOT_RUNNING",
@@ -225,6 +235,8 @@ class DropInfo(typing_extensions.TypedDict, total=False):
         "CLOUD_SQL_INSTANCE_UNAUTHORIZED_ACCESS",
         "DROPPED_INSIDE_GKE_SERVICE",
         "DROPPED_INSIDE_CLOUD_SQL_SERVICE",
+        "DROPPED_INSIDE_DMS_PRIVATE_CONNECTION",
+        "DROPPED_INSIDE_DATASTREAM_PRIVATE_CONNECTION",
         "GOOGLE_MANAGED_SERVICE_NO_PEERING",
         "GOOGLE_MANAGED_SERVICE_NO_PSC_ENDPOINT",
         "GKE_PSC_ENDPOINT_MISSING",
@@ -252,6 +264,7 @@ class DropInfo(typing_extensions.TypedDict, total=False):
         "HYBRID_NEG_NON_DYNAMIC_ROUTE_MATCHED",
         "HYBRID_NEG_NON_LOCAL_DYNAMIC_ROUTE_MATCHED",
         "CLOUD_RUN_REVISION_NOT_READY",
+        "CLOUD_RUN_JOB_NOT_READY",
         "DROPPED_INSIDE_PSC_SERVICE_PRODUCER",
         "LOAD_BALANCER_HAS_NO_PROXY_SUBNET",
         "CLOUD_NAT_NO_ADDRESSES",
@@ -352,6 +365,7 @@ class Empty(typing_extensions.TypedDict, total=False): ...
 class Endpoint(typing_extensions.TypedDict, total=False):
     appEngineVersion: AppEngineVersionEndpoint
     cloudFunction: CloudFunctionEndpoint
+    cloudRunJob: str
     cloudRunRevision: CloudRunRevisionEndpoint
     cloudSqlInstance: str
     datastreamPrivateConnection: str
@@ -895,6 +909,7 @@ class Step(typing_extensions.TypedDict, total=False):
     appEngineVersion: AppEngineVersionInfo
     causesDrop: bool
     cloudFunction: CloudFunctionInfo
+    cloudRunJob: CloudRunJobInfo
     cloudRunRevision: CloudRunRevisionInfo
     cloudSqlInstance: CloudSQLInstanceInfo
     datastreamPrivateConnection: PrivateConnectionInfo
@@ -942,6 +957,7 @@ class Step(typing_extensions.TypedDict, total=False):
         "START_FROM_CLOUD_FUNCTION",
         "START_FROM_APP_ENGINE_VERSION",
         "START_FROM_CLOUD_RUN_REVISION",
+        "START_FROM_CLOUD_RUN_JOB",
         "START_FROM_STORAGE_BUCKET",
         "START_FROM_PSC_PUBLISHED_SERVICE",
         "START_FROM_SERVERLESS_NEG",

@@ -186,6 +186,7 @@ class ImportDomainRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class InitiatePushTransferRequest(typing_extensions.TypedDict, total=False):
     tag: str
+    validateOnly: bool
 
 @typing.type_check_only
 class ListLocationsResponse(typing_extensions.TypedDict, total=False):

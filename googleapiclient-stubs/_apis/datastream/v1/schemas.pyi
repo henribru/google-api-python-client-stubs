@@ -16,6 +16,7 @@ class BackfillAllStrategy(typing_extensions.TypedDict, total=False):
     mysqlExcludedObjects: MysqlRdbms
     oracleExcludedObjects: OracleRdbms
     postgresqlExcludedObjects: PostgresqlRdbms
+    saasExcludedObjects: SourceCatalog
     salesforceExcludedObjects: SalesforceOrg
     spannerExcludedObjects: SpannerDatabase
     sqlServerExcludedObjects: SqlServerRdbms
@@ -100,6 +101,7 @@ class CdcStrategy(typing_extensions.TypedDict, total=False):
 class ConnectionProfile(typing_extensions.TypedDict, total=False):
     bigqueryProfile: BigQueryProfile
     createTime: str
+    dataverseProfile: DataverseProfile
     displayName: str
     forwardSshConnectivity: ForwardSshTunnelConnectivity
     gcsProfile: GcsProfile
@@ -110,9 +112,11 @@ class ConnectionProfile(typing_extensions.TypedDict, total=False):
     oracleProfile: OracleProfile
     postgresqlProfile: PostgresqlProfile
     privateConnectivity: PrivateConnectivity
+    salesforceMarketingCloudProfile: SalesforceMarketingCloudProfile
     salesforceProfile: SalesforceProfile
     satisfiesPzi: bool
     satisfiesPzs: bool
+    serviceNowProfile: ServiceNowProfile
     spannerProfile: SpannerProfile
     sqlServerProfile: SqlServerProfile
     staticServiceIpConnectivity: StaticServiceIpConnectivity
@@ -128,6 +132,18 @@ class DatasetTemplate(typing_extensions.TypedDict, total=False):
     datasetIdPrefix: str
     kmsKeyName: str
     location: str
+
+@typing.type_check_only
+class DataverseProfile(typing_extensions.TypedDict, total=False):
+    environmentUrl: str
+    oauthClientCredentials: OauthClientCredentials
+    tenantId: str
+
+@typing.type_check_only
+class DataverseSourceConfig(typing_extensions.TypedDict, total=False):
+    excludeObjects: SourceCatalog
+    includeObjects: SourceCatalog
+    pollingInterval: str
 
 @typing.type_check_only
 class DebugInfo(typing_extensions.TypedDict, total=False):
@@ -151,6 +167,7 @@ class DiscoverConnectionProfileRequest(typing_extensions.TypedDict, total=False)
     oracleRdbms: OracleRdbms
     postgresqlRdbms: PostgresqlRdbms
     salesforceOrg: SalesforceOrg
+    sourceCatalog: SourceCatalog
     spannerDatabase: SpannerDatabase
     sqlServerRdbms: SqlServerRdbms
 
@@ -161,6 +178,7 @@ class DiscoverConnectionProfileResponse(typing_extensions.TypedDict, total=False
     oracleRdbms: OracleRdbms
     postgresqlRdbms: PostgresqlRdbms
     salesforceOrg: SalesforceOrg
+    sourceCatalog: SourceCatalog
     spannerDatabase: SpannerDatabase
     sqlServerRdbms: SqlServerRdbms
 
@@ -478,6 +496,11 @@ class Oauth2ClientCredentials(typing_extensions.TypedDict, total=False):
     secretManagerStoredClientSecret: str
 
 @typing.type_check_only
+class OauthClientCredentials(typing_extensions.TypedDict, total=False):
+    clientId: str
+    clientSecret: Secret
+
+@typing.type_check_only
 class ObjectFilter(typing_extensions.TypedDict, total=False):
     sourceObjectIdentifier: SourceObjectIdentifier
 
@@ -728,6 +751,18 @@ class SalesforceField(typing_extensions.TypedDict, total=False):
     nillable: bool
 
 @typing.type_check_only
+class SalesforceMarketingCloudProfile(typing_extensions.TypedDict, total=False):
+    oauthClientCredentials: OauthClientCredentials
+    subdomain: str
+
+@typing.type_check_only
+class SalesforceMarketingCloudSourceConfig(typing_extensions.TypedDict, total=False):
+    excludeObjects: SourceCatalog
+    fullRefreshPollingInterval: str
+    includeObjects: SourceCatalog
+    pollingInterval: str
+
+@typing.type_check_only
 class SalesforceObject(typing_extensions.TypedDict, total=False):
     fields: _list[SalesforceField]
     objectName: str
@@ -753,6 +788,11 @@ class SalesforceSourceConfig(typing_extensions.TypedDict, total=False):
     pollingInterval: str
 
 @typing.type_check_only
+class Secret(typing_extensions.TypedDict, total=False):
+    rawValue: str
+    secretVersion: str
+
+@typing.type_check_only
 class ServerAndClientVerification(typing_extensions.TypedDict, total=False):
     caCertificate: str
     clientCertificate: str
@@ -765,16 +805,35 @@ class ServerVerification(typing_extensions.TypedDict, total=False):
     serverCertificateHostname: str
 
 @typing.type_check_only
+class ServiceNowProfile(typing_extensions.TypedDict, total=False):
+    instance: str
+    oauthClientCredentials: OauthClientCredentials
+    userPasswordCredentials: UserPasswordCredentials
+
+@typing.type_check_only
+class ServiceNowSourceConfig(typing_extensions.TypedDict, total=False):
+    excludeObjects: SourceCatalog
+    includeObjects: SourceCatalog
+    pollingInterval: str
+
+@typing.type_check_only
 class SingleTargetDataset(typing_extensions.TypedDict, total=False):
     datasetId: str
 
 @typing.type_check_only
+class SourceCatalog(typing_extensions.TypedDict, total=False):
+    objects: _list[SourceObject]
+
+@typing.type_check_only
 class SourceConfig(typing_extensions.TypedDict, total=False):
+    dataverseSourceConfig: DataverseSourceConfig
     mongodbSourceConfig: MongodbSourceConfig
     mysqlSourceConfig: MysqlSourceConfig
     oracleSourceConfig: OracleSourceConfig
     postgresqlSourceConfig: PostgresqlSourceConfig
+    salesforceMarketingCloudSourceConfig: SalesforceMarketingCloudSourceConfig
     salesforceSourceConfig: SalesforceSourceConfig
+    serviceNowSourceConfig: ServiceNowSourceConfig
     sourceConnectionProfile: str
     spannerSourceConfig: SpannerSourceConfig
     sqlServerSourceConfig: SqlServerSourceConfig
@@ -785,6 +844,11 @@ class SourceHierarchyDatasets(typing_extensions.TypedDict, total=False):
     projectId: str
 
 @typing.type_check_only
+class SourceObject(typing_extensions.TypedDict, total=False):
+    objectName: str
+    properties: _list[SourceProperty]
+
+@typing.type_check_only
 class SourceObjectIdentifier(typing_extensions.TypedDict, total=False):
     mongodbIdentifier: MongodbObjectIdentifier
     mysqlIdentifier: MysqlObjectIdentifier
@@ -793,6 +857,16 @@ class SourceObjectIdentifier(typing_extensions.TypedDict, total=False):
     salesforceIdentifier: SalesforceObjectIdentifier
     spannerIdentifier: SpannerObjectIdentifier
     sqlServerIdentifier: SqlServerObjectIdentifier
+
+@typing.type_check_only
+class SourceProperty(typing_extensions.TypedDict, total=False):
+    primaryKey: bool
+    properties: _list[SourceProperty]
+    propertyName: str
+
+@typing.type_check_only
+class SpannerChangeStreamPosition(typing_extensions.TypedDict, total=False):
+    startTime: str
 
 @typing.type_check_only
 class SpannerColumn(typing_extensions.TypedDict, total=False):
@@ -844,6 +918,7 @@ class SpecificStartPosition(typing_extensions.TypedDict, total=False):
     mysqlGtidPosition: MysqlGtidPosition
     mysqlLogPosition: MysqlLogPosition
     oracleScnPosition: OracleScnPosition
+    spannerChangeStreamPosition: SpannerChangeStreamPosition
     sqlServerLsnPosition: SqlServerLsnPosition
 
 @typing.type_check_only
@@ -1002,6 +1077,11 @@ class UserCredentials(typing_extensions.TypedDict, total=False):
     secretManagerStoredPassword: str
     secretManagerStoredSecurityToken: str
     securityToken: str
+    username: str
+
+@typing.type_check_only
+class UserPasswordCredentials(typing_extensions.TypedDict, total=False):
+    password: Secret
     username: str
 
 @typing.type_check_only

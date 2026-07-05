@@ -142,6 +142,12 @@ class ActivitySnippet(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class BatchGetStatsResponse(typing_extensions.TypedDict, total=False):
+    etag: str
+    items: _list[VideoStat]
+    kind: str
+
+@typing.type_check_only
 class Caption(typing_extensions.TypedDict, total=False):
     etag: str
     id: str
@@ -372,6 +378,15 @@ class ChannelStatus(typing_extensions.TypedDict, total=False):
     madeForKids: bool
     privacyStatus: typing_extensions.Literal["public", "unlisted", "private"]
     selfDeclaredMadeForKids: bool
+
+@typing.type_check_only
+class ChannelToAffiliateProgramLinkDetails(typing_extensions.TypedDict, total=False):
+    merchantId: str
+    programStatus: typing_extensions.Literal[
+        "affiliateProgramStatusUnspecified", "active", "inactive"
+    ]
+    statusUpdateReason: str
+    statusUpdateTime: str
 
 @typing.type_check_only
 class ChannelToStoreLinkDetails(typing_extensions.TypedDict, total=False):
@@ -2044,8 +2059,11 @@ class ThirdPartyLinkListResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ThirdPartyLinkSnippet(typing_extensions.TypedDict, total=False):
+    channelToAffiliateProgramLink: ChannelToAffiliateProgramLinkDetails
     channelToStoreLink: ChannelToStoreLinkDetails
-    type: typing_extensions.Literal["linkUnspecified", "channelToStoreLink"]
+    type: typing_extensions.Literal[
+        "linkUnspecified", "channelToStoreLink", "channelToAffiliateProgramLink"
+    ]
 
 @typing.type_check_only
 class ThirdPartyLinkStatus(typing_extensions.TypedDict, total=False):
@@ -2319,10 +2337,33 @@ class VideoSnippet(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
+class VideoStat(typing_extensions.TypedDict, total=False):
+    contentDetails: VideoStatsContentDetails
+    etag: str
+    id: str
+    kind: str
+    snippet: VideoStatsSnippet
+    statistics: VideoStatsStatistics
+
+@typing.type_check_only
 class VideoStatistics(typing_extensions.TypedDict, total=False):
     commentCount: str
     dislikeCount: str
     favoriteCount: str
+    likeCount: str
+    viewCount: str
+
+@typing.type_check_only
+class VideoStatsContentDetails(typing_extensions.TypedDict, total=False):
+    duration: str
+
+@typing.type_check_only
+class VideoStatsSnippet(typing_extensions.TypedDict, total=False):
+    publishTime: str
+
+@typing.type_check_only
+class VideoStatsStatistics(typing_extensions.TypedDict, total=False):
+    commentCount: str
     likeCount: str
     viewCount: str
 

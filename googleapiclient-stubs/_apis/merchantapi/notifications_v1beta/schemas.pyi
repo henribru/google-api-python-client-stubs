@@ -60,4 +60,6 @@ class ProductStatusChangeMessage(typing_extensions.TypedDict, total=False):
     managingAccount: str
     resource: str
     resourceId: str
-    resourceType: typing_extensions.Literal["RESOURCE_UNSPECIFIED", "PRODUCT"]
+    resourceType: typing_extensions.Literal[
+        "RESOURCE_UNSPECIFIED", "PRODUCT", "ACCOUNT_SERVICE"
+    ]

@@ -180,6 +180,13 @@ class OracleDatabaseResource(googleapiclient.discovery.Resource):
                         previous_response: ListDbServersResponse,
                     ) -> ListDbServersResponseHttpRequest | None: ...
 
+                def configureExascale(
+                    self,
+                    *,
+                    name: str,
+                    body: ConfigureExascaleCloudExadataInfrastructureRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
                 def create(
                     self,
                     *,
@@ -544,6 +551,200 @@ class OracleDatabaseResource(googleapiclient.discovery.Resource):
                 def minorVersions(self) -> MinorVersionsResource: ...
 
             @typing.type_check_only
+            class GoldengateConnectionAssignmentsResource(
+                googleapiclient.discovery.Resource
+            ):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoldengateConnectionAssignment = ...,
+                    goldengateConnectionAssignmentId: str = ...,
+                    requestId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, requestId: str = ..., **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoldengateConnectionAssignmentHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListGoldengateConnectionAssignmentsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListGoldengateConnectionAssignmentsResponseHttpRequest,
+                    previous_response: ListGoldengateConnectionAssignmentsResponse,
+                ) -> ListGoldengateConnectionAssignmentsResponseHttpRequest | None: ...
+                def test(
+                    self,
+                    *,
+                    name: str,
+                    body: TestGoldengateConnectionAssignmentRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> TestGoldengateConnectionAssignmentResponseHttpRequest: ...
+
+            @typing.type_check_only
+            class GoldengateConnectionTypesResource(googleapiclient.discovery.Resource):
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListGoldengateConnectionTypesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListGoldengateConnectionTypesResponseHttpRequest,
+                    previous_response: ListGoldengateConnectionTypesResponse,
+                ) -> ListGoldengateConnectionTypesResponseHttpRequest | None: ...
+
+            @typing.type_check_only
+            class GoldengateConnectionsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoldengateConnection = ...,
+                    goldengateConnectionId: str = ...,
+                    requestId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, requestId: str = ..., **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoldengateConnectionHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListGoldengateConnectionsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListGoldengateConnectionsResponseHttpRequest,
+                    previous_response: ListGoldengateConnectionsResponse,
+                ) -> ListGoldengateConnectionsResponseHttpRequest | None: ...
+
+            @typing.type_check_only
+            class GoldengateDeploymentEnvironmentsResource(
+                googleapiclient.discovery.Resource
+            ):
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListGoldengateDeploymentEnvironmentsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListGoldengateDeploymentEnvironmentsResponseHttpRequest,
+                    previous_response: ListGoldengateDeploymentEnvironmentsResponse,
+                ) -> ListGoldengateDeploymentEnvironmentsResponseHttpRequest | None: ...
+
+            @typing.type_check_only
+            class GoldengateDeploymentTypesResource(googleapiclient.discovery.Resource):
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListGoldengateDeploymentTypesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListGoldengateDeploymentTypesResponseHttpRequest,
+                    previous_response: ListGoldengateDeploymentTypesResponse,
+                ) -> ListGoldengateDeploymentTypesResponseHttpRequest | None: ...
+
+            @typing.type_check_only
+            class GoldengateDeploymentVersionsResource(
+                googleapiclient.discovery.Resource
+            ):
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListGoldengateDeploymentVersionsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListGoldengateDeploymentVersionsResponseHttpRequest,
+                    previous_response: ListGoldengateDeploymentVersionsResponse,
+                ) -> ListGoldengateDeploymentVersionsResponseHttpRequest | None: ...
+
+            @typing.type_check_only
+            class GoldengateDeploymentsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoldengateDeployment = ...,
+                    goldengateDeploymentId: str = ...,
+                    requestId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, requestId: str = ..., **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoldengateDeploymentHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListGoldengateDeploymentsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListGoldengateDeploymentsResponseHttpRequest,
+                    previous_response: ListGoldengateDeploymentsResponse,
+                ) -> ListGoldengateDeploymentsResponseHttpRequest | None: ...
+                def start(
+                    self,
+                    *,
+                    name: str,
+                    body: StartGoldengateDeploymentRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def stop(
+                    self,
+                    *,
+                    name: str,
+                    body: StopGoldengateDeploymentRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+
+            @typing.type_check_only
             class OdbNetworksResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class OdbSubnetsResource(googleapiclient.discovery.Resource):
@@ -703,6 +904,23 @@ class OracleDatabaseResource(googleapiclient.discovery.Resource):
             def exadbVmClusters(self) -> ExadbVmClustersResource: ...
             def exascaleDbStorageVaults(self) -> ExascaleDbStorageVaultsResource: ...
             def giVersions(self) -> GiVersionsResource: ...
+            def goldengateConnectionAssignments(
+                self,
+            ) -> GoldengateConnectionAssignmentsResource: ...
+            def goldengateConnectionTypes(
+                self,
+            ) -> GoldengateConnectionTypesResource: ...
+            def goldengateConnections(self) -> GoldengateConnectionsResource: ...
+            def goldengateDeploymentEnvironments(
+                self,
+            ) -> GoldengateDeploymentEnvironmentsResource: ...
+            def goldengateDeploymentTypes(
+                self,
+            ) -> GoldengateDeploymentTypesResource: ...
+            def goldengateDeploymentVersions(
+                self,
+            ) -> GoldengateDeploymentVersionsResource: ...
+            def goldengateDeployments(self) -> GoldengateDeploymentsResource: ...
             def odbNetworks(self) -> OdbNetworksResource: ...
             def operations(self) -> OperationsResource: ...
             def pluggableDatabases(self) -> PluggableDatabasesResource: ...
@@ -796,6 +1014,30 @@ class GenerateAutonomousDatabaseWalletResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GenerateAutonomousDatabaseWalletResponse: ...
+
+@typing.type_check_only
+class GoldengateConnectionHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoldengateConnection: ...
+
+@typing.type_check_only
+class GoldengateConnectionAssignmentHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoldengateConnectionAssignment: ...
+
+@typing.type_check_only
+class GoldengateDeploymentHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoldengateDeployment: ...
 
 @typing.type_check_only
 class ListAutonomousDatabaseBackupsResponseHttpRequest(
@@ -950,6 +1192,72 @@ class ListGiVersionsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListGiVersionsResponse: ...
 
 @typing.type_check_only
+class ListGoldengateConnectionAssignmentsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListGoldengateConnectionAssignmentsResponse: ...
+
+@typing.type_check_only
+class ListGoldengateConnectionTypesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListGoldengateConnectionTypesResponse: ...
+
+@typing.type_check_only
+class ListGoldengateConnectionsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListGoldengateConnectionsResponse: ...
+
+@typing.type_check_only
+class ListGoldengateDeploymentEnvironmentsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListGoldengateDeploymentEnvironmentsResponse: ...
+
+@typing.type_check_only
+class ListGoldengateDeploymentTypesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListGoldengateDeploymentTypesResponse: ...
+
+@typing.type_check_only
+class ListGoldengateDeploymentVersionsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListGoldengateDeploymentVersionsResponse: ...
+
+@typing.type_check_only
+class ListGoldengateDeploymentsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListGoldengateDeploymentsResponse: ...
+
+@typing.type_check_only
 class ListLocationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -1036,3 +1344,13 @@ class PluggableDatabaseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> PluggableDatabase: ...
+
+@typing.type_check_only
+class TestGoldengateConnectionAssignmentResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> TestGoldengateConnectionAssignmentResponse: ...

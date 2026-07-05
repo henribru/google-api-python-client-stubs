@@ -553,6 +553,7 @@ class GoogleAnalyticsAdminV1betaProperty(typing_extensions.TypedDict, total=Fals
 class GoogleAnalyticsAdminV1betaPropertySummary(
     typing_extensions.TypedDict, total=False
 ):
+    canEdit: bool
     displayName: str
     parent: str
     property: str

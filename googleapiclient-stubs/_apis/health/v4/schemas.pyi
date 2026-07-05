@@ -5,6 +5,15 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class ActiveEnergyBurned(typing_extensions.TypedDict, total=False):
+    interval: ObservationTimeInterval
+    kcal: float
+
+@typing.type_check_only
+class ActiveEnergyBurnedRollupValue(typing_extensions.TypedDict, total=False):
+    kcalSum: float
+
+@typing.type_check_only
 class ActiveMinutes(typing_extensions.TypedDict, total=False):
     activeMinutesByActivityLevel: _list[ActiveMinutesByActivityLevel]
     interval: ObservationTimeInterval
@@ -70,6 +79,17 @@ class ActivityLevelRollupValue(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class AlertWindow(typing_extensions.TypedDict, total=False):
+    civilEndTime: CivilDateTime
+    civilStartTime: CivilDateTime
+    endTime: str
+    endUtcOffset: str
+    heartBeats: _list[HeartBeat]
+    positive: bool
+    startTime: str
+    startUtcOffset: str
+
+@typing.type_check_only
 class Altitude(typing_extensions.TypedDict, total=False):
     gainMillimeters: str
     interval: ObservationTimeInterval
@@ -92,6 +112,43 @@ class BasalEnergyBurned(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class BatchDeleteDataPointsRequest(typing_extensions.TypedDict, total=False):
     names: _list[str]
+
+@typing.type_check_only
+class BloodGlucose(typing_extensions.TypedDict, total=False):
+    bloodGlucoseMilligramsPerDeciliter: float
+    mealType: typing_extensions.Literal[
+        "MEAL_TYPE_UNSPECIFIED", "BREAKFAST", "LUNCH", "DINNER", "SNACK"
+    ]
+    measurementSource: typing_extensions.Literal[
+        "MEASUREMENT_SOURCE_UNSPECIFIED",
+        "SELF_MONITORING_BLOOD_GLUCOSE",
+        "CONTINUOUS_GLUCOSE_MONITORING",
+        "LAB_TEST",
+    ]
+    measurementTiming: typing_extensions.Literal[
+        "MEASUREMENT_TIMING_UNSPECIFIED",
+        "AFTER_MEAL",
+        "BEFORE_MEAL",
+        "FASTING",
+        "GENERAL",
+        "BEFORE_BED",
+        "OVER_NIGHT",
+    ]
+    notes: str
+    sampleTime: ObservationSampleTime
+    specimen: typing_extensions.Literal[
+        "SPECIMEN_UNSPECIFIED",
+        "CAPILLARY_BLOOD",
+        "INTERSTITIAL_FLUID",
+        "PLASMA",
+        "SERUM",
+        "TEARS",
+        "WHOLE_BLOOD",
+    ]
+
+@typing.type_check_only
+class BloodGlucoseRollupValue(typing_extensions.TypedDict, total=False):
+    bloodGlucoseMilligramsPerDeciliterAvg: float
 
 @typing.type_check_only
 class BodyFat(typing_extensions.TypedDict, total=False):
@@ -124,10 +181,47 @@ class CivilTimeInterval(typing_extensions.TypedDict, total=False):
     start: CivilDateTime
 
 @typing.type_check_only
+class CoreBodyTemperature(typing_extensions.TypedDict, total=False):
+    id: str
+    measurementLocation: typing_extensions.Literal[
+        "MEASUREMENT_LOCATION_UNSPECIFIED",
+        "OTHER",
+        "ARMPIT",
+        "BODY",
+        "EAR",
+        "FINGER",
+        "GASTRO_INTESTINAL",
+        "MOUTH",
+        "RECTUM",
+        "TOE",
+        "EAR_DRUM",
+        "TEMPORAL_ARTERY",
+        "FOREHEAD",
+        "URINARY_BLADDER",
+        "NASAL",
+        "NASOPHARYNGEAL",
+        "WRIST",
+        "VAGINA",
+    ]
+    sampleTime: ObservationSampleTime
+    temperatureCelsius: float
+
+@typing.type_check_only
+class CoreBodyTemperatureRollupValue(typing_extensions.TypedDict, total=False):
+    temperatureCelsiusAvg: float
+    temperatureCelsiusMax: float
+    temperatureCelsiusMin: float
+
+@typing.type_check_only
 class CreateSubscriberPayload(typing_extensions.TypedDict, total=False):
     endpointAuthorization: EndpointAuthorization
     endpointUri: str
     subscriberConfigs: _list[SubscriberConfig]
+
+@typing.type_check_only
+class CreateSubscriptionPayload(typing_extensions.TypedDict, total=False):
+    dataTypes: _list[str]
+    user: str
 
 @typing.type_check_only
 class DailyHeartRateVariability(typing_extensions.TypedDict, total=False):
@@ -181,19 +275,23 @@ class DailyRollUpDataPointsResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DailyRollupDataPoint(typing_extensions.TypedDict, total=False):
+    activeEnergyBurned: ActiveEnergyBurnedRollupValue
     activeMinutes: ActiveMinutesRollupValue
     activeZoneMinutes: ActiveZoneMinutesRollupValue
     activityLevel: ActivityLevelRollupValue
     altitude: AltitudeRollupValue
+    bloodGlucose: BloodGlucoseRollupValue
     bodyFat: BodyFatRollupValue
     caloriesInHeartRateZone: CaloriesInHeartRateZoneRollupValue
     civilEndTime: CivilDateTime
     civilStartTime: CivilDateTime
+    coreBodyTemperature: CoreBodyTemperatureRollupValue
     distance: DistanceRollupValue
     floors: FloorsRollupValue
     heartRate: HeartRateRollupValue
     heartRateVariabilityPersonalRange: HeartRateVariabilityPersonalRangeRollupValue
     hydrationLog: HydrationLogRollupValue
+    nutritionLog: NutritionLogRollupValue
     restingHeartRatePersonalRange: RestingHeartRatePersonalRangeRollupValue
     runVo2Max: RunVO2MaxRollupValue
     sedentaryPeriod: SedentaryPeriodRollupValue
@@ -228,12 +326,15 @@ class DailyVO2Max(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DataPoint(typing_extensions.TypedDict, total=False):
+    activeEnergyBurned: ActiveEnergyBurned
     activeMinutes: ActiveMinutes
     activeZoneMinutes: ActiveZoneMinutes
     activityLevel: ActivityLevel
     altitude: Altitude
     basalEnergyBurned: BasalEnergyBurned
+    bloodGlucose: BloodGlucose
     bodyFat: BodyFat
+    coreBodyTemperature: CoreBodyTemperature
     dailyHeartRateVariability: DailyHeartRateVariability
     dailyHeartRateZones: DailyHeartRateZones
     dailyOxygenSaturation: DailyOxygenSaturation
@@ -243,13 +344,18 @@ class DataPoint(typing_extensions.TypedDict, total=False):
     dailyVo2Max: DailyVO2Max
     dataSource: DataSource
     distance: Distance
+    electrocardiogram: Electrocardiogram
     exercise: Exercise
     floors: Floors
+    food: Food
+    foodMeasurementUnit: FoodMeasurementUnit
     heartRate: HeartRate
     heartRateVariability: HeartRateVariability
     height: Height
     hydrationLog: HydrationLog
+    irregularRhythmNotification: IrregularRhythmNotification
     name: str
+    nutritionLog: NutritionLog
     oxygenSaturation: OxygenSaturation
     respiratoryRateSleepSummary: RespiratoryRateSleepSummary
     runVo2Max: RunVO2Max
@@ -330,9 +436,56 @@ class DistanceRollupValue(typing_extensions.TypedDict, total=False):
     millimetersSum: str
 
 @typing.type_check_only
+class Electrocardiogram(typing_extensions.TypedDict, total=False):
+    beatsPerMinuteAvg: str
+    interval: SessionTimeInterval
+    leadNumber: int
+    medicalDeviceInfo: MedicalDeviceInfo
+    millivoltsScalingFactor: int
+    resultClassification: typing_extensions.Literal[
+        "RESULT_CLASSIFICATION_UNSPECIFIED",
+        "NORMAL_SINUS_RHYTHM",
+        "ATRIAL_FIBRILLATION",
+        "INCONCLUSIVE",
+        "INCONCLUSIVE_HIGH_HEART_RATE",
+        "INCONCLUSIVE_LOW_HEART_RATE",
+        "UNREADABLE",
+        "NOT_ANALYZED",
+    ]
+    samplingFrequencyHertz: int
+    waveformSamples: _list[int]
+
+@typing.type_check_only
+class Empty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class EndpointAuthorization(typing_extensions.TypedDict, total=False):
     secret: str
     secretSet: bool
+
+@typing.type_check_only
+class EnergyQuantity(typing_extensions.TypedDict, total=False):
+    kcal: float
+    userProvidedUnit: typing_extensions.Literal[
+        "ENERGY_UNIT_UNSPECIFIED",
+        "JOULE",
+        "KILOJOULE",
+        "KILOCALORIE",
+        "SMALL_CALORIE",
+        "CALORIE",
+    ]
+
+@typing.type_check_only
+class EnergyQuantityRollup(typing_extensions.TypedDict, total=False):
+    kcalSum: float
+    userProvidedUnitLast: typing_extensions.Literal[
+        "ENERGY_UNIT_UNSPECIFIED",
+        "JOULE",
+        "KILOJOULE",
+        "KILOCALORIE",
+        "SMALL_CALORIE",
+        "CALORIE",
+    ]
 
 @typing.type_check_only
 class Exercise(typing_extensions.TypedDict, total=False):
@@ -343,18 +496,187 @@ class Exercise(typing_extensions.TypedDict, total=False):
     exerciseMetadata: ExerciseMetadata
     exerciseType: typing_extensions.Literal[
         "EXERCISE_TYPE_UNSPECIFIED",
-        "RUNNING",
-        "WALKING",
+        "AEROBIC_WORKOUT",
+        "ARCHERY",
+        "ASSAULT_BIKE",
+        "BACKPACKING",
+        "BADMINTON",
+        "BALLET",
+        "BALLROOM_DANCE",
+        "BARRE_CLASS",
+        "BASEBALL",
+        "BASKETBALL",
         "BIKING",
-        "SWIMMING",
-        "HIKING",
-        "YOGA",
-        "PILATES",
-        "WORKOUT",
+        "BILLIARDS",
+        "BODY_WEIGHT",
+        "BOOTCAMP",
+        "BOWLING",
+        "BOXING",
+        "BREAKDANCING",
+        "CALISTHENICS",
+        "CANOEING",
+        "CARDIO_SCULPT",
+        "CARDIO_WORKOUT",
+        "CARPENTRY",
+        "CHEERLEADING",
+        "CIRCUIT_TRAINING",
+        "CLEANING",
+        "CLIMBING",
+        "CORE_TRAINING",
+        "CRICKET",
+        "CROQUET",
+        "CROSS_COUNTRY_SKI",
+        "CROSS_TRAINING",
+        "CROSSFIT",
+        "CURLING",
+        "DANCING",
+        "DIVING",
+        "ELECTRIC_BIKE",
+        "ELECTRIC_SCOOTER",
+        "ELLIPTICAL",
+        "EQUESTRIAN_SPORTS",
+        "EXERCISE_CLASS",
+        "FENCING",
+        "FIELD_HOCKEY",
+        "FISHING",
+        "FITNESS_GAMING",
+        "FOILING",
+        "FOOTBALL_AMERICAN",
+        "FOOTBALL_AUSTRALIAN",
+        "FREE_WEIGHTS",
+        "FRISBEE_PLAYING_GENERAL",
+        "FUNCTIONAL_STRENGTH_TRAINING",
+        "GARDENING",
+        "GOLF",
+        "GYMNASTICS",
+        "HANDBALL",
+        "HAND_CYCLING",
         "HIIT",
-        "WEIGHTLIFTING",
-        "STRENGTH_TRAINING",
+        "HIKING",
+        "HIP_HOP",
+        "HOCKEY",
+        "HOEING",
+        "HOUSEHOLD_CHORES",
+        "HUNTING",
+        "ICE_SKATING",
+        "INCLINE_RUN",
+        "INCLINE_WALK",
+        "INDOOR_CLIMBING",
+        "INTERVAL_WORKOUT",
+        "JAZZ_DANCE",
+        "JIU_JITSU",
+        "JUMPING_ROPE",
+        "KARATE",
+        "KAYAKING",
+        "KICKBOXING",
+        "KITESURFING",
+        "LACROSSE",
+        "MARTIAL_ARTS",
+        "MEDITATE",
+        "MODERN_DANCE",
+        "MOTOCROSS",
+        "MOTORCYCLE",
+        "MOUNTAIN_BIKE",
+        "MOWING_LAWN",
+        "MUAY_THAI",
+        "MULTISPORT",
+        "MUSICAL_PERFORMANCE",
+        "NORDIC_WALKING",
+        "ORIENTEERING",
         "OTHER",
+        "OUTDOOR_BIKE",
+        "OUTDOOR_WORKOUT",
+        "PADDLEBOARDING",
+        "PADEL",
+        "PAINTING",
+        "PARAGLIDING",
+        "PARKOUR",
+        "PICKELBALL",
+        "PILATES",
+        "POLO",
+        "POWERLIFTING",
+        "POWER_WALKING",
+        "RACKET_SPORTS",
+        "RACQUETBALL",
+        "RESISTANCE_BANDS",
+        "ROCK_CLIMBING",
+        "ROLLERBLADING",
+        "ROLLER_SKATING",
+        "ROWING",
+        "ROWING_MACHINE",
+        "RUCKING",
+        "RUGBY",
+        "RUNNING",
+        "SAILING",
+        "SCOOTERING",
+        "SCUBA_DIVING",
+        "SHOOTING",
+        "SHOVELING",
+        "SKATEBOARDING",
+        "SKATING",
+        "SKIING",
+        "SKYDIVING",
+        "SNORKELING",
+        "SNOWBOARDING",
+        "SNOWMOBILING",
+        "SNOWSHOEING",
+        "SNOW_SPORT",
+        "SOCCER",
+        "SOFTBALL",
+        "SPEED_SKATING",
+        "SPINNING",
+        "SPORT",
+        "SQUASH",
+        "STAIRCLIMBER",
+        "STATIONARY_BIKE",
+        "STEP_TRAINING",
+        "STRENGTH_TRAINING",
+        "STRETCHING",
+        "STROLLER_WALK",
+        "SURFING",
+        "SWIMMING",
+        "SWIMMING_OPEN_WATER",
+        "SWIMMING_POOL",
+        "SYNCHRONIZED_SWIMMING",
+        "TABATA_WORKOUT",
+        "TABLE_TENNIS",
+        "TAEKWONDO",
+        "TAI_CHI",
+        "TANGO",
+        "TENNIS",
+        "TRACK_AND_FIELD",
+        "TRAIL_RUN",
+        "TRAMPOLINE",
+        "TREADMILL",
+        "TREADMILL_WALK",
+        "TRX",
+        "ULTIMATE_FRISBEE",
+        "UNICYCLING",
+        "VOLLEYBALL",
+        "VOLLEYBALL_BEACH",
+        "WAKEBOARDING",
+        "WALKING",
+        "WALK_WITH_WEIGHTS",
+        "WATER_AEROBICS",
+        "WATER_JOGGING",
+        "WATER_POLO",
+        "WATER_SKIING",
+        "WATER_SPORT",
+        "WATER_VOLLEYBALL",
+        "WEEDING",
+        "WEIGHTLIFTING",
+        "WEIGHT_MACHINES",
+        "WEIGHTS",
+        "WHEELCHAIR",
+        "WINDSURFING",
+        "WORKOUT",
+        "WRESTLING",
+        "YOGA",
+        "YOGA_BIKRAM",
+        "YOGA_HATHA",
+        "YOGA_POWER",
+        "YOGA_VINYASA",
+        "ZUMBA",
     ]
     interval: SessionTimeInterval
     metricsSummary: MetricsSummary
@@ -396,9 +718,59 @@ class FloorsRollupValue(typing_extensions.TypedDict, total=False):
     countSum: str
 
 @typing.type_check_only
+class Food(typing_extensions.TypedDict, total=False):
+    accessLevel: typing_extensions.Literal[
+        "FOOD_ACCESS_LEVEL_UNSPECIFIED",
+        "FOOD_ACCESS_LEVEL_PUBLIC",
+        "FOOD_ACCESS_LEVEL_PRIVATE",
+    ]
+    brand: str
+    defaultServing: FoodServing
+    description: str
+    displayName: str
+    energyAvg: EnergyQuantity
+    energyFromFat: EnergyQuantity
+    energyMax: EnergyQuantity
+    energyMin: EnergyQuantity
+    languageCode: str
+    mealType: typing_extensions.Literal[
+        "MEAL_TYPE_UNSPECIFIED",
+        "BEFORE_BREAKFAST",
+        "BREAKFAST",
+        "BEFORE_LUNCH",
+        "LUNCH",
+        "BEFORE_DINNER",
+        "DINNER",
+        "AFTER_DINNER",
+        "SNACK",
+        "ANYTIME",
+    ]
+    nutrients: _list[NutrientQuantity]
+    servings: _list[FoodServing]
+    totalCarbohydrate: WeightQuantity
+    totalFat: WeightQuantity
+
+@typing.type_check_only
+class FoodMeasurementUnit(typing_extensions.TypedDict, total=False):
+    displayName: str
+    pluralDisplayName: str
+
+@typing.type_check_only
+class FoodServing(typing_extensions.TypedDict, total=False):
+    amount: float
+    foodMeasurementUnit: str
+    foodMeasurementUnitDisplayName: str
+    foodMeasurementUnitDisplayNamePlural: str
+    multiplier: float
+
+@typing.type_check_only
 class GoogleDevicesandservicesHealthV4DataType(
     typing_extensions.TypedDict, total=False
 ):
+    name: str
+
+@typing.type_check_only
+class GoogleDevicesandservicesHealthV4User(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
@@ -406,6 +778,13 @@ class GoogleDevicesandservicesHealthV4WebhookNotificationCloudLog(
     typing_extensions.TypedDict, total=False
 ):
     httpResponse: HttpResponse
+
+@typing.type_check_only
+class HeartBeat(typing_extensions.TypedDict, total=False):
+    beatsPerMinute: int
+    civilTime: CivilDateTime
+    physicalTime: str
+    utcOffset: str
 
 @typing.type_check_only
 class HeartRate(typing_extensions.TypedDict, total=False):
@@ -493,15 +872,46 @@ class Interval(typing_extensions.TypedDict, total=False):
     startTime: str
 
 @typing.type_check_only
+class IrnProfile(typing_extensions.TypedDict, total=False):
+    enrollmentStatus: bool
+    name: str
+    onboardingStatus: bool
+    updateTime: str
+
+@typing.type_check_only
+class IrregularRhythmNotification(typing_extensions.TypedDict, total=False):
+    alertWindows: _list[AlertWindow]
+    interval: SessionTimeInterval
+    medicalDeviceInfo: MedicalDeviceInfo
+
+@typing.type_check_only
 class ListDataPointsResponse(typing_extensions.TypedDict, total=False):
     dataPoints: _list[DataPoint]
     nextPageToken: str
+
+@typing.type_check_only
+class ListPairedDevicesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    pairedDevices: _list[PairedDevice]
 
 @typing.type_check_only
 class ListSubscribersResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     subscribers: _list[Subscriber]
     totalSize: int
+
+@typing.type_check_only
+class ListSubscriptionsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    subscriptions: _list[Subscription]
+
+@typing.type_check_only
+class MedicalDeviceInfo(typing_extensions.TypedDict, total=False):
+    algorithmVersion: str
+    deviceModel: str
+    featureVersion: str
+    firmwareVersion: str
+    serviceVersion: str
 
 @typing.type_check_only
 class MetricsSummary(typing_extensions.TypedDict, total=False):
@@ -525,6 +935,130 @@ class MobilityMetrics(typing_extensions.TypedDict, total=False):
     avgStrideLengthMillimeters: str
     avgVerticalOscillationMillimeters: str
     avgVerticalRatio: float
+
+@typing.type_check_only
+class NutrientQuantity(typing_extensions.TypedDict, total=False):
+    nutrient: typing_extensions.Literal[
+        "NUTRIENT_UNSPECIFIED",
+        "BIOTIN",
+        "CAFFEINE",
+        "CALCIUM",
+        "CHLORIDE",
+        "CARBOHYDRATES",
+        "CHOLESTEROL",
+        "CHROMIUM",
+        "COPPER",
+        "DIETARY_FIBER",
+        "FOLIC_ACID",
+        "IODINE",
+        "IRON",
+        "MAGNESIUM",
+        "MANGANESE",
+        "MOLYBDENUM",
+        "MONOUNSATURATED_FAT",
+        "NIACIN",
+        "PANTOTHENIC_ACID",
+        "PHOSPHORUS",
+        "POLYUNSATURATED_FAT",
+        "POTASSIUM",
+        "PROTEIN",
+        "RIBOFLAVIN",
+        "SATURATED_FAT",
+        "SELENIUM",
+        "SODIUM",
+        "SUGAR",
+        "THIAMIN",
+        "TRANS_FAT",
+        "UNSATURATED_FAT",
+        "VITAMIN_A",
+        "VITAMIN_B12",
+        "VITAMIN_B6",
+        "VITAMIN_C",
+        "VITAMIN_D",
+        "VITAMIN_E",
+        "VITAMIN_K",
+        "ZINC",
+        "FOLATE",
+    ]
+    quantity: WeightQuantity
+
+@typing.type_check_only
+class NutrientQuantityRollup(typing_extensions.TypedDict, total=False):
+    nutrient: typing_extensions.Literal[
+        "NUTRIENT_UNSPECIFIED",
+        "BIOTIN",
+        "CAFFEINE",
+        "CALCIUM",
+        "CHLORIDE",
+        "CARBOHYDRATES",
+        "CHOLESTEROL",
+        "CHROMIUM",
+        "COPPER",
+        "DIETARY_FIBER",
+        "FOLIC_ACID",
+        "IODINE",
+        "IRON",
+        "MAGNESIUM",
+        "MANGANESE",
+        "MOLYBDENUM",
+        "MONOUNSATURATED_FAT",
+        "NIACIN",
+        "PANTOTHENIC_ACID",
+        "PHOSPHORUS",
+        "POLYUNSATURATED_FAT",
+        "POTASSIUM",
+        "PROTEIN",
+        "RIBOFLAVIN",
+        "SATURATED_FAT",
+        "SELENIUM",
+        "SODIUM",
+        "SUGAR",
+        "THIAMIN",
+        "TRANS_FAT",
+        "UNSATURATED_FAT",
+        "VITAMIN_A",
+        "VITAMIN_B12",
+        "VITAMIN_B6",
+        "VITAMIN_C",
+        "VITAMIN_D",
+        "VITAMIN_E",
+        "VITAMIN_K",
+        "ZINC",
+        "FOLATE",
+    ]
+    quantity: WeightQuantityRollup
+
+@typing.type_check_only
+class NutritionLog(typing_extensions.TypedDict, total=False):
+    energy: EnergyQuantity
+    energyFromFat: EnergyQuantity
+    food: str
+    foodDisplayName: str
+    interval: SessionTimeInterval
+    mealType: typing_extensions.Literal[
+        "MEAL_TYPE_UNSPECIFIED",
+        "BEFORE_BREAKFAST",
+        "BREAKFAST",
+        "BEFORE_LUNCH",
+        "LUNCH",
+        "BEFORE_DINNER",
+        "DINNER",
+        "AFTER_DINNER",
+        "SNACK",
+        "ANYTIME",
+    ]
+    nutrients: _list[NutrientQuantity]
+    serving: Serving
+    totalCarbohydrate: WeightQuantity
+    totalFat: WeightQuantity
+
+@typing.type_check_only
+class NutritionLogRollupValue(typing_extensions.TypedDict, total=False):
+    energy: EnergyQuantityRollup
+    energyFromFat: EnergyQuantityRollup
+    nutrients: _list[NutrientQuantityRollup]
+    totalCarbohydrate: WeightQuantityRollup
+    totalFat: WeightQuantityRollup
 
 @typing.type_check_only
 class ObservationSampleTime(typing_extensions.TypedDict, total=False):
@@ -562,6 +1096,17 @@ class OxygenSaturation(typing_extensions.TypedDict, total=False):
     sampleTime: ObservationSampleTime
 
 @typing.type_check_only
+class PairedDevice(typing_extensions.TypedDict, total=False):
+    batteryLevel: int
+    batteryStatus: str
+    deviceType: typing_extensions.Literal["DEVICE_TYPE_UNSPECIFIED", "TRACKER", "SCALE"]
+    deviceVersion: str
+    features: _list[str]
+    lastSyncTime: str
+    macAddress: str
+    name: str
+
+@typing.type_check_only
 class Profile(typing_extensions.TypedDict, total=False):
     age: int
     autoRunningStrideLengthMm: int
@@ -578,12 +1123,15 @@ class ReconcileDataPointsResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ReconciledDataPoint(typing_extensions.TypedDict, total=False):
+    activeEnergyBurned: ActiveEnergyBurned
     activeMinutes: ActiveMinutes
     activeZoneMinutes: ActiveZoneMinutes
     activityLevel: ActivityLevel
     altitude: Altitude
     basalEnergyBurned: BasalEnergyBurned
+    bloodGlucose: BloodGlucose
     bodyFat: BodyFat
+    coreBodyTemperature: CoreBodyTemperature
     dailyHeartRateVariability: DailyHeartRateVariability
     dailyHeartRateZones: DailyHeartRateZones
     dailyOxygenSaturation: DailyOxygenSaturation
@@ -599,6 +1147,7 @@ class ReconciledDataPoint(typing_extensions.TypedDict, total=False):
     heartRateVariability: HeartRateVariability
     height: Height
     hydrationLog: HydrationLog
+    nutritionLog: NutritionLog
     oxygenSaturation: OxygenSaturation
     respiratoryRateSleepSummary: RespiratoryRateSleepSummary
     runVo2Max: RunVO2Max
@@ -646,17 +1195,21 @@ class RollUpDataPointsResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class RollupDataPoint(typing_extensions.TypedDict, total=False):
+    activeEnergyBurned: ActiveEnergyBurnedRollupValue
     activeMinutes: ActiveMinutesRollupValue
     activeZoneMinutes: ActiveZoneMinutesRollupValue
     activityLevel: ActivityLevelRollupValue
     altitude: AltitudeRollupValue
+    bloodGlucose: BloodGlucoseRollupValue
     bodyFat: BodyFatRollupValue
     caloriesInHeartRateZone: CaloriesInHeartRateZoneRollupValue
+    coreBodyTemperature: CoreBodyTemperatureRollupValue
     distance: DistanceRollupValue
     endTime: str
     floors: FloorsRollupValue
     heartRate: HeartRateRollupValue
     hydrationLog: HydrationLogRollupValue
+    nutritionLog: NutritionLogRollupValue
     runVo2Max: RunVO2MaxRollupValue
     sedentaryPeriod: SedentaryPeriodRollupValue
     startTime: str
@@ -686,6 +1239,12 @@ class SedentaryPeriodRollupValue(typing_extensions.TypedDict, total=False):
     durationSum: str
 
 @typing.type_check_only
+class Serving(typing_extensions.TypedDict, total=False):
+    amount: float
+    foodMeasurementUnit: str
+    foodMeasurementUnitDisplayName: str
+
+@typing.type_check_only
 class SessionTimeInterval(typing_extensions.TypedDict, total=False):
     civilEndTime: CivilDateTime
     civilStartTime: CivilDateTime
@@ -700,6 +1259,7 @@ class Settings(typing_extensions.TypedDict, total=False):
     distanceUnit: typing_extensions.Literal[
         "DISTANCE_UNIT_UNSPECIFIED", "DISTANCE_UNIT_MILES", "DISTANCE_UNIT_KILOMETERS"
     ]
+    foodLanguageCode: str
     glucoseUnit: typing_extensions.Literal[
         "GLUCOSE_UNIT_UNSPECIFIED", "GLUCOSE_UNIT_MG_DL", "GLUCOSE_UNIT_MMOL_L"
     ]
@@ -858,6 +1418,12 @@ class SubscriberConfig(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class Subscription(typing_extensions.TypedDict, total=False):
+    dataTypes: _list[str]
+    name: str
+    user: str
+
+@typing.type_check_only
 class SwimLengthsData(typing_extensions.TypedDict, total=False):
     interval: ObservationTimeInterval
     strokeCount: str
@@ -968,6 +1534,36 @@ class Weight(typing_extensions.TypedDict, total=False):
     notes: str
     sampleTime: ObservationSampleTime
     weightGrams: float
+
+@typing.type_check_only
+class WeightQuantity(typing_extensions.TypedDict, total=False):
+    grams: float
+    userProvidedUnit: typing_extensions.Literal[
+        "WEIGHT_UNIT_UNSPECIFIED",
+        "GRAM",
+        "KILOGRAM",
+        "OUNCE",
+        "POUND",
+        "STONE",
+        "MILLIGRAM",
+        "MICROGRAM",
+        "NANOGRAM",
+    ]
+
+@typing.type_check_only
+class WeightQuantityRollup(typing_extensions.TypedDict, total=False):
+    gramsSum: float
+    userProvidedUnitLast: typing_extensions.Literal[
+        "WEIGHT_UNIT_UNSPECIFIED",
+        "GRAM",
+        "KILOGRAM",
+        "OUNCE",
+        "POUND",
+        "STONE",
+        "MILLIGRAM",
+        "MICROGRAM",
+        "NANOGRAM",
+    ]
 
 @typing.type_check_only
 class WeightRollupValue(typing_extensions.TypedDict, total=False):

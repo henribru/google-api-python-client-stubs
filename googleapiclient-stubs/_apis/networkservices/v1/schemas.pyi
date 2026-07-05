@@ -5,6 +5,61 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class AgentGateway(typing_extensions.TypedDict, total=False):
+    agentGatewayCard: AgentGatewayAgentGatewayOutputCard
+    createTime: str
+    description: str
+    etag: str
+    googleManaged: AgentGatewayGoogleManaged
+    labels: dict[str, typing.Any]
+    name: str
+    networkConfig: AgentGatewayNetworkConfig
+    protocols: _list[typing_extensions.Literal["PROTOCOL_UNSPECIFIED", "MCP"]]
+    registries: _list[str]
+    selfManaged: AgentGatewaySelfManaged
+    updateTime: str
+
+@typing.type_check_only
+class AgentGatewayAgentGatewayOutputCard(typing_extensions.TypedDict, total=False):
+    mtlsEndpoint: str
+    rootCertificates: _list[str]
+    serviceExtensionsServiceAccount: str
+
+@typing.type_check_only
+class AgentGatewayGoogleManaged(typing_extensions.TypedDict, total=False):
+    governedAccessPath: typing_extensions.Literal[
+        "GOVERNED_ACCESS_PATH_UNSPECIFIED", "AGENT_TO_ANYWHERE", "CLIENT_TO_AGENT"
+    ]
+
+@typing.type_check_only
+class AgentGatewayNetworkConfig(typing_extensions.TypedDict, total=False):
+    dnsPeeringConfig: AgentGatewayNetworkConfigDnsPeeringConfig
+    egress: AgentGatewayNetworkConfigEgress
+
+@typing.type_check_only
+class AgentGatewayNetworkConfigDnsPeeringConfig(
+    typing_extensions.TypedDict, total=False
+):
+    domains: _list[str]
+    targetNetwork: str
+    targetProject: str
+
+@typing.type_check_only
+class AgentGatewayNetworkConfigEgress(typing_extensions.TypedDict, total=False):
+    networkAttachment: str
+    trustConfig: AgentGatewayNetworkConfigEgressTrustConfig
+
+@typing.type_check_only
+class AgentGatewayNetworkConfigEgressTrustConfig(
+    typing_extensions.TypedDict, total=False
+):
+    pemCertificates: _list[str]
+
+@typing.type_check_only
+class AgentGatewaySelfManaged(typing_extensions.TypedDict, total=False):
+    resourceUri: str
+
+@typing.type_check_only
 class AuditConfig(typing_extensions.TypedDict, total=False):
     auditLogConfigs: _list[AuditLogConfig]
     service: str
@@ -434,6 +489,12 @@ class LbTrafficExtension(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
+class ListAgentGatewaysResponse(typing_extensions.TypedDict, total=False):
+    agentGateways: _list[AgentGateway]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
 class ListAuthzExtensionsResponse(typing_extensions.TypedDict, total=False):
     authzExtensions: _list[AuthzExtension]
     nextPageToken: str
@@ -501,6 +562,22 @@ class ListMeshRouteViewsResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ListMeshesResponse(typing_extensions.TypedDict, total=False):
     meshes: _list[Mesh]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListMulticastConsumerAssociationsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    multicastConsumerAssociations: _list[MulticastConsumerAssociation]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListMulticastGroupConsumerActivationsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    multicastGroupConsumerActivations: _list[MulticastGroupConsumerActivation]
     nextPageToken: str
     unreachable: _list[str]
 
@@ -589,6 +666,57 @@ class MeshRouteView(typing_extensions.TypedDict, total=False):
     routeLocation: str
     routeProjectNumber: str
     routeType: str
+
+@typing.type_check_only
+class MulticastConsumerAssociation(typing_extensions.TypedDict, total=False):
+    createTime: str
+    description: str
+    labels: dict[str, typing.Any]
+    multicastDomainActivation: str
+    name: str
+    network: str
+    placementPolicy: str
+    resourceState: typing_extensions.Literal[
+        "CONSUMER_RESOURCE_STATE_UNSPECIFIED", "ACTIVE", "OBSOLETE"
+    ]
+    state: MulticastResourceState
+    uniqueId: str
+    updateTime: str
+
+@typing.type_check_only
+class MulticastGroupConsumerActivation(typing_extensions.TypedDict, total=False):
+    createTime: str
+    description: str
+    labels: dict[str, typing.Any]
+    logConfig: MulticastLogConfig
+    multicastConsumerAssociation: str
+    multicastGroup: str
+    multicastGroupRangeActivation: str
+    name: str
+    resourceState: typing_extensions.Literal[
+        "CONSUMER_RESOURCE_STATE_UNSPECIFIED", "ACTIVE", "OBSOLETE"
+    ]
+    state: MulticastResourceState
+    uniqueId: str
+    updateTime: str
+
+@typing.type_check_only
+class MulticastLogConfig(typing_extensions.TypedDict, total=False):
+    enabled: bool
+
+@typing.type_check_only
+class MulticastResourceState(typing_extensions.TypedDict, total=False):
+    state: typing_extensions.Literal[
+        "STATE_ENUM_UNSPECIFIED",
+        "CREATING",
+        "ACTIVE",
+        "DELETING",
+        "DELETE_FAILED",
+        "UPDATING",
+        "UPDATE_FAILED",
+        "INACTIVE",
+        "OBSOLETE",
+    ]
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):

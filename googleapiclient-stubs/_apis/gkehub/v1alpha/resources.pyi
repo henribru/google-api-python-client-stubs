@@ -421,9 +421,26 @@ class GKEHubResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
+                def upgrade(
+                    self,
+                    *,
+                    name: str,
+                    body: UpgradeRolloutSequenceRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
 
             @typing.type_check_only
             class RolloutsResource(googleapiclient.discovery.Resource):
+                def cancel(
+                    self,
+                    *,
+                    name: str,
+                    body: CancelRolloutRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, requestId: str = ..., **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
                 def forceCompleteStage(
                     self,
                     *,
@@ -448,6 +465,20 @@ class GKEHubResource(googleapiclient.discovery.Resource):
                     previous_request: ListRolloutsResponseHttpRequest,
                     previous_response: ListRolloutsResponse,
                 ) -> ListRolloutsResponseHttpRequest | None: ...
+                def pause(
+                    self,
+                    *,
+                    name: str,
+                    body: PauseRolloutRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def resume(
+                    self,
+                    *,
+                    name: str,
+                    body: ResumeRolloutRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
 
             @typing.type_check_only
             class ScopesResource(googleapiclient.discovery.Resource):

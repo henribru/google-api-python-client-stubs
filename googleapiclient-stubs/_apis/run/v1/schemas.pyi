@@ -92,6 +92,7 @@ class Container(typing_extensions.TypedDict, total=False):
     ports: _list[ContainerPort]
     readinessProbe: Probe
     resources: ResourceRequirements
+    sandboxLauncher: bool
     securityContext: SecurityContext
     startupProbe: Probe
     terminationMessagePath: str
@@ -357,6 +358,7 @@ class GoogleDevtoolsCloudbuildV1BuildOptions(typing_extensions.TypedDict, total=
         "E2_HIGHCPU_8",
         "E2_HIGHCPU_32",
         "E2_MEDIUM",
+        "E2_STANDARD_2",
     ]
     pool: GoogleDevtoolsCloudbuildV1PoolOption
     pubsubTopic: str
@@ -752,8 +754,8 @@ class Instance(typing_extensions.TypedDict, total=False):
 class InstanceSpec(typing_extensions.TypedDict, total=False):
     containers: _list[Container]
     nodeSelector: dict[str, typing.Any]
+    restartPolicy: str
     serviceAccountName: str
-    timeout: str
     volumes: _list[Volume]
 
 @typing.type_check_only

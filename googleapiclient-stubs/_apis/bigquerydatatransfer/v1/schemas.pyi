@@ -71,6 +71,10 @@ class DataSourceParameter(typing_extensions.TypedDict, total=False):
     validationRegex: str
 
 @typing.type_check_only
+class DataplexConfiguration(typing_extensions.TypedDict, total=False):
+    entryGroup: str
+
+@typing.type_check_only
 class EmailPreferences(typing_extensions.TypedDict, total=False):
     enableFailureEmail: bool
 
@@ -134,6 +138,10 @@ class Location(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ManualSchedule(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class MetadataDestination(typing_extensions.TypedDict, total=False):
+    dataplexConfiguration: DataplexConfiguration
 
 @typing.type_check_only
 class PartitionDetail(typing_extensions.TypedDict, total=False):
@@ -204,6 +212,7 @@ class TransferConfig(typing_extensions.TypedDict, total=False):
     managedTableType: typing_extensions.Literal[
         "MANAGED_TABLE_TYPE_UNSPECIFIED", "NATIVE", "BIGLAKE"
     ]
+    metadataDestination: MetadataDestination
     name: str
     nextRunTime: str
     notificationPubsubTopic: str
@@ -272,6 +281,7 @@ class TransferRun(typing_extensions.TypedDict, total=False):
     emailPreferences: EmailPreferences
     endTime: str
     errorStatus: Status
+    metadataDestination: MetadataDestination
     name: str
     notificationPubsubTopic: str
     params: dict[str, typing.Any]

@@ -41,6 +41,7 @@ class ProvisionPosixAccountRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SignSshPublicKeyRequest(typing_extensions.TypedDict, total=False):
     appEngineInstance: str
+    cloudRunResource: str
     computeInstance: str
     serviceAccount: str
     sshPublicKey: str

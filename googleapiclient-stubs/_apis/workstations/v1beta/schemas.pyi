@@ -81,6 +81,7 @@ class GceConfidentialInstanceConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GceHyperdiskBalancedHighAvailability(typing_extensions.TypedDict, total=False):
     archiveTimeout: str
+    maxSizeGb: int
     reclaimPolicy: typing_extensions.Literal[
         "RECLAIM_POLICY_UNSPECIFIED", "DELETE", "RETAIN"
     ]
@@ -126,6 +127,7 @@ class GceRegionalPersistentDisk(typing_extensions.TypedDict, total=False):
     archiveTimeout: str
     diskType: str
     fsType: str
+    maxSizeGb: int
     reclaimPolicy: typing_extensions.Literal[
         "RECLAIM_POLICY_UNSPECIFIED", "DELETE", "RETAIN"
     ]
@@ -313,6 +315,7 @@ class Workstation(typing_extensions.TypedDict, total=False):
     kmsKey: str
     labels: dict[str, typing.Any]
     name: str
+    persistentDirectories: _list[WorkstationPersistentDirectory]
     reconciling: bool
     runtimeHost: RuntimeHost
     satisfiesPzi: bool
@@ -392,3 +395,8 @@ class WorkstationConfig(typing_extensions.TypedDict, total=False):
     satisfiesPzs: bool
     uid: str
     updateTime: str
+
+@typing.type_check_only
+class WorkstationPersistentDirectory(typing_extensions.TypedDict, total=False):
+    mountPath: str
+    sizeGb: int

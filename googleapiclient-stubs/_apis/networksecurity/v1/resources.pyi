@@ -91,6 +91,13 @@ class NetworkSecurityResource(googleapiclient.discovery.Resource):
                     body: RemoveAddressGroupItemsRequest = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
+                def testIamPermissions(
+                    self,
+                    *,
+                    resource: str,
+                    body: GoogleIamV1TestIamPermissionsRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
 
             @typing.type_check_only
             class FirewallEndpointsResource(googleapiclient.discovery.Resource):
@@ -241,6 +248,24 @@ class NetworkSecurityResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
 
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> LocationHttpRequest: ...
+            def list(
+                self,
+                *,
+                name: str,
+                extraLocationTypes: str | _list[str] = ...,
+                filter: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any,
+            ) -> ListLocationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListLocationsResponseHttpRequest,
+                previous_response: ListLocationsResponse,
+            ) -> ListLocationsResponseHttpRequest | None: ...
             def addressGroups(self) -> AddressGroupsResource: ...
             def firewallEndpoints(self) -> FirewallEndpointsResource: ...
             def operations(self) -> OperationsResource: ...
@@ -1147,6 +1172,72 @@ class NetworkSecurityResource(googleapiclient.discovery.Resource):
                 ) -> ListOperationsResponseHttpRequest | None: ...
 
             @typing.type_check_only
+            class SacAttachmentsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: SACAttachment = ...,
+                    requestId: str = ...,
+                    sacAttachmentId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, requestId: str = ..., **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> SACAttachmentHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListSACAttachmentsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListSACAttachmentsResponseHttpRequest,
+                    previous_response: ListSACAttachmentsResponse,
+                ) -> ListSACAttachmentsResponseHttpRequest | None: ...
+
+            @typing.type_check_only
+            class SacRealmsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: SACRealm = ...,
+                    requestId: str = ...,
+                    sacRealmId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, requestId: str = ..., **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> SACRealmHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListSACRealmsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListSACRealmsResponseHttpRequest,
+                    previous_response: ListSACRealmsResponse,
+                ) -> ListSACRealmsResponseHttpRequest | None: ...
+
+            @typing.type_check_only
             class SecurityProfileGroupsResource(googleapiclient.discovery.Resource):
                 def create(
                     self,
@@ -1406,6 +1497,8 @@ class NetworkSecurityResource(googleapiclient.discovery.Resource):
             ) -> MirroringEndpointGroupAssociationsResource: ...
             def mirroringEndpointGroups(self) -> MirroringEndpointGroupsResource: ...
             def operations(self) -> OperationsResource: ...
+            def sacAttachments(self) -> SacAttachmentsResource: ...
+            def sacRealms(self) -> SacRealmsResource: ...
             def securityProfileGroups(self) -> SecurityProfileGroupsResource: ...
             def securityProfiles(self) -> SecurityProfilesResource: ...
             def serverTlsPolicies(self) -> ServerTlsPoliciesResource: ...
@@ -1750,6 +1843,22 @@ class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListOperationsResponse: ...
 
 @typing.type_check_only
+class ListSACAttachmentsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListSACAttachmentsResponse: ...
+
+@typing.type_check_only
+class ListSACRealmsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListSACRealmsResponse: ...
+
+@typing.type_check_only
 class ListSecurityProfileGroupsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -1836,6 +1945,22 @@ class OperationHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Operation: ...
+
+@typing.type_check_only
+class SACAttachmentHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> SACAttachment: ...
+
+@typing.type_check_only
+class SACRealmHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> SACRealm: ...
 
 @typing.type_check_only
 class SecurityProfileHttpRequest(googleapiclient.http.HttpRequest):

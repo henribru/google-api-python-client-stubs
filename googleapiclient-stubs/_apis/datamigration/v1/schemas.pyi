@@ -478,6 +478,7 @@ class EntityIssue(typing_extensions.TypedDict, total=False):
         "ISSUE_TYPE_DDL",
         "ISSUE_TYPE_APPLY",
         "ISSUE_TYPE_CONVERT",
+        "ISSUE_TYPE_PULL_SCHEMA",
     ]
 
 @typing.type_check_only
@@ -804,6 +805,7 @@ class MigrationJob(typing_extensions.TypedDict, total=False):
     error: Status
     filter: str
     labels: dict[str, typing.Any]
+    mysqlHomogeneousConfig: MySqlHomogeneousConfig
     name: str
     objectsConfig: MigrationJobObjectsConfig
     oracleToPostgresConfig: OracleToPostgresConfig
@@ -865,6 +867,8 @@ class MigrationJobObject(typing_extensions.TypedDict, total=False):
         "PROMOTE_IN_PROGRESS",
         "PROMOTED",
         "DIFF_BACKUP",
+        "CREATING_BACKUP",
+        "RESTORING_BACKUP",
     ]
     sourceObject: SourceObjectIdentifier
     state: typing_extensions.Literal[
@@ -954,6 +958,10 @@ class MySqlConnectionProfile(typing_extensions.TypedDict, total=False):
     port: int
     ssl: SslConfig
     username: str
+
+@typing.type_check_only
+class MySqlHomogeneousConfig(typing_extensions.TypedDict, total=False):
+    isPrimaryDestination: bool
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):

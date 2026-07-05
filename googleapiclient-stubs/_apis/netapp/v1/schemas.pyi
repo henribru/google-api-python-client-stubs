@@ -48,6 +48,7 @@ class Backup(typing_extensions.TypedDict, total=False):
     enforcedRetentionEndTime: str
     labels: dict[str, typing.Any]
     name: str
+    ontapSource: OntapSource
     satisfiesPzi: bool
     satisfiesPzs: bool
     sourceSnapshot: str
@@ -93,6 +94,11 @@ class BackupRetentionPolicy(typing_extensions.TypedDict, total=False):
     manualBackupImmutable: bool
     monthlyBackupImmutable: bool
     weeklyBackupImmutable: bool
+
+@typing.type_check_only
+class BackupSource(typing_extensions.TypedDict, total=False):
+    backup: str
+    fileList: _list[str]
 
 @typing.type_check_only
 class BackupVault(typing_extensions.TypedDict, total=False):
@@ -325,6 +331,12 @@ class ListActiveDirectoriesResponse(typing_extensions.TypedDict, total=False):
     unreachable: _list[str]
 
 @typing.type_check_only
+class ListBackupConfigsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    unreachable: _list[str]
+    volumeBackupConfigs: _list[VolumeBackupConfig]
+
+@typing.type_check_only
 class ListBackupPoliciesResponse(typing_extensions.TypedDict, total=False):
     backupPolicies: _list[BackupPolicy]
     nextPageToken: str
@@ -434,8 +446,19 @@ class MountOption(typing_extensions.TypedDict, total=False):
     instructions: str
     ipAddress: str
     protocol: typing_extensions.Literal[
-        "PROTOCOLS_UNSPECIFIED", "NFSV3", "NFSV4", "SMB", "ISCSI"
+        "PROTOCOLS_UNSPECIFIED", "NFSV3", "NFSV4", "SMB", "ISCSI", "NVME"
     ]
+
+@typing.type_check_only
+class OntapSource(typing_extensions.TypedDict, total=False):
+    snapshotUuid: str
+    storagePool: str
+    volumeUuid: str
+
+@typing.type_check_only
+class OntapVolumeTarget(typing_extensions.TypedDict, total=False):
+    restoreDestinationPath: str
+    volumeUuid: str
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
@@ -537,6 +560,11 @@ class RestoreBackupFilesRequest(typing_extensions.TypedDict, total=False):
 class RestoreParameters(typing_extensions.TypedDict, total=False):
     sourceBackup: str
     sourceSnapshot: str
+
+@typing.type_check_only
+class RestoreVolumeRequest(typing_extensions.TypedDict, total=False):
+    backupSource: BackupSource
+    ontapVolumeTarget: OntapVolumeTarget
 
 @typing.type_check_only
 class ResumeReplicationRequest(typing_extensions.TypedDict, total=False): ...
@@ -682,6 +710,12 @@ class TransferStats(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
+class UpdateBackupConfigRequest(typing_extensions.TypedDict, total=False):
+    backupConfig: BackupConfig
+    updateMask: str
+    volumeUuid: str
+
+@typing.type_check_only
 class UserCommands(typing_extensions.TypedDict, total=False):
     commands: _list[str]
 
@@ -730,7 +764,7 @@ class Volume(typing_extensions.TypedDict, total=False):
     network: str
     protocols: _list[
         typing_extensions.Literal[
-            "PROTOCOLS_UNSPECIFIED", "NFSV3", "NFSV4", "SMB", "ISCSI"
+            "PROTOCOLS_UNSPECIFIED", "NFSV3", "NFSV4", "SMB", "ISCSI", "NVME"
         ]
     ]
     psaRange: str
@@ -782,6 +816,11 @@ class Volume(typing_extensions.TypedDict, total=False):
     unixPermissions: str
     usedGib: str
     zone: str
+
+@typing.type_check_only
+class VolumeBackupConfig(typing_extensions.TypedDict, total=False):
+    backupConfig: BackupConfig
+    volumeUuid: str
 
 @typing.type_check_only
 class WeeklySchedule(typing_extensions.TypedDict, total=False):

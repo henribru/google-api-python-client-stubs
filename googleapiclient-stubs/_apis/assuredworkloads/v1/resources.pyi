@@ -31,9 +31,57 @@ class AssuredworkloadsResource(googleapiclient.discovery.Resource):
         ): ...
 
     @typing.type_check_only
+    class FoldersResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class LocationsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class DbFindingSummariesResource(googleapiclient.discovery.Resource):
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleCloudAssuredworkloadsV1ListDbFindingSummariesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudAssuredworkloadsV1ListDbFindingSummariesResponseHttpRequest,
+                    previous_response: GoogleCloudAssuredworkloadsV1ListDbFindingSummariesResponse,
+                ) -> (
+                    GoogleCloudAssuredworkloadsV1ListDbFindingSummariesResponseHttpRequest
+                    | None
+                ): ...
+
+            def dbFindingSummaries(self) -> DbFindingSummariesResource: ...
+
+        def locations(self) -> LocationsResource: ...
+
+    @typing.type_check_only
     class OrganizationsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class DbFindingSummariesResource(googleapiclient.discovery.Resource):
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleCloudAssuredworkloadsV1ListDbFindingSummariesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudAssuredworkloadsV1ListDbFindingSummariesResponseHttpRequest,
+                    previous_response: GoogleCloudAssuredworkloadsV1ListDbFindingSummariesResponse,
+                ) -> (
+                    GoogleCloudAssuredworkloadsV1ListDbFindingSummariesResponseHttpRequest
+                    | None
+                ): ...
+
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def get(
@@ -92,6 +140,13 @@ class AssuredworkloadsResource(googleapiclient.discovery.Resource):
                         body: GoogleCloudAssuredworkloadsV1AcknowledgeViolationRequest = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudAssuredworkloadsV1AcknowledgeViolationResponseHttpRequest: ...
+                    def batchAcknowledgeViolations(
+                        self,
+                        *,
+                        parent: str,
+                        body: GoogleCloudAssuredworkloadsV1BatchAcknowledgeViolationsRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleCloudAssuredworkloadsV1BatchAcknowledgeViolationsResponseHttpRequest: ...
                     def get(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> GoogleCloudAssuredworkloadsV1ViolationHttpRequest: ...
@@ -102,6 +157,7 @@ class AssuredworkloadsResource(googleapiclient.discovery.Resource):
                         filter: str = ...,
                         interval_endTime: str = ...,
                         interval_startTime: str = ...,
+                        orderBy: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
                         **kwargs: typing.Any,
@@ -198,8 +254,37 @@ class AssuredworkloadsResource(googleapiclient.discovery.Resource):
                 def updates(self) -> UpdatesResource: ...
                 def violations(self) -> ViolationsResource: ...
 
+            def dbFindingSummaries(self) -> DbFindingSummariesResource: ...
             def operations(self) -> OperationsResource: ...
             def workloads(self) -> WorkloadsResource: ...
+
+        def locations(self) -> LocationsResource: ...
+
+    @typing.type_check_only
+    class ProjectsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class LocationsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class DbFindingSummariesResource(googleapiclient.discovery.Resource):
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleCloudAssuredworkloadsV1ListDbFindingSummariesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudAssuredworkloadsV1ListDbFindingSummariesResponseHttpRequest,
+                    previous_response: GoogleCloudAssuredworkloadsV1ListDbFindingSummariesResponse,
+                ) -> (
+                    GoogleCloudAssuredworkloadsV1ListDbFindingSummariesResponseHttpRequest
+                    | None
+                ): ...
+
+            def dbFindingSummaries(self) -> DbFindingSummariesResource: ...
 
         def locations(self) -> LocationsResource: ...
 
@@ -216,7 +301,9 @@ class AssuredworkloadsResource(googleapiclient.discovery.Resource):
         | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def assuredworkloads(self) -> AssuredworkloadsResource: ...
+    def folders(self) -> FoldersResource: ...
     def organizations(self) -> OrganizationsResource: ...
+    def projects(self) -> ProjectsResource: ...
 
 @typing.type_check_only
 class GoogleCloudAssuredworkloadsV1AcknowledgeViolationResponseHttpRequest(
@@ -249,6 +336,16 @@ class GoogleCloudAssuredworkloadsV1ArchiveResourceEventsResponseHttpRequest(
     ) -> GoogleCloudAssuredworkloadsV1ArchiveResourceEventsResponse: ...
 
 @typing.type_check_only
+class GoogleCloudAssuredworkloadsV1BatchAcknowledgeViolationsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudAssuredworkloadsV1BatchAcknowledgeViolationsResponse: ...
+
+@typing.type_check_only
 class GoogleCloudAssuredworkloadsV1EnableComplianceUpdatesResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -267,6 +364,16 @@ class GoogleCloudAssuredworkloadsV1EnableResourceMonitoringResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudAssuredworkloadsV1EnableResourceMonitoringResponse: ...
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1ListDbFindingSummariesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudAssuredworkloadsV1ListDbFindingSummariesResponse: ...
 
 @typing.type_check_only
 class GoogleCloudAssuredworkloadsV1ListViolationsResponseHttpRequest(

@@ -212,6 +212,7 @@ class EventAttachment(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class EventAttendee(typing_extensions.TypedDict, total=False):
     additionalGuests: int
+    asyncOperation: str
     comment: str
     displayName: str
     email: str

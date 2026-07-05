@@ -404,7 +404,15 @@ class Details(typing_extensions.TypedDict, total=False):
     endTime: str
     startTime: str
     type: typing_extensions.Literal[
-        "TYPE_UNSPECIFIED", "STANDARD", "TRIAL", "ALPHA", "DEMO", "PAY_AS_YOU_GO"
+        "TYPE_UNSPECIFIED",
+        "STANDARD",
+        "TRIAL",
+        "ALPHA",
+        "DEMO",
+        "PAY_AS_YOU_GO",
+        "SUBSCRIPTION",
+        "SUB_FIXED",
+        "SUB_BASE_OVERAGE",
     ]
 
 @typing.type_check_only
@@ -491,6 +499,7 @@ class ExternalExposure(typing_extensions.TypedDict, total=False):
     loadBalancerFirewallPolicy: str
     networkEndpointGroup: str
     networkIngressFirewallPolicy: str
+    networkPathInsightsGenerationTime: str
     privateIpAddress: str
     privatePort: str
     pscNetworkAttachment: str
@@ -570,6 +579,7 @@ class Finding(typing_extensions.TypedDict, total=False):
     ]
     groupMemberships: _list[GroupMembership]
     iamBindings: _list[IamBinding]
+    iamDetails: GoogleCloudSecuritycenterV1IamDetails
     indicator: Indicator
     ipRules: IpRules
     job: Job
@@ -716,6 +726,17 @@ class GoogleCloudSecuritycenterV1ExternalSystem(
     name: str
     status: str
     ticketInfo: TicketInfo
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV1IamDetails(typing_extensions.TypedDict, total=False):
+    iamRolePermissions: _list[GoogleCloudSecuritycenterV1IamRolePermission]
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV1IamRolePermission(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
+    role: str
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV1MuteConfig(typing_extensions.TypedDict, total=False):
@@ -1477,6 +1498,7 @@ class GoogleCloudSecuritycenterV2ExternalExposure(
     loadBalancerFirewallPolicy: str
     networkEndpointGroup: str
     networkIngressFirewallPolicy: str
+    networkPathInsightsGenerationTime: str
     privateIpAddress: str
     privatePort: str
     pscNetworkAttachment: str
@@ -1577,6 +1599,7 @@ class GoogleCloudSecuritycenterV2Finding(typing_extensions.TypedDict, total=Fals
     ]
     groupMemberships: _list[GoogleCloudSecuritycenterV2GroupMembership]
     iamBindings: _list[GoogleCloudSecuritycenterV2IamBinding]
+    iamDetails: GoogleCloudSecuritycenterV2IamDetails
     indicator: GoogleCloudSecuritycenterV2Indicator
     ipRules: GoogleCloudSecuritycenterV2IpRules
     job: GoogleCloudSecuritycenterV2Job
@@ -1660,6 +1683,17 @@ class GoogleCloudSecuritycenterV2HttpResponse(typing_extensions.TypedDict, total
 class GoogleCloudSecuritycenterV2IamBinding(typing_extensions.TypedDict, total=False):
     action: typing_extensions.Literal["ACTION_UNSPECIFIED", "ADD", "REMOVE"]
     member: str
+    role: str
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2IamDetails(typing_extensions.TypedDict, total=False):
+    iamRolePermissions: _list[GoogleCloudSecuritycenterV2IamRolePermission]
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2IamRolePermission(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
     role: str
 
 @typing.type_check_only

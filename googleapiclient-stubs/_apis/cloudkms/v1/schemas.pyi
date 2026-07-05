@@ -86,7 +86,11 @@ class AutokeyConfig(typing_extensions.TypedDict, total=False):
     ]
     name: str
     state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "ACTIVE", "KEY_PROJECT_DELETED", "UNINITIALIZED"
+        "STATE_UNSPECIFIED",
+        "ACTIVE",
+        "KEY_PROJECT_DELETED",
+        "UNINITIALIZED",
+        "KEY_PROJECT_PERMISSION_DENIED",
     ]
 
 @typing.type_check_only
@@ -505,6 +509,9 @@ class ImportJob(typing_extensions.TypedDict, total=False):
         "RSA_OAEP_4096_SHA256_AES_256",
         "RSA_OAEP_3072_SHA256",
         "RSA_OAEP_4096_SHA256",
+        "HPKE_KEM_ML_KEM_768_HKDF_SHA256_AES_256_GCM",
+        "HPKE_KEM_ML_KEM_1024_HKDF_SHA256_AES_256_GCM",
+        "HPKE_KEM_XWING_HKDF_SHA256_AES_256_GCM",
     ]
     name: str
     protectionLevel: typing_extensions.Literal[
@@ -516,6 +523,9 @@ class ImportJob(typing_extensions.TypedDict, total=False):
         "HSM_SINGLE_TENANT",
     ]
     publicKey: WrappingPublicKey
+    publicKeyFormat: typing_extensions.Literal[
+        "PUBLIC_KEY_FORMAT_UNSPECIFIED", "PEM", "DER", "NIST_PQC", "XWING_RAW_BYTES"
+    ]
     state: typing_extensions.Literal[
         "IMPORT_JOB_STATE_UNSPECIFIED", "PENDING_GENERATION", "ACTIVE", "EXPIRED"
     ]
@@ -976,4 +986,5 @@ class VerifyConnectivityResponse(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class WrappingPublicKey(typing_extensions.TypedDict, total=False):
+    data: str
     pem: str

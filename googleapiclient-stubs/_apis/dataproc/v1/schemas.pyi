@@ -393,6 +393,9 @@ class CohortInfo(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ConfidentialInstanceConfig(typing_extensions.TypedDict, total=False):
+    confidentialInstanceType: typing_extensions.Literal[
+        "CONFIDENTIAL_INSTANCE_TYPE_UNSPECIFIED", "SEV", "SEV_SNP", "TDX"
+    ]
     enableConfidentialCompute: bool
 
 @typing.type_check_only
@@ -637,6 +640,7 @@ class GkeNodeConfig(typing_extensions.TypedDict, total=False):
     machineType: str
     minCpuPlatform: str
     preemptible: bool
+    serviceAccount: str
     spot: bool
 
 @typing.type_check_only
@@ -2198,6 +2202,9 @@ class TrinoJob(typing_extensions.TypedDict, total=False):
 class UsageMetrics(typing_extensions.TypedDict, total=False):
     acceleratorType: str
     milliAcceleratorSeconds: str
+    milliAcceleratorSecondsA10040: str
+    milliAcceleratorSecondsA10080: str
+    milliAcceleratorSecondsL4: str
     milliDcuSeconds: str
     shuffleStorageGbSeconds: str
     updateTime: str
@@ -2206,6 +2213,9 @@ class UsageMetrics(typing_extensions.TypedDict, total=False):
 class UsageSnapshot(typing_extensions.TypedDict, total=False):
     acceleratorType: str
     milliAccelerator: str
+    milliAcceleratorA10040: str
+    milliAcceleratorA10080: str
+    milliAcceleratorL4: str
     milliDcu: str
     milliDcuPremium: str
     shuffleStorageGb: str

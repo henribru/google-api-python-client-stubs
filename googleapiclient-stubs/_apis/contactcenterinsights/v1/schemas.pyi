@@ -528,6 +528,7 @@ class GoogleCloudContactcenterinsightsV1Chart(typing_extensions.TypedDict, total
 class GoogleCloudContactcenterinsightsV1ChartAction(
     typing_extensions.TypedDict, total=False
 ):
+    conversationFilter: str
     redirectAction: GoogleCloudContactcenterinsightsV1RedirectAction
 
 @typing.type_check_only
@@ -709,6 +710,7 @@ class GoogleCloudContactcenterinsightsV1ConversationQualityMetadataAgentInfo(
     displayName: str
     dispositionCode: str
     entrySubagentDisplayName: str
+    entrySubagentId: str
     location: str
     team: str
     teams: _list[str]
@@ -927,77 +929,6 @@ class GoogleCloudContactcenterinsightsV1DeployIssueModelResponse(
 class GoogleCloudContactcenterinsightsV1DeployQaScorecardRevisionRequest(
     typing_extensions.TypedDict, total=False
 ): ...
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1DiagnoseConversationsMetadata(
-    typing_extensions.TypedDict, total=False
-):
-    createTime: str
-    diagnosticReport: GoogleCloudContactcenterinsightsV1DiagnosticReport
-    endTime: str
-    fullReport: bool
-    latestStep: GoogleCloudContactcenterinsightsV1SherlockStep
-    metricType: typing_extensions.Literal[
-        "DIAGNOSTIC_METRIC_TYPE_UNSPECIFIED", "ESCALATION", "CONTAINMENT"
-    ]
-    partialTrajectories: _list[str]
-    partialTrajectorySteps: _list[GoogleCloudContactcenterinsightsV1SherlockStep]
-    request: GoogleCloudContactcenterinsightsV1DiagnoseConversationsRequest
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1DiagnoseConversationsRequest(
-    typing_extensions.TypedDict, total=False
-):
-    dryRun: bool
-    filter: str
-    fullReport: bool
-    instructions: str
-    maxSteps: int
-    metricType: typing_extensions.Literal[
-        "DIAGNOSTIC_METRIC_TYPE_UNSPECIFIED", "ESCALATION", "CONTAINMENT"
-    ]
-    outputConfig: GoogleCloudContactcenterinsightsV1OutputConfig
-    parent: str
-    requestId: str
-    taskQuery: str
-    validateOnly: bool
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1DiagnoseConversationsResponse(
-    typing_extensions.TypedDict, total=False
-):
-    answer: str
-    exportUri: str
-    fullTrajectories: _list[str]
-    fullTrajectorySteps: _list[GoogleCloudContactcenterinsightsV1SherlockStep]
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1Diagnostic(
-    typing_extensions.TypedDict, total=False
-):
-    analysisSummary: str
-    conversationFilter: str
-    createTime: str
-    name: str
-    report: GoogleCloudContactcenterinsightsV1DiagnosticReport
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1DiagnosticReport(
-    typing_extensions.TypedDict, total=False
-):
-    intentStats: _list[GoogleCloudContactcenterinsightsV1DiagnosticReportIntentStats]
-    lossPatterns: _list[GoogleCloudContactcenterinsightsV1LossPattern]
-    metrics: dict[str, typing.Any]
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1DiagnosticReportIntentStats(
-    typing_extensions.TypedDict, total=False
-):
-    conversationCount: int
-    intentDisplayName: str
-    intentId: str
-    lossPatterns: _list[GoogleCloudContactcenterinsightsV1LossPattern]
-    metrics: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1DialogflowIntent(
@@ -1792,13 +1723,6 @@ class GoogleCloudContactcenterinsightsV1ListDatasetsResponse(
     nextPageToken: str
 
 @typing.type_check_only
-class GoogleCloudContactcenterinsightsV1ListDiagnosticsResponse(
-    typing_extensions.TypedDict, total=False
-):
-    diagnostics: _list[GoogleCloudContactcenterinsightsV1Diagnostic]
-    nextPageToken: str
-
-@typing.type_check_only
 class GoogleCloudContactcenterinsightsV1ListFeedbackLabelsResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -1867,37 +1791,11 @@ class GoogleCloudContactcenterinsightsV1ListViewsResponse(
     views: _list[GoogleCloudContactcenterinsightsV1View]
 
 @typing.type_check_only
-class GoogleCloudContactcenterinsightsV1LossPattern(
-    typing_extensions.TypedDict, total=False
-):
-    conversationIds: _list[str]
-    description: str
-    displayName: str
-    examples: str
-    id: str
-    percentage: float
-    suggestedFixes: str
-
-@typing.type_check_only
 class GoogleCloudContactcenterinsightsV1MetricDefinition(
     typing_extensions.TypedDict, total=False
 ):
     displayName: str
     sourceId: str
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1MetricValue(
-    typing_extensions.TypedDict, total=False
-):
-    conversations: _list[str]
-    displayName: str
-    hitCount: int
-    metricType: typing_extensions.Literal[
-        "METRIC_TYPE_UNSPECIFIED", "ESCALATION", "CONTAINMENT"
-    ]
-    sourceId: str
-    totalCount: int
-    value: float
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1Note(typing_extensions.TypedDict, total=False):
@@ -1926,39 +1824,6 @@ class GoogleCloudContactcenterinsightsV1NoteQaQuestionNote(
     typing_extensions.TypedDict, total=False
 ):
     qaQuestion: str
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1OutputConfig(
-    typing_extensions.TypedDict, total=False
-):
-    bigqueryDestination: (
-        GoogleCloudContactcenterinsightsV1OutputConfigBigQueryDestination
-    )
-    gcsDestination: GoogleCloudContactcenterinsightsV1OutputConfigGcsDestination
-    googleSheetsDestination: (
-        GoogleCloudContactcenterinsightsV1OutputConfigGoogleSheetsDestination
-    )
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1OutputConfigBigQueryDestination(
-    typing_extensions.TypedDict, total=False
-):
-    dataset: str
-    projectId: str
-    table: str
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1OutputConfigGcsDestination(
-    typing_extensions.TypedDict, total=False
-):
-    uri: str
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1OutputConfigGoogleSheetsDestination(
-    typing_extensions.TypedDict, total=False
-):
-    sheet: str
-    spreadsheetId: str
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1PhraseMatchData(
@@ -2400,6 +2265,7 @@ class GoogleCloudContactcenterinsightsV1RedactionConfig(
 class GoogleCloudContactcenterinsightsV1RedirectAction(
     typing_extensions.TypedDict, total=False
 ):
+    queryParams: dict[str, typing.Any]
     relativePath: str
 
 @typing.type_check_only
@@ -2534,15 +2400,6 @@ class GoogleCloudContactcenterinsightsV1SettingsDiagnosticMetricConfig(
     metrics: dict[str, typing.Any]
 
 @typing.type_check_only
-class GoogleCloudContactcenterinsightsV1SherlockStep(
-    typing_extensions.TypedDict, total=False
-):
-    textInput: _list[str]
-    thought: str
-    toolCalls: _list[GoogleCloudContactcenterinsightsV1ToolCall]
-    toolOutput: dict[str, typing.Any]
-
-@typing.type_check_only
 class GoogleCloudContactcenterinsightsV1SignedAudioUris(
     typing_extensions.TypedDict, total=False
 ):
@@ -2656,13 +2513,6 @@ class GoogleCloudContactcenterinsightsV1TestCorrelationConfigResponseDetailedCor
     joinKeyResults: _list[
         GoogleCloudContactcenterinsightsV1ConversationCorrelationResult
     ]
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1ToolCall(
-    typing_extensions.TypedDict, total=False
-):
-    input: dict[str, typing.Any]
-    toolName: str
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1TuneQaScorecardRevisionRequest(
@@ -3117,6 +2967,7 @@ class GoogleCloudContactcenterinsightsV1alpha1ConversationQualityMetadataAgentIn
     displayName: str
     dispositionCode: str
     entrySubagentDisplayName: str
+    entrySubagentId: str
     location: str
     team: str
     teams: _list[str]
@@ -3274,69 +3125,6 @@ class GoogleCloudContactcenterinsightsV1alpha1DeployIssueModelRequest(
 class GoogleCloudContactcenterinsightsV1alpha1DeployIssueModelResponse(
     typing_extensions.TypedDict, total=False
 ): ...
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1alpha1DiagnoseConversationsMetadata(
-    typing_extensions.TypedDict, total=False
-):
-    createTime: str
-    diagnosticReport: GoogleCloudContactcenterinsightsV1alpha1DiagnosticReport
-    endTime: str
-    fullReport: bool
-    latestStep: GoogleCloudContactcenterinsightsV1alpha1SherlockStep
-    metricType: typing_extensions.Literal[
-        "DIAGNOSTIC_METRIC_TYPE_UNSPECIFIED", "ESCALATION", "CONTAINMENT"
-    ]
-    partialTrajectories: _list[str]
-    partialTrajectorySteps: _list[GoogleCloudContactcenterinsightsV1alpha1SherlockStep]
-    request: GoogleCloudContactcenterinsightsV1alpha1DiagnoseConversationsRequest
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1alpha1DiagnoseConversationsRequest(
-    typing_extensions.TypedDict, total=False
-):
-    dryRun: bool
-    filter: str
-    fullReport: bool
-    instructions: str
-    maxSteps: int
-    metricType: typing_extensions.Literal[
-        "DIAGNOSTIC_METRIC_TYPE_UNSPECIFIED", "ESCALATION", "CONTAINMENT"
-    ]
-    outputConfig: GoogleCloudContactcenterinsightsV1alpha1OutputConfig
-    parent: str
-    requestId: str
-    taskQuery: str
-    validateOnly: bool
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1alpha1DiagnoseConversationsResponse(
-    typing_extensions.TypedDict, total=False
-):
-    answer: str
-    exportUri: str
-    fullTrajectories: _list[str]
-    fullTrajectorySteps: _list[GoogleCloudContactcenterinsightsV1alpha1SherlockStep]
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1alpha1DiagnosticReport(
-    typing_extensions.TypedDict, total=False
-):
-    intentStats: _list[
-        GoogleCloudContactcenterinsightsV1alpha1DiagnosticReportIntentStats
-    ]
-    lossPatterns: _list[GoogleCloudContactcenterinsightsV1alpha1LossPattern]
-    metrics: dict[str, typing.Any]
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1alpha1DiagnosticReportIntentStats(
-    typing_extensions.TypedDict, total=False
-):
-    conversationCount: int
-    intentDisplayName: str
-    intentId: str
-    lossPatterns: _list[GoogleCloudContactcenterinsightsV1alpha1LossPattern]
-    metrics: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1alpha1DialogflowIntent(
@@ -3963,65 +3751,6 @@ class GoogleCloudContactcenterinsightsV1alpha1ListFeedbackLabelsResponse(
     nextPageToken: str
 
 @typing.type_check_only
-class GoogleCloudContactcenterinsightsV1alpha1LossPattern(
-    typing_extensions.TypedDict, total=False
-):
-    conversationIds: _list[str]
-    description: str
-    displayName: str
-    examples: str
-    id: str
-    percentage: float
-    suggestedFixes: str
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1alpha1MetricValue(
-    typing_extensions.TypedDict, total=False
-):
-    conversations: _list[str]
-    displayName: str
-    hitCount: int
-    metricType: typing_extensions.Literal[
-        "METRIC_TYPE_UNSPECIFIED", "ESCALATION", "CONTAINMENT"
-    ]
-    sourceId: str
-    totalCount: int
-    value: float
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1alpha1OutputConfig(
-    typing_extensions.TypedDict, total=False
-):
-    bigqueryDestination: (
-        GoogleCloudContactcenterinsightsV1alpha1OutputConfigBigQueryDestination
-    )
-    gcsDestination: GoogleCloudContactcenterinsightsV1alpha1OutputConfigGcsDestination
-    googleSheetsDestination: (
-        GoogleCloudContactcenterinsightsV1alpha1OutputConfigGoogleSheetsDestination
-    )
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1alpha1OutputConfigBigQueryDestination(
-    typing_extensions.TypedDict, total=False
-):
-    dataset: str
-    projectId: str
-    table: str
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1alpha1OutputConfigGcsDestination(
-    typing_extensions.TypedDict, total=False
-):
-    uri: str
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1alpha1OutputConfigGoogleSheetsDestination(
-    typing_extensions.TypedDict, total=False
-):
-    sheet: str
-    spreadsheetId: str
-
-@typing.type_check_only
 class GoogleCloudContactcenterinsightsV1alpha1PhraseMatchData(
     typing_extensions.TypedDict, total=False
 ):
@@ -4345,15 +4074,6 @@ class GoogleCloudContactcenterinsightsV1alpha1SentimentData(
     score: float
 
 @typing.type_check_only
-class GoogleCloudContactcenterinsightsV1alpha1SherlockStep(
-    typing_extensions.TypedDict, total=False
-):
-    textInput: _list[str]
-    thought: str
-    toolCalls: _list[GoogleCloudContactcenterinsightsV1alpha1ToolCall]
-    toolOutput: dict[str, typing.Any]
-
-@typing.type_check_only
 class GoogleCloudContactcenterinsightsV1alpha1SilenceData(
     typing_extensions.TypedDict, total=False
 ): ...
@@ -4427,13 +4147,6 @@ class GoogleCloudContactcenterinsightsV1alpha1TestCorrelationConfigResponseDetai
     joinKeyResults: _list[
         GoogleCloudContactcenterinsightsV1alpha1ConversationCorrelationResult
     ]
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1alpha1ToolCall(
-    typing_extensions.TypedDict, total=False
-):
-    input: dict[str, typing.Any]
-    toolName: str
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1alpha1UndeployIssueModelMetadata(
@@ -4910,6 +4623,7 @@ class GoogleCloudContactcenterinsightsV1mainConversationQualityMetadataAgentInfo
     displayName: str
     dispositionCode: str
     entrySubagentDisplayName: str
+    entrySubagentId: str
     location: str
     team: str
     teams: _list[str]
@@ -5067,69 +4781,6 @@ class GoogleCloudContactcenterinsightsV1mainDeployIssueModelRequest(
 class GoogleCloudContactcenterinsightsV1mainDeployIssueModelResponse(
     typing_extensions.TypedDict, total=False
 ): ...
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1mainDiagnoseConversationsMetadata(
-    typing_extensions.TypedDict, total=False
-):
-    createTime: str
-    diagnosticReport: GoogleCloudContactcenterinsightsV1mainDiagnosticReport
-    endTime: str
-    fullReport: bool
-    latestStep: GoogleCloudContactcenterinsightsV1mainSherlockStep
-    metricType: typing_extensions.Literal[
-        "DIAGNOSTIC_METRIC_TYPE_UNSPECIFIED", "ESCALATION", "CONTAINMENT"
-    ]
-    partialTrajectories: _list[str]
-    partialTrajectorySteps: _list[GoogleCloudContactcenterinsightsV1mainSherlockStep]
-    request: GoogleCloudContactcenterinsightsV1mainDiagnoseConversationsRequest
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1mainDiagnoseConversationsRequest(
-    typing_extensions.TypedDict, total=False
-):
-    dryRun: bool
-    filter: str
-    fullReport: bool
-    instructions: str
-    maxSteps: int
-    metricType: typing_extensions.Literal[
-        "DIAGNOSTIC_METRIC_TYPE_UNSPECIFIED", "ESCALATION", "CONTAINMENT"
-    ]
-    outputConfig: GoogleCloudContactcenterinsightsV1mainOutputConfig
-    parent: str
-    requestId: str
-    taskQuery: str
-    validateOnly: bool
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1mainDiagnoseConversationsResponse(
-    typing_extensions.TypedDict, total=False
-):
-    answer: str
-    exportUri: str
-    fullTrajectories: _list[str]
-    fullTrajectorySteps: _list[GoogleCloudContactcenterinsightsV1mainSherlockStep]
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1mainDiagnosticReport(
-    typing_extensions.TypedDict, total=False
-):
-    intentStats: _list[
-        GoogleCloudContactcenterinsightsV1mainDiagnosticReportIntentStats
-    ]
-    lossPatterns: _list[GoogleCloudContactcenterinsightsV1mainLossPattern]
-    metrics: dict[str, typing.Any]
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1mainDiagnosticReportIntentStats(
-    typing_extensions.TypedDict, total=False
-):
-    conversationCount: int
-    intentDisplayName: str
-    intentId: str
-    lossPatterns: _list[GoogleCloudContactcenterinsightsV1mainLossPattern]
-    metrics: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1mainDialogflowIntent(
@@ -5756,65 +5407,6 @@ class GoogleCloudContactcenterinsightsV1mainListFeedbackLabelsResponse(
     nextPageToken: str
 
 @typing.type_check_only
-class GoogleCloudContactcenterinsightsV1mainLossPattern(
-    typing_extensions.TypedDict, total=False
-):
-    conversationIds: _list[str]
-    description: str
-    displayName: str
-    examples: str
-    id: str
-    percentage: float
-    suggestedFixes: str
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1mainMetricValue(
-    typing_extensions.TypedDict, total=False
-):
-    conversations: _list[str]
-    displayName: str
-    hitCount: int
-    metricType: typing_extensions.Literal[
-        "METRIC_TYPE_UNSPECIFIED", "ESCALATION", "CONTAINMENT"
-    ]
-    sourceId: str
-    totalCount: int
-    value: float
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1mainOutputConfig(
-    typing_extensions.TypedDict, total=False
-):
-    bigqueryDestination: (
-        GoogleCloudContactcenterinsightsV1mainOutputConfigBigQueryDestination
-    )
-    gcsDestination: GoogleCloudContactcenterinsightsV1mainOutputConfigGcsDestination
-    googleSheetsDestination: (
-        GoogleCloudContactcenterinsightsV1mainOutputConfigGoogleSheetsDestination
-    )
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1mainOutputConfigBigQueryDestination(
-    typing_extensions.TypedDict, total=False
-):
-    dataset: str
-    projectId: str
-    table: str
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1mainOutputConfigGcsDestination(
-    typing_extensions.TypedDict, total=False
-):
-    uri: str
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1mainOutputConfigGoogleSheetsDestination(
-    typing_extensions.TypedDict, total=False
-):
-    sheet: str
-    spreadsheetId: str
-
-@typing.type_check_only
 class GoogleCloudContactcenterinsightsV1mainPhraseMatchData(
     typing_extensions.TypedDict, total=False
 ):
@@ -6138,15 +5730,6 @@ class GoogleCloudContactcenterinsightsV1mainSentimentData(
     score: float
 
 @typing.type_check_only
-class GoogleCloudContactcenterinsightsV1mainSherlockStep(
-    typing_extensions.TypedDict, total=False
-):
-    textInput: _list[str]
-    thought: str
-    toolCalls: _list[GoogleCloudContactcenterinsightsV1mainToolCall]
-    toolOutput: dict[str, typing.Any]
-
-@typing.type_check_only
 class GoogleCloudContactcenterinsightsV1mainSilenceData(
     typing_extensions.TypedDict, total=False
 ): ...
@@ -6220,13 +5803,6 @@ class GoogleCloudContactcenterinsightsV1mainTestCorrelationConfigResponseDetaile
     joinKeyResults: _list[
         GoogleCloudContactcenterinsightsV1mainConversationCorrelationResult
     ]
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1mainToolCall(
-    typing_extensions.TypedDict, total=False
-):
-    input: dict[str, typing.Any]
-    toolName: str
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1mainUndeployIssueModelMetadata(

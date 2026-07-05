@@ -86,6 +86,12 @@ class GoogleCloudDataplexV1ActionUnauthorizedResource(
 ): ...
 
 @typing.type_check_only
+class GoogleCloudDataplexV1ApproveChangeRequestRequest(
+    typing_extensions.TypedDict, total=False
+):
+    etag: str
+
+@typing.type_check_only
 class GoogleCloudDataplexV1Aspect(typing_extensions.TypedDict, total=False):
     aspectSource: GoogleCloudDataplexV1AspectSource
     aspectType: str
@@ -306,6 +312,105 @@ class GoogleCloudDataplexV1CancelMetadataJobRequest(
 ): ...
 
 @typing.type_check_only
+class GoogleCloudDataplexV1ChangeRequest(typing_extensions.TypedDict, total=False):
+    approver: str
+    author: str
+    changeType: typing_extensions.Literal[
+        "CHANGE_TYPE_UNSPECIFIED",
+        "CREATE_ENTRY",
+        "UPDATE_ENTRY",
+        "DELETE_ENTRY",
+        "CREATE_ENTRY_LINK",
+        "DELETE_ENTRY_LINK",
+        "CREATE_GLOSSARY",
+        "UPDATE_GLOSSARY",
+        "DELETE_GLOSSARY",
+        "CREATE_GLOSSARY_CATEGORY",
+        "UPDATE_GLOSSARY_CATEGORY",
+        "DELETE_GLOSSARY_CATEGORY",
+        "CREATE_GLOSSARY_TERM",
+        "UPDATE_GLOSSARY_TERM",
+        "DELETE_GLOSSARY_TERM",
+        "REQUEST_DATA_PRODUCT_ACCESS",
+    ]
+    createEntry: GoogleCloudDataplexV1CreateEntryRequest
+    createEntryLink: GoogleCloudDataplexV1CreateEntryLinkRequest
+    createGlossary: GoogleCloudDataplexV1CreateGlossaryRequest
+    createGlossaryCategory: GoogleCloudDataplexV1CreateGlossaryCategoryRequest
+    createGlossaryTerm: GoogleCloudDataplexV1CreateGlossaryTermRequest
+    createTime: str
+    dataProductAccessRequest: GoogleCloudDataplexV1DataProductAccessRequest
+    deleteEntry: GoogleCloudDataplexV1DeleteEntryRequest
+    deleteEntryLink: GoogleCloudDataplexV1DeleteEntryLinkRequest
+    deleteGlossary: GoogleCloudDataplexV1DeleteGlossaryRequest
+    deleteGlossaryCategory: GoogleCloudDataplexV1DeleteGlossaryCategoryRequest
+    deleteGlossaryTerm: GoogleCloudDataplexV1DeleteGlossaryTermRequest
+    etag: str
+    justification: str
+    labels: dict[str, typing.Any]
+    name: str
+    rejectionComment: str
+    resource: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "NEW", "APPROVED", "REJECTED", "EXPIRED", "REVOKED"
+    ]
+    uid: str
+    updateEntry: GoogleCloudDataplexV1UpdateEntryRequest
+    updateGlossary: GoogleCloudDataplexV1UpdateGlossaryRequest
+    updateGlossaryCategory: GoogleCloudDataplexV1UpdateGlossaryCategoryRequest
+    updateGlossaryTerm: GoogleCloudDataplexV1UpdateGlossaryTermRequest
+    updateTime: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1ContactIdentity(typing_extensions.TypedDict, total=False):
+    contactId: str
+    contactName: str
+    contactRole: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1Contacts(typing_extensions.TypedDict, total=False):
+    identities: _list[GoogleCloudDataplexV1ContactIdentity]
+
+@typing.type_check_only
+class GoogleCloudDataplexV1CreateEntryLinkRequest(
+    typing_extensions.TypedDict, total=False
+):
+    entryLink: GoogleCloudDataplexV1EntryLink
+    entryLinkId: str
+    parent: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1CreateEntryRequest(typing_extensions.TypedDict, total=False):
+    entry: GoogleCloudDataplexV1Entry
+    entryId: str
+    parent: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1CreateGlossaryCategoryRequest(
+    typing_extensions.TypedDict, total=False
+):
+    category: GoogleCloudDataplexV1GlossaryCategory
+    categoryId: str
+    parent: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1CreateGlossaryRequest(
+    typing_extensions.TypedDict, total=False
+):
+    glossary: GoogleCloudDataplexV1Glossary
+    glossaryId: str
+    parent: str
+    validateOnly: bool
+
+@typing.type_check_only
+class GoogleCloudDataplexV1CreateGlossaryTermRequest(
+    typing_extensions.TypedDict, total=False
+):
+    parent: str
+    term: GoogleCloudDataplexV1GlossaryTerm
+    termId: str
+
+@typing.type_check_only
 class GoogleCloudDataplexV1DataAccessSpec(typing_extensions.TypedDict, total=False):
     readers: _list[str]
 
@@ -443,7 +548,7 @@ class GoogleCloudDataplexV1DataDiscoverySpecStorageConfigJsonOptions(
 class GoogleCloudDataplexV1DataDiscoverySpecStorageConfigUnstructuredDataOptions(
     typing_extensions.TypedDict, total=False
 ):
-    entityInferenceEnabled: bool
+    globalEndpointEnabled: bool
     semanticInferenceEnabled: bool
 
 @typing.type_check_only
@@ -528,11 +633,32 @@ class GoogleCloudDataplexV1DataDocumentationSpec(
             "ALL",
             "TABLE_AND_COLUMN_DESCRIPTIONS",
             "SQL_QUERIES",
+            "BUSINESS_GLOSSARY_TERM_ASSOCIATIONS",
         ]
     ]
 
 @typing.type_check_only
+class GoogleCloudDataplexV1DataDomain(typing_extensions.TypedDict, total=False):
+    contacts: GoogleCloudDataplexV1Contacts
+    createTime: str
+    description: str
+    displayName: str
+    labels: dict[str, typing.Any]
+    name: str
+    parentDataDomain: str
+    uid: str
+    updateTime: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataDomainBinding(typing_extensions.TypedDict, total=False):
+    createTime: str
+    name: str
+    resource: str
+    uid: str
+
+@typing.type_check_only
 class GoogleCloudDataplexV1DataProduct(typing_extensions.TypedDict, total=False):
+    accessApprovalConfig: GoogleCloudDataplexV1DataProductAccessApprovalConfig
     accessGroups: dict[str, typing.Any]
     assetCount: int
     createTime: str
@@ -547,6 +673,12 @@ class GoogleCloudDataplexV1DataProduct(typing_extensions.TypedDict, total=False)
     updateTime: str
 
 @typing.type_check_only
+class GoogleCloudDataplexV1DataProductAccessApprovalConfig(
+    typing_extensions.TypedDict, total=False
+):
+    approverEmails: _list[str]
+
+@typing.type_check_only
 class GoogleCloudDataplexV1DataProductAccessGroup(
     typing_extensions.TypedDict, total=False
 ):
@@ -556,10 +688,20 @@ class GoogleCloudDataplexV1DataProductAccessGroup(
     principal: GoogleCloudDataplexV1DataProductPrincipal
 
 @typing.type_check_only
+class GoogleCloudDataplexV1DataProductAccessRequest(
+    typing_extensions.TypedDict, total=False
+):
+    accessGroupDisplayName: str
+    accessGroupId: str
+    parent: str
+    requestedPrincipal: str
+
+@typing.type_check_only
 class GoogleCloudDataplexV1DataProductPrincipal(
     typing_extensions.TypedDict, total=False
 ):
     googleGroup: str
+    serviceAccount: str
 
 @typing.type_check_only
 class GoogleCloudDataplexV1DataProfileResult(typing_extensions.TypedDict, total=False):
@@ -1063,8 +1205,11 @@ class GoogleCloudDataplexV1DataScan(typing_extensions.TypedDict, total=False):
         "DATA_PROFILE",
         "DATA_DISCOVERY",
         "DATA_DOCUMENTATION",
+        "UNSTRUCTURED_DATA_PROFILE",
     ]
     uid: str
+    unstructuredDataProfileResult: GoogleCloudDataplexV1UnstructuredDataProfileResult
+    unstructuredDataProfileSpec: GoogleCloudDataplexV1UnstructuredDataProfileSpec
     updateTime: str
 
 @typing.type_check_only
@@ -1197,8 +1342,11 @@ class GoogleCloudDataplexV1DataScanJob(typing_extensions.TypedDict, total=False)
         "DATA_PROFILE",
         "DATA_DISCOVERY",
         "DATA_DOCUMENTATION",
+        "UNSTRUCTURED_DATA_PROFILE",
     ]
     uid: str
+    unstructuredDataProfileResult: GoogleCloudDataplexV1UnstructuredDataProfileResult
+    unstructuredDataProfileSpec: GoogleCloudDataplexV1UnstructuredDataProfileSpec
 
 @typing.type_check_only
 class GoogleCloudDataplexV1DataSource(typing_extensions.TypedDict, total=False):
@@ -1217,6 +1365,35 @@ class GoogleCloudDataplexV1DataTaxonomy(typing_extensions.TypedDict, total=False
     name: str
     uid: str
     updateTime: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DeleteEntryLinkRequest(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DeleteEntryRequest(typing_extensions.TypedDict, total=False):
+    name: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DeleteGlossaryCategoryRequest(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DeleteGlossaryRequest(
+    typing_extensions.TypedDict, total=False
+):
+    etag: str
+    name: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DeleteGlossaryTermRequest(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
 
 @typing.type_check_only
 class GoogleCloudDataplexV1DiscoveryEvent(typing_extensions.TypedDict, total=False):
@@ -1543,6 +1720,93 @@ class GoogleCloudDataplexV1GovernanceEventEntity(
     entityType: typing_extensions.Literal["ENTITY_TYPE_UNSPECIFIED", "TABLE", "FILESET"]
 
 @typing.type_check_only
+class GoogleCloudDataplexV1GraphProfile(typing_extensions.TypedDict, total=False):
+    edgeTypes: _list[GoogleCloudDataplexV1GraphProfileEdgeType]
+    nodeTypes: _list[GoogleCloudDataplexV1GraphProfileNodeType]
+
+@typing.type_check_only
+class GoogleCloudDataplexV1GraphProfileEdgeType(
+    typing_extensions.TypedDict, total=False
+):
+    description: str
+    extractionHints: GoogleCloudDataplexV1GraphProfileEdgeTypeExtractionHints
+    fields: _list[GoogleCloudDataplexV1GraphProfileField]
+    foreignKeys: _list[GoogleCloudDataplexV1GraphProfileEdgeTypeForeignKey]
+    name: str
+    sourceNodeType: str
+    targetNodeType: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1GraphProfileEdgeTypeExtractionHints(
+    typing_extensions.TypedDict, total=False
+):
+    cardinality: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1GraphProfileEdgeTypeForeignKey(
+    typing_extensions.TypedDict, total=False
+):
+    description: str
+    fieldMappings: _list[
+        GoogleCloudDataplexV1GraphProfileEdgeTypeForeignKeyFieldMapping
+    ]
+    name: str
+    referencedNodeType: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1GraphProfileEdgeTypeForeignKeyFieldMapping(
+    typing_extensions.TypedDict, total=False
+):
+    field: str
+    referencedField: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1GraphProfileField(typing_extensions.TypedDict, total=False):
+    dataType: str
+    description: str
+    extractionHints: GoogleCloudDataplexV1GraphProfileFieldExtractionHints
+    fields: _list[GoogleCloudDataplexV1GraphProfileField]
+    metadataType: typing_extensions.Literal[
+        "METADATA_TYPE_UNSPECIFIED",
+        "BOOLEAN",
+        "NUMBER",
+        "STRING",
+        "BYTES",
+        "DATETIME",
+        "TIMESTAMP",
+        "GEOSPATIAL",
+        "STRUCT",
+        "OTHER",
+    ]
+    mode: typing_extensions.Literal[
+        "MODE_UNSPECIFIED", "NULLABLE", "REPEATED", "REQUIRED"
+    ]
+    name: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1GraphProfileFieldExtractionHints(
+    typing_extensions.TypedDict, total=False
+):
+    normalization: str
+    synthesis: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1GraphProfileNodeType(
+    typing_extensions.TypedDict, total=False
+):
+    description: str
+    extractionHints: GoogleCloudDataplexV1GraphProfileNodeTypeExtractionHints
+    fields: _list[GoogleCloudDataplexV1GraphProfileField]
+    name: str
+    primaryKeys: _list[str]
+
+@typing.type_check_only
+class GoogleCloudDataplexV1GraphProfileNodeTypeExtractionHints(
+    typing_extensions.TypedDict, total=False
+):
+    cardinality: str
+
+@typing.type_check_only
 class GoogleCloudDataplexV1ImportItem(typing_extensions.TypedDict, total=False):
     aspectKeys: _list[str]
     entry: GoogleCloudDataplexV1Entry
@@ -1644,6 +1908,14 @@ class GoogleCloudDataplexV1ListAssetsResponse(typing_extensions.TypedDict, total
     nextPageToken: str
 
 @typing.type_check_only
+class GoogleCloudDataplexV1ListChangeRequestsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    changeRequests: _list[GoogleCloudDataplexV1ChangeRequest]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
 class GoogleCloudDataplexV1ListDataAssetsResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -1665,6 +1937,20 @@ class GoogleCloudDataplexV1ListDataAttributesResponse(
     dataAttributes: _list[GoogleCloudDataplexV1DataAttribute]
     nextPageToken: str
     unreachableLocations: _list[str]
+
+@typing.type_check_only
+class GoogleCloudDataplexV1ListDataDomainBindingsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    dataDomainBindings: _list[GoogleCloudDataplexV1DataDomainBinding]
+    nextPageToken: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1ListDataDomainsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    dataDomains: _list[GoogleCloudDataplexV1DataDomain]
+    nextPageToken: str
 
 @typing.type_check_only
 class GoogleCloudDataplexV1ListDataProductsResponse(
@@ -1971,6 +2257,26 @@ class GoogleCloudDataplexV1Partition(typing_extensions.TypedDict, total=False):
     location: str
     name: str
     values: _list[str]
+
+@typing.type_check_only
+class GoogleCloudDataplexV1RejectChangeRequestRequest(
+    typing_extensions.TypedDict, total=False
+):
+    comment: str
+    etag: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1RequestDataProductAccessRequest(
+    typing_extensions.TypedDict, total=False
+):
+    changeRequest: GoogleCloudDataplexV1ChangeRequest
+    validateOnly: bool
+
+@typing.type_check_only
+class GoogleCloudDataplexV1RequestDataProductAccessResponse(
+    typing_extensions.TypedDict, total=False
+):
+    changeRequestName: str
 
 @typing.type_check_only
 class GoogleCloudDataplexV1ResourceAccessSpec(typing_extensions.TypedDict, total=False):
@@ -2280,6 +2586,52 @@ class GoogleCloudDataplexV1TriggerOneTime(typing_extensions.TypedDict, total=Fal
 @typing.type_check_only
 class GoogleCloudDataplexV1TriggerSchedule(typing_extensions.TypedDict, total=False):
     cron: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1UnstructuredDataProfileResult(
+    typing_extensions.TypedDict, total=False
+):
+    description: str
+    graphProfile: GoogleCloudDataplexV1GraphProfile
+    partialFailureMessage: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1UnstructuredDataProfileSpec(
+    typing_extensions.TypedDict, total=False
+):
+    customizedPrompt: str
+    globalEndpointEnabled: bool
+    graphProfilePublishingEnabled: bool
+
+@typing.type_check_only
+class GoogleCloudDataplexV1UpdateEntryRequest(typing_extensions.TypedDict, total=False):
+    allowMissing: bool
+    aspectKeys: _list[str]
+    deleteMissingAspects: bool
+    entry: GoogleCloudDataplexV1Entry
+    updateMask: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1UpdateGlossaryCategoryRequest(
+    typing_extensions.TypedDict, total=False
+):
+    category: GoogleCloudDataplexV1GlossaryCategory
+    updateMask: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1UpdateGlossaryRequest(
+    typing_extensions.TypedDict, total=False
+):
+    glossary: GoogleCloudDataplexV1Glossary
+    updateMask: str
+    validateOnly: bool
+
+@typing.type_check_only
+class GoogleCloudDataplexV1UpdateGlossaryTermRequest(
+    typing_extensions.TypedDict, total=False
+):
+    term: GoogleCloudDataplexV1GlossaryTerm
+    updateMask: str
 
 @typing.type_check_only
 class GoogleCloudDataplexV1Zone(typing_extensions.TypedDict, total=False):

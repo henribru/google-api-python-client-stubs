@@ -499,6 +499,13 @@ class DataformResource(googleapiclient.discovery.Resource):
                 def delete(
                     self, *, name: str, force: bool = ..., **kwargs: typing.Any
                 ) -> EmptyHttpRequest: ...
+                def deleteLongRunning(
+                    self,
+                    *,
+                    name: str,
+                    body: DeleteRepositoryLongRunningRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
                 def fetchHistory(
                     self,
                     *,

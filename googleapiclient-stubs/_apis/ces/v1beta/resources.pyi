@@ -497,6 +497,16 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                     ) -> GuardrailHttpRequest: ...
 
                 @typing.type_check_only
+                class MessageResource(googleapiclient.discovery.Resource):
+                    def send(
+                        self,
+                        *,
+                        tenant: str,
+                        body: LfA2aV1SendMessageRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> LfA2aV1SendMessageResponseHttpRequest: ...
+
+                @typing.type_check_only
                 class ScheduledEvaluationRunsResource(
                     googleapiclient.discovery.Resource
                 ):
@@ -799,6 +809,7 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                 def evaluations(self) -> EvaluationsResource: ...
                 def examples(self) -> ExamplesResource: ...
                 def guardrails(self) -> GuardrailsResource: ...
+                def message(self) -> MessageResource: ...
                 def scheduledEvaluationRuns(
                     self,
                 ) -> ScheduledEvaluationRunsResource: ...
@@ -1013,6 +1024,14 @@ class GuardrailHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Guardrail: ...
+
+@typing.type_check_only
+class LfA2aV1SendMessageResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> LfA2aV1SendMessageResponse: ...
 
 @typing.type_check_only
 class ListAgentsResponseHttpRequest(googleapiclient.http.HttpRequest):

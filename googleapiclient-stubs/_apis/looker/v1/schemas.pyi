@@ -96,6 +96,7 @@ class IngressIpAllowlistRule(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Instance(typing_extensions.TypedDict, total=False):
+    acceleratedSecurityPatchEnabled: bool
     adminSettings: AdminSettings
     catalogIntegrationOptOut: bool
     classType: typing_extensions.Literal["CLASS_TYPE_UNSPECIFIED", "R1", "P1"]
@@ -139,9 +140,18 @@ class Instance(typing_extensions.TypedDict, total=False):
     pscConfig: PscConfig
     pscEnabled: bool
     publicIpEnabled: bool
+    releaseChannel: typing_extensions.Literal[
+        "RELEASE_CHANNEL_UNSPECIFIED", "RAPID", "REGULAR", "STABLE"
+    ]
     reservedRange: str
     satisfiesPzi: bool
     satisfiesPzs: bool
+    softDeleteReason: typing_extensions.Literal[
+        "SOFT_DELETE_REASON_UNSPECIFIED",
+        "BILLING_ACCOUNT_ISSUE",
+        "TRIAL_EXPIRED",
+        "CUSTOMER_REQUEST",
+    ]
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
         "ACTIVE",
@@ -153,6 +163,7 @@ class Instance(typing_extensions.TypedDict, total=False):
         "EXPORTING",
         "IMPORTING",
     ]
+    suspendedTime: str
     updateTime: str
     userMetadata: UserMetadata
 
@@ -281,6 +292,9 @@ class TimeOfDay(typing_extensions.TypedDict, total=False):
     minutes: int
     nanos: int
     seconds: int
+
+@typing.type_check_only
+class UndeleteInstanceRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class UserMetadata(typing_extensions.TypedDict, total=False):

@@ -470,6 +470,8 @@ class DatabaseResourceHealthSignalData(typing_extensions.TypedDict, total=False)
         "SIGNAL_TYPE_EXTENDED_SUPPORT",
         "SIGNAL_TYPE_PERFORMANCE_KPI_CHANGE",
         "SIGNAL_TYPE_VERSION_NEARING_END_OF_LIFE",
+        "SIGNAL_TYPE_HIGH_MAINTENANCE_DOWNTIME_RISK",
+        "SIGNAL_TYPE_LOW_CACHE_HIT_AND_MAINTENANCE_DOWNTIME",
     ]
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "RESOLVED", "MUTED"]
 
@@ -490,6 +492,7 @@ class DatabaseResourceId(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DatabaseResourceMetadata(typing_extensions.TypedDict, total=False):
+    additionalMetadata: dict[str, typing.Any]
     availabilityConfiguration: AvailabilityConfiguration
     backupConfiguration: BackupConfiguration
     backupRun: BackupRun
@@ -539,6 +542,8 @@ class DatabaseResourceMetadata(typing_extensions.TypedDict, total=False):
         "SUB_RESOURCE_TYPE_DATASET",
         "SUB_RESOURCE_TYPE_OTHER",
     ]
+    internalAdditionalMetadata: dict[str, typing.Any]
+    ipAddress: IpAddress
     isDeletionProtectionEnabled: bool
     location: str
     machineConfiguration: MachineConfiguration
@@ -549,6 +554,8 @@ class DatabaseResourceMetadata(typing_extensions.TypedDict, total=False):
             "MODE_NATIVE",
             "MODE_MONGODB_COMPATIBLE",
             "MODE_DATASTORE",
+            "MODE_CLUSTER_ENABLED",
+            "MODE_CLUSTER_DISABLED",
         ]
     ]
     primaryResourceId: DatabaseResourceId
@@ -692,6 +699,8 @@ class DatabaseResourceRecommendationSignalData(
         "SIGNAL_TYPE_EXTENDED_SUPPORT",
         "SIGNAL_TYPE_PERFORMANCE_KPI_CHANGE",
         "SIGNAL_TYPE_VERSION_NEARING_END_OF_LIFE",
+        "SIGNAL_TYPE_HIGH_MAINTENANCE_DOWNTIME_RISK",
+        "SIGNAL_TYPE_LOW_CACHE_HIT_AND_MAINTENANCE_DOWNTIME",
     ]
 
 @typing.type_check_only
@@ -899,6 +908,11 @@ class InternalResourceMetadata(typing_extensions.TypedDict, total=False):
     resourceName: str
 
 @typing.type_check_only
+class IpAddress(typing_extensions.TypedDict, total=False):
+    privateIp: str
+    publicIp: str
+
+@typing.type_check_only
 class ListAclPoliciesResponse(typing_extensions.TypedDict, total=False):
     aclPolicies: _list[AclPolicy]
     nextPageToken: str
@@ -1087,6 +1101,7 @@ class Product(typing_extensions.TypedDict, total=False):
         "ENGINE_CLOUD_SPANNER_WITH_GOOGLESQL_DIALECT",
         "ENGINE_MEMORYSTORE_FOR_REDIS",
         "ENGINE_MEMORYSTORE_FOR_REDIS_CLUSTER",
+        "ENGINE_MEMORYSTORE_FOR_VALKEY",
         "ENGINE_OTHER",
         "ENGINE_FIRESTORE_WITH_NATIVE_MODE",
         "ENGINE_FIRESTORE_WITH_DATASTORE_MODE",
@@ -1244,6 +1259,7 @@ class ResourceMaintenanceInfo(typing_extensions.TypedDict, total=False):
         "ERROR",
     ]
     maintenanceVersion: str
+    nextAvailableMaintenanceVersions: _list[str]
     upcomingMaintenance: UpcomingMaintenance
 
 @typing.type_check_only
@@ -1379,3 +1395,4 @@ class ZoneDistributionConfig(typing_extensions.TypedDict, total=False):
         "ZONE_DISTRIBUTION_MODE_UNSPECIFIED", "MULTI_ZONE", "SINGLE_ZONE"
     ]
     zone: str
+    zones: _list[str]

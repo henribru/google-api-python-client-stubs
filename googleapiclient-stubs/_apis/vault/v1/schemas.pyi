@@ -48,7 +48,7 @@ class AddMatterPermissionsRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class CalendarExportOptions(typing_extensions.TypedDict, total=False):
     exportFormat: typing_extensions.Literal[
-        "EXPORT_FORMAT_UNSPECIFIED", "MBOX", "PST", "ICS", "XML"
+        "EXPORT_FORMAT_UNSPECIFIED", "MBOX", "PST", "ICS", "XML", "JSON"
     ]
 
 @typing.type_check_only
@@ -92,6 +92,7 @@ class CloudStorageSink(typing_extensions.TypedDict, total=False):
 class CorpusQuery(typing_extensions.TypedDict, total=False):
     calendarQuery: HeldCalendarQuery
     driveQuery: HeldDriveQuery
+    geminiQuery: HeldGeminiQuery
     groupsQuery: HeldGroupsQuery
     hangoutsChatQuery: HeldHangoutsChatQuery
     mailQuery: HeldMailQuery
@@ -188,7 +189,7 @@ class ExportStats(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GeminiExportOptions(typing_extensions.TypedDict, total=False):
     exportFormat: typing_extensions.Literal[
-        "EXPORT_FORMAT_UNSPECIFIED", "MBOX", "PST", "ICS", "XML"
+        "EXPORT_FORMAT_UNSPECIFIED", "MBOX", "PST", "ICS", "XML", "JSON"
     ]
 
 @typing.type_check_only
@@ -205,13 +206,13 @@ class GroupsCountResult(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GroupsExportOptions(typing_extensions.TypedDict, total=False):
     exportFormat: typing_extensions.Literal[
-        "EXPORT_FORMAT_UNSPECIFIED", "MBOX", "PST", "ICS", "XML"
+        "EXPORT_FORMAT_UNSPECIFIED", "MBOX", "PST", "ICS", "XML", "JSON"
     ]
 
 @typing.type_check_only
 class HangoutsChatExportOptions(typing_extensions.TypedDict, total=False):
     exportFormat: typing_extensions.Literal[
-        "EXPORT_FORMAT_UNSPECIFIED", "MBOX", "PST", "ICS", "XML"
+        "EXPORT_FORMAT_UNSPECIFIED", "MBOX", "PST", "ICS", "XML", "JSON"
     ]
 
 @typing.type_check_only
@@ -237,6 +238,9 @@ class HeldCalendarQuery(typing_extensions.TypedDict, total=False): ...
 class HeldDriveQuery(typing_extensions.TypedDict, total=False):
     includeSharedDriveFiles: bool
     includeTeamDriveFiles: bool
+
+@typing.type_check_only
+class HeldGeminiQuery(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class HeldGroupsQuery(typing_extensions.TypedDict, total=False):
@@ -327,7 +331,7 @@ class MailCountResult(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class MailExportOptions(typing_extensions.TypedDict, total=False):
     exportFormat: typing_extensions.Literal[
-        "EXPORT_FORMAT_UNSPECIFIED", "MBOX", "PST", "ICS", "XML"
+        "EXPORT_FORMAT_UNSPECIFIED", "MBOX", "PST", "ICS", "XML", "JSON"
     ]
     exportLinkedDriveFiles: bool
     showConfidentialModeContent: bool
@@ -482,7 +486,7 @@ class UserInfo(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class VoiceExportOptions(typing_extensions.TypedDict, total=False):
     exportFormat: typing_extensions.Literal[
-        "EXPORT_FORMAT_UNSPECIFIED", "MBOX", "PST", "ICS", "XML"
+        "EXPORT_FORMAT_UNSPECIFIED", "MBOX", "PST", "ICS", "XML", "JSON"
     ]
 
 @typing.type_check_only

@@ -43,7 +43,6 @@ class FetchVerificationOptionsResponse(typing_extensions.TypedDict, total=False)
 
 @typing.type_check_only
 class GenerateInstantVerificationTokenRequest(typing_extensions.TypedDict, total=False):
-    locationData: LocationData
     locationId: str
 
 @typing.type_check_only
@@ -57,11 +56,6 @@ class GenerateInstantVerificationTokenResponse(
 class ListVerificationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     verifications: _list[Verification]
-
-@typing.type_check_only
-class LocationData(typing_extensions.TypedDict, total=False):
-    address: PostalAddress
-    name: str
 
 @typing.type_check_only
 class PostalAddress(typing_extensions.TypedDict, total=False):

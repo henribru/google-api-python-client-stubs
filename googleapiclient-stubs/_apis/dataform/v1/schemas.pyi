@@ -277,6 +277,8 @@ class FolderContentsEntry(typing_extensions.TypedDict, total=False):
 class GitRemoteSettings(typing_extensions.TypedDict, total=False):
     authenticationTokenSecretVersion: str
     defaultBranch: str
+    effectiveDefaultBranch: str
+    gitRepositoryLink: str
     sshAuthenticationConfig: SshAuthenticationConfig
     tokenStatus: typing_extensions.Literal[
         "TOKEN_STATUS_UNSPECIFIED", "NOT_FOUND", "INVALID", "VALID"

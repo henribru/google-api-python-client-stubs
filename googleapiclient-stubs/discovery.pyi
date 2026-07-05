@@ -31,6 +31,7 @@ import googleapiclient._apis.adsensehost.v4_1
 import googleapiclient._apis.adsenseplatform.v1
 import googleapiclient._apis.adsenseplatform.v1alpha
 import googleapiclient._apis.advisorynotifications.v1
+import googleapiclient._apis.agentregistry.v1
 import googleapiclient._apis.agentregistry.v1alpha
 import googleapiclient._apis.aiplatform.v1
 import googleapiclient._apis.aiplatform.v1beta1
@@ -148,6 +149,7 @@ import googleapiclient._apis.cloudkms.v1
 import googleapiclient._apis.cloudlocationfinder.v1
 import googleapiclient._apis.cloudlocationfinder.v1alpha
 import googleapiclient._apis.cloudnumberregistry.v1alpha
+import googleapiclient._apis.cloudproductregistry.v1
 import googleapiclient._apis.cloudprofiler.v2
 import googleapiclient._apis.cloudresourcemanager.v1
 import googleapiclient._apis.cloudresourcemanager.v1beta1
@@ -187,6 +189,7 @@ import googleapiclient._apis.content.v2_1
 import googleapiclient._apis.contentwarehouse.v1
 import googleapiclient._apis.css.v1
 import googleapiclient._apis.customsearch.v1
+import googleapiclient._apis.databasecenter.v1beta
 import googleapiclient._apis.datacatalog.v1
 import googleapiclient._apis.datacatalog.v1beta1
 import googleapiclient._apis.dataflow.v1b3
@@ -492,6 +495,7 @@ import googleapiclient._apis.safebrowsing.v5
 import googleapiclient._apis.sasportal.v1alpha1
 import googleapiclient._apis.script.v1
 import googleapiclient._apis.searchads360.v0
+import googleapiclient._apis.searchads360.v23
 import googleapiclient._apis.searchconsole.v1
 import googleapiclient._apis.secretmanager.v1
 import googleapiclient._apis.secretmanager.v1beta1
@@ -569,6 +573,7 @@ import googleapiclient._apis.vmwareengine.v1
 import googleapiclient._apis.vpcaccess.v1
 import googleapiclient._apis.vpcaccess.v1beta1
 import googleapiclient._apis.walletobjects.v1
+import googleapiclient._apis.webcontentpublisher.v1
 import googleapiclient._apis.webfonts.v1
 import googleapiclient._apis.webmasters.v3
 import googleapiclient._apis.webrisk.v1
@@ -1096,6 +1101,26 @@ def build(
     num_retries: int = 1,
     static_discovery: bool | None = None,
 ) -> googleapiclient._apis.advisorynotifications.v1.AdvisorynotificationsResource: ...
+@overload
+def build(
+    serviceName: Literal["agentregistry"],
+    version: Literal["v1"],
+    http: httplib2.Http | HttpMock | None = None,
+    discoveryServiceUrl: str | None = None,
+    developerKey: str | None = None,
+    model: Model | None = None,
+    requestBuilder: _RequestBuilder = HttpRequest,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
+    cache_discovery: bool = True,
+    cache: Cache | None = None,
+    client_options: dict[str, Any] | ClientOptions | None = None,
+    adc_cert_path: str | None = None,
+    adc_key_path: str | None = None,
+    num_retries: int = 1,
+    static_discovery: bool | None = None,
+) -> googleapiclient._apis.agentregistry.v1.AgentRegistryResource: ...
 @overload
 def build(
     serviceName: Literal["agentregistry"],
@@ -3442,6 +3467,26 @@ def build(
 ) -> googleapiclient._apis.cloudnumberregistry.v1alpha.CloudNumberRegistryResource: ...
 @overload
 def build(
+    serviceName: Literal["cloudproductregistry"],
+    version: Literal["v1"],
+    http: httplib2.Http | HttpMock | None = None,
+    discoveryServiceUrl: str | None = None,
+    developerKey: str | None = None,
+    model: Model | None = None,
+    requestBuilder: _RequestBuilder = HttpRequest,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
+    cache_discovery: bool = True,
+    cache: Cache | None = None,
+    client_options: dict[str, Any] | ClientOptions | None = None,
+    adc_cert_path: str | None = None,
+    adc_key_path: str | None = None,
+    num_retries: int = 1,
+    static_discovery: bool | None = None,
+) -> googleapiclient._apis.cloudproductregistry.v1.CloudProductRegistryResource: ...
+@overload
+def build(
     serviceName: Literal["cloudprofiler"],
     version: Literal["v2"],
     http: httplib2.Http | HttpMock | None = None,
@@ -4224,6 +4269,26 @@ def build(
     num_retries: int = 1,
     static_discovery: bool | None = None,
 ) -> googleapiclient._apis.customsearch.v1.CustomSearchAPIResource: ...
+@overload
+def build(
+    serviceName: Literal["databasecenter"],
+    version: Literal["v1beta"],
+    http: httplib2.Http | HttpMock | None = None,
+    discoveryServiceUrl: str | None = None,
+    developerKey: str | None = None,
+    model: Model | None = None,
+    requestBuilder: _RequestBuilder = HttpRequest,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
+    cache_discovery: bool = True,
+    cache: Cache | None = None,
+    client_options: dict[str, Any] | ClientOptions | None = None,
+    adc_cert_path: str | None = None,
+    adc_key_path: str | None = None,
+    num_retries: int = 1,
+    static_discovery: bool | None = None,
+) -> googleapiclient._apis.databasecenter.v1beta.DatabaseCenterResource: ...
 @overload
 def build(
     serviceName: Literal["datacatalog"],
@@ -10342,6 +10407,26 @@ def build(
 ) -> googleapiclient._apis.searchads360.v0.SA360Resource: ...
 @overload
 def build(
+    serviceName: Literal["searchads360"],
+    version: Literal["v23"],
+    http: httplib2.Http | HttpMock | None = None,
+    discoveryServiceUrl: str | None = None,
+    developerKey: str | None = None,
+    model: Model | None = None,
+    requestBuilder: _RequestBuilder = HttpRequest,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
+    cache_discovery: bool = True,
+    cache: Cache | None = None,
+    client_options: dict[str, Any] | ClientOptions | None = None,
+    adc_cert_path: str | None = None,
+    adc_key_path: str | None = None,
+    num_retries: int = 1,
+    static_discovery: bool | None = None,
+) -> googleapiclient._apis.searchads360.v23.SA360Resource: ...
+@overload
+def build(
     serviceName: Literal["searchconsole"],
     version: Literal["v1"],
     http: httplib2.Http | HttpMock | None = None,
@@ -11890,6 +11975,26 @@ def build(
     num_retries: int = 1,
     static_discovery: bool | None = None,
 ) -> googleapiclient._apis.walletobjects.v1.WalletobjectsResource: ...
+@overload
+def build(
+    serviceName: Literal["webcontentpublisher"],
+    version: Literal["v1"],
+    http: httplib2.Http | HttpMock | None = None,
+    discoveryServiceUrl: str | None = None,
+    developerKey: str | None = None,
+    model: Model | None = None,
+    requestBuilder: _RequestBuilder = HttpRequest,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
+    cache_discovery: bool = True,
+    cache: Cache | None = None,
+    client_options: dict[str, Any] | ClientOptions | None = None,
+    adc_cert_path: str | None = None,
+    adc_key_path: str | None = None,
+    num_retries: int = 1,
+    static_discovery: bool | None = None,
+) -> googleapiclient._apis.webcontentpublisher.v1.WebContentPublisherResource: ...
 @overload
 def build(
     serviceName: Literal["webfonts"],

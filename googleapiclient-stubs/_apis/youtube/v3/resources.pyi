@@ -783,7 +783,9 @@ class YouTubeResource(googleapiclient.discovery.Resource):
             self,
             *,
             linkingToken: str,
-            type: typing_extensions.Literal["linkUnspecified", "channelToStoreLink"],
+            type: typing_extensions.Literal[
+                "linkUnspecified", "channelToStoreLink", "channelToAffiliateProgramLink"
+            ],
             externalChannelId: str = ...,
             part: str | _list[str] = ...,
             **kwargs: typing.Any,
@@ -803,7 +805,7 @@ class YouTubeResource(googleapiclient.discovery.Resource):
             externalChannelId: str = ...,
             linkingToken: str = ...,
             type: typing_extensions.Literal[
-                "linkUnspecified", "channelToStoreLink"
+                "linkUnspecified", "channelToStoreLink", "channelToAffiliateProgramLink"
             ] = ...,
             **kwargs: typing.Any,
         ) -> ThirdPartyLinkListResponseHttpRequest: ...
@@ -852,6 +854,14 @@ class YouTubeResource(googleapiclient.discovery.Resource):
 
     @typing.type_check_only
     class VideosResource(googleapiclient.discovery.Resource):
+        def batchGetStats(
+            self,
+            *,
+            id: str | _list[str] = ...,
+            onBehalfOfContentOwner: str = ...,
+            part: str | _list[str] = ...,
+            **kwargs: typing.Any,
+        ) -> BatchGetStatsResponseHttpRequest: ...
         def delete(
             self, *, id: str, onBehalfOfContentOwner: str = ..., **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
@@ -965,13 +975,6 @@ class YouTubeResource(googleapiclient.discovery.Resource):
 
                 def messages(self) -> MessagesResource: ...
 
-            def updateCommentThreads(
-                self,
-                *,
-                body: CommentThread = ...,
-                part: str | _list[str] = ...,
-                **kwargs: typing.Any,
-            ) -> CommentThreadHttpRequest: ...
             def liveChat(self) -> LiveChatResource: ...
 
         def v3(self) -> V3Resource: ...
@@ -1036,6 +1039,14 @@ class ActivityListResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ActivityListResponse: ...
+
+@typing.type_check_only
+class BatchGetStatsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> BatchGetStatsResponse: ...
 
 @typing.type_check_only
 class CaptionHttpRequest(googleapiclient.http.HttpRequest):

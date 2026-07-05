@@ -166,6 +166,11 @@ class ListCommentsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class ListSupportEventSubscriptionsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    supportEventSubscriptions: _list[SupportEventSubscription]
+
+@typing.type_check_only
 class Media(typing_extensions.TypedDict, total=False):
     algorithm: str
     bigstoreObjectRef: str
@@ -209,6 +214,7 @@ class Media(typing_extensions.TypedDict, total=False):
     ]
     sha1Hash: str
     sha256Hash: str
+    sha512Hash: str
     timestamp: str
     token: str
 
@@ -227,3 +233,23 @@ class SearchCaseClassificationsResponse(typing_extensions.TypedDict, total=False
 class SearchCasesResponse(typing_extensions.TypedDict, total=False):
     cases: _list[Case]
     nextPageToken: str
+
+@typing.type_check_only
+class SupportEventSubscription(typing_extensions.TypedDict, total=False):
+    createTime: str
+    deleteTime: str
+    failureReason: typing_extensions.Literal[
+        "FAILURE_REASON_UNSPECIFIED", "PERMISSION_DENIED", "TOPIC_NOT_FOUND", "OTHER"
+    ]
+    name: str
+    pubSubTopic: str
+    purgeTime: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "WORKING", "FAILING", "DELETED"
+    ]
+    updateTime: str
+
+@typing.type_check_only
+class UndeleteSupportEventSubscriptionRequest(
+    typing_extensions.TypedDict, total=False
+): ...

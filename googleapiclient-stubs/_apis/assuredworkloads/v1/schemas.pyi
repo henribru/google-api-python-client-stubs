@@ -74,6 +74,24 @@ class GoogleCloudAssuredworkloadsV1AssetMoveAnalysis(
     assetType: str
 
 @typing.type_check_only
+class GoogleCloudAssuredworkloadsV1BatchAcknowledgeViolationsRequest(
+    typing_extensions.TypedDict, total=False
+):
+    acknowledgeType: typing_extensions.Literal[
+        "ACKNOWLEDGE_TYPE_UNSPECIFIED",
+        "SINGLE_VIOLATION",
+        "EXISTING_CHILD_RESOURCE_VIOLATIONS",
+    ]
+    comment: str
+    names: _list[str]
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1BatchAcknowledgeViolationsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    acknowledgedViolationsCount: int
+
+@typing.type_check_only
 class GoogleCloudAssuredworkloadsV1CreateWorkloadOperationMetadata(
     typing_extensions.TypedDict, total=False
 ):
@@ -95,6 +113,7 @@ class GoogleCloudAssuredworkloadsV1CreateWorkloadOperationMetadata(
         "EU_DATA_BOUNDARY_AND_SUPPORT",
         "ISRAEL_DATA_BOUNDARY_AND_SUPPORT",
         "JAPAN_DATA_BOUNDARY",
+        "SWITZERLAND_DATA_BOUNDARY_WITH_ACCESS_JUSTIFICATIONS",
         "KSA_DATA_BOUNDARY_WITH_ACCESS_JUSTIFICATIONS",
         "REGIONAL_DATA_BOUNDARY",
         "US_DATA_BOUNDARY_AND_SUPPORT",
@@ -129,6 +148,31 @@ class GoogleCloudAssuredworkloadsV1CreateWorkloadOperationMetadata(
     parent: str
 
 @typing.type_check_only
+class GoogleCloudAssuredworkloadsV1DbFindingSummary(
+    typing_extensions.TypedDict, total=False
+):
+    findingCategory: str
+    findingClass: typing_extensions.Literal[
+        "FINDING_CLASS_UNSPECIFIED",
+        "THREAT",
+        "VULNERABILITY",
+        "MISCONFIGURATION",
+        "OBSERVATION",
+        "SCC_ERROR",
+        "POSTURE_VIOLATION",
+        "TOXIC_COMBINATION",
+        "SENSITIVE_DATA_RISK",
+        "CHOKEPOINT",
+    ]
+    findingCount: str
+    name: str
+    relatedFrameworks: _list[str]
+    severity: typing_extensions.Literal[
+        "SEVERITY_UNSPECIFIED", "CRITICAL", "HIGH", "MEDIUM", "LOW"
+    ]
+    updateTime: str
+
+@typing.type_check_only
 class GoogleCloudAssuredworkloadsV1EnableComplianceUpdatesResponse(
     typing_extensions.TypedDict, total=False
 ): ...
@@ -139,10 +183,18 @@ class GoogleCloudAssuredworkloadsV1EnableResourceMonitoringResponse(
 ): ...
 
 @typing.type_check_only
+class GoogleCloudAssuredworkloadsV1ListDbFindingSummariesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    dbFindingSummaries: _list[GoogleCloudAssuredworkloadsV1DbFindingSummary]
+    nextPageToken: str
+
+@typing.type_check_only
 class GoogleCloudAssuredworkloadsV1ListViolationsResponse(
     typing_extensions.TypedDict, total=False
 ):
     nextPageToken: str
+    totalSize: int
     violations: _list[GoogleCloudAssuredworkloadsV1Violation]
 
 @typing.type_check_only
@@ -355,6 +407,7 @@ class GoogleCloudAssuredworkloadsV1Workload(typing_extensions.TypedDict, total=F
         "EU_DATA_BOUNDARY_AND_SUPPORT",
         "ISRAEL_DATA_BOUNDARY_AND_SUPPORT",
         "JAPAN_DATA_BOUNDARY",
+        "SWITZERLAND_DATA_BOUNDARY_WITH_ACCESS_JUSTIFICATIONS",
         "KSA_DATA_BOUNDARY_WITH_ACCESS_JUSTIFICATIONS",
         "REGIONAL_DATA_BOUNDARY",
         "US_DATA_BOUNDARY_AND_SUPPORT",

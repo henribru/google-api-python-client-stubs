@@ -83,6 +83,7 @@ class LookerResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
+                    showDeleted: bool = ...,
                     **kwargs: typing.Any,
                 ) -> ListInstancesResponseHttpRequest: ...
                 def list_next(
@@ -110,6 +111,13 @@ class LookerResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: RestoreInstanceRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def undelete(
+                    self,
+                    *,
+                    name: str,
+                    body: UndeleteInstanceRequest = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def backups(self) -> BackupsResource: ...

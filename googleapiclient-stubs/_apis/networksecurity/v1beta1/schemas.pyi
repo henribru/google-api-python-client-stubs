@@ -54,6 +54,7 @@ class AuthzPolicy(typing_extensions.TypedDict, total=False):
     httpRules: _list[AuthzPolicyAuthzRule]
     labels: dict[str, typing.Any]
     name: str
+    networkRules: _list[AuthzPolicyAuthzRule]
     policyProfile: typing_extensions.Literal[
         "POLICY_PROFILE_UNSPECIFIED", "REQUEST_AUTHZ", "CONTENT_AUTHZ"
     ]
@@ -135,6 +136,7 @@ class AuthzPolicyAuthzRuleToRequestOperation(typing_extensions.TypedDict, total=
     mcp: AuthzPolicyAuthzRuleToRequestOperationMCP
     methods: _list[str]
     paths: _list[AuthzPolicyAuthzRuleStringMatch]
+    snis: _list[AuthzPolicyAuthzRuleStringMatch]
 
 @typing.type_check_only
 class AuthzPolicyAuthzRuleToRequestOperationHeaderSet(
@@ -270,6 +272,7 @@ class FirewallEndpoint(typing_extensions.TypedDict, total=False):
         "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "DELETING", "INACTIVE"
     ]
     updateTime: str
+    wildfireSettings: FirewallEndpointWildfireSettings
 
 @typing.type_check_only
 class FirewallEndpointAssociation(typing_extensions.TypedDict, total=False):
@@ -293,7 +296,70 @@ class FirewallEndpointAssociationReference(typing_extensions.TypedDict, total=Fa
 
 @typing.type_check_only
 class FirewallEndpointEndpointSettings(typing_extensions.TypedDict, total=False):
+    contentCloudRegion: typing_extensions.Literal[
+        "CONTENT_CLOUD_REGION_UNSPECIFIED",
+        "US_CENTRAL",
+        "APAC",
+        "INDIA",
+        "UK",
+        "FRANCE",
+        "JAPAN",
+        "AUSTRALIA",
+        "CANADA",
+        "SWITZERLAND",
+        "NETHERLANDS",
+        "INDONESIA",
+        "QATAR",
+        "TAIWAN",
+        "POLAND",
+        "SOUTH_KOREA",
+        "SAUDI_ARABIA",
+        "ITALY",
+    ]
+    httpPartialResponseBlocked: bool
     jumboFramesEnabled: bool
+
+@typing.type_check_only
+class FirewallEndpointWildfireSettings(typing_extensions.TypedDict, total=False):
+    enabled: bool
+    wildfireInlineCloudAnalysisSettings: (
+        FirewallEndpointWildfireSettingsWildfireInlineCloudAnalysisSettings
+    )
+    wildfireRealtimeLookupDuration: str
+    wildfireRealtimeLookupTimeoutAction: typing_extensions.Literal[
+        "WILDFIRE_REALTIME_SIGNATURE_LOOKUP_TIMEOUT_ACTION_UNSPECIFIED", "ALLOW", "DENY"
+    ]
+    wildfireRegion: typing_extensions.Literal[
+        "WILDFIRE_REGION_UNSPECIFIED",
+        "CANADA",
+        "UNITED_STATES",
+        "JAPAN",
+        "SINGAPORE",
+        "UNITED_KINGDOM",
+        "AUSTRALIA",
+        "GERMANY",
+        "INDIA",
+        "SWITZERLAND",
+        "POLAND",
+        "INDONESIA",
+        "TAIWAN",
+        "FRANCE",
+        "QATAR",
+        "SOUTH_KOREA",
+        "ISRAEL",
+        "SAUDI_ARABIA",
+        "SPAIN",
+    ]
+
+@typing.type_check_only
+class FirewallEndpointWildfireSettingsWildfireInlineCloudAnalysisSettings(
+    typing_extensions.TypedDict, total=False
+):
+    maxAnalysisDuration: str
+    submissionTimeoutLoggingDisabled: bool
+    timeoutAction: typing_extensions.Literal[
+        "WILDFIRE_INLINE_CLOUD_ANALYSIS_TIMEOUT_ACTION_UNSPECIFIED", "ALLOW", "DENY"
+    ]
 
 @typing.type_check_only
 class GatewaySecurityPolicy(typing_extensions.TypedDict, total=False):
@@ -680,6 +746,14 @@ class ListUrlListsResponse(typing_extensions.TypedDict, total=False):
     urlLists: _list[UrlList]
 
 @typing.type_check_only
+class ListWildfireVerdictChangeRequestsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    unreachable: _list[str]
+    wildfireVerdictChangeRequests: _list[WildfireVerdictChangeRequest]
+
+@typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):
     displayName: str
     labels: dict[str, typing.Any]
@@ -781,6 +855,7 @@ class MirroringEndpointGroupAssociation(typing_extensions.TypedDict, total=False
     mirroringEndpointGroup: str
     name: str
     network: str
+    networkCookie: int
     reconciling: bool
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
@@ -933,9 +1008,11 @@ class SecurityProfile(typing_extensions.TypedDict, total=False):
         "CUSTOM_MIRRORING",
         "CUSTOM_INTERCEPT",
         "URL_FILTERING",
+        "WILDFIRE_ANALYSIS",
     ]
     updateTime: str
     urlFilteringProfile: UrlFilteringProfile
+    wildfireAnalysisProfile: WildfireAnalysisProfile
 
 @typing.type_check_only
 class SecurityProfileGroup(typing_extensions.TypedDict, total=False):
@@ -950,6 +1027,7 @@ class SecurityProfileGroup(typing_extensions.TypedDict, total=False):
     threatPreventionProfile: str
     updateTime: str
     urlFilteringProfile: str
+    wildfireAnalysisProfile: str
 
 @typing.type_check_only
 class ServerTlsPolicy(typing_extensions.TypedDict, total=False):
@@ -1048,3 +1126,164 @@ class UrlList(typing_extensions.TypedDict, total=False):
 class ValidationCA(typing_extensions.TypedDict, total=False):
     certificateProviderInstance: CertificateProviderInstance
     grpcEndpoint: GoogleCloudNetworksecurityV1beta1GrpcEndpoint
+
+@typing.type_check_only
+class WildfireAnalysisProfile(typing_extensions.TypedDict, total=False):
+    wildfireInlineCloudAnalysisRules: _list[WildfireInlineCloudAnalysisRule]
+    wildfireInlineMlOverrides: _list[WildfireInlineMlOverride]
+    wildfireInlineMlSetting: WildfireInlineMlSettings
+    wildfireInlineMlSettings: _list[WildfireInlineMlSettings]
+    wildfireOverrides: _list[WildfireOverride]
+    wildfireRealtimeLookup: bool
+    wildfireSubmissionRules: _list[WildfireSubmissionRule]
+    wildfireThreatOverrides: _list[WildfireThreatOverride]
+
+@typing.type_check_only
+class WildfireInlineCloudAnalysisRule(typing_extensions.TypedDict, total=False):
+    action: typing_extensions.Literal[
+        "WILDFIRE_INLINE_CLOUD_ANALYSIS_ACTION_UNSPECIFIED", "ALLOW", "DENY", "ALERT"
+    ]
+    customFileTypes: WildfireInlineCloudAnalysisRuleCustomFileTypes
+    direction: typing_extensions.Literal[
+        "DIRECTION_UNSPECIFIED", "UPLOAD", "DOWNLOAD", "BOTH"
+    ]
+    fileSelectionMode: typing_extensions.Literal[
+        "FILE_SELECTION_MODE_UNSPECIFIED", "ALL_FILE_TYPES", "CUSTOM_FILE_TYPES"
+    ]
+
+@typing.type_check_only
+class WildfireInlineCloudAnalysisRuleCustomFileTypes(
+    typing_extensions.TypedDict, total=False
+):
+    fileTypes: _list[typing_extensions.Literal["FILE_TYPE_UNSPECIFIED", "PE"]]
+
+@typing.type_check_only
+class WildfireInlineMlFileException(typing_extensions.TypedDict, total=False):
+    filename: str
+    partialHash: str
+
+@typing.type_check_only
+class WildfireInlineMlOverride(typing_extensions.TypedDict, total=False):
+    action: typing_extensions.Literal[
+        "WILDFIRE_THREAT_ACTION_UNSPECIFIED",
+        "WILDFIRE_DEFAULT_ACTION",
+        "WILDFIRE_ALLOW",
+        "WILDFIRE_ALERT",
+        "WILDFIRE_DENY",
+    ]
+    protocol: typing_extensions.Literal[
+        "WILDFIRE_PROTOCOL_UNSPECIFIED",
+        "WILDFIRE_SMTP",
+        "WILDFIRE_SMB",
+        "WILDFIRE_POP3",
+        "WILDFIRE_IMAP",
+        "WILDFIRE_HTTP2",
+        "WILDFIRE_HTTP",
+        "WILDFIRE_FTP",
+    ]
+
+@typing.type_check_only
+class WildfireInlineMlSettings(typing_extensions.TypedDict, total=False):
+    fileExceptions: _list[WildfireInlineMlFileException]
+    inlineMlConfigs: _list[WildfireInlineMlSettingsInlineMlConfig]
+
+@typing.type_check_only
+class WildfireInlineMlSettingsInlineMlConfig(typing_extensions.TypedDict, total=False):
+    action: typing_extensions.Literal[
+        "INLINE_ML_ACTION_UNSPECIFIED", "DISABLE", "ALERT", "ENABLE"
+    ]
+    fileType: typing_extensions.Literal[
+        "INLINE_ML_CONFIG_UNSPECIFIED",
+        "WINDOWS_EXECUTABLE",
+        "POWERSHELL_SCRIPT1",
+        "POWERSHELL_SCRIPT2",
+        "ELF",
+        "MS_OFFICE",
+        "SHELL",
+        "OOXML",
+        "MACHO",
+    ]
+
+@typing.type_check_only
+class WildfireOverride(typing_extensions.TypedDict, total=False):
+    action: typing_extensions.Literal[
+        "WILDFIRE_THREAT_ACTION_UNSPECIFIED",
+        "WILDFIRE_DEFAULT_ACTION",
+        "WILDFIRE_ALLOW",
+        "WILDFIRE_ALERT",
+        "WILDFIRE_DENY",
+    ]
+    protocol: typing_extensions.Literal[
+        "WILDFIRE_PROTOCOL_UNSPECIFIED",
+        "WILDFIRE_SMTP",
+        "WILDFIRE_SMB",
+        "WILDFIRE_POP3",
+        "WILDFIRE_IMAP",
+        "WILDFIRE_HTTP2",
+        "WILDFIRE_HTTP",
+        "WILDFIRE_FTP",
+    ]
+
+@typing.type_check_only
+class WildfireSubmissionRule(typing_extensions.TypedDict, total=False):
+    customFileTypes: WildfireSubmissionRuleCustomFileTypes
+    direction: typing_extensions.Literal[
+        "DIRECTION_UNSPECIFIED", "UPLOAD", "DOWNLOAD", "BOTH"
+    ]
+    fileSelectionMode: typing_extensions.Literal[
+        "FILE_SELECTION_MODE_UNSPECIFIED", "ALL_FILE_TYPES", "CUSTOM_FILE_TYPES"
+    ]
+
+@typing.type_check_only
+class WildfireSubmissionRuleCustomFileTypes(typing_extensions.TypedDict, total=False):
+    fileTypes: _list[
+        typing_extensions.Literal[
+            "FILE_TYPE_UNSPECIFIED",
+            "APK",
+            "ARCHIVE",
+            "EMAIL_LINK",
+            "FLASH",
+            "JAR",
+            "LINUX",
+            "MS_OFFICE",
+            "PDF",
+            "PE",
+            "SCRIPT",
+        ]
+    ]
+
+@typing.type_check_only
+class WildfireThreatOverride(typing_extensions.TypedDict, total=False):
+    action: typing_extensions.Literal[
+        "WILDFIRE_THREAT_ACTION_UNSPECIFIED",
+        "WILDFIRE_DEFAULT_ACTION",
+        "WILDFIRE_ALLOW",
+        "WILDFIRE_ALERT",
+        "WILDFIRE_DENY",
+    ]
+    threatId: str
+
+@typing.type_check_only
+class WildfireVerdictChangeRequest(typing_extensions.TypedDict, total=False):
+    comment: str
+    createTime: str
+    fileName: str
+    fileType: str
+    finalVerdict: typing_extensions.Literal[
+        "WILDFIRE_SAMPLE_VERDICT_UNKNOWN", "BENIGN", "MALWARE", "GRAYWARE", "PHISHING"
+    ]
+    name: str
+    newVerdict: typing_extensions.Literal[
+        "WILDFIRE_SAMPLE_VERDICT_UNKNOWN", "BENIGN", "MALWARE", "GRAYWARE", "PHISHING"
+    ]
+    oldVerdict: typing_extensions.Literal[
+        "WILDFIRE_SAMPLE_VERDICT_UNKNOWN", "BENIGN", "MALWARE", "GRAYWARE", "PHISHING"
+    ]
+    resolutionTime: str
+    sha256: str
+    sourceRegion: str
+    state: typing_extensions.Literal[
+        "VERDICT_CHANGE_REQUEST_STATE_UNSPECIFIED", "OPEN", "CLOSED", "PENDING"
+    ]
+    updateTime: str
+    wildfireVerdictChangeRequestId: str

@@ -178,6 +178,8 @@ class Dimension(typing_extensions.TypedDict, total=False):
         "SORT_ORDER_DESCENDING",
     ]
     timeBinSize: str
+    xMax: float
+    xMin: float
 
 @typing.type_check_only
 class DroppedLabels(typing_extensions.TypedDict, total=False):
@@ -222,6 +224,8 @@ class EventAnnotation(typing_extensions.TypedDict, total=False):
         "SAP_BACKINT",
         "SAP_AVAILABILITY",
         "SAP_OPERATIONS",
+        "INTERCONNECT_MAINTENANCE_STARTED",
+        "INTERCONNECT_MAINTENANCE_COMPLETED",
     ]
     filter: str
     resourceNames: _list[str]
@@ -468,8 +472,27 @@ class SourceContext(typing_extensions.TypedDict, total=False):
     fileName: str
 
 @typing.type_check_only
+class SpanAttributeFilter(typing_extensions.TypedDict, total=False):
+    key: str
+    value: _list[str]
+
+@typing.type_check_only
 class SpanContext(typing_extensions.TypedDict, total=False):
     spanName: str
+
+@typing.type_check_only
+class SpanFilters(typing_extensions.TypedDict, total=False):
+    apphubServices: _list[str]
+    apphubWorkloads: _list[str]
+    applicationIds: _list[str]
+    attributes: _list[SpanAttributeFilter]
+    displayNames: _list[str]
+    isRootSpan: bool
+    kinds: _list[str]
+    maxDuration: str
+    minDuration: str
+    services: _list[str]
+    status: _list[str]
 
 @typing.type_check_only
 class SparkChartView(typing_extensions.TypedDict, total=False):
@@ -600,6 +623,7 @@ class TimeSeriesQuery(typing_extensions.TypedDict, total=False):
     timeSeriesFilter: TimeSeriesFilter
     timeSeriesFilterRatio: TimeSeriesFilterRatio
     timeSeriesQueryLanguage: str
+    traceQuery: TraceQuery
     unitOverride: str
 
 @typing.type_check_only
@@ -609,6 +633,17 @@ class TimeSeriesTable(typing_extensions.TypedDict, total=False):
     metricVisualization: typing_extensions.Literal[
         "METRIC_VISUALIZATION_UNSPECIFIED", "NUMBER", "BAR"
     ]
+
+@typing.type_check_only
+class TraceQuery(typing_extensions.TypedDict, total=False):
+    resourceContainer: str
+    spanDataValue: typing_extensions.Literal[
+        "SPAN_DATA_VALUE_UNSPECIFIED",
+        "SPAN_COUNT",
+        "SPAN_DURATION",
+        "SPAN_DURATION_PERCENTILES",
+    ]
+    spanFilters: SpanFilters
 
 @typing.type_check_only
 class Treemap(typing_extensions.TypedDict, total=False):

@@ -291,6 +291,37 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class UsersResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
+        class AvailabilityResource(googleapiclient.discovery.Resource):
+            def getAvailability(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> AvailabilityHttpRequest: ...
+            def markAsActive(
+                self,
+                *,
+                name: str,
+                body: MarkAsActiveRequest = ...,
+                **kwargs: typing.Any,
+            ) -> AvailabilityHttpRequest: ...
+            def markAsAway(
+                self, *, name: str, body: MarkAsAwayRequest = ..., **kwargs: typing.Any
+            ) -> AvailabilityHttpRequest: ...
+            def markAsDoNotDisturb(
+                self,
+                *,
+                name: str,
+                body: MarkAsDoNotDisturbRequest = ...,
+                **kwargs: typing.Any,
+            ) -> AvailabilityHttpRequest: ...
+            def updateAvailability(
+                self,
+                *,
+                name: str,
+                body: Availability = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any,
+            ) -> AvailabilityHttpRequest: ...
+
+        @typing.type_check_only
         class SectionsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class ItemsResource(googleapiclient.discovery.Resource):
@@ -392,6 +423,7 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
             def spaceNotificationSetting(self) -> SpaceNotificationSettingResource: ...
             def threads(self) -> ThreadsResource: ...
 
+        def availability(self) -> AvailabilityResource: ...
         def sections(self) -> SectionsResource: ...
         def spaces(self) -> SpacesResource: ...
 
@@ -419,6 +451,14 @@ class AttachmentHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Attachment: ...
+
+@typing.type_check_only
+class AvailabilityHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> Availability: ...
 
 @typing.type_check_only
 class CompleteImportSpaceResponseHttpRequest(googleapiclient.http.HttpRequest):

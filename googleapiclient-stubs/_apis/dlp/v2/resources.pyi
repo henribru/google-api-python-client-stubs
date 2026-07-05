@@ -870,6 +870,44 @@ class DLPResource(googleapiclient.discovery.Resource):
                 ) -> GooglePrivacyDlpV2ReidentifyContentResponseHttpRequest: ...
 
             @typing.type_check_only
+            class ContentPoliciesResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: GooglePrivacyDlpV2CreateContentPolicyRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> GooglePrivacyDlpV2ContentPolicyHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleProtobufEmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GooglePrivacyDlpV2ContentPolicyHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> GooglePrivacyDlpV2ListContentPoliciesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GooglePrivacyDlpV2ListContentPoliciesResponseHttpRequest,
+                    previous_response: GooglePrivacyDlpV2ListContentPoliciesResponse,
+                ) -> (
+                    GooglePrivacyDlpV2ListContentPoliciesResponseHttpRequest | None
+                ): ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: GooglePrivacyDlpV2UpdateContentPolicyRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> GooglePrivacyDlpV2ContentPolicyHttpRequest: ...
+
+            @typing.type_check_only
             class DeidentifyTemplatesResource(googleapiclient.discovery.Resource):
                 def create(
                     self,
@@ -1241,6 +1279,7 @@ class DLPResource(googleapiclient.discovery.Resource):
             def columnDataProfiles(self) -> ColumnDataProfilesResource: ...
             def connections(self) -> ConnectionsResource: ...
             def content(self) -> ContentResource: ...
+            def contentPolicies(self) -> ContentPoliciesResource: ...
             def deidentifyTemplates(self) -> DeidentifyTemplatesResource: ...
             def discoveryConfigs(self) -> DiscoveryConfigsResource: ...
             def dlpJobs(self) -> DlpJobsResource: ...
@@ -1332,6 +1371,14 @@ class GooglePrivacyDlpV2ConnectionHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GooglePrivacyDlpV2Connection: ...
+
+@typing.type_check_only
+class GooglePrivacyDlpV2ContentPolicyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GooglePrivacyDlpV2ContentPolicy: ...
 
 @typing.type_check_only
 class GooglePrivacyDlpV2DeidentifyContentResponseHttpRequest(
@@ -1432,6 +1479,16 @@ class GooglePrivacyDlpV2ListConnectionsResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GooglePrivacyDlpV2ListConnectionsResponse: ...
+
+@typing.type_check_only
+class GooglePrivacyDlpV2ListContentPoliciesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GooglePrivacyDlpV2ListContentPoliciesResponse: ...
 
 @typing.type_check_only
 class GooglePrivacyDlpV2ListDeidentifyTemplatesResponseHttpRequest(

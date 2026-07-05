@@ -124,6 +124,7 @@ class GoogleCloudRunV2Container(typing_extensions.TypedDict, total=False):
     ports: _list[GoogleCloudRunV2ContainerPort]
     readinessProbe: GoogleCloudRunV2Probe
     resources: GoogleCloudRunV2ResourceRequirements
+    sandboxLauncher: bool
     sourceCode: GoogleCloudRunV2SourceCode
     startupProbe: GoogleCloudRunV2Probe
     volumeMounts: _list[GoogleCloudRunV2VolumeMount]
@@ -331,10 +332,12 @@ class GoogleCloudRunV2Instance(typing_extensions.TypedDict, total=False):
     nodeSelector: GoogleCloudRunV2NodeSelector
     observedGeneration: str
     reconciling: bool
+    restartPolicy: typing_extensions.Literal[
+        "RESTART_POLICY_UNSPECIFIED", "ALWAYS", "ON_FAILURE", "NEVER"
+    ]
     satisfiesPzs: bool
     serviceAccount: str
     terminalCondition: GoogleCloudRunV2Condition
-    timeout: str
     uid: str
     updateTime: str
     urls: _list[str]
@@ -1028,6 +1031,7 @@ class GoogleDevtoolsCloudbuildV1BuildOptions(typing_extensions.TypedDict, total=
         "E2_HIGHCPU_8",
         "E2_HIGHCPU_32",
         "E2_MEDIUM",
+        "E2_STANDARD_2",
     ]
     pool: GoogleDevtoolsCloudbuildV1PoolOption
     pubsubTopic: str

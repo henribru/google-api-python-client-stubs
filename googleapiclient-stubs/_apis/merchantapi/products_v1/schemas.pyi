@@ -181,6 +181,14 @@ class DestinationStatus(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class DisplayAddress(typing_extensions.TypedDict, total=False):
+    city: str
+    postalCode: str
+    region: str
+    streetName: str
+    streetNumber: str
+
+@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -272,6 +280,15 @@ class Mileage(typing_extensions.TypedDict, total=False):
     value: str
 
 @typing.type_check_only
+class PetPolicy(typing_extensions.TypedDict, total=False):
+    petTypes: _list[
+        typing_extensions.Literal[
+            "PET_TYPE_UNSPECIFIED", "CATS", "LARGE_DOGS", "SMALL_DOGS"
+        ]
+    ]
+    petsAllowed: bool
+
+@typing.type_check_only
 class PickupCost(typing_extensions.TypedDict, total=False):
     flatRate: Price
     freeThreshold: Price
@@ -283,6 +300,7 @@ class Price(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Product(typing_extensions.TypedDict, total=False):
+    archived: bool
     automatedDiscounts: AutomatedDiscounts
     base64EncodedName: str
     contentLanguage: str
@@ -305,6 +323,45 @@ class ProductAttributes(typing_extensions.TypedDict, total=False):
     adult: bool
     ageGroup: typing_extensions.Literal[
         "AGE_GROUP_UNSPECIFIED", "ADULT", "KIDS", "TODDLER", "INFANT", "NEWBORN"
+    ]
+    amenityFeature: _list[
+        typing_extensions.Literal[
+            "AMENITY_FEATURE_UNSPECIFIED",
+            "BALCONY",
+            "BASEMENT",
+            "BASKETBALL_COURT",
+            "BIKE_STORAGE",
+            "CENTRAL_AC",
+            "DISHWASHER",
+            "DOG_PARK",
+            "ELEVATOR",
+            "EV_CHARGING",
+            "FENCED_LOT",
+            "FIREPLACE",
+            "FITNESS_CENTER",
+            "FORCED_AIR_HEATING",
+            "FULLY_FURNISHED",
+            "GARAGE",
+            "GATED_COMMUNITY",
+            "HARDWOOD_FLOORS",
+            "HIGH_SPEED_INTERNET",
+            "INTERCOM",
+            "IN_UNIT_WASHER_DRYER",
+            "KITCHEN",
+            "LARGE_CLOSETS",
+            "MULTISPORT_COURT",
+            "ONSITE_LAUNDRY",
+            "OUTDOOR_LOUNGE",
+            "PARKING",
+            "PATIO",
+            "PICKLEBALL_COURT",
+            "POOL",
+            "REFRIGERATOR",
+            "SOCCER_FIELD",
+            "TENNIS_COURT",
+            "WALK_IN_CLOSETS",
+            "WHEELCHAIR_ACCESS",
+        ]
     ]
     autoPricingMinPrice: Price
     availability: typing_extensions.Literal[
@@ -370,11 +427,13 @@ class ProductAttributes(typing_extensions.TypedDict, total=False):
     dateFirstRegistered: str
     description: str
     disclosureDate: str
+    displayAddress: DisplayAddress
     displayAdsId: str
     displayAdsLink: str
     displayAdsSimilarIds: _list[str]
     displayAdsTitle: str
     displayAdsValue: float
+    documentLinks: _list[str]
     electricRange: Mileage
     emissionsStandard: typing_extensions.Literal[
         "EMISSIONS_STANDARD_UNSPECIFIED",
@@ -465,9 +524,12 @@ class ProductAttributes(typing_extensions.TypedDict, total=False):
     installment: ProductInstallment
     isBundle: bool
     itemGroupId: str
+    itemGroupTitle: str
+    latitude: float
     lifestyleImageLinks: _list[str]
     link: str
     linkTemplate: str
+    longitude: float
     loyaltyPoints: LoyaltyPoints
     loyaltyPrograms: _list[LoyaltyProgram]
     material: str
@@ -507,8 +569,13 @@ class ProductAttributes(typing_extensions.TypedDict, total=False):
     model: str
     mpn: str
     multipack: str
+    neighborhood: str
+    numberOfBathrooms: float
+    numberOfBedrooms: float
+    numberOfUnits: str
     pattern: str
     pause: typing_extensions.Literal["PAUSE_UNSPECIFIED", "ADS", "ALL"]
+    petPolicy: PetPolicy
     pickupCost: PickupCost
     pickupMethod: typing_extensions.Literal[
         "PICKUP_METHOD_UNSPECIFIED", "NOT_SUPPORTED", "BUY", "RESERVE", "SHIP_TO_STORE"
@@ -524,8 +591,10 @@ class ProductAttributes(typing_extensions.TypedDict, total=False):
         "SIX_DAY",
         "MULTI_WEEK",
     ]
+    popularityRank: float
     price: Price
     productDetails: _list[ProductDetail]
+    productFee: _list[ProductFee]
     productHeight: ProductDimension
     productHighlights: _list[str]
     productLength: ProductDimension
@@ -533,6 +602,21 @@ class ProductAttributes(typing_extensions.TypedDict, total=False):
     productWeight: ProductWeight
     productWidth: ProductDimension
     promotionIds: _list[str]
+    propertyName: str
+    propertyType: typing_extensions.Literal[
+        "PROPERTY_TYPE_UNSPECIFIED",
+        "APARTMENT",
+        "CONDO",
+        "LOFT",
+        "MULTI_FAMILY_HOME",
+        "PENTHOUSE",
+        "ROOM",
+        "SINGLE_FAMILY_HOME",
+        "STUDIO",
+        "TOWNHOUSE",
+    ]
+    questionsAndAnswers: _list[QuestionAndAnswer]
+    relatedProducts: _list[RelatedProduct]
     returnPolicyLabel: str
     salePrice: Price
     salePriceEffectiveDate: Interval
@@ -546,6 +630,7 @@ class ProductAttributes(typing_extensions.TypedDict, total=False):
     shippingWeight: ShippingWeight
     shippingWidth: ShippingDimension
     shoppingAdsExcludedCountries: _list[str]
+    shortTitle: str
     size: str
     sizeSystem: typing_extensions.Literal[
         "SIZE_SYSTEM_UNSPECIFIED",
@@ -572,6 +657,15 @@ class ProductAttributes(typing_extensions.TypedDict, total=False):
             "PLUS",
         ]
     ]
+    specialtyHousingType: typing_extensions.Literal[
+        "SPECIALTY_HOUSING_TYPE_UNSPECIFIED",
+        "CORPORATE",
+        "LOW_INCOME",
+        "MILITARY",
+        "SENIOR",
+        "SHORT_TERM",
+        "STUDENT",
+    ]
     structuredDescription: StructuredDescription
     structuredTitle: StructuredTitle
     subscriptionCost: SubscriptionCost
@@ -579,8 +673,20 @@ class ProductAttributes(typing_extensions.TypedDict, total=False):
     title: str
     transitTimeLabel: str
     trim: str
+    unitArea: UnitArea
     unitPricingBaseMeasure: UnitPricingBaseMeasure
     unitPricingMeasure: UnitPricingMeasure
+    utilitiesIncluded: _list[
+        typing_extensions.Literal[
+            "UTILITIES_INCLUDED_UNSPECIFIED",
+            "ELECTRICITY",
+            "GAS",
+            "INTERNET",
+            "TRASH",
+            "WATER",
+        ]
+    ]
+    variantOptions: _list[VariantOption]
     vehicleAllInPrice: Price
     vehicleExpenses: Price
     vehicleMandatoryInspectionIncluded: bool
@@ -656,6 +762,13 @@ class ProductDimension(typing_extensions.TypedDict, total=False):
     value: float
 
 @typing.type_check_only
+class ProductFee(typing_extensions.TypedDict, total=False):
+    amount: Price
+    type: typing_extensions.Literal[
+        "FEE_TYPE_UNSPECIFIED", "ADMIN_FEE", "APPLICATION_FEE", "SECURITY_DEPOSIT"
+    ]
+
+@typing.type_check_only
 class ProductInput(typing_extensions.TypedDict, total=False):
     base64EncodedName: str
     base64EncodedProduct: str
@@ -705,7 +818,9 @@ class ProductStatusChangeMessage(typing_extensions.TypedDict, total=False):
     managingAccount: str
     resource: str
     resourceId: str
-    resourceType: typing_extensions.Literal["RESOURCE_UNSPECIFIED", "PRODUCT"]
+    resourceType: typing_extensions.Literal[
+        "RESOURCE_UNSPECIFIED", "PRODUCT", "ACCOUNT_SERVICE"
+    ]
 
 @typing.type_check_only
 class ProductSustainabilityIncentive(typing_extensions.TypedDict, total=False):
@@ -719,6 +834,25 @@ class ProductSustainabilityIncentive(typing_extensions.TypedDict, total=False):
 class ProductWeight(typing_extensions.TypedDict, total=False):
     unit: str
     value: float
+
+@typing.type_check_only
+class QuestionAndAnswer(typing_extensions.TypedDict, total=False):
+    answer: str
+    question: str
+
+@typing.type_check_only
+class RelatedProduct(typing_extensions.TypedDict, total=False):
+    id: str
+    idType: typing_extensions.Literal["ID_TYPE_UNSPECIFIED", "GTIN", "ID"]
+    relationshipType: typing_extensions.Literal[
+        "RELATIONSHIP_TYPE_UNSPECIFIED",
+        "PART_OF_SET",
+        "REQUIRED_PART",
+        "OFTEN_BOUGHT_WITH",
+        "SUBSTITUTE",
+        "DIFFERENT_BRAND",
+        "ACCESSORY",
+    ]
 
 @typing.type_check_only
 class Shipping(typing_extensions.TypedDict, total=False):
@@ -776,6 +910,11 @@ class SubscriptionCost(typing_extensions.TypedDict, total=False):
     periodLength: str
 
 @typing.type_check_only
+class UnitArea(typing_extensions.TypedDict, total=False):
+    unit: typing_extensions.Literal["UNIT_UNSPECIFIED", "SQM", "SQFT"]
+    value: float
+
+@typing.type_check_only
 class UnitPricingBaseMeasure(typing_extensions.TypedDict, total=False):
     unit: str
     value: str
@@ -784,6 +923,11 @@ class UnitPricingBaseMeasure(typing_extensions.TypedDict, total=False):
 class UnitPricingMeasure(typing_extensions.TypedDict, total=False):
     unit: str
     value: float
+
+@typing.type_check_only
+class VariantOption(typing_extensions.TypedDict, total=False):
+    name: str
+    value: str
 
 @typing.type_check_only
 class Warranty(typing_extensions.TypedDict, total=False):

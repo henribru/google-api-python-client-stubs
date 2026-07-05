@@ -394,7 +394,17 @@ class CloudKMSResource(googleapiclient.discovery.Resource):
                         **kwargs: typing.Any,
                     ) -> ImportJobHttpRequest: ...
                     def get(
-                        self, *, name: str, **kwargs: typing.Any
+                        self,
+                        *,
+                        name: str,
+                        publicKeyFormat: typing_extensions.Literal[
+                            "PUBLIC_KEY_FORMAT_UNSPECIFIED",
+                            "PEM",
+                            "DER",
+                            "NIST_PQC",
+                            "XWING_RAW_BYTES",
+                        ] = ...,
+                        **kwargs: typing.Any,
                     ) -> ImportJobHttpRequest: ...
                     def getIamPolicy(
                         self,

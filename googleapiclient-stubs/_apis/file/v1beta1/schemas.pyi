@@ -5,6 +5,16 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class AcquireShareRequest(typing_extensions.TypedDict, total=False):
+    capacityGb: int
+    requestId: str
+
+@typing.type_check_only
+class AcquireShareResponse(typing_extensions.TypedDict, total=False):
+    ipAddress: str
+    shareId: str
+
+@typing.type_check_only
 class Backup(typing_extensions.TypedDict, total=False):
     capacityGb: str
     createTime: str
@@ -387,6 +397,14 @@ class PromoteReplicaRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class PscConfig(typing_extensions.TypedDict, total=False):
     endpointProject: str
+
+@typing.type_check_only
+class ReleaseShareRequest(typing_extensions.TypedDict, total=False):
+    ipAddress: str
+    shareId: str
+
+@typing.type_check_only
+class ReleaseShareResponse(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class ReplicaConfig(typing_extensions.TypedDict, total=False):

@@ -465,6 +465,7 @@ class ComputeInstanceRestoreProperties(typing_extensions.TypedDict, total=False)
 @typing.type_check_only
 class ComputeInstanceTargetEnvironment(typing_extensions.TypedDict, total=False):
     project: str
+    useProjectServiceAccount: bool
     zone: str
 
 @typing.type_check_only
@@ -613,6 +614,7 @@ class DiskRestoreProperties(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class DiskTargetEnvironment(typing_extensions.TypedDict, total=False):
     project: str
+    useProjectServiceAccount: bool
     zone: str
 
 @typing.type_check_only
@@ -1010,6 +1012,7 @@ class RegionDiskTargetEnvironment(typing_extensions.TypedDict, total=False):
     project: str
     region: str
     replicaZones: _list[str]
+    useProjectServiceAccount: bool
 
 @typing.type_check_only
 class RemoveDataSourceRequest(typing_extensions.TypedDict, total=False):

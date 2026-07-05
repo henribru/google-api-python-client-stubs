@@ -51,6 +51,16 @@ class Binding(typing_extensions.TypedDict, total=False):
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class CheckPrewarmedArtifactRequest(typing_extensions.TypedDict, total=False):
+    streamLocation: str
+    tag: str
+    version: str
+
+@typing.type_check_only
+class CheckPrewarmedArtifactResponse(typing_extensions.TypedDict, total=False):
+    prewarmedArtifact: PrewarmedArtifact
+
+@typing.type_check_only
 class CleanupPolicy(typing_extensions.TypedDict, total=False):
     action: typing_extensions.Literal["ACTION_UNSPECIFIED", "DELETE", "KEEP"]
     condition: CleanupPolicyCondition
@@ -357,6 +367,11 @@ class ListPackagesResponse(typing_extensions.TypedDict, total=False):
     packages: _list[Package]
 
 @typing.type_check_only
+class ListPrewarmedArtifactsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    prewarmedArtifacts: _list[PrewarmedArtifact]
+
+@typing.type_check_only
 class ListPythonPackagesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     pythonPackages: _list[PythonPackage]
@@ -472,6 +487,30 @@ class Policy(typing_extensions.TypedDict, total=False):
     version: int
 
 @typing.type_check_only
+class PrewarmArtifactRequest(typing_extensions.TypedDict, total=False):
+    force: bool
+    platform: PrewarmPlatform
+    retentionDays: str
+    streamLocation: str
+    tag: str
+    version: str
+
+@typing.type_check_only
+class PrewarmArtifactResponse(typing_extensions.TypedDict, total=False):
+    prewarmedArtifact: PrewarmedArtifact
+
+@typing.type_check_only
+class PrewarmPlatform(typing_extensions.TypedDict, total=False):
+    architecture: str
+    os: str
+
+@typing.type_check_only
+class PrewarmedArtifact(typing_extensions.TypedDict, total=False):
+    expirationTime: str
+    location: str
+    uri: str
+
+@typing.type_check_only
 class ProjectConfig(typing_extensions.TypedDict, total=False):
     name: str
     platformLogsConfig: PlatformLogsConfig
@@ -515,6 +554,16 @@ class RemoteRepositoryConfig(typing_extensions.TypedDict, total=False):
     pythonRepository: PythonRepository
     upstreamCredentials: UpstreamCredentials
     yumRepository: YumRepository
+
+@typing.type_check_only
+class RemovePrewarmedArtifactRequest(typing_extensions.TypedDict, total=False):
+    streamLocation: str
+    tag: str
+    version: str
+
+@typing.type_check_only
+class RemovePrewarmedArtifactResponse(typing_extensions.TypedDict, total=False):
+    prewarmedArtifact: PrewarmedArtifact
 
 @typing.type_check_only
 class Repository(typing_extensions.TypedDict, total=False):

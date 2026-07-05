@@ -47,6 +47,7 @@ class ItemRevisionStatus(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PublishItemRequest(typing_extensions.TypedDict, total=False):
+    blockOnWarnings: bool
     deployInfos: _list[DeployInfo]
     publishType: typing_extensions.Literal[
         "PUBLISH_TYPE_UNSPECIFIED", "DEFAULT_PUBLISH", "STAGED_PUBLISH"
@@ -66,6 +67,7 @@ class PublishItemResponse(typing_extensions.TypedDict, total=False):
         "REJECTED",
         "CANCELLED",
     ]
+    warningInfo: WarningsInfo
 
 @typing.type_check_only
 class SetPublishedDeployPercentageRequest(typing_extensions.TypedDict, total=False):
@@ -87,3 +89,12 @@ class UploadItemPackageResponse(typing_extensions.TypedDict, total=False):
     uploadState: typing_extensions.Literal[
         "UPLOAD_STATE_UNSPECIFIED", "SUCCEEDED", "IN_PROGRESS", "FAILED", "NOT_FOUND"
     ]
+
+@typing.type_check_only
+class Warning(typing_extensions.TypedDict, total=False):
+    description: str
+    reason: str
+
+@typing.type_check_only
+class WarningsInfo(typing_extensions.TypedDict, total=False):
+    warnings: _list[Warning]

@@ -5,10 +5,121 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class AdEvent(typing_extensions.TypedDict, total=False):
+    adFormat: typing_extensions.Literal[
+        "AD_FORMAT_UNSPECIFIED",
+        "AD_FORMAT_AR",
+        "AD_FORMAT_AUDIO",
+        "AD_FORMAT_BANNER",
+        "AD_FORMAT_BUMPER",
+        "AD_FORMAT_CAROUSEL",
+        "AD_FORMAT_COLLECTION",
+        "AD_FORMAT_IMAGE",
+        "AD_FORMAT_INTERACTIVE",
+        "AD_FORMAT_INTERSTITIAL",
+        "AD_FORMAT_IN_FEED",
+        "AD_FORMAT_IN_STREAM",
+        "AD_FORMAT_IN_STREAM_SKIPPABLE",
+        "AD_FORMAT_IN_STREAM_NON_SKIPPABLE",
+        "AD_FORMAT_NATIVE",
+        "AD_FORMAT_SHORTS",
+        "AD_FORMAT_STORY",
+        "AD_FORMAT_SPONSORED",
+        "AD_FORMAT_VIDEO",
+    ]
+    adFormatString: str
+    adGroupId: str
+    adHeight: int
+    adId: str
+    adPlacement: typing_extensions.Literal[
+        "AD_PLACEMENT_UNSPECIFIED",
+        "AD_PLACEMENT_DISCOVER",
+        "AD_PLACEMENT_FEED",
+        "AD_PLACEMENT_FOOTER",
+        "AD_PLACEMENT_HEADER",
+        "AD_PLACEMENT_HOME",
+        "AD_PLACEMENT_IN_CONTENT",
+        "AD_PLACEMENT_PROMOTED",
+        "AD_PLACEMENT_SEARCH",
+        "AD_PLACEMENT_STORY",
+    ]
+    adPlacementString: str
+    adType: typing_extensions.Literal[
+        "AD_TYPE_UNSPECIFIED",
+        "AD_TYPE_DISPLAY",
+        "AD_TYPE_TEXT",
+        "AD_TYPE_IMAGE",
+        "AD_TYPE_RICH_MEDIA",
+        "AD_TYPE_HTML",
+        "AD_TYPE_AUDIO",
+        "AD_TYPE_VIDEO",
+    ]
+    adTypeString: str
+    adWidth: int
+    advertiserId: str
+    attributionHint: typing_extensions.Literal[
+        "ATTRIBUTION_HINT_UNSPECIFIED",
+        "ATTRIBUTION_HINT_CONVERTED",
+        "ATTRIBUTION_HINT_NOT_CONVERTED",
+    ]
+    campaignId: str
+    campaignName: str
+    deviceInfo: DeviceInfo
+    eventId: str
+    eventSubtype: typing_extensions.Literal[
+        "EVENT_SUBTYPE_UNSPECIFIED",
+        "EVENT_SUBTYPE_IMPRESSION",
+        "EVENT_SUBTYPE_ENGAGED_VIEW",
+        "EVENT_SUBTYPE_ONSITE_CLICK",
+        "EVENT_SUBTYPE_OUTBOUND_CLICK",
+    ]
+    eventSubtypeString: str
+    eventType: typing_extensions.Literal[
+        "EVENT_TYPE_UNSPECIFIED", "EVENT_TYPE_VIEW", "EVENT_TYPE_CLICK"
+    ]
+    measurementAllowed: bool
+    medium: str
+    mobileDeviceId: str
+    platform: typing_extensions.Literal[
+        "PLATFORM_UNSPECIFIED", "PLATFORM_IOS", "PLATFORM_ANDROID", "PLATFORM_WEB"
+    ]
+    platformString: str
+    platformType: typing_extensions.Literal[
+        "PLATFORM_TYPE_UNSPECIFIED",
+        "PLATFORM_TYPE_MOBILE",
+        "PLATFORM_TYPE_DESKTOP",
+        "PLATFORM_TYPE_CTV",
+        "PLATFORM_TYPE_PHONE",
+        "PLATFORM_TYPE_TABLET",
+    ]
+    platformTypeString: str
+    regionCode: str
+    source: str
+    targetingType: typing_extensions.Literal[
+        "TARGETING_TYPE_UNSPECIFIED",
+        "TARGETING_TYPE_AUDIENCE",
+        "TARGETING_TYPE_CONTEXTUAL",
+        "TARGETING_TYPE_DEMOGRAPHIC",
+        "TARGETING_TYPE_DEVICE",
+        "TARGETING_TYPE_GEO",
+        "TARGETING_TYPE_INTEREST",
+        "TARGETING_TYPE_PURCHASE_INTENT",
+        "TARGETING_TYPE_REMARKETING",
+    ]
+    targetingTypeString: str
+    timestamp: str
+    userData: UserData
+    viewabilityInfo: ViewabilityInfo
+
+@typing.type_check_only
 class AdIdentifiers(typing_extensions.TypedDict, total=False):
+    dclid: str
+    encryptedUserIds: _list[EncryptedUserId]
     gbraid: str
     gclid: str
+    impressionId: str
     landingPageDeviceInfo: DeviceInfo
+    matchId: str
     mobileDeviceId: str
     sessionAttributes: str
     wbraid: str
@@ -22,6 +133,7 @@ class AddressInfo(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AudienceMember(typing_extensions.TypedDict, total=False):
+    compositeData: CompositeData
     consent: Consent
     destinationReferences: _list[str]
     mobileData: MobileData
@@ -52,6 +164,11 @@ class CartData(typing_extensions.TypedDict, total=False):
     transactionDiscount: float
 
 @typing.type_check_only
+class CompositeData(typing_extensions.TypedDict, total=False):
+    ipData: _list[IpData]
+    userData: UserData
+
+@typing.type_check_only
 class Consent(typing_extensions.TypedDict, total=False):
     adPersonalization: typing_extensions.Literal[
         "CONSENT_STATUS_UNSPECIFIED", "CONSENT_GRANTED", "CONSENT_DENIED"
@@ -72,10 +189,21 @@ class ContactIdInfo(typing_extensions.TypedDict, total=False):
     matchRatePercentage: int
 
 @typing.type_check_only
+class CoordinatorKeyInfo(typing_extensions.TypedDict, total=False):
+    keyId: str
+
+@typing.type_check_only
 class CustomVariable(typing_extensions.TypedDict, total=False):
     destinationReferences: _list[str]
     value: str
     variable: str
+
+@typing.type_check_only
+class DataTypeCount(typing_extensions.TypedDict, total=False):
+    count: str
+    type: typing_extensions.Literal[
+        "DATA_TYPE_UNSPECIFIED", "EMAIL", "PHONE_NUMBER", "ADDRESS", "IP_ADDRESS"
+    ]
 
 @typing.type_check_only
 class Destination(typing_extensions.TypedDict, total=False):
@@ -104,8 +232,26 @@ class DeviceInfo(typing_extensions.TypedDict, total=False):
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class EncryptedUserId(typing_extensions.TypedDict, total=False):
+    encryptedId: str
+    entityId: str
+    entityType: typing_extensions.Literal[
+        "ENCRYPTION_ENTITY_TYPE_UNSPECIFIED",
+        "CAMPAIGN_MANAGER_ACCOUNT",
+        "CAMPAIGN_MANAGER_ADVERTISER",
+        "DISPLAY_VIDEO_PARTNER",
+        "DISPLAY_VIDEO_ADVERTISER",
+        "GOOGLE_ADS_CUSTOMER",
+        "GOOGLE_AD_MANAGER_NETWORK_CODE",
+    ]
+    source: typing_extensions.Literal[
+        "ENCRYPTION_SOURCE_UNSPECIFIED", "AD_SERVING", "DATA_TRANSFER"
+    ]
+
+@typing.type_check_only
 class EncryptionInfo(typing_extensions.TypedDict, total=False):
     awsWrappedKeyInfo: AwsWrappedKeyInfo
+    coordinatorKeyInfo: CoordinatorKeyInfo
     gcpWrappedKeyInfo: GcpWrappedKeyInfo
 
 @typing.type_check_only
@@ -140,6 +286,21 @@ class ErrorCount(typing_extensions.TypedDict, total=False):
         "PROCESSING_ERROR_REASON_USER_IDENTIFIER_DECRYPTION_ERROR",
         "PROCESSING_ERROR_OPERATING_ACCOUNT_MISMATCH_FOR_AD_IDENTIFIER",
         "PROCESSING_ERROR_REASON_ONE_PER_CLICK_CONVERSION_ACTION_NOT_PERMITTED_WITH_BRAID",
+        "PROCESSING_ERROR_REASON_MATCH_ID_NOT_FOUND",
+        "PROCESSING_ERROR_REASON_USER_ID_NOT_FOUND_FOR_MATCH_ID",
+        "PROCESSING_ERROR_REASON_USER_ID_NOT_FOUND_FOR_GCLID",
+        "PROCESSING_ERROR_REASON_USER_ID_NOT_FOUND_FOR_DCLID",
+        "PROCESSING_ERROR_REASON_INVALID_AD_IDENTIFIERS",
+        "PROCESSING_ERROR_REASON_INVALID_MOBILE_ID_FORMAT",
+        "PROCESSING_ERROR_REASON_ORIGINAL_CONVERSIONS_NOT_FOUND",
+        "PROCESSING_ERROR_REASON_EVENT_ID_DECODE_ERROR",
+        "PROCESSING_ERROR_REASON_USER_ID_NOT_FOUND_FOR_IMPRESSION_ID",
+        "PROCESSING_ERROR_REASON_USER_ID_NOT_FOUND",
+        "PROCESSING_ERROR_REASON_CONVERSION_PRECEDES_CLICK",
+        "PROCESSING_ERROR_REASON_TOO_RECENT_CLICK",
+        "PROCESSING_ERROR_REASON_INVALID_CLICK",
+        "PROCESSING_ERROR_REASON_INVALID_OPERATING_ACCOUNT_FOR_CLICK",
+        "PROCESSING_ERROR_REASON_CLICK_NOT_FOUND",
     ]
     recordCount: str
 
@@ -155,6 +316,7 @@ class Event(typing_extensions.TypedDict, total=False):
     cartData: CartData
     clientId: str
     consent: Consent
+    conversionCount: float
     conversionValue: float
     currency: str
     customVariables: _list[CustomVariable]
@@ -207,6 +369,15 @@ class GcpWrappedKeyInfo(typing_extensions.TypedDict, total=False):
     wipProvider: str
 
 @typing.type_check_only
+class IngestAdEventsRequest(typing_extensions.TypedDict, total=False):
+    adEvents: _list[AdEvent]
+    encryptionInfo: EncryptionInfo
+    validateOnly: bool
+
+@typing.type_check_only
+class IngestAdEventsResponse(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class IngestAudienceMembersRequest(typing_extensions.TypedDict, total=False):
     audienceMembers: _list[AudienceMember]
     consent: Consent
@@ -222,11 +393,30 @@ class IngestAudienceMembersResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class IngestAudienceMembersStatus(typing_extensions.TypedDict, total=False):
+    compositeDataIngestionStatus: IngestCompositeDataStatus
     mobileDataIngestionStatus: IngestMobileDataStatus
     pairDataIngestionStatus: IngestPairDataStatus
     ppidDataIngestionStatus: IngestPpidDataStatus
     userDataIngestionStatus: IngestUserDataStatus
     userIdDataIngestionStatus: IngestUserIdDataStatus
+
+@typing.type_check_only
+class IngestCompositeDataStatus(typing_extensions.TypedDict, total=False):
+    dataTypeCounts: _list[DataTypeCount]
+    recordCount: str
+    uploadMatchRateRange: typing_extensions.Literal[
+        "MATCH_RATE_RANGE_UNKNOWN",
+        "MATCH_RATE_RANGE_NOT_ELIGIBLE",
+        "MATCH_RATE_RANGE_LESS_THAN_20",
+        "MATCH_RATE_RANGE_20_TO_30",
+        "MATCH_RATE_RANGE_31_TO_40",
+        "MATCH_RATE_RANGE_41_TO_50",
+        "MATCH_RATE_RANGE_51_TO_60",
+        "MATCH_RATE_RANGE_61_TO_70",
+        "MATCH_RATE_RANGE_71_TO_80",
+        "MATCH_RATE_RANGE_81_TO_90",
+        "MATCH_RATE_RANGE_91_TO_100",
+    ]
 
 @typing.type_check_only
 class IngestEventsRequest(typing_extensions.TypedDict, total=False):
@@ -301,6 +491,12 @@ class IngestedUserListInfo(typing_extensions.TypedDict, total=False):
         ]
     ]
     userIdInfo: UserIdInfo
+
+@typing.type_check_only
+class IpData(typing_extensions.TypedDict, total=False):
+    ipAddress: str
+    observeEndTime: str
+    observeStartTime: str
 
 @typing.type_check_only
 class Item(typing_extensions.TypedDict, total=False):
@@ -421,11 +617,28 @@ class PartnerAudienceInfo(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class PartnerCustomerAccount(typing_extensions.TypedDict, total=False):
+    accountId: str
+    accountName: str
+    accountType: str
+
+@typing.type_check_only
 class PartnerLink(typing_extensions.TypedDict, total=False):
+    featureSet: typing_extensions.Literal[
+        "FEATURE_SET_UNSPECIFIED",
+        "FEATURE_SET_AUDIENCE_AND_EVENT_MANAGEMENT",
+        "FEATURE_SET_AD_EVENT_MANAGEMENT",
+    ]
     name: str
     owningAccount: ProductAccount
     partnerAccount: ProductAccount
+    partnerCustomerAccount: PartnerCustomerAccount
     partnerLinkId: str
+    partnerLinkMetadata: PartnerLinkMetadata
+
+@typing.type_check_only
+class PartnerLinkMetadata(typing_extensions.TypedDict, total=False):
+    implicitAccounts: _list[PartnerCustomerAccount]
 
 @typing.type_check_only
 class PpidData(typing_extensions.TypedDict, total=False):
@@ -442,6 +655,7 @@ class ProductAccount(typing_extensions.TypedDict, total=False):
         "DATA_PARTNER",
         "GOOGLE_ANALYTICS_PROPERTY",
         "GOOGLE_AD_MANAGER_AUDIENCE_LINK",
+        "FLOODLIGHT_CONFIG",
     ]
     product: typing_extensions.Literal[
         "PRODUCT_UNSPECIFIED",
@@ -472,11 +686,17 @@ class RemoveAudienceMembersResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class RemoveAudienceMembersStatus(typing_extensions.TypedDict, total=False):
+    compositeDataRemovalStatus: RemoveCompositeDataStatus
     mobileDataRemovalStatus: RemoveMobileDataStatus
     pairDataRemovalStatus: RemovePairDataStatus
     ppidDataRemovalStatus: RemovePpidDataStatus
     userDataRemovalStatus: RemoveUserDataStatus
     userIdDataRemovalStatus: RemoveUserIdDataStatus
+
+@typing.type_check_only
+class RemoveCompositeDataStatus(typing_extensions.TypedDict, total=False):
+    dataTypeCounts: _list[DataTypeCount]
+    recordCount: str
 
 @typing.type_check_only
 class RemoveMobileDataStatus(typing_extensions.TypedDict, total=False):
@@ -722,6 +942,26 @@ class UserProperties(typing_extensions.TypedDict, total=False):
 class UserProperty(typing_extensions.TypedDict, total=False):
     propertyName: str
     value: str
+
+@typing.type_check_only
+class ViewabilityInfo(typing_extensions.TypedDict, total=False):
+    mediaDuration: str
+    mediaQuartile: typing_extensions.Literal[
+        "MEDIA_QUARTILE_UNSPECIFIED",
+        "MEDIA_QUARTILE_START",
+        "MEDIA_QUARTILE_FIRST_QUARTILE",
+        "MEDIA_QUARTILE_MIDPOINT",
+        "MEDIA_QUARTILE_THIRD_QUARTILE",
+        "MEDIA_QUARTILE_COMPLETE",
+    ]
+    mediaSkippable: bool
+    mediaVolumePercent: int
+    playbackDuration: str
+    viewType: typing_extensions.Literal[
+        "VIEW_TYPE_UNSPECIFIED", "VIEW_TYPE_MRC_VIEWED", "VIEW_TYPE_MRC_RENDERED"
+    ]
+    viewableDuration: str
+    viewablePercent: int
 
 @typing.type_check_only
 class WarningCount(typing_extensions.TypedDict, total=False):

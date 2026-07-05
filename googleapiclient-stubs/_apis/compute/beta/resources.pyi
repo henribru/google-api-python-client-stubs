@@ -1818,6 +1818,47 @@ class ComputeResource(googleapiclient.discovery.Resource):
         ) -> OperationHttpRequest: ...
 
     @typing.type_check_only
+    class HostsResource(googleapiclient.discovery.Resource):
+        def get(
+            self,
+            *,
+            project: str,
+            zone: str,
+            association: str,
+            host: str,
+            **kwargs: typing.Any,
+        ) -> HostHttpRequest: ...
+        def getVersion(
+            self,
+            *,
+            project: str,
+            zone: str,
+            association: str,
+            host: str,
+            body: HostsGetVersionRequest = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
+        def list(
+            self,
+            *,
+            project: str,
+            zone: str,
+            association: str,
+            filter: str = ...,
+            maxResults: int = ...,
+            orderBy: str = ...,
+            pageToken: str = ...,
+            returnPartialSuccess: bool = ...,
+            **kwargs: typing.Any,
+        ) -> HostsListResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: HostsListResponseHttpRequest,
+            previous_response: HostsListResponse,
+        ) -> HostsListResponseHttpRequest | None: ...
+
+    @typing.type_check_only
     class HttpHealthChecksResource(googleapiclient.discovery.Resource):
         def delete(
             self,
@@ -1950,6 +1991,12 @@ class ComputeResource(googleapiclient.discovery.Resource):
         def get(
             self, *, project: str, zone: str, family: str, **kwargs: typing.Any
         ) -> ImageFamilyViewHttpRequest: ...
+
+    @typing.type_check_only
+    class ImageViewsResource(googleapiclient.discovery.Resource):
+        def get(
+            self, *, project: str, region: str, resourceId: str, **kwargs: typing.Any
+        ) -> ImageViewHttpRequest: ...
 
     @typing.type_check_only
     class ImagesResource(googleapiclient.discovery.Resource):
@@ -4906,6 +4953,110 @@ class ComputeResource(googleapiclient.discovery.Resource):
         ) -> NodeTypeListHttpRequest | None: ...
 
     @typing.type_check_only
+    class OrganizationRolloutPlansResource(googleapiclient.discovery.Resource):
+        def delete(
+            self,
+            *,
+            organization: str,
+            rolloutPlan: str,
+            requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
+        def get(
+            self, *, organization: str, rolloutPlan: str, **kwargs: typing.Any
+        ) -> RolloutPlanHttpRequest: ...
+        def insert(
+            self,
+            *,
+            organization: str,
+            body: RolloutPlan = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
+        def list(
+            self,
+            *,
+            organization: str,
+            filter: str = ...,
+            maxResults: int = ...,
+            orderBy: str = ...,
+            pageToken: str = ...,
+            returnPartialSuccess: bool = ...,
+            **kwargs: typing.Any,
+        ) -> RolloutPlansListResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: RolloutPlansListResponseHttpRequest,
+            previous_response: RolloutPlansListResponse,
+        ) -> RolloutPlansListResponseHttpRequest | None: ...
+
+    @typing.type_check_only
+    class OrganizationRolloutsResource(googleapiclient.discovery.Resource):
+        def advance(
+            self,
+            *,
+            organization: str,
+            rollout: str,
+            currentWaveNumber: str = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
+        def cancel(
+            self,
+            *,
+            organization: str,
+            rollout: str,
+            requestId: str = ...,
+            rollback: bool = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
+        def delete(
+            self,
+            *,
+            organization: str,
+            rollout: str,
+            requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
+        def get(
+            self, *, organization: str, rollout: str, **kwargs: typing.Any
+        ) -> RolloutHttpRequest: ...
+        def list(
+            self,
+            *,
+            organization: str,
+            filter: str = ...,
+            maxResults: int = ...,
+            orderBy: str = ...,
+            pageToken: str = ...,
+            returnPartialSuccess: bool = ...,
+            **kwargs: typing.Any,
+        ) -> OrganizationRolloutsListResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: OrganizationRolloutsListResponseHttpRequest,
+            previous_response: OrganizationRolloutsListResponse,
+        ) -> OrganizationRolloutsListResponseHttpRequest | None: ...
+        def pause(
+            self,
+            *,
+            organization: str,
+            rollout: str,
+            etag: str = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
+        def resume(
+            self,
+            *,
+            organization: str,
+            rollout: str,
+            etag: str = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
+
+    @typing.type_check_only
     class OrganizationSecurityPoliciesResource(googleapiclient.discovery.Resource):
         def addAssociation(
             self,
@@ -5139,6 +5290,12 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
+
+    @typing.type_check_only
+    class ProjectViewsResource(googleapiclient.discovery.Resource):
+        def get(
+            self, *, project: str, region: str, **kwargs: typing.Any
+        ) -> ProjectViewHttpRequest: ...
 
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
@@ -8793,6 +8950,15 @@ class ComputeResource(googleapiclient.discovery.Resource):
 
     @typing.type_check_only
     class RolloutsResource(googleapiclient.discovery.Resource):
+        def advance(
+            self,
+            *,
+            project: str,
+            rollout: str,
+            currentWaveNumber: str = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
         def cancel(
             self,
             *,
@@ -8829,6 +8995,24 @@ class ComputeResource(googleapiclient.discovery.Resource):
             previous_request: RolloutsListResponseHttpRequest,
             previous_response: RolloutsListResponse,
         ) -> RolloutsListResponseHttpRequest | None: ...
+        def pause(
+            self,
+            *,
+            project: str,
+            rollout: str,
+            etag: str = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
+        def resume(
+            self,
+            *,
+            project: str,
+            rollout: str,
+            etag: str = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
 
     @typing.type_check_only
     class RoutersResource(googleapiclient.discovery.Resource):
@@ -11180,9 +11364,11 @@ class ComputeResource(googleapiclient.discovery.Resource):
     ) -> GlobalPublicDelegatedPrefixesResource: ...
     def globalVmExtensionPolicies(self) -> GlobalVmExtensionPoliciesResource: ...
     def healthChecks(self) -> HealthChecksResource: ...
+    def hosts(self) -> HostsResource: ...
     def httpHealthChecks(self) -> HttpHealthChecksResource: ...
     def httpsHealthChecks(self) -> HttpsHealthChecksResource: ...
     def imageFamilyViews(self) -> ImageFamilyViewsResource: ...
+    def imageViews(self) -> ImageViewsResource: ...
     def images(self) -> ImagesResource: ...
     def instanceGroupManagerResizeRequests(
         self,
@@ -11213,9 +11399,12 @@ class ComputeResource(googleapiclient.discovery.Resource):
     def nodeGroups(self) -> NodeGroupsResource: ...
     def nodeTemplates(self) -> NodeTemplatesResource: ...
     def nodeTypes(self) -> NodeTypesResource: ...
+    def organizationRolloutPlans(self) -> OrganizationRolloutPlansResource: ...
+    def organizationRollouts(self) -> OrganizationRolloutsResource: ...
     def organizationSecurityPolicies(self) -> OrganizationSecurityPoliciesResource: ...
     def packetMirrorings(self) -> PacketMirroringsResource: ...
     def previewFeatures(self) -> PreviewFeaturesResource: ...
+    def projectViews(self) -> ProjectViewsResource: ...
     def projects(self) -> ProjectsResource: ...
     def publicAdvertisedPrefixes(self) -> PublicAdvertisedPrefixesResource: ...
     def publicDelegatedPrefixes(self) -> PublicDelegatedPrefixesResource: ...
@@ -11866,6 +12055,22 @@ class HealthSourceListHttpRequest(googleapiclient.http.HttpRequest):
     ) -> HealthSourceList: ...
 
 @typing.type_check_only
+class HostHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> Host: ...
+
+@typing.type_check_only
+class HostsListResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> HostsListResponse: ...
+
+@typing.type_check_only
 class HttpHealthCheckHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -11920,6 +12125,14 @@ class ImageListHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ImageList: ...
+
+@typing.type_check_only
+class ImageViewHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ImageView: ...
 
 @typing.type_check_only
 class InstanceHttpRequest(googleapiclient.http.HttpRequest):
@@ -12700,6 +12913,14 @@ class OperationListHttpRequest(googleapiclient.http.HttpRequest):
     ) -> OperationList: ...
 
 @typing.type_check_only
+class OrganizationRolloutsListResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> OrganizationRolloutsListResponse: ...
+
+@typing.type_check_only
 class OrganizationSecurityPoliciesListAssociationsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -12772,6 +12993,14 @@ class ProjectHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Project: ...
+
+@typing.type_check_only
+class ProjectViewHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ProjectView: ...
 
 @typing.type_check_only
 class ProjectsGetXpnResourcesHttpRequest(googleapiclient.http.HttpRequest):

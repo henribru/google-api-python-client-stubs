@@ -38,6 +38,7 @@ class Authority(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AutoUpgradeConfig(typing_extensions.TypedDict, total=False):
+    enforcedRollouts: dict[str, typing.Any]
     rolloutCreationScope: RolloutCreationScope
 
 @typing.type_check_only
@@ -55,6 +56,9 @@ class Binding(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class CancelRolloutRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class CloudAuditLoggingFeatureSpec(typing_extensions.TypedDict, total=False):
@@ -169,6 +173,7 @@ class CommonFeatureSpec(typing_extensions.TypedDict, total=False):
     clusterupgrade: ClusterUpgradeFleetSpec
     dataplanev2: DataplaneV2FeatureSpec
     fleetobservability: FleetObservabilityFeatureSpec
+    mesh: ServiceMeshFeatureSpec
     multiclusteringress: MultiClusterIngressFeatureSpec
     namespaceactuation: NamespaceActuationFeatureSpec
     rbacrolebindingactuation: RBACRoleBindingActuationFeatureSpec
@@ -1067,10 +1072,31 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
+class OperationalState(typing_extensions.TypedDict, total=False):
+    reasons: _list[
+        typing_extensions.Literal[
+            "REASON_UNSPECIFIED",
+            "FLEET_FEATURE_DELETED_ERROR",
+            "FLEET_DELETED_ERROR",
+            "EMPTY_STAGE_WARNING",
+            "MIXED_RELEASE_CHANNELS_WARNING",
+            "INTERNAL_ERROR",
+            "NO_CLUSTERS_IN_SEQUENCE",
+        ]
+    ]
+    state: typing_extensions.Literal[
+        "STATE_CODE_UNSPECIFIED", "ACTIVE", "WARNING", "ERROR", "INITIALIZING"
+    ]
+    stateChangeTime: str
+
+@typing.type_check_only
 class Origin(typing_extensions.TypedDict, total=False):
     type: typing_extensions.Literal[
         "TYPE_UNSPECIFIED", "FLEET", "FLEET_OUT_OF_SYNC", "USER"
     ]
+
+@typing.type_check_only
+class PauseRolloutRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Policy(typing_extensions.TypedDict, total=False):
@@ -1239,6 +1265,11 @@ class ResourceOptions(typing_extensions.TypedDict, total=False):
     v1beta1Crd: bool
 
 @typing.type_check_only
+class ResumeRolloutRequest(typing_extensions.TypedDict, total=False):
+    scheduleOffset: str
+    validateOnly: bool
+
+@typing.type_check_only
 class Role(typing_extensions.TypedDict, total=False):
     customRole: str
     predefinedRole: typing_extensions.Literal[
@@ -1252,6 +1283,12 @@ class Rollout(typing_extensions.TypedDict, total=False):
     deleteTime: str
     displayName: str
     etag: str
+    intent: typing_extensions.Literal[
+        "ROLLOUT_INTENT_UNSPECIFIED",
+        "REGULAR_UPGRADE",
+        "CONTROL_PLANE_PATCH_ENFORCEMENT",
+        "END_OF_SUPPORT_ENFORCEMENT",
+    ]
     labels: dict[str, typing.Any]
     membershipStates: dict[str, typing.Any]
     name: str
@@ -1266,7 +1303,13 @@ class Rollout(typing_extensions.TypedDict, total=False):
         "PAUSED_BY_USER",
         "PAUSED_BY_SYSTEM_CONFIG",
         "PAUSED_WAITING_FOR_NEXT_STAGE",
+        "CANCELLED_BY_USER",
+        "CANCELLED_PAUSED_TOO_LONG",
+        "CANCELLED_SUPERSEDED",
+        "CANCELLED_INCOMPATIBLE_ROLLOUT_SEQUENCE",
+        "CANCELLED_SUPERSEDED_BY_USER_ROLLOUT",
     ]
+    trigger: typing_extensions.Literal["ROLLOUT_TRIGGER_UNSPECIFIED", "USER", "GKE"]
     uid: str
     updateTime: str
     versionUpgrade: VersionUpgrade
@@ -1292,6 +1335,14 @@ class RolloutMembershipState(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class RolloutSequence(typing_extensions.TypedDict, total=False):
     autoUpgradeConfig: AutoUpgradeConfig
+    computedReleaseChannel: typing_extensions.Literal[
+        "GKE_RELEASE_CHANNEL_UNSPECIFIED",
+        "RAPID",
+        "REGULAR",
+        "STABLE",
+        "EXTENDED",
+        "NO_CHANNEL",
+    ]
     createTime: str
     deleteTime: str
     displayName: str
@@ -1299,47 +1350,26 @@ class RolloutSequence(typing_extensions.TypedDict, total=False):
     etag: str
     ignoredClustersSelector: ClusterSelector
     labels: dict[str, typing.Any]
+    lastQualifiedControlPlaneVersion: str
+    lastQualifiedNodeVersion: str
     name: str
+    operationalState: OperationalState
     stages: _list[Stage]
-    state: RolloutSequenceState
+    targetControlPlaneVersion: str
+    targetNodeVersion: str
     uid: str
     updateTime: str
 
 @typing.type_check_only
-class RolloutSequenceState(typing_extensions.TypedDict, total=False):
-    lastStateChangeTime: str
-    lifecycleState: typing_extensions.Literal[
-        "LIFECYCLE_STATE_UNSPECIFIED",
-        "LIFECYCLE_STATE_ACTIVE",
-        "LIFECYCLE_STATE_WARNING",
-        "LIFECYCLE_STATE_ERROR",
-        "LIFECYCLE_STATE_INITIALIZING",
-    ]
-    stateReasons: _list[
-        typing_extensions.Literal[
-            "STATE_REASON_UNSPECIFIED",
-            "FLEET_FEATURE_DELETED_ERROR",
-            "FLEET_DELETED_ERROR",
-            "EMPTY_STAGE_WARNING",
-            "MIXED_RELEASE_CHANNELS_WARNING",
-            "INTERNAL_ERROR",
-        ]
-    ]
-
-@typing.type_check_only
 class RolloutStage(typing_extensions.TypedDict, total=False):
+    clusterSelector: ClusterSelector
     endTime: str
+    fleetProjects: _list[str]
     soakDuration: str
     stageNumber: int
     startTime: str
     state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED",
-        "PENDING",
-        "RUNNING",
-        "SOAKING",
-        "COMPLETED",
-        "FORCED_SOAKING",
-        "PAUSED",
+        "STATE_UNSPECIFIED", "PENDING", "RUNNING", "SOAKING", "COMPLETED", "PAUSED"
     ]
 
 @typing.type_check_only
@@ -1357,6 +1387,7 @@ class RolloutTarget(typing_extensions.TypedDict, total=False):
         "PAUSED",
         "REMOVED",
         "INELIGIBLE",
+        "SKIPPED",
     ]
 
 @typing.type_check_only
@@ -1451,6 +1482,12 @@ class ServiceMeshCondition(typing_extensions.TypedDict, total=False):
         "NON_STANDARD_BINARY_USAGE",
         "UNSUPPORTED_GATEWAY_CLASS",
         "MANAGED_CNI_NOT_ENABLED",
+        "MISSING_CONTROL_PLANE_CONFIG",
+        "SHARED_VPC_MISSING_PERMISSIONS",
+        "REQUIRED_ORG_POLICY_DISABLED",
+        "MODERNIZATION_INCOMPATIBLE_POD_ANNOTATION",
+        "MODERNIZATION_INCOMPATIBLE_CONFIG",
+        "MODERNIZATION_INCOMPATIBLE_GATEWAY_POD_SCALE",
         "MODERNIZATION_SCHEDULED",
         "MODERNIZATION_IN_PROGRESS",
         "MODERNIZATION_COMPLETED",
@@ -1467,6 +1504,10 @@ class ServiceMeshCondition(typing_extensions.TypedDict, total=False):
         "MODERNIZATION_MODERNIZED_SOAKING",
         "MODERNIZATION_FINALIZED",
         "MODERNIZATION_ROLLING_BACK_FLEET",
+        "MODERNIZATION_COMPATIBLE",
+        "MODERNIZATION_INCOMPATIBLE",
+        "MODERNIZATION_INCOMPATIBLE_FLEET_SCALE",
+        "MODERNIZATION_INCOMPATIBLE_FLEET_QUOTA",
     ]
     details: str
     documentationLink: str
@@ -1548,6 +1589,12 @@ class ServiceMeshFeatureCondition(typing_extensions.TypedDict, total=False):
         "NON_STANDARD_BINARY_USAGE",
         "UNSUPPORTED_GATEWAY_CLASS",
         "MANAGED_CNI_NOT_ENABLED",
+        "MISSING_CONTROL_PLANE_CONFIG",
+        "SHARED_VPC_MISSING_PERMISSIONS",
+        "REQUIRED_ORG_POLICY_DISABLED",
+        "MODERNIZATION_INCOMPATIBLE_POD_ANNOTATION",
+        "MODERNIZATION_INCOMPATIBLE_CONFIG",
+        "MODERNIZATION_INCOMPATIBLE_GATEWAY_POD_SCALE",
         "MODERNIZATION_SCHEDULED",
         "MODERNIZATION_IN_PROGRESS",
         "MODERNIZATION_COMPLETED",
@@ -1564,11 +1611,23 @@ class ServiceMeshFeatureCondition(typing_extensions.TypedDict, total=False):
         "MODERNIZATION_MODERNIZED_SOAKING",
         "MODERNIZATION_FINALIZED",
         "MODERNIZATION_ROLLING_BACK_FLEET",
+        "MODERNIZATION_COMPATIBLE",
+        "MODERNIZATION_INCOMPATIBLE",
+        "MODERNIZATION_INCOMPATIBLE_FLEET_SCALE",
+        "MODERNIZATION_INCOMPATIBLE_FLEET_QUOTA",
     ]
     details: str
     documentationLink: str
     severity: typing_extensions.Literal[
         "SEVERITY_UNSPECIFIED", "ERROR", "WARNING", "INFO"
+    ]
+
+@typing.type_check_only
+class ServiceMeshFeatureSpec(typing_extensions.TypedDict, total=False):
+    modernizationCompatibility: typing_extensions.Literal[
+        "MODERNIZATION_COMPATIBILITY_UNSPECIFIED",
+        "VALIDATION_ENABLED",
+        "VALIDATION_DISABLED",
     ]
 
 @typing.type_check_only
@@ -1640,6 +1699,14 @@ class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
 class TypeMeta(typing_extensions.TypedDict, total=False):
     apiVersion: str
     kind: str
+
+@typing.type_check_only
+class UpgradeRolloutSequenceRequest(typing_extensions.TypedDict, total=False):
+    force: bool
+    upgradeType: typing_extensions.Literal[
+        "UPGRADE_TYPE_UNSPECIFIED", "CONTROL_PLANE", "NODE"
+    ]
+    version: str
 
 @typing.type_check_only
 class ValidateCreateMembershipRequest(typing_extensions.TypedDict, total=False):

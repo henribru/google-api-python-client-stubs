@@ -7,7 +7,7 @@ _list = list
 @typing.type_check_only
 class AISkillAnalysisOccurrence(typing_extensions.TypedDict, total=False):
     findings: _list[Finding]
-    maxSeverity: str
+    maxSeverity: typing_extensions.Literal["SEVERITY_UNSPECIFIED", "CRITICAL", "HIGH"]
     skillName: str
 
 @typing.type_check_only
@@ -120,6 +120,11 @@ class CVSS(typing_extensions.TypedDict, total=False):
         "ATTACK_COMPLEXITY_HIGH",
         "ATTACK_COMPLEXITY_MEDIUM",
     ]
+    attackRequirements: typing_extensions.Literal[
+        "ATTACK_REQUIREMENTS_UNSPECIFIED",
+        "ATTACK_REQUIREMENTS_NONE",
+        "ATTACK_REQUIREMENTS_PRESENT",
+    ]
     attackVector: typing_extensions.Literal[
         "ATTACK_VECTOR_UNSPECIFIED",
         "ATTACK_VECTOR_NETWORK",
@@ -150,6 +155,13 @@ class CVSS(typing_extensions.TypedDict, total=False):
         "IMPACT_PARTIAL",
         "IMPACT_COMPLETE",
     ]
+    exploitMaturity: typing_extensions.Literal[
+        "EXPLOIT_MATURITY_UNSPECIFIED",
+        "EXPLOIT_MATURITY_NOT_DEFINED",
+        "EXPLOIT_MATURITY_ATTACKED",
+        "EXPLOIT_MATURITY_POC",
+        "EXPLOIT_MATURITY_UNREPORTED",
+    ]
     exploitabilityScore: float
     impactScore: float
     integrityImpact: typing_extensions.Literal[
@@ -169,10 +181,60 @@ class CVSS(typing_extensions.TypedDict, total=False):
     scope: typing_extensions.Literal[
         "SCOPE_UNSPECIFIED", "SCOPE_UNCHANGED", "SCOPE_CHANGED"
     ]
+    subsequentSystemAvailabilityImpact: typing_extensions.Literal[
+        "IMPACT_UNSPECIFIED",
+        "IMPACT_HIGH",
+        "IMPACT_LOW",
+        "IMPACT_NONE",
+        "IMPACT_PARTIAL",
+        "IMPACT_COMPLETE",
+    ]
+    subsequentSystemConfidentialityImpact: typing_extensions.Literal[
+        "IMPACT_UNSPECIFIED",
+        "IMPACT_HIGH",
+        "IMPACT_LOW",
+        "IMPACT_NONE",
+        "IMPACT_PARTIAL",
+        "IMPACT_COMPLETE",
+    ]
+    subsequentSystemIntegrityImpact: typing_extensions.Literal[
+        "IMPACT_UNSPECIFIED",
+        "IMPACT_HIGH",
+        "IMPACT_LOW",
+        "IMPACT_NONE",
+        "IMPACT_PARTIAL",
+        "IMPACT_COMPLETE",
+    ]
     userInteraction: typing_extensions.Literal[
         "USER_INTERACTION_UNSPECIFIED",
         "USER_INTERACTION_NONE",
         "USER_INTERACTION_REQUIRED",
+        "USER_INTERACTION_PASSIVE",
+        "USER_INTERACTION_ACTIVE",
+    ]
+    vulnerableSystemAvailabilityImpact: typing_extensions.Literal[
+        "IMPACT_UNSPECIFIED",
+        "IMPACT_HIGH",
+        "IMPACT_LOW",
+        "IMPACT_NONE",
+        "IMPACT_PARTIAL",
+        "IMPACT_COMPLETE",
+    ]
+    vulnerableSystemConfidentialityImpact: typing_extensions.Literal[
+        "IMPACT_UNSPECIFIED",
+        "IMPACT_HIGH",
+        "IMPACT_LOW",
+        "IMPACT_NONE",
+        "IMPACT_PARTIAL",
+        "IMPACT_COMPLETE",
+    ]
+    vulnerableSystemIntegrityImpact: typing_extensions.Literal[
+        "IMPACT_UNSPECIFIED",
+        "IMPACT_HIGH",
+        "IMPACT_LOW",
+        "IMPACT_NONE",
+        "IMPACT_PARTIAL",
+        "IMPACT_COMPLETE",
     ]
 
 @typing.type_check_only
@@ -289,9 +351,12 @@ class FileLocation(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Finding(typing_extensions.TypedDict, total=False):
     category: str
+    details: str
     location: FindingLocation
-    scanner: str
-    severity: str
+    scanner: typing_extensions.Literal[
+        "SCANNER_UNSPECIFIED", "STATIC", "LLM", "WS_POLICY"
+    ]
+    severity: typing_extensions.Literal["SEVERITY_UNSPECIFIED", "CRITICAL", "HIGH"]
 
 @typing.type_check_only
 class FindingLocation(typing_extensions.TypedDict, total=False):
@@ -423,6 +488,14 @@ class InTotoStatement(typing_extensions.TypedDict, total=False):
     slsaProvenance: SlsaProvenance
     slsaProvenanceZeroTwo: SlsaProvenanceZeroTwo
     subject: _list[Subject]
+
+@typing.type_check_only
+class IngestionSource(typing_extensions.TypedDict, total=False):
+    attachmentUri: str
+    resourceUrl: str
+    source: typing_extensions.Literal[
+        "SOURCE_UNSPECIFIED", "DOCKER_IMAGE", "SBOM_ATTACHMENT"
+    ]
 
 @typing.type_check_only
 class Justification(typing_extensions.TypedDict, total=False):
@@ -564,6 +637,7 @@ class PackageData(typing_extensions.TypedDict, total=False):
     dependencyChain: _list[LanguagePackageDependency]
     fileLocation: _list[FileLocation]
     hashDigest: str
+    ingestionSources: _list[IngestionSource]
     layerDetails: LayerDetails
     licenses: _list[str]
     maintainer: Maintainer
@@ -871,8 +945,9 @@ class VexAssessment(typing_extensions.TypedDict, total=False):
 class VulnerabilityOccurrence(typing_extensions.TypedDict, total=False):
     cvssScore: float
     cvssV2: CVSS
+    cvssV4: CVSS
     cvssVersion: typing_extensions.Literal[
-        "CVSS_VERSION_UNSPECIFIED", "CVSS_VERSION_2", "CVSS_VERSION_3"
+        "CVSS_VERSION_UNSPECIFIED", "CVSS_VERSION_2", "CVSS_VERSION_3", "CVSS_VERSION_4"
     ]
     cvssv3: CVSS
     effectiveSeverity: typing_extensions.Literal[

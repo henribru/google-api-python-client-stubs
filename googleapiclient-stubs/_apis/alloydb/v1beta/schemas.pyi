@@ -221,11 +221,13 @@ class ConnectionInfo(typing_extensions.TypedDict, total=False):
     ipAddress: str
     name: str
     pemCertificateChain: _list[str]
+    pscAutoDnsName: str
     pscDnsName: str
     publicIpAddress: str
 
 @typing.type_check_only
 class ConnectionPoolConfig(typing_extensions.TypedDict, total=False):
+    authproxyPoolerCount: int
     enabled: bool
     flags: dict[str, typing.Any]
     poolerCount: int
@@ -1084,6 +1086,7 @@ class StorageDatabasecenterPartnerapiV1mainDatabaseResourceId(
 class StorageDatabasecenterPartnerapiV1mainDatabaseResourceMetadata(
     typing_extensions.TypedDict, total=False
 ):
+    additionalMetadata: dict[str, typing.Any]
     availabilityConfiguration: (
         StorageDatabasecenterPartnerapiV1mainAvailabilityConfiguration
     )
@@ -1135,6 +1138,8 @@ class StorageDatabasecenterPartnerapiV1mainDatabaseResourceMetadata(
         "SUB_RESOURCE_TYPE_DATASET",
         "SUB_RESOURCE_TYPE_OTHER",
     ]
+    internalAdditionalMetadata: dict[str, typing.Any]
+    ipAddress: StorageDatabasecenterPartnerapiV1mainIpAddress
     isDeletionProtectionEnabled: bool
     location: str
     machineConfiguration: StorageDatabasecenterPartnerapiV1mainMachineConfiguration
@@ -1347,6 +1352,13 @@ class StorageDatabasecenterPartnerapiV1mainInternalResourceMetadata(
     resourceName: str
 
 @typing.type_check_only
+class StorageDatabasecenterPartnerapiV1mainIpAddress(
+    typing_extensions.TypedDict, total=False
+):
+    privateIp: str
+    publicIp: str
+
+@typing.type_check_only
 class StorageDatabasecenterPartnerapiV1mainMachineConfiguration(
     typing_extensions.TypedDict, total=False
 ):
@@ -1432,6 +1444,7 @@ class StorageDatabasecenterPartnerapiV1mainResourceMaintenanceInfo(
         "ERROR",
     ]
     maintenanceVersion: str
+    nextAvailableMaintenanceVersions: _list[str]
     upcomingMaintenance: StorageDatabasecenterPartnerapiV1mainUpcomingMaintenance
 
 @typing.type_check_only
@@ -1511,6 +1524,7 @@ class StorageDatabasecenterProtoCommonProduct(typing_extensions.TypedDict, total
         "ENGINE_CLOUD_SPANNER_WITH_GOOGLESQL_DIALECT",
         "ENGINE_MEMORYSTORE_FOR_REDIS",
         "ENGINE_MEMORYSTORE_FOR_REDIS_CLUSTER",
+        "ENGINE_MEMORSTORE_FOR_VALKEY",
         "ENGINE_OTHER",
         "ENGINE_FIRESTORE_WITH_NATIVE_MODE",
         "ENGINE_FIRESTORE_WITH_DATASTORE_MODE",

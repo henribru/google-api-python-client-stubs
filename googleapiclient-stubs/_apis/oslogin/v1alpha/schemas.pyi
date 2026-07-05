@@ -12,6 +12,7 @@ class GoogleCloudOsloginControlplaneRegionalV1alphaSignSshPublicKeyRequest(
     typing_extensions.TypedDict, total=False
 ):
     appEngineInstance: str
+    cloudRunResource: str
     computeInstance: str
     serviceAccount: str
     sshPublicKey: str

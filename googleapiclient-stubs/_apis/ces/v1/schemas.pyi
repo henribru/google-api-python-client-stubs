@@ -73,6 +73,7 @@ class AgentRemoteDialogflowAgent(typing_extensions.TypedDict, total=False):
     environmentId: str
     flowId: str
     inputVariableMapping: dict[str, typing.Any]
+    languageCodeVariable: str
     outputVariableMapping: dict[str, typing.Any]
     respectResponseInterruptionSettings: bool
 
@@ -846,6 +847,93 @@ class LanguageSettings(typing_extensions.TypedDict, total=False):
     supportedLanguageCodes: _list[str]
 
 @typing.type_check_only
+class LfA2aV1Artifact(typing_extensions.TypedDict, total=False):
+    artifactId: str
+    description: str
+    extensions: _list[str]
+    metadata: dict[str, typing.Any]
+    name: str
+    parts: _list[LfA2aV1Part]
+
+@typing.type_check_only
+class LfA2aV1AuthenticationInfo(typing_extensions.TypedDict, total=False):
+    credentials: str
+    scheme: str
+
+@typing.type_check_only
+class LfA2aV1Message(typing_extensions.TypedDict, total=False):
+    contextId: str
+    extensions: _list[str]
+    messageId: str
+    metadata: dict[str, typing.Any]
+    parts: _list[LfA2aV1Part]
+    referenceTaskIds: _list[str]
+    role: typing_extensions.Literal["ROLE_UNSPECIFIED", "ROLE_USER", "ROLE_AGENT"]
+    taskId: str
+
+@typing.type_check_only
+class LfA2aV1Part(typing_extensions.TypedDict, total=False):
+    data: typing.Any
+    filename: str
+    mediaType: str
+    metadata: dict[str, typing.Any]
+    raw: str
+    text: str
+    url: str
+
+@typing.type_check_only
+class LfA2aV1SendMessageConfiguration(typing_extensions.TypedDict, total=False):
+    acceptedOutputModes: _list[str]
+    historyLength: int
+    returnImmediately: bool
+    taskPushNotificationConfig: LfA2aV1TaskPushNotificationConfig
+
+@typing.type_check_only
+class LfA2aV1SendMessageRequest(typing_extensions.TypedDict, total=False):
+    configuration: LfA2aV1SendMessageConfiguration
+    message: LfA2aV1Message
+    metadata: dict[str, typing.Any]
+
+@typing.type_check_only
+class LfA2aV1SendMessageResponse(typing_extensions.TypedDict, total=False):
+    message: LfA2aV1Message
+    task: LfA2aV1Task
+
+@typing.type_check_only
+class LfA2aV1Task(typing_extensions.TypedDict, total=False):
+    artifacts: _list[LfA2aV1Artifact]
+    contextId: str
+    history: _list[LfA2aV1Message]
+    id: str
+    metadata: dict[str, typing.Any]
+    status: LfA2aV1TaskStatus
+
+@typing.type_check_only
+class LfA2aV1TaskPushNotificationConfig(typing_extensions.TypedDict, total=False):
+    authentication: LfA2aV1AuthenticationInfo
+    id: str
+    taskId: str
+    tenant: str
+    token: str
+    url: str
+
+@typing.type_check_only
+class LfA2aV1TaskStatus(typing_extensions.TypedDict, total=False):
+    message: LfA2aV1Message
+    state: typing_extensions.Literal[
+        "TASK_STATE_UNSPECIFIED",
+        "TASK_STATE_SUBMITTED",
+        "TASK_STATE_WORKING",
+        "TASK_STATE_COMPLETED",
+        "TASK_STATE_FAILED",
+        "TASK_STATE_CANCELED",
+        "TASK_STATE_INPUT_REQUIRED",
+        "TASK_STATE_REJECTED",
+        "TASK_STATE_AUTH_REQUIRED",
+    ]
+    timestamp: str
+
+@typing.type_check_only
 class ListAgentsResponse(typing_extensions.TypedDict, total=False):
     agents: _list[Agent]
     nextPageToken: str
@@ -933,10 +1021,25 @@ class McpTool(typing_extensions.TypedDict, total=False):
     description: str
     inputSchema: Schema
     name: str
+    nameOverride: str
     outputSchema: Schema
     serverAddress: str
     serviceDirectoryConfig: ServiceDirectoryConfig
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "INACTIVE", "STALE"]
     tlsConfig: TlsConfig
+
+@typing.type_check_only
+class McpToolDefinition(typing_extensions.TypedDict, total=False):
+    description: str
+    inputSchema: Schema
+    outputSchema: Schema
+
+@typing.type_check_only
+class McpToolOverride(typing_extensions.TypedDict, total=False):
+    descriptionOverride: str
+    nameOverride: str
+    snapshot: McpToolDefinition
+    tool: str
 
 @typing.type_check_only
 class McpToolset(typing_extensions.TypedDict, total=False):
@@ -945,6 +1048,7 @@ class McpToolset(typing_extensions.TypedDict, total=False):
     serverAddress: str
     serviceDirectoryConfig: ServiceDirectoryConfig
     tlsConfig: TlsConfig
+    toolOverrides: _list[McpToolOverride]
 
 @typing.type_check_only
 class Message(typing_extensions.TypedDict, total=False):
@@ -985,64 +1089,6 @@ class OAuthConfig(typing_extensions.TypedDict, total=False):
     ]
     scopes: _list[str]
     tokenEndpoint: str
-
-@typing.type_check_only
-class Omnichannel(typing_extensions.TypedDict, total=False):
-    createTime: str
-    description: str
-    displayName: str
-    etag: str
-    integrationConfig: OmnichannelIntegrationConfig
-    name: str
-    updateTime: str
-
-@typing.type_check_only
-class OmnichannelIntegrationConfig(typing_extensions.TypedDict, total=False):
-    channelConfigs: dict[str, typing.Any]
-    routingConfigs: dict[str, typing.Any]
-    subscriberConfigs: dict[str, typing.Any]
-
-@typing.type_check_only
-class OmnichannelIntegrationConfigCesAppConfig(
-    typing_extensions.TypedDict, total=False
-):
-    app: str
-
-@typing.type_check_only
-class OmnichannelIntegrationConfigChannelConfig(
-    typing_extensions.TypedDict, total=False
-):
-    whatsappConfig: OmnichannelIntegrationConfigWhatsappConfig
-
-@typing.type_check_only
-class OmnichannelIntegrationConfigRoutingConfig(
-    typing_extensions.TypedDict, total=False
-):
-    subscriberKey: str
-
-@typing.type_check_only
-class OmnichannelIntegrationConfigSubscriberConfig(
-    typing_extensions.TypedDict, total=False
-):
-    cesAppConfig: OmnichannelIntegrationConfigCesAppConfig
-
-@typing.type_check_only
-class OmnichannelIntegrationConfigWhatsappConfig(
-    typing_extensions.TypedDict, total=False
-):
-    metaBusinessPortfolioId: str
-    phoneNumber: str
-    phoneNumberId: str
-    webhookVerifyToken: str
-    whatsappBusinessAccountId: str
-    whatsappBusinessToken: str
-
-@typing.type_check_only
-class OmnichannelOperationMetadata(typing_extensions.TypedDict, total=False):
-    createTime: str
-    endTime: str
-    requestedCancellation: bool
-    statusMessage: str
 
 @typing.type_check_only
 class OpenApiTool(typing_extensions.TypedDict, total=False):
@@ -1095,6 +1141,7 @@ class PythonFunction(typing_extensions.TypedDict, total=False):
     description: str
     name: str
     pythonCode: str
+    serviceDirectoryConfig: ServiceDirectoryConfig
 
 @typing.type_check_only
 class RedactionConfig(typing_extensions.TypedDict, total=False):
@@ -1125,6 +1172,7 @@ class RetrieveToolSchemaResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class RetrieveToolsRequest(typing_extensions.TypedDict, total=False):
+    bypassPersistenceConfig: bool
     toolIds: _list[str]
 
 @typing.type_check_only

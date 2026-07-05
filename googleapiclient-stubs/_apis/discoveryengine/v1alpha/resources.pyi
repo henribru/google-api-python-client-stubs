@@ -1026,6 +1026,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             name: str,
                             acceptCache: bool = ...,
                             getWidgetConfigRequestOption_turnOffCollectionComponents: bool = ...,
+                            languageCode: str = ...,
                             **kwargs: typing.Any,
                         ) -> (
                             GoogleCloudDiscoveryengineV1alphaWidgetConfigHttpRequest
@@ -1083,6 +1084,11 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                     def get(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> GoogleCloudDiscoveryengineV1alphaDataStoreHttpRequest: ...
+                    def getCompletionConfig(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> (
+                        GoogleCloudDiscoveryengineV1alphaCompletionConfigHttpRequest
+                    ): ...
                     def getDocumentProcessingConfig(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigHttpRequest: ...
@@ -1137,6 +1143,16 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                         body: GoogleCloudDiscoveryengineV1alphaTrainCustomModelRequest = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
+                    def updateCompletionConfig(
+                        self,
+                        *,
+                        name: str,
+                        body: GoogleCloudDiscoveryengineV1alphaCompletionConfig = ...,
+                        updateMask: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> (
+                        GoogleCloudDiscoveryengineV1alphaCompletionConfigHttpRequest
+                    ): ...
                     def updateDocumentProcessingConfig(
                         self,
                         *,
@@ -1699,6 +1715,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             name: str,
                             acceptCache: bool = ...,
                             getWidgetConfigRequestOption_turnOffCollectionComponents: bool = ...,
+                            languageCode: str = ...,
                             **kwargs: typing.Any,
                         ) -> (
                             GoogleCloudDiscoveryengineV1alphaWidgetConfigHttpRequest
@@ -1728,6 +1745,11 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                     def get(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> GoogleCloudDiscoveryengineV1alphaEngineHttpRequest: ...
+                    def getCompletionConfig(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> (
+                        GoogleCloudDiscoveryengineV1alphaCompletionConfigHttpRequest
+                    ): ...
                     def getIamPolicy(
                         self,
                         *,
@@ -1795,6 +1817,16 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                         body: GoogleCloudDiscoveryengineV1alphaTuneEngineRequest = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
+                    def updateCompletionConfig(
+                        self,
+                        *,
+                        name: str,
+                        body: GoogleCloudDiscoveryengineV1alphaCompletionConfig = ...,
+                        updateMask: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> (
+                        GoogleCloudDiscoveryengineV1alphaCompletionConfigHttpRequest
+                    ): ...
                     def analytics(self) -> AnalyticsResource: ...
                     def assistants(self) -> AssistantsResource: ...
                     def completionConfig(self) -> CompletionConfigResource: ...
@@ -2558,6 +2590,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                         name: str,
                         acceptCache: bool = ...,
                         getWidgetConfigRequestOption_turnOffCollectionComponents: bool = ...,
+                        languageCode: str = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudDiscoveryengineV1alphaWidgetConfigHttpRequest: ...
                     def patch(
@@ -2613,6 +2646,9 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> GoogleCloudDiscoveryengineV1alphaDataStoreHttpRequest: ...
+                def getCompletionConfig(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudDiscoveryengineV1alphaCompletionConfigHttpRequest: ...
                 def getDocumentProcessingConfig(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> (
@@ -2662,6 +2698,14 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                     body: GoogleCloudDiscoveryengineV1alphaReplacePatientFilterRequest = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
+                def updateCompletionConfig(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudDiscoveryengineV1alphaCompletionConfig = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleCloudDiscoveryengineV1alphaCompletionConfigHttpRequest: ...
                 def updateDocumentProcessingConfig(
                     self,
                     *,
@@ -2859,6 +2903,23 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> GoogleCloudDiscoveryengineV1alphaLicenseConfigHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleCloudDiscoveryengineV1alphaListLicenseConfigsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudDiscoveryengineV1alphaListLicenseConfigsResponseHttpRequest,
+                    previous_response: GoogleCloudDiscoveryengineV1alphaListLicenseConfigsResponse,
+                ) -> (
+                    GoogleCloudDiscoveryengineV1alphaListLicenseConfigsResponseHttpRequest
+                    | None
+                ): ...
                 def patch(
                     self,
                     *,
@@ -3609,6 +3670,16 @@ class GoogleCloudDiscoveryengineV1alphaCompleteQueryResponseHttpRequest(
     ) -> GoogleCloudDiscoveryengineV1alphaCompleteQueryResponse: ...
 
 @typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaCompletionConfigHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudDiscoveryengineV1alphaCompletionConfig: ...
+
+@typing.type_check_only
 class GoogleCloudDiscoveryengineV1alphaConnectorRunHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -3997,6 +4068,16 @@ class GoogleCloudDiscoveryengineV1alphaListIdentityMappingsResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudDiscoveryengineV1alphaListIdentityMappingsResponse: ...
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaListLicenseConfigsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudDiscoveryengineV1alphaListLicenseConfigsResponse: ...
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1alphaListLicenseConfigsUsageStatsResponseHttpRequest(

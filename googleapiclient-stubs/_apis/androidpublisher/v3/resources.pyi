@@ -301,6 +301,11 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                     "featureGraphic",
                     "tvBanner",
                 ],
+                aiGeneratedState: typing_extensions.Literal[
+                    "aiGeneratedStateUnspecified",
+                    "aiGeneratedStateNotAiGenerated",
+                    "aiGeneratedStateAiGeneratedDeveloperAttested",
+                ] = ...,
                 **kwargs: typing.Any,
             ) -> ImagesUploadResponseHttpRequest: ...
 

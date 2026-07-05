@@ -694,6 +694,7 @@ class Creative(typing_extensions.TypedDict, total=False):
         "CREATIVE_AUTHORING_SOURCE_REMBRAND",
         "CREATIVE_AUTHORING_SOURCE_TRACKTO_STUDIO",
         "CREATIVE_AUTHORING_SOURCE_BORNLOGIC",
+        "CREATIVE_AUTHORING_SOURCE_BEGEN_AI",
     ]
     authoringTool: typing_extensions.Literal["NINJA", "SWIFFY"]
     autoAdvanceImages: bool

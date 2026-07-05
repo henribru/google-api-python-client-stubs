@@ -101,6 +101,12 @@ class CloudFunctionInfo(typing_extensions.TypedDict, total=False):
     versionId: str
 
 @typing.type_check_only
+class CloudRunJobInfo(typing_extensions.TypedDict, total=False):
+    displayName: str
+    location: str
+    uri: str
+
+@typing.type_check_only
 class CloudRunRevisionEndpoint(typing_extensions.TypedDict, total=False):
     serviceUri: str
     uri: str
@@ -173,6 +179,9 @@ class DeliverInfo(typing_extensions.TypedDict, total=False):
         "REDIS_INSTANCE",
         "REDIS_CLUSTER",
         "GKE_POD",
+        "CLOUD_RUN_JOB",
+        "DMS_PRIVATE_CONNECTION",
+        "DATASTREAM_PRIVATE_CONNECTION",
     ]
 
 @typing.type_check_only
@@ -213,6 +222,7 @@ class DropInfo(typing_extensions.TypedDict, total=False):
         "FORWARDING_RULE_MISMATCH",
         "FORWARDING_RULE_NO_INSTANCES",
         "FIREWALL_BLOCKING_LOAD_BALANCER_BACKEND_HEALTH_CHECK",
+        "FIREWALL_BLOCKING_LOAD_BALANCER_ENVOY_PROXY_HEALTH_CHECK",
         "INGRESS_FIREWALL_TAGS_UNSUPPORTED_BY_DIRECT_VPC_EGRESS",
         "INSTANCE_NOT_RUNNING",
         "GKE_CLUSTER_NOT_RUNNING",
@@ -225,6 +235,8 @@ class DropInfo(typing_extensions.TypedDict, total=False):
         "CLOUD_SQL_INSTANCE_UNAUTHORIZED_ACCESS",
         "DROPPED_INSIDE_GKE_SERVICE",
         "DROPPED_INSIDE_CLOUD_SQL_SERVICE",
+        "DROPPED_INSIDE_DMS_PRIVATE_CONNECTION",
+        "DROPPED_INSIDE_DATASTREAM_PRIVATE_CONNECTION",
         "GOOGLE_MANAGED_SERVICE_NO_PEERING",
         "GOOGLE_MANAGED_SERVICE_NO_PSC_ENDPOINT",
         "GKE_PSC_ENDPOINT_MISSING",
@@ -252,6 +264,7 @@ class DropInfo(typing_extensions.TypedDict, total=False):
         "HYBRID_NEG_NON_DYNAMIC_ROUTE_MATCHED",
         "HYBRID_NEG_NON_LOCAL_DYNAMIC_ROUTE_MATCHED",
         "CLOUD_RUN_REVISION_NOT_READY",
+        "CLOUD_RUN_JOB_NOT_READY",
         "DROPPED_INSIDE_PSC_SERVICE_PRODUCER",
         "LOAD_BALANCER_HAS_NO_PROXY_SUBNET",
         "CLOUD_NAT_NO_ADDRESSES",
@@ -352,8 +365,10 @@ class Empty(typing_extensions.TypedDict, total=False): ...
 class Endpoint(typing_extensions.TypedDict, total=False):
     appEngineVersion: AppEngineVersionEndpoint
     cloudFunction: CloudFunctionEndpoint
+    cloudRunJob: str
     cloudRunRevision: CloudRunRevisionEndpoint
     cloudSqlInstance: str
+    dmsPrivateConnection: str
     forwardingRule: str
     forwardingRuleTarget: typing_extensions.Literal[
         "FORWARDING_RULE_TARGET_UNSPECIFIED",
@@ -480,6 +495,19 @@ class GKEMasterInfo(typing_extensions.TypedDict, total=False):
     internalIp: str
 
 @typing.type_check_only
+class GenerateMonitoringPointConfigResponse(typing_extensions.TypedDict, total=False):
+    config: dict[str, typing.Any]
+
+@typing.type_check_only
+class GenerateProviderAccessTokenResponse(typing_extensions.TypedDict, total=False):
+    providerAccessToken: str
+
+@typing.type_check_only
+class GeoLocation(typing_extensions.TypedDict, total=False):
+    formattedAddress: str
+    regionCode: str
+
+@typing.type_check_only
 class GkeNetworkPolicyInfo(typing_extensions.TypedDict, total=False):
     action: str
     direction: str
@@ -516,6 +544,22 @@ class GoogleServiceInfo(typing_extensions.TypedDict, total=False):
         "SERVERLESS_VPC_ACCESS",
     ]
     sourceIp: str
+
+@typing.type_check_only
+class Host(typing_extensions.TypedDict, total=False):
+    cloudInstanceId: str
+    cloudProjectId: str
+    cloudProvider: str
+    cloudRegion: str
+    cloudVirtualNetworkIds: _list[str]
+    cloudZone: str
+    os: str
+
+@typing.type_check_only
+class HttpBody(typing_extensions.TypedDict, total=False):
+    contentType: str
+    data: str
+    extensions: _list[dict[str, typing.Any]]
 
 @typing.type_check_only
 class HybridSubnetInfo(typing_extensions.TypedDict, total=False):
@@ -584,6 +628,21 @@ class ListLocationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class ListMonitoringPointsResponse(typing_extensions.TypedDict, total=False):
+    monitoringPoints: _list[MonitoringPoint]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListNetworkMonitoringProvidersResponse(typing_extensions.TypedDict, total=False):
+    networkMonitoringProviders: _list[NetworkMonitoringProvider]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListNetworkPathsResponse(typing_extensions.TypedDict, total=False):
+    networkPaths: _list[NetworkPath]
+    nextPageToken: str
+
+@typing.type_check_only
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
@@ -594,6 +653,11 @@ class ListVpcFlowLogsConfigsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     unreachable: _list[str]
     vpcFlowLogsConfigs: _list[VpcFlowLogsConfig]
+
+@typing.type_check_only
+class ListWebPathsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    webPaths: _list[WebPath]
 
 @typing.type_check_only
 class LoadBalancerBackend(typing_extensions.TypedDict, total=False):
@@ -650,6 +714,38 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
+class MonitoringPoint(typing_extensions.TypedDict, total=False):
+    autoGeoLocationEnabled: bool
+    connectionStatus: typing_extensions.Literal[
+        "CONNECTION_STATUS_UNSPECIFIED", "ONLINE", "OFFLINE"
+    ]
+    createTime: str
+    deploymentType: typing_extensions.Literal[
+        "DEPLOYMENT_TYPE_UNSPECIFIED", "DOCKER", "PODMAN", "HELM"
+    ]
+    displayName: str
+    errors: _list[
+        typing_extensions.Literal[
+            "ERROR_CODE_UNSPECIFIED", "NTP_ERROR", "UPGRADE_ERROR", "DOWNLOAD_FAILED"
+        ]
+    ]
+    geoLocation: GeoLocation
+    guid: str
+    host: Host
+    hostname: str
+    name: str
+    networkInterfaces: _list[NetworkInterface]
+    originatingIp: str
+    providerTags: _list[ProviderTag]
+    type: str
+    updateTime: str
+    upgradeAvailable: bool
+    upgradeType: typing_extensions.Literal[
+        "UPGRADE_TYPE_UNSPECIFIED", "MANUAL", "MANAGED", "SCHEDULED", "AUTO", "EXTERNAL"
+    ]
+    version: str
+
+@typing.type_check_only
 class NatInfo(typing_extensions.TypedDict, total=False):
     cloudNatGatewayType: typing_extensions.Literal[
         "CLOUD_NAT_GATEWAY_TYPE_UNSPECIFIED",
@@ -687,6 +783,61 @@ class NetworkInfo(typing_extensions.TypedDict, total=False):
     matchedSubnetUri: str
     region: str
     uri: str
+
+@typing.type_check_only
+class NetworkInterface(typing_extensions.TypedDict, total=False):
+    adapterDescription: str
+    cidr: str
+    interfaceName: str
+    ipAddress: str
+    macAddress: str
+    speed: str
+    vlanId: str
+
+@typing.type_check_only
+class NetworkMonitoringProvider(typing_extensions.TypedDict, total=False):
+    createTime: str
+    errors: _list[str]
+    name: str
+    providerType: typing_extensions.Literal["PROVIDER_TYPE_UNSPECIFIED", "EXTERNAL"]
+    providerUri: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "ACTIVATING",
+        "ACTIVE",
+        "SUSPENDING",
+        "SUSPENDED",
+        "DELETING",
+        "DELETED",
+    ]
+    updateTime: str
+
+@typing.type_check_only
+class NetworkPath(typing_extensions.TypedDict, total=False):
+    createTime: str
+    destination: str
+    destinationGeoLocation: GeoLocation
+    destinationMonitoringPointId: str
+    displayName: str
+    dualEnded: bool
+    monitoringEnabled: bool
+    monitoringPolicyDisplayName: str
+    monitoringPolicyId: str
+    monitoringStatus: typing_extensions.Literal[
+        "MONITORING_STATUS_UNSPECIFIED",
+        "MONITORING",
+        "POLICY_MISMATCH",
+        "MONITORING_POINT_OFFLINE",
+        "DISABLED",
+    ]
+    name: str
+    networkProtocol: typing_extensions.Literal[
+        "NETWORK_PROTOCOL_UNSPECIFIED", "ICMP", "UDP", "TCP"
+    ]
+    providerTags: _list[ProviderTag]
+    providerUiUri: str
+    sourceMonitoringPointId: str
+    updateTime: str
 
 @typing.type_check_only
 class NgfwPacketInspectionInfo(typing_extensions.TypedDict, total=False):
@@ -742,6 +893,20 @@ class ProbingDetails(typing_extensions.TypedDict, total=False):
     sentProbeCount: int
     successfulProbeCount: int
     verifyTime: str
+
+@typing.type_check_only
+class ProviderTag(typing_extensions.TypedDict, total=False):
+    category: str
+    resourceType: typing_extensions.Literal[
+        "RESOURCE_TYPE_UNSPECIFIED",
+        "NETWORK_PATH",
+        "WEB_PATH",
+        "MONITORING_POLICY",
+        "MONITORING_POINT",
+        "MONITORING_POINT_RULE",
+        "MONITORING_POINT_RULE_AUTO",
+    ]
+    value: str
 
 @typing.type_check_only
 class ProxyConnectionInfo(typing_extensions.TypedDict, total=False):
@@ -893,6 +1058,7 @@ class Step(typing_extensions.TypedDict, total=False):
     appEngineVersion: AppEngineVersionInfo
     causesDrop: bool
     cloudFunction: CloudFunctionInfo
+    cloudRunJob: CloudRunJobInfo
     cloudRunRevision: CloudRunRevisionInfo
     cloudSqlInstance: CloudSQLInstanceInfo
     datastreamPrivateConnection: PrivateConnectionInfo
@@ -940,6 +1106,7 @@ class Step(typing_extensions.TypedDict, total=False):
         "START_FROM_CLOUD_FUNCTION",
         "START_FROM_APP_ENGINE_VERSION",
         "START_FROM_CLOUD_RUN_REVISION",
+        "START_FROM_CLOUD_RUN_JOB",
         "START_FROM_STORAGE_BUCKET",
         "START_FROM_PSC_PUBLISHED_SERVICE",
         "START_FROM_SERVERLESS_NEG",
@@ -1068,3 +1235,30 @@ class VpnTunnelInfo(typing_extensions.TypedDict, total=False):
     sourceGateway: str
     sourceGatewayIp: str
     uri: str
+
+@typing.type_check_only
+class WebPath(typing_extensions.TypedDict, total=False):
+    createTime: str
+    destination: str
+    destinationGeoLocation: GeoLocation
+    displayName: str
+    interval: str
+    monitoringEnabled: bool
+    monitoringPolicyDisplayName: str
+    monitoringPolicyId: str
+    monitoringStatus: typing_extensions.Literal[
+        "MONITORING_STATUS_UNSPECIFIED",
+        "MONITORING",
+        "POLICY_MISMATCH",
+        "MONITORING_POINT_OFFLINE",
+        "DISABLED",
+    ]
+    name: str
+    providerTags: _list[ProviderTag]
+    providerUiUri: str
+    relatedNetworkPathId: str
+    sourceMonitoringPointId: str
+    updateTime: str
+    workflowType: typing_extensions.Literal[
+        "WORKFLOW_TYPE_UNSPECIFIED", "BROWSER", "HTTP"
+    ]

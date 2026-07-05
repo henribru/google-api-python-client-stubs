@@ -56,6 +56,16 @@ class AssuredworkloadsResource(googleapiclient.discovery.Resource):
                 ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
 
             @typing.type_check_only
+            class ViolationsResource(googleapiclient.discovery.Resource):
+                def batchAcknowledgeViolations(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsResponseHttpRequest: ...
+
+            @typing.type_check_only
             class WorkloadsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class UpdatesResource(googleapiclient.discovery.Resource):
@@ -92,6 +102,13 @@ class AssuredworkloadsResource(googleapiclient.discovery.Resource):
                         body: GoogleCloudAssuredworkloadsV1beta1AcknowledgeViolationRequest = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudAssuredworkloadsV1beta1AcknowledgeViolationResponseHttpRequest: ...
+                    def batchAcknowledgeViolations(
+                        self,
+                        *,
+                        parent: str,
+                        body: GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsResponseHttpRequest: ...
                     def get(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> GoogleCloudAssuredworkloadsV1beta1ViolationHttpRequest: ...
@@ -102,6 +119,7 @@ class AssuredworkloadsResource(googleapiclient.discovery.Resource):
                         filter: str = ...,
                         interval_endTime: str = ...,
                         interval_startTime: str = ...,
+                        orderBy: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
                         **kwargs: typing.Any,
@@ -191,9 +209,21 @@ class AssuredworkloadsResource(googleapiclient.discovery.Resource):
                 def violations(self) -> ViolationsResource: ...
 
             def operations(self) -> OperationsResource: ...
+            def violations(self) -> ViolationsResource: ...
             def workloads(self) -> WorkloadsResource: ...
 
+        @typing.type_check_only
+        class ViolationsResource(googleapiclient.discovery.Resource):
+            def batchAcknowledgeViolations(
+                self,
+                *,
+                parent: str,
+                body: GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsRequest = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsResponseHttpRequest: ...
+
         def locations(self) -> LocationsResource: ...
+        def violations(self) -> ViolationsResource: ...
 
     def new_batch_http_request(
         self,
@@ -239,6 +269,16 @@ class GoogleCloudAssuredworkloadsV1beta1ArchiveResourceEventsResponseHttpRequest
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudAssuredworkloadsV1beta1ArchiveResourceEventsResponse: ...
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsResponse: ...
 
 @typing.type_check_only
 class GoogleCloudAssuredworkloadsV1beta1EnableComplianceUpdatesResponseHttpRequest(

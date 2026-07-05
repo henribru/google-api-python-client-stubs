@@ -41,6 +41,7 @@ class AlertDetail(typing_extensions.TypedDict, total=False):
     detailType: str
     initialAccessBroker: InitialAccessBrokerAlertDetail
     insiderThreat: InsiderThreatAlertDetail
+    targetTechnology: TargetTechnologyAlertDetail
 
 @typing.type_check_only
 class AlertDocument(typing_extensions.TypedDict, total=False):
@@ -64,6 +65,20 @@ class AlertDocumentTranslation(typing_extensions.TypedDict, total=False):
     translatedTitle: str
 
 @typing.type_check_only
+class Association(typing_extensions.TypedDict, total=False):
+    id: str
+    type: typing_extensions.Literal[
+        "THREAT_INTEL_OBJECT_TYPE_UNSPECIFIED",
+        "THREAT_INTEL_OBJECT_TYPE_THREAT_ACTOR",
+        "THREAT_INTEL_OBJECT_TYPE_MALWARE",
+        "THREAT_INTEL_OBJECT_TYPE_REPORT",
+        "THREAT_INTEL_OBJECT_TYPE_CAMPAIGN",
+        "THREAT_INTEL_OBJECT_TYPE_IOC_COLLECTION",
+        "THREAT_INTEL_OBJECT_TYPE_SOFTWARE_AND_TOOLKITS",
+        "THREAT_INTEL_OBJECT_TYPE_VULNERABILITY",
+    ]
+
+@typing.type_check_only
 class Audit(typing_extensions.TypedDict, total=False):
     createTime: str
     creator: str
@@ -76,6 +91,7 @@ class Configuration(typing_extensions.TypedDict, total=False):
     description: str
     detail: ConfigurationDetail
     displayName: str
+    etag: str
     name: str
     provider: str
     state: typing_extensions.Literal[
@@ -87,6 +103,7 @@ class Configuration(typing_extensions.TypedDict, total=False):
 class ConfigurationDetail(typing_extensions.TypedDict, total=False):
     customerProfile: CustomerProfileConfig
     detailType: str
+    technologyWatchlist: TechnologyWatchListConfig
 
 @typing.type_check_only
 class ConfigurationRevision(typing_extensions.TypedDict, total=False):
@@ -243,6 +260,7 @@ class FindingDetail(typing_extensions.TypedDict, total=False):
     detailType: str
     initialAccessBroker: InitialAccessBrokerFindingDetail
     insiderThreat: InsiderThreatFindingDetail
+    targetTechnology: TargetTechnologyFindingDetail
 
 @typing.type_check_only
 class GenerateOrgProfileConfigurationRequest(typing_extensions.TypedDict, total=False):
@@ -349,6 +367,32 @@ class PriorityAnalysis(typing_extensions.TypedDict, total=False):
     reasoning: str
 
 @typing.type_check_only
+class ProductFix(typing_extensions.TypedDict, total=False):
+    displayName: str
+    publishTime: str
+    sourceId: str
+    uri: str
+
+@typing.type_check_only
+class PublicExploit(typing_extensions.TypedDict, total=False):
+    exploitGrade: typing_extensions.Literal[
+        "EXPLOIT_GRADE_UNSPECIFIED",
+        "UNEVALUATED",
+        "PROOF_OF_CONCEPT",
+        "NON_WEAPONIZED",
+        "WEAPONIZED",
+        "SCANNER",
+        "FAKE",
+    ]
+    exploitName: str
+    exploitReliability: typing_extensions.Literal[
+        "EXPLOIT_RELIABILITY_UNSPECIFIED", "UNREVIEWED", "REVIEWED", "TESTED"
+    ]
+    releaseTime: str
+    sizeBytes: str
+    uri: str
+
+@typing.type_check_only
 class RelevanceAnalysis(typing_extensions.TypedDict, total=False):
     confidence: typing_extensions.Literal[
         "CONFIDENCE_LEVEL_UNSPECIFIED",
@@ -394,5 +438,107 @@ class Status(typing_extensions.TypedDict, total=False):
     message: str
 
 @typing.type_check_only
+class TargetTechnologyAlertDetail(typing_extensions.TypedDict, total=False):
+    vulnerabilityMatch: VulnerabilityMatch
+
+@typing.type_check_only
+class TargetTechnologyFindingDetail(typing_extensions.TypedDict, total=False):
+    vulnerabilityMatch: VulnerabilityMatch
+
+@typing.type_check_only
+class TechnologyWatchListAlertThreshold(typing_extensions.TypedDict, total=False):
+    cvssScoreMinimum: float
+    epssScoreMinimum: float
+    exploitationStates: _list[
+        typing_extensions.Literal[
+            "EXPLOITATION_STATE_UNSPECIFIED",
+            "EXPLOITATION_STATE_NO_KNOWN",
+            "EXPLOITATION_STATE_REPORTED",
+            "EXPLOITATION_STATE_SUSPECTED",
+            "EXPLOITATION_STATE_CONFIRMED",
+            "EXPLOITATION_STATE_WIDESPREAD",
+        ]
+    ]
+    priorityMinimum: typing_extensions.Literal[
+        "PRIORITY_UNSPECIFIED", "P0", "P1", "P2", "P3", "P4"
+    ]
+    riskRatingMinimum: typing_extensions.Literal[
+        "RISK_RATING_UNSPECIFIED", "LOW", "MEDIUM", "HIGH", "CRITICAL", "UNRATED"
+    ]
+
+@typing.type_check_only
+class TechnologyWatchListConfig(typing_extensions.TypedDict, total=False):
+    alertThreshold: TechnologyWatchListAlertThreshold
+    technologies: _list[str]
+
+@typing.type_check_only
 class UpsertConfigurationResponse(typing_extensions.TypedDict, total=False):
     configuration: str
+
+@typing.type_check_only
+class VulnerabilityMatch(typing_extensions.TypedDict, total=False):
+    associations: _list[Association]
+    collectionId: str
+    cveId: str
+    cvss3Score: float
+    description: str
+    disclosureTime: str
+    epssScore: float
+    exploitationConsequences: _list[
+        typing_extensions.Literal[
+            "EXPLOITATION_CONSEQUENCE_UNSPECIFIED",
+            "CODE_EXECUTION",
+            "COMMAND_EXECUTION",
+            "DATA_LOSS",
+            "DATA_MANIPULATION",
+            "DENIAL_OF_SERVICE",
+            "INFORMATION_DISCLOSURE",
+            "UNAUTHORIZED_ACCESS",
+            "PRIVILEGE_ESCALATION",
+            "SANDBOX_ESCAPE",
+            "SECURITY_BYPASS",
+            "CONTAINER_ESCAPE",
+            "SPOOFING",
+        ]
+    ]
+    exploitationState: typing_extensions.Literal[
+        "EXPLOITATION_STATE_UNSPECIFIED",
+        "EXPLOITATION_STATE_NO_KNOWN",
+        "EXPLOITATION_STATE_REPORTED",
+        "EXPLOITATION_STATE_SUSPECTED",
+        "EXPLOITATION_STATE_CONFIRMED",
+        "EXPLOITATION_STATE_WIDESPREAD",
+    ]
+    exploitationVectors: _list[
+        typing_extensions.Literal[
+            "EXPLOITATION_VECTOR_UNSPECIFIED",
+            "ADMINISTRATIVE_INTERFACE",
+            "BLUETOOTH_ACCESS",
+            "BROWSER",
+            "COMPROMISED_COMMUNICATION_CHANNEL",
+            "EMAIL",
+            "EXPOSED_WEB_APPLICATION",
+            "LOCAL_NETWORK_ACCESS",
+            "MALICIOUS_APPLICATION",
+            "MALICIOUS_FILE",
+            "MALICIOUS_SERVER",
+            "OPEN_PORT",
+            "PHYSICAL_ACCESS",
+            "SHORT_RANGE_RADIO",
+            "UNSPECIFIED_LOCAL_VECTOR",
+            "UNSPECIFIED_REMOTE_VECTOR",
+            "VPN_ACCESS",
+            "WIFI_ACCESS",
+        ]
+    ]
+    matchedTechnologies: _list[str]
+    priority: typing_extensions.Literal[
+        "PRIORITY_UNSPECIFIED", "P0", "P1", "P2", "P3", "P4"
+    ]
+    productFixes: _list[ProductFix]
+    publicExploits: _list[PublicExploit]
+    publiclyAvailableExploit: bool
+    riskRating: typing_extensions.Literal[
+        "RISK_RATING_UNSPECIFIED", "LOW", "MEDIUM", "HIGH", "CRITICAL", "UNRATED"
+    ]
+    technologies: _list[str]

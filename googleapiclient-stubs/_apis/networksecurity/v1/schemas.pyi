@@ -54,6 +54,7 @@ class AuthzPolicy(typing_extensions.TypedDict, total=False):
     httpRules: _list[AuthzPolicyAuthzRule]
     labels: dict[str, typing.Any]
     name: str
+    networkRules: _list[AuthzPolicyAuthzRule]
     policyProfile: typing_extensions.Literal[
         "POLICY_PROFILE_UNSPECIFIED", "REQUEST_AUTHZ", "CONTENT_AUTHZ"
     ]
@@ -135,6 +136,7 @@ class AuthzPolicyAuthzRuleToRequestOperation(typing_extensions.TypedDict, total=
     mcp: AuthzPolicyAuthzRuleToRequestOperationMCP
     methods: _list[str]
     paths: _list[AuthzPolicyAuthzRuleStringMatch]
+    snis: _list[AuthzPolicyAuthzRuleStringMatch]
 
 @typing.type_check_only
 class AuthzPolicyAuthzRuleToRequestOperationHeaderSet(
@@ -640,6 +642,18 @@ class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     unreachable: _list[str]
 
 @typing.type_check_only
+class ListSACAttachmentsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    sacAttachments: _list[SACAttachment]
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListSACRealmsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    sacRealms: _list[SACRealm]
+    unreachable: _list[str]
+
+@typing.type_check_only
 class ListSecurityProfileGroupsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     securityProfileGroups: _list[SecurityProfileGroup]
@@ -843,6 +857,44 @@ class RemoveAddressGroupItemsRequest(typing_extensions.TypedDict, total=False):
 class Rule(typing_extensions.TypedDict, total=False):
     destinations: _list[Destination]
     sources: _list[Source]
+
+@typing.type_check_only
+class SACAttachment(typing_extensions.TypedDict, total=False):
+    createTime: str
+    labels: dict[str, typing.Any]
+    name: str
+    nccGateway: str
+    sacRealm: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "PENDING_PARTNER_ATTACHMENT",
+        "PARTNER_ATTACHED",
+        "PARTNER_DETACHED",
+    ]
+    updateTime: str
+
+@typing.type_check_only
+class SACRealm(typing_extensions.TypedDict, total=False):
+    createTime: str
+    labels: dict[str, typing.Any]
+    name: str
+    pairingKey: SACRealmPairingKey
+    securityService: typing_extensions.Literal[
+        "SECURITY_SERVICE_UNSPECIFIED", "PALO_ALTO_PRISMA_ACCESS"
+    ]
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "PENDING_PARTNER_ATTACHMENT",
+        "PARTNER_ATTACHED",
+        "PARTNER_DETACHED",
+        "KEY_EXPIRED",
+    ]
+    updateTime: str
+
+@typing.type_check_only
+class SACRealmPairingKey(typing_extensions.TypedDict, total=False):
+    expireTime: str
+    key: str
 
 @typing.type_check_only
 class SecurityProfile(typing_extensions.TypedDict, total=False):
