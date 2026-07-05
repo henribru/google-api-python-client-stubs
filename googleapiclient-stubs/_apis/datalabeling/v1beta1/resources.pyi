@@ -34,9 +34,9 @@ class DataLabelingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> (
                 GoogleCloudDatalabelingV1beta1ListAnnotationSpecSetsResponseHttpRequest
@@ -63,9 +63,9 @@ class DataLabelingResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        filter: str = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        filter: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> (
                         GoogleCloudDatalabelingV1beta1ListDataItemsResponseHttpRequest
@@ -82,15 +82,19 @@ class DataLabelingResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class ExamplesResource(googleapiclient.discovery.Resource):
                     def get(
-                        self, *, name: str, filter: str = ..., **kwargs: typing.Any
+                        self,
+                        *,
+                        name: str,
+                        filter: str | None = ...,
+                        **kwargs: typing.Any,
                     ) -> GoogleCloudDatalabelingV1beta1ExampleHttpRequest: ...
                     def list(
                         self,
                         *,
                         parent: str,
-                        filter: str = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        filter: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> (
                         GoogleCloudDatalabelingV1beta1ListExamplesResponseHttpRequest
@@ -127,8 +131,8 @@ class DataLabelingResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             parent: str,
-                            pageSize: int = ...,
-                            pageToken: str = ...,
+                            pageSize: int | None = ...,
+                            pageToken: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> GoogleCloudDatalabelingV1beta1ListFeedbackMessagesResponseHttpRequest: ...
                         def list_next(
@@ -150,8 +154,8 @@ class DataLabelingResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudDatalabelingV1beta1ListFeedbackThreadsResponseHttpRequest: ...
                     def list_next(
@@ -174,9 +178,9 @@ class DataLabelingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudDatalabelingV1beta1ListAnnotatedDatasetsResponseHttpRequest: ...
                 def list_next(
@@ -200,9 +204,9 @@ class DataLabelingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudDatalabelingV1beta1ListDataItemsResponseHttpRequest: ...
                 def list_next(
@@ -300,9 +304,9 @@ class DataLabelingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudDatalabelingV1beta1ListDatasetsResponseHttpRequest: ...
             def list_next(
@@ -338,9 +342,9 @@ class DataLabelingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> (
                 GoogleCloudDatalabelingV1beta1ListEvaluationJobsResponseHttpRequest
@@ -358,7 +362,7 @@ class DataLabelingResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: GoogleCloudDatalabelingV1beta1EvaluationJob = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudDatalabelingV1beta1EvaluationJobHttpRequest: ...
             def pause(
@@ -382,9 +386,9 @@ class DataLabelingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudDatalabelingV1beta1SearchEvaluationsResponseHttpRequest: ...
             def search_next(
@@ -415,9 +419,9 @@ class DataLabelingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudDatalabelingV1beta1ListInstructionsResponseHttpRequest: ...
             def list_next(
@@ -443,10 +447,10 @@ class DataLabelingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
-                returnPartialSuccess: bool = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
+                returnPartialSuccess: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
             def list_next(

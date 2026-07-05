@@ -16,7 +16,11 @@ class DoubleClickBidManagerResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class QueriesResource(googleapiclient.discovery.Resource):
         def createquery(
-            self, *, body: Query = ..., asynchronous: bool = ..., **kwargs: typing.Any
+            self,
+            *,
+            body: Query = ...,
+            asynchronous: bool | None = ...,
+            **kwargs: typing.Any,
         ) -> QueryHttpRequest: ...
         def deletequery(
             self, *, queryId: str, **kwargs: typing.Any
@@ -25,7 +29,11 @@ class DoubleClickBidManagerResource(googleapiclient.discovery.Resource):
             self, *, queryId: str, **kwargs: typing.Any
         ) -> QueryHttpRequest: ...
         def listqueries(
-            self, *, pageSize: int = ..., pageToken: str = ..., **kwargs: typing.Any
+            self,
+            *,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            **kwargs: typing.Any,
         ) -> ListQueriesResponseHttpRequest: ...
         def listqueries_next(
             self,
@@ -37,7 +45,7 @@ class DoubleClickBidManagerResource(googleapiclient.discovery.Resource):
             *,
             queryId: str,
             body: RunQueryRequest = ...,
-            asynchronous: bool = ...,
+            asynchronous: bool | None = ...,
             **kwargs: typing.Any,
         ) -> googleapiclient.http.HttpRequest: ...
 
@@ -47,8 +55,8 @@ class DoubleClickBidManagerResource(googleapiclient.discovery.Resource):
             self,
             *,
             queryId: str,
-            pageSize: int = ...,
-            pageToken: str = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> ListReportsResponseHttpRequest: ...
         def listreports_next(

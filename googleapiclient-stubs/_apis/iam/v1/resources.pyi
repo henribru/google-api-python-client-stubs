@@ -47,7 +47,7 @@ class IamResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: WorkforcePoolProviderKey = ...,
-                        workforcePoolProviderKeyId: str = ...,
+                        workforcePoolProviderKeyId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def delete(
@@ -60,9 +60,9 @@ class IamResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
-                        showDeleted: bool = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
+                        showDeleted: bool | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListWorkforcePoolProviderKeysResponseHttpRequest: ...
                     def list_next(
@@ -94,7 +94,7 @@ class IamResource(googleapiclient.discovery.Resource):
                             *,
                             parent: str,
                             body: WorkforcePoolProviderScimToken = ...,
-                            workforcePoolProviderScimTokenId: str = ...,
+                            workforcePoolProviderScimTokenId: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> WorkforcePoolProviderScimTokenHttpRequest: ...
                         def delete(
@@ -107,9 +107,9 @@ class IamResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             parent: str,
-                            pageSize: int = ...,
-                            pageToken: str = ...,
-                            showDeleted: bool = ...,
+                            pageSize: int | None = ...,
+                            pageToken: str | None = ...,
+                            showDeleted: bool | None = ...,
                             **kwargs: typing.Any,
                         ) -> ListWorkforcePoolProviderScimTokensResponseHttpRequest: ...
                         def list_next(
@@ -125,7 +125,7 @@ class IamResource(googleapiclient.discovery.Resource):
                             *,
                             name: str,
                             body: WorkforcePoolProviderScimToken = ...,
-                            updateMask: str = ...,
+                            updateMask: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> WorkforcePoolProviderScimTokenHttpRequest: ...
 
@@ -134,11 +134,15 @@ class IamResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: WorkforcePoolProviderScimTenant = ...,
-                        workforcePoolProviderScimTenantId: str = ...,
+                        workforcePoolProviderScimTenantId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> WorkforcePoolProviderScimTenantHttpRequest: ...
                     def delete(
-                        self, *, name: str, hardDelete: bool = ..., **kwargs: typing.Any
+                        self,
+                        *,
+                        name: str,
+                        hardDelete: bool | None = ...,
+                        **kwargs: typing.Any,
                     ) -> WorkforcePoolProviderScimTenantHttpRequest: ...
                     def get(
                         self, *, name: str, **kwargs: typing.Any
@@ -147,9 +151,9 @@ class IamResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
-                        showDeleted: bool = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
+                        showDeleted: bool | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListWorkforcePoolProviderScimTenantsResponseHttpRequest: ...
                     def list_next(
@@ -164,7 +168,7 @@ class IamResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: WorkforcePoolProviderScimTenant = ...,
-                        updateMask: str = ...,
+                        updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> WorkforcePoolProviderScimTenantHttpRequest: ...
                     def undelete(
@@ -181,7 +185,7 @@ class IamResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: WorkforcePoolProvider = ...,
-                    workforcePoolProviderId: str = ...,
+                    workforcePoolProviderId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
@@ -194,9 +198,9 @@ class IamResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    showDeleted: bool = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    showDeleted: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListWorkforcePoolProvidersResponseHttpRequest: ...
                 def list_next(
@@ -209,7 +213,7 @@ class IamResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: WorkforcePoolProvider = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def undelete(
@@ -248,7 +252,7 @@ class IamResource(googleapiclient.discovery.Resource):
                 *,
                 location: str,
                 body: WorkforcePool = ...,
-                workforcePoolId: str = ...,
+                workforcePoolId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def delete(
@@ -268,10 +272,10 @@ class IamResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 location: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
-                parent: str = ...,
-                showDeleted: bool = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
+                parent: str | None = ...,
+                showDeleted: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> ListWorkforcePoolsResponseHttpRequest: ...
             def list_next(
@@ -284,7 +288,7 @@ class IamResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: WorkforcePool = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def setIamPolicy(
@@ -326,17 +330,17 @@ class IamResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any,
             ) -> RoleHttpRequest: ...
             def delete(
-                self, *, name: str, etag: str = ..., **kwargs: typing.Any
+                self, *, name: str, etag: str | None = ..., **kwargs: typing.Any
             ) -> RoleHttpRequest: ...
             def get(self, *, name: str, **kwargs: typing.Any) -> RoleHttpRequest: ...
             def list(
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
-                showDeleted: bool = ...,
-                view: typing_extensions.Literal["BASIC", "FULL"] = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
+                showDeleted: bool | None = ...,
+                view: typing_extensions.Literal["BASIC", "FULL"] | None = ...,
                 **kwargs: typing.Any,
             ) -> ListRolesResponseHttpRequest: ...
             def list_next(
@@ -349,7 +353,7 @@ class IamResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: Role = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> RoleHttpRequest: ...
             def undelete(
@@ -386,7 +390,7 @@ class IamResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: OauthClientCredential = ...,
-                        oauthClientCredentialId: str = ...,
+                        oauthClientCredentialId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OauthClientCredentialHttpRequest: ...
                     def delete(
@@ -403,7 +407,7 @@ class IamResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: OauthClientCredential = ...,
-                        updateMask: str = ...,
+                        updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OauthClientCredentialHttpRequest: ...
 
@@ -412,7 +416,7 @@ class IamResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: OauthClient = ...,
-                    oauthClientId: str = ...,
+                    oauthClientId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OauthClientHttpRequest: ...
                 def delete(
@@ -425,9 +429,9 @@ class IamResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    showDeleted: bool = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    showDeleted: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListOauthClientsResponseHttpRequest: ...
                 def list_next(
@@ -440,7 +444,7 @@ class IamResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: OauthClient = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OauthClientHttpRequest: ...
                 def undelete(
@@ -490,7 +494,7 @@ class IamResource(googleapiclient.discovery.Resource):
                             *,
                             parent: str,
                             body: WorkloadIdentityPoolManagedIdentity = ...,
-                            workloadIdentityPoolManagedIdentityId: str = ...,
+                            workloadIdentityPoolManagedIdentityId: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> OperationHttpRequest: ...
                         def delete(
@@ -503,9 +507,9 @@ class IamResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             parent: str,
-                            pageSize: int = ...,
-                            pageToken: str = ...,
-                            showDeleted: bool = ...,
+                            pageSize: int | None = ...,
+                            pageToken: str | None = ...,
+                            showDeleted: bool | None = ...,
                             **kwargs: typing.Any,
                         ) -> (
                             ListWorkloadIdentityPoolManagedIdentitiesResponseHttpRequest
@@ -522,9 +526,9 @@ class IamResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             resource: str,
-                            filter: str = ...,
-                            pageSize: int = ...,
-                            pageToken: str = ...,
+                            filter: str | None = ...,
+                            pageSize: int | None = ...,
+                            pageToken: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> ListAttestationRulesResponseHttpRequest: ...
                         def listAttestationRules_next(
@@ -537,7 +541,7 @@ class IamResource(googleapiclient.discovery.Resource):
                             *,
                             name: str,
                             body: WorkloadIdentityPoolManagedIdentity = ...,
-                            updateMask: str = ...,
+                            updateMask: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> OperationHttpRequest: ...
                         def removeAttestationRule(
@@ -575,7 +579,7 @@ class IamResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: WorkloadIdentityPoolNamespace = ...,
-                        workloadIdentityPoolNamespaceId: str = ...,
+                        workloadIdentityPoolNamespaceId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def delete(
@@ -588,9 +592,9 @@ class IamResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
-                        showDeleted: bool = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
+                        showDeleted: bool | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListWorkloadIdentityPoolNamespacesResponseHttpRequest: ...
                     def list_next(
@@ -605,7 +609,7 @@ class IamResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: WorkloadIdentityPoolNamespace = ...,
-                        updateMask: str = ...,
+                        updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def undelete(
@@ -639,7 +643,7 @@ class IamResource(googleapiclient.discovery.Resource):
                             *,
                             parent: str,
                             body: WorkloadIdentityPoolProviderKey = ...,
-                            workloadIdentityPoolProviderKeyId: str = ...,
+                            workloadIdentityPoolProviderKeyId: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> OperationHttpRequest: ...
                         def delete(
@@ -652,9 +656,9 @@ class IamResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             parent: str,
-                            pageSize: int = ...,
-                            pageToken: str = ...,
-                            showDeleted: bool = ...,
+                            pageSize: int | None = ...,
+                            pageToken: str | None = ...,
+                            showDeleted: bool | None = ...,
                             **kwargs: typing.Any,
                         ) -> (
                             ListWorkloadIdentityPoolProviderKeysResponseHttpRequest
@@ -687,7 +691,7 @@ class IamResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: WorkloadIdentityPoolProvider = ...,
-                        workloadIdentityPoolProviderId: str = ...,
+                        workloadIdentityPoolProviderId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def delete(
@@ -700,9 +704,9 @@ class IamResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
-                        showDeleted: bool = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
+                        showDeleted: bool | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListWorkloadIdentityPoolProvidersResponseHttpRequest: ...
                     def list_next(
@@ -717,7 +721,7 @@ class IamResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: WorkloadIdentityPoolProvider = ...,
-                        updateMask: str = ...,
+                        updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def undelete(
@@ -742,7 +746,7 @@ class IamResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: WorkloadIdentityPool = ...,
-                    workloadIdentityPoolId: str = ...,
+                    workloadIdentityPoolId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
@@ -762,9 +766,9 @@ class IamResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    showDeleted: bool = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    showDeleted: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListWorkloadIdentityPoolsResponseHttpRequest: ...
                 def list_next(
@@ -776,9 +780,9 @@ class IamResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListAttestationRulesResponseHttpRequest: ...
                 def listAttestationRules_next(
@@ -791,7 +795,7 @@ class IamResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: WorkloadIdentityPool = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def removeAttestationRule(
@@ -846,17 +850,17 @@ class IamResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any,
             ) -> RoleHttpRequest: ...
             def delete(
-                self, *, name: str, etag: str = ..., **kwargs: typing.Any
+                self, *, name: str, etag: str | None = ..., **kwargs: typing.Any
             ) -> RoleHttpRequest: ...
             def get(self, *, name: str, **kwargs: typing.Any) -> RoleHttpRequest: ...
             def list(
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
-                showDeleted: bool = ...,
-                view: typing_extensions.Literal["BASIC", "FULL"] = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
+                showDeleted: bool | None = ...,
+                view: typing_extensions.Literal["BASIC", "FULL"] | None = ...,
                 **kwargs: typing.Any,
             ) -> ListRolesResponseHttpRequest: ...
             def list_next(
@@ -869,7 +873,7 @@ class IamResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: Role = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> RoleHttpRequest: ...
             def undelete(
@@ -914,7 +918,8 @@ class IamResource(googleapiclient.discovery.Resource):
                     name: str,
                     publicKeyType: typing_extensions.Literal[
                         "TYPE_NONE", "TYPE_X509_PEM_FILE", "TYPE_RAW_PUBLIC_KEY"
-                    ] = ...,
+                    ]
+                    | None = ...,
                     **kwargs: typing.Any,
                 ) -> ServiceAccountKeyHttpRequest: ...
                 def list(
@@ -928,7 +933,8 @@ class IamResource(googleapiclient.discovery.Resource):
                         typing_extensions.Literal[
                             "KEY_TYPE_UNSPECIFIED", "USER_MANAGED", "SYSTEM_MANAGED"
                         ]
-                    ] = ...,
+                    ]
+                    | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListServiceAccountKeysResponseHttpRequest: ...
                 def upload(
@@ -970,15 +976,15 @@ class IamResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 resource: str,
-                options_requestedPolicyVersion: int = ...,
+                options_requestedPolicyVersion: int | None = ...,
                 **kwargs: typing.Any,
             ) -> PolicyHttpRequest: ...
             def list(
                 self,
                 *,
                 name: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListServiceAccountsResponseHttpRequest: ...
             def list_next(
@@ -1035,11 +1041,11 @@ class IamResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            pageSize: int = ...,
-            pageToken: str = ...,
-            parent: str = ...,
-            showDeleted: bool = ...,
-            view: typing_extensions.Literal["BASIC", "FULL"] = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            parent: str | None = ...,
+            showDeleted: bool | None = ...,
+            view: typing_extensions.Literal["BASIC", "FULL"] | None = ...,
             **kwargs: typing.Any,
         ) -> ListRolesResponseHttpRequest: ...
         def list_next(

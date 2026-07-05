@@ -48,9 +48,9 @@ class MerchantResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
-                targetAccount: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
+                targetAccount: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListLfpStoresResponseHttpRequest: ...
             def list_next(

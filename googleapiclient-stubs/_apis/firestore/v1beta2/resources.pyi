@@ -28,9 +28,9 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        filter: str = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        filter: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleFirestoreAdminV1beta2ListFieldsResponseHttpRequest: ...
                     def list_next(
@@ -45,7 +45,7 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: GoogleFirestoreAdminV1beta2Field = ...,
-                        updateMask: str = ...,
+                        updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
 
@@ -68,9 +68,9 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        filter: str = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        filter: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleFirestoreAdminV1beta2ListIndexesResponseHttpRequest: ...
                     def list_next(

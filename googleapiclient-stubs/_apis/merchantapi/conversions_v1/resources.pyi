@@ -30,9 +30,9 @@ class MerchantResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
-                showDeleted: bool = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
+                showDeleted: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> ListConversionSourcesResponseHttpRequest: ...
             def list_next(
@@ -45,7 +45,7 @@ class MerchantResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: ConversionSource = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ConversionSourceHttpRequest: ...
             def undelete(

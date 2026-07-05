@@ -25,7 +25,7 @@ class MerchantResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: AutofeedSettings = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> AutofeedSettingsHttpRequest: ...
 
@@ -39,7 +39,7 @@ class MerchantResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: AutomaticImprovements = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> AutomaticImprovementsHttpRequest: ...
 
@@ -53,7 +53,7 @@ class MerchantResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: BusinessIdentity = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> BusinessIdentityHttpRequest: ...
 
@@ -67,7 +67,7 @@ class MerchantResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: BusinessInfo = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> BusinessInfoHttpRequest: ...
 
@@ -100,7 +100,7 @@ class MerchantResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: EmailPreferences = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> EmailPreferencesHttpRequest: ...
 
@@ -117,8 +117,8 @@ class MerchantResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListGbpAccountsResponseHttpRequest: ...
             def list_next(
@@ -151,7 +151,7 @@ class MerchantResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: Homepage = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> HomepageHttpRequest: ...
 
@@ -161,10 +161,10 @@ class MerchantResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                languageCode: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
-                timeZone: str = ...,
+                languageCode: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
+                timeZone: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListAccountIssuesResponseHttpRequest: ...
             def list_next(
@@ -181,8 +181,8 @@ class MerchantResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> FindLfpProvidersResponseHttpRequest: ...
                 def find_next(
@@ -212,8 +212,8 @@ class MerchantResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListOmnichannelSettingsResponseHttpRequest: ...
             def list_next(
@@ -226,7 +226,7 @@ class MerchantResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: OmnichannelSetting = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> OmnichannelSettingHttpRequest: ...
             def requestInventoryVerification(
@@ -257,8 +257,8 @@ class MerchantResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListOnlineReturnPoliciesResponseHttpRequest: ...
             def list_next(
@@ -271,7 +271,7 @@ class MerchantResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: OnlineReturnPolicy = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> OnlineReturnPolicyHttpRequest: ...
 
@@ -297,7 +297,7 @@ class MerchantResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: CheckoutSettings = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> CheckoutSettingsHttpRequest: ...
 
@@ -320,8 +320,8 @@ class MerchantResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListProgramsResponseHttpRequest: ...
             def list_next(
@@ -338,7 +338,7 @@ class MerchantResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: Region = ...,
-                regionId: str = ...,
+                regionId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> RegionHttpRequest: ...
             def delete(
@@ -349,8 +349,8 @@ class MerchantResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListRegionsResponseHttpRequest: ...
             def list_next(
@@ -363,7 +363,7 @@ class MerchantResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: Region = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> RegionHttpRequest: ...
 
@@ -376,8 +376,8 @@ class MerchantResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListAccountRelationshipsResponseHttpRequest: ...
             def list_next(
@@ -390,7 +390,7 @@ class MerchantResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: AccountRelationship = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> AccountRelationshipHttpRequest: ...
 
@@ -410,8 +410,8 @@ class MerchantResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListAccountServicesResponseHttpRequest: ...
             def list_next(
@@ -469,7 +469,7 @@ class MerchantResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: User = ...,
-                userId: str = ...,
+                userId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> UserHttpRequest: ...
             def delete(
@@ -480,8 +480,8 @@ class MerchantResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListUsersResponseHttpRequest: ...
             def list_next(
@@ -494,7 +494,7 @@ class MerchantResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: User = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> UserHttpRequest: ...
             def me(self) -> MeResource: ...
@@ -506,15 +506,15 @@ class MerchantResource(googleapiclient.discovery.Resource):
             self, *, parent: str, body: Account = ..., **kwargs: typing.Any
         ) -> AccountHttpRequest: ...
         def delete(
-            self, *, name: str, force: bool = ..., **kwargs: typing.Any
+            self, *, name: str, force: bool | None = ..., **kwargs: typing.Any
         ) -> EmptyHttpRequest: ...
         def get(self, *, name: str, **kwargs: typing.Any) -> AccountHttpRequest: ...
         def list(
             self,
             *,
-            filter: str = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
+            filter: str | None = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> ListAccountsResponseHttpRequest: ...
         def list_next(
@@ -526,8 +526,8 @@ class MerchantResource(googleapiclient.discovery.Resource):
             self,
             *,
             provider: str,
-            pageSize: int = ...,
-            pageToken: str = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> ListSubAccountsResponseHttpRequest: ...
         def listSubaccounts_next(
@@ -540,7 +540,7 @@ class MerchantResource(googleapiclient.discovery.Resource):
             *,
             name: str,
             body: Account = ...,
-            updateMask: str = ...,
+            updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> AccountHttpRequest: ...
         def autofeedSettings(self) -> AutofeedSettingsResource: ...
@@ -570,8 +570,8 @@ class MerchantResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            account: str = ...,
-            regionCode: str = ...,
+            account: str | None = ...,
+            regionCode: str | None = ...,
             **kwargs: typing.Any,
         ) -> AcceptTermsOfServiceResponseHttpRequest: ...
         def get(
@@ -582,8 +582,9 @@ class MerchantResource(googleapiclient.discovery.Resource):
             *,
             kind: typing_extensions.Literal[
                 "TERMS_OF_SERVICE_KIND_UNSPECIFIED", "MERCHANT_CENTER"
-            ] = ...,
-            regionCode: str = ...,
+            ]
+            | None = ...,
+            regionCode: str | None = ...,
             **kwargs: typing.Any,
         ) -> TermsOfServiceHttpRequest: ...
 

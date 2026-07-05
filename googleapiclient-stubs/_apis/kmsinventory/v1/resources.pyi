@@ -21,10 +21,10 @@ class KmsinventoryResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 scope: str,
-                cryptoKey: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
-                resourceTypes: str | _list[str] = ...,
+                cryptoKey: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
+                resourceTypes: str | _list[str] | None = ...,
                 **kwargs: typing.Any,
             ) -> (
                 GoogleCloudKmsInventoryV1SearchProtectedResourcesResponseHttpRequest
@@ -48,8 +48,8 @@ class KmsinventoryResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudKmsInventoryV1ListCryptoKeysResponseHttpRequest: ...
             def list_next(
@@ -70,7 +70,8 @@ class KmsinventoryResource(googleapiclient.discovery.Resource):
                         name: str,
                         fallbackScope: typing_extensions.Literal[
                             "FALLBACK_SCOPE_UNSPECIFIED", "FALLBACK_SCOPE_PROJECT"
-                        ] = ...,
+                        ]
+                        | None = ...,
                         **kwargs: typing.Any,
                     ) -> (
                         GoogleCloudKmsInventoryV1ProtectedResourcesSummaryHttpRequest
@@ -86,10 +87,10 @@ class KmsinventoryResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 scope: str,
-                cryptoKey: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
-                resourceTypes: str | _list[str] = ...,
+                cryptoKey: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
+                resourceTypes: str | _list[str] | None = ...,
                 **kwargs: typing.Any,
             ) -> (
                 GoogleCloudKmsInventoryV1SearchProtectedResourcesResponseHttpRequest

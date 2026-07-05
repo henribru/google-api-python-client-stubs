@@ -36,10 +36,10 @@ class SecurityPostureResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    returnPartialSuccess: bool = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    returnPartialSuccess: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListOperationsResponseHttpRequest: ...
                 def list_next(
@@ -55,11 +55,11 @@ class SecurityPostureResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: PostureDeployment = ...,
-                    postureDeploymentId: str = ...,
+                    postureDeploymentId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
-                    self, *, name: str, etag: str = ..., **kwargs: typing.Any
+                    self, *, name: str, etag: str | None = ..., **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
@@ -68,9 +68,9 @@ class SecurityPostureResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListPostureDeploymentsResponseHttpRequest: ...
                 def list_next(
@@ -83,22 +83,26 @@ class SecurityPostureResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: PostureDeployment = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
 
             @typing.type_check_only
             class PostureTemplatesResource(googleapiclient.discovery.Resource):
                 def get(
-                    self, *, name: str, revisionId: str = ..., **kwargs: typing.Any
+                    self,
+                    *,
+                    name: str,
+                    revisionId: str | None = ...,
+                    **kwargs: typing.Any,
                 ) -> PostureTemplateHttpRequest: ...
                 def list(
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListPostureTemplatesResponseHttpRequest: ...
                 def list_next(
@@ -114,11 +118,11 @@ class SecurityPostureResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: Posture = ...,
-                    postureId: str = ...,
+                    postureId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
-                    self, *, name: str, etag: str = ..., **kwargs: typing.Any
+                    self, *, name: str, etag: str | None = ..., **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def extract(
                     self,
@@ -128,15 +132,19 @@ class SecurityPostureResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def get(
-                    self, *, name: str, revisionId: str = ..., **kwargs: typing.Any
+                    self,
+                    *,
+                    name: str,
+                    revisionId: str | None = ...,
+                    **kwargs: typing.Any,
                 ) -> PostureHttpRequest: ...
                 def list(
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListPosturesResponseHttpRequest: ...
                 def list_next(
@@ -148,8 +156,8 @@ class SecurityPostureResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListPostureRevisionsResponseHttpRequest: ...
                 def listRevisions_next(
@@ -162,8 +170,8 @@ class SecurityPostureResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: Posture = ...,
-                    revisionId: str = ...,
-                    updateMask: str = ...,
+                    revisionId: str | None = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
 
@@ -183,9 +191,9 @@ class SecurityPostureResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListReportsResponseHttpRequest: ...
                 def list_next(
@@ -213,10 +221,10 @@ class SecurityPostureResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                extraLocationTypes: str | _list[str] = ...,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                extraLocationTypes: str | _list[str] | None = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListLocationsResponseHttpRequest: ...
             def list_next(

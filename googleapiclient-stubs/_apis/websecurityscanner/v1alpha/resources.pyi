@@ -25,8 +25,8 @@ class WebSecurityScannerResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListCrawledUrlsResponseHttpRequest: ...
                     def list_next(
@@ -50,9 +50,9 @@ class WebSecurityScannerResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        filter: str = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        filter: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListFindingsResponseHttpRequest: ...
                     def list_next(
@@ -68,8 +68,8 @@ class WebSecurityScannerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListScanRunsResponseHttpRequest: ...
                 def list_next(
@@ -101,8 +101,8 @@ class WebSecurityScannerResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListScanConfigsResponseHttpRequest: ...
             def list_next(
@@ -115,7 +115,7 @@ class WebSecurityScannerResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: ScanConfig = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ScanConfigHttpRequest: ...
             def start(

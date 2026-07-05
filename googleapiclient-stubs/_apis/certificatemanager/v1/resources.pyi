@@ -26,7 +26,7 @@ class CertificateManagerResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: CertificateIssuanceConfig = ...,
-                    certificateIssuanceConfigId: str = ...,
+                    certificateIssuanceConfigId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
@@ -39,10 +39,10 @@ class CertificateManagerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    orderBy: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListCertificateIssuanceConfigsResponseHttpRequest: ...
                 def list_next(
@@ -55,7 +55,7 @@ class CertificateManagerResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: CertificateIssuanceConfig = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
 
@@ -68,7 +68,7 @@ class CertificateManagerResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: CertificateMapEntry = ...,
-                        certificateMapEntryId: str = ...,
+                        certificateMapEntryId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def delete(
@@ -81,10 +81,10 @@ class CertificateManagerResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        filter: str = ...,
-                        orderBy: str = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        filter: str | None = ...,
+                        orderBy: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListCertificateMapEntriesResponseHttpRequest: ...
                     def list_next(
@@ -97,7 +97,7 @@ class CertificateManagerResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: CertificateMapEntry = ...,
-                        updateMask: str = ...,
+                        updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
 
@@ -106,7 +106,7 @@ class CertificateManagerResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: CertificateMap = ...,
-                    certificateMapId: str = ...,
+                    certificateMapId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
@@ -119,10 +119,10 @@ class CertificateManagerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    orderBy: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListCertificateMapsResponseHttpRequest: ...
                 def list_next(
@@ -135,7 +135,7 @@ class CertificateManagerResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: CertificateMap = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def certificateMapEntries(self) -> CertificateMapEntriesResource: ...
@@ -147,7 +147,7 @@ class CertificateManagerResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: Certificate = ...,
-                    certificateId: str = ...,
+                    certificateId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
@@ -160,10 +160,10 @@ class CertificateManagerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    orderBy: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListCertificatesResponseHttpRequest: ...
                 def list_next(
@@ -176,7 +176,7 @@ class CertificateManagerResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: Certificate = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
 
@@ -187,7 +187,7 @@ class CertificateManagerResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: DnsAuthorization = ...,
-                    dnsAuthorizationId: str = ...,
+                    dnsAuthorizationId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
@@ -200,10 +200,10 @@ class CertificateManagerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    orderBy: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListDnsAuthorizationsResponseHttpRequest: ...
                 def list_next(
@@ -216,7 +216,7 @@ class CertificateManagerResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: DnsAuthorization = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
 
@@ -239,10 +239,10 @@ class CertificateManagerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    returnPartialSuccess: bool = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    returnPartialSuccess: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListOperationsResponseHttpRequest: ...
                 def list_next(
@@ -258,11 +258,11 @@ class CertificateManagerResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: TrustConfig = ...,
-                    trustConfigId: str = ...,
+                    trustConfigId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
-                    self, *, name: str, etag: str = ..., **kwargs: typing.Any
+                    self, *, name: str, etag: str | None = ..., **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
@@ -271,10 +271,10 @@ class CertificateManagerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    orderBy: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListTrustConfigsResponseHttpRequest: ...
                 def list_next(
@@ -287,7 +287,7 @@ class CertificateManagerResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: TrustConfig = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
 
@@ -298,10 +298,10 @@ class CertificateManagerResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                extraLocationTypes: str | _list[str] = ...,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                extraLocationTypes: str | _list[str] | None = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListLocationsResponseHttpRequest: ...
             def list_next(

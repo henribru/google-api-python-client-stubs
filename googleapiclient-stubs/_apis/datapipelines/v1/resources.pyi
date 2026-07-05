@@ -25,8 +25,8 @@ class DatapipelinesResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudDatapipelinesV1ListJobsResponseHttpRequest: ...
                     def list_next(
@@ -54,9 +54,9 @@ class DatapipelinesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudDatapipelinesV1ListPipelinesResponseHttpRequest: ...
                 def list_next(
@@ -71,7 +71,7 @@ class DatapipelinesResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: GoogleCloudDatapipelinesV1Pipeline = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudDatapipelinesV1PipelineHttpRequest: ...
                 def run(

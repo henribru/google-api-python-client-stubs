@@ -22,18 +22,23 @@ class BooksResource(googleapiclient.discovery.Resource):
                 *,
                 userId: str,
                 shelf: str,
-                maxResults: int = ...,
-                showPreorders: bool = ...,
-                source: str = ...,
-                startIndex: int = ...,
+                maxResults: int | None = ...,
+                showPreorders: bool | None = ...,
+                source: str | None = ...,
+                startIndex: int | None = ...,
                 **kwargs: typing.Any,
             ) -> VolumesHttpRequest: ...
 
         def get(
-            self, *, userId: str, shelf: str, source: str = ..., **kwargs: typing.Any
+            self,
+            *,
+            userId: str,
+            shelf: str,
+            source: str | None = ...,
+            **kwargs: typing.Any,
         ) -> BookshelfHttpRequest: ...
         def list(
-            self, *, userId: str, source: str = ..., **kwargs: typing.Any
+            self, *, userId: str, source: str | None = ..., **kwargs: typing.Any
         ) -> BookshelvesHttpRequest: ...
         def volumes(self) -> VolumesResource: ...
 
@@ -42,10 +47,10 @@ class BooksResource(googleapiclient.discovery.Resource):
         def addBook(
             self,
             *,
-            drive_document_id: str = ...,
-            mime_type: str = ...,
-            name: str = ...,
-            upload_client_token: str = ...,
+            drive_document_id: str | None = ...,
+            mime_type: str | None = ...,
+            name: str | None = ...,
+            upload_client_token: str | None = ...,
             **kwargs: typing.Any,
         ) -> BooksCloudloadingResourceHttpRequest: ...
         def deleteBook(
@@ -64,22 +69,22 @@ class BooksResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class FamilysharingResource(googleapiclient.discovery.Resource):
         def getFamilyInfo(
-            self, *, source: str = ..., **kwargs: typing.Any
+            self, *, source: str | None = ..., **kwargs: typing.Any
         ) -> FamilyInfoHttpRequest: ...
         def share(
             self,
             *,
-            docId: str = ...,
-            source: str = ...,
-            volumeId: str = ...,
+            docId: str | None = ...,
+            source: str | None = ...,
+            volumeId: str | None = ...,
             **kwargs: typing.Any,
         ) -> EmptyHttpRequest: ...
         def unshare(
             self,
             *,
-            docId: str = ...,
-            source: str = ...,
-            volumeId: str = ...,
+            docId: str | None = ...,
+            source: str | None = ...,
+            volumeId: str | None = ...,
             **kwargs: typing.Any,
         ) -> EmptyHttpRequest: ...
 
@@ -94,12 +99,12 @@ class BooksResource(googleapiclient.discovery.Resource):
                 layerId: str,
                 annotationDataId: str,
                 contentVersion: str,
-                allowWebDefinitions: bool = ...,
-                h: int = ...,
-                locale: str = ...,
-                scale: int = ...,
-                source: str = ...,
-                w: int = ...,
+                allowWebDefinitions: bool | None = ...,
+                h: int | None = ...,
+                locale: str | None = ...,
+                scale: int | None = ...,
+                source: str | None = ...,
+                w: int | None = ...,
                 **kwargs: typing.Any,
             ) -> DictionaryAnnotationdataHttpRequest: ...
             def list(
@@ -108,16 +113,16 @@ class BooksResource(googleapiclient.discovery.Resource):
                 volumeId: str,
                 layerId: str,
                 contentVersion: str,
-                annotationDataId: str | _list[str] = ...,
-                h: int = ...,
-                locale: str = ...,
-                maxResults: int = ...,
-                pageToken: str = ...,
-                scale: int = ...,
-                source: str = ...,
-                updatedMax: str = ...,
-                updatedMin: str = ...,
-                w: int = ...,
+                annotationDataId: str | _list[str] | None = ...,
+                h: int | None = ...,
+                locale: str | None = ...,
+                maxResults: int | None = ...,
+                pageToken: str | None = ...,
+                scale: int | None = ...,
+                source: str | None = ...,
+                updatedMax: str | None = ...,
+                updatedMin: str | None = ...,
+                w: int | None = ...,
                 **kwargs: typing.Any,
             ) -> AnnotationsdataHttpRequest: ...
             def list_next(
@@ -134,8 +139,8 @@ class BooksResource(googleapiclient.discovery.Resource):
                 volumeId: str,
                 layerId: str,
                 annotationId: str,
-                locale: str = ...,
-                source: str = ...,
+                locale: str | None = ...,
+                source: str | None = ...,
                 **kwargs: typing.Any,
             ) -> VolumeannotationHttpRequest: ...
             def list(
@@ -144,18 +149,18 @@ class BooksResource(googleapiclient.discovery.Resource):
                 volumeId: str,
                 layerId: str,
                 contentVersion: str,
-                endOffset: str = ...,
-                endPosition: str = ...,
-                locale: str = ...,
-                maxResults: int = ...,
-                pageToken: str = ...,
-                showDeleted: bool = ...,
-                source: str = ...,
-                startOffset: str = ...,
-                startPosition: str = ...,
-                updatedMax: str = ...,
-                updatedMin: str = ...,
-                volumeAnnotationsVersion: str = ...,
+                endOffset: str | None = ...,
+                endPosition: str | None = ...,
+                locale: str | None = ...,
+                maxResults: int | None = ...,
+                pageToken: str | None = ...,
+                showDeleted: bool | None = ...,
+                source: str | None = ...,
+                startOffset: str | None = ...,
+                startPosition: str | None = ...,
+                updatedMax: str | None = ...,
+                updatedMin: str | None = ...,
+                volumeAnnotationsVersion: str | None = ...,
                 **kwargs: typing.Any,
             ) -> VolumeannotationsHttpRequest: ...
             def list_next(
@@ -169,18 +174,18 @@ class BooksResource(googleapiclient.discovery.Resource):
             *,
             volumeId: str,
             summaryId: str,
-            contentVersion: str = ...,
-            source: str = ...,
+            contentVersion: str | None = ...,
+            source: str | None = ...,
             **kwargs: typing.Any,
         ) -> LayersummaryHttpRequest: ...
         def list(
             self,
             *,
             volumeId: str,
-            contentVersion: str = ...,
-            maxResults: int = ...,
-            pageToken: str = ...,
-            source: str = ...,
+            contentVersion: str | None = ...,
+            maxResults: int | None = ...,
+            pageToken: str | None = ...,
+            source: str | None = ...,
             **kwargs: typing.Any,
         ) -> LayersummariesHttpRequest: ...
         def annotationData(self) -> AnnotationDataResource: ...
@@ -189,15 +194,15 @@ class BooksResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class MyconfigResource(googleapiclient.discovery.Resource):
         def getUserSettings(
-            self, *, country: str = ..., **kwargs: typing.Any
+            self, *, country: str | None = ..., **kwargs: typing.Any
         ) -> UsersettingsHttpRequest: ...
         def releaseDownloadAccess(
             self,
             *,
             cpksver: str,
             volumeIds: str | _list[str],
-            locale: str = ...,
-            source: str = ...,
+            locale: str | None = ...,
+            source: str | None = ...,
             **kwargs: typing.Any,
         ) -> DownloadAccessesHttpRequest: ...
         def requestAccess(
@@ -209,8 +214,9 @@ class BooksResource(googleapiclient.discovery.Resource):
             volumeId: str,
             licenseTypes: typing_extensions.Literal[
                 "LICENSE_TYPES_UNDEFINED", "BOTH", "CONCURRENT", "DOWNLOAD"
-            ] = ...,
-            locale: str = ...,
+            ]
+            | None = ...,
+            locale: str | None = ...,
             **kwargs: typing.Any,
         ) -> RequestAccessDataHttpRequest: ...
         def syncVolumeLicenses(
@@ -220,11 +226,12 @@ class BooksResource(googleapiclient.discovery.Resource):
             nonce: str,
             source: str,
             features: typing_extensions.Literal["FEATURES_UNDEFINED", "RENTALS"]
-            | _list[typing_extensions.Literal["FEATURES_UNDEFINED", "RENTALS"]] = ...,
-            includeNonComicsSeries: bool = ...,
-            locale: str = ...,
-            showPreorders: bool = ...,
-            volumeIds: str | _list[str] = ...,
+            | _list[typing_extensions.Literal["FEATURES_UNDEFINED", "RENTALS"]]
+            | None = ...,
+            includeNonComicsSeries: bool | None = ...,
+            locale: str | None = ...,
+            showPreorders: bool | None = ...,
+            volumeIds: str | _list[str] | None = ...,
             **kwargs: typing.Any,
         ) -> VolumesHttpRequest: ...
         def updateUserSettings(
@@ -236,31 +243,35 @@ class BooksResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class AnnotationsResource(googleapiclient.discovery.Resource):
             def delete(
-                self, *, annotationId: str, source: str = ..., **kwargs: typing.Any
+                self,
+                *,
+                annotationId: str,
+                source: str | None = ...,
+                **kwargs: typing.Any,
             ) -> EmptyHttpRequest: ...
             def insert(
                 self,
                 *,
                 body: Annotation = ...,
-                annotationId: str = ...,
-                country: str = ...,
-                showOnlySummaryInResponse: bool = ...,
-                source: str = ...,
+                annotationId: str | None = ...,
+                country: str | None = ...,
+                showOnlySummaryInResponse: bool | None = ...,
+                source: str | None = ...,
                 **kwargs: typing.Any,
             ) -> AnnotationHttpRequest: ...
             def list(
                 self,
                 *,
-                contentVersion: str = ...,
-                layerId: str = ...,
-                layerIds: str | _list[str] = ...,
-                maxResults: int = ...,
-                pageToken: str = ...,
-                showDeleted: bool = ...,
-                source: str = ...,
-                updatedMax: str = ...,
-                updatedMin: str = ...,
-                volumeId: str = ...,
+                contentVersion: str | None = ...,
+                layerId: str | None = ...,
+                layerIds: str | _list[str] | None = ...,
+                maxResults: int | None = ...,
+                pageToken: str | None = ...,
+                showDeleted: bool | None = ...,
+                source: str | None = ...,
+                updatedMax: str | None = ...,
+                updatedMin: str | None = ...,
+                volumeId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> AnnotationsHttpRequest: ...
             def list_next(
@@ -273,7 +284,7 @@ class BooksResource(googleapiclient.discovery.Resource):
                 *,
                 layerIds: str | _list[str],
                 volumeId: str,
-                source: str = ...,
+                source: str | None = ...,
                 **kwargs: typing.Any,
             ) -> AnnotationsSummaryHttpRequest: ...
             def update(
@@ -281,7 +292,7 @@ class BooksResource(googleapiclient.discovery.Resource):
                 *,
                 annotationId: str,
                 body: Annotation = ...,
-                source: str = ...,
+                source: str | None = ...,
                 **kwargs: typing.Any,
             ) -> AnnotationHttpRequest: ...
 
@@ -293,15 +304,16 @@ class BooksResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     shelf: str,
-                    country: str = ...,
-                    maxResults: int = ...,
+                    country: str | None = ...,
+                    maxResults: int | None = ...,
                     projection: typing_extensions.Literal[
                         "PROJECTION_UNDEFINED", "FULL", "LITE"
-                    ] = ...,
-                    q: str = ...,
-                    showPreorders: bool = ...,
-                    source: str = ...,
-                    startIndex: int = ...,
+                    ]
+                    | None = ...,
+                    q: str | None = ...,
+                    showPreorders: bool | None = ...,
+                    source: str | None = ...,
+                    startIndex: int | None = ...,
                     **kwargs: typing.Any,
                 ) -> VolumesHttpRequest: ...
 
@@ -312,18 +324,19 @@ class BooksResource(googleapiclient.discovery.Resource):
                 volumeId: str,
                 reason: typing_extensions.Literal[
                     "REASON_UNDEFINED", "IOS_PREX", "IOS_SEARCH", "ONBOARDING"
-                ] = ...,
-                source: str = ...,
+                ]
+                | None = ...,
+                source: str | None = ...,
                 **kwargs: typing.Any,
             ) -> EmptyHttpRequest: ...
             def clearVolumes(
-                self, *, shelf: str, source: str = ..., **kwargs: typing.Any
+                self, *, shelf: str, source: str | None = ..., **kwargs: typing.Any
             ) -> EmptyHttpRequest: ...
             def get(
-                self, *, shelf: str, source: str = ..., **kwargs: typing.Any
+                self, *, shelf: str, source: str | None = ..., **kwargs: typing.Any
             ) -> BookshelfHttpRequest: ...
             def list(
-                self, *, source: str = ..., **kwargs: typing.Any
+                self, *, source: str | None = ..., **kwargs: typing.Any
             ) -> BookshelvesHttpRequest: ...
             def moveVolume(
                 self,
@@ -331,7 +344,7 @@ class BooksResource(googleapiclient.discovery.Resource):
                 shelf: str,
                 volumeId: str,
                 volumePosition: int,
-                source: str = ...,
+                source: str | None = ...,
                 **kwargs: typing.Any,
             ) -> EmptyHttpRequest: ...
             def removeVolume(
@@ -339,10 +352,9 @@ class BooksResource(googleapiclient.discovery.Resource):
                 *,
                 shelf: str,
                 volumeId: str,
-                reason: typing_extensions.Literal[
-                    "REASON_UNDEFINED", "ONBOARDING"
-                ] = ...,
-                source: str = ...,
+                reason: typing_extensions.Literal["REASON_UNDEFINED", "ONBOARDING"]
+                | None = ...,
+                source: str | None = ...,
                 **kwargs: typing.Any,
             ) -> EmptyHttpRequest: ...
             def volumes(self) -> VolumesResource: ...
@@ -353,8 +365,8 @@ class BooksResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 volumeId: str,
-                contentVersion: str = ...,
-                source: str = ...,
+                contentVersion: str | None = ...,
+                source: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ReadingPositionHttpRequest: ...
             def setPosition(
@@ -371,10 +383,11 @@ class BooksResource(googleapiclient.discovery.Resource):
                     "prev-page",
                     "scroll",
                     "search",
-                ] = ...,
-                contentVersion: str = ...,
-                deviceCookie: str = ...,
-                source: str = ...,
+                ]
+                | None = ...,
+                contentVersion: str | None = ...,
+                deviceCookie: str | None = ...,
+                source: str | None = ...,
                 **kwargs: typing.Any,
             ) -> EmptyHttpRequest: ...
 
@@ -388,26 +401,27 @@ class BooksResource(googleapiclient.discovery.Resource):
             self,
             *,
             notification_id: str,
-            locale: str = ...,
-            source: str = ...,
+            locale: str | None = ...,
+            source: str | None = ...,
             **kwargs: typing.Any,
         ) -> NotificationHttpRequest: ...
 
     @typing.type_check_only
     class OnboardingResource(googleapiclient.discovery.Resource):
         def listCategories(
-            self, *, locale: str = ..., **kwargs: typing.Any
+            self, *, locale: str | None = ..., **kwargs: typing.Any
         ) -> CategoryHttpRequest: ...
         def listCategoryVolumes(
             self,
             *,
-            categoryId: str | _list[str] = ...,
-            locale: str = ...,
+            categoryId: str | _list[str] | None = ...,
+            locale: str | None = ...,
             maxAllowedMaturityRating: typing_extensions.Literal[
                 "MAX_ALLOWED_MATURITY_RATING_UNDEFINED", "MATURE", "not-mature"
-            ] = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
+            ]
+            | None = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> Volume2HttpRequest: ...
         def listCategoryVolumes_next(
@@ -419,11 +433,12 @@ class BooksResource(googleapiclient.discovery.Resource):
         def get(
             self,
             *,
-            locale: str = ...,
+            locale: str | None = ...,
             maxAllowedMaturityRating: typing_extensions.Literal[
                 "MAX_ALLOWED_MATURITY_RATING_UNDEFINED", "MATURE", "not-mature"
-            ] = ...,
-            source: str = ...,
+            ]
+            | None = ...,
+            source: str | None = ...,
             **kwargs: typing.Any,
         ) -> DiscoveryclustersHttpRequest: ...
 
@@ -432,37 +447,37 @@ class BooksResource(googleapiclient.discovery.Resource):
         def accept(
             self,
             *,
-            androidId: str = ...,
-            device: str = ...,
-            manufacturer: str = ...,
-            model: str = ...,
-            offerId: str = ...,
-            product: str = ...,
-            serial: str = ...,
-            volumeId: str = ...,
+            androidId: str | None = ...,
+            device: str | None = ...,
+            manufacturer: str | None = ...,
+            model: str | None = ...,
+            offerId: str | None = ...,
+            product: str | None = ...,
+            serial: str | None = ...,
+            volumeId: str | None = ...,
             **kwargs: typing.Any,
         ) -> EmptyHttpRequest: ...
         def dismiss(
             self,
             *,
-            androidId: str = ...,
-            device: str = ...,
-            manufacturer: str = ...,
-            model: str = ...,
-            offerId: str = ...,
-            product: str = ...,
-            serial: str = ...,
+            androidId: str | None = ...,
+            device: str | None = ...,
+            manufacturer: str | None = ...,
+            model: str | None = ...,
+            offerId: str | None = ...,
+            product: str | None = ...,
+            serial: str | None = ...,
             **kwargs: typing.Any,
         ) -> EmptyHttpRequest: ...
         def get(
             self,
             *,
-            androidId: str = ...,
-            device: str = ...,
-            manufacturer: str = ...,
-            model: str = ...,
-            product: str = ...,
-            serial: str = ...,
+            androidId: str | None = ...,
+            device: str | None = ...,
+            manufacturer: str | None = ...,
+            model: str | None = ...,
+            product: str | None = ...,
+            serial: str | None = ...,
             **kwargs: typing.Any,
         ) -> OffersHttpRequest: ...
 
@@ -474,8 +489,8 @@ class BooksResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 series_id: str,
-                page_size: int = ...,
-                page_token: str = ...,
+                page_size: int | None = ...,
+                page_token: str | None = ...,
                 **kwargs: typing.Any,
             ) -> SeriesmembershipHttpRequest: ...
 
@@ -497,12 +512,14 @@ class BooksResource(googleapiclient.discovery.Resource):
                     "end-of-sample",
                     "end-of-volume",
                     "related-for-play",
-                ] = ...,
-                locale: str = ...,
+                ]
+                | None = ...,
+                locale: str | None = ...,
                 maxAllowedMaturityRating: typing_extensions.Literal[
                     "MAX_ALLOWED_MATURITY_RATING_UNDEFINED", "MATURE", "not-mature"
-                ] = ...,
-                source: str = ...,
+                ]
+                | None = ...,
+                source: str | None = ...,
                 **kwargs: typing.Any,
             ) -> VolumesHttpRequest: ...
 
@@ -534,10 +551,11 @@ class BooksResource(googleapiclient.discovery.Resource):
                         "SAMPLE",
                         "UPLOADED",
                     ]
-                ] = ...,
-                country: str = ...,
-                locale: str = ...,
-                maxResults: int = ...,
+                ]
+                | None = ...,
+                country: str | None = ...,
+                locale: str | None = ...,
+                maxResults: int | None = ...,
                 processingState: typing_extensions.Literal[
                     "PROCESSING_STATE_UNDEFINED",
                     "COMPLETED_FAILED",
@@ -551,9 +569,10 @@ class BooksResource(googleapiclient.discovery.Resource):
                         "COMPLETED_SUCCESS",
                         "RUNNING",
                     ]
-                ] = ...,
-                source: str = ...,
-                startIndex: int = ...,
+                ]
+                | None = ...,
+                source: str | None = ...,
+                startIndex: int | None = ...,
                 **kwargs: typing.Any,
             ) -> VolumesHttpRequest: ...
 
@@ -562,11 +581,12 @@ class BooksResource(googleapiclient.discovery.Resource):
             def list(
                 self,
                 *,
-                locale: str = ...,
+                locale: str | None = ...,
                 maxAllowedMaturityRating: typing_extensions.Literal[
                     "MAX_ALLOWED_MATURITY_RATING_UNDEFINED", "MATURE", "not-mature"
-                ] = ...,
-                source: str = ...,
+                ]
+                | None = ...,
+                source: str | None = ...,
                 **kwargs: typing.Any,
             ) -> VolumesHttpRequest: ...
             def rate(
@@ -576,8 +596,8 @@ class BooksResource(googleapiclient.discovery.Resource):
                     "RATING_UNDEFINED", "HAVE_IT", "NOT_INTERESTED"
                 ],
                 volumeId: str,
-                locale: str = ...,
-                source: str = ...,
+                locale: str | None = ...,
+                source: str | None = ...,
                 **kwargs: typing.Any,
             ) -> BooksVolumesRecommendedRateResponseHttpRequest: ...
 
@@ -586,8 +606,8 @@ class BooksResource(googleapiclient.discovery.Resource):
             def list(
                 self,
                 *,
-                locale: str = ...,
-                maxResults: int = ...,
+                locale: str | None = ...,
+                maxResults: int | None = ...,
                 processingState: typing_extensions.Literal[
                     "PROCESSING_STATE_UNDEFINED",
                     "COMPLETED_FAILED",
@@ -601,10 +621,11 @@ class BooksResource(googleapiclient.discovery.Resource):
                         "COMPLETED_SUCCESS",
                         "RUNNING",
                     ]
-                ] = ...,
-                source: str = ...,
-                startIndex: int = ...,
-                volumeId: str | _list[str] = ...,
+                ]
+                | None = ...,
+                source: str | None = ...,
+                startIndex: int | None = ...,
+                volumeId: str | _list[str] | None = ...,
                 **kwargs: typing.Any,
             ) -> VolumesHttpRequest: ...
 
@@ -612,21 +633,23 @@ class BooksResource(googleapiclient.discovery.Resource):
             self,
             *,
             volumeId: str,
-            country: str = ...,
-            includeNonComicsSeries: bool = ...,
-            partner: str = ...,
+            country: str | None = ...,
+            includeNonComicsSeries: bool | None = ...,
+            partner: str | None = ...,
             projection: typing_extensions.Literal[
                 "PROJECTION_UNDEFINED", "FULL", "LITE"
-            ] = ...,
-            source: str = ...,
-            user_library_consistent_read: bool = ...,
+            ]
+            | None = ...,
+            source: str | None = ...,
+            user_library_consistent_read: bool | None = ...,
             **kwargs: typing.Any,
         ) -> VolumeHttpRequest: ...
         def list(
             self,
             *,
             q: str,
-            download: typing_extensions.Literal["DOWNLOAD_UNDEFINED", "EPUB"] = ...,
+            download: typing_extensions.Literal["DOWNLOAD_UNDEFINED", "EPUB"]
+            | None = ...,
             filter: typing_extensions.Literal[
                 "FILTER_UNDEFINED",
                 "ebooks",
@@ -634,28 +657,34 @@ class BooksResource(googleapiclient.discovery.Resource):
                 "full",
                 "paid-ebooks",
                 "partial",
-            ] = ...,
-            langRestrict: str = ...,
+            ]
+            | None = ...,
+            langRestrict: str | None = ...,
             libraryRestrict: typing_extensions.Literal[
                 "LIBRARY_RESTRICT_UNDEFINED", "my-library", "no-restrict"
-            ] = ...,
+            ]
+            | None = ...,
             maxAllowedMaturityRating: typing_extensions.Literal[
                 "MAX_ALLOWED_MATURITY_RATING_UNDEFINED", "MATURE", "not-mature"
-            ] = ...,
-            maxResults: int = ...,
+            ]
+            | None = ...,
+            maxResults: int | None = ...,
             orderBy: typing_extensions.Literal[
                 "ORDER_BY_UNDEFINED", "newest", "relevance"
-            ] = ...,
-            partner: str = ...,
+            ]
+            | None = ...,
+            partner: str | None = ...,
             printType: typing_extensions.Literal[
                 "PRINT_TYPE_UNDEFINED", "ALL", "BOOKS", "MAGAZINES"
-            ] = ...,
+            ]
+            | None = ...,
             projection: typing_extensions.Literal[
                 "PROJECTION_UNDEFINED", "FULL", "LITE"
-            ] = ...,
-            showPreorders: bool = ...,
-            source: str = ...,
-            startIndex: int = ...,
+            ]
+            | None = ...,
+            showPreorders: bool | None = ...,
+            source: str | None = ...,
+            startIndex: int | None = ...,
             **kwargs: typing.Any,
         ) -> VolumesHttpRequest: ...
         def associated(self) -> AssociatedResource: ...

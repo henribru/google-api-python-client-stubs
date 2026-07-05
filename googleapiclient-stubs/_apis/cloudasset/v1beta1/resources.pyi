@@ -38,12 +38,13 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             self,
             *,
             parent: str,
-            assetNames: str | _list[str] = ...,
+            assetNames: str | _list[str] | None = ...,
             contentType: typing_extensions.Literal[
                 "CONTENT_TYPE_UNSPECIFIED", "RESOURCE", "IAM_POLICY"
-            ] = ...,
-            readTimeWindow_endTime: str = ...,
-            readTimeWindow_startTime: str = ...,
+            ]
+            | None = ...,
+            readTimeWindow_endTime: str | None = ...,
+            readTimeWindow_startTime: str | None = ...,
             **kwargs: typing.Any,
         ) -> BatchGetAssetsHistoryResponseHttpRequest: ...
         def exportAssets(
@@ -63,12 +64,13 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             self,
             *,
             parent: str,
-            assetNames: str | _list[str] = ...,
+            assetNames: str | _list[str] | None = ...,
             contentType: typing_extensions.Literal[
                 "CONTENT_TYPE_UNSPECIFIED", "RESOURCE", "IAM_POLICY"
-            ] = ...,
-            readTimeWindow_endTime: str = ...,
-            readTimeWindow_startTime: str = ...,
+            ]
+            | None = ...,
+            readTimeWindow_endTime: str | None = ...,
+            readTimeWindow_startTime: str | None = ...,
             **kwargs: typing.Any,
         ) -> BatchGetAssetsHistoryResponseHttpRequest: ...
         def exportAssets(

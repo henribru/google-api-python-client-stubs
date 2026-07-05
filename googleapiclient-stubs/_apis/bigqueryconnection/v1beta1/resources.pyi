@@ -24,7 +24,7 @@ class BigQueryConnectionServiceResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: Connection = ...,
-                    connectionId: str = ...,
+                    connectionId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ConnectionHttpRequest: ...
                 def delete(
@@ -44,8 +44,8 @@ class BigQueryConnectionServiceResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    maxResults: int = ...,
-                    pageToken: str = ...,
+                    maxResults: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListConnectionsResponseHttpRequest: ...
                 def list_next(
@@ -58,7 +58,7 @@ class BigQueryConnectionServiceResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: Connection = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ConnectionHttpRequest: ...
                 def setIamPolicy(

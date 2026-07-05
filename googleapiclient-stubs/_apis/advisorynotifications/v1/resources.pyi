@@ -20,18 +20,23 @@ class AdvisorynotificationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class NotificationsResource(googleapiclient.discovery.Resource):
                 def get(
-                    self, *, name: str, languageCode: str = ..., **kwargs: typing.Any
+                    self,
+                    *,
+                    name: str,
+                    languageCode: str | None = ...,
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudAdvisorynotificationsV1NotificationHttpRequest: ...
                 def list(
                     self,
                     *,
                     parent: str,
-                    languageCode: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    languageCode: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     view: typing_extensions.Literal[
                         "NOTIFICATION_VIEW_UNSPECIFIED", "BASIC", "FULL"
-                    ] = ...,
+                    ]
+                    | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudAdvisorynotificationsV1ListNotificationsResponseHttpRequest: ...
                 def list_next(
@@ -64,18 +69,23 @@ class AdvisorynotificationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class NotificationsResource(googleapiclient.discovery.Resource):
                 def get(
-                    self, *, name: str, languageCode: str = ..., **kwargs: typing.Any
+                    self,
+                    *,
+                    name: str,
+                    languageCode: str | None = ...,
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudAdvisorynotificationsV1NotificationHttpRequest: ...
                 def list(
                     self,
                     *,
                     parent: str,
-                    languageCode: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    languageCode: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     view: typing_extensions.Literal[
                         "NOTIFICATION_VIEW_UNSPECIFIED", "BASIC", "FULL"
-                    ] = ...,
+                    ]
+                    | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudAdvisorynotificationsV1ListNotificationsResponseHttpRequest: ...
                 def list_next(

@@ -24,18 +24,18 @@ class SaaSServiceManagementResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: Release = ...,
-                    releaseId: str = ...,
-                    requestId: str = ...,
-                    validateOnly: bool = ...,
+                    releaseId: str | None = ...,
+                    requestId: str | None = ...,
+                    validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> ReleaseHttpRequest: ...
                 def delete(
                     self,
                     *,
                     name: str,
-                    etag: str = ...,
-                    requestId: str = ...,
-                    validateOnly: bool = ...,
+                    etag: str | None = ...,
+                    requestId: str | None = ...,
+                    validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def get(
@@ -45,10 +45,10 @@ class SaaSServiceManagementResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    orderBy: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListReleasesResponseHttpRequest: ...
                 def list_next(
@@ -61,9 +61,9 @@ class SaaSServiceManagementResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: Release = ...,
-                    requestId: str = ...,
-                    updateMask: str = ...,
-                    validateOnly: bool = ...,
+                    requestId: str | None = ...,
+                    updateMask: str | None = ...,
+                    validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> ReleaseHttpRequest: ...
 
@@ -74,18 +74,18 @@ class SaaSServiceManagementResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: RolloutKind = ...,
-                    requestId: str = ...,
-                    rolloutKindId: str = ...,
-                    validateOnly: bool = ...,
+                    requestId: str | None = ...,
+                    rolloutKindId: str | None = ...,
+                    validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> RolloutKindHttpRequest: ...
                 def delete(
                     self,
                     *,
                     name: str,
-                    etag: str = ...,
-                    requestId: str = ...,
-                    validateOnly: bool = ...,
+                    etag: str | None = ...,
+                    requestId: str | None = ...,
+                    validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def get(
@@ -95,10 +95,10 @@ class SaaSServiceManagementResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    orderBy: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListRolloutKindsResponseHttpRequest: ...
                 def list_next(
@@ -111,9 +111,9 @@ class SaaSServiceManagementResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: RolloutKind = ...,
-                    requestId: str = ...,
-                    updateMask: str = ...,
-                    validateOnly: bool = ...,
+                    requestId: str | None = ...,
+                    updateMask: str | None = ...,
+                    validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> RolloutKindHttpRequest: ...
 
@@ -124,18 +124,18 @@ class SaaSServiceManagementResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: Rollout = ...,
-                    requestId: str = ...,
-                    rolloutId: str = ...,
-                    validateOnly: bool = ...,
+                    requestId: str | None = ...,
+                    rolloutId: str | None = ...,
+                    validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> RolloutHttpRequest: ...
                 def delete(
                     self,
                     *,
                     name: str,
-                    etag: str = ...,
-                    requestId: str = ...,
-                    validateOnly: bool = ...,
+                    etag: str | None = ...,
+                    requestId: str | None = ...,
+                    validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def get(
@@ -145,10 +145,10 @@ class SaaSServiceManagementResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    orderBy: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListRolloutsResponseHttpRequest: ...
                 def list_next(
@@ -161,9 +161,9 @@ class SaaSServiceManagementResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: Rollout = ...,
-                    requestId: str = ...,
-                    updateMask: str = ...,
-                    validateOnly: bool = ...,
+                    requestId: str | None = ...,
+                    updateMask: str | None = ...,
+                    validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> RolloutHttpRequest: ...
 
@@ -174,18 +174,18 @@ class SaaSServiceManagementResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: Saas = ...,
-                    requestId: str = ...,
-                    saasId: str = ...,
-                    validateOnly: bool = ...,
+                    requestId: str | None = ...,
+                    saasId: str | None = ...,
+                    validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> SaasHttpRequest: ...
                 def delete(
                     self,
                     *,
                     name: str,
-                    etag: str = ...,
-                    requestId: str = ...,
-                    validateOnly: bool = ...,
+                    etag: str | None = ...,
+                    requestId: str | None = ...,
+                    validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def get(
@@ -195,10 +195,10 @@ class SaaSServiceManagementResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    orderBy: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListSaasResponseHttpRequest: ...
                 def list_next(
@@ -211,9 +211,9 @@ class SaaSServiceManagementResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: Saas = ...,
-                    requestId: str = ...,
-                    updateMask: str = ...,
-                    validateOnly: bool = ...,
+                    requestId: str | None = ...,
+                    updateMask: str | None = ...,
+                    validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> SaasHttpRequest: ...
 
@@ -224,18 +224,18 @@ class SaaSServiceManagementResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: Tenant = ...,
-                    requestId: str = ...,
-                    tenantId: str = ...,
-                    validateOnly: bool = ...,
+                    requestId: str | None = ...,
+                    tenantId: str | None = ...,
+                    validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> TenantHttpRequest: ...
                 def delete(
                     self,
                     *,
                     name: str,
-                    etag: str = ...,
-                    requestId: str = ...,
-                    validateOnly: bool = ...,
+                    etag: str | None = ...,
+                    requestId: str | None = ...,
+                    validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def get(
@@ -245,10 +245,10 @@ class SaaSServiceManagementResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    orderBy: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListTenantsResponseHttpRequest: ...
                 def list_next(
@@ -261,9 +261,9 @@ class SaaSServiceManagementResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: Tenant = ...,
-                    requestId: str = ...,
-                    updateMask: str = ...,
-                    validateOnly: bool = ...,
+                    requestId: str | None = ...,
+                    updateMask: str | None = ...,
+                    validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> TenantHttpRequest: ...
 
@@ -274,18 +274,18 @@ class SaaSServiceManagementResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: UnitKind = ...,
-                    requestId: str = ...,
-                    unitKindId: str = ...,
-                    validateOnly: bool = ...,
+                    requestId: str | None = ...,
+                    unitKindId: str | None = ...,
+                    validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> UnitKindHttpRequest: ...
                 def delete(
                     self,
                     *,
                     name: str,
-                    etag: str = ...,
-                    requestId: str = ...,
-                    validateOnly: bool = ...,
+                    etag: str | None = ...,
+                    requestId: str | None = ...,
+                    validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def get(
@@ -295,10 +295,10 @@ class SaaSServiceManagementResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    orderBy: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListUnitKindsResponseHttpRequest: ...
                 def list_next(
@@ -311,9 +311,9 @@ class SaaSServiceManagementResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: UnitKind = ...,
-                    requestId: str = ...,
-                    updateMask: str = ...,
-                    validateOnly: bool = ...,
+                    requestId: str | None = ...,
+                    updateMask: str | None = ...,
+                    validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> UnitKindHttpRequest: ...
 
@@ -324,18 +324,18 @@ class SaaSServiceManagementResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: UnitOperation = ...,
-                    requestId: str = ...,
-                    unitOperationId: str = ...,
-                    validateOnly: bool = ...,
+                    requestId: str | None = ...,
+                    unitOperationId: str | None = ...,
+                    validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> UnitOperationHttpRequest: ...
                 def delete(
                     self,
                     *,
                     name: str,
-                    etag: str = ...,
-                    requestId: str = ...,
-                    validateOnly: bool = ...,
+                    etag: str | None = ...,
+                    requestId: str | None = ...,
+                    validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def get(
@@ -345,10 +345,10 @@ class SaaSServiceManagementResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    orderBy: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListUnitOperationsResponseHttpRequest: ...
                 def list_next(
@@ -361,9 +361,9 @@ class SaaSServiceManagementResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: UnitOperation = ...,
-                    requestId: str = ...,
-                    updateMask: str = ...,
-                    validateOnly: bool = ...,
+                    requestId: str | None = ...,
+                    updateMask: str | None = ...,
+                    validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> UnitOperationHttpRequest: ...
 
@@ -374,18 +374,18 @@ class SaaSServiceManagementResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: Unit = ...,
-                    requestId: str = ...,
-                    unitId: str = ...,
-                    validateOnly: bool = ...,
+                    requestId: str | None = ...,
+                    unitId: str | None = ...,
+                    validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> UnitHttpRequest: ...
                 def delete(
                     self,
                     *,
                     name: str,
-                    etag: str = ...,
-                    requestId: str = ...,
-                    validateOnly: bool = ...,
+                    etag: str | None = ...,
+                    requestId: str | None = ...,
+                    validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def get(
@@ -395,10 +395,10 @@ class SaaSServiceManagementResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    orderBy: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListUnitsResponseHttpRequest: ...
                 def list_next(
@@ -411,9 +411,9 @@ class SaaSServiceManagementResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: Unit = ...,
-                    requestId: str = ...,
-                    updateMask: str = ...,
-                    validateOnly: bool = ...,
+                    requestId: str | None = ...,
+                    updateMask: str | None = ...,
+                    validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> UnitHttpRequest: ...
 
@@ -424,10 +424,10 @@ class SaaSServiceManagementResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                extraLocationTypes: str | _list[str] = ...,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                extraLocationTypes: str | _list[str] | None = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListLocationsResponseHttpRequest: ...
             def list_next(

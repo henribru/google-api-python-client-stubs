@@ -21,8 +21,8 @@ class CloudbillingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListProjectBillingInfoResponseHttpRequest: ...
             def list_next(
@@ -40,9 +40,9 @@ class CloudbillingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListBillingAccountsResponseHttpRequest: ...
             def list_next(
@@ -52,7 +52,11 @@ class CloudbillingResource(googleapiclient.discovery.Resource):
             ) -> ListBillingAccountsResponseHttpRequest | None: ...
 
         def create(
-            self, *, body: BillingAccount = ..., parent: str = ..., **kwargs: typing.Any
+            self,
+            *,
+            body: BillingAccount = ...,
+            parent: str | None = ...,
+            **kwargs: typing.Any,
         ) -> BillingAccountHttpRequest: ...
         def get(
             self, *, name: str, **kwargs: typing.Any
@@ -61,16 +65,16 @@ class CloudbillingResource(googleapiclient.discovery.Resource):
             self,
             *,
             resource: str,
-            options_requestedPolicyVersion: int = ...,
+            options_requestedPolicyVersion: int | None = ...,
             **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
         def list(
             self,
             *,
-            filter: str = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
-            parent: str = ...,
+            filter: str | None = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            parent: str | None = ...,
             **kwargs: typing.Any,
         ) -> ListBillingAccountsResponseHttpRequest: ...
         def list_next(
@@ -90,7 +94,7 @@ class CloudbillingResource(googleapiclient.discovery.Resource):
             *,
             name: str,
             body: BillingAccount = ...,
-            updateMask: str = ...,
+            updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> BillingAccountHttpRequest: ...
         def setIamPolicy(
@@ -121,9 +125,9 @@ class CloudbillingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListBillingAccountsResponseHttpRequest: ...
             def list_next(
@@ -154,11 +158,11 @@ class CloudbillingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                currencyCode: str = ...,
-                endTime: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
-                startTime: str = ...,
+                currencyCode: str | None = ...,
+                endTime: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
+                startTime: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListSkusResponseHttpRequest: ...
             def list_next(
@@ -168,7 +172,11 @@ class CloudbillingResource(googleapiclient.discovery.Resource):
             ) -> ListSkusResponseHttpRequest | None: ...
 
         def list(
-            self, *, pageSize: int = ..., pageToken: str = ..., **kwargs: typing.Any
+            self,
+            *,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            **kwargs: typing.Any,
         ) -> ListServicesResponseHttpRequest: ...
         def list_next(
             self,

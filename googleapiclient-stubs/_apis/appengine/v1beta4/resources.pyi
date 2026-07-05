@@ -24,9 +24,9 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 appsId: str,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListLocationsResponseHttpRequest: ...
             def list_next(
@@ -75,8 +75,8 @@ class AppengineResource(googleapiclient.discovery.Resource):
                         appsId: str,
                         modulesId: str,
                         versionsId: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListInstancesResponseHttpRequest: ...
                     def list_next(
@@ -107,7 +107,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                     appsId: str,
                     modulesId: str,
                     versionsId: str,
-                    view: typing_extensions.Literal["BASIC", "FULL"] = ...,
+                    view: typing_extensions.Literal["BASIC", "FULL"] | None = ...,
                     **kwargs: typing.Any,
                 ) -> VersionHttpRequest: ...
                 def list(
@@ -115,9 +115,9 @@ class AppengineResource(googleapiclient.discovery.Resource):
                     *,
                     appsId: str,
                     modulesId: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    view: typing_extensions.Literal["BASIC", "FULL"] = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    view: typing_extensions.Literal["BASIC", "FULL"] | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListVersionsResponseHttpRequest: ...
                 def list_next(
@@ -132,7 +132,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                     modulesId: str,
                     versionsId: str,
                     body: Version = ...,
-                    mask: str = ...,
+                    mask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def instances(self) -> InstancesResource: ...
@@ -147,8 +147,8 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 appsId: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListModulesResponseHttpRequest: ...
             def list_next(
@@ -162,8 +162,8 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 appsId: str,
                 modulesId: str,
                 body: Module = ...,
-                mask: str = ...,
-                migrateTraffic: bool = ...,
+                mask: str | None = ...,
+                migrateTraffic: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def versions(self) -> VersionsResource: ...
@@ -177,9 +177,9 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 appsId: str,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListOperationsResponseHttpRequest: ...
             def list_next(
@@ -192,14 +192,18 @@ class AppengineResource(googleapiclient.discovery.Resource):
             self, *, body: Application = ..., **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
         def get(
-            self, *, appsId: str, ensureResourcesExist: bool = ..., **kwargs: typing.Any
+            self,
+            *,
+            appsId: str,
+            ensureResourcesExist: bool | None = ...,
+            **kwargs: typing.Any,
         ) -> ApplicationHttpRequest: ...
         def patch(
             self,
             *,
             appsId: str,
             body: Application = ...,
-            mask: str = ...,
+            mask: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def locations(self) -> LocationsResource: ...

@@ -34,7 +34,7 @@ class AndroidProvisioningPartnerResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: Configuration = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ConfigurationHttpRequest: ...
 
@@ -52,8 +52,8 @@ class AndroidProvisioningPartnerResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: str = ...,
-                pageToken: str = ...,
+                pageSize: str | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> CustomerListDevicesResponseHttpRequest: ...
             def list_next(
@@ -83,7 +83,11 @@ class AndroidProvisioningPartnerResource(googleapiclient.discovery.Resource):
             ) -> CustomerListDpcsResponseHttpRequest: ...
 
         def list(
-            self, *, pageSize: int = ..., pageToken: str = ..., **kwargs: typing.Any
+            self,
+            *,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            **kwargs: typing.Any,
         ) -> CustomerListCustomersResponseHttpRequest: ...
         def list_next(
             self,
@@ -113,8 +117,8 @@ class AndroidProvisioningPartnerResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 partnerId: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListCustomersResponseHttpRequest: ...
             def list_next(
@@ -209,8 +213,8 @@ class AndroidProvisioningPartnerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListVendorCustomersResponseHttpRequest: ...
                 def list_next(
@@ -223,8 +227,8 @@ class AndroidProvisioningPartnerResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListVendorsResponseHttpRequest: ...
             def list_next(

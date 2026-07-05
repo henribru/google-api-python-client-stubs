@@ -21,14 +21,14 @@ class DigitalassetlinksResource(googleapiclient.discovery.Resource):
         def check(
             self,
             *,
-            relation: str = ...,
-            returnRelationExtensions: bool = ...,
-            source_androidApp_certificate_sha256Fingerprint: str = ...,
-            source_androidApp_packageName: str = ...,
-            source_web_site: str = ...,
-            target_androidApp_certificate_sha256Fingerprint: str = ...,
-            target_androidApp_packageName: str = ...,
-            target_web_site: str = ...,
+            relation: str | None = ...,
+            returnRelationExtensions: bool | None = ...,
+            source_androidApp_certificate_sha256Fingerprint: str | None = ...,
+            source_androidApp_packageName: str | None = ...,
+            source_web_site: str | None = ...,
+            target_androidApp_certificate_sha256Fingerprint: str | None = ...,
+            target_androidApp_packageName: str | None = ...,
+            target_web_site: str | None = ...,
             **kwargs: typing.Any,
         ) -> CheckResponseHttpRequest: ...
 
@@ -37,11 +37,11 @@ class DigitalassetlinksResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            relation: str = ...,
-            returnRelationExtensions: bool = ...,
-            source_androidApp_certificate_sha256Fingerprint: str = ...,
-            source_androidApp_packageName: str = ...,
-            source_web_site: str = ...,
+            relation: str | None = ...,
+            returnRelationExtensions: bool | None = ...,
+            source_androidApp_certificate_sha256Fingerprint: str | None = ...,
+            source_androidApp_packageName: str | None = ...,
+            source_web_site: str | None = ...,
             **kwargs: typing.Any,
         ) -> ListResponseHttpRequest: ...
 

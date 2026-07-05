@@ -34,8 +34,8 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             instance: str,
-            maxResults: int = ...,
-            pageToken: str = ...,
+            maxResults: int | None = ...,
+            pageToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> BackupRunsListResponseHttpRequest: ...
         def list_next(
@@ -59,9 +59,9 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
             self,
             *,
             parent: str,
-            filter: str = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
+            filter: str | None = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> ListBackupsResponseHttpRequest: ...
         def listBackups_next(
@@ -74,7 +74,7 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
             *,
             name: str,
             body: Backup = ...,
-            updateMask: str = ...,
+            updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
 
@@ -93,7 +93,7 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             instance: str,
-            readTime: str = ...,
+            readTime: str | None = ...,
             **kwargs: typing.Any,
         ) -> ConnectSettingsHttpRequest: ...
         def resolve(
@@ -143,12 +143,13 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            databaseVersion: str = ...,
+            databaseVersion: str | None = ...,
             flagScope: typing_extensions.Literal[
                 "SQL_FLAG_SCOPE_UNSPECIFIED",
                 "SQL_FLAG_SCOPE_DATABASE",
                 "SQL_FLAG_SCOPE_CONNECTION_POOL",
-            ] = ...,
+            ]
+            | None = ...,
             **kwargs: typing.Any,
         ) -> FlagsListResponseHttpRequest: ...
 
@@ -206,10 +207,10 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             instance: str,
-            enableFinalBackup: bool = ...,
-            finalBackupDescription: str = ...,
-            finalBackupExpiryTime: str = ...,
-            finalBackupTtlDays: str = ...,
+            enableFinalBackup: bool | None = ...,
+            finalBackupDescription: str | None = ...,
+            finalBackupExpiryTime: str | None = ...,
+            finalBackupTtlDays: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def demote(
@@ -270,9 +271,9 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
             self,
             *,
             project: str,
-            filter: str = ...,
-            maxResults: int = ...,
-            pageToken: str = ...,
+            filter: str | None = ...,
+            maxResults: int | None = ...,
+            pageToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> InstancesListResponseHttpRequest: ...
         def list_next(
@@ -311,7 +312,7 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             instance: str,
-            failover: bool = ...,
+            failover: bool | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def reencrypt(
@@ -332,7 +333,8 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
             instance: str,
             mode: typing_extensions.Literal[
                 "RESET_SSL_MODE_UNSPECIFIED", "ALL", "SYNC_FROM_PRIMARY"
-            ] = ...,
+            ]
+            | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def restart(
@@ -365,7 +367,7 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             instance: str,
-            dbTimeout: str = ...,
+            dbTimeout: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def truncateLog(
@@ -397,9 +399,9 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
             self,
             *,
             project: str,
-            instance: str = ...,
-            maxResults: int = ...,
-            pageToken: str = ...,
+            instance: str | None = ...,
+            maxResults: int | None = ...,
+            pageToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationsListResponseHttpRequest: ...
         def list_next(
@@ -420,7 +422,7 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
                 *,
                 project: str,
                 instance: str,
-                sourceInstanceDeletionTime: str = ...,
+                sourceInstanceDeletionTime: str | None = ...,
                 **kwargs: typing.Any,
             ) -> SqlInstancesGetLatestRecoveryTimeResponseHttpRequest: ...
             def performDiskShrink(
@@ -517,8 +519,8 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             instance: str,
-            host: str = ...,
-            name: str = ...,
+            host: str | None = ...,
+            name: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def get(
@@ -527,7 +529,7 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
             project: str,
             instance: str,
             name: str,
-            host: str = ...,
+            host: str | None = ...,
             **kwargs: typing.Any,
         ) -> UserHttpRequest: ...
         def insert(
@@ -542,10 +544,10 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
             project: str,
             instance: str,
             body: User = ...,
-            databaseRoles: str | _list[str] = ...,
-            host: str = ...,
-            name: str = ...,
-            revokeExistingRoles: bool = ...,
+            databaseRoles: str | _list[str] | None = ...,
+            host: str | None = ...,
+            name: str | None = ...,
+            revokeExistingRoles: bool | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
 

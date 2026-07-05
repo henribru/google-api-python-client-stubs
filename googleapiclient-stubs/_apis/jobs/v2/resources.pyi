@@ -21,11 +21,11 @@ class CloudTalentSolutionResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 companyName: str,
-                idsOnly: bool = ...,
-                includeJobsCount: bool = ...,
-                jobRequisitionId: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                idsOnly: bool | None = ...,
+                includeJobsCount: bool | None = ...,
+                jobRequisitionId: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListCompanyJobsResponseHttpRequest: ...
             def list_next(
@@ -42,9 +42,9 @@ class CloudTalentSolutionResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            mustHaveOpenJobs: bool = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
+            mustHaveOpenJobs: bool | None = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> ListCompaniesResponseHttpRequest: ...
         def list_next(
@@ -57,7 +57,7 @@ class CloudTalentSolutionResource(googleapiclient.discovery.Resource):
             *,
             name: str,
             body: Company = ...,
-            updateCompanyFields: str = ...,
+            updateCompanyFields: str | None = ...,
             **kwargs: typing.Any,
         ) -> CompanyHttpRequest: ...
         def jobs(self) -> JobsResource: ...
@@ -71,7 +71,11 @@ class CloudTalentSolutionResource(googleapiclient.discovery.Resource):
             self, *, body: CreateJobRequest = ..., **kwargs: typing.Any
         ) -> JobHttpRequest: ...
         def delete(
-            self, *, name: str, disableFastProcess: bool = ..., **kwargs: typing.Any
+            self,
+            *,
+            name: str,
+            disableFastProcess: bool | None = ...,
+            **kwargs: typing.Any,
         ) -> EmptyHttpRequest: ...
         def deleteByFilter(
             self, *, body: DeleteJobsByFilterRequest = ..., **kwargs: typing.Any
@@ -83,10 +87,10 @@ class CloudTalentSolutionResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            filter: str = ...,
-            idsOnly: bool = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
+            filter: str | None = ...,
+            idsOnly: bool | None = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> ListJobsResponseHttpRequest: ...
         def list_next(
@@ -119,16 +123,18 @@ class CloudTalentSolutionResource(googleapiclient.discovery.Resource):
         def complete(
             self,
             *,
-            companyName: str = ...,
-            languageCode: str = ...,
-            pageSize: int = ...,
-            query: str = ...,
+            companyName: str | None = ...,
+            languageCode: str | None = ...,
+            pageSize: int | None = ...,
+            query: str | None = ...,
             scope: typing_extensions.Literal[
                 "COMPLETION_SCOPE_UNSPECIFIED", "TENANT", "PUBLIC"
-            ] = ...,
+            ]
+            | None = ...,
             type: typing_extensions.Literal[
                 "COMPLETION_TYPE_UNSPECIFIED", "JOB_TITLE", "COMPANY_NAME", "COMBINED"
-            ] = ...,
+            ]
+            | None = ...,
             **kwargs: typing.Any,
         ) -> CompleteQueryResponseHttpRequest: ...
 

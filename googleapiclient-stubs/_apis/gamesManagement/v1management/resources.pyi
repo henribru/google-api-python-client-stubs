@@ -40,8 +40,8 @@ class GamesManagementResource(googleapiclient.discovery.Resource):
             self,
             *,
             applicationId: str,
-            maxResults: int = ...,
-            pageToken: str = ...,
+            maxResults: int | None = ...,
+            pageToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> HiddenPlayerListHttpRequest: ...
         def listHidden_next(

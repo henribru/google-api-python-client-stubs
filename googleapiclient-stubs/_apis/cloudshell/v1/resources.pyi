@@ -24,10 +24,10 @@ class CloudShellResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            filter: str = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
-            returnPartialSuccess: bool = ...,
+            filter: str | None = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> ListOperationsResponseHttpRequest: ...
         def list_next(
@@ -58,8 +58,8 @@ class CloudShellResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 environment: str,
-                expireTime: str = ...,
-                ttl: str = ...,
+                expireTime: str | None = ...,
+                ttl: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GenerateAccessTokenResponseHttpRequest: ...
             def get(

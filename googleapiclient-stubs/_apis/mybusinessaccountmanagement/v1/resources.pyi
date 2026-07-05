@@ -31,7 +31,7 @@ class MyBusinessAccountManagementResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: Admin = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> AdminHttpRequest: ...
 
@@ -52,7 +52,7 @@ class MyBusinessAccountManagementResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any,
             ) -> EmptyHttpRequest: ...
             def list(
-                self, *, parent: str, filter: str = ..., **kwargs: typing.Any
+                self, *, parent: str, filter: str | None = ..., **kwargs: typing.Any
             ) -> ListInvitationsResponseHttpRequest: ...
 
         def create(
@@ -62,10 +62,10 @@ class MyBusinessAccountManagementResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            filter: str = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
-            parentAccount: str = ...,
+            filter: str | None = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            parentAccount: str | None = ...,
             **kwargs: typing.Any,
         ) -> ListAccountsResponseHttpRequest: ...
         def list_next(
@@ -78,8 +78,8 @@ class MyBusinessAccountManagementResource(googleapiclient.discovery.Resource):
             *,
             name: str,
             body: Account = ...,
-            updateMask: str = ...,
-            validateOnly: bool = ...,
+            updateMask: str | None = ...,
+            validateOnly: bool | None = ...,
             **kwargs: typing.Any,
         ) -> AccountHttpRequest: ...
         def admins(self) -> AdminsResource: ...
@@ -103,7 +103,7 @@ class MyBusinessAccountManagementResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: Admin = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> AdminHttpRequest: ...
 

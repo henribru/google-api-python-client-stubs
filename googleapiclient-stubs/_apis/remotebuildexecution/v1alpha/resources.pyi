@@ -35,7 +35,7 @@ class RemoteBuildExecutionResource(googleapiclient.discovery.Resource):
                     GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPoolHttpRequest
                 ): ...
                 def list(
-                    self, *, parent: str, filter: str = ..., **kwargs: typing.Any
+                    self, *, parent: str, filter: str | None = ..., **kwargs: typing.Any
                 ) -> GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponseHttpRequest: ...
                 def patch(
                     self,
@@ -66,9 +66,9 @@ class RemoteBuildExecutionResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance = ...,
-                loggingEnabled: bool = ...,
-                name1: str = ...,
-                updateMask: str = ...,
+                loggingEnabled: bool | None = ...,
+                name1: str | None = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleLongrunningOperationHttpRequest: ...
             def workerpools(self) -> WorkerpoolsResource: ...

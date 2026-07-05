@@ -23,11 +23,11 @@ class ServiceUsageResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            filter: str = ...,
-            name: str = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
-            returnPartialSuccess: bool = ...,
+            filter: str | None = ...,
+            name: str | None = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> ListOperationsResponseHttpRequest: ...
         def list_next(
@@ -46,7 +46,11 @@ class ServiceUsageResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def batchGet(
-            self, *, parent: str, names: str | _list[str] = ..., **kwargs: typing.Any
+            self,
+            *,
+            parent: str,
+            names: str | _list[str] | None = ...,
+            **kwargs: typing.Any,
         ) -> BatchGetServicesResponseHttpRequest: ...
         def disable(
             self, *, name: str, body: DisableServiceRequest = ..., **kwargs: typing.Any
@@ -61,9 +65,9 @@ class ServiceUsageResource(googleapiclient.discovery.Resource):
             self,
             *,
             parent: str,
-            filter: str = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
+            filter: str | None = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> ListServicesResponseHttpRequest: ...
         def list_next(

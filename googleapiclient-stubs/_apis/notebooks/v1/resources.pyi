@@ -24,7 +24,7 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: Environment = ...,
-                    environmentId: str = ...,
+                    environmentId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
@@ -37,8 +37,8 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListEnvironmentsResponseHttpRequest: ...
                 def list_next(
@@ -54,7 +54,7 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: Execution = ...,
-                    executionId: str = ...,
+                    executionId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
@@ -67,10 +67,10 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    orderBy: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListExecutionsResponseHttpRequest: ...
                 def list_next(
@@ -86,7 +86,7 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: Instance = ...,
-                    instanceId: str = ...,
+                    instanceId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
@@ -106,7 +106,7 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    options_requestedPolicyVersion: int = ...,
+                    options_requestedPolicyVersion: int | None = ...,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def getInstanceHealth(
@@ -122,17 +122,18 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                         "UPGRADE_OS",
                         "UPGRADE_CUDA",
                         "UPGRADE_ALL",
-                    ] = ...,
+                    ]
+                    | None = ...,
                     **kwargs: typing.Any,
                 ) -> IsInstanceUpgradeableResponseHttpRequest: ...
                 def list(
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    orderBy: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListInstancesResponseHttpRequest: ...
                 def list_next(
@@ -286,10 +287,10 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    returnPartialSuccess: bool = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    returnPartialSuccess: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListOperationsResponseHttpRequest: ...
                 def list_next(
@@ -305,12 +306,16 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: Runtime = ...,
-                    requestId: str = ...,
-                    runtimeId: str = ...,
+                    requestId: str | None = ...,
+                    runtimeId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
-                    self, *, name: str, requestId: str = ..., **kwargs: typing.Any
+                    self,
+                    *,
+                    name: str,
+                    requestId: str | None = ...,
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def diagnose(
                     self,
@@ -326,17 +331,17 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    options_requestedPolicyVersion: int = ...,
+                    options_requestedPolicyVersion: int | None = ...,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def list(
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    orderBy: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListRuntimesResponseHttpRequest: ...
                 def list_next(
@@ -356,8 +361,8 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: Runtime = ...,
-                    requestId: str = ...,
-                    updateMask: str = ...,
+                    requestId: str | None = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def refreshRuntimeTokenInternal(
@@ -431,7 +436,7 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: Schedule = ...,
-                    scheduleId: str = ...,
+                    scheduleId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
@@ -444,10 +449,10 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    orderBy: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListSchedulesResponseHttpRequest: ...
                 def list_next(
@@ -470,10 +475,10 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                extraLocationTypes: str | _list[str] = ...,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                extraLocationTypes: str | _list[str] | None = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListLocationsResponseHttpRequest: ...
             def list_next(

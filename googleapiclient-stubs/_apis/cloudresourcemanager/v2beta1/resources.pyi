@@ -16,7 +16,7 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class FoldersResource(googleapiclient.discovery.Resource):
         def create(
-            self, *, body: Folder = ..., parent: str = ..., **kwargs: typing.Any
+            self, *, body: Folder = ..., parent: str | None = ..., **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
         def delete(self, *, name: str, **kwargs: typing.Any) -> FolderHttpRequest: ...
         def get(self, *, name: str, **kwargs: typing.Any) -> FolderHttpRequest: ...
@@ -30,10 +30,10 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            pageSize: int = ...,
-            pageToken: str = ...,
-            parent: str = ...,
-            showDeleted: bool = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            parent: str | None = ...,
+            showDeleted: bool | None = ...,
             **kwargs: typing.Any,
         ) -> ListFoldersResponseHttpRequest: ...
         def list_next(
@@ -49,7 +49,7 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
             *,
             name: str,
             body: Folder = ...,
-            updateMask: str = ...,
+            updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> FolderHttpRequest: ...
         def search(

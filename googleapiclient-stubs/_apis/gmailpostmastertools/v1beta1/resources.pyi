@@ -24,14 +24,14 @@ class PostmasterToolsResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                endDate_day: int = ...,
-                endDate_month: int = ...,
-                endDate_year: int = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
-                startDate_day: int = ...,
-                startDate_month: int = ...,
-                startDate_year: int = ...,
+                endDate_day: int | None = ...,
+                endDate_month: int | None = ...,
+                endDate_year: int | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
+                startDate_day: int | None = ...,
+                startDate_month: int | None = ...,
+                startDate_year: int | None = ...,
                 **kwargs: typing.Any,
             ) -> ListTrafficStatsResponseHttpRequest: ...
             def list_next(
@@ -42,7 +42,11 @@ class PostmasterToolsResource(googleapiclient.discovery.Resource):
 
         def get(self, *, name: str, **kwargs: typing.Any) -> DomainHttpRequest: ...
         def list(
-            self, *, pageSize: int = ..., pageToken: str = ..., **kwargs: typing.Any
+            self,
+            *,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            **kwargs: typing.Any,
         ) -> ListDomainsResponseHttpRequest: ...
         def list_next(
             self,

@@ -56,8 +56,8 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                         projectId: str,
                         historyId: str,
                         executionId: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListEnvironmentsResponseHttpRequest: ...
                     def list_next(
@@ -106,8 +106,8 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                                 executionId: str,
                                 stepId: str,
                                 sampleSeriesId: str,
-                                pageSize: int = ...,
-                                pageToken: str = ...,
+                                pageSize: int | None = ...,
+                                pageToken: str | None = ...,
                                 **kwargs: typing.Any,
                             ) -> ListPerfSamplesResponseHttpRequest: ...
                             def list_next(
@@ -158,7 +158,8 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                                     "network",
                                     "graphics",
                                 ]
-                            ] = ...,
+                            ]
+                            | None = ...,
                             **kwargs: typing.Any,
                         ) -> ListPerfSampleSeriesResponseHttpRequest: ...
                         def samples(self) -> SamplesResource: ...
@@ -182,8 +183,8 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                             historyId: str,
                             executionId: str,
                             stepId: str,
-                            pageSize: int = ...,
-                            pageToken: str = ...,
+                            pageSize: int | None = ...,
+                            pageToken: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> ListTestCasesResponseHttpRequest: ...
                         def list_next(
@@ -201,8 +202,8 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                             historyId: str,
                             executionId: str,
                             stepId: str,
-                            pageSize: int = ...,
-                            pageToken: str = ...,
+                            pageSize: int | None = ...,
+                            pageToken: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> ListStepThumbnailsResponseHttpRequest: ...
                         def list_next(
@@ -212,7 +213,11 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                         ) -> ListStepThumbnailsResponseHttpRequest | None: ...
 
                     def accessibilityClusters(
-                        self, *, name: str, locale: str = ..., **kwargs: typing.Any
+                        self,
+                        *,
+                        name: str,
+                        locale: str | None = ...,
+                        **kwargs: typing.Any,
                     ) -> ListStepAccessibilityClustersResponseHttpRequest: ...
                     def create(
                         self,
@@ -221,7 +226,7 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                         historyId: str,
                         executionId: str,
                         body: Step = ...,
-                        requestId: str = ...,
+                        requestId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> StepHttpRequest: ...
                     def get(
@@ -248,8 +253,8 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                         projectId: str,
                         historyId: str,
                         executionId: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListStepsResponseHttpRequest: ...
                     def list_next(
@@ -265,7 +270,7 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                         executionId: str,
                         stepId: str,
                         body: Step = ...,
-                        requestId: str = ...,
+                        requestId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> StepHttpRequest: ...
                     def publishXunitXmlFiles(
@@ -289,7 +294,7 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                     projectId: str,
                     historyId: str,
                     body: Execution = ...,
-                    requestId: str = ...,
+                    requestId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ExecutionHttpRequest: ...
                 def get(
@@ -305,8 +310,8 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                     *,
                     projectId: str,
                     historyId: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListExecutionsResponseHttpRequest: ...
                 def list_next(
@@ -321,7 +326,7 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                     historyId: str,
                     executionId: str,
                     body: Execution = ...,
-                    requestId: str = ...,
+                    requestId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ExecutionHttpRequest: ...
                 def clusters(self) -> ClustersResource: ...
@@ -333,7 +338,7 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                 *,
                 projectId: str,
                 body: History = ...,
-                requestId: str = ...,
+                requestId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> HistoryHttpRequest: ...
             def get(
@@ -343,9 +348,9 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 projectId: str,
-                filterByName: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                filterByName: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListHistoriesResponseHttpRequest: ...
             def list_next(

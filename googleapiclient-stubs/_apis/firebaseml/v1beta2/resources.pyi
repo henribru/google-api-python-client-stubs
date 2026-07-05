@@ -31,9 +31,9 @@ class FirebaseMLResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListModelsResponseHttpRequest: ...
             def list_next(
@@ -46,7 +46,7 @@ class FirebaseMLResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: Model = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
 

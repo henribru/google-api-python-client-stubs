@@ -23,8 +23,9 @@ class StreetViewPublishResource(googleapiclient.discovery.Resource):
             self,
             *,
             photoId: str,
-            languageCode: str = ...,
-            view: typing_extensions.Literal["BASIC", "INCLUDE_DOWNLOAD_URL"] = ...,
+            languageCode: str | None = ...,
+            view: typing_extensions.Literal["BASIC", "INCLUDE_DOWNLOAD_URL"]
+            | None = ...,
             **kwargs: typing.Any,
         ) -> PhotoHttpRequest: ...
         def startUpload(
@@ -35,7 +36,7 @@ class StreetViewPublishResource(googleapiclient.discovery.Resource):
             *,
             id: str,
             body: Photo = ...,
-            updateMask: str = ...,
+            updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> PhotoHttpRequest: ...
 
@@ -47,7 +48,8 @@ class StreetViewPublishResource(googleapiclient.discovery.Resource):
             body: PhotoSequence = ...,
             inputType: typing_extensions.Literal[
                 "INPUT_TYPE_UNSPECIFIED", "VIDEO", "XDM"
-            ] = ...,
+            ]
+            | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def delete(
@@ -57,8 +59,9 @@ class StreetViewPublishResource(googleapiclient.discovery.Resource):
             self,
             *,
             sequenceId: str,
-            filter: str = ...,
-            view: typing_extensions.Literal["BASIC", "INCLUDE_DOWNLOAD_URL"] = ...,
+            filter: str | None = ...,
+            view: typing_extensions.Literal["BASIC", "INCLUDE_DOWNLOAD_URL"]
+            | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def startUpload(
@@ -70,9 +73,9 @@ class StreetViewPublishResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            filter: str = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
+            filter: str | None = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> ListPhotoSequencesResponseHttpRequest: ...
         def list_next(
@@ -89,9 +92,10 @@ class StreetViewPublishResource(googleapiclient.discovery.Resource):
         def batchGet(
             self,
             *,
-            languageCode: str = ...,
-            photoIds: str | _list[str] = ...,
-            view: typing_extensions.Literal["BASIC", "INCLUDE_DOWNLOAD_URL"] = ...,
+            languageCode: str | None = ...,
+            photoIds: str | _list[str] | None = ...,
+            view: typing_extensions.Literal["BASIC", "INCLUDE_DOWNLOAD_URL"]
+            | None = ...,
             **kwargs: typing.Any,
         ) -> BatchGetPhotosResponseHttpRequest: ...
         def batchUpdate(
@@ -100,11 +104,12 @@ class StreetViewPublishResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            filter: str = ...,
-            languageCode: str = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
-            view: typing_extensions.Literal["BASIC", "INCLUDE_DOWNLOAD_URL"] = ...,
+            filter: str | None = ...,
+            languageCode: str | None = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            view: typing_extensions.Literal["BASIC", "INCLUDE_DOWNLOAD_URL"]
+            | None = ...,
             **kwargs: typing.Any,
         ) -> ListPhotosResponseHttpRequest: ...
         def list_next(

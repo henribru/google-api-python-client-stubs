@@ -40,7 +40,7 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: GoogleFirestoreAdminV1BackupSchedule = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleFirestoreAdminV1BackupScheduleHttpRequest: ...
 
@@ -55,9 +55,9 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        filter: str = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        filter: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleFirestoreAdminV1ListFieldsResponseHttpRequest: ...
                     def list_next(
@@ -70,7 +70,7 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: GoogleFirestoreAdminV1Field = ...,
-                        updateMask: str = ...,
+                        updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
 
@@ -93,9 +93,9 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        filter: str = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        filter: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleFirestoreAdminV1ListIndexesResponseHttpRequest: ...
                     def list_next(
@@ -145,16 +145,16 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                     parent: str,
                     collectionId: str,
                     body: Document = ...,
-                    documentId: str = ...,
-                    mask_fieldPaths: str | _list[str] = ...,
+                    documentId: str | None = ...,
+                    mask_fieldPaths: str | _list[str] | None = ...,
                     **kwargs: typing.Any,
                 ) -> DocumentHttpRequest: ...
                 def delete(
                     self,
                     *,
                     name: str,
-                    currentDocument_exists: bool = ...,
-                    currentDocument_updateTime: str = ...,
+                    currentDocument_exists: bool | None = ...,
+                    currentDocument_updateTime: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def executePipeline(
@@ -168,9 +168,9 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    mask_fieldPaths: str | _list[str] = ...,
-                    readTime: str = ...,
-                    transaction: str = ...,
+                    mask_fieldPaths: str | _list[str] | None = ...,
+                    readTime: str | None = ...,
+                    transaction: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> DocumentHttpRequest: ...
                 def list(
@@ -178,13 +178,13 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     collectionId: str,
-                    mask_fieldPaths: str | _list[str] = ...,
-                    orderBy: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    readTime: str = ...,
-                    showMissing: bool = ...,
-                    transaction: str = ...,
+                    mask_fieldPaths: str | _list[str] | None = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    readTime: str | None = ...,
+                    showMissing: bool | None = ...,
+                    transaction: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListDocumentsResponseHttpRequest: ...
                 def list_next(
@@ -209,13 +209,13 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     collectionId: str,
-                    mask_fieldPaths: str | _list[str] = ...,
-                    orderBy: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    readTime: str = ...,
-                    showMissing: bool = ...,
-                    transaction: str = ...,
+                    mask_fieldPaths: str | _list[str] | None = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    readTime: str | None = ...,
+                    showMissing: bool | None = ...,
+                    transaction: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListDocumentsResponseHttpRequest: ...
                 def listDocuments_next(
@@ -247,10 +247,10 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: Document = ...,
-                    currentDocument_exists: bool = ...,
-                    currentDocument_updateTime: str = ...,
-                    mask_fieldPaths: str | _list[str] = ...,
-                    updateMask_fieldPaths: str | _list[str] = ...,
+                    currentDocument_exists: bool | None = ...,
+                    currentDocument_updateTime: str | None = ...,
+                    mask_fieldPaths: str | _list[str] | None = ...,
+                    updateMask_fieldPaths: str | _list[str] | None = ...,
                     **kwargs: typing.Any,
                 ) -> DocumentHttpRequest: ...
                 def rollback(
@@ -301,10 +301,10 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    returnPartialSuccess: bool = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    returnPartialSuccess: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
                 def list_next(
@@ -320,7 +320,7 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: GoogleFirestoreAdminV1UserCreds = ...,
-                    userCredsId: str = ...,
+                    userCredsId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleFirestoreAdminV1UserCredsHttpRequest: ...
                 def delete(
@@ -373,11 +373,11 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: GoogleFirestoreAdminV1Database = ...,
-                databaseId: str = ...,
+                databaseId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleLongrunningOperationHttpRequest: ...
             def delete(
-                self, *, name: str, etag: str = ..., **kwargs: typing.Any
+                self, *, name: str, etag: str | None = ..., **kwargs: typing.Any
             ) -> GoogleLongrunningOperationHttpRequest: ...
             def exportDocuments(
                 self,
@@ -397,14 +397,18 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any,
             ) -> GoogleLongrunningOperationHttpRequest: ...
             def list(
-                self, *, parent: str, showDeleted: bool = ..., **kwargs: typing.Any
+                self,
+                *,
+                parent: str,
+                showDeleted: bool | None = ...,
+                **kwargs: typing.Any,
             ) -> GoogleFirestoreAdminV1ListDatabasesResponseHttpRequest: ...
             def patch(
                 self,
                 *,
                 name: str,
                 body: GoogleFirestoreAdminV1Database = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleLongrunningOperationHttpRequest: ...
             def restore(
@@ -431,7 +435,7 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                     self, *, name: str, **kwargs: typing.Any
                 ) -> GoogleFirestoreAdminV1BackupHttpRequest: ...
                 def list(
-                    self, *, parent: str, filter: str = ..., **kwargs: typing.Any
+                    self, *, parent: str, filter: str | None = ..., **kwargs: typing.Any
                 ) -> GoogleFirestoreAdminV1ListBackupsResponseHttpRequest: ...
 
             def get(
@@ -441,10 +445,10 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                extraLocationTypes: str | _list[str] = ...,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                extraLocationTypes: str | _list[str] | None = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListLocationsResponseHttpRequest: ...
             def list_next(

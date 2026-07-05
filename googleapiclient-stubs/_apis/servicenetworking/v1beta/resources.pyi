@@ -29,7 +29,7 @@ class ServiceNetworkingResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def list(
-                self, *, parent: str, network: str = ..., **kwargs: typing.Any
+                self, *, parent: str, network: str | None = ..., **kwargs: typing.Any
             ) -> ListConnectionsResponseHttpRequest: ...
 
         def addSubnetwork(
@@ -43,8 +43,8 @@ class ServiceNetworkingResource(googleapiclient.discovery.Resource):
             *,
             name: str,
             body: GoogleCloudServicenetworkingV1betaConnection = ...,
-            force: bool = ...,
-            updateMask: str = ...,
+            force: bool | None = ...,
+            updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def connections(self) -> ConnectionsResource: ...

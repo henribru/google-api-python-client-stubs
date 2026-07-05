@@ -41,9 +41,9 @@ class AuthorizedBuyersMarketplaceResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListCuratedPackagesResponseHttpRequest: ...
             def list_next(
@@ -56,7 +56,7 @@ class AuthorizedBuyersMarketplaceResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: CuratedPackage = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> CuratedPackageHttpRequest: ...
 
@@ -86,8 +86,8 @@ class AuthorizedBuyersMarketplaceResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListDataSegmentsResponseHttpRequest: ...
             def list_next(
@@ -100,7 +100,7 @@ class AuthorizedBuyersMarketplaceResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: DataSegment = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> DataSegmentHttpRequest: ...
 
@@ -112,9 +112,9 @@ class AuthorizedBuyersMarketplaceResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            filter: str = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
+            filter: str | None = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> ListMediaPlannersResponseHttpRequest: ...
         def list_next(

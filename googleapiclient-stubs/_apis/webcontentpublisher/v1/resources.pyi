@@ -19,8 +19,8 @@ class WebContentPublisherResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            httpReferrer: str = ...,
-            uri: str = ...,
+            httpReferrer: str | None = ...,
+            uri: str | None = ...,
             **kwargs: typing.Any,
         ) -> CheckFreeAccessResponseHttpRequest: ...
 

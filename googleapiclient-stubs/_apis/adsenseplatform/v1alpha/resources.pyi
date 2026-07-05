@@ -28,8 +28,8 @@ class AdSensePlatformResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListPlatformChildSitesResponseHttpRequest: ...
                     def list_next(
@@ -42,7 +42,7 @@ class AdSensePlatformResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: PlatformChildSite = ...,
-                        updateMask: str = ...,
+                        updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> PlatformChildSiteHttpRequest: ...
 
@@ -57,8 +57,8 @@ class AdSensePlatformResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListPlatformGroupsResponseHttpRequest: ...
                 def list_next(
@@ -71,7 +71,7 @@ class AdSensePlatformResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: PlatformGroup = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> PlatformGroupHttpRequest: ...
 
@@ -82,8 +82,8 @@ class AdSensePlatformResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListPlatformsResponseHttpRequest: ...
             def list_next(
@@ -121,8 +121,8 @@ class AdSensePlatformResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListSitesResponseHttpRequest: ...
                 def list_next(
@@ -149,8 +149,8 @@ class AdSensePlatformResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListAccountsResponseHttpRequest: ...
             def list_next(
@@ -159,7 +159,11 @@ class AdSensePlatformResource(googleapiclient.discovery.Resource):
                 previous_response: ListAccountsResponse,
             ) -> ListAccountsResponseHttpRequest | None: ...
             def lookup(
-                self, *, parent: str, creationRequestId: str = ..., **kwargs: typing.Any
+                self,
+                *,
+                parent: str,
+                creationRequestId: str | None = ...,
+                **kwargs: typing.Any,
             ) -> LookupAccountResponseHttpRequest: ...
             def events(self) -> EventsResource: ...
             def sites(self) -> SitesResource: ...

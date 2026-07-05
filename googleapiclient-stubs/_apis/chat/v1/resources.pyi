@@ -23,9 +23,9 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            filter: str = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
+            filter: str | None = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> ListCustomEmojisResponseHttpRequest: ...
         def list_next(
@@ -59,25 +59,33 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: Membership = ...,
-                useAdminAccess: bool = ...,
+                useAdminAccess: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> MembershipHttpRequest: ...
             def delete(
-                self, *, name: str, useAdminAccess: bool = ..., **kwargs: typing.Any
+                self,
+                *,
+                name: str,
+                useAdminAccess: bool | None = ...,
+                **kwargs: typing.Any,
             ) -> MembershipHttpRequest: ...
             def get(
-                self, *, name: str, useAdminAccess: bool = ..., **kwargs: typing.Any
+                self,
+                *,
+                name: str,
+                useAdminAccess: bool | None = ...,
+                **kwargs: typing.Any,
             ) -> MembershipHttpRequest: ...
             def list(
                 self,
                 *,
                 parent: str,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
-                showGroups: bool = ...,
-                showInvited: bool = ...,
-                useAdminAccess: bool = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
+                showGroups: bool | None = ...,
+                showInvited: bool | None = ...,
+                useAdminAccess: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> ListMembershipsResponseHttpRequest: ...
             def list_next(
@@ -90,8 +98,8 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: Membership = ...,
-                updateMask: str = ...,
-                useAdminAccess: bool = ...,
+                updateMask: str | None = ...,
+                useAdminAccess: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> MembershipHttpRequest: ...
 
@@ -115,9 +123,9 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListReactionsResponseHttpRequest: ...
                 def list_next(
@@ -135,30 +143,32 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
                     "NOTIFICATION_TYPE_NONE",
                     "NOTIFICATION_TYPE_FORCE_NOTIFY",
                     "NOTIFICATION_TYPE_SILENT",
-                ] = ...,
-                messageId: str = ...,
+                ]
+                | None = ...,
+                messageId: str | None = ...,
                 messageReplyOption: typing_extensions.Literal[
                     "MESSAGE_REPLY_OPTION_UNSPECIFIED",
                     "REPLY_MESSAGE_FALLBACK_TO_NEW_THREAD",
                     "REPLY_MESSAGE_OR_FAIL",
-                ] = ...,
-                requestId: str = ...,
-                threadKey: str = ...,
+                ]
+                | None = ...,
+                requestId: str | None = ...,
+                threadKey: str | None = ...,
                 **kwargs: typing.Any,
             ) -> MessageHttpRequest: ...
             def delete(
-                self, *, name: str, force: bool = ..., **kwargs: typing.Any
+                self, *, name: str, force: bool | None = ..., **kwargs: typing.Any
             ) -> EmptyHttpRequest: ...
             def get(self, *, name: str, **kwargs: typing.Any) -> MessageHttpRequest: ...
             def list(
                 self,
                 *,
                 parent: str,
-                filter: str = ...,
-                orderBy: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
-                showDeleted: bool = ...,
+                filter: str | None = ...,
+                orderBy: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
+                showDeleted: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> ListMessagesResponseHttpRequest: ...
             def list_next(
@@ -171,8 +181,8 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: Message = ...,
-                allowMissing: bool = ...,
-                updateMask: str = ...,
+                allowMissing: bool | None = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> MessageHttpRequest: ...
             def update(
@@ -180,8 +190,8 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: Message = ...,
-                allowMissing: bool = ...,
-                updateMask: str = ...,
+                allowMissing: bool | None = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> MessageHttpRequest: ...
             def attachments(self) -> AttachmentsResource: ...
@@ -196,9 +206,9 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListSpaceEventsResponseHttpRequest: ...
             def list_next(
@@ -215,25 +225,30 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any,
         ) -> CompleteImportSpaceResponseHttpRequest: ...
         def create(
-            self, *, body: Space = ..., requestId: str = ..., **kwargs: typing.Any
+            self,
+            *,
+            body: Space = ...,
+            requestId: str | None = ...,
+            **kwargs: typing.Any,
         ) -> SpaceHttpRequest: ...
         def delete(
-            self, *, name: str, useAdminAccess: bool = ..., **kwargs: typing.Any
+            self, *, name: str, useAdminAccess: bool | None = ..., **kwargs: typing.Any
         ) -> EmptyHttpRequest: ...
         def findDirectMessage(
-            self, *, name: str = ..., **kwargs: typing.Any
+            self, *, name: str | None = ..., **kwargs: typing.Any
         ) -> SpaceHttpRequest: ...
         def findGroupChats(
             self,
             *,
-            pageSize: int = ...,
-            pageToken: str = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
             spaceView: typing_extensions.Literal[
                 "SPACE_VIEW_UNSPECIFIED",
                 "SPACE_VIEW_RESOURCE_NAME_ONLY",
                 "SPACE_VIEW_EXPANDED",
-            ] = ...,
-            users: str | _list[str] = ...,
+            ]
+            | None = ...,
+            users: str | _list[str] | None = ...,
             **kwargs: typing.Any,
         ) -> FindGroupChatsResponseHttpRequest: ...
         def findGroupChats_next(
@@ -242,14 +257,14 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
             previous_response: FindGroupChatsResponse,
         ) -> FindGroupChatsResponseHttpRequest | None: ...
         def get(
-            self, *, name: str, useAdminAccess: bool = ..., **kwargs: typing.Any
+            self, *, name: str, useAdminAccess: bool | None = ..., **kwargs: typing.Any
         ) -> SpaceHttpRequest: ...
         def list(
             self,
             *,
-            filter: str = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
+            filter: str | None = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> ListSpacesResponseHttpRequest: ...
         def list_next(
@@ -262,18 +277,18 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
             *,
             name: str,
             body: Space = ...,
-            updateMask: str = ...,
-            useAdminAccess: bool = ...,
+            updateMask: str | None = ...,
+            useAdminAccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> SpaceHttpRequest: ...
         def search(
             self,
             *,
-            orderBy: str = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
-            query: str = ...,
-            useAdminAccess: bool = ...,
+            orderBy: str | None = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            query: str | None = ...,
+            useAdminAccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> SearchSpacesResponseHttpRequest: ...
         def search_next(
@@ -317,7 +332,7 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: Availability = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> AvailabilityHttpRequest: ...
 
@@ -329,9 +344,9 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListSectionItemsResponseHttpRequest: ...
                 def list_next(
@@ -361,8 +376,8 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListSectionsResponseHttpRequest: ...
             def list_next(
@@ -375,7 +390,7 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: GoogleChatV1Section = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleChatV1SectionHttpRequest: ...
             def position(
@@ -399,7 +414,7 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: SpaceNotificationSetting = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> SpaceNotificationSettingHttpRequest: ...
 
@@ -417,7 +432,7 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: SpaceReadState = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> SpaceReadStateHttpRequest: ...
             def spaceNotificationSetting(self) -> SpaceNotificationSettingResource: ...

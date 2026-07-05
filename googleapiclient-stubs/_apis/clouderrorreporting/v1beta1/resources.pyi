@@ -21,12 +21,12 @@ class ClouderrorreportingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 projectName: str,
-                groupId: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
-                serviceFilter_resourceType: str = ...,
-                serviceFilter_service: str = ...,
-                serviceFilter_version: str = ...,
+                groupId: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
+                serviceFilter_resourceType: str | None = ...,
+                serviceFilter_service: str | None = ...,
+                serviceFilter_version: str | None = ...,
                 timeRange_period: typing_extensions.Literal[
                     "PERIOD_UNSPECIFIED",
                     "PERIOD_1_HOUR",
@@ -34,7 +34,8 @@ class ClouderrorreportingResource(googleapiclient.discovery.Resource):
                     "PERIOD_1_DAY",
                     "PERIOD_1_WEEK",
                     "PERIOD_30_DAYS",
-                ] = ...,
+                ]
+                | None = ...,
                 **kwargs: typing.Any,
             ) -> ListEventsResponseHttpRequest: ...
             def list_next(
@@ -60,21 +61,23 @@ class ClouderrorreportingResource(googleapiclient.discovery.Resource):
                     "ERROR_COUNT_ALIGNMENT_UNSPECIFIED",
                     "ALIGNMENT_EQUAL_ROUNDED",
                     "ALIGNMENT_EQUAL_AT_END",
-                ] = ...,
-                alignmentTime: str = ...,
-                groupId: str | _list[str] = ...,
+                ]
+                | None = ...,
+                alignmentTime: str | None = ...,
+                groupId: str | _list[str] | None = ...,
                 order: typing_extensions.Literal[
                     "GROUP_ORDER_UNSPECIFIED",
                     "COUNT_DESC",
                     "LAST_SEEN_DESC",
                     "CREATED_DESC",
                     "AFFECTED_USERS_DESC",
-                ] = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
-                serviceFilter_resourceType: str = ...,
-                serviceFilter_service: str = ...,
-                serviceFilter_version: str = ...,
+                ]
+                | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
+                serviceFilter_resourceType: str | None = ...,
+                serviceFilter_service: str | None = ...,
+                serviceFilter_version: str | None = ...,
                 timeRange_period: typing_extensions.Literal[
                     "PERIOD_UNSPECIFIED",
                     "PERIOD_1_HOUR",
@@ -82,8 +85,9 @@ class ClouderrorreportingResource(googleapiclient.discovery.Resource):
                     "PERIOD_1_DAY",
                     "PERIOD_1_WEEK",
                     "PERIOD_30_DAYS",
-                ] = ...,
-                timedCountDuration: str = ...,
+                ]
+                | None = ...,
+                timedCountDuration: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListGroupStatsResponseHttpRequest: ...
             def list_next(
@@ -109,12 +113,12 @@ class ClouderrorreportingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     projectName: str,
-                    groupId: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    serviceFilter_resourceType: str = ...,
-                    serviceFilter_service: str = ...,
-                    serviceFilter_version: str = ...,
+                    groupId: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    serviceFilter_resourceType: str | None = ...,
+                    serviceFilter_service: str | None = ...,
+                    serviceFilter_version: str | None = ...,
                     timeRange_period: typing_extensions.Literal[
                         "PERIOD_UNSPECIFIED",
                         "PERIOD_1_HOUR",
@@ -122,7 +126,8 @@ class ClouderrorreportingResource(googleapiclient.discovery.Resource):
                         "PERIOD_1_DAY",
                         "PERIOD_1_WEEK",
                         "PERIOD_30_DAYS",
-                    ] = ...,
+                    ]
+                    | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListEventsResponseHttpRequest: ...
                 def list_next(
@@ -141,21 +146,23 @@ class ClouderrorreportingResource(googleapiclient.discovery.Resource):
                         "ERROR_COUNT_ALIGNMENT_UNSPECIFIED",
                         "ALIGNMENT_EQUAL_ROUNDED",
                         "ALIGNMENT_EQUAL_AT_END",
-                    ] = ...,
-                    alignmentTime: str = ...,
-                    groupId: str | _list[str] = ...,
+                    ]
+                    | None = ...,
+                    alignmentTime: str | None = ...,
+                    groupId: str | _list[str] | None = ...,
                     order: typing_extensions.Literal[
                         "GROUP_ORDER_UNSPECIFIED",
                         "COUNT_DESC",
                         "LAST_SEEN_DESC",
                         "CREATED_DESC",
                         "AFFECTED_USERS_DESC",
-                    ] = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    serviceFilter_resourceType: str = ...,
-                    serviceFilter_service: str = ...,
-                    serviceFilter_version: str = ...,
+                    ]
+                    | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    serviceFilter_resourceType: str | None = ...,
+                    serviceFilter_service: str | None = ...,
+                    serviceFilter_version: str | None = ...,
                     timeRange_period: typing_extensions.Literal[
                         "PERIOD_UNSPECIFIED",
                         "PERIOD_1_HOUR",
@@ -163,8 +170,9 @@ class ClouderrorreportingResource(googleapiclient.discovery.Resource):
                         "PERIOD_1_DAY",
                         "PERIOD_1_WEEK",
                         "PERIOD_30_DAYS",
-                    ] = ...,
-                    timedCountDuration: str = ...,
+                    ]
+                    | None = ...,
+                    timedCountDuration: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListGroupStatsResponseHttpRequest: ...
                 def list_next(

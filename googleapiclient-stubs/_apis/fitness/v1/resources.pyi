@@ -24,8 +24,8 @@ class FitnessResource(googleapiclient.discovery.Resource):
                     *,
                     userId: str,
                     dataSourceId: str,
-                    limit: int = ...,
-                    pageToken: str = ...,
+                    limit: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListDataPointChangesResponseHttpRequest: ...
                 def list_next(
@@ -50,8 +50,8 @@ class FitnessResource(googleapiclient.discovery.Resource):
                     userId: str,
                     dataSourceId: str,
                     datasetId: str,
-                    limit: int = ...,
-                    pageToken: str = ...,
+                    limit: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> DatasetHttpRequest: ...
                 def get_next(
@@ -87,7 +87,7 @@ class FitnessResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 userId: str,
-                dataTypeName: str | _list[str] = ...,
+                dataTypeName: str | _list[str] | None = ...,
                 **kwargs: typing.Any,
             ) -> ListDataSourcesResponseHttpRequest: ...
             def update(
@@ -116,11 +116,11 @@ class FitnessResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 userId: str,
-                activityType: int | _list[int] = ...,
-                endTime: str = ...,
-                includeDeleted: bool = ...,
-                pageToken: str = ...,
-                startTime: str = ...,
+                activityType: int | _list[int] | None = ...,
+                endTime: str | None = ...,
+                includeDeleted: bool | None = ...,
+                pageToken: str | None = ...,
+                startTime: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListSessionsResponseHttpRequest: ...
             def list_next(

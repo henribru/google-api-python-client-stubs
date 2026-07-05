@@ -37,8 +37,8 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 accountId: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListAccountLabelsResponseHttpRequest: ...
             def list_next(
@@ -87,7 +87,7 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             *,
             merchantId: str,
             accountId: str,
-            overwrite: bool = ...,
+            overwrite: bool | None = ...,
             **kwargs: typing.Any,
         ) -> AccountsClaimWebsiteResponseHttpRequest: ...
         def custombatch(
@@ -98,7 +98,7 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             *,
             merchantId: str,
             accountId: str,
-            force: bool = ...,
+            force: bool | None = ...,
             **kwargs: typing.Any,
         ) -> googleapiclient.http.HttpRequest: ...
         def get(
@@ -106,7 +106,7 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             *,
             merchantId: str,
             accountId: str,
-            view: typing_extensions.Literal["MERCHANT", "CSS"] = ...,
+            view: typing_extensions.Literal["MERCHANT", "CSS"] | None = ...,
             **kwargs: typing.Any,
         ) -> AccountHttpRequest: ...
         def insert(
@@ -124,11 +124,11 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             self,
             *,
             merchantId: str,
-            label: str = ...,
-            maxResults: int = ...,
-            name: str = ...,
-            pageToken: str = ...,
-            view: typing_extensions.Literal["MERCHANT", "CSS"] = ...,
+            label: str | None = ...,
+            maxResults: int | None = ...,
+            name: str | None = ...,
+            pageToken: str | None = ...,
+            view: typing_extensions.Literal["MERCHANT", "CSS"] | None = ...,
             **kwargs: typing.Any,
         ) -> AccountsListResponseHttpRequest: ...
         def list_next(
@@ -141,8 +141,8 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             *,
             merchantId: str,
             accountId: str,
-            maxResults: int = ...,
-            pageToken: str = ...,
+            maxResults: int | None = ...,
+            pageToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> AccountsListLinksResponseHttpRequest: ...
         def listlinks_next(
@@ -196,17 +196,17 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             *,
             merchantId: str,
             accountId: str,
-            destinations: str | _list[str] = ...,
+            destinations: str | _list[str] | None = ...,
             **kwargs: typing.Any,
         ) -> AccountStatusHttpRequest: ...
         def list(
             self,
             *,
             merchantId: str,
-            destinations: str | _list[str] = ...,
-            maxResults: int = ...,
-            name: str = ...,
-            pageToken: str = ...,
+            destinations: str | _list[str] | None = ...,
+            maxResults: int | None = ...,
+            name: str | None = ...,
+            pageToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> AccountstatusesListResponseHttpRequest: ...
         def list_next(
@@ -227,8 +227,8 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             self,
             *,
             merchantId: str,
-            maxResults: int = ...,
-            pageToken: str = ...,
+            maxResults: int | None = ...,
+            pageToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> AccounttaxListResponseHttpRequest: ...
         def list_next(
@@ -260,8 +260,8 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             self,
             *,
             merchantId: str,
-            pageSize: int = ...,
-            pageToken: str = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> ListCollectionsResponseHttpRequest: ...
         def list_next(
@@ -279,8 +279,8 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             self,
             *,
             merchantId: str,
-            pageSize: int = ...,
-            pageToken: str = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> ListCollectionStatusesResponseHttpRequest: ...
         def list_next(
@@ -304,9 +304,9 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             self,
             *,
             merchantId: str,
-            pageSize: int = ...,
-            pageToken: str = ...,
-            showDeleted: bool = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            showDeleted: bool | None = ...,
             **kwargs: typing.Any,
         ) -> ListConversionSourcesResponseHttpRequest: ...
         def list_next(
@@ -320,7 +320,7 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             merchantId: str,
             conversionSourceId: str,
             body: ConversionSource = ...,
-            updateMask: str = ...,
+            updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> ConversionSourceHttpRequest: ...
         def undelete(
@@ -341,8 +341,8 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             self,
             *,
             cssGroupId: str,
-            pageSize: int = ...,
-            pageToken: str = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> ListCssesResponseHttpRequest: ...
         def list_next(
@@ -380,8 +380,8 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             self,
             *,
             merchantId: str,
-            maxResults: int = ...,
-            pageToken: str = ...,
+            maxResults: int | None = ...,
+            pageToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> DatafeedsListResponseHttpRequest: ...
         def list_next(
@@ -411,17 +411,17 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             *,
             merchantId: str,
             datafeedId: str,
-            country: str = ...,
-            feedLabel: str = ...,
-            language: str = ...,
+            country: str | None = ...,
+            feedLabel: str | None = ...,
+            language: str | None = ...,
             **kwargs: typing.Any,
         ) -> DatafeedStatusHttpRequest: ...
         def list(
             self,
             *,
             merchantId: str,
-            maxResults: int = ...,
-            pageToken: str = ...,
+            maxResults: int | None = ...,
+            pageToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> DatafeedstatusesListResponseHttpRequest: ...
         def list_next(
@@ -475,8 +475,8 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             self,
             *,
             merchantId: str,
-            maxResults: int = ...,
-            pageToken: str = ...,
+            maxResults: int | None = ...,
+            pageToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> LiasettingsListResponseHttpRequest: ...
         def list_next(
@@ -514,9 +514,9 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             *,
             merchantId: str,
             accountId: str,
-            country: str = ...,
-            lsfType: str = ...,
-            pickupTypes: str | _list[str] = ...,
+            country: str | None = ...,
+            lsfType: str | None = ...,
+            pickupTypes: str | _list[str] | None = ...,
             **kwargs: typing.Any,
         ) -> LiaOmnichannelExperienceHttpRequest: ...
         def setposdataprovider(
@@ -525,8 +525,8 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             merchantId: str,
             accountId: str,
             country: str,
-            posDataProviderId: str = ...,
-            posExternalAccountId: str = ...,
+            posDataProviderId: str | None = ...,
+            posExternalAccountId: str | None = ...,
             **kwargs: typing.Any,
         ) -> LiasettingsSetPosDataProviderResponseHttpRequest: ...
         def update(
@@ -559,8 +559,8 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             *,
             merchantId: str,
             body: RenderAccountIssuesRequestPayload = ...,
-            languageCode: str = ...,
-            timeZone: str = ...,
+            languageCode: str | None = ...,
+            timeZone: str | None = ...,
             **kwargs: typing.Any,
         ) -> RenderAccountIssuesResponseHttpRequest: ...
         def renderproductissues(
@@ -569,8 +569,8 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             merchantId: str,
             productId: str,
             body: RenderProductIssuesRequestPayload = ...,
-            languageCode: str = ...,
-            timeZone: str = ...,
+            languageCode: str | None = ...,
+            timeZone: str | None = ...,
             **kwargs: typing.Any,
         ) -> RenderProductIssuesResponseHttpRequest: ...
         def triggeraction(
@@ -578,7 +578,7 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             *,
             merchantId: str,
             body: TriggerActionPayload = ...,
-            languageCode: str = ...,
+            languageCode: str | None = ...,
             **kwargs: typing.Any,
         ) -> TriggerActionResponseHttpRequest: ...
 
@@ -667,7 +667,7 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             *,
             merchantId: str,
             productId: str,
-            feedId: str = ...,
+            feedId: str | None = ...,
             **kwargs: typing.Any,
         ) -> googleapiclient.http.HttpRequest: ...
         def get(
@@ -678,15 +678,15 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             *,
             merchantId: str,
             body: Product = ...,
-            feedId: str = ...,
+            feedId: str | None = ...,
             **kwargs: typing.Any,
         ) -> ProductHttpRequest: ...
         def list(
             self,
             *,
             merchantId: str,
-            maxResults: int = ...,
-            pageToken: str = ...,
+            maxResults: int | None = ...,
+            pageToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> ProductsListResponseHttpRequest: ...
         def list_next(
@@ -700,7 +700,7 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             merchantId: str,
             productId: str,
             body: Product = ...,
-            updateMask: str = ...,
+            updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> ProductHttpRequest: ...
 
@@ -714,16 +714,16 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             *,
             merchantId: str,
             productId: str,
-            destinations: str | _list[str] = ...,
+            destinations: str | _list[str] | None = ...,
             **kwargs: typing.Any,
         ) -> ProductStatusHttpRequest: ...
         def list(
             self,
             *,
             merchantId: str,
-            destinations: str | _list[str] = ...,
-            maxResults: int = ...,
-            pageToken: str = ...,
+            destinations: str | _list[str] | None = ...,
+            maxResults: int | None = ...,
+            pageToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> ProductstatusesListResponseHttpRequest: ...
         def list_next(
@@ -744,10 +744,10 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             self,
             *,
             merchantId: str,
-            countryCode: str = ...,
-            languageCode: str = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
+            countryCode: str | None = ...,
+            languageCode: str | None = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> ListPromotionResponseHttpRequest: ...
         def list_next(
@@ -775,8 +775,8 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             self,
             *,
             merchantId: str,
-            pageSize: int = ...,
-            pageToken: str = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> ListMethodQuotasResponseHttpRequest: ...
         def list_next(
@@ -791,8 +791,8 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             self,
             *,
             merchantId: str,
-            allowedTag: str | _list[str] = ...,
-            languageCode: str = ...,
+            allowedTag: str | _list[str] | None = ...,
+            languageCode: str | None = ...,
             **kwargs: typing.Any,
         ) -> GenerateRecommendationsResponseHttpRequest: ...
         def reportInteraction(
@@ -827,7 +827,7 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             *,
             merchantId: str,
             body: Region = ...,
-            regionId: str = ...,
+            regionId: str | None = ...,
             **kwargs: typing.Any,
         ) -> RegionHttpRequest: ...
         def delete(
@@ -840,8 +840,8 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             self,
             *,
             merchantId: str,
-            pageSize: int = ...,
-            pageToken: str = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> ListRegionsResponseHttpRequest: ...
         def list_next(
@@ -855,7 +855,7 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             merchantId: str,
             regionId: str,
             body: Region = ...,
-            updateMask: str = ...,
+            updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> RegionHttpRequest: ...
 
@@ -921,8 +921,8 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             self,
             *,
             merchantId: str,
-            maxResults: int = ...,
-            pageToken: str = ...,
+            maxResults: int | None = ...,
+            pageToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> ShippingsettingsListResponseHttpRequest: ...
         def list_next(

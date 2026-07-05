@@ -29,7 +29,7 @@ class ManagedKafkaResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: Acl = ...,
-                        aclId: str = ...,
+                        aclId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> AclHttpRequest: ...
                     def delete(
@@ -42,8 +42,8 @@ class ManagedKafkaResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListAclsResponseHttpRequest: ...
                     def list_next(
@@ -56,7 +56,7 @@ class ManagedKafkaResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: Acl = ...,
-                        updateMask: str = ...,
+                        updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> AclHttpRequest: ...
                     def removeAclEntry(
@@ -75,14 +75,15 @@ class ManagedKafkaResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        filter: str = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        filter: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         view: typing_extensions.Literal[
                             "CONSUMER_GROUP_VIEW_UNSPECIFIED",
                             "CONSUMER_GROUP_VIEW_BASIC",
                             "CONSUMER_GROUP_VIEW_FULL",
-                        ] = ...,
+                        ]
+                        | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListConsumerGroupsResponseHttpRequest: ...
                     def list_next(
@@ -95,7 +96,7 @@ class ManagedKafkaResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: ConsumerGroup = ...,
-                        updateMask: str = ...,
+                        updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ConsumerGroupHttpRequest: ...
 
@@ -106,7 +107,7 @@ class ManagedKafkaResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: Topic = ...,
-                        topicId: str = ...,
+                        topicId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> TopicHttpRequest: ...
                     def delete(
@@ -119,8 +120,8 @@ class ManagedKafkaResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListTopicsResponseHttpRequest: ...
                     def list_next(
@@ -133,7 +134,7 @@ class ManagedKafkaResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: Topic = ...,
-                        updateMask: str = ...,
+                        updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> TopicHttpRequest: ...
 
@@ -142,12 +143,16 @@ class ManagedKafkaResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: Cluster = ...,
-                    clusterId: str = ...,
-                    requestId: str = ...,
+                    clusterId: str | None = ...,
+                    requestId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
-                    self, *, name: str, requestId: str = ..., **kwargs: typing.Any
+                    self,
+                    *,
+                    name: str,
+                    requestId: str | None = ...,
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def get(
                     self,
@@ -157,17 +162,18 @@ class ManagedKafkaResource(googleapiclient.discovery.Resource):
                         "CLUSTER_VIEW_UNSPECIFIED",
                         "CLUSTER_VIEW_BASIC",
                         "CLUSTER_VIEW_FULL",
-                    ] = ...,
+                    ]
+                    | None = ...,
                     **kwargs: typing.Any,
                 ) -> ClusterHttpRequest: ...
                 def list(
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    orderBy: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListClustersResponseHttpRequest: ...
                 def list_next(
@@ -180,8 +186,8 @@ class ManagedKafkaResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: Cluster = ...,
-                    requestId: str = ...,
-                    updateMask: str = ...,
+                    requestId: str | None = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def acls(self) -> AclsResource: ...
@@ -197,7 +203,7 @@ class ManagedKafkaResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: Connector = ...,
-                        connectorId: str = ...,
+                        connectorId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ConnectorHttpRequest: ...
                     def delete(
@@ -210,8 +216,8 @@ class ManagedKafkaResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListConnectorsResponseHttpRequest: ...
                     def list_next(
@@ -224,7 +230,7 @@ class ManagedKafkaResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: Connector = ...,
-                        updateMask: str = ...,
+                        updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ConnectorHttpRequest: ...
                     def pause(
@@ -261,12 +267,16 @@ class ManagedKafkaResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: ConnectCluster = ...,
-                    connectClusterId: str = ...,
-                    requestId: str = ...,
+                    connectClusterId: str | None = ...,
+                    requestId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
-                    self, *, name: str, requestId: str = ..., **kwargs: typing.Any
+                    self,
+                    *,
+                    name: str,
+                    requestId: str | None = ...,
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
@@ -275,10 +285,10 @@ class ManagedKafkaResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    orderBy: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListConnectClustersResponseHttpRequest: ...
                 def list_next(
@@ -291,8 +301,8 @@ class ManagedKafkaResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: ConnectCluster = ...,
-                    requestId: str = ...,
-                    updateMask: str = ...,
+                    requestId: str | None = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def connectors(self) -> ConnectorsResource: ...
@@ -316,10 +326,10 @@ class ManagedKafkaResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    returnPartialSuccess: bool = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    returnPartialSuccess: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListOperationsResponseHttpRequest: ...
                 def list_next(
@@ -349,7 +359,7 @@ class ManagedKafkaResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        defaultToGlobal: bool = ...,
+                        defaultToGlobal: bool | None = ...,
                         **kwargs: typing.Any,
                     ) -> SchemaConfigHttpRequest: ...
                     def update(
@@ -381,7 +391,7 @@ class ManagedKafkaResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             name: str,
-                            defaultToGlobal: bool = ...,
+                            defaultToGlobal: bool | None = ...,
                             **kwargs: typing.Any,
                         ) -> SchemaConfigHttpRequest: ...
                         def update(
@@ -416,8 +426,8 @@ class ManagedKafkaResource(googleapiclient.discovery.Resource):
                                 self,
                                 *,
                                 parent: str,
-                                deleted: bool = ...,
-                                subject: str = ...,
+                                deleted: bool | None = ...,
+                                subject: str | None = ...,
                                 **kwargs: typing.Any,
                             ) -> HttpBodyHttpRequest: ...
 
@@ -433,16 +443,24 @@ class ManagedKafkaResource(googleapiclient.discovery.Resource):
                                 self,
                                 *,
                                 parent: str,
-                                deleted: bool = ...,
-                                subject: str = ...,
+                                deleted: bool | None = ...,
+                                subject: str | None = ...,
                                 **kwargs: typing.Any,
                             ) -> HttpBodyHttpRequest: ...
 
                         def get(
-                            self, *, name: str, subject: str = ..., **kwargs: typing.Any
+                            self,
+                            *,
+                            name: str,
+                            subject: str | None = ...,
+                            **kwargs: typing.Any,
                         ) -> SchemaHttpRequest: ...
                         def getSchema(
-                            self, *, name: str, subject: str = ..., **kwargs: typing.Any
+                            self,
+                            *,
+                            name: str,
+                            subject: str | None = ...,
+                            **kwargs: typing.Any,
                         ) -> HttpBodyHttpRequest: ...
                         def subjects(self) -> SubjectsResource: ...
                         def types(self) -> TypesResource: ...
@@ -471,28 +489,28 @@ class ManagedKafkaResource(googleapiclient.discovery.Resource):
                                 self,
                                 *,
                                 name: str,
-                                permanent: bool = ...,
+                                permanent: bool | None = ...,
                                 **kwargs: typing.Any,
                             ) -> HttpBodyHttpRequest: ...
                             def get(
                                 self,
                                 *,
                                 name: str,
-                                deleted: bool = ...,
+                                deleted: bool | None = ...,
                                 **kwargs: typing.Any,
                             ) -> SchemaVersionHttpRequest: ...
                             def getSchema(
                                 self,
                                 *,
                                 name: str,
-                                deleted: bool = ...,
+                                deleted: bool | None = ...,
                                 **kwargs: typing.Any,
                             ) -> HttpBodyHttpRequest: ...
                             def list(
                                 self,
                                 *,
                                 parent: str,
-                                deleted: bool = ...,
+                                deleted: bool | None = ...,
                                 **kwargs: typing.Any,
                             ) -> HttpBodyHttpRequest: ...
                             def referencedby(self) -> ReferencedbyResource: ...
@@ -501,15 +519,15 @@ class ManagedKafkaResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             name: str,
-                            permanent: bool = ...,
+                            permanent: bool | None = ...,
                             **kwargs: typing.Any,
                         ) -> HttpBodyHttpRequest: ...
                         def list(
                             self,
                             *,
                             parent: str,
-                            deleted: bool = ...,
-                            subjectPrefix: str = ...,
+                            deleted: bool | None = ...,
+                            subjectPrefix: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> HttpBodyHttpRequest: ...
                         def lookupVersion(
@@ -557,8 +575,8 @@ class ManagedKafkaResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             parent: str,
-                            deleted: bool = ...,
-                            subject: str = ...,
+                            deleted: bool | None = ...,
+                            subject: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> HttpBodyHttpRequest: ...
 
@@ -574,16 +592,24 @@ class ManagedKafkaResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             parent: str,
-                            deleted: bool = ...,
-                            subject: str = ...,
+                            deleted: bool | None = ...,
+                            subject: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> HttpBodyHttpRequest: ...
 
                     def get(
-                        self, *, name: str, subject: str = ..., **kwargs: typing.Any
+                        self,
+                        *,
+                        name: str,
+                        subject: str | None = ...,
+                        **kwargs: typing.Any,
                     ) -> SchemaHttpRequest: ...
                     def getSchema(
-                        self, *, name: str, subject: str = ..., **kwargs: typing.Any
+                        self,
+                        *,
+                        name: str,
+                        subject: str | None = ...,
+                        **kwargs: typing.Any,
                     ) -> HttpBodyHttpRequest: ...
                     def subjects(self) -> SubjectsResource: ...
                     def types(self) -> TypesResource: ...
@@ -610,41 +636,45 @@ class ManagedKafkaResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             name: str,
-                            permanent: bool = ...,
+                            permanent: bool | None = ...,
                             **kwargs: typing.Any,
                         ) -> HttpBodyHttpRequest: ...
                         def get(
                             self,
                             *,
                             name: str,
-                            deleted: bool = ...,
+                            deleted: bool | None = ...,
                             **kwargs: typing.Any,
                         ) -> SchemaVersionHttpRequest: ...
                         def getSchema(
                             self,
                             *,
                             name: str,
-                            deleted: bool = ...,
+                            deleted: bool | None = ...,
                             **kwargs: typing.Any,
                         ) -> HttpBodyHttpRequest: ...
                         def list(
                             self,
                             *,
                             parent: str,
-                            deleted: bool = ...,
+                            deleted: bool | None = ...,
                             **kwargs: typing.Any,
                         ) -> HttpBodyHttpRequest: ...
                         def referencedby(self) -> ReferencedbyResource: ...
 
                     def delete(
-                        self, *, name: str, permanent: bool = ..., **kwargs: typing.Any
+                        self,
+                        *,
+                        name: str,
+                        permanent: bool | None = ...,
+                        **kwargs: typing.Any,
                     ) -> HttpBodyHttpRequest: ...
                     def list(
                         self,
                         *,
                         parent: str,
-                        deleted: bool = ...,
-                        subjectPrefix: str = ...,
+                        deleted: bool | None = ...,
+                        subjectPrefix: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> HttpBodyHttpRequest: ...
                     def lookupVersion(
@@ -677,7 +707,8 @@ class ManagedKafkaResource(googleapiclient.discovery.Resource):
                         "SCHEMA_REGISTRY_VIEW_UNSPECIFIED",
                         "SCHEMA_REGISTRY_VIEW_BASIC",
                         "SCHEMA_REGISTRY_VIEW_FULL",
-                    ] = ...,
+                    ]
+                    | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListSchemaRegistriesResponseHttpRequest: ...
                 def compatibility(self) -> CompatibilityResource: ...
@@ -694,10 +725,10 @@ class ManagedKafkaResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                extraLocationTypes: str | _list[str] = ...,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                extraLocationTypes: str | _list[str] | None = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListLocationsResponseHttpRequest: ...
             def list_next(

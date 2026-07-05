@@ -18,13 +18,13 @@ class KgsearchResource(googleapiclient.discovery.Resource):
         def search(
             self,
             *,
-            ids: str | _list[str] = ...,
-            indent: bool = ...,
-            languages: str | _list[str] = ...,
-            limit: int = ...,
-            prefix: bool = ...,
-            query: str = ...,
-            types: str | _list[str] = ...,
+            ids: str | _list[str] | None = ...,
+            indent: bool | None = ...,
+            languages: str | _list[str] | None = ...,
+            limit: int | None = ...,
+            prefix: bool | None = ...,
+            query: str | None = ...,
+            types: str | _list[str] | None = ...,
             **kwargs: typing.Any,
         ) -> SearchResponseHttpRequest: ...
 

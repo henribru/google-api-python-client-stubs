@@ -64,13 +64,14 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            accountId: int | _list[int] = ...,
-            buyerCreativeId: str | _list[str] = ...,
-            maxResults: int = ...,
-            pageToken: str = ...,
+            accountId: int | _list[int] | None = ...,
+            buyerCreativeId: str | _list[str] | None = ...,
+            maxResults: int | None = ...,
+            pageToken: str | None = ...,
             statusFilter: typing_extensions.Literal[
                 "approved", "disapproved", "not_checked"
-            ] = ...,
+            ]
+            | None = ...,
             **kwargs: typing.Any,
         ) -> CreativesListHttpRequest: ...
         def list_next(
@@ -92,8 +93,8 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
             accountId: str,
             endDateTime: str,
             startDateTime: str,
-            maxResults: int = ...,
-            pageToken: str = ...,
+            maxResults: int | None = ...,
+            pageToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> PerformanceReportListHttpRequest: ...
 

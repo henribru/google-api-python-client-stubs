@@ -43,8 +43,8 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListAutoscalingPoliciesResponseHttpRequest: ...
                 def list_next(
@@ -79,53 +79,61 @@ class DataprocResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class SparkApplicationsResource(googleapiclient.discovery.Resource):
                     def access(
-                        self, *, name: str, parent: str = ..., **kwargs: typing.Any
+                        self,
+                        *,
+                        name: str,
+                        parent: str | None = ...,
+                        **kwargs: typing.Any,
                     ) -> AccessSparkApplicationResponseHttpRequest: ...
                     def accessEnvironmentInfo(
-                        self, *, name: str, parent: str = ..., **kwargs: typing.Any
+                        self,
+                        *,
+                        name: str,
+                        parent: str | None = ...,
+                        **kwargs: typing.Any,
                     ) -> AccessSparkApplicationEnvironmentInfoResponseHttpRequest: ...
                     def accessJob(
                         self,
                         *,
                         name: str,
-                        jobId: str = ...,
-                        parent: str = ...,
+                        jobId: str | None = ...,
+                        parent: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> AccessSparkApplicationJobResponseHttpRequest: ...
                     def accessSqlPlan(
                         self,
                         *,
                         name: str,
-                        executionId: str = ...,
-                        parent: str = ...,
+                        executionId: str | None = ...,
+                        parent: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> AccessSparkApplicationSqlSparkPlanGraphResponseHttpRequest: ...
                     def accessSqlQuery(
                         self,
                         *,
                         name: str,
-                        details: bool = ...,
-                        executionId: str = ...,
-                        parent: str = ...,
-                        planDescription: bool = ...,
+                        details: bool | None = ...,
+                        executionId: str | None = ...,
+                        parent: str | None = ...,
+                        planDescription: bool | None = ...,
                         **kwargs: typing.Any,
                     ) -> AccessSparkApplicationSqlQueryResponseHttpRequest: ...
                     def accessStageAttempt(
                         self,
                         *,
                         name: str,
-                        parent: str = ...,
-                        stageAttemptId: int = ...,
-                        stageId: str = ...,
-                        summaryMetricsMask: str = ...,
+                        parent: str | None = ...,
+                        stageAttemptId: int | None = ...,
+                        stageId: str | None = ...,
+                        summaryMetricsMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> AccessSparkApplicationStageAttemptResponseHttpRequest: ...
                     def accessStageRddGraph(
                         self,
                         *,
                         name: str,
-                        parent: str = ...,
-                        stageId: str = ...,
+                        parent: str | None = ...,
+                        stageId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> (
                         AccessSparkApplicationStageRddOperationGraphResponseHttpRequest
@@ -138,13 +146,14 @@ class DataprocResource(googleapiclient.discovery.Resource):
                             "APPLICATION_STATUS_UNSPECIFIED",
                             "APPLICATION_STATUS_RUNNING",
                             "APPLICATION_STATUS_COMPLETED",
-                        ] = ...,
-                        maxEndTime: str = ...,
-                        maxTime: str = ...,
-                        minEndTime: str = ...,
-                        minTime: str = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        ]
+                        | None = ...,
+                        maxEndTime: str | None = ...,
+                        maxTime: str | None = ...,
+                        minEndTime: str | None = ...,
+                        minTime: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> SearchSparkApplicationsResponseHttpRequest: ...
                     def search_next(
@@ -156,11 +165,11 @@ class DataprocResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
-                        parent: str = ...,
-                        stageAttemptId: int = ...,
-                        stageId: str = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
+                        parent: str | None = ...,
+                        stageAttemptId: int | None = ...,
+                        stageId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> (
                         SearchSparkApplicationExecutorStageSummaryResponseHttpRequest
@@ -181,10 +190,11 @@ class DataprocResource(googleapiclient.discovery.Resource):
                             "EXECUTOR_STATUS_UNSPECIFIED",
                             "EXECUTOR_STATUS_ACTIVE",
                             "EXECUTOR_STATUS_DEAD",
-                        ] = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
-                        parent: str = ...,
+                        ]
+                        | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
+                        parent: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> SearchSparkApplicationExecutorsResponseHttpRequest: ...
                     def searchExecutors_next(
@@ -202,10 +212,11 @@ class DataprocResource(googleapiclient.discovery.Resource):
                             "JOB_EXECUTION_STATUS_SUCCEEDED",
                             "JOB_EXECUTION_STATUS_FAILED",
                             "JOB_EXECUTION_STATUS_UNKNOWN",
-                        ] = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
-                        parent: str = ...,
+                        ]
+                        | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
+                        parent: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> SearchSparkApplicationJobsResponseHttpRequest: ...
                     def searchJobs_next(
@@ -217,11 +228,11 @@ class DataprocResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        details: bool = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
-                        parent: str = ...,
-                        planDescription: bool = ...,
+                        details: bool | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
+                        parent: str | None = ...,
+                        planDescription: bool | None = ...,
                         **kwargs: typing.Any,
                     ) -> SearchSparkApplicationSqlQueriesResponseHttpRequest: ...
                     def searchSqlQueries_next(
@@ -233,12 +244,12 @@ class DataprocResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
-                        parent: str = ...,
-                        sortRuntime: bool = ...,
-                        stageAttemptId: int = ...,
-                        stageId: str = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
+                        parent: str | None = ...,
+                        sortRuntime: bool | None = ...,
+                        stageAttemptId: int | None = ...,
+                        stageId: str | None = ...,
                         taskStatus: typing_extensions.Literal[
                             "TASK_STATUS_UNSPECIFIED",
                             "TASK_STATUS_RUNNING",
@@ -246,7 +257,8 @@ class DataprocResource(googleapiclient.discovery.Resource):
                             "TASK_STATUS_FAILED",
                             "TASK_STATUS_KILLED",
                             "TASK_STATUS_PENDING",
-                        ] = ...,
+                        ]
+                        | None = ...,
                         **kwargs: typing.Any,
                     ) -> SearchSparkApplicationStageAttemptTasksResponseHttpRequest: ...
                     def searchStageAttemptTasks_next(
@@ -261,11 +273,11 @@ class DataprocResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
-                        parent: str = ...,
-                        stageId: str = ...,
-                        summaryMetricsMask: str = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
+                        parent: str | None = ...,
+                        stageId: str | None = ...,
+                        summaryMetricsMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> SearchSparkApplicationStageAttemptsResponseHttpRequest: ...
                     def searchStageAttempts_next(
@@ -279,9 +291,9 @@ class DataprocResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
-                        parent: str = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
+                        parent: str | None = ...,
                         stageStatus: typing_extensions.Literal[
                             "STAGE_STATUS_UNSPECIFIED",
                             "STAGE_STATUS_ACTIVE",
@@ -289,8 +301,9 @@ class DataprocResource(googleapiclient.discovery.Resource):
                             "STAGE_STATUS_FAILED",
                             "STAGE_STATUS_PENDING",
                             "STAGE_STATUS_SKIPPED",
-                        ] = ...,
-                        summaryMetricsMask: str = ...,
+                        ]
+                        | None = ...,
+                        summaryMetricsMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> SearchSparkApplicationStagesResponseHttpRequest: ...
                     def searchStages_next(
@@ -299,24 +312,36 @@ class DataprocResource(googleapiclient.discovery.Resource):
                         previous_response: SearchSparkApplicationStagesResponse,
                     ) -> SearchSparkApplicationStagesResponseHttpRequest | None: ...
                     def summarizeExecutors(
-                        self, *, name: str, parent: str = ..., **kwargs: typing.Any
+                        self,
+                        *,
+                        name: str,
+                        parent: str | None = ...,
+                        **kwargs: typing.Any,
                     ) -> SummarizeSparkApplicationExecutorsResponseHttpRequest: ...
                     def summarizeJobs(
-                        self, *, name: str, parent: str = ..., **kwargs: typing.Any
+                        self,
+                        *,
+                        name: str,
+                        parent: str | None = ...,
+                        **kwargs: typing.Any,
                     ) -> SummarizeSparkApplicationJobsResponseHttpRequest: ...
                     def summarizeStageAttemptTasks(
                         self,
                         *,
                         name: str,
-                        parent: str = ...,
-                        stageAttemptId: int = ...,
-                        stageId: str = ...,
+                        parent: str | None = ...,
+                        stageAttemptId: int | None = ...,
+                        stageId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> (
                         SummarizeSparkApplicationStageAttemptTasksResponseHttpRequest
                     ): ...
                     def summarizeStages(
-                        self, *, name: str, parent: str = ..., **kwargs: typing.Any
+                        self,
+                        *,
+                        name: str,
+                        parent: str | None = ...,
+                        **kwargs: typing.Any,
                     ) -> SummarizeSparkApplicationStagesResponseHttpRequest: ...
                     def write(
                         self,
@@ -338,8 +363,8 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: Batch = ...,
-                    batchId: str = ...,
-                    requestId: str = ...,
+                    batchId: str | None = ...,
+                    requestId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
@@ -352,10 +377,10 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    orderBy: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListBatchesResponseHttpRequest: ...
                 def list_next(
@@ -380,10 +405,10 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    returnPartialSuccess: bool = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    returnPartialSuccess: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListOperationsResponseHttpRequest: ...
                 def list_next(
@@ -411,9 +436,9 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListSessionTemplatesResponseHttpRequest: ...
                 def list_next(
@@ -434,10 +459,18 @@ class DataprocResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class SparkApplicationsResource(googleapiclient.discovery.Resource):
                     def access(
-                        self, *, name: str, parent: str = ..., **kwargs: typing.Any
+                        self,
+                        *,
+                        name: str,
+                        parent: str | None = ...,
+                        **kwargs: typing.Any,
                     ) -> AccessSessionSparkApplicationResponseHttpRequest: ...
                     def accessEnvironmentInfo(
-                        self, *, name: str, parent: str = ..., **kwargs: typing.Any
+                        self,
+                        *,
+                        name: str,
+                        parent: str | None = ...,
+                        **kwargs: typing.Any,
                     ) -> (
                         AccessSessionSparkApplicationEnvironmentInfoResponseHttpRequest
                     ): ...
@@ -445,36 +478,36 @@ class DataprocResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        jobId: str = ...,
-                        parent: str = ...,
+                        jobId: str | None = ...,
+                        parent: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> AccessSessionSparkApplicationJobResponseHttpRequest: ...
                     def accessSqlPlan(
                         self,
                         *,
                         name: str,
-                        executionId: str = ...,
-                        parent: str = ...,
+                        executionId: str | None = ...,
+                        parent: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> AccessSessionSparkApplicationSqlSparkPlanGraphResponseHttpRequest: ...
                     def accessSqlQuery(
                         self,
                         *,
                         name: str,
-                        details: bool = ...,
-                        executionId: str = ...,
-                        parent: str = ...,
-                        planDescription: bool = ...,
+                        details: bool | None = ...,
+                        executionId: str | None = ...,
+                        parent: str | None = ...,
+                        planDescription: bool | None = ...,
                         **kwargs: typing.Any,
                     ) -> AccessSessionSparkApplicationSqlQueryResponseHttpRequest: ...
                     def accessStageAttempt(
                         self,
                         *,
                         name: str,
-                        parent: str = ...,
-                        stageAttemptId: int = ...,
-                        stageId: str = ...,
-                        summaryMetricsMask: str = ...,
+                        parent: str | None = ...,
+                        stageAttemptId: int | None = ...,
+                        stageId: str | None = ...,
+                        summaryMetricsMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> (
                         AccessSessionSparkApplicationStageAttemptResponseHttpRequest
@@ -483,8 +516,8 @@ class DataprocResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        parent: str = ...,
-                        stageId: str = ...,
+                        parent: str | None = ...,
+                        stageId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> AccessSessionSparkApplicationStageRddOperationGraphResponseHttpRequest: ...
                     def search(
@@ -495,13 +528,14 @@ class DataprocResource(googleapiclient.discovery.Resource):
                             "APPLICATION_STATUS_UNSPECIFIED",
                             "APPLICATION_STATUS_RUNNING",
                             "APPLICATION_STATUS_COMPLETED",
-                        ] = ...,
-                        maxEndTime: str = ...,
-                        maxTime: str = ...,
-                        minEndTime: str = ...,
-                        minTime: str = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        ]
+                        | None = ...,
+                        maxEndTime: str | None = ...,
+                        maxTime: str | None = ...,
+                        minEndTime: str | None = ...,
+                        minTime: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> SearchSessionSparkApplicationsResponseHttpRequest: ...
                     def search_next(
@@ -513,11 +547,11 @@ class DataprocResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
-                        parent: str = ...,
-                        stageAttemptId: int = ...,
-                        stageId: str = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
+                        parent: str | None = ...,
+                        stageAttemptId: int | None = ...,
+                        stageId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> SearchSessionSparkApplicationExecutorStageSummaryResponseHttpRequest: ...
                     def searchExecutorStageSummary_next(
@@ -536,10 +570,11 @@ class DataprocResource(googleapiclient.discovery.Resource):
                             "EXECUTOR_STATUS_UNSPECIFIED",
                             "EXECUTOR_STATUS_ACTIVE",
                             "EXECUTOR_STATUS_DEAD",
-                        ] = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
-                        parent: str = ...,
+                        ]
+                        | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
+                        parent: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> SearchSessionSparkApplicationExecutorsResponseHttpRequest: ...
                     def searchExecutors_next(
@@ -553,17 +588,18 @@ class DataprocResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        jobIds: str | _list[str] = ...,
+                        jobIds: str | _list[str] | None = ...,
                         jobStatus: typing_extensions.Literal[
                             "JOB_EXECUTION_STATUS_UNSPECIFIED",
                             "JOB_EXECUTION_STATUS_RUNNING",
                             "JOB_EXECUTION_STATUS_SUCCEEDED",
                             "JOB_EXECUTION_STATUS_FAILED",
                             "JOB_EXECUTION_STATUS_UNKNOWN",
-                        ] = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
-                        parent: str = ...,
+                        ]
+                        | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
+                        parent: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> SearchSessionSparkApplicationJobsResponseHttpRequest: ...
                     def searchJobs_next(
@@ -577,12 +613,12 @@ class DataprocResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        details: bool = ...,
-                        operationIds: str | _list[str] = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
-                        parent: str = ...,
-                        planDescription: bool = ...,
+                        details: bool | None = ...,
+                        operationIds: str | _list[str] | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
+                        parent: str | None = ...,
+                        planDescription: bool | None = ...,
                         **kwargs: typing.Any,
                     ) -> SearchSessionSparkApplicationSqlQueriesResponseHttpRequest: ...
                     def searchSqlQueries_next(
@@ -597,12 +633,12 @@ class DataprocResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
-                        parent: str = ...,
-                        sortRuntime: bool = ...,
-                        stageAttemptId: int = ...,
-                        stageId: str = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
+                        parent: str | None = ...,
+                        sortRuntime: bool | None = ...,
+                        stageAttemptId: int | None = ...,
+                        stageId: str | None = ...,
                         taskStatus: typing_extensions.Literal[
                             "TASK_STATUS_UNSPECIFIED",
                             "TASK_STATUS_RUNNING",
@@ -610,7 +646,8 @@ class DataprocResource(googleapiclient.discovery.Resource):
                             "TASK_STATUS_FAILED",
                             "TASK_STATUS_KILLED",
                             "TASK_STATUS_PENDING",
-                        ] = ...,
+                        ]
+                        | None = ...,
                         **kwargs: typing.Any,
                     ) -> SearchSessionSparkApplicationStageAttemptTasksResponseHttpRequest: ...
                     def searchStageAttemptTasks_next(
@@ -625,11 +662,11 @@ class DataprocResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
-                        parent: str = ...,
-                        stageId: str = ...,
-                        summaryMetricsMask: str = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
+                        parent: str | None = ...,
+                        stageId: str | None = ...,
+                        summaryMetricsMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> (
                         SearchSessionSparkApplicationStageAttemptsResponseHttpRequest
@@ -646,10 +683,10 @@ class DataprocResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
-                        parent: str = ...,
-                        stageIds: str | _list[str] = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
+                        parent: str | None = ...,
+                        stageIds: str | _list[str] | None = ...,
                         stageStatus: typing_extensions.Literal[
                             "STAGE_STATUS_UNSPECIFIED",
                             "STAGE_STATUS_ACTIVE",
@@ -657,8 +694,9 @@ class DataprocResource(googleapiclient.discovery.Resource):
                             "STAGE_STATUS_FAILED",
                             "STAGE_STATUS_PENDING",
                             "STAGE_STATUS_SKIPPED",
-                        ] = ...,
-                        summaryMetricsMask: str = ...,
+                        ]
+                        | None = ...,
+                        summaryMetricsMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> SearchSessionSparkApplicationStagesResponseHttpRequest: ...
                     def searchStages_next(
@@ -669,7 +707,11 @@ class DataprocResource(googleapiclient.discovery.Resource):
                         SearchSessionSparkApplicationStagesResponseHttpRequest | None
                     ): ...
                     def summarizeExecutors(
-                        self, *, name: str, parent: str = ..., **kwargs: typing.Any
+                        self,
+                        *,
+                        name: str,
+                        parent: str | None = ...,
+                        **kwargs: typing.Any,
                     ) -> (
                         SummarizeSessionSparkApplicationExecutorsResponseHttpRequest
                     ): ...
@@ -677,25 +719,25 @@ class DataprocResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        jobIds: str | _list[str] = ...,
-                        parent: str = ...,
+                        jobIds: str | _list[str] | None = ...,
+                        parent: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> SummarizeSessionSparkApplicationJobsResponseHttpRequest: ...
                     def summarizeStageAttemptTasks(
                         self,
                         *,
                         name: str,
-                        parent: str = ...,
-                        stageAttemptId: int = ...,
-                        stageId: str = ...,
+                        parent: str | None = ...,
+                        stageAttemptId: int | None = ...,
+                        stageId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> SummarizeSessionSparkApplicationStageAttemptTasksResponseHttpRequest: ...
                     def summarizeStages(
                         self,
                         *,
                         name: str,
-                        parent: str = ...,
-                        stageIds: str | _list[str] = ...,
+                        parent: str | None = ...,
+                        stageIds: str | _list[str] | None = ...,
                         **kwargs: typing.Any,
                     ) -> SummarizeSessionSparkApplicationStagesResponseHttpRequest: ...
                     def write(
@@ -711,12 +753,16 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: Session = ...,
-                    requestId: str = ...,
-                    sessionId: str = ...,
+                    requestId: str | None = ...,
+                    sessionId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
-                    self, *, name: str, requestId: str = ..., **kwargs: typing.Any
+                    self,
+                    *,
+                    name: str,
+                    requestId: str | None = ...,
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
@@ -725,9 +771,9 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListSessionsResponseHttpRequest: ...
                 def list_next(
@@ -754,10 +800,10 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any,
                 ) -> WorkflowTemplateHttpRequest: ...
                 def delete(
-                    self, *, name: str, version: int = ..., **kwargs: typing.Any
+                    self, *, name: str, version: int | None = ..., **kwargs: typing.Any
                 ) -> EmptyHttpRequest: ...
                 def get(
-                    self, *, name: str, version: int = ..., **kwargs: typing.Any
+                    self, *, name: str, version: int | None = ..., **kwargs: typing.Any
                 ) -> WorkflowTemplateHttpRequest: ...
                 def getIamPolicy(
                     self,
@@ -778,15 +824,15 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: WorkflowTemplate = ...,
-                    requestId: str = ...,
+                    requestId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def list(
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListWorkflowTemplatesResponseHttpRequest: ...
                 def list_next(
@@ -851,8 +897,8 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListAutoscalingPoliciesResponseHttpRequest: ...
                 def list_next(
@@ -891,9 +937,9 @@ class DataprocResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: NodeGroup = ...,
-                        nodeGroupId: str = ...,
-                        parentOperationId: str = ...,
-                        requestId: str = ...,
+                        nodeGroupId: str | None = ...,
+                        parentOperationId: str | None = ...,
+                        requestId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def get(
@@ -922,8 +968,9 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     body: Cluster = ...,
                     actionOnFailedPrimaryWorkers: typing_extensions.Literal[
                         "FAILURE_ACTION_UNSPECIFIED", "NO_ACTION", "DELETE"
-                    ] = ...,
-                    requestId: str = ...,
+                    ]
+                    | None = ...,
+                    requestId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
@@ -932,9 +979,9 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     projectId: str,
                     region: str,
                     clusterName: str,
-                    clusterUuid: str = ...,
-                    gracefulTerminationTimeout: str = ...,
-                    requestId: str = ...,
+                    clusterUuid: str | None = ...,
+                    gracefulTerminationTimeout: str | None = ...,
+                    requestId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def diagnose(
@@ -975,9 +1022,9 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     *,
                     projectId: str,
                     region: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListClustersResponseHttpRequest: ...
                 def list_next(
@@ -992,9 +1039,9 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     region: str,
                     clusterName: str,
                     body: Cluster = ...,
-                    gracefulDecommissionTimeout: str = ...,
-                    requestId: str = ...,
-                    updateMask: str = ...,
+                    gracefulDecommissionTimeout: str | None = ...,
+                    requestId: str | None = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def repair(
@@ -1079,13 +1126,14 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     *,
                     projectId: str,
                     region: str,
-                    clusterName: str = ...,
-                    filter: str = ...,
+                    clusterName: str | None = ...,
+                    filter: str | None = ...,
                     jobStateMatcher: typing_extensions.Literal[
                         "ALL", "ACTIVE", "NON_ACTIVE"
-                    ] = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    ]
+                    | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListJobsResponseHttpRequest: ...
                 def list_next(
@@ -1100,7 +1148,7 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     region: str,
                     jobId: str,
                     body: Job = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> JobHttpRequest: ...
                 def setIamPolicy(
@@ -1156,10 +1204,10 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    returnPartialSuccess: bool = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    returnPartialSuccess: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListOperationsResponseHttpRequest: ...
                 def list_next(
@@ -1192,10 +1240,10 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any,
                 ) -> WorkflowTemplateHttpRequest: ...
                 def delete(
-                    self, *, name: str, version: int = ..., **kwargs: typing.Any
+                    self, *, name: str, version: int | None = ..., **kwargs: typing.Any
                 ) -> EmptyHttpRequest: ...
                 def get(
-                    self, *, name: str, version: int = ..., **kwargs: typing.Any
+                    self, *, name: str, version: int | None = ..., **kwargs: typing.Any
                 ) -> WorkflowTemplateHttpRequest: ...
                 def getIamPolicy(
                     self,
@@ -1216,15 +1264,15 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: WorkflowTemplate = ...,
-                    requestId: str = ...,
+                    requestId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def list(
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListWorkflowTemplatesResponseHttpRequest: ...
                 def list_next(

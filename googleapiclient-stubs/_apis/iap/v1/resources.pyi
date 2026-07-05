@@ -36,8 +36,8 @@ class CloudIAPResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListIdentityAwareProxyClientsResponseHttpRequest: ...
                 def list_next(
@@ -75,7 +75,7 @@ class CloudIAPResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: TunnelDestGroup = ...,
-                        tunnelDestGroupId: str = ...,
+                        tunnelDestGroupId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> TunnelDestGroupHttpRequest: ...
                     def delete(
@@ -88,8 +88,8 @@ class CloudIAPResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListTunnelDestGroupsResponseHttpRequest: ...
                     def list_next(
@@ -102,7 +102,7 @@ class CloudIAPResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: TunnelDestGroup = ...,
-                        updateMask: str = ...,
+                        updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> TunnelDestGroupHttpRequest: ...
 
@@ -144,11 +144,11 @@ class CloudIAPResource(googleapiclient.discovery.Resource):
             *,
             name: str,
             body: IapSettings = ...,
-            updateMask: str = ...,
+            updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> IapSettingsHttpRequest: ...
         def validateAttributeExpression(
-            self, *, name: str, expression: str = ..., **kwargs: typing.Any
+            self, *, name: str, expression: str | None = ..., **kwargs: typing.Any
         ) -> ValidateIapAttributeExpressionResponseHttpRequest: ...
 
     def new_batch_http_request(

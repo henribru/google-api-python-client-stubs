@@ -29,7 +29,8 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
                 name: str,
                 accessLevelFormat: typing_extensions.Literal[
                     "LEVEL_FORMAT_UNSPECIFIED", "AS_DEFINED", "CEL"
-                ] = ...,
+                ]
+                | None = ...,
                 **kwargs: typing.Any,
             ) -> AccessLevelHttpRequest: ...
             def list(
@@ -38,9 +39,10 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
                 parent: str,
                 accessLevelFormat: typing_extensions.Literal[
                     "LEVEL_FORMAT_UNSPECIFIED", "AS_DEFINED", "CEL"
-                ] = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                ]
+                | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListAccessLevelsResponseHttpRequest: ...
             def list_next(
@@ -53,7 +55,7 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: AccessLevel = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def replaceAll(
@@ -90,8 +92,8 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListAuthorizedOrgsDescsResponseHttpRequest: ...
             def list_next(
@@ -104,7 +106,7 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: AuthorizedOrgsDesc = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
 
@@ -130,8 +132,8 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListServicePerimetersResponseHttpRequest: ...
             def list_next(
@@ -144,7 +146,7 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: ServicePerimeter = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def replaceAll(
@@ -181,9 +183,9 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            pageSize: int = ...,
-            pageToken: str = ...,
-            parent: str = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            parent: str | None = ...,
             **kwargs: typing.Any,
         ) -> ListAccessPoliciesResponseHttpRequest: ...
         def list_next(
@@ -196,7 +198,7 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
             *,
             name: str,
             body: AccessPolicy = ...,
-            updateMask: str = ...,
+            updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def setIamPolicy(
@@ -228,10 +230,10 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            filter: str = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
-            returnPartialSuccess: bool = ...,
+            filter: str | None = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> ListOperationsResponseHttpRequest: ...
         def list_next(
@@ -261,8 +263,8 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListGcpUserAccessBindingsResponseHttpRequest: ...
             def list_next(
@@ -275,8 +277,8 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: GcpUserAccessBinding = ...,
-                append: bool = ...,
-                updateMask: str = ...,
+                append: bool | None = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
 
@@ -285,7 +287,11 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class PermissionsResource(googleapiclient.discovery.Resource):
         def list(
-            self, *, pageSize: int = ..., pageToken: str = ..., **kwargs: typing.Any
+            self,
+            *,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            **kwargs: typing.Any,
         ) -> ListSupportedPermissionsResponseHttpRequest: ...
         def list_next(
             self,
@@ -299,7 +305,11 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
             self, *, name: str, **kwargs: typing.Any
         ) -> SupportedServiceHttpRequest: ...
         def list(
-            self, *, pageSize: int = ..., pageToken: str = ..., **kwargs: typing.Any
+            self,
+            *,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            **kwargs: typing.Any,
         ) -> ListSupportedServicesResponseHttpRequest: ...
         def list_next(
             self,

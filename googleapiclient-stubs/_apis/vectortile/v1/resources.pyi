@@ -19,12 +19,12 @@ class SemanticTileResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            alwaysIncludeBuildingFootprints: bool = ...,
-            clientInfo_apiClient: str = ...,
-            clientInfo_applicationId: str = ...,
-            clientInfo_applicationVersion: str = ...,
-            clientInfo_deviceModel: str = ...,
-            clientInfo_operatingSystem: str = ...,
+            alwaysIncludeBuildingFootprints: bool | None = ...,
+            clientInfo_apiClient: str | None = ...,
+            clientInfo_applicationId: str | None = ...,
+            clientInfo_applicationVersion: str | None = ...,
+            clientInfo_deviceModel: str | None = ...,
+            clientInfo_operatingSystem: str | None = ...,
             clientInfo_platform: typing_extensions.Literal[
                 "PLATFORM_UNSPECIFIED",
                 "EDITOR",
@@ -34,17 +34,18 @@ class SemanticTileResource(googleapiclient.discovery.Resource):
                 "ANDROID",
                 "IOS",
                 "WEB_GL",
-            ] = ...,
-            clientInfo_userId: str = ...,
-            clientTileVersionId: str = ...,
-            enableDetailedHighwayTypes: bool = ...,
-            enableFeatureNames: bool = ...,
-            enableModeledVolumes: bool = ...,
-            enablePoliticalFeatures: bool = ...,
-            enablePrivateRoads: bool = ...,
-            enableUnclippedBuildings: bool = ...,
-            languageCode: str = ...,
-            regionCode: str = ...,
+            ]
+            | None = ...,
+            clientInfo_userId: str | None = ...,
+            clientTileVersionId: str | None = ...,
+            enableDetailedHighwayTypes: bool | None = ...,
+            enableFeatureNames: bool | None = ...,
+            enableModeledVolumes: bool | None = ...,
+            enablePoliticalFeatures: bool | None = ...,
+            enablePrivateRoads: bool | None = ...,
+            enableUnclippedBuildings: bool | None = ...,
+            languageCode: str | None = ...,
+            regionCode: str | None = ...,
             **kwargs: typing.Any,
         ) -> FeatureTileHttpRequest: ...
 
@@ -54,12 +55,12 @@ class SemanticTileResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            altitudePrecisionCentimeters: int = ...,
-            clientInfo_apiClient: str = ...,
-            clientInfo_applicationId: str = ...,
-            clientInfo_applicationVersion: str = ...,
-            clientInfo_deviceModel: str = ...,
-            clientInfo_operatingSystem: str = ...,
+            altitudePrecisionCentimeters: int | None = ...,
+            clientInfo_apiClient: str | None = ...,
+            clientInfo_applicationId: str | None = ...,
+            clientInfo_applicationVersion: str | None = ...,
+            clientInfo_deviceModel: str | None = ...,
+            clientInfo_operatingSystem: str | None = ...,
             clientInfo_platform: typing_extensions.Literal[
                 "PLATFORM_UNSPECIFIED",
                 "EDITOR",
@@ -69,10 +70,11 @@ class SemanticTileResource(googleapiclient.discovery.Resource):
                 "ANDROID",
                 "IOS",
                 "WEB_GL",
-            ] = ...,
-            clientInfo_userId: str = ...,
-            maxElevationResolutionCells: int = ...,
-            minElevationResolutionCells: int = ...,
+            ]
+            | None = ...,
+            clientInfo_userId: str | None = ...,
+            maxElevationResolutionCells: int | None = ...,
+            minElevationResolutionCells: int | None = ...,
             terrainFormats: typing_extensions.Literal[
                 "TERRAIN_FORMAT_UNKNOWN", "FIRST_DERIVATIVE", "SECOND_DERIVATIVE"
             ]
@@ -80,7 +82,8 @@ class SemanticTileResource(googleapiclient.discovery.Resource):
                 typing_extensions.Literal[
                     "TERRAIN_FORMAT_UNKNOWN", "FIRST_DERIVATIVE", "SECOND_DERIVATIVE"
                 ]
-            ] = ...,
+            ]
+            | None = ...,
             **kwargs: typing.Any,
         ) -> TerrainTileHttpRequest: ...
 

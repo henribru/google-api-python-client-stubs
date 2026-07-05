@@ -32,7 +32,7 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: Release = ...,
-                        versionName: str = ...,
+                        versionName: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ReleaseHttpRequest: ...
                     def get(
@@ -42,8 +42,8 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListReleasesResponseHttpRequest: ...
                     def list_next(
@@ -57,7 +57,7 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: Channel = ...,
-                    channelId: str = ...,
+                    channelId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ChannelHttpRequest: ...
                 def delete(
@@ -70,8 +70,8 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListChannelsResponseHttpRequest: ...
                 def list_next(
@@ -84,7 +84,7 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: Channel = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ChannelHttpRequest: ...
                 def releases(self) -> ReleasesResource: ...
@@ -100,10 +100,10 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        filter: str = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
-                        returnPartialSuccess: bool = ...,
+                        filter: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
+                        returnPartialSuccess: bool | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListOperationsResponseHttpRequest: ...
                     def list_next(
@@ -117,17 +117,17 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: CustomDomain = ...,
-                    customDomainId: str = ...,
-                    validateOnly: bool = ...,
+                    customDomainId: str | None = ...,
+                    validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self,
                     *,
                     name: str,
-                    allowMissing: bool = ...,
-                    etag: str = ...,
-                    validateOnly: bool = ...,
+                    allowMissing: bool | None = ...,
+                    etag: str | None = ...,
+                    validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def get(
@@ -137,9 +137,9 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    showDeleted: bool = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    showDeleted: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListCustomDomainsResponseHttpRequest: ...
                 def list_next(
@@ -152,9 +152,9 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: CustomDomain = ...,
-                    allowMissing: bool = ...,
-                    updateMask: str = ...,
-                    validateOnly: bool = ...,
+                    allowMissing: bool | None = ...,
+                    updateMask: str | None = ...,
+                    validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def undelete(
@@ -181,8 +181,8 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListDomainsResponseHttpRequest: ...
                 def list_next(
@@ -201,7 +201,7 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: Release = ...,
-                    versionName: str = ...,
+                    versionName: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ReleaseHttpRequest: ...
                 def get(
@@ -211,8 +211,8 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListReleasesResponseHttpRequest: ...
                 def list_next(
@@ -229,11 +229,12 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         status: typing_extensions.Literal[
                             "STATUS_UNSPECIFIED", "EXPECTED", "ACTIVE"
-                        ] = ...,
+                        ]
+                        | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListVersionFilesResponseHttpRequest: ...
                     def list_next(
@@ -254,8 +255,8 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: Version = ...,
-                    sizeBytes: str = ...,
-                    versionId: str = ...,
+                    sizeBytes: str | None = ...,
+                    versionId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> VersionHttpRequest: ...
                 def delete(
@@ -268,9 +269,9 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListVersionsResponseHttpRequest: ...
                 def list_next(
@@ -283,7 +284,7 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: Version = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> VersionHttpRequest: ...
                 def populateFiles(
@@ -300,8 +301,8 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: Site = ...,
-                siteId: str = ...,
-                validateOnly: bool = ...,
+                siteId: str | None = ...,
+                validateOnly: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> SiteHttpRequest: ...
             def delete(
@@ -315,8 +316,8 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListSitesResponseHttpRequest: ...
             def list_next(
@@ -329,7 +330,7 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: Site = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> SiteHttpRequest: ...
             def updateConfig(
@@ -337,7 +338,7 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: SiteConfig = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> SiteConfigHttpRequest: ...
             def channels(self) -> ChannelsResource: ...
@@ -360,7 +361,7 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: Release = ...,
-                    versionName: str = ...,
+                    versionName: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ReleaseHttpRequest: ...
                 def get(
@@ -370,8 +371,8 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListReleasesResponseHttpRequest: ...
                 def list_next(
@@ -385,7 +386,7 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: Channel = ...,
-                channelId: str = ...,
+                channelId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ChannelHttpRequest: ...
             def delete(
@@ -396,8 +397,8 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListChannelsResponseHttpRequest: ...
             def list_next(
@@ -410,7 +411,7 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: Channel = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ChannelHttpRequest: ...
             def releases(self) -> ReleasesResource: ...
@@ -428,8 +429,8 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListDomainsResponseHttpRequest: ...
             def list_next(
@@ -448,7 +449,7 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: Release = ...,
-                versionName: str = ...,
+                versionName: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ReleaseHttpRequest: ...
             def get(self, *, name: str, **kwargs: typing.Any) -> ReleaseHttpRequest: ...
@@ -456,8 +457,8 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListReleasesResponseHttpRequest: ...
             def list_next(
@@ -474,11 +475,12 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     status: typing_extensions.Literal[
                         "STATUS_UNSPECIFIED", "EXPECTED", "ACTIVE"
-                    ] = ...,
+                    ]
+                    | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListVersionFilesResponseHttpRequest: ...
                 def list_next(
@@ -499,8 +501,8 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: Version = ...,
-                sizeBytes: str = ...,
-                versionId: str = ...,
+                sizeBytes: str | None = ...,
+                versionId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> VersionHttpRequest: ...
             def delete(
@@ -511,9 +513,9 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListVersionsResponseHttpRequest: ...
             def list_next(
@@ -526,7 +528,7 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: Version = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> VersionHttpRequest: ...
             def populateFiles(
@@ -546,7 +548,7 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
             *,
             name: str,
             body: SiteConfig = ...,
-            updateMask: str = ...,
+            updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> SiteConfigHttpRequest: ...
         def channels(self) -> ChannelsResource: ...

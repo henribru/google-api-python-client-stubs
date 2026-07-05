@@ -53,8 +53,8 @@ class PostmasterToolsResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListUsersResponseHttpRequest: ...
             def list_next(
@@ -67,7 +67,7 @@ class PostmasterToolsResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: User = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> UserHttpRequest: ...
 
@@ -85,11 +85,16 @@ class PostmasterToolsResource(googleapiclient.discovery.Resource):
             name: str,
             verificationMethod: typing_extensions.Literal[
                 "DOMAIN_VERIFICATION_METHOD_UNSPECIFIED", "TXT", "CNAME"
-            ] = ...,
+            ]
+            | None = ...,
             **kwargs: typing.Any,
         ) -> DomainVerificationTokenHttpRequest: ...
         def list(
-            self, *, pageSize: int = ..., pageToken: str = ..., **kwargs: typing.Any
+            self,
+            *,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            **kwargs: typing.Any,
         ) -> ListDomainsResponseHttpRequest: ...
         def list_next(
             self,

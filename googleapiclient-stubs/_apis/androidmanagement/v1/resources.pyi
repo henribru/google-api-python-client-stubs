@@ -18,7 +18,7 @@ class AndroidManagementResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class ApplicationsResource(googleapiclient.discovery.Resource):
             def get(
-                self, *, name: str, languageCode: str = ..., **kwargs: typing.Any
+                self, *, name: str, languageCode: str | None = ..., **kwargs: typing.Any
             ) -> ApplicationHttpRequest: ...
 
         @typing.type_check_only
@@ -35,10 +35,10 @@ class AndroidManagementResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    returnPartialSuccess: bool = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    returnPartialSuccess: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListOperationsResponseHttpRequest: ...
                 def list_next(
@@ -64,8 +64,9 @@ class AndroidManagementResource(googleapiclient.discovery.Resource):
                         "WIPE_EXTERNAL_STORAGE",
                         "WIPE_ESIMS",
                     ]
-                ] = ...,
-                wipeReasonMessage: str = ...,
+                ]
+                | None = ...,
+                wipeReasonMessage: str | None = ...,
                 **kwargs: typing.Any,
             ) -> EmptyHttpRequest: ...
             def get(self, *, name: str, **kwargs: typing.Any) -> DeviceHttpRequest: ...
@@ -76,8 +77,8 @@ class AndroidManagementResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListDevicesResponseHttpRequest: ...
             def list_next(
@@ -90,7 +91,7 @@ class AndroidManagementResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: Device = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> DeviceHttpRequest: ...
             def operations(self) -> OperationsResource: ...
@@ -110,8 +111,8 @@ class AndroidManagementResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListEnrollmentTokensResponseHttpRequest: ...
             def list_next(
@@ -132,8 +133,8 @@ class AndroidManagementResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListMigrationTokensResponseHttpRequest: ...
             def list_next(
@@ -152,8 +153,8 @@ class AndroidManagementResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListPoliciesResponseHttpRequest: ...
             def list_next(
@@ -173,7 +174,7 @@ class AndroidManagementResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: Policy = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> PolicyHttpRequest: ...
             def removePolicyApplications(
@@ -197,8 +198,8 @@ class AndroidManagementResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListWebAppsResponseHttpRequest: ...
             def list_next(
@@ -211,7 +212,7 @@ class AndroidManagementResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: WebApp = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> WebAppHttpRequest: ...
 
@@ -225,10 +226,10 @@ class AndroidManagementResource(googleapiclient.discovery.Resource):
             self,
             *,
             body: Enterprise = ...,
-            agreementAccepted: bool = ...,
-            enterpriseToken: str = ...,
-            projectId: str = ...,
-            signupUrlName: str = ...,
+            agreementAccepted: bool | None = ...,
+            enterpriseToken: str | None = ...,
+            projectId: str | None = ...,
+            signupUrlName: str | None = ...,
             **kwargs: typing.Any,
         ) -> EnterpriseHttpRequest: ...
         def delete(self, *, name: str, **kwargs: typing.Any) -> EmptyHttpRequest: ...
@@ -243,12 +244,11 @@ class AndroidManagementResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            pageSize: int = ...,
-            pageToken: str = ...,
-            projectId: str = ...,
-            view: typing_extensions.Literal[
-                "ENTERPRISE_VIEW_UNSPECIFIED", "BASIC"
-            ] = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            projectId: str | None = ...,
+            view: typing_extensions.Literal["ENTERPRISE_VIEW_UNSPECIFIED", "BASIC"]
+            | None = ...,
             **kwargs: typing.Any,
         ) -> ListEnterprisesResponseHttpRequest: ...
         def list_next(
@@ -261,7 +261,7 @@ class AndroidManagementResource(googleapiclient.discovery.Resource):
             *,
             name: str,
             body: Enterprise = ...,
-            updateMask: str = ...,
+            updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> EnterpriseHttpRequest: ...
         def applications(self) -> ApplicationsResource: ...
@@ -283,10 +283,10 @@ class AndroidManagementResource(googleapiclient.discovery.Resource):
         def create(
             self,
             *,
-            adminEmail: str = ...,
-            allowedDomains: str | _list[str] = ...,
-            callbackUrl: str = ...,
-            projectId: str = ...,
+            adminEmail: str | None = ...,
+            allowedDomains: str | _list[str] | None = ...,
+            callbackUrl: str | None = ...,
+            projectId: str | None = ...,
             **kwargs: typing.Any,
         ) -> SignupUrlHttpRequest: ...
 

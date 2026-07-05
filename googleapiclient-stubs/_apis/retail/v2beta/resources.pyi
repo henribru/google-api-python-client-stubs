@@ -79,7 +79,7 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                             *,
                             parent: str,
                             body: GoogleCloudRetailV2betaProduct = ...,
-                            productId: str = ...,
+                            productId: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> GoogleCloudRetailV2betaProductHttpRequest: ...
                         def delete(
@@ -106,10 +106,10 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             parent: str,
-                            filter: str = ...,
-                            pageSize: int = ...,
-                            pageToken: str = ...,
-                            readMask: str = ...,
+                            filter: str | None = ...,
+                            pageSize: int | None = ...,
+                            pageToken: str | None = ...,
+                            readMask: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> GoogleCloudRetailV2betaListProductsResponseHttpRequest: ...
                         def list_next(
@@ -125,8 +125,8 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                             *,
                             name: str,
                             body: GoogleCloudRetailV2betaProduct = ...,
-                            allowMissing: bool = ...,
-                            updateMask: str = ...,
+                            allowMissing: bool | None = ...,
+                            updateMask: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> GoogleCloudRetailV2betaProductHttpRequest: ...
                         def purge(
@@ -178,7 +178,7 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: GoogleCloudRetailV2betaControl = ...,
-                        controlId: str = ...,
+                        controlId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudRetailV2betaControlHttpRequest: ...
                     def delete(
@@ -191,9 +191,9 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        filter: str = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        filter: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudRetailV2betaListControlsResponseHttpRequest: ...
                     def list_next(
@@ -208,7 +208,7 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: GoogleCloudRetailV2betaControl = ...,
-                        updateMask: str = ...,
+                        updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudRetailV2betaControlHttpRequest: ...
 
@@ -235,7 +235,7 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: GoogleCloudRetailV2betaModel = ...,
-                        dryRun: bool = ...,
+                        dryRun: bool | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
                     def delete(
@@ -248,8 +248,8 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudRetailV2betaListModelsResponseHttpRequest: ...
                     def list_next(
@@ -264,7 +264,7 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: GoogleCloudRetailV2betaModel = ...,
-                        updateMask: str = ...,
+                        updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudRetailV2betaModelHttpRequest: ...
                     def pause(
@@ -298,10 +298,10 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        filter: str = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
-                        returnPartialSuccess: bool = ...,
+                        filter: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
+                        returnPartialSuccess: bool | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
                     def list_next(
@@ -364,7 +364,7 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: GoogleCloudRetailV2betaServingConfig = ...,
-                        servingConfigId: str = ...,
+                        servingConfigId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudRetailV2betaServingConfigHttpRequest: ...
                     def delete(
@@ -377,8 +377,8 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> (
                         GoogleCloudRetailV2betaListServingConfigsResponseHttpRequest
@@ -396,7 +396,7 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: GoogleCloudRetailV2betaServingConfig = ...,
-                        updateMask: str = ...,
+                        updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudRetailV2betaServingConfigHttpRequest: ...
                     def predict(
@@ -468,7 +468,7 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: GoogleCloudRetailV2betaUserEvent = ...,
-                        writeAsync: bool = ...,
+                        writeAsync: bool | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudRetailV2betaUserEventHttpRequest: ...
 
@@ -476,14 +476,14 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     catalog: str,
-                    dataset: str = ...,
-                    deviceType: str = ...,
-                    enableAttributeSuggestions: bool = ...,
-                    entity: str = ...,
-                    languageCodes: str | _list[str] = ...,
-                    maxSuggestions: int = ...,
-                    query: str = ...,
-                    visitorId: str = ...,
+                    dataset: str | None = ...,
+                    deviceType: str | None = ...,
+                    enableAttributeSuggestions: bool | None = ...,
+                    entity: str | None = ...,
+                    languageCodes: str | _list[str] | None = ...,
+                    maxSuggestions: int | None = ...,
+                    query: str | None = ...,
+                    visitorId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudRetailV2betaCompleteQueryResponseHttpRequest: ...
                 def exportAnalyticsMetrics(
@@ -514,8 +514,8 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudRetailV2betaListCatalogsResponseHttpRequest: ...
                 def list_next(
@@ -528,7 +528,7 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: GoogleCloudRetailV2betaCatalog = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudRetailV2betaCatalogHttpRequest: ...
                 def setDefaultBranch(
@@ -543,7 +543,7 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: GoogleCloudRetailV2betaAttributesConfig = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudRetailV2betaAttributesConfigHttpRequest: ...
                 def updateCompletionConfig(
@@ -551,7 +551,7 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: GoogleCloudRetailV2betaCompletionConfig = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudRetailV2betaCompletionConfigHttpRequest: ...
                 def updateConversationalSearchCustomizationConfig(
@@ -559,7 +559,7 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                     *,
                     catalog: str,
                     body: GoogleCloudRetailV2betaConversationalSearchCustomizationConfig = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudRetailV2betaConversationalSearchCustomizationConfigHttpRequest: ...
                 def updateGenerativeQuestion(
@@ -567,7 +567,7 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                     *,
                     catalog: str,
                     body: GoogleCloudRetailV2betaGenerativeQuestionConfig = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudRetailV2betaGenerativeQuestionConfigHttpRequest: ...
                 def updateGenerativeQuestionFeature(
@@ -575,7 +575,7 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                     *,
                     catalog: str,
                     body: GoogleCloudRetailV2betaGenerativeQuestionsFeatureConfig = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> (
                     GoogleCloudRetailV2betaGenerativeQuestionsFeatureConfigHttpRequest
@@ -601,10 +601,10 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    returnPartialSuccess: bool = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    returnPartialSuccess: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
                 def list_next(
@@ -625,10 +625,10 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
-                returnPartialSuccess: bool = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
+                returnPartialSuccess: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
             def list_next(
@@ -645,7 +645,7 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
             *,
             name: str,
             body: GoogleCloudRetailV2betaAlertConfig = ...,
-            updateMask: str = ...,
+            updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> GoogleCloudRetailV2betaAlertConfigHttpRequest: ...
         def locations(self) -> LocationsResource: ...

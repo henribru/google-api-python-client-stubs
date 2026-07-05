@@ -28,7 +28,7 @@ class StoragetransferResource(googleapiclient.discovery.Resource):
                 *,
                 projectId: str,
                 body: AgentPool = ...,
-                agentPoolId: str = ...,
+                agentPoolId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> AgentPoolHttpRequest: ...
             def delete(
@@ -41,9 +41,9 @@ class StoragetransferResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 projectId: str,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListAgentPoolsResponseHttpRequest: ...
             def list_next(
@@ -56,7 +56,7 @@ class StoragetransferResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: AgentPool = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> AgentPoolHttpRequest: ...
 
@@ -77,8 +77,8 @@ class StoragetransferResource(googleapiclient.discovery.Resource):
             self,
             *,
             filter: str,
-            pageSize: int = ...,
-            pageToken: str = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> ListTransferJobsResponseHttpRequest: ...
         def list_next(
@@ -112,9 +112,9 @@ class StoragetransferResource(googleapiclient.discovery.Resource):
             *,
             name: str,
             filter: str,
-            pageSize: int = ...,
-            pageToken: str = ...,
-            returnPartialSuccess: bool = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> ListOperationsResponseHttpRequest: ...
         def list_next(

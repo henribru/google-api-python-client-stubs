@@ -30,9 +30,9 @@ class MyBusinessPlaceActionsResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListPlaceActionLinksResponseHttpRequest: ...
             def list_next(
@@ -45,7 +45,7 @@ class MyBusinessPlaceActionsResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: PlaceActionLink = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> PlaceActionLinkHttpRequest: ...
 
@@ -56,10 +56,10 @@ class MyBusinessPlaceActionsResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            filter: str = ...,
-            languageCode: str = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
+            filter: str | None = ...,
+            languageCode: str | None = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> ListPlaceActionTypeMetadataResponseHttpRequest: ...
         def list_next(

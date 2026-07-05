@@ -31,9 +31,9 @@ class WalletobjectsResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            issuerId: str = ...,
-            maxResults: int = ...,
-            token: str = ...,
+            issuerId: str | None = ...,
+            maxResults: int | None = ...,
+            token: str | None = ...,
             **kwargs: typing.Any,
         ) -> EventTicketClassListResponseHttpRequest: ...
         def patch(
@@ -61,9 +61,9 @@ class WalletobjectsResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            classId: str = ...,
-            maxResults: int = ...,
-            token: str = ...,
+            classId: str | None = ...,
+            maxResults: int | None = ...,
+            token: str | None = ...,
             **kwargs: typing.Any,
         ) -> EventTicketObjectListResponseHttpRequest: ...
         def modifylinkedofferobjects(
@@ -106,9 +106,9 @@ class WalletobjectsResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            issuerId: str = ...,
-            maxResults: int = ...,
-            token: str = ...,
+            issuerId: str | None = ...,
+            maxResults: int | None = ...,
+            token: str | None = ...,
             **kwargs: typing.Any,
         ) -> FlightClassListResponseHttpRequest: ...
         def patch(
@@ -136,9 +136,9 @@ class WalletobjectsResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            classId: str = ...,
-            maxResults: int = ...,
-            token: str = ...,
+            classId: str | None = ...,
+            maxResults: int | None = ...,
+            token: str | None = ...,
             **kwargs: typing.Any,
         ) -> FlightObjectListResponseHttpRequest: ...
         def patch(
@@ -166,9 +166,9 @@ class WalletobjectsResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            issuerId: str = ...,
-            maxResults: int = ...,
-            token: str = ...,
+            issuerId: str | None = ...,
+            maxResults: int | None = ...,
+            token: str | None = ...,
             **kwargs: typing.Any,
         ) -> GenericClassListResponseHttpRequest: ...
         def patch(
@@ -196,9 +196,9 @@ class WalletobjectsResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            classId: str = ...,
-            maxResults: int = ...,
-            token: str = ...,
+            classId: str | None = ...,
+            maxResults: int | None = ...,
+            token: str | None = ...,
             **kwargs: typing.Any,
         ) -> GenericObjectListResponseHttpRequest: ...
         def patch(
@@ -226,9 +226,9 @@ class WalletobjectsResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            issuerId: str = ...,
-            maxResults: int = ...,
-            token: str = ...,
+            issuerId: str | None = ...,
+            maxResults: int | None = ...,
+            token: str | None = ...,
             **kwargs: typing.Any,
         ) -> GiftCardClassListResponseHttpRequest: ...
         def patch(
@@ -256,9 +256,9 @@ class WalletobjectsResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            classId: str = ...,
-            maxResults: int = ...,
-            token: str = ...,
+            classId: str | None = ...,
+            maxResults: int | None = ...,
+            token: str | None = ...,
             **kwargs: typing.Any,
         ) -> GiftCardObjectListResponseHttpRequest: ...
         def patch(
@@ -308,9 +308,9 @@ class WalletobjectsResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            issuerId: str = ...,
-            maxResults: int = ...,
-            token: str = ...,
+            issuerId: str | None = ...,
+            maxResults: int | None = ...,
+            token: str | None = ...,
             **kwargs: typing.Any,
         ) -> LoyaltyClassListResponseHttpRequest: ...
         def patch(
@@ -338,9 +338,9 @@ class WalletobjectsResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            classId: str = ...,
-            maxResults: int = ...,
-            token: str = ...,
+            classId: str | None = ...,
+            maxResults: int | None = ...,
+            token: str | None = ...,
             **kwargs: typing.Any,
         ) -> LoyaltyObjectListResponseHttpRequest: ...
         def modifylinkedofferobjects(
@@ -391,9 +391,9 @@ class WalletobjectsResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            issuerId: str = ...,
-            maxResults: int = ...,
-            token: str = ...,
+            issuerId: str | None = ...,
+            maxResults: int | None = ...,
+            token: str | None = ...,
             **kwargs: typing.Any,
         ) -> OfferClassListResponseHttpRequest: ...
         def patch(
@@ -421,9 +421,9 @@ class WalletobjectsResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            classId: str = ...,
-            maxResults: int = ...,
-            token: str = ...,
+            classId: str | None = ...,
+            maxResults: int | None = ...,
+            token: str | None = ...,
             **kwargs: typing.Any,
         ) -> OfferObjectListResponseHttpRequest: ...
         def patch(
@@ -466,9 +466,9 @@ class WalletobjectsResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            issuerId: str = ...,
-            maxResults: int = ...,
-            token: str = ...,
+            issuerId: str | None = ...,
+            maxResults: int | None = ...,
+            token: str | None = ...,
             **kwargs: typing.Any,
         ) -> TransitClassListResponseHttpRequest: ...
         def patch(
@@ -496,9 +496,9 @@ class WalletobjectsResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            classId: str = ...,
-            maxResults: int = ...,
-            token: str = ...,
+            classId: str | None = ...,
+            maxResults: int | None = ...,
+            token: str | None = ...,
             **kwargs: typing.Any,
         ) -> TransitObjectListResponseHttpRequest: ...
         def patch(

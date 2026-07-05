@@ -18,9 +18,9 @@ class CloudSupportResource(googleapiclient.discovery.Resource):
         def search(
             self,
             *,
-            pageSize: int = ...,
-            pageToken: str = ...,
-            query: str = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            query: str | None = ...,
             **kwargs: typing.Any,
         ) -> SearchCaseClassificationsResponseHttpRequest: ...
         def search_next(
@@ -40,8 +40,8 @@ class CloudSupportResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListAttachmentsResponseHttpRequest: ...
             def list_next(
@@ -60,8 +60,8 @@ class CloudSupportResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListCommentsResponseHttpRequest: ...
             def list_next(
@@ -84,9 +84,9 @@ class CloudSupportResource(googleapiclient.discovery.Resource):
             self,
             *,
             parent: str,
-            filter: str = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
+            filter: str | None = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> ListCasesResponseHttpRequest: ...
         def list_next(
@@ -99,16 +99,16 @@ class CloudSupportResource(googleapiclient.discovery.Resource):
             *,
             name: str,
             body: Case = ...,
-            updateMask: str = ...,
+            updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> CaseHttpRequest: ...
         def search(
             self,
             *,
             parent: str,
-            pageSize: int = ...,
-            pageToken: str = ...,
-            query: str = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            query: str | None = ...,
             **kwargs: typing.Any,
         ) -> SearchCasesResponseHttpRequest: ...
         def search_next(
@@ -152,10 +152,10 @@ class CloudSupportResource(googleapiclient.discovery.Resource):
             self,
             *,
             parent: str,
-            filter: str = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
-            showDeleted: bool = ...,
+            filter: str | None = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            showDeleted: bool | None = ...,
             **kwargs: typing.Any,
         ) -> ListSupportEventSubscriptionsResponseHttpRequest: ...
         def list_next(
@@ -168,7 +168,7 @@ class CloudSupportResource(googleapiclient.discovery.Resource):
             *,
             name: str,
             body: SupportEventSubscription = ...,
-            updateMask: str = ...,
+            updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> SupportEventSubscriptionHttpRequest: ...
         def undelete(

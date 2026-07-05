@@ -36,15 +36,15 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    options_requestedPolicyVersion: int = ...,
+                    options_requestedPolicyVersion: int | None = ...,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def list(
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListAutoscalingPoliciesResponseHttpRequest: ...
                 def list_next(
@@ -84,16 +84,16 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any,
                 ) -> WorkflowTemplateHttpRequest: ...
                 def delete(
-                    self, *, name: str, version: int = ..., **kwargs: typing.Any
+                    self, *, name: str, version: int | None = ..., **kwargs: typing.Any
                 ) -> EmptyHttpRequest: ...
                 def get(
-                    self, *, name: str, version: int = ..., **kwargs: typing.Any
+                    self, *, name: str, version: int | None = ..., **kwargs: typing.Any
                 ) -> WorkflowTemplateHttpRequest: ...
                 def getIamPolicy(
                     self,
                     *,
                     resource: str,
-                    options_requestedPolicyVersion: int = ...,
+                    options_requestedPolicyVersion: int | None = ...,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def instantiate(
@@ -108,16 +108,16 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: WorkflowTemplate = ...,
-                    instanceId: str = ...,
-                    requestId: str = ...,
+                    instanceId: str | None = ...,
+                    requestId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def list(
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListWorkflowTemplatesResponseHttpRequest: ...
                 def list_next(
@@ -171,15 +171,15 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    options_requestedPolicyVersion: int = ...,
+                    options_requestedPolicyVersion: int | None = ...,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def list(
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListAutoscalingPoliciesResponseHttpRequest: ...
                 def list_next(
@@ -217,7 +217,7 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     projectId: str,
                     region: str,
                     body: Cluster = ...,
-                    requestId: str = ...,
+                    requestId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
@@ -226,8 +226,8 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     projectId: str,
                     region: str,
                     clusterName: str,
-                    clusterUuid: str = ...,
-                    requestId: str = ...,
+                    clusterUuid: str | None = ...,
+                    requestId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def diagnose(
@@ -251,7 +251,7 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    options_requestedPolicyVersion: int = ...,
+                    options_requestedPolicyVersion: int | None = ...,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def injectCredentials(
@@ -268,9 +268,9 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     *,
                     projectId: str,
                     region: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListClustersResponseHttpRequest: ...
                 def list_next(
@@ -285,9 +285,9 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     region: str,
                     clusterName: str,
                     body: Cluster = ...,
-                    gracefulDecommissionTimeout: str = ...,
-                    requestId: str = ...,
-                    updateMask: str = ...,
+                    gracefulDecommissionTimeout: str | None = ...,
+                    requestId: str | None = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def setIamPolicy(
@@ -354,7 +354,7 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    options_requestedPolicyVersion: int = ...,
+                    options_requestedPolicyVersion: int | None = ...,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def list(
@@ -362,13 +362,14 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     *,
                     projectId: str,
                     region: str,
-                    clusterName: str = ...,
-                    filter: str = ...,
+                    clusterName: str | None = ...,
+                    filter: str | None = ...,
                     jobStateMatcher: typing_extensions.Literal[
                         "ALL", "ACTIVE", "NON_ACTIVE"
-                    ] = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    ]
+                    | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListJobsResponseHttpRequest: ...
                 def list_next(
@@ -383,7 +384,7 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     region: str,
                     jobId: str,
                     body: Job = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> JobHttpRequest: ...
                 def setIamPolicy(
@@ -432,16 +433,16 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    options_requestedPolicyVersion: int = ...,
+                    options_requestedPolicyVersion: int | None = ...,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def list(
                     self,
                     *,
                     name: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListOperationsResponseHttpRequest: ...
                 def list_next(
@@ -474,16 +475,16 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any,
                 ) -> WorkflowTemplateHttpRequest: ...
                 def delete(
-                    self, *, name: str, version: int = ..., **kwargs: typing.Any
+                    self, *, name: str, version: int | None = ..., **kwargs: typing.Any
                 ) -> EmptyHttpRequest: ...
                 def get(
-                    self, *, name: str, version: int = ..., **kwargs: typing.Any
+                    self, *, name: str, version: int | None = ..., **kwargs: typing.Any
                 ) -> WorkflowTemplateHttpRequest: ...
                 def getIamPolicy(
                     self,
                     *,
                     resource: str,
-                    options_requestedPolicyVersion: int = ...,
+                    options_requestedPolicyVersion: int | None = ...,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def instantiate(
@@ -498,16 +499,16 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: WorkflowTemplate = ...,
-                    instanceId: str = ...,
-                    requestId: str = ...,
+                    instanceId: str | None = ...,
+                    requestId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def list(
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListWorkflowTemplatesResponseHttpRequest: ...
                 def list_next(

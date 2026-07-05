@@ -40,8 +40,8 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                     *,
                     accountId: str,
                     clientAccountId: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListClientUserInvitationsResponseHttpRequest: ...
                 def list_next(
@@ -65,8 +65,8 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                     *,
                     accountId: str,
                     clientAccountId: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListClientUsersResponseHttpRequest: ...
                 def list_next(
@@ -94,9 +94,9 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 accountId: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
-                partnerClientId: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
+                partnerClientId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListClientsResponseHttpRequest: ...
             def list_next(
@@ -132,9 +132,9 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                     *,
                     accountId: str,
                     creativeId: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    query: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    query: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListDealAssociationsResponseHttpRequest: ...
                 def list_next(
@@ -158,7 +158,8 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                 body: Creative = ...,
                 duplicateIdMode: typing_extensions.Literal[
                     "NO_DUPLICATES", "FORCE_ENABLE_DUPLICATE_IDS"
-                ] = ...,
+                ]
+                | None = ...,
                 **kwargs: typing.Any,
             ) -> CreativeHttpRequest: ...
             def get(
@@ -168,9 +169,9 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 accountId: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
-                query: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
+                query: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListCreativesResponseHttpRequest: ...
             def list_next(
@@ -210,12 +211,13 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 accountId: str,
-                filter: str = ...,
+                filter: str | None = ...,
                 filterSyntax: typing_extensions.Literal[
                     "FILTER_SYNTAX_UNSPECIFIED", "PQL", "LIST_FILTER"
-                ] = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                ]
+                | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListProposalsResponseHttpRequest: ...
             def list_next(
@@ -249,9 +251,9 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 accountId: str,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListProductsResponseHttpRequest: ...
             def list_next(
@@ -304,12 +306,13 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 accountId: str,
-                filter: str = ...,
+                filter: str | None = ...,
                 filterSyntax: typing_extensions.Literal[
                     "FILTER_SYNTAX_UNSPECIFIED", "PQL", "LIST_FILTER"
-                ] = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                ]
+                | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListProposalsResponseHttpRequest: ...
             def list_next(
@@ -351,8 +354,8 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 accountId: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListPublisherProfilesResponseHttpRequest: ...
             def list_next(
@@ -380,8 +383,8 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         filterSetName: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListBidMetricsResponseHttpRequest: ...
                     def list_next(
@@ -396,8 +399,8 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         filterSetName: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListBidResponseErrorsResponseHttpRequest: ...
                     def list_next(
@@ -414,8 +417,8 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         filterSetName: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListBidResponsesWithoutBidsResponseHttpRequest: ...
                     def list_next(
@@ -430,8 +433,8 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         filterSetName: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListFilteredBidRequestsResponseHttpRequest: ...
                     def list_next(
@@ -449,8 +452,8 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                             *,
                             filterSetName: str,
                             creativeStatusId: int,
-                            pageSize: int = ...,
-                            pageToken: str = ...,
+                            pageSize: int | None = ...,
+                            pageToken: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> (
                             ListCreativeStatusBreakdownByCreativeResponseHttpRequest
@@ -471,8 +474,8 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                             *,
                             filterSetName: str,
                             creativeStatusId: int,
-                            pageSize: int = ...,
-                            pageToken: str = ...,
+                            pageSize: int | None = ...,
+                            pageToken: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> ListCreativeStatusBreakdownByDetailResponseHttpRequest: ...
                         def list_next(
@@ -488,8 +491,8 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         filterSetName: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListFilteredBidsResponseHttpRequest: ...
                     def list_next(
@@ -506,8 +509,8 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         filterSetName: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListImpressionMetricsResponseHttpRequest: ...
                     def list_next(
@@ -522,8 +525,8 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         filterSetName: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListLosingBidsResponseHttpRequest: ...
                     def list_next(
@@ -540,8 +543,8 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         filterSetName: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListNonBillableWinningBidsResponseHttpRequest: ...
                     def list_next(
@@ -555,7 +558,7 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                     *,
                     ownerName: str,
                     body: FilterSet = ...,
-                    isTransient: bool = ...,
+                    isTransient: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> FilterSetHttpRequest: ...
                 def delete(
@@ -568,8 +571,8 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     ownerName: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListFilterSetsResponseHttpRequest: ...
                 def list_next(
@@ -598,8 +601,8 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     filterSetName: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListBidMetricsResponseHttpRequest: ...
                 def list_next(
@@ -614,8 +617,8 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     filterSetName: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListBidResponseErrorsResponseHttpRequest: ...
                 def list_next(
@@ -630,8 +633,8 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     filterSetName: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListBidResponsesWithoutBidsResponseHttpRequest: ...
                 def list_next(
@@ -646,8 +649,8 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     filterSetName: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListFilteredBidRequestsResponseHttpRequest: ...
                 def list_next(
@@ -665,8 +668,8 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                         *,
                         filterSetName: str,
                         creativeStatusId: int,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListCreativeStatusBreakdownByCreativeResponseHttpRequest: ...
                     def list_next(
@@ -684,8 +687,8 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                         *,
                         filterSetName: str,
                         creativeStatusId: int,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListCreativeStatusBreakdownByDetailResponseHttpRequest: ...
                     def list_next(
@@ -700,8 +703,8 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     filterSetName: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListFilteredBidsResponseHttpRequest: ...
                 def list_next(
@@ -718,8 +721,8 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     filterSetName: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListImpressionMetricsResponseHttpRequest: ...
                 def list_next(
@@ -734,8 +737,8 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     filterSetName: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListLosingBidsResponseHttpRequest: ...
                 def list_next(
@@ -750,8 +753,8 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     filterSetName: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListNonBillableWinningBidsResponseHttpRequest: ...
                 def list_next(
@@ -765,7 +768,7 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                 *,
                 ownerName: str,
                 body: FilterSet = ...,
-                isTransient: bool = ...,
+                isTransient: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> FilterSetHttpRequest: ...
             def delete(
@@ -778,8 +781,8 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 ownerName: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListFilterSetsResponseHttpRequest: ...
             def list_next(
@@ -809,8 +812,8 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     filterSetName: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListBidMetricsResponseHttpRequest: ...
                 def list_next(
@@ -825,8 +828,8 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     filterSetName: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListBidResponseErrorsResponseHttpRequest: ...
                 def list_next(
@@ -841,8 +844,8 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     filterSetName: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListBidResponsesWithoutBidsResponseHttpRequest: ...
                 def list_next(
@@ -857,8 +860,8 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     filterSetName: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListFilteredBidRequestsResponseHttpRequest: ...
                 def list_next(
@@ -876,8 +879,8 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                         *,
                         filterSetName: str,
                         creativeStatusId: int,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListCreativeStatusBreakdownByCreativeResponseHttpRequest: ...
                     def list_next(
@@ -895,8 +898,8 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                         *,
                         filterSetName: str,
                         creativeStatusId: int,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListCreativeStatusBreakdownByDetailResponseHttpRequest: ...
                     def list_next(
@@ -911,8 +914,8 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     filterSetName: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListFilteredBidsResponseHttpRequest: ...
                 def list_next(
@@ -929,8 +932,8 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     filterSetName: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListImpressionMetricsResponseHttpRequest: ...
                 def list_next(
@@ -945,8 +948,8 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     filterSetName: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListLosingBidsResponseHttpRequest: ...
                 def list_next(
@@ -961,8 +964,8 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     filterSetName: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListNonBillableWinningBidsResponseHttpRequest: ...
                 def list_next(
@@ -976,7 +979,7 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                 *,
                 ownerName: str,
                 body: FilterSet = ...,
-                isTransient: bool = ...,
+                isTransient: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> FilterSetHttpRequest: ...
             def delete(
@@ -989,8 +992,8 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 ownerName: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListFilterSetsResponseHttpRequest: ...
             def list_next(

@@ -29,13 +29,14 @@ class DocsResource(googleapiclient.discovery.Resource):
             self,
             *,
             documentId: str,
-            includeTabsContent: bool = ...,
+            includeTabsContent: bool | None = ...,
             suggestionsViewMode: typing_extensions.Literal[
                 "DEFAULT_FOR_CURRENT_ACCESS",
                 "SUGGESTIONS_INLINE",
                 "PREVIEW_SUGGESTIONS_ACCEPTED",
                 "PREVIEW_WITHOUT_SUGGESTIONS",
-            ] = ...,
+            ]
+            | None = ...,
             **kwargs: typing.Any,
         ) -> DocumentHttpRequest: ...
 

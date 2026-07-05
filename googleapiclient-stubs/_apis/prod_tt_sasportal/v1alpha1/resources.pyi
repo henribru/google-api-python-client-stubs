@@ -37,9 +37,9 @@ class SASPortalTestingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> SasPortalListDevicesResponseHttpRequest: ...
                 def list_next(
@@ -65,9 +65,9 @@ class SASPortalTestingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> SasPortalListDeploymentsResponseHttpRequest: ...
             def list_next(
@@ -87,7 +87,7 @@ class SASPortalTestingResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: SasPortalDeployment = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> SasPortalDeploymentHttpRequest: ...
             def devices(self) -> DevicesResource: ...
@@ -114,9 +114,9 @@ class SASPortalTestingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> SasPortalListDevicesResponseHttpRequest: ...
             def list_next(
@@ -136,7 +136,7 @@ class SASPortalTestingResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: SasPortalDevice = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> SasPortalDeviceHttpRequest: ...
             def signDevice(
@@ -169,9 +169,9 @@ class SASPortalTestingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> SasPortalListDeploymentsResponseHttpRequest: ...
                 def list_next(
@@ -200,9 +200,9 @@ class SASPortalTestingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> SasPortalListDevicesResponseHttpRequest: ...
                 def list_next(
@@ -224,9 +224,9 @@ class SASPortalTestingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> SasPortalListNodesResponseHttpRequest: ...
                 def list_next(
@@ -248,9 +248,9 @@ class SASPortalTestingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> SasPortalListNodesResponseHttpRequest: ...
             def list_next(
@@ -270,7 +270,7 @@ class SASPortalTestingResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: SasPortalNode = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> SasPortalNodeHttpRequest: ...
             def deployments(self) -> DeploymentsResource: ...
@@ -281,7 +281,11 @@ class SASPortalTestingResource(googleapiclient.discovery.Resource):
             self, *, name: str, **kwargs: typing.Any
         ) -> SasPortalCustomerHttpRequest: ...
         def list(
-            self, *, pageSize: int = ..., pageToken: str = ..., **kwargs: typing.Any
+            self,
+            *,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            **kwargs: typing.Any,
         ) -> SasPortalListCustomersResponseHttpRequest: ...
         def list_next(
             self,
@@ -305,7 +309,7 @@ class SASPortalTestingResource(googleapiclient.discovery.Resource):
             *,
             name: str,
             body: SasPortalCustomer = ...,
-            updateMask: str = ...,
+            updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> SasPortalCustomerHttpRequest: ...
         def provisionDeployment(
@@ -343,7 +347,7 @@ class SASPortalTestingResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: SasPortalDevice = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> SasPortalDeviceHttpRequest: ...
             def signDevice(
@@ -399,9 +403,9 @@ class SASPortalTestingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> SasPortalListDevicesResponseHttpRequest: ...
                 def list_next(
@@ -420,9 +424,9 @@ class SASPortalTestingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> SasPortalListDeploymentsResponseHttpRequest: ...
             def list_next(
@@ -442,7 +446,7 @@ class SASPortalTestingResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: SasPortalDeployment = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> SasPortalDeploymentHttpRequest: ...
             def devices(self) -> DevicesResource: ...
@@ -469,9 +473,9 @@ class SASPortalTestingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> SasPortalListDevicesResponseHttpRequest: ...
             def list_next(
@@ -491,7 +495,7 @@ class SASPortalTestingResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: SasPortalDevice = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> SasPortalDeviceHttpRequest: ...
             def signDevice(
@@ -524,9 +528,9 @@ class SASPortalTestingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> SasPortalListDeploymentsResponseHttpRequest: ...
                 def list_next(
@@ -555,9 +559,9 @@ class SASPortalTestingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> SasPortalListDevicesResponseHttpRequest: ...
                 def list_next(
@@ -579,9 +583,9 @@ class SASPortalTestingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> SasPortalListNodesResponseHttpRequest: ...
                 def list_next(
@@ -603,9 +607,9 @@ class SASPortalTestingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> SasPortalListNodesResponseHttpRequest: ...
             def list_next(
@@ -625,7 +629,7 @@ class SASPortalTestingResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: SasPortalNode = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> SasPortalNodeHttpRequest: ...
             def deployments(self) -> DeploymentsResource: ...

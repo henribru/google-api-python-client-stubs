@@ -27,8 +27,8 @@ class AnalyticsDataResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListAudienceExportsResponseHttpRequest: ...
             def list_next(

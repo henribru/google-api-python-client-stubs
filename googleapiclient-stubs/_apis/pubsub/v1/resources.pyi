@@ -29,14 +29,14 @@ class PubsubResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: Schema = ...,
-                schemaId: str = ...,
+                schemaId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> SchemaHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
             ) -> EmptyHttpRequest: ...
             def deleteRevision(
-                self, *, name: str, revisionId: str = ..., **kwargs: typing.Any
+                self, *, name: str, revisionId: str | None = ..., **kwargs: typing.Any
             ) -> SchemaHttpRequest: ...
             def get(
                 self,
@@ -44,25 +44,27 @@ class PubsubResource(googleapiclient.discovery.Resource):
                 name: str,
                 view: typing_extensions.Literal[
                     "SCHEMA_VIEW_UNSPECIFIED", "BASIC", "FULL"
-                ] = ...,
+                ]
+                | None = ...,
                 **kwargs: typing.Any,
             ) -> SchemaHttpRequest: ...
             def getIamPolicy(
                 self,
                 *,
                 resource: str,
-                options_requestedPolicyVersion: int = ...,
+                options_requestedPolicyVersion: int | None = ...,
                 **kwargs: typing.Any,
             ) -> PolicyHttpRequest: ...
             def list(
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 view: typing_extensions.Literal[
                     "SCHEMA_VIEW_UNSPECIFIED", "BASIC", "FULL"
-                ] = ...,
+                ]
+                | None = ...,
                 **kwargs: typing.Any,
             ) -> ListSchemasResponseHttpRequest: ...
             def list_next(
@@ -74,11 +76,12 @@ class PubsubResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 view: typing_extensions.Literal[
                     "SCHEMA_VIEW_UNSPECIFIED", "BASIC", "FULL"
-                ] = ...,
+                ]
+                | None = ...,
                 **kwargs: typing.Any,
             ) -> ListSchemaRevisionsResponseHttpRequest: ...
             def listRevisions_next(
@@ -141,15 +144,15 @@ class PubsubResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 resource: str,
-                options_requestedPolicyVersion: int = ...,
+                options_requestedPolicyVersion: int | None = ...,
                 **kwargs: typing.Any,
             ) -> PolicyHttpRequest: ...
             def list(
                 self,
                 *,
                 project: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListSnapshotsResponseHttpRequest: ...
             def list_next(
@@ -204,15 +207,15 @@ class PubsubResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 resource: str,
-                options_requestedPolicyVersion: int = ...,
+                options_requestedPolicyVersion: int | None = ...,
                 **kwargs: typing.Any,
             ) -> PolicyHttpRequest: ...
             def list(
                 self,
                 *,
                 project: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListSubscriptionsResponseHttpRequest: ...
             def list_next(
@@ -278,8 +281,8 @@ class PubsubResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     topic: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListTopicSnapshotsResponseHttpRequest: ...
                 def list_next(
@@ -294,8 +297,8 @@ class PubsubResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     topic: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListTopicSubscriptionsResponseHttpRequest: ...
                 def list_next(
@@ -315,15 +318,15 @@ class PubsubResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 resource: str,
-                options_requestedPolicyVersion: int = ...,
+                options_requestedPolicyVersion: int | None = ...,
                 **kwargs: typing.Any,
             ) -> PolicyHttpRequest: ...
             def list(
                 self,
                 *,
                 project: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListTopicsResponseHttpRequest: ...
             def list_next(

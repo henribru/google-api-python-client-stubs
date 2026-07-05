@@ -16,10 +16,10 @@ class KeepResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class MediaResource(googleapiclient.discovery.Resource):
         def download(
-            self, *, name: str, mimeType: str = ..., **kwargs: typing.Any
+            self, *, name: str, mimeType: str | None = ..., **kwargs: typing.Any
         ) -> AttachmentHttpRequest: ...
         def download_media(
-            self, *, name: str, mimeType: str = ..., **kwargs: typing.Any
+            self, *, name: str, mimeType: str | None = ..., **kwargs: typing.Any
         ) -> BytesHttpRequest: ...
 
     @typing.type_check_only
@@ -49,9 +49,9 @@ class KeepResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            filter: str = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
+            filter: str | None = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> ListNotesResponseHttpRequest: ...
         def list_next(

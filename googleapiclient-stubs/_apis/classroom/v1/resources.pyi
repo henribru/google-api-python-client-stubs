@@ -27,8 +27,8 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 courseId: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListCourseAliasesResponseHttpRequest: ...
             def list_next(
@@ -47,8 +47,8 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                     courseId: str,
                     itemId: str,
                     body: AddOnAttachment = ...,
-                    addOnToken: str = ...,
-                    postId: str = ...,
+                    addOnToken: str | None = ...,
+                    postId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> AddOnAttachmentHttpRequest: ...
                 def delete(
@@ -57,7 +57,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                     courseId: str,
                     itemId: str,
                     attachmentId: str,
-                    postId: str = ...,
+                    postId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def get(
@@ -66,7 +66,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                     courseId: str,
                     itemId: str,
                     attachmentId: str,
-                    postId: str = ...,
+                    postId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> AddOnAttachmentHttpRequest: ...
                 def list(
@@ -74,9 +74,9 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                     *,
                     courseId: str,
                     itemId: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    postId: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    postId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListAddOnAttachmentsResponseHttpRequest: ...
                 def list_next(
@@ -91,8 +91,8 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                     itemId: str,
                     attachmentId: str,
                     body: AddOnAttachment = ...,
-                    postId: str = ...,
-                    updateMask: str = ...,
+                    postId: str | None = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> AddOnAttachmentHttpRequest: ...
 
@@ -110,9 +110,9 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                 *,
                 courseId: str,
                 itemId: str,
-                addOnToken: str = ...,
-                attachmentId: str = ...,
-                postId: str = ...,
+                addOnToken: str | None = ...,
+                attachmentId: str | None = ...,
+                postId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> AddOnContextHttpRequest: ...
             def list(
@@ -129,10 +129,11 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                         "DRAFT",
                         "DELETED",
                     ]
-                ] = ...,
-                orderBy: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                ]
+                | None = ...,
+                orderBy: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListAnnouncementsResponseHttpRequest: ...
             def list_next(
@@ -154,7 +155,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                 courseId: str,
                 id: str,
                 body: Announcement = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> AnnouncementHttpRequest: ...
             def addOnAttachments(self) -> AddOnAttachmentsResource: ...
@@ -172,7 +173,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                         itemId: str,
                         attachmentId: str,
                         submissionId: str,
-                        postId: str = ...,
+                        postId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> AddOnAttachmentStudentSubmissionHttpRequest: ...
                     def patch(
@@ -183,8 +184,8 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                         attachmentId: str,
                         submissionId: str,
                         body: AddOnAttachmentStudentSubmission = ...,
-                        postId: str = ...,
-                        updateMask: str = ...,
+                        postId: str | None = ...,
+                        updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> AddOnAttachmentStudentSubmissionHttpRequest: ...
 
@@ -194,8 +195,8 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                     courseId: str,
                     itemId: str,
                     body: AddOnAttachment = ...,
-                    addOnToken: str = ...,
-                    postId: str = ...,
+                    addOnToken: str | None = ...,
+                    postId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> AddOnAttachmentHttpRequest: ...
                 def delete(
@@ -204,7 +205,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                     courseId: str,
                     itemId: str,
                     attachmentId: str,
-                    postId: str = ...,
+                    postId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def get(
@@ -213,7 +214,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                     courseId: str,
                     itemId: str,
                     attachmentId: str,
-                    postId: str = ...,
+                    postId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> AddOnAttachmentHttpRequest: ...
                 def list(
@@ -221,9 +222,9 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                     *,
                     courseId: str,
                     itemId: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    postId: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    postId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListAddOnAttachmentsResponseHttpRequest: ...
                 def list_next(
@@ -238,8 +239,8 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                     itemId: str,
                     attachmentId: str,
                     body: AddOnAttachment = ...,
-                    postId: str = ...,
-                    updateMask: str = ...,
+                    postId: str | None = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> AddOnAttachmentHttpRequest: ...
                 def studentSubmissions(self) -> StudentSubmissionsResource: ...
@@ -275,8 +276,8 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                     *,
                     courseId: str,
                     courseWorkId: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListRubricsResponseHttpRequest: ...
                 def list_next(
@@ -291,7 +292,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                     courseWorkId: str,
                     id: str,
                     body: Rubric = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> RubricHttpRequest: ...
 
@@ -312,9 +313,10 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                     courseWorkId: str,
                     late: typing_extensions.Literal[
                         "LATE_VALUES_UNSPECIFIED", "LATE_ONLY", "NOT_LATE_ONLY"
-                    ] = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    ]
+                    | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     states: typing_extensions.Literal[
                         "SUBMISSION_STATE_UNSPECIFIED",
                         "NEW",
@@ -332,8 +334,9 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                             "RETURNED",
                             "RECLAIMED_BY_STUDENT",
                         ]
-                    ] = ...,
-                    userId: str = ...,
+                    ]
+                    | None = ...,
+                    userId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListStudentSubmissionsResponseHttpRequest: ...
                 def list_next(
@@ -357,7 +360,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                     courseWorkId: str,
                     id: str,
                     body: StudentSubmission = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> StudentSubmissionHttpRequest: ...
                 def reclaim(
@@ -402,9 +405,9 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                 *,
                 courseId: str,
                 itemId: str,
-                addOnToken: str = ...,
-                attachmentId: str = ...,
-                postId: str = ...,
+                addOnToken: str | None = ...,
+                attachmentId: str | None = ...,
+                postId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> AddOnContextHttpRequest: ...
             def list(
@@ -418,10 +421,11 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                     typing_extensions.Literal[
                         "COURSE_WORK_STATE_UNSPECIFIED", "PUBLISHED", "DRAFT", "DELETED"
                     ]
-                ] = ...,
-                orderBy: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                ]
+                | None = ...,
+                orderBy: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListCourseWorkResponseHttpRequest: ...
             def list_next(
@@ -443,7 +447,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                 courseId: str,
                 id: str,
                 body: CourseWork = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> CourseWorkHttpRequest: ...
             def updateRubric(
@@ -452,8 +456,8 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                 courseId: str,
                 courseWorkId: str,
                 body: Rubric = ...,
-                id: str = ...,
-                updateMask: str = ...,
+                id: str | None = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> RubricHttpRequest: ...
             def addOnAttachments(self) -> AddOnAttachmentsResource: ...
@@ -470,8 +474,8 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                     courseId: str,
                     itemId: str,
                     body: AddOnAttachment = ...,
-                    addOnToken: str = ...,
-                    postId: str = ...,
+                    addOnToken: str | None = ...,
+                    postId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> AddOnAttachmentHttpRequest: ...
                 def delete(
@@ -480,7 +484,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                     courseId: str,
                     itemId: str,
                     attachmentId: str,
-                    postId: str = ...,
+                    postId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def get(
@@ -489,7 +493,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                     courseId: str,
                     itemId: str,
                     attachmentId: str,
-                    postId: str = ...,
+                    postId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> AddOnAttachmentHttpRequest: ...
                 def list(
@@ -497,9 +501,9 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                     *,
                     courseId: str,
                     itemId: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    postId: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    postId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListAddOnAttachmentsResponseHttpRequest: ...
                 def list_next(
@@ -514,8 +518,8 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                     itemId: str,
                     attachmentId: str,
                     body: AddOnAttachment = ...,
-                    postId: str = ...,
-                    updateMask: str = ...,
+                    postId: str | None = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> AddOnAttachmentHttpRequest: ...
 
@@ -537,9 +541,9 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                 *,
                 courseId: str,
                 itemId: str,
-                addOnToken: str = ...,
-                attachmentId: str = ...,
-                postId: str = ...,
+                addOnToken: str | None = ...,
+                attachmentId: str | None = ...,
+                postId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> AddOnContextHttpRequest: ...
             def list(
@@ -559,12 +563,13 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                         "DRAFT",
                         "DELETED",
                     ]
-                ] = ...,
-                materialDriveId: str = ...,
-                materialLink: str = ...,
-                orderBy: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                ]
+                | None = ...,
+                materialDriveId: str | None = ...,
+                materialLink: str | None = ...,
+                orderBy: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListCourseWorkMaterialResponseHttpRequest: ...
             def list_next(
@@ -578,7 +583,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                 courseId: str,
                 id: str,
                 body: CourseWorkMaterial = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> CourseWorkMaterialHttpRequest: ...
             def addOnAttachments(self) -> AddOnAttachmentsResource: ...
@@ -596,7 +601,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                         postId: str,
                         attachmentId: str,
                         submissionId: str,
-                        itemId: str = ...,
+                        itemId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> AddOnAttachmentStudentSubmissionHttpRequest: ...
                     def patch(
@@ -607,8 +612,8 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                         attachmentId: str,
                         submissionId: str,
                         body: AddOnAttachmentStudentSubmission = ...,
-                        itemId: str = ...,
-                        updateMask: str = ...,
+                        itemId: str | None = ...,
+                        updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> AddOnAttachmentStudentSubmissionHttpRequest: ...
 
@@ -618,8 +623,8 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                     courseId: str,
                     postId: str,
                     body: AddOnAttachment = ...,
-                    addOnToken: str = ...,
-                    itemId: str = ...,
+                    addOnToken: str | None = ...,
+                    itemId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> AddOnAttachmentHttpRequest: ...
                 def delete(
@@ -628,7 +633,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                     courseId: str,
                     postId: str,
                     attachmentId: str,
-                    itemId: str = ...,
+                    itemId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def get(
@@ -637,7 +642,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                     courseId: str,
                     postId: str,
                     attachmentId: str,
-                    itemId: str = ...,
+                    itemId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> AddOnAttachmentHttpRequest: ...
                 def list(
@@ -645,9 +650,9 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                     *,
                     courseId: str,
                     postId: str,
-                    itemId: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    itemId: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListAddOnAttachmentsResponseHttpRequest: ...
                 def list_next(
@@ -662,8 +667,8 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                     postId: str,
                     attachmentId: str,
                     body: AddOnAttachment = ...,
-                    itemId: str = ...,
-                    updateMask: str = ...,
+                    itemId: str | None = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> AddOnAttachmentHttpRequest: ...
                 def studentSubmissions(self) -> StudentSubmissionsResource: ...
@@ -673,9 +678,9 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                 *,
                 courseId: str,
                 postId: str,
-                addOnToken: str = ...,
-                attachmentId: str = ...,
-                itemId: str = ...,
+                addOnToken: str | None = ...,
+                attachmentId: str | None = ...,
+                itemId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> AddOnContextHttpRequest: ...
             def addOnAttachments(self) -> AddOnAttachmentsResource: ...
@@ -705,8 +710,8 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                     *,
                     courseId: str,
                     studentGroupId: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListStudentGroupMembersResponseHttpRequest: ...
                 def list_next(
@@ -725,8 +730,8 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 courseId: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListStudentGroupsResponseHttpRequest: ...
             def list_next(
@@ -740,7 +745,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                 courseId: str,
                 id: str,
                 body: StudentGroup = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> StudentGroupHttpRequest: ...
             def studentGroupMembers(self) -> StudentGroupMembersResource: ...
@@ -752,7 +757,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                 *,
                 courseId: str,
                 body: Student = ...,
-                enrollmentCode: str = ...,
+                enrollmentCode: str | None = ...,
                 **kwargs: typing.Any,
             ) -> StudentHttpRequest: ...
             def delete(
@@ -765,8 +770,8 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 courseId: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListStudentsResponseHttpRequest: ...
             def list_next(
@@ -790,8 +795,8 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 courseId: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListTeachersResponseHttpRequest: ...
             def list_next(
@@ -815,8 +820,8 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 courseId: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListTopicResponseHttpRequest: ...
             def list_next(
@@ -830,7 +835,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                 courseId: str,
                 id: str,
                 body: Topic = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> TopicHttpRequest: ...
 
@@ -862,11 +867,12 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                     "DECLINED",
                     "SUSPENDED",
                 ]
-            ] = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
-            studentId: str = ...,
-            teacherId: str = ...,
+            ]
+            | None = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            studentId: str | None = ...,
+            teacherId: str | None = ...,
             **kwargs: typing.Any,
         ) -> ListCoursesResponseHttpRequest: ...
         def list_next(
@@ -879,7 +885,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
             *,
             id: str,
             body: Course = ...,
-            updateMask: str = ...,
+            updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> CourseHttpRequest: ...
         def update(
@@ -890,7 +896,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
             *,
             courseId: str,
             body: GradingPeriodSettings = ...,
-            updateMask: str = ...,
+            updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> GradingPeriodSettingsHttpRequest: ...
         def aliases(self) -> AliasesResource: ...
@@ -914,10 +920,10 @@ class ClassroomResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            courseId: str = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
-            userId: str = ...,
+            courseId: str | None = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            userId: str | None = ...,
             **kwargs: typing.Any,
         ) -> ListInvitationsResponseHttpRequest: ...
         def list_next(
@@ -953,9 +959,9 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 studentId: str,
-                invitedEmailAddress: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                invitedEmailAddress: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 states: typing_extensions.Literal[
                     "GUARDIAN_INVITATION_STATE_UNSPECIFIED", "PENDING", "COMPLETE"
                 ]
@@ -963,7 +969,8 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                     typing_extensions.Literal[
                         "GUARDIAN_INVITATION_STATE_UNSPECIFIED", "PENDING", "COMPLETE"
                     ]
-                ] = ...,
+                ]
+                | None = ...,
                 **kwargs: typing.Any,
             ) -> ListGuardianInvitationsResponseHttpRequest: ...
             def list_next(
@@ -977,7 +984,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                 studentId: str,
                 invitationId: str,
                 body: GuardianInvitation = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GuardianInvitationHttpRequest: ...
 
@@ -993,9 +1000,9 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 studentId: str,
-                invitedEmailAddress: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                invitedEmailAddress: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListGuardiansResponseHttpRequest: ...
             def list_next(

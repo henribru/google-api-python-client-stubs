@@ -23,7 +23,7 @@ class MyBusinessNotificationSettingsResource(googleapiclient.discovery.Resource)
             *,
             name: str,
             body: NotificationSetting = ...,
-            updateMask: str = ...,
+            updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> NotificationSettingHttpRequest: ...
 

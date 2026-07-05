@@ -19,7 +19,11 @@ class DiscoveryResource(googleapiclient.discovery.Resource):
             self, *, api: str, version: str, **kwargs: typing.Any
         ) -> RestDescriptionHttpRequest: ...
         def list(
-            self, *, name: str = ..., preferred: bool = ..., **kwargs: typing.Any
+            self,
+            *,
+            name: str | None = ...,
+            preferred: bool | None = ...,
+            **kwargs: typing.Any,
         ) -> DirectoryListHttpRequest: ...
 
     def new_batch_http_request(

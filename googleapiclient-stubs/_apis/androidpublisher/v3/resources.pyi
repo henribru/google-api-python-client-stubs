@@ -22,7 +22,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 *,
                 packageName: str,
                 body: DeviceTierConfig = ...,
-                allowUnknownDevices: bool = ...,
+                allowUnknownDevices: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> DeviceTierConfigHttpRequest: ...
             def get(
@@ -32,8 +32,8 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 packageName: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListDeviceTierConfigsResponseHttpRequest: ...
             def list_next(
@@ -96,7 +96,11 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any,
         ) -> DeployAppRecoveryResponseHttpRequest: ...
         def list(
-            self, *, packageName: str, versionCode: str = ..., **kwargs: typing.Any
+            self,
+            *,
+            packageName: str,
+            versionCode: str | None = ...,
+            **kwargs: typing.Any,
         ) -> ListAppRecoveriesResponseHttpRequest: ...
 
     @typing.type_check_only
@@ -128,8 +132,8 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 *,
                 packageName: str,
                 editId: str,
-                ackBundleInstallationWarning: bool = ...,
-                deviceTierConfigId: str = ...,
+                ackBundleInstallationWarning: bool | None = ...,
+                deviceTierConfigId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> BundleHttpRequest: ...
 
@@ -305,7 +309,8 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                     "aiGeneratedStateUnspecified",
                     "aiGeneratedStateNotAiGenerated",
                     "aiGeneratedStateAiGeneratedDeveloperAttested",
-                ] = ...,
+                ]
+                | None = ...,
                 **kwargs: typing.Any,
             ) -> ImagesUploadResponseHttpRequest: ...
 
@@ -420,8 +425,9 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 "CHANGES_IN_REVIEW_BEHAVIOR_TYPE_UNSPECIFIED",
                 "CANCEL_IN_REVIEW_AND_SUBMIT",
                 "ERROR_IF_IN_REVIEW",
-            ] = ...,
-            changesNotSentForReview: bool = ...,
+            ]
+            | None = ...,
+            changesNotSentForReview: bool | None = ...,
             **kwargs: typing.Any,
         ) -> AppEditHttpRequest: ...
         def delete(
@@ -454,7 +460,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
             *,
             parent: str,
             body: ExternalTransaction = ...,
-            externalTransactionId: str = ...,
+            externalTransactionId: str | None = ...,
             **kwargs: typing.Any,
         ) -> ExternalTransactionHttpRequest: ...
         def getexternaltransaction(
@@ -503,7 +509,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
             *,
             name: str,
             body: Grant = ...,
-            updateMask: str = ...,
+            updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> GrantHttpRequest: ...
 
@@ -517,7 +523,11 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any,
         ) -> googleapiclient.http.HttpRequest: ...
         def batchGet(
-            self, *, packageName: str, sku: str | _list[str] = ..., **kwargs: typing.Any
+            self,
+            *,
+            packageName: str,
+            sku: str | _list[str] | None = ...,
+            **kwargs: typing.Any,
         ) -> InappproductsBatchGetResponseHttpRequest: ...
         def batchUpdate(
             self,
@@ -535,7 +545,8 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
                 "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
                 "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT",
-            ] = ...,
+            ]
+            | None = ...,
             **kwargs: typing.Any,
         ) -> googleapiclient.http.HttpRequest: ...
         def get(
@@ -546,16 +557,16 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
             *,
             packageName: str,
             body: InAppProduct = ...,
-            autoConvertMissingPrices: bool = ...,
+            autoConvertMissingPrices: bool | None = ...,
             **kwargs: typing.Any,
         ) -> InAppProductHttpRequest: ...
         def list(
             self,
             *,
             packageName: str,
-            maxResults: int = ...,
-            startIndex: int = ...,
-            token: str = ...,
+            maxResults: int | None = ...,
+            startIndex: int | None = ...,
+            token: str | None = ...,
             **kwargs: typing.Any,
         ) -> InappproductsListResponseHttpRequest: ...
         def patch(
@@ -564,12 +575,13 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
             packageName: str,
             sku: str,
             body: InAppProduct = ...,
-            autoConvertMissingPrices: bool = ...,
+            autoConvertMissingPrices: bool | None = ...,
             latencyTolerance: typing_extensions.Literal[
                 "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
                 "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
                 "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT",
-            ] = ...,
+            ]
+            | None = ...,
             **kwargs: typing.Any,
         ) -> InAppProductHttpRequest: ...
         def update(
@@ -578,13 +590,14 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
             packageName: str,
             sku: str,
             body: InAppProduct = ...,
-            allowMissing: bool = ...,
-            autoConvertMissingPrices: bool = ...,
+            allowMissing: bool | None = ...,
+            autoConvertMissingPrices: bool | None = ...,
             latencyTolerance: typing_extensions.Literal[
                 "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
                 "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
                 "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT",
-            ] = ...,
+            ]
+            | None = ...,
             **kwargs: typing.Any,
         ) -> InAppProductHttpRequest: ...
 
@@ -677,8 +690,8 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                         packageName: str,
                         productId: str,
                         purchaseOptionId: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListOneTimeProductOffersResponseHttpRequest: ...
                     def list_next(
@@ -716,7 +729,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 packageName: str,
-                productIds: str | _list[str] = ...,
+                productIds: str | _list[str] | None = ...,
                 **kwargs: typing.Any,
             ) -> BatchGetOneTimeProductsResponseHttpRequest: ...
             def batchUpdate(
@@ -735,7 +748,8 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                     "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
                     "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
                     "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT",
-                ] = ...,
+                ]
+                | None = ...,
                 **kwargs: typing.Any,
             ) -> googleapiclient.http.HttpRequest: ...
             def get(
@@ -745,8 +759,8 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 packageName: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListOneTimeProductsResponseHttpRequest: ...
             def list_next(
@@ -760,14 +774,15 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 packageName: str,
                 productId: str,
                 body: OneTimeProduct = ...,
-                allowMissing: bool = ...,
+                allowMissing: bool | None = ...,
                 latencyTolerance: typing_extensions.Literal[
                     "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
                     "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
                     "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT",
-                ] = ...,
-                regionsVersion_version: str = ...,
-                updateMask: str = ...,
+                ]
+                | None = ...,
+                regionsVersion_version: str | None = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> OneTimeProductHttpRequest: ...
             def purchaseOptions(self) -> PurchaseOptionsResource: ...
@@ -822,8 +837,8 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                         productId: str,
                         basePlanId: str,
                         body: SubscriptionOffer = ...,
-                        offerId: str = ...,
-                        regionsVersion_version: str = ...,
+                        offerId: str | None = ...,
+                        regionsVersion_version: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> SubscriptionOfferHttpRequest: ...
                     def deactivate(
@@ -860,8 +875,8 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                         packageName: str,
                         productId: str,
                         basePlanId: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListSubscriptionOffersResponseHttpRequest: ...
                     def list_next(
@@ -877,14 +892,15 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                         basePlanId: str,
                         offerId: str,
                         body: SubscriptionOffer = ...,
-                        allowMissing: bool = ...,
+                        allowMissing: bool | None = ...,
                         latencyTolerance: typing_extensions.Literal[
                             "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
                             "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
                             "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT",
-                        ] = ...,
-                        regionsVersion_version: str = ...,
-                        updateMask: str = ...,
+                        ]
+                        | None = ...,
+                        regionsVersion_version: str | None = ...,
+                        updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> SubscriptionOfferHttpRequest: ...
 
@@ -953,7 +969,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 packageName: str,
-                productIds: str | _list[str] = ...,
+                productIds: str | _list[str] | None = ...,
                 **kwargs: typing.Any,
             ) -> BatchGetSubscriptionsResponseHttpRequest: ...
             def batchUpdate(
@@ -968,8 +984,8 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 *,
                 packageName: str,
                 body: Subscription = ...,
-                productId: str = ...,
-                regionsVersion_version: str = ...,
+                productId: str | None = ...,
+                regionsVersion_version: str | None = ...,
                 **kwargs: typing.Any,
             ) -> SubscriptionHttpRequest: ...
             def delete(
@@ -982,9 +998,9 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 packageName: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
-                showArchived: bool = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
+                showArchived: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> ListSubscriptionsResponseHttpRequest: ...
             def list_next(
@@ -998,14 +1014,15 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 packageName: str,
                 productId: str,
                 body: Subscription = ...,
-                allowMissing: bool = ...,
+                allowMissing: bool | None = ...,
                 latencyTolerance: typing_extensions.Literal[
                     "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
                     "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
                     "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT",
-                ] = ...,
-                regionsVersion_version: str = ...,
-                updateMask: str = ...,
+                ]
+                | None = ...,
+                regionsVersion_version: str | None = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> SubscriptionHttpRequest: ...
             def basePlans(self) -> BasePlansResource: ...
@@ -1026,7 +1043,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
             self,
             *,
             packageName: str,
-            orderIds: str | _list[str] = ...,
+            orderIds: str | _list[str] | None = ...,
             **kwargs: typing.Any,
         ) -> BatchGetOrdersResponseHttpRequest: ...
         def get(
@@ -1037,7 +1054,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
             *,
             packageName: str,
             orderId: str,
-            revoke: bool = ...,
+            revoke: bool | None = ...,
             **kwargs: typing.Any,
         ) -> googleapiclient.http.HttpRequest: ...
 
@@ -1166,13 +1183,13 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 packageName: str,
-                endTime: str = ...,
-                includeQuantityBasedPartialRefund: bool = ...,
-                maxResults: int = ...,
-                startIndex: int = ...,
-                startTime: str = ...,
-                token: str = ...,
-                type: int = ...,
+                endTime: str | None = ...,
+                includeQuantityBasedPartialRefund: bool | None = ...,
+                maxResults: int | None = ...,
+                startIndex: int | None = ...,
+                startTime: str | None = ...,
+                token: str | None = ...,
+                type: int | None = ...,
                 **kwargs: typing.Any,
             ) -> VoidedPurchasesListResponseHttpRequest: ...
 
@@ -1189,17 +1206,17 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
             *,
             packageName: str,
             reviewId: str,
-            translationLanguage: str = ...,
+            translationLanguage: str | None = ...,
             **kwargs: typing.Any,
         ) -> ReviewHttpRequest: ...
         def list(
             self,
             *,
             packageName: str,
-            maxResults: int = ...,
-            startIndex: int = ...,
-            token: str = ...,
-            translationLanguage: str = ...,
+            maxResults: int | None = ...,
+            startIndex: int | None = ...,
+            token: str | None = ...,
+            translationLanguage: str | None = ...,
             **kwargs: typing.Any,
         ) -> ReviewsListResponseHttpRequest: ...
         def reply(
@@ -1265,8 +1282,8 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
             self,
             *,
             parent: str,
-            pageSize: int = ...,
-            pageToken: str = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> ListUsersResponseHttpRequest: ...
         def list_next(
@@ -1279,7 +1296,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
             *,
             name: str,
             body: User = ...,
-            updateMask: str = ...,
+            updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> UserHttpRequest: ...
 

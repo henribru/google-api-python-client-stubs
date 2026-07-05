@@ -21,9 +21,9 @@ class SpannerResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListInstanceConfigOperationsResponseHttpRequest: ...
             def list_next(
@@ -49,10 +49,10 @@ class SpannerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    returnPartialSuccess: bool = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    returnPartialSuccess: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListOperationsResponseHttpRequest: ...
                 def list_next(
@@ -78,10 +78,10 @@ class SpannerResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        filter: str = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
-                        returnPartialSuccess: bool = ...,
+                        filter: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
+                        returnPartialSuccess: bool | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListOperationsResponseHttpRequest: ...
                     def list_next(
@@ -103,8 +103,8 @@ class SpannerResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                etag: str = ...,
-                validateOnly: bool = ...,
+                etag: str | None = ...,
+                validateOnly: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> EmptyHttpRequest: ...
             def get(
@@ -114,8 +114,8 @@ class SpannerResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListInstanceConfigsResponseHttpRequest: ...
             def list_next(
@@ -141,9 +141,9 @@ class SpannerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListBackupOperationsResponseHttpRequest: ...
                 def list_next(
@@ -169,10 +169,10 @@ class SpannerResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        filter: str = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
-                        returnPartialSuccess: bool = ...,
+                        filter: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
+                        returnPartialSuccess: bool | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListOperationsResponseHttpRequest: ...
                     def list_next(
@@ -193,15 +193,16 @@ class SpannerResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: Backup = ...,
-                    backupId: str = ...,
+                    backupId: str | None = ...,
                     encryptionConfig_encryptionType: typing_extensions.Literal[
                         "ENCRYPTION_TYPE_UNSPECIFIED",
                         "USE_DATABASE_ENCRYPTION",
                         "GOOGLE_DEFAULT_ENCRYPTION",
                         "CUSTOMER_MANAGED_ENCRYPTION",
-                    ] = ...,
-                    encryptionConfig_kmsKeyName: str = ...,
-                    encryptionConfig_kmsKeyNames: str | _list[str] = ...,
+                    ]
+                    | None = ...,
+                    encryptionConfig_kmsKeyName: str | None = ...,
+                    encryptionConfig_kmsKeyNames: str | _list[str] | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
@@ -221,9 +222,9 @@ class SpannerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListBackupsResponseHttpRequest: ...
                 def list_next(
@@ -236,7 +237,7 @@ class SpannerResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: Backup = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> BackupHttpRequest: ...
                 def setIamPolicy(
@@ -261,9 +262,9 @@ class SpannerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListDatabaseOperationsResponseHttpRequest: ...
                 def list_next(
@@ -281,7 +282,7 @@ class SpannerResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: BackupSchedule = ...,
-                        backupScheduleId: str = ...,
+                        backupScheduleId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> BackupScheduleHttpRequest: ...
                     def delete(
@@ -301,8 +302,8 @@ class SpannerResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListBackupSchedulesResponseHttpRequest: ...
                     def list_next(
@@ -315,7 +316,7 @@ class SpannerResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: BackupSchedule = ...,
-                        updateMask: str = ...,
+                        updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> BackupScheduleHttpRequest: ...
                     def setIamPolicy(
@@ -339,8 +340,8 @@ class SpannerResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListDatabaseRolesResponseHttpRequest: ...
                     def list_next(
@@ -371,10 +372,10 @@ class SpannerResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        filter: str = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
-                        returnPartialSuccess: bool = ...,
+                        filter: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
+                        returnPartialSuccess: bool | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListOperationsResponseHttpRequest: ...
                     def list_next(
@@ -465,9 +466,9 @@ class SpannerResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         database: str,
-                        filter: str = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        filter: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListSessionsResponseHttpRequest: ...
                     def list_next(
@@ -552,19 +553,20 @@ class SpannerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    endTime: str = ...,
-                    startTime: str = ...,
+                    endTime: str | None = ...,
+                    startTime: str | None = ...,
                     view: typing_extensions.Literal[
                         "VIEW_UNSPECIFIED", "SUMMARY", "FULL"
-                    ] = ...,
+                    ]
+                    | None = ...,
                     **kwargs: typing.Any,
                 ) -> ScanHttpRequest: ...
                 def list(
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListDatabasesResponseHttpRequest: ...
                 def list_next(
@@ -577,7 +579,7 @@ class SpannerResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: Database = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def restore(
@@ -621,10 +623,10 @@ class SpannerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    instancePartitionDeadline: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    instancePartitionDeadline: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListInstancePartitionOperationsResponseHttpRequest: ...
                 def list_next(
@@ -650,10 +652,10 @@ class SpannerResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        filter: str = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
-                        returnPartialSuccess: bool = ...,
+                        filter: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
+                        returnPartialSuccess: bool | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListOperationsResponseHttpRequest: ...
                     def list_next(
@@ -670,7 +672,7 @@ class SpannerResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
-                    self, *, name: str, etag: str = ..., **kwargs: typing.Any
+                    self, *, name: str, etag: str | None = ..., **kwargs: typing.Any
                 ) -> EmptyHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
@@ -679,9 +681,9 @@ class SpannerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    instancePartitionDeadline: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    instancePartitionDeadline: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListInstancePartitionsResponseHttpRequest: ...
                 def list_next(
@@ -713,10 +715,10 @@ class SpannerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    returnPartialSuccess: bool = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    returnPartialSuccess: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListOperationsResponseHttpRequest: ...
                 def list_next(
@@ -736,7 +738,7 @@ class SpannerResource(googleapiclient.discovery.Resource):
                 self, *, name: str, **kwargs: typing.Any
             ) -> EmptyHttpRequest: ...
             def get(
-                self, *, name: str, fieldMask: str = ..., **kwargs: typing.Any
+                self, *, name: str, fieldMask: str | None = ..., **kwargs: typing.Any
             ) -> InstanceHttpRequest: ...
             def getIamPolicy(
                 self,
@@ -749,10 +751,10 @@ class SpannerResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                filter: str = ...,
-                instanceDeadline: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                filter: str | None = ...,
+                instanceDeadline: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListInstancesResponseHttpRequest: ...
             def list_next(
@@ -808,12 +810,11 @@ class SpannerResource(googleapiclient.discovery.Resource):
             self,
             *,
             parent: str,
-            filter: str = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
-            view: typing_extensions.Literal[
-                "VIEW_UNSPECIFIED", "SUMMARY", "FULL"
-            ] = ...,
+            filter: str | None = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            view: typing_extensions.Literal["VIEW_UNSPECIFIED", "SUMMARY", "FULL"]
+            | None = ...,
             **kwargs: typing.Any,
         ) -> ListScansResponseHttpRequest: ...
         def list_next(

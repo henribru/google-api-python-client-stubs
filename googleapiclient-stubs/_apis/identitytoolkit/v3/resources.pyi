@@ -56,8 +56,8 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
         def getProjectConfig(
             self,
             *,
-            delegatedProjectNumber: str = ...,
-            projectNumber: str = ...,
+            delegatedProjectNumber: str | None = ...,
+            projectNumber: str | None = ...,
             **kwargs: typing.Any,
         ) -> IdentitytoolkitRelyingpartyGetProjectConfigResponseHttpRequest: ...
         def getPublicKeys(

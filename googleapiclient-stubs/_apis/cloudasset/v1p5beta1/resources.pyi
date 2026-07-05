@@ -19,17 +19,18 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             self,
             *,
             parent: str,
-            assetTypes: str | _list[str] = ...,
+            assetTypes: str | _list[str] | None = ...,
             contentType: typing_extensions.Literal[
                 "CONTENT_TYPE_UNSPECIFIED",
                 "RESOURCE",
                 "IAM_POLICY",
                 "ORG_POLICY",
                 "ACCESS_POLICY",
-            ] = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
-            readTime: str = ...,
+            ]
+            | None = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            readTime: str | None = ...,
             **kwargs: typing.Any,
         ) -> ListAssetsResponseHttpRequest: ...
         def list_next(

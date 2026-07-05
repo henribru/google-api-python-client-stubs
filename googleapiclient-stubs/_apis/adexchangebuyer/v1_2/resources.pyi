@@ -35,11 +35,12 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            maxResults: int = ...,
-            pageToken: str = ...,
+            maxResults: int | None = ...,
+            pageToken: str | None = ...,
             statusFilter: typing_extensions.Literal[
                 "approved", "disapproved", "not_checked"
-            ] = ...,
+            ]
+            | None = ...,
             **kwargs: typing.Any,
         ) -> CreativesListHttpRequest: ...
         def list_next(

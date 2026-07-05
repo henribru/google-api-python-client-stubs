@@ -16,25 +16,25 @@ class CivicInfoResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class DivisionsResource(googleapiclient.discovery.Resource):
         def queryDivisionByAddress(
-            self, *, address: str = ..., **kwargs: typing.Any
+            self, *, address: str | None = ..., **kwargs: typing.Any
         ) -> CivicinfoApiprotosV2DivisionByAddressResponseHttpRequest: ...
         def search(
-            self, *, query: str = ..., **kwargs: typing.Any
+            self, *, query: str | None = ..., **kwargs: typing.Any
         ) -> CivicinfoApiprotosV2DivisionSearchResponseHttpRequest: ...
 
     @typing.type_check_only
     class ElectionsResource(googleapiclient.discovery.Resource):
         def electionQuery(
-            self, *, productionDataOnly: bool = ..., **kwargs: typing.Any
+            self, *, productionDataOnly: bool | None = ..., **kwargs: typing.Any
         ) -> CivicinfoApiprotosV2ElectionsQueryResponseHttpRequest: ...
         def voterInfoQuery(
             self,
             *,
-            address: str = ...,
-            electionId: str = ...,
-            officialOnly: bool = ...,
-            productionDataOnly: bool = ...,
-            returnAllAvailableData: bool = ...,
+            address: str | None = ...,
+            electionId: str | None = ...,
+            officialOnly: bool | None = ...,
+            productionDataOnly: bool | None = ...,
+            returnAllAvailableData: bool | None = ...,
             **kwargs: typing.Any,
         ) -> CivicinfoApiprotosV2VoterInfoResponseHttpRequest: ...
 

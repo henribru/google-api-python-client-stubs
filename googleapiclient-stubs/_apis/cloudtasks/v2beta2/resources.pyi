@@ -18,7 +18,11 @@ class CloudTasksResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class QueueResource(googleapiclient.discovery.Resource):
             def update(
-                self, *, body: HttpBody = ..., appId: str = ..., **kwargs: typing.Any
+                self,
+                *,
+                body: HttpBody = ...,
+                appId: str | None = ...,
+                **kwargs: typing.Any,
             ) -> EmptyHttpRequest: ...
 
         def queue(self) -> QueueResource: ...
@@ -69,7 +73,8 @@ class CloudTasksResource(googleapiclient.discovery.Resource):
                         name: str,
                         responseView: typing_extensions.Literal[
                             "VIEW_UNSPECIFIED", "BASIC", "FULL"
-                        ] = ...,
+                        ]
+                        | None = ...,
                         **kwargs: typing.Any,
                     ) -> TaskHttpRequest: ...
                     def lease(
@@ -83,11 +88,12 @@ class CloudTasksResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         responseView: typing_extensions.Literal[
                             "VIEW_UNSPECIFIED", "BASIC", "FULL"
-                        ] = ...,
+                        ]
+                        | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListTasksResponseHttpRequest: ...
                     def list_next(
@@ -117,7 +123,7 @@ class CloudTasksResource(googleapiclient.discovery.Resource):
                     self, *, name: str, **kwargs: typing.Any
                 ) -> EmptyHttpRequest: ...
                 def get(
-                    self, *, name: str, readMask: str = ..., **kwargs: typing.Any
+                    self, *, name: str, readMask: str | None = ..., **kwargs: typing.Any
                 ) -> QueueHttpRequest: ...
                 def getIamPolicy(
                     self,
@@ -130,10 +136,10 @@ class CloudTasksResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    readMask: str = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    readMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListQueuesResponseHttpRequest: ...
                 def list_next(
@@ -146,7 +152,7 @@ class CloudTasksResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: Queue = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> QueueHttpRequest: ...
                 def pause(
@@ -196,10 +202,10 @@ class CloudTasksResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                extraLocationTypes: str | _list[str] = ...,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                extraLocationTypes: str | _list[str] | None = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListLocationsResponseHttpRequest: ...
             def list_next(
@@ -212,7 +218,7 @@ class CloudTasksResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: CmekConfig = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> CmekConfigHttpRequest: ...
             def queues(self) -> QueuesResource: ...

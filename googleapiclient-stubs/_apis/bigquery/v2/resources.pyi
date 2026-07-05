@@ -20,7 +20,7 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             *,
             projectId: str,
             datasetId: str,
-            deleteContents: bool = ...,
+            deleteContents: bool | None = ...,
             **kwargs: typing.Any,
         ) -> googleapiclient.http.HttpRequest: ...
         def get(
@@ -28,10 +28,11 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             *,
             projectId: str,
             datasetId: str,
-            accessPolicyVersion: int = ...,
+            accessPolicyVersion: int | None = ...,
             datasetView: typing_extensions.Literal[
                 "DATASET_VIEW_UNSPECIFIED", "METADATA", "ACL", "FULL"
-            ] = ...,
+            ]
+            | None = ...,
             **kwargs: typing.Any,
         ) -> DatasetHttpRequest: ...
         def insert(
@@ -39,17 +40,17 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             *,
             projectId: str,
             body: Dataset = ...,
-            accessPolicyVersion: int = ...,
+            accessPolicyVersion: int | None = ...,
             **kwargs: typing.Any,
         ) -> DatasetHttpRequest: ...
         def list(
             self,
             *,
             projectId: str,
-            all: bool = ...,
-            filter: str = ...,
-            maxResults: int = ...,
-            pageToken: str = ...,
+            all: bool | None = ...,
+            filter: str | None = ...,
+            maxResults: int | None = ...,
+            pageToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> DatasetListHttpRequest: ...
         def list_next(
@@ -63,13 +64,14 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             projectId: str,
             datasetId: str,
             body: Dataset = ...,
-            accessPolicyVersion: int = ...,
+            accessPolicyVersion: int | None = ...,
             updateMode: typing_extensions.Literal[
                 "UPDATE_MODE_UNSPECIFIED",
                 "UPDATE_METADATA",
                 "UPDATE_ACL",
                 "UPDATE_FULL",
-            ] = ...,
+            ]
+            | None = ...,
             **kwargs: typing.Any,
         ) -> DatasetHttpRequest: ...
         def undelete(
@@ -86,13 +88,14 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             projectId: str,
             datasetId: str,
             body: Dataset = ...,
-            accessPolicyVersion: int = ...,
+            accessPolicyVersion: int | None = ...,
             updateMode: typing_extensions.Literal[
                 "UPDATE_MODE_UNSPECIFIED",
                 "UPDATE_METADATA",
                 "UPDATE_ACL",
                 "UPDATE_FULL",
-            ] = ...,
+            ]
+            | None = ...,
             **kwargs: typing.Any,
         ) -> DatasetHttpRequest: ...
 
@@ -103,7 +106,7 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             *,
             projectId: str,
             jobId: str,
-            location: str = ...,
+            location: str | None = ...,
             **kwargs: typing.Any,
         ) -> JobCancelResponseHttpRequest: ...
         def delete(
@@ -111,7 +114,7 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             *,
             projectId: str,
             jobId: str,
-            location: str = ...,
+            location: str | None = ...,
             **kwargs: typing.Any,
         ) -> googleapiclient.http.HttpRequest: ...
         def get(
@@ -119,7 +122,7 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             *,
             projectId: str,
             jobId: str,
-            location: str = ...,
+            location: str | None = ...,
             **kwargs: typing.Any,
         ) -> JobHttpRequest: ...
         def getQueryResults(
@@ -132,13 +135,14 @@ class BigqueryResource(googleapiclient.discovery.Resource):
                 "FLOAT64",
                 "INT64",
                 "ISO8601_STRING",
-            ] = ...,
-            formatOptions_useInt64Timestamp: bool = ...,
-            location: str = ...,
-            maxResults: int = ...,
-            pageToken: str = ...,
-            startIndex: str = ...,
-            timeoutMs: int = ...,
+            ]
+            | None = ...,
+            formatOptions_useInt64Timestamp: bool | None = ...,
+            location: str | None = ...,
+            maxResults: int | None = ...,
+            pageToken: str | None = ...,
+            startIndex: str | None = ...,
+            timeoutMs: int | None = ...,
             **kwargs: typing.Any,
         ) -> GetQueryResultsResponseHttpRequest: ...
         def getQueryResults_next(
@@ -153,15 +157,16 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             self,
             *,
             projectId: str,
-            allUsers: bool = ...,
-            maxCreationTime: str = ...,
-            maxResults: int = ...,
-            minCreationTime: str = ...,
-            pageToken: str = ...,
-            parentJobId: str = ...,
-            projection: typing_extensions.Literal["full", "minimal"] = ...,
+            allUsers: bool | None = ...,
+            maxCreationTime: str | None = ...,
+            maxResults: int | None = ...,
+            minCreationTime: str | None = ...,
+            pageToken: str | None = ...,
+            parentJobId: str | None = ...,
+            projection: typing_extensions.Literal["full", "minimal"] | None = ...,
             stateFilter: typing_extensions.Literal["done", "pending", "running"]
-            | _list[typing_extensions.Literal["done", "pending", "running"]] = ...,
+            | _list[typing_extensions.Literal["done", "pending", "running"]]
+            | None = ...,
             **kwargs: typing.Any,
         ) -> JobListHttpRequest: ...
         def list_next(
@@ -184,8 +189,8 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             *,
             projectId: str,
             datasetId: str,
-            maxResults: int = ...,
-            pageToken: str = ...,
+            maxResults: int | None = ...,
+            pageToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> ListModelsResponseHttpRequest: ...
         def list_next(
@@ -209,7 +214,11 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             self, *, projectId: str, **kwargs: typing.Any
         ) -> GetServiceAccountResponseHttpRequest: ...
         def list(
-            self, *, maxResults: int = ..., pageToken: str = ..., **kwargs: typing.Any
+            self,
+            *,
+            maxResults: int | None = ...,
+            pageToken: str | None = ...,
+            **kwargs: typing.Any,
         ) -> ProjectListHttpRequest: ...
         def list_next(
             self,
@@ -233,7 +242,7 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             projectId: str,
             datasetId: str,
             routineId: str,
-            readMask: str = ...,
+            readMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> RoutineHttpRequest: ...
         def getIamPolicy(
@@ -256,10 +265,10 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             *,
             projectId: str,
             datasetId: str,
-            filter: str = ...,
-            maxResults: int = ...,
-            pageToken: str = ...,
-            readMask: str = ...,
+            filter: str | None = ...,
+            maxResults: int | None = ...,
+            pageToken: str | None = ...,
+            readMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> ListRoutinesResponseHttpRequest: ...
         def list_next(
@@ -309,7 +318,7 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             datasetId: str,
             tableId: str,
             policyId: str,
-            force: bool = ...,
+            force: bool | None = ...,
             **kwargs: typing.Any,
         ) -> googleapiclient.http.HttpRequest: ...
         def get(
@@ -343,8 +352,8 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             projectId: str,
             datasetId: str,
             tableId: str,
-            pageSize: int = ...,
-            pageToken: str = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> ListRowAccessPoliciesResponseHttpRequest: ...
         def list_next(
@@ -392,12 +401,13 @@ class BigqueryResource(googleapiclient.discovery.Resource):
                 "FLOAT64",
                 "INT64",
                 "ISO8601_STRING",
-            ] = ...,
-            formatOptions_useInt64Timestamp: bool = ...,
-            maxResults: int = ...,
-            pageToken: str = ...,
-            selectedFields: str = ...,
-            startIndex: str = ...,
+            ]
+            | None = ...,
+            formatOptions_useInt64Timestamp: bool | None = ...,
+            maxResults: int | None = ...,
+            pageToken: str | None = ...,
+            selectedFields: str | None = ...,
+            startIndex: str | None = ...,
             **kwargs: typing.Any,
         ) -> TableDataListHttpRequest: ...
         def list_next(
@@ -417,10 +427,11 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             projectId: str,
             datasetId: str,
             tableId: str,
-            selectedFields: str = ...,
+            selectedFields: str | None = ...,
             view: typing_extensions.Literal[
                 "TABLE_METADATA_VIEW_UNSPECIFIED", "BASIC", "STORAGE_STATS", "FULL"
-            ] = ...,
+            ]
+            | None = ...,
             **kwargs: typing.Any,
         ) -> TableHttpRequest: ...
         def getIamPolicy(
@@ -443,8 +454,8 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             *,
             projectId: str,
             datasetId: str,
-            maxResults: int = ...,
-            pageToken: str = ...,
+            maxResults: int | None = ...,
+            pageToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> TableListHttpRequest: ...
         def list_next(
@@ -457,7 +468,7 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             datasetId: str,
             tableId: str,
             body: Table = ...,
-            autodetect_schema: bool = ...,
+            autodetect_schema: bool | None = ...,
             **kwargs: typing.Any,
         ) -> TableHttpRequest: ...
         def setIamPolicy(
@@ -481,7 +492,7 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             datasetId: str,
             tableId: str,
             body: Table = ...,
-            autodetect_schema: bool = ...,
+            autodetect_schema: bool | None = ...,
             **kwargs: typing.Any,
         ) -> TableHttpRequest: ...
 

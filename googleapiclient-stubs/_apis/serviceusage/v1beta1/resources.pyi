@@ -19,11 +19,11 @@ class ServiceUsageResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            filter: str = ...,
-            name: str = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
-            returnPartialSuccess: bool = ...,
+            filter: str | None = ...,
+            name: str | None = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> ListOperationsResponseHttpRequest: ...
         def list_next(
@@ -45,7 +45,7 @@ class ServiceUsageResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: QuotaOverride = ...,
-                        force: bool = ...,
+                        force: bool | None = ...,
                         forceOnly: typing_extensions.Literal[
                             "QUOTA_SAFETY_CHECK_UNSPECIFIED",
                             "LIMIT_DECREASE_BELOW_USAGE",
@@ -57,14 +57,15 @@ class ServiceUsageResource(googleapiclient.discovery.Resource):
                                 "LIMIT_DECREASE_BELOW_USAGE",
                                 "LIMIT_DECREASE_PERCENTAGE_TOO_HIGH",
                             ]
-                        ] = ...,
+                        ]
+                        | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def delete(
                         self,
                         *,
                         name: str,
-                        force: bool = ...,
+                        force: bool | None = ...,
                         forceOnly: typing_extensions.Literal[
                             "QUOTA_SAFETY_CHECK_UNSPECIFIED",
                             "LIMIT_DECREASE_BELOW_USAGE",
@@ -76,15 +77,16 @@ class ServiceUsageResource(googleapiclient.discovery.Resource):
                                 "LIMIT_DECREASE_BELOW_USAGE",
                                 "LIMIT_DECREASE_PERCENTAGE_TOO_HIGH",
                             ]
-                        ] = ...,
+                        ]
+                        | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def list(
                         self,
                         *,
                         parent: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListAdminOverridesResponseHttpRequest: ...
                     def list_next(
@@ -97,7 +99,7 @@ class ServiceUsageResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: QuotaOverride = ...,
-                        force: bool = ...,
+                        force: bool | None = ...,
                         forceOnly: typing_extensions.Literal[
                             "QUOTA_SAFETY_CHECK_UNSPECIFIED",
                             "LIMIT_DECREASE_BELOW_USAGE",
@@ -109,8 +111,9 @@ class ServiceUsageResource(googleapiclient.discovery.Resource):
                                 "LIMIT_DECREASE_BELOW_USAGE",
                                 "LIMIT_DECREASE_PERCENTAGE_TOO_HIGH",
                             ]
-                        ] = ...,
-                        updateMask: str = ...,
+                        ]
+                        | None = ...,
+                        updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
 
@@ -121,7 +124,7 @@ class ServiceUsageResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: QuotaOverride = ...,
-                        force: bool = ...,
+                        force: bool | None = ...,
                         forceOnly: typing_extensions.Literal[
                             "QUOTA_SAFETY_CHECK_UNSPECIFIED",
                             "LIMIT_DECREASE_BELOW_USAGE",
@@ -133,14 +136,15 @@ class ServiceUsageResource(googleapiclient.discovery.Resource):
                                 "LIMIT_DECREASE_BELOW_USAGE",
                                 "LIMIT_DECREASE_PERCENTAGE_TOO_HIGH",
                             ]
-                        ] = ...,
+                        ]
+                        | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def delete(
                         self,
                         *,
                         name: str,
-                        force: bool = ...,
+                        force: bool | None = ...,
                         forceOnly: typing_extensions.Literal[
                             "QUOTA_SAFETY_CHECK_UNSPECIFIED",
                             "LIMIT_DECREASE_BELOW_USAGE",
@@ -152,15 +156,16 @@ class ServiceUsageResource(googleapiclient.discovery.Resource):
                                 "LIMIT_DECREASE_BELOW_USAGE",
                                 "LIMIT_DECREASE_PERCENTAGE_TOO_HIGH",
                             ]
-                        ] = ...,
+                        ]
+                        | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def list(
                         self,
                         *,
                         parent: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListConsumerOverridesResponseHttpRequest: ...
                     def list_next(
@@ -173,7 +178,7 @@ class ServiceUsageResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: QuotaOverride = ...,
-                        force: bool = ...,
+                        force: bool | None = ...,
                         forceOnly: typing_extensions.Literal[
                             "QUOTA_SAFETY_CHECK_UNSPECIFIED",
                             "LIMIT_DECREASE_BELOW_USAGE",
@@ -185,8 +190,9 @@ class ServiceUsageResource(googleapiclient.discovery.Resource):
                                 "LIMIT_DECREASE_BELOW_USAGE",
                                 "LIMIT_DECREASE_PERCENTAGE_TOO_HIGH",
                             ]
-                        ] = ...,
-                        updateMask: str = ...,
+                        ]
+                        | None = ...,
+                        updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
 
@@ -196,7 +202,8 @@ class ServiceUsageResource(googleapiclient.discovery.Resource):
                     name: str,
                     view: typing_extensions.Literal[
                         "QUOTA_VIEW_UNSPECIFIED", "BASIC", "FULL"
-                    ] = ...,
+                    ]
+                    | None = ...,
                     **kwargs: typing.Any,
                 ) -> ConsumerQuotaLimitHttpRequest: ...
                 def adminOverrides(self) -> AdminOverridesResource: ...
@@ -208,7 +215,8 @@ class ServiceUsageResource(googleapiclient.discovery.Resource):
                 name: str,
                 view: typing_extensions.Literal[
                     "QUOTA_VIEW_UNSPECIFIED", "BASIC", "FULL"
-                ] = ...,
+                ]
+                | None = ...,
                 **kwargs: typing.Any,
             ) -> ConsumerQuotaMetricHttpRequest: ...
             def importAdminOverrides(
@@ -229,11 +237,12 @@ class ServiceUsageResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 view: typing_extensions.Literal[
                     "QUOTA_VIEW_UNSPECIFIED", "BASIC", "FULL"
-                ] = ...,
+                ]
+                | None = ...,
                 **kwargs: typing.Any,
             ) -> ListConsumerQuotaMetricsResponseHttpRequest: ...
             def list_next(
@@ -264,9 +273,9 @@ class ServiceUsageResource(googleapiclient.discovery.Resource):
             self,
             *,
             parent: str,
-            filter: str = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
+            filter: str | None = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> ListServicesResponseHttpRequest: ...
         def list_next(

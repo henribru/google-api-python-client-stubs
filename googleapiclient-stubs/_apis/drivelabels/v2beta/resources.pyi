@@ -21,8 +21,8 @@ class DriveLabelsResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleAppsDriveLabelsV2betaListLabelLocksResponseHttpRequest: ...
             def list_next(
@@ -54,19 +54,23 @@ class DriveLabelsResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: GoogleAppsDriveLabelsV2betaLabelPermission = ...,
-                useAdminAccess: bool = ...,
+                useAdminAccess: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleAppsDriveLabelsV2betaLabelPermissionHttpRequest: ...
             def delete(
-                self, *, name: str, useAdminAccess: bool = ..., **kwargs: typing.Any
+                self,
+                *,
+                name: str,
+                useAdminAccess: bool | None = ...,
+                **kwargs: typing.Any,
             ) -> GoogleProtobufEmptyHttpRequest: ...
             def list(
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
-                useAdminAccess: bool = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
+                useAdminAccess: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleAppsDriveLabelsV2betaListLabelPermissionsResponseHttpRequest: ...
             def list_next(
@@ -86,8 +90,8 @@ class DriveLabelsResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleAppsDriveLabelsV2betaListLabelLocksResponseHttpRequest: ...
                 def list_next(
@@ -119,19 +123,23 @@ class DriveLabelsResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: GoogleAppsDriveLabelsV2betaLabelPermission = ...,
-                    useAdminAccess: bool = ...,
+                    useAdminAccess: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleAppsDriveLabelsV2betaLabelPermissionHttpRequest: ...
                 def delete(
-                    self, *, name: str, useAdminAccess: bool = ..., **kwargs: typing.Any
+                    self,
+                    *,
+                    name: str,
+                    useAdminAccess: bool | None = ...,
+                    **kwargs: typing.Any,
                 ) -> GoogleProtobufEmptyHttpRequest: ...
                 def list(
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    useAdminAccess: bool = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    useAdminAccess: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> (
                     GoogleAppsDriveLabelsV2betaListLabelPermissionsResponseHttpRequest
@@ -150,7 +158,7 @@ class DriveLabelsResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: GoogleAppsDriveLabelsV2betaLabelPermission = ...,
-                useAdminAccess: bool = ...,
+                useAdminAccess: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleAppsDriveLabelsV2betaLabelPermissionHttpRequest: ...
             def locks(self) -> LocksResource: ...
@@ -160,16 +168,16 @@ class DriveLabelsResource(googleapiclient.discovery.Resource):
             self,
             *,
             body: GoogleAppsDriveLabelsV2betaLabel = ...,
-            languageCode: str = ...,
-            useAdminAccess: bool = ...,
+            languageCode: str | None = ...,
+            useAdminAccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> GoogleAppsDriveLabelsV2betaLabelHttpRequest: ...
         def delete(
             self,
             *,
             name: str,
-            useAdminAccess: bool = ...,
-            writeControl_requiredRevisionId: str = ...,
+            useAdminAccess: bool | None = ...,
+            writeControl_requiredRevisionId: str | None = ...,
             **kwargs: typing.Any,
         ) -> GoogleProtobufEmptyHttpRequest: ...
         def delta(
@@ -197,28 +205,27 @@ class DriveLabelsResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            languageCode: str = ...,
-            useAdminAccess: bool = ...,
-            view: typing_extensions.Literal[
-                "LABEL_VIEW_BASIC", "LABEL_VIEW_FULL"
-            ] = ...,
+            languageCode: str | None = ...,
+            useAdminAccess: bool | None = ...,
+            view: typing_extensions.Literal["LABEL_VIEW_BASIC", "LABEL_VIEW_FULL"]
+            | None = ...,
             **kwargs: typing.Any,
         ) -> GoogleAppsDriveLabelsV2betaLabelHttpRequest: ...
         def list(
             self,
             *,
-            customer: str = ...,
-            languageCode: str = ...,
+            customer: str | None = ...,
+            languageCode: str | None = ...,
             minimumRole: typing_extensions.Literal[
                 "LABEL_ROLE_UNSPECIFIED", "READER", "APPLIER", "ORGANIZER", "EDITOR"
-            ] = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
-            publishedOnly: bool = ...,
-            useAdminAccess: bool = ...,
-            view: typing_extensions.Literal[
-                "LABEL_VIEW_BASIC", "LABEL_VIEW_FULL"
-            ] = ...,
+            ]
+            | None = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            publishedOnly: bool | None = ...,
+            useAdminAccess: bool | None = ...,
+            view: typing_extensions.Literal["LABEL_VIEW_BASIC", "LABEL_VIEW_FULL"]
+            | None = ...,
             **kwargs: typing.Any,
         ) -> GoogleAppsDriveLabelsV2betaListLabelsResponseHttpRequest: ...
         def list_next(
@@ -252,7 +259,7 @@ class DriveLabelsResource(googleapiclient.discovery.Resource):
             *,
             parent: str,
             body: GoogleAppsDriveLabelsV2betaLabelPermission = ...,
-            useAdminAccess: bool = ...,
+            useAdminAccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> GoogleAppsDriveLabelsV2betaLabelPermissionHttpRequest: ...
         def locks(self) -> LocksResource: ...
@@ -262,13 +269,13 @@ class DriveLabelsResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class LimitsResource(googleapiclient.discovery.Resource):
         def getLabel(
-            self, *, name: str = ..., **kwargs: typing.Any
+            self, *, name: str | None = ..., **kwargs: typing.Any
         ) -> GoogleAppsDriveLabelsV2betaLabelLimitsHttpRequest: ...
 
     @typing.type_check_only
     class UsersResource(googleapiclient.discovery.Resource):
         def getCapabilities(
-            self, *, name: str, customer: str = ..., **kwargs: typing.Any
+            self, *, name: str, customer: str | None = ..., **kwargs: typing.Any
         ) -> GoogleAppsDriveLabelsV2betaUserCapabilitiesHttpRequest: ...
 
     def new_batch_http_request(

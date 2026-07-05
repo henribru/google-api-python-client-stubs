@@ -24,8 +24,8 @@ class FirebaseRealtimeDatabaseResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: DatabaseInstance = ...,
-                    databaseId: str = ...,
-                    validateOnly: bool = ...,
+                    databaseId: str | None = ...,
+                    validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> DatabaseInstanceHttpRequest: ...
                 def delete(
@@ -45,9 +45,9 @@ class FirebaseRealtimeDatabaseResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    showDeleted: bool = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    showDeleted: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListDatabaseInstancesResponseHttpRequest: ...
                 def list_next(

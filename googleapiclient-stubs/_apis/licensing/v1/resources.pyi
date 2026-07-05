@@ -34,8 +34,8 @@ class LicensingResource(googleapiclient.discovery.Resource):
             *,
             productId: str,
             customerId: str,
-            maxResults: int = ...,
-            pageToken: str = ...,
+            maxResults: int | None = ...,
+            pageToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> LicenseAssignmentListHttpRequest: ...
         def listForProduct_next(
@@ -49,8 +49,8 @@ class LicensingResource(googleapiclient.discovery.Resource):
             productId: str,
             skuId: str,
             customerId: str,
-            maxResults: int = ...,
-            pageToken: str = ...,
+            maxResults: int | None = ...,
+            pageToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> LicenseAssignmentListHttpRequest: ...
         def listForProductAndSku_next(

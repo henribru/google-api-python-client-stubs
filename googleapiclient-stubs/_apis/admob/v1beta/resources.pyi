@@ -23,8 +23,8 @@ class AdMobResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListAdaptersResponseHttpRequest: ...
                 def list_next(
@@ -37,8 +37,8 @@ class AdMobResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListAdSourcesResponseHttpRequest: ...
             def list_next(
@@ -73,9 +73,9 @@ class AdMobResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListAdUnitMappingsResponseHttpRequest: ...
                 def list_next(
@@ -91,8 +91,8 @@ class AdMobResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListAdUnitsResponseHttpRequest: ...
             def list_next(
@@ -111,8 +111,8 @@ class AdMobResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListAppsResponseHttpRequest: ...
             def list_next(
@@ -157,9 +157,9 @@ class AdMobResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListMediationGroupsResponseHttpRequest: ...
             def list_next(
@@ -172,7 +172,7 @@ class AdMobResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: MediationGroup = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> MediationGroupHttpRequest: ...
             def mediationAbExperiments(self) -> MediationAbExperimentsResource: ...
@@ -201,7 +201,11 @@ class AdMobResource(googleapiclient.discovery.Resource):
             self, *, name: str, **kwargs: typing.Any
         ) -> PublisherAccountHttpRequest: ...
         def list(
-            self, *, pageSize: int = ..., pageToken: str = ..., **kwargs: typing.Any
+            self,
+            *,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            **kwargs: typing.Any,
         ) -> ListPublisherAccountsResponseHttpRequest: ...
         def list_next(
             self,

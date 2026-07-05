@@ -36,8 +36,8 @@ class ContentwarehouseResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> (
                     GoogleCloudContentwarehouseV1ListDocumentSchemasResponseHttpRequest
@@ -223,8 +223,8 @@ class ContentwarehouseResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudContentwarehouseV1ListRuleSetsResponseHttpRequest: ...
                 def list_next(
@@ -261,8 +261,8 @@ class ContentwarehouseResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> (
                     GoogleCloudContentwarehouseV1ListSynonymSetsResponseHttpRequest

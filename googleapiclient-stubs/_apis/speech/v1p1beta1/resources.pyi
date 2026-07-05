@@ -19,11 +19,11 @@ class SpeechResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            filter: str = ...,
-            name: str = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
-            returnPartialSuccess: bool = ...,
+            filter: str | None = ...,
+            name: str | None = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> ListOperationsResponseHttpRequest: ...
         def list_next(
@@ -55,8 +55,8 @@ class SpeechResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListCustomClassesResponseHttpRequest: ...
                 def list_next(
@@ -69,7 +69,7 @@ class SpeechResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: CustomClass = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> CustomClassHttpRequest: ...
 
@@ -92,8 +92,8 @@ class SpeechResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListPhraseSetResponseHttpRequest: ...
                 def list_next(
@@ -106,7 +106,7 @@ class SpeechResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: PhraseSet = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> PhraseSetHttpRequest: ...
 

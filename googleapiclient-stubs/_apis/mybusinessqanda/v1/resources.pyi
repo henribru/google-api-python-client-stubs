@@ -26,9 +26,9 @@ class MyBusinessQAndAResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    orderBy: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListAnswersResponseHttpRequest: ...
                 def list_next(
@@ -54,11 +54,11 @@ class MyBusinessQAndAResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                answersPerQuestion: int = ...,
-                filter: str = ...,
-                orderBy: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                answersPerQuestion: int | None = ...,
+                filter: str | None = ...,
+                orderBy: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListQuestionsResponseHttpRequest: ...
             def list_next(
@@ -71,7 +71,7 @@ class MyBusinessQAndAResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: Question = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> QuestionHttpRequest: ...
             def answers(self) -> AnswersResource: ...

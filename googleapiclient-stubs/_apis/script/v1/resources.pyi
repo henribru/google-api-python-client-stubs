@@ -18,14 +18,14 @@ class ScriptResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            pageSize: int = ...,
-            pageToken: str = ...,
-            userProcessFilter_deploymentId: str = ...,
-            userProcessFilter_endTime: str = ...,
-            userProcessFilter_functionName: str = ...,
-            userProcessFilter_projectName: str = ...,
-            userProcessFilter_scriptId: str = ...,
-            userProcessFilter_startTime: str = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            userProcessFilter_deploymentId: str | None = ...,
+            userProcessFilter_endTime: str | None = ...,
+            userProcessFilter_functionName: str | None = ...,
+            userProcessFilter_projectName: str | None = ...,
+            userProcessFilter_scriptId: str | None = ...,
+            userProcessFilter_startTime: str | None = ...,
             userProcessFilter_statuses: typing_extensions.Literal[
                 "PROCESS_STATUS_UNSPECIFIED",
                 "RUNNING",
@@ -51,7 +51,8 @@ class ScriptResource(googleapiclient.discovery.Resource):
                     "DELAYED",
                     "EXECUTION_DISABLED",
                 ]
-            ] = ...,
+            ]
+            | None = ...,
             userProcessFilter_types: typing_extensions.Literal[
                 "PROCESS_TYPE_UNSPECIFIED",
                 "ADD_ON",
@@ -77,7 +78,8 @@ class ScriptResource(googleapiclient.discovery.Resource):
                     "MENU",
                     "BATCH_TASK",
                 ]
-            ] = ...,
+            ]
+            | None = ...,
             userProcessFilter_userAccessLevels: typing_extensions.Literal[
                 "USER_ACCESS_LEVEL_UNSPECIFIED", "NONE", "READ", "WRITE", "OWNER"
             ]
@@ -85,7 +87,8 @@ class ScriptResource(googleapiclient.discovery.Resource):
                 typing_extensions.Literal[
                     "USER_ACCESS_LEVEL_UNSPECIFIED", "NONE", "READ", "WRITE", "OWNER"
                 ]
-            ] = ...,
+            ]
+            | None = ...,
             **kwargs: typing.Any,
         ) -> ListUserProcessesResponseHttpRequest: ...
         def list_next(
@@ -96,13 +99,13 @@ class ScriptResource(googleapiclient.discovery.Resource):
         def listScriptProcesses(
             self,
             *,
-            pageSize: int = ...,
-            pageToken: str = ...,
-            scriptId: str = ...,
-            scriptProcessFilter_deploymentId: str = ...,
-            scriptProcessFilter_endTime: str = ...,
-            scriptProcessFilter_functionName: str = ...,
-            scriptProcessFilter_startTime: str = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            scriptId: str | None = ...,
+            scriptProcessFilter_deploymentId: str | None = ...,
+            scriptProcessFilter_endTime: str | None = ...,
+            scriptProcessFilter_functionName: str | None = ...,
+            scriptProcessFilter_startTime: str | None = ...,
             scriptProcessFilter_statuses: typing_extensions.Literal[
                 "PROCESS_STATUS_UNSPECIFIED",
                 "RUNNING",
@@ -128,7 +131,8 @@ class ScriptResource(googleapiclient.discovery.Resource):
                     "DELAYED",
                     "EXECUTION_DISABLED",
                 ]
-            ] = ...,
+            ]
+            | None = ...,
             scriptProcessFilter_types: typing_extensions.Literal[
                 "PROCESS_TYPE_UNSPECIFIED",
                 "ADD_ON",
@@ -154,7 +158,8 @@ class ScriptResource(googleapiclient.discovery.Resource):
                     "MENU",
                     "BATCH_TASK",
                 ]
-            ] = ...,
+            ]
+            | None = ...,
             scriptProcessFilter_userAccessLevels: typing_extensions.Literal[
                 "USER_ACCESS_LEVEL_UNSPECIFIED", "NONE", "READ", "WRITE", "OWNER"
             ]
@@ -162,7 +167,8 @@ class ScriptResource(googleapiclient.discovery.Resource):
                 typing_extensions.Literal[
                     "USER_ACCESS_LEVEL_UNSPECIFIED", "NONE", "READ", "WRITE", "OWNER"
                 ]
-            ] = ...,
+            ]
+            | None = ...,
             **kwargs: typing.Any,
         ) -> ListScriptProcessesResponseHttpRequest: ...
         def listScriptProcesses_next(
@@ -192,8 +198,8 @@ class ScriptResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 scriptId: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListDeploymentsResponseHttpRequest: ...
             def list_next(
@@ -222,8 +228,8 @@ class ScriptResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 scriptId: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListVersionsResponseHttpRequest: ...
             def list_next(
@@ -237,16 +243,21 @@ class ScriptResource(googleapiclient.discovery.Resource):
         ) -> ProjectHttpRequest: ...
         def get(self, *, scriptId: str, **kwargs: typing.Any) -> ProjectHttpRequest: ...
         def getContent(
-            self, *, scriptId: str, versionNumber: int = ..., **kwargs: typing.Any
+            self,
+            *,
+            scriptId: str,
+            versionNumber: int | None = ...,
+            **kwargs: typing.Any,
         ) -> ContentHttpRequest: ...
         def getMetrics(
             self,
             *,
             scriptId: str,
-            metricsFilter_deploymentId: str = ...,
+            metricsFilter_deploymentId: str | None = ...,
             metricsGranularity: typing_extensions.Literal[
                 "UNSPECIFIED_GRANULARITY", "WEEKLY", "DAILY"
-            ] = ...,
+            ]
+            | None = ...,
             **kwargs: typing.Any,
         ) -> MetricsHttpRequest: ...
         def updateContent(

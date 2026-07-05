@@ -19,11 +19,11 @@ class ServiceManagementResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            filter: str = ...,
-            name: str = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
-            returnPartialSuccess: bool = ...,
+            filter: str | None = ...,
+            name: str | None = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> ListOperationsResponseHttpRequest: ...
         def list_next(
@@ -44,15 +44,15 @@ class ServiceManagementResource(googleapiclient.discovery.Resource):
                 *,
                 serviceName: str,
                 configId: str,
-                view: typing_extensions.Literal["BASIC", "FULL"] = ...,
+                view: typing_extensions.Literal["BASIC", "FULL"] | None = ...,
                 **kwargs: typing.Any,
             ) -> ServiceHttpRequest: ...
             def list(
                 self,
                 *,
                 serviceName: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListServiceConfigsResponseHttpRequest: ...
             def list_next(
@@ -104,9 +104,9 @@ class ServiceManagementResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 serviceName: str,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListServiceRolloutsResponseHttpRequest: ...
             def list_next(
@@ -131,8 +131,8 @@ class ServiceManagementResource(googleapiclient.discovery.Resource):
             self,
             *,
             serviceName: str,
-            configId: str = ...,
-            view: typing_extensions.Literal["BASIC", "FULL"] = ...,
+            configId: str | None = ...,
+            view: typing_extensions.Literal["BASIC", "FULL"] | None = ...,
             **kwargs: typing.Any,
         ) -> ServiceHttpRequest: ...
         def getIamPolicy(
@@ -145,10 +145,10 @@ class ServiceManagementResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            consumerId: str = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
-            producerProjectId: str = ...,
+            consumerId: str | None = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            producerProjectId: str | None = ...,
             **kwargs: typing.Any,
         ) -> ListServicesResponseHttpRequest: ...
         def list_next(

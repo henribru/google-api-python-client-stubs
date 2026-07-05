@@ -18,7 +18,7 @@ class SubscriptionLinkingResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class ReadersResource(googleapiclient.discovery.Resource):
             def delete(
-                self, *, name: str, force: bool = ..., **kwargs: typing.Any
+                self, *, name: str, force: bool | None = ..., **kwargs: typing.Any
             ) -> DeleteReaderResponseHttpRequest: ...
             def get(self, *, name: str, **kwargs: typing.Any) -> ReaderHttpRequest: ...
             def getEntitlements(
@@ -29,7 +29,7 @@ class SubscriptionLinkingResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: ReaderEntitlements = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ReaderEntitlementsHttpRequest: ...
 

@@ -52,9 +52,9 @@ class SecretManagerResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        filter: str = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        filter: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListSecretVersionsResponseHttpRequest: ...
                     def list_next(
@@ -75,11 +75,11 @@ class SecretManagerResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: Secret = ...,
-                    secretId: str = ...,
+                    secretId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> SecretHttpRequest: ...
                 def delete(
-                    self, *, name: str, etag: str = ..., **kwargs: typing.Any
+                    self, *, name: str, etag: str | None = ..., **kwargs: typing.Any
                 ) -> EmptyHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
@@ -88,16 +88,16 @@ class SecretManagerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    options_requestedPolicyVersion: int = ...,
+                    options_requestedPolicyVersion: int | None = ...,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def list(
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListSecretsResponseHttpRequest: ...
                 def list_next(
@@ -110,7 +110,7 @@ class SecretManagerResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: Secret = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> SecretHttpRequest: ...
                 def setIamPolicy(
@@ -136,10 +136,10 @@ class SecretManagerResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                extraLocationTypes: str | _list[str] = ...,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                extraLocationTypes: str | _list[str] | None = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListLocationsResponseHttpRequest: ...
             def list_next(
@@ -184,9 +184,9 @@ class SecretManagerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListSecretVersionsResponseHttpRequest: ...
                 def list_next(
@@ -207,27 +207,27 @@ class SecretManagerResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: Secret = ...,
-                secretId: str = ...,
+                secretId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> SecretHttpRequest: ...
             def delete(
-                self, *, name: str, etag: str = ..., **kwargs: typing.Any
+                self, *, name: str, etag: str | None = ..., **kwargs: typing.Any
             ) -> EmptyHttpRequest: ...
             def get(self, *, name: str, **kwargs: typing.Any) -> SecretHttpRequest: ...
             def getIamPolicy(
                 self,
                 *,
                 resource: str,
-                options_requestedPolicyVersion: int = ...,
+                options_requestedPolicyVersion: int | None = ...,
                 **kwargs: typing.Any,
             ) -> PolicyHttpRequest: ...
             def list(
                 self,
                 *,
                 parent: str,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListSecretsResponseHttpRequest: ...
             def list_next(
@@ -240,7 +240,7 @@ class SecretManagerResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: Secret = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> SecretHttpRequest: ...
             def setIamPolicy(

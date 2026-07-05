@@ -40,8 +40,8 @@ class CloudComposerResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListUserWorkloadsConfigMapsResponseHttpRequest: ...
                     def list_next(
@@ -76,8 +76,8 @@ class CloudComposerResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListUserWorkloadsSecretsResponseHttpRequest: ...
                     def list_next(
@@ -99,9 +99,9 @@ class CloudComposerResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        filter: str = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        filter: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListWorkloadsResponseHttpRequest: ...
                     def list_next(
@@ -147,8 +147,8 @@ class CloudComposerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListEnvironmentsResponseHttpRequest: ...
                 def list_next(
@@ -168,7 +168,7 @@ class CloudComposerResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: Environment = ...,
-                    updateMask: str = ...,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def pollAirflowCommand(
@@ -211,9 +211,9 @@ class CloudComposerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    includePastReleases: bool = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    includePastReleases: bool | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListImageVersionsResponseHttpRequest: ...
                 def list_next(
@@ -234,10 +234,10 @@ class CloudComposerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    returnPartialSuccess: bool = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    returnPartialSuccess: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListOperationsResponseHttpRequest: ...
                 def list_next(

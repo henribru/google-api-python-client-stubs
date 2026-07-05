@@ -32,9 +32,9 @@ class TranslateResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListGlossariesResponseHttpRequest: ...
                 def list_next(
@@ -62,10 +62,10 @@ class TranslateResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    returnPartialSuccess: bool = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    returnPartialSuccess: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListOperationsResponseHttpRequest: ...
                 def list_next(
@@ -109,18 +109,18 @@ class TranslateResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                displayLanguageCode: str = ...,
-                model: str = ...,
+                displayLanguageCode: str | None = ...,
+                model: str | None = ...,
                 **kwargs: typing.Any,
             ) -> SupportedLanguagesHttpRequest: ...
             def list(
                 self,
                 *,
                 name: str,
-                extraLocationTypes: str | _list[str] = ...,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                extraLocationTypes: str | _list[str] | None = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListLocationsResponseHttpRequest: ...
             def list_next(
@@ -163,8 +163,8 @@ class TranslateResource(googleapiclient.discovery.Resource):
             self,
             *,
             parent: str,
-            displayLanguageCode: str = ...,
-            model: str = ...,
+            displayLanguageCode: str | None = ...,
+            model: str | None = ...,
             **kwargs: typing.Any,
         ) -> SupportedLanguagesHttpRequest: ...
         def translateText(

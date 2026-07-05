@@ -53,7 +53,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                     containerId: str,
                     environmentId: str,
                     body: Environment = ...,
-                    fingerprint: str = ...,
+                    fingerprint: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> EnvironmentHttpRequest: ...
 
@@ -104,7 +104,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                     containerId: str,
                     folderId: str,
                     body: Folder = ...,
-                    fingerprint: str = ...,
+                    fingerprint: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> FolderHttpRequest: ...
                 def entities(self) -> EntitiesResource: ...
@@ -118,9 +118,9 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                     containerId: str,
                     folderId: str,
                     body: Folder = ...,
-                    tagId: str | _list[str] = ...,
-                    triggerId: str | _list[str] = ...,
-                    variableId: str | _list[str] = ...,
+                    tagId: str | _list[str] | None = ...,
+                    triggerId: str | _list[str] | None = ...,
+                    variableId: str | _list[str] | None = ...,
                     **kwargs: typing.Any,
                 ) -> googleapiclient.http.HttpRequest: ...
 
@@ -172,7 +172,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                     containerId: str,
                     tagId: str,
                     body: Tag = ...,
-                    fingerprint: str = ...,
+                    fingerprint: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> TagHttpRequest: ...
 
@@ -212,7 +212,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                     containerId: str,
                     triggerId: str,
                     body: Trigger = ...,
-                    fingerprint: str = ...,
+                    fingerprint: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> TriggerHttpRequest: ...
 
@@ -252,7 +252,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                     containerId: str,
                     variableId: str,
                     body: Variable = ...,
-                    fingerprint: str = ...,
+                    fingerprint: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> VariableHttpRequest: ...
 
@@ -287,8 +287,8 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                     *,
                     accountId: str,
                     containerId: str,
-                    headers: bool = ...,
-                    includeDeleted: bool = ...,
+                    headers: bool | None = ...,
+                    includeDeleted: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListContainerVersionsResponseHttpRequest: ...
                 def publish(
@@ -297,7 +297,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                     accountId: str,
                     containerId: str,
                     containerVersionId: str,
-                    fingerprint: str = ...,
+                    fingerprint: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> PublishContainerVersionResponseHttpRequest: ...
                 def restore(
@@ -323,7 +323,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                     containerId: str,
                     containerVersionId: str,
                     body: ContainerVersion = ...,
-                    fingerprint: str = ...,
+                    fingerprint: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ContainerVersionHttpRequest: ...
 
@@ -345,7 +345,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                 accountId: str,
                 containerId: str,
                 body: Container = ...,
-                fingerprint: str = ...,
+                fingerprint: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ContainerHttpRequest: ...
             def environments(self) -> EnvironmentsResource: ...
@@ -389,7 +389,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
             *,
             accountId: str,
             body: Account = ...,
-            fingerprint: str = ...,
+            fingerprint: str | None = ...,
             **kwargs: typing.Any,
         ) -> AccountHttpRequest: ...
         def containers(self) -> ContainersResource: ...

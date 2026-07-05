@@ -24,9 +24,9 @@ class FormsResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 formId: str,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ListFormResponsesResponseHttpRequest: ...
             def list_next(
@@ -67,7 +67,11 @@ class FormsResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any,
         ) -> BatchUpdateFormResponseHttpRequest: ...
         def create(
-            self, *, body: Form = ..., unpublished: bool = ..., **kwargs: typing.Any
+            self,
+            *,
+            body: Form = ...,
+            unpublished: bool | None = ...,
+            **kwargs: typing.Any,
         ) -> FormHttpRequest: ...
         def get(self, *, formId: str, **kwargs: typing.Any) -> FormHttpRequest: ...
         def setPublishSettings(

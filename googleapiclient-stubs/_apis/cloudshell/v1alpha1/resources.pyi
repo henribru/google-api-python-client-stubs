@@ -45,7 +45,7 @@ class CloudShellResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: Environment = ...,
-                updateMask: str = ...,
+                updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> EnvironmentHttpRequest: ...
             def start(
