@@ -19,14 +19,14 @@ class DatastoreResource(googleapiclient.discovery.Resource):
             self,
             *,
             projectId: str,
-            body: GoogleDatastoreAdminV1beta1ExportEntitiesRequest = ...,
+            body: GoogleDatastoreAdminV1beta1ExportEntitiesRequest,
             **kwargs: typing.Any,
         ) -> GoogleLongrunningOperationHttpRequest: ...
         def import_(
             self,
             *,
             projectId: str,
-            body: GoogleDatastoreAdminV1beta1ImportEntitiesRequest = ...,
+            body: GoogleDatastoreAdminV1beta1ImportEntitiesRequest,
             **kwargs: typing.Any,
         ) -> GoogleLongrunningOperationHttpRequest: ...
 

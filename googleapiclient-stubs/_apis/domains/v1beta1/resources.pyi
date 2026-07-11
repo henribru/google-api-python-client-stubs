@@ -44,21 +44,21 @@ class CloudDomainsResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     registration: str,
-                    body: ConfigureContactSettingsRequest = ...,
+                    body: ConfigureContactSettingsRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def configureDnsSettings(
                     self,
                     *,
                     registration: str,
-                    body: ConfigureDnsSettingsRequest = ...,
+                    body: ConfigureDnsSettingsRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def configureManagementSettings(
                     self,
                     *,
                     registration: str,
-                    body: ConfigureManagementSettingsRequest = ...,
+                    body: ConfigureManagementSettingsRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
@@ -68,7 +68,7 @@ class CloudDomainsResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: ExportRegistrationRequest = ...,
+                    body: ExportRegistrationRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def get(
@@ -85,14 +85,14 @@ class CloudDomainsResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: ImportDomainRequest = ...,
+                    body: ImportDomainRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def initiatePushTransfer(
                     self,
                     *,
                     registration: str,
-                    body: InitiatePushTransferRequest = ...,
+                    body: InitiatePushTransferRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def list(
@@ -113,7 +113,7 @@ class CloudDomainsResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: Registration = ...,
+                    body: Registration,
                     updateMask: str | None = ...,
                     validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
@@ -122,21 +122,21 @@ class CloudDomainsResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: RegisterDomainRequest = ...,
+                    body: RegisterDomainRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def renewDomain(
                     self,
                     *,
                     registration: str,
-                    body: RenewDomainRequest = ...,
+                    body: RenewDomainRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def resetAuthorizationCode(
                     self,
                     *,
                     registration: str,
-                    body: ResetAuthorizationCodeRequest = ...,
+                    body: ResetAuthorizationCodeRequest,
                     **kwargs: typing.Any,
                 ) -> AuthorizationCodeHttpRequest: ...
                 def retrieveAuthorizationCode(
@@ -196,21 +196,21 @@ class CloudDomainsResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: SetIamPolicyRequest = ...,
+                    body: SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: TestIamPermissionsRequest = ...,
+                    body: TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def transfer(
                     self,
                     *,
                     parent: str,
-                    body: TransferDomainRequest = ...,
+                    body: TransferDomainRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
 

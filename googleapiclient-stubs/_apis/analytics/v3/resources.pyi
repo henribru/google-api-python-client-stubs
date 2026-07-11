@@ -96,11 +96,7 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 self, *, accountId: str, linkId: str, **kwargs: typing.Any
             ) -> googleapiclient.http.HttpRequest: ...
             def insert(
-                self,
-                *,
-                accountId: str,
-                body: EntityUserLink = ...,
-                **kwargs: typing.Any,
+                self, *, accountId: str, body: EntityUserLink, **kwargs: typing.Any
             ) -> EntityUserLinkHttpRequest: ...
             def list(
                 self,
@@ -115,7 +111,7 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 *,
                 accountId: str,
                 linkId: str,
-                body: EntityUserLink = ...,
+                body: EntityUserLink,
                 **kwargs: typing.Any,
             ) -> EntityUserLinkHttpRequest: ...
 
@@ -132,7 +128,7 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class ClientIdResource(googleapiclient.discovery.Resource):
             def hashClientId(
-                self, *, body: HashClientIdRequest = ..., **kwargs: typing.Any
+                self, *, body: HashClientIdRequest, **kwargs: typing.Any
             ) -> HashClientIdResponseHttpRequest: ...
 
         @typing.type_check_only
@@ -162,7 +158,7 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 *,
                 accountId: str,
                 webPropertyId: str,
-                body: CustomDimension = ...,
+                body: CustomDimension,
                 **kwargs: typing.Any,
             ) -> CustomDimensionHttpRequest: ...
             def list(
@@ -180,7 +176,7 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 accountId: str,
                 webPropertyId: str,
                 customDimensionId: str,
-                body: CustomDimension = ...,
+                body: CustomDimension,
                 ignoreCustomDataSourceLinks: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> CustomDimensionHttpRequest: ...
@@ -190,7 +186,7 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 accountId: str,
                 webPropertyId: str,
                 customDimensionId: str,
-                body: CustomDimension = ...,
+                body: CustomDimension,
                 ignoreCustomDataSourceLinks: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> CustomDimensionHttpRequest: ...
@@ -210,7 +206,7 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 *,
                 accountId: str,
                 webPropertyId: str,
-                body: CustomMetric = ...,
+                body: CustomMetric,
                 **kwargs: typing.Any,
             ) -> CustomMetricHttpRequest: ...
             def list(
@@ -228,7 +224,7 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 accountId: str,
                 webPropertyId: str,
                 customMetricId: str,
-                body: CustomMetric = ...,
+                body: CustomMetric,
                 ignoreCustomDataSourceLinks: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> CustomMetricHttpRequest: ...
@@ -238,7 +234,7 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 accountId: str,
                 webPropertyId: str,
                 customMetricId: str,
-                body: CustomMetric = ...,
+                body: CustomMetric,
                 ignoreCustomDataSourceLinks: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> CustomMetricHttpRequest: ...
@@ -269,7 +265,7 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 accountId: str,
                 webPropertyId: str,
                 profileId: str,
-                body: Experiment = ...,
+                body: Experiment,
                 **kwargs: typing.Any,
             ) -> ExperimentHttpRequest: ...
             def list(
@@ -289,7 +285,7 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 webPropertyId: str,
                 profileId: str,
                 experimentId: str,
-                body: Experiment = ...,
+                body: Experiment,
                 **kwargs: typing.Any,
             ) -> ExperimentHttpRequest: ...
             def update(
@@ -299,7 +295,7 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 webPropertyId: str,
                 profileId: str,
                 experimentId: str,
-                body: Experiment = ...,
+                body: Experiment,
                 **kwargs: typing.Any,
             ) -> ExperimentHttpRequest: ...
 
@@ -312,7 +308,7 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 self, *, accountId: str, filterId: str, **kwargs: typing.Any
             ) -> FilterHttpRequest: ...
             def insert(
-                self, *, accountId: str, body: Filter = ..., **kwargs: typing.Any
+                self, *, accountId: str, body: Filter, **kwargs: typing.Any
             ) -> FilterHttpRequest: ...
             def list(
                 self,
@@ -327,7 +323,7 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 *,
                 accountId: str,
                 filterId: str,
-                body: Filter = ...,
+                body: Filter,
                 **kwargs: typing.Any,
             ) -> FilterHttpRequest: ...
             def update(
@@ -335,7 +331,7 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 *,
                 accountId: str,
                 filterId: str,
-                body: Filter = ...,
+                body: Filter,
                 **kwargs: typing.Any,
             ) -> FilterHttpRequest: ...
 
@@ -356,7 +352,7 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 accountId: str,
                 webPropertyId: str,
                 profileId: str,
-                body: Goal = ...,
+                body: Goal,
                 **kwargs: typing.Any,
             ) -> GoalHttpRequest: ...
             def list(
@@ -376,7 +372,7 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 webPropertyId: str,
                 profileId: str,
                 goalId: str,
-                body: Goal = ...,
+                body: Goal,
                 **kwargs: typing.Any,
             ) -> GoalHttpRequest: ...
             def update(
@@ -386,7 +382,7 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 webPropertyId: str,
                 profileId: str,
                 goalId: str,
-                body: Goal = ...,
+                body: Goal,
                 **kwargs: typing.Any,
             ) -> GoalHttpRequest: ...
 
@@ -416,7 +412,7 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 accountId: str,
                 webPropertyId: str,
                 profileId: str,
-                body: ProfileFilterLink = ...,
+                body: ProfileFilterLink,
                 **kwargs: typing.Any,
             ) -> ProfileFilterLinkHttpRequest: ...
             def list(
@@ -436,7 +432,7 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 webPropertyId: str,
                 profileId: str,
                 linkId: str,
-                body: ProfileFilterLink = ...,
+                body: ProfileFilterLink,
                 **kwargs: typing.Any,
             ) -> ProfileFilterLinkHttpRequest: ...
             def update(
@@ -446,7 +442,7 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 webPropertyId: str,
                 profileId: str,
                 linkId: str,
-                body: ProfileFilterLink = ...,
+                body: ProfileFilterLink,
                 **kwargs: typing.Any,
             ) -> ProfileFilterLinkHttpRequest: ...
 
@@ -467,7 +463,7 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 accountId: str,
                 webPropertyId: str,
                 profileId: str,
-                body: EntityUserLink = ...,
+                body: EntityUserLink,
                 **kwargs: typing.Any,
             ) -> EntityUserLinkHttpRequest: ...
             def list(
@@ -487,7 +483,7 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 webPropertyId: str,
                 profileId: str,
                 linkId: str,
-                body: EntityUserLink = ...,
+                body: EntityUserLink,
                 **kwargs: typing.Any,
             ) -> EntityUserLinkHttpRequest: ...
 
@@ -514,7 +510,7 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 *,
                 accountId: str,
                 webPropertyId: str,
-                body: Profile = ...,
+                body: Profile,
                 **kwargs: typing.Any,
             ) -> ProfileHttpRequest: ...
             def list(
@@ -532,7 +528,7 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 accountId: str,
                 webPropertyId: str,
                 profileId: str,
-                body: Profile = ...,
+                body: Profile,
                 **kwargs: typing.Any,
             ) -> ProfileHttpRequest: ...
             def update(
@@ -541,7 +537,7 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 accountId: str,
                 webPropertyId: str,
                 profileId: str,
-                body: Profile = ...,
+                body: Profile,
                 **kwargs: typing.Any,
             ) -> ProfileHttpRequest: ...
 
@@ -568,7 +564,7 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 *,
                 accountId: str,
                 webPropertyId: str,
-                body: RemarketingAudience = ...,
+                body: RemarketingAudience,
                 **kwargs: typing.Any,
             ) -> RemarketingAudienceHttpRequest: ...
             def list(
@@ -587,7 +583,7 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 accountId: str,
                 webPropertyId: str,
                 remarketingAudienceId: str,
-                body: RemarketingAudience = ...,
+                body: RemarketingAudience,
                 **kwargs: typing.Any,
             ) -> RemarketingAudienceHttpRequest: ...
             def update(
@@ -596,7 +592,7 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 accountId: str,
                 webPropertyId: str,
                 remarketingAudienceId: str,
-                body: RemarketingAudience = ...,
+                body: RemarketingAudience,
                 **kwargs: typing.Any,
             ) -> RemarketingAudienceHttpRequest: ...
 
@@ -636,7 +632,7 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 accountId: str,
                 webPropertyId: str,
                 profileId: str,
-                body: UnsampledReport = ...,
+                body: UnsampledReport,
                 **kwargs: typing.Any,
             ) -> UnsampledReportHttpRequest: ...
             def list(
@@ -658,7 +654,7 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 accountId: str,
                 webPropertyId: str,
                 customDataSourceId: str,
-                body: AnalyticsDataimportDeleteUploadDataRequest = ...,
+                body: AnalyticsDataimportDeleteUploadDataRequest,
                 **kwargs: typing.Any,
             ) -> googleapiclient.http.HttpRequest: ...
             def get(
@@ -712,7 +708,7 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 *,
                 accountId: str,
                 webPropertyId: str,
-                body: EntityAdWordsLink = ...,
+                body: EntityAdWordsLink,
                 **kwargs: typing.Any,
             ) -> EntityAdWordsLinkHttpRequest: ...
             def list(
@@ -730,7 +726,7 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 accountId: str,
                 webPropertyId: str,
                 webPropertyAdWordsLinkId: str,
-                body: EntityAdWordsLink = ...,
+                body: EntityAdWordsLink,
                 **kwargs: typing.Any,
             ) -> EntityAdWordsLinkHttpRequest: ...
             def update(
@@ -739,7 +735,7 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 accountId: str,
                 webPropertyId: str,
                 webPropertyAdWordsLinkId: str,
-                body: EntityAdWordsLink = ...,
+                body: EntityAdWordsLink,
                 **kwargs: typing.Any,
             ) -> EntityAdWordsLinkHttpRequest: ...
 
@@ -749,7 +745,7 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 self, *, accountId: str, webPropertyId: str, **kwargs: typing.Any
             ) -> WebpropertyHttpRequest: ...
             def insert(
-                self, *, accountId: str, body: Webproperty = ..., **kwargs: typing.Any
+                self, *, accountId: str, body: Webproperty, **kwargs: typing.Any
             ) -> WebpropertyHttpRequest: ...
             def list(
                 self,
@@ -764,7 +760,7 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 *,
                 accountId: str,
                 webPropertyId: str,
-                body: Webproperty = ...,
+                body: Webproperty,
                 **kwargs: typing.Any,
             ) -> WebpropertyHttpRequest: ...
             def update(
@@ -772,7 +768,7 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 *,
                 accountId: str,
                 webPropertyId: str,
-                body: Webproperty = ...,
+                body: Webproperty,
                 **kwargs: typing.Any,
             ) -> WebpropertyHttpRequest: ...
 
@@ -791,7 +787,7 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 *,
                 accountId: str,
                 webPropertyId: str,
-                body: EntityUserLink = ...,
+                body: EntityUserLink,
                 **kwargs: typing.Any,
             ) -> EntityUserLinkHttpRequest: ...
             def list(
@@ -809,7 +805,7 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 accountId: str,
                 webPropertyId: str,
                 linkId: str,
-                body: EntityUserLink = ...,
+                body: EntityUserLink,
                 **kwargs: typing.Any,
             ) -> EntityUserLinkHttpRequest: ...
 
@@ -847,10 +843,10 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class ProvisioningResource(googleapiclient.discovery.Resource):
         def createAccountTicket(
-            self, *, body: AccountTicket = ..., **kwargs: typing.Any
+            self, *, body: AccountTicket, **kwargs: typing.Any
         ) -> AccountTicketHttpRequest: ...
         def createAccountTree(
-            self, *, body: AccountTreeRequest = ..., **kwargs: typing.Any
+            self, *, body: AccountTreeRequest, **kwargs: typing.Any
         ) -> AccountTreeResponseHttpRequest: ...
 
     @typing.type_check_only
@@ -858,7 +854,7 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class UserDeletionRequestResource(googleapiclient.discovery.Resource):
             def upsert(
-                self, *, body: UserDeletionRequest = ..., **kwargs: typing.Any
+                self, *, body: UserDeletionRequest, **kwargs: typing.Any
             ) -> UserDeletionRequestHttpRequest: ...
 
         def userDeletionRequest(self) -> UserDeletionRequestResource: ...

@@ -47,7 +47,7 @@ class WorkflowsResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: Workflow = ...,
+                    body: Workflow,
                     workflowId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -76,7 +76,7 @@ class WorkflowsResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: Workflow = ...,
+                    body: Workflow,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...

@@ -26,13 +26,13 @@ class CloudTalentSolutionResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class ClientEventsResource(googleapiclient.discovery.Resource):
                 def create(
-                    self, *, parent: str, body: ClientEvent = ..., **kwargs: typing.Any
+                    self, *, parent: str, body: ClientEvent, **kwargs: typing.Any
                 ) -> ClientEventHttpRequest: ...
 
             @typing.type_check_only
             class CompaniesResource(googleapiclient.discovery.Resource):
                 def create(
-                    self, *, parent: str, body: Company = ..., **kwargs: typing.Any
+                    self, *, parent: str, body: Company, **kwargs: typing.Any
                 ) -> CompanyHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -58,7 +58,7 @@ class CloudTalentSolutionResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: Company = ...,
+                    body: Company,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> CompanyHttpRequest: ...
@@ -69,25 +69,25 @@ class CloudTalentSolutionResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: BatchCreateJobsRequest = ...,
+                    body: BatchCreateJobsRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def batchDelete(
                     self,
                     *,
                     parent: str,
-                    body: BatchDeleteJobsRequest = ...,
+                    body: BatchDeleteJobsRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def batchUpdate(
                     self,
                     *,
                     parent: str,
-                    body: BatchUpdateJobsRequest = ...,
+                    body: BatchUpdateJobsRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def create(
-                    self, *, parent: str, body: Job = ..., **kwargs: typing.Any
+                    self, *, parent: str, body: Job, **kwargs: typing.Any
                 ) -> JobHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -119,16 +119,12 @@ class CloudTalentSolutionResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: Job = ...,
+                    body: Job,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> JobHttpRequest: ...
                 def search(
-                    self,
-                    *,
-                    parent: str,
-                    body: SearchJobsRequest = ...,
-                    **kwargs: typing.Any,
+                    self, *, parent: str, body: SearchJobsRequest, **kwargs: typing.Any
                 ) -> SearchJobsResponseHttpRequest: ...
                 def search_next(
                     self,
@@ -136,11 +132,7 @@ class CloudTalentSolutionResource(googleapiclient.discovery.Resource):
                     previous_response: SearchJobsResponse,
                 ) -> SearchJobsResponseHttpRequest | None: ...
                 def searchForAlert(
-                    self,
-                    *,
-                    parent: str,
-                    body: SearchJobsRequest = ...,
-                    **kwargs: typing.Any,
+                    self, *, parent: str, body: SearchJobsRequest, **kwargs: typing.Any
                 ) -> SearchJobsResponseHttpRequest: ...
                 def searchForAlert_next(
                     self,
@@ -170,7 +162,7 @@ class CloudTalentSolutionResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any,
             ) -> CompleteQueryResponseHttpRequest: ...
             def create(
-                self, *, parent: str, body: Tenant = ..., **kwargs: typing.Any
+                self, *, parent: str, body: Tenant, **kwargs: typing.Any
             ) -> TenantHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -193,7 +185,7 @@ class CloudTalentSolutionResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: Tenant = ...,
+                body: Tenant,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> TenantHttpRequest: ...

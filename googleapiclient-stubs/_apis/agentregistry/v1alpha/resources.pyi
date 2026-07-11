@@ -41,7 +41,7 @@ class AgentRegistryResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: SearchAgentsRequest = ...,
+                    body: SearchAgentsRequest,
                     **kwargs: typing.Any,
                 ) -> SearchAgentsResponseHttpRequest: ...
                 def search_next(
@@ -56,7 +56,7 @@ class AgentRegistryResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: Binding = ...,
+                    body: Binding,
                     bindingId: str | None = ...,
                     requestId: str | None = ...,
                     **kwargs: typing.Any,
@@ -105,7 +105,7 @@ class AgentRegistryResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: Binding = ...,
+                    body: Binding,
                     requestId: str | None = ...,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
@@ -155,7 +155,7 @@ class AgentRegistryResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: SearchMcpServersRequest = ...,
+                    body: SearchMcpServersRequest,
                     **kwargs: typing.Any,
                 ) -> SearchMcpServersResponseHttpRequest: ...
                 def search_next(
@@ -170,7 +170,7 @@ class AgentRegistryResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: CancelOperationRequest = ...,
+                    body: CancelOperationRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def delete(
@@ -201,7 +201,7 @@ class AgentRegistryResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: Service = ...,
+                    body: Service,
                     requestId: str | None = ...,
                     serviceId: str | None = ...,
                     **kwargs: typing.Any,
@@ -234,7 +234,7 @@ class AgentRegistryResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: Service = ...,
+                    body: Service,
                     requestId: str | None = ...,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,

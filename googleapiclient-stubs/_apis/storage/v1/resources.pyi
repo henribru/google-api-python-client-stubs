@@ -22,7 +22,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             self, *, bucket: str, anywhereCacheId: str, **kwargs: typing.Any
         ) -> AnywhereCacheHttpRequest: ...
         def insert(
-            self, *, bucket: str, body: AnywhereCache = ..., **kwargs: typing.Any
+            self, *, bucket: str, body: AnywhereCache, **kwargs: typing.Any
         ) -> GoogleLongrunningOperationHttpRequest: ...
         def list(
             self,
@@ -48,7 +48,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             *,
             bucket: str,
             anywhereCacheId: str,
-            body: AnywhereCache = ...,
+            body: AnywhereCache,
             **kwargs: typing.Any,
         ) -> GoogleLongrunningOperationHttpRequest: ...
 
@@ -74,7 +74,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             self,
             *,
             bucket: str,
-            body: BucketAccessControl = ...,
+            body: BucketAccessControl,
             userProject: str | None = ...,
             **kwargs: typing.Any,
         ) -> BucketAccessControlHttpRequest: ...
@@ -86,7 +86,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             *,
             bucket: str,
             entity: str,
-            body: BucketAccessControl = ...,
+            body: BucketAccessControl,
             userProject: str | None = ...,
             **kwargs: typing.Any,
         ) -> BucketAccessControlHttpRequest: ...
@@ -95,7 +95,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             *,
             bucket: str,
             entity: str,
-            body: BucketAccessControl = ...,
+            body: BucketAccessControl,
             userProject: str | None = ...,
             **kwargs: typing.Any,
         ) -> BucketAccessControlHttpRequest: ...
@@ -138,7 +138,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             self,
             *,
             project: str,
-            body: Bucket = ...,
+            body: Bucket,
             enableObjectRetention: bool | None = ...,
             predefinedAcl: typing_extensions.Literal[
                 "authenticatedRead",
@@ -189,7 +189,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             self,
             *,
             bucket: str,
-            body: Bucket = ...,
+            body: Bucket,
             ifMetagenerationMatch: str | None = ...,
             ifMetagenerationNotMatch: str | None = ...,
             predefinedAcl: typing_extensions.Literal[
@@ -214,11 +214,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any,
         ) -> BucketHttpRequest: ...
         def relocate(
-            self,
-            *,
-            bucket: str,
-            body: RelocateBucketRequest = ...,
-            **kwargs: typing.Any,
+            self, *, bucket: str, body: RelocateBucketRequest, **kwargs: typing.Any
         ) -> GoogleLongrunningOperationHttpRequest: ...
         def restore(
             self,
@@ -233,7 +229,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             self,
             *,
             bucket: str,
-            body: Policy = ...,
+            body: Policy,
             userProject: str | None = ...,
             **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
@@ -249,7 +245,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             self,
             *,
             bucket: str,
-            body: Bucket = ...,
+            body: Bucket,
             ifMetagenerationMatch: str | None = ...,
             ifMetagenerationNotMatch: str | None = ...,
             predefinedAcl: typing_extensions.Literal[
@@ -277,7 +273,7 @@ class StorageResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class ChannelsResource(googleapiclient.discovery.Resource):
         def stop(
-            self, *, body: Channel = ..., **kwargs: typing.Any
+            self, *, body: Channel, **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
 
     @typing.type_check_only
@@ -302,7 +298,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             self,
             *,
             bucket: str,
-            body: ObjectAccessControl = ...,
+            body: ObjectAccessControl,
             userProject: str | None = ...,
             **kwargs: typing.Any,
         ) -> ObjectAccessControlHttpRequest: ...
@@ -320,7 +316,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             *,
             bucket: str,
             entity: str,
-            body: ObjectAccessControl = ...,
+            body: ObjectAccessControl,
             userProject: str | None = ...,
             **kwargs: typing.Any,
         ) -> ObjectAccessControlHttpRequest: ...
@@ -329,7 +325,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             *,
             bucket: str,
             entity: str,
-            body: ObjectAccessControl = ...,
+            body: ObjectAccessControl,
             userProject: str | None = ...,
             **kwargs: typing.Any,
         ) -> ObjectAccessControlHttpRequest: ...
@@ -367,7 +363,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             self,
             *,
             bucket: str,
-            body: Folder = ...,
+            body: Folder,
             recursive: bool | None = ...,
             **kwargs: typing.Any,
         ) -> FolderHttpRequest: ...
@@ -428,7 +424,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
         def insert(
-            self, *, bucket: str, body: ManagedFolder = ..., **kwargs: typing.Any
+            self, *, bucket: str, body: ManagedFolder, **kwargs: typing.Any
         ) -> ManagedFolderHttpRequest: ...
         def list(
             self,
@@ -449,7 +445,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             *,
             bucket: str,
             managedFolder: str,
-            body: Policy = ...,
+            body: Policy,
             userProject: str | None = ...,
             **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
@@ -485,7 +481,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             self,
             *,
             bucket: str,
-            body: Notification = ...,
+            body: Notification,
             userProject: str | None = ...,
             **kwargs: typing.Any,
         ) -> NotificationHttpRequest: ...
@@ -520,7 +516,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             *,
             bucket: str,
             object: str,
-            body: ObjectAccessControl = ...,
+            body: ObjectAccessControl,
             generation: str | None = ...,
             userProject: str | None = ...,
             **kwargs: typing.Any,
@@ -540,7 +536,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             bucket: str,
             object: str,
             entity: str,
-            body: ObjectAccessControl = ...,
+            body: ObjectAccessControl,
             generation: str | None = ...,
             userProject: str | None = ...,
             **kwargs: typing.Any,
@@ -551,7 +547,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             bucket: str,
             object: str,
             entity: str,
-            body: ObjectAccessControl = ...,
+            body: ObjectAccessControl,
             generation: str | None = ...,
             userProject: str | None = ...,
             **kwargs: typing.Any,
@@ -560,18 +556,14 @@ class StorageResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class ObjectsResource(googleapiclient.discovery.Resource):
         def bulkRestore(
-            self,
-            *,
-            bucket: str,
-            body: BulkRestoreObjectsRequest = ...,
-            **kwargs: typing.Any,
+            self, *, bucket: str, body: BulkRestoreObjectsRequest, **kwargs: typing.Any
         ) -> GoogleLongrunningOperationHttpRequest: ...
         def compose(
             self,
             *,
             destinationBucket: str,
             destinationObject: str,
-            body: ComposeRequest = ...,
+            body: ComposeRequest,
             destinationPredefinedAcl: typing_extensions.Literal[
                 "authenticatedRead",
                 "bucketOwnerFullControl",
@@ -595,7 +587,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             sourceObject: str,
             destinationBucket: str,
             destinationObject: str,
-            body: Object = ...,
+            body: Object,
             destinationKmsKeyName: str | None = ...,
             destinationPredefinedAcl: typing_extensions.Literal[
                 "authenticatedRead",
@@ -677,7 +669,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             self,
             *,
             bucket: str,
-            body: Object = ...,
+            body: Object,
             contentEncoding: str | None = ...,
             ifGenerationMatch: str | None = ...,
             ifGenerationNotMatch: str | None = ...,
@@ -744,7 +736,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             *,
             bucket: str,
             object: str,
-            body: Object = ...,
+            body: Object,
             generation: str | None = ...,
             ifGenerationMatch: str | None = ...,
             ifGenerationNotMatch: str | None = ...,
@@ -787,7 +779,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             sourceObject: str,
             destinationBucket: str,
             destinationObject: str,
-            body: Object = ...,
+            body: Object,
             destinationKmsKeyName: str | None = ...,
             destinationPredefinedAcl: typing_extensions.Literal[
                 "authenticatedRead",
@@ -819,7 +811,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             *,
             bucket: str,
             object: str,
-            body: Policy = ...,
+            body: Policy,
             generation: str | None = ...,
             userProject: str | None = ...,
             **kwargs: typing.Any,
@@ -839,7 +831,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             *,
             bucket: str,
             object: str,
-            body: Object = ...,
+            body: Object,
             generation: str | None = ...,
             ifGenerationMatch: str | None = ...,
             ifGenerationNotMatch: str | None = ...,
@@ -867,7 +859,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             *,
             bucket: str,
             operationId: str,
-            body: AdvanceRelocateBucketOperationRequest = ...,
+            body: AdvanceRelocateBucketOperationRequest,
             **kwargs: typing.Any,
         ) -> googleapiclient.http.HttpRequest: ...
         def cancel(
@@ -940,7 +932,7 @@ class StorageResource(googleapiclient.discovery.Resource):
                 *,
                 projectId: str,
                 accessId: str,
-                body: HmacKeyMetadata = ...,
+                body: HmacKeyMetadata,
                 userProject: str | None = ...,
                 **kwargs: typing.Any,
             ) -> HmacKeyMetadataHttpRequest: ...

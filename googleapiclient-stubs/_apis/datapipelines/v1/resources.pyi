@@ -41,7 +41,7 @@ class DatapipelinesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudDatapipelinesV1Pipeline = ...,
+                    body: GoogleCloudDatapipelinesV1Pipeline,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudDatapipelinesV1PipelineHttpRequest: ...
                 def delete(
@@ -70,7 +70,7 @@ class DatapipelinesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudDatapipelinesV1Pipeline = ...,
+                    body: GoogleCloudDatapipelinesV1Pipeline,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudDatapipelinesV1PipelineHttpRequest: ...
@@ -78,14 +78,14 @@ class DatapipelinesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudDatapipelinesV1RunPipelineRequest = ...,
+                    body: GoogleCloudDatapipelinesV1RunPipelineRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudDatapipelinesV1RunPipelineResponseHttpRequest: ...
                 def stop(
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudDatapipelinesV1StopPipelineRequest = ...,
+                    body: GoogleCloudDatapipelinesV1StopPipelineRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudDatapipelinesV1PipelineHttpRequest: ...
                 def jobs(self) -> JobsResource: ...

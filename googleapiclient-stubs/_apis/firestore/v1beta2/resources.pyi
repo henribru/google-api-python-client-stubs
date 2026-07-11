@@ -44,7 +44,7 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: GoogleFirestoreAdminV1beta2Field = ...,
+                        body: GoogleFirestoreAdminV1beta2Field,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
@@ -55,7 +55,7 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: GoogleFirestoreAdminV1beta2Index = ...,
+                        body: GoogleFirestoreAdminV1beta2Index,
                         **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
                     def delete(
@@ -88,14 +88,14 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleFirestoreAdminV1beta2ExportDocumentsRequest = ...,
+                body: GoogleFirestoreAdminV1beta2ExportDocumentsRequest,
                 **kwargs: typing.Any,
             ) -> GoogleLongrunningOperationHttpRequest: ...
             def importDocuments(
                 self,
                 *,
                 name: str,
-                body: GoogleFirestoreAdminV1beta2ImportDocumentsRequest = ...,
+                body: GoogleFirestoreAdminV1beta2ImportDocumentsRequest,
                 **kwargs: typing.Any,
             ) -> GoogleLongrunningOperationHttpRequest: ...
             def collectionGroups(self) -> CollectionGroupsResource: ...

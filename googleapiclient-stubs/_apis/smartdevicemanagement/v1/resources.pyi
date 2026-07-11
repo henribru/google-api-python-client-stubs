@@ -21,7 +21,7 @@ class SmartDeviceManagementResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleHomeEnterpriseSdmV1ExecuteDeviceCommandRequest = ...,
+                body: GoogleHomeEnterpriseSdmV1ExecuteDeviceCommandRequest,
                 **kwargs: typing.Any,
             ) -> GoogleHomeEnterpriseSdmV1ExecuteDeviceCommandResponseHttpRequest: ...
             def get(

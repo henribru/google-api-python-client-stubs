@@ -38,7 +38,7 @@ class DataTransferResource(googleapiclient.discovery.Resource):
             self, *, dataTransferId: str, **kwargs: typing.Any
         ) -> DataTransferHttpRequest: ...
         def insert(
-            self, *, body: DataTransfer = ..., **kwargs: typing.Any
+            self, *, body: DataTransfer, **kwargs: typing.Any
         ) -> DataTransferHttpRequest: ...
         def list(
             self,

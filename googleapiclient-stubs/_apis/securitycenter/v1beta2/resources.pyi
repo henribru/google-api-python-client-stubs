@@ -104,7 +104,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            body: ContainerThreatDetectionSettings = ...,
+            body: ContainerThreatDetectionSettings,
             updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> ContainerThreatDetectionSettingsHttpRequest: ...
@@ -112,7 +112,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            body: EventThreatDetectionSettings = ...,
+            body: EventThreatDetectionSettings,
             updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> EventThreatDetectionSettingsHttpRequest: ...
@@ -120,7 +120,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            body: RapidVulnerabilityDetectionSettings = ...,
+            body: RapidVulnerabilityDetectionSettings,
             updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> RapidVulnerabilityDetectionSettingsHttpRequest: ...
@@ -128,7 +128,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            body: SecurityHealthAnalyticsSettings = ...,
+            body: SecurityHealthAnalyticsSettings,
             updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> SecurityHealthAnalyticsSettingsHttpRequest: ...
@@ -136,7 +136,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            body: VirtualMachineThreatDetectionSettings = ...,
+            body: VirtualMachineThreatDetectionSettings,
             updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> VirtualMachineThreatDetectionSettingsHttpRequest: ...
@@ -144,7 +144,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            body: WebSecurityScannerSettings = ...,
+            body: WebSecurityScannerSettings,
             updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> WebSecurityScannerSettingsHttpRequest: ...
@@ -259,7 +259,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            body: ContainerThreatDetectionSettings = ...,
+            body: ContainerThreatDetectionSettings,
             updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> ContainerThreatDetectionSettingsHttpRequest: ...
@@ -267,7 +267,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            body: EventThreatDetectionSettings = ...,
+            body: EventThreatDetectionSettings,
             updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> EventThreatDetectionSettingsHttpRequest: ...
@@ -275,7 +275,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            body: RapidVulnerabilityDetectionSettings = ...,
+            body: RapidVulnerabilityDetectionSettings,
             updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> RapidVulnerabilityDetectionSettingsHttpRequest: ...
@@ -283,7 +283,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            body: SecurityHealthAnalyticsSettings = ...,
+            body: SecurityHealthAnalyticsSettings,
             updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> SecurityHealthAnalyticsSettingsHttpRequest: ...
@@ -291,7 +291,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            body: VirtualMachineThreatDetectionSettings = ...,
+            body: VirtualMachineThreatDetectionSettings,
             updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> VirtualMachineThreatDetectionSettingsHttpRequest: ...
@@ -299,7 +299,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            body: WebSecurityScannerSettings = ...,
+            body: WebSecurityScannerSettings,
             updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> WebSecurityScannerSettingsHttpRequest: ...
@@ -367,7 +367,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: ContainerThreatDetectionSettings = ...,
+                    body: ContainerThreatDetectionSettings,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ContainerThreatDetectionSettingsHttpRequest: ...
@@ -444,7 +444,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            body: ContainerThreatDetectionSettings = ...,
+            body: ContainerThreatDetectionSettings,
             updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> ContainerThreatDetectionSettingsHttpRequest: ...
@@ -452,7 +452,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            body: EventThreatDetectionSettings = ...,
+            body: EventThreatDetectionSettings,
             updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> EventThreatDetectionSettingsHttpRequest: ...
@@ -460,7 +460,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            body: RapidVulnerabilityDetectionSettings = ...,
+            body: RapidVulnerabilityDetectionSettings,
             updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> RapidVulnerabilityDetectionSettingsHttpRequest: ...
@@ -468,7 +468,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            body: SecurityHealthAnalyticsSettings = ...,
+            body: SecurityHealthAnalyticsSettings,
             updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> SecurityHealthAnalyticsSettingsHttpRequest: ...
@@ -476,7 +476,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            body: VirtualMachineThreatDetectionSettings = ...,
+            body: VirtualMachineThreatDetectionSettings,
             updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> VirtualMachineThreatDetectionSettingsHttpRequest: ...
@@ -484,7 +484,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            body: WebSecurityScannerSettings = ...,
+            body: WebSecurityScannerSettings,
             updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> WebSecurityScannerSettingsHttpRequest: ...

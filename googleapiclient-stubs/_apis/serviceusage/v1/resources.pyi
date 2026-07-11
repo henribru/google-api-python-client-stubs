@@ -16,7 +16,7 @@ class ServiceUsageResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class OperationsResource(googleapiclient.discovery.Resource):
         def cancel(
-            self, *, name: str, body: CancelOperationRequest = ..., **kwargs: typing.Any
+            self, *, name: str, body: CancelOperationRequest, **kwargs: typing.Any
         ) -> EmptyHttpRequest: ...
         def delete(self, *, name: str, **kwargs: typing.Any) -> EmptyHttpRequest: ...
         def get(self, *, name: str, **kwargs: typing.Any) -> OperationHttpRequest: ...
@@ -39,11 +39,7 @@ class ServiceUsageResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class ServicesResource(googleapiclient.discovery.Resource):
         def batchEnable(
-            self,
-            *,
-            parent: str,
-            body: BatchEnableServicesRequest = ...,
-            **kwargs: typing.Any,
+            self, *, parent: str, body: BatchEnableServicesRequest, **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
         def batchGet(
             self,
@@ -53,10 +49,10 @@ class ServiceUsageResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any,
         ) -> BatchGetServicesResponseHttpRequest: ...
         def disable(
-            self, *, name: str, body: DisableServiceRequest = ..., **kwargs: typing.Any
+            self, *, name: str, body: DisableServiceRequest, **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
         def enable(
-            self, *, name: str, body: EnableServiceRequest = ..., **kwargs: typing.Any
+            self, *, name: str, body: EnableServiceRequest, **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
         def get(
             self, *, name: str, **kwargs: typing.Any

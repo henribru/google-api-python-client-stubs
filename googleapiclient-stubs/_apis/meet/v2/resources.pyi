@@ -156,22 +156,16 @@ class MeetResource(googleapiclient.discovery.Resource):
 
     @typing.type_check_only
     class SpacesResource(googleapiclient.discovery.Resource):
-        def create(
-            self, *, body: Space = ..., **kwargs: typing.Any
-        ) -> SpaceHttpRequest: ...
+        def create(self, *, body: Space, **kwargs: typing.Any) -> SpaceHttpRequest: ...
         def endActiveConference(
-            self,
-            *,
-            name: str,
-            body: EndActiveConferenceRequest = ...,
-            **kwargs: typing.Any,
+            self, *, name: str, body: EndActiveConferenceRequest, **kwargs: typing.Any
         ) -> EmptyHttpRequest: ...
         def get(self, *, name: str, **kwargs: typing.Any) -> SpaceHttpRequest: ...
         def patch(
             self,
             *,
             name: str,
-            body: Space = ...,
+            body: Space,
             updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> SpaceHttpRequest: ...

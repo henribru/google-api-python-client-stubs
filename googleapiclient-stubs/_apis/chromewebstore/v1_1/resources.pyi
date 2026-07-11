@@ -29,14 +29,14 @@ class ChromewebstoreResource(googleapiclient.discovery.Resource):
             self,
             *,
             itemId: str,
-            body: PublishRequest = ...,
+            body: PublishRequest,
             deployPercentage: int | None = ...,
             publishTarget: str | None = ...,
             reviewExemption: bool | None = ...,
             **kwargs: typing.Any,
         ) -> Item2HttpRequest: ...
         def update(
-            self, *, itemId: str, body: Item = ..., **kwargs: typing.Any
+            self, *, itemId: str, body: Item, **kwargs: typing.Any
         ) -> ItemHttpRequest: ...
 
     def new_batch_http_request(

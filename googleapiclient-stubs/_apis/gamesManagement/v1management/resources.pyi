@@ -28,10 +28,7 @@ class GamesManagementResource(googleapiclient.discovery.Resource):
             self, *, achievementId: str, **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
         def resetMultipleForAllPlayers(
-            self,
-            *,
-            body: AchievementResetMultipleForAllRequest = ...,
-            **kwargs: typing.Any,
+            self, *, body: AchievementResetMultipleForAllRequest, **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
 
     @typing.type_check_only
@@ -65,7 +62,7 @@ class GamesManagementResource(googleapiclient.discovery.Resource):
             self, *, eventId: str, **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
         def resetMultipleForAllPlayers(
-            self, *, body: EventsResetMultipleForAllRequest = ..., **kwargs: typing.Any
+            self, *, body: EventsResetMultipleForAllRequest, **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
 
     @typing.type_check_only
@@ -92,7 +89,7 @@ class GamesManagementResource(googleapiclient.discovery.Resource):
             self, *, leaderboardId: str, **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
         def resetMultipleForAllPlayers(
-            self, *, body: ScoresResetMultipleForAllRequest = ..., **kwargs: typing.Any
+            self, *, body: ScoresResetMultipleForAllRequest, **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
 
     def new_batch_http_request(

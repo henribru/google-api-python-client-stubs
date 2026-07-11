@@ -23,7 +23,7 @@ class WebContentPublisherResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: Cta = ...,
+                    body: Cta,
                     ctaId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> CtaHttpRequest: ...
@@ -46,7 +46,7 @@ class WebContentPublisherResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: Publication = ...,
+                body: Publication,
                 publicationId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> PublicationHttpRequest: ...
@@ -71,7 +71,7 @@ class WebContentPublisherResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: Publication = ...,
+                body: Publication,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> PublicationHttpRequest: ...

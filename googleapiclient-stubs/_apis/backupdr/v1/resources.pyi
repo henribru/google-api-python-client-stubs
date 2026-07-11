@@ -75,7 +75,7 @@ class BackupdrResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: BackupPlanAssociation = ...,
+                    body: BackupPlanAssociation,
                     backupPlanAssociationId: str | None = ...,
                     requestId: str | None = ...,
                     **kwargs: typing.Any,
@@ -126,17 +126,13 @@ class BackupdrResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: BackupPlanAssociation = ...,
+                    body: BackupPlanAssociation,
                     requestId: str | None = ...,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def triggerBackup(
-                    self,
-                    *,
-                    name: str,
-                    body: TriggerBackupRequest = ...,
-                    **kwargs: typing.Any,
+                    self, *, name: str, body: TriggerBackupRequest, **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
 
             @typing.type_check_only
@@ -164,7 +160,7 @@ class BackupdrResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: BackupPlan = ...,
+                    body: BackupPlan,
                     backupPlanId: str | None = ...,
                     requestId: str | None = ...,
                     **kwargs: typing.Any,
@@ -198,7 +194,7 @@ class BackupdrResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: BackupPlan = ...,
+                    body: BackupPlan,
                     requestId: str | None = ...,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
@@ -277,7 +273,7 @@ class BackupdrResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             name: str,
-                            body: Backup = ...,
+                            body: Backup,
                             requestId: str | None = ...,
                             updateMask: str | None = ...,
                             **kwargs: typing.Any,
@@ -286,7 +282,7 @@ class BackupdrResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             name: str,
-                            body: RestoreBackupRequest = ...,
+                            body: RestoreBackupRequest,
                             **kwargs: typing.Any,
                         ) -> OperationHttpRequest: ...
 
@@ -294,21 +290,21 @@ class BackupdrResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         dataSource: str,
-                        body: AbandonBackupRequest = ...,
+                        body: AbandonBackupRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def fetchAccessToken(
                         self,
                         *,
                         name: str,
-                        body: FetchAccessTokenRequest = ...,
+                        body: FetchAccessTokenRequest,
                         **kwargs: typing.Any,
                     ) -> FetchAccessTokenResponseHttpRequest: ...
                     def finalizeBackup(
                         self,
                         *,
                         dataSource: str,
-                        body: FinalizeBackupRequest = ...,
+                        body: FinalizeBackupRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def get(
@@ -318,7 +314,7 @@ class BackupdrResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         dataSource: str,
-                        body: InitiateBackupRequest = ...,
+                        body: InitiateBackupRequest,
                         **kwargs: typing.Any,
                     ) -> InitiateBackupResponseHttpRequest: ...
                     def list(
@@ -340,7 +336,7 @@ class BackupdrResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: DataSource = ...,
+                        body: DataSource,
                         allowMissing: bool | None = ...,
                         requestId: str | None = ...,
                         updateMask: str | None = ...,
@@ -350,14 +346,14 @@ class BackupdrResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: RemoveDataSourceRequest = ...,
+                        body: RemoveDataSourceRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def setInternalStatus(
                         self,
                         *,
                         dataSource: str,
-                        body: SetInternalStatusRequest = ...,
+                        body: SetInternalStatusRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def backups(self) -> BackupsResource: ...
@@ -366,7 +362,7 @@ class BackupdrResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: BackupVault = ...,
+                    body: BackupVault,
                     backupVaultId: str | None = ...,
                     requestId: str | None = ...,
                     validateOnly: bool | None = ...,
@@ -436,7 +432,7 @@ class BackupdrResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: BackupVault = ...,
+                    body: BackupVault,
                     force: bool | None = ...,
                     forceUpdateAccessRestriction: bool | None = ...,
                     requestId: str | None = ...,
@@ -448,7 +444,7 @@ class BackupdrResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: TestIamPermissionsRequest = ...,
+                    body: TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def dataSources(self) -> DataSourcesResource: ...
@@ -498,7 +494,7 @@ class BackupdrResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: ManagementServer = ...,
+                    body: ManagementServer,
                     managementServerId: str | None = ...,
                     requestId: str | None = ...,
                     **kwargs: typing.Any,
@@ -539,21 +535,21 @@ class BackupdrResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: FetchMsComplianceMetadataRequest = ...,
+                    body: FetchMsComplianceMetadataRequest,
                     **kwargs: typing.Any,
                 ) -> FetchMsComplianceMetadataResponseHttpRequest: ...
                 def setIamPolicy(
                     self,
                     *,
                     resource: str,
-                    body: SetIamPolicyRequest = ...,
+                    body: SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: TestIamPermissionsRequest = ...,
+                    body: TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
 
@@ -563,7 +559,7 @@ class BackupdrResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: CancelOperationRequest = ...,
+                    body: CancelOperationRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def delete(
@@ -627,24 +623,20 @@ class BackupdrResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: InitializeServiceRequest = ...,
+                    body: InitializeServiceRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
 
             @typing.type_check_only
             class TrialResource(googleapiclient.discovery.Resource):
                 def end(
-                    self,
-                    *,
-                    parent: str,
-                    body: EndTrialRequest = ...,
-                    **kwargs: typing.Any,
+                    self, *, parent: str, body: EndTrialRequest, **kwargs: typing.Any
                 ) -> TrialHttpRequest: ...
                 def subscribe(
                     self,
                     *,
                     parent: str,
-                    body: SubscribeTrialRequest = ...,
+                    body: SubscribeTrialRequest,
                     **kwargs: typing.Any,
                 ) -> TrialHttpRequest: ...
 

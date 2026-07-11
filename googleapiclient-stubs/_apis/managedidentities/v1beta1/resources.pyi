@@ -29,7 +29,7 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                             self,
                             *,
                             parent: str,
-                            body: Backup = ...,
+                            body: Backup,
                             backupId: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> OperationHttpRequest: ...
@@ -65,7 +65,7 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                             self,
                             *,
                             name: str,
-                            body: Backup = ...,
+                            body: Backup,
                             updateMask: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> OperationHttpRequest: ...
@@ -73,14 +73,14 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                             self,
                             *,
                             resource: str,
-                            body: SetIamPolicyRequest = ...,
+                            body: SetIamPolicyRequest,
                             **kwargs: typing.Any,
                         ) -> PolicyHttpRequest: ...
                         def testIamPermissions(
                             self,
                             *,
                             resource: str,
-                            body: TestIamPermissionsRequest = ...,
+                            body: TestIamPermissionsRequest,
                             **kwargs: typing.Any,
                         ) -> TestIamPermissionsResponseHttpRequest: ...
 
@@ -109,21 +109,21 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                         self,
                         *,
                         name: str,
-                        body: AttachTrustRequest = ...,
+                        body: AttachTrustRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def checkMigrationPermission(
                         self,
                         *,
                         domain: str,
-                        body: CheckMigrationPermissionRequest = ...,
+                        body: CheckMigrationPermissionRequest,
                         **kwargs: typing.Any,
                     ) -> CheckMigrationPermissionResponseHttpRequest: ...
                     def create(
                         self,
                         *,
                         parent: str,
-                        body: Domain = ...,
+                        body: Domain,
                         domainName: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
@@ -134,35 +134,35 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                         self,
                         *,
                         name: str,
-                        body: DetachTrustRequest = ...,
+                        body: DetachTrustRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def disableMigration(
                         self,
                         *,
                         domain: str,
-                        body: DisableMigrationRequest = ...,
+                        body: DisableMigrationRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def domainJoinMachine(
                         self,
                         *,
                         domain: str,
-                        body: DomainJoinMachineRequest = ...,
+                        body: DomainJoinMachineRequest,
                         **kwargs: typing.Any,
                     ) -> DomainJoinMachineResponseHttpRequest: ...
                     def enableMigration(
                         self,
                         *,
                         domain: str,
-                        body: EnableMigrationRequest = ...,
+                        body: EnableMigrationRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def extendSchema(
                         self,
                         *,
                         domain: str,
-                        body: ExtendSchemaRequest = ...,
+                        body: ExtendSchemaRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def get(
@@ -197,7 +197,7 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                         self,
                         *,
                         name: str,
-                        body: Domain = ...,
+                        body: Domain,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
@@ -205,42 +205,42 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                         self,
                         *,
                         name: str,
-                        body: ReconfigureTrustRequest = ...,
+                        body: ReconfigureTrustRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def resetAdminPassword(
                         self,
                         *,
                         name: str,
-                        body: ResetAdminPasswordRequest = ...,
+                        body: ResetAdminPasswordRequest,
                         **kwargs: typing.Any,
                     ) -> ResetAdminPasswordResponseHttpRequest: ...
                     def restore(
                         self,
                         *,
                         name: str,
-                        body: RestoreDomainRequest = ...,
+                        body: RestoreDomainRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def setIamPolicy(
                         self,
                         *,
                         resource: str,
-                        body: SetIamPolicyRequest = ...,
+                        body: SetIamPolicyRequest,
                         **kwargs: typing.Any,
                     ) -> PolicyHttpRequest: ...
                     def testIamPermissions(
                         self,
                         *,
                         resource: str,
-                        body: TestIamPermissionsRequest = ...,
+                        body: TestIamPermissionsRequest,
                         **kwargs: typing.Any,
                     ) -> TestIamPermissionsResponseHttpRequest: ...
                     def updateLdapssettings(
                         self,
                         *,
                         name: str,
-                        body: LDAPSSettings = ...,
+                        body: LDAPSSettings,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
@@ -248,7 +248,7 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                         self,
                         *,
                         name: str,
-                        body: ValidateTrustRequest = ...,
+                        body: ValidateTrustRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def backups(self) -> BackupsResource: ...
@@ -260,7 +260,7 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                         self,
                         *,
                         name: str,
-                        body: CancelOperationRequest = ...,
+                        body: CancelOperationRequest,
                         **kwargs: typing.Any,
                     ) -> EmptyHttpRequest: ...
                     def delete(
@@ -291,7 +291,7 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                         self,
                         *,
                         parent: str,
-                        body: Peering = ...,
+                        body: Peering,
                         peeringId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
@@ -327,7 +327,7 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                         self,
                         *,
                         name: str,
-                        body: Peering = ...,
+                        body: Peering,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
@@ -335,14 +335,14 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                         self,
                         *,
                         resource: str,
-                        body: SetIamPolicyRequest = ...,
+                        body: SetIamPolicyRequest,
                         **kwargs: typing.Any,
                     ) -> PolicyHttpRequest: ...
                     def testIamPermissions(
                         self,
                         *,
                         resource: str,
-                        body: TestIamPermissionsRequest = ...,
+                        body: TestIamPermissionsRequest,
                         **kwargs: typing.Any,
                     ) -> TestIamPermissionsResponseHttpRequest: ...
 

@@ -16,25 +16,16 @@ class TravelImpactModelResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class FlightsResource(googleapiclient.discovery.Resource):
         def computeDetailedFlightEmissions(
-            self,
-            *,
-            body: ComputeDetailedFlightEmissionsRequest = ...,
-            **kwargs: typing.Any,
+            self, *, body: ComputeDetailedFlightEmissionsRequest, **kwargs: typing.Any
         ) -> ComputeDetailedFlightEmissionsResponseHttpRequest: ...
         def computeFlightEmissions(
-            self, *, body: ComputeFlightEmissionsRequest = ..., **kwargs: typing.Any
+            self, *, body: ComputeFlightEmissionsRequest, **kwargs: typing.Any
         ) -> ComputeFlightEmissionsResponseHttpRequest: ...
         def computeScope3FlightEmissions(
-            self,
-            *,
-            body: ComputeScope3FlightEmissionsRequest = ...,
-            **kwargs: typing.Any,
+            self, *, body: ComputeScope3FlightEmissionsRequest, **kwargs: typing.Any
         ) -> ComputeScope3FlightEmissionsResponseHttpRequest: ...
         def computeTypicalFlightEmissions(
-            self,
-            *,
-            body: ComputeTypicalFlightEmissionsRequest = ...,
-            **kwargs: typing.Any,
+            self, *, body: ComputeTypicalFlightEmissionsRequest, **kwargs: typing.Any
         ) -> ComputeTypicalFlightEmissionsResponseHttpRequest: ...
 
     def new_batch_http_request(

@@ -31,7 +31,7 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: Release = ...,
+                        body: Release,
                         versionName: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ReleaseHttpRequest: ...
@@ -56,7 +56,7 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: Channel = ...,
+                    body: Channel,
                     channelId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ChannelHttpRequest: ...
@@ -83,7 +83,7 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: Channel = ...,
+                    body: Channel,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ChannelHttpRequest: ...
@@ -116,7 +116,7 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: CustomDomain = ...,
+                    body: CustomDomain,
                     customDomainId: str | None = ...,
                     validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
@@ -151,7 +151,7 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: CustomDomain = ...,
+                    body: CustomDomain,
                     allowMissing: bool | None = ...,
                     updateMask: str | None = ...,
                     validateOnly: bool | None = ...,
@@ -161,7 +161,7 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: UndeleteCustomDomainRequest = ...,
+                    body: UndeleteCustomDomainRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def operations(self) -> OperationsResource: ...
@@ -169,7 +169,7 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class DomainsResource(googleapiclient.discovery.Resource):
                 def create(
-                    self, *, parent: str, body: Domain = ..., **kwargs: typing.Any
+                    self, *, parent: str, body: Domain, **kwargs: typing.Any
                 ) -> DomainHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -191,7 +191,7 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                     previous_response: ListDomainsResponse,
                 ) -> ListDomainsResponseHttpRequest | None: ...
                 def update(
-                    self, *, name: str, body: Domain = ..., **kwargs: typing.Any
+                    self, *, name: str, body: Domain, **kwargs: typing.Any
                 ) -> DomainHttpRequest: ...
 
             @typing.type_check_only
@@ -200,7 +200,7 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: Release = ...,
+                    body: Release,
                     versionName: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ReleaseHttpRequest: ...
@@ -247,14 +247,14 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: CloneVersionRequest = ...,
+                    body: CloneVersionRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def create(
                     self,
                     *,
                     parent: str,
-                    body: Version = ...,
+                    body: Version,
                     sizeBytes: str | None = ...,
                     versionId: str | None = ...,
                     **kwargs: typing.Any,
@@ -283,7 +283,7 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: Version = ...,
+                    body: Version,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> VersionHttpRequest: ...
@@ -291,7 +291,7 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: PopulateVersionFilesRequest = ...,
+                    body: PopulateVersionFilesRequest,
                     **kwargs: typing.Any,
                 ) -> PopulateVersionFilesResponseHttpRequest: ...
                 def files(self) -> FilesResource: ...
@@ -300,7 +300,7 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: Site = ...,
+                body: Site,
                 siteId: str | None = ...,
                 validateOnly: bool | None = ...,
                 **kwargs: typing.Any,
@@ -329,7 +329,7 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: Site = ...,
+                body: Site,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> SiteHttpRequest: ...
@@ -337,7 +337,7 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: SiteConfig = ...,
+                body: SiteConfig,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> SiteConfigHttpRequest: ...
@@ -360,7 +360,7 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: Release = ...,
+                    body: Release,
                     versionName: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ReleaseHttpRequest: ...
@@ -385,7 +385,7 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: Channel = ...,
+                body: Channel,
                 channelId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ChannelHttpRequest: ...
@@ -410,7 +410,7 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: Channel = ...,
+                body: Channel,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ChannelHttpRequest: ...
@@ -419,7 +419,7 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class DomainsResource(googleapiclient.discovery.Resource):
             def create(
-                self, *, parent: str, body: Domain = ..., **kwargs: typing.Any
+                self, *, parent: str, body: Domain, **kwargs: typing.Any
             ) -> DomainHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -439,7 +439,7 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                 previous_response: ListDomainsResponse,
             ) -> ListDomainsResponseHttpRequest | None: ...
             def update(
-                self, *, name: str, body: Domain = ..., **kwargs: typing.Any
+                self, *, name: str, body: Domain, **kwargs: typing.Any
             ) -> DomainHttpRequest: ...
 
         @typing.type_check_only
@@ -448,7 +448,7 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: Release = ...,
+                body: Release,
                 versionName: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ReleaseHttpRequest: ...
@@ -490,17 +490,13 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                 ) -> ListVersionFilesResponseHttpRequest | None: ...
 
             def clone(
-                self,
-                *,
-                parent: str,
-                body: CloneVersionRequest = ...,
-                **kwargs: typing.Any,
+                self, *, parent: str, body: CloneVersionRequest, **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
             def create(
                 self,
                 *,
                 parent: str,
-                body: Version = ...,
+                body: Version,
                 sizeBytes: str | None = ...,
                 versionId: str | None = ...,
                 **kwargs: typing.Any,
@@ -527,7 +523,7 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: Version = ...,
+                body: Version,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> VersionHttpRequest: ...
@@ -535,7 +531,7 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: PopulateVersionFilesRequest = ...,
+                body: PopulateVersionFilesRequest,
                 **kwargs: typing.Any,
             ) -> PopulateVersionFilesResponseHttpRequest: ...
             def files(self) -> FilesResource: ...
@@ -547,7 +543,7 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            body: SiteConfig = ...,
+            body: SiteConfig,
             updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> SiteConfigHttpRequest: ...

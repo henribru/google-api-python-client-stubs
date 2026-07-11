@@ -25,7 +25,7 @@ class WorkloadManagerResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: Actuation = ...,
+                        body: Actuation,
                         requestId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
@@ -55,7 +55,7 @@ class WorkloadManagerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: Deployment = ...,
+                    body: Deployment,
                     deploymentId: str | None = ...,
                     requestId: str | None = ...,
                     **kwargs: typing.Any,
@@ -179,7 +179,7 @@ class WorkloadManagerResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: RunEvaluationRequest = ...,
+                        body: RunEvaluationRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def results(self) -> ResultsResource: ...
@@ -189,7 +189,7 @@ class WorkloadManagerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: Evaluation = ...,
+                    body: Evaluation,
                     evaluationId: str | None = ...,
                     requestId: str | None = ...,
                     **kwargs: typing.Any,
@@ -224,7 +224,7 @@ class WorkloadManagerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: Evaluation = ...,
+                    body: Evaluation,
                     requestId: str | None = ...,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
@@ -244,7 +244,7 @@ class WorkloadManagerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     location: str,
-                    body: WriteInsightRequest = ...,
+                    body: WriteInsightRequest,
                     **kwargs: typing.Any,
                 ) -> WriteInsightResponseHttpRequest: ...
 
@@ -254,7 +254,7 @@ class WorkloadManagerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: CancelOperationRequest = ...,
+                    body: CancelOperationRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def delete(

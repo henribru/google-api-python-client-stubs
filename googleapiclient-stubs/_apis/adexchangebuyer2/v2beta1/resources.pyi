@@ -24,7 +24,7 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                     *,
                     accountId: str,
                     clientAccountId: str,
-                    body: ClientUserInvitation = ...,
+                    body: ClientUserInvitation,
                     **kwargs: typing.Any,
                 ) -> ClientUserInvitationHttpRequest: ...
                 def get(
@@ -80,12 +80,12 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                     accountId: str,
                     clientAccountId: str,
                     userId: str,
-                    body: ClientUser = ...,
+                    body: ClientUser,
                     **kwargs: typing.Any,
                 ) -> ClientUserHttpRequest: ...
 
             def create(
-                self, *, accountId: str, body: Client = ..., **kwargs: typing.Any
+                self, *, accountId: str, body: Client, **kwargs: typing.Any
             ) -> ClientHttpRequest: ...
             def get(
                 self, *, accountId: str, clientAccountId: str, **kwargs: typing.Any
@@ -109,7 +109,7 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                 *,
                 accountId: str,
                 clientAccountId: str,
-                body: Client = ...,
+                body: Client,
                 **kwargs: typing.Any,
             ) -> ClientHttpRequest: ...
             def invitations(self) -> InvitationsResource: ...
@@ -124,7 +124,7 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                     *,
                     accountId: str,
                     creativeId: str,
-                    body: AddDealAssociationRequest = ...,
+                    body: AddDealAssociationRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def list(
@@ -147,7 +147,7 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                     *,
                     accountId: str,
                     creativeId: str,
-                    body: RemoveDealAssociationRequest = ...,
+                    body: RemoveDealAssociationRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
 
@@ -155,7 +155,7 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 accountId: str,
-                body: Creative = ...,
+                body: Creative,
                 duplicateIdMode: typing_extensions.Literal[
                     "NO_DUPLICATES", "FORCE_ENABLE_DUPLICATE_IDS"
                 ]
@@ -184,7 +184,7 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                 *,
                 accountId: str,
                 creativeId: str,
-                body: StopWatchingCreativeRequest = ...,
+                body: StopWatchingCreativeRequest,
                 **kwargs: typing.Any,
             ) -> EmptyHttpRequest: ...
             def update(
@@ -192,7 +192,7 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                 *,
                 accountId: str,
                 creativeId: str,
-                body: Creative = ...,
+                body: Creative,
                 **kwargs: typing.Any,
             ) -> CreativeHttpRequest: ...
             def watch(
@@ -200,7 +200,7 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                 *,
                 accountId: str,
                 creativeId: str,
-                body: WatchCreativeRequest = ...,
+                body: WatchCreativeRequest,
                 **kwargs: typing.Any,
             ) -> EmptyHttpRequest: ...
             def dealAssociations(self) -> DealAssociationsResource: ...
@@ -230,7 +230,7 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                 *,
                 accountId: str,
                 proposalId: str,
-                body: PauseProposalDealsRequest = ...,
+                body: PauseProposalDealsRequest,
                 **kwargs: typing.Any,
             ) -> ProposalHttpRequest: ...
             def resume(
@@ -238,7 +238,7 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                 *,
                 accountId: str,
                 proposalId: str,
-                body: ResumeProposalDealsRequest = ...,
+                body: ResumeProposalDealsRequest,
                 **kwargs: typing.Any,
             ) -> ProposalHttpRequest: ...
 
@@ -269,7 +269,7 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                 *,
                 accountId: str,
                 proposalId: str,
-                body: AcceptProposalRequest = ...,
+                body: AcceptProposalRequest,
                 **kwargs: typing.Any,
             ) -> ProposalHttpRequest: ...
             def addNote(
@@ -277,7 +277,7 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                 *,
                 accountId: str,
                 proposalId: str,
-                body: AddNoteRequest = ...,
+                body: AddNoteRequest,
                 **kwargs: typing.Any,
             ) -> NoteHttpRequest: ...
             def cancelNegotiation(
@@ -285,7 +285,7 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                 *,
                 accountId: str,
                 proposalId: str,
-                body: CancelNegotiationRequest = ...,
+                body: CancelNegotiationRequest,
                 **kwargs: typing.Any,
             ) -> ProposalHttpRequest: ...
             def completeSetup(
@@ -293,11 +293,11 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                 *,
                 accountId: str,
                 proposalId: str,
-                body: CompleteSetupRequest = ...,
+                body: CompleteSetupRequest,
                 **kwargs: typing.Any,
             ) -> ProposalHttpRequest: ...
             def create(
-                self, *, accountId: str, body: Proposal = ..., **kwargs: typing.Any
+                self, *, accountId: str, body: Proposal, **kwargs: typing.Any
             ) -> ProposalHttpRequest: ...
             def get(
                 self, *, accountId: str, proposalId: str, **kwargs: typing.Any
@@ -325,7 +325,7 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                 *,
                 accountId: str,
                 proposalId: str,
-                body: PauseProposalRequest = ...,
+                body: PauseProposalRequest,
                 **kwargs: typing.Any,
             ) -> ProposalHttpRequest: ...
             def resume(
@@ -333,7 +333,7 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                 *,
                 accountId: str,
                 proposalId: str,
-                body: ResumeProposalRequest = ...,
+                body: ResumeProposalRequest,
                 **kwargs: typing.Any,
             ) -> ProposalHttpRequest: ...
             def update(
@@ -341,7 +341,7 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                 *,
                 accountId: str,
                 proposalId: str,
-                body: Proposal = ...,
+                body: Proposal,
                 **kwargs: typing.Any,
             ) -> ProposalHttpRequest: ...
 
@@ -557,7 +557,7 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     ownerName: str,
-                    body: FilterSet = ...,
+                    body: FilterSet,
                     isTransient: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> FilterSetHttpRequest: ...
@@ -767,7 +767,7 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 ownerName: str,
-                body: FilterSet = ...,
+                body: FilterSet,
                 isTransient: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> FilterSetHttpRequest: ...
@@ -978,7 +978,7 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 ownerName: str,
-                body: FilterSet = ...,
+                body: FilterSet,
                 isTransient: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> FilterSetHttpRequest: ...

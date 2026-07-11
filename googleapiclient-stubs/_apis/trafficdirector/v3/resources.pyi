@@ -16,7 +16,7 @@ class TrafficDirectorServiceResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class DiscoveryResource(googleapiclient.discovery.Resource):
         def client_status(
-            self, *, body: ClientStatusRequest = ..., **kwargs: typing.Any
+            self, *, body: ClientStatusRequest, **kwargs: typing.Any
         ) -> ClientStatusResponseHttpRequest: ...
 
     def new_batch_http_request(

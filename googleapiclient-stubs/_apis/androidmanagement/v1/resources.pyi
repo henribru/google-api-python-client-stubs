@@ -71,7 +71,7 @@ class AndroidManagementResource(googleapiclient.discovery.Resource):
             ) -> EmptyHttpRequest: ...
             def get(self, *, name: str, **kwargs: typing.Any) -> DeviceHttpRequest: ...
             def issueCommand(
-                self, *, name: str, body: Command = ..., **kwargs: typing.Any
+                self, *, name: str, body: Command, **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
             def list(
                 self,
@@ -90,7 +90,7 @@ class AndroidManagementResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: Device = ...,
+                body: Device,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> DeviceHttpRequest: ...
@@ -99,7 +99,7 @@ class AndroidManagementResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class EnrollmentTokensResource(googleapiclient.discovery.Resource):
             def create(
-                self, *, parent: str, body: EnrollmentToken = ..., **kwargs: typing.Any
+                self, *, parent: str, body: EnrollmentToken, **kwargs: typing.Any
             ) -> EnrollmentTokenHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -124,7 +124,7 @@ class AndroidManagementResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class MigrationTokensResource(googleapiclient.discovery.Resource):
             def create(
-                self, *, parent: str, body: MigrationToken = ..., **kwargs: typing.Any
+                self, *, parent: str, body: MigrationToken, **kwargs: typing.Any
             ) -> MigrationTokenHttpRequest: ...
             def get(
                 self, *, name: str, **kwargs: typing.Any
@@ -166,14 +166,14 @@ class AndroidManagementResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: ModifyPolicyApplicationsRequest = ...,
+                body: ModifyPolicyApplicationsRequest,
                 **kwargs: typing.Any,
             ) -> ModifyPolicyApplicationsResponseHttpRequest: ...
             def patch(
                 self,
                 *,
                 name: str,
-                body: Policy = ...,
+                body: Policy,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> PolicyHttpRequest: ...
@@ -181,14 +181,14 @@ class AndroidManagementResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: RemovePolicyApplicationsRequest = ...,
+                body: RemovePolicyApplicationsRequest,
                 **kwargs: typing.Any,
             ) -> RemovePolicyApplicationsResponseHttpRequest: ...
 
         @typing.type_check_only
         class WebAppsResource(googleapiclient.discovery.Resource):
             def create(
-                self, *, parent: str, body: WebApp = ..., **kwargs: typing.Any
+                self, *, parent: str, body: WebApp, **kwargs: typing.Any
             ) -> WebAppHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -211,7 +211,7 @@ class AndroidManagementResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: WebApp = ...,
+                body: WebApp,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> WebAppHttpRequest: ...
@@ -219,13 +219,13 @@ class AndroidManagementResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class WebTokensResource(googleapiclient.discovery.Resource):
             def create(
-                self, *, parent: str, body: WebToken = ..., **kwargs: typing.Any
+                self, *, parent: str, body: WebToken, **kwargs: typing.Any
             ) -> WebTokenHttpRequest: ...
 
         def create(
             self,
             *,
-            body: Enterprise = ...,
+            body: Enterprise,
             agreementAccepted: bool | None = ...,
             enterpriseToken: str | None = ...,
             projectId: str | None = ...,
@@ -237,7 +237,7 @@ class AndroidManagementResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            body: GenerateEnterpriseUpgradeUrlRequest = ...,
+            body: GenerateEnterpriseUpgradeUrlRequest,
             **kwargs: typing.Any,
         ) -> GenerateEnterpriseUpgradeUrlResponseHttpRequest: ...
         def get(self, *, name: str, **kwargs: typing.Any) -> EnterpriseHttpRequest: ...
@@ -260,7 +260,7 @@ class AndroidManagementResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            body: Enterprise = ...,
+            body: Enterprise,
             updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> EnterpriseHttpRequest: ...

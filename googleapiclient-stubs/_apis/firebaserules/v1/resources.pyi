@@ -18,7 +18,7 @@ class FirebaseRulesResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class ReleasesResource(googleapiclient.discovery.Resource):
             def create(
-                self, *, name: str, body: Release = ..., **kwargs: typing.Any
+                self, *, name: str, body: Release, **kwargs: typing.Any
             ) -> ReleaseHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -51,17 +51,13 @@ class FirebaseRulesResource(googleapiclient.discovery.Resource):
                 previous_response: ListReleasesResponse,
             ) -> ListReleasesResponseHttpRequest | None: ...
             def patch(
-                self,
-                *,
-                name: str,
-                body: UpdateReleaseRequest = ...,
-                **kwargs: typing.Any,
+                self, *, name: str, body: UpdateReleaseRequest, **kwargs: typing.Any
             ) -> ReleaseHttpRequest: ...
 
         @typing.type_check_only
         class RulesetsResource(googleapiclient.discovery.Resource):
             def create(
-                self, *, name: str, body: Ruleset = ..., **kwargs: typing.Any
+                self, *, name: str, body: Ruleset, **kwargs: typing.Any
             ) -> RulesetHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -83,7 +79,7 @@ class FirebaseRulesResource(googleapiclient.discovery.Resource):
             ) -> ListRulesetsResponseHttpRequest | None: ...
 
         def test(
-            self, *, name: str, body: TestRulesetRequest = ..., **kwargs: typing.Any
+            self, *, name: str, body: TestRulesetRequest, **kwargs: typing.Any
         ) -> TestRulesetResponseHttpRequest: ...
         def releases(self) -> ReleasesResource: ...
         def rulesets(self) -> RulesetsResource: ...

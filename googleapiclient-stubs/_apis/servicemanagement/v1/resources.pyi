@@ -37,7 +37,7 @@ class ServiceManagementResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class ConfigsResource(googleapiclient.discovery.Resource):
             def create(
-                self, *, serviceName: str, body: Service = ..., **kwargs: typing.Any
+                self, *, serviceName: str, body: Service, **kwargs: typing.Any
             ) -> ServiceHttpRequest: ...
             def get(
                 self,
@@ -64,38 +64,30 @@ class ServiceManagementResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 serviceName: str,
-                body: SubmitConfigSourceRequest = ...,
+                body: SubmitConfigSourceRequest,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
 
         @typing.type_check_only
         class ConsumersResource(googleapiclient.discovery.Resource):
             def getIamPolicy(
-                self,
-                *,
-                resource: str,
-                body: GetIamPolicyRequest = ...,
-                **kwargs: typing.Any,
+                self, *, resource: str, body: GetIamPolicyRequest, **kwargs: typing.Any
             ) -> PolicyHttpRequest: ...
             def setIamPolicy(
-                self,
-                *,
-                resource: str,
-                body: SetIamPolicyRequest = ...,
-                **kwargs: typing.Any,
+                self, *, resource: str, body: SetIamPolicyRequest, **kwargs: typing.Any
             ) -> PolicyHttpRequest: ...
             def testIamPermissions(
                 self,
                 *,
                 resource: str,
-                body: TestIamPermissionsRequest = ...,
+                body: TestIamPermissionsRequest,
                 **kwargs: typing.Any,
             ) -> TestIamPermissionsResponseHttpRequest: ...
 
         @typing.type_check_only
         class RolloutsResource(googleapiclient.discovery.Resource):
             def create(
-                self, *, serviceName: str, body: Rollout = ..., **kwargs: typing.Any
+                self, *, serviceName: str, body: Rollout, **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
             def get(
                 self, *, serviceName: str, rolloutId: str, **kwargs: typing.Any
@@ -116,13 +108,13 @@ class ServiceManagementResource(googleapiclient.discovery.Resource):
             ) -> ListServiceRolloutsResponseHttpRequest | None: ...
 
         def create(
-            self, *, body: ManagedService = ..., **kwargs: typing.Any
+            self, *, body: ManagedService, **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
         def delete(
             self, *, serviceName: str, **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
         def generateConfigReport(
-            self, *, body: GenerateConfigReportRequest = ..., **kwargs: typing.Any
+            self, *, body: GenerateConfigReportRequest, **kwargs: typing.Any
         ) -> GenerateConfigReportResponseHttpRequest: ...
         def get(
             self, *, serviceName: str, **kwargs: typing.Any
@@ -136,11 +128,7 @@ class ServiceManagementResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any,
         ) -> ServiceHttpRequest: ...
         def getIamPolicy(
-            self,
-            *,
-            resource: str,
-            body: GetIamPolicyRequest = ...,
-            **kwargs: typing.Any,
+            self, *, resource: str, body: GetIamPolicyRequest, **kwargs: typing.Any
         ) -> PolicyHttpRequest: ...
         def list(
             self,
@@ -157,17 +145,13 @@ class ServiceManagementResource(googleapiclient.discovery.Resource):
             previous_response: ListServicesResponse,
         ) -> ListServicesResponseHttpRequest | None: ...
         def setIamPolicy(
-            self,
-            *,
-            resource: str,
-            body: SetIamPolicyRequest = ...,
-            **kwargs: typing.Any,
+            self, *, resource: str, body: SetIamPolicyRequest, **kwargs: typing.Any
         ) -> PolicyHttpRequest: ...
         def testIamPermissions(
             self,
             *,
             resource: str,
-            body: TestIamPermissionsRequest = ...,
+            body: TestIamPermissionsRequest,
             **kwargs: typing.Any,
         ) -> TestIamPermissionsResponseHttpRequest: ...
         def undelete(

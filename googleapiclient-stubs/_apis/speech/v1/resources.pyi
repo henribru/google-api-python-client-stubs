@@ -42,7 +42,7 @@ class SpeechResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: CreateCustomClassRequest = ...,
+                    body: CreateCustomClassRequest,
                     **kwargs: typing.Any,
                 ) -> CustomClassHttpRequest: ...
                 def delete(
@@ -68,7 +68,7 @@ class SpeechResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: CustomClass = ...,
+                    body: CustomClass,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> CustomClassHttpRequest: ...
@@ -79,7 +79,7 @@ class SpeechResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: CreatePhraseSetRequest = ...,
+                    body: CreatePhraseSetRequest,
                     **kwargs: typing.Any,
                 ) -> PhraseSetHttpRequest: ...
                 def delete(
@@ -105,7 +105,7 @@ class SpeechResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: PhraseSet = ...,
+                    body: PhraseSet,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> PhraseSetHttpRequest: ...
@@ -118,10 +118,10 @@ class SpeechResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class SpeechResource(googleapiclient.discovery.Resource):
         def longrunningrecognize(
-            self, *, body: LongRunningRecognizeRequest = ..., **kwargs: typing.Any
+            self, *, body: LongRunningRecognizeRequest, **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
         def recognize(
-            self, *, body: RecognizeRequest = ..., **kwargs: typing.Any
+            self, *, body: RecognizeRequest, **kwargs: typing.Any
         ) -> RecognizeResponseHttpRequest: ...
 
     def new_batch_http_request(

@@ -25,7 +25,7 @@ class PubsubLiteResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: CancelOperationRequest = ...,
+                        body: CancelOperationRequest,
                         **kwargs: typing.Any,
                     ) -> EmptyHttpRequest: ...
                     def delete(
@@ -72,7 +72,7 @@ class PubsubLiteResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: Reservation = ...,
+                        body: Reservation,
                         reservationId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ReservationHttpRequest: ...
@@ -99,7 +99,7 @@ class PubsubLiteResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: Reservation = ...,
+                        body: Reservation,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ReservationHttpRequest: ...
@@ -111,7 +111,7 @@ class PubsubLiteResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: Subscription = ...,
+                        body: Subscription,
                         skipBacklog: bool | None = ...,
                         subscriptionId: str | None = ...,
                         **kwargs: typing.Any,
@@ -139,7 +139,7 @@ class PubsubLiteResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: Subscription = ...,
+                        body: Subscription,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> SubscriptionHttpRequest: ...
@@ -147,7 +147,7 @@ class PubsubLiteResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: SeekSubscriptionRequest = ...,
+                        body: SeekSubscriptionRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
 
@@ -173,7 +173,7 @@ class PubsubLiteResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: Topic = ...,
+                        body: Topic,
                         topicId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> TopicHttpRequest: ...
@@ -203,7 +203,7 @@ class PubsubLiteResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: Topic = ...,
+                        body: Topic,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> TopicHttpRequest: ...
@@ -246,7 +246,7 @@ class PubsubLiteResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         subscription: str,
-                        body: CommitCursorRequest = ...,
+                        body: CommitCursorRequest,
                         **kwargs: typing.Any,
                     ) -> CommitCursorResponseHttpRequest: ...
                     def cursors(self) -> CursorsResource: ...
@@ -269,21 +269,21 @@ class PubsubLiteResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         topic: str,
-                        body: ComputeHeadCursorRequest = ...,
+                        body: ComputeHeadCursorRequest,
                         **kwargs: typing.Any,
                     ) -> ComputeHeadCursorResponseHttpRequest: ...
                     def computeMessageStats(
                         self,
                         *,
                         topic: str,
-                        body: ComputeMessageStatsRequest = ...,
+                        body: ComputeMessageStatsRequest,
                         **kwargs: typing.Any,
                     ) -> ComputeMessageStatsResponseHttpRequest: ...
                     def computeTimeCursor(
                         self,
                         *,
                         topic: str,
-                        body: ComputeTimeCursorRequest = ...,
+                        body: ComputeTimeCursorRequest,
                         **kwargs: typing.Any,
                     ) -> ComputeTimeCursorResponseHttpRequest: ...
 

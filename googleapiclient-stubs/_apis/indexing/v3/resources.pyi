@@ -19,7 +19,7 @@ class IndexingResource(googleapiclient.discovery.Resource):
             self, *, url: str | None = ..., **kwargs: typing.Any
         ) -> UrlNotificationMetadataHttpRequest: ...
         def publish(
-            self, *, body: UrlNotification = ..., **kwargs: typing.Any
+            self, *, body: UrlNotification, **kwargs: typing.Any
         ) -> PublishUrlNotificationResponseHttpRequest: ...
 
     def new_batch_http_request(

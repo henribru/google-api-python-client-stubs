@@ -78,18 +78,14 @@ class WebSecurityScannerResource(googleapiclient.discovery.Resource):
                     previous_response: ListScanRunsResponse,
                 ) -> ListScanRunsResponseHttpRequest | None: ...
                 def stop(
-                    self,
-                    *,
-                    name: str,
-                    body: StopScanRunRequest = ...,
-                    **kwargs: typing.Any,
+                    self, *, name: str, body: StopScanRunRequest, **kwargs: typing.Any
                 ) -> ScanRunHttpRequest: ...
                 def crawledUrls(self) -> CrawledUrlsResource: ...
                 def findingTypeStats(self) -> FindingTypeStatsResource: ...
                 def findings(self) -> FindingsResource: ...
 
             def create(
-                self, *, parent: str, body: ScanConfig = ..., **kwargs: typing.Any
+                self, *, parent: str, body: ScanConfig, **kwargs: typing.Any
             ) -> ScanConfigHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -114,16 +110,12 @@ class WebSecurityScannerResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: ScanConfig = ...,
+                body: ScanConfig,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ScanConfigHttpRequest: ...
             def start(
-                self,
-                *,
-                name: str,
-                body: StartScanRunRequest = ...,
-                **kwargs: typing.Any,
+                self, *, name: str, body: StartScanRunRequest, **kwargs: typing.Any
             ) -> ScanRunHttpRequest: ...
             def scanRuns(self) -> ScanRunsResource: ...
 

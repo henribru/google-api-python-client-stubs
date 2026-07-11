@@ -78,21 +78,17 @@ class WorkflowExecutionsResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: CancelExecutionRequest = ...,
+                        body: CancelExecutionRequest,
                         **kwargs: typing.Any,
                     ) -> ExecutionHttpRequest: ...
                     def create(
-                        self,
-                        *,
-                        parent: str,
-                        body: Execution = ...,
-                        **kwargs: typing.Any,
+                        self, *, parent: str, body: Execution, **kwargs: typing.Any
                     ) -> ExecutionHttpRequest: ...
                     def deleteExecutionHistory(
                         self,
                         *,
                         name: str,
-                        body: DeleteExecutionHistoryRequest = ...,
+                        body: DeleteExecutionHistoryRequest,
                         **kwargs: typing.Any,
                     ) -> EmptyHttpRequest: ...
                     def exportData(
@@ -134,7 +130,7 @@ class WorkflowExecutionsResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     workflow: str,
-                    body: TriggerPubsubExecutionRequest = ...,
+                    body: TriggerPubsubExecutionRequest,
                     **kwargs: typing.Any,
                 ) -> ExecutionHttpRequest: ...
                 def executions(self) -> ExecutionsResource: ...

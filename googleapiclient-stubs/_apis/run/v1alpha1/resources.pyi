@@ -18,7 +18,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class JobsResource(googleapiclient.discovery.Resource):
             def create(
-                self, *, parent: str, body: Job = ..., **kwargs: typing.Any
+                self, *, parent: str, body: Job, **kwargs: typing.Any
             ) -> JobHttpRequest: ...
             def delete(
                 self,

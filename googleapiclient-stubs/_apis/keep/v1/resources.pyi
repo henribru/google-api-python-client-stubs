@@ -30,20 +30,18 @@ class KeepResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: BatchCreatePermissionsRequest = ...,
+                body: BatchCreatePermissionsRequest,
                 **kwargs: typing.Any,
             ) -> BatchCreatePermissionsResponseHttpRequest: ...
             def batchDelete(
                 self,
                 *,
                 parent: str,
-                body: BatchDeletePermissionsRequest = ...,
+                body: BatchDeletePermissionsRequest,
                 **kwargs: typing.Any,
             ) -> EmptyHttpRequest: ...
 
-        def create(
-            self, *, body: Note = ..., **kwargs: typing.Any
-        ) -> NoteHttpRequest: ...
+        def create(self, *, body: Note, **kwargs: typing.Any) -> NoteHttpRequest: ...
         def delete(self, *, name: str, **kwargs: typing.Any) -> EmptyHttpRequest: ...
         def get(self, *, name: str, **kwargs: typing.Any) -> NoteHttpRequest: ...
         def list(

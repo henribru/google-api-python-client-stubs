@@ -44,7 +44,7 @@ class TPUResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: Node = ...,
+                    body: Node,
                     nodeId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -68,25 +68,13 @@ class TPUResource(googleapiclient.discovery.Resource):
                     previous_response: ListNodesResponse,
                 ) -> ListNodesResponseHttpRequest | None: ...
                 def reimage(
-                    self,
-                    *,
-                    name: str,
-                    body: ReimageNodeRequest = ...,
-                    **kwargs: typing.Any,
+                    self, *, name: str, body: ReimageNodeRequest, **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def start(
-                    self,
-                    *,
-                    name: str,
-                    body: StartNodeRequest = ...,
-                    **kwargs: typing.Any,
+                    self, *, name: str, body: StartNodeRequest, **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def stop(
-                    self,
-                    *,
-                    name: str,
-                    body: StopNodeRequest = ...,
-                    **kwargs: typing.Any,
+                    self, *, name: str, body: StopNodeRequest, **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
 
             @typing.type_check_only

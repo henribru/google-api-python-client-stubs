@@ -21,14 +21,14 @@ class AccessApprovalResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: ApproveApprovalRequestMessage = ...,
+                body: ApproveApprovalRequestMessage,
                 **kwargs: typing.Any,
             ) -> ApprovalRequestHttpRequest: ...
             def dismiss(
                 self,
                 *,
                 name: str,
-                body: DismissApprovalRequestMessage = ...,
+                body: DismissApprovalRequestMessage,
                 **kwargs: typing.Any,
             ) -> ApprovalRequestHttpRequest: ...
             def get(
@@ -38,7 +38,7 @@ class AccessApprovalResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: InvalidateApprovalRequestMessage = ...,
+                body: InvalidateApprovalRequestMessage,
                 **kwargs: typing.Any,
             ) -> ApprovalRequestHttpRequest: ...
             def list(
@@ -69,7 +69,7 @@ class AccessApprovalResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            body: AccessApprovalSettings = ...,
+            body: AccessApprovalSettings,
             updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> AccessApprovalSettingsHttpRequest: ...
@@ -83,14 +83,14 @@ class AccessApprovalResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: ApproveApprovalRequestMessage = ...,
+                body: ApproveApprovalRequestMessage,
                 **kwargs: typing.Any,
             ) -> ApprovalRequestHttpRequest: ...
             def dismiss(
                 self,
                 *,
                 name: str,
-                body: DismissApprovalRequestMessage = ...,
+                body: DismissApprovalRequestMessage,
                 **kwargs: typing.Any,
             ) -> ApprovalRequestHttpRequest: ...
             def get(
@@ -100,7 +100,7 @@ class AccessApprovalResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: InvalidateApprovalRequestMessage = ...,
+                body: InvalidateApprovalRequestMessage,
                 **kwargs: typing.Any,
             ) -> ApprovalRequestHttpRequest: ...
             def list(
@@ -131,7 +131,7 @@ class AccessApprovalResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            body: AccessApprovalSettings = ...,
+            body: AccessApprovalSettings,
             updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> AccessApprovalSettingsHttpRequest: ...
@@ -145,14 +145,14 @@ class AccessApprovalResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: ApproveApprovalRequestMessage = ...,
+                body: ApproveApprovalRequestMessage,
                 **kwargs: typing.Any,
             ) -> ApprovalRequestHttpRequest: ...
             def dismiss(
                 self,
                 *,
                 name: str,
-                body: DismissApprovalRequestMessage = ...,
+                body: DismissApprovalRequestMessage,
                 **kwargs: typing.Any,
             ) -> ApprovalRequestHttpRequest: ...
             def get(
@@ -162,7 +162,7 @@ class AccessApprovalResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: InvalidateApprovalRequestMessage = ...,
+                body: InvalidateApprovalRequestMessage,
                 **kwargs: typing.Any,
             ) -> ApprovalRequestHttpRequest: ...
             def list(
@@ -193,7 +193,7 @@ class AccessApprovalResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            body: AccessApprovalSettings = ...,
+            body: AccessApprovalSettings,
             updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> AccessApprovalSettingsHttpRequest: ...

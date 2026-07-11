@@ -23,7 +23,7 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             self,
             *,
             parent: str,
-            body: GoogleCloudAssetV1p7beta1ExportAssetsRequest = ...,
+            body: GoogleCloudAssetV1p7beta1ExportAssetsRequest,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
 

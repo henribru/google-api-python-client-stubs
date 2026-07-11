@@ -21,15 +21,11 @@ class CloudMachineLearningEngineResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleCloudMlV1__CancelJobRequest = ...,
+                body: GoogleCloudMlV1__CancelJobRequest,
                 **kwargs: typing.Any,
             ) -> GoogleProtobuf__EmptyHttpRequest: ...
             def create(
-                self,
-                *,
-                parent: str,
-                body: GoogleCloudMlV1__Job = ...,
-                **kwargs: typing.Any,
+                self, *, parent: str, body: GoogleCloudMlV1__Job, **kwargs: typing.Any
             ) -> GoogleCloudMlV1__JobHttpRequest: ...
             def get(
                 self, *, name: str, **kwargs: typing.Any
@@ -59,7 +55,7 @@ class CloudMachineLearningEngineResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleCloudMlV1__Job = ...,
+                body: GoogleCloudMlV1__Job,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudMlV1__JobHttpRequest: ...
@@ -67,14 +63,14 @@ class CloudMachineLearningEngineResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 resource: str,
-                body: GoogleIamV1__SetIamPolicyRequest = ...,
+                body: GoogleIamV1__SetIamPolicyRequest,
                 **kwargs: typing.Any,
             ) -> GoogleIamV1__PolicyHttpRequest: ...
             def testIamPermissions(
                 self,
                 *,
                 resource: str,
-                body: GoogleIamV1__TestIamPermissionsRequest = ...,
+                body: GoogleIamV1__TestIamPermissionsRequest,
                 **kwargs: typing.Any,
             ) -> GoogleIamV1__TestIamPermissionsResponseHttpRequest: ...
 
@@ -97,28 +93,28 @@ class CloudMachineLearningEngineResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: GoogleCloudMlV1__AddTrialMeasurementRequest = ...,
+                        body: GoogleCloudMlV1__AddTrialMeasurementRequest,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudMlV1__TrialHttpRequest: ...
                     def checkEarlyStoppingState(
                         self,
                         *,
                         name: str,
-                        body: GoogleCloudMlV1__CheckTrialEarlyStoppingStateRequest = ...,
+                        body: GoogleCloudMlV1__CheckTrialEarlyStoppingStateRequest,
                         **kwargs: typing.Any,
                     ) -> GoogleLongrunning__OperationHttpRequest: ...
                     def complete(
                         self,
                         *,
                         name: str,
-                        body: GoogleCloudMlV1__CompleteTrialRequest = ...,
+                        body: GoogleCloudMlV1__CompleteTrialRequest,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudMlV1__TrialHttpRequest: ...
                     def create(
                         self,
                         *,
                         parent: str,
-                        body: GoogleCloudMlV1__Trial = ...,
+                        body: GoogleCloudMlV1__Trial,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudMlV1__TrialHttpRequest: ...
                     def delete(
@@ -134,21 +130,21 @@ class CloudMachineLearningEngineResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: GoogleCloudMlV1__ListOptimalTrialsRequest = ...,
+                        body: GoogleCloudMlV1__ListOptimalTrialsRequest,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudMlV1__ListOptimalTrialsResponseHttpRequest: ...
                     def stop(
                         self,
                         *,
                         name: str,
-                        body: GoogleCloudMlV1__StopTrialRequest = ...,
+                        body: GoogleCloudMlV1__StopTrialRequest,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudMlV1__TrialHttpRequest: ...
                     def suggest(
                         self,
                         *,
                         parent: str,
-                        body: GoogleCloudMlV1__SuggestTrialsRequest = ...,
+                        body: GoogleCloudMlV1__SuggestTrialsRequest,
                         **kwargs: typing.Any,
                     ) -> GoogleLongrunning__OperationHttpRequest: ...
 
@@ -156,7 +152,7 @@ class CloudMachineLearningEngineResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudMlV1__Study = ...,
+                    body: GoogleCloudMlV1__Study,
                     studyId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudMlV1__StudyHttpRequest: ...
@@ -198,7 +194,7 @@ class CloudMachineLearningEngineResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudMlV1__Version = ...,
+                    body: GoogleCloudMlV1__Version,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunning__OperationHttpRequest: ...
                 def delete(
@@ -225,7 +221,7 @@ class CloudMachineLearningEngineResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudMlV1__Version = ...,
+                    body: GoogleCloudMlV1__Version,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunning__OperationHttpRequest: ...
@@ -233,16 +229,12 @@ class CloudMachineLearningEngineResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudMlV1__SetDefaultVersionRequest = ...,
+                    body: GoogleCloudMlV1__SetDefaultVersionRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudMlV1__VersionHttpRequest: ...
 
             def create(
-                self,
-                *,
-                parent: str,
-                body: GoogleCloudMlV1__Model = ...,
-                **kwargs: typing.Any,
+                self, *, parent: str, body: GoogleCloudMlV1__Model, **kwargs: typing.Any
             ) -> GoogleCloudMlV1__ModelHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -275,7 +267,7 @@ class CloudMachineLearningEngineResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleCloudMlV1__Model = ...,
+                body: GoogleCloudMlV1__Model,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleLongrunning__OperationHttpRequest: ...
@@ -283,14 +275,14 @@ class CloudMachineLearningEngineResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 resource: str,
-                body: GoogleIamV1__SetIamPolicyRequest = ...,
+                body: GoogleIamV1__SetIamPolicyRequest,
                 **kwargs: typing.Any,
             ) -> GoogleIamV1__PolicyHttpRequest: ...
             def testIamPermissions(
                 self,
                 *,
                 resource: str,
-                body: GoogleIamV1__TestIamPermissionsRequest = ...,
+                body: GoogleIamV1__TestIamPermissionsRequest,
                 **kwargs: typing.Any,
             ) -> GoogleIamV1__TestIamPermissionsResponseHttpRequest: ...
             def versions(self) -> VersionsResource: ...
@@ -323,7 +315,7 @@ class CloudMachineLearningEngineResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            body: GoogleCloudMlV1__ExplainRequest = ...,
+            body: GoogleCloudMlV1__ExplainRequest,
             **kwargs: typing.Any,
         ) -> GoogleApi__HttpBodyHttpRequest: ...
         def getConfig(
@@ -333,7 +325,7 @@ class CloudMachineLearningEngineResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            body: GoogleCloudMlV1__PredictRequest = ...,
+            body: GoogleCloudMlV1__PredictRequest,
             **kwargs: typing.Any,
         ) -> GoogleApi__HttpBodyHttpRequest: ...
         def jobs(self) -> JobsResource: ...

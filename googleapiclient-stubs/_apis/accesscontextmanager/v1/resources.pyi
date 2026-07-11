@@ -18,7 +18,7 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class AccessLevelsResource(googleapiclient.discovery.Resource):
             def create(
-                self, *, parent: str, body: AccessLevel = ..., **kwargs: typing.Any
+                self, *, parent: str, body: AccessLevel, **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -54,7 +54,7 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: AccessLevel = ...,
+                body: AccessLevel,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
@@ -62,25 +62,21 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: ReplaceAccessLevelsRequest = ...,
+                body: ReplaceAccessLevelsRequest,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def testIamPermissions(
                 self,
                 *,
                 resource: str,
-                body: TestIamPermissionsRequest = ...,
+                body: TestIamPermissionsRequest,
                 **kwargs: typing.Any,
             ) -> TestIamPermissionsResponseHttpRequest: ...
 
         @typing.type_check_only
         class AuthorizedOrgsDescsResource(googleapiclient.discovery.Resource):
             def create(
-                self,
-                *,
-                parent: str,
-                body: AuthorizedOrgsDesc = ...,
-                **kwargs: typing.Any,
+                self, *, parent: str, body: AuthorizedOrgsDesc, **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -105,7 +101,7 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: AuthorizedOrgsDesc = ...,
+                body: AuthorizedOrgsDesc,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
@@ -116,11 +112,11 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: CommitServicePerimetersRequest = ...,
+                body: CommitServicePerimetersRequest,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def create(
-                self, *, parent: str, body: ServicePerimeter = ..., **kwargs: typing.Any
+                self, *, parent: str, body: ServicePerimeter, **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -145,7 +141,7 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: ServicePerimeter = ...,
+                body: ServicePerimeter,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
@@ -153,19 +149,19 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: ReplaceServicePerimetersRequest = ...,
+                body: ReplaceServicePerimetersRequest,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def testIamPermissions(
                 self,
                 *,
                 resource: str,
-                body: TestIamPermissionsRequest = ...,
+                body: TestIamPermissionsRequest,
                 **kwargs: typing.Any,
             ) -> TestIamPermissionsResponseHttpRequest: ...
 
         def create(
-            self, *, body: AccessPolicy = ..., **kwargs: typing.Any
+            self, *, body: AccessPolicy, **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
         def delete(
             self, *, name: str, **kwargs: typing.Any
@@ -174,11 +170,7 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
             self, *, name: str, **kwargs: typing.Any
         ) -> AccessPolicyHttpRequest: ...
         def getIamPolicy(
-            self,
-            *,
-            resource: str,
-            body: GetIamPolicyRequest = ...,
-            **kwargs: typing.Any,
+            self, *, resource: str, body: GetIamPolicyRequest, **kwargs: typing.Any
         ) -> PolicyHttpRequest: ...
         def list(
             self,
@@ -197,22 +189,18 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            body: AccessPolicy = ...,
+            body: AccessPolicy,
             updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def setIamPolicy(
-            self,
-            *,
-            resource: str,
-            body: SetIamPolicyRequest = ...,
-            **kwargs: typing.Any,
+            self, *, resource: str, body: SetIamPolicyRequest, **kwargs: typing.Any
         ) -> PolicyHttpRequest: ...
         def testIamPermissions(
             self,
             *,
             resource: str,
-            body: TestIamPermissionsRequest = ...,
+            body: TestIamPermissionsRequest,
             **kwargs: typing.Any,
         ) -> TestIamPermissionsResponseHttpRequest: ...
         def accessLevels(self) -> AccessLevelsResource: ...
@@ -222,7 +210,7 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class OperationsResource(googleapiclient.discovery.Resource):
         def cancel(
-            self, *, name: str, body: CancelOperationRequest = ..., **kwargs: typing.Any
+            self, *, name: str, body: CancelOperationRequest, **kwargs: typing.Any
         ) -> EmptyHttpRequest: ...
         def delete(self, *, name: str, **kwargs: typing.Any) -> EmptyHttpRequest: ...
         def get(self, *, name: str, **kwargs: typing.Any) -> OperationHttpRequest: ...
@@ -247,11 +235,7 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class GcpUserAccessBindingsResource(googleapiclient.discovery.Resource):
             def create(
-                self,
-                *,
-                parent: str,
-                body: GcpUserAccessBinding = ...,
-                **kwargs: typing.Any,
+                self, *, parent: str, body: GcpUserAccessBinding, **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -276,7 +260,7 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GcpUserAccessBinding = ...,
+                body: GcpUserAccessBinding,
                 append: bool | None = ...,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,

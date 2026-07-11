@@ -40,7 +40,7 @@ class DriveResource(googleapiclient.discovery.Resource):
             *,
             fileId: str,
             proposalId: str,
-            body: ResolveAccessProposalRequest = ...,
+            body: ResolveAccessProposalRequest,
             **kwargs: typing.Any,
         ) -> googleapiclient.http.HttpRequest: ...
 
@@ -51,7 +51,7 @@ class DriveResource(googleapiclient.discovery.Resource):
             *,
             fileId: str,
             approvalId: str,
-            body: ApproveApprovalRequest = ...,
+            body: ApproveApprovalRequest,
             **kwargs: typing.Any,
         ) -> ApprovalHttpRequest: ...
         def cancel(
@@ -59,7 +59,7 @@ class DriveResource(googleapiclient.discovery.Resource):
             *,
             fileId: str,
             approvalId: str,
-            body: CancelApprovalRequest = ...,
+            body: CancelApprovalRequest,
             **kwargs: typing.Any,
         ) -> ApprovalHttpRequest: ...
         def comment(
@@ -67,7 +67,7 @@ class DriveResource(googleapiclient.discovery.Resource):
             *,
             fileId: str,
             approvalId: str,
-            body: CommentApprovalRequest = ...,
+            body: CommentApprovalRequest,
             **kwargs: typing.Any,
         ) -> ApprovalHttpRequest: ...
         def decline(
@@ -75,7 +75,7 @@ class DriveResource(googleapiclient.discovery.Resource):
             *,
             fileId: str,
             approvalId: str,
-            body: DeclineApprovalRequest = ...,
+            body: DeclineApprovalRequest,
             **kwargs: typing.Any,
         ) -> ApprovalHttpRequest: ...
         def get(
@@ -99,11 +99,11 @@ class DriveResource(googleapiclient.discovery.Resource):
             *,
             fileId: str,
             approvalId: str,
-            body: ReassignApprovalRequest = ...,
+            body: ReassignApprovalRequest,
             **kwargs: typing.Any,
         ) -> ApprovalHttpRequest: ...
         def start(
-            self, *, fileId: str, body: StartApprovalRequest = ..., **kwargs: typing.Any
+            self, *, fileId: str, body: StartApprovalRequest, **kwargs: typing.Any
         ) -> ApprovalHttpRequest: ...
 
     @typing.type_check_only
@@ -155,7 +155,7 @@ class DriveResource(googleapiclient.discovery.Resource):
             self,
             *,
             pageToken: str,
-            body: Channel = ...,
+            body: Channel,
             driveId: str | None = ...,
             includeCorpusRemovals: bool | None = ...,
             includeItemsFromAllDrives: bool | None = ...,
@@ -175,13 +175,13 @@ class DriveResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class ChannelsResource(googleapiclient.discovery.Resource):
         def stop(
-            self, *, body: Channel = ..., **kwargs: typing.Any
+            self, *, body: Channel, **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
 
     @typing.type_check_only
     class CommentsResource(googleapiclient.discovery.Resource):
         def create(
-            self, *, fileId: str, body: Comment = ..., **kwargs: typing.Any
+            self, *, fileId: str, body: Comment, **kwargs: typing.Any
         ) -> CommentHttpRequest: ...
         def delete(
             self, *, fileId: str, commentId: str, **kwargs: typing.Any
@@ -210,18 +210,13 @@ class DriveResource(googleapiclient.discovery.Resource):
             previous_response: CommentList,
         ) -> CommentListHttpRequest | None: ...
         def update(
-            self,
-            *,
-            fileId: str,
-            commentId: str,
-            body: Comment = ...,
-            **kwargs: typing.Any,
+            self, *, fileId: str, commentId: str, body: Comment, **kwargs: typing.Any
         ) -> CommentHttpRequest: ...
 
     @typing.type_check_only
     class DrivesResource(googleapiclient.discovery.Resource):
         def create(
-            self, *, requestId: str, body: Drive = ..., **kwargs: typing.Any
+            self, *, requestId: str, body: Drive, **kwargs: typing.Any
         ) -> DriveHttpRequest: ...
         def delete(
             self,
@@ -256,7 +251,7 @@ class DriveResource(googleapiclient.discovery.Resource):
             self,
             *,
             driveId: str,
-            body: Drive = ...,
+            body: Drive,
             useDomainAdminAccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> DriveHttpRequest: ...
@@ -267,7 +262,7 @@ class DriveResource(googleapiclient.discovery.Resource):
             self,
             *,
             fileId: str,
-            body: File = ...,
+            body: File,
             enforceSingleParent: bool | None = ...,
             ignoreDefaultVisibility: bool | None = ...,
             includeLabels: str | None = ...,
@@ -281,7 +276,7 @@ class DriveResource(googleapiclient.discovery.Resource):
         def create(
             self,
             *,
-            body: File = ...,
+            body: File,
             enforceSingleParent: bool | None = ...,
             ignoreDefaultVisibility: bool | None = ...,
             includeLabels: str | None = ...,
@@ -395,13 +390,13 @@ class DriveResource(googleapiclient.discovery.Resource):
             self, previous_request: LabelListHttpRequest, previous_response: LabelList
         ) -> LabelListHttpRequest | None: ...
         def modifyLabels(
-            self, *, fileId: str, body: ModifyLabelsRequest = ..., **kwargs: typing.Any
+            self, *, fileId: str, body: ModifyLabelsRequest, **kwargs: typing.Any
         ) -> ModifyLabelsResponseHttpRequest: ...
         def update(
             self,
             *,
             fileId: str,
-            body: File = ...,
+            body: File,
             addParents: str | None = ...,
             enforceSingleParent: bool | None = ...,
             includeLabels: str | None = ...,
@@ -418,7 +413,7 @@ class DriveResource(googleapiclient.discovery.Resource):
             self,
             *,
             fileId: str,
-            body: Channel = ...,
+            body: Channel,
             acknowledgeAbuse: bool | None = ...,
             includeLabels: str | None = ...,
             includePermissionsForView: str | None = ...,
@@ -437,7 +432,7 @@ class DriveResource(googleapiclient.discovery.Resource):
             self,
             *,
             fileId: str,
-            body: Permission = ...,
+            body: Permission,
             emailMessage: str | None = ...,
             enforceExpansiveAccess: bool | None = ...,
             enforceSingleParent: bool | None = ...,
@@ -492,7 +487,7 @@ class DriveResource(googleapiclient.discovery.Resource):
             *,
             fileId: str,
             permissionId: str,
-            body: Permission = ...,
+            body: Permission,
             enforceExpansiveAccess: bool | None = ...,
             removeExpiration: bool | None = ...,
             supportsAllDrives: bool | None = ...,
@@ -505,12 +500,7 @@ class DriveResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class RepliesResource(googleapiclient.discovery.Resource):
         def create(
-            self,
-            *,
-            fileId: str,
-            commentId: str,
-            body: Reply = ...,
-            **kwargs: typing.Any,
+            self, *, fileId: str, commentId: str, body: Reply, **kwargs: typing.Any
         ) -> ReplyHttpRequest: ...
         def delete(
             self, *, fileId: str, commentId: str, replyId: str, **kwargs: typing.Any
@@ -543,7 +533,7 @@ class DriveResource(googleapiclient.discovery.Resource):
             fileId: str,
             commentId: str,
             replyId: str,
-            body: Reply = ...,
+            body: Reply,
             **kwargs: typing.Any,
         ) -> ReplyHttpRequest: ...
 
@@ -582,18 +572,13 @@ class DriveResource(googleapiclient.discovery.Resource):
             previous_response: RevisionList,
         ) -> RevisionListHttpRequest | None: ...
         def update(
-            self,
-            *,
-            fileId: str,
-            revisionId: str,
-            body: Revision = ...,
-            **kwargs: typing.Any,
+            self, *, fileId: str, revisionId: str, body: Revision, **kwargs: typing.Any
         ) -> RevisionHttpRequest: ...
 
     @typing.type_check_only
     class TeamdrivesResource(googleapiclient.discovery.Resource):
         def create(
-            self, *, requestId: str, body: TeamDrive = ..., **kwargs: typing.Any
+            self, *, requestId: str, body: TeamDrive, **kwargs: typing.Any
         ) -> TeamDriveHttpRequest: ...
         def delete(
             self, *, teamDriveId: str, **kwargs: typing.Any
@@ -623,7 +608,7 @@ class DriveResource(googleapiclient.discovery.Resource):
             self,
             *,
             teamDriveId: str,
-            body: TeamDrive = ...,
+            body: TeamDrive,
             useDomainAdminAccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> TeamDriveHttpRequest: ...

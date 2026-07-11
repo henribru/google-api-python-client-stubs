@@ -23,7 +23,7 @@ class FirebaseDataConnectResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: CancelOperationRequest = ...,
+                    body: CancelOperationRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def delete(
@@ -56,7 +56,7 @@ class FirebaseDataConnectResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: Connector = ...,
+                        body: Connector,
                         connectorId: str | None = ...,
                         requestId: str | None = ...,
                         validateOnly: bool | None = ...,
@@ -77,14 +77,14 @@ class FirebaseDataConnectResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: ExecuteMutationRequest = ...,
+                        body: ExecuteMutationRequest,
                         **kwargs: typing.Any,
                     ) -> ExecuteMutationResponseHttpRequest: ...
                     def executeQuery(
                         self,
                         *,
                         name: str,
-                        body: ExecuteQueryRequest = ...,
+                        body: ExecuteQueryRequest,
                         **kwargs: typing.Any,
                     ) -> ExecuteQueryResponseHttpRequest: ...
                     def get(
@@ -94,14 +94,14 @@ class FirebaseDataConnectResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: ImpersonateRequest = ...,
+                        body: ImpersonateRequest,
                         **kwargs: typing.Any,
                     ) -> GraphqlResponseHttpRequest: ...
                     def impersonateQuery(
                         self,
                         *,
                         name: str,
-                        body: ImpersonateRequest = ...,
+                        body: ImpersonateRequest,
                         **kwargs: typing.Any,
                     ) -> GraphqlResponseHttpRequest: ...
                     def list(
@@ -123,7 +123,7 @@ class FirebaseDataConnectResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: Connector = ...,
+                        body: Connector,
                         allowMissing: bool | None = ...,
                         requestId: str | None = ...,
                         updateMask: str | None = ...,
@@ -137,7 +137,7 @@ class FirebaseDataConnectResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: Schema = ...,
+                        body: Schema,
                         requestId: str | None = ...,
                         schemaId: str | None = ...,
                         validateOnly: bool | None = ...,
@@ -176,7 +176,7 @@ class FirebaseDataConnectResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: Schema = ...,
+                        body: Schema,
                         allowMissing: bool | None = ...,
                         requestId: str | None = ...,
                         updateMask: str | None = ...,
@@ -188,7 +188,7 @@ class FirebaseDataConnectResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: Service = ...,
+                    body: Service,
                     requestId: str | None = ...,
                     serviceId: str | None = ...,
                     validateOnly: bool | None = ...,
@@ -206,30 +206,26 @@ class FirebaseDataConnectResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def executeGraphql(
-                    self, *, name: str, body: GraphqlRequest = ..., **kwargs: typing.Any
+                    self, *, name: str, body: GraphqlRequest, **kwargs: typing.Any
                 ) -> GraphqlResponseHttpRequest: ...
                 def executeGraphqlRead(
-                    self, *, name: str, body: GraphqlRequest = ..., **kwargs: typing.Any
+                    self, *, name: str, body: GraphqlRequest, **kwargs: typing.Any
                 ) -> GraphqlResponseHttpRequest: ...
                 def generateQuery(
-                    self,
-                    *,
-                    name: str,
-                    body: GenerateQueryRequest = ...,
-                    **kwargs: typing.Any,
+                    self, *, name: str, body: GenerateQueryRequest, **kwargs: typing.Any
                 ) -> GenerateQueryResponseHttpRequest: ...
                 def generateSchema(
                     self,
                     *,
                     name: str,
-                    body: GenerateSchemaRequest = ...,
+                    body: GenerateSchemaRequest,
                     **kwargs: typing.Any,
                 ) -> GenerateSchemaResponseHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> ServiceHttpRequest: ...
                 def introspectGraphql(
-                    self, *, name: str, body: GraphqlRequest = ..., **kwargs: typing.Any
+                    self, *, name: str, body: GraphqlRequest, **kwargs: typing.Any
                 ) -> GraphqlResponseHttpRequest: ...
                 def list(
                     self,
@@ -250,7 +246,7 @@ class FirebaseDataConnectResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: Service = ...,
+                    body: Service,
                     allowMissing: bool | None = ...,
                     requestId: str | None = ...,
                     updateMask: str | None = ...,

@@ -18,11 +18,7 @@ class CloudTasksResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class QueueResource(googleapiclient.discovery.Resource):
             def update(
-                self,
-                *,
-                body: HttpBody = ...,
-                appId: str | None = ...,
-                **kwargs: typing.Any,
+                self, *, body: HttpBody, appId: str | None = ..., **kwargs: typing.Any
             ) -> EmptyHttpRequest: ...
 
         def queue(self) -> QueueResource: ...
@@ -39,7 +35,7 @@ class CloudTasksResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: AcknowledgeTaskRequest = ...,
+                        body: AcknowledgeTaskRequest,
                         **kwargs: typing.Any,
                     ) -> EmptyHttpRequest: ...
                     def buffer(
@@ -47,21 +43,21 @@ class CloudTasksResource(googleapiclient.discovery.Resource):
                         *,
                         queue: str,
                         taskId: str,
-                        body: BufferTaskRequest = ...,
+                        body: BufferTaskRequest,
                         **kwargs: typing.Any,
                     ) -> BufferTaskResponseHttpRequest: ...
                     def cancelLease(
                         self,
                         *,
                         name: str,
-                        body: CancelLeaseRequest = ...,
+                        body: CancelLeaseRequest,
                         **kwargs: typing.Any,
                     ) -> TaskHttpRequest: ...
                     def create(
                         self,
                         *,
                         parent: str,
-                        body: CreateTaskRequest = ...,
+                        body: CreateTaskRequest,
                         **kwargs: typing.Any,
                     ) -> TaskHttpRequest: ...
                     def delete(
@@ -81,7 +77,7 @@ class CloudTasksResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: LeaseTasksRequest = ...,
+                        body: LeaseTasksRequest,
                         **kwargs: typing.Any,
                     ) -> LeaseTasksResponseHttpRequest: ...
                     def list(
@@ -105,19 +101,15 @@ class CloudTasksResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: RenewLeaseRequest = ...,
+                        body: RenewLeaseRequest,
                         **kwargs: typing.Any,
                     ) -> TaskHttpRequest: ...
                     def run(
-                        self,
-                        *,
-                        name: str,
-                        body: RunTaskRequest = ...,
-                        **kwargs: typing.Any,
+                        self, *, name: str, body: RunTaskRequest, **kwargs: typing.Any
                     ) -> TaskHttpRequest: ...
 
                 def create(
-                    self, *, parent: str, body: Queue = ..., **kwargs: typing.Any
+                    self, *, parent: str, body: Queue, **kwargs: typing.Any
                 ) -> QueueHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -129,7 +121,7 @@ class CloudTasksResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: GetIamPolicyRequest = ...,
+                    body: GetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def list(
@@ -151,43 +143,31 @@ class CloudTasksResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: Queue = ...,
+                    body: Queue,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> QueueHttpRequest: ...
                 def pause(
-                    self,
-                    *,
-                    name: str,
-                    body: PauseQueueRequest = ...,
-                    **kwargs: typing.Any,
+                    self, *, name: str, body: PauseQueueRequest, **kwargs: typing.Any
                 ) -> QueueHttpRequest: ...
                 def purge(
-                    self,
-                    *,
-                    name: str,
-                    body: PurgeQueueRequest = ...,
-                    **kwargs: typing.Any,
+                    self, *, name: str, body: PurgeQueueRequest, **kwargs: typing.Any
                 ) -> QueueHttpRequest: ...
                 def resume(
-                    self,
-                    *,
-                    name: str,
-                    body: ResumeQueueRequest = ...,
-                    **kwargs: typing.Any,
+                    self, *, name: str, body: ResumeQueueRequest, **kwargs: typing.Any
                 ) -> QueueHttpRequest: ...
                 def setIamPolicy(
                     self,
                     *,
                     resource: str,
-                    body: SetIamPolicyRequest = ...,
+                    body: SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: TestIamPermissionsRequest = ...,
+                    body: TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def tasks(self) -> TasksResource: ...
@@ -217,7 +197,7 @@ class CloudTasksResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: CmekConfig = ...,
+                body: CmekConfig,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> CmekConfigHttpRequest: ...

@@ -21,18 +21,18 @@ class RealTimeBiddingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: ActivateBiddingFunctionRequest = ...,
+                body: ActivateBiddingFunctionRequest,
                 **kwargs: typing.Any,
             ) -> BiddingFunctionHttpRequest: ...
             def archive(
                 self,
                 *,
                 name: str,
-                body: ArchiveBiddingFunctionRequest = ...,
+                body: ArchiveBiddingFunctionRequest,
                 **kwargs: typing.Any,
             ) -> BiddingFunctionHttpRequest: ...
             def create(
-                self, *, parent: str, body: BiddingFunction = ..., **kwargs: typing.Any
+                self, *, parent: str, body: BiddingFunction, **kwargs: typing.Any
             ) -> BiddingFunctionHttpRequest: ...
             def list(
                 self,

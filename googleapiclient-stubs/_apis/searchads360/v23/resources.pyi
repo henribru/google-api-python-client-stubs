@@ -18,7 +18,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
         def listInsightsEligibleDates(
             self,
             *,
-            body: GoogleAdsSearchads360V23Services__ListInsightsEligibleDatesRequest = ...,
+            body: GoogleAdsSearchads360V23Services__ListInsightsEligibleDatesRequest,
             **kwargs: typing.Any,
         ) -> GoogleAdsSearchads360V23Services__ListInsightsEligibleDatesResponseHttpRequest: ...
 
@@ -30,7 +30,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateAdGroupCriterionCustomizersRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateAdGroupCriterionCustomizersRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__MutateAdGroupCriterionCustomizersResponseHttpRequest: ...
 
@@ -40,7 +40,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateCampaignGoalConfigsRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateCampaignGoalConfigsRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__MutateCampaignGoalConfigsResponseHttpRequest: ...
 
@@ -50,7 +50,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateCustomerCustomizersRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateCustomerCustomizersRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__MutateCustomerCustomizersResponseHttpRequest: ...
 
@@ -60,7 +60,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateGoalsRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateGoalsRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__MutateGoalsResponseHttpRequest: ...
 
@@ -70,7 +70,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateAccountBudgetProposalRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateAccountBudgetProposalRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__MutateAccountBudgetProposalResponseHttpRequest: ...
 
@@ -80,7 +80,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__CreateAccountLinkRequest = ...,
+                body: GoogleAdsSearchads360V23Services__CreateAccountLinkRequest,
                 **kwargs: typing.Any,
             ) -> (
                 GoogleAdsSearchads360V23Services__CreateAccountLinkResponseHttpRequest
@@ -89,7 +89,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateAccountLinkRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateAccountLinkRequest,
                 **kwargs: typing.Any,
             ) -> (
                 GoogleAdsSearchads360V23Services__MutateAccountLinkResponseHttpRequest
@@ -101,7 +101,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateAdGroupAdLabelsRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateAdGroupAdLabelsRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__MutateAdGroupAdLabelsResponseHttpRequest: ...
 
@@ -111,7 +111,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateAdGroupAdsRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateAdGroupAdsRequest,
                 **kwargs: typing.Any,
             ) -> (
                 GoogleAdsSearchads360V23Services__MutateAdGroupAdsResponseHttpRequest
@@ -120,7 +120,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 adGroupAd: str,
-                body: GoogleAdsSearchads360V23Services__RemoveAutomaticallyCreatedAssetsRequest = ...,
+                body: GoogleAdsSearchads360V23Services__RemoveAutomaticallyCreatedAssetsRequest,
                 **kwargs: typing.Any,
             ) -> GoogleProtobuf__EmptyHttpRequest: ...
 
@@ -130,7 +130,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateAdGroupAssetSetsRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateAdGroupAssetSetsRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__MutateAdGroupAssetSetsResponseHttpRequest: ...
 
@@ -140,7 +140,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateAdGroupAssetsRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateAdGroupAssetsRequest,
                 **kwargs: typing.Any,
             ) -> (
                 GoogleAdsSearchads360V23Services__MutateAdGroupAssetsResponseHttpRequest
@@ -152,7 +152,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateAdGroupBidModifiersRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateAdGroupBidModifiersRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__MutateAdGroupBidModifiersResponseHttpRequest: ...
 
@@ -162,7 +162,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateAdGroupCriteriaRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateAdGroupCriteriaRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__MutateAdGroupCriteriaResponseHttpRequest: ...
 
@@ -172,7 +172,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateAdGroupCriterionLabelsRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateAdGroupCriterionLabelsRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__MutateAdGroupCriterionLabelsResponseHttpRequest: ...
 
@@ -182,7 +182,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateAdGroupCustomizersRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateAdGroupCustomizersRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__MutateAdGroupCustomizersResponseHttpRequest: ...
 
@@ -192,7 +192,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateAdGroupLabelsRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateAdGroupLabelsRequest,
                 **kwargs: typing.Any,
             ) -> (
                 GoogleAdsSearchads360V23Services__MutateAdGroupLabelsResponseHttpRequest
@@ -204,7 +204,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateAdGroupsRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateAdGroupsRequest,
                 **kwargs: typing.Any,
             ) -> (
                 GoogleAdsSearchads360V23Services__MutateAdGroupsResponseHttpRequest
@@ -216,7 +216,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateAdParametersRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateAdParametersRequest,
                 **kwargs: typing.Any,
             ) -> (
                 GoogleAdsSearchads360V23Services__MutateAdParametersResponseHttpRequest
@@ -228,7 +228,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateAdsRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateAdsRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__MutateAdsResponseHttpRequest: ...
 
@@ -238,7 +238,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateAssetGroupAssetsRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateAssetGroupAssetsRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__MutateAssetGroupAssetsResponseHttpRequest: ...
 
@@ -248,7 +248,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateAssetGroupListingGroupFiltersRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateAssetGroupListingGroupFiltersRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__MutateAssetGroupListingGroupFiltersResponseHttpRequest: ...
 
@@ -258,7 +258,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateAssetGroupSignalsRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateAssetGroupSignalsRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__MutateAssetGroupSignalsResponseHttpRequest: ...
 
@@ -268,7 +268,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateAssetGroupsRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateAssetGroupsRequest,
                 **kwargs: typing.Any,
             ) -> (
                 GoogleAdsSearchads360V23Services__MutateAssetGroupsResponseHttpRequest
@@ -280,7 +280,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateAssetSetAssetsRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateAssetSetAssetsRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__MutateAssetSetAssetsResponseHttpRequest: ...
 
@@ -290,7 +290,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateAssetSetsRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateAssetSetsRequest,
                 **kwargs: typing.Any,
             ) -> (
                 GoogleAdsSearchads360V23Services__MutateAssetSetsResponseHttpRequest
@@ -302,7 +302,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateAssetsRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateAssetsRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__MutateAssetsResponseHttpRequest: ...
 
@@ -312,7 +312,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateAudiencesRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateAudiencesRequest,
                 **kwargs: typing.Any,
             ) -> (
                 GoogleAdsSearchads360V23Services__MutateAudiencesResponseHttpRequest
@@ -324,7 +324,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 resourceName: str,
-                body: GoogleAdsSearchads360V23Services__AddBatchJobOperationsRequest = ...,
+                body: GoogleAdsSearchads360V23Services__AddBatchJobOperationsRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__AddBatchJobOperationsResponseHttpRequest: ...
             def listResults(
@@ -353,7 +353,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateBatchJobRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateBatchJobRequest,
                 **kwargs: typing.Any,
             ) -> (
                 GoogleAdsSearchads360V23Services__MutateBatchJobResponseHttpRequest
@@ -362,7 +362,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 resourceName: str,
-                body: GoogleAdsSearchads360V23Services__RunBatchJobRequest = ...,
+                body: GoogleAdsSearchads360V23Services__RunBatchJobRequest,
                 **kwargs: typing.Any,
             ) -> GoogleLongrunning__OperationHttpRequest: ...
 
@@ -372,7 +372,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateBiddingDataExclusionsRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateBiddingDataExclusionsRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__MutateBiddingDataExclusionsResponseHttpRequest: ...
 
@@ -382,7 +382,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateBiddingSeasonalityAdjustmentsRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateBiddingSeasonalityAdjustmentsRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__MutateBiddingSeasonalityAdjustmentsResponseHttpRequest: ...
 
@@ -392,7 +392,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateBiddingStrategiesRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateBiddingStrategiesRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__MutateBiddingStrategiesResponseHttpRequest: ...
 
@@ -402,7 +402,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateBillingSetupRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateBillingSetupRequest,
                 **kwargs: typing.Any,
             ) -> (
                 GoogleAdsSearchads360V23Services__MutateBillingSetupResponseHttpRequest
@@ -414,7 +414,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateCampaignAssetSetsRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateCampaignAssetSetsRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__MutateCampaignAssetSetsResponseHttpRequest: ...
 
@@ -424,7 +424,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateCampaignAssetsRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateCampaignAssetsRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__MutateCampaignAssetsResponseHttpRequest: ...
 
@@ -434,7 +434,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateCampaignBidModifiersRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateCampaignBidModifiersRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__MutateCampaignBidModifiersResponseHttpRequest: ...
 
@@ -444,7 +444,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateCampaignBudgetsRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateCampaignBudgetsRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__MutateCampaignBudgetsResponseHttpRequest: ...
 
@@ -454,7 +454,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateCampaignConversionGoalsRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateCampaignConversionGoalsRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__MutateCampaignConversionGoalsResponseHttpRequest: ...
 
@@ -464,7 +464,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateCampaignCriteriaRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateCampaignCriteriaRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__MutateCampaignCriteriaResponseHttpRequest: ...
 
@@ -474,7 +474,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateCampaignCustomizersRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateCampaignCustomizersRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__MutateCampaignCustomizersResponseHttpRequest: ...
 
@@ -500,14 +500,14 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateCampaignDraftsRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateCampaignDraftsRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__MutateCampaignDraftsResponseHttpRequest: ...
             def promote(
                 self,
                 *,
                 campaignDraft: str,
-                body: GoogleAdsSearchads360V23Services__PromoteCampaignDraftRequest = ...,
+                body: GoogleAdsSearchads360V23Services__PromoteCampaignDraftRequest,
                 **kwargs: typing.Any,
             ) -> GoogleLongrunning__OperationHttpRequest: ...
 
@@ -517,7 +517,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateCampaignGroupsRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateCampaignGroupsRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__MutateCampaignGroupsResponseHttpRequest: ...
 
@@ -527,7 +527,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateCampaignLabelsRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateCampaignLabelsRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__MutateCampaignLabelsResponseHttpRequest: ...
 
@@ -537,7 +537,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__ConfigureCampaignLifecycleGoalsRequest = ...,
+                body: GoogleAdsSearchads360V23Services__ConfigureCampaignLifecycleGoalsRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__ConfigureCampaignLifecycleGoalsResponseHttpRequest: ...
 
@@ -547,7 +547,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateCampaignSharedSetsRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateCampaignSharedSetsRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__MutateCampaignSharedSetsResponseHttpRequest: ...
 
@@ -557,14 +557,14 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__EnablePMaxBrandGuidelinesRequest = ...,
+                body: GoogleAdsSearchads360V23Services__EnablePMaxBrandGuidelinesRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__EnablePMaxBrandGuidelinesResponseHttpRequest: ...
             def mutate(
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateCampaignsRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateCampaignsRequest,
                 **kwargs: typing.Any,
             ) -> (
                 GoogleAdsSearchads360V23Services__MutateCampaignsResponseHttpRequest
@@ -576,7 +576,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateConversionActionsRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateConversionActionsRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__MutateConversionActionsResponseHttpRequest: ...
 
@@ -586,7 +586,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateConversionCustomVariablesRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateConversionCustomVariablesRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__MutateConversionCustomVariablesResponseHttpRequest: ...
 
@@ -596,7 +596,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateConversionGoalCampaignConfigsRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateConversionGoalCampaignConfigsRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__MutateConversionGoalCampaignConfigsResponseHttpRequest: ...
 
@@ -606,7 +606,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateConversionValueRuleSetsRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateConversionValueRuleSetsRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__MutateConversionValueRuleSetsResponseHttpRequest: ...
 
@@ -616,7 +616,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateConversionValueRulesRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateConversionValueRulesRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__MutateConversionValueRulesResponseHttpRequest: ...
 
@@ -626,7 +626,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateCustomAudiencesRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateCustomAudiencesRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__MutateCustomAudiencesResponseHttpRequest: ...
 
@@ -647,7 +647,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateCustomConversionGoalsRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateCustomConversionGoalsRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__MutateCustomConversionGoalsResponseHttpRequest: ...
 
@@ -657,7 +657,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateCustomInterestsRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateCustomInterestsRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__MutateCustomInterestsResponseHttpRequest: ...
 
@@ -667,7 +667,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateCustomerAssetSetsRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateCustomerAssetSetsRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__MutateCustomerAssetSetsResponseHttpRequest: ...
 
@@ -677,7 +677,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateCustomerAssetsRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateCustomerAssetsRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__MutateCustomerAssetsResponseHttpRequest: ...
 
@@ -687,7 +687,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateCustomerClientLinkRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateCustomerClientLinkRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__MutateCustomerClientLinkResponseHttpRequest: ...
 
@@ -697,7 +697,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateCustomerConversionGoalsRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateCustomerConversionGoalsRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__MutateCustomerConversionGoalsResponseHttpRequest: ...
 
@@ -707,7 +707,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateCustomerLabelsRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateCustomerLabelsRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__MutateCustomerLabelsResponseHttpRequest: ...
 
@@ -717,7 +717,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__ConfigureCustomerLifecycleGoalsRequest = ...,
+                body: GoogleAdsSearchads360V23Services__ConfigureCustomerLifecycleGoalsRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__ConfigureCustomerLifecycleGoalsResponseHttpRequest: ...
 
@@ -727,7 +727,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MoveManagerLinkRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MoveManagerLinkRequest,
                 **kwargs: typing.Any,
             ) -> (
                 GoogleAdsSearchads360V23Services__MoveManagerLinkResponseHttpRequest
@@ -736,7 +736,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateCustomerManagerLinkRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateCustomerManagerLinkRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__MutateCustomerManagerLinkResponseHttpRequest: ...
 
@@ -746,7 +746,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateCustomerNegativeCriteriaRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateCustomerNegativeCriteriaRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__MutateCustomerNegativeCriteriaResponseHttpRequest: ...
 
@@ -758,7 +758,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateCustomerSkAdNetworkConversionValueSchemaRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateCustomerSkAdNetworkConversionValueSchemaRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__MutateCustomerSkAdNetworkConversionValueSchemaResponseHttpRequest: ...
 
@@ -768,7 +768,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateCustomerUserAccessInvitationRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateCustomerUserAccessInvitationRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__MutateCustomerUserAccessInvitationResponseHttpRequest: ...
 
@@ -778,7 +778,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateCustomerUserAccessRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateCustomerUserAccessRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__MutateCustomerUserAccessResponseHttpRequest: ...
 
@@ -788,7 +788,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateCustomizerAttributesRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateCustomizerAttributesRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__MutateCustomizerAttributesResponseHttpRequest: ...
 
@@ -798,7 +798,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__CreateDataLinkRequest = ...,
+                body: GoogleAdsSearchads360V23Services__CreateDataLinkRequest,
                 **kwargs: typing.Any,
             ) -> (
                 GoogleAdsSearchads360V23Services__CreateDataLinkResponseHttpRequest
@@ -807,7 +807,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__RemoveDataLinkRequest = ...,
+                body: GoogleAdsSearchads360V23Services__RemoveDataLinkRequest,
                 **kwargs: typing.Any,
             ) -> (
                 GoogleAdsSearchads360V23Services__RemoveDataLinkResponseHttpRequest
@@ -816,7 +816,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__UpdateDataLinkRequest = ...,
+                body: GoogleAdsSearchads360V23Services__UpdateDataLinkRequest,
                 **kwargs: typing.Any,
             ) -> (
                 GoogleAdsSearchads360V23Services__UpdateDataLinkResponseHttpRequest
@@ -828,7 +828,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateExperimentArmsRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateExperimentArmsRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__MutateExperimentArmsResponseHttpRequest: ...
 
@@ -838,14 +838,14 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 experiment: str,
-                body: GoogleAdsSearchads360V23Services__EndExperimentRequest = ...,
+                body: GoogleAdsSearchads360V23Services__EndExperimentRequest,
                 **kwargs: typing.Any,
             ) -> GoogleProtobuf__EmptyHttpRequest: ...
             def graduateExperiment(
                 self,
                 *,
                 experiment: str,
-                body: GoogleAdsSearchads360V23Services__GraduateExperimentRequest = ...,
+                body: GoogleAdsSearchads360V23Services__GraduateExperimentRequest,
                 **kwargs: typing.Any,
             ) -> GoogleProtobuf__EmptyHttpRequest: ...
             def listExperimentAsyncErrors(
@@ -868,7 +868,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateExperimentsRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateExperimentsRequest,
                 **kwargs: typing.Any,
             ) -> (
                 GoogleAdsSearchads360V23Services__MutateExperimentsResponseHttpRequest
@@ -877,14 +877,14 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 resourceName: str,
-                body: GoogleAdsSearchads360V23Services__PromoteExperimentRequest = ...,
+                body: GoogleAdsSearchads360V23Services__PromoteExperimentRequest,
                 **kwargs: typing.Any,
             ) -> GoogleLongrunning__OperationHttpRequest: ...
             def scheduleExperiment(
                 self,
                 *,
                 resourceName: str,
-                body: GoogleAdsSearchads360V23Services__ScheduleExperimentRequest = ...,
+                body: GoogleAdsSearchads360V23Services__ScheduleExperimentRequest,
                 **kwargs: typing.Any,
             ) -> GoogleLongrunning__OperationHttpRequest: ...
 
@@ -895,7 +895,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 *,
                 customerId: str,
                 selectedIncentiveId: str,
-                body: GoogleAdsSearchads360V23Services__ApplyIncentiveRequest = ...,
+                body: GoogleAdsSearchads360V23Services__ApplyIncentiveRequest,
                 **kwargs: typing.Any,
             ) -> (
                 GoogleAdsSearchads360V23Services__ApplyIncentiveResponseHttpRequest
@@ -936,7 +936,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateKeywordPlanAdGroupKeywordsRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateKeywordPlanAdGroupKeywordsRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__MutateKeywordPlanAdGroupKeywordsResponseHttpRequest: ...
 
@@ -946,7 +946,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateKeywordPlanAdGroupsRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateKeywordPlanAdGroupsRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__MutateKeywordPlanAdGroupsResponseHttpRequest: ...
 
@@ -956,7 +956,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateKeywordPlanCampaignKeywordsRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateKeywordPlanCampaignKeywordsRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__MutateKeywordPlanCampaignKeywordsResponseHttpRequest: ...
 
@@ -966,7 +966,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateKeywordPlanCampaignsRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateKeywordPlanCampaignsRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__MutateKeywordPlanCampaignsResponseHttpRequest: ...
 
@@ -976,7 +976,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateKeywordPlansRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateKeywordPlansRequest,
                 **kwargs: typing.Any,
             ) -> (
                 GoogleAdsSearchads360V23Services__MutateKeywordPlansResponseHttpRequest
@@ -988,7 +988,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateLabelsRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateLabelsRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__MutateLabelsResponseHttpRequest: ...
 
@@ -998,7 +998,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__AppendLeadConversationRequest = ...,
+                body: GoogleAdsSearchads360V23Services__AppendLeadConversationRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__AppendLeadConversationResponseHttpRequest: ...
 
@@ -1008,7 +1008,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 resourceName: str,
-                body: GoogleAdsSearchads360V23Services__ProvideLeadFeedbackRequest = ...,
+                body: GoogleAdsSearchads360V23Services__ProvideLeadFeedbackRequest,
                 **kwargs: typing.Any,
             ) -> (
                 GoogleAdsSearchads360V23Services__ProvideLeadFeedbackResponseHttpRequest
@@ -1020,21 +1020,21 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 resourceName: str,
-                body: GoogleAdsSearchads360V23Services__AddOfflineUserDataJobOperationsRequest = ...,
+                body: GoogleAdsSearchads360V23Services__AddOfflineUserDataJobOperationsRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__AddOfflineUserDataJobOperationsResponseHttpRequest: ...
             def create(
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__CreateOfflineUserDataJobRequest = ...,
+                body: GoogleAdsSearchads360V23Services__CreateOfflineUserDataJobRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__CreateOfflineUserDataJobResponseHttpRequest: ...
             def run(
                 self,
                 *,
                 resourceName: str,
-                body: GoogleAdsSearchads360V23Services__RunOfflineUserDataJobRequest = ...,
+                body: GoogleAdsSearchads360V23Services__RunOfflineUserDataJobRequest,
                 **kwargs: typing.Any,
             ) -> GoogleLongrunning__OperationHttpRequest: ...
 
@@ -1050,21 +1050,21 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__CreateProductLinkInvitationRequest = ...,
+                body: GoogleAdsSearchads360V23Services__CreateProductLinkInvitationRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__CreateProductLinkInvitationResponseHttpRequest: ...
             def remove(
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__RemoveProductLinkInvitationRequest = ...,
+                body: GoogleAdsSearchads360V23Services__RemoveProductLinkInvitationRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__RemoveProductLinkInvitationResponseHttpRequest: ...
             def update(
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__UpdateProductLinkInvitationRequest = ...,
+                body: GoogleAdsSearchads360V23Services__UpdateProductLinkInvitationRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__UpdateProductLinkInvitationResponseHttpRequest: ...
 
@@ -1074,7 +1074,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__CreateProductLinkRequest = ...,
+                body: GoogleAdsSearchads360V23Services__CreateProductLinkRequest,
                 **kwargs: typing.Any,
             ) -> (
                 GoogleAdsSearchads360V23Services__CreateProductLinkResponseHttpRequest
@@ -1083,7 +1083,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__RemoveProductLinkRequest = ...,
+                body: GoogleAdsSearchads360V23Services__RemoveProductLinkRequest,
                 **kwargs: typing.Any,
             ) -> (
                 GoogleAdsSearchads360V23Services__RemoveProductLinkResponseHttpRequest
@@ -1095,7 +1095,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateRecommendationSubscriptionRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateRecommendationSubscriptionRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__MutateRecommendationSubscriptionResponseHttpRequest: ...
 
@@ -1105,7 +1105,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__ApplyRecommendationRequest = ...,
+                body: GoogleAdsSearchads360V23Services__ApplyRecommendationRequest,
                 **kwargs: typing.Any,
             ) -> (
                 GoogleAdsSearchads360V23Services__ApplyRecommendationResponseHttpRequest
@@ -1114,14 +1114,14 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__DismissRecommendationRequest = ...,
+                body: GoogleAdsSearchads360V23Services__DismissRecommendationRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__DismissRecommendationResponseHttpRequest: ...
             def generate(
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__GenerateRecommendationsRequest = ...,
+                body: GoogleAdsSearchads360V23Services__GenerateRecommendationsRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__GenerateRecommendationsResponseHttpRequest: ...
 
@@ -1131,7 +1131,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateRemarketingActionsRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateRemarketingActionsRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__MutateRemarketingActionsResponseHttpRequest: ...
 
@@ -1141,7 +1141,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateSearchAds360Request = ...,
+                body: GoogleAdsSearchads360V23Services__MutateSearchAds360Request,
                 **kwargs: typing.Any,
             ) -> (
                 GoogleAdsSearchads360V23Services__MutateSearchAds360ResponseHttpRequest
@@ -1150,7 +1150,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__SearchSearchAds360Request = ...,
+                body: GoogleAdsSearchads360V23Services__SearchSearchAds360Request,
                 **kwargs: typing.Any,
             ) -> (
                 GoogleAdsSearchads360V23Services__SearchSearchAds360ResponseHttpRequest
@@ -1170,7 +1170,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateSharedCriteriaRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateSharedCriteriaRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__MutateSharedCriteriaResponseHttpRequest: ...
 
@@ -1180,7 +1180,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateSharedSetsRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateSharedSetsRequest,
                 **kwargs: typing.Any,
             ) -> (
                 GoogleAdsSearchads360V23Services__MutateSharedSetsResponseHttpRequest
@@ -1195,7 +1195,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateSmartCampaignSettingsRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateSmartCampaignSettingsRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__MutateSmartCampaignSettingsResponseHttpRequest: ...
 
@@ -1205,7 +1205,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 resourceName: str,
-                body: GoogleAdsSearchads360V23Services__RegenerateShareableLinkIdRequest = ...,
+                body: GoogleAdsSearchads360V23Services__RegenerateShareableLinkIdRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__RegenerateShareableLinkIdResponseHttpRequest: ...
 
@@ -1215,7 +1215,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateUserListCustomerTypesRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateUserListCustomerTypesRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAdsSearchads360V23Services__MutateUserListCustomerTypesResponseHttpRequest: ...
 
@@ -1225,7 +1225,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V23Services__MutateUserListsRequest = ...,
+                body: GoogleAdsSearchads360V23Services__MutateUserListsRequest,
                 **kwargs: typing.Any,
             ) -> (
                 GoogleAdsSearchads360V23Services__MutateUserListsResponseHttpRequest
@@ -1235,7 +1235,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
             self,
             *,
             customerId: str,
-            body: GoogleAdsSearchads360V23Services__CreateCustomerClientRequest = ...,
+            body: GoogleAdsSearchads360V23Services__CreateCustomerClientRequest,
             **kwargs: typing.Any,
         ) -> (
             GoogleAdsSearchads360V23Services__CreateCustomerClientResponseHttpRequest
@@ -1244,7 +1244,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
             self,
             *,
             customerId: str,
-            body: GoogleAdsSearchads360V23Services__GenerateAdGroupThemesRequest = ...,
+            body: GoogleAdsSearchads360V23Services__GenerateAdGroupThemesRequest,
             **kwargs: typing.Any,
         ) -> (
             GoogleAdsSearchads360V23Services__GenerateAdGroupThemesResponseHttpRequest
@@ -1253,56 +1253,56 @@ class SA360Resource(googleapiclient.discovery.Resource):
             self,
             *,
             customerId: str,
-            body: GoogleAdsSearchads360V23Services__GenerateAudienceCompositionInsightsRequest = ...,
+            body: GoogleAdsSearchads360V23Services__GenerateAudienceCompositionInsightsRequest,
             **kwargs: typing.Any,
         ) -> GoogleAdsSearchads360V23Services__GenerateAudienceCompositionInsightsResponseHttpRequest: ...
         def generateAudienceDefinition(
             self,
             *,
             customerId: str,
-            body: GoogleAdsSearchads360V23Services__GenerateAudienceDefinitionRequest = ...,
+            body: GoogleAdsSearchads360V23Services__GenerateAudienceDefinitionRequest,
             **kwargs: typing.Any,
         ) -> GoogleAdsSearchads360V23Services__GenerateAudienceDefinitionResponseHttpRequest: ...
         def generateAudienceOverlapInsights(
             self,
             *,
             customerId: str,
-            body: GoogleAdsSearchads360V23Services__GenerateAudienceOverlapInsightsRequest = ...,
+            body: GoogleAdsSearchads360V23Services__GenerateAudienceOverlapInsightsRequest,
             **kwargs: typing.Any,
         ) -> GoogleAdsSearchads360V23Services__GenerateAudienceOverlapInsightsResponseHttpRequest: ...
         def generateBenchmarksMetrics(
             self,
             *,
             customerId: str,
-            body: GoogleAdsSearchads360V23Services__GenerateBenchmarksMetricsRequest = ...,
+            body: GoogleAdsSearchads360V23Services__GenerateBenchmarksMetricsRequest,
             **kwargs: typing.Any,
         ) -> GoogleAdsSearchads360V23Services__GenerateBenchmarksMetricsResponseHttpRequest: ...
         def generateInsightsFinderReport(
             self,
             *,
             customerId: str,
-            body: GoogleAdsSearchads360V23Services__GenerateInsightsFinderReportRequest = ...,
+            body: GoogleAdsSearchads360V23Services__GenerateInsightsFinderReportRequest,
             **kwargs: typing.Any,
         ) -> GoogleAdsSearchads360V23Services__GenerateInsightsFinderReportResponseHttpRequest: ...
         def generateKeywordForecastMetrics(
             self,
             *,
             customerId: str,
-            body: GoogleAdsSearchads360V23Services__GenerateKeywordForecastMetricsRequest = ...,
+            body: GoogleAdsSearchads360V23Services__GenerateKeywordForecastMetricsRequest,
             **kwargs: typing.Any,
         ) -> GoogleAdsSearchads360V23Services__GenerateKeywordForecastMetricsResponseHttpRequest: ...
         def generateKeywordHistoricalMetrics(
             self,
             *,
             customerId: str,
-            body: GoogleAdsSearchads360V23Services__GenerateKeywordHistoricalMetricsRequest = ...,
+            body: GoogleAdsSearchads360V23Services__GenerateKeywordHistoricalMetricsRequest,
             **kwargs: typing.Any,
         ) -> GoogleAdsSearchads360V23Services__GenerateKeywordHistoricalMetricsResponseHttpRequest: ...
         def generateKeywordIdeas(
             self,
             *,
             customerId: str,
-            body: GoogleAdsSearchads360V23Services__GenerateKeywordIdeasRequest = ...,
+            body: GoogleAdsSearchads360V23Services__GenerateKeywordIdeasRequest,
             **kwargs: typing.Any,
         ) -> (
             GoogleAdsSearchads360V23Services__GenerateKeywordIdeaResponseHttpRequest
@@ -1319,7 +1319,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
             self,
             *,
             customerId: str,
-            body: GoogleAdsSearchads360V23Services__GenerateReachForecastRequest = ...,
+            body: GoogleAdsSearchads360V23Services__GenerateReachForecastRequest,
             **kwargs: typing.Any,
         ) -> (
             GoogleAdsSearchads360V23Services__GenerateReachForecastResponseHttpRequest
@@ -1328,14 +1328,14 @@ class SA360Resource(googleapiclient.discovery.Resource):
             self,
             *,
             customerId: str,
-            body: GoogleAdsSearchads360V23Services__GenerateSuggestedTargetingInsightsRequest = ...,
+            body: GoogleAdsSearchads360V23Services__GenerateSuggestedTargetingInsightsRequest,
             **kwargs: typing.Any,
         ) -> GoogleAdsSearchads360V23Services__GenerateSuggestedTargetingInsightsResponseHttpRequest: ...
         def generateTargetingSuggestionMetrics(
             self,
             *,
             customerId: str,
-            body: GoogleAdsSearchads360V23Services__GenerateTargetingSuggestionMetricsRequest = ...,
+            body: GoogleAdsSearchads360V23Services__GenerateTargetingSuggestionMetricsRequest,
             **kwargs: typing.Any,
         ) -> GoogleAdsSearchads360V23Services__GenerateTargetingSuggestionMetricsResponseHttpRequest: ...
         def getIdentityVerification(
@@ -1352,35 +1352,35 @@ class SA360Resource(googleapiclient.discovery.Resource):
             self,
             *,
             customerId: str,
-            body: GoogleAdsSearchads360V23Services__MutateCustomerRequest = ...,
+            body: GoogleAdsSearchads360V23Services__MutateCustomerRequest,
             **kwargs: typing.Any,
         ) -> GoogleAdsSearchads360V23Services__MutateCustomerResponseHttpRequest: ...
         def removeCampaignAutomaticallyCreatedAsset(
             self,
             *,
             customerId: str,
-            body: GoogleAdsSearchads360V23Services__RemoveCampaignAutomaticallyCreatedAssetRequest = ...,
+            body: GoogleAdsSearchads360V23Services__RemoveCampaignAutomaticallyCreatedAssetRequest,
             **kwargs: typing.Any,
         ) -> GoogleAdsSearchads360V23Services__RemoveCampaignAutomaticallyCreatedAssetResponseHttpRequest: ...
         def searchAudienceInsightsAttributes(
             self,
             *,
             customerId: str,
-            body: GoogleAdsSearchads360V23Services__ListAudienceInsightsAttributesRequest = ...,
+            body: GoogleAdsSearchads360V23Services__ListAudienceInsightsAttributesRequest,
             **kwargs: typing.Any,
         ) -> GoogleAdsSearchads360V23Services__ListAudienceInsightsAttributesResponseHttpRequest: ...
         def startIdentityVerification(
             self,
             *,
             customerId: str,
-            body: GoogleAdsSearchads360V23Services__StartIdentityVerificationRequest = ...,
+            body: GoogleAdsSearchads360V23Services__StartIdentityVerificationRequest,
             **kwargs: typing.Any,
         ) -> GoogleProtobuf__EmptyHttpRequest: ...
         def suggestKeywordThemes(
             self,
             *,
             customerId: str,
-            body: GoogleAdsSearchads360V23Services__SuggestKeywordThemesRequest = ...,
+            body: GoogleAdsSearchads360V23Services__SuggestKeywordThemesRequest,
             **kwargs: typing.Any,
         ) -> (
             GoogleAdsSearchads360V23Services__SuggestKeywordThemesResponseHttpRequest
@@ -1389,7 +1389,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
             self,
             *,
             customerId: str,
-            body: GoogleAdsSearchads360V23Services__SuggestSmartCampaignAdRequest = ...,
+            body: GoogleAdsSearchads360V23Services__SuggestSmartCampaignAdRequest,
             **kwargs: typing.Any,
         ) -> (
             GoogleAdsSearchads360V23Services__SuggestSmartCampaignAdResponseHttpRequest
@@ -1398,14 +1398,14 @@ class SA360Resource(googleapiclient.discovery.Resource):
             self,
             *,
             customerId: str,
-            body: GoogleAdsSearchads360V23Services__SuggestSmartCampaignBudgetOptionsRequest = ...,
+            body: GoogleAdsSearchads360V23Services__SuggestSmartCampaignBudgetOptionsRequest,
             **kwargs: typing.Any,
         ) -> GoogleAdsSearchads360V23Services__SuggestSmartCampaignBudgetOptionsResponseHttpRequest: ...
         def suggestTravelAssets(
             self,
             *,
             customerId: str,
-            body: GoogleAdsSearchads360V23Services__SuggestTravelAssetsRequest = ...,
+            body: GoogleAdsSearchads360V23Services__SuggestTravelAssetsRequest,
             **kwargs: typing.Any,
         ) -> (
             GoogleAdsSearchads360V23Services__SuggestTravelAssetsResponseHttpRequest
@@ -1414,7 +1414,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
             self,
             *,
             customerId: str,
-            body: GoogleAdsSearchads360V23Services__UploadUserDataRequest = ...,
+            body: GoogleAdsSearchads360V23Services__UploadUserDataRequest,
             **kwargs: typing.Any,
         ) -> GoogleAdsSearchads360V23Services__UploadUserDataResponseHttpRequest: ...
         def AdGroupCriterionCustomizers(
@@ -1533,7 +1533,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
         def suggest(
             self,
             *,
-            body: GoogleAdsSearchads360V23Services__SuggestGeoTargetConstantsRequest = ...,
+            body: GoogleAdsSearchads360V23Services__SuggestGeoTargetConstantsRequest,
             **kwargs: typing.Any,
         ) -> GoogleAdsSearchads360V23Services__SuggestGeoTargetConstantsResponseHttpRequest: ...
 
@@ -1555,7 +1555,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
         def suggest(
             self,
             *,
-            body: GoogleAdsSearchads360V23Services__SuggestKeywordThemeConstantsRequest = ...,
+            body: GoogleAdsSearchads360V23Services__SuggestKeywordThemeConstantsRequest,
             **kwargs: typing.Any,
         ) -> GoogleAdsSearchads360V23Services__SuggestKeywordThemeConstantsResponseHttpRequest: ...
 
@@ -1567,7 +1567,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
         def search(
             self,
             *,
-            body: GoogleAdsSearchads360V23Services__SearchSearchAds360FieldsRequest = ...,
+            body: GoogleAdsSearchads360V23Services__SearchSearchAds360FieldsRequest,
             **kwargs: typing.Any,
         ) -> GoogleAdsSearchads360V23Services__SearchSearchAds360FieldsResponseHttpRequest: ...
         def search_next(
@@ -1584,7 +1584,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
         def generateConversionRates(
             self,
             *,
-            body: GoogleAdsSearchads360V23Services__GenerateConversionRatesRequest = ...,
+            body: GoogleAdsSearchads360V23Services__GenerateConversionRatesRequest,
             **kwargs: typing.Any,
         ) -> (
             GoogleAdsSearchads360V23Services__GenerateConversionRatesResponseHttpRequest
@@ -1592,13 +1592,13 @@ class SA360Resource(googleapiclient.discovery.Resource):
         def listBenchmarksAvailableDates(
             self,
             *,
-            body: GoogleAdsSearchads360V23Services__ListBenchmarksAvailableDatesRequest = ...,
+            body: GoogleAdsSearchads360V23Services__ListBenchmarksAvailableDatesRequest,
             **kwargs: typing.Any,
         ) -> GoogleAdsSearchads360V23Services__ListBenchmarksAvailableDatesResponseHttpRequest: ...
         def listBenchmarksLocations(
             self,
             *,
-            body: GoogleAdsSearchads360V23Services__ListBenchmarksLocationsRequest = ...,
+            body: GoogleAdsSearchads360V23Services__ListBenchmarksLocationsRequest,
             **kwargs: typing.Any,
         ) -> (
             GoogleAdsSearchads360V23Services__ListBenchmarksLocationsResponseHttpRequest
@@ -1606,7 +1606,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
         def listBenchmarksProducts(
             self,
             *,
-            body: GoogleAdsSearchads360V23Services__ListBenchmarksProductsRequest = ...,
+            body: GoogleAdsSearchads360V23Services__ListBenchmarksProductsRequest,
             **kwargs: typing.Any,
         ) -> (
             GoogleAdsSearchads360V23Services__ListBenchmarksProductsResponseHttpRequest
@@ -1614,7 +1614,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
         def listBenchmarksSources(
             self,
             *,
-            body: GoogleAdsSearchads360V23Services__ListBenchmarksSourcesRequest = ...,
+            body: GoogleAdsSearchads360V23Services__ListBenchmarksSourcesRequest,
             **kwargs: typing.Any,
         ) -> (
             GoogleAdsSearchads360V23Services__ListBenchmarksSourcesResponseHttpRequest
@@ -1622,7 +1622,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
         def listPlannableLocations(
             self,
             *,
-            body: GoogleAdsSearchads360V23Services__ListPlannableLocationsRequest = ...,
+            body: GoogleAdsSearchads360V23Services__ListPlannableLocationsRequest,
             **kwargs: typing.Any,
         ) -> (
             GoogleAdsSearchads360V23Services__ListPlannableLocationsResponseHttpRequest
@@ -1630,7 +1630,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
         def listPlannableProducts(
             self,
             *,
-            body: GoogleAdsSearchads360V23Services__ListPlannableProductsRequest = ...,
+            body: GoogleAdsSearchads360V23Services__ListPlannableProductsRequest,
             **kwargs: typing.Any,
         ) -> (
             GoogleAdsSearchads360V23Services__ListPlannableProductsResponseHttpRequest
@@ -1638,13 +1638,13 @@ class SA360Resource(googleapiclient.discovery.Resource):
         def listPlannableUserInterests(
             self,
             *,
-            body: GoogleAdsSearchads360V23Services__ListPlannableUserInterestsRequest = ...,
+            body: GoogleAdsSearchads360V23Services__ListPlannableUserInterestsRequest,
             **kwargs: typing.Any,
         ) -> GoogleAdsSearchads360V23Services__ListPlannableUserInterestsResponseHttpRequest: ...
         def listPlannableUserLists(
             self,
             *,
-            body: GoogleAdsSearchads360V23Services__ListPlannableUserListsRequest = ...,
+            body: GoogleAdsSearchads360V23Services__ListPlannableUserListsRequest,
             **kwargs: typing.Any,
         ) -> (
             GoogleAdsSearchads360V23Services__ListPlannableUserListsResponseHttpRequest

@@ -73,7 +73,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: RefreshConnectionSchemaMetadataRequest = ...,
+                        body: RefreshConnectionSchemaMetadataRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
 
@@ -85,7 +85,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: EndUserAuthentication = ...,
+                        body: EndUserAuthentication,
                         endUserAuthenticationId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
@@ -123,7 +123,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: EndUserAuthentication = ...,
+                        body: EndUserAuthentication,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
@@ -134,7 +134,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: EventSubscription = ...,
+                        body: EventSubscription,
                         eventSubscriptionId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
@@ -163,7 +163,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: EventSubscription = ...,
+                        body: EventSubscription,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
@@ -171,7 +171,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: RetryEventSubscriptionRequest = ...,
+                        body: RetryEventSubscriptionRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
 
@@ -214,7 +214,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: Connection = ...,
+                    body: Connection,
                     connectionId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -225,14 +225,14 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: FetchConnectionToolspecOverrideRequest = ...,
+                    body: FetchConnectionToolspecOverrideRequest,
                     **kwargs: typing.Any,
                 ) -> FetchConnectionToolspecOverrideResponseHttpRequest: ...
                 def generateToolspecOverride(
                     self,
                     *,
                     name: str,
-                    body: GenerateConnectionToolspecOverrideRequest = ...,
+                    body: GenerateConnectionToolspecOverrideRequest,
                     **kwargs: typing.Any,
                 ) -> GenerateConnectionToolspecOverrideResponseHttpRequest: ...
                 def get(
@@ -278,21 +278,21 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resourcePath: str,
-                    body: ListenEventRequest = ...,
+                    body: ListenEventRequest,
                     **kwargs: typing.Any,
                 ) -> ListenEventResponseHttpRequest: ...
                 def modifyToolspecOverride(
                     self,
                     *,
                     name: str,
-                    body: ModifyConnectionToolspecOverrideRequest = ...,
+                    body: ModifyConnectionToolspecOverrideRequest,
                     **kwargs: typing.Any,
                 ) -> ModifyConnectionToolspecOverrideResponseHttpRequest: ...
                 def patch(
                     self,
                     *,
                     name: str,
-                    body: Connection = ...,
+                    body: Connection,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -300,14 +300,14 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: RemoveConnectionToolspecOverrideRequest = ...,
+                    body: RemoveConnectionToolspecOverrideRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def repairEventing(
                     self,
                     *,
                     name: str,
-                    body: RepairEventingRequest = ...,
+                    body: RepairEventingRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def search(
@@ -328,14 +328,14 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: SetIamPolicyRequest = ...,
+                    body: SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: TestIamPermissionsRequest = ...,
+                    body: TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def connectionSchemaMetadata(
@@ -359,21 +359,21 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: DeprecateCustomConnectorVersionRequest = ...,
+                        body: DeprecateCustomConnectorVersionRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def publish(
                         self,
                         *,
                         name: str,
-                        body: PublishCustomConnectorVersionRequest = ...,
+                        body: PublishCustomConnectorVersionRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def withdraw(
                         self,
                         *,
                         name: str,
-                        body: WithdrawCustomConnectorVersionRequest = ...,
+                        body: WithdrawCustomConnectorVersionRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
 
@@ -381,7 +381,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: ValidateCustomConnectorSpecRequest = ...,
+                    body: ValidateCustomConnectorSpecRequest,
                     **kwargs: typing.Any,
                 ) -> ValidateCustomConnectorSpecResponseHttpRequest: ...
                 def customConnectorVersions(
@@ -394,7 +394,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: EndpointAttachment = ...,
+                    body: EndpointAttachment,
                     endpointAttachmentId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -438,7 +438,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: EndpointAttachment = ...,
+                    body: EndpointAttachment,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -455,7 +455,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             parent: str,
-                            body: CustomConnectorVersion = ...,
+                            body: CustomConnectorVersion,
                             customConnectorVersionId: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> OperationHttpRequest: ...
@@ -480,7 +480,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: CustomConnector = ...,
+                        body: CustomConnector,
                         customConnectorId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
@@ -512,7 +512,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: CustomConnector = ...,
+                        body: CustomConnector,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
@@ -526,7 +526,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: ManagedZone = ...,
+                        body: ManagedZone,
                         managedZoneId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
@@ -556,7 +556,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: ManagedZone = ...,
+                        body: ManagedZone,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
@@ -568,7 +568,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: Settings = ...,
+                    body: Settings,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -581,7 +581,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: CancelOperationRequest = ...,
+                    body: CancelOperationRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def delete(
@@ -723,14 +723,14 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: SetIamPolicyRequest = ...,
+                    body: SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: TestIamPermissionsRequest = ...,
+                    body: TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def connectors(self) -> ConnectorsResource: ...
@@ -763,7 +763,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: RegionalSettings = ...,
+                body: RegionalSettings,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...

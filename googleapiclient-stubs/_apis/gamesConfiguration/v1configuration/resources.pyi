@@ -25,7 +25,7 @@ class GamesConfigurationResource(googleapiclient.discovery.Resource):
             self,
             *,
             applicationId: str,
-            body: AchievementConfiguration = ...,
+            body: AchievementConfiguration,
             **kwargs: typing.Any,
         ) -> AchievementConfigurationHttpRequest: ...
         def list(
@@ -45,7 +45,7 @@ class GamesConfigurationResource(googleapiclient.discovery.Resource):
             self,
             *,
             achievementId: str,
-            body: AchievementConfiguration = ...,
+            body: AchievementConfiguration,
             **kwargs: typing.Any,
         ) -> AchievementConfigurationHttpRequest: ...
 
@@ -61,7 +61,7 @@ class GamesConfigurationResource(googleapiclient.discovery.Resource):
             self,
             *,
             applicationId: str,
-            body: LeaderboardConfiguration = ...,
+            body: LeaderboardConfiguration,
             **kwargs: typing.Any,
         ) -> LeaderboardConfigurationHttpRequest: ...
         def list(
@@ -81,7 +81,7 @@ class GamesConfigurationResource(googleapiclient.discovery.Resource):
             self,
             *,
             leaderboardId: str,
-            body: LeaderboardConfiguration = ...,
+            body: LeaderboardConfiguration,
             **kwargs: typing.Any,
         ) -> LeaderboardConfigurationHttpRequest: ...
 

@@ -25,7 +25,7 @@ class CertificateManagerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: CertificateIssuanceConfig = ...,
+                    body: CertificateIssuanceConfig,
                     certificateIssuanceConfigId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -54,7 +54,7 @@ class CertificateManagerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: CertificateIssuanceConfig = ...,
+                    body: CertificateIssuanceConfig,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -67,7 +67,7 @@ class CertificateManagerResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: CertificateMapEntry = ...,
+                        body: CertificateMapEntry,
                         certificateMapEntryId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
@@ -96,7 +96,7 @@ class CertificateManagerResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: CertificateMapEntry = ...,
+                        body: CertificateMapEntry,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
@@ -105,7 +105,7 @@ class CertificateManagerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: CertificateMap = ...,
+                    body: CertificateMap,
                     certificateMapId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -134,7 +134,7 @@ class CertificateManagerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: CertificateMap = ...,
+                    body: CertificateMap,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -146,7 +146,7 @@ class CertificateManagerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: Certificate = ...,
+                    body: Certificate,
                     certificateId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -175,7 +175,7 @@ class CertificateManagerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: Certificate = ...,
+                    body: Certificate,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -186,7 +186,7 @@ class CertificateManagerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: DnsAuthorization = ...,
+                    body: DnsAuthorization,
                     dnsAuthorizationId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -215,7 +215,7 @@ class CertificateManagerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: DnsAuthorization = ...,
+                    body: DnsAuthorization,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -226,7 +226,7 @@ class CertificateManagerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: CancelOperationRequest = ...,
+                    body: CancelOperationRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def delete(
@@ -257,7 +257,7 @@ class CertificateManagerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: TrustConfig = ...,
+                    body: TrustConfig,
                     trustConfigId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -286,7 +286,7 @@ class CertificateManagerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: TrustConfig = ...,
+                    body: TrustConfig,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...

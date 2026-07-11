@@ -18,11 +18,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class AuthorizedCertificatesResource(googleapiclient.discovery.Resource):
             def create(
-                self,
-                *,
-                appsId: str,
-                body: AuthorizedCertificate = ...,
-                **kwargs: typing.Any,
+                self, *, appsId: str, body: AuthorizedCertificate, **kwargs: typing.Any
             ) -> AuthorizedCertificateHttpRequest: ...
             def delete(
                 self,
@@ -60,7 +56,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 *,
                 appsId: str,
                 authorizedCertificatesId: str,
-                body: AuthorizedCertificate = ...,
+                body: AuthorizedCertificate,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> AuthorizedCertificateHttpRequest: ...
@@ -87,7 +83,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 appsId: str,
-                body: DomainMapping = ...,
+                body: DomainMapping,
                 noManagedCertificate: bool | None = ...,
                 overrideStrategy: typing_extensions.Literal[
                     "UNSPECIFIED_DOMAIN_OVERRIDE_STRATEGY", "STRICT", "OVERRIDE"
@@ -119,7 +115,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 *,
                 appsId: str,
                 domainMappingsId: str,
-                body: DomainMapping = ...,
+                body: DomainMapping,
                 noManagedCertificate: bool | None = ...,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
@@ -189,7 +185,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                         projectsId: str,
                         locationsId: str,
                         applicationsId: str,
-                        body: AuthorizedCertificate = ...,
+                        body: AuthorizedCertificate,
                         **kwargs: typing.Any,
                     ) -> AuthorizedCertificateHttpRequest: ...
                     def delete(
@@ -240,7 +236,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                         locationsId: str,
                         applicationsId: str,
                         authorizedCertificatesId: str,
-                        body: AuthorizedCertificate = ...,
+                        body: AuthorizedCertificate,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> AuthorizedCertificateHttpRequest: ...
@@ -271,7 +267,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                         projectsId: str,
                         locationsId: str,
                         applicationsId: str,
-                        body: DomainMapping = ...,
+                        body: DomainMapping,
                         noManagedCertificate: bool | None = ...,
                         overrideStrategy: typing_extensions.Literal[
                             "UNSPECIFIED_DOMAIN_OVERRIDE_STRATEGY", "STRICT", "OVERRIDE"
@@ -319,7 +315,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                         locationsId: str,
                         applicationsId: str,
                         domainMappingsId: str,
-                        body: DomainMapping = ...,
+                        body: DomainMapping,
                         noManagedCertificate: bool | None = ...,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,

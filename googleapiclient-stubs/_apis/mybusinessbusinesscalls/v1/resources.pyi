@@ -39,7 +39,7 @@ class MyBusinessBusinessCallsResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            body: BusinessCallsSettings = ...,
+            body: BusinessCallsSettings,
             updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> BusinessCallsSettingsHttpRequest: ...

@@ -53,7 +53,7 @@ class AdMobResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: GenerateMediationReportRequest = ...,
+                body: GenerateMediationReportRequest,
                 **kwargs: typing.Any,
             ) -> GenerateMediationReportResponseHttpRequest: ...
 
@@ -63,7 +63,7 @@ class AdMobResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: GenerateNetworkReportRequest = ...,
+                body: GenerateNetworkReportRequest,
                 **kwargs: typing.Any,
             ) -> GenerateNetworkReportResponseHttpRequest: ...
 

@@ -21,17 +21,17 @@ class AuthorizedBuyersMarketplaceResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: ActivateCuratedPackageRequest = ...,
+                body: ActivateCuratedPackageRequest,
                 **kwargs: typing.Any,
             ) -> CuratedPackageHttpRequest: ...
             def create(
-                self, *, parent: str, body: CuratedPackage = ..., **kwargs: typing.Any
+                self, *, parent: str, body: CuratedPackage, **kwargs: typing.Any
             ) -> CuratedPackageHttpRequest: ...
             def deactivate(
                 self,
                 *,
                 name: str,
-                body: DeactivateCuratedPackageRequest = ...,
+                body: DeactivateCuratedPackageRequest,
                 **kwargs: typing.Any,
             ) -> CuratedPackageHttpRequest: ...
             def get(
@@ -55,7 +55,7 @@ class AuthorizedBuyersMarketplaceResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: CuratedPackage = ...,
+                body: CuratedPackage,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> CuratedPackageHttpRequest: ...
@@ -66,17 +66,17 @@ class AuthorizedBuyersMarketplaceResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: ActivateDataSegmentRequest = ...,
+                body: ActivateDataSegmentRequest,
                 **kwargs: typing.Any,
             ) -> DataSegmentHttpRequest: ...
             def create(
-                self, *, parent: str, body: DataSegment = ..., **kwargs: typing.Any
+                self, *, parent: str, body: DataSegment, **kwargs: typing.Any
             ) -> DataSegmentHttpRequest: ...
             def deactivate(
                 self,
                 *,
                 name: str,
-                body: DeactivateDataSegmentRequest = ...,
+                body: DeactivateDataSegmentRequest,
                 **kwargs: typing.Any,
             ) -> DataSegmentHttpRequest: ...
             def get(
@@ -99,7 +99,7 @@ class AuthorizedBuyersMarketplaceResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: DataSegment = ...,
+                body: DataSegment,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> DataSegmentHttpRequest: ...

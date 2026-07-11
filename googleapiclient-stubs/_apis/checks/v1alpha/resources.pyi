@@ -23,7 +23,7 @@ class ChecksServiceResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: CancelOperationRequest = ...,
+                    body: CancelOperationRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def delete(
@@ -48,11 +48,7 @@ class ChecksServiceResource(googleapiclient.discovery.Resource):
                     previous_response: ListOperationsResponse,
                 ) -> ListOperationsResponseHttpRequest | None: ...
                 def wait(
-                    self,
-                    *,
-                    name: str,
-                    body: WaitOperationRequest = ...,
-                    **kwargs: typing.Any,
+                    self, *, name: str, body: WaitOperationRequest, **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
 
             @typing.type_check_only
@@ -113,7 +109,7 @@ class ChecksServiceResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleChecksRepoScanV1alphaGenerateScanRequest = ...,
+                    body: GoogleChecksRepoScanV1alphaGenerateScanRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def get(
@@ -147,7 +143,7 @@ class ChecksServiceResource(googleapiclient.discovery.Resource):
         def classifyContent(
             self,
             *,
-            body: GoogleChecksAisafetyV1alphaClassifyContentRequest = ...,
+            body: GoogleChecksAisafetyV1alphaClassifyContentRequest,
             **kwargs: typing.Any,
         ) -> GoogleChecksAisafetyV1alphaClassifyContentResponseHttpRequest: ...
 
@@ -157,7 +153,7 @@ class ChecksServiceResource(googleapiclient.discovery.Resource):
             self,
             *,
             parent: str,
-            body: GoogleChecksReportV1alphaAnalyzeUploadRequest = ...,
+            body: GoogleChecksReportV1alphaAnalyzeUploadRequest,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
 

@@ -18,7 +18,7 @@ class AnalyticsDataResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class AudienceExportsResource(googleapiclient.discovery.Resource):
             def create(
-                self, *, parent: str, body: AudienceExport = ..., **kwargs: typing.Any
+                self, *, parent: str, body: AudienceExport, **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
             def get(
                 self, *, name: str, **kwargs: typing.Any
@@ -40,7 +40,7 @@ class AnalyticsDataResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: QueryAudienceExportRequest = ...,
+                body: QueryAudienceExportRequest,
                 **kwargs: typing.Any,
             ) -> QueryAudienceExportResponseHttpRequest: ...
 
@@ -48,42 +48,30 @@ class AnalyticsDataResource(googleapiclient.discovery.Resource):
             self,
             *,
             property: str,
-            body: BatchRunPivotReportsRequest = ...,
+            body: BatchRunPivotReportsRequest,
             **kwargs: typing.Any,
         ) -> BatchRunPivotReportsResponseHttpRequest: ...
         def batchRunReports(
-            self,
-            *,
-            property: str,
-            body: BatchRunReportsRequest = ...,
-            **kwargs: typing.Any,
+            self, *, property: str, body: BatchRunReportsRequest, **kwargs: typing.Any
         ) -> BatchRunReportsResponseHttpRequest: ...
         def checkCompatibility(
             self,
             *,
             property: str,
-            body: CheckCompatibilityRequest = ...,
+            body: CheckCompatibilityRequest,
             **kwargs: typing.Any,
         ) -> CheckCompatibilityResponseHttpRequest: ...
         def getMetadata(
             self, *, name: str, **kwargs: typing.Any
         ) -> MetadataHttpRequest: ...
         def runPivotReport(
-            self,
-            *,
-            property: str,
-            body: RunPivotReportRequest = ...,
-            **kwargs: typing.Any,
+            self, *, property: str, body: RunPivotReportRequest, **kwargs: typing.Any
         ) -> RunPivotReportResponseHttpRequest: ...
         def runRealtimeReport(
-            self,
-            *,
-            property: str,
-            body: RunRealtimeReportRequest = ...,
-            **kwargs: typing.Any,
+            self, *, property: str, body: RunRealtimeReportRequest, **kwargs: typing.Any
         ) -> RunRealtimeReportResponseHttpRequest: ...
         def runReport(
-            self, *, property: str, body: RunReportRequest = ..., **kwargs: typing.Any
+            self, *, property: str, body: RunReportRequest, **kwargs: typing.Any
         ) -> RunReportResponseHttpRequest: ...
         def audienceExports(self) -> AudienceExportsResource: ...
 

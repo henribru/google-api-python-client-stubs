@@ -49,7 +49,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: GooglePrivacyDlpV2CreateDeidentifyTemplateRequest = ...,
+                body: GooglePrivacyDlpV2CreateDeidentifyTemplateRequest,
                 **kwargs: typing.Any,
             ) -> GooglePrivacyDlpV2DeidentifyTemplateHttpRequest: ...
             def delete(
@@ -79,7 +79,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GooglePrivacyDlpV2UpdateDeidentifyTemplateRequest = ...,
+                body: GooglePrivacyDlpV2UpdateDeidentifyTemplateRequest,
                 **kwargs: typing.Any,
             ) -> GooglePrivacyDlpV2DeidentifyTemplateHttpRequest: ...
 
@@ -89,7 +89,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: GooglePrivacyDlpV2CreateInspectTemplateRequest = ...,
+                body: GooglePrivacyDlpV2CreateInspectTemplateRequest,
                 **kwargs: typing.Any,
             ) -> GooglePrivacyDlpV2InspectTemplateHttpRequest: ...
             def delete(
@@ -117,7 +117,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GooglePrivacyDlpV2UpdateInspectTemplateRequest = ...,
+                body: GooglePrivacyDlpV2UpdateInspectTemplateRequest,
                 **kwargs: typing.Any,
             ) -> GooglePrivacyDlpV2InspectTemplateHttpRequest: ...
 
@@ -152,7 +152,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GooglePrivacyDlpV2CreateConnectionRequest = ...,
+                    body: GooglePrivacyDlpV2CreateConnectionRequest,
                     **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2ConnectionHttpRequest: ...
                 def delete(
@@ -179,7 +179,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GooglePrivacyDlpV2UpdateConnectionRequest = ...,
+                    body: GooglePrivacyDlpV2UpdateConnectionRequest,
                     **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2ConnectionHttpRequest: ...
                 def search(
@@ -203,7 +203,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GooglePrivacyDlpV2CreateDeidentifyTemplateRequest = ...,
+                    body: GooglePrivacyDlpV2CreateDeidentifyTemplateRequest,
                     **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2DeidentifyTemplateHttpRequest: ...
                 def delete(
@@ -233,7 +233,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GooglePrivacyDlpV2UpdateDeidentifyTemplateRequest = ...,
+                    body: GooglePrivacyDlpV2UpdateDeidentifyTemplateRequest,
                     **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2DeidentifyTemplateHttpRequest: ...
 
@@ -243,7 +243,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GooglePrivacyDlpV2CreateDiscoveryConfigRequest = ...,
+                    body: GooglePrivacyDlpV2CreateDiscoveryConfigRequest,
                     **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2DiscoveryConfigHttpRequest: ...
                 def delete(
@@ -272,7 +272,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GooglePrivacyDlpV2UpdateDiscoveryConfigRequest = ...,
+                    body: GooglePrivacyDlpV2UpdateDiscoveryConfigRequest,
                     **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2DiscoveryConfigHttpRequest: ...
 
@@ -344,7 +344,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GooglePrivacyDlpV2CreateInspectTemplateRequest = ...,
+                    body: GooglePrivacyDlpV2CreateInspectTemplateRequest,
                     **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2InspectTemplateHttpRequest: ...
                 def delete(
@@ -374,7 +374,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GooglePrivacyDlpV2UpdateInspectTemplateRequest = ...,
+                    body: GooglePrivacyDlpV2UpdateInspectTemplateRequest,
                     **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2InspectTemplateHttpRequest: ...
 
@@ -384,7 +384,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GooglePrivacyDlpV2CreateJobTriggerRequest = ...,
+                    body: GooglePrivacyDlpV2CreateJobTriggerRequest,
                     **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2JobTriggerHttpRequest: ...
                 def delete(
@@ -417,7 +417,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GooglePrivacyDlpV2UpdateJobTriggerRequest = ...,
+                    body: GooglePrivacyDlpV2UpdateJobTriggerRequest,
                     **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2JobTriggerHttpRequest: ...
 
@@ -450,7 +450,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GooglePrivacyDlpV2CreateStoredInfoTypeRequest = ...,
+                    body: GooglePrivacyDlpV2CreateStoredInfoTypeRequest,
                     **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2StoredInfoTypeHttpRequest: ...
                 def delete(
@@ -480,7 +480,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GooglePrivacyDlpV2UpdateStoredInfoTypeRequest = ...,
+                    body: GooglePrivacyDlpV2UpdateStoredInfoTypeRequest,
                     **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2StoredInfoTypeHttpRequest: ...
 
@@ -529,7 +529,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: GooglePrivacyDlpV2CreateStoredInfoTypeRequest = ...,
+                body: GooglePrivacyDlpV2CreateStoredInfoTypeRequest,
                 **kwargs: typing.Any,
             ) -> GooglePrivacyDlpV2StoredInfoTypeHttpRequest: ...
             def delete(
@@ -557,7 +557,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GooglePrivacyDlpV2UpdateStoredInfoTypeRequest = ...,
+                body: GooglePrivacyDlpV2UpdateStoredInfoTypeRequest,
                 **kwargs: typing.Any,
             ) -> GooglePrivacyDlpV2StoredInfoTypeHttpRequest: ...
 
@@ -574,21 +574,21 @@ class DLPResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: GooglePrivacyDlpV2DeidentifyContentRequest = ...,
+                body: GooglePrivacyDlpV2DeidentifyContentRequest,
                 **kwargs: typing.Any,
             ) -> GooglePrivacyDlpV2DeidentifyContentResponseHttpRequest: ...
             def inspect(
                 self,
                 *,
                 parent: str,
-                body: GooglePrivacyDlpV2InspectContentRequest = ...,
+                body: GooglePrivacyDlpV2InspectContentRequest,
                 **kwargs: typing.Any,
             ) -> GooglePrivacyDlpV2InspectContentResponseHttpRequest: ...
             def reidentify(
                 self,
                 *,
                 parent: str,
-                body: GooglePrivacyDlpV2ReidentifyContentRequest = ...,
+                body: GooglePrivacyDlpV2ReidentifyContentRequest,
                 **kwargs: typing.Any,
             ) -> GooglePrivacyDlpV2ReidentifyContentResponseHttpRequest: ...
 
@@ -598,7 +598,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: GooglePrivacyDlpV2CreateDeidentifyTemplateRequest = ...,
+                body: GooglePrivacyDlpV2CreateDeidentifyTemplateRequest,
                 **kwargs: typing.Any,
             ) -> GooglePrivacyDlpV2DeidentifyTemplateHttpRequest: ...
             def delete(
@@ -628,7 +628,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GooglePrivacyDlpV2UpdateDeidentifyTemplateRequest = ...,
+                body: GooglePrivacyDlpV2UpdateDeidentifyTemplateRequest,
                 **kwargs: typing.Any,
             ) -> GooglePrivacyDlpV2DeidentifyTemplateHttpRequest: ...
 
@@ -638,14 +638,14 @@ class DLPResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GooglePrivacyDlpV2CancelDlpJobRequest = ...,
+                body: GooglePrivacyDlpV2CancelDlpJobRequest,
                 **kwargs: typing.Any,
             ) -> GoogleProtobufEmptyHttpRequest: ...
             def create(
                 self,
                 *,
                 parent: str,
-                body: GooglePrivacyDlpV2CreateDlpJobRequest = ...,
+                body: GooglePrivacyDlpV2CreateDlpJobRequest,
                 **kwargs: typing.Any,
             ) -> GooglePrivacyDlpV2DlpJobHttpRequest: ...
             def delete(
@@ -681,7 +681,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: GooglePrivacyDlpV2RedactImageRequest = ...,
+                body: GooglePrivacyDlpV2RedactImageRequest,
                 **kwargs: typing.Any,
             ) -> GooglePrivacyDlpV2RedactImageResponseHttpRequest: ...
 
@@ -691,7 +691,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: GooglePrivacyDlpV2CreateInspectTemplateRequest = ...,
+                body: GooglePrivacyDlpV2CreateInspectTemplateRequest,
                 **kwargs: typing.Any,
             ) -> GooglePrivacyDlpV2InspectTemplateHttpRequest: ...
             def delete(
@@ -719,7 +719,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GooglePrivacyDlpV2UpdateInspectTemplateRequest = ...,
+                body: GooglePrivacyDlpV2UpdateInspectTemplateRequest,
                 **kwargs: typing.Any,
             ) -> GooglePrivacyDlpV2InspectTemplateHttpRequest: ...
 
@@ -729,14 +729,14 @@ class DLPResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GooglePrivacyDlpV2ActivateJobTriggerRequest = ...,
+                body: GooglePrivacyDlpV2ActivateJobTriggerRequest,
                 **kwargs: typing.Any,
             ) -> GooglePrivacyDlpV2DlpJobHttpRequest: ...
             def create(
                 self,
                 *,
                 parent: str,
-                body: GooglePrivacyDlpV2CreateJobTriggerRequest = ...,
+                body: GooglePrivacyDlpV2CreateJobTriggerRequest,
                 **kwargs: typing.Any,
             ) -> GooglePrivacyDlpV2JobTriggerHttpRequest: ...
             def delete(
@@ -769,7 +769,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GooglePrivacyDlpV2UpdateJobTriggerRequest = ...,
+                body: GooglePrivacyDlpV2UpdateJobTriggerRequest,
                 **kwargs: typing.Any,
             ) -> GooglePrivacyDlpV2JobTriggerHttpRequest: ...
 
@@ -804,7 +804,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GooglePrivacyDlpV2CreateConnectionRequest = ...,
+                    body: GooglePrivacyDlpV2CreateConnectionRequest,
                     **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2ConnectionHttpRequest: ...
                 def delete(
@@ -831,7 +831,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GooglePrivacyDlpV2UpdateConnectionRequest = ...,
+                    body: GooglePrivacyDlpV2UpdateConnectionRequest,
                     **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2ConnectionHttpRequest: ...
                 def search(
@@ -855,21 +855,21 @@ class DLPResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GooglePrivacyDlpV2DeidentifyContentRequest = ...,
+                    body: GooglePrivacyDlpV2DeidentifyContentRequest,
                     **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2DeidentifyContentResponseHttpRequest: ...
                 def inspect(
                     self,
                     *,
                     parent: str,
-                    body: GooglePrivacyDlpV2InspectContentRequest = ...,
+                    body: GooglePrivacyDlpV2InspectContentRequest,
                     **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2InspectContentResponseHttpRequest: ...
                 def reidentify(
                     self,
                     *,
                     parent: str,
-                    body: GooglePrivacyDlpV2ReidentifyContentRequest = ...,
+                    body: GooglePrivacyDlpV2ReidentifyContentRequest,
                     **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2ReidentifyContentResponseHttpRequest: ...
 
@@ -879,7 +879,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GooglePrivacyDlpV2CreateContentPolicyRequest = ...,
+                    body: GooglePrivacyDlpV2CreateContentPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2ContentPolicyHttpRequest: ...
                 def delete(
@@ -907,7 +907,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GooglePrivacyDlpV2UpdateContentPolicyRequest = ...,
+                    body: GooglePrivacyDlpV2UpdateContentPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2ContentPolicyHttpRequest: ...
 
@@ -917,7 +917,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GooglePrivacyDlpV2CreateDeidentifyTemplateRequest = ...,
+                    body: GooglePrivacyDlpV2CreateDeidentifyTemplateRequest,
                     **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2DeidentifyTemplateHttpRequest: ...
                 def delete(
@@ -947,7 +947,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GooglePrivacyDlpV2UpdateDeidentifyTemplateRequest = ...,
+                    body: GooglePrivacyDlpV2UpdateDeidentifyTemplateRequest,
                     **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2DeidentifyTemplateHttpRequest: ...
 
@@ -957,7 +957,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GooglePrivacyDlpV2CreateDiscoveryConfigRequest = ...,
+                    body: GooglePrivacyDlpV2CreateDiscoveryConfigRequest,
                     **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2DiscoveryConfigHttpRequest: ...
                 def delete(
@@ -986,7 +986,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GooglePrivacyDlpV2UpdateDiscoveryConfigRequest = ...,
+                    body: GooglePrivacyDlpV2UpdateDiscoveryConfigRequest,
                     **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2DiscoveryConfigHttpRequest: ...
 
@@ -996,14 +996,14 @@ class DLPResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GooglePrivacyDlpV2CancelDlpJobRequest = ...,
+                    body: GooglePrivacyDlpV2CancelDlpJobRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleProtobufEmptyHttpRequest: ...
                 def create(
                     self,
                     *,
                     parent: str,
-                    body: GooglePrivacyDlpV2CreateDlpJobRequest = ...,
+                    body: GooglePrivacyDlpV2CreateDlpJobRequest,
                     **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2DlpJobHttpRequest: ...
                 def delete(
@@ -1013,7 +1013,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GooglePrivacyDlpV2FinishDlpJobRequest = ...,
+                    body: GooglePrivacyDlpV2FinishDlpJobRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleProtobufEmptyHttpRequest: ...
                 def get(
@@ -1023,7 +1023,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GooglePrivacyDlpV2HybridInspectDlpJobRequest = ...,
+                    body: GooglePrivacyDlpV2HybridInspectDlpJobRequest,
                     **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2HybridInspectResponseHttpRequest: ...
                 def list(
@@ -1080,7 +1080,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GooglePrivacyDlpV2RedactImageRequest = ...,
+                    body: GooglePrivacyDlpV2RedactImageRequest,
                     **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2RedactImageResponseHttpRequest: ...
 
@@ -1102,7 +1102,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GooglePrivacyDlpV2CreateInspectTemplateRequest = ...,
+                    body: GooglePrivacyDlpV2CreateInspectTemplateRequest,
                     **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2InspectTemplateHttpRequest: ...
                 def delete(
@@ -1132,7 +1132,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GooglePrivacyDlpV2UpdateInspectTemplateRequest = ...,
+                    body: GooglePrivacyDlpV2UpdateInspectTemplateRequest,
                     **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2InspectTemplateHttpRequest: ...
 
@@ -1142,14 +1142,14 @@ class DLPResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GooglePrivacyDlpV2ActivateJobTriggerRequest = ...,
+                    body: GooglePrivacyDlpV2ActivateJobTriggerRequest,
                     **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2DlpJobHttpRequest: ...
                 def create(
                     self,
                     *,
                     parent: str,
-                    body: GooglePrivacyDlpV2CreateJobTriggerRequest = ...,
+                    body: GooglePrivacyDlpV2CreateJobTriggerRequest,
                     **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2JobTriggerHttpRequest: ...
                 def delete(
@@ -1162,7 +1162,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GooglePrivacyDlpV2HybridInspectJobTriggerRequest = ...,
+                    body: GooglePrivacyDlpV2HybridInspectJobTriggerRequest,
                     **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2HybridInspectResponseHttpRequest: ...
                 def list(
@@ -1189,7 +1189,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GooglePrivacyDlpV2UpdateJobTriggerRequest = ...,
+                    body: GooglePrivacyDlpV2UpdateJobTriggerRequest,
                     **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2JobTriggerHttpRequest: ...
 
@@ -1222,7 +1222,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GooglePrivacyDlpV2CreateStoredInfoTypeRequest = ...,
+                    body: GooglePrivacyDlpV2CreateStoredInfoTypeRequest,
                     **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2StoredInfoTypeHttpRequest: ...
                 def delete(
@@ -1252,7 +1252,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GooglePrivacyDlpV2UpdateStoredInfoTypeRequest = ...,
+                    body: GooglePrivacyDlpV2UpdateStoredInfoTypeRequest,
                     **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2StoredInfoTypeHttpRequest: ...
 
@@ -1304,7 +1304,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: GooglePrivacyDlpV2CreateStoredInfoTypeRequest = ...,
+                body: GooglePrivacyDlpV2CreateStoredInfoTypeRequest,
                 **kwargs: typing.Any,
             ) -> GooglePrivacyDlpV2StoredInfoTypeHttpRequest: ...
             def delete(
@@ -1332,7 +1332,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GooglePrivacyDlpV2UpdateStoredInfoTypeRequest = ...,
+                body: GooglePrivacyDlpV2UpdateStoredInfoTypeRequest,
                 **kwargs: typing.Any,
             ) -> GooglePrivacyDlpV2StoredInfoTypeHttpRequest: ...
 

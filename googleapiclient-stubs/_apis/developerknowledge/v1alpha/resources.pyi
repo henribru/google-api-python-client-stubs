@@ -59,7 +59,7 @@ class DeveloperKnowledgeResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class V1alphaResource(googleapiclient.discovery.Resource):
         def answerQuery(
-            self, *, body: AnswerQueryRequest = ..., **kwargs: typing.Any
+            self, *, body: AnswerQueryRequest, **kwargs: typing.Any
         ) -> AnswerQueryResponseHttpRequest: ...
 
     def new_batch_http_request(

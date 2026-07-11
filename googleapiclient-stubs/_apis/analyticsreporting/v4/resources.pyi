@@ -16,13 +16,13 @@ class AnalyticsReportingResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class ReportsResource(googleapiclient.discovery.Resource):
         def batchGet(
-            self, *, body: GetReportsRequest = ..., **kwargs: typing.Any
+            self, *, body: GetReportsRequest, **kwargs: typing.Any
         ) -> GetReportsResponseHttpRequest: ...
 
     @typing.type_check_only
     class UserActivityResource(googleapiclient.discovery.Resource):
         def search(
-            self, *, body: SearchUserActivityRequest = ..., **kwargs: typing.Any
+            self, *, body: SearchUserActivityRequest, **kwargs: typing.Any
         ) -> SearchUserActivityResponseHttpRequest: ...
         def search_next(
             self,

@@ -29,11 +29,7 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class ReservationGrantsResource(googleapiclient.discovery.Resource):
                 def create(
-                    self,
-                    *,
-                    parent: str,
-                    body: ReservationGrant = ...,
-                    **kwargs: typing.Any,
+                    self, *, parent: str, body: ReservationGrant, **kwargs: typing.Any
                 ) -> ReservationGrantHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -80,7 +76,7 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: Reservation = ...,
+                    body: Reservation,
                     reservationId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ReservationHttpRequest: ...
@@ -88,7 +84,7 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: Reservation = ...,
+                    body: Reservation,
                     reservationId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ReservationHttpRequest: ...
@@ -116,7 +112,7 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: Reservation = ...,
+                    body: Reservation,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ReservationHttpRequest: ...

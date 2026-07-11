@@ -23,7 +23,7 @@ class CloudAlloyDBAdminResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: Backup = ...,
+                    body: Backup,
                     backupId: str | None = ...,
                     requestId: str | None = ...,
                     validateOnly: bool | None = ...,
@@ -75,7 +75,7 @@ class CloudAlloyDBAdminResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: Backup = ...,
+                    body: Backup,
                     allowMissing: bool | None = ...,
                     requestId: str | None = ...,
                     updateMask: str | None = ...,
@@ -91,7 +91,7 @@ class CloudAlloyDBAdminResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: Instance = ...,
+                        body: Instance,
                         instanceId: str | None = ...,
                         requestId: str | None = ...,
                         validateOnly: bool | None = ...,
@@ -101,7 +101,7 @@ class CloudAlloyDBAdminResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: Instance = ...,
+                        body: Instance,
                         instanceId: str | None = ...,
                         requestId: str | None = ...,
                         validateOnly: bool | None = ...,
@@ -120,7 +120,7 @@ class CloudAlloyDBAdminResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: FailoverInstanceRequest = ...,
+                        body: FailoverInstanceRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def get(
@@ -146,7 +146,7 @@ class CloudAlloyDBAdminResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: InjectFaultRequest = ...,
+                        body: InjectFaultRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def list(
@@ -168,7 +168,7 @@ class CloudAlloyDBAdminResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: Instance = ...,
+                        body: Instance,
                         allowMissing: bool | None = ...,
                         requestId: str | None = ...,
                         updateMask: str | None = ...,
@@ -179,7 +179,7 @@ class CloudAlloyDBAdminResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: RestartInstanceRequest = ...,
+                        body: RestartInstanceRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
 
@@ -189,7 +189,7 @@ class CloudAlloyDBAdminResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: User = ...,
+                        body: User,
                         requestId: str | None = ...,
                         userId: str | None = ...,
                         validateOnly: bool | None = ...,
@@ -225,7 +225,7 @@ class CloudAlloyDBAdminResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: User = ...,
+                        body: User,
                         allowMissing: bool | None = ...,
                         requestId: str | None = ...,
                         updateMask: str | None = ...,
@@ -237,7 +237,7 @@ class CloudAlloyDBAdminResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: Cluster = ...,
+                    body: Cluster,
                     clusterId: str | None = ...,
                     requestId: str | None = ...,
                     validateOnly: bool | None = ...,
@@ -247,7 +247,7 @@ class CloudAlloyDBAdminResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: Cluster = ...,
+                    body: Cluster,
                     clusterId: str | None = ...,
                     requestId: str | None = ...,
                     validateOnly: bool | None = ...,
@@ -264,11 +264,7 @@ class CloudAlloyDBAdminResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def export(
-                    self,
-                    *,
-                    name: str,
-                    body: ExportClusterRequest = ...,
-                    **kwargs: typing.Any,
+                    self, *, name: str, body: ExportClusterRequest, **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def get(
                     self,
@@ -283,11 +279,7 @@ class CloudAlloyDBAdminResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any,
                 ) -> ClusterHttpRequest: ...
                 def import_(
-                    self,
-                    *,
-                    name: str,
-                    body: ImportClusterRequest = ...,
-                    **kwargs: typing.Any,
+                    self, *, name: str, body: ImportClusterRequest, **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def list(
                     self,
@@ -308,7 +300,7 @@ class CloudAlloyDBAdminResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: Cluster = ...,
+                    body: Cluster,
                     allowMissing: bool | None = ...,
                     requestId: str | None = ...,
                     updateMask: str | None = ...,
@@ -319,35 +311,35 @@ class CloudAlloyDBAdminResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: PromoteClusterRequest = ...,
+                    body: PromoteClusterRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def restore(
                     self,
                     *,
                     parent: str,
-                    body: RestoreClusterRequest = ...,
+                    body: RestoreClusterRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def restoreFromCloudSQL(
                     self,
                     *,
                     parent: str,
-                    body: RestoreFromCloudSQLRequest = ...,
+                    body: RestoreFromCloudSQLRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def switchover(
                     self,
                     *,
                     name: str,
-                    body: SwitchoverClusterRequest = ...,
+                    body: SwitchoverClusterRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def upgrade(
                     self,
                     *,
                     name: str,
-                    body: UpgradeClusterRequest = ...,
+                    body: UpgradeClusterRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def instances(self) -> InstancesResource: ...
@@ -359,7 +351,7 @@ class CloudAlloyDBAdminResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: CancelOperationRequest = ...,
+                    body: CancelOperationRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def delete(

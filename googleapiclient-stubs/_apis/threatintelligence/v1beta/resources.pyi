@@ -24,17 +24,13 @@ class ThreatIntelligenceServiceResource(googleapiclient.discovery.Resource):
                 ) -> AlertDocumentHttpRequest: ...
 
             def benign(
-                self,
-                *,
-                name: str,
-                body: MarkAlertAsBenignRequest = ...,
-                **kwargs: typing.Any,
+                self, *, name: str, body: MarkAlertAsBenignRequest, **kwargs: typing.Any
             ) -> AlertHttpRequest: ...
             def duplicate(
                 self,
                 *,
                 name: str,
-                body: MarkAlertAsDuplicateRequest = ...,
+                body: MarkAlertAsDuplicateRequest,
                 **kwargs: typing.Any,
             ) -> AlertHttpRequest: ...
             def enumerateFacets(
@@ -44,14 +40,14 @@ class ThreatIntelligenceServiceResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: MarkAlertAsEscalatedRequest = ...,
+                body: MarkAlertAsEscalatedRequest,
                 **kwargs: typing.Any,
             ) -> AlertHttpRequest: ...
             def falsePositive(
                 self,
                 *,
                 name: str,
-                body: MarkAlertAsFalsePositiveRequest = ...,
+                body: MarkAlertAsFalsePositiveRequest,
                 **kwargs: typing.Any,
             ) -> AlertHttpRequest: ...
             def get(self, *, name: str, **kwargs: typing.Any) -> AlertHttpRequest: ...
@@ -74,35 +70,31 @@ class ThreatIntelligenceServiceResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: MarkAlertAsNotActionableRequest = ...,
+                body: MarkAlertAsNotActionableRequest,
                 **kwargs: typing.Any,
             ) -> AlertHttpRequest: ...
             def read(
-                self,
-                *,
-                name: str,
-                body: MarkAlertAsReadRequest = ...,
-                **kwargs: typing.Any,
+                self, *, name: str, body: MarkAlertAsReadRequest, **kwargs: typing.Any
             ) -> AlertHttpRequest: ...
             def resolve(
                 self,
                 *,
                 name: str,
-                body: MarkAlertAsResolvedRequest = ...,
+                body: MarkAlertAsResolvedRequest,
                 **kwargs: typing.Any,
             ) -> AlertHttpRequest: ...
             def trackExternally(
                 self,
                 *,
                 name: str,
-                body: MarkAlertAsTrackedExternallyRequest = ...,
+                body: MarkAlertAsTrackedExternallyRequest,
                 **kwargs: typing.Any,
             ) -> AlertHttpRequest: ...
             def triage(
                 self,
                 *,
                 name: str,
-                body: MarkAlertAsTriagedRequest = ...,
+                body: MarkAlertAsTriagedRequest,
                 **kwargs: typing.Any,
             ) -> AlertHttpRequest: ...
             def documents(self) -> DocumentsResource: ...
@@ -149,7 +141,7 @@ class ThreatIntelligenceServiceResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: Configuration = ...,
+                body: Configuration,
                 publishTime: str | None = ...,
                 **kwargs: typing.Any,
             ) -> UpsertConfigurationResponseHttpRequest: ...
@@ -193,7 +185,7 @@ class ThreatIntelligenceServiceResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            body: GenerateOrgProfileConfigurationRequest = ...,
+            body: GenerateOrgProfileConfigurationRequest,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def alerts(self) -> AlertsResource: ...

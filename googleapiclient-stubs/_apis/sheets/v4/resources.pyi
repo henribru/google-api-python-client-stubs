@@ -24,7 +24,7 @@ class SheetsResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 spreadsheetId: str,
-                body: SearchDeveloperMetadataRequest = ...,
+                body: SearchDeveloperMetadataRequest,
                 **kwargs: typing.Any,
             ) -> SearchDeveloperMetadataResponseHttpRequest: ...
 
@@ -35,7 +35,7 @@ class SheetsResource(googleapiclient.discovery.Resource):
                 *,
                 spreadsheetId: str,
                 sheetId: int,
-                body: CopySheetToAnotherSpreadsheetRequest = ...,
+                body: CopySheetToAnotherSpreadsheetRequest,
                 **kwargs: typing.Any,
             ) -> SheetPropertiesHttpRequest: ...
 
@@ -46,7 +46,7 @@ class SheetsResource(googleapiclient.discovery.Resource):
                 *,
                 spreadsheetId: str,
                 range: str,
-                body: ValueRange = ...,
+                body: ValueRange,
                 includeValuesInResponse: bool | None = ...,
                 insertDataOption: typing_extensions.Literal["OVERWRITE", "INSERT_ROWS"]
                 | None = ...,
@@ -68,14 +68,14 @@ class SheetsResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 spreadsheetId: str,
-                body: BatchClearValuesRequest = ...,
+                body: BatchClearValuesRequest,
                 **kwargs: typing.Any,
             ) -> BatchClearValuesResponseHttpRequest: ...
             def batchClearByDataFilter(
                 self,
                 *,
                 spreadsheetId: str,
-                body: BatchClearValuesByDataFilterRequest = ...,
+                body: BatchClearValuesByDataFilterRequest,
                 **kwargs: typing.Any,
             ) -> BatchClearValuesByDataFilterResponseHttpRequest: ...
             def batchGet(
@@ -101,21 +101,21 @@ class SheetsResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 spreadsheetId: str,
-                body: BatchGetValuesByDataFilterRequest = ...,
+                body: BatchGetValuesByDataFilterRequest,
                 **kwargs: typing.Any,
             ) -> BatchGetValuesByDataFilterResponseHttpRequest: ...
             def batchUpdate(
                 self,
                 *,
                 spreadsheetId: str,
-                body: BatchUpdateValuesRequest = ...,
+                body: BatchUpdateValuesRequest,
                 **kwargs: typing.Any,
             ) -> BatchUpdateValuesResponseHttpRequest: ...
             def batchUpdateByDataFilter(
                 self,
                 *,
                 spreadsheetId: str,
-                body: BatchUpdateValuesByDataFilterRequest = ...,
+                body: BatchUpdateValuesByDataFilterRequest,
                 **kwargs: typing.Any,
             ) -> BatchUpdateValuesByDataFilterResponseHttpRequest: ...
             def clear(
@@ -123,7 +123,7 @@ class SheetsResource(googleapiclient.discovery.Resource):
                 *,
                 spreadsheetId: str,
                 range: str,
-                body: ClearValuesRequest = ...,
+                body: ClearValuesRequest,
                 **kwargs: typing.Any,
             ) -> ClearValuesResponseHttpRequest: ...
             def get(
@@ -150,7 +150,7 @@ class SheetsResource(googleapiclient.discovery.Resource):
                 *,
                 spreadsheetId: str,
                 range: str,
-                body: ValueRange = ...,
+                body: ValueRange,
                 includeValuesInResponse: bool | None = ...,
                 responseDateTimeRenderOption: typing_extensions.Literal[
                     "SERIAL_NUMBER", "FORMATTED_STRING"
@@ -171,11 +171,11 @@ class SheetsResource(googleapiclient.discovery.Resource):
             self,
             *,
             spreadsheetId: str,
-            body: BatchUpdateSpreadsheetRequest = ...,
+            body: BatchUpdateSpreadsheetRequest,
             **kwargs: typing.Any,
         ) -> BatchUpdateSpreadsheetResponseHttpRequest: ...
         def create(
-            self, *, body: Spreadsheet = ..., **kwargs: typing.Any
+            self, *, body: Spreadsheet, **kwargs: typing.Any
         ) -> SpreadsheetHttpRequest: ...
         def get(
             self,
@@ -190,7 +190,7 @@ class SheetsResource(googleapiclient.discovery.Resource):
             self,
             *,
             spreadsheetId: str,
-            body: GetSpreadsheetByDataFilterRequest = ...,
+            body: GetSpreadsheetByDataFilterRequest,
             **kwargs: typing.Any,
         ) -> SpreadsheetHttpRequest: ...
         def developerMetadata(self) -> DeveloperMetadataResource: ...

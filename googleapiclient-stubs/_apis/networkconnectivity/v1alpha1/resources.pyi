@@ -25,7 +25,7 @@ class NetworkconnectivityResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: Hub = ...,
+                        body: Hub,
                         hubId: str | None = ...,
                         requestId: str | None = ...,
                         **kwargs: typing.Any,
@@ -66,7 +66,7 @@ class NetworkconnectivityResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: Hub = ...,
+                        body: Hub,
                         requestId: str | None = ...,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
@@ -75,14 +75,14 @@ class NetworkconnectivityResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         resource: str,
-                        body: SetIamPolicyRequest = ...,
+                        body: SetIamPolicyRequest,
                         **kwargs: typing.Any,
                     ) -> PolicyHttpRequest: ...
                     def testIamPermissions(
                         self,
                         *,
                         resource: str,
-                        body: TestIamPermissionsRequest = ...,
+                        body: TestIamPermissionsRequest,
                         **kwargs: typing.Any,
                     ) -> TestIamPermissionsResponseHttpRequest: ...
 
@@ -94,7 +94,7 @@ class NetworkconnectivityResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: InternalRange = ...,
+                    body: InternalRange,
                     internalRangeId: str | None = ...,
                     requestId: str | None = ...,
                     **kwargs: typing.Any,
@@ -135,7 +135,7 @@ class NetworkconnectivityResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: InternalRange = ...,
+                    body: InternalRange,
                     requestId: str | None = ...,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
@@ -144,14 +144,14 @@ class NetworkconnectivityResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: SetIamPolicyRequest = ...,
+                    body: SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: TestIamPermissionsRequest = ...,
+                    body: TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
 
@@ -161,7 +161,7 @@ class NetworkconnectivityResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleLongrunningCancelOperationRequest = ...,
+                    body: GoogleLongrunningCancelOperationRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def delete(
@@ -192,7 +192,7 @@ class NetworkconnectivityResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: Spoke = ...,
+                    body: Spoke,
                     requestId: str | None = ...,
                     spokeId: str | None = ...,
                     **kwargs: typing.Any,
@@ -233,7 +233,7 @@ class NetworkconnectivityResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: Spoke = ...,
+                    body: Spoke,
                     requestId: str | None = ...,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
@@ -242,14 +242,14 @@ class NetworkconnectivityResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: SetIamPolicyRequest = ...,
+                    body: SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: TestIamPermissionsRequest = ...,
+                    body: TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
 

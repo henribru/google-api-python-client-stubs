@@ -22,16 +22,16 @@ class HomeGraphServiceResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class DevicesResource(googleapiclient.discovery.Resource):
         def query(
-            self, *, body: QueryRequest = ..., **kwargs: typing.Any
+            self, *, body: QueryRequest, **kwargs: typing.Any
         ) -> QueryResponseHttpRequest: ...
         def reportStateAndNotification(
-            self, *, body: ReportStateAndNotificationRequest = ..., **kwargs: typing.Any
+            self, *, body: ReportStateAndNotificationRequest, **kwargs: typing.Any
         ) -> ReportStateAndNotificationResponseHttpRequest: ...
         def requestSync(
-            self, *, body: RequestSyncDevicesRequest = ..., **kwargs: typing.Any
+            self, *, body: RequestSyncDevicesRequest, **kwargs: typing.Any
         ) -> RequestSyncDevicesResponseHttpRequest: ...
         def sync(
-            self, *, body: SyncRequest = ..., **kwargs: typing.Any
+            self, *, body: SyncRequest, **kwargs: typing.Any
         ) -> SyncResponseHttpRequest: ...
 
     def new_batch_http_request(

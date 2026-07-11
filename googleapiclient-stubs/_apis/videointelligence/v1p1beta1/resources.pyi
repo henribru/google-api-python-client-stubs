@@ -18,7 +18,7 @@ class CloudVideoIntelligenceResource(googleapiclient.discovery.Resource):
         def annotate(
             self,
             *,
-            body: GoogleCloudVideointelligenceV1p1beta1_AnnotateVideoRequest = ...,
+            body: GoogleCloudVideointelligenceV1p1beta1_AnnotateVideoRequest,
             **kwargs: typing.Any,
         ) -> GoogleLongrunning_OperationHttpRequest: ...
 

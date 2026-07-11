@@ -91,7 +91,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             region: str,
-            body: Address = ...,
+            body: Address,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -118,7 +118,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             address: str,
-            body: RegionAddressesMoveRequest = ...,
+            body: RegionAddressesMoveRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -128,7 +128,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             resource: str,
-            body: RegionSetLabelsRequest = ...,
+            body: RegionSetLabelsRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -138,7 +138,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             resource: str,
-            body: TestPermissionsRequest = ...,
+            body: TestPermissionsRequest,
             **kwargs: typing.Any,
         ) -> TestPermissionsResponseHttpRequest: ...
 
@@ -149,7 +149,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             region: str,
-            body: CalendarModeAdviceRequest = ...,
+            body: CalendarModeAdviceRequest,
             **kwargs: typing.Any,
         ) -> CalendarModeAdviceResponseHttpRequest: ...
 
@@ -190,7 +190,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             zone: str,
-            body: Autoscaler = ...,
+            body: Autoscaler,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -216,7 +216,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             zone: str,
-            body: Autoscaler = ...,
+            body: Autoscaler,
             autoscaler: str | None = ...,
             requestId: str | None = ...,
             **kwargs: typing.Any,
@@ -227,7 +227,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             resource: str,
-            body: TestPermissionsRequest = ...,
+            body: TestPermissionsRequest,
             **kwargs: typing.Any,
         ) -> TestPermissionsResponseHttpRequest: ...
         def update(
@@ -235,7 +235,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             zone: str,
-            body: Autoscaler = ...,
+            body: Autoscaler,
             autoscaler: str | None = ...,
             requestId: str | None = ...,
             **kwargs: typing.Any,
@@ -248,7 +248,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             backendBucket: str,
-            body: SignedUrlKey = ...,
+            body: SignedUrlKey,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -302,7 +302,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             self,
             *,
             project: str,
-            body: BackendBucket = ...,
+            body: BackendBucket,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -343,7 +343,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             backendBucket: str,
-            body: BackendBucket = ...,
+            body: BackendBucket,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -352,7 +352,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             backendBucket: str,
-            body: SecurityPolicyReference = ...,
+            body: SecurityPolicyReference,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -361,7 +361,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             resource: str,
-            body: GlobalSetPolicyRequest = ...,
+            body: GlobalSetPolicyRequest,
             **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
         def testIamPermissions(
@@ -369,7 +369,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             resource: str,
-            body: TestPermissionsRequest = ...,
+            body: TestPermissionsRequest,
             **kwargs: typing.Any,
         ) -> TestPermissionsResponseHttpRequest: ...
         def update(
@@ -377,7 +377,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             backendBucket: str,
-            body: BackendBucket = ...,
+            body: BackendBucket,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -389,7 +389,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             backendService: str,
-            body: SignedUrlKey = ...,
+            body: SignedUrlKey,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -439,7 +439,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             backendService: str,
-            body: ResourceGroupReference = ...,
+            body: ResourceGroupReference,
             **kwargs: typing.Any,
         ) -> BackendServiceGroupHealthHttpRequest: ...
         def getIamPolicy(
@@ -454,7 +454,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             self,
             *,
             project: str,
-            body: BackendService = ...,
+            body: BackendService,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -495,7 +495,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             backendService: str,
-            body: BackendService = ...,
+            body: BackendService,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -504,7 +504,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             backendService: str,
-            body: SecurityPolicyReference = ...,
+            body: SecurityPolicyReference,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -513,7 +513,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             resource: str,
-            body: GlobalSetPolicyRequest = ...,
+            body: GlobalSetPolicyRequest,
             **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
         def setSecurityPolicy(
@@ -521,7 +521,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             backendService: str,
-            body: SecurityPolicyReference = ...,
+            body: SecurityPolicyReference,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -530,7 +530,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             resource: str,
-            body: TestPermissionsRequest = ...,
+            body: TestPermissionsRequest,
             **kwargs: typing.Any,
         ) -> TestPermissionsResponseHttpRequest: ...
         def update(
@@ -538,7 +538,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             backendService: str,
-            body: BackendService = ...,
+            body: BackendService,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -560,7 +560,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             self,
             *,
             project: str,
-            body: CrossSiteNetwork = ...,
+            body: CrossSiteNetwork,
             requestId: str | None = ...,
             validateOnly: bool | None = ...,
             **kwargs: typing.Any,
@@ -586,7 +586,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             crossSiteNetwork: str,
-            body: CrossSiteNetwork = ...,
+            body: CrossSiteNetwork,
             requestId: str | None = ...,
             updateMask: str | None = ...,
             validateOnly: bool | None = ...,
@@ -642,7 +642,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             disk: str,
-            body: DisksAddResourcePoliciesRequest = ...,
+            body: DisksAddResourcePoliciesRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -669,7 +669,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             zone: str,
-            body: BulkInsertDiskResource = ...,
+            body: BulkInsertDiskResource,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -678,7 +678,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             zone: str,
-            body: BulkZoneSetLabelsRequest = ...,
+            body: BulkZoneSetLabelsRequest,
             requestId: str | None = ...,
             resource: str | None = ...,
             **kwargs: typing.Any,
@@ -689,7 +689,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             disk: str,
-            body: Snapshot = ...,
+            body: Snapshot,
             guestFlush: bool | None = ...,
             requestId: str | None = ...,
             **kwargs: typing.Any,
@@ -720,7 +720,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             zone: str,
-            body: Disk = ...,
+            body: Disk,
             requestId: str | None = ...,
             sourceImage: str | None = ...,
             **kwargs: typing.Any,
@@ -746,7 +746,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             disk: str,
-            body: DisksRemoveResourcePoliciesRequest = ...,
+            body: DisksRemoveResourcePoliciesRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -756,7 +756,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             disk: str,
-            body: DisksResizeRequest = ...,
+            body: DisksResizeRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -766,7 +766,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             resource: str,
-            body: ZoneSetPolicyRequest = ...,
+            body: ZoneSetPolicyRequest,
             **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
         def setLabels(
@@ -775,7 +775,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             resource: str,
-            body: ZoneSetLabelsRequest = ...,
+            body: ZoneSetLabelsRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -785,7 +785,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             disk: str,
-            body: DisksStartAsyncReplicationRequest = ...,
+            body: DisksStartAsyncReplicationRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -803,7 +803,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             zone: str,
-            body: DisksStopGroupAsyncReplicationResource = ...,
+            body: DisksStopGroupAsyncReplicationResource,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -813,7 +813,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             resource: str,
-            body: TestPermissionsRequest = ...,
+            body: TestPermissionsRequest,
             **kwargs: typing.Any,
         ) -> TestPermissionsResponseHttpRequest: ...
         def update(
@@ -822,7 +822,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             disk: str,
-            body: Disk = ...,
+            body: Disk,
             paths: str | _list[str] | None = ...,
             requestId: str | None = ...,
             updateMask: str | None = ...,
@@ -834,7 +834,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             disk: str,
-            body: DiskUpdateKmsKeyRequest = ...,
+            body: DiskUpdateKmsKeyRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -856,7 +856,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             self,
             *,
             project: str,
-            body: ExternalVpnGateway = ...,
+            body: ExternalVpnGateway,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -881,7 +881,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             resource: str,
-            body: GlobalSetLabelsRequest = ...,
+            body: GlobalSetLabelsRequest,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def testIamPermissions(
@@ -889,7 +889,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             resource: str,
-            body: TestPermissionsRequest = ...,
+            body: TestPermissionsRequest,
             **kwargs: typing.Any,
         ) -> TestPermissionsResponseHttpRequest: ...
 
@@ -899,7 +899,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             self,
             *,
             firewallPolicy: str,
-            body: FirewallPolicyAssociation = ...,
+            body: FirewallPolicyAssociation,
             replaceExistingAssociation: bool | None = ...,
             requestId: str | None = ...,
             **kwargs: typing.Any,
@@ -908,7 +908,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             self,
             *,
             firewallPolicy: str,
-            body: FirewallPolicyRule = ...,
+            body: FirewallPolicyRule,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -950,7 +950,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
         def insert(
             self,
             *,
-            body: FirewallPolicy = ...,
+            body: FirewallPolicy,
             parentId: str | None = ...,
             requestId: str | None = ...,
             **kwargs: typing.Any,
@@ -990,7 +990,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             self,
             *,
             firewallPolicy: str,
-            body: FirewallPolicy = ...,
+            body: FirewallPolicy,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -998,7 +998,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             self,
             *,
             firewallPolicy: str,
-            body: FirewallPolicyRule = ...,
+            body: FirewallPolicyRule,
             priority: int | None = ...,
             requestId: str | None = ...,
             **kwargs: typing.Any,
@@ -1023,15 +1023,11 @@ class ComputeResource(googleapiclient.discovery.Resource):
             self,
             *,
             resource: str,
-            body: GlobalOrganizationSetPolicyRequest = ...,
+            body: GlobalOrganizationSetPolicyRequest,
             **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
         def testIamPermissions(
-            self,
-            *,
-            resource: str,
-            body: TestPermissionsRequest = ...,
-            **kwargs: typing.Any,
+            self, *, resource: str, body: TestPermissionsRequest, **kwargs: typing.Any
         ) -> TestPermissionsResponseHttpRequest: ...
 
     @typing.type_check_only
@@ -1051,7 +1047,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             self,
             *,
             project: str,
-            body: Firewall = ...,
+            body: Firewall,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -1076,7 +1072,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             firewall: str,
-            body: Firewall = ...,
+            body: Firewall,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -1085,7 +1081,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             resource: str,
-            body: TestPermissionsRequest = ...,
+            body: TestPermissionsRequest,
             **kwargs: typing.Any,
         ) -> TestPermissionsResponseHttpRequest: ...
         def update(
@@ -1093,7 +1089,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             firewall: str,
-            body: Firewall = ...,
+            body: Firewall,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -1141,7 +1137,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             region: str,
-            body: ForwardingRule = ...,
+            body: ForwardingRule,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -1168,7 +1164,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             forwardingRule: str,
-            body: ForwardingRule = ...,
+            body: ForwardingRule,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -1178,7 +1174,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             resource: str,
-            body: RegionSetLabelsRequest = ...,
+            body: RegionSetLabelsRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -1188,7 +1184,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             forwardingRule: str,
-            body: TargetReference = ...,
+            body: TargetReference,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -1244,7 +1240,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             zone: str,
-            body: FutureReservation = ...,
+            body: FutureReservation,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -1271,7 +1267,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             futureReservation: str,
-            body: FutureReservation = ...,
+            body: FutureReservation,
             requestId: str | None = ...,
             updateMask: str | None = ...,
             **kwargs: typing.Any,
@@ -1294,7 +1290,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             self,
             *,
             project: str,
-            body: Address = ...,
+            body: Address,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -1319,7 +1315,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             address: str,
-            body: GlobalAddressesMoveRequest = ...,
+            body: GlobalAddressesMoveRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -1328,7 +1324,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             resource: str,
-            body: GlobalSetLabelsRequest = ...,
+            body: GlobalSetLabelsRequest,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def testIamPermissions(
@@ -1336,7 +1332,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             resource: str,
-            body: TestPermissionsRequest = ...,
+            body: TestPermissionsRequest,
             **kwargs: typing.Any,
         ) -> TestPermissionsResponseHttpRequest: ...
 
@@ -1362,7 +1358,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             self,
             *,
             project: str,
-            body: ForwardingRule = ...,
+            body: ForwardingRule,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -1387,7 +1383,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             forwardingRule: str,
-            body: ForwardingRule = ...,
+            body: ForwardingRule,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -1396,7 +1392,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             resource: str,
-            body: GlobalSetLabelsRequest = ...,
+            body: GlobalSetLabelsRequest,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def setTarget(
@@ -1404,7 +1400,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             forwardingRule: str,
-            body: TargetReference = ...,
+            body: TargetReference,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -1416,7 +1412,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             networkEndpointGroup: str,
-            body: GlobalNetworkEndpointGroupsAttachEndpointsRequest = ...,
+            body: GlobalNetworkEndpointGroupsAttachEndpointsRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -1433,7 +1429,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             networkEndpointGroup: str,
-            body: GlobalNetworkEndpointGroupsDetachEndpointsRequest = ...,
+            body: GlobalNetworkEndpointGroupsDetachEndpointsRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -1444,7 +1440,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             self,
             *,
             project: str,
-            body: NetworkEndpointGroup = ...,
+            body: NetworkEndpointGroup,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -1570,7 +1566,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             self,
             *,
             project: str,
-            body: PublicDelegatedPrefix = ...,
+            body: PublicDelegatedPrefix,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -1595,7 +1591,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             publicDelegatedPrefix: str,
-            body: PublicDelegatedPrefix = ...,
+            body: PublicDelegatedPrefix,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -1625,7 +1621,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             globalVmExtensionPolicy: str,
-            body: GlobalVmExtensionPolicyRolloutOperationRolloutInput = ...,
+            body: GlobalVmExtensionPolicyRolloutOperationRolloutInput,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -1636,7 +1632,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             self,
             *,
             project: str,
-            body: GlobalVmExtensionPolicy = ...,
+            body: GlobalVmExtensionPolicy,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -1661,7 +1657,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             globalVmExtensionPolicy: str,
-            body: GlobalVmExtensionPolicy = ...,
+            body: GlobalVmExtensionPolicy,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -1701,7 +1697,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             self,
             *,
             project: str,
-            body: HealthCheck = ...,
+            body: HealthCheck,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -1726,7 +1722,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             healthCheck: str,
-            body: HealthCheck = ...,
+            body: HealthCheck,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -1735,7 +1731,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             resource: str,
-            body: TestPermissionsRequest = ...,
+            body: TestPermissionsRequest,
             **kwargs: typing.Any,
         ) -> TestPermissionsResponseHttpRequest: ...
         def update(
@@ -1743,7 +1739,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             healthCheck: str,
-            body: HealthCheck = ...,
+            body: HealthCheck,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -1765,7 +1761,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             self,
             *,
             project: str,
-            body: HttpHealthCheck = ...,
+            body: HttpHealthCheck,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -1790,7 +1786,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             httpHealthCheck: str,
-            body: HttpHealthCheck = ...,
+            body: HttpHealthCheck,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -1799,7 +1795,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             resource: str,
-            body: TestPermissionsRequest = ...,
+            body: TestPermissionsRequest,
             **kwargs: typing.Any,
         ) -> TestPermissionsResponseHttpRequest: ...
         def update(
@@ -1807,7 +1803,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             httpHealthCheck: str,
-            body: HttpHealthCheck = ...,
+            body: HttpHealthCheck,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -1829,7 +1825,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             self,
             *,
             project: str,
-            body: HttpsHealthCheck = ...,
+            body: HttpsHealthCheck,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -1854,7 +1850,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             httpsHealthCheck: str,
-            body: HttpsHealthCheck = ...,
+            body: HttpsHealthCheck,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -1863,7 +1859,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             resource: str,
-            body: TestPermissionsRequest = ...,
+            body: TestPermissionsRequest,
             **kwargs: typing.Any,
         ) -> TestPermissionsResponseHttpRequest: ...
         def update(
@@ -1871,7 +1867,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             httpsHealthCheck: str,
-            body: HttpsHealthCheck = ...,
+            body: HttpsHealthCheck,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -1897,7 +1893,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             image: str,
-            body: DeprecationStatus = ...,
+            body: DeprecationStatus,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -1919,7 +1915,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             self,
             *,
             project: str,
-            body: Image = ...,
+            body: Image,
             forceCreate: bool | None = ...,
             requestId: str | None = ...,
             **kwargs: typing.Any,
@@ -1943,7 +1939,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             image: str,
-            body: Image = ...,
+            body: Image,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -1952,7 +1948,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             resource: str,
-            body: GlobalSetPolicyRequest = ...,
+            body: GlobalSetPolicyRequest,
             **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
         def setLabels(
@@ -1960,7 +1956,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             resource: str,
-            body: GlobalSetLabelsRequest = ...,
+            body: GlobalSetLabelsRequest,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def testIamPermissions(
@@ -1968,7 +1964,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             resource: str,
-            body: TestPermissionsRequest = ...,
+            body: TestPermissionsRequest,
             **kwargs: typing.Any,
         ) -> TestPermissionsResponseHttpRequest: ...
 
@@ -2011,7 +2007,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             instanceGroupManager: str,
-            body: InstanceGroupManagerResizeRequest = ...,
+            body: InstanceGroupManagerResizeRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -2042,7 +2038,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             instanceGroupManager: str,
-            body: InstanceGroupManagersAbandonInstancesRequest = ...,
+            body: InstanceGroupManagersAbandonInstancesRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -2070,7 +2066,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             instanceGroupManager: str,
-            body: InstanceGroupManagersApplyUpdatesRequest = ...,
+            body: InstanceGroupManagersApplyUpdatesRequest,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def createInstances(
@@ -2079,7 +2075,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             instanceGroupManager: str,
-            body: InstanceGroupManagersCreateInstancesRequest = ...,
+            body: InstanceGroupManagersCreateInstancesRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -2098,7 +2094,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             instanceGroupManager: str,
-            body: InstanceGroupManagersDeleteInstancesRequest = ...,
+            body: InstanceGroupManagersDeleteInstancesRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -2108,7 +2104,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             instanceGroupManager: str,
-            body: InstanceGroupManagersDeletePerInstanceConfigsReq = ...,
+            body: InstanceGroupManagersDeletePerInstanceConfigsReq,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def get(
@@ -2124,7 +2120,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             zone: str,
-            body: InstanceGroupManager = ...,
+            body: InstanceGroupManager,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -2205,7 +2201,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             instanceGroupManager: str,
-            body: InstanceGroupManager = ...,
+            body: InstanceGroupManager,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -2215,7 +2211,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             instanceGroupManager: str,
-            body: InstanceGroupManagersPatchPerInstanceConfigsReq = ...,
+            body: InstanceGroupManagersPatchPerInstanceConfigsReq,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -2225,7 +2221,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             instanceGroupManager: str,
-            body: InstanceGroupManagersRecreateInstancesRequest = ...,
+            body: InstanceGroupManagersRecreateInstancesRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -2245,7 +2241,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             instanceGroupManager: str,
-            body: InstanceGroupManagersResumeInstancesRequest = ...,
+            body: InstanceGroupManagersResumeInstancesRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -2255,7 +2251,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             instanceGroupManager: str,
-            body: InstanceGroupManagersSetInstanceTemplateRequest = ...,
+            body: InstanceGroupManagersSetInstanceTemplateRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -2265,7 +2261,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             instanceGroupManager: str,
-            body: InstanceGroupManagersSetTargetPoolsRequest = ...,
+            body: InstanceGroupManagersSetTargetPoolsRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -2275,7 +2271,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             instanceGroupManager: str,
-            body: InstanceGroupManagersStartInstancesRequest = ...,
+            body: InstanceGroupManagersStartInstancesRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -2285,7 +2281,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             instanceGroupManager: str,
-            body: InstanceGroupManagersStopInstancesRequest = ...,
+            body: InstanceGroupManagersStopInstancesRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -2295,7 +2291,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             instanceGroupManager: str,
-            body: InstanceGroupManagersSuspendInstancesRequest = ...,
+            body: InstanceGroupManagersSuspendInstancesRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -2305,7 +2301,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             instanceGroupManager: str,
-            body: InstanceGroupManagersUpdatePerInstanceConfigsReq = ...,
+            body: InstanceGroupManagersUpdatePerInstanceConfigsReq,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -2318,7 +2314,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             instanceGroup: str,
-            body: InstanceGroupsAddInstancesRequest = ...,
+            body: InstanceGroupsAddInstancesRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -2357,7 +2353,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             zone: str,
-            body: InstanceGroup = ...,
+            body: InstanceGroup,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -2384,7 +2380,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             instanceGroup: str,
-            body: InstanceGroupsListInstancesRequest = ...,
+            body: InstanceGroupsListInstancesRequest,
             filter: str | None = ...,
             maxResults: int | None = ...,
             orderBy: str | None = ...,
@@ -2403,7 +2399,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             instanceGroup: str,
-            body: InstanceGroupsRemoveInstancesRequest = ...,
+            body: InstanceGroupsRemoveInstancesRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -2413,7 +2409,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             instanceGroup: str,
-            body: InstanceGroupsSetNamedPortsRequest = ...,
+            body: InstanceGroupsSetNamedPortsRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -2423,7 +2419,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             resource: str,
-            body: TestPermissionsRequest = ...,
+            body: TestPermissionsRequest,
             **kwargs: typing.Any,
         ) -> TestPermissionsResponseHttpRequest: ...
 
@@ -2437,7 +2433,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             zone: str,
-            body: InstanceSettings = ...,
+            body: InstanceSettings,
             requestId: str | None = ...,
             updateMask: str | None = ...,
             **kwargs: typing.Any,
@@ -2486,7 +2482,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             self,
             *,
             project: str,
-            body: InstanceTemplate = ...,
+            body: InstanceTemplate,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -2511,7 +2507,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             resource: str,
-            body: GlobalSetPolicyRequest = ...,
+            body: GlobalSetPolicyRequest,
             **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
         def testIamPermissions(
@@ -2519,7 +2515,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             resource: str,
-            body: TestPermissionsRequest = ...,
+            body: TestPermissionsRequest,
             **kwargs: typing.Any,
         ) -> TestPermissionsResponseHttpRequest: ...
 
@@ -2532,7 +2528,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             zone: str,
             instance: str,
             networkInterface: str,
-            body: AccessConfig = ...,
+            body: AccessConfig,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -2542,7 +2538,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             instance: str,
-            body: NetworkInterface = ...,
+            body: NetworkInterface,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -2552,7 +2548,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             instance: str,
-            body: InstancesAddResourcePoliciesRequest = ...,
+            body: InstancesAddResourcePoliciesRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -2580,7 +2576,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             instance: str,
-            body: AttachedDisk = ...,
+            body: AttachedDisk,
             forceAttach: bool | None = ...,
             requestId: str | None = ...,
             **kwargs: typing.Any,
@@ -2590,7 +2586,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             zone: str,
-            body: BulkInsertInstanceResource = ...,
+            body: BulkInsertInstanceResource,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -2686,7 +2682,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             zone: str,
-            body: Instance = ...,
+            body: Instance,
             requestId: str | None = ...,
             sourceInstanceTemplate: str | None = ...,
             sourceMachineImage: str | None = ...,
@@ -2742,7 +2738,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             instance: str,
-            body: InstancesRemoveResourcePoliciesRequest = ...,
+            body: InstancesRemoveResourcePoliciesRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -2752,7 +2748,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             instance: str,
-            body: InstancesReportHostAsFaultyRequest = ...,
+            body: InstancesReportHostAsFaultyRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -2804,7 +2800,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             resource: str,
-            body: ZoneSetPolicyRequest = ...,
+            body: ZoneSetPolicyRequest,
             **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
         def setLabels(
@@ -2813,7 +2809,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             instance: str,
-            body: InstancesSetLabelsRequest = ...,
+            body: InstancesSetLabelsRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -2823,7 +2819,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             instance: str,
-            body: InstancesSetMachineResourcesRequest = ...,
+            body: InstancesSetMachineResourcesRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -2833,7 +2829,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             instance: str,
-            body: InstancesSetMachineTypeRequest = ...,
+            body: InstancesSetMachineTypeRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -2843,7 +2839,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             instance: str,
-            body: Metadata = ...,
+            body: Metadata,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -2853,7 +2849,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             instance: str,
-            body: InstancesSetMinCpuPlatformRequest = ...,
+            body: InstancesSetMinCpuPlatformRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -2863,7 +2859,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             instance: str,
-            body: InstancesSetNameRequest = ...,
+            body: InstancesSetNameRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -2873,7 +2869,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             instance: str,
-            body: Scheduling = ...,
+            body: Scheduling,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -2883,7 +2879,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             instance: str,
-            body: InstancesSetSecurityPolicyRequest = ...,
+            body: InstancesSetSecurityPolicyRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -2893,7 +2889,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             instance: str,
-            body: InstancesSetServiceAccountRequest = ...,
+            body: InstancesSetServiceAccountRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -2903,7 +2899,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             instance: str,
-            body: ShieldedInstanceIntegrityPolicy = ...,
+            body: ShieldedInstanceIntegrityPolicy,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -2913,7 +2909,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             instance: str,
-            body: Tags = ...,
+            body: Tags,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -2942,7 +2938,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             instance: str,
-            body: InstancesStartWithEncryptionKeyRequest = ...,
+            body: InstancesStartWithEncryptionKeyRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -2972,7 +2968,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             resource: str,
-            body: TestPermissionsRequest = ...,
+            body: TestPermissionsRequest,
             **kwargs: typing.Any,
         ) -> TestPermissionsResponseHttpRequest: ...
         def update(
@@ -2981,7 +2977,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             instance: str,
-            body: Instance = ...,
+            body: Instance,
             discardLocalSsd: bool | None = ...,
             minimalAction: typing_extensions.Literal[
                 "INVALID", "NO_EFFECT", "REFRESH", "RESTART"
@@ -3001,7 +2997,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             zone: str,
             instance: str,
             networkInterface: str,
-            body: AccessConfig = ...,
+            body: AccessConfig,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -3011,7 +3007,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             instance: str,
-            body: DisplayDevice = ...,
+            body: DisplayDevice,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -3022,7 +3018,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             zone: str,
             instance: str,
             networkInterface: str,
-            body: NetworkInterface = ...,
+            body: NetworkInterface,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -3032,7 +3028,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             instance: str,
-            body: ShieldedInstanceConfig = ...,
+            body: ShieldedInstanceConfig,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -3070,7 +3066,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             zone: str,
-            body: InstantSnapshotGroup = ...,
+            body: InstantSnapshotGroup,
             requestId: str | None = ...,
             sourceConsistencyGroup: str | None = ...,
             **kwargs: typing.Any,
@@ -3098,7 +3094,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             resource: str,
-            body: ZoneSetPolicyRequest = ...,
+            body: ZoneSetPolicyRequest,
             **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
         def testIamPermissions(
@@ -3107,7 +3103,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             resource: str,
-            body: TestPermissionsRequest = ...,
+            body: TestPermissionsRequest,
             **kwargs: typing.Any,
         ) -> TestPermissionsResponseHttpRequest: ...
 
@@ -3157,7 +3153,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             zone: str,
-            body: InstantSnapshot = ...,
+            body: InstantSnapshot,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -3184,7 +3180,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             resource: str,
-            body: ZoneSetPolicyRequest = ...,
+            body: ZoneSetPolicyRequest,
             **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
         def setLabels(
@@ -3193,7 +3189,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             resource: str,
-            body: ZoneSetLabelsRequest = ...,
+            body: ZoneSetLabelsRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -3203,7 +3199,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             resource: str,
-            body: TestPermissionsRequest = ...,
+            body: TestPermissionsRequest,
             **kwargs: typing.Any,
         ) -> TestPermissionsResponseHttpRequest: ...
 
@@ -3243,7 +3239,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             self,
             *,
             project: str,
-            body: InterconnectAttachmentGroup = ...,
+            body: InterconnectAttachmentGroup,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -3268,7 +3264,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             interconnectAttachmentGroup: str,
-            body: InterconnectAttachmentGroup = ...,
+            body: InterconnectAttachmentGroup,
             requestId: str | None = ...,
             updateMask: str | None = ...,
             **kwargs: typing.Any,
@@ -3278,7 +3274,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             resource: str,
-            body: GlobalSetPolicyRequest = ...,
+            body: GlobalSetPolicyRequest,
             **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
         def testIamPermissions(
@@ -3286,7 +3282,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             resource: str,
-            body: TestPermissionsRequest = ...,
+            body: TestPermissionsRequest,
             **kwargs: typing.Any,
         ) -> TestPermissionsResponseHttpRequest: ...
 
@@ -3332,7 +3328,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             region: str,
-            body: InterconnectAttachment = ...,
+            body: InterconnectAttachment,
             requestId: str | None = ...,
             validateOnly: bool | None = ...,
             **kwargs: typing.Any,
@@ -3360,7 +3356,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             interconnectAttachment: str,
-            body: InterconnectAttachment = ...,
+            body: InterconnectAttachment,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -3370,7 +3366,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             resource: str,
-            body: RegionSetLabelsRequest = ...,
+            body: RegionSetLabelsRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -3382,7 +3378,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             interconnectGroup: str,
-            body: InterconnectGroupsCreateMembersRequest = ...,
+            body: InterconnectGroupsCreateMembersRequest,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def delete(
@@ -3411,7 +3407,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             self,
             *,
             project: str,
-            body: InterconnectGroup = ...,
+            body: InterconnectGroup,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -3436,7 +3432,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             interconnectGroup: str,
-            body: InterconnectGroup = ...,
+            body: InterconnectGroup,
             requestId: str | None = ...,
             updateMask: str | None = ...,
             **kwargs: typing.Any,
@@ -3446,7 +3442,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             resource: str,
-            body: GlobalSetPolicyRequest = ...,
+            body: GlobalSetPolicyRequest,
             **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
         def testIamPermissions(
@@ -3454,7 +3450,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             resource: str,
-            body: TestPermissionsRequest = ...,
+            body: TestPermissionsRequest,
             **kwargs: typing.Any,
         ) -> TestPermissionsResponseHttpRequest: ...
 
@@ -3525,7 +3521,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             self,
             *,
             project: str,
-            body: Interconnect = ...,
+            body: Interconnect,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -3550,7 +3546,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             interconnect: str,
-            body: Interconnect = ...,
+            body: Interconnect,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -3559,7 +3555,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             resource: str,
-            body: GlobalSetLabelsRequest = ...,
+            body: GlobalSetLabelsRequest,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
 
@@ -3581,7 +3577,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             resource: str,
-            body: GlobalSetPolicyRequest = ...,
+            body: GlobalSetPolicyRequest,
             **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
         def testIamPermissions(
@@ -3589,7 +3585,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             resource: str,
-            body: TestPermissionsRequest = ...,
+            body: TestPermissionsRequest,
             **kwargs: typing.Any,
         ) -> TestPermissionsResponseHttpRequest: ...
 
@@ -3618,7 +3614,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             self,
             *,
             project: str,
-            body: License = ...,
+            body: License,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -3643,7 +3639,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             resource: str,
-            body: GlobalSetPolicyRequest = ...,
+            body: GlobalSetPolicyRequest,
             **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
         def testIamPermissions(
@@ -3651,7 +3647,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             resource: str,
-            body: TestPermissionsRequest = ...,
+            body: TestPermissionsRequest,
             **kwargs: typing.Any,
         ) -> TestPermissionsResponseHttpRequest: ...
         def update(
@@ -3659,7 +3655,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             license: str,
-            body: License = ...,
+            body: License,
             requestId: str | None = ...,
             updateMask: str | None = ...,
             **kwargs: typing.Any,
@@ -3690,7 +3686,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             self,
             *,
             project: str,
-            body: MachineImage = ...,
+            body: MachineImage,
             requestId: str | None = ...,
             sourceInstance: str | None = ...,
             **kwargs: typing.Any,
@@ -3716,7 +3712,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             resource: str,
-            body: GlobalSetPolicyRequest = ...,
+            body: GlobalSetPolicyRequest,
             **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
         def setLabels(
@@ -3724,7 +3720,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             resource: str,
-            body: GlobalSetLabelsRequest = ...,
+            body: GlobalSetLabelsRequest,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def testIamPermissions(
@@ -3732,7 +3728,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             resource: str,
-            body: TestPermissionsRequest = ...,
+            body: TestPermissionsRequest,
             **kwargs: typing.Any,
         ) -> TestPermissionsResponseHttpRequest: ...
 
@@ -3828,7 +3824,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             region: str,
-            body: NetworkAttachment = ...,
+            body: NetworkAttachment,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -3855,7 +3851,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             networkAttachment: str,
-            body: NetworkAttachment = ...,
+            body: NetworkAttachment,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -3865,7 +3861,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             resource: str,
-            body: RegionSetPolicyRequest = ...,
+            body: RegionSetPolicyRequest,
             **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
         def testIamPermissions(
@@ -3874,7 +3870,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             resource: str,
-            body: TestPermissionsRequest = ...,
+            body: TestPermissionsRequest,
             **kwargs: typing.Any,
         ) -> TestPermissionsResponseHttpRequest: ...
 
@@ -3920,7 +3916,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             region: str,
-            body: NetworkEdgeSecurityService = ...,
+            body: NetworkEdgeSecurityService,
             requestId: str | None = ...,
             validateOnly: bool | None = ...,
             **kwargs: typing.Any,
@@ -3931,7 +3927,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             networkEdgeSecurityService: str,
-            body: NetworkEdgeSecurityService = ...,
+            body: NetworkEdgeSecurityService,
             paths: str | _list[str] | None = ...,
             requestId: str | None = ...,
             updateMask: str | None = ...,
@@ -3964,7 +3960,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             networkEndpointGroup: str,
-            body: NetworkEndpointGroupsAttachEndpointsRequest = ...,
+            body: NetworkEndpointGroupsAttachEndpointsRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -3983,7 +3979,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             networkEndpointGroup: str,
-            body: NetworkEndpointGroupsDetachEndpointsRequest = ...,
+            body: NetworkEndpointGroupsDetachEndpointsRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -4000,7 +3996,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             zone: str,
-            body: NetworkEndpointGroup = ...,
+            body: NetworkEndpointGroup,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -4027,7 +4023,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             networkEndpointGroup: str,
-            body: NetworkEndpointGroupsListEndpointsRequest = ...,
+            body: NetworkEndpointGroupsListEndpointsRequest,
             filter: str | None = ...,
             maxResults: int | None = ...,
             orderBy: str | None = ...,
@@ -4046,7 +4042,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             resource: str,
-            body: TestPermissionsRequest = ...,
+            body: TestPermissionsRequest,
             **kwargs: typing.Any,
         ) -> TestPermissionsResponseHttpRequest: ...
 
@@ -4057,7 +4053,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             firewallPolicy: str,
-            body: FirewallPolicyAssociation = ...,
+            body: FirewallPolicyAssociation,
             replaceExistingAssociation: bool | None = ...,
             requestId: str | None = ...,
             **kwargs: typing.Any,
@@ -4067,7 +4063,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             firewallPolicy: str,
-            body: FirewallPolicyRule = ...,
+            body: FirewallPolicyRule,
             maxPriority: int | None = ...,
             minPriority: int | None = ...,
             requestId: str | None = ...,
@@ -4078,7 +4074,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             firewallPolicy: str,
-            body: FirewallPolicyRule = ...,
+            body: FirewallPolicyRule,
             maxPriority: int | None = ...,
             minPriority: int | None = ...,
             requestId: str | None = ...,
@@ -4158,7 +4154,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             self,
             *,
             project: str,
-            body: FirewallPolicy = ...,
+            body: FirewallPolicy,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -4183,7 +4179,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             firewallPolicy: str,
-            body: FirewallPolicy = ...,
+            body: FirewallPolicy,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -4192,7 +4188,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             firewallPolicy: str,
-            body: FirewallPolicyRule = ...,
+            body: FirewallPolicyRule,
             priority: int | None = ...,
             requestId: str | None = ...,
             **kwargs: typing.Any,
@@ -4202,7 +4198,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             firewallPolicy: str,
-            body: FirewallPolicyRule = ...,
+            body: FirewallPolicyRule,
             priority: int | None = ...,
             requestId: str | None = ...,
             **kwargs: typing.Any,
@@ -4239,7 +4235,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             resource: str,
-            body: GlobalSetPolicyRequest = ...,
+            body: GlobalSetPolicyRequest,
             **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
         def testIamPermissions(
@@ -4247,7 +4243,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             resource: str,
-            body: TestPermissionsRequest = ...,
+            body: TestPermissionsRequest,
             **kwargs: typing.Any,
         ) -> TestPermissionsResponseHttpRequest: ...
 
@@ -4280,7 +4276,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             network: str,
-            body: NetworksAddPeeringRequest = ...,
+            body: NetworksAddPeeringRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -4289,7 +4285,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             network: str,
-            body: NetworksCancelRequestRemovePeeringRequest = ...,
+            body: NetworksCancelRequestRemovePeeringRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -4311,7 +4307,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             self,
             *,
             project: str,
-            body: Network = ...,
+            body: Network,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -4356,7 +4352,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             network: str,
-            body: Network = ...,
+            body: Network,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -4365,7 +4361,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             network: str,
-            body: NetworksRemovePeeringRequest = ...,
+            body: NetworksRemovePeeringRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -4374,7 +4370,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             network: str,
-            body: NetworksRequestRemovePeeringRequest = ...,
+            body: NetworksRequestRemovePeeringRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -4391,7 +4387,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             network: str,
-            body: NetworksUpdatePeeringRequest = ...,
+            body: NetworksUpdatePeeringRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -4404,7 +4400,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             nodeGroup: str,
-            body: NodeGroupsAddNodesRequest = ...,
+            body: NodeGroupsAddNodesRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -4441,7 +4437,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             nodeGroup: str,
-            body: NodeGroupsDeleteNodesRequest = ...,
+            body: NodeGroupsDeleteNodesRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -4463,7 +4459,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             initialNodeCount: int,
-            body: NodeGroup = ...,
+            body: NodeGroup,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -4508,7 +4504,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             nodeGroup: str,
-            body: NodeGroup = ...,
+            body: NodeGroup,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -4518,7 +4514,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             nodeGroup: str,
-            body: NodeGroupsPerformMaintenanceRequest = ...,
+            body: NodeGroupsPerformMaintenanceRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -4528,7 +4524,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             resource: str,
-            body: ZoneSetPolicyRequest = ...,
+            body: ZoneSetPolicyRequest,
             **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
         def setNodeTemplate(
@@ -4537,7 +4533,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             nodeGroup: str,
-            body: NodeGroupsSetNodeTemplateRequest = ...,
+            body: NodeGroupsSetNodeTemplateRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -4547,7 +4543,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             nodeGroup: str,
-            body: NodeGroupsSimulateMaintenanceEventRequest = ...,
+            body: NodeGroupsSimulateMaintenanceEventRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -4557,7 +4553,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             resource: str,
-            body: TestPermissionsRequest = ...,
+            body: TestPermissionsRequest,
             **kwargs: typing.Any,
         ) -> TestPermissionsResponseHttpRequest: ...
 
@@ -4607,7 +4603,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             region: str,
-            body: NodeTemplate = ...,
+            body: NodeTemplate,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -4634,7 +4630,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             resource: str,
-            body: RegionSetPolicyRequest = ...,
+            body: RegionSetPolicyRequest,
             **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
         def testIamPermissions(
@@ -4643,7 +4639,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             resource: str,
-            body: TestPermissionsRequest = ...,
+            body: TestPermissionsRequest,
             **kwargs: typing.Any,
         ) -> TestPermissionsResponseHttpRequest: ...
 
@@ -4694,7 +4690,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             self,
             *,
             securityPolicy: str,
-            body: SecurityPolicyAssociation = ...,
+            body: SecurityPolicyAssociation,
             replaceExistingAssociation: bool | None = ...,
             requestId: str | None = ...,
             **kwargs: typing.Any,
@@ -4703,7 +4699,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             self,
             *,
             securityPolicy: str,
-            body: SecurityPolicyRule = ...,
+            body: SecurityPolicyRule,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -4738,7 +4734,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
         def insert(
             self,
             *,
-            body: SecurityPolicy = ...,
+            body: SecurityPolicy,
             parentId: str | None = ...,
             requestId: str | None = ...,
             **kwargs: typing.Any,
@@ -4785,7 +4781,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             self,
             *,
             securityPolicy: str,
-            body: SecurityPolicy = ...,
+            body: SecurityPolicy,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -4793,7 +4789,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             self,
             *,
             securityPolicy: str,
-            body: SecurityPolicyRule = ...,
+            body: SecurityPolicyRule,
             priority: int | None = ...,
             requestId: str | None = ...,
             **kwargs: typing.Any,
@@ -4857,7 +4853,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             region: str,
-            body: PacketMirroring = ...,
+            body: PacketMirroring,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -4884,7 +4880,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             packetMirroring: str,
-            body: PacketMirroring = ...,
+            body: PacketMirroring,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -4894,7 +4890,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             resource: str,
-            body: TestPermissionsRequest = ...,
+            body: TestPermissionsRequest,
             **kwargs: typing.Any,
         ) -> TestPermissionsResponseHttpRequest: ...
 
@@ -4924,7 +4920,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             previewFeature: str,
-            body: PreviewFeature = ...,
+            body: PreviewFeature,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -4938,7 +4934,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             self,
             *,
             project: str,
-            body: ProjectsDisableXpnResourceRequest = ...,
+            body: ProjectsDisableXpnResourceRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -4949,7 +4945,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             self,
             *,
             project: str,
-            body: ProjectsEnableXpnResourceRequest = ...,
+            body: ProjectsEnableXpnResourceRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -4977,7 +4973,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             self,
             *,
             project: str,
-            body: ProjectsListXpnHostsRequest = ...,
+            body: ProjectsListXpnHostsRequest,
             filter: str | None = ...,
             maxResults: int | None = ...,
             orderBy: str | None = ...,
@@ -4994,7 +4990,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             self,
             *,
             project: str,
-            body: DiskMoveRequest = ...,
+            body: DiskMoveRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -5002,7 +4998,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             self,
             *,
             project: str,
-            body: InstanceMoveRequest = ...,
+            body: InstanceMoveRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -5010,7 +5006,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             self,
             *,
             project: str,
-            body: ProjectsSetCloudArmorTierRequest = ...,
+            body: ProjectsSetCloudArmorTierRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -5018,7 +5014,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             self,
             *,
             project: str,
-            body: Metadata = ...,
+            body: Metadata,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -5026,7 +5022,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             self,
             *,
             project: str,
-            body: ProjectsSetDefaultNetworkTierRequest = ...,
+            body: ProjectsSetDefaultNetworkTierRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -5034,7 +5030,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             self,
             *,
             project: str,
-            body: UsageExportLocation = ...,
+            body: UsageExportLocation,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -5064,7 +5060,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             self,
             *,
             project: str,
-            body: PublicAdvertisedPrefix = ...,
+            body: PublicAdvertisedPrefix,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -5089,7 +5085,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             publicAdvertisedPrefix: str,
-            body: PublicAdvertisedPrefix = ...,
+            body: PublicAdvertisedPrefix,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -5153,7 +5149,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             region: str,
-            body: PublicDelegatedPrefix = ...,
+            body: PublicDelegatedPrefix,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -5180,7 +5176,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             publicDelegatedPrefix: str,
-            body: PublicDelegatedPrefix = ...,
+            body: PublicDelegatedPrefix,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -5213,7 +5209,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             region: str,
-            body: Autoscaler = ...,
+            body: Autoscaler,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -5239,7 +5235,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             region: str,
-            body: Autoscaler = ...,
+            body: Autoscaler,
             autoscaler: str | None = ...,
             requestId: str | None = ...,
             **kwargs: typing.Any,
@@ -5250,7 +5246,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             resource: str,
-            body: TestPermissionsRequest = ...,
+            body: TestPermissionsRequest,
             **kwargs: typing.Any,
         ) -> TestPermissionsResponseHttpRequest: ...
         def update(
@@ -5258,7 +5254,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             region: str,
-            body: Autoscaler = ...,
+            body: Autoscaler,
             autoscaler: str | None = ...,
             requestId: str | None = ...,
             **kwargs: typing.Any,
@@ -5292,7 +5288,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             region: str,
-            body: BackendBucket = ...,
+            body: BackendBucket,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -5336,7 +5332,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             backendBucket: str,
-            body: BackendBucket = ...,
+            body: BackendBucket,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -5346,7 +5342,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             resource: str,
-            body: RegionSetPolicyRequest = ...,
+            body: RegionSetPolicyRequest,
             **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
         def testIamPermissions(
@@ -5355,7 +5351,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             resource: str,
-            body: TestPermissionsRequest = ...,
+            body: TestPermissionsRequest,
             **kwargs: typing.Any,
         ) -> TestPermissionsResponseHttpRequest: ...
 
@@ -5384,7 +5380,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             backendService: str,
-            body: ResourceGroupReference = ...,
+            body: ResourceGroupReference,
             **kwargs: typing.Any,
         ) -> BackendServiceGroupHealthHttpRequest: ...
         def getIamPolicy(
@@ -5401,7 +5397,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             region: str,
-            body: BackendService = ...,
+            body: BackendService,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -5445,7 +5441,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             backendService: str,
-            body: BackendService = ...,
+            body: BackendService,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -5455,7 +5451,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             resource: str,
-            body: RegionSetPolicyRequest = ...,
+            body: RegionSetPolicyRequest,
             **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
         def setSecurityPolicy(
@@ -5464,7 +5460,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             backendService: str,
-            body: SecurityPolicyReference = ...,
+            body: SecurityPolicyReference,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -5474,7 +5470,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             resource: str,
-            body: TestPermissionsRequest = ...,
+            body: TestPermissionsRequest,
             **kwargs: typing.Any,
         ) -> TestPermissionsResponseHttpRequest: ...
         def update(
@@ -5483,7 +5479,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             backendService: str,
-            body: BackendService = ...,
+            body: BackendService,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -5516,7 +5512,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             region: str,
-            body: Commitment = ...,
+            body: Commitment,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -5543,7 +5539,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             commitment: str,
-            body: Commitment = ...,
+            body: Commitment,
             paths: str | _list[str] | None = ...,
             requestId: str | None = ...,
             updateMask: str | None = ...,
@@ -5600,7 +5596,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             region: str,
-            body: CompositeHealthCheck = ...,
+            body: CompositeHealthCheck,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -5627,7 +5623,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             compositeHealthCheck: str,
-            body: CompositeHealthCheck = ...,
+            body: CompositeHealthCheck,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -5637,7 +5633,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             resource: str,
-            body: TestPermissionsRequest = ...,
+            body: TestPermissionsRequest,
             **kwargs: typing.Any,
         ) -> TestPermissionsResponseHttpRequest: ...
 
@@ -5672,7 +5668,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             disk: str,
-            body: RegionDisksAddResourcePoliciesRequest = ...,
+            body: RegionDisksAddResourcePoliciesRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -5681,7 +5677,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             region: str,
-            body: BulkInsertDiskResource = ...,
+            body: BulkInsertDiskResource,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -5691,7 +5687,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             disk: str,
-            body: Snapshot = ...,
+            body: Snapshot,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -5721,7 +5717,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             region: str,
-            body: Disk = ...,
+            body: Disk,
             requestId: str | None = ...,
             sourceImage: str | None = ...,
             **kwargs: typing.Any,
@@ -5747,7 +5743,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             disk: str,
-            body: RegionDisksRemoveResourcePoliciesRequest = ...,
+            body: RegionDisksRemoveResourcePoliciesRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -5757,7 +5753,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             disk: str,
-            body: RegionDisksResizeRequest = ...,
+            body: RegionDisksResizeRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -5767,7 +5763,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             resource: str,
-            body: RegionSetPolicyRequest = ...,
+            body: RegionSetPolicyRequest,
             **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
         def setLabels(
@@ -5776,7 +5772,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             resource: str,
-            body: RegionSetLabelsRequest = ...,
+            body: RegionSetLabelsRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -5786,7 +5782,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             disk: str,
-            body: RegionDisksStartAsyncReplicationRequest = ...,
+            body: RegionDisksStartAsyncReplicationRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -5804,7 +5800,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             region: str,
-            body: DisksStopGroupAsyncReplicationResource = ...,
+            body: DisksStopGroupAsyncReplicationResource,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -5814,7 +5810,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             resource: str,
-            body: TestPermissionsRequest = ...,
+            body: TestPermissionsRequest,
             **kwargs: typing.Any,
         ) -> TestPermissionsResponseHttpRequest: ...
         def update(
@@ -5823,7 +5819,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             disk: str,
-            body: Disk = ...,
+            body: Disk,
             paths: str | _list[str] | None = ...,
             requestId: str | None = ...,
             updateMask: str | None = ...,
@@ -5835,7 +5831,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             disk: str,
-            body: RegionDiskUpdateKmsKeyRequest = ...,
+            body: RegionDiskUpdateKmsKeyRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -5882,7 +5878,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             region: str,
-            body: HealthAggregationPolicy = ...,
+            body: HealthAggregationPolicy,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -5909,7 +5905,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             healthAggregationPolicy: str,
-            body: HealthAggregationPolicy = ...,
+            body: HealthAggregationPolicy,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -5919,7 +5915,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             resource: str,
-            body: TestPermissionsRequest = ...,
+            body: TestPermissionsRequest,
             **kwargs: typing.Any,
         ) -> TestPermissionsResponseHttpRequest: ...
 
@@ -5965,7 +5961,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             region: str,
-            body: HealthCheckService = ...,
+            body: HealthCheckService,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -5992,7 +5988,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             healthCheckService: str,
-            body: HealthCheckService = ...,
+            body: HealthCheckService,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -6002,7 +5998,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             resource: str,
-            body: TestPermissionsRequest = ...,
+            body: TestPermissionsRequest,
             **kwargs: typing.Any,
         ) -> TestPermissionsResponseHttpRequest: ...
 
@@ -6025,7 +6021,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             region: str,
-            body: HealthCheck = ...,
+            body: HealthCheck,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -6052,7 +6048,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             healthCheck: str,
-            body: HealthCheck = ...,
+            body: HealthCheck,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -6062,7 +6058,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             resource: str,
-            body: TestPermissionsRequest = ...,
+            body: TestPermissionsRequest,
             **kwargs: typing.Any,
         ) -> TestPermissionsResponseHttpRequest: ...
         def update(
@@ -6071,7 +6067,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             healthCheck: str,
-            body: HealthCheck = ...,
+            body: HealthCheck,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -6116,7 +6112,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             region: str,
-            body: HealthSource = ...,
+            body: HealthSource,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -6143,7 +6139,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             healthSource: str,
-            body: HealthSource = ...,
+            body: HealthSource,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -6153,7 +6149,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             resource: str,
-            body: TestPermissionsRequest = ...,
+            body: TestPermissionsRequest,
             **kwargs: typing.Any,
         ) -> TestPermissionsResponseHttpRequest: ...
 
@@ -6196,7 +6192,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             instanceGroupManager: str,
-            body: InstanceGroupManagerResizeRequest = ...,
+            body: InstanceGroupManagerResizeRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -6227,7 +6223,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             instanceGroupManager: str,
-            body: RegionInstanceGroupManagersAbandonInstancesRequest = ...,
+            body: RegionInstanceGroupManagersAbandonInstancesRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -6237,7 +6233,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             instanceGroupManager: str,
-            body: RegionInstanceGroupManagersApplyUpdatesRequest = ...,
+            body: RegionInstanceGroupManagersApplyUpdatesRequest,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def createInstances(
@@ -6246,7 +6242,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             instanceGroupManager: str,
-            body: RegionInstanceGroupManagersCreateInstancesRequest = ...,
+            body: RegionInstanceGroupManagersCreateInstancesRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -6265,7 +6261,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             instanceGroupManager: str,
-            body: RegionInstanceGroupManagersDeleteInstancesRequest = ...,
+            body: RegionInstanceGroupManagersDeleteInstancesRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -6275,7 +6271,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             instanceGroupManager: str,
-            body: RegionInstanceGroupManagerDeleteInstanceConfigReq = ...,
+            body: RegionInstanceGroupManagerDeleteInstanceConfigReq,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def get(
@@ -6291,7 +6287,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             region: str,
-            body: InstanceGroupManager = ...,
+            body: InstanceGroupManager,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -6372,7 +6368,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             instanceGroupManager: str,
-            body: InstanceGroupManager = ...,
+            body: InstanceGroupManager,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -6382,7 +6378,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             instanceGroupManager: str,
-            body: RegionInstanceGroupManagerPatchInstanceConfigReq = ...,
+            body: RegionInstanceGroupManagerPatchInstanceConfigReq,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -6392,7 +6388,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             instanceGroupManager: str,
-            body: RegionInstanceGroupManagersRecreateRequest = ...,
+            body: RegionInstanceGroupManagersRecreateRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -6412,7 +6408,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             instanceGroupManager: str,
-            body: RegionInstanceGroupManagersResumeInstancesRequest = ...,
+            body: RegionInstanceGroupManagersResumeInstancesRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -6422,7 +6418,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             instanceGroupManager: str,
-            body: RegionInstanceGroupManagersSetTemplateRequest = ...,
+            body: RegionInstanceGroupManagersSetTemplateRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -6432,7 +6428,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             instanceGroupManager: str,
-            body: RegionInstanceGroupManagersSetTargetPoolsRequest = ...,
+            body: RegionInstanceGroupManagersSetTargetPoolsRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -6442,7 +6438,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             instanceGroupManager: str,
-            body: RegionInstanceGroupManagersStartInstancesRequest = ...,
+            body: RegionInstanceGroupManagersStartInstancesRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -6452,7 +6448,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             instanceGroupManager: str,
-            body: RegionInstanceGroupManagersStopInstancesRequest = ...,
+            body: RegionInstanceGroupManagersStopInstancesRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -6462,7 +6458,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             instanceGroupManager: str,
-            body: RegionInstanceGroupManagersSuspendInstancesRequest = ...,
+            body: RegionInstanceGroupManagersSuspendInstancesRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -6472,7 +6468,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             instanceGroupManager: str,
-            body: RegionInstanceGroupManagerUpdateInstanceConfigReq = ...,
+            body: RegionInstanceGroupManagerUpdateInstanceConfigReq,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -6505,7 +6501,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             instanceGroup: str,
-            body: RegionInstanceGroupsListInstancesRequest = ...,
+            body: RegionInstanceGroupsListInstancesRequest,
             filter: str | None = ...,
             maxResults: int | None = ...,
             orderBy: str | None = ...,
@@ -6524,7 +6520,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             instanceGroup: str,
-            body: RegionInstanceGroupsSetNamedPortsRequest = ...,
+            body: RegionInstanceGroupsSetNamedPortsRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -6534,7 +6530,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             resource: str,
-            body: TestPermissionsRequest = ...,
+            body: TestPermissionsRequest,
             **kwargs: typing.Any,
         ) -> TestPermissionsResponseHttpRequest: ...
 
@@ -6562,7 +6558,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             region: str,
-            body: InstanceTemplate = ...,
+            body: InstanceTemplate,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -6591,7 +6587,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             region: str,
-            body: BulkInsertInstanceResource = ...,
+            body: BulkInsertInstanceResource,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -6629,7 +6625,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             region: str,
-            body: InstantSnapshotGroup = ...,
+            body: InstantSnapshotGroup,
             requestId: str | None = ...,
             sourceConsistencyGroup: str | None = ...,
             **kwargs: typing.Any,
@@ -6657,7 +6653,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             resource: str,
-            body: RegionSetPolicyRequest = ...,
+            body: RegionSetPolicyRequest,
             **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
         def testIamPermissions(
@@ -6666,7 +6662,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             resource: str,
-            body: TestPermissionsRequest = ...,
+            body: TestPermissionsRequest,
             **kwargs: typing.Any,
         ) -> TestPermissionsResponseHttpRequest: ...
 
@@ -6703,7 +6699,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             region: str,
-            body: InstantSnapshot = ...,
+            body: InstantSnapshot,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -6730,7 +6726,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             resource: str,
-            body: RegionSetPolicyRequest = ...,
+            body: RegionSetPolicyRequest,
             **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
         def setLabels(
@@ -6739,7 +6735,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             resource: str,
-            body: RegionSetLabelsRequest = ...,
+            body: RegionSetLabelsRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -6749,7 +6745,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             resource: str,
-            body: TestPermissionsRequest = ...,
+            body: TestPermissionsRequest,
             **kwargs: typing.Any,
         ) -> TestPermissionsResponseHttpRequest: ...
 
@@ -6761,7 +6757,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             networkEndpointGroup: str,
-            body: RegionNetworkEndpointGroupsAttachEndpointsRequest = ...,
+            body: RegionNetworkEndpointGroupsAttachEndpointsRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -6780,7 +6776,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             networkEndpointGroup: str,
-            body: RegionNetworkEndpointGroupsDetachEndpointsRequest = ...,
+            body: RegionNetworkEndpointGroupsDetachEndpointsRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -6797,7 +6793,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             region: str,
-            body: NetworkEndpointGroup = ...,
+            body: NetworkEndpointGroup,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -6845,7 +6841,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             firewallPolicy: str,
-            body: FirewallPolicyAssociation = ...,
+            body: FirewallPolicyAssociation,
             replaceExistingAssociation: bool | None = ...,
             requestId: str | None = ...,
             **kwargs: typing.Any,
@@ -6856,7 +6852,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             firewallPolicy: str,
-            body: FirewallPolicyRule = ...,
+            body: FirewallPolicyRule,
             maxPriority: int | None = ...,
             minPriority: int | None = ...,
             requestId: str | None = ...,
@@ -6924,7 +6920,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             region: str,
-            body: FirewallPolicy = ...,
+            body: FirewallPolicy,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -6951,7 +6947,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             firewallPolicy: str,
-            body: FirewallPolicy = ...,
+            body: FirewallPolicy,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -6961,7 +6957,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             firewallPolicy: str,
-            body: FirewallPolicyRule = ...,
+            body: FirewallPolicyRule,
             priority: int | None = ...,
             requestId: str | None = ...,
             **kwargs: typing.Any,
@@ -6992,7 +6988,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             resource: str,
-            body: RegionSetPolicyRequest = ...,
+            body: RegionSetPolicyRequest,
             **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
         def testIamPermissions(
@@ -7001,7 +6997,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             resource: str,
-            body: TestPermissionsRequest = ...,
+            body: TestPermissionsRequest,
             **kwargs: typing.Any,
         ) -> TestPermissionsResponseHttpRequest: ...
 
@@ -7047,7 +7043,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             region: str,
-            body: NotificationEndpoint = ...,
+            body: NotificationEndpoint,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -7074,7 +7070,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             resource: str,
-            body: TestPermissionsRequest = ...,
+            body: TestPermissionsRequest,
             **kwargs: typing.Any,
         ) -> TestPermissionsResponseHttpRequest: ...
 
@@ -7115,7 +7111,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             securityPolicy: str,
-            body: SecurityPolicyRule = ...,
+            body: SecurityPolicyRule,
             validateOnly: bool | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -7150,7 +7146,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             region: str,
-            body: SecurityPolicy = ...,
+            body: SecurityPolicy,
             requestId: str | None = ...,
             validateOnly: bool | None = ...,
             **kwargs: typing.Any,
@@ -7178,7 +7174,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             securityPolicy: str,
-            body: SecurityPolicy = ...,
+            body: SecurityPolicy,
             requestId: str | None = ...,
             updateMask: str | None = ...,
             **kwargs: typing.Any,
@@ -7189,7 +7185,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             securityPolicy: str,
-            body: SecurityPolicyRule = ...,
+            body: SecurityPolicyRule,
             priority: int | None = ...,
             updateMask: str | None = ...,
             validateOnly: bool | None = ...,
@@ -7210,7 +7206,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             resource: str,
-            body: RegionSetLabelsRequest = ...,
+            body: RegionSetLabelsRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -7225,7 +7221,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             region: str,
-            body: SnapshotSettings = ...,
+            body: SnapshotSettings,
             requestId: str | None = ...,
             updateMask: str | None = ...,
             **kwargs: typing.Any,
@@ -7259,7 +7255,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             region: str,
-            body: Snapshot = ...,
+            body: Snapshot,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -7286,7 +7282,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             resource: str,
-            body: RegionSetPolicyRequest = ...,
+            body: RegionSetPolicyRequest,
             **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
         def setLabels(
@@ -7295,7 +7291,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             resource: str,
-            body: RegionSetLabelsRequest = ...,
+            body: RegionSetLabelsRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -7305,7 +7301,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             resource: str,
-            body: TestPermissionsRequest = ...,
+            body: TestPermissionsRequest,
             **kwargs: typing.Any,
         ) -> TestPermissionsResponseHttpRequest: ...
         def updateKmsKey(
@@ -7314,7 +7310,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             snapshot: str,
-            body: RegionSnapshotUpdateKmsKeyRequest = ...,
+            body: RegionSnapshotUpdateKmsKeyRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -7343,7 +7339,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             region: str,
-            body: SslCertificate = ...,
+            body: SslCertificate,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -7384,7 +7380,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             region: str,
-            body: SslPolicy = ...,
+            body: SslPolicy,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -7423,7 +7419,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             sslPolicy: str,
-            body: SslPolicy = ...,
+            body: SslPolicy,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -7452,7 +7448,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             region: str,
-            body: TargetHttpProxy = ...,
+            body: TargetHttpProxy,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -7479,7 +7475,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             targetHttpProxy: str,
-            body: UrlMapReference = ...,
+            body: UrlMapReference,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -7508,7 +7504,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             region: str,
-            body: TargetHttpsProxy = ...,
+            body: TargetHttpsProxy,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -7535,7 +7531,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             targetHttpsProxy: str,
-            body: TargetHttpsProxy = ...,
+            body: TargetHttpsProxy,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -7545,7 +7541,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             targetHttpsProxy: str,
-            body: RegionTargetHttpsProxiesSetSslCertificatesRequest = ...,
+            body: RegionTargetHttpsProxiesSetSslCertificatesRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -7555,7 +7551,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             targetHttpsProxy: str,
-            body: UrlMapReference = ...,
+            body: UrlMapReference,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -7584,7 +7580,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             region: str,
-            body: TargetTcpProxy = ...,
+            body: TargetTcpProxy,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -7625,7 +7621,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             region: str,
-            body: UrlMap = ...,
+            body: UrlMap,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -7650,7 +7646,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             urlMap: str,
-            body: UrlMap = ...,
+            body: UrlMap,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -7660,7 +7656,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             urlMap: str,
-            body: UrlMap = ...,
+            body: UrlMap,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -7670,7 +7666,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             urlMap: str,
-            body: RegionUrlMapsValidateRequest = ...,
+            body: RegionUrlMapsValidateRequest,
             **kwargs: typing.Any,
         ) -> UrlMapsValidateResponseHttpRequest: ...
 
@@ -7760,7 +7756,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             zone: str,
             reservation: str,
             reservationBlock: str,
-            body: ReservationsBlocksPerformMaintenanceRequest = ...,
+            body: ReservationsBlocksPerformMaintenanceRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -7771,7 +7767,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             zone: str,
             parentResource: str,
             resource: str,
-            body: ZoneSetNestedPolicyRequest = ...,
+            body: ZoneSetNestedPolicyRequest,
             **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
         def testIamPermissions(
@@ -7781,7 +7777,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             zone: str,
             parentResource: str,
             resource: str,
-            body: TestPermissionsRequest = ...,
+            body: TestPermissionsRequest,
             **kwargs: typing.Any,
         ) -> TestPermissionsResponseHttpRequest: ...
 
@@ -7803,7 +7799,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             zone: str,
             parentName: str,
             reservationSlot: str,
-            body: ReservationSlotsGetVersionRequest = ...,
+            body: ReservationSlotsGetVersionRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -7832,7 +7828,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             zone: str,
             parentName: str,
             reservationSlot: str,
-            body: ReservationSlot = ...,
+            body: ReservationSlot,
             updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -7871,7 +7867,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             zone: str,
             parentName: str,
             reservationSubBlock: str,
-            body: ReservationSubBlocksGetVersionRequest = ...,
+            body: ReservationSubBlocksGetVersionRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -7910,7 +7906,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             zone: str,
             parentName: str,
             reservationSubBlock: str,
-            body: ReservationSubBlocksReportFaultyRequest = ...,
+            body: ReservationSubBlocksReportFaultyRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -7921,7 +7917,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             zone: str,
             parentResource: str,
             resource: str,
-            body: ZoneSetNestedPolicyRequest = ...,
+            body: ZoneSetNestedPolicyRequest,
             **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
         def testIamPermissions(
@@ -7931,7 +7927,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             zone: str,
             parentResource: str,
             resource: str,
-            body: TestPermissionsRequest = ...,
+            body: TestPermissionsRequest,
             **kwargs: typing.Any,
         ) -> TestPermissionsResponseHttpRequest: ...
 
@@ -7981,7 +7977,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             zone: str,
-            body: Reservation = ...,
+            body: Reservation,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -8008,7 +8004,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             reservation: str,
-            body: ReservationsPerformMaintenanceRequest = ...,
+            body: ReservationsPerformMaintenanceRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -8018,7 +8014,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             reservation: str,
-            body: ReservationsResizeRequest = ...,
+            body: ReservationsResizeRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -8028,7 +8024,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             resource: str,
-            body: ZoneSetPolicyRequest = ...,
+            body: ZoneSetPolicyRequest,
             **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
         def testIamPermissions(
@@ -8037,7 +8033,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             resource: str,
-            body: TestPermissionsRequest = ...,
+            body: TestPermissionsRequest,
             **kwargs: typing.Any,
         ) -> TestPermissionsResponseHttpRequest: ...
         def update(
@@ -8046,7 +8042,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             reservation: str,
-            body: Reservation = ...,
+            body: Reservation,
             paths: str | _list[str] | None = ...,
             requestId: str | None = ...,
             updateMask: str | None = ...,
@@ -8104,7 +8100,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             region: str,
-            body: ResourcePolicy = ...,
+            body: ResourcePolicy,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -8131,7 +8127,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             resourcePolicy: str,
-            body: ResourcePolicy = ...,
+            body: ResourcePolicy,
             requestId: str | None = ...,
             updateMask: str | None = ...,
             **kwargs: typing.Any,
@@ -8142,7 +8138,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             resource: str,
-            body: RegionSetPolicyRequest = ...,
+            body: RegionSetPolicyRequest,
             **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
         def testIamPermissions(
@@ -8151,7 +8147,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             resource: str,
-            body: TestPermissionsRequest = ...,
+            body: TestPermissionsRequest,
             **kwargs: typing.Any,
         ) -> TestPermissionsResponseHttpRequest: ...
 
@@ -8172,7 +8168,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             self,
             *,
             project: str,
-            body: RolloutPlan = ...,
+            body: RolloutPlan,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -8346,7 +8342,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             region: str,
-            body: Router = ...,
+            body: Router,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -8418,7 +8414,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             router: str,
-            body: Router = ...,
+            body: Router,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -8428,7 +8424,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             router: str,
-            body: RoutePolicy = ...,
+            body: RoutePolicy,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -8438,7 +8434,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             router: str,
-            body: Router = ...,
+            body: Router,
             **kwargs: typing.Any,
         ) -> RoutersPreviewResponseHttpRequest: ...
         def update(
@@ -8447,7 +8443,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             router: str,
-            body: Router = ...,
+            body: Router,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -8457,7 +8453,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             router: str,
-            body: RoutePolicy = ...,
+            body: RoutePolicy,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -8479,7 +8475,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             self,
             *,
             project: str,
-            body: Route = ...,
+            body: Route,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -8502,7 +8498,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             resource: str,
-            body: TestPermissionsRequest = ...,
+            body: TestPermissionsRequest,
             **kwargs: typing.Any,
         ) -> TestPermissionsResponseHttpRequest: ...
 
@@ -8513,7 +8509,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             securityPolicy: str,
-            body: SecurityPolicyRule = ...,
+            body: SecurityPolicyRule,
             validateOnly: bool | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -8558,7 +8554,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             self,
             *,
             project: str,
-            body: SecurityPolicy = ...,
+            body: SecurityPolicy,
             requestId: str | None = ...,
             validateOnly: bool | None = ...,
             **kwargs: typing.Any,
@@ -8595,7 +8591,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             securityPolicy: str,
-            body: SecurityPolicy = ...,
+            body: SecurityPolicy,
             requestId: str | None = ...,
             updateMask: str | None = ...,
             **kwargs: typing.Any,
@@ -8605,7 +8601,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             securityPolicy: str,
-            body: SecurityPolicyRule = ...,
+            body: SecurityPolicyRule,
             priority: int | None = ...,
             updateMask: str | None = ...,
             validateOnly: bool | None = ...,
@@ -8624,7 +8620,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             resource: str,
-            body: GlobalSetLabelsRequest = ...,
+            body: GlobalSetLabelsRequest,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
 
@@ -8680,7 +8676,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             region: str,
-            body: ServiceAttachment = ...,
+            body: ServiceAttachment,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -8707,7 +8703,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             serviceAttachment: str,
-            body: ServiceAttachment = ...,
+            body: ServiceAttachment,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -8717,7 +8713,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             resource: str,
-            body: RegionSetPolicyRequest = ...,
+            body: RegionSetPolicyRequest,
             **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
         def testIamPermissions(
@@ -8726,7 +8722,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             resource: str,
-            body: TestPermissionsRequest = ...,
+            body: TestPermissionsRequest,
             **kwargs: typing.Any,
         ) -> TestPermissionsResponseHttpRequest: ...
 
@@ -8739,7 +8735,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             self,
             *,
             project: str,
-            body: SnapshotSettings = ...,
+            body: SnapshotSettings,
             requestId: str | None = ...,
             updateMask: str | None = ...,
             **kwargs: typing.Any,
@@ -8770,7 +8766,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             self,
             *,
             project: str,
-            body: Snapshot = ...,
+            body: Snapshot,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -8795,7 +8791,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             resource: str,
-            body: GlobalSetPolicyRequest = ...,
+            body: GlobalSetPolicyRequest,
             **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
         def setLabels(
@@ -8803,7 +8799,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             resource: str,
-            body: GlobalSetLabelsRequest = ...,
+            body: GlobalSetLabelsRequest,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def testIamPermissions(
@@ -8811,7 +8807,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             resource: str,
-            body: TestPermissionsRequest = ...,
+            body: TestPermissionsRequest,
             **kwargs: typing.Any,
         ) -> TestPermissionsResponseHttpRequest: ...
         def updateKmsKey(
@@ -8819,7 +8815,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             snapshot: str,
-            body: SnapshotUpdateKmsKeyRequest = ...,
+            body: SnapshotUpdateKmsKeyRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -8859,7 +8855,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             self,
             *,
             project: str,
-            body: SslCertificate = ...,
+            body: SslCertificate,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -8915,7 +8911,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             self,
             *,
             project: str,
-            body: SslPolicy = ...,
+            body: SslPolicy,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -8951,7 +8947,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             sslPolicy: str,
-            body: SslPolicy = ...,
+            body: SslPolicy,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -9043,7 +9039,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             zone: str,
-            body: StoragePool = ...,
+            body: StoragePool,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -9088,7 +9084,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             resource: str,
-            body: ZoneSetPolicyRequest = ...,
+            body: ZoneSetPolicyRequest,
             **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
         def testIamPermissions(
@@ -9097,7 +9093,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             resource: str,
-            body: TestPermissionsRequest = ...,
+            body: TestPermissionsRequest,
             **kwargs: typing.Any,
         ) -> TestPermissionsResponseHttpRequest: ...
         def update(
@@ -9106,7 +9102,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             storagePool: str,
-            body: StoragePool = ...,
+            body: StoragePool,
             requestId: str | None = ...,
             updateMask: str | None = ...,
             **kwargs: typing.Any,
@@ -9150,7 +9146,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             subnetwork: str,
-            body: SubnetworksExpandIpCidrRangeRequest = ...,
+            body: SubnetworksExpandIpCidrRangeRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -9179,7 +9175,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             region: str,
-            body: Subnetwork = ...,
+            body: Subnetwork,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -9226,7 +9222,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             subnetwork: str,
-            body: Subnetwork = ...,
+            body: Subnetwork,
             drainTimeoutSeconds: int | None = ...,
             requestId: str | None = ...,
             **kwargs: typing.Any,
@@ -9237,7 +9233,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             resource: str,
-            body: RegionSetPolicyRequest = ...,
+            body: RegionSetPolicyRequest,
             **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
         def setPrivateIpGoogleAccess(
@@ -9246,7 +9242,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             subnetwork: str,
-            body: SubnetworksSetPrivateIpGoogleAccessRequest = ...,
+            body: SubnetworksSetPrivateIpGoogleAccessRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -9256,7 +9252,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             resource: str,
-            body: TestPermissionsRequest = ...,
+            body: TestPermissionsRequest,
             **kwargs: typing.Any,
         ) -> TestPermissionsResponseHttpRequest: ...
 
@@ -9277,7 +9273,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             self,
             *,
             project: str,
-            body: TargetGrpcProxy = ...,
+            body: TargetGrpcProxy,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -9302,7 +9298,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             targetGrpcProxy: str,
-            body: TargetGrpcProxy = ...,
+            body: TargetGrpcProxy,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -9342,7 +9338,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             self,
             *,
             project: str,
-            body: TargetHttpProxy = ...,
+            body: TargetHttpProxy,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -9367,7 +9363,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             targetHttpProxy: str,
-            body: TargetHttpProxy = ...,
+            body: TargetHttpProxy,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -9376,7 +9372,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             targetHttpProxy: str,
-            body: UrlMapReference = ...,
+            body: UrlMapReference,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -9416,7 +9412,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             self,
             *,
             project: str,
-            body: TargetHttpsProxy = ...,
+            body: TargetHttpsProxy,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -9441,7 +9437,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             targetHttpsProxy: str,
-            body: TargetHttpsProxy = ...,
+            body: TargetHttpsProxy,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -9450,7 +9446,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             targetHttpsProxy: str,
-            body: TargetHttpsProxiesSetCertificateMapRequest = ...,
+            body: TargetHttpsProxiesSetCertificateMapRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -9459,7 +9455,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             targetHttpsProxy: str,
-            body: TargetHttpsProxiesSetQuicOverrideRequest = ...,
+            body: TargetHttpsProxiesSetQuicOverrideRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -9468,7 +9464,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             targetHttpsProxy: str,
-            body: TargetHttpsProxiesSetSslCertificatesRequest = ...,
+            body: TargetHttpsProxiesSetSslCertificatesRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -9477,7 +9473,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             targetHttpsProxy: str,
-            body: SslPolicyReference = ...,
+            body: SslPolicyReference,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -9486,7 +9482,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             targetHttpsProxy: str,
-            body: UrlMapReference = ...,
+            body: UrlMapReference,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -9528,7 +9524,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             zone: str,
-            body: TargetInstance = ...,
+            body: TargetInstance,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -9555,7 +9551,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             targetInstance: str,
-            body: SecurityPolicyReference = ...,
+            body: SecurityPolicyReference,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -9565,7 +9561,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             resource: str,
-            body: TestPermissionsRequest = ...,
+            body: TestPermissionsRequest,
             **kwargs: typing.Any,
         ) -> TestPermissionsResponseHttpRequest: ...
 
@@ -9577,7 +9573,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             targetPool: str,
-            body: TargetPoolsAddHealthCheckRequest = ...,
+            body: TargetPoolsAddHealthCheckRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -9587,7 +9583,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             targetPool: str,
-            body: TargetPoolsAddInstanceRequest = ...,
+            body: TargetPoolsAddInstanceRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -9627,7 +9623,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             targetPool: str,
-            body: InstanceReference = ...,
+            body: InstanceReference,
             **kwargs: typing.Any,
         ) -> TargetPoolInstanceHealthHttpRequest: ...
         def insert(
@@ -9635,7 +9631,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             region: str,
-            body: TargetPool = ...,
+            body: TargetPool,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -9662,7 +9658,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             targetPool: str,
-            body: TargetPoolsRemoveHealthCheckRequest = ...,
+            body: TargetPoolsRemoveHealthCheckRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -9672,7 +9668,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             targetPool: str,
-            body: TargetPoolsRemoveInstanceRequest = ...,
+            body: TargetPoolsRemoveInstanceRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -9682,7 +9678,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             targetPool: str,
-            body: TargetReference = ...,
+            body: TargetReference,
             failoverRatio: float | None = ...,
             requestId: str | None = ...,
             **kwargs: typing.Any,
@@ -9693,7 +9689,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             targetPool: str,
-            body: SecurityPolicyReference = ...,
+            body: SecurityPolicyReference,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -9703,7 +9699,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             resource: str,
-            body: TestPermissionsRequest = ...,
+            body: TestPermissionsRequest,
             **kwargs: typing.Any,
         ) -> TestPermissionsResponseHttpRequest: ...
 
@@ -9724,7 +9720,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             self,
             *,
             project: str,
-            body: TargetSslProxy = ...,
+            body: TargetSslProxy,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -9749,7 +9745,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             targetSslProxy: str,
-            body: TargetSslProxiesSetBackendServiceRequest = ...,
+            body: TargetSslProxiesSetBackendServiceRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -9758,7 +9754,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             targetSslProxy: str,
-            body: TargetSslProxiesSetCertificateMapRequest = ...,
+            body: TargetSslProxiesSetCertificateMapRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -9767,7 +9763,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             targetSslProxy: str,
-            body: TargetSslProxiesSetProxyHeaderRequest = ...,
+            body: TargetSslProxiesSetProxyHeaderRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -9776,7 +9772,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             targetSslProxy: str,
-            body: TargetSslProxiesSetSslCertificatesRequest = ...,
+            body: TargetSslProxiesSetSslCertificatesRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -9785,7 +9781,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             targetSslProxy: str,
-            body: SslPolicyReference = ...,
+            body: SslPolicyReference,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -9794,7 +9790,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             resource: str,
-            body: TestPermissionsRequest = ...,
+            body: TestPermissionsRequest,
             **kwargs: typing.Any,
         ) -> TestPermissionsResponseHttpRequest: ...
 
@@ -9833,7 +9829,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             self,
             *,
             project: str,
-            body: TargetTcpProxy = ...,
+            body: TargetTcpProxy,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -9858,7 +9854,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             targetTcpProxy: str,
-            body: TargetTcpProxiesSetBackendServiceRequest = ...,
+            body: TargetTcpProxiesSetBackendServiceRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -9867,7 +9863,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             targetTcpProxy: str,
-            body: TargetTcpProxiesSetProxyHeaderRequest = ...,
+            body: TargetTcpProxiesSetProxyHeaderRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -9876,7 +9872,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             resource: str,
-            body: TestPermissionsRequest = ...,
+            body: TestPermissionsRequest,
             **kwargs: typing.Any,
         ) -> TestPermissionsResponseHttpRequest: ...
 
@@ -9922,7 +9918,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             region: str,
-            body: TargetVpnGateway = ...,
+            body: TargetVpnGateway,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -9949,7 +9945,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             resource: str,
-            body: RegionSetLabelsRequest = ...,
+            body: RegionSetLabelsRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -9989,7 +9985,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             self,
             *,
             project: str,
-            body: UrlMap = ...,
+            body: UrlMap,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -9998,7 +9994,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             urlMap: str,
-            body: CacheInvalidationRule = ...,
+            body: CacheInvalidationRule,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -10021,7 +10017,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             urlMap: str,
-            body: UrlMap = ...,
+            body: UrlMap,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -10030,7 +10026,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             resource: str,
-            body: TestPermissionsRequest = ...,
+            body: TestPermissionsRequest,
             **kwargs: typing.Any,
         ) -> TestPermissionsResponseHttpRequest: ...
         def update(
@@ -10038,7 +10034,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             urlMap: str,
-            body: UrlMap = ...,
+            body: UrlMap,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -10047,7 +10043,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             urlMap: str,
-            body: UrlMapsValidateRequest = ...,
+            body: UrlMapsValidateRequest,
             **kwargs: typing.Any,
         ) -> UrlMapsValidateResponseHttpRequest: ...
 
@@ -10091,7 +10087,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             region: str,
-            body: VpnGateway = ...,
+            body: VpnGateway,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -10118,7 +10114,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             resource: str,
-            body: RegionSetLabelsRequest = ...,
+            body: RegionSetLabelsRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -10128,7 +10124,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             resource: str,
-            body: TestPermissionsRequest = ...,
+            body: TestPermissionsRequest,
             **kwargs: typing.Any,
         ) -> TestPermissionsResponseHttpRequest: ...
 
@@ -10169,7 +10165,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             region: str,
-            body: VpnTunnel = ...,
+            body: VpnTunnel,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -10196,7 +10192,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             resource: str,
-            body: RegionSetLabelsRequest = ...,
+            body: RegionSetLabelsRequest,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -10225,7 +10221,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             crossSiteNetwork: str,
-            body: WireGroup = ...,
+            body: WireGroup,
             requestId: str | None = ...,
             validateOnly: bool | None = ...,
             **kwargs: typing.Any,
@@ -10253,7 +10249,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             crossSiteNetwork: str,
             wireGroup: str,
-            body: WireGroup = ...,
+            body: WireGroup,
             requestId: str | None = ...,
             updateMask: str | None = ...,
             validateOnly: bool | None = ...,
@@ -10313,7 +10309,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             zone: str,
-            body: VmExtensionPolicy = ...,
+            body: VmExtensionPolicy,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -10340,7 +10336,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             vmExtensionPolicy: str,
-            body: VmExtensionPolicy = ...,
+            body: VmExtensionPolicy,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...

@@ -23,21 +23,21 @@ class CloudMemorystoreForMemcachedResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: ApplyParametersRequest = ...,
+                    body: ApplyParametersRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def applySoftwareUpdate(
                     self,
                     *,
                     instance: str,
-                    body: ApplySoftwareUpdateRequest = ...,
+                    body: ApplySoftwareUpdateRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def create(
                     self,
                     *,
                     parent: str,
-                    body: Instance = ...,
+                    body: Instance,
                     instanceId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -66,7 +66,7 @@ class CloudMemorystoreForMemcachedResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: Instance = ...,
+                    body: Instance,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -74,21 +74,21 @@ class CloudMemorystoreForMemcachedResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     instance: str,
-                    body: RescheduleMaintenanceRequest = ...,
+                    body: RescheduleMaintenanceRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def updateParameters(
                     self,
                     *,
                     name: str,
-                    body: UpdateParametersRequest = ...,
+                    body: UpdateParametersRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def upgrade(
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudMemcacheV1beta2UpgradeInstanceRequest = ...,
+                    body: GoogleCloudMemcacheV1beta2UpgradeInstanceRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
 
@@ -98,7 +98,7 @@ class CloudMemorystoreForMemcachedResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: CancelOperationRequest = ...,
+                    body: CancelOperationRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def delete(

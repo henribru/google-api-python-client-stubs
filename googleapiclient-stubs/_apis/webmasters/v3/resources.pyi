@@ -19,7 +19,7 @@ class WebmastersResource(googleapiclient.discovery.Resource):
             self,
             *,
             siteUrl: str,
-            body: SearchAnalyticsQueryRequest = ...,
+            body: SearchAnalyticsQueryRequest,
             **kwargs: typing.Any,
         ) -> SearchAnalyticsQueryResponseHttpRequest: ...
 

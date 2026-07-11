@@ -85,7 +85,7 @@ class PolicySimulatorResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudPolicysimulatorV1betaReplay = ...,
+                    body: GoogleCloudPolicysimulatorV1betaReplay,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def get(
@@ -186,7 +186,7 @@ class PolicySimulatorResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudPolicysimulatorV1betaOrgPolicyViolationsPreview = ...,
+                    body: GoogleCloudPolicysimulatorV1betaOrgPolicyViolationsPreview,
                     orgPolicyViolationsPreviewId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
@@ -194,7 +194,7 @@ class PolicySimulatorResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudPolicysimulatorV1betaOrgPolicyViolationsPreview = ...,
+                    body: GoogleCloudPolicysimulatorV1betaOrgPolicyViolationsPreview,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def get(
@@ -265,7 +265,7 @@ class PolicySimulatorResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudPolicysimulatorV1betaReplay = ...,
+                    body: GoogleCloudPolicysimulatorV1betaReplay,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def get(
@@ -370,7 +370,7 @@ class PolicySimulatorResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudPolicysimulatorV1betaReplay = ...,
+                    body: GoogleCloudPolicysimulatorV1betaReplay,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def get(

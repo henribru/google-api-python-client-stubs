@@ -69,7 +69,7 @@ class OnDemandScanningResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: AnalyzePackagesRequest = ...,
+                    body: AnalyzePackagesRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def vulnerabilities(self) -> VulnerabilitiesResource: ...

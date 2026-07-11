@@ -23,7 +23,7 @@ class CloudObservabilityResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: CancelOperationRequest = ...,
+                    body: CancelOperationRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def delete(
@@ -73,7 +73,7 @@ class CloudObservabilityResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: Settings = ...,
+                body: Settings,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
@@ -91,7 +91,7 @@ class CloudObservabilityResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: CancelOperationRequest = ...,
+                    body: CancelOperationRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def delete(
@@ -141,7 +141,7 @@ class CloudObservabilityResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: Settings = ...,
+                body: Settings,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
@@ -163,7 +163,7 @@ class CloudObservabilityResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             parent: str,
-                            body: Link = ...,
+                            body: Link,
                             linkId: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> OperationHttpRequest: ...
@@ -190,7 +190,7 @@ class CloudObservabilityResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             name: str,
-                            body: Link = ...,
+                            body: Link,
                             updateMask: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> OperationHttpRequest: ...
@@ -259,7 +259,7 @@ class CloudObservabilityResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: CancelOperationRequest = ...,
+                    body: CancelOperationRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def delete(
@@ -293,7 +293,7 @@ class CloudObservabilityResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: Scope = ...,
+                    body: Scope,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ScopeHttpRequest: ...
@@ -304,7 +304,7 @@ class CloudObservabilityResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: TraceScope = ...,
+                    body: TraceScope,
                     traceScopeId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> TraceScopeHttpRequest: ...
@@ -331,7 +331,7 @@ class CloudObservabilityResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: TraceScope = ...,
+                    body: TraceScope,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> TraceScopeHttpRequest: ...
@@ -361,7 +361,7 @@ class CloudObservabilityResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: Settings = ...,
+                body: Settings,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...

@@ -23,7 +23,7 @@ class GKEHubResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: Membership = ...,
+                    body: Membership,
                     membershipId: str | None = ...,
                     requestId: str | None = ...,
                     **kwargs: typing.Any,
@@ -86,7 +86,7 @@ class GKEHubResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: Membership = ...,
+                    body: Membership,
                     requestId: str | None = ...,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
@@ -95,14 +95,14 @@ class GKEHubResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: SetIamPolicyRequest = ...,
+                    body: SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: TestIamPermissionsRequest = ...,
+                    body: TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def validateExclusivity(
@@ -120,7 +120,7 @@ class GKEHubResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: CancelOperationRequest = ...,
+                    body: CancelOperationRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def delete(

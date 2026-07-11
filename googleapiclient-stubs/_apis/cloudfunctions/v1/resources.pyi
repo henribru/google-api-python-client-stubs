@@ -39,18 +39,10 @@ class CloudFunctionsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class FunctionsResource(googleapiclient.discovery.Resource):
                 def call(
-                    self,
-                    *,
-                    name: str,
-                    body: CallFunctionRequest = ...,
-                    **kwargs: typing.Any,
+                    self, *, name: str, body: CallFunctionRequest, **kwargs: typing.Any
                 ) -> CallFunctionResponseHttpRequest: ...
                 def create(
-                    self,
-                    *,
-                    location: str,
-                    body: CloudFunction = ...,
-                    **kwargs: typing.Any,
+                    self, *, location: str, body: CloudFunction, **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -59,14 +51,14 @@ class CloudFunctionsResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GenerateDownloadUrlRequest = ...,
+                    body: GenerateDownloadUrlRequest,
                     **kwargs: typing.Any,
                 ) -> GenerateDownloadUrlResponseHttpRequest: ...
                 def generateUploadUrl(
                     self,
                     *,
                     parent: str,
-                    body: GenerateUploadUrlRequest = ...,
+                    body: GenerateUploadUrlRequest,
                     **kwargs: typing.Any,
                 ) -> GenerateUploadUrlResponseHttpRequest: ...
                 def get(
@@ -100,7 +92,7 @@ class CloudFunctionsResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: CloudFunction = ...,
+                    body: CloudFunction,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -108,14 +100,14 @@ class CloudFunctionsResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: SetIamPolicyRequest = ...,
+                    body: SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: TestIamPermissionsRequest = ...,
+                    body: TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
 

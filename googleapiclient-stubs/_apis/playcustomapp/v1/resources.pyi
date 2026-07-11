@@ -18,7 +18,7 @@ class PlaycustomappResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class CustomAppsResource(googleapiclient.discovery.Resource):
             def create(
-                self, *, account: str, body: CustomApp = ..., **kwargs: typing.Any
+                self, *, account: str, body: CustomApp, **kwargs: typing.Any
             ) -> CustomAppHttpRequest: ...
 
         def customApps(self) -> CustomAppsResource: ...

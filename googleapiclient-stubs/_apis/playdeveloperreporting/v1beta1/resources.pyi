@@ -66,7 +66,7 @@ class PlaydeveloperreportingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GooglePlayDeveloperReportingV1beta1QueryAnrRateMetricSetRequest = ...,
+                body: GooglePlayDeveloperReportingV1beta1QueryAnrRateMetricSetRequest,
                 **kwargs: typing.Any,
             ) -> GooglePlayDeveloperReportingV1beta1QueryAnrRateMetricSetResponseHttpRequest: ...
             def query_next(
@@ -87,7 +87,7 @@ class PlaydeveloperreportingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GooglePlayDeveloperReportingV1beta1QueryCrashRateMetricSetRequest = ...,
+                body: GooglePlayDeveloperReportingV1beta1QueryCrashRateMetricSetRequest,
                 **kwargs: typing.Any,
             ) -> GooglePlayDeveloperReportingV1beta1QueryCrashRateMetricSetResponseHttpRequest: ...
             def query_next(
@@ -112,7 +112,7 @@ class PlaydeveloperreportingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GooglePlayDeveloperReportingV1beta1QueryErrorCountMetricSetRequest = ...,
+                    body: GooglePlayDeveloperReportingV1beta1QueryErrorCountMetricSetRequest,
                     **kwargs: typing.Any,
                 ) -> GooglePlayDeveloperReportingV1beta1QueryErrorCountMetricSetResponseHttpRequest: ...
                 def query_next(
@@ -219,7 +219,7 @@ class PlaydeveloperreportingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GooglePlayDeveloperReportingV1beta1QueryExcessiveWakeupRateMetricSetRequest = ...,
+                body: GooglePlayDeveloperReportingV1beta1QueryExcessiveWakeupRateMetricSetRequest,
                 **kwargs: typing.Any,
             ) -> GooglePlayDeveloperReportingV1beta1QueryExcessiveWakeupRateMetricSetResponseHttpRequest: ...
             def query_next(
@@ -240,7 +240,7 @@ class PlaydeveloperreportingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GooglePlayDeveloperReportingV1beta1QueryLmkRateMetricSetRequest = ...,
+                body: GooglePlayDeveloperReportingV1beta1QueryLmkRateMetricSetRequest,
                 **kwargs: typing.Any,
             ) -> GooglePlayDeveloperReportingV1beta1QueryLmkRateMetricSetResponseHttpRequest: ...
             def query_next(
@@ -263,7 +263,7 @@ class PlaydeveloperreportingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GooglePlayDeveloperReportingV1beta1QuerySlowRenderingRateMetricSetRequest = ...,
+                body: GooglePlayDeveloperReportingV1beta1QuerySlowRenderingRateMetricSetRequest,
                 **kwargs: typing.Any,
             ) -> GooglePlayDeveloperReportingV1beta1QuerySlowRenderingRateMetricSetResponseHttpRequest: ...
             def query_next(
@@ -286,7 +286,7 @@ class PlaydeveloperreportingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GooglePlayDeveloperReportingV1beta1QuerySlowStartRateMetricSetRequest = ...,
+                body: GooglePlayDeveloperReportingV1beta1QuerySlowStartRateMetricSetRequest,
                 **kwargs: typing.Any,
             ) -> GooglePlayDeveloperReportingV1beta1QuerySlowStartRateMetricSetResponseHttpRequest: ...
             def query_next(
@@ -307,7 +307,7 @@ class PlaydeveloperreportingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GooglePlayDeveloperReportingV1beta1QueryStuckBackgroundWakelockRateMetricSetRequest = ...,
+                body: GooglePlayDeveloperReportingV1beta1QueryStuckBackgroundWakelockRateMetricSetRequest,
                 **kwargs: typing.Any,
             ) -> GooglePlayDeveloperReportingV1beta1QueryStuckBackgroundWakelockRateMetricSetResponseHttpRequest: ...
             def query_next(

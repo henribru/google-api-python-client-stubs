@@ -24,7 +24,7 @@ class PlayGroupingResource(googleapiclient.discovery.Resource):
                     *,
                     appPackage: str,
                     token: str,
-                    body: CreateOrUpdateTagsRequest = ...,
+                    body: CreateOrUpdateTagsRequest,
                     **kwargs: typing.Any,
                 ) -> CreateOrUpdateTagsResponseHttpRequest: ...
 
@@ -33,7 +33,7 @@ class PlayGroupingResource(googleapiclient.discovery.Resource):
                 *,
                 appPackage: str,
                 token: str,
-                body: VerifyTokenRequest = ...,
+                body: VerifyTokenRequest,
                 **kwargs: typing.Any,
             ) -> VerifyTokenResponseHttpRequest: ...
             def tags(self) -> TagsResource: ...

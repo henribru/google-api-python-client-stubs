@@ -47,7 +47,7 @@ class GKEHubResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: Feature = ...,
+                    body: Feature,
                     featureId: str | None = ...,
                     requestId: str | None = ...,
                     **kwargs: typing.Any,
@@ -94,7 +94,7 @@ class GKEHubResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: Feature = ...,
+                    body: Feature,
                     requestId: str | None = ...,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
@@ -103,21 +103,21 @@ class GKEHubResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: SetIamPolicyRequest = ...,
+                    body: SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: TestIamPermissionsRequest = ...,
+                    body: TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
 
             @typing.type_check_only
             class FleetsResource(googleapiclient.discovery.Resource):
                 def create(
-                    self, *, parent: str, body: Fleet = ..., **kwargs: typing.Any
+                    self, *, parent: str, body: Fleet, **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -142,7 +142,7 @@ class GKEHubResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: Fleet = ...,
+                    body: Fleet,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -155,7 +155,7 @@ class GKEHubResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: MembershipBinding = ...,
+                        body: MembershipBinding,
                         membershipBindingId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
@@ -183,7 +183,7 @@ class GKEHubResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: MembershipBinding = ...,
+                        body: MembershipBinding,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
@@ -194,7 +194,7 @@ class GKEHubResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: RBACRoleBinding = ...,
+                        body: RBACRoleBinding,
                         rbacrolebindingId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
@@ -205,7 +205,7 @@ class GKEHubResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: RBACRoleBinding = ...,
+                        body: RBACRoleBinding,
                         rbacrolebindingId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> GenerateMembershipRBACRoleBindingYAMLResponseHttpRequest: ...
@@ -229,7 +229,7 @@ class GKEHubResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: RBACRoleBinding = ...,
+                        body: RBACRoleBinding,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
@@ -238,7 +238,7 @@ class GKEHubResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: Membership = ...,
+                    body: Membership,
                     membershipId: str | None = ...,
                     requestId: str | None = ...,
                     **kwargs: typing.Any,
@@ -315,7 +315,7 @@ class GKEHubResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: Membership = ...,
+                    body: Membership,
                     requestId: str | None = ...,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
@@ -324,21 +324,21 @@ class GKEHubResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: SetIamPolicyRequest = ...,
+                    body: SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: TestIamPermissionsRequest = ...,
+                    body: TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def validateCreate(
                     self,
                     *,
                     parent: str,
-                    body: ValidateCreateMembershipRequest = ...,
+                    body: ValidateCreateMembershipRequest,
                     **kwargs: typing.Any,
                 ) -> ValidateCreateMembershipResponseHttpRequest: ...
                 def validateExclusivity(
@@ -358,7 +358,7 @@ class GKEHubResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: CancelOperationRequest = ...,
+                    body: CancelOperationRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def delete(
@@ -389,7 +389,7 @@ class GKEHubResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: RolloutSequence = ...,
+                    body: RolloutSequence,
                     rolloutSequenceId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -417,7 +417,7 @@ class GKEHubResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: RolloutSequence = ...,
+                    body: RolloutSequence,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -425,18 +425,14 @@ class GKEHubResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: UpgradeRolloutSequenceRequest = ...,
+                    body: UpgradeRolloutSequenceRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
 
             @typing.type_check_only
             class RolloutsResource(googleapiclient.discovery.Resource):
                 def cancel(
-                    self,
-                    *,
-                    name: str,
-                    body: CancelRolloutRequest = ...,
-                    **kwargs: typing.Any,
+                    self, *, name: str, body: CancelRolloutRequest, **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self,
@@ -449,7 +445,7 @@ class GKEHubResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: ForceCompleteRolloutStageRequest = ...,
+                    body: ForceCompleteRolloutStageRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def get(
@@ -470,18 +466,10 @@ class GKEHubResource(googleapiclient.discovery.Resource):
                     previous_response: ListRolloutsResponse,
                 ) -> ListRolloutsResponseHttpRequest | None: ...
                 def pause(
-                    self,
-                    *,
-                    name: str,
-                    body: PauseRolloutRequest = ...,
-                    **kwargs: typing.Any,
+                    self, *, name: str, body: PauseRolloutRequest, **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def resume(
-                    self,
-                    *,
-                    name: str,
-                    body: ResumeRolloutRequest = ...,
-                    **kwargs: typing.Any,
+                    self, *, name: str, body: ResumeRolloutRequest, **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
 
             @typing.type_check_only
@@ -492,7 +480,7 @@ class GKEHubResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: Namespace = ...,
+                        body: Namespace,
                         scopeNamespaceId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
@@ -519,7 +507,7 @@ class GKEHubResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: Namespace = ...,
+                        body: Namespace,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
@@ -530,7 +518,7 @@ class GKEHubResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: RBACRoleBinding = ...,
+                        body: RBACRoleBinding,
                         rbacrolebindingId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
@@ -557,7 +545,7 @@ class GKEHubResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: RBACRoleBinding = ...,
+                        body: RBACRoleBinding,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
@@ -566,7 +554,7 @@ class GKEHubResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: Scope = ...,
+                    body: Scope,
                     scopeId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -627,7 +615,7 @@ class GKEHubResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: Scope = ...,
+                    body: Scope,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -635,14 +623,14 @@ class GKEHubResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: SetIamPolicyRequest = ...,
+                    body: SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: TestIamPermissionsRequest = ...,
+                    body: TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def namespaces(self) -> NamespacesResource: ...

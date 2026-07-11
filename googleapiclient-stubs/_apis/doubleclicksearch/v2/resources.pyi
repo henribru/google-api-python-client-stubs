@@ -50,19 +50,19 @@ class DoubleclicksearchResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any,
         ) -> ConversionListHttpRequest: ...
         def insert(
-            self, *, body: ConversionList = ..., **kwargs: typing.Any
+            self, *, body: ConversionList, **kwargs: typing.Any
         ) -> ConversionListHttpRequest: ...
         def update(
-            self, *, body: ConversionList = ..., **kwargs: typing.Any
+            self, *, body: ConversionList, **kwargs: typing.Any
         ) -> ConversionListHttpRequest: ...
         def updateAvailability(
-            self, *, body: UpdateAvailabilityRequest = ..., **kwargs: typing.Any
+            self, *, body: UpdateAvailabilityRequest, **kwargs: typing.Any
         ) -> UpdateAvailabilityResponseHttpRequest: ...
 
     @typing.type_check_only
     class ReportsResource(googleapiclient.discovery.Resource):
         def generate(
-            self, *, body: ReportRequest = ..., **kwargs: typing.Any
+            self, *, body: ReportRequest, **kwargs: typing.Any
         ) -> ReportHttpRequest: ...
         def get(self, *, reportId: str, **kwargs: typing.Any) -> ReportHttpRequest: ...
         def getFile(
@@ -78,7 +78,7 @@ class DoubleclicksearchResource(googleapiclient.discovery.Resource):
             self, *, agencyId: str, advertiserId: str, **kwargs: typing.Any
         ) -> BytesHttpRequest: ...
         def request(
-            self, *, body: ReportRequest = ..., **kwargs: typing.Any
+            self, *, body: ReportRequest, **kwargs: typing.Any
         ) -> ReportHttpRequest: ...
 
     @typing.type_check_only

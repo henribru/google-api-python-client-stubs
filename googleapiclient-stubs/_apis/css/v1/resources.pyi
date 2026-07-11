@@ -28,7 +28,7 @@ class CssResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: CssProductInput = ...,
+                body: CssProductInput,
                 feedId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> CssProductInputHttpRequest: ...
@@ -36,7 +36,7 @@ class CssResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: CssProductInput = ...,
+                body: CssProductInput,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> CssProductInputHttpRequest: ...
@@ -63,7 +63,7 @@ class CssResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LabelsResource(googleapiclient.discovery.Resource):
             def create(
-                self, *, parent: str, body: AccountLabel = ..., **kwargs: typing.Any
+                self, *, parent: str, body: AccountLabel, **kwargs: typing.Any
             ) -> AccountLabelHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -82,7 +82,7 @@ class CssResource(googleapiclient.discovery.Resource):
                 previous_response: ListAccountLabelsResponse,
             ) -> ListAccountLabelsResponseHttpRequest | None: ...
             def patch(
-                self, *, name: str, body: AccountLabel = ..., **kwargs: typing.Any
+                self, *, name: str, body: AccountLabel, **kwargs: typing.Any
             ) -> AccountLabelHttpRequest: ...
 
         @typing.type_check_only
@@ -120,11 +120,7 @@ class CssResource(googleapiclient.discovery.Resource):
             previous_response: ListChildAccountsResponse,
         ) -> ListChildAccountsResponseHttpRequest | None: ...
         def updateLabels(
-            self,
-            *,
-            name: str,
-            body: UpdateAccountLabelsRequest = ...,
-            **kwargs: typing.Any,
+            self, *, name: str, body: UpdateAccountLabelsRequest, **kwargs: typing.Any
         ) -> AccountHttpRequest: ...
         def cssProductInputs(self) -> CssProductInputsResource: ...
         def cssProducts(self) -> CssProductsResource: ...

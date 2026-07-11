@@ -16,11 +16,7 @@ class ChromewebstoreResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class MediaResource(googleapiclient.discovery.Resource):
         def upload(
-            self,
-            *,
-            name: str,
-            body: UploadItemPackageRequest = ...,
-            **kwargs: typing.Any,
+            self, *, name: str, body: UploadItemPackageRequest, **kwargs: typing.Any
         ) -> UploadItemPackageResponseHttpRequest: ...
 
     @typing.type_check_only
@@ -28,23 +24,19 @@ class ChromewebstoreResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class ItemsResource(googleapiclient.discovery.Resource):
             def cancelSubmission(
-                self,
-                *,
-                name: str,
-                body: CancelSubmissionRequest = ...,
-                **kwargs: typing.Any,
+                self, *, name: str, body: CancelSubmissionRequest, **kwargs: typing.Any
             ) -> CancelSubmissionResponseHttpRequest: ...
             def fetchStatus(
                 self, *, name: str, **kwargs: typing.Any
             ) -> FetchItemStatusResponseHttpRequest: ...
             def publish(
-                self, *, name: str, body: PublishItemRequest = ..., **kwargs: typing.Any
+                self, *, name: str, body: PublishItemRequest, **kwargs: typing.Any
             ) -> PublishItemResponseHttpRequest: ...
             def setPublishedDeployPercentage(
                 self,
                 *,
                 name: str,
-                body: SetPublishedDeployPercentageRequest = ...,
+                body: SetPublishedDeployPercentageRequest,
                 **kwargs: typing.Any,
             ) -> SetPublishedDeployPercentageResponseHttpRequest: ...
 

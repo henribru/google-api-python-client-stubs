@@ -48,7 +48,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                         modulesId: str,
                         versionsId: str,
                         instancesId: str,
-                        body: DebugInstanceRequest = ...,
+                        body: DebugInstanceRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def delete(
@@ -90,7 +90,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                     *,
                     appsId: str,
                     modulesId: str,
-                    body: Version = ...,
+                    body: Version,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
@@ -131,7 +131,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                     appsId: str,
                     modulesId: str,
                     versionsId: str,
-                    body: Version = ...,
+                    body: Version,
                     mask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -161,7 +161,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 *,
                 appsId: str,
                 modulesId: str,
-                body: Module = ...,
+                body: Module,
                 mask: str | None = ...,
                 migrateTraffic: bool | None = ...,
                 **kwargs: typing.Any,
@@ -189,7 +189,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
             ) -> ListOperationsResponseHttpRequest | None: ...
 
         def create(
-            self, *, body: Application = ..., **kwargs: typing.Any
+            self, *, body: Application, **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
         def get(
             self,
@@ -202,7 +202,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
             self,
             *,
             appsId: str,
-            body: Application = ...,
+            body: Application,
             mask: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...

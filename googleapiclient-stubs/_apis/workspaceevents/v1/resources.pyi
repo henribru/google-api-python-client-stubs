@@ -16,7 +16,7 @@ class WorkspaceEventsResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class MessageResource(googleapiclient.discovery.Resource):
         def stream(
-            self, *, body: SendMessageRequest = ..., **kwargs: typing.Any
+            self, *, body: SendMessageRequest, **kwargs: typing.Any
         ) -> StreamResponseHttpRequest: ...
 
     @typing.type_check_only
@@ -28,7 +28,7 @@ class WorkspaceEventsResource(googleapiclient.discovery.Resource):
         def create(
             self,
             *,
-            body: Subscription = ...,
+            body: Subscription,
             validateOnly: bool | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -61,7 +61,7 @@ class WorkspaceEventsResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            body: Subscription = ...,
+            body: Subscription,
             updateMask: str | None = ...,
             validateOnly: bool | None = ...,
             **kwargs: typing.Any,
@@ -70,7 +70,7 @@ class WorkspaceEventsResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            body: ReactivateSubscriptionRequest = ...,
+            body: ReactivateSubscriptionRequest,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
 
@@ -82,7 +82,7 @@ class WorkspaceEventsResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: TaskPushNotificationConfig = ...,
+                body: TaskPushNotificationConfig,
                 configId: str | None = ...,
                 tenant: str | None = ...,
                 **kwargs: typing.Any,
@@ -109,7 +109,7 @@ class WorkspaceEventsResource(googleapiclient.discovery.Resource):
             ) -> ListTaskPushNotificationConfigResponseHttpRequest | None: ...
 
         def cancel(
-            self, *, name: str, body: CancelTaskRequest = ..., **kwargs: typing.Any
+            self, *, name: str, body: CancelTaskRequest, **kwargs: typing.Any
         ) -> TaskHttpRequest: ...
         def get(
             self,

@@ -44,7 +44,7 @@ class ServiceUsageResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: QuotaOverride = ...,
+                        body: QuotaOverride,
                         force: bool | None = ...,
                         forceOnly: typing_extensions.Literal[
                             "QUOTA_SAFETY_CHECK_UNSPECIFIED",
@@ -98,7 +98,7 @@ class ServiceUsageResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: QuotaOverride = ...,
+                        body: QuotaOverride,
                         force: bool | None = ...,
                         forceOnly: typing_extensions.Literal[
                             "QUOTA_SAFETY_CHECK_UNSPECIFIED",
@@ -123,7 +123,7 @@ class ServiceUsageResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: QuotaOverride = ...,
+                        body: QuotaOverride,
                         force: bool | None = ...,
                         forceOnly: typing_extensions.Literal[
                             "QUOTA_SAFETY_CHECK_UNSPECIFIED",
@@ -177,7 +177,7 @@ class ServiceUsageResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: QuotaOverride = ...,
+                        body: QuotaOverride,
                         force: bool | None = ...,
                         forceOnly: typing_extensions.Literal[
                             "QUOTA_SAFETY_CHECK_UNSPECIFIED",
@@ -223,14 +223,14 @@ class ServiceUsageResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: ImportAdminOverridesRequest = ...,
+                body: ImportAdminOverridesRequest,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def importConsumerOverrides(
                 self,
                 *,
                 parent: str,
-                body: ImportConsumerOverridesRequest = ...,
+                body: ImportConsumerOverridesRequest,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def list(
@@ -253,17 +253,13 @@ class ServiceUsageResource(googleapiclient.discovery.Resource):
             def limits(self) -> LimitsResource: ...
 
         def batchEnable(
-            self,
-            *,
-            parent: str,
-            body: BatchEnableServicesRequest = ...,
-            **kwargs: typing.Any,
+            self, *, parent: str, body: BatchEnableServicesRequest, **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
         def disable(
-            self, *, name: str, body: DisableServiceRequest = ..., **kwargs: typing.Any
+            self, *, name: str, body: DisableServiceRequest, **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
         def enable(
-            self, *, name: str, body: EnableServiceRequest = ..., **kwargs: typing.Any
+            self, *, name: str, body: EnableServiceRequest, **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
         def generateServiceIdentity(
             self, *, parent: str, **kwargs: typing.Any

@@ -23,7 +23,7 @@ class RapidMigrationAssessmentResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: Annotation = ...,
+                    body: Annotation,
                     requestId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -37,7 +37,7 @@ class RapidMigrationAssessmentResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: Collector = ...,
+                    body: Collector,
                     collectorId: str | None = ...,
                     requestId: str | None = ...,
                     **kwargs: typing.Any,
@@ -71,7 +71,7 @@ class RapidMigrationAssessmentResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: Collector = ...,
+                    body: Collector,
                     requestId: str | None = ...,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
@@ -80,21 +80,21 @@ class RapidMigrationAssessmentResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: PauseCollectorRequest = ...,
+                    body: PauseCollectorRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def register(
                     self,
                     *,
                     name: str,
-                    body: RegisterCollectorRequest = ...,
+                    body: RegisterCollectorRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def resume(
                     self,
                     *,
                     name: str,
-                    body: ResumeCollectorRequest = ...,
+                    body: ResumeCollectorRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
 
@@ -104,7 +104,7 @@ class RapidMigrationAssessmentResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: CancelOperationRequest = ...,
+                    body: CancelOperationRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def delete(

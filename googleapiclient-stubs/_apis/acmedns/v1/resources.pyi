@@ -22,7 +22,7 @@ class ACMEDNSResource(googleapiclient.discovery.Resource):
             self,
             *,
             rootDomain: str,
-            body: RotateChallengesRequest = ...,
+            body: RotateChallengesRequest,
             **kwargs: typing.Any,
         ) -> AcmeChallengeSetHttpRequest: ...
 

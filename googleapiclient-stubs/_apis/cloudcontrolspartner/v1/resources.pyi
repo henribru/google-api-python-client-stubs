@@ -97,7 +97,7 @@ class CloudControlsPartnerServiceResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: Customer = ...,
+                    body: Customer,
                     customerId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> CustomerHttpRequest: ...
@@ -126,7 +126,7 @@ class CloudControlsPartnerServiceResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: Customer = ...,
+                    body: Customer,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> CustomerHttpRequest: ...

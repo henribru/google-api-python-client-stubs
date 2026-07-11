@@ -56,7 +56,7 @@ class ResourceSettingsResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleCloudResourcesettingsV1Setting = ...,
+                body: GoogleCloudResourcesettingsV1Setting,
                 **kwargs: typing.Any,
             ) -> GoogleCloudResourcesettingsV1SettingHttpRequest: ...
 
@@ -105,7 +105,7 @@ class ResourceSettingsResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleCloudResourcesettingsV1Setting = ...,
+                body: GoogleCloudResourcesettingsV1Setting,
                 **kwargs: typing.Any,
             ) -> GoogleCloudResourcesettingsV1SettingHttpRequest: ...
 
@@ -154,7 +154,7 @@ class ResourceSettingsResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleCloudResourcesettingsV1Setting = ...,
+                body: GoogleCloudResourcesettingsV1Setting,
                 **kwargs: typing.Any,
             ) -> GoogleCloudResourcesettingsV1SettingHttpRequest: ...
 

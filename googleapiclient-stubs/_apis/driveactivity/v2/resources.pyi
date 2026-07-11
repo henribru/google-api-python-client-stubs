@@ -16,7 +16,7 @@ class DriveActivityResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class ActivityResource(googleapiclient.discovery.Resource):
         def query(
-            self, *, body: QueryDriveActivityRequest = ..., **kwargs: typing.Any
+            self, *, body: QueryDriveActivityRequest, **kwargs: typing.Any
         ) -> QueryDriveActivityResponseHttpRequest: ...
         def query_next(
             self,

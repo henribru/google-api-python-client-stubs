@@ -16,40 +16,32 @@ class DatastoreResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         def allocateIds(
-            self,
-            *,
-            projectId: str,
-            body: AllocateIdsRequest = ...,
-            **kwargs: typing.Any,
+            self, *, projectId: str, body: AllocateIdsRequest, **kwargs: typing.Any
         ) -> AllocateIdsResponseHttpRequest: ...
         def beginTransaction(
-            self,
-            *,
-            projectId: str,
-            body: BeginTransactionRequest = ...,
-            **kwargs: typing.Any,
+            self, *, projectId: str, body: BeginTransactionRequest, **kwargs: typing.Any
         ) -> BeginTransactionResponseHttpRequest: ...
         def commit(
-            self, *, projectId: str, body: CommitRequest = ..., **kwargs: typing.Any
+            self, *, projectId: str, body: CommitRequest, **kwargs: typing.Any
         ) -> CommitResponseHttpRequest: ...
         def lookup(
-            self, *, projectId: str, body: LookupRequest = ..., **kwargs: typing.Any
+            self, *, projectId: str, body: LookupRequest, **kwargs: typing.Any
         ) -> LookupResponseHttpRequest: ...
         def reserveIds(
-            self, *, projectId: str, body: ReserveIdsRequest = ..., **kwargs: typing.Any
+            self, *, projectId: str, body: ReserveIdsRequest, **kwargs: typing.Any
         ) -> ReserveIdsResponseHttpRequest: ...
         def rollback(
-            self, *, projectId: str, body: RollbackRequest = ..., **kwargs: typing.Any
+            self, *, projectId: str, body: RollbackRequest, **kwargs: typing.Any
         ) -> RollbackResponseHttpRequest: ...
         def runAggregationQuery(
             self,
             *,
             projectId: str,
-            body: RunAggregationQueryRequest = ...,
+            body: RunAggregationQueryRequest,
             **kwargs: typing.Any,
         ) -> RunAggregationQueryResponseHttpRequest: ...
         def runQuery(
-            self, *, projectId: str, body: RunQueryRequest = ..., **kwargs: typing.Any
+            self, *, projectId: str, body: RunQueryRequest, **kwargs: typing.Any
         ) -> RunQueryResponseHttpRequest: ...
 
     def new_batch_http_request(

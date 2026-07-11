@@ -23,7 +23,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: AgentGateway = ...,
+                    body: AgentGateway,
                     agentGatewayId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -51,7 +51,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: AgentGateway = ...,
+                    body: AgentGateway,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -62,7 +62,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: AuthzExtension = ...,
+                    body: AuthzExtension,
                     authzExtensionId: str | None = ...,
                     requestId: str | None = ...,
                     **kwargs: typing.Any,
@@ -96,7 +96,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: AuthzExtension = ...,
+                    body: AuthzExtension,
                     requestId: str | None = ...,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
@@ -115,14 +115,14 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: SetIamPolicyRequest = ...,
+                    body: SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: TestIamPermissionsRequest = ...,
+                    body: TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
 
@@ -139,14 +139,14 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: SetIamPolicyRequest = ...,
+                    body: SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: TestIamPermissionsRequest = ...,
+                    body: TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
 
@@ -163,14 +163,14 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: SetIamPolicyRequest = ...,
+                    body: SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: TestIamPermissionsRequest = ...,
+                    body: TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
 
@@ -180,7 +180,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: EndpointPolicy = ...,
+                    body: EndpointPolicy,
                     endpointPolicyId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -208,7 +208,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: EndpointPolicy = ...,
+                    body: EndpointPolicy,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -238,7 +238,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: Gateway = ...,
+                    body: Gateway,
                     gatewayId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -265,7 +265,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: Gateway = ...,
+                    body: Gateway,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -277,7 +277,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GrpcRoute = ...,
+                    body: GrpcRoute,
                     grpcRouteId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -305,7 +305,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GrpcRoute = ...,
+                    body: GrpcRoute,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -316,7 +316,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: HttpRoute = ...,
+                    body: HttpRoute,
                     httpRouteId: str | None = ...,
                     requestId: str | None = ...,
                     **kwargs: typing.Any,
@@ -346,7 +346,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: HttpRoute = ...,
+                    body: HttpRoute,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -357,7 +357,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: LbEdgeExtension = ...,
+                    body: LbEdgeExtension,
                     lbEdgeExtensionId: str | None = ...,
                     requestId: str | None = ...,
                     **kwargs: typing.Any,
@@ -391,7 +391,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: LbEdgeExtension = ...,
+                    body: LbEdgeExtension,
                     requestId: str | None = ...,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
@@ -403,7 +403,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: LbRouteExtension = ...,
+                    body: LbRouteExtension,
                     lbRouteExtensionId: str | None = ...,
                     requestId: str | None = ...,
                     **kwargs: typing.Any,
@@ -437,7 +437,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: LbRouteExtension = ...,
+                    body: LbRouteExtension,
                     requestId: str | None = ...,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
@@ -449,7 +449,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: LbTrafficExtension = ...,
+                    body: LbTrafficExtension,
                     lbTrafficExtensionId: str | None = ...,
                     requestId: str | None = ...,
                     **kwargs: typing.Any,
@@ -483,7 +483,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: LbTrafficExtension = ...,
+                    body: LbTrafficExtension,
                     requestId: str | None = ...,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
@@ -514,7 +514,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: Mesh = ...,
+                    body: Mesh,
                     meshId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -542,7 +542,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: Mesh = ...,
+                    body: Mesh,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -556,7 +556,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: MulticastConsumerAssociation = ...,
+                    body: MulticastConsumerAssociation,
                     multicastConsumerAssociationId: str | None = ...,
                     requestId: str | None = ...,
                     **kwargs: typing.Any,
@@ -590,7 +590,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: MulticastConsumerAssociation = ...,
+                    body: MulticastConsumerAssociation,
                     requestId: str | None = ...,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
@@ -604,7 +604,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: MulticastGroupConsumerActivation = ...,
+                    body: MulticastGroupConsumerActivation,
                     multicastGroupConsumerActivationId: str | None = ...,
                     requestId: str | None = ...,
                     **kwargs: typing.Any,
@@ -640,7 +640,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: MulticastGroupConsumerActivation = ...,
+                    body: MulticastGroupConsumerActivation,
                     requestId: str | None = ...,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
@@ -652,7 +652,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: CancelOperationRequest = ...,
+                    body: CancelOperationRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def delete(
@@ -683,7 +683,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: ServiceBinding = ...,
+                    body: ServiceBinding,
                     serviceBindingId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -710,7 +710,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: ServiceBinding = ...,
+                    body: ServiceBinding,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -721,7 +721,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: ServiceLbPolicy = ...,
+                    body: ServiceLbPolicy,
                     serviceLbPolicyId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -748,7 +748,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: ServiceLbPolicy = ...,
+                    body: ServiceLbPolicy,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -759,7 +759,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: TcpRoute = ...,
+                    body: TcpRoute,
                     tcpRouteId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -787,7 +787,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: TcpRoute = ...,
+                    body: TcpRoute,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -798,7 +798,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: TlsRoute = ...,
+                    body: TlsRoute,
                     tlsRouteId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -826,7 +826,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: TlsRoute = ...,
+                    body: TlsRoute,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -839,7 +839,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: WasmPluginVersion = ...,
+                        body: WasmPluginVersion,
                         wasmPluginVersionId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
@@ -867,7 +867,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: WasmPlugin = ...,
+                    body: WasmPlugin,
                     wasmPluginId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -903,7 +903,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: WasmPlugin = ...,
+                    body: WasmPlugin,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...

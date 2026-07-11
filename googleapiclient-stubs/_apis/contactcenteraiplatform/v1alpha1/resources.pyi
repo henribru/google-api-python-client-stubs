@@ -23,7 +23,7 @@ class CCAIPlatformResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: ContactCenter = ...,
+                    body: ContactCenter,
                     contactCenterId: str | None = ...,
                     requestId: str | None = ...,
                     **kwargs: typing.Any,
@@ -57,7 +57,7 @@ class CCAIPlatformResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: ContactCenter = ...,
+                    body: ContactCenter,
                     requestId: str | None = ...,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
@@ -69,7 +69,7 @@ class CCAIPlatformResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: CancelOperationRequest = ...,
+                    body: CancelOperationRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def delete(
@@ -95,11 +95,7 @@ class CCAIPlatformResource(googleapiclient.discovery.Resource):
                 ) -> ListOperationsResponseHttpRequest | None: ...
 
             def generateShifts(
-                self,
-                *,
-                parent: str,
-                body: GenerateShiftsRequest = ...,
-                **kwargs: typing.Any,
+                self, *, parent: str, body: GenerateShiftsRequest, **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
             def get(
                 self, *, name: str, **kwargs: typing.Any

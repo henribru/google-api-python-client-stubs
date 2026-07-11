@@ -39,11 +39,7 @@ class FirebaseManagementResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class ShaResource(googleapiclient.discovery.Resource):
                 def create(
-                    self,
-                    *,
-                    parent: str,
-                    body: ShaCertificate = ...,
-                    **kwargs: typing.Any,
+                    self, *, parent: str, body: ShaCertificate, **kwargs: typing.Any
                 ) -> ShaCertificateHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -53,7 +49,7 @@ class FirebaseManagementResource(googleapiclient.discovery.Resource):
                 ) -> ListShaCertificatesResponseHttpRequest: ...
 
             def create(
-                self, *, parent: str, body: AndroidApp = ..., **kwargs: typing.Any
+                self, *, parent: str, body: AndroidApp, **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
             def get(
                 self, *, name: str, **kwargs: typing.Any
@@ -79,22 +75,18 @@ class FirebaseManagementResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: AndroidApp = ...,
+                body: AndroidApp,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> AndroidAppHttpRequest: ...
             def remove(
-                self,
-                *,
-                name: str,
-                body: RemoveAndroidAppRequest = ...,
-                **kwargs: typing.Any,
+                self, *, name: str, body: RemoveAndroidAppRequest, **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
             def undelete(
                 self,
                 *,
                 name: str,
-                body: UndeleteAndroidAppRequest = ...,
+                body: UndeleteAndroidAppRequest,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def sha(self) -> ShaResource: ...
@@ -121,14 +113,14 @@ class FirebaseManagementResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: FinalizeDefaultLocationRequest = ...,
+                body: FinalizeDefaultLocationRequest,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
 
         @typing.type_check_only
         class IosAppsResource(googleapiclient.discovery.Resource):
             def create(
-                self, *, parent: str, body: IosApp = ..., **kwargs: typing.Any
+                self, *, parent: str, body: IosApp, **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
             def get(self, *, name: str, **kwargs: typing.Any) -> IosAppHttpRequest: ...
             def getConfig(
@@ -152,29 +144,21 @@ class FirebaseManagementResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: IosApp = ...,
+                body: IosApp,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> IosAppHttpRequest: ...
             def remove(
-                self,
-                *,
-                name: str,
-                body: RemoveIosAppRequest = ...,
-                **kwargs: typing.Any,
+                self, *, name: str, body: RemoveIosAppRequest, **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
             def undelete(
-                self,
-                *,
-                name: str,
-                body: UndeleteIosAppRequest = ...,
-                **kwargs: typing.Any,
+                self, *, name: str, body: UndeleteIosAppRequest, **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
 
         @typing.type_check_only
         class WebAppsResource(googleapiclient.discovery.Resource):
             def create(
-                self, *, parent: str, body: WebApp = ..., **kwargs: typing.Any
+                self, *, parent: str, body: WebApp, **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
             def get(self, *, name: str, **kwargs: typing.Any) -> WebAppHttpRequest: ...
             def getConfig(
@@ -198,34 +182,22 @@ class FirebaseManagementResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: WebApp = ...,
+                body: WebApp,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> WebAppHttpRequest: ...
             def remove(
-                self,
-                *,
-                name: str,
-                body: RemoveWebAppRequest = ...,
-                **kwargs: typing.Any,
+                self, *, name: str, body: RemoveWebAppRequest, **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
             def undelete(
-                self,
-                *,
-                name: str,
-                body: UndeleteWebAppRequest = ...,
-                **kwargs: typing.Any,
+                self, *, name: str, body: UndeleteWebAppRequest, **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
 
         def addFirebase(
-            self, *, project: str, body: AddFirebaseRequest = ..., **kwargs: typing.Any
+            self, *, project: str, body: AddFirebaseRequest, **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
         def addGoogleAnalytics(
-            self,
-            *,
-            parent: str,
-            body: AddGoogleAnalyticsRequest = ...,
-            **kwargs: typing.Any,
+            self, *, parent: str, body: AddGoogleAnalyticsRequest, **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
         def get(
             self, *, name: str, **kwargs: typing.Any
@@ -253,16 +225,12 @@ class FirebaseManagementResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            body: FirebaseProject = ...,
+            body: FirebaseProject,
             updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> FirebaseProjectHttpRequest: ...
         def removeAnalytics(
-            self,
-            *,
-            parent: str,
-            body: RemoveAnalyticsRequest = ...,
-            **kwargs: typing.Any,
+            self, *, parent: str, body: RemoveAnalyticsRequest, **kwargs: typing.Any
         ) -> EmptyHttpRequest: ...
         def searchApps(
             self,

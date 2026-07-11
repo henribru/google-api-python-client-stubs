@@ -20,7 +20,7 @@ class CloudSchedulerResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class JobsResource(googleapiclient.discovery.Resource):
                 def create(
-                    self, *, parent: str, body: Job = ..., **kwargs: typing.Any
+                    self, *, parent: str, body: Job, **kwargs: typing.Any
                 ) -> JobHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -43,26 +43,18 @@ class CloudSchedulerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: Job = ...,
+                    body: Job,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> JobHttpRequest: ...
                 def pause(
-                    self,
-                    *,
-                    name: str,
-                    body: PauseJobRequest = ...,
-                    **kwargs: typing.Any,
+                    self, *, name: str, body: PauseJobRequest, **kwargs: typing.Any
                 ) -> JobHttpRequest: ...
                 def resume(
-                    self,
-                    *,
-                    name: str,
-                    body: ResumeJobRequest = ...,
-                    **kwargs: typing.Any,
+                    self, *, name: str, body: ResumeJobRequest, **kwargs: typing.Any
                 ) -> JobHttpRequest: ...
                 def run(
-                    self, *, name: str, body: RunJobRequest = ..., **kwargs: typing.Any
+                    self, *, name: str, body: RunJobRequest, **kwargs: typing.Any
                 ) -> JobHttpRequest: ...
 
             @typing.type_check_only
@@ -71,7 +63,7 @@ class CloudSchedulerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: CancelOperationRequest = ...,
+                    body: CancelOperationRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def delete(
@@ -121,7 +113,7 @@ class CloudSchedulerResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: CmekConfig = ...,
+                body: CmekConfig,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...

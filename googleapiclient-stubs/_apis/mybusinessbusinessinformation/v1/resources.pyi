@@ -21,7 +21,7 @@ class MyBusinessBusinessInformationResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: Location = ...,
+                body: Location,
                 requestId: str | None = ...,
                 validateOnly: bool | None = ...,
                 **kwargs: typing.Any,
@@ -113,7 +113,7 @@ class MyBusinessBusinessInformationResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class GoogleLocationsResource(googleapiclient.discovery.Resource):
         def search(
-            self, *, body: SearchGoogleLocationsRequest = ..., **kwargs: typing.Any
+            self, *, body: SearchGoogleLocationsRequest, **kwargs: typing.Any
         ) -> SearchGoogleLocationsResponseHttpRequest: ...
 
     @typing.type_check_only
@@ -138,7 +138,7 @@ class MyBusinessBusinessInformationResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            body: Location = ...,
+            body: Location,
             updateMask: str | None = ...,
             validateOnly: bool | None = ...,
             **kwargs: typing.Any,
@@ -147,7 +147,7 @@ class MyBusinessBusinessInformationResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            body: Attributes = ...,
+            body: Attributes,
             attributeMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> AttributesHttpRequest: ...

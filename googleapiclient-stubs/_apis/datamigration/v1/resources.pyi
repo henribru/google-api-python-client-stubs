@@ -23,7 +23,7 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: ConnectionProfile = ...,
+                    body: ConnectionProfile,
                     connectionProfileId: str | None = ...,
                     requestId: str | None = ...,
                     skipValidation: bool | None = ...,
@@ -67,7 +67,7 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: ConnectionProfile = ...,
+                    body: ConnectionProfile,
                     requestId: str | None = ...,
                     skipValidation: bool | None = ...,
                     updateMask: str | None = ...,
@@ -78,14 +78,14 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: SetIamPolicyRequest = ...,
+                    body: SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: TestIamPermissionsRequest = ...,
+                    body: TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
 
@@ -97,7 +97,7 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: MappingRule = ...,
+                        body: MappingRule,
                         mappingRuleId: str | None = ...,
                         requestId: str | None = ...,
                         **kwargs: typing.Any,
@@ -116,7 +116,7 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: ImportMappingRulesRequest = ...,
+                        body: ImportMappingRulesRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def list(
@@ -137,28 +137,28 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: ApplyConversionWorkspaceRequest = ...,
+                    body: ApplyConversionWorkspaceRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def commit(
                     self,
                     *,
                     name: str,
-                    body: CommitConversionWorkspaceRequest = ...,
+                    body: CommitConversionWorkspaceRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def convert(
                     self,
                     *,
                     name: str,
-                    body: ConvertConversionWorkspaceRequest = ...,
+                    body: ConvertConversionWorkspaceRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def create(
                     self,
                     *,
                     parent: str,
-                    body: ConversionWorkspace = ...,
+                    body: ConversionWorkspace,
                     conversionWorkspaceId: str | None = ...,
                     requestId: str | None = ...,
                     **kwargs: typing.Any,
@@ -237,7 +237,7 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: ConversionWorkspace = ...,
+                    body: ConversionWorkspace,
                     requestId: str | None = ...,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
@@ -246,7 +246,7 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: RollbackConversionWorkspaceRequest = ...,
+                    body: RollbackConversionWorkspaceRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def searchBackgroundJobs(
@@ -262,21 +262,21 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: SeedConversionWorkspaceRequest = ...,
+                    body: SeedConversionWorkspaceRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def setIamPolicy(
                     self,
                     *,
                     resource: str,
-                    body: SetIamPolicyRequest = ...,
+                    body: SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: TestIamPermissionsRequest = ...,
+                    body: TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def mappingRules(self) -> MappingRulesResource: ...
@@ -312,21 +312,21 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: LookupMigrationJobObjectRequest = ...,
+                        body: LookupMigrationJobObjectRequest,
                         **kwargs: typing.Any,
                     ) -> MigrationJobObjectHttpRequest: ...
                     def setIamPolicy(
                         self,
                         *,
                         resource: str,
-                        body: SetIamPolicyRequest = ...,
+                        body: SetIamPolicyRequest,
                         **kwargs: typing.Any,
                     ) -> PolicyHttpRequest: ...
                     def testIamPermissions(
                         self,
                         *,
                         resource: str,
-                        body: TestIamPermissionsRequest = ...,
+                        body: TestIamPermissionsRequest,
                         **kwargs: typing.Any,
                     ) -> TestIamPermissionsResponseHttpRequest: ...
 
@@ -334,7 +334,7 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: MigrationJob = ...,
+                    body: MigrationJob,
                     migrationJobId: str | None = ...,
                     requestId: str | None = ...,
                     **kwargs: typing.Any,
@@ -351,7 +351,7 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: DemoteDestinationRequest = ...,
+                    body: DemoteDestinationRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def fetchSourceObjects(
@@ -361,14 +361,14 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     migrationJob: str,
-                    body: GenerateSshScriptRequest = ...,
+                    body: GenerateSshScriptRequest,
                     **kwargs: typing.Any,
                 ) -> SshScriptHttpRequest: ...
                 def generateTcpProxyScript(
                     self,
                     *,
                     migrationJob: str,
-                    body: GenerateTcpProxyScriptRequest = ...,
+                    body: GenerateTcpProxyScriptRequest,
                     **kwargs: typing.Any,
                 ) -> TcpProxyScriptHttpRequest: ...
                 def get(
@@ -400,7 +400,7 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: MigrationJob = ...,
+                    body: MigrationJob,
                     requestId: str | None = ...,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
@@ -409,56 +409,56 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: PromoteMigrationJobRequest = ...,
+                    body: PromoteMigrationJobRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def restart(
                     self,
                     *,
                     name: str,
-                    body: RestartMigrationJobRequest = ...,
+                    body: RestartMigrationJobRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def resume(
                     self,
                     *,
                     name: str,
-                    body: ResumeMigrationJobRequest = ...,
+                    body: ResumeMigrationJobRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def setIamPolicy(
                     self,
                     *,
                     resource: str,
-                    body: SetIamPolicyRequest = ...,
+                    body: SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def start(
                     self,
                     *,
                     name: str,
-                    body: StartMigrationJobRequest = ...,
+                    body: StartMigrationJobRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def stop(
                     self,
                     *,
                     name: str,
-                    body: StopMigrationJobRequest = ...,
+                    body: StopMigrationJobRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: TestIamPermissionsRequest = ...,
+                    body: TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def verify(
                     self,
                     *,
                     name: str,
-                    body: VerifyMigrationJobRequest = ...,
+                    body: VerifyMigrationJobRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def objects(self) -> ObjectsResource: ...
@@ -469,7 +469,7 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: CancelOperationRequest = ...,
+                    body: CancelOperationRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def delete(
@@ -500,7 +500,7 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: PrivateConnection = ...,
+                    body: PrivateConnection,
                     privateConnectionId: str | None = ...,
                     requestId: str | None = ...,
                     skipValidation: bool | None = ...,
@@ -543,14 +543,14 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: SetIamPolicyRequest = ...,
+                    body: SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: TestIamPermissionsRequest = ...,
+                    body: TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
 

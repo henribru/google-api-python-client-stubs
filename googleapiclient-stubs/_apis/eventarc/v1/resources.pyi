@@ -23,7 +23,7 @@ class EventarcResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: ChannelConnection = ...,
+                    body: ChannelConnection,
                     channelConnectionId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
@@ -57,14 +57,14 @@ class EventarcResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: SetIamPolicyRequest = ...,
+                    body: SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: TestIamPermissionsRequest = ...,
+                    body: TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
 
@@ -74,7 +74,7 @@ class EventarcResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: Channel = ...,
+                    body: Channel,
                     channelId: str | None = ...,
                     validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
@@ -114,7 +114,7 @@ class EventarcResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: Channel = ...,
+                    body: Channel,
                     updateMask: str | None = ...,
                     validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
@@ -123,14 +123,14 @@ class EventarcResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: SetIamPolicyRequest = ...,
+                    body: SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: TestIamPermissionsRequest = ...,
+                    body: TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
 
@@ -140,7 +140,7 @@ class EventarcResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: Enrollment = ...,
+                    body: Enrollment,
                     enrollmentId: str | None = ...,
                     validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
@@ -183,7 +183,7 @@ class EventarcResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: Enrollment = ...,
+                    body: Enrollment,
                     allowMissing: bool | None = ...,
                     updateMask: str | None = ...,
                     validateOnly: bool | None = ...,
@@ -193,14 +193,14 @@ class EventarcResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: SetIamPolicyRequest = ...,
+                    body: SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: TestIamPermissionsRequest = ...,
+                    body: TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
 
@@ -210,7 +210,7 @@ class EventarcResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleApiSource = ...,
+                    body: GoogleApiSource,
                     googleApiSourceId: str | None = ...,
                     validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
@@ -253,7 +253,7 @@ class EventarcResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleApiSource = ...,
+                    body: GoogleApiSource,
                     allowMissing: bool | None = ...,
                     updateMask: str | None = ...,
                     validateOnly: bool | None = ...,
@@ -263,14 +263,14 @@ class EventarcResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: SetIamPolicyRequest = ...,
+                    body: SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: TestIamPermissionsRequest = ...,
+                    body: TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
 
@@ -280,7 +280,7 @@ class EventarcResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: MessageBus = ...,
+                    body: MessageBus,
                     messageBusId: str | None = ...,
                     validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
@@ -336,7 +336,7 @@ class EventarcResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: MessageBus = ...,
+                    body: MessageBus,
                     allowMissing: bool | None = ...,
                     updateMask: str | None = ...,
                     validateOnly: bool | None = ...,
@@ -346,14 +346,14 @@ class EventarcResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: SetIamPolicyRequest = ...,
+                    body: SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: TestIamPermissionsRequest = ...,
+                    body: TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
 
@@ -363,7 +363,7 @@ class EventarcResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleLongrunningCancelOperationRequest = ...,
+                    body: GoogleLongrunningCancelOperationRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def delete(
@@ -394,7 +394,7 @@ class EventarcResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: Pipeline = ...,
+                    body: Pipeline,
                     pipelineId: str | None = ...,
                     validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
@@ -437,7 +437,7 @@ class EventarcResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: Pipeline = ...,
+                    body: Pipeline,
                     allowMissing: bool | None = ...,
                     updateMask: str | None = ...,
                     validateOnly: bool | None = ...,
@@ -447,14 +447,14 @@ class EventarcResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: SetIamPolicyRequest = ...,
+                    body: SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: TestIamPermissionsRequest = ...,
+                    body: TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
 
@@ -485,7 +485,7 @@ class EventarcResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: Trigger = ...,
+                    body: Trigger,
                     triggerId: str | None = ...,
                     validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
@@ -528,7 +528,7 @@ class EventarcResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: Trigger = ...,
+                    body: Trigger,
                     allowMissing: bool | None = ...,
                     updateMask: str | None = ...,
                     validateOnly: bool | None = ...,
@@ -538,14 +538,14 @@ class EventarcResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: SetIamPolicyRequest = ...,
+                    body: SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: TestIamPermissionsRequest = ...,
+                    body: TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
 
@@ -574,7 +574,7 @@ class EventarcResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleChannelConfig = ...,
+                body: GoogleChannelConfig,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleChannelConfigHttpRequest: ...

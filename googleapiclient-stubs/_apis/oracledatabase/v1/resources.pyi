@@ -59,7 +59,7 @@ class OracleDatabaseResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: AutonomousDatabase = ...,
+                    body: AutonomousDatabase,
                     autonomousDatabaseId: str | None = ...,
                     requestId: str | None = ...,
                     **kwargs: typing.Any,
@@ -75,14 +75,14 @@ class OracleDatabaseResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: FailoverAutonomousDatabaseRequest = ...,
+                    body: FailoverAutonomousDatabaseRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def generateWallet(
                     self,
                     *,
                     name: str,
-                    body: GenerateAutonomousDatabaseWalletRequest = ...,
+                    body: GenerateAutonomousDatabaseWalletRequest,
                     **kwargs: typing.Any,
                 ) -> GenerateAutonomousDatabaseWalletResponseHttpRequest: ...
                 def get(
@@ -110,7 +110,7 @@ class OracleDatabaseResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: AutonomousDatabase = ...,
+                    body: AutonomousDatabase,
                     requestId: str | None = ...,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
@@ -119,42 +119,42 @@ class OracleDatabaseResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: RefreshAutonomousDatabaseRequest = ...,
+                    body: RefreshAutonomousDatabaseRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def restart(
                     self,
                     *,
                     name: str,
-                    body: RestartAutonomousDatabaseRequest = ...,
+                    body: RestartAutonomousDatabaseRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def restore(
                     self,
                     *,
                     name: str,
-                    body: RestoreAutonomousDatabaseRequest = ...,
+                    body: RestoreAutonomousDatabaseRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def start(
                     self,
                     *,
                     name: str,
-                    body: StartAutonomousDatabaseRequest = ...,
+                    body: StartAutonomousDatabaseRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def stop(
                     self,
                     *,
                     name: str,
-                    body: StopAutonomousDatabaseRequest = ...,
+                    body: StopAutonomousDatabaseRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def switchover(
                     self,
                     *,
                     name: str,
-                    body: SwitchoverAutonomousDatabaseRequest = ...,
+                    body: SwitchoverAutonomousDatabaseRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
 
@@ -198,14 +198,14 @@ class OracleDatabaseResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: ConfigureExascaleCloudExadataInfrastructureRequest = ...,
+                    body: ConfigureExascaleCloudExadataInfrastructureRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def create(
                     self,
                     *,
                     parent: str,
-                    body: CloudExadataInfrastructure = ...,
+                    body: CloudExadataInfrastructure,
                     cloudExadataInfrastructureId: str | None = ...,
                     requestId: str | None = ...,
                     **kwargs: typing.Any,
@@ -260,7 +260,7 @@ class OracleDatabaseResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: CloudVmCluster = ...,
+                    body: CloudVmCluster,
                     cloudVmClusterId: str | None = ...,
                     requestId: str | None = ...,
                     **kwargs: typing.Any,
@@ -370,7 +370,7 @@ class OracleDatabaseResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: DbSystem = ...,
+                    body: DbSystem,
                     dbSystemId: str | None = ...,
                     requestId: str | None = ...,
                     **kwargs: typing.Any,
@@ -456,7 +456,7 @@ class OracleDatabaseResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: ExadbVmCluster = ...,
+                    body: ExadbVmCluster,
                     exadbVmClusterId: str | None = ...,
                     requestId: str | None = ...,
                     **kwargs: typing.Any,
@@ -490,7 +490,7 @@ class OracleDatabaseResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: ExadbVmCluster = ...,
+                    body: ExadbVmCluster,
                     requestId: str | None = ...,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
@@ -499,7 +499,7 @@ class OracleDatabaseResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: RemoveVirtualMachineExadbVmClusterRequest = ...,
+                    body: RemoveVirtualMachineExadbVmClusterRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def dbNodes(self) -> DbNodesResource: ...
@@ -510,7 +510,7 @@ class OracleDatabaseResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: ExascaleDbStorageVault = ...,
+                    body: ExascaleDbStorageVault,
                     exascaleDbStorageVaultId: str | None = ...,
                     requestId: str | None = ...,
                     **kwargs: typing.Any,
@@ -584,7 +584,7 @@ class OracleDatabaseResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoldengateConnectionAssignment = ...,
+                    body: GoldengateConnectionAssignment,
                     goldengateConnectionAssignmentId: str | None = ...,
                     requestId: str | None = ...,
                     **kwargs: typing.Any,
@@ -618,7 +618,7 @@ class OracleDatabaseResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: TestGoldengateConnectionAssignmentRequest = ...,
+                    body: TestGoldengateConnectionAssignmentRequest,
                     **kwargs: typing.Any,
                 ) -> TestGoldengateConnectionAssignmentResponseHttpRequest: ...
 
@@ -645,7 +645,7 @@ class OracleDatabaseResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoldengateConnection = ...,
+                    body: GoldengateConnection,
                     goldengateConnectionId: str | None = ...,
                     requestId: str | None = ...,
                     **kwargs: typing.Any,
@@ -737,7 +737,7 @@ class OracleDatabaseResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoldengateDeployment = ...,
+                    body: GoldengateDeployment,
                     goldengateDeploymentId: str | None = ...,
                     requestId: str | None = ...,
                     **kwargs: typing.Any,
@@ -771,14 +771,14 @@ class OracleDatabaseResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: StartGoldengateDeploymentRequest = ...,
+                    body: StartGoldengateDeploymentRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def stop(
                     self,
                     *,
                     name: str,
-                    body: StopGoldengateDeploymentRequest = ...,
+                    body: StopGoldengateDeploymentRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
 
@@ -790,7 +790,7 @@ class OracleDatabaseResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: OdbSubnet = ...,
+                        body: OdbSubnet,
                         odbSubnetId: str | None = ...,
                         requestId: str | None = ...,
                         **kwargs: typing.Any,
@@ -825,7 +825,7 @@ class OracleDatabaseResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: OdbNetwork = ...,
+                    body: OdbNetwork,
                     odbNetworkId: str | None = ...,
                     requestId: str | None = ...,
                     **kwargs: typing.Any,
@@ -863,7 +863,7 @@ class OracleDatabaseResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: CancelOperationRequest = ...,
+                    body: CancelOperationRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def delete(

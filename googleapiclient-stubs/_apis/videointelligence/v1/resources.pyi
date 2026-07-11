@@ -47,7 +47,7 @@ class CloudVideoIntelligenceResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleLongrunning_CancelOperationRequest = ...,
+                    body: GoogleLongrunning_CancelOperationRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleProtobuf_EmptyHttpRequest: ...
                 def delete(
@@ -81,7 +81,7 @@ class CloudVideoIntelligenceResource(googleapiclient.discovery.Resource):
         def annotate(
             self,
             *,
-            body: GoogleCloudVideointelligenceV1_AnnotateVideoRequest = ...,
+            body: GoogleCloudVideointelligenceV1_AnnotateVideoRequest,
             **kwargs: typing.Any,
         ) -> GoogleLongrunning_OperationHttpRequest: ...
 

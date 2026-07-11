@@ -18,31 +18,19 @@ class Area120TablesResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class RowsResource(googleapiclient.discovery.Resource):
             def batchCreate(
-                self,
-                *,
-                parent: str,
-                body: BatchCreateRowsRequest = ...,
-                **kwargs: typing.Any,
+                self, *, parent: str, body: BatchCreateRowsRequest, **kwargs: typing.Any
             ) -> BatchCreateRowsResponseHttpRequest: ...
             def batchDelete(
-                self,
-                *,
-                parent: str,
-                body: BatchDeleteRowsRequest = ...,
-                **kwargs: typing.Any,
+                self, *, parent: str, body: BatchDeleteRowsRequest, **kwargs: typing.Any
             ) -> EmptyHttpRequest: ...
             def batchUpdate(
-                self,
-                *,
-                parent: str,
-                body: BatchUpdateRowsRequest = ...,
-                **kwargs: typing.Any,
+                self, *, parent: str, body: BatchUpdateRowsRequest, **kwargs: typing.Any
             ) -> BatchUpdateRowsResponseHttpRequest: ...
             def create(
                 self,
                 *,
                 parent: str,
-                body: Row = ...,
+                body: Row,
                 view: typing_extensions.Literal["VIEW_UNSPECIFIED", "COLUMN_ID_VIEW"]
                 | None = ...,
                 **kwargs: typing.Any,
@@ -79,7 +67,7 @@ class Area120TablesResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: Row = ...,
+                body: Row,
                 updateMask: str | None = ...,
                 view: typing_extensions.Literal["VIEW_UNSPECIFIED", "COLUMN_ID_VIEW"]
                 | None = ...,

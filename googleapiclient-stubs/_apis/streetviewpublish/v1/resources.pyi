@@ -15,9 +15,7 @@ _list = list
 class StreetViewPublishResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class PhotoResource(googleapiclient.discovery.Resource):
-        def create(
-            self, *, body: Photo = ..., **kwargs: typing.Any
-        ) -> PhotoHttpRequest: ...
+        def create(self, *, body: Photo, **kwargs: typing.Any) -> PhotoHttpRequest: ...
         def delete(self, *, photoId: str, **kwargs: typing.Any) -> EmptyHttpRequest: ...
         def get(
             self,
@@ -29,13 +27,13 @@ class StreetViewPublishResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any,
         ) -> PhotoHttpRequest: ...
         def startUpload(
-            self, *, body: Empty = ..., **kwargs: typing.Any
+            self, *, body: Empty, **kwargs: typing.Any
         ) -> UploadRefHttpRequest: ...
         def update(
             self,
             *,
             id: str,
-            body: Photo = ...,
+            body: Photo,
             updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> PhotoHttpRequest: ...
@@ -45,7 +43,7 @@ class StreetViewPublishResource(googleapiclient.discovery.Resource):
         def create(
             self,
             *,
-            body: PhotoSequence = ...,
+            body: PhotoSequence,
             inputType: typing_extensions.Literal[
                 "INPUT_TYPE_UNSPECIFIED", "VIDEO", "XDM"
             ]
@@ -65,7 +63,7 @@ class StreetViewPublishResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def startUpload(
-            self, *, body: Empty = ..., **kwargs: typing.Any
+            self, *, body: Empty, **kwargs: typing.Any
         ) -> UploadRefHttpRequest: ...
 
     @typing.type_check_only
@@ -87,7 +85,7 @@ class StreetViewPublishResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class PhotosResource(googleapiclient.discovery.Resource):
         def batchDelete(
-            self, *, body: BatchDeletePhotosRequest = ..., **kwargs: typing.Any
+            self, *, body: BatchDeletePhotosRequest, **kwargs: typing.Any
         ) -> BatchDeletePhotosResponseHttpRequest: ...
         def batchGet(
             self,
@@ -99,7 +97,7 @@ class StreetViewPublishResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any,
         ) -> BatchGetPhotosResponseHttpRequest: ...
         def batchUpdate(
-            self, *, body: BatchUpdatePhotosRequest = ..., **kwargs: typing.Any
+            self, *, body: BatchUpdatePhotosRequest, **kwargs: typing.Any
         ) -> BatchUpdatePhotosResponseHttpRequest: ...
         def list(
             self,

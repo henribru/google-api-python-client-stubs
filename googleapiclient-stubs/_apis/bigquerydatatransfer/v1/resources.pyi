@@ -18,11 +18,7 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class DataSourcesResource(googleapiclient.discovery.Resource):
             def checkValidCreds(
-                self,
-                *,
-                name: str,
-                body: CheckValidCredsRequest = ...,
-                **kwargs: typing.Any,
+                self, *, name: str, body: CheckValidCredsRequest, **kwargs: typing.Any
             ) -> CheckValidCredsResponseHttpRequest: ...
             def get(
                 self, *, name: str, **kwargs: typing.Any
@@ -49,7 +45,7 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: CheckValidCredsRequest = ...,
+                    body: CheckValidCredsRequest,
                     **kwargs: typing.Any,
                 ) -> CheckValidCredsResponseHttpRequest: ...
                 def get(
@@ -172,7 +168,7 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: TransferConfig = ...,
+                    body: TransferConfig,
                     authorizationCode: str | None = ...,
                     serviceAccountName: str | None = ...,
                     versionInfo: str | None = ...,
@@ -202,7 +198,7 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: TransferConfig = ...,
+                    body: TransferConfig,
                     authorizationCode: str | None = ...,
                     serviceAccountName: str | None = ...,
                     updateMask: str | None = ...,
@@ -213,25 +209,21 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: ScheduleTransferRunsRequest = ...,
+                    body: ScheduleTransferRunsRequest,
                     **kwargs: typing.Any,
                 ) -> ScheduleTransferRunsResponseHttpRequest: ...
                 def startManualRuns(
                     self,
                     *,
                     parent: str,
-                    body: StartManualTransferRunsRequest = ...,
+                    body: StartManualTransferRunsRequest,
                     **kwargs: typing.Any,
                 ) -> StartManualTransferRunsResponseHttpRequest: ...
                 def runs(self) -> RunsResource: ...
                 def transferResources(self) -> TransferResourcesResource: ...
 
             def enrollDataSources(
-                self,
-                *,
-                name: str,
-                body: EnrollDataSourcesRequest = ...,
-                **kwargs: typing.Any,
+                self, *, name: str, body: EnrollDataSourcesRequest, **kwargs: typing.Any
             ) -> EmptyHttpRequest: ...
             def get(
                 self, *, name: str, **kwargs: typing.Any
@@ -255,7 +247,7 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: UnenrollDataSourcesRequest = ...,
+                body: UnenrollDataSourcesRequest,
                 **kwargs: typing.Any,
             ) -> EmptyHttpRequest: ...
             def dataSources(self) -> DataSourcesResource: ...
@@ -361,7 +353,7 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: TransferConfig = ...,
+                body: TransferConfig,
                 authorizationCode: str | None = ...,
                 serviceAccountName: str | None = ...,
                 versionInfo: str | None = ...,
@@ -391,7 +383,7 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: TransferConfig = ...,
+                body: TransferConfig,
                 authorizationCode: str | None = ...,
                 serviceAccountName: str | None = ...,
                 updateMask: str | None = ...,
@@ -402,25 +394,21 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: ScheduleTransferRunsRequest = ...,
+                body: ScheduleTransferRunsRequest,
                 **kwargs: typing.Any,
             ) -> ScheduleTransferRunsResponseHttpRequest: ...
             def startManualRuns(
                 self,
                 *,
                 parent: str,
-                body: StartManualTransferRunsRequest = ...,
+                body: StartManualTransferRunsRequest,
                 **kwargs: typing.Any,
             ) -> StartManualTransferRunsResponseHttpRequest: ...
             def runs(self) -> RunsResource: ...
             def transferResources(self) -> TransferResourcesResource: ...
 
         def enrollDataSources(
-            self,
-            *,
-            name: str,
-            body: EnrollDataSourcesRequest = ...,
-            **kwargs: typing.Any,
+            self, *, name: str, body: EnrollDataSourcesRequest, **kwargs: typing.Any
         ) -> EmptyHttpRequest: ...
         def dataSources(self) -> DataSourcesResource: ...
         def locations(self) -> LocationsResource: ...

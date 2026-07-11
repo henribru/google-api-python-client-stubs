@@ -41,24 +41,20 @@ class IAMCredentialsResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GenerateAccessTokenRequest = ...,
+                body: GenerateAccessTokenRequest,
                 **kwargs: typing.Any,
             ) -> GenerateAccessTokenResponseHttpRequest: ...
             def generateIdToken(
-                self,
-                *,
-                name: str,
-                body: GenerateIdTokenRequest = ...,
-                **kwargs: typing.Any,
+                self, *, name: str, body: GenerateIdTokenRequest, **kwargs: typing.Any
             ) -> GenerateIdTokenResponseHttpRequest: ...
             def getAllowedLocations(
                 self, *, name: str, **kwargs: typing.Any
             ) -> ServiceAccountAllowedLocationsHttpRequest: ...
             def signBlob(
-                self, *, name: str, body: SignBlobRequest = ..., **kwargs: typing.Any
+                self, *, name: str, body: SignBlobRequest, **kwargs: typing.Any
             ) -> SignBlobResponseHttpRequest: ...
             def signJwt(
-                self, *, name: str, body: SignJwtRequest = ..., **kwargs: typing.Any
+                self, *, name: str, body: SignJwtRequest, **kwargs: typing.Any
             ) -> SignJwtResponseHttpRequest: ...
 
         def locations(self) -> LocationsResource: ...

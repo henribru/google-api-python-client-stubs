@@ -24,14 +24,14 @@ class SiteVerificationResource(googleapiclient.discovery.Resource):
         def getToken(
             self,
             *,
-            body: SiteVerificationWebResourceGettokenRequest = ...,
+            body: SiteVerificationWebResourceGettokenRequest,
             **kwargs: typing.Any,
         ) -> SiteVerificationWebResourceGettokenResponseHttpRequest: ...
         def insert(
             self,
             *,
             verificationMethod: str,
-            body: SiteVerificationWebResourceResource = ...,
+            body: SiteVerificationWebResourceResource,
             **kwargs: typing.Any,
         ) -> SiteVerificationWebResourceResourceHttpRequest: ...
         def list(
@@ -41,14 +41,14 @@ class SiteVerificationResource(googleapiclient.discovery.Resource):
             self,
             *,
             id: str,
-            body: SiteVerificationWebResourceResource = ...,
+            body: SiteVerificationWebResourceResource,
             **kwargs: typing.Any,
         ) -> SiteVerificationWebResourceResourceHttpRequest: ...
         def update(
             self,
             *,
             id: str,
-            body: SiteVerificationWebResourceResource = ...,
+            body: SiteVerificationWebResourceResource,
             **kwargs: typing.Any,
         ) -> SiteVerificationWebResourceResourceHttpRequest: ...
 

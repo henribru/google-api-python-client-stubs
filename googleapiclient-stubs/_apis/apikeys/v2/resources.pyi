@@ -33,7 +33,7 @@ class ApiKeysServiceResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: V2Key = ...,
+                    body: V2Key,
                     keyId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -64,16 +64,12 @@ class ApiKeysServiceResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: V2Key = ...,
+                    body: V2Key,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def undelete(
-                    self,
-                    *,
-                    name: str,
-                    body: V2UndeleteKeyRequest = ...,
-                    **kwargs: typing.Any,
+                    self, *, name: str, body: V2UndeleteKeyRequest, **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
 
             def keys(self) -> KeysResource: ...

@@ -37,7 +37,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class EnvironmentsResource(googleapiclient.discovery.Resource):
                 def create(
-                    self, *, parent: str, body: Environment = ..., **kwargs: typing.Any
+                    self, *, parent: str, body: Environment, **kwargs: typing.Any
                 ) -> EnvironmentHttpRequest: ...
                 def delete(
                     self, *, path: str, **kwargs: typing.Any
@@ -58,13 +58,13 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                     previous_response: ListEnvironmentsResponse,
                 ) -> ListEnvironmentsResponseHttpRequest | None: ...
                 def reauthorize(
-                    self, *, path: str, body: Environment = ..., **kwargs: typing.Any
+                    self, *, path: str, body: Environment, **kwargs: typing.Any
                 ) -> EnvironmentHttpRequest: ...
                 def update(
                     self,
                     *,
                     path: str,
-                    body: Environment = ...,
+                    body: Environment,
                     fingerprint: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> EnvironmentHttpRequest: ...
@@ -120,7 +120,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     path: str,
-                    body: ContainerVersion = ...,
+                    body: ContainerVersion,
                     fingerprint: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ContainerVersionHttpRequest: ...
@@ -765,7 +765,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class ClientsResource(googleapiclient.discovery.Resource):
                     def create(
-                        self, *, parent: str, body: Client = ..., **kwargs: typing.Any
+                        self, *, parent: str, body: Client, **kwargs: typing.Any
                     ) -> ClientHttpRequest: ...
                     def delete(
                         self, *, path: str, **kwargs: typing.Any
@@ -796,7 +796,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         path: str,
-                        body: Client = ...,
+                        body: Client,
                         fingerprint: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ClientHttpRequest: ...
@@ -804,7 +804,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class FoldersResource(googleapiclient.discovery.Resource):
                     def create(
-                        self, *, parent: str, body: Folder = ..., **kwargs: typing.Any
+                        self, *, parent: str, body: Folder, **kwargs: typing.Any
                     ) -> FolderHttpRequest: ...
                     def delete(
                         self, *, path: str, **kwargs: typing.Any
@@ -840,7 +840,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         path: str,
-                        body: Folder = ...,
+                        body: Folder,
                         tagId: str | _list[str] | None = ...,
                         triggerId: str | _list[str] | None = ...,
                         variableId: str | _list[str] | None = ...,
@@ -857,7 +857,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         path: str,
-                        body: Folder = ...,
+                        body: Folder,
                         fingerprint: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> FolderHttpRequest: ...
@@ -865,11 +865,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class Gtag_configResource(googleapiclient.discovery.Resource):
                     def create(
-                        self,
-                        *,
-                        parent: str,
-                        body: GtagConfig = ...,
-                        **kwargs: typing.Any,
+                        self, *, parent: str, body: GtagConfig, **kwargs: typing.Any
                     ) -> GtagConfigHttpRequest: ...
                     def delete(
                         self, *, path: str, **kwargs: typing.Any
@@ -893,7 +889,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         path: str,
-                        body: GtagConfig = ...,
+                        body: GtagConfig,
                         fingerprint: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> GtagConfigHttpRequest: ...
@@ -901,7 +897,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class TagsResource(googleapiclient.discovery.Resource):
                     def create(
-                        self, *, parent: str, body: Tag = ..., **kwargs: typing.Any
+                        self, *, parent: str, body: Tag, **kwargs: typing.Any
                     ) -> TagHttpRequest: ...
                     def delete(
                         self, *, path: str, **kwargs: typing.Any
@@ -932,7 +928,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         path: str,
-                        body: Tag = ...,
+                        body: Tag,
                         fingerprint: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> TagHttpRequest: ...
@@ -940,11 +936,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class TemplatesResource(googleapiclient.discovery.Resource):
                     def create(
-                        self,
-                        *,
-                        parent: str,
-                        body: CustomTemplate = ...,
-                        **kwargs: typing.Any,
+                        self, *, parent: str, body: CustomTemplate, **kwargs: typing.Any
                     ) -> CustomTemplateHttpRequest: ...
                     def delete(
                         self, *, path: str, **kwargs: typing.Any
@@ -985,7 +977,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         path: str,
-                        body: CustomTemplate = ...,
+                        body: CustomTemplate,
                         fingerprint: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> CustomTemplateHttpRequest: ...
@@ -993,11 +985,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class TransformationsResource(googleapiclient.discovery.Resource):
                     def create(
-                        self,
-                        *,
-                        parent: str,
-                        body: Transformation = ...,
-                        **kwargs: typing.Any,
+                        self, *, parent: str, body: Transformation, **kwargs: typing.Any
                     ) -> TransformationHttpRequest: ...
                     def delete(
                         self, *, path: str, **kwargs: typing.Any
@@ -1028,7 +1016,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         path: str,
-                        body: Transformation = ...,
+                        body: Transformation,
                         fingerprint: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> TransformationHttpRequest: ...
@@ -1036,7 +1024,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class TriggersResource(googleapiclient.discovery.Resource):
                     def create(
-                        self, *, parent: str, body: Trigger = ..., **kwargs: typing.Any
+                        self, *, parent: str, body: Trigger, **kwargs: typing.Any
                     ) -> TriggerHttpRequest: ...
                     def delete(
                         self, *, path: str, **kwargs: typing.Any
@@ -1067,7 +1055,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         path: str,
-                        body: Trigger = ...,
+                        body: Trigger,
                         fingerprint: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> TriggerHttpRequest: ...
@@ -1075,7 +1063,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class VariablesResource(googleapiclient.discovery.Resource):
                     def create(
-                        self, *, parent: str, body: Variable = ..., **kwargs: typing.Any
+                        self, *, parent: str, body: Variable, **kwargs: typing.Any
                     ) -> VariableHttpRequest: ...
                     def delete(
                         self, *, path: str, **kwargs: typing.Any
@@ -1106,7 +1094,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         path: str,
-                        body: Variable = ...,
+                        body: Variable,
                         fingerprint: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> VariableHttpRequest: ...
@@ -1114,7 +1102,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class ZonesResource(googleapiclient.discovery.Resource):
                     def create(
-                        self, *, parent: str, body: Zone = ..., **kwargs: typing.Any
+                        self, *, parent: str, body: Zone, **kwargs: typing.Any
                     ) -> ZoneHttpRequest: ...
                     def delete(
                         self, *, path: str, **kwargs: typing.Any
@@ -1145,22 +1133,22 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         path: str,
-                        body: Zone = ...,
+                        body: Zone,
                         fingerprint: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ZoneHttpRequest: ...
 
                 def bulk_update(
-                    self, *, path: str, body: ProposedChange = ..., **kwargs: typing.Any
+                    self, *, path: str, body: ProposedChange, **kwargs: typing.Any
                 ) -> BulkUpdateWorkspaceResponseHttpRequest: ...
                 def create(
-                    self, *, parent: str, body: Workspace = ..., **kwargs: typing.Any
+                    self, *, parent: str, body: Workspace, **kwargs: typing.Any
                 ) -> WorkspaceHttpRequest: ...
                 def create_version(
                     self,
                     *,
                     path: str,
-                    body: CreateContainerVersionRequestVersionOptions = ...,
+                    body: CreateContainerVersionRequestVersionOptions,
                     **kwargs: typing.Any,
                 ) -> CreateContainerVersionResponseHttpRequest: ...
                 def delete(
@@ -1191,7 +1179,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     path: str,
-                    body: Entity = ...,
+                    body: Entity,
                     fingerprint: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> googleapiclient.http.HttpRequest: ...
@@ -1202,7 +1190,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     path: str,
-                    body: Workspace = ...,
+                    body: Workspace,
                     fingerprint: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> WorkspaceHttpRequest: ...
@@ -1230,7 +1218,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any,
             ) -> ContainerHttpRequest: ...
             def create(
-                self, *, parent: str, body: Container = ..., **kwargs: typing.Any
+                self, *, parent: str, body: Container, **kwargs: typing.Any
             ) -> ContainerHttpRequest: ...
             def delete(
                 self, *, path: str, **kwargs: typing.Any
@@ -1272,7 +1260,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 path: str,
-                body: Container = ...,
+                body: Container,
                 fingerprint: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ContainerHttpRequest: ...
@@ -1285,7 +1273,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class User_permissionsResource(googleapiclient.discovery.Resource):
             def create(
-                self, *, parent: str, body: UserPermission = ..., **kwargs: typing.Any
+                self, *, parent: str, body: UserPermission, **kwargs: typing.Any
             ) -> UserPermissionHttpRequest: ...
             def delete(
                 self, *, path: str, **kwargs: typing.Any
@@ -1302,7 +1290,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                 previous_response: ListUserPermissionsResponse,
             ) -> ListUserPermissionsResponseHttpRequest | None: ...
             def update(
-                self, *, path: str, body: UserPermission = ..., **kwargs: typing.Any
+                self, *, path: str, body: UserPermission, **kwargs: typing.Any
             ) -> UserPermissionHttpRequest: ...
 
         def get(self, *, path: str, **kwargs: typing.Any) -> AccountHttpRequest: ...
@@ -1322,7 +1310,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
             self,
             *,
             path: str,
-            body: Account = ...,
+            body: Account,
             fingerprint: str | None = ...,
             **kwargs: typing.Any,
         ) -> AccountHttpRequest: ...

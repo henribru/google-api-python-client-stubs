@@ -27,7 +27,7 @@ class MerchantResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: MerchantReview = ...,
+                body: MerchantReview,
                 dataSource: str | None = ...,
                 **kwargs: typing.Any,
             ) -> MerchantReviewHttpRequest: ...
@@ -57,7 +57,7 @@ class MerchantResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: ProductReview = ...,
+                body: ProductReview,
                 dataSource: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ProductReviewHttpRequest: ...

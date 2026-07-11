@@ -41,7 +41,7 @@ class IdeahubResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleSearchIdeahubV1alphaIdeaActivity = ...,
+                    body: GoogleSearchIdeahubV1alphaIdeaActivity,
                     **kwargs: typing.Any,
                 ) -> GoogleSearchIdeahubV1alphaIdeaActivityHttpRequest: ...
 
@@ -51,7 +51,7 @@ class IdeahubResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleSearchIdeahubV1alphaIdeaState = ...,
+                    body: GoogleSearchIdeahubV1alphaIdeaState,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleSearchIdeahubV1alphaIdeaStateHttpRequest: ...
@@ -101,7 +101,7 @@ class IdeahubResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleSearchIdeahubV1alphaTopicState = ...,
+                    body: GoogleSearchIdeahubV1alphaTopicState,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleSearchIdeahubV1alphaTopicStateHttpRequest: ...

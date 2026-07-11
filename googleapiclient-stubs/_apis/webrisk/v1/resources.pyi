@@ -47,7 +47,7 @@ class WebRiskResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleLongrunningCancelOperationRequest = ...,
+                body: GoogleLongrunningCancelOperationRequest,
                 **kwargs: typing.Any,
             ) -> GoogleProtobufEmptyHttpRequest: ...
             def delete(
@@ -78,7 +78,7 @@ class WebRiskResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: GoogleCloudWebriskV1Submission = ...,
+                body: GoogleCloudWebriskV1Submission,
                 **kwargs: typing.Any,
             ) -> GoogleCloudWebriskV1SubmissionHttpRequest: ...
 

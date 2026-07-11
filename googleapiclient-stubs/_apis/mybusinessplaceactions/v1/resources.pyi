@@ -18,7 +18,7 @@ class MyBusinessPlaceActionsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class PlaceActionLinksResource(googleapiclient.discovery.Resource):
             def create(
-                self, *, parent: str, body: PlaceActionLink = ..., **kwargs: typing.Any
+                self, *, parent: str, body: PlaceActionLink, **kwargs: typing.Any
             ) -> PlaceActionLinkHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -44,7 +44,7 @@ class MyBusinessPlaceActionsResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: PlaceActionLink = ...,
+                body: PlaceActionLink,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> PlaceActionLinkHttpRequest: ...

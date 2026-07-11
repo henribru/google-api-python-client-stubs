@@ -25,7 +25,7 @@ class DataprocMetastoreResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: GoogleCloudMetastoreV2Backup = ...,
+                        body: GoogleCloudMetastoreV2Backup,
                         backupId: str | None = ...,
                         requestId: str | None = ...,
                         **kwargs: typing.Any,
@@ -62,21 +62,21 @@ class DataprocMetastoreResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     service: str,
-                    body: GoogleCloudMetastoreV2AlterMetadataResourceLocationRequest = ...,
+                    body: GoogleCloudMetastoreV2AlterMetadataResourceLocationRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def alterTableProperties(
                     self,
                     *,
                     service: str,
-                    body: GoogleCloudMetastoreV2AlterTablePropertiesRequest = ...,
+                    body: GoogleCloudMetastoreV2AlterTablePropertiesRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def create(
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudMetastoreV2Service = ...,
+                    body: GoogleCloudMetastoreV2Service,
                     requestId: str | None = ...,
                     serviceId: str | None = ...,
                     **kwargs: typing.Any,
@@ -92,7 +92,7 @@ class DataprocMetastoreResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     service: str,
-                    body: GoogleCloudMetastoreV2ExportMetadataRequest = ...,
+                    body: GoogleCloudMetastoreV2ExportMetadataRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def get(
@@ -102,7 +102,7 @@ class DataprocMetastoreResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudMetastoreV2ImportMetadataRequest = ...,
+                    body: GoogleCloudMetastoreV2ImportMetadataRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def list(
@@ -124,14 +124,14 @@ class DataprocMetastoreResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     service: str,
-                    body: GoogleCloudMetastoreV2MoveTableToDatabaseRequest = ...,
+                    body: GoogleCloudMetastoreV2MoveTableToDatabaseRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def patch(
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudMetastoreV2Service = ...,
+                    body: GoogleCloudMetastoreV2Service,
                     requestId: str | None = ...,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
@@ -140,14 +140,14 @@ class DataprocMetastoreResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     service: str,
-                    body: GoogleCloudMetastoreV2QueryMetadataRequest = ...,
+                    body: GoogleCloudMetastoreV2QueryMetadataRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def restore(
                     self,
                     *,
                     service: str,
-                    body: GoogleCloudMetastoreV2RestoreServiceRequest = ...,
+                    body: GoogleCloudMetastoreV2RestoreServiceRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def backups(self) -> BackupsResource: ...

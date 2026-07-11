@@ -109,7 +109,7 @@ class ReportsResource(googleapiclient.discovery.Resource):
                 "keep",
                 "classroom",
             ],
-            body: Channel = ...,
+            body: Channel,
             actorIpAddress: str | None = ...,
             customerId: str | None = ...,
             endTime: str | None = ...,
@@ -126,7 +126,7 @@ class ReportsResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class ChannelsResource(googleapiclient.discovery.Resource):
         def stop(
-            self, *, body: Channel = ..., **kwargs: typing.Any
+            self, *, body: Channel, **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
 
     @typing.type_check_only

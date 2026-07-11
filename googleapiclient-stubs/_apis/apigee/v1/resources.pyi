@@ -33,7 +33,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudApigeeV1Datastore = ...,
+                    body: GoogleCloudApigeeV1Datastore,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudApigeeV1DatastoreHttpRequest: ...
                 def delete(
@@ -53,14 +53,14 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudApigeeV1Datastore = ...,
+                    body: GoogleCloudApigeeV1Datastore,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudApigeeV1TestDatastoreResponseHttpRequest: ...
                 def update(
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudApigeeV1Datastore = ...,
+                    body: GoogleCloudApigeeV1Datastore,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudApigeeV1DatastoreHttpRequest: ...
 
@@ -72,7 +72,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: GoogleCloudApigeeV1ApimServiceExtension = ...,
+                body: GoogleCloudApigeeV1ApimServiceExtension,
                 apimServiceExtensionId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleLongrunningOperationHttpRequest: ...
@@ -101,7 +101,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleCloudApigeeV1ApimServiceExtension = ...,
+                body: GoogleCloudApigeeV1ApimServiceExtension,
                 allowMissing: bool | None = ...,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
@@ -124,7 +124,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudApigeeV1Attribute = ...,
+                    body: GoogleCloudApigeeV1Attribute,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudApigeeV1AttributeHttpRequest: ...
 
@@ -134,7 +134,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudApigeeV1RatePlan = ...,
+                    body: GoogleCloudApigeeV1RatePlan,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudApigeeV1RatePlanHttpRequest: ...
                 def delete(
@@ -161,7 +161,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudApigeeV1RatePlan = ...,
+                    body: GoogleCloudApigeeV1RatePlan,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudApigeeV1RatePlanHttpRequest: ...
 
@@ -169,7 +169,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: GoogleCloudApigeeV1ApiProduct = ...,
+                body: GoogleCloudApigeeV1ApiProduct,
                 **kwargs: typing.Any,
             ) -> GoogleCloudApigeeV1ApiProductHttpRequest: ...
             def delete(
@@ -194,14 +194,14 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleCloudApigeeV1MoveApiProductRequest = ...,
+                body: GoogleCloudApigeeV1MoveApiProductRequest,
                 **kwargs: typing.Any,
             ) -> GoogleCloudApigeeV1ApiProductHttpRequest: ...
             def update(
                 self,
                 *,
                 name: str,
-                body: GoogleCloudApigeeV1ApiProduct = ...,
+                body: GoogleCloudApigeeV1ApiProduct,
                 **kwargs: typing.Any,
             ) -> GoogleCloudApigeeV1ApiProductHttpRequest: ...
             def attributes(self) -> AttributesResource: ...
@@ -241,7 +241,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: GoogleCloudApigeeV1KeyValueEntry = ...,
+                        body: GoogleCloudApigeeV1KeyValueEntry,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudApigeeV1KeyValueEntryHttpRequest: ...
                     def delete(
@@ -269,7 +269,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: GoogleCloudApigeeV1KeyValueEntry = ...,
+                        body: GoogleCloudApigeeV1KeyValueEntry,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudApigeeV1KeyValueEntryHttpRequest: ...
 
@@ -277,7 +277,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudApigeeV1KeyValueMap = ...,
+                    body: GoogleCloudApigeeV1KeyValueMap,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudApigeeV1KeyValueMapHttpRequest: ...
                 def delete(
@@ -290,7 +290,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudApigeeV1KeyValueMap = ...,
+                    body: GoogleCloudApigeeV1KeyValueMap,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudApigeeV1KeyValueMapHttpRequest: ...
                 def entries(self) -> EntriesResource: ...
@@ -313,7 +313,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleApiHttpBody = ...,
+                    body: GoogleApiHttpBody,
                     validate: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudApigeeV1ApiProxyRevisionHttpRequest: ...
@@ -323,7 +323,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: GoogleApiHttpBody = ...,
+                body: GoogleApiHttpBody,
                 action: str | None = ...,
                 name: str | None = ...,
                 space: str | None = ...,
@@ -349,14 +349,14 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleCloudApigeeV1MoveApiProxyRequest = ...,
+                body: GoogleCloudApigeeV1MoveApiProxyRequest,
                 **kwargs: typing.Any,
             ) -> GoogleCloudApigeeV1ApiProxyHttpRequest: ...
             def patch(
                 self,
                 *,
                 name: str,
-                body: GoogleCloudApigeeV1ApiProxy = ...,
+                body: GoogleCloudApigeeV1ApiProxy,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudApigeeV1ApiProxyHttpRequest: ...
@@ -388,7 +388,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: GoogleCloudApigeeV1AppGroupAppKey = ...,
+                        body: GoogleCloudApigeeV1AppGroupAppKey,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudApigeeV1AppGroupAppKeyHttpRequest: ...
                     def delete(
@@ -401,7 +401,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: GoogleCloudApigeeV1UpdateAppGroupAppKeyRequest = ...,
+                        body: GoogleCloudApigeeV1UpdateAppGroupAppKeyRequest,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudApigeeV1AppGroupAppKeyHttpRequest: ...
                     def apiproducts(self) -> ApiproductsResource: ...
@@ -410,7 +410,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudApigeeV1AppGroupApp = ...,
+                    body: GoogleCloudApigeeV1AppGroupApp,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudApigeeV1AppGroupAppHttpRequest: ...
                 def delete(
@@ -436,7 +436,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudApigeeV1AppGroupApp = ...,
+                    body: GoogleCloudApigeeV1AppGroupApp,
                     action: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudApigeeV1AppGroupAppHttpRequest: ...
@@ -448,14 +448,14 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudApigeeV1AdjustAppGroupBalanceRequest = ...,
+                    body: GoogleCloudApigeeV1AdjustAppGroupBalanceRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudApigeeV1AppGroupBalanceHttpRequest: ...
                 def credit(
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudApigeeV1CreditAppGroupBalanceRequest = ...,
+                    body: GoogleCloudApigeeV1CreditAppGroupBalanceRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudApigeeV1AppGroupBalanceHttpRequest: ...
 
@@ -465,14 +465,14 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudApigeeV1AppGroupSubscription = ...,
+                    body: GoogleCloudApigeeV1AppGroupSubscription,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudApigeeV1AppGroupSubscriptionHttpRequest: ...
                 def expire(
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudApigeeV1ExpireAppGroupSubscriptionRequest = ...,
+                    body: GoogleCloudApigeeV1ExpireAppGroupSubscriptionRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudApigeeV1AppGroupSubscriptionHttpRequest: ...
                 def get(
@@ -501,7 +501,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: GoogleCloudApigeeV1AppGroup = ...,
+                body: GoogleCloudApigeeV1AppGroup,
                 **kwargs: typing.Any,
             ) -> GoogleCloudApigeeV1AppGroupHttpRequest: ...
             def delete(
@@ -534,7 +534,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleCloudApigeeV1AppGroup = ...,
+                body: GoogleCloudApigeeV1AppGroup,
                 action: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudApigeeV1AppGroupHttpRequest: ...
@@ -542,7 +542,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleCloudApigeeV1AppGroupMonetizationConfig = ...,
+                body: GoogleCloudApigeeV1AppGroupMonetizationConfig,
                 **kwargs: typing.Any,
             ) -> GoogleCloudApigeeV1AppGroupMonetizationConfigHttpRequest: ...
             def apps(self) -> AppsResource: ...
@@ -584,7 +584,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: GoogleCloudApigeeV1DataCollector = ...,
+                body: GoogleCloudApigeeV1DataCollector,
                 dataCollectorId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudApigeeV1DataCollectorHttpRequest: ...
@@ -611,7 +611,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleCloudApigeeV1DataCollector = ...,
+                body: GoogleCloudApigeeV1DataCollector,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudApigeeV1DataCollectorHttpRequest: ...
@@ -645,7 +645,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: GoogleCloudApigeeV1Attribute = ...,
+                        body: GoogleCloudApigeeV1Attribute,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudApigeeV1AttributeHttpRequest: ...
 
@@ -670,7 +670,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             parent: str,
-                            body: GoogleCloudApigeeV1DeveloperAppKey = ...,
+                            body: GoogleCloudApigeeV1DeveloperAppKey,
                             **kwargs: typing.Any,
                         ) -> GoogleCloudApigeeV1DeveloperAppKeyHttpRequest: ...
 
@@ -684,14 +684,14 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: GoogleCloudApigeeV1DeveloperAppKey = ...,
+                        body: GoogleCloudApigeeV1DeveloperAppKey,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudApigeeV1DeveloperAppKeyHttpRequest: ...
                     def updateDeveloperAppKey(
                         self,
                         *,
                         name: str,
-                        body: GoogleCloudApigeeV1DeveloperAppKey = ...,
+                        body: GoogleCloudApigeeV1DeveloperAppKey,
                         action: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudApigeeV1DeveloperAppKeyHttpRequest: ...
@@ -702,7 +702,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudApigeeV1DeveloperApp = ...,
+                    body: GoogleCloudApigeeV1DeveloperApp,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudApigeeV1DeveloperAppHttpRequest: ...
                 def delete(
@@ -712,7 +712,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudApigeeV1DeveloperApp = ...,
+                    body: GoogleCloudApigeeV1DeveloperApp,
                     action: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudApigeeV1DeveloperAppHttpRequest: ...
@@ -738,7 +738,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudApigeeV1DeveloperApp = ...,
+                    body: GoogleCloudApigeeV1DeveloperApp,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudApigeeV1DeveloperAppHttpRequest: ...
                 def attributes(self) -> AttributesResource: ...
@@ -759,7 +759,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudApigeeV1Attribute = ...,
+                    body: GoogleCloudApigeeV1Attribute,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudApigeeV1AttributeHttpRequest: ...
 
@@ -769,14 +769,14 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudApigeeV1AdjustDeveloperBalanceRequest = ...,
+                    body: GoogleCloudApigeeV1AdjustDeveloperBalanceRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudApigeeV1DeveloperBalanceHttpRequest: ...
                 def credit(
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudApigeeV1CreditDeveloperBalanceRequest = ...,
+                    body: GoogleCloudApigeeV1CreditDeveloperBalanceRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudApigeeV1DeveloperBalanceHttpRequest: ...
 
@@ -786,14 +786,14 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudApigeeV1DeveloperSubscription = ...,
+                    body: GoogleCloudApigeeV1DeveloperSubscription,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudApigeeV1DeveloperSubscriptionHttpRequest: ...
                 def expire(
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudApigeeV1ExpireDeveloperSubscriptionRequest = ...,
+                    body: GoogleCloudApigeeV1ExpireDeveloperSubscriptionRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudApigeeV1DeveloperSubscriptionHttpRequest: ...
                 def get(
@@ -814,7 +814,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: GoogleCloudApigeeV1Developer = ...,
+                body: GoogleCloudApigeeV1Developer,
                 **kwargs: typing.Any,
             ) -> GoogleCloudApigeeV1DeveloperHttpRequest: ...
             def delete(
@@ -848,14 +848,14 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleCloudApigeeV1Developer = ...,
+                body: GoogleCloudApigeeV1Developer,
                 **kwargs: typing.Any,
             ) -> GoogleCloudApigeeV1DeveloperHttpRequest: ...
             def updateMonetizationConfig(
                 self,
                 *,
                 name: str,
-                body: GoogleCloudApigeeV1DeveloperMonetizationConfig = ...,
+                body: GoogleCloudApigeeV1DeveloperMonetizationConfig,
                 **kwargs: typing.Any,
             ) -> GoogleCloudApigeeV1DeveloperMonetizationConfigHttpRequest: ...
             def apps(self) -> AppsResource: ...
@@ -869,7 +869,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: GoogleCloudApigeeV1DnsZone = ...,
+                body: GoogleCloudApigeeV1DnsZone,
                 dnsZoneId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleLongrunningOperationHttpRequest: ...
@@ -899,7 +899,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: GoogleCloudApigeeV1EndpointAttachment = ...,
+                body: GoogleCloudApigeeV1EndpointAttachment,
                 endpointAttachmentId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleLongrunningOperationHttpRequest: ...
@@ -933,7 +933,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudApigeeV1EnvironmentGroupAttachment = ...,
+                    body: GoogleCloudApigeeV1EnvironmentGroupAttachment,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def delete(
@@ -963,7 +963,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: GoogleCloudApigeeV1EnvironmentGroup = ...,
+                body: GoogleCloudApigeeV1EnvironmentGroup,
                 name: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleLongrunningOperationHttpRequest: ...
@@ -1000,7 +1000,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleCloudApigeeV1EnvironmentGroup = ...,
+                body: GoogleCloudApigeeV1EnvironmentGroup,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleLongrunningOperationHttpRequest: ...
@@ -1014,7 +1014,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudApigeeV1SetAddonEnablementRequest = ...,
+                    body: GoogleCloudApigeeV1SetAddonEnablementRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
 
@@ -1037,7 +1037,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: GoogleCloudApigeeV1ExportRequest = ...,
+                        body: GoogleCloudApigeeV1ExportRequest,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudApigeeV1ExportHttpRequest: ...
                     def get(
@@ -1074,7 +1074,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             parent: str,
-                            body: GoogleCloudApigeeV1DebugSession = ...,
+                            body: GoogleCloudApigeeV1DebugSession,
                             timeout: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> GoogleCloudApigeeV1DebugSessionHttpRequest: ...
@@ -1148,7 +1148,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudApigeeV1ArchiveDeployment = ...,
+                    body: GoogleCloudApigeeV1ArchiveDeployment,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def delete(
@@ -1158,14 +1158,14 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudApigeeV1GenerateDownloadUrlRequest = ...,
+                    body: GoogleCloudApigeeV1GenerateDownloadUrlRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudApigeeV1GenerateDownloadUrlResponseHttpRequest: ...
                 def generateUploadUrl(
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudApigeeV1GenerateUploadUrlRequest = ...,
+                    body: GoogleCloudApigeeV1GenerateUploadUrlRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudApigeeV1GenerateUploadUrlResponseHttpRequest: ...
                 def get(
@@ -1191,7 +1191,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudApigeeV1ArchiveDeployment = ...,
+                    body: GoogleCloudApigeeV1ArchiveDeployment,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudApigeeV1ArchiveDeploymentHttpRequest: ...
@@ -1225,14 +1225,14 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: GoogleIamV1SetIamPolicyRequest = ...,
+                    body: GoogleIamV1SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleIamV1PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: GoogleIamV1TestIamPermissionsRequest = ...,
+                    body: GoogleIamV1TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
 
@@ -1242,7 +1242,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudApigeeV1FlowHook = ...,
+                    body: GoogleCloudApigeeV1FlowHook,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudApigeeV1FlowHookHttpRequest: ...
                 def detachSharedFlowFromFlowHook(
@@ -1260,7 +1260,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: GoogleApiHttpBody = ...,
+                        body: GoogleApiHttpBody,
                         alias: str | None = ...,
                         format: str | None = ...,
                         ignoreExpiryValidation: bool | None = ...,
@@ -1284,7 +1284,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: GoogleApiHttpBody = ...,
+                        body: GoogleApiHttpBody,
                         ignoreExpiryValidation: bool | None = ...,
                         ignoreNewlineValidation: bool | None = ...,
                         **kwargs: typing.Any,
@@ -1294,7 +1294,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudApigeeV1Keystore = ...,
+                    body: GoogleCloudApigeeV1Keystore,
                     name: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudApigeeV1KeystoreHttpRequest: ...
@@ -1314,7 +1314,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: GoogleCloudApigeeV1KeyValueEntry = ...,
+                        body: GoogleCloudApigeeV1KeyValueEntry,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudApigeeV1KeyValueEntryHttpRequest: ...
                     def delete(
@@ -1342,7 +1342,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: GoogleCloudApigeeV1KeyValueEntry = ...,
+                        body: GoogleCloudApigeeV1KeyValueEntry,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudApigeeV1KeyValueEntryHttpRequest: ...
 
@@ -1350,7 +1350,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudApigeeV1KeyValueMap = ...,
+                    body: GoogleCloudApigeeV1KeyValueMap,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudApigeeV1KeyValueMapHttpRequest: ...
                 def delete(
@@ -1363,7 +1363,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudApigeeV1KeyValueMap = ...,
+                    body: GoogleCloudApigeeV1KeyValueMap,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudApigeeV1KeyValueMapHttpRequest: ...
                 def entries(self) -> EntriesResource: ...
@@ -1398,7 +1398,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudApigeeV1Query = ...,
+                    body: GoogleCloudApigeeV1Query,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudApigeeV1AsyncQueryHttpRequest: ...
                 def get(
@@ -1428,7 +1428,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudApigeeV1Reference = ...,
+                    body: GoogleCloudApigeeV1Reference,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudApigeeV1ReferenceHttpRequest: ...
                 def delete(
@@ -1441,7 +1441,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudApigeeV1Reference = ...,
+                    body: GoogleCloudApigeeV1Reference,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudApigeeV1ReferenceHttpRequest: ...
 
@@ -1451,7 +1451,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleApiHttpBody = ...,
+                    body: GoogleApiHttpBody,
                     name: str | None = ...,
                     type: str | None = ...,
                     **kwargs: typing.Any,
@@ -1474,7 +1474,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                     parent: str,
                     type: str,
                     name: str,
-                    body: GoogleApiHttpBody = ...,
+                    body: GoogleApiHttpBody,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudApigeeV1ResourceFileHttpRequest: ...
 
@@ -1484,7 +1484,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudApigeeV1SecurityAction = ...,
+                    body: GoogleCloudApigeeV1SecurityAction,
                     securityActionId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudApigeeV1SecurityActionHttpRequest: ...
@@ -1495,14 +1495,14 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudApigeeV1DisableSecurityActionRequest = ...,
+                    body: GoogleCloudApigeeV1DisableSecurityActionRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudApigeeV1SecurityActionHttpRequest: ...
                 def enable(
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudApigeeV1EnableSecurityActionRequest = ...,
+                    body: GoogleCloudApigeeV1EnableSecurityActionRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudApigeeV1SecurityActionHttpRequest: ...
                 def get(
@@ -1528,7 +1528,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudApigeeV1SecurityAction = ...,
+                    body: GoogleCloudApigeeV1SecurityAction,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudApigeeV1SecurityActionHttpRequest: ...
@@ -1539,7 +1539,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudApigeeV1BatchUpdateSecurityIncidentsRequest = ...,
+                    body: GoogleCloudApigeeV1BatchUpdateSecurityIncidentsRequest,
                     **kwargs: typing.Any,
                 ) -> (
                     GoogleCloudApigeeV1BatchUpdateSecurityIncidentsResponseHttpRequest
@@ -1567,7 +1567,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudApigeeV1SecurityIncident = ...,
+                    body: GoogleCloudApigeeV1SecurityIncident,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudApigeeV1SecurityIncidentHttpRequest: ...
@@ -1578,7 +1578,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudApigeeV1SecurityReportQuery = ...,
+                    body: GoogleCloudApigeeV1SecurityReportQuery,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudApigeeV1SecurityReportHttpRequest: ...
                 def get(
@@ -1616,7 +1616,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     orgenv: str,
-                    body: GoogleCloudApigeeV1QueryTabularStatsRequest = ...,
+                    body: GoogleCloudApigeeV1QueryTabularStatsRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudApigeeV1QueryTabularStatsResponseHttpRequest: ...
                 def queryTabularStats_next(
@@ -1628,7 +1628,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     orgenv: str,
-                    body: GoogleCloudApigeeV1QueryTimeSeriesStatsRequest = ...,
+                    body: GoogleCloudApigeeV1QueryTimeSeriesStatsRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudApigeeV1QueryTimeSeriesStatsResponseHttpRequest: ...
                 def queryTimeSeriesStats_next(
@@ -1697,7 +1697,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudApigeeV1TargetServer = ...,
+                    body: GoogleCloudApigeeV1TargetServer,
                     name: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudApigeeV1TargetServerHttpRequest: ...
@@ -1711,7 +1711,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudApigeeV1TargetServer = ...,
+                    body: GoogleCloudApigeeV1TargetServer,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudApigeeV1TargetServerHttpRequest: ...
 
@@ -1723,7 +1723,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: GoogleCloudApigeeV1TraceConfigOverride = ...,
+                        body: GoogleCloudApigeeV1TraceConfigOverride,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudApigeeV1TraceConfigOverrideHttpRequest: ...
                     def delete(
@@ -1754,7 +1754,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: GoogleCloudApigeeV1TraceConfigOverride = ...,
+                        body: GoogleCloudApigeeV1TraceConfigOverride,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudApigeeV1TraceConfigOverrideHttpRequest: ...
@@ -1765,7 +1765,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: GoogleCloudApigeeV1Environment = ...,
+                body: GoogleCloudApigeeV1Environment,
                 name: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleLongrunningOperationHttpRequest: ...
@@ -1804,7 +1804,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleCloudApigeeV1Environment = ...,
+                body: GoogleCloudApigeeV1Environment,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleLongrunningOperationHttpRequest: ...
@@ -1812,7 +1812,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 resource: str,
-                body: GoogleIamV1SetIamPolicyRequest = ...,
+                body: GoogleIamV1SetIamPolicyRequest,
                 **kwargs: typing.Any,
             ) -> GoogleIamV1PolicyHttpRequest: ...
             def subscribe(
@@ -1822,28 +1822,28 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 resource: str,
-                body: GoogleIamV1TestIamPermissionsRequest = ...,
+                body: GoogleIamV1TestIamPermissionsRequest,
                 **kwargs: typing.Any,
             ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
             def unsubscribe(
                 self,
                 *,
                 parent: str,
-                body: GoogleCloudApigeeV1Subscription = ...,
+                body: GoogleCloudApigeeV1Subscription,
                 **kwargs: typing.Any,
             ) -> GoogleProtobufEmptyHttpRequest: ...
             def update(
                 self,
                 *,
                 name: str,
-                body: GoogleCloudApigeeV1Environment = ...,
+                body: GoogleCloudApigeeV1Environment,
                 **kwargs: typing.Any,
             ) -> GoogleCloudApigeeV1EnvironmentHttpRequest: ...
             def updateDebugmask(
                 self,
                 *,
                 name: str,
-                body: GoogleCloudApigeeV1DebugMask = ...,
+                body: GoogleCloudApigeeV1DebugMask,
                 replaceRepeatedFields: bool | None = ...,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
@@ -1852,14 +1852,14 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleCloudApigeeV1Environment = ...,
+                body: GoogleCloudApigeeV1Environment,
                 **kwargs: typing.Any,
             ) -> GoogleCloudApigeeV1EnvironmentHttpRequest: ...
             def updateSecurityActionsConfig(
                 self,
                 *,
                 name: str,
-                body: GoogleCloudApigeeV1SecurityActionsConfig = ...,
+                body: GoogleCloudApigeeV1SecurityActionsConfig,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudApigeeV1SecurityActionsConfigHttpRequest: ...
@@ -1867,7 +1867,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleCloudApigeeV1TraceConfig = ...,
+                body: GoogleCloudApigeeV1TraceConfig,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudApigeeV1TraceConfigHttpRequest: ...
@@ -1899,7 +1899,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: GoogleCloudApigeeV1Query = ...,
+                body: GoogleCloudApigeeV1Query,
                 **kwargs: typing.Any,
             ) -> GoogleCloudApigeeV1AsyncQueryHttpRequest: ...
             def get(
@@ -1930,7 +1930,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: GoogleCloudApigeeV1SecurityReportQuery = ...,
+                body: GoogleCloudApigeeV1SecurityReportQuery,
                 **kwargs: typing.Any,
             ) -> GoogleCloudApigeeV1SecurityReportHttpRequest: ...
             def get(
@@ -1992,7 +1992,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudApigeeV1InstanceAttachment = ...,
+                    body: GoogleCloudApigeeV1InstanceAttachment,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def delete(
@@ -2023,7 +2023,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudApigeeV1CanaryEvaluation = ...,
+                    body: GoogleCloudApigeeV1CanaryEvaluation,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def get(
@@ -2036,14 +2036,14 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudApigeeV1ActivateNatAddressRequest = ...,
+                    body: GoogleCloudApigeeV1ActivateNatAddressRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def create(
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudApigeeV1NatAddress = ...,
+                    body: GoogleCloudApigeeV1NatAddress,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def delete(
@@ -2070,7 +2070,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: GoogleCloudApigeeV1Instance = ...,
+                body: GoogleCloudApigeeV1Instance,
                 **kwargs: typing.Any,
             ) -> GoogleLongrunningOperationHttpRequest: ...
             def delete(
@@ -2096,7 +2096,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleCloudApigeeV1Instance = ...,
+                body: GoogleCloudApigeeV1Instance,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleLongrunningOperationHttpRequest: ...
@@ -2104,7 +2104,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 instance: str,
-                body: GoogleCloudApigeeV1ReportInstanceStatusRequest = ...,
+                body: GoogleCloudApigeeV1ReportInstanceStatusRequest,
                 **kwargs: typing.Any,
             ) -> GoogleCloudApigeeV1ReportInstanceStatusResponseHttpRequest: ...
             def attachments(self) -> AttachmentsResource: ...
@@ -2119,7 +2119,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudApigeeV1KeyValueEntry = ...,
+                    body: GoogleCloudApigeeV1KeyValueEntry,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudApigeeV1KeyValueEntryHttpRequest: ...
                 def delete(
@@ -2147,7 +2147,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudApigeeV1KeyValueEntry = ...,
+                    body: GoogleCloudApigeeV1KeyValueEntry,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudApigeeV1KeyValueEntryHttpRequest: ...
 
@@ -2155,7 +2155,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: GoogleCloudApigeeV1KeyValueMap = ...,
+                body: GoogleCloudApigeeV1KeyValueMap,
                 **kwargs: typing.Any,
             ) -> GoogleCloudApigeeV1KeyValueMapHttpRequest: ...
             def delete(
@@ -2168,7 +2168,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleCloudApigeeV1KeyValueMap = ...,
+                body: GoogleCloudApigeeV1KeyValueMap,
                 **kwargs: typing.Any,
             ) -> GoogleCloudApigeeV1KeyValueMapHttpRequest: ...
             def entries(self) -> EntriesResource: ...
@@ -2223,7 +2223,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: GoogleCloudApigeeV1CustomReport = ...,
+                body: GoogleCloudApigeeV1CustomReport,
                 **kwargs: typing.Any,
             ) -> GoogleCloudApigeeV1CustomReportHttpRequest: ...
             def delete(
@@ -2239,7 +2239,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleCloudApigeeV1CustomReport = ...,
+                body: GoogleCloudApigeeV1CustomReport,
                 **kwargs: typing.Any,
             ) -> GoogleCloudApigeeV1CustomReportHttpRequest: ...
 
@@ -2249,7 +2249,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleCloudApigeeV1BatchComputeSecurityAssessmentResultsRequest = ...,
+                body: GoogleCloudApigeeV1BatchComputeSecurityAssessmentResultsRequest,
                 **kwargs: typing.Any,
             ) -> GoogleCloudApigeeV1BatchComputeSecurityAssessmentResultsResponseHttpRequest: ...
             def batchCompute_next(
@@ -2267,7 +2267,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: GoogleCloudApigeeV1SecurityFeedback = ...,
+                body: GoogleCloudApigeeV1SecurityFeedback,
                 securityFeedbackId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudApigeeV1SecurityFeedbackHttpRequest: ...
@@ -2294,7 +2294,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleCloudApigeeV1SecurityFeedback = ...,
+                body: GoogleCloudApigeeV1SecurityFeedback,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudApigeeV1SecurityFeedbackHttpRequest: ...
@@ -2305,7 +2305,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: GoogleCloudApigeeV1SecurityMonitoringCondition = ...,
+                body: GoogleCloudApigeeV1SecurityMonitoringCondition,
                 securityMonitoringConditionId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudApigeeV1SecurityMonitoringConditionHttpRequest: ...
@@ -2356,7 +2356,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleCloudApigeeV1SecurityMonitoringCondition = ...,
+                body: GoogleCloudApigeeV1SecurityMonitoringCondition,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudApigeeV1SecurityMonitoringConditionHttpRequest: ...
@@ -2369,7 +2369,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     profileEnvironment: str,
-                    body: GoogleCloudApigeeV1ComputeEnvironmentScoresRequest = ...,
+                    body: GoogleCloudApigeeV1ComputeEnvironmentScoresRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudApigeeV1ComputeEnvironmentScoresResponseHttpRequest: ...
                 def computeEnvironmentScores_next(
@@ -2384,7 +2384,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudApigeeV1SecurityProfileEnvironmentAssociation = ...,
+                    body: GoogleCloudApigeeV1SecurityProfileEnvironmentAssociation,
                     **kwargs: typing.Any,
                 ) -> (
                     GoogleCloudApigeeV1SecurityProfileEnvironmentAssociationHttpRequest
@@ -2397,7 +2397,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: GoogleCloudApigeeV1SecurityProfile = ...,
+                body: GoogleCloudApigeeV1SecurityProfile,
                 securityProfileId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudApigeeV1SecurityProfileHttpRequest: ...
@@ -2440,7 +2440,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleCloudApigeeV1SecurityProfile = ...,
+                body: GoogleCloudApigeeV1SecurityProfile,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudApigeeV1SecurityProfileHttpRequest: ...
@@ -2452,7 +2452,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: GoogleCloudApigeeV1SecurityProfileV2 = ...,
+                body: GoogleCloudApigeeV1SecurityProfileV2,
                 securityProfileV2Id: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudApigeeV1SecurityProfileV2HttpRequest: ...
@@ -2499,7 +2499,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleCloudApigeeV1SecurityProfileV2 = ...,
+                body: GoogleCloudApigeeV1SecurityProfileV2,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudApigeeV1SecurityProfileV2HttpRequest: ...
@@ -2530,7 +2530,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleApiHttpBody = ...,
+                    body: GoogleApiHttpBody,
                     validate: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudApigeeV1SharedFlowRevisionHttpRequest: ...
@@ -2540,7 +2540,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: GoogleApiHttpBody = ...,
+                body: GoogleApiHttpBody,
                 action: str | None = ...,
                 name: str | None = ...,
                 space: str | None = ...,
@@ -2565,7 +2565,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleCloudApigeeV1MoveSharedFlowRequest = ...,
+                body: GoogleCloudApigeeV1MoveSharedFlowRequest,
                 **kwargs: typing.Any,
             ) -> GoogleCloudApigeeV1SharedFlowHttpRequest: ...
             def deployments(self) -> DeploymentsResource: ...
@@ -2579,7 +2579,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudApigeeV1ApiCategory = ...,
+                    body: GoogleCloudApigeeV1ApiCategory,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudApigeeV1ApiCategoryResponseHttpRequest: ...
                 def delete(
@@ -2595,7 +2595,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudApigeeV1ApiCategory = ...,
+                    body: GoogleCloudApigeeV1ApiCategory,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudApigeeV1ApiCategoryResponseHttpRequest: ...
 
@@ -2605,7 +2605,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudApigeeV1ApiDoc = ...,
+                    body: GoogleCloudApigeeV1ApiDoc,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudApigeeV1ApiDocResponseHttpRequest: ...
                 def delete(
@@ -2634,14 +2634,14 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudApigeeV1ApiDoc = ...,
+                    body: GoogleCloudApigeeV1ApiDoc,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudApigeeV1ApiDocResponseHttpRequest: ...
                 def updateDocumentation(
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudApigeeV1ApiDocDocumentation = ...,
+                    body: GoogleCloudApigeeV1ApiDocDocumentation,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudApigeeV1ApiDocDocumentationResponseHttpRequest: ...
 
@@ -2654,7 +2654,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: GoogleCloudApigeeV1Space = ...,
+                body: GoogleCloudApigeeV1Space,
                 spaceId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudApigeeV1SpaceHttpRequest: ...
@@ -2688,7 +2688,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleCloudApigeeV1Space = ...,
+                body: GoogleCloudApigeeV1Space,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudApigeeV1SpaceHttpRequest: ...
@@ -2696,21 +2696,21 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 resource: str,
-                body: GoogleIamV1SetIamPolicyRequest = ...,
+                body: GoogleIamV1SetIamPolicyRequest,
                 **kwargs: typing.Any,
             ) -> GoogleIamV1PolicyHttpRequest: ...
             def testIamPermissions(
                 self,
                 *,
                 resource: str,
-                body: GoogleIamV1TestIamPermissionsRequest = ...,
+                body: GoogleIamV1TestIamPermissionsRequest,
                 **kwargs: typing.Any,
             ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
 
         def create(
             self,
             *,
-            body: GoogleCloudApigeeV1Organization = ...,
+            body: GoogleCloudApigeeV1Organization,
             parent: str | None = ...,
             **kwargs: typing.Any,
         ) -> GoogleLongrunningOperationHttpRequest: ...
@@ -2753,7 +2753,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            body: GoogleCloudApigeeV1GetSyncAuthorizationRequest = ...,
+            body: GoogleCloudApigeeV1GetSyncAuthorizationRequest,
             **kwargs: typing.Any,
         ) -> GoogleCloudApigeeV1SyncAuthorizationHttpRequest: ...
         def list(
@@ -2763,28 +2763,28 @@ class ApigeeResource(googleapiclient.discovery.Resource):
             self,
             *,
             org: str,
-            body: GoogleCloudApigeeV1SetAddonsRequest = ...,
+            body: GoogleCloudApigeeV1SetAddonsRequest,
             **kwargs: typing.Any,
         ) -> GoogleLongrunningOperationHttpRequest: ...
         def setSyncAuthorization(
             self,
             *,
             name: str,
-            body: GoogleCloudApigeeV1SyncAuthorization = ...,
+            body: GoogleCloudApigeeV1SyncAuthorization,
             **kwargs: typing.Any,
         ) -> GoogleCloudApigeeV1SyncAuthorizationHttpRequest: ...
         def update(
             self,
             *,
             name: str,
-            body: GoogleCloudApigeeV1Organization = ...,
+            body: GoogleCloudApigeeV1Organization,
             **kwargs: typing.Any,
         ) -> GoogleCloudApigeeV1OrganizationHttpRequest: ...
         def updateControlPlaneAccess(
             self,
             *,
             name: str,
-            body: GoogleCloudApigeeV1ControlPlaneAccess = ...,
+            body: GoogleCloudApigeeV1ControlPlaneAccess,
             updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> GoogleLongrunningOperationHttpRequest: ...
@@ -2792,7 +2792,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            body: GoogleCloudApigeeV1SecuritySettings = ...,
+            body: GoogleCloudApigeeV1SecuritySettings,
             updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> GoogleCloudApigeeV1SecuritySettingsHttpRequest: ...
@@ -2834,7 +2834,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
             self,
             *,
             project: str,
-            body: GoogleCloudApigeeV1ProvisionOrganizationRequest = ...,
+            body: GoogleCloudApigeeV1ProvisionOrganizationRequest,
             **kwargs: typing.Any,
         ) -> GoogleLongrunningOperationHttpRequest: ...
 

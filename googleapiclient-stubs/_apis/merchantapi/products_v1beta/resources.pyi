@@ -24,7 +24,7 @@ class MerchantResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: ProductInput = ...,
+                body: ProductInput,
                 dataSource: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ProductInputHttpRequest: ...
@@ -32,7 +32,7 @@ class MerchantResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: ProductInput = ...,
+                body: ProductInput,
                 dataSource: str | None = ...,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,

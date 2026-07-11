@@ -28,7 +28,7 @@ class MyBusinessLodgingResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            body: Lodging = ...,
+            body: Lodging,
             updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> LodgingHttpRequest: ...

@@ -39,21 +39,21 @@ class DriveLabelsResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: GoogleAppsDriveLabelsV2betaBatchDeleteLabelPermissionsRequest = ...,
+                body: GoogleAppsDriveLabelsV2betaBatchDeleteLabelPermissionsRequest,
                 **kwargs: typing.Any,
             ) -> GoogleProtobufEmptyHttpRequest: ...
             def batchUpdate(
                 self,
                 *,
                 parent: str,
-                body: GoogleAppsDriveLabelsV2betaBatchUpdateLabelPermissionsRequest = ...,
+                body: GoogleAppsDriveLabelsV2betaBatchUpdateLabelPermissionsRequest,
                 **kwargs: typing.Any,
             ) -> GoogleAppsDriveLabelsV2betaBatchUpdateLabelPermissionsResponseHttpRequest: ...
             def create(
                 self,
                 *,
                 parent: str,
-                body: GoogleAppsDriveLabelsV2betaLabelPermission = ...,
+                body: GoogleAppsDriveLabelsV2betaLabelPermission,
                 useAdminAccess: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleAppsDriveLabelsV2betaLabelPermissionHttpRequest: ...
@@ -108,21 +108,21 @@ class DriveLabelsResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleAppsDriveLabelsV2betaBatchDeleteLabelPermissionsRequest = ...,
+                    body: GoogleAppsDriveLabelsV2betaBatchDeleteLabelPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleProtobufEmptyHttpRequest: ...
                 def batchUpdate(
                     self,
                     *,
                     parent: str,
-                    body: GoogleAppsDriveLabelsV2betaBatchUpdateLabelPermissionsRequest = ...,
+                    body: GoogleAppsDriveLabelsV2betaBatchUpdateLabelPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleAppsDriveLabelsV2betaBatchUpdateLabelPermissionsResponseHttpRequest: ...
                 def create(
                     self,
                     *,
                     parent: str,
-                    body: GoogleAppsDriveLabelsV2betaLabelPermission = ...,
+                    body: GoogleAppsDriveLabelsV2betaLabelPermission,
                     useAdminAccess: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleAppsDriveLabelsV2betaLabelPermissionHttpRequest: ...
@@ -157,7 +157,7 @@ class DriveLabelsResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: GoogleAppsDriveLabelsV2betaLabelPermission = ...,
+                body: GoogleAppsDriveLabelsV2betaLabelPermission,
                 useAdminAccess: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleAppsDriveLabelsV2betaLabelPermissionHttpRequest: ...
@@ -167,7 +167,7 @@ class DriveLabelsResource(googleapiclient.discovery.Resource):
         def create(
             self,
             *,
-            body: GoogleAppsDriveLabelsV2betaLabel = ...,
+            body: GoogleAppsDriveLabelsV2betaLabel,
             languageCode: str | None = ...,
             useAdminAccess: bool | None = ...,
             **kwargs: typing.Any,
@@ -184,21 +184,21 @@ class DriveLabelsResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            body: GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequest = ...,
+            body: GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequest,
             **kwargs: typing.Any,
         ) -> GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseHttpRequest: ...
         def disable(
             self,
             *,
             name: str,
-            body: GoogleAppsDriveLabelsV2betaDisableLabelRequest = ...,
+            body: GoogleAppsDriveLabelsV2betaDisableLabelRequest,
             **kwargs: typing.Any,
         ) -> GoogleAppsDriveLabelsV2betaLabelHttpRequest: ...
         def enable(
             self,
             *,
             name: str,
-            body: GoogleAppsDriveLabelsV2betaEnableLabelRequest = ...,
+            body: GoogleAppsDriveLabelsV2betaEnableLabelRequest,
             **kwargs: typing.Any,
         ) -> GoogleAppsDriveLabelsV2betaLabelHttpRequest: ...
         def get(
@@ -237,28 +237,28 @@ class DriveLabelsResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            body: GoogleAppsDriveLabelsV2betaPublishLabelRequest = ...,
+            body: GoogleAppsDriveLabelsV2betaPublishLabelRequest,
             **kwargs: typing.Any,
         ) -> GoogleAppsDriveLabelsV2betaLabelHttpRequest: ...
         def updateLabelCopyMode(
             self,
             *,
             name: str,
-            body: GoogleAppsDriveLabelsV2betaUpdateLabelCopyModeRequest = ...,
+            body: GoogleAppsDriveLabelsV2betaUpdateLabelCopyModeRequest,
             **kwargs: typing.Any,
         ) -> GoogleAppsDriveLabelsV2betaLabelHttpRequest: ...
         def updateLabelEnabledAppSettings(
             self,
             *,
             name: str,
-            body: GoogleAppsDriveLabelsV2betaUpdateLabelEnabledAppSettingsRequest = ...,
+            body: GoogleAppsDriveLabelsV2betaUpdateLabelEnabledAppSettingsRequest,
             **kwargs: typing.Any,
         ) -> GoogleAppsDriveLabelsV2betaLabelHttpRequest: ...
         def updatePermissions(
             self,
             *,
             parent: str,
-            body: GoogleAppsDriveLabelsV2betaLabelPermission = ...,
+            body: GoogleAppsDriveLabelsV2betaLabelPermission,
             useAdminAccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> GoogleAppsDriveLabelsV2betaLabelPermissionHttpRequest: ...

@@ -16,7 +16,7 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class CustomEmojisResource(googleapiclient.discovery.Resource):
         def create(
-            self, *, body: CustomEmoji = ..., **kwargs: typing.Any
+            self, *, body: CustomEmoji, **kwargs: typing.Any
         ) -> CustomEmojiHttpRequest: ...
         def delete(self, *, name: str, **kwargs: typing.Any) -> EmptyHttpRequest: ...
         def get(self, *, name: str, **kwargs: typing.Any) -> CustomEmojiHttpRequest: ...
@@ -43,11 +43,7 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
             self, *, resourceName: str, **kwargs: typing.Any
         ) -> BytesHttpRequest: ...
         def upload(
-            self,
-            *,
-            parent: str,
-            body: UploadAttachmentRequest = ...,
-            **kwargs: typing.Any,
+            self, *, parent: str, body: UploadAttachmentRequest, **kwargs: typing.Any
         ) -> UploadAttachmentResponseHttpRequest: ...
 
     @typing.type_check_only
@@ -58,7 +54,7 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: Membership = ...,
+                body: Membership,
                 useAdminAccess: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> MembershipHttpRequest: ...
@@ -97,7 +93,7 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: Membership = ...,
+                body: Membership,
                 updateMask: str | None = ...,
                 useAdminAccess: bool | None = ...,
                 **kwargs: typing.Any,
@@ -114,7 +110,7 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class ReactionsResource(googleapiclient.discovery.Resource):
                 def create(
-                    self, *, parent: str, body: Reaction = ..., **kwargs: typing.Any
+                    self, *, parent: str, body: Reaction, **kwargs: typing.Any
                 ) -> ReactionHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -138,7 +134,7 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: Message = ...,
+                body: Message,
                 createMessageNotificationOptions_notificationType: typing_extensions.Literal[
                     "NOTIFICATION_TYPE_NONE",
                     "NOTIFICATION_TYPE_FORCE_NOTIFY",
@@ -180,7 +176,7 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: Message = ...,
+                body: Message,
                 allowMissing: bool | None = ...,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
@@ -189,7 +185,7 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: Message = ...,
+                body: Message,
                 allowMissing: bool | None = ...,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
@@ -218,18 +214,10 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
             ) -> ListSpaceEventsResponseHttpRequest | None: ...
 
         def completeImport(
-            self,
-            *,
-            name: str,
-            body: CompleteImportSpaceRequest = ...,
-            **kwargs: typing.Any,
+            self, *, name: str, body: CompleteImportSpaceRequest, **kwargs: typing.Any
         ) -> CompleteImportSpaceResponseHttpRequest: ...
         def create(
-            self,
-            *,
-            body: Space = ...,
-            requestId: str | None = ...,
-            **kwargs: typing.Any,
+            self, *, body: Space, requestId: str | None = ..., **kwargs: typing.Any
         ) -> SpaceHttpRequest: ...
         def delete(
             self, *, name: str, useAdminAccess: bool | None = ..., **kwargs: typing.Any
@@ -276,7 +264,7 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            body: Space = ...,
+            body: Space,
             updateMask: str | None = ...,
             useAdminAccess: bool | None = ...,
             **kwargs: typing.Any,
@@ -297,7 +285,7 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
             previous_response: SearchSpacesResponse,
         ) -> SearchSpacesResponseHttpRequest | None: ...
         def setup(
-            self, *, body: SetUpSpaceRequest = ..., **kwargs: typing.Any
+            self, *, body: SetUpSpaceRequest, **kwargs: typing.Any
         ) -> SpaceHttpRequest: ...
         def members(self) -> MembersResource: ...
         def messages(self) -> MessagesResource: ...
@@ -311,27 +299,23 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
                 self, *, name: str, **kwargs: typing.Any
             ) -> AvailabilityHttpRequest: ...
             def markAsActive(
-                self,
-                *,
-                name: str,
-                body: MarkAsActiveRequest = ...,
-                **kwargs: typing.Any,
+                self, *, name: str, body: MarkAsActiveRequest, **kwargs: typing.Any
             ) -> AvailabilityHttpRequest: ...
             def markAsAway(
-                self, *, name: str, body: MarkAsAwayRequest = ..., **kwargs: typing.Any
+                self, *, name: str, body: MarkAsAwayRequest, **kwargs: typing.Any
             ) -> AvailabilityHttpRequest: ...
             def markAsDoNotDisturb(
                 self,
                 *,
                 name: str,
-                body: MarkAsDoNotDisturbRequest = ...,
+                body: MarkAsDoNotDisturbRequest,
                 **kwargs: typing.Any,
             ) -> AvailabilityHttpRequest: ...
             def updateAvailability(
                 self,
                 *,
                 name: str,
-                body: Availability = ...,
+                body: Availability,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> AvailabilityHttpRequest: ...
@@ -358,16 +342,12 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: MoveSectionItemRequest = ...,
+                    body: MoveSectionItemRequest,
                     **kwargs: typing.Any,
                 ) -> MoveSectionItemResponseHttpRequest: ...
 
             def create(
-                self,
-                *,
-                parent: str,
-                body: GoogleChatV1Section = ...,
-                **kwargs: typing.Any,
+                self, *, parent: str, body: GoogleChatV1Section, **kwargs: typing.Any
             ) -> GoogleChatV1SectionHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -389,16 +369,12 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleChatV1Section = ...,
+                body: GoogleChatV1Section,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleChatV1SectionHttpRequest: ...
             def position(
-                self,
-                *,
-                name: str,
-                body: PositionSectionRequest = ...,
-                **kwargs: typing.Any,
+                self, *, name: str, body: PositionSectionRequest, **kwargs: typing.Any
             ) -> PositionSectionResponseHttpRequest: ...
             def items(self) -> ItemsResource: ...
 
@@ -413,7 +389,7 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: SpaceNotificationSetting = ...,
+                    body: SpaceNotificationSetting,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> SpaceNotificationSettingHttpRequest: ...
@@ -431,7 +407,7 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: SpaceReadState = ...,
+                body: SpaceReadState,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> SpaceReadStateHttpRequest: ...

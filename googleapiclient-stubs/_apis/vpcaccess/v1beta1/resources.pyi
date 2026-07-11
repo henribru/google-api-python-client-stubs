@@ -23,7 +23,7 @@ class ServerlessVPCAccessResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: Connector = ...,
+                    body: Connector,
                     connectorId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -50,7 +50,7 @@ class ServerlessVPCAccessResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: Connector = ...,
+                    body: Connector,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...

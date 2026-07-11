@@ -18,17 +18,13 @@ class PubsubResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class SchemasResource(googleapiclient.discovery.Resource):
             def commit(
-                self,
-                *,
-                name: str,
-                body: CommitSchemaRequest = ...,
-                **kwargs: typing.Any,
+                self, *, name: str, body: CommitSchemaRequest, **kwargs: typing.Any
             ) -> SchemaHttpRequest: ...
             def create(
                 self,
                 *,
                 parent: str,
-                body: Schema = ...,
+                body: Schema,
                 schemaId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> SchemaHttpRequest: ...
@@ -90,49 +86,29 @@ class PubsubResource(googleapiclient.discovery.Resource):
                 previous_response: ListSchemaRevisionsResponse,
             ) -> ListSchemaRevisionsResponseHttpRequest | None: ...
             def rollback(
-                self,
-                *,
-                name: str,
-                body: RollbackSchemaRequest = ...,
-                **kwargs: typing.Any,
+                self, *, name: str, body: RollbackSchemaRequest, **kwargs: typing.Any
             ) -> SchemaHttpRequest: ...
             def setIamPolicy(
-                self,
-                *,
-                resource: str,
-                body: SetIamPolicyRequest = ...,
-                **kwargs: typing.Any,
+                self, *, resource: str, body: SetIamPolicyRequest, **kwargs: typing.Any
             ) -> PolicyHttpRequest: ...
             def testIamPermissions(
                 self,
                 *,
                 resource: str,
-                body: TestIamPermissionsRequest = ...,
+                body: TestIamPermissionsRequest,
                 **kwargs: typing.Any,
             ) -> TestIamPermissionsResponseHttpRequest: ...
             def validate(
-                self,
-                *,
-                parent: str,
-                body: ValidateSchemaRequest = ...,
-                **kwargs: typing.Any,
+                self, *, parent: str, body: ValidateSchemaRequest, **kwargs: typing.Any
             ) -> ValidateSchemaResponseHttpRequest: ...
             def validateMessage(
-                self,
-                *,
-                parent: str,
-                body: ValidateMessageRequest = ...,
-                **kwargs: typing.Any,
+                self, *, parent: str, body: ValidateMessageRequest, **kwargs: typing.Any
             ) -> ValidateMessageResponseHttpRequest: ...
 
         @typing.type_check_only
         class SnapshotsResource(googleapiclient.discovery.Resource):
             def create(
-                self,
-                *,
-                name: str,
-                body: CreateSnapshotRequest = ...,
-                **kwargs: typing.Any,
+                self, *, name: str, body: CreateSnapshotRequest, **kwargs: typing.Any
             ) -> SnapshotHttpRequest: ...
             def delete(
                 self, *, snapshot: str, **kwargs: typing.Any
@@ -161,24 +137,16 @@ class PubsubResource(googleapiclient.discovery.Resource):
                 previous_response: ListSnapshotsResponse,
             ) -> ListSnapshotsResponseHttpRequest | None: ...
             def patch(
-                self,
-                *,
-                name: str,
-                body: UpdateSnapshotRequest = ...,
-                **kwargs: typing.Any,
+                self, *, name: str, body: UpdateSnapshotRequest, **kwargs: typing.Any
             ) -> SnapshotHttpRequest: ...
             def setIamPolicy(
-                self,
-                *,
-                resource: str,
-                body: SetIamPolicyRequest = ...,
-                **kwargs: typing.Any,
+                self, *, resource: str, body: SetIamPolicyRequest, **kwargs: typing.Any
             ) -> PolicyHttpRequest: ...
             def testIamPermissions(
                 self,
                 *,
                 resource: str,
-                body: TestIamPermissionsRequest = ...,
+                body: TestIamPermissionsRequest,
                 **kwargs: typing.Any,
             ) -> TestIamPermissionsResponseHttpRequest: ...
 
@@ -188,11 +156,11 @@ class PubsubResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 subscription: str,
-                body: AcknowledgeRequest = ...,
+                body: AcknowledgeRequest,
                 **kwargs: typing.Any,
             ) -> EmptyHttpRequest: ...
             def create(
-                self, *, name: str, body: Subscription = ..., **kwargs: typing.Any
+                self, *, name: str, body: Subscription, **kwargs: typing.Any
             ) -> SubscriptionHttpRequest: ...
             def delete(
                 self, *, subscription: str, **kwargs: typing.Any
@@ -227,49 +195,37 @@ class PubsubResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 subscription: str,
-                body: ModifyAckDeadlineRequest = ...,
+                body: ModifyAckDeadlineRequest,
                 **kwargs: typing.Any,
             ) -> EmptyHttpRequest: ...
             def modifyPushConfig(
                 self,
                 *,
                 subscription: str,
-                body: ModifyPushConfigRequest = ...,
+                body: ModifyPushConfigRequest,
                 **kwargs: typing.Any,
             ) -> EmptyHttpRequest: ...
             def patch(
                 self,
                 *,
                 name: str,
-                body: UpdateSubscriptionRequest = ...,
+                body: UpdateSubscriptionRequest,
                 **kwargs: typing.Any,
             ) -> SubscriptionHttpRequest: ...
             def pull(
-                self,
-                *,
-                subscription: str,
-                body: PullRequest = ...,
-                **kwargs: typing.Any,
+                self, *, subscription: str, body: PullRequest, **kwargs: typing.Any
             ) -> PullResponseHttpRequest: ...
             def seek(
-                self,
-                *,
-                subscription: str,
-                body: SeekRequest = ...,
-                **kwargs: typing.Any,
+                self, *, subscription: str, body: SeekRequest, **kwargs: typing.Any
             ) -> SeekResponseHttpRequest: ...
             def setIamPolicy(
-                self,
-                *,
-                resource: str,
-                body: SetIamPolicyRequest = ...,
-                **kwargs: typing.Any,
+                self, *, resource: str, body: SetIamPolicyRequest, **kwargs: typing.Any
             ) -> PolicyHttpRequest: ...
             def testIamPermissions(
                 self,
                 *,
                 resource: str,
-                body: TestIamPermissionsRequest = ...,
+                body: TestIamPermissionsRequest,
                 **kwargs: typing.Any,
             ) -> TestIamPermissionsResponseHttpRequest: ...
 
@@ -308,7 +264,7 @@ class PubsubResource(googleapiclient.discovery.Resource):
                 ) -> ListTopicSubscriptionsResponseHttpRequest | None: ...
 
             def create(
-                self, *, name: str, body: Topic = ..., **kwargs: typing.Any
+                self, *, name: str, body: Topic, **kwargs: typing.Any
             ) -> TopicHttpRequest: ...
             def delete(
                 self, *, topic: str, **kwargs: typing.Any
@@ -335,23 +291,19 @@ class PubsubResource(googleapiclient.discovery.Resource):
                 previous_response: ListTopicsResponse,
             ) -> ListTopicsResponseHttpRequest | None: ...
             def patch(
-                self, *, name: str, body: UpdateTopicRequest = ..., **kwargs: typing.Any
+                self, *, name: str, body: UpdateTopicRequest, **kwargs: typing.Any
             ) -> TopicHttpRequest: ...
             def publish(
-                self, *, topic: str, body: PublishRequest = ..., **kwargs: typing.Any
+                self, *, topic: str, body: PublishRequest, **kwargs: typing.Any
             ) -> PublishResponseHttpRequest: ...
             def setIamPolicy(
-                self,
-                *,
-                resource: str,
-                body: SetIamPolicyRequest = ...,
-                **kwargs: typing.Any,
+                self, *, resource: str, body: SetIamPolicyRequest, **kwargs: typing.Any
             ) -> PolicyHttpRequest: ...
             def testIamPermissions(
                 self,
                 *,
                 resource: str,
-                body: TestIamPermissionsRequest = ...,
+                body: TestIamPermissionsRequest,
                 **kwargs: typing.Any,
             ) -> TestIamPermissionsResponseHttpRequest: ...
             def snapshots(self) -> SnapshotsResource: ...

@@ -30,7 +30,7 @@ class MapsPlacesResource(googleapiclient.discovery.Resource):
         def autocomplete(
             self,
             *,
-            body: GoogleMapsPlacesV1AutocompletePlacesRequest = ...,
+            body: GoogleMapsPlacesV1AutocompletePlacesRequest,
             **kwargs: typing.Any,
         ) -> GoogleMapsPlacesV1AutocompletePlacesResponseHttpRequest: ...
         def get(
@@ -43,16 +43,10 @@ class MapsPlacesResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any,
         ) -> GoogleMapsPlacesV1PlaceHttpRequest: ...
         def searchNearby(
-            self,
-            *,
-            body: GoogleMapsPlacesV1SearchNearbyRequest = ...,
-            **kwargs: typing.Any,
+            self, *, body: GoogleMapsPlacesV1SearchNearbyRequest, **kwargs: typing.Any
         ) -> GoogleMapsPlacesV1SearchNearbyResponseHttpRequest: ...
         def searchText(
-            self,
-            *,
-            body: GoogleMapsPlacesV1SearchTextRequest = ...,
-            **kwargs: typing.Any,
+            self, *, body: GoogleMapsPlacesV1SearchTextRequest, **kwargs: typing.Any
         ) -> GoogleMapsPlacesV1SearchTextResponseHttpRequest: ...
         def searchText_next(
             self,

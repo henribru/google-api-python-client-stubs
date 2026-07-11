@@ -18,10 +18,10 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
         def get(self, *, id: int, **kwargs: typing.Any) -> AccountHttpRequest: ...
         def list(self, **kwargs: typing.Any) -> AccountsListHttpRequest: ...
         def patch(
-            self, *, id: int, body: Account = ..., **kwargs: typing.Any
+            self, *, id: int, body: Account, **kwargs: typing.Any
         ) -> AccountHttpRequest: ...
         def update(
-            self, *, id: int, body: Account = ..., **kwargs: typing.Any
+            self, *, id: int, body: Account, **kwargs: typing.Any
         ) -> AccountHttpRequest: ...
 
     @typing.type_check_only
@@ -37,20 +37,10 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
             self, *, accountId: str, billingId: str, **kwargs: typing.Any
         ) -> BudgetHttpRequest: ...
         def patch(
-            self,
-            *,
-            accountId: str,
-            billingId: str,
-            body: Budget = ...,
-            **kwargs: typing.Any,
+            self, *, accountId: str, billingId: str, body: Budget, **kwargs: typing.Any
         ) -> BudgetHttpRequest: ...
         def update(
-            self,
-            *,
-            accountId: str,
-            billingId: str,
-            body: Budget = ...,
-            **kwargs: typing.Any,
+            self, *, accountId: str, billingId: str, body: Budget, **kwargs: typing.Any
         ) -> BudgetHttpRequest: ...
 
     @typing.type_check_only
@@ -59,7 +49,7 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
             self, *, accountId: int, buyerCreativeId: str, **kwargs: typing.Any
         ) -> CreativeHttpRequest: ...
         def insert(
-            self, *, body: Creative = ..., **kwargs: typing.Any
+            self, *, body: Creative, **kwargs: typing.Any
         ) -> CreativeHttpRequest: ...
         def list(
             self,
@@ -107,11 +97,7 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
             self, *, accountId: str, configId: str, **kwargs: typing.Any
         ) -> PretargetingConfigHttpRequest: ...
         def insert(
-            self,
-            *,
-            accountId: str,
-            body: PretargetingConfig = ...,
-            **kwargs: typing.Any,
+            self, *, accountId: str, body: PretargetingConfig, **kwargs: typing.Any
         ) -> PretargetingConfigHttpRequest: ...
         def list(
             self, *, accountId: str, **kwargs: typing.Any
@@ -121,7 +107,7 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
             *,
             accountId: str,
             configId: str,
-            body: PretargetingConfig = ...,
+            body: PretargetingConfig,
             **kwargs: typing.Any,
         ) -> PretargetingConfigHttpRequest: ...
         def update(
@@ -129,7 +115,7 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
             *,
             accountId: str,
             configId: str,
-            body: PretargetingConfig = ...,
+            body: PretargetingConfig,
             **kwargs: typing.Any,
         ) -> PretargetingConfigHttpRequest: ...
 

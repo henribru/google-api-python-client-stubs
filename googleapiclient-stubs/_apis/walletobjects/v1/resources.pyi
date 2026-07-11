@@ -16,17 +16,13 @@ class WalletobjectsResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class EventticketclassResource(googleapiclient.discovery.Resource):
         def addmessage(
-            self,
-            *,
-            resourceId: str,
-            body: AddMessageRequest = ...,
-            **kwargs: typing.Any,
+            self, *, resourceId: str, body: AddMessageRequest, **kwargs: typing.Any
         ) -> EventTicketClassAddMessageResponseHttpRequest: ...
         def get(
             self, *, resourceId: str, **kwargs: typing.Any
         ) -> EventTicketClassHttpRequest: ...
         def insert(
-            self, *, body: EventTicketClass = ..., **kwargs: typing.Any
+            self, *, body: EventTicketClass, **kwargs: typing.Any
         ) -> EventTicketClassHttpRequest: ...
         def list(
             self,
@@ -37,26 +33,22 @@ class WalletobjectsResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any,
         ) -> EventTicketClassListResponseHttpRequest: ...
         def patch(
-            self, *, resourceId: str, body: EventTicketClass = ..., **kwargs: typing.Any
+            self, *, resourceId: str, body: EventTicketClass, **kwargs: typing.Any
         ) -> EventTicketClassHttpRequest: ...
         def update(
-            self, *, resourceId: str, body: EventTicketClass = ..., **kwargs: typing.Any
+            self, *, resourceId: str, body: EventTicketClass, **kwargs: typing.Any
         ) -> EventTicketClassHttpRequest: ...
 
     @typing.type_check_only
     class EventticketobjectResource(googleapiclient.discovery.Resource):
         def addmessage(
-            self,
-            *,
-            resourceId: str,
-            body: AddMessageRequest = ...,
-            **kwargs: typing.Any,
+            self, *, resourceId: str, body: AddMessageRequest, **kwargs: typing.Any
         ) -> EventTicketObjectAddMessageResponseHttpRequest: ...
         def get(
             self, *, resourceId: str, **kwargs: typing.Any
         ) -> EventTicketObjectHttpRequest: ...
         def insert(
-            self, *, body: EventTicketObject = ..., **kwargs: typing.Any
+            self, *, body: EventTicketObject, **kwargs: typing.Any
         ) -> EventTicketObjectHttpRequest: ...
         def list(
             self,
@@ -70,38 +62,26 @@ class WalletobjectsResource(googleapiclient.discovery.Resource):
             self,
             *,
             resourceId: str,
-            body: ModifyLinkedOfferObjectsRequest = ...,
+            body: ModifyLinkedOfferObjectsRequest,
             **kwargs: typing.Any,
         ) -> EventTicketObjectHttpRequest: ...
         def patch(
-            self,
-            *,
-            resourceId: str,
-            body: EventTicketObject = ...,
-            **kwargs: typing.Any,
+            self, *, resourceId: str, body: EventTicketObject, **kwargs: typing.Any
         ) -> EventTicketObjectHttpRequest: ...
         def update(
-            self,
-            *,
-            resourceId: str,
-            body: EventTicketObject = ...,
-            **kwargs: typing.Any,
+            self, *, resourceId: str, body: EventTicketObject, **kwargs: typing.Any
         ) -> EventTicketObjectHttpRequest: ...
 
     @typing.type_check_only
     class FlightclassResource(googleapiclient.discovery.Resource):
         def addmessage(
-            self,
-            *,
-            resourceId: str,
-            body: AddMessageRequest = ...,
-            **kwargs: typing.Any,
+            self, *, resourceId: str, body: AddMessageRequest, **kwargs: typing.Any
         ) -> FlightClassAddMessageResponseHttpRequest: ...
         def get(
             self, *, resourceId: str, **kwargs: typing.Any
         ) -> FlightClassHttpRequest: ...
         def insert(
-            self, *, body: FlightClass = ..., **kwargs: typing.Any
+            self, *, body: FlightClass, **kwargs: typing.Any
         ) -> FlightClassHttpRequest: ...
         def list(
             self,
@@ -112,26 +92,22 @@ class WalletobjectsResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any,
         ) -> FlightClassListResponseHttpRequest: ...
         def patch(
-            self, *, resourceId: str, body: FlightClass = ..., **kwargs: typing.Any
+            self, *, resourceId: str, body: FlightClass, **kwargs: typing.Any
         ) -> FlightClassHttpRequest: ...
         def update(
-            self, *, resourceId: str, body: FlightClass = ..., **kwargs: typing.Any
+            self, *, resourceId: str, body: FlightClass, **kwargs: typing.Any
         ) -> FlightClassHttpRequest: ...
 
     @typing.type_check_only
     class FlightobjectResource(googleapiclient.discovery.Resource):
         def addmessage(
-            self,
-            *,
-            resourceId: str,
-            body: AddMessageRequest = ...,
-            **kwargs: typing.Any,
+            self, *, resourceId: str, body: AddMessageRequest, **kwargs: typing.Any
         ) -> FlightObjectAddMessageResponseHttpRequest: ...
         def get(
             self, *, resourceId: str, **kwargs: typing.Any
         ) -> FlightObjectHttpRequest: ...
         def insert(
-            self, *, body: FlightObject = ..., **kwargs: typing.Any
+            self, *, body: FlightObject, **kwargs: typing.Any
         ) -> FlightObjectHttpRequest: ...
         def list(
             self,
@@ -142,26 +118,22 @@ class WalletobjectsResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any,
         ) -> FlightObjectListResponseHttpRequest: ...
         def patch(
-            self, *, resourceId: str, body: FlightObject = ..., **kwargs: typing.Any
+            self, *, resourceId: str, body: FlightObject, **kwargs: typing.Any
         ) -> FlightObjectHttpRequest: ...
         def update(
-            self, *, resourceId: str, body: FlightObject = ..., **kwargs: typing.Any
+            self, *, resourceId: str, body: FlightObject, **kwargs: typing.Any
         ) -> FlightObjectHttpRequest: ...
 
     @typing.type_check_only
     class GenericclassResource(googleapiclient.discovery.Resource):
         def addmessage(
-            self,
-            *,
-            resourceId: str,
-            body: AddMessageRequest = ...,
-            **kwargs: typing.Any,
+            self, *, resourceId: str, body: AddMessageRequest, **kwargs: typing.Any
         ) -> GenericClassAddMessageResponseHttpRequest: ...
         def get(
             self, *, resourceId: str, **kwargs: typing.Any
         ) -> GenericClassHttpRequest: ...
         def insert(
-            self, *, body: GenericClass = ..., **kwargs: typing.Any
+            self, *, body: GenericClass, **kwargs: typing.Any
         ) -> GenericClassHttpRequest: ...
         def list(
             self,
@@ -172,26 +144,22 @@ class WalletobjectsResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any,
         ) -> GenericClassListResponseHttpRequest: ...
         def patch(
-            self, *, resourceId: str, body: GenericClass = ..., **kwargs: typing.Any
+            self, *, resourceId: str, body: GenericClass, **kwargs: typing.Any
         ) -> GenericClassHttpRequest: ...
         def update(
-            self, *, resourceId: str, body: GenericClass = ..., **kwargs: typing.Any
+            self, *, resourceId: str, body: GenericClass, **kwargs: typing.Any
         ) -> GenericClassHttpRequest: ...
 
     @typing.type_check_only
     class GenericobjectResource(googleapiclient.discovery.Resource):
         def addmessage(
-            self,
-            *,
-            resourceId: str,
-            body: AddMessageRequest = ...,
-            **kwargs: typing.Any,
+            self, *, resourceId: str, body: AddMessageRequest, **kwargs: typing.Any
         ) -> GenericObjectAddMessageResponseHttpRequest: ...
         def get(
             self, *, resourceId: str, **kwargs: typing.Any
         ) -> GenericObjectHttpRequest: ...
         def insert(
-            self, *, body: GenericObject = ..., **kwargs: typing.Any
+            self, *, body: GenericObject, **kwargs: typing.Any
         ) -> GenericObjectHttpRequest: ...
         def list(
             self,
@@ -202,26 +170,22 @@ class WalletobjectsResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any,
         ) -> GenericObjectListResponseHttpRequest: ...
         def patch(
-            self, *, resourceId: str, body: GenericObject = ..., **kwargs: typing.Any
+            self, *, resourceId: str, body: GenericObject, **kwargs: typing.Any
         ) -> GenericObjectHttpRequest: ...
         def update(
-            self, *, resourceId: str, body: GenericObject = ..., **kwargs: typing.Any
+            self, *, resourceId: str, body: GenericObject, **kwargs: typing.Any
         ) -> GenericObjectHttpRequest: ...
 
     @typing.type_check_only
     class GiftcardclassResource(googleapiclient.discovery.Resource):
         def addmessage(
-            self,
-            *,
-            resourceId: str,
-            body: AddMessageRequest = ...,
-            **kwargs: typing.Any,
+            self, *, resourceId: str, body: AddMessageRequest, **kwargs: typing.Any
         ) -> GiftCardClassAddMessageResponseHttpRequest: ...
         def get(
             self, *, resourceId: str, **kwargs: typing.Any
         ) -> GiftCardClassHttpRequest: ...
         def insert(
-            self, *, body: GiftCardClass = ..., **kwargs: typing.Any
+            self, *, body: GiftCardClass, **kwargs: typing.Any
         ) -> GiftCardClassHttpRequest: ...
         def list(
             self,
@@ -232,26 +196,22 @@ class WalletobjectsResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any,
         ) -> GiftCardClassListResponseHttpRequest: ...
         def patch(
-            self, *, resourceId: str, body: GiftCardClass = ..., **kwargs: typing.Any
+            self, *, resourceId: str, body: GiftCardClass, **kwargs: typing.Any
         ) -> GiftCardClassHttpRequest: ...
         def update(
-            self, *, resourceId: str, body: GiftCardClass = ..., **kwargs: typing.Any
+            self, *, resourceId: str, body: GiftCardClass, **kwargs: typing.Any
         ) -> GiftCardClassHttpRequest: ...
 
     @typing.type_check_only
     class GiftcardobjectResource(googleapiclient.discovery.Resource):
         def addmessage(
-            self,
-            *,
-            resourceId: str,
-            body: AddMessageRequest = ...,
-            **kwargs: typing.Any,
+            self, *, resourceId: str, body: AddMessageRequest, **kwargs: typing.Any
         ) -> GiftCardObjectAddMessageResponseHttpRequest: ...
         def get(
             self, *, resourceId: str, **kwargs: typing.Any
         ) -> GiftCardObjectHttpRequest: ...
         def insert(
-            self, *, body: GiftCardObject = ..., **kwargs: typing.Any
+            self, *, body: GiftCardObject, **kwargs: typing.Any
         ) -> GiftCardObjectHttpRequest: ...
         def list(
             self,
@@ -262,10 +222,10 @@ class WalletobjectsResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any,
         ) -> GiftCardObjectListResponseHttpRequest: ...
         def patch(
-            self, *, resourceId: str, body: GiftCardObject = ..., **kwargs: typing.Any
+            self, *, resourceId: str, body: GiftCardObject, **kwargs: typing.Any
         ) -> GiftCardObjectHttpRequest: ...
         def update(
-            self, *, resourceId: str, body: GiftCardObject = ..., **kwargs: typing.Any
+            self, *, resourceId: str, body: GiftCardObject, **kwargs: typing.Any
         ) -> GiftCardObjectHttpRequest: ...
 
     @typing.type_check_only
@@ -274,36 +234,32 @@ class WalletobjectsResource(googleapiclient.discovery.Resource):
             self, *, resourceId: str, **kwargs: typing.Any
         ) -> IssuerHttpRequest: ...
         def insert(
-            self, *, body: Issuer = ..., **kwargs: typing.Any
+            self, *, body: Issuer, **kwargs: typing.Any
         ) -> IssuerHttpRequest: ...
         def list(self, **kwargs: typing.Any) -> IssuerListResponseHttpRequest: ...
         def patch(
-            self, *, resourceId: str, body: Issuer = ..., **kwargs: typing.Any
+            self, *, resourceId: str, body: Issuer, **kwargs: typing.Any
         ) -> IssuerHttpRequest: ...
         def update(
-            self, *, resourceId: str, body: Issuer = ..., **kwargs: typing.Any
+            self, *, resourceId: str, body: Issuer, **kwargs: typing.Any
         ) -> IssuerHttpRequest: ...
 
     @typing.type_check_only
     class JwtResource(googleapiclient.discovery.Resource):
         def insert(
-            self, *, body: JwtResource = ..., **kwargs: typing.Any
+            self, *, body: JwtResource, **kwargs: typing.Any
         ) -> JwtInsertResponseHttpRequest: ...
 
     @typing.type_check_only
     class LoyaltyclassResource(googleapiclient.discovery.Resource):
         def addmessage(
-            self,
-            *,
-            resourceId: str,
-            body: AddMessageRequest = ...,
-            **kwargs: typing.Any,
+            self, *, resourceId: str, body: AddMessageRequest, **kwargs: typing.Any
         ) -> LoyaltyClassAddMessageResponseHttpRequest: ...
         def get(
             self, *, resourceId: str, **kwargs: typing.Any
         ) -> LoyaltyClassHttpRequest: ...
         def insert(
-            self, *, body: LoyaltyClass = ..., **kwargs: typing.Any
+            self, *, body: LoyaltyClass, **kwargs: typing.Any
         ) -> LoyaltyClassHttpRequest: ...
         def list(
             self,
@@ -314,26 +270,22 @@ class WalletobjectsResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any,
         ) -> LoyaltyClassListResponseHttpRequest: ...
         def patch(
-            self, *, resourceId: str, body: LoyaltyClass = ..., **kwargs: typing.Any
+            self, *, resourceId: str, body: LoyaltyClass, **kwargs: typing.Any
         ) -> LoyaltyClassHttpRequest: ...
         def update(
-            self, *, resourceId: str, body: LoyaltyClass = ..., **kwargs: typing.Any
+            self, *, resourceId: str, body: LoyaltyClass, **kwargs: typing.Any
         ) -> LoyaltyClassHttpRequest: ...
 
     @typing.type_check_only
     class LoyaltyobjectResource(googleapiclient.discovery.Resource):
         def addmessage(
-            self,
-            *,
-            resourceId: str,
-            body: AddMessageRequest = ...,
-            **kwargs: typing.Any,
+            self, *, resourceId: str, body: AddMessageRequest, **kwargs: typing.Any
         ) -> LoyaltyObjectAddMessageResponseHttpRequest: ...
         def get(
             self, *, resourceId: str, **kwargs: typing.Any
         ) -> LoyaltyObjectHttpRequest: ...
         def insert(
-            self, *, body: LoyaltyObject = ..., **kwargs: typing.Any
+            self, *, body: LoyaltyObject, **kwargs: typing.Any
         ) -> LoyaltyObjectHttpRequest: ...
         def list(
             self,
@@ -347,14 +299,14 @@ class WalletobjectsResource(googleapiclient.discovery.Resource):
             self,
             *,
             resourceId: str,
-            body: ModifyLinkedOfferObjectsRequest = ...,
+            body: ModifyLinkedOfferObjectsRequest,
             **kwargs: typing.Any,
         ) -> LoyaltyObjectHttpRequest: ...
         def patch(
-            self, *, resourceId: str, body: LoyaltyObject = ..., **kwargs: typing.Any
+            self, *, resourceId: str, body: LoyaltyObject, **kwargs: typing.Any
         ) -> LoyaltyObjectHttpRequest: ...
         def update(
-            self, *, resourceId: str, body: LoyaltyObject = ..., **kwargs: typing.Any
+            self, *, resourceId: str, body: LoyaltyObject, **kwargs: typing.Any
         ) -> LoyaltyObjectHttpRequest: ...
 
     @typing.type_check_only
@@ -369,24 +321,20 @@ class WalletobjectsResource(googleapiclient.discovery.Resource):
             self,
             *,
             resourceId: str,
-            body: TransitObjectUploadRotatingBarcodeValuesRequest = ...,
+            body: TransitObjectUploadRotatingBarcodeValuesRequest,
             **kwargs: typing.Any,
         ) -> TransitObjectUploadRotatingBarcodeValuesResponseHttpRequest: ...
 
     @typing.type_check_only
     class OfferclassResource(googleapiclient.discovery.Resource):
         def addmessage(
-            self,
-            *,
-            resourceId: str,
-            body: AddMessageRequest = ...,
-            **kwargs: typing.Any,
+            self, *, resourceId: str, body: AddMessageRequest, **kwargs: typing.Any
         ) -> OfferClassAddMessageResponseHttpRequest: ...
         def get(
             self, *, resourceId: str, **kwargs: typing.Any
         ) -> OfferClassHttpRequest: ...
         def insert(
-            self, *, body: OfferClass = ..., **kwargs: typing.Any
+            self, *, body: OfferClass, **kwargs: typing.Any
         ) -> OfferClassHttpRequest: ...
         def list(
             self,
@@ -397,26 +345,22 @@ class WalletobjectsResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any,
         ) -> OfferClassListResponseHttpRequest: ...
         def patch(
-            self, *, resourceId: str, body: OfferClass = ..., **kwargs: typing.Any
+            self, *, resourceId: str, body: OfferClass, **kwargs: typing.Any
         ) -> OfferClassHttpRequest: ...
         def update(
-            self, *, resourceId: str, body: OfferClass = ..., **kwargs: typing.Any
+            self, *, resourceId: str, body: OfferClass, **kwargs: typing.Any
         ) -> OfferClassHttpRequest: ...
 
     @typing.type_check_only
     class OfferobjectResource(googleapiclient.discovery.Resource):
         def addmessage(
-            self,
-            *,
-            resourceId: str,
-            body: AddMessageRequest = ...,
-            **kwargs: typing.Any,
+            self, *, resourceId: str, body: AddMessageRequest, **kwargs: typing.Any
         ) -> OfferObjectAddMessageResponseHttpRequest: ...
         def get(
             self, *, resourceId: str, **kwargs: typing.Any
         ) -> OfferObjectHttpRequest: ...
         def insert(
-            self, *, body: OfferObject = ..., **kwargs: typing.Any
+            self, *, body: OfferObject, **kwargs: typing.Any
         ) -> OfferObjectHttpRequest: ...
         def list(
             self,
@@ -427,10 +371,10 @@ class WalletobjectsResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any,
         ) -> OfferObjectListResponseHttpRequest: ...
         def patch(
-            self, *, resourceId: str, body: OfferObject = ..., **kwargs: typing.Any
+            self, *, resourceId: str, body: OfferObject, **kwargs: typing.Any
         ) -> OfferObjectHttpRequest: ...
         def update(
-            self, *, resourceId: str, body: OfferObject = ..., **kwargs: typing.Any
+            self, *, resourceId: str, body: OfferObject, **kwargs: typing.Any
         ) -> OfferObjectHttpRequest: ...
 
     @typing.type_check_only
@@ -439,29 +383,25 @@ class WalletobjectsResource(googleapiclient.discovery.Resource):
             self, *, resourceId: str, **kwargs: typing.Any
         ) -> PermissionsHttpRequest: ...
         def update(
-            self, *, resourceId: str, body: Permissions = ..., **kwargs: typing.Any
+            self, *, resourceId: str, body: Permissions, **kwargs: typing.Any
         ) -> PermissionsHttpRequest: ...
 
     @typing.type_check_only
     class SmarttapResource(googleapiclient.discovery.Resource):
         def insert(
-            self, *, body: SmartTap = ..., **kwargs: typing.Any
+            self, *, body: SmartTap, **kwargs: typing.Any
         ) -> SmartTapHttpRequest: ...
 
     @typing.type_check_only
     class TransitclassResource(googleapiclient.discovery.Resource):
         def addmessage(
-            self,
-            *,
-            resourceId: str,
-            body: AddMessageRequest = ...,
-            **kwargs: typing.Any,
+            self, *, resourceId: str, body: AddMessageRequest, **kwargs: typing.Any
         ) -> TransitClassAddMessageResponseHttpRequest: ...
         def get(
             self, *, resourceId: str, **kwargs: typing.Any
         ) -> TransitClassHttpRequest: ...
         def insert(
-            self, *, body: TransitClass = ..., **kwargs: typing.Any
+            self, *, body: TransitClass, **kwargs: typing.Any
         ) -> TransitClassHttpRequest: ...
         def list(
             self,
@@ -472,26 +412,22 @@ class WalletobjectsResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any,
         ) -> TransitClassListResponseHttpRequest: ...
         def patch(
-            self, *, resourceId: str, body: TransitClass = ..., **kwargs: typing.Any
+            self, *, resourceId: str, body: TransitClass, **kwargs: typing.Any
         ) -> TransitClassHttpRequest: ...
         def update(
-            self, *, resourceId: str, body: TransitClass = ..., **kwargs: typing.Any
+            self, *, resourceId: str, body: TransitClass, **kwargs: typing.Any
         ) -> TransitClassHttpRequest: ...
 
     @typing.type_check_only
     class TransitobjectResource(googleapiclient.discovery.Resource):
         def addmessage(
-            self,
-            *,
-            resourceId: str,
-            body: AddMessageRequest = ...,
-            **kwargs: typing.Any,
+            self, *, resourceId: str, body: AddMessageRequest, **kwargs: typing.Any
         ) -> TransitObjectAddMessageResponseHttpRequest: ...
         def get(
             self, *, resourceId: str, **kwargs: typing.Any
         ) -> TransitObjectHttpRequest: ...
         def insert(
-            self, *, body: TransitObject = ..., **kwargs: typing.Any
+            self, *, body: TransitObject, **kwargs: typing.Any
         ) -> TransitObjectHttpRequest: ...
         def list(
             self,
@@ -502,10 +438,10 @@ class WalletobjectsResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any,
         ) -> TransitObjectListResponseHttpRequest: ...
         def patch(
-            self, *, resourceId: str, body: TransitObject = ..., **kwargs: typing.Any
+            self, *, resourceId: str, body: TransitObject, **kwargs: typing.Any
         ) -> TransitObjectHttpRequest: ...
         def update(
-            self, *, resourceId: str, body: TransitObject = ..., **kwargs: typing.Any
+            self, *, resourceId: str, body: TransitObject, **kwargs: typing.Any
         ) -> TransitObjectHttpRequest: ...
 
     @typing.type_check_only
@@ -515,10 +451,7 @@ class WalletobjectsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class PrivateContentResource(googleapiclient.discovery.Resource):
                 def setPassUpdateNotice(
-                    self,
-                    *,
-                    body: SetPassUpdateNoticeRequest = ...,
-                    **kwargs: typing.Any,
+                    self, *, body: SetPassUpdateNoticeRequest, **kwargs: typing.Any
                 ) -> SetPassUpdateNoticeResponseHttpRequest: ...
 
             def privateContent(self) -> PrivateContentResource: ...

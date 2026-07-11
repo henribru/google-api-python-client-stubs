@@ -23,28 +23,28 @@ class CloudFunctionsResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: AbortFunctionUpgradeRequest = ...,
+                    body: AbortFunctionUpgradeRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def commitFunctionUpgrade(
                     self,
                     *,
                     name: str,
-                    body: CommitFunctionUpgradeRequest = ...,
+                    body: CommitFunctionUpgradeRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def commitFunctionUpgradeAsGen2(
                     self,
                     *,
                     name: str,
-                    body: CommitFunctionUpgradeAsGen2Request = ...,
+                    body: CommitFunctionUpgradeAsGen2Request,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def create(
                     self,
                     *,
                     parent: str,
-                    body: Function = ...,
+                    body: Function,
                     functionId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -55,21 +55,21 @@ class CloudFunctionsResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: DetachFunctionRequest = ...,
+                    body: DetachFunctionRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def generateDownloadUrl(
                     self,
                     *,
                     name: str,
-                    body: GenerateDownloadUrlRequest = ...,
+                    body: GenerateDownloadUrlRequest,
                     **kwargs: typing.Any,
                 ) -> GenerateDownloadUrlResponseHttpRequest: ...
                 def generateUploadUrl(
                     self,
                     *,
                     parent: str,
-                    body: GenerateUploadUrlRequest = ...,
+                    body: GenerateUploadUrlRequest,
                     **kwargs: typing.Any,
                 ) -> GenerateUploadUrlResponseHttpRequest: ...
                 def get(
@@ -101,7 +101,7 @@ class CloudFunctionsResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: Function = ...,
+                    body: Function,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -109,35 +109,35 @@ class CloudFunctionsResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: RedirectFunctionUpgradeTrafficRequest = ...,
+                    body: RedirectFunctionUpgradeTrafficRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def rollbackFunctionUpgradeTraffic(
                     self,
                     *,
                     name: str,
-                    body: RollbackFunctionUpgradeTrafficRequest = ...,
+                    body: RollbackFunctionUpgradeTrafficRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def setIamPolicy(
                     self,
                     *,
                     resource: str,
-                    body: SetIamPolicyRequest = ...,
+                    body: SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def setupFunctionUpgradeConfig(
                     self,
                     *,
                     name: str,
-                    body: SetupFunctionUpgradeConfigRequest = ...,
+                    body: SetupFunctionUpgradeConfigRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: TestIamPermissionsRequest = ...,
+                    body: TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
 

@@ -23,7 +23,7 @@ class FirebaseRealtimeDatabaseResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: DatabaseInstance = ...,
+                    body: DatabaseInstance,
                     databaseId: str | None = ...,
                     validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
@@ -35,7 +35,7 @@ class FirebaseRealtimeDatabaseResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: DisableDatabaseInstanceRequest = ...,
+                    body: DisableDatabaseInstanceRequest,
                     **kwargs: typing.Any,
                 ) -> DatabaseInstanceHttpRequest: ...
                 def get(
@@ -59,14 +59,14 @@ class FirebaseRealtimeDatabaseResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: ReenableDatabaseInstanceRequest = ...,
+                    body: ReenableDatabaseInstanceRequest,
                     **kwargs: typing.Any,
                 ) -> DatabaseInstanceHttpRequest: ...
                 def undelete(
                     self,
                     *,
                     name: str,
-                    body: UndeleteDatabaseInstanceRequest = ...,
+                    body: UndeleteDatabaseInstanceRequest,
                     **kwargs: typing.Any,
                 ) -> DatabaseInstanceHttpRequest: ...
 

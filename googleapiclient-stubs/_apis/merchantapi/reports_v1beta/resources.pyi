@@ -18,7 +18,7 @@ class MerchantResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class ReportsResource(googleapiclient.discovery.Resource):
             def search(
-                self, *, parent: str, body: SearchRequest = ..., **kwargs: typing.Any
+                self, *, parent: str, body: SearchRequest, **kwargs: typing.Any
             ) -> SearchResponseHttpRequest: ...
             def search_next(
                 self,

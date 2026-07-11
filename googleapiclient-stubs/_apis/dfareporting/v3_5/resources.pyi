@@ -20,7 +20,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             *,
             profileId: str,
             advertiserId: str,
-            body: CreativeAssetMetadata = ...,
+            body: CreativeAssetMetadata,
             **kwargs: typing.Any,
         ) -> CreativeAssetMetadataHttpRequest: ...
 

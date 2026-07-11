@@ -23,7 +23,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudRunV2SubmitBuildRequest = ...,
+                    body: GoogleCloudRunV2SubmitBuildRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudRunV2SubmitBuildResponseHttpRequest: ...
 
@@ -33,7 +33,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudRunV2Instance = ...,
+                    body: GoogleCloudRunV2Instance,
                     instanceId: str | None = ...,
                     validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
@@ -74,7 +74,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudRunV2Instance = ...,
+                    body: GoogleCloudRunV2Instance,
                     allowMissing: bool | None = ...,
                     updateMask: str | None = ...,
                     validateOnly: bool | None = ...,
@@ -84,28 +84,28 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: GoogleIamV1SetIamPolicyRequest = ...,
+                    body: GoogleIamV1SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleIamV1PolicyHttpRequest: ...
                 def start(
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudRunV2StartInstanceRequest = ...,
+                    body: GoogleCloudRunV2StartInstanceRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def stop(
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudRunV2StopInstanceRequest = ...,
+                    body: GoogleCloudRunV2StopInstanceRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: GoogleIamV1TestIamPermissionsRequest = ...,
+                    body: GoogleIamV1TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
 
@@ -137,7 +137,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: GoogleCloudRunV2CancelExecutionRequest = ...,
+                        body: GoogleCloudRunV2CancelExecutionRequest,
                         **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
                     def delete(
@@ -174,7 +174,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudRunV2Job = ...,
+                    body: GoogleCloudRunV2Job,
                     jobId: str | None = ...,
                     validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
@@ -215,7 +215,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudRunV2Job = ...,
+                    body: GoogleCloudRunV2Job,
                     allowMissing: bool | None = ...,
                     validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
@@ -224,21 +224,21 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudRunV2RunJobRequest = ...,
+                    body: GoogleCloudRunV2RunJobRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def setIamPolicy(
                     self,
                     *,
                     resource: str,
-                    body: GoogleIamV1SetIamPolicyRequest = ...,
+                    body: GoogleIamV1SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleIamV1PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: GoogleIamV1TestIamPermissionsRequest = ...,
+                    body: GoogleIamV1TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
                 def executions(self) -> ExecutionsResource: ...
@@ -270,7 +270,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleLongrunningWaitOperationRequest = ...,
+                    body: GoogleLongrunningWaitOperationRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
 
@@ -311,7 +311,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudRunV2Service = ...,
+                    body: GoogleCloudRunV2Service,
                     serviceId: str | None = ...,
                     validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
@@ -352,7 +352,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudRunV2Service = ...,
+                    body: GoogleCloudRunV2Service,
                     allowMissing: bool | None = ...,
                     forceNewRevision: bool | None = ...,
                     updateMask: str | None = ...,
@@ -363,14 +363,14 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: GoogleIamV1SetIamPolicyRequest = ...,
+                    body: GoogleIamV1SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleIamV1PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: GoogleIamV1TestIamPermissionsRequest = ...,
+                    body: GoogleIamV1TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
                 def revisions(self) -> RevisionsResource: ...
@@ -409,7 +409,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudRunV2WorkerPool = ...,
+                    body: GoogleCloudRunV2WorkerPool,
                     validateOnly: bool | None = ...,
                     workerPoolId: str | None = ...,
                     **kwargs: typing.Any,
@@ -450,7 +450,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudRunV2WorkerPool = ...,
+                    body: GoogleCloudRunV2WorkerPool,
                     allowMissing: bool | None = ...,
                     forceNewRevision: bool | None = ...,
                     updateMask: str | None = ...,
@@ -461,14 +461,14 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: GoogleIamV1SetIamPolicyRequest = ...,
+                    body: GoogleIamV1SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleIamV1PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: GoogleIamV1TestIamPermissionsRequest = ...,
+                    body: GoogleIamV1TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
                 def revisions(self) -> RevisionsResource: ...
@@ -477,7 +477,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleCloudRunV2ExportImageRequest = ...,
+                body: GoogleCloudRunV2ExportImageRequest,
                 **kwargs: typing.Any,
             ) -> GoogleCloudRunV2ExportImageResponseHttpRequest: ...
             def exportImageMetadata(

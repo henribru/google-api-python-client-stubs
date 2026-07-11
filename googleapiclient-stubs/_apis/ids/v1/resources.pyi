@@ -23,7 +23,7 @@ class IDSResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: Endpoint = ...,
+                    body: Endpoint,
                     endpointId: str | None = ...,
                     requestId: str | None = ...,
                     **kwargs: typing.Any,
@@ -57,7 +57,7 @@ class IDSResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: Endpoint = ...,
+                    body: Endpoint,
                     requestId: str | None = ...,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
@@ -69,7 +69,7 @@ class IDSResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: CancelOperationRequest = ...,
+                    body: CancelOperationRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def delete(

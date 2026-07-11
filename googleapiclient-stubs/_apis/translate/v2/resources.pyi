@@ -16,7 +16,7 @@ class TranslateResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class DetectionsResource(googleapiclient.discovery.Resource):
         def detect(
-            self, *, body: DetectLanguageRequest = ..., **kwargs: typing.Any
+            self, *, body: DetectLanguageRequest, **kwargs: typing.Any
         ) -> DetectionsListResponseHttpRequest: ...
         def list(
             self, *, q: str | _list[str], **kwargs: typing.Any
@@ -46,7 +46,7 @@ class TranslateResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any,
         ) -> TranslationsListResponseHttpRequest: ...
         def translate(
-            self, *, body: TranslateTextRequest = ..., **kwargs: typing.Any
+            self, *, body: TranslateTextRequest, **kwargs: typing.Any
         ) -> TranslationsListResponseHttpRequest: ...
 
     def new_batch_http_request(

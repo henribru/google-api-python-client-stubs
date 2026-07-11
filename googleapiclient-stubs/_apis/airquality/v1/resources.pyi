@@ -16,13 +16,13 @@ class AirQualityResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class CurrentConditionsResource(googleapiclient.discovery.Resource):
         def lookup(
-            self, *, body: LookupCurrentConditionsRequest = ..., **kwargs: typing.Any
+            self, *, body: LookupCurrentConditionsRequest, **kwargs: typing.Any
         ) -> LookupCurrentConditionsResponseHttpRequest: ...
 
     @typing.type_check_only
     class ForecastResource(googleapiclient.discovery.Resource):
         def lookup(
-            self, *, body: LookupForecastRequest = ..., **kwargs: typing.Any
+            self, *, body: LookupForecastRequest, **kwargs: typing.Any
         ) -> LookupForecastResponseHttpRequest: ...
         def lookup_next(
             self,
@@ -33,7 +33,7 @@ class AirQualityResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class HistoryResource(googleapiclient.discovery.Resource):
         def lookup(
-            self, *, body: LookupHistoryRequest = ..., **kwargs: typing.Any
+            self, *, body: LookupHistoryRequest, **kwargs: typing.Any
         ) -> LookupHistoryResponseHttpRequest: ...
         def lookup_next(
             self,

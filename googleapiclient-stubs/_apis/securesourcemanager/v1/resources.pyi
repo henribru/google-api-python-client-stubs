@@ -23,7 +23,7 @@ class SecureSourceManagerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: Instance = ...,
+                    body: Instance,
                     instanceId: str | None = ...,
                     requestId: str | None = ...,
                     **kwargs: typing.Any,
@@ -64,14 +64,14 @@ class SecureSourceManagerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: SetIamPolicyRequest = ...,
+                    body: SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: TestIamPermissionsRequest = ...,
+                    body: TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
 
@@ -81,7 +81,7 @@ class SecureSourceManagerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: CancelOperationRequest = ...,
+                    body: CancelOperationRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def delete(
@@ -113,7 +113,7 @@ class SecureSourceManagerResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: BranchRule = ...,
+                        body: BranchRule,
                         branchRuleId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
@@ -144,7 +144,7 @@ class SecureSourceManagerResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: BranchRule = ...,
+                        body: BranchRule,
                         updateMask: str | None = ...,
                         validateOnly: bool | None = ...,
                         **kwargs: typing.Any,
@@ -156,7 +156,7 @@ class SecureSourceManagerResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: Hook = ...,
+                        body: Hook,
                         hookId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
@@ -183,7 +183,7 @@ class SecureSourceManagerResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: Hook = ...,
+                        body: Hook,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
@@ -196,7 +196,7 @@ class SecureSourceManagerResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             parent: str,
-                            body: IssueComment = ...,
+                            body: IssueComment,
                             **kwargs: typing.Any,
                         ) -> OperationHttpRequest: ...
                         def delete(
@@ -222,7 +222,7 @@ class SecureSourceManagerResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             name: str,
-                            body: IssueComment = ...,
+                            body: IssueComment,
                             updateMask: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> OperationHttpRequest: ...
@@ -231,11 +231,11 @@ class SecureSourceManagerResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: CloseIssueRequest = ...,
+                        body: CloseIssueRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def create(
-                        self, *, parent: str, body: Issue = ..., **kwargs: typing.Any
+                        self, *, parent: str, body: Issue, **kwargs: typing.Any
                     ) -> OperationHttpRequest: ...
                     def delete(
                         self, *, name: str, etag: str | None = ..., **kwargs: typing.Any
@@ -258,17 +258,13 @@ class SecureSourceManagerResource(googleapiclient.discovery.Resource):
                         previous_response: ListIssuesResponse,
                     ) -> ListIssuesResponseHttpRequest | None: ...
                     def open(
-                        self,
-                        *,
-                        name: str,
-                        body: OpenIssueRequest = ...,
-                        **kwargs: typing.Any,
+                        self, *, name: str, body: OpenIssueRequest, **kwargs: typing.Any
                     ) -> OperationHttpRequest: ...
                     def patch(
                         self,
                         *,
                         name: str,
-                        body: Issue = ...,
+                        body: Issue,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
@@ -284,14 +280,14 @@ class SecureSourceManagerResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             parent: str,
-                            body: BatchCreatePullRequestCommentsRequest = ...,
+                            body: BatchCreatePullRequestCommentsRequest,
                             **kwargs: typing.Any,
                         ) -> OperationHttpRequest: ...
                         def create(
                             self,
                             *,
                             parent: str,
-                            body: PullRequestComment = ...,
+                            body: PullRequestComment,
                             **kwargs: typing.Any,
                         ) -> OperationHttpRequest: ...
                         def delete(
@@ -317,7 +313,7 @@ class SecureSourceManagerResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             name: str,
-                            body: PullRequestComment = ...,
+                            body: PullRequestComment,
                             updateMask: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> OperationHttpRequest: ...
@@ -325,14 +321,14 @@ class SecureSourceManagerResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             parent: str,
-                            body: ResolvePullRequestCommentsRequest = ...,
+                            body: ResolvePullRequestCommentsRequest,
                             **kwargs: typing.Any,
                         ) -> OperationHttpRequest: ...
                         def unresolve(
                             self,
                             *,
                             parent: str,
-                            body: UnresolvePullRequestCommentsRequest = ...,
+                            body: UnresolvePullRequestCommentsRequest,
                             **kwargs: typing.Any,
                         ) -> OperationHttpRequest: ...
 
@@ -340,15 +336,11 @@ class SecureSourceManagerResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: ClosePullRequestRequest = ...,
+                        body: ClosePullRequestRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def create(
-                        self,
-                        *,
-                        parent: str,
-                        body: PullRequest = ...,
-                        **kwargs: typing.Any,
+                        self, *, parent: str, body: PullRequest, **kwargs: typing.Any
                     ) -> OperationHttpRequest: ...
                     def get(
                         self, *, name: str, **kwargs: typing.Any
@@ -383,21 +375,21 @@ class SecureSourceManagerResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: MergePullRequestRequest = ...,
+                        body: MergePullRequestRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def open(
                         self,
                         *,
                         name: str,
-                        body: OpenPullRequestRequest = ...,
+                        body: OpenPullRequestRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def patch(
                         self,
                         *,
                         name: str,
-                        body: PullRequest = ...,
+                        body: PullRequest,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
@@ -407,7 +399,7 @@ class SecureSourceManagerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: Repository = ...,
+                    body: Repository,
                     repositoryId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -469,7 +461,7 @@ class SecureSourceManagerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: Repository = ...,
+                    body: Repository,
                     updateMask: str | None = ...,
                     validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
@@ -478,14 +470,14 @@ class SecureSourceManagerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: SetIamPolicyRequest = ...,
+                    body: SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: TestIamPermissionsRequest = ...,
+                    body: TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def branchRules(self) -> BranchRulesResource: ...

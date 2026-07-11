@@ -18,11 +18,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class AssetsResource(googleapiclient.discovery.Resource):
             def group(
-                self,
-                *,
-                parent: str,
-                body: GroupAssetsRequest = ...,
-                **kwargs: typing.Any,
+                self, *, parent: str, body: GroupAssetsRequest, **kwargs: typing.Any
             ) -> GroupAssetsResponseHttpRequest: ...
             def group_next(
                 self,
@@ -51,7 +47,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: SecurityMarks = ...,
+                body: SecurityMarks,
                 startTime: str | None = ...,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
@@ -63,7 +59,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: GoogleCloudSecuritycenterV1BigQueryExport = ...,
+                body: GoogleCloudSecuritycenterV1BigQueryExport,
                 bigQueryExportId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudSecuritycenterV1BigQueryExportHttpRequest: ...
@@ -90,7 +86,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleCloudSecuritycenterV1BigQueryExport = ...,
+                body: GoogleCloudSecuritycenterV1BigQueryExport,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudSecuritycenterV1BigQueryExportHttpRequest: ...
@@ -103,7 +99,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: EventThreatDetectionCustomModule = ...,
+                    body: EventThreatDetectionCustomModule,
                     **kwargs: typing.Any,
                 ) -> EventThreatDetectionCustomModuleHttpRequest: ...
                 def delete(
@@ -149,7 +145,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: EventThreatDetectionCustomModule = ...,
+                    body: EventThreatDetectionCustomModule,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> EventThreatDetectionCustomModuleHttpRequest: ...
@@ -182,7 +178,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: ValidateEventThreatDetectionCustomModuleRequest = ...,
+                body: ValidateEventThreatDetectionCustomModuleRequest,
                 **kwargs: typing.Any,
             ) -> ValidateEventThreatDetectionCustomModuleResponseHttpRequest: ...
             def customModules(self) -> CustomModulesResource: ...
@@ -194,7 +190,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: BulkMuteFindingsRequest = ...,
+                body: BulkMuteFindingsRequest,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
 
@@ -212,7 +208,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudSecuritycenterV1MuteConfig = ...,
+                    body: GoogleCloudSecuritycenterV1MuteConfig,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudSecuritycenterV1MuteConfigHttpRequest: ...
@@ -225,7 +221,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: GoogleCloudSecuritycenterV1MuteConfig = ...,
+                body: GoogleCloudSecuritycenterV1MuteConfig,
                 muteConfigId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudSecuritycenterV1MuteConfigHttpRequest: ...
@@ -252,7 +248,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleCloudSecuritycenterV1MuteConfig = ...,
+                body: GoogleCloudSecuritycenterV1MuteConfig,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudSecuritycenterV1MuteConfigHttpRequest: ...
@@ -263,7 +259,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: NotificationConfig = ...,
+                body: NotificationConfig,
                 configId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> NotificationConfigHttpRequest: ...
@@ -290,7 +286,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: NotificationConfig = ...,
+                body: NotificationConfig,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> NotificationConfigHttpRequest: ...
@@ -305,7 +301,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModule = ...,
+                    body: GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModule,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModuleHttpRequest: ...
                 def delete(
@@ -349,7 +345,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModule = ...,
+                    body: GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModule,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModuleHttpRequest: ...
@@ -357,7 +353,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: SimulateSecurityHealthAnalyticsCustomModuleRequest = ...,
+                    body: SimulateSecurityHealthAnalyticsCustomModuleRequest,
                     **kwargs: typing.Any,
                 ) -> SimulateSecurityHealthAnalyticsCustomModuleResponseHttpRequest: ...
 
@@ -398,7 +394,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: GoogleCloudSecuritycenterV1ExternalSystem = ...,
+                        body: GoogleCloudSecuritycenterV1ExternalSystem,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudSecuritycenterV1ExternalSystemHttpRequest: ...
@@ -407,7 +403,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GroupFindingsRequest = ...,
+                    body: GroupFindingsRequest,
                     **kwargs: typing.Any,
                 ) -> GroupFindingsResponseHttpRequest: ...
                 def group_next(
@@ -437,25 +433,25 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: Finding = ...,
+                    body: Finding,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> FindingHttpRequest: ...
                 def setMute(
-                    self, *, name: str, body: SetMuteRequest = ..., **kwargs: typing.Any
+                    self, *, name: str, body: SetMuteRequest, **kwargs: typing.Any
                 ) -> FindingHttpRequest: ...
                 def setState(
                     self,
                     *,
                     name: str,
-                    body: SetFindingStateRequest = ...,
+                    body: SetFindingStateRequest,
                     **kwargs: typing.Any,
                 ) -> FindingHttpRequest: ...
                 def updateSecurityMarks(
                     self,
                     *,
                     name: str,
-                    body: SecurityMarks = ...,
+                    body: SecurityMarks,
                     startTime: str | None = ...,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
@@ -496,11 +492,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class AssetsResource(googleapiclient.discovery.Resource):
             def group(
-                self,
-                *,
-                parent: str,
-                body: GroupAssetsRequest = ...,
-                **kwargs: typing.Any,
+                self, *, parent: str, body: GroupAssetsRequest, **kwargs: typing.Any
             ) -> GroupAssetsResponseHttpRequest: ...
             def group_next(
                 self,
@@ -529,14 +521,14 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: RunAssetDiscoveryRequest = ...,
+                body: RunAssetDiscoveryRequest,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def updateSecurityMarks(
                 self,
                 *,
                 name: str,
-                body: SecurityMarks = ...,
+                body: SecurityMarks,
                 startTime: str | None = ...,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
@@ -565,7 +557,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: GoogleCloudSecuritycenterV1BigQueryExport = ...,
+                body: GoogleCloudSecuritycenterV1BigQueryExport,
                 bigQueryExportId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudSecuritycenterV1BigQueryExportHttpRequest: ...
@@ -592,7 +584,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleCloudSecuritycenterV1BigQueryExport = ...,
+                body: GoogleCloudSecuritycenterV1BigQueryExport,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudSecuritycenterV1BigQueryExportHttpRequest: ...
@@ -605,7 +597,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: EventThreatDetectionCustomModule = ...,
+                    body: EventThreatDetectionCustomModule,
                     **kwargs: typing.Any,
                 ) -> EventThreatDetectionCustomModuleHttpRequest: ...
                 def delete(
@@ -651,7 +643,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: EventThreatDetectionCustomModule = ...,
+                    body: EventThreatDetectionCustomModule,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> EventThreatDetectionCustomModuleHttpRequest: ...
@@ -684,7 +676,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: ValidateEventThreatDetectionCustomModuleRequest = ...,
+                body: ValidateEventThreatDetectionCustomModuleRequest,
                 **kwargs: typing.Any,
             ) -> ValidateEventThreatDetectionCustomModuleResponseHttpRequest: ...
             def customModules(self) -> CustomModulesResource: ...
@@ -696,7 +688,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: BulkMuteFindingsRequest = ...,
+                body: BulkMuteFindingsRequest,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
 
@@ -714,7 +706,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudSecuritycenterV1MuteConfig = ...,
+                    body: GoogleCloudSecuritycenterV1MuteConfig,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudSecuritycenterV1MuteConfigHttpRequest: ...
@@ -727,7 +719,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: GoogleCloudSecuritycenterV1MuteConfig = ...,
+                body: GoogleCloudSecuritycenterV1MuteConfig,
                 muteConfigId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudSecuritycenterV1MuteConfigHttpRequest: ...
@@ -754,7 +746,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleCloudSecuritycenterV1MuteConfig = ...,
+                body: GoogleCloudSecuritycenterV1MuteConfig,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudSecuritycenterV1MuteConfigHttpRequest: ...
@@ -765,7 +757,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: NotificationConfig = ...,
+                body: NotificationConfig,
                 configId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> NotificationConfigHttpRequest: ...
@@ -792,7 +784,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: NotificationConfig = ...,
+                body: NotificationConfig,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> NotificationConfigHttpRequest: ...
@@ -830,7 +822,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: BatchCreateResourceValueConfigsRequest = ...,
+                body: BatchCreateResourceValueConfigsRequest,
                 **kwargs: typing.Any,
             ) -> BatchCreateResourceValueConfigsResponseHttpRequest: ...
             def delete(
@@ -856,7 +848,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleCloudSecuritycenterV1ResourceValueConfig = ...,
+                body: GoogleCloudSecuritycenterV1ResourceValueConfig,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudSecuritycenterV1ResourceValueConfigHttpRequest: ...
@@ -871,7 +863,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModule = ...,
+                    body: GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModule,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModuleHttpRequest: ...
                 def delete(
@@ -915,7 +907,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModule = ...,
+                    body: GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModule,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModuleHttpRequest: ...
@@ -923,7 +915,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: SimulateSecurityHealthAnalyticsCustomModuleRequest = ...,
+                    body: SimulateSecurityHealthAnalyticsCustomModuleRequest,
                     **kwargs: typing.Any,
                 ) -> SimulateSecurityHealthAnalyticsCustomModuleResponseHttpRequest: ...
 
@@ -1069,7 +1061,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: GoogleCloudSecuritycenterV1ExternalSystem = ...,
+                        body: GoogleCloudSecuritycenterV1ExternalSystem,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudSecuritycenterV1ExternalSystemHttpRequest: ...
@@ -1078,7 +1070,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: Finding = ...,
+                    body: Finding,
                     findingId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> FindingHttpRequest: ...
@@ -1086,7 +1078,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GroupFindingsRequest = ...,
+                    body: GroupFindingsRequest,
                     **kwargs: typing.Any,
                 ) -> GroupFindingsResponseHttpRequest: ...
                 def group_next(
@@ -1116,25 +1108,25 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: Finding = ...,
+                    body: Finding,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> FindingHttpRequest: ...
                 def setMute(
-                    self, *, name: str, body: SetMuteRequest = ..., **kwargs: typing.Any
+                    self, *, name: str, body: SetMuteRequest, **kwargs: typing.Any
                 ) -> FindingHttpRequest: ...
                 def setState(
                     self,
                     *,
                     name: str,
-                    body: SetFindingStateRequest = ...,
+                    body: SetFindingStateRequest,
                     **kwargs: typing.Any,
                 ) -> FindingHttpRequest: ...
                 def updateSecurityMarks(
                     self,
                     *,
                     name: str,
-                    body: SecurityMarks = ...,
+                    body: SecurityMarks,
                     startTime: str | None = ...,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
@@ -1142,15 +1134,11 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 def externalSystems(self) -> ExternalSystemsResource: ...
 
             def create(
-                self, *, parent: str, body: Source = ..., **kwargs: typing.Any
+                self, *, parent: str, body: Source, **kwargs: typing.Any
             ) -> SourceHttpRequest: ...
             def get(self, *, name: str, **kwargs: typing.Any) -> SourceHttpRequest: ...
             def getIamPolicy(
-                self,
-                *,
-                resource: str,
-                body: GetIamPolicyRequest = ...,
-                **kwargs: typing.Any,
+                self, *, resource: str, body: GetIamPolicyRequest, **kwargs: typing.Any
             ) -> PolicyHttpRequest: ...
             def list(
                 self,
@@ -1169,22 +1157,18 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: Source = ...,
+                body: Source,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> SourceHttpRequest: ...
             def setIamPolicy(
-                self,
-                *,
-                resource: str,
-                body: SetIamPolicyRequest = ...,
-                **kwargs: typing.Any,
+                self, *, resource: str, body: SetIamPolicyRequest, **kwargs: typing.Any
             ) -> PolicyHttpRequest: ...
             def testIamPermissions(
                 self,
                 *,
                 resource: str,
-                body: TestIamPermissionsRequest = ...,
+                body: TestIamPermissionsRequest,
                 **kwargs: typing.Any,
             ) -> TestIamPermissionsResponseHttpRequest: ...
             def findings(self) -> FindingsResource: ...
@@ -1214,7 +1198,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            body: OrganizationSettings = ...,
+            body: OrganizationSettings,
             updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> OrganizationSettingsHttpRequest: ...
@@ -1242,11 +1226,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class AssetsResource(googleapiclient.discovery.Resource):
             def group(
-                self,
-                *,
-                parent: str,
-                body: GroupAssetsRequest = ...,
-                **kwargs: typing.Any,
+                self, *, parent: str, body: GroupAssetsRequest, **kwargs: typing.Any
             ) -> GroupAssetsResponseHttpRequest: ...
             def group_next(
                 self,
@@ -1275,7 +1255,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: SecurityMarks = ...,
+                body: SecurityMarks,
                 startTime: str | None = ...,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
@@ -1287,7 +1267,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: GoogleCloudSecuritycenterV1BigQueryExport = ...,
+                body: GoogleCloudSecuritycenterV1BigQueryExport,
                 bigQueryExportId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudSecuritycenterV1BigQueryExportHttpRequest: ...
@@ -1314,7 +1294,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleCloudSecuritycenterV1BigQueryExport = ...,
+                body: GoogleCloudSecuritycenterV1BigQueryExport,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudSecuritycenterV1BigQueryExportHttpRequest: ...
@@ -1327,7 +1307,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: EventThreatDetectionCustomModule = ...,
+                    body: EventThreatDetectionCustomModule,
                     **kwargs: typing.Any,
                 ) -> EventThreatDetectionCustomModuleHttpRequest: ...
                 def delete(
@@ -1373,7 +1353,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: EventThreatDetectionCustomModule = ...,
+                    body: EventThreatDetectionCustomModule,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> EventThreatDetectionCustomModuleHttpRequest: ...
@@ -1406,7 +1386,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: ValidateEventThreatDetectionCustomModuleRequest = ...,
+                body: ValidateEventThreatDetectionCustomModuleRequest,
                 **kwargs: typing.Any,
             ) -> ValidateEventThreatDetectionCustomModuleResponseHttpRequest: ...
             def customModules(self) -> CustomModulesResource: ...
@@ -1418,7 +1398,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: BulkMuteFindingsRequest = ...,
+                body: BulkMuteFindingsRequest,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
 
@@ -1436,7 +1416,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudSecuritycenterV1MuteConfig = ...,
+                    body: GoogleCloudSecuritycenterV1MuteConfig,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudSecuritycenterV1MuteConfigHttpRequest: ...
@@ -1449,7 +1429,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: GoogleCloudSecuritycenterV1MuteConfig = ...,
+                body: GoogleCloudSecuritycenterV1MuteConfig,
                 muteConfigId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudSecuritycenterV1MuteConfigHttpRequest: ...
@@ -1476,7 +1456,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleCloudSecuritycenterV1MuteConfig = ...,
+                body: GoogleCloudSecuritycenterV1MuteConfig,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudSecuritycenterV1MuteConfigHttpRequest: ...
@@ -1487,7 +1467,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: NotificationConfig = ...,
+                body: NotificationConfig,
                 configId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> NotificationConfigHttpRequest: ...
@@ -1514,7 +1494,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: NotificationConfig = ...,
+                body: NotificationConfig,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> NotificationConfigHttpRequest: ...
@@ -1529,7 +1509,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModule = ...,
+                    body: GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModule,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModuleHttpRequest: ...
                 def delete(
@@ -1573,7 +1553,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModule = ...,
+                    body: GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModule,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModuleHttpRequest: ...
@@ -1581,7 +1561,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: SimulateSecurityHealthAnalyticsCustomModuleRequest = ...,
+                    body: SimulateSecurityHealthAnalyticsCustomModuleRequest,
                     **kwargs: typing.Any,
                 ) -> SimulateSecurityHealthAnalyticsCustomModuleResponseHttpRequest: ...
 
@@ -1622,7 +1602,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: GoogleCloudSecuritycenterV1ExternalSystem = ...,
+                        body: GoogleCloudSecuritycenterV1ExternalSystem,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudSecuritycenterV1ExternalSystemHttpRequest: ...
@@ -1631,7 +1611,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GroupFindingsRequest = ...,
+                    body: GroupFindingsRequest,
                     **kwargs: typing.Any,
                 ) -> GroupFindingsResponseHttpRequest: ...
                 def group_next(
@@ -1661,25 +1641,25 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: Finding = ...,
+                    body: Finding,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> FindingHttpRequest: ...
                 def setMute(
-                    self, *, name: str, body: SetMuteRequest = ..., **kwargs: typing.Any
+                    self, *, name: str, body: SetMuteRequest, **kwargs: typing.Any
                 ) -> FindingHttpRequest: ...
                 def setState(
                     self,
                     *,
                     name: str,
-                    body: SetFindingStateRequest = ...,
+                    body: SetFindingStateRequest,
                     **kwargs: typing.Any,
                 ) -> FindingHttpRequest: ...
                 def updateSecurityMarks(
                     self,
                     *,
                     name: str,
-                    body: SecurityMarks = ...,
+                    body: SecurityMarks,
                     startTime: str | None = ...,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,

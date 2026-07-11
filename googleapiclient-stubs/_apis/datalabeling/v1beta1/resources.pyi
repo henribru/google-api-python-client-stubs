@@ -21,7 +21,7 @@ class DataLabelingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: GoogleCloudDatalabelingV1beta1CreateAnnotationSpecSetRequest = ...,
+                body: GoogleCloudDatalabelingV1beta1CreateAnnotationSpecSetRequest,
                 **kwargs: typing.Any,
             ) -> GoogleCloudDatalabelingV1beta1AnnotationSpecSetHttpRequest: ...
             def delete(
@@ -116,7 +116,7 @@ class DataLabelingResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             parent: str,
-                            body: GoogleCloudDatalabelingV1beta1FeedbackMessage = ...,
+                            body: GoogleCloudDatalabelingV1beta1FeedbackMessage,
                             **kwargs: typing.Any,
                         ) -> GoogleLongrunningOperationHttpRequest: ...
                         def delete(
@@ -226,7 +226,7 @@ class DataLabelingResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: GoogleCloudDatalabelingV1beta1SearchExampleComparisonsRequest = ...,
+                        body: GoogleCloudDatalabelingV1beta1SearchExampleComparisonsRequest,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudDatalabelingV1beta1SearchExampleComparisonsResponseHttpRequest: ...
                     def search_next(
@@ -249,7 +249,7 @@ class DataLabelingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudDatalabelingV1beta1LabelImageRequest = ...,
+                    body: GoogleCloudDatalabelingV1beta1LabelImageRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
 
@@ -259,7 +259,7 @@ class DataLabelingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudDatalabelingV1beta1LabelTextRequest = ...,
+                    body: GoogleCloudDatalabelingV1beta1LabelTextRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
 
@@ -269,7 +269,7 @@ class DataLabelingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudDatalabelingV1beta1LabelVideoRequest = ...,
+                    body: GoogleCloudDatalabelingV1beta1LabelVideoRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
 
@@ -277,7 +277,7 @@ class DataLabelingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: GoogleCloudDatalabelingV1beta1CreateDatasetRequest = ...,
+                body: GoogleCloudDatalabelingV1beta1CreateDatasetRequest,
                 **kwargs: typing.Any,
             ) -> GoogleCloudDatalabelingV1beta1DatasetHttpRequest: ...
             def delete(
@@ -287,7 +287,7 @@ class DataLabelingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleCloudDatalabelingV1beta1ExportDataRequest = ...,
+                body: GoogleCloudDatalabelingV1beta1ExportDataRequest,
                 **kwargs: typing.Any,
             ) -> GoogleLongrunningOperationHttpRequest: ...
             def get(
@@ -297,7 +297,7 @@ class DataLabelingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleCloudDatalabelingV1beta1ImportDataRequest = ...,
+                body: GoogleCloudDatalabelingV1beta1ImportDataRequest,
                 **kwargs: typing.Any,
             ) -> GoogleLongrunningOperationHttpRequest: ...
             def list(
@@ -329,7 +329,7 @@ class DataLabelingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: GoogleCloudDatalabelingV1beta1CreateEvaluationJobRequest = ...,
+                body: GoogleCloudDatalabelingV1beta1CreateEvaluationJobRequest,
                 **kwargs: typing.Any,
             ) -> GoogleCloudDatalabelingV1beta1EvaluationJobHttpRequest: ...
             def delete(
@@ -361,7 +361,7 @@ class DataLabelingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleCloudDatalabelingV1beta1EvaluationJob = ...,
+                body: GoogleCloudDatalabelingV1beta1EvaluationJob,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudDatalabelingV1beta1EvaluationJobHttpRequest: ...
@@ -369,14 +369,14 @@ class DataLabelingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleCloudDatalabelingV1beta1PauseEvaluationJobRequest = ...,
+                body: GoogleCloudDatalabelingV1beta1PauseEvaluationJobRequest,
                 **kwargs: typing.Any,
             ) -> GoogleProtobufEmptyHttpRequest: ...
             def resume(
                 self,
                 *,
                 name: str,
-                body: GoogleCloudDatalabelingV1beta1ResumeEvaluationJobRequest = ...,
+                body: GoogleCloudDatalabelingV1beta1ResumeEvaluationJobRequest,
                 **kwargs: typing.Any,
             ) -> GoogleProtobufEmptyHttpRequest: ...
 
@@ -406,7 +406,7 @@ class DataLabelingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: GoogleCloudDatalabelingV1beta1CreateInstructionRequest = ...,
+                body: GoogleCloudDatalabelingV1beta1CreateInstructionRequest,
                 **kwargs: typing.Any,
             ) -> GoogleLongrunningOperationHttpRequest: ...
             def delete(

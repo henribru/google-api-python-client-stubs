@@ -57,7 +57,7 @@ class BooksResource(googleapiclient.discovery.Resource):
             self, *, volumeId: str, **kwargs: typing.Any
         ) -> EmptyHttpRequest: ...
         def updateBook(
-            self, *, body: BooksCloudloadingResource = ..., **kwargs: typing.Any
+            self, *, body: BooksCloudloadingResource, **kwargs: typing.Any
         ) -> BooksCloudloadingResourceHttpRequest: ...
 
     @typing.type_check_only
@@ -235,7 +235,7 @@ class BooksResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any,
         ) -> VolumesHttpRequest: ...
         def updateUserSettings(
-            self, *, body: Usersettings = ..., **kwargs: typing.Any
+            self, *, body: Usersettings, **kwargs: typing.Any
         ) -> UsersettingsHttpRequest: ...
 
     @typing.type_check_only
@@ -252,7 +252,7 @@ class BooksResource(googleapiclient.discovery.Resource):
             def insert(
                 self,
                 *,
-                body: Annotation = ...,
+                body: Annotation,
                 annotationId: str | None = ...,
                 country: str | None = ...,
                 showOnlySummaryInResponse: bool | None = ...,
@@ -291,7 +291,7 @@ class BooksResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 annotationId: str,
-                body: Annotation = ...,
+                body: Annotation,
                 source: str | None = ...,
                 **kwargs: typing.Any,
             ) -> AnnotationHttpRequest: ...

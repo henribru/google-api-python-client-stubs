@@ -41,17 +41,13 @@ class StorageBatchOperationsResource(googleapiclient.discovery.Resource):
                     ) -> ListBucketOperationsResponseHttpRequest | None: ...
 
                 def cancel(
-                    self,
-                    *,
-                    name: str,
-                    body: CancelJobRequest = ...,
-                    **kwargs: typing.Any,
+                    self, *, name: str, body: CancelJobRequest, **kwargs: typing.Any
                 ) -> CancelJobResponseHttpRequest: ...
                 def create(
                     self,
                     *,
                     parent: str,
-                    body: Job = ...,
+                    body: Job,
                     jobId: str | None = ...,
                     requestId: str | None = ...,
                     **kwargs: typing.Any,
@@ -88,7 +84,7 @@ class StorageBatchOperationsResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: CancelOperationRequest = ...,
+                    body: CancelOperationRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def delete(

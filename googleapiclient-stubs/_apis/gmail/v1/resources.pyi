@@ -18,7 +18,7 @@ class GmailResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class DraftsResource(googleapiclient.discovery.Resource):
             def create(
-                self, *, userId: str, body: Draft = ..., **kwargs: typing.Any
+                self, *, userId: str, body: Draft, **kwargs: typing.Any
             ) -> DraftHttpRequest: ...
             def delete(
                 self, *, userId: str, id: str, **kwargs: typing.Any
@@ -48,10 +48,10 @@ class GmailResource(googleapiclient.discovery.Resource):
                 previous_response: ListDraftsResponse,
             ) -> ListDraftsResponseHttpRequest | None: ...
             def send(
-                self, *, userId: str, body: Draft = ..., **kwargs: typing.Any
+                self, *, userId: str, body: Draft, **kwargs: typing.Any
             ) -> MessageHttpRequest: ...
             def update(
-                self, *, userId: str, id: str, body: Draft = ..., **kwargs: typing.Any
+                self, *, userId: str, id: str, body: Draft, **kwargs: typing.Any
             ) -> DraftHttpRequest: ...
 
         @typing.type_check_only
@@ -84,7 +84,7 @@ class GmailResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LabelsResource(googleapiclient.discovery.Resource):
             def create(
-                self, *, userId: str, body: Label = ..., **kwargs: typing.Any
+                self, *, userId: str, body: Label, **kwargs: typing.Any
             ) -> LabelHttpRequest: ...
             def delete(
                 self, *, userId: str, id: str, **kwargs: typing.Any
@@ -96,10 +96,10 @@ class GmailResource(googleapiclient.discovery.Resource):
                 self, *, userId: str, **kwargs: typing.Any
             ) -> ListLabelsResponseHttpRequest: ...
             def patch(
-                self, *, userId: str, id: str, body: Label = ..., **kwargs: typing.Any
+                self, *, userId: str, id: str, body: Label, **kwargs: typing.Any
             ) -> LabelHttpRequest: ...
             def update(
-                self, *, userId: str, id: str, body: Label = ..., **kwargs: typing.Any
+                self, *, userId: str, id: str, body: Label, **kwargs: typing.Any
             ) -> LabelHttpRequest: ...
 
         @typing.type_check_only
@@ -114,14 +114,14 @@ class GmailResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 userId: str,
-                body: BatchDeleteMessagesRequest = ...,
+                body: BatchDeleteMessagesRequest,
                 **kwargs: typing.Any,
             ) -> googleapiclient.http.HttpRequest: ...
             def batchModify(
                 self,
                 *,
                 userId: str,
-                body: BatchModifyMessagesRequest = ...,
+                body: BatchModifyMessagesRequest,
                 **kwargs: typing.Any,
             ) -> googleapiclient.http.HttpRequest: ...
             def delete(
@@ -141,7 +141,7 @@ class GmailResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 userId: str,
-                body: Message = ...,
+                body: Message,
                 deleted: bool | None = ...,
                 internalDateSource: typing_extensions.Literal[
                     "receivedTime", "dateHeader"
@@ -155,7 +155,7 @@ class GmailResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 userId: str,
-                body: Message = ...,
+                body: Message,
                 deleted: bool | None = ...,
                 internalDateSource: typing_extensions.Literal[
                     "receivedTime", "dateHeader"
@@ -184,11 +184,11 @@ class GmailResource(googleapiclient.discovery.Resource):
                 *,
                 userId: str,
                 id: str,
-                body: ModifyMessageRequest = ...,
+                body: ModifyMessageRequest,
                 **kwargs: typing.Any,
             ) -> MessageHttpRequest: ...
             def send(
-                self, *, userId: str, body: Message = ..., **kwargs: typing.Any
+                self, *, userId: str, body: Message, **kwargs: typing.Any
             ) -> MessageHttpRequest: ...
             def trash(
                 self, *, userId: str, id: str, **kwargs: typing.Any
@@ -205,11 +205,7 @@ class GmailResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class IdentitiesResource(googleapiclient.discovery.Resource):
                     def create(
-                        self,
-                        *,
-                        userId: str,
-                        body: CseIdentity = ...,
-                        **kwargs: typing.Any,
+                        self, *, userId: str, body: CseIdentity, **kwargs: typing.Any
                     ) -> CseIdentityHttpRequest: ...
                     def delete(
                         self, *, userId: str, cseEmailAddress: str, **kwargs: typing.Any
@@ -235,25 +231,21 @@ class GmailResource(googleapiclient.discovery.Resource):
                         *,
                         userId: str,
                         emailAddress: str,
-                        body: CseIdentity = ...,
+                        body: CseIdentity,
                         **kwargs: typing.Any,
                     ) -> CseIdentityHttpRequest: ...
 
                 @typing.type_check_only
                 class KeypairsResource(googleapiclient.discovery.Resource):
                     def create(
-                        self,
-                        *,
-                        userId: str,
-                        body: CseKeyPair = ...,
-                        **kwargs: typing.Any,
+                        self, *, userId: str, body: CseKeyPair, **kwargs: typing.Any
                     ) -> CseKeyPairHttpRequest: ...
                     def disable(
                         self,
                         *,
                         userId: str,
                         keyPairId: str,
-                        body: DisableCseKeyPairRequest = ...,
+                        body: DisableCseKeyPairRequest,
                         **kwargs: typing.Any,
                     ) -> CseKeyPairHttpRequest: ...
                     def enable(
@@ -261,7 +253,7 @@ class GmailResource(googleapiclient.discovery.Resource):
                         *,
                         userId: str,
                         keyPairId: str,
-                        body: EnableCseKeyPairRequest = ...,
+                        body: EnableCseKeyPairRequest,
                         **kwargs: typing.Any,
                     ) -> CseKeyPairHttpRequest: ...
                     def get(
@@ -285,7 +277,7 @@ class GmailResource(googleapiclient.discovery.Resource):
                         *,
                         userId: str,
                         keyPairId: str,
-                        body: ObliterateCseKeyPairRequest = ...,
+                        body: ObliterateCseKeyPairRequest,
                         **kwargs: typing.Any,
                     ) -> googleapiclient.http.HttpRequest: ...
 
@@ -295,7 +287,7 @@ class GmailResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class DelegatesResource(googleapiclient.discovery.Resource):
                 def create(
-                    self, *, userId: str, body: Delegate = ..., **kwargs: typing.Any
+                    self, *, userId: str, body: Delegate, **kwargs: typing.Any
                 ) -> DelegateHttpRequest: ...
                 def delete(
                     self, *, userId: str, delegateEmail: str, **kwargs: typing.Any
@@ -310,7 +302,7 @@ class GmailResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class FiltersResource(googleapiclient.discovery.Resource):
                 def create(
-                    self, *, userId: str, body: Filter = ..., **kwargs: typing.Any
+                    self, *, userId: str, body: Filter, **kwargs: typing.Any
                 ) -> FilterHttpRequest: ...
                 def delete(
                     self, *, userId: str, id: str, **kwargs: typing.Any
@@ -325,11 +317,7 @@ class GmailResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class ForwardingAddressesResource(googleapiclient.discovery.Resource):
                 def create(
-                    self,
-                    *,
-                    userId: str,
-                    body: ForwardingAddress = ...,
-                    **kwargs: typing.Any,
+                    self, *, userId: str, body: ForwardingAddress, **kwargs: typing.Any
                 ) -> ForwardingAddressHttpRequest: ...
                 def delete(
                     self, *, userId: str, forwardingEmail: str, **kwargs: typing.Any
@@ -366,7 +354,7 @@ class GmailResource(googleapiclient.discovery.Resource):
                         *,
                         userId: str,
                         sendAsEmail: str,
-                        body: SmimeInfo = ...,
+                        body: SmimeInfo,
                         **kwargs: typing.Any,
                     ) -> SmimeInfoHttpRequest: ...
                     def list(
@@ -382,7 +370,7 @@ class GmailResource(googleapiclient.discovery.Resource):
                     ) -> googleapiclient.http.HttpRequest: ...
 
                 def create(
-                    self, *, userId: str, body: SendAs = ..., **kwargs: typing.Any
+                    self, *, userId: str, body: SendAs, **kwargs: typing.Any
                 ) -> SendAsHttpRequest: ...
                 def delete(
                     self, *, userId: str, sendAsEmail: str, **kwargs: typing.Any
@@ -398,7 +386,7 @@ class GmailResource(googleapiclient.discovery.Resource):
                     *,
                     userId: str,
                     sendAsEmail: str,
-                    body: SendAs = ...,
+                    body: SendAs,
                     **kwargs: typing.Any,
                 ) -> SendAsHttpRequest: ...
                 def update(
@@ -406,7 +394,7 @@ class GmailResource(googleapiclient.discovery.Resource):
                     *,
                     userId: str,
                     sendAsEmail: str,
-                    body: SendAs = ...,
+                    body: SendAs,
                     **kwargs: typing.Any,
                 ) -> SendAsHttpRequest: ...
                 def verify(
@@ -430,19 +418,19 @@ class GmailResource(googleapiclient.discovery.Resource):
                 self, *, userId: str, **kwargs: typing.Any
             ) -> VacationSettingsHttpRequest: ...
             def updateAutoForwarding(
-                self, *, userId: str, body: AutoForwarding = ..., **kwargs: typing.Any
+                self, *, userId: str, body: AutoForwarding, **kwargs: typing.Any
             ) -> AutoForwardingHttpRequest: ...
             def updateImap(
-                self, *, userId: str, body: ImapSettings = ..., **kwargs: typing.Any
+                self, *, userId: str, body: ImapSettings, **kwargs: typing.Any
             ) -> ImapSettingsHttpRequest: ...
             def updateLanguage(
-                self, *, userId: str, body: LanguageSettings = ..., **kwargs: typing.Any
+                self, *, userId: str, body: LanguageSettings, **kwargs: typing.Any
             ) -> LanguageSettingsHttpRequest: ...
             def updatePop(
-                self, *, userId: str, body: PopSettings = ..., **kwargs: typing.Any
+                self, *, userId: str, body: PopSettings, **kwargs: typing.Any
             ) -> PopSettingsHttpRequest: ...
             def updateVacation(
-                self, *, userId: str, body: VacationSettings = ..., **kwargs: typing.Any
+                self, *, userId: str, body: VacationSettings, **kwargs: typing.Any
             ) -> VacationSettingsHttpRequest: ...
             def cse(self) -> CseResource: ...
             def delegates(self) -> DelegatesResource: ...
@@ -486,7 +474,7 @@ class GmailResource(googleapiclient.discovery.Resource):
                 *,
                 userId: str,
                 id: str,
-                body: ModifyThreadRequest = ...,
+                body: ModifyThreadRequest,
                 **kwargs: typing.Any,
             ) -> ThreadHttpRequest: ...
             def trash(
@@ -503,7 +491,7 @@ class GmailResource(googleapiclient.discovery.Resource):
             self, *, userId: str, **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
         def watch(
-            self, *, userId: str, body: WatchRequest = ..., **kwargs: typing.Any
+            self, *, userId: str, body: WatchRequest, **kwargs: typing.Any
         ) -> WatchResponseHttpRequest: ...
         def drafts(self) -> DraftsResource: ...
         def history(self) -> HistoryResource: ...

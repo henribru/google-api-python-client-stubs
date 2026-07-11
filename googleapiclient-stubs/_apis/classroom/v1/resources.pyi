@@ -18,7 +18,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class AliasesResource(googleapiclient.discovery.Resource):
             def create(
-                self, *, courseId: str, body: CourseAlias = ..., **kwargs: typing.Any
+                self, *, courseId: str, body: CourseAlias, **kwargs: typing.Any
             ) -> CourseAliasHttpRequest: ...
             def delete(
                 self, *, courseId: str, alias: str, **kwargs: typing.Any
@@ -46,7 +46,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                     *,
                     courseId: str,
                     itemId: str,
-                    body: AddOnAttachment = ...,
+                    body: AddOnAttachment,
                     addOnToken: str | None = ...,
                     postId: str | None = ...,
                     **kwargs: typing.Any,
@@ -90,14 +90,14 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                     courseId: str,
                     itemId: str,
                     attachmentId: str,
-                    body: AddOnAttachment = ...,
+                    body: AddOnAttachment,
                     postId: str | None = ...,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> AddOnAttachmentHttpRequest: ...
 
             def create(
-                self, *, courseId: str, body: Announcement = ..., **kwargs: typing.Any
+                self, *, courseId: str, body: Announcement, **kwargs: typing.Any
             ) -> AnnouncementHttpRequest: ...
             def delete(
                 self, *, courseId: str, id: str, **kwargs: typing.Any
@@ -146,7 +146,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                 *,
                 courseId: str,
                 id: str,
-                body: ModifyAnnouncementAssigneesRequest = ...,
+                body: ModifyAnnouncementAssigneesRequest,
                 **kwargs: typing.Any,
             ) -> AnnouncementHttpRequest: ...
             def patch(
@@ -154,7 +154,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                 *,
                 courseId: str,
                 id: str,
-                body: Announcement = ...,
+                body: Announcement,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> AnnouncementHttpRequest: ...
@@ -183,7 +183,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                         itemId: str,
                         attachmentId: str,
                         submissionId: str,
-                        body: AddOnAttachmentStudentSubmission = ...,
+                        body: AddOnAttachmentStudentSubmission,
                         postId: str | None = ...,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
@@ -194,7 +194,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                     *,
                     courseId: str,
                     itemId: str,
-                    body: AddOnAttachment = ...,
+                    body: AddOnAttachment,
                     addOnToken: str | None = ...,
                     postId: str | None = ...,
                     **kwargs: typing.Any,
@@ -238,7 +238,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                     courseId: str,
                     itemId: str,
                     attachmentId: str,
-                    body: AddOnAttachment = ...,
+                    body: AddOnAttachment,
                     postId: str | None = ...,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
@@ -252,7 +252,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                     *,
                     courseId: str,
                     courseWorkId: str,
-                    body: Rubric = ...,
+                    body: Rubric,
                     **kwargs: typing.Any,
                 ) -> RubricHttpRequest: ...
                 def delete(
@@ -291,7 +291,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                     courseId: str,
                     courseWorkId: str,
                     id: str,
-                    body: Rubric = ...,
+                    body: Rubric,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> RubricHttpRequest: ...
@@ -350,7 +350,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                     courseId: str,
                     courseWorkId: str,
                     id: str,
-                    body: ModifyAttachmentsRequest = ...,
+                    body: ModifyAttachmentsRequest,
                     **kwargs: typing.Any,
                 ) -> StudentSubmissionHttpRequest: ...
                 def patch(
@@ -359,7 +359,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                     courseId: str,
                     courseWorkId: str,
                     id: str,
-                    body: StudentSubmission = ...,
+                    body: StudentSubmission,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> StudentSubmissionHttpRequest: ...
@@ -369,7 +369,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                     courseId: str,
                     courseWorkId: str,
                     id: str,
-                    body: ReclaimStudentSubmissionRequest = ...,
+                    body: ReclaimStudentSubmissionRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def return_(
@@ -378,7 +378,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                     courseId: str,
                     courseWorkId: str,
                     id: str,
-                    body: ReturnStudentSubmissionRequest = ...,
+                    body: ReturnStudentSubmissionRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def turnIn(
@@ -387,12 +387,12 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                     courseId: str,
                     courseWorkId: str,
                     id: str,
-                    body: TurnInStudentSubmissionRequest = ...,
+                    body: TurnInStudentSubmissionRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
 
             def create(
-                self, *, courseId: str, body: CourseWork = ..., **kwargs: typing.Any
+                self, *, courseId: str, body: CourseWork, **kwargs: typing.Any
             ) -> CourseWorkHttpRequest: ...
             def delete(
                 self, *, courseId: str, id: str, **kwargs: typing.Any
@@ -438,7 +438,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                 *,
                 courseId: str,
                 id: str,
-                body: ModifyCourseWorkAssigneesRequest = ...,
+                body: ModifyCourseWorkAssigneesRequest,
                 **kwargs: typing.Any,
             ) -> CourseWorkHttpRequest: ...
             def patch(
@@ -446,7 +446,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                 *,
                 courseId: str,
                 id: str,
-                body: CourseWork = ...,
+                body: CourseWork,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> CourseWorkHttpRequest: ...
@@ -455,7 +455,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                 *,
                 courseId: str,
                 courseWorkId: str,
-                body: Rubric = ...,
+                body: Rubric,
                 id: str | None = ...,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
@@ -473,7 +473,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                     *,
                     courseId: str,
                     itemId: str,
-                    body: AddOnAttachment = ...,
+                    body: AddOnAttachment,
                     addOnToken: str | None = ...,
                     postId: str | None = ...,
                     **kwargs: typing.Any,
@@ -517,18 +517,14 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                     courseId: str,
                     itemId: str,
                     attachmentId: str,
-                    body: AddOnAttachment = ...,
+                    body: AddOnAttachment,
                     postId: str | None = ...,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> AddOnAttachmentHttpRequest: ...
 
             def create(
-                self,
-                *,
-                courseId: str,
-                body: CourseWorkMaterial = ...,
-                **kwargs: typing.Any,
+                self, *, courseId: str, body: CourseWorkMaterial, **kwargs: typing.Any
             ) -> CourseWorkMaterialHttpRequest: ...
             def delete(
                 self, *, courseId: str, id: str, **kwargs: typing.Any
@@ -582,7 +578,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                 *,
                 courseId: str,
                 id: str,
-                body: CourseWorkMaterial = ...,
+                body: CourseWorkMaterial,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> CourseWorkMaterialHttpRequest: ...
@@ -611,7 +607,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                         postId: str,
                         attachmentId: str,
                         submissionId: str,
-                        body: AddOnAttachmentStudentSubmission = ...,
+                        body: AddOnAttachmentStudentSubmission,
                         itemId: str | None = ...,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
@@ -622,7 +618,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                     *,
                     courseId: str,
                     postId: str,
-                    body: AddOnAttachment = ...,
+                    body: AddOnAttachment,
                     addOnToken: str | None = ...,
                     itemId: str | None = ...,
                     **kwargs: typing.Any,
@@ -666,7 +662,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                     courseId: str,
                     postId: str,
                     attachmentId: str,
-                    body: AddOnAttachment = ...,
+                    body: AddOnAttachment,
                     itemId: str | None = ...,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
@@ -694,7 +690,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                     *,
                     courseId: str,
                     studentGroupId: str,
-                    body: StudentGroupMember = ...,
+                    body: StudentGroupMember,
                     **kwargs: typing.Any,
                 ) -> StudentGroupMemberHttpRequest: ...
                 def delete(
@@ -721,7 +717,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                 ) -> ListStudentGroupMembersResponseHttpRequest | None: ...
 
             def create(
-                self, *, courseId: str, body: StudentGroup = ..., **kwargs: typing.Any
+                self, *, courseId: str, body: StudentGroup, **kwargs: typing.Any
             ) -> StudentGroupHttpRequest: ...
             def delete(
                 self, *, courseId: str, id: str, **kwargs: typing.Any
@@ -744,7 +740,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                 *,
                 courseId: str,
                 id: str,
-                body: StudentGroup = ...,
+                body: StudentGroup,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> StudentGroupHttpRequest: ...
@@ -756,7 +752,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 courseId: str,
-                body: Student = ...,
+                body: Student,
                 enrollmentCode: str | None = ...,
                 **kwargs: typing.Any,
             ) -> StudentHttpRequest: ...
@@ -783,7 +779,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class TeachersResource(googleapiclient.discovery.Resource):
             def create(
-                self, *, courseId: str, body: Teacher = ..., **kwargs: typing.Any
+                self, *, courseId: str, body: Teacher, **kwargs: typing.Any
             ) -> TeacherHttpRequest: ...
             def delete(
                 self, *, courseId: str, userId: str, **kwargs: typing.Any
@@ -808,7 +804,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class TopicsResource(googleapiclient.discovery.Resource):
             def create(
-                self, *, courseId: str, body: Topic = ..., **kwargs: typing.Any
+                self, *, courseId: str, body: Topic, **kwargs: typing.Any
             ) -> TopicHttpRequest: ...
             def delete(
                 self, *, courseId: str, id: str, **kwargs: typing.Any
@@ -834,13 +830,13 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                 *,
                 courseId: str,
                 id: str,
-                body: Topic = ...,
+                body: Topic,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> TopicHttpRequest: ...
 
         def create(
-            self, *, body: Course = ..., **kwargs: typing.Any
+            self, *, body: Course, **kwargs: typing.Any
         ) -> CourseHttpRequest: ...
         def delete(self, *, id: str, **kwargs: typing.Any) -> EmptyHttpRequest: ...
         def get(self, *, id: str, **kwargs: typing.Any) -> CourseHttpRequest: ...
@@ -884,18 +880,18 @@ class ClassroomResource(googleapiclient.discovery.Resource):
             self,
             *,
             id: str,
-            body: Course = ...,
+            body: Course,
             updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> CourseHttpRequest: ...
         def update(
-            self, *, id: str, body: Course = ..., **kwargs: typing.Any
+            self, *, id: str, body: Course, **kwargs: typing.Any
         ) -> CourseHttpRequest: ...
         def updateGradingPeriodSettings(
             self,
             *,
             courseId: str,
-            body: GradingPeriodSettings = ...,
+            body: GradingPeriodSettings,
             updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> GradingPeriodSettingsHttpRequest: ...
@@ -913,7 +909,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
     class InvitationsResource(googleapiclient.discovery.Resource):
         def accept(self, *, id: str, **kwargs: typing.Any) -> EmptyHttpRequest: ...
         def create(
-            self, *, body: Invitation = ..., **kwargs: typing.Any
+            self, *, body: Invitation, **kwargs: typing.Any
         ) -> InvitationHttpRequest: ...
         def delete(self, *, id: str, **kwargs: typing.Any) -> EmptyHttpRequest: ...
         def get(self, *, id: str, **kwargs: typing.Any) -> InvitationHttpRequest: ...
@@ -935,7 +931,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class RegistrationsResource(googleapiclient.discovery.Resource):
         def create(
-            self, *, body: Registration = ..., **kwargs: typing.Any
+            self, *, body: Registration, **kwargs: typing.Any
         ) -> RegistrationHttpRequest: ...
         def delete(
             self, *, registrationId: str, **kwargs: typing.Any
@@ -946,11 +942,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class GuardianInvitationsResource(googleapiclient.discovery.Resource):
             def create(
-                self,
-                *,
-                studentId: str,
-                body: GuardianInvitation = ...,
-                **kwargs: typing.Any,
+                self, *, studentId: str, body: GuardianInvitation, **kwargs: typing.Any
             ) -> GuardianInvitationHttpRequest: ...
             def get(
                 self, *, studentId: str, invitationId: str, **kwargs: typing.Any
@@ -983,7 +975,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                 *,
                 studentId: str,
                 invitationId: str,
-                body: GuardianInvitation = ...,
+                body: GuardianInvitation,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GuardianInvitationHttpRequest: ...

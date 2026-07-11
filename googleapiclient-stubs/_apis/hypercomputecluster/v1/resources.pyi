@@ -23,7 +23,7 @@ class HypercomputeClusterResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: Cluster = ...,
+                    body: Cluster,
                     clusterId: str | None = ...,
                     requestId: str | None = ...,
                     **kwargs: typing.Any,
@@ -57,7 +57,7 @@ class HypercomputeClusterResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: Cluster = ...,
+                    body: Cluster,
                     requestId: str | None = ...,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
@@ -69,7 +69,7 @@ class HypercomputeClusterResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: CancelOperationRequest = ...,
+                    body: CancelOperationRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def delete(

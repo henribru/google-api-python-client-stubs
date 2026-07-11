@@ -23,7 +23,7 @@ class SecurityPostureResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: CancelOperationRequest = ...,
+                    body: CancelOperationRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def delete(
@@ -54,7 +54,7 @@ class SecurityPostureResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: PostureDeployment = ...,
+                    body: PostureDeployment,
                     postureDeploymentId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -82,7 +82,7 @@ class SecurityPostureResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: PostureDeployment = ...,
+                    body: PostureDeployment,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -117,7 +117,7 @@ class SecurityPostureResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: Posture = ...,
+                    body: Posture,
                     postureId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -128,7 +128,7 @@ class SecurityPostureResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: ExtractPostureRequest = ...,
+                    body: ExtractPostureRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def get(
@@ -169,7 +169,7 @@ class SecurityPostureResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: Posture = ...,
+                    body: Posture,
                     revisionId: str | None = ...,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
@@ -181,7 +181,7 @@ class SecurityPostureResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: CreateIaCValidationReportRequest = ...,
+                    body: CreateIaCValidationReportRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def get(

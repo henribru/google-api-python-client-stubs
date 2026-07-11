@@ -23,11 +23,7 @@ class MerchantResource(googleapiclient.discovery.Resource):
                     self, *, name: str, **kwargs: typing.Any
                 ) -> EmptyHttpRequest: ...
                 def insert(
-                    self,
-                    *,
-                    parent: str,
-                    body: LocalInventory = ...,
-                    **kwargs: typing.Any,
+                    self, *, parent: str, body: LocalInventory, **kwargs: typing.Any
                 ) -> LocalInventoryHttpRequest: ...
                 def list(
                     self,
@@ -49,11 +45,7 @@ class MerchantResource(googleapiclient.discovery.Resource):
                     self, *, name: str, **kwargs: typing.Any
                 ) -> EmptyHttpRequest: ...
                 def insert(
-                    self,
-                    *,
-                    parent: str,
-                    body: RegionalInventory = ...,
-                    **kwargs: typing.Any,
+                    self, *, parent: str, body: RegionalInventory, **kwargs: typing.Any
                 ) -> RegionalInventoryHttpRequest: ...
                 def list(
                     self,

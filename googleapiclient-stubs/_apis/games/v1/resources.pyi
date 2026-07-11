@@ -83,7 +83,7 @@ class GamesResource(googleapiclient.discovery.Resource):
             self, *, achievementId: str, **kwargs: typing.Any
         ) -> AchievementUnlockResponseHttpRequest: ...
         def updateMultiple(
-            self, *, body: AchievementUpdateMultipleRequest = ..., **kwargs: typing.Any
+            self, *, body: AchievementUpdateMultipleRequest, **kwargs: typing.Any
         ) -> AchievementUpdateMultipleResponseHttpRequest: ...
 
     @typing.type_check_only
@@ -143,7 +143,7 @@ class GamesResource(googleapiclient.discovery.Resource):
         def record(
             self,
             *,
-            body: EventRecordRequest = ...,
+            body: EventRecordRequest,
             language: str | None = ...,
             **kwargs: typing.Any,
         ) -> EventUpdateResponseHttpRequest: ...
@@ -238,16 +238,16 @@ class GamesResource(googleapiclient.discovery.Resource):
             self, *, sessionId: str, **kwargs: typing.Any
         ) -> RetrieveDeveloperGamesLastPlayerTokenResponseHttpRequest: ...
         def linkPersona(
-            self, *, body: LinkPersonaRequest = ..., **kwargs: typing.Any
+            self, *, body: LinkPersonaRequest, **kwargs: typing.Any
         ) -> LinkPersonaResponseHttpRequest: ...
         def resetPersona(
-            self, *, body: ResetPersonaRequest = ..., **kwargs: typing.Any
+            self, *, body: ResetPersonaRequest, **kwargs: typing.Any
         ) -> ResetPersonaResponseHttpRequest: ...
         def retrieveTokens(
             self, *, sessionId: str, **kwargs: typing.Any
         ) -> RetrievePlayerTokensResponseHttpRequest: ...
         def unlinkPersona(
-            self, *, body: UnlinkPersonaRequest = ..., **kwargs: typing.Any
+            self, *, body: UnlinkPersonaRequest, **kwargs: typing.Any
         ) -> UnlinkPersonaResponseHttpRequest: ...
 
     @typing.type_check_only
@@ -324,7 +324,7 @@ class GamesResource(googleapiclient.discovery.Resource):
         def submitMultiple(
             self,
             *,
-            body: PlayerScoreSubmissionList = ...,
+            body: PlayerScoreSubmissionList,
             language: str | None = ...,
             **kwargs: typing.Any,
         ) -> PlayerScoreListResponseHttpRequest: ...

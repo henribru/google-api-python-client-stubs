@@ -23,7 +23,7 @@ class GoogleHealthAPIResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: CreateSubscriptionPayload = ...,
+                    body: CreateSubscriptionPayload,
                     subscriptionId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> SubscriptionHttpRequest: ...
@@ -48,7 +48,7 @@ class GoogleHealthAPIResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: Subscription = ...,
+                    body: Subscription,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> SubscriptionHttpRequest: ...
@@ -57,7 +57,7 @@ class GoogleHealthAPIResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: CreateSubscriberPayload = ...,
+                body: CreateSubscriberPayload,
                 subscriberId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
@@ -81,7 +81,7 @@ class GoogleHealthAPIResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: Subscriber = ...,
+                body: Subscriber,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
@@ -99,17 +99,17 @@ class GoogleHealthAPIResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: BatchDeleteDataPointsRequest = ...,
+                    body: BatchDeleteDataPointsRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def create(
-                    self, *, parent: str, body: DataPoint = ..., **kwargs: typing.Any
+                    self, *, parent: str, body: DataPoint, **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def dailyRollUp(
                     self,
                     *,
                     parent: str,
-                    body: DailyRollUpDataPointsRequest = ...,
+                    body: DailyRollUpDataPointsRequest,
                     **kwargs: typing.Any,
                 ) -> DailyRollUpDataPointsResponseHttpRequest: ...
                 def exportExerciseTcx(
@@ -144,7 +144,7 @@ class GoogleHealthAPIResource(googleapiclient.discovery.Resource):
                     previous_response: ListDataPointsResponse,
                 ) -> ListDataPointsResponseHttpRequest | None: ...
                 def patch(
-                    self, *, name: str, body: DataPoint = ..., **kwargs: typing.Any
+                    self, *, name: str, body: DataPoint, **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def reconcile(
                     self,
@@ -165,7 +165,7 @@ class GoogleHealthAPIResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: RollUpDataPointsRequest = ...,
+                    body: RollUpDataPointsRequest,
                     **kwargs: typing.Any,
                 ) -> RollUpDataPointsResponseHttpRequest: ...
                 def rollUp_next(
@@ -211,7 +211,7 @@ class GoogleHealthAPIResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            body: Profile = ...,
+            body: Profile,
             updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> ProfileHttpRequest: ...
@@ -219,7 +219,7 @@ class GoogleHealthAPIResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            body: Settings = ...,
+            body: Settings,
             updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> SettingsHttpRequest: ...

@@ -49,7 +49,7 @@ class AnalyticsHubResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: Listing = ...,
+                        body: Listing,
                         listingId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListingHttpRequest: ...
@@ -67,7 +67,7 @@ class AnalyticsHubResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         resource: str,
-                        body: GetIamPolicyRequest = ...,
+                        body: GetIamPolicyRequest,
                         **kwargs: typing.Any,
                     ) -> PolicyHttpRequest: ...
                     def list(
@@ -101,7 +101,7 @@ class AnalyticsHubResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: Listing = ...,
+                        body: Listing,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListingHttpRequest: ...
@@ -109,21 +109,21 @@ class AnalyticsHubResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         resource: str,
-                        body: SetIamPolicyRequest = ...,
+                        body: SetIamPolicyRequest,
                         **kwargs: typing.Any,
                     ) -> PolicyHttpRequest: ...
                     def subscribe(
                         self,
                         *,
                         name: str,
-                        body: SubscribeListingRequest = ...,
+                        body: SubscribeListingRequest,
                         **kwargs: typing.Any,
                     ) -> SubscribeListingResponseHttpRequest: ...
                     def testIamPermissions(
                         self,
                         *,
                         resource: str,
-                        body: TestIamPermissionsRequest = ...,
+                        body: TestIamPermissionsRequest,
                         **kwargs: typing.Any,
                     ) -> TestIamPermissionsResponseHttpRequest: ...
 
@@ -133,14 +133,14 @@ class AnalyticsHubResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: ApproveQueryTemplateRequest = ...,
+                        body: ApproveQueryTemplateRequest,
                         **kwargs: typing.Any,
                     ) -> QueryTemplateHttpRequest: ...
                     def create(
                         self,
                         *,
                         parent: str,
-                        body: QueryTemplate = ...,
+                        body: QueryTemplate,
                         queryTemplateId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> QueryTemplateHttpRequest: ...
@@ -167,7 +167,7 @@ class AnalyticsHubResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: QueryTemplate = ...,
+                        body: QueryTemplate,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> QueryTemplateHttpRequest: ...
@@ -175,7 +175,7 @@ class AnalyticsHubResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: SubmitQueryTemplateRequest = ...,
+                        body: SubmitQueryTemplateRequest,
                         **kwargs: typing.Any,
                     ) -> QueryTemplateHttpRequest: ...
 
@@ -183,7 +183,7 @@ class AnalyticsHubResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: DataExchange = ...,
+                    body: DataExchange,
                     dataExchangeId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> DataExchangeHttpRequest: ...
@@ -197,7 +197,7 @@ class AnalyticsHubResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: GetIamPolicyRequest = ...,
+                    body: GetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def list(
@@ -231,7 +231,7 @@ class AnalyticsHubResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: DataExchange = ...,
+                    body: DataExchange,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> DataExchangeHttpRequest: ...
@@ -239,21 +239,21 @@ class AnalyticsHubResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: SetIamPolicyRequest = ...,
+                    body: SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def subscribe(
                     self,
                     *,
                     name: str,
-                    body: SubscribeDataExchangeRequest = ...,
+                    body: SubscribeDataExchangeRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: TestIamPermissionsRequest = ...,
+                    body: TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def listings(self) -> ListingsResource: ...
@@ -271,7 +271,7 @@ class AnalyticsHubResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: GetIamPolicyRequest = ...,
+                    body: GetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def list(
@@ -292,21 +292,21 @@ class AnalyticsHubResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: RefreshSubscriptionRequest = ...,
+                    body: RefreshSubscriptionRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def revoke(
                     self,
                     *,
                     name: str,
-                    body: RevokeSubscriptionRequest = ...,
+                    body: RevokeSubscriptionRequest,
                     **kwargs: typing.Any,
                 ) -> RevokeSubscriptionResponseHttpRequest: ...
                 def setIamPolicy(
                     self,
                     *,
                     resource: str,
-                    body: SetIamPolicyRequest = ...,
+                    body: SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
 

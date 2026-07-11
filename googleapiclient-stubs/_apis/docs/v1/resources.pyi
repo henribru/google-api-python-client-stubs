@@ -19,11 +19,11 @@ class DocsResource(googleapiclient.discovery.Resource):
             self,
             *,
             documentId: str,
-            body: BatchUpdateDocumentRequest = ...,
+            body: BatchUpdateDocumentRequest,
             **kwargs: typing.Any,
         ) -> BatchUpdateDocumentResponseHttpRequest: ...
         def create(
-            self, *, body: Document = ..., **kwargs: typing.Any
+            self, *, body: Document, **kwargs: typing.Any
         ) -> DocumentHttpRequest: ...
         def get(
             self,

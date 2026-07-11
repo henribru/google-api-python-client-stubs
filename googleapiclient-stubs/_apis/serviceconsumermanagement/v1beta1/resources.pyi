@@ -29,7 +29,7 @@ class ServiceConsumerManagementResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: V1Beta1QuotaOverride = ...,
+                        body: V1Beta1QuotaOverride,
                         force: bool | None = ...,
                         forceJustification: str | None = ...,
                         forceOnly: typing_extensions.Literal[
@@ -85,7 +85,7 @@ class ServiceConsumerManagementResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: V1Beta1QuotaOverride = ...,
+                        body: V1Beta1QuotaOverride,
                         force: bool | None = ...,
                         forceJustification: str | None = ...,
                         forceOnly: typing_extensions.Literal[
@@ -111,7 +111,7 @@ class ServiceConsumerManagementResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: V1Beta1ProducerQuotaPolicy = ...,
+                        body: V1Beta1ProducerQuotaPolicy,
                         force: bool | None = ...,
                         forceJustification: str | None = ...,
                         validateOnly: bool | None = ...,
@@ -143,7 +143,7 @@ class ServiceConsumerManagementResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: V1Beta1ProducerQuotaPolicy = ...,
+                        body: V1Beta1ProducerQuotaPolicy,
                         force: bool | None = ...,
                         forceJustification: str | None = ...,
                         updateMask: str | None = ...,
@@ -178,14 +178,14 @@ class ServiceConsumerManagementResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: V1Beta1ImportProducerOverridesRequest = ...,
+                body: V1Beta1ImportProducerOverridesRequest,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def importProducerQuotaPolicies(
                 self,
                 *,
                 parent: str,
-                body: V1Beta1ImportProducerQuotaPoliciesRequest = ...,
+                body: V1Beta1ImportProducerQuotaPoliciesRequest,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def list(

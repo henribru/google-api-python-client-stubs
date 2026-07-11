@@ -55,7 +55,7 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class FeedsResource(googleapiclient.discovery.Resource):
         def create(
-            self, *, parent: str, body: CreateFeedRequest = ..., **kwargs: typing.Any
+            self, *, parent: str, body: CreateFeedRequest, **kwargs: typing.Any
         ) -> FeedHttpRequest: ...
         def delete(self, *, name: str, **kwargs: typing.Any) -> EmptyHttpRequest: ...
         def get(self, *, name: str, **kwargs: typing.Any) -> FeedHttpRequest: ...
@@ -63,7 +63,7 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             self, *, parent: str, **kwargs: typing.Any
         ) -> ListFeedsResponseHttpRequest: ...
         def patch(
-            self, *, name: str, body: UpdateFeedRequest = ..., **kwargs: typing.Any
+            self, *, name: str, body: UpdateFeedRequest, **kwargs: typing.Any
         ) -> FeedHttpRequest: ...
 
     @typing.type_check_only
@@ -76,7 +76,7 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             self,
             *,
             parent: str,
-            body: SavedQuery = ...,
+            body: SavedQuery,
             savedQueryId: str | None = ...,
             **kwargs: typing.Any,
         ) -> SavedQueryHttpRequest: ...
@@ -100,7 +100,7 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            body: SavedQuery = ...,
+            body: SavedQuery,
             updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> SavedQueryHttpRequest: ...
@@ -130,7 +130,7 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             self,
             *,
             scope: str,
-            body: AnalyzeIamPolicyLongrunningRequest = ...,
+            body: AnalyzeIamPolicyLongrunningRequest,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def analyzeMove(
@@ -210,10 +210,10 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any,
         ) -> BatchGetAssetsHistoryResponseHttpRequest: ...
         def exportAssets(
-            self, *, parent: str, body: ExportAssetsRequest = ..., **kwargs: typing.Any
+            self, *, parent: str, body: ExportAssetsRequest, **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
         def queryAssets(
-            self, *, parent: str, body: QueryAssetsRequest = ..., **kwargs: typing.Any
+            self, *, parent: str, body: QueryAssetsRequest, **kwargs: typing.Any
         ) -> QueryAssetsResponseHttpRequest: ...
         def searchAllIamPolicies(
             self,

@@ -20,7 +20,7 @@ class DeploymentManagerResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             deployment: str,
-            body: DeploymentsCancelPreviewRequest = ...,
+            body: DeploymentsCancelPreviewRequest,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def delete(
@@ -53,7 +53,7 @@ class DeploymentManagerResource(googleapiclient.discovery.Resource):
             self,
             *,
             project: str,
-            body: Deployment = ...,
+            body: Deployment,
             createPolicy: typing_extensions.Literal["CREATE_OR_ACQUIRE", "ACQUIRE"]
             | None = ...,
             header_bypassBillingFilter: bool | None = ...,
@@ -80,7 +80,7 @@ class DeploymentManagerResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             deployment: str,
-            body: Deployment = ...,
+            body: Deployment,
             createPolicy: typing_extensions.Literal["CREATE_OR_ACQUIRE", "ACQUIRE"]
             | None = ...,
             deletePolicy: typing_extensions.Literal["DELETE", "ABANDON"] | None = ...,
@@ -93,7 +93,7 @@ class DeploymentManagerResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             resource: str,
-            body: GlobalSetPolicyRequest = ...,
+            body: GlobalSetPolicyRequest,
             **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
         def stop(
@@ -101,7 +101,7 @@ class DeploymentManagerResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             deployment: str,
-            body: DeploymentsStopRequest = ...,
+            body: DeploymentsStopRequest,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def testIamPermissions(
@@ -109,7 +109,7 @@ class DeploymentManagerResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             resource: str,
-            body: TestPermissionsRequest = ...,
+            body: TestPermissionsRequest,
             header_bypassBillingFilter: bool | None = ...,
             **kwargs: typing.Any,
         ) -> TestPermissionsResponseHttpRequest: ...
@@ -118,7 +118,7 @@ class DeploymentManagerResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             deployment: str,
-            body: Deployment = ...,
+            body: Deployment,
             createPolicy: typing_extensions.Literal["CREATE_OR_ACQUIRE", "ACQUIRE"]
             | None = ...,
             deletePolicy: typing_extensions.Literal["DELETE", "ABANDON"] | None = ...,

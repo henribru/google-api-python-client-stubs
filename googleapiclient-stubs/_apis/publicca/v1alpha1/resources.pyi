@@ -20,11 +20,7 @@ class PublicCertificateAuthorityResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class ExternalAccountKeysResource(googleapiclient.discovery.Resource):
                 def create(
-                    self,
-                    *,
-                    parent: str,
-                    body: ExternalAccountKey = ...,
-                    **kwargs: typing.Any,
+                    self, *, parent: str, body: ExternalAccountKey, **kwargs: typing.Any
                 ) -> ExternalAccountKeyHttpRequest: ...
 
             def externalAccountKeys(self) -> ExternalAccountKeysResource: ...

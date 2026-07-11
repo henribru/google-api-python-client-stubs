@@ -18,7 +18,7 @@ class CloudSourceRepositoriesResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class ReposResource(googleapiclient.discovery.Resource):
             def create(
-                self, *, parent: str, body: Repo = ..., **kwargs: typing.Any
+                self, *, parent: str, body: Repo, **kwargs: typing.Any
             ) -> RepoHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -45,23 +45,19 @@ class CloudSourceRepositoriesResource(googleapiclient.discovery.Resource):
                 previous_response: ListReposResponse,
             ) -> ListReposResponseHttpRequest | None: ...
             def patch(
-                self, *, name: str, body: UpdateRepoRequest = ..., **kwargs: typing.Any
+                self, *, name: str, body: UpdateRepoRequest, **kwargs: typing.Any
             ) -> RepoHttpRequest: ...
             def setIamPolicy(
-                self,
-                *,
-                resource: str,
-                body: SetIamPolicyRequest = ...,
-                **kwargs: typing.Any,
+                self, *, resource: str, body: SetIamPolicyRequest, **kwargs: typing.Any
             ) -> PolicyHttpRequest: ...
             def sync(
-                self, *, name: str, body: SyncRepoRequest = ..., **kwargs: typing.Any
+                self, *, name: str, body: SyncRepoRequest, **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
             def testIamPermissions(
                 self,
                 *,
                 resource: str,
-                body: TestIamPermissionsRequest = ...,
+                body: TestIamPermissionsRequest,
                 **kwargs: typing.Any,
             ) -> TestIamPermissionsResponseHttpRequest: ...
 
@@ -69,11 +65,7 @@ class CloudSourceRepositoriesResource(googleapiclient.discovery.Resource):
             self, *, name: str, **kwargs: typing.Any
         ) -> ProjectConfigHttpRequest: ...
         def updateConfig(
-            self,
-            *,
-            name: str,
-            body: UpdateProjectConfigRequest = ...,
-            **kwargs: typing.Any,
+            self, *, name: str, body: UpdateProjectConfigRequest, **kwargs: typing.Any
         ) -> ProjectConfigHttpRequest: ...
         def repos(self) -> ReposResource: ...
 

@@ -33,12 +33,12 @@ class CloudDebuggerResource(googleapiclient.discovery.Resource):
                     *,
                     debuggeeId: str,
                     id: str,
-                    body: UpdateActiveBreakpointRequest = ...,
+                    body: UpdateActiveBreakpointRequest,
                     **kwargs: typing.Any,
                 ) -> UpdateActiveBreakpointResponseHttpRequest: ...
 
             def register(
-                self, *, body: RegisterDebuggeeRequest = ..., **kwargs: typing.Any
+                self, *, body: RegisterDebuggeeRequest, **kwargs: typing.Any
             ) -> RegisterDebuggeeResponseHttpRequest: ...
             def breakpoints(self) -> BreakpointsResource: ...
 
@@ -83,7 +83,7 @@ class CloudDebuggerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     debuggeeId: str,
-                    body: Breakpoint = ...,
+                    body: Breakpoint,
                     canaryOption: typing_extensions.Literal[
                         "CANARY_OPTION_UNSPECIFIED",
                         "CANARY_OPTION_TRY_ENABLE",
