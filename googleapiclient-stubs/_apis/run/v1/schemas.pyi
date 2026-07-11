@@ -1093,7 +1093,8 @@ class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
     updateMask: str
 
 @typing.type_check_only
-class StartInstanceRequest(typing_extensions.TypedDict, total=False): ...
+class StartInstanceRequest(typing_extensions.TypedDict, total=False):
+    dryRun: str
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
@@ -1120,7 +1121,8 @@ class StatusDetails(typing_extensions.TypedDict, total=False):
     uid: str
 
 @typing.type_check_only
-class StopInstanceRequest(typing_extensions.TypedDict, total=False): ...
+class StopInstanceRequest(typing_extensions.TypedDict, total=False):
+    dryRun: str
 
 @typing.type_check_only
 class TCPSocketAction(typing_extensions.TypedDict, total=False):

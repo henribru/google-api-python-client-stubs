@@ -86,6 +86,9 @@ class LighthouseAuditResultV5(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class LighthouseCategoryV5(typing_extensions.TypedDict, total=False):
     auditRefs: _list[AuditRefs]
+    categoryScoreDisplayMode: typing_extensions.Literal[
+        "CATEGORY_SCORE_DISPLAY_MODE_UNSPECIFIED", "GAUGE", "FRACTION"
+    ]
     description: str
     id: str
     manualDescription: str

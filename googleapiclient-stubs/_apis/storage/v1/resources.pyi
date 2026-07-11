@@ -859,23 +859,6 @@ class StorageResource(googleapiclient.discovery.Resource):
             userProject: str | None = ...,
             **kwargs: typing.Any,
         ) -> ObjectHttpRequest: ...
-        def watchAll(
-            self,
-            *,
-            bucket: str,
-            body: Channel = ...,
-            delimiter: str | None = ...,
-            endOffset: str | None = ...,
-            includeTrailingDelimiter: bool | None = ...,
-            maxResults: int | None = ...,
-            pageToken: str | None = ...,
-            prefix: str | None = ...,
-            projection: typing_extensions.Literal["full", "noAcl"] | None = ...,
-            startOffset: str | None = ...,
-            userProject: str | None = ...,
-            versions: bool | None = ...,
-            **kwargs: typing.Any,
-        ) -> ChannelHttpRequest: ...
 
     @typing.type_check_only
     class OperationsResource(googleapiclient.discovery.Resource):
@@ -1055,14 +1038,6 @@ class BucketsHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Buckets: ...
-
-@typing.type_check_only
-class ChannelHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> Channel: ...
 
 @typing.type_check_only
 class FolderHttpRequest(googleapiclient.http.HttpRequest):

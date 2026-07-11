@@ -534,6 +534,7 @@ class Instance(typing_extensions.TypedDict, total=False):
     edition: typing_extensions.Literal[
         "EDITION_UNSPECIFIED", "ENTERPRISE", "ENTERPRISE_PLUS"
     ]
+    knowledgeCatalogRegion: str
     labels: dict[str, typing.Any]
     name: str
     satisfiesPzi: bool

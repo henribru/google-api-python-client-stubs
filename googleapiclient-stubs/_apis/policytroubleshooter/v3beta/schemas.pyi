@@ -365,10 +365,11 @@ class GoogleCloudPolicytroubleshooterIamV3betaExplainedPABRule(
         "HEURISTIC_RELEVANCE_NORMAL",
         "HEURISTIC_RELEVANCE_HIGH",
     ]
-    effect: typing_extensions.Literal["EFFECT_UNSPECIFIED", "ALLOW"]
+    effect: typing_extensions.Literal["EFFECT_UNSPECIFIED", "ALLOW", "DENY"]
     explainedResources: _list[
         GoogleCloudPolicytroubleshooterIamV3betaExplainedPABRuleExplainedResource
     ]
+    pabUnsupportedFeatures: _list[str]
     relevance: typing_extensions.Literal[
         "HEURISTIC_RELEVANCE_UNSPECIFIED",
         "HEURISTIC_RELEVANCE_NORMAL",
@@ -583,7 +584,8 @@ class GoogleIamV3PrincipalAccessBoundaryPolicyRule(
     typing_extensions.TypedDict, total=False
 ):
     description: str
-    effect: typing_extensions.Literal["EFFECT_UNSPECIFIED", "ALLOW"]
+    effect: typing_extensions.Literal["EFFECT_UNSPECIFIED", "ALLOW", "DENY"]
+    excludedResources: _list[str]
     operation: GoogleIamV3PrincipalAccessBoundaryPolicyRuleOperation
     resources: _list[str]
 

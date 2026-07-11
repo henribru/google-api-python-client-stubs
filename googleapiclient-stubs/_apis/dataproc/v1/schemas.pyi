@@ -760,6 +760,7 @@ class InstanceReference(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class InstanceSelection(typing_extensions.TypedDict, total=False):
+    diskConfig: DiskConfig
     machineTypes: _list[str]
     rank: int
 

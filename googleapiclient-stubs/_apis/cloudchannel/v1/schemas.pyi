@@ -646,6 +646,7 @@ class GoogleCloudChannelV1PriceByResource(typing_extensions.TypedDict, total=Fal
         "MINUTES",
         "IAAS_USAGE",
         "SUBSCRIPTION",
+        "AI_CREDITS",
     ]
 
 @typing.type_check_only

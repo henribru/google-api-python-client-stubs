@@ -783,6 +783,7 @@ class MirroringEndpointGroupAssociation(typing_extensions.TypedDict, total=False
     mirroringEndpointGroup: str
     name: str
     network: str
+    networkCookie: int
     reconciling: bool
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
