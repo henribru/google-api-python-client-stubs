@@ -21,7 +21,7 @@ class AlertCenterResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 alertId: str,
-                body: AlertFeedback = ...,
+                body: AlertFeedback,
                 customerId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> AlertFeedbackHttpRequest: ...
@@ -35,10 +35,10 @@ class AlertCenterResource(googleapiclient.discovery.Resource):
             ) -> ListAlertFeedbackResponseHttpRequest: ...
 
         def batchDelete(
-            self, *, body: BatchDeleteAlertsRequest = ..., **kwargs: typing.Any
+            self, *, body: BatchDeleteAlertsRequest, **kwargs: typing.Any
         ) -> BatchDeleteAlertsResponseHttpRequest: ...
         def batchUndelete(
-            self, *, body: BatchUndeleteAlertsRequest = ..., **kwargs: typing.Any
+            self, *, body: BatchUndeleteAlertsRequest, **kwargs: typing.Any
         ) -> BatchUndeleteAlertsResponseHttpRequest: ...
         def delete(
             self, *, alertId: str, customerId: str | None = ..., **kwargs: typing.Any
@@ -65,11 +65,7 @@ class AlertCenterResource(googleapiclient.discovery.Resource):
             previous_response: ListAlertsResponse,
         ) -> ListAlertsResponseHttpRequest | None: ...
         def undelete(
-            self,
-            *,
-            alertId: str,
-            body: UndeleteAlertRequest = ...,
-            **kwargs: typing.Any,
+            self, *, alertId: str, body: UndeleteAlertRequest, **kwargs: typing.Any
         ) -> AlertHttpRequest: ...
         def feedback(self) -> FeedbackResource: ...
 
@@ -79,11 +75,7 @@ class AlertCenterResource(googleapiclient.discovery.Resource):
             self, *, customerId: str | None = ..., **kwargs: typing.Any
         ) -> SettingsHttpRequest: ...
         def updateSettings(
-            self,
-            *,
-            body: Settings = ...,
-            customerId: str | None = ...,
-            **kwargs: typing.Any,
+            self, *, body: Settings, customerId: str | None = ..., **kwargs: typing.Any
         ) -> SettingsHttpRequest: ...
 
     def new_batch_http_request(

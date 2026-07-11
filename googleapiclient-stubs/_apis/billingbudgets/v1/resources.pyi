@@ -21,7 +21,7 @@ class CloudBillingBudgetResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: GoogleCloudBillingBudgetsV1Budget = ...,
+                body: GoogleCloudBillingBudgetsV1Budget,
                 **kwargs: typing.Any,
             ) -> GoogleCloudBillingBudgetsV1BudgetHttpRequest: ...
             def delete(
@@ -48,7 +48,7 @@ class CloudBillingBudgetResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleCloudBillingBudgetsV1Budget = ...,
+                body: GoogleCloudBillingBudgetsV1Budget,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudBillingBudgetsV1BudgetHttpRequest: ...

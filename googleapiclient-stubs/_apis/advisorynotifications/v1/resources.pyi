@@ -55,7 +55,7 @@ class AdvisorynotificationsResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleCloudAdvisorynotificationsV1Settings = ...,
+                body: GoogleCloudAdvisorynotificationsV1Settings,
                 **kwargs: typing.Any,
             ) -> GoogleCloudAdvisorynotificationsV1SettingsHttpRequest: ...
             def notifications(self) -> NotificationsResource: ...
@@ -104,7 +104,7 @@ class AdvisorynotificationsResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleCloudAdvisorynotificationsV1Settings = ...,
+                body: GoogleCloudAdvisorynotificationsV1Settings,
                 **kwargs: typing.Any,
             ) -> GoogleCloudAdvisorynotificationsV1SettingsHttpRequest: ...
             def notifications(self) -> NotificationsResource: ...

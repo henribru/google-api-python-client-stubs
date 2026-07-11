@@ -44,7 +44,7 @@ class BackupForGKEResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: BackupChannel = ...,
+                    body: BackupChannel,
                     backupChannelId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
@@ -78,7 +78,7 @@ class BackupForGKEResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: BackupChannel = ...,
+                    body: BackupChannel,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
@@ -119,14 +119,14 @@ class BackupForGKEResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             resource: str,
-                            body: SetIamPolicyRequest = ...,
+                            body: SetIamPolicyRequest,
                             **kwargs: typing.Any,
                         ) -> PolicyHttpRequest: ...
                         def testIamPermissions(
                             self,
                             *,
                             resource: str,
-                            body: TestIamPermissionsRequest = ...,
+                            body: TestIamPermissionsRequest,
                             **kwargs: typing.Any,
                         ) -> TestIamPermissionsResponseHttpRequest: ...
 
@@ -134,7 +134,7 @@ class BackupForGKEResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: Backup = ...,
+                        body: Backup,
                         backupId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
@@ -179,7 +179,7 @@ class BackupForGKEResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: Backup = ...,
+                        body: Backup,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
@@ -187,14 +187,14 @@ class BackupForGKEResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         resource: str,
-                        body: SetIamPolicyRequest = ...,
+                        body: SetIamPolicyRequest,
                         **kwargs: typing.Any,
                     ) -> PolicyHttpRequest: ...
                     def testIamPermissions(
                         self,
                         *,
                         resource: str,
-                        body: TestIamPermissionsRequest = ...,
+                        body: TestIamPermissionsRequest,
                         **kwargs: typing.Any,
                     ) -> TestIamPermissionsResponseHttpRequest: ...
                     def volumeBackups(self) -> VolumeBackupsResource: ...
@@ -203,7 +203,7 @@ class BackupForGKEResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: BackupPlan = ...,
+                    body: BackupPlan,
                     backupPlanId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
@@ -242,7 +242,7 @@ class BackupForGKEResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: BackupPlan = ...,
+                    body: BackupPlan,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
@@ -250,17 +250,17 @@ class BackupForGKEResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: SetIamPolicyRequest = ...,
+                    body: SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def setTags(
-                    self, *, name: str, body: SetTagsRequest = ..., **kwargs: typing.Any
+                    self, *, name: str, body: SetTagsRequest, **kwargs: typing.Any
                 ) -> SetTagsResponseHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: TestIamPermissionsRequest = ...,
+                    body: TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def backups(self) -> BackupsResource: ...
@@ -271,7 +271,7 @@ class BackupForGKEResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleLongrunningCancelOperationRequest = ...,
+                    body: GoogleLongrunningCancelOperationRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def delete(
@@ -323,7 +323,7 @@ class BackupForGKEResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: RestoreChannel = ...,
+                    body: RestoreChannel,
                     restoreChannelId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
@@ -352,7 +352,7 @@ class BackupForGKEResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: RestoreChannel = ...,
+                    body: RestoreChannel,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
@@ -393,14 +393,14 @@ class BackupForGKEResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             resource: str,
-                            body: SetIamPolicyRequest = ...,
+                            body: SetIamPolicyRequest,
                             **kwargs: typing.Any,
                         ) -> PolicyHttpRequest: ...
                         def testIamPermissions(
                             self,
                             *,
                             resource: str,
-                            body: TestIamPermissionsRequest = ...,
+                            body: TestIamPermissionsRequest,
                             **kwargs: typing.Any,
                         ) -> TestIamPermissionsResponseHttpRequest: ...
 
@@ -408,7 +408,7 @@ class BackupForGKEResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: Restore = ...,
+                        body: Restore,
                         restoreId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
@@ -449,7 +449,7 @@ class BackupForGKEResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: Restore = ...,
+                        body: Restore,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
@@ -457,14 +457,14 @@ class BackupForGKEResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         resource: str,
-                        body: SetIamPolicyRequest = ...,
+                        body: SetIamPolicyRequest,
                         **kwargs: typing.Any,
                     ) -> PolicyHttpRequest: ...
                     def testIamPermissions(
                         self,
                         *,
                         resource: str,
-                        body: TestIamPermissionsRequest = ...,
+                        body: TestIamPermissionsRequest,
                         **kwargs: typing.Any,
                     ) -> TestIamPermissionsResponseHttpRequest: ...
                     def volumeRestores(self) -> VolumeRestoresResource: ...
@@ -473,7 +473,7 @@ class BackupForGKEResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: RestorePlan = ...,
+                    body: RestorePlan,
                     restorePlanId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
@@ -517,7 +517,7 @@ class BackupForGKEResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: RestorePlan = ...,
+                    body: RestorePlan,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
@@ -525,17 +525,17 @@ class BackupForGKEResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: SetIamPolicyRequest = ...,
+                    body: SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def setTags(
-                    self, *, name: str, body: SetTagsRequest = ..., **kwargs: typing.Any
+                    self, *, name: str, body: SetTagsRequest, **kwargs: typing.Any
                 ) -> SetTagsResponseHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: TestIamPermissionsRequest = ...,
+                    body: TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def restores(self) -> RestoresResource: ...

@@ -20,7 +20,7 @@ class DataformResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class FoldersResource(googleapiclient.discovery.Resource):
                 def create(
-                    self, *, parent: str, body: Folder = ..., **kwargs: typing.Any
+                    self, *, parent: str, body: Folder, **kwargs: typing.Any
                 ) -> FolderHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -29,7 +29,7 @@ class DataformResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: DeleteFolderTreeRequest = ...,
+                    body: DeleteFolderTreeRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def get(
@@ -43,17 +43,13 @@ class DataformResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def move(
-                    self,
-                    *,
-                    name: str,
-                    body: MoveFolderRequest = ...,
-                    **kwargs: typing.Any,
+                    self, *, name: str, body: MoveFolderRequest, **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def patch(
                     self,
                     *,
                     name: str,
-                    body: Folder = ...,
+                    body: Folder,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> FolderHttpRequest: ...
@@ -76,14 +72,14 @@ class DataformResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: SetIamPolicyRequest = ...,
+                    body: SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: TestIamPermissionsRequest = ...,
+                    body: TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
 
@@ -93,7 +89,7 @@ class DataformResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: CancelOperationRequest = ...,
+                    body: CancelOperationRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def delete(
@@ -126,7 +122,7 @@ class DataformResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: CompilationResult = ...,
+                        body: CompilationResult,
                         **kwargs: typing.Any,
                     ) -> CompilationResultHttpRequest: ...
                     def get(
@@ -168,7 +164,7 @@ class DataformResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: ReleaseConfig = ...,
+                        body: ReleaseConfig,
                         releaseConfigId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ReleaseConfigHttpRequest: ...
@@ -195,7 +191,7 @@ class DataformResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: ReleaseConfig = ...,
+                        body: ReleaseConfig,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ReleaseConfigHttpRequest: ...
@@ -206,7 +202,7 @@ class DataformResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: WorkflowConfig = ...,
+                        body: WorkflowConfig,
                         workflowConfigId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> WorkflowConfigHttpRequest: ...
@@ -233,7 +229,7 @@ class DataformResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: WorkflowConfig = ...,
+                        body: WorkflowConfig,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> WorkflowConfigHttpRequest: ...
@@ -244,14 +240,14 @@ class DataformResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: CancelWorkflowInvocationRequest = ...,
+                        body: CancelWorkflowInvocationRequest,
                         **kwargs: typing.Any,
                     ) -> CancelWorkflowInvocationResponseHttpRequest: ...
                     def create(
                         self,
                         *,
                         parent: str,
-                        body: WorkflowInvocation = ...,
+                        body: WorkflowInvocation,
                         **kwargs: typing.Any,
                     ) -> WorkflowInvocationHttpRequest: ...
                     def delete(
@@ -295,14 +291,14 @@ class DataformResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: CommitWorkspaceChangesRequest = ...,
+                        body: CommitWorkspaceChangesRequest,
                         **kwargs: typing.Any,
                     ) -> CommitWorkspaceChangesResponseHttpRequest: ...
                     def create(
                         self,
                         *,
                         parent: str,
-                        body: Workspace = ...,
+                        body: Workspace,
                         workspaceId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> WorkspaceHttpRequest: ...
@@ -340,7 +336,7 @@ class DataformResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         workspace: str,
-                        body: InstallNpmPackagesRequest = ...,
+                        body: InstallNpmPackagesRequest,
                         **kwargs: typing.Any,
                     ) -> InstallNpmPackagesResponseHttpRequest: ...
                     def list(
@@ -362,35 +358,35 @@ class DataformResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         workspace: str,
-                        body: MakeDirectoryRequest = ...,
+                        body: MakeDirectoryRequest,
                         **kwargs: typing.Any,
                     ) -> MakeDirectoryResponseHttpRequest: ...
                     def moveDirectory(
                         self,
                         *,
                         workspace: str,
-                        body: MoveDirectoryRequest = ...,
+                        body: MoveDirectoryRequest,
                         **kwargs: typing.Any,
                     ) -> MoveDirectoryResponseHttpRequest: ...
                     def moveFile(
                         self,
                         *,
                         workspace: str,
-                        body: MoveFileRequest = ...,
+                        body: MoveFileRequest,
                         **kwargs: typing.Any,
                     ) -> MoveFileResponseHttpRequest: ...
                     def pull(
                         self,
                         *,
                         name: str,
-                        body: PullGitCommitsRequest = ...,
+                        body: PullGitCommitsRequest,
                         **kwargs: typing.Any,
                     ) -> PullGitCommitsResponseHttpRequest: ...
                     def push(
                         self,
                         *,
                         name: str,
-                        body: PushGitCommitsRequest = ...,
+                        body: PushGitCommitsRequest,
                         **kwargs: typing.Any,
                     ) -> PushGitCommitsResponseHttpRequest: ...
                     def queryDirectoryContents(
@@ -425,21 +421,21 @@ class DataformResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         workspace: str,
-                        body: RemoveDirectoryRequest = ...,
+                        body: RemoveDirectoryRequest,
                         **kwargs: typing.Any,
                     ) -> RemoveDirectoryResponseHttpRequest: ...
                     def removeFile(
                         self,
                         *,
                         workspace: str,
-                        body: RemoveFileRequest = ...,
+                        body: RemoveFileRequest,
                         **kwargs: typing.Any,
                     ) -> RemoveFileResponseHttpRequest: ...
                     def reset(
                         self,
                         *,
                         name: str,
-                        body: ResetWorkspaceChangesRequest = ...,
+                        body: ResetWorkspaceChangesRequest,
                         **kwargs: typing.Any,
                     ) -> ResetWorkspaceChangesResponseHttpRequest: ...
                     def searchFiles(
@@ -460,21 +456,21 @@ class DataformResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         resource: str,
-                        body: SetIamPolicyRequest = ...,
+                        body: SetIamPolicyRequest,
                         **kwargs: typing.Any,
                     ) -> PolicyHttpRequest: ...
                     def testIamPermissions(
                         self,
                         *,
                         resource: str,
-                        body: TestIamPermissionsRequest = ...,
+                        body: TestIamPermissionsRequest,
                         **kwargs: typing.Any,
                     ) -> TestIamPermissionsResponseHttpRequest: ...
                     def writeFile(
                         self,
                         *,
                         workspace: str,
-                        body: WriteFileRequest = ...,
+                        body: WriteFileRequest,
                         **kwargs: typing.Any,
                     ) -> WriteFileResponseHttpRequest: ...
 
@@ -482,7 +478,7 @@ class DataformResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: CommitRepositoryChangesRequest = ...,
+                    body: CommitRepositoryChangesRequest,
                     **kwargs: typing.Any,
                 ) -> CommitRepositoryChangesResponseHttpRequest: ...
                 def computeAccessTokenStatus(
@@ -492,7 +488,7 @@ class DataformResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: Repository = ...,
+                    body: Repository,
                     repositoryId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> RepositoryHttpRequest: ...
@@ -544,14 +540,14 @@ class DataformResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: MoveRepositoryRequest = ...,
+                    body: MoveRepositoryRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def patch(
                     self,
                     *,
                     name: str,
-                    body: Repository = ...,
+                    body: Repository,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> RepositoryHttpRequest: ...
@@ -582,14 +578,14 @@ class DataformResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: SetIamPolicyRequest = ...,
+                    body: SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: TestIamPermissionsRequest = ...,
+                    body: TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def compilationResults(self) -> CompilationResultsResource: ...
@@ -601,7 +597,7 @@ class DataformResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class TeamFoldersResource(googleapiclient.discovery.Resource):
                 def create(
-                    self, *, parent: str, body: TeamFolder = ..., **kwargs: typing.Any
+                    self, *, parent: str, body: TeamFolder, **kwargs: typing.Any
                 ) -> TeamFolderHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -610,7 +606,7 @@ class DataformResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: DeleteTeamFolderTreeRequest = ...,
+                    body: DeleteTeamFolderTreeRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def get(
@@ -627,7 +623,7 @@ class DataformResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: TeamFolder = ...,
+                    body: TeamFolder,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> TeamFolderHttpRequest: ...
@@ -665,14 +661,14 @@ class DataformResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: SetIamPolicyRequest = ...,
+                    body: SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: TestIamPermissionsRequest = ...,
+                    body: TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
 
@@ -716,7 +712,7 @@ class DataformResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: Config = ...,
+                body: Config,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ConfigHttpRequest: ...

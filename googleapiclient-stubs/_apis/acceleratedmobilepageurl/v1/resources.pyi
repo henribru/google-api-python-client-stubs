@@ -16,7 +16,7 @@ class AcceleratedmobilepageurlResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class AmpUrlsResource(googleapiclient.discovery.Resource):
         def batchGet(
-            self, *, body: BatchGetAmpUrlsRequest = ..., **kwargs: typing.Any
+            self, *, body: BatchGetAmpUrlsRequest, **kwargs: typing.Any
         ) -> BatchGetAmpUrlsResponseHttpRequest: ...
 
     def new_batch_http_request(

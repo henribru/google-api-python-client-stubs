@@ -20,7 +20,7 @@ class DnsResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             managedZone: str,
-            body: Change = ...,
+            body: Change,
             clientOperationId: str | None = ...,
             **kwargs: typing.Any,
         ) -> ChangeHttpRequest: ...
@@ -111,7 +111,7 @@ class DnsResource(googleapiclient.discovery.Resource):
             self,
             *,
             project: str,
-            body: ManagedZone = ...,
+            body: ManagedZone,
             clientOperationId: str | None = ...,
             **kwargs: typing.Any,
         ) -> ManagedZoneHttpRequest: ...
@@ -135,7 +135,7 @@ class DnsResource(googleapiclient.discovery.Resource):
             self,
             *,
             resource: str,
-            body: GoogleIamV1GetIamPolicyRequest = ...,
+            body: GoogleIamV1GetIamPolicyRequest,
             **kwargs: typing.Any,
         ) -> GoogleIamV1PolicyHttpRequest: ...
         def list(
@@ -157,7 +157,7 @@ class DnsResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             managedZone: str,
-            body: ManagedZone = ...,
+            body: ManagedZone,
             clientOperationId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -165,14 +165,14 @@ class DnsResource(googleapiclient.discovery.Resource):
             self,
             *,
             resource: str,
-            body: GoogleIamV1SetIamPolicyRequest = ...,
+            body: GoogleIamV1SetIamPolicyRequest,
             **kwargs: typing.Any,
         ) -> GoogleIamV1PolicyHttpRequest: ...
         def testIamPermissions(
             self,
             *,
             resource: str,
-            body: GoogleIamV1TestIamPermissionsRequest = ...,
+            body: GoogleIamV1TestIamPermissionsRequest,
             **kwargs: typing.Any,
         ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
         def update(
@@ -180,7 +180,7 @@ class DnsResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             managedZone: str,
-            body: ManagedZone = ...,
+            body: ManagedZone,
             clientOperationId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -191,7 +191,7 @@ class DnsResource(googleapiclient.discovery.Resource):
             self,
             *,
             project: str,
-            body: Policy = ...,
+            body: Policy,
             clientOperationId: str | None = ...,
             **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
@@ -229,7 +229,7 @@ class DnsResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             policy: str,
-            body: Policy = ...,
+            body: Policy,
             clientOperationId: str | None = ...,
             **kwargs: typing.Any,
         ) -> PoliciesPatchResponseHttpRequest: ...
@@ -238,7 +238,7 @@ class DnsResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             policy: str,
-            body: Policy = ...,
+            body: Policy,
             clientOperationId: str | None = ...,
             **kwargs: typing.Any,
         ) -> PoliciesUpdateResponseHttpRequest: ...
@@ -260,7 +260,7 @@ class DnsResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             managedZone: str,
-            body: ResourceRecordSet = ...,
+            body: ResourceRecordSet,
             clientOperationId: str | None = ...,
             **kwargs: typing.Any,
         ) -> ResourceRecordSetHttpRequest: ...
@@ -308,7 +308,7 @@ class DnsResource(googleapiclient.discovery.Resource):
             managedZone: str,
             name: str,
             type: str,
-            body: ResourceRecordSet = ...,
+            body: ResourceRecordSet,
             clientOperationId: str | None = ...,
             **kwargs: typing.Any,
         ) -> ResourceRecordSetHttpRequest: ...
@@ -319,7 +319,7 @@ class DnsResource(googleapiclient.discovery.Resource):
             self,
             *,
             project: str,
-            body: ResponsePolicy = ...,
+            body: ResponsePolicy,
             clientOperationId: str | None = ...,
             **kwargs: typing.Any,
         ) -> ResponsePolicyHttpRequest: ...
@@ -357,7 +357,7 @@ class DnsResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             responsePolicy: str,
-            body: ResponsePolicy = ...,
+            body: ResponsePolicy,
             clientOperationId: str | None = ...,
             **kwargs: typing.Any,
         ) -> ResponsePoliciesPatchResponseHttpRequest: ...
@@ -366,7 +366,7 @@ class DnsResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             responsePolicy: str,
-            body: ResponsePolicy = ...,
+            body: ResponsePolicy,
             clientOperationId: str | None = ...,
             **kwargs: typing.Any,
         ) -> ResponsePoliciesUpdateResponseHttpRequest: ...
@@ -378,7 +378,7 @@ class DnsResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             responsePolicy: str,
-            body: ResponsePolicyRule = ...,
+            body: ResponsePolicyRule,
             clientOperationId: str | None = ...,
             **kwargs: typing.Any,
         ) -> ResponsePolicyRuleHttpRequest: ...
@@ -420,7 +420,7 @@ class DnsResource(googleapiclient.discovery.Resource):
             project: str,
             responsePolicy: str,
             responsePolicyRule: str,
-            body: ResponsePolicyRule = ...,
+            body: ResponsePolicyRule,
             clientOperationId: str | None = ...,
             **kwargs: typing.Any,
         ) -> ResponsePolicyRulesPatchResponseHttpRequest: ...
@@ -430,7 +430,7 @@ class DnsResource(googleapiclient.discovery.Resource):
             project: str,
             responsePolicy: str,
             responsePolicyRule: str,
-            body: ResponsePolicyRule = ...,
+            body: ResponsePolicyRule,
             clientOperationId: str | None = ...,
             **kwargs: typing.Any,
         ) -> ResponsePolicyRulesUpdateResponseHttpRequest: ...

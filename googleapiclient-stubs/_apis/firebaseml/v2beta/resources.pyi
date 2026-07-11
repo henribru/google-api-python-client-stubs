@@ -25,14 +25,14 @@ class FirebaseMLResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         endpoint: str,
-                        body: GoogleCloudAiplatformV1beta1CountTokensRequest = ...,
+                        body: GoogleCloudAiplatformV1beta1CountTokensRequest,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudAiplatformV1beta1CountTokensResponseHttpRequest: ...
                     def generateContent(
                         self,
                         *,
                         model: str,
-                        body: GoogleCloudAiplatformV1beta1GenerateContentRequest = ...,
+                        body: GoogleCloudAiplatformV1beta1GenerateContentRequest,
                         **kwargs: typing.Any,
                     ) -> (
                         GoogleCloudAiplatformV1beta1GenerateContentResponseHttpRequest
@@ -41,7 +41,7 @@ class FirebaseMLResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         model: str,
-                        body: GoogleCloudAiplatformV1beta1GenerateContentRequest = ...,
+                        body: GoogleCloudAiplatformV1beta1GenerateContentRequest,
                         **kwargs: typing.Any,
                     ) -> (
                         GoogleCloudAiplatformV1beta1GenerateContentResponseHttpRequest

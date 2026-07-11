@@ -25,7 +25,7 @@ class ApigeeRegistryResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: Artifact = ...,
+                        body: Artifact,
                         artifactId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ArtifactHttpRequest: ...
@@ -61,20 +61,20 @@ class ApigeeRegistryResource(googleapiclient.discovery.Resource):
                         previous_response: ListArtifactsResponse,
                     ) -> ListArtifactsResponseHttpRequest | None: ...
                     def replaceArtifact(
-                        self, *, name: str, body: Artifact = ..., **kwargs: typing.Any
+                        self, *, name: str, body: Artifact, **kwargs: typing.Any
                     ) -> ArtifactHttpRequest: ...
                     def setIamPolicy(
                         self,
                         *,
                         resource: str,
-                        body: SetIamPolicyRequest = ...,
+                        body: SetIamPolicyRequest,
                         **kwargs: typing.Any,
                     ) -> PolicyHttpRequest: ...
                     def testIamPermissions(
                         self,
                         *,
                         resource: str,
-                        body: TestIamPermissionsRequest = ...,
+                        body: TestIamPermissionsRequest,
                         **kwargs: typing.Any,
                     ) -> TestIamPermissionsResponseHttpRequest: ...
 
@@ -86,7 +86,7 @@ class ApigeeRegistryResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             parent: str,
-                            body: Artifact = ...,
+                            body: Artifact,
                             artifactId: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> ArtifactHttpRequest: ...
@@ -115,18 +115,14 @@ class ApigeeRegistryResource(googleapiclient.discovery.Resource):
                             previous_response: ListArtifactsResponse,
                         ) -> ListArtifactsResponseHttpRequest | None: ...
                         def replaceArtifact(
-                            self,
-                            *,
-                            name: str,
-                            body: Artifact = ...,
-                            **kwargs: typing.Any,
+                            self, *, name: str, body: Artifact, **kwargs: typing.Any
                         ) -> ArtifactHttpRequest: ...
 
                     def create(
                         self,
                         *,
                         parent: str,
-                        body: ApiDeployment = ...,
+                        body: ApiDeployment,
                         apiDeploymentId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ApiDeploymentHttpRequest: ...
@@ -183,7 +179,7 @@ class ApigeeRegistryResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: ApiDeployment = ...,
+                        body: ApiDeployment,
                         allowMissing: bool | None = ...,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
@@ -192,28 +188,28 @@ class ApigeeRegistryResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: RollbackApiDeploymentRequest = ...,
+                        body: RollbackApiDeploymentRequest,
                         **kwargs: typing.Any,
                     ) -> ApiDeploymentHttpRequest: ...
                     def setIamPolicy(
                         self,
                         *,
                         resource: str,
-                        body: SetIamPolicyRequest = ...,
+                        body: SetIamPolicyRequest,
                         **kwargs: typing.Any,
                     ) -> PolicyHttpRequest: ...
                     def tagRevision(
                         self,
                         *,
                         name: str,
-                        body: TagApiDeploymentRevisionRequest = ...,
+                        body: TagApiDeploymentRevisionRequest,
                         **kwargs: typing.Any,
                     ) -> ApiDeploymentHttpRequest: ...
                     def testIamPermissions(
                         self,
                         *,
                         resource: str,
-                        body: TestIamPermissionsRequest = ...,
+                        body: TestIamPermissionsRequest,
                         **kwargs: typing.Any,
                     ) -> TestIamPermissionsResponseHttpRequest: ...
                     def artifacts(self) -> ArtifactsResource: ...
@@ -226,7 +222,7 @@ class ApigeeRegistryResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             parent: str,
-                            body: Artifact = ...,
+                            body: Artifact,
                             artifactId: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> ArtifactHttpRequest: ...
@@ -262,24 +258,20 @@ class ApigeeRegistryResource(googleapiclient.discovery.Resource):
                             previous_response: ListArtifactsResponse,
                         ) -> ListArtifactsResponseHttpRequest | None: ...
                         def replaceArtifact(
-                            self,
-                            *,
-                            name: str,
-                            body: Artifact = ...,
-                            **kwargs: typing.Any,
+                            self, *, name: str, body: Artifact, **kwargs: typing.Any
                         ) -> ArtifactHttpRequest: ...
                         def setIamPolicy(
                             self,
                             *,
                             resource: str,
-                            body: SetIamPolicyRequest = ...,
+                            body: SetIamPolicyRequest,
                             **kwargs: typing.Any,
                         ) -> PolicyHttpRequest: ...
                         def testIamPermissions(
                             self,
                             *,
                             resource: str,
-                            body: TestIamPermissionsRequest = ...,
+                            body: TestIamPermissionsRequest,
                             **kwargs: typing.Any,
                         ) -> TestIamPermissionsResponseHttpRequest: ...
 
@@ -291,7 +283,7 @@ class ApigeeRegistryResource(googleapiclient.discovery.Resource):
                                 self,
                                 *,
                                 parent: str,
-                                body: Artifact = ...,
+                                body: Artifact,
                                 artifactId: str | None = ...,
                                 **kwargs: typing.Any,
                             ) -> ArtifactHttpRequest: ...
@@ -327,24 +319,20 @@ class ApigeeRegistryResource(googleapiclient.discovery.Resource):
                                 previous_response: ListArtifactsResponse,
                             ) -> ListArtifactsResponseHttpRequest | None: ...
                             def replaceArtifact(
-                                self,
-                                *,
-                                name: str,
-                                body: Artifact = ...,
-                                **kwargs: typing.Any,
+                                self, *, name: str, body: Artifact, **kwargs: typing.Any
                             ) -> ArtifactHttpRequest: ...
                             def setIamPolicy(
                                 self,
                                 *,
                                 resource: str,
-                                body: SetIamPolicyRequest = ...,
+                                body: SetIamPolicyRequest,
                                 **kwargs: typing.Any,
                             ) -> PolicyHttpRequest: ...
                             def testIamPermissions(
                                 self,
                                 *,
                                 resource: str,
-                                body: TestIamPermissionsRequest = ...,
+                                body: TestIamPermissionsRequest,
                                 **kwargs: typing.Any,
                             ) -> TestIamPermissionsResponseHttpRequest: ...
 
@@ -352,7 +340,7 @@ class ApigeeRegistryResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             parent: str,
-                            body: ApiSpec = ...,
+                            body: ApiSpec,
                             apiSpecId: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> ApiSpecHttpRequest: ...
@@ -412,7 +400,7 @@ class ApigeeRegistryResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             name: str,
-                            body: ApiSpec = ...,
+                            body: ApiSpec,
                             allowMissing: bool | None = ...,
                             updateMask: str | None = ...,
                             **kwargs: typing.Any,
@@ -421,28 +409,28 @@ class ApigeeRegistryResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             name: str,
-                            body: RollbackApiSpecRequest = ...,
+                            body: RollbackApiSpecRequest,
                             **kwargs: typing.Any,
                         ) -> ApiSpecHttpRequest: ...
                         def setIamPolicy(
                             self,
                             *,
                             resource: str,
-                            body: SetIamPolicyRequest = ...,
+                            body: SetIamPolicyRequest,
                             **kwargs: typing.Any,
                         ) -> PolicyHttpRequest: ...
                         def tagRevision(
                             self,
                             *,
                             name: str,
-                            body: TagApiSpecRevisionRequest = ...,
+                            body: TagApiSpecRevisionRequest,
                             **kwargs: typing.Any,
                         ) -> ApiSpecHttpRequest: ...
                         def testIamPermissions(
                             self,
                             *,
                             resource: str,
-                            body: TestIamPermissionsRequest = ...,
+                            body: TestIamPermissionsRequest,
                             **kwargs: typing.Any,
                         ) -> TestIamPermissionsResponseHttpRequest: ...
                         def artifacts(self) -> ArtifactsResource: ...
@@ -451,7 +439,7 @@ class ApigeeRegistryResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: ApiVersion = ...,
+                        body: ApiVersion,
                         apiVersionId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ApiVersionHttpRequest: ...
@@ -491,7 +479,7 @@ class ApigeeRegistryResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: ApiVersion = ...,
+                        body: ApiVersion,
                         allowMissing: bool | None = ...,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
@@ -500,14 +488,14 @@ class ApigeeRegistryResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         resource: str,
-                        body: SetIamPolicyRequest = ...,
+                        body: SetIamPolicyRequest,
                         **kwargs: typing.Any,
                     ) -> PolicyHttpRequest: ...
                     def testIamPermissions(
                         self,
                         *,
                         resource: str,
-                        body: TestIamPermissionsRequest = ...,
+                        body: TestIamPermissionsRequest,
                         **kwargs: typing.Any,
                     ) -> TestIamPermissionsResponseHttpRequest: ...
                     def artifacts(self) -> ArtifactsResource: ...
@@ -517,7 +505,7 @@ class ApigeeRegistryResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: Api = ...,
+                    body: Api,
                     apiId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ApiHttpRequest: ...
@@ -551,7 +539,7 @@ class ApigeeRegistryResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: Api = ...,
+                    body: Api,
                     allowMissing: bool | None = ...,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
@@ -560,14 +548,14 @@ class ApigeeRegistryResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: SetIamPolicyRequest = ...,
+                    body: SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: TestIamPermissionsRequest = ...,
+                    body: TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def artifacts(self) -> ArtifactsResource: ...
@@ -580,7 +568,7 @@ class ApigeeRegistryResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: Artifact = ...,
+                    body: Artifact,
                     artifactId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ArtifactHttpRequest: ...
@@ -616,20 +604,20 @@ class ApigeeRegistryResource(googleapiclient.discovery.Resource):
                     previous_response: ListArtifactsResponse,
                 ) -> ListArtifactsResponseHttpRequest | None: ...
                 def replaceArtifact(
-                    self, *, name: str, body: Artifact = ..., **kwargs: typing.Any
+                    self, *, name: str, body: Artifact, **kwargs: typing.Any
                 ) -> ArtifactHttpRequest: ...
                 def setIamPolicy(
                     self,
                     *,
                     resource: str,
-                    body: SetIamPolicyRequest = ...,
+                    body: SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: TestIamPermissionsRequest = ...,
+                    body: TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
 
@@ -646,14 +634,14 @@ class ApigeeRegistryResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: SetIamPolicyRequest = ...,
+                    body: SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: TestIamPermissionsRequest = ...,
+                    body: TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
 
@@ -663,7 +651,7 @@ class ApigeeRegistryResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: Instance = ...,
+                    body: Instance,
                     instanceId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -684,14 +672,14 @@ class ApigeeRegistryResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: SetIamPolicyRequest = ...,
+                    body: SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: TestIamPermissionsRequest = ...,
+                    body: TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
 
@@ -701,7 +689,7 @@ class ApigeeRegistryResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: CancelOperationRequest = ...,
+                    body: CancelOperationRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def delete(
@@ -738,14 +726,14 @@ class ApigeeRegistryResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: SetIamPolicyRequest = ...,
+                    body: SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: TestIamPermissionsRequest = ...,
+                    body: TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
 

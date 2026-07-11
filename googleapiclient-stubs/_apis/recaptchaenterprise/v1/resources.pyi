@@ -21,7 +21,7 @@ class RecaptchaEnterpriseResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleCloudRecaptchaenterpriseV1AnnotateAssessmentRequest = ...,
+                body: GoogleCloudRecaptchaenterpriseV1AnnotateAssessmentRequest,
                 **kwargs: typing.Any,
             ) -> (
                 GoogleCloudRecaptchaenterpriseV1AnnotateAssessmentResponseHttpRequest
@@ -30,7 +30,7 @@ class RecaptchaEnterpriseResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: GoogleCloudRecaptchaenterpriseV1Assessment = ...,
+                body: GoogleCloudRecaptchaenterpriseV1Assessment,
                 **kwargs: typing.Any,
             ) -> GoogleCloudRecaptchaenterpriseV1AssessmentHttpRequest: ...
 
@@ -40,7 +40,7 @@ class RecaptchaEnterpriseResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: GoogleCloudRecaptchaenterpriseV1FirewallPolicy = ...,
+                body: GoogleCloudRecaptchaenterpriseV1FirewallPolicy,
                 **kwargs: typing.Any,
             ) -> GoogleCloudRecaptchaenterpriseV1FirewallPolicyHttpRequest: ...
             def delete(
@@ -71,7 +71,7 @@ class RecaptchaEnterpriseResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleCloudRecaptchaenterpriseV1FirewallPolicy = ...,
+                body: GoogleCloudRecaptchaenterpriseV1FirewallPolicy,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudRecaptchaenterpriseV1FirewallPolicyHttpRequest: ...
@@ -79,7 +79,7 @@ class RecaptchaEnterpriseResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: GoogleCloudRecaptchaenterpriseV1ReorderFirewallPoliciesRequest = ...,
+                body: GoogleCloudRecaptchaenterpriseV1ReorderFirewallPoliciesRequest,
                 **kwargs: typing.Any,
             ) -> GoogleCloudRecaptchaenterpriseV1ReorderFirewallPoliciesResponseHttpRequest: ...
 
@@ -89,14 +89,14 @@ class RecaptchaEnterpriseResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleCloudRecaptchaenterpriseV1AddIpOverrideRequest = ...,
+                body: GoogleCloudRecaptchaenterpriseV1AddIpOverrideRequest,
                 **kwargs: typing.Any,
             ) -> GoogleCloudRecaptchaenterpriseV1AddIpOverrideResponseHttpRequest: ...
             def create(
                 self,
                 *,
                 parent: str,
-                body: GoogleCloudRecaptchaenterpriseV1Key = ...,
+                body: GoogleCloudRecaptchaenterpriseV1Key,
                 **kwargs: typing.Any,
             ) -> GoogleCloudRecaptchaenterpriseV1KeyHttpRequest: ...
             def delete(
@@ -141,14 +141,14 @@ class RecaptchaEnterpriseResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleCloudRecaptchaenterpriseV1MigrateKeyRequest = ...,
+                body: GoogleCloudRecaptchaenterpriseV1MigrateKeyRequest,
                 **kwargs: typing.Any,
             ) -> GoogleCloudRecaptchaenterpriseV1KeyHttpRequest: ...
             def patch(
                 self,
                 *,
                 name: str,
-                body: GoogleCloudRecaptchaenterpriseV1Key = ...,
+                body: GoogleCloudRecaptchaenterpriseV1Key,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudRecaptchaenterpriseV1KeyHttpRequest: ...
@@ -156,7 +156,7 @@ class RecaptchaEnterpriseResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleCloudRecaptchaenterpriseV1RemoveIpOverrideRequest = ...,
+                body: GoogleCloudRecaptchaenterpriseV1RemoveIpOverrideRequest,
                 **kwargs: typing.Any,
             ) -> (
                 GoogleCloudRecaptchaenterpriseV1RemoveIpOverrideResponseHttpRequest
@@ -173,7 +173,7 @@ class RecaptchaEnterpriseResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 project: str,
-                body: GoogleCloudRecaptchaenterpriseV1SearchRelatedAccountGroupMembershipsRequest = ...,
+                body: GoogleCloudRecaptchaenterpriseV1SearchRelatedAccountGroupMembershipsRequest,
                 **kwargs: typing.Any,
             ) -> GoogleCloudRecaptchaenterpriseV1SearchRelatedAccountGroupMembershipsResponseHttpRequest: ...
             def search_next(

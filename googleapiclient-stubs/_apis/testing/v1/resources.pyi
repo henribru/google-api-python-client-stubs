@@ -18,7 +18,7 @@ class TestingResource(googleapiclient.discovery.Resource):
         def getApkDetails(
             self,
             *,
-            body: FileReference = ...,
+            body: FileReference,
             bundleLocation_gcsPath: str | None = ...,
             **kwargs: typing.Any,
         ) -> GetApkDetailsResponseHttpRequest: ...
@@ -31,11 +31,11 @@ class TestingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: CancelDeviceSessionRequest = ...,
+                body: CancelDeviceSessionRequest,
                 **kwargs: typing.Any,
             ) -> EmptyHttpRequest: ...
             def create(
-                self, *, parent: str, body: DeviceSession = ..., **kwargs: typing.Any
+                self, *, parent: str, body: DeviceSession, **kwargs: typing.Any
             ) -> DeviceSessionHttpRequest: ...
             def get(
                 self, *, name: str, **kwargs: typing.Any
@@ -58,7 +58,7 @@ class TestingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: DeviceSession = ...,
+                body: DeviceSession,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> DeviceSessionHttpRequest: ...
@@ -72,7 +72,7 @@ class TestingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 projectId: str,
-                body: TestMatrix = ...,
+                body: TestMatrix,
                 requestId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> TestMatrixHttpRequest: ...

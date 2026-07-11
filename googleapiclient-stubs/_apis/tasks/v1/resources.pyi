@@ -22,7 +22,7 @@ class TasksResource(googleapiclient.discovery.Resource):
             self, *, tasklist: str, **kwargs: typing.Any
         ) -> TaskListHttpRequest: ...
         def insert(
-            self, *, body: TaskList = ..., **kwargs: typing.Any
+            self, *, body: TaskList, **kwargs: typing.Any
         ) -> TaskListHttpRequest: ...
         def list(
             self,
@@ -35,10 +35,10 @@ class TasksResource(googleapiclient.discovery.Resource):
             self, previous_request: TaskListsHttpRequest, previous_response: TaskLists
         ) -> TaskListsHttpRequest | None: ...
         def patch(
-            self, *, tasklist: str, body: TaskList = ..., **kwargs: typing.Any
+            self, *, tasklist: str, body: TaskList, **kwargs: typing.Any
         ) -> TaskListHttpRequest: ...
         def update(
-            self, *, tasklist: str, body: TaskList = ..., **kwargs: typing.Any
+            self, *, tasklist: str, body: TaskList, **kwargs: typing.Any
         ) -> TaskListHttpRequest: ...
 
     @typing.type_check_only
@@ -56,7 +56,7 @@ class TasksResource(googleapiclient.discovery.Resource):
             self,
             *,
             tasklist: str,
-            body: Task = ...,
+            body: Task,
             parent: str | None = ...,
             previous: str | None = ...,
             **kwargs: typing.Any,
@@ -92,10 +92,10 @@ class TasksResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any,
         ) -> TaskHttpRequest: ...
         def patch(
-            self, *, tasklist: str, task: str, body: Task = ..., **kwargs: typing.Any
+            self, *, tasklist: str, task: str, body: Task, **kwargs: typing.Any
         ) -> TaskHttpRequest: ...
         def update(
-            self, *, tasklist: str, task: str, body: Task = ..., **kwargs: typing.Any
+            self, *, tasklist: str, task: str, body: Task, **kwargs: typing.Any
         ) -> TaskHttpRequest: ...
 
     def new_batch_http_request(

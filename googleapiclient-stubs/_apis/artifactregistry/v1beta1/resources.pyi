@@ -53,7 +53,7 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             parent: str,
-                            body: Tag = ...,
+                            body: Tag,
                             tagId: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> TagHttpRequest: ...
@@ -81,7 +81,7 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             name: str,
-                            body: Tag = ...,
+                            body: Tag,
                             updateMask: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> TagHttpRequest: ...
@@ -151,7 +151,7 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: Repository = ...,
+                    body: Repository,
                     repositoryId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -186,7 +186,7 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: Repository = ...,
+                    body: Repository,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> RepositoryHttpRequest: ...
@@ -194,14 +194,14 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: SetIamPolicyRequest = ...,
+                    body: SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: TestIamPermissionsRequest = ...,
+                    body: TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def files(self) -> FilesResource: ...

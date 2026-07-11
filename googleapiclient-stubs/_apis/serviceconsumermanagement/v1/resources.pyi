@@ -16,7 +16,7 @@ class ServiceConsumerManagementResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class OperationsResource(googleapiclient.discovery.Resource):
         def cancel(
-            self, *, name: str, body: CancelOperationRequest = ..., **kwargs: typing.Any
+            self, *, name: str, body: CancelOperationRequest, **kwargs: typing.Any
         ) -> EmptyHttpRequest: ...
         def delete(self, *, name: str, **kwargs: typing.Any) -> EmptyHttpRequest: ...
         def get(self, *, name: str, **kwargs: typing.Any) -> OperationHttpRequest: ...
@@ -44,28 +44,28 @@ class ServiceConsumerManagementResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: AddTenantProjectRequest = ...,
+                body: AddTenantProjectRequest,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def applyProjectConfig(
                 self,
                 *,
                 name: str,
-                body: ApplyTenantProjectConfigRequest = ...,
+                body: ApplyTenantProjectConfigRequest,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def attachProject(
                 self,
                 *,
                 name: str,
-                body: AttachTenantProjectRequest = ...,
+                body: AttachTenantProjectRequest,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def create(
                 self,
                 *,
                 parent: str,
-                body: CreateTenancyUnitRequest = ...,
+                body: CreateTenancyUnitRequest,
                 **kwargs: typing.Any,
             ) -> TenancyUnitHttpRequest: ...
             def delete(
@@ -75,7 +75,7 @@ class ServiceConsumerManagementResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: DeleteTenantProjectRequest = ...,
+                body: DeleteTenantProjectRequest,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def list(
@@ -96,14 +96,14 @@ class ServiceConsumerManagementResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: RemoveTenantProjectRequest = ...,
+                body: RemoveTenantProjectRequest,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def undeleteProject(
                 self,
                 *,
                 name: str,
-                body: UndeleteTenantProjectRequest = ...,
+                body: UndeleteTenantProjectRequest,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
 

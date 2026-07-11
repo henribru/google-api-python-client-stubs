@@ -21,14 +21,14 @@ class DocumentResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: GoogleCloudDocumentaiV1beta2BatchProcessDocumentsRequest = ...,
+                body: GoogleCloudDocumentaiV1beta2BatchProcessDocumentsRequest,
                 **kwargs: typing.Any,
             ) -> GoogleLongrunningOperationHttpRequest: ...
             def process(
                 self,
                 *,
                 parent: str,
-                body: GoogleCloudDocumentaiV1beta2ProcessDocumentRequest = ...,
+                body: GoogleCloudDocumentaiV1beta2ProcessDocumentRequest,
                 **kwargs: typing.Any,
             ) -> GoogleCloudDocumentaiV1beta2DocumentHttpRequest: ...
 
@@ -40,14 +40,14 @@ class DocumentResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudDocumentaiV1beta2BatchProcessDocumentsRequest = ...,
+                    body: GoogleCloudDocumentaiV1beta2BatchProcessDocumentsRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def process(
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudDocumentaiV1beta2ProcessDocumentRequest = ...,
+                    body: GoogleCloudDocumentaiV1beta2ProcessDocumentRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudDocumentaiV1beta2DocumentHttpRequest: ...
 

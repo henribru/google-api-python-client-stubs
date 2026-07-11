@@ -44,7 +44,7 @@ class APIManagementResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: BatchEditTagsApiObservationsRequest = ...,
+                        body: BatchEditTagsApiObservationsRequest,
                         **kwargs: typing.Any,
                     ) -> BatchEditTagsApiObservationsResponseHttpRequest: ...
                     def get(
@@ -69,7 +69,7 @@ class APIManagementResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: ObservationJob = ...,
+                    body: ObservationJob,
                     observationJobId: str | None = ...,
                     requestId: str | None = ...,
                     **kwargs: typing.Any,
@@ -81,14 +81,14 @@ class APIManagementResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: DisableObservationJobRequest = ...,
+                    body: DisableObservationJobRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def enable(
                     self,
                     *,
                     name: str,
-                    body: EnableObservationJobRequest = ...,
+                    body: EnableObservationJobRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def get(
@@ -115,7 +115,7 @@ class APIManagementResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: ObservationSource = ...,
+                    body: ObservationSource,
                     observationSourceId: str | None = ...,
                     requestId: str | None = ...,
                     **kwargs: typing.Any,
@@ -146,7 +146,7 @@ class APIManagementResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: CancelOperationRequest = ...,
+                    body: CancelOperationRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def delete(

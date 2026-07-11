@@ -55,7 +55,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: DomainMapping = ...,
+                body: DomainMapping,
                 dryRun: str | None = ...,
                 **kwargs: typing.Any,
             ) -> DomainMappingHttpRequest: ...
@@ -88,11 +88,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class ExecutionsResource(googleapiclient.discovery.Resource):
             def cancel(
-                self,
-                *,
-                name: str,
-                body: CancelExecutionRequest = ...,
-                **kwargs: typing.Any,
+                self, *, name: str, body: CancelExecutionRequest, **kwargs: typing.Any
             ) -> ExecutionHttpRequest: ...
             def delete(
                 self,
@@ -125,7 +121,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: Instance = ...,
+                body: Instance,
                 dryRun: str | None = ...,
                 **kwargs: typing.Any,
             ) -> InstanceHttpRequest: ...
@@ -158,23 +154,15 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: Instance = ...,
+                body: Instance,
                 dryRun: str | None = ...,
                 **kwargs: typing.Any,
             ) -> InstanceHttpRequest: ...
             def start(
-                self,
-                *,
-                name: str,
-                body: StartInstanceRequest = ...,
-                **kwargs: typing.Any,
+                self, *, name: str, body: StartInstanceRequest, **kwargs: typing.Any
             ) -> InstanceHttpRequest: ...
             def stop(
-                self,
-                *,
-                name: str,
-                body: StopInstanceRequest = ...,
-                **kwargs: typing.Any,
+                self, *, name: str, body: StopInstanceRequest, **kwargs: typing.Any
             ) -> InstanceHttpRequest: ...
 
         @typing.type_check_only
@@ -183,7 +171,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: Job = ...,
+                body: Job,
                 dryRun: str | None = ...,
                 **kwargs: typing.Any,
             ) -> JobHttpRequest: ...
@@ -214,12 +202,12 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: Job = ...,
+                body: Job,
                 dryRun: str | None = ...,
                 **kwargs: typing.Any,
             ) -> JobHttpRequest: ...
             def run(
-                self, *, name: str, body: RunJobRequest = ..., **kwargs: typing.Any
+                self, *, name: str, body: RunJobRequest, **kwargs: typing.Any
             ) -> ExecutionHttpRequest: ...
 
         @typing.type_check_only
@@ -272,7 +260,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: Service = ...,
+                body: Service,
                 dryRun: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ServiceHttpRequest: ...
@@ -303,7 +291,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: Service = ...,
+                body: Service,
                 dryRun: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ServiceHttpRequest: ...
@@ -330,7 +318,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: WorkerPool = ...,
+                body: WorkerPool,
                 dryRun: str | None = ...,
                 **kwargs: typing.Any,
             ) -> WorkerPoolHttpRequest: ...
@@ -352,7 +340,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: WorkerPool = ...,
+                body: WorkerPool,
                 dryRun: str | None = ...,
                 **kwargs: typing.Any,
             ) -> WorkerPoolHttpRequest: ...
@@ -429,7 +417,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: DomainMapping = ...,
+                    body: DomainMapping,
                     dryRun: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> DomainMappingHttpRequest: ...
@@ -472,14 +460,14 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: SetIamPolicyRequest = ...,
+                    body: SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: TestIamPermissionsRequest = ...,
+                    body: TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
 
@@ -496,14 +484,14 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: SetIamPolicyRequest = ...,
+                    body: SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: TestIamPermissionsRequest = ...,
+                    body: TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
 
@@ -534,7 +522,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleLongrunningWaitOperationRequest = ...,
+                    body: GoogleLongrunningWaitOperationRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
 
@@ -590,7 +578,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: Service = ...,
+                    body: Service,
                     dryRun: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ServiceHttpRequest: ...
@@ -630,7 +618,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: Service = ...,
+                    body: Service,
                     dryRun: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ServiceHttpRequest: ...
@@ -638,14 +626,14 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: SetIamPolicyRequest = ...,
+                    body: SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: TestIamPermissionsRequest = ...,
+                    body: TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
 
@@ -662,14 +650,14 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: SetIamPolicyRequest = ...,
+                    body: SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: TestIamPermissionsRequest = ...,
+                    body: TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
 

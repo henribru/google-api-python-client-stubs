@@ -18,7 +18,7 @@ class AndroidProvisioningPartnerResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class ConfigurationsResource(googleapiclient.discovery.Resource):
             def create(
-                self, *, parent: str, body: Configuration = ..., **kwargs: typing.Any
+                self, *, parent: str, body: Configuration, **kwargs: typing.Any
             ) -> ConfigurationHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -33,7 +33,7 @@ class AndroidProvisioningPartnerResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: Configuration = ...,
+                body: Configuration,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ConfigurationHttpRequest: ...
@@ -44,7 +44,7 @@ class AndroidProvisioningPartnerResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: CustomerApplyConfigurationRequest = ...,
+                body: CustomerApplyConfigurationRequest,
                 **kwargs: typing.Any,
             ) -> EmptyHttpRequest: ...
             def get(self, *, name: str, **kwargs: typing.Any) -> DeviceHttpRequest: ...
@@ -65,14 +65,14 @@ class AndroidProvisioningPartnerResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: CustomerRemoveConfigurationRequest = ...,
+                body: CustomerRemoveConfigurationRequest,
                 **kwargs: typing.Any,
             ) -> EmptyHttpRequest: ...
             def unclaim(
                 self,
                 *,
                 parent: str,
-                body: CustomerUnclaimDeviceRequest = ...,
+                body: CustomerUnclaimDeviceRequest,
                 **kwargs: typing.Any,
             ) -> EmptyHttpRequest: ...
 
@@ -107,11 +107,7 @@ class AndroidProvisioningPartnerResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class CustomersResource(googleapiclient.discovery.Resource):
             def create(
-                self,
-                *,
-                parent: str,
-                body: CreateCustomerRequest = ...,
-                **kwargs: typing.Any,
+                self, *, parent: str, body: CreateCustomerRequest, **kwargs: typing.Any
             ) -> CompanyHttpRequest: ...
             def list(
                 self,
@@ -130,24 +126,16 @@ class AndroidProvisioningPartnerResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class DevicesResource(googleapiclient.discovery.Resource):
             def claim(
-                self,
-                *,
-                partnerId: str,
-                body: ClaimDeviceRequest = ...,
-                **kwargs: typing.Any,
+                self, *, partnerId: str, body: ClaimDeviceRequest, **kwargs: typing.Any
             ) -> ClaimDeviceResponseHttpRequest: ...
             def claimAsync(
-                self,
-                *,
-                partnerId: str,
-                body: ClaimDevicesRequest = ...,
-                **kwargs: typing.Any,
+                self, *, partnerId: str, body: ClaimDevicesRequest, **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
             def findByIdentifier(
                 self,
                 *,
                 partnerId: str,
-                body: FindDevicesByDeviceIdentifierRequest = ...,
+                body: FindDevicesByDeviceIdentifierRequest,
                 **kwargs: typing.Any,
             ) -> FindDevicesByDeviceIdentifierResponseHttpRequest: ...
             def findByIdentifier_next(
@@ -159,7 +147,7 @@ class AndroidProvisioningPartnerResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 partnerId: str,
-                body: FindDevicesByOwnerRequest = ...,
+                body: FindDevicesByOwnerRequest,
                 **kwargs: typing.Any,
             ) -> FindDevicesByOwnerResponseHttpRequest: ...
             def findByOwner_next(
@@ -172,7 +160,7 @@ class AndroidProvisioningPartnerResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 partnerId: str,
-                body: GetDeviceSimLockStateRequest = ...,
+                body: GetDeviceSimLockStateRequest,
                 **kwargs: typing.Any,
             ) -> GetDeviceSimLockStateResponseHttpRequest: ...
             def metadata(
@@ -180,28 +168,28 @@ class AndroidProvisioningPartnerResource(googleapiclient.discovery.Resource):
                 *,
                 metadataOwnerId: str,
                 deviceId: str,
-                body: UpdateDeviceMetadataRequest = ...,
+                body: UpdateDeviceMetadataRequest,
                 **kwargs: typing.Any,
             ) -> DeviceMetadataHttpRequest: ...
             def unclaim(
                 self,
                 *,
                 partnerId: str,
-                body: UnclaimDeviceRequest = ...,
+                body: UnclaimDeviceRequest,
                 **kwargs: typing.Any,
             ) -> EmptyHttpRequest: ...
             def unclaimAsync(
                 self,
                 *,
                 partnerId: str,
-                body: UnclaimDevicesRequest = ...,
+                body: UnclaimDevicesRequest,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def updateMetadataAsync(
                 self,
                 *,
                 partnerId: str,
-                body: UpdateDeviceMetadataInBatchRequest = ...,
+                body: UpdateDeviceMetadataInBatchRequest,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
 

@@ -219,7 +219,7 @@ class CloudbillingResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class V1betaResource(googleapiclient.discovery.Resource):
         def generateInsights(
-            self, *, body: GenerateInsightsRequest = ..., **kwargs: typing.Any
+            self, *, body: GenerateInsightsRequest, **kwargs: typing.Any
         ) -> GenerateInsightsResponseHttpRequest: ...
 
     def new_batch_http_request(

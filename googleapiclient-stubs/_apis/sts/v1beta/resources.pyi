@@ -18,7 +18,7 @@ class CloudSecurityTokenResource(googleapiclient.discovery.Resource):
         def token(
             self,
             *,
-            body: GoogleIdentityStsV1betaExchangeTokenRequest = ...,
+            body: GoogleIdentityStsV1betaExchangeTokenRequest,
             **kwargs: typing.Any,
         ) -> GoogleIdentityStsV1betaExchangeTokenResponseHttpRequest: ...
 

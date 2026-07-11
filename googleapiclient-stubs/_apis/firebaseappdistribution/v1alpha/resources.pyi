@@ -32,7 +32,7 @@ class FirebaseAppDistributionResource(googleapiclient.discovery.Resource):
                     *,
                     mobilesdkAppId: str,
                     releaseId: str,
-                    body: GoogleFirebaseAppdistroV1alphaCreateReleaseNotesRequest = ...,
+                    body: GoogleFirebaseAppdistroV1alphaCreateReleaseNotesRequest,
                     **kwargs: typing.Any,
                 ) -> (
                     GoogleFirebaseAppdistroV1alphaCreateReleaseNotesResponseHttpRequest
@@ -43,7 +43,7 @@ class FirebaseAppDistributionResource(googleapiclient.discovery.Resource):
                 *,
                 mobilesdkAppId: str,
                 releaseId: str,
-                body: GoogleFirebaseAppdistroV1alphaEnableAccessOnReleaseRequest = ...,
+                body: GoogleFirebaseAppdistroV1alphaEnableAccessOnReleaseRequest,
                 **kwargs: typing.Any,
             ) -> (
                 GoogleFirebaseAppdistroV1alphaEnableAccessOnReleaseResponseHttpRequest
@@ -97,7 +97,7 @@ class FirebaseAppDistributionResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: GoogleFirebaseAppdistroV1alphaReleaseTest = ...,
+                        body: GoogleFirebaseAppdistroV1alphaReleaseTest,
                         releaseTestId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleFirebaseAppdistroV1alphaReleaseTestHttpRequest: ...
@@ -135,21 +135,21 @@ class FirebaseAppDistributionResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleFirebaseAppdistroV1alphaBatchDeleteTestCasesRequest = ...,
+                    body: GoogleFirebaseAppdistroV1alphaBatchDeleteTestCasesRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleProtobufEmptyHttpRequest: ...
                 def batchUpdate(
                     self,
                     *,
                     parent: str,
-                    body: GoogleFirebaseAppdistroV1alphaBatchUpdateTestCasesRequest = ...,
+                    body: GoogleFirebaseAppdistroV1alphaBatchUpdateTestCasesRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleFirebaseAppdistroV1alphaBatchUpdateTestCasesResponseHttpRequest: ...
                 def clearTestCaseCache(
                     self,
                     *,
                     testCase: str,
-                    body: GoogleFirebaseAppdistroV1alphaClearTestCaseCacheRequest = ...,
+                    body: GoogleFirebaseAppdistroV1alphaClearTestCaseCacheRequest,
                     **kwargs: typing.Any,
                 ) -> (
                     GoogleFirebaseAppdistroV1alphaClearTestCaseCacheResponseHttpRequest
@@ -158,7 +158,7 @@ class FirebaseAppDistributionResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleFirebaseAppdistroV1alphaTestCase = ...,
+                    body: GoogleFirebaseAppdistroV1alphaTestCase,
                     testCaseId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleFirebaseAppdistroV1alphaTestCaseHttpRequest: ...
@@ -188,7 +188,7 @@ class FirebaseAppDistributionResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleFirebaseAppdistroV1alphaTestCase = ...,
+                    body: GoogleFirebaseAppdistroV1alphaTestCase,
                     allowMissing: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleFirebaseAppdistroV1alphaTestCaseHttpRequest: ...
@@ -200,7 +200,7 @@ class FirebaseAppDistributionResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleFirebaseAppdistroV1alphaTestConfig = ...,
+                body: GoogleFirebaseAppdistroV1alphaTestConfig,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleFirebaseAppdistroV1alphaTestConfigHttpRequest: ...

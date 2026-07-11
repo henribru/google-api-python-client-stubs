@@ -20,7 +20,7 @@ class BigQueryDataPolicyServiceResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class DataPoliciesResource(googleapiclient.discovery.Resource):
                 def create(
-                    self, *, parent: str, body: DataPolicy = ..., **kwargs: typing.Any
+                    self, *, parent: str, body: DataPolicy, **kwargs: typing.Any
                 ) -> DataPolicyHttpRequest: ...
                 def delete(
                     self, *, name: str, force: bool | None = ..., **kwargs: typing.Any
@@ -32,7 +32,7 @@ class BigQueryDataPolicyServiceResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: GetIamPolicyRequest = ...,
+                    body: GetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def list(
@@ -53,7 +53,7 @@ class BigQueryDataPolicyServiceResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: DataPolicy = ...,
+                    body: DataPolicy,
                     allowMissing: bool | None = ...,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
@@ -62,21 +62,21 @@ class BigQueryDataPolicyServiceResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: RenameDataPolicyRequest = ...,
+                    body: RenameDataPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> DataPolicyHttpRequest: ...
                 def setIamPolicy(
                     self,
                     *,
                     resource: str,
-                    body: SetIamPolicyRequest = ...,
+                    body: SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: TestIamPermissionsRequest = ...,
+                    body: TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
 

@@ -59,7 +59,7 @@ class FactCheckToolsResource(googleapiclient.discovery.Resource):
         def create(
             self,
             *,
-            body: GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage = ...,
+            body: GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage,
             **kwargs: typing.Any,
         ) -> (
             GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPageHttpRequest
@@ -94,7 +94,7 @@ class FactCheckToolsResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            body: GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage = ...,
+            body: GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage,
             **kwargs: typing.Any,
         ) -> (
             GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPageHttpRequest

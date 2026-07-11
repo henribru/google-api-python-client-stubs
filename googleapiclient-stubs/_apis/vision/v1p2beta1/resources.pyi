@@ -18,13 +18,13 @@ class VisionResource(googleapiclient.discovery.Resource):
         def annotate(
             self,
             *,
-            body: GoogleCloudVisionV1p2beta1BatchAnnotateFilesRequest = ...,
+            body: GoogleCloudVisionV1p2beta1BatchAnnotateFilesRequest,
             **kwargs: typing.Any,
         ) -> GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponseHttpRequest: ...
         def asyncBatchAnnotate(
             self,
             *,
-            body: GoogleCloudVisionV1p2beta1AsyncBatchAnnotateFilesRequest = ...,
+            body: GoogleCloudVisionV1p2beta1AsyncBatchAnnotateFilesRequest,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
 
@@ -33,13 +33,13 @@ class VisionResource(googleapiclient.discovery.Resource):
         def annotate(
             self,
             *,
-            body: GoogleCloudVisionV1p2beta1BatchAnnotateImagesRequest = ...,
+            body: GoogleCloudVisionV1p2beta1BatchAnnotateImagesRequest,
             **kwargs: typing.Any,
         ) -> GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponseHttpRequest: ...
         def asyncBatchAnnotate(
             self,
             *,
-            body: GoogleCloudVisionV1p2beta1AsyncBatchAnnotateImagesRequest = ...,
+            body: GoogleCloudVisionV1p2beta1AsyncBatchAnnotateImagesRequest,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
 
@@ -51,14 +51,14 @@ class VisionResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: GoogleCloudVisionV1p2beta1BatchAnnotateFilesRequest = ...,
+                body: GoogleCloudVisionV1p2beta1BatchAnnotateFilesRequest,
                 **kwargs: typing.Any,
             ) -> GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponseHttpRequest: ...
             def asyncBatchAnnotate(
                 self,
                 *,
                 parent: str,
-                body: GoogleCloudVisionV1p2beta1AsyncBatchAnnotateFilesRequest = ...,
+                body: GoogleCloudVisionV1p2beta1AsyncBatchAnnotateFilesRequest,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
 
@@ -68,14 +68,14 @@ class VisionResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: GoogleCloudVisionV1p2beta1BatchAnnotateImagesRequest = ...,
+                body: GoogleCloudVisionV1p2beta1BatchAnnotateImagesRequest,
                 **kwargs: typing.Any,
             ) -> GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponseHttpRequest: ...
             def asyncBatchAnnotate(
                 self,
                 *,
                 parent: str,
-                body: GoogleCloudVisionV1p2beta1AsyncBatchAnnotateImagesRequest = ...,
+                body: GoogleCloudVisionV1p2beta1AsyncBatchAnnotateImagesRequest,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
 
@@ -87,7 +87,7 @@ class VisionResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudVisionV1p2beta1BatchAnnotateFilesRequest = ...,
+                    body: GoogleCloudVisionV1p2beta1BatchAnnotateFilesRequest,
                     **kwargs: typing.Any,
                 ) -> (
                     GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponseHttpRequest
@@ -96,7 +96,7 @@ class VisionResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudVisionV1p2beta1AsyncBatchAnnotateFilesRequest = ...,
+                    body: GoogleCloudVisionV1p2beta1AsyncBatchAnnotateFilesRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
 
@@ -106,7 +106,7 @@ class VisionResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudVisionV1p2beta1BatchAnnotateImagesRequest = ...,
+                    body: GoogleCloudVisionV1p2beta1BatchAnnotateImagesRequest,
                     **kwargs: typing.Any,
                 ) -> (
                     GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponseHttpRequest
@@ -115,7 +115,7 @@ class VisionResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudVisionV1p2beta1AsyncBatchAnnotateImagesRequest = ...,
+                    body: GoogleCloudVisionV1p2beta1AsyncBatchAnnotateImagesRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
 

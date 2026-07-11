@@ -232,7 +232,7 @@ class MonitoringResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class AlertPoliciesResource(googleapiclient.discovery.Resource):
             def create(
-                self, *, name: str, body: AlertPolicy = ..., **kwargs: typing.Any
+                self, *, name: str, body: AlertPolicy, **kwargs: typing.Any
             ) -> AlertPolicyHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -259,7 +259,7 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: AlertPolicy = ...,
+                body: AlertPolicy,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> AlertPolicyHttpRequest: ...
@@ -289,7 +289,7 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: CreateCollectdTimeSeriesRequest = ...,
+                body: CreateCollectdTimeSeriesRequest,
                 **kwargs: typing.Any,
             ) -> CreateCollectdTimeSeriesResponseHttpRequest: ...
 
@@ -318,7 +318,7 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: Group = ...,
+                body: Group,
                 validateOnly: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> GroupHttpRequest: ...
@@ -346,7 +346,7 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: Group = ...,
+                body: Group,
                 validateOnly: bool | None = ...,
                 **kwargs: typing.Any,
             ) -> GroupHttpRequest: ...
@@ -355,7 +355,7 @@ class MonitoringResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class MetricDescriptorsResource(googleapiclient.discovery.Resource):
             def create(
-                self, *, name: str, body: MetricDescriptor = ..., **kwargs: typing.Any
+                self, *, name: str, body: MetricDescriptor, **kwargs: typing.Any
             ) -> MetricDescriptorHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -423,11 +423,7 @@ class MonitoringResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class NotificationChannelsResource(googleapiclient.discovery.Resource):
             def create(
-                self,
-                *,
-                name: str,
-                body: NotificationChannel = ...,
-                **kwargs: typing.Any,
+                self, *, name: str, body: NotificationChannel, **kwargs: typing.Any
             ) -> NotificationChannelHttpRequest: ...
             def delete(
                 self, *, name: str, force: bool | None = ..., **kwargs: typing.Any
@@ -439,7 +435,7 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GetNotificationChannelVerificationCodeRequest = ...,
+                body: GetNotificationChannelVerificationCodeRequest,
                 **kwargs: typing.Any,
             ) -> GetNotificationChannelVerificationCodeResponseHttpRequest: ...
             def list(
@@ -461,7 +457,7 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: NotificationChannel = ...,
+                body: NotificationChannel,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> NotificationChannelHttpRequest: ...
@@ -469,21 +465,21 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: SendNotificationChannelVerificationCodeRequest = ...,
+                body: SendNotificationChannelVerificationCodeRequest,
                 **kwargs: typing.Any,
             ) -> EmptyHttpRequest: ...
             def verify(
                 self,
                 *,
                 name: str,
-                body: VerifyNotificationChannelRequest = ...,
+                body: VerifyNotificationChannelRequest,
                 **kwargs: typing.Any,
             ) -> NotificationChannelHttpRequest: ...
 
         @typing.type_check_only
         class SnoozesResource(googleapiclient.discovery.Resource):
             def create(
-                self, *, parent: str, body: Snooze = ..., **kwargs: typing.Any
+                self, *, parent: str, body: Snooze, **kwargs: typing.Any
             ) -> SnoozeHttpRequest: ...
             def get(self, *, name: str, **kwargs: typing.Any) -> SnoozeHttpRequest: ...
             def list(
@@ -504,7 +500,7 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: Snooze = ...,
+                body: Snooze,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> SnoozeHttpRequest: ...
@@ -512,18 +508,10 @@ class MonitoringResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class TimeSeriesResource(googleapiclient.discovery.Resource):
             def create(
-                self,
-                *,
-                name: str,
-                body: CreateTimeSeriesRequest = ...,
-                **kwargs: typing.Any,
+                self, *, name: str, body: CreateTimeSeriesRequest, **kwargs: typing.Any
             ) -> EmptyHttpRequest: ...
             def createService(
-                self,
-                *,
-                name: str,
-                body: CreateTimeSeriesRequest = ...,
-                **kwargs: typing.Any,
+                self, *, name: str, body: CreateTimeSeriesRequest, **kwargs: typing.Any
             ) -> EmptyHttpRequest: ...
             def list(
                 self,
@@ -626,11 +614,7 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 previous_response: ListTimeSeriesResponse,
             ) -> ListTimeSeriesResponseHttpRequest | None: ...
             def query(
-                self,
-                *,
-                name: str,
-                body: QueryTimeSeriesRequest = ...,
-                **kwargs: typing.Any,
+                self, *, name: str, body: QueryTimeSeriesRequest, **kwargs: typing.Any
             ) -> QueryTimeSeriesResponseHttpRequest: ...
             def query_next(
                 self,
@@ -641,11 +625,7 @@ class MonitoringResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class UptimeCheckConfigsResource(googleapiclient.discovery.Resource):
             def create(
-                self,
-                *,
-                parent: str,
-                body: UptimeCheckConfig = ...,
-                **kwargs: typing.Any,
+                self, *, parent: str, body: UptimeCheckConfig, **kwargs: typing.Any
             ) -> UptimeCheckConfigHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -671,7 +651,7 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: UptimeCheckConfig = ...,
+                body: UptimeCheckConfig,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> UptimeCheckConfigHttpRequest: ...
@@ -700,7 +680,7 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: ServiceLevelObjective = ...,
+                body: ServiceLevelObjective,
                 serviceLevelObjectiveId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ServiceLevelObjectiveHttpRequest: ...
@@ -735,7 +715,7 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: ServiceLevelObjective = ...,
+                body: ServiceLevelObjective,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ServiceLevelObjectiveHttpRequest: ...
@@ -744,7 +724,7 @@ class MonitoringResource(googleapiclient.discovery.Resource):
             self,
             *,
             parent: str,
-            body: Service = ...,
+            body: Service,
             serviceId: str | None = ...,
             **kwargs: typing.Any,
         ) -> ServiceHttpRequest: ...
@@ -768,7 +748,7 @@ class MonitoringResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            body: Service = ...,
+            body: Service,
             updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> ServiceHttpRequest: ...

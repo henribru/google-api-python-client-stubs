@@ -21,7 +21,7 @@ class CloudOSLoginResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: SignSshPublicKeyRequest = ...,
+                body: SignSshPublicKeyRequest,
                 **kwargs: typing.Any,
             ) -> SignSshPublicKeyResponseHttpRequest: ...
 
@@ -38,14 +38,14 @@ class CloudOSLoginResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: ProvisionPosixAccountRequest = ...,
+                body: ProvisionPosixAccountRequest,
                 **kwargs: typing.Any,
             ) -> PosixAccountHttpRequest: ...
 
         @typing.type_check_only
         class SshPublicKeysResource(googleapiclient.discovery.Resource):
             def create(
-                self, *, parent: str, body: SshPublicKey = ..., **kwargs: typing.Any
+                self, *, parent: str, body: SshPublicKey, **kwargs: typing.Any
             ) -> SshPublicKeyHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -57,7 +57,7 @@ class CloudOSLoginResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: SshPublicKey = ...,
+                body: SshPublicKey,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> SshPublicKeyHttpRequest: ...
@@ -74,7 +74,7 @@ class CloudOSLoginResource(googleapiclient.discovery.Resource):
             self,
             *,
             parent: str,
-            body: SshPublicKey = ...,
+            body: SshPublicKey,
             projectId: str | None = ...,
             regions: str | _list[str] | None = ...,
             **kwargs: typing.Any,

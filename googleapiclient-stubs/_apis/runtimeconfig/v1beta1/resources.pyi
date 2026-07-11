@@ -26,7 +26,7 @@ class CloudRuntimeConfigResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: TestIamPermissionsRequest = ...,
+                    body: TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
 
@@ -36,7 +36,7 @@ class CloudRuntimeConfigResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: Variable = ...,
+                    body: Variable,
                     requestId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> VariableHttpRequest: ...
@@ -69,18 +69,14 @@ class CloudRuntimeConfigResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: TestIamPermissionsRequest = ...,
+                    body: TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def update(
-                    self, *, name: str, body: Variable = ..., **kwargs: typing.Any
+                    self, *, name: str, body: Variable, **kwargs: typing.Any
                 ) -> VariableHttpRequest: ...
                 def watch(
-                    self,
-                    *,
-                    name: str,
-                    body: WatchVariableRequest = ...,
-                    **kwargs: typing.Any,
+                    self, *, name: str, body: WatchVariableRequest, **kwargs: typing.Any
                 ) -> VariableHttpRequest: ...
 
             @typing.type_check_only
@@ -89,7 +85,7 @@ class CloudRuntimeConfigResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: Waiter = ...,
+                    body: Waiter,
                     requestId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -116,7 +112,7 @@ class CloudRuntimeConfigResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: TestIamPermissionsRequest = ...,
+                    body: TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
 
@@ -124,7 +120,7 @@ class CloudRuntimeConfigResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: RuntimeConfig = ...,
+                body: RuntimeConfig,
                 requestId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> RuntimeConfigHttpRequest: ...
@@ -155,21 +151,17 @@ class CloudRuntimeConfigResource(googleapiclient.discovery.Resource):
                 previous_response: ListConfigsResponse,
             ) -> ListConfigsResponseHttpRequest | None: ...
             def setIamPolicy(
-                self,
-                *,
-                resource: str,
-                body: SetIamPolicyRequest = ...,
-                **kwargs: typing.Any,
+                self, *, resource: str, body: SetIamPolicyRequest, **kwargs: typing.Any
             ) -> PolicyHttpRequest: ...
             def testIamPermissions(
                 self,
                 *,
                 resource: str,
-                body: TestIamPermissionsRequest = ...,
+                body: TestIamPermissionsRequest,
                 **kwargs: typing.Any,
             ) -> TestIamPermissionsResponseHttpRequest: ...
             def update(
-                self, *, name: str, body: RuntimeConfig = ..., **kwargs: typing.Any
+                self, *, name: str, body: RuntimeConfig, **kwargs: typing.Any
             ) -> RuntimeConfigHttpRequest: ...
             def operations(self) -> OperationsResource: ...
             def variables(self) -> VariablesResource: ...

@@ -23,7 +23,7 @@ class DataprocMetastoreResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: Federation = ...,
+                    body: Federation,
                     federationId: str | None = ...,
                     requestId: str | None = ...,
                     **kwargs: typing.Any,
@@ -64,7 +64,7 @@ class DataprocMetastoreResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: Federation = ...,
+                    body: Federation,
                     requestId: str | None = ...,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
@@ -73,14 +73,14 @@ class DataprocMetastoreResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: SetIamPolicyRequest = ...,
+                    body: SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: TestIamPermissionsRequest = ...,
+                    body: TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
 
@@ -90,7 +90,7 @@ class DataprocMetastoreResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: CancelOperationRequest = ...,
+                    body: CancelOperationRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def delete(
@@ -123,7 +123,7 @@ class DataprocMetastoreResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: Backup = ...,
+                        body: Backup,
                         backupId: str | None = ...,
                         requestId: str | None = ...,
                         **kwargs: typing.Any,
@@ -164,7 +164,7 @@ class DataprocMetastoreResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         resource: str,
-                        body: SetIamPolicyRequest = ...,
+                        body: SetIamPolicyRequest,
                         **kwargs: typing.Any,
                     ) -> PolicyHttpRequest: ...
 
@@ -183,7 +183,7 @@ class DataprocMetastoreResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             resource: str,
-                            body: SetIamPolicyRequest = ...,
+                            body: SetIamPolicyRequest,
                             **kwargs: typing.Any,
                         ) -> PolicyHttpRequest: ...
 
@@ -198,7 +198,7 @@ class DataprocMetastoreResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         resource: str,
-                        body: SetIamPolicyRequest = ...,
+                        body: SetIamPolicyRequest,
                         **kwargs: typing.Any,
                     ) -> PolicyHttpRequest: ...
                     def tables(self) -> TablesResource: ...
@@ -209,7 +209,7 @@ class DataprocMetastoreResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: MetadataImport = ...,
+                        body: MetadataImport,
                         metadataImportId: str | None = ...,
                         requestId: str | None = ...,
                         **kwargs: typing.Any,
@@ -236,7 +236,7 @@ class DataprocMetastoreResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: MetadataImport = ...,
+                        body: MetadataImport,
                         requestId: str | None = ...,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
@@ -274,35 +274,35 @@ class DataprocMetastoreResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     service: str,
-                    body: AlterMetadataResourceLocationRequest = ...,
+                    body: AlterMetadataResourceLocationRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def alterTableProperties(
                     self,
                     *,
                     service: str,
-                    body: AlterTablePropertiesRequest = ...,
+                    body: AlterTablePropertiesRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def cancelMigration(
                     self,
                     *,
                     service: str,
-                    body: CancelMigrationRequest = ...,
+                    body: CancelMigrationRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def completeMigration(
                     self,
                     *,
                     service: str,
-                    body: CompleteMigrationRequest = ...,
+                    body: CompleteMigrationRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def create(
                     self,
                     *,
                     parent: str,
-                    body: Service = ...,
+                    body: Service,
                     requestId: str | None = ...,
                     serviceId: str | None = ...,
                     **kwargs: typing.Any,
@@ -318,7 +318,7 @@ class DataprocMetastoreResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     service: str,
-                    body: ExportMetadataRequest = ...,
+                    body: ExportMetadataRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def get(
@@ -350,14 +350,14 @@ class DataprocMetastoreResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     service: str,
-                    body: MoveTableToDatabaseRequest = ...,
+                    body: MoveTableToDatabaseRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def patch(
                     self,
                     *,
                     name: str,
-                    body: Service = ...,
+                    body: Service,
                     requestId: str | None = ...,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
@@ -366,35 +366,35 @@ class DataprocMetastoreResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     service: str,
-                    body: QueryMetadataRequest = ...,
+                    body: QueryMetadataRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def restore(
                     self,
                     *,
                     service: str,
-                    body: RestoreServiceRequest = ...,
+                    body: RestoreServiceRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def setIamPolicy(
                     self,
                     *,
                     resource: str,
-                    body: SetIamPolicyRequest = ...,
+                    body: SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def startMigration(
                     self,
                     *,
                     service: str,
-                    body: StartMigrationRequest = ...,
+                    body: StartMigrationRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: TestIamPermissionsRequest = ...,
+                    body: TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def backups(self) -> BackupsResource: ...

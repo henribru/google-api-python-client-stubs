@@ -16,7 +16,7 @@ class PostmasterToolsResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class DomainStatsResource(googleapiclient.discovery.Resource):
         def batchQuery(
-            self, *, body: BatchQueryDomainStatsRequest = ..., **kwargs: typing.Any
+            self, *, body: BatchQueryDomainStatsRequest, **kwargs: typing.Any
         ) -> BatchQueryDomainStatsResponseHttpRequest: ...
 
     @typing.type_check_only
@@ -27,7 +27,7 @@ class PostmasterToolsResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: QueryDomainStatsRequest = ...,
+                body: QueryDomainStatsRequest,
                 **kwargs: typing.Any,
             ) -> QueryDomainStatsResponseHttpRequest: ...
             def query_next(
@@ -39,11 +39,7 @@ class PostmasterToolsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class UsersResource(googleapiclient.discovery.Resource):
             def create(
-                self,
-                *,
-                parent: str,
-                body: CreateUserRequest = ...,
-                **kwargs: typing.Any,
+                self, *, parent: str, body: CreateUserRequest, **kwargs: typing.Any
             ) -> UserHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -66,13 +62,13 @@ class PostmasterToolsResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: User = ...,
+                body: User,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> UserHttpRequest: ...
 
         def create(
-            self, *, body: CreateDomainRequest = ..., **kwargs: typing.Any
+            self, *, body: CreateDomainRequest, **kwargs: typing.Any
         ) -> DomainHttpRequest: ...
         def delete(self, *, name: str, **kwargs: typing.Any) -> EmptyHttpRequest: ...
         def get(self, *, name: str, **kwargs: typing.Any) -> DomainHttpRequest: ...
@@ -102,7 +98,7 @@ class PostmasterToolsResource(googleapiclient.discovery.Resource):
             previous_response: ListDomainsResponse,
         ) -> ListDomainsResponseHttpRequest | None: ...
         def verify(
-            self, *, name: str, body: VerifyDomainRequest = ..., **kwargs: typing.Any
+            self, *, name: str, body: VerifyDomainRequest, **kwargs: typing.Any
         ) -> VerifyDomainResponseHttpRequest: ...
         def domainStats(self) -> DomainStatsResource: ...
         def users(self) -> UsersResource: ...

@@ -23,7 +23,7 @@ class BlockchainNodeEngineResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: BlockchainNode = ...,
+                    body: BlockchainNode,
                     blockchainNodeId: str | None = ...,
                     requestId: str | None = ...,
                     **kwargs: typing.Any,
@@ -57,7 +57,7 @@ class BlockchainNodeEngineResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: BlockchainNode = ...,
+                    body: BlockchainNode,
                     requestId: str | None = ...,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
@@ -69,7 +69,7 @@ class BlockchainNodeEngineResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: CancelOperationRequest = ...,
+                    body: CancelOperationRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleProtobufEmptyHttpRequest: ...
                 def delete(

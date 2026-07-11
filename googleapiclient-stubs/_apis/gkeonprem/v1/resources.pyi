@@ -44,7 +44,7 @@ class GKEOnPremResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: BareMetalAdminCluster = ...,
+                    body: BareMetalAdminCluster,
                     allowPreflightFailure: bool | None = ...,
                     bareMetalAdminClusterId: str | None = ...,
                     validateOnly: bool | None = ...,
@@ -54,7 +54,7 @@ class GKEOnPremResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: EnrollBareMetalAdminClusterRequest = ...,
+                    body: EnrollBareMetalAdminClusterRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def get(
@@ -97,7 +97,7 @@ class GKEOnPremResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: BareMetalAdminCluster = ...,
+                    body: BareMetalAdminCluster,
                     updateMask: str | None = ...,
                     validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
@@ -113,14 +113,14 @@ class GKEOnPremResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: SetIamPolicyRequest = ...,
+                    body: SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: TestIamPermissionsRequest = ...,
+                    body: TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def unenroll(
@@ -164,7 +164,7 @@ class GKEOnPremResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: BareMetalNodePool = ...,
+                        body: BareMetalNodePool,
                         bareMetalNodePoolId: str | None = ...,
                         validateOnly: bool | None = ...,
                         **kwargs: typing.Any,
@@ -183,7 +183,7 @@ class GKEOnPremResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: EnrollBareMetalNodePoolRequest = ...,
+                        body: EnrollBareMetalNodePoolRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def get(
@@ -224,7 +224,7 @@ class GKEOnPremResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: BareMetalNodePool = ...,
+                        body: BareMetalNodePool,
                         allowMissing: bool | None = ...,
                         updateMask: str | None = ...,
                         validateOnly: bool | None = ...,
@@ -234,14 +234,14 @@ class GKEOnPremResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         resource: str,
-                        body: SetIamPolicyRequest = ...,
+                        body: SetIamPolicyRequest,
                         **kwargs: typing.Any,
                     ) -> PolicyHttpRequest: ...
                     def testIamPermissions(
                         self,
                         *,
                         resource: str,
-                        body: TestIamPermissionsRequest = ...,
+                        body: TestIamPermissionsRequest,
                         **kwargs: typing.Any,
                     ) -> TestIamPermissionsResponseHttpRequest: ...
                     def unenroll(
@@ -280,7 +280,7 @@ class GKEOnPremResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: BareMetalCluster = ...,
+                    body: BareMetalCluster,
                     allowPreflightFailure: bool | None = ...,
                     bareMetalClusterId: str | None = ...,
                     validateOnly: bool | None = ...,
@@ -301,7 +301,7 @@ class GKEOnPremResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: EnrollBareMetalClusterRequest = ...,
+                    body: EnrollBareMetalClusterRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def get(
@@ -345,7 +345,7 @@ class GKEOnPremResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: BareMetalCluster = ...,
+                    body: BareMetalCluster,
                     allowMissing: bool | None = ...,
                     updateMask: str | None = ...,
                     validateOnly: bool | None = ...,
@@ -364,14 +364,14 @@ class GKEOnPremResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: SetIamPolicyRequest = ...,
+                    body: SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: TestIamPermissionsRequest = ...,
+                    body: TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def unenroll(
@@ -393,7 +393,7 @@ class GKEOnPremResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: CancelOperationRequest = ...,
+                    body: CancelOperationRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def delete(
@@ -445,7 +445,7 @@ class GKEOnPremResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: VmwareAdminCluster = ...,
+                    body: VmwareAdminCluster,
                     allowPreflightFailure: bool | None = ...,
                     skipValidations: str | _list[str] | None = ...,
                     validateOnly: bool | None = ...,
@@ -456,7 +456,7 @@ class GKEOnPremResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: EnrollVmwareAdminClusterRequest = ...,
+                    body: EnrollVmwareAdminClusterRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def get(
@@ -499,7 +499,7 @@ class GKEOnPremResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: VmwareAdminCluster = ...,
+                    body: VmwareAdminCluster,
                     skipValidations: str | _list[str] | None = ...,
                     updateMask: str | None = ...,
                     validateOnly: bool | None = ...,
@@ -509,14 +509,14 @@ class GKEOnPremResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: SetIamPolicyRequest = ...,
+                    body: SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: TestIamPermissionsRequest = ...,
+                    body: TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def unenroll(
@@ -581,7 +581,7 @@ class GKEOnPremResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: VmwareNodePool = ...,
+                        body: VmwareNodePool,
                         validateOnly: bool | None = ...,
                         vmwareNodePoolId: str | None = ...,
                         **kwargs: typing.Any,
@@ -600,7 +600,7 @@ class GKEOnPremResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: EnrollVmwareNodePoolRequest = ...,
+                        body: EnrollVmwareNodePoolRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def get(
@@ -641,7 +641,7 @@ class GKEOnPremResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: VmwareNodePool = ...,
+                        body: VmwareNodePool,
                         updateMask: str | None = ...,
                         validateOnly: bool | None = ...,
                         **kwargs: typing.Any,
@@ -650,14 +650,14 @@ class GKEOnPremResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         resource: str,
-                        body: SetIamPolicyRequest = ...,
+                        body: SetIamPolicyRequest,
                         **kwargs: typing.Any,
                     ) -> PolicyHttpRequest: ...
                     def testIamPermissions(
                         self,
                         *,
                         resource: str,
-                        body: TestIamPermissionsRequest = ...,
+                        body: TestIamPermissionsRequest,
                         **kwargs: typing.Any,
                     ) -> TestIamPermissionsResponseHttpRequest: ...
                     def unenroll(
@@ -675,7 +675,7 @@ class GKEOnPremResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: VmwareCluster = ...,
+                    body: VmwareCluster,
                     allowPreflightFailure: bool | None = ...,
                     skipValidations: str | _list[str] | None = ...,
                     validateOnly: bool | None = ...,
@@ -697,7 +697,7 @@ class GKEOnPremResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: EnrollVmwareClusterRequest = ...,
+                    body: EnrollVmwareClusterRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def get(
@@ -741,7 +741,7 @@ class GKEOnPremResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: VmwareCluster = ...,
+                    body: VmwareCluster,
                     skipValidations: str | _list[str] | None = ...,
                     updateMask: str | None = ...,
                     validateOnly: bool | None = ...,
@@ -760,14 +760,14 @@ class GKEOnPremResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: SetIamPolicyRequest = ...,
+                    body: SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: TestIamPermissionsRequest = ...,
+                    body: TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def unenroll(

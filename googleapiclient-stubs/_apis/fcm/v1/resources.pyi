@@ -18,11 +18,7 @@ class FirebaseCloudMessagingResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class MessagesResource(googleapiclient.discovery.Resource):
             def send(
-                self,
-                *,
-                parent: str,
-                body: SendMessageRequest = ...,
-                **kwargs: typing.Any,
+                self, *, parent: str, body: SendMessageRequest, **kwargs: typing.Any
             ) -> MessageHttpRequest: ...
 
         def messages(self) -> MessagesResource: ...

@@ -16,31 +16,23 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class FoldersResource(googleapiclient.discovery.Resource):
         def clearOrgPolicy(
-            self,
-            *,
-            resource: str,
-            body: ClearOrgPolicyRequest = ...,
-            **kwargs: typing.Any,
+            self, *, resource: str, body: ClearOrgPolicyRequest, **kwargs: typing.Any
         ) -> EmptyHttpRequest: ...
         def getEffectiveOrgPolicy(
             self,
             *,
             resource: str,
-            body: GetEffectiveOrgPolicyRequest = ...,
+            body: GetEffectiveOrgPolicyRequest,
             **kwargs: typing.Any,
         ) -> OrgPolicyHttpRequest: ...
         def getOrgPolicy(
-            self,
-            *,
-            resource: str,
-            body: GetOrgPolicyRequest = ...,
-            **kwargs: typing.Any,
+            self, *, resource: str, body: GetOrgPolicyRequest, **kwargs: typing.Any
         ) -> OrgPolicyHttpRequest: ...
         def listAvailableOrgPolicyConstraints(
             self,
             *,
             resource: str,
-            body: ListAvailableOrgPolicyConstraintsRequest = ...,
+            body: ListAvailableOrgPolicyConstraintsRequest,
             **kwargs: typing.Any,
         ) -> ListAvailableOrgPolicyConstraintsResponseHttpRequest: ...
         def listAvailableOrgPolicyConstraints_next(
@@ -49,11 +41,7 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
             previous_response: ListAvailableOrgPolicyConstraintsResponse,
         ) -> ListAvailableOrgPolicyConstraintsResponseHttpRequest | None: ...
         def listOrgPolicies(
-            self,
-            *,
-            resource: str,
-            body: ListOrgPoliciesRequest = ...,
-            **kwargs: typing.Any,
+            self, *, resource: str, body: ListOrgPoliciesRequest, **kwargs: typing.Any
         ) -> ListOrgPoliciesResponseHttpRequest: ...
         def listOrgPolicies_next(
             self,
@@ -61,18 +49,12 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
             previous_response: ListOrgPoliciesResponse,
         ) -> ListOrgPoliciesResponseHttpRequest | None: ...
         def setOrgPolicy(
-            self,
-            *,
-            resource: str,
-            body: SetOrgPolicyRequest = ...,
-            **kwargs: typing.Any,
+            self, *, resource: str, body: SetOrgPolicyRequest, **kwargs: typing.Any
         ) -> OrgPolicyHttpRequest: ...
 
     @typing.type_check_only
     class LiensResource(googleapiclient.discovery.Resource):
-        def create(
-            self, *, body: Lien = ..., **kwargs: typing.Any
-        ) -> LienHttpRequest: ...
+        def create(self, *, body: Lien, **kwargs: typing.Any) -> LienHttpRequest: ...
         def delete(self, *, name: str, **kwargs: typing.Any) -> EmptyHttpRequest: ...
         def get(self, *, name: str, **kwargs: typing.Any) -> LienHttpRequest: ...
         def list(
@@ -96,11 +78,7 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class OrganizationsResource(googleapiclient.discovery.Resource):
         def clearOrgPolicy(
-            self,
-            *,
-            resource: str,
-            body: ClearOrgPolicyRequest = ...,
-            **kwargs: typing.Any,
+            self, *, resource: str, body: ClearOrgPolicyRequest, **kwargs: typing.Any
         ) -> EmptyHttpRequest: ...
         def get(
             self, *, name: str, **kwargs: typing.Any
@@ -109,28 +87,20 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
             self,
             *,
             resource: str,
-            body: GetEffectiveOrgPolicyRequest = ...,
+            body: GetEffectiveOrgPolicyRequest,
             **kwargs: typing.Any,
         ) -> OrgPolicyHttpRequest: ...
         def getIamPolicy(
-            self,
-            *,
-            resource: str,
-            body: GetIamPolicyRequest = ...,
-            **kwargs: typing.Any,
+            self, *, resource: str, body: GetIamPolicyRequest, **kwargs: typing.Any
         ) -> PolicyHttpRequest: ...
         def getOrgPolicy(
-            self,
-            *,
-            resource: str,
-            body: GetOrgPolicyRequest = ...,
-            **kwargs: typing.Any,
+            self, *, resource: str, body: GetOrgPolicyRequest, **kwargs: typing.Any
         ) -> OrgPolicyHttpRequest: ...
         def listAvailableOrgPolicyConstraints(
             self,
             *,
             resource: str,
-            body: ListAvailableOrgPolicyConstraintsRequest = ...,
+            body: ListAvailableOrgPolicyConstraintsRequest,
             **kwargs: typing.Any,
         ) -> ListAvailableOrgPolicyConstraintsResponseHttpRequest: ...
         def listAvailableOrgPolicyConstraints_next(
@@ -139,11 +109,7 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
             previous_response: ListAvailableOrgPolicyConstraintsResponse,
         ) -> ListAvailableOrgPolicyConstraintsResponseHttpRequest | None: ...
         def listOrgPolicies(
-            self,
-            *,
-            resource: str,
-            body: ListOrgPoliciesRequest = ...,
-            **kwargs: typing.Any,
+            self, *, resource: str, body: ListOrgPoliciesRequest, **kwargs: typing.Any
         ) -> ListOrgPoliciesResponseHttpRequest: ...
         def listOrgPolicies_next(
             self,
@@ -151,7 +117,7 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
             previous_response: ListOrgPoliciesResponse,
         ) -> ListOrgPoliciesResponseHttpRequest | None: ...
         def search(
-            self, *, body: SearchOrganizationsRequest = ..., **kwargs: typing.Any
+            self, *, body: SearchOrganizationsRequest, **kwargs: typing.Any
         ) -> SearchOrganizationsResponseHttpRequest: ...
         def search_next(
             self,
@@ -159,38 +125,26 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
             previous_response: SearchOrganizationsResponse,
         ) -> SearchOrganizationsResponseHttpRequest | None: ...
         def setIamPolicy(
-            self,
-            *,
-            resource: str,
-            body: SetIamPolicyRequest = ...,
-            **kwargs: typing.Any,
+            self, *, resource: str, body: SetIamPolicyRequest, **kwargs: typing.Any
         ) -> PolicyHttpRequest: ...
         def setOrgPolicy(
-            self,
-            *,
-            resource: str,
-            body: SetOrgPolicyRequest = ...,
-            **kwargs: typing.Any,
+            self, *, resource: str, body: SetOrgPolicyRequest, **kwargs: typing.Any
         ) -> OrgPolicyHttpRequest: ...
         def testIamPermissions(
             self,
             *,
             resource: str,
-            body: TestIamPermissionsRequest = ...,
+            body: TestIamPermissionsRequest,
             **kwargs: typing.Any,
         ) -> TestIamPermissionsResponseHttpRequest: ...
 
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         def clearOrgPolicy(
-            self,
-            *,
-            resource: str,
-            body: ClearOrgPolicyRequest = ...,
-            **kwargs: typing.Any,
+            self, *, resource: str, body: ClearOrgPolicyRequest, **kwargs: typing.Any
         ) -> EmptyHttpRequest: ...
         def create(
-            self, *, body: Project = ..., **kwargs: typing.Any
+            self, *, body: Project, **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
         def delete(
             self, *, projectId: str, **kwargs: typing.Any
@@ -199,32 +153,20 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
             self, *, projectId: str, **kwargs: typing.Any
         ) -> ProjectHttpRequest: ...
         def getAncestry(
-            self,
-            *,
-            projectId: str,
-            body: GetAncestryRequest = ...,
-            **kwargs: typing.Any,
+            self, *, projectId: str, body: GetAncestryRequest, **kwargs: typing.Any
         ) -> GetAncestryResponseHttpRequest: ...
         def getEffectiveOrgPolicy(
             self,
             *,
             resource: str,
-            body: GetEffectiveOrgPolicyRequest = ...,
+            body: GetEffectiveOrgPolicyRequest,
             **kwargs: typing.Any,
         ) -> OrgPolicyHttpRequest: ...
         def getIamPolicy(
-            self,
-            *,
-            resource: str,
-            body: GetIamPolicyRequest = ...,
-            **kwargs: typing.Any,
+            self, *, resource: str, body: GetIamPolicyRequest, **kwargs: typing.Any
         ) -> PolicyHttpRequest: ...
         def getOrgPolicy(
-            self,
-            *,
-            resource: str,
-            body: GetOrgPolicyRequest = ...,
-            **kwargs: typing.Any,
+            self, *, resource: str, body: GetOrgPolicyRequest, **kwargs: typing.Any
         ) -> OrgPolicyHttpRequest: ...
         def list(
             self,
@@ -243,7 +185,7 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
             self,
             *,
             resource: str,
-            body: ListAvailableOrgPolicyConstraintsRequest = ...,
+            body: ListAvailableOrgPolicyConstraintsRequest,
             **kwargs: typing.Any,
         ) -> ListAvailableOrgPolicyConstraintsResponseHttpRequest: ...
         def listAvailableOrgPolicyConstraints_next(
@@ -252,11 +194,7 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
             previous_response: ListAvailableOrgPolicyConstraintsResponse,
         ) -> ListAvailableOrgPolicyConstraintsResponseHttpRequest | None: ...
         def listOrgPolicies(
-            self,
-            *,
-            resource: str,
-            body: ListOrgPoliciesRequest = ...,
-            **kwargs: typing.Any,
+            self, *, resource: str, body: ListOrgPoliciesRequest, **kwargs: typing.Any
         ) -> ListOrgPoliciesResponseHttpRequest: ...
         def listOrgPolicies_next(
             self,
@@ -264,35 +202,23 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
             previous_response: ListOrgPoliciesResponse,
         ) -> ListOrgPoliciesResponseHttpRequest | None: ...
         def setIamPolicy(
-            self,
-            *,
-            resource: str,
-            body: SetIamPolicyRequest = ...,
-            **kwargs: typing.Any,
+            self, *, resource: str, body: SetIamPolicyRequest, **kwargs: typing.Any
         ) -> PolicyHttpRequest: ...
         def setOrgPolicy(
-            self,
-            *,
-            resource: str,
-            body: SetOrgPolicyRequest = ...,
-            **kwargs: typing.Any,
+            self, *, resource: str, body: SetOrgPolicyRequest, **kwargs: typing.Any
         ) -> OrgPolicyHttpRequest: ...
         def testIamPermissions(
             self,
             *,
             resource: str,
-            body: TestIamPermissionsRequest = ...,
+            body: TestIamPermissionsRequest,
             **kwargs: typing.Any,
         ) -> TestIamPermissionsResponseHttpRequest: ...
         def undelete(
-            self,
-            *,
-            projectId: str,
-            body: UndeleteProjectRequest = ...,
-            **kwargs: typing.Any,
+            self, *, projectId: str, body: UndeleteProjectRequest, **kwargs: typing.Any
         ) -> EmptyHttpRequest: ...
         def update(
-            self, *, projectId: str, body: Project = ..., **kwargs: typing.Any
+            self, *, projectId: str, body: Project, **kwargs: typing.Any
         ) -> ProjectHttpRequest: ...
 
     def new_batch_http_request(

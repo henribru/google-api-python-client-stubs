@@ -57,7 +57,7 @@ class CloudSupportResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class CommentsResource(googleapiclient.discovery.Resource):
             def create(
-                self, *, parent: str, body: Comment = ..., **kwargs: typing.Any
+                self, *, parent: str, body: Comment, **kwargs: typing.Any
             ) -> CommentHttpRequest: ...
             def get(self, *, name: str, **kwargs: typing.Any) -> CommentHttpRequest: ...
             def list(
@@ -75,13 +75,13 @@ class CloudSupportResource(googleapiclient.discovery.Resource):
             ) -> ListCommentsResponseHttpRequest | None: ...
 
         def close(  # type: ignore[override]
-            self, *, name: str, body: CloseCaseRequest = ..., **kwargs: typing.Any
+            self, *, name: str, body: CloseCaseRequest, **kwargs: typing.Any
         ) -> CaseHttpRequest: ...
         def create(
-            self, *, parent: str, body: Case = ..., **kwargs: typing.Any
+            self, *, parent: str, body: Case, **kwargs: typing.Any
         ) -> CaseHttpRequest: ...
         def escalate(
-            self, *, name: str, body: EscalateCaseRequest = ..., **kwargs: typing.Any
+            self, *, name: str, body: EscalateCaseRequest, **kwargs: typing.Any
         ) -> CaseHttpRequest: ...
         def get(self, *, name: str, **kwargs: typing.Any) -> CaseHttpRequest: ...
         def list(
@@ -106,7 +106,7 @@ class CloudSupportResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            body: Case = ...,
+            body: Case,
             updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> CaseHttpRequest: ...
@@ -148,21 +148,13 @@ class CloudSupportResource(googleapiclient.discovery.Resource):
             self, *, name: str, **kwargs: typing.Any
         ) -> BytesHttpRequest: ...
         def upload(
-            self,
-            *,
-            parent: str,
-            body: CreateAttachmentRequest = ...,
-            **kwargs: typing.Any,
+            self, *, parent: str, body: CreateAttachmentRequest, **kwargs: typing.Any
         ) -> AttachmentHttpRequest: ...
 
     @typing.type_check_only
     class SupportEventSubscriptionsResource(googleapiclient.discovery.Resource):
         def create(
-            self,
-            *,
-            parent: str,
-            body: SupportEventSubscription = ...,
-            **kwargs: typing.Any,
+            self, *, parent: str, body: SupportEventSubscription, **kwargs: typing.Any
         ) -> SupportEventSubscriptionHttpRequest: ...
         def delete(
             self, *, name: str, **kwargs: typing.Any
@@ -189,7 +181,7 @@ class CloudSupportResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            body: SupportEventSubscription = ...,
+            body: SupportEventSubscription,
             updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> SupportEventSubscriptionHttpRequest: ...
@@ -197,7 +189,7 @@ class CloudSupportResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            body: UndeleteSupportEventSubscriptionRequest = ...,
+            body: UndeleteSupportEventSubscriptionRequest,
             **kwargs: typing.Any,
         ) -> SupportEventSubscriptionHttpRequest: ...
 

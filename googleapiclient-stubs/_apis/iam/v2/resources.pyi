@@ -25,7 +25,7 @@ class IamResource(googleapiclient.discovery.Resource):
             self,
             *,
             parent: str,
-            body: GoogleIamV2Policy = ...,
+            body: GoogleIamV2Policy,
             policyId: str | None = ...,
             **kwargs: typing.Any,
         ) -> GoogleLongrunningOperationHttpRequest: ...
@@ -49,7 +49,7 @@ class IamResource(googleapiclient.discovery.Resource):
             previous_response: GoogleIamV2ListPoliciesResponse,
         ) -> GoogleIamV2ListPoliciesResponseHttpRequest | None: ...
         def update(
-            self, *, name: str, body: GoogleIamV2Policy = ..., **kwargs: typing.Any
+            self, *, name: str, body: GoogleIamV2Policy, **kwargs: typing.Any
         ) -> GoogleLongrunningOperationHttpRequest: ...
         def operations(self) -> OperationsResource: ...
 

@@ -21,11 +21,11 @@ class PubsubResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 subscription: str,
-                body: AcknowledgeRequest = ...,
+                body: AcknowledgeRequest,
                 **kwargs: typing.Any,
             ) -> EmptyHttpRequest: ...
             def create(
-                self, *, name: str, body: Subscription = ..., **kwargs: typing.Any
+                self, *, name: str, body: Subscription, **kwargs: typing.Any
             ) -> SubscriptionHttpRequest: ...
             def delete(
                 self, *, subscription: str, **kwargs: typing.Any
@@ -57,35 +57,27 @@ class PubsubResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 subscription: str,
-                body: ModifyAckDeadlineRequest = ...,
+                body: ModifyAckDeadlineRequest,
                 **kwargs: typing.Any,
             ) -> EmptyHttpRequest: ...
             def modifyPushConfig(
                 self,
                 *,
                 subscription: str,
-                body: ModifyPushConfigRequest = ...,
+                body: ModifyPushConfigRequest,
                 **kwargs: typing.Any,
             ) -> EmptyHttpRequest: ...
             def pull(
-                self,
-                *,
-                subscription: str,
-                body: PullRequest = ...,
-                **kwargs: typing.Any,
+                self, *, subscription: str, body: PullRequest, **kwargs: typing.Any
             ) -> PullResponseHttpRequest: ...
             def setIamPolicy(
-                self,
-                *,
-                resource: str,
-                body: SetIamPolicyRequest = ...,
-                **kwargs: typing.Any,
+                self, *, resource: str, body: SetIamPolicyRequest, **kwargs: typing.Any
             ) -> PolicyHttpRequest: ...
             def testIamPermissions(
                 self,
                 *,
                 resource: str,
-                body: TestIamPermissionsRequest = ...,
+                body: TestIamPermissionsRequest,
                 **kwargs: typing.Any,
             ) -> TestIamPermissionsResponseHttpRequest: ...
 
@@ -108,7 +100,7 @@ class PubsubResource(googleapiclient.discovery.Resource):
                 ) -> ListTopicSubscriptionsResponseHttpRequest | None: ...
 
             def create(
-                self, *, name: str, body: Topic = ..., **kwargs: typing.Any
+                self, *, name: str, body: Topic, **kwargs: typing.Any
             ) -> TopicHttpRequest: ...
             def delete(
                 self, *, topic: str, **kwargs: typing.Any
@@ -135,20 +127,16 @@ class PubsubResource(googleapiclient.discovery.Resource):
                 previous_response: ListTopicsResponse,
             ) -> ListTopicsResponseHttpRequest | None: ...
             def publish(
-                self, *, topic: str, body: PublishRequest = ..., **kwargs: typing.Any
+                self, *, topic: str, body: PublishRequest, **kwargs: typing.Any
             ) -> PublishResponseHttpRequest: ...
             def setIamPolicy(
-                self,
-                *,
-                resource: str,
-                body: SetIamPolicyRequest = ...,
-                **kwargs: typing.Any,
+                self, *, resource: str, body: SetIamPolicyRequest, **kwargs: typing.Any
             ) -> PolicyHttpRequest: ...
             def testIamPermissions(
                 self,
                 *,
                 resource: str,
-                body: TestIamPermissionsRequest = ...,
+                body: TestIamPermissionsRequest,
                 **kwargs: typing.Any,
             ) -> TestIamPermissionsResponseHttpRequest: ...
             def subscriptions(self) -> SubscriptionsResource: ...

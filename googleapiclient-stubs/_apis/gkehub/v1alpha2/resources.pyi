@@ -25,7 +25,7 @@ class GKEHubResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         project: str,
-                        body: InitializeHubRequest = ...,
+                        body: InitializeHubRequest,
                         **kwargs: typing.Any,
                     ) -> InitializeHubResponseHttpRequest: ...
 
@@ -37,7 +37,7 @@ class GKEHubResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: Membership = ...,
+                    body: Membership,
                     membershipId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -85,7 +85,7 @@ class GKEHubResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: Membership = ...,
+                    body: Membership,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -93,14 +93,14 @@ class GKEHubResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: SetIamPolicyRequest = ...,
+                    body: SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: TestIamPermissionsRequest = ...,
+                    body: TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
 
@@ -110,7 +110,7 @@ class GKEHubResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: CancelOperationRequest = ...,
+                    body: CancelOperationRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def delete(

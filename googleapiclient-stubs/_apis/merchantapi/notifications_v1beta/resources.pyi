@@ -21,7 +21,7 @@ class MerchantResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: NotificationSubscription = ...,
+                body: NotificationSubscription,
                 **kwargs: typing.Any,
             ) -> NotificationSubscriptionHttpRequest: ...
             def delete(
@@ -47,7 +47,7 @@ class MerchantResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: NotificationSubscription = ...,
+                body: NotificationSubscription,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> NotificationSubscriptionHttpRequest: ...

@@ -44,7 +44,7 @@ class TPUResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: Node = ...,
+                    body: Node,
                     nodeId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -58,7 +58,7 @@ class TPUResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GetGuestAttributesRequest = ...,
+                    body: GetGuestAttributesRequest,
                     **kwargs: typing.Any,
                 ) -> GetGuestAttributesResponseHttpRequest: ...
                 def list(
@@ -78,23 +78,15 @@ class TPUResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: Node = ...,
+                    body: Node,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def start(
-                    self,
-                    *,
-                    name: str,
-                    body: StartNodeRequest = ...,
-                    **kwargs: typing.Any,
+                    self, *, name: str, body: StartNodeRequest, **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def stop(
-                    self,
-                    *,
-                    name: str,
-                    body: StopNodeRequest = ...,
-                    **kwargs: typing.Any,
+                    self, *, name: str, body: StopNodeRequest, **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
 
             @typing.type_check_only
@@ -130,7 +122,7 @@ class TPUResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: QueuedResource = ...,
+                    body: QueuedResource,
                     queuedResourceId: str | None = ...,
                     requestId: str | None = ...,
                     **kwargs: typing.Any,
@@ -163,7 +155,7 @@ class TPUResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: ResetQueuedResourceRequest = ...,
+                    body: ResetQueuedResourceRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
 
@@ -192,7 +184,7 @@ class TPUResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: GenerateServiceIdentityRequest = ...,
+                body: GenerateServiceIdentityRequest,
                 **kwargs: typing.Any,
             ) -> GenerateServiceIdentityResponseHttpRequest: ...
             def get(

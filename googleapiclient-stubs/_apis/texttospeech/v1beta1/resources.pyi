@@ -42,7 +42,7 @@ class TexttospeechResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: SynthesizeLongAudioRequest = ...,
+                body: SynthesizeLongAudioRequest,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def operations(self) -> OperationsResource: ...
@@ -52,7 +52,7 @@ class TexttospeechResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class TextResource(googleapiclient.discovery.Resource):
         def synthesize(
-            self, *, body: SynthesizeSpeechRequest = ..., **kwargs: typing.Any
+            self, *, body: SynthesizeSpeechRequest, **kwargs: typing.Any
         ) -> SynthesizeSpeechResponseHttpRequest: ...
 
     @typing.type_check_only

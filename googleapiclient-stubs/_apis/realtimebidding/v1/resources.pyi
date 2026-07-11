@@ -36,11 +36,7 @@ class RealTimeBiddingResource(googleapiclient.discovery.Resource):
                 previous_response: ListCreativesResponse,
             ) -> ListCreativesResponseHttpRequest | None: ...
             def watch(
-                self,
-                *,
-                parent: str,
-                body: WatchCreativesRequest = ...,
-                **kwargs: typing.Any,
+                self, *, parent: str, body: WatchCreativesRequest, **kwargs: typing.Any
             ) -> WatchCreativesResponseHttpRequest: ...
 
         @typing.type_check_only
@@ -65,7 +61,7 @@ class RealTimeBiddingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: Endpoint = ...,
+                body: Endpoint,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> EndpointHttpRequest: ...
@@ -76,36 +72,32 @@ class RealTimeBiddingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: ActivatePretargetingConfigRequest = ...,
+                body: ActivatePretargetingConfigRequest,
                 **kwargs: typing.Any,
             ) -> PretargetingConfigHttpRequest: ...
             def addTargetedApps(
                 self,
                 *,
                 pretargetingConfig: str,
-                body: AddTargetedAppsRequest = ...,
+                body: AddTargetedAppsRequest,
                 **kwargs: typing.Any,
             ) -> PretargetingConfigHttpRequest: ...
             def addTargetedPublishers(
                 self,
                 *,
                 pretargetingConfig: str,
-                body: AddTargetedPublishersRequest = ...,
+                body: AddTargetedPublishersRequest,
                 **kwargs: typing.Any,
             ) -> PretargetingConfigHttpRequest: ...
             def addTargetedSites(
                 self,
                 *,
                 pretargetingConfig: str,
-                body: AddTargetedSitesRequest = ...,
+                body: AddTargetedSitesRequest,
                 **kwargs: typing.Any,
             ) -> PretargetingConfigHttpRequest: ...
             def create(
-                self,
-                *,
-                parent: str,
-                body: PretargetingConfig = ...,
-                **kwargs: typing.Any,
+                self, *, parent: str, body: PretargetingConfig, **kwargs: typing.Any
             ) -> PretargetingConfigHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -130,7 +122,7 @@ class RealTimeBiddingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: PretargetingConfig = ...,
+                body: PretargetingConfig,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> PretargetingConfigHttpRequest: ...
@@ -138,28 +130,28 @@ class RealTimeBiddingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 pretargetingConfig: str,
-                body: RemoveTargetedAppsRequest = ...,
+                body: RemoveTargetedAppsRequest,
                 **kwargs: typing.Any,
             ) -> PretargetingConfigHttpRequest: ...
             def removeTargetedPublishers(
                 self,
                 *,
                 pretargetingConfig: str,
-                body: RemoveTargetedPublishersRequest = ...,
+                body: RemoveTargetedPublishersRequest,
                 **kwargs: typing.Any,
             ) -> PretargetingConfigHttpRequest: ...
             def removeTargetedSites(
                 self,
                 *,
                 pretargetingConfig: str,
-                body: RemoveTargetedSitesRequest = ...,
+                body: RemoveTargetedSitesRequest,
                 **kwargs: typing.Any,
             ) -> PretargetingConfigHttpRequest: ...
             def suspend(
                 self,
                 *,
                 name: str,
-                body: SuspendPretargetingConfigRequest = ...,
+                body: SuspendPretargetingConfigRequest,
                 **kwargs: typing.Any,
             ) -> PretargetingConfigHttpRequest: ...
 
@@ -169,14 +161,14 @@ class RealTimeBiddingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: BatchApprovePublisherConnectionsRequest = ...,
+                body: BatchApprovePublisherConnectionsRequest,
                 **kwargs: typing.Any,
             ) -> BatchApprovePublisherConnectionsResponseHttpRequest: ...
             def batchReject(
                 self,
                 *,
                 parent: str,
-                body: BatchRejectPublisherConnectionsRequest = ...,
+                body: BatchRejectPublisherConnectionsRequest,
                 **kwargs: typing.Any,
             ) -> BatchRejectPublisherConnectionsResponseHttpRequest: ...
             def get(
@@ -221,7 +213,7 @@ class RealTimeBiddingResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class CreativesResource(googleapiclient.discovery.Resource):
             def create(
-                self, *, parent: str, body: Creative = ..., **kwargs: typing.Any
+                self, *, parent: str, body: Creative, **kwargs: typing.Any
             ) -> CreativeHttpRequest: ...
             def get(
                 self,
@@ -255,7 +247,7 @@ class RealTimeBiddingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: Creative = ...,
+                body: Creative,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> CreativeHttpRequest: ...
@@ -263,14 +255,10 @@ class RealTimeBiddingResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class UserListsResource(googleapiclient.discovery.Resource):
             def close(  # type: ignore[override]
-                self,
-                *,
-                name: str,
-                body: CloseUserListRequest = ...,
-                **kwargs: typing.Any,
+                self, *, name: str, body: CloseUserListRequest, **kwargs: typing.Any
             ) -> UserListHttpRequest: ...
             def create(
-                self, *, parent: str, body: UserList = ..., **kwargs: typing.Any
+                self, *, parent: str, body: UserList, **kwargs: typing.Any
             ) -> UserListHttpRequest: ...
             def get(
                 self, *, name: str, **kwargs: typing.Any
@@ -292,14 +280,10 @@ class RealTimeBiddingResource(googleapiclient.discovery.Resource):
                 previous_response: ListUserListsResponse,
             ) -> ListUserListsResponseHttpRequest | None: ...
             def open(
-                self,
-                *,
-                name: str,
-                body: OpenUserListRequest = ...,
-                **kwargs: typing.Any,
+                self, *, name: str, body: OpenUserListRequest, **kwargs: typing.Any
             ) -> UserListHttpRequest: ...
             def update(
-                self, *, name: str, body: UserList = ..., **kwargs: typing.Any
+                self, *, name: str, body: UserList, **kwargs: typing.Any
             ) -> UserListHttpRequest: ...
 
         def get(self, *, name: str, **kwargs: typing.Any) -> BuyerHttpRequest: ...

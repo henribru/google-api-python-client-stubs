@@ -23,7 +23,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudDataplexV1EncryptionConfig = ...,
+                    body: GoogleCloudDataplexV1EncryptionConfig,
                     encryptionConfigId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
@@ -61,7 +61,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudDataplexV1EncryptionConfig = ...,
+                    body: GoogleCloudDataplexV1EncryptionConfig,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
@@ -69,14 +69,14 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: GoogleIamV1SetIamPolicyRequest = ...,
+                    body: GoogleIamV1SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleIamV1PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: GoogleIamV1TestIamPermissionsRequest = ...,
+                    body: GoogleIamV1TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
 
@@ -86,7 +86,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleLongrunningCancelOperationRequest = ...,
+                    body: GoogleLongrunningCancelOperationRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def delete(
@@ -126,7 +126,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudDataplexV1AspectType = ...,
+                    body: GoogleCloudDataplexV1AspectType,
                     aspectTypeId: str | None = ...,
                     validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
@@ -163,7 +163,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudDataplexV1AspectType = ...,
+                    body: GoogleCloudDataplexV1AspectType,
                     updateMask: str | None = ...,
                     validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
@@ -172,14 +172,14 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: GoogleIamV1SetIamPolicyRequest = ...,
+                    body: GoogleIamV1SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleIamV1PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: GoogleIamV1TestIamPermissionsRequest = ...,
+                    body: GoogleIamV1TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
 
@@ -189,7 +189,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudDataplexV1ApproveChangeRequestRequest = ...,
+                    body: GoogleCloudDataplexV1ApproveChangeRequestRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudDataplexV1ChangeRequestHttpRequest: ...
                 def delete(
@@ -226,7 +226,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudDataplexV1ChangeRequest = ...,
+                    body: GoogleCloudDataplexV1ChangeRequest,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudDataplexV1ChangeRequestHttpRequest: ...
@@ -234,21 +234,21 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudDataplexV1RejectChangeRequestRequest = ...,
+                    body: GoogleCloudDataplexV1RejectChangeRequestRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudDataplexV1ChangeRequestHttpRequest: ...
                 def setIamPolicy(
                     self,
                     *,
                     resource: str,
-                    body: GoogleIamV1SetIamPolicyRequest = ...,
+                    body: GoogleIamV1SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleIamV1PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: GoogleIamV1TestIamPermissionsRequest = ...,
+                    body: GoogleIamV1TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
 
@@ -258,7 +258,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudDataplexV1DataAttributeBinding = ...,
+                    body: GoogleCloudDataplexV1DataAttributeBinding,
                     dataAttributeBindingId: str | None = ...,
                     validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
@@ -300,7 +300,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudDataplexV1DataAttributeBinding = ...,
+                    body: GoogleCloudDataplexV1DataAttributeBinding,
                     updateMask: str | None = ...,
                     validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
@@ -309,14 +309,14 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: GoogleIamV1SetIamPolicyRequest = ...,
+                    body: GoogleIamV1SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleIamV1PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: GoogleIamV1TestIamPermissionsRequest = ...,
+                    body: GoogleIamV1TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
 
@@ -328,7 +328,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: GoogleCloudDataplexV1DataDomainBinding = ...,
+                        body: GoogleCloudDataplexV1DataDomainBinding,
                         dataDomainBindingId: str | None = ...,
                         validateOnly: bool | None = ...,
                         **kwargs: typing.Any,
@@ -364,7 +364,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudDataplexV1DataDomain = ...,
+                    body: GoogleCloudDataplexV1DataDomain,
                     dataDomainId: str | None = ...,
                     validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
@@ -401,7 +401,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudDataplexV1DataDomain = ...,
+                    body: GoogleCloudDataplexV1DataDomain,
                     updateMask: str | None = ...,
                     validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
@@ -410,14 +410,14 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: GoogleIamV1SetIamPolicyRequest = ...,
+                    body: GoogleIamV1SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleIamV1PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: GoogleIamV1TestIamPermissionsRequest = ...,
+                    body: GoogleIamV1TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
                 def bindings(self) -> BindingsResource: ...
@@ -430,7 +430,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: GoogleCloudDataplexV1DataAsset = ...,
+                        body: GoogleCloudDataplexV1DataAsset,
                         dataAssetId: str | None = ...,
                         validateOnly: bool | None = ...,
                         **kwargs: typing.Any,
@@ -467,7 +467,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: GoogleCloudDataplexV1DataAsset = ...,
+                        body: GoogleCloudDataplexV1DataAsset,
                         updateMask: str | None = ...,
                         validateOnly: bool | None = ...,
                         **kwargs: typing.Any,
@@ -477,7 +477,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudDataplexV1DataProduct = ...,
+                    body: GoogleCloudDataplexV1DataProduct,
                     dataProductId: str | None = ...,
                     validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
@@ -521,7 +521,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudDataplexV1DataProduct = ...,
+                    body: GoogleCloudDataplexV1DataProduct,
                     updateMask: str | None = ...,
                     validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
@@ -530,7 +530,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudDataplexV1RequestDataProductAccessRequest = ...,
+                    body: GoogleCloudDataplexV1RequestDataProductAccessRequest,
                     **kwargs: typing.Any,
                 ) -> (
                     GoogleCloudDataplexV1RequestDataProductAccessResponseHttpRequest
@@ -539,14 +539,14 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: GoogleIamV1SetIamPolicyRequest = ...,
+                    body: GoogleIamV1SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleIamV1PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: GoogleIamV1TestIamPermissionsRequest = ...,
+                    body: GoogleIamV1TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
                 def dataAssets(self) -> DataAssetsResource: ...
@@ -559,14 +559,14 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: GoogleCloudDataplexV1CancelDataScanJobRequest = ...,
+                        body: GoogleCloudDataplexV1CancelDataScanJobRequest,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudDataplexV1CancelDataScanJobResponseHttpRequest: ...
                     def generateDataQualityRules(
                         self,
                         *,
                         name: str,
-                        body: GoogleCloudDataplexV1GenerateDataQualityRulesRequest = ...,
+                        body: GoogleCloudDataplexV1GenerateDataQualityRulesRequest,
                         **kwargs: typing.Any,
                     ) -> (
                         GoogleCloudDataplexV1GenerateDataQualityRulesResponseHttpRequest
@@ -602,7 +602,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudDataplexV1DataScan = ...,
+                    body: GoogleCloudDataplexV1DataScan,
                     dataScanId: str | None = ...,
                     validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
@@ -614,7 +614,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudDataplexV1GenerateDataQualityRulesRequest = ...,
+                    body: GoogleCloudDataplexV1GenerateDataQualityRulesRequest,
                     **kwargs: typing.Any,
                 ) -> (
                     GoogleCloudDataplexV1GenerateDataQualityRulesResponseHttpRequest
@@ -655,7 +655,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudDataplexV1DataScan = ...,
+                    body: GoogleCloudDataplexV1DataScan,
                     updateMask: str | None = ...,
                     validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
@@ -664,21 +664,21 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudDataplexV1RunDataScanRequest = ...,
+                    body: GoogleCloudDataplexV1RunDataScanRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudDataplexV1RunDataScanResponseHttpRequest: ...
                 def setIamPolicy(
                     self,
                     *,
                     resource: str,
-                    body: GoogleIamV1SetIamPolicyRequest = ...,
+                    body: GoogleIamV1SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleIamV1PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: GoogleIamV1TestIamPermissionsRequest = ...,
+                    body: GoogleIamV1TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
                 def jobs(self) -> JobsResource: ...
@@ -691,7 +691,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: GoogleCloudDataplexV1DataAttribute = ...,
+                        body: GoogleCloudDataplexV1DataAttribute,
                         dataAttributeId: str | None = ...,
                         validateOnly: bool | None = ...,
                         **kwargs: typing.Any,
@@ -731,7 +731,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: GoogleCloudDataplexV1DataAttribute = ...,
+                        body: GoogleCloudDataplexV1DataAttribute,
                         updateMask: str | None = ...,
                         validateOnly: bool | None = ...,
                         **kwargs: typing.Any,
@@ -740,14 +740,14 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         resource: str,
-                        body: GoogleIamV1SetIamPolicyRequest = ...,
+                        body: GoogleIamV1SetIamPolicyRequest,
                         **kwargs: typing.Any,
                     ) -> GoogleIamV1PolicyHttpRequest: ...
                     def testIamPermissions(
                         self,
                         *,
                         resource: str,
-                        body: GoogleIamV1TestIamPermissionsRequest = ...,
+                        body: GoogleIamV1TestIamPermissionsRequest,
                         **kwargs: typing.Any,
                     ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
 
@@ -755,7 +755,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudDataplexV1DataTaxonomy = ...,
+                    body: GoogleCloudDataplexV1DataTaxonomy,
                     dataTaxonomyId: str | None = ...,
                     validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
@@ -794,7 +794,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudDataplexV1DataTaxonomy = ...,
+                    body: GoogleCloudDataplexV1DataTaxonomy,
                     updateMask: str | None = ...,
                     validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
@@ -803,14 +803,14 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: GoogleIamV1SetIamPolicyRequest = ...,
+                    body: GoogleIamV1SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleIamV1PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: GoogleIamV1TestIamPermissionsRequest = ...,
+                    body: GoogleIamV1TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
                 def attributes(self) -> AttributesResource: ...
@@ -823,7 +823,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: GoogleCloudDataplexV1Entry = ...,
+                        body: GoogleCloudDataplexV1Entry,
                         entryId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudDataplexV1EntryHttpRequest: ...
@@ -860,7 +860,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: GoogleCloudDataplexV1Entry = ...,
+                        body: GoogleCloudDataplexV1Entry,
                         allowMissing: bool | None = ...,
                         aspectKeys: str | _list[str] | None = ...,
                         deleteMissingAspects: bool | None = ...,
@@ -874,7 +874,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: GoogleCloudDataplexV1EntryLink = ...,
+                        body: GoogleCloudDataplexV1EntryLink,
                         entryLinkId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudDataplexV1EntryLinkHttpRequest: ...
@@ -888,7 +888,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: GoogleCloudDataplexV1EntryLink = ...,
+                        body: GoogleCloudDataplexV1EntryLink,
                         allowMissing: bool | None = ...,
                         aspectKeys: str | _list[str] | None = ...,
                         **kwargs: typing.Any,
@@ -898,7 +898,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudDataplexV1EntryGroup = ...,
+                    body: GoogleCloudDataplexV1EntryGroup,
                     entryGroupId: str | None = ...,
                     validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
@@ -935,7 +935,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudDataplexV1EntryGroup = ...,
+                    body: GoogleCloudDataplexV1EntryGroup,
                     updateMask: str | None = ...,
                     validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
@@ -944,14 +944,14 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: GoogleIamV1SetIamPolicyRequest = ...,
+                    body: GoogleIamV1SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleIamV1PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: GoogleIamV1TestIamPermissionsRequest = ...,
+                    body: GoogleIamV1TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
                 def entries(self) -> EntriesResource: ...
@@ -970,14 +970,14 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: GoogleIamV1SetIamPolicyRequest = ...,
+                    body: GoogleIamV1SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleIamV1PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: GoogleIamV1TestIamPermissionsRequest = ...,
+                    body: GoogleIamV1TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
 
@@ -987,7 +987,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudDataplexV1EntryType = ...,
+                    body: GoogleCloudDataplexV1EntryType,
                     entryTypeId: str | None = ...,
                     validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
@@ -1024,7 +1024,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudDataplexV1EntryType = ...,
+                    body: GoogleCloudDataplexV1EntryType,
                     updateMask: str | None = ...,
                     validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
@@ -1033,14 +1033,14 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: GoogleIamV1SetIamPolicyRequest = ...,
+                    body: GoogleIamV1SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleIamV1PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: GoogleIamV1TestIamPermissionsRequest = ...,
+                    body: GoogleIamV1TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
 
@@ -1052,7 +1052,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: GoogleCloudDataplexV1GlossaryCategory = ...,
+                        body: GoogleCloudDataplexV1GlossaryCategory,
                         categoryId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudDataplexV1GlossaryCategoryHttpRequest: ...
@@ -1093,7 +1093,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: GoogleCloudDataplexV1GlossaryCategory = ...,
+                        body: GoogleCloudDataplexV1GlossaryCategory,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudDataplexV1GlossaryCategoryHttpRequest: ...
@@ -1101,14 +1101,14 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         resource: str,
-                        body: GoogleIamV1SetIamPolicyRequest = ...,
+                        body: GoogleIamV1SetIamPolicyRequest,
                         **kwargs: typing.Any,
                     ) -> GoogleIamV1PolicyHttpRequest: ...
                     def testIamPermissions(
                         self,
                         *,
                         resource: str,
-                        body: GoogleIamV1TestIamPermissionsRequest = ...,
+                        body: GoogleIamV1TestIamPermissionsRequest,
                         **kwargs: typing.Any,
                     ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
 
@@ -1118,7 +1118,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: GoogleCloudDataplexV1GlossaryTerm = ...,
+                        body: GoogleCloudDataplexV1GlossaryTerm,
                         termId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudDataplexV1GlossaryTermHttpRequest: ...
@@ -1156,7 +1156,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: GoogleCloudDataplexV1GlossaryTerm = ...,
+                        body: GoogleCloudDataplexV1GlossaryTerm,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudDataplexV1GlossaryTermHttpRequest: ...
@@ -1164,14 +1164,14 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         resource: str,
-                        body: GoogleIamV1SetIamPolicyRequest = ...,
+                        body: GoogleIamV1SetIamPolicyRequest,
                         **kwargs: typing.Any,
                     ) -> GoogleIamV1PolicyHttpRequest: ...
                     def testIamPermissions(
                         self,
                         *,
                         resource: str,
-                        body: GoogleIamV1TestIamPermissionsRequest = ...,
+                        body: GoogleIamV1TestIamPermissionsRequest,
                         **kwargs: typing.Any,
                     ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
 
@@ -1179,7 +1179,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudDataplexV1Glossary = ...,
+                    body: GoogleCloudDataplexV1Glossary,
                     glossaryId: str | None = ...,
                     validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
@@ -1216,7 +1216,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudDataplexV1Glossary = ...,
+                    body: GoogleCloudDataplexV1Glossary,
                     updateMask: str | None = ...,
                     validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
@@ -1225,14 +1225,14 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: GoogleIamV1SetIamPolicyRequest = ...,
+                    body: GoogleIamV1SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleIamV1PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: GoogleIamV1TestIamPermissionsRequest = ...,
+                    body: GoogleIamV1TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
                 def categories(self) -> CategoriesResource: ...
@@ -1251,14 +1251,14 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: GoogleIamV1SetIamPolicyRequest = ...,
+                    body: GoogleIamV1SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleIamV1PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: GoogleIamV1TestIamPermissionsRequest = ...,
+                    body: GoogleIamV1TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
 
@@ -1288,7 +1288,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             name: str,
-                            body: GoogleCloudDataplexV1CancelJobRequest = ...,
+                            body: GoogleCloudDataplexV1CancelJobRequest,
                             **kwargs: typing.Any,
                         ) -> EmptyHttpRequest: ...
                         def get(
@@ -1314,7 +1314,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: GoogleCloudDataplexV1Task = ...,
+                        body: GoogleCloudDataplexV1Task,
                         taskId: str | None = ...,
                         validateOnly: bool | None = ...,
                         **kwargs: typing.Any,
@@ -1351,7 +1351,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: GoogleCloudDataplexV1Task = ...,
+                        body: GoogleCloudDataplexV1Task,
                         updateMask: str | None = ...,
                         validateOnly: bool | None = ...,
                         **kwargs: typing.Any,
@@ -1360,21 +1360,21 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: GoogleCloudDataplexV1RunTaskRequest = ...,
+                        body: GoogleCloudDataplexV1RunTaskRequest,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudDataplexV1RunTaskResponseHttpRequest: ...
                     def setIamPolicy(
                         self,
                         *,
                         resource: str,
-                        body: GoogleIamV1SetIamPolicyRequest = ...,
+                        body: GoogleIamV1SetIamPolicyRequest,
                         **kwargs: typing.Any,
                     ) -> GoogleIamV1PolicyHttpRequest: ...
                     def testIamPermissions(
                         self,
                         *,
                         resource: str,
-                        body: GoogleIamV1TestIamPermissionsRequest = ...,
+                        body: GoogleIamV1TestIamPermissionsRequest,
                         **kwargs: typing.Any,
                     ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
                     def jobs(self) -> JobsResource: ...
@@ -1426,7 +1426,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             parent: str,
-                            body: GoogleCloudDataplexV1Asset = ...,
+                            body: GoogleCloudDataplexV1Asset,
                             assetId: str | None = ...,
                             validateOnly: bool | None = ...,
                             **kwargs: typing.Any,
@@ -1465,7 +1465,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             name: str,
-                            body: GoogleCloudDataplexV1Asset = ...,
+                            body: GoogleCloudDataplexV1Asset,
                             updateMask: str | None = ...,
                             validateOnly: bool | None = ...,
                             **kwargs: typing.Any,
@@ -1474,14 +1474,14 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             resource: str,
-                            body: GoogleIamV1SetIamPolicyRequest = ...,
+                            body: GoogleIamV1SetIamPolicyRequest,
                             **kwargs: typing.Any,
                         ) -> GoogleIamV1PolicyHttpRequest: ...
                         def testIamPermissions(
                             self,
                             *,
                             resource: str,
-                            body: GoogleIamV1TestIamPermissionsRequest = ...,
+                            body: GoogleIamV1TestIamPermissionsRequest,
                             **kwargs: typing.Any,
                         ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
                         def actions(self) -> ActionsResource: ...
@@ -1494,7 +1494,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                                 self,
                                 *,
                                 parent: str,
-                                body: GoogleCloudDataplexV1Partition = ...,
+                                body: GoogleCloudDataplexV1Partition,
                                 validateOnly: bool | None = ...,
                                 **kwargs: typing.Any,
                             ) -> GoogleCloudDataplexV1PartitionHttpRequest: ...
@@ -1532,7 +1532,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             parent: str,
-                            body: GoogleCloudDataplexV1Entity = ...,
+                            body: GoogleCloudDataplexV1Entity,
                             validateOnly: bool | None = ...,
                             **kwargs: typing.Any,
                         ) -> GoogleCloudDataplexV1EntityHttpRequest: ...
@@ -1577,7 +1577,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             name: str,
-                            body: GoogleCloudDataplexV1Entity = ...,
+                            body: GoogleCloudDataplexV1Entity,
                             validateOnly: bool | None = ...,
                             **kwargs: typing.Any,
                         ) -> GoogleCloudDataplexV1EntityHttpRequest: ...
@@ -1587,7 +1587,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: GoogleCloudDataplexV1Zone = ...,
+                        body: GoogleCloudDataplexV1Zone,
                         validateOnly: bool | None = ...,
                         zoneId: str | None = ...,
                         **kwargs: typing.Any,
@@ -1624,7 +1624,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: GoogleCloudDataplexV1Zone = ...,
+                        body: GoogleCloudDataplexV1Zone,
                         updateMask: str | None = ...,
                         validateOnly: bool | None = ...,
                         **kwargs: typing.Any,
@@ -1633,14 +1633,14 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         resource: str,
-                        body: GoogleIamV1SetIamPolicyRequest = ...,
+                        body: GoogleIamV1SetIamPolicyRequest,
                         **kwargs: typing.Any,
                     ) -> GoogleIamV1PolicyHttpRequest: ...
                     def testIamPermissions(
                         self,
                         *,
                         resource: str,
-                        body: GoogleIamV1TestIamPermissionsRequest = ...,
+                        body: GoogleIamV1TestIamPermissionsRequest,
                         **kwargs: typing.Any,
                     ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
                     def actions(self) -> ActionsResource: ...
@@ -1651,7 +1651,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudDataplexV1Lake = ...,
+                    body: GoogleCloudDataplexV1Lake,
                     lakeId: str | None = ...,
                     validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
@@ -1688,7 +1688,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudDataplexV1Lake = ...,
+                    body: GoogleCloudDataplexV1Lake,
                     updateMask: str | None = ...,
                     validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
@@ -1697,14 +1697,14 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: GoogleIamV1SetIamPolicyRequest = ...,
+                    body: GoogleIamV1SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleIamV1PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: GoogleIamV1TestIamPermissionsRequest = ...,
+                    body: GoogleIamV1TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
                 def actions(self) -> ActionsResource: ...
@@ -1717,7 +1717,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudDataplexV1MetadataFeed = ...,
+                    body: GoogleCloudDataplexV1MetadataFeed,
                     metadataFeedId: str | None = ...,
                     validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
@@ -1749,7 +1749,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudDataplexV1MetadataFeed = ...,
+                    body: GoogleCloudDataplexV1MetadataFeed,
                     updateMask: str | None = ...,
                     validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
@@ -1761,14 +1761,14 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudDataplexV1CancelMetadataJobRequest = ...,
+                    body: GoogleCloudDataplexV1CancelMetadataJobRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def create(
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudDataplexV1MetadataJob = ...,
+                    body: GoogleCloudDataplexV1MetadataJob,
                     metadataJobId: str | None = ...,
                     validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
@@ -1800,7 +1800,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleLongrunningCancelOperationRequest = ...,
+                    body: GoogleLongrunningCancelOperationRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def delete(
@@ -1847,7 +1847,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleCloudDataplexV1LookupContextRequest = ...,
+                body: GoogleCloudDataplexV1LookupContextRequest,
                 **kwargs: typing.Any,
             ) -> GoogleCloudDataplexV1LookupContextResponseHttpRequest: ...
             def lookupEntry(
@@ -1886,7 +1886,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleCloudDataplexV1ModifyEntryRequest = ...,
+                body: GoogleCloudDataplexV1ModifyEntryRequest,
                 **kwargs: typing.Any,
             ) -> GoogleCloudDataplexV1EntryHttpRequest: ...
             def searchEntries(

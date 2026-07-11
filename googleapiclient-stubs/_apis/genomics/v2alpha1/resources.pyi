@@ -16,7 +16,7 @@ class GenomicsResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class PipelinesResource(googleapiclient.discovery.Resource):
         def run(
-            self, *, body: RunPipelineRequest = ..., **kwargs: typing.Any
+            self, *, body: RunPipelineRequest, **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
 
     @typing.type_check_only
@@ -24,11 +24,7 @@ class GenomicsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class OperationsResource(googleapiclient.discovery.Resource):
             def cancel(
-                self,
-                *,
-                name: str,
-                body: CancelOperationRequest = ...,
-                **kwargs: typing.Any,
+                self, *, name: str, body: CancelOperationRequest, **kwargs: typing.Any
             ) -> EmptyHttpRequest: ...
             def get(
                 self, *, name: str, **kwargs: typing.Any
@@ -51,7 +47,7 @@ class GenomicsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class WorkersResource(googleapiclient.discovery.Resource):
             def checkIn(
-                self, *, id: str, body: CheckInRequest = ..., **kwargs: typing.Any
+                self, *, id: str, body: CheckInRequest, **kwargs: typing.Any
             ) -> CheckInResponseHttpRequest: ...
 
         def operations(self) -> OperationsResource: ...
@@ -60,7 +56,7 @@ class GenomicsResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class WorkersResource(googleapiclient.discovery.Resource):
         def checkIn(
-            self, *, id: str, body: CheckInRequest = ..., **kwargs: typing.Any
+            self, *, id: str, body: CheckInRequest, **kwargs: typing.Any
         ) -> CheckInResponseHttpRequest: ...
 
     def new_batch_http_request(

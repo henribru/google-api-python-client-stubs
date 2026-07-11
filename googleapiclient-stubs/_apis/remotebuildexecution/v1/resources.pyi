@@ -25,7 +25,7 @@ class RemoteBuildExecutionResource(googleapiclient.discovery.Resource):
             self,
             *,
             resourceName: str,
-            body: GoogleBytestreamMedia = ...,
+            body: GoogleBytestreamMedia,
             **kwargs: typing.Any,
         ) -> GoogleBytestreamMediaHttpRequest: ...
 
@@ -35,7 +35,7 @@ class RemoteBuildExecutionResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            body: GoogleLongrunningCancelOperationRequest = ...,
+            body: GoogleLongrunningCancelOperationRequest,
             **kwargs: typing.Any,
         ) -> GoogleProtobufEmptyHttpRequest: ...
         def delete(

@@ -20,15 +20,11 @@ class CloudTraceResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class SpansResource(googleapiclient.discovery.Resource):
                 def createSpan(
-                    self, *, name: str, body: Span = ..., **kwargs: typing.Any
+                    self, *, name: str, body: Span, **kwargs: typing.Any
                 ) -> SpanHttpRequest: ...
 
             def batchWrite(
-                self,
-                *,
-                name: str,
-                body: BatchWriteSpansRequest = ...,
-                **kwargs: typing.Any,
+                self, *, name: str, body: BatchWriteSpansRequest, **kwargs: typing.Any
             ) -> EmptyHttpRequest: ...
             def spans(self) -> SpansResource: ...
 

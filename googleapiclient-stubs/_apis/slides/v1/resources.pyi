@@ -42,11 +42,11 @@ class SlidesResource(googleapiclient.discovery.Resource):
             self,
             *,
             presentationId: str,
-            body: BatchUpdatePresentationRequest = ...,
+            body: BatchUpdatePresentationRequest,
             **kwargs: typing.Any,
         ) -> BatchUpdatePresentationResponseHttpRequest: ...
         def create(
-            self, *, body: Presentation = ..., **kwargs: typing.Any
+            self, *, body: Presentation, **kwargs: typing.Any
         ) -> PresentationHttpRequest: ...
         def get(
             self, *, presentationId: str, **kwargs: typing.Any

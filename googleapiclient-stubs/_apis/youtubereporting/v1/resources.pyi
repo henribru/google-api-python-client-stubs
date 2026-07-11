@@ -46,7 +46,7 @@ class YouTubeReportingResource(googleapiclient.discovery.Resource):
         def create(
             self,
             *,
-            body: Job = ...,
+            body: Job,
             onBehalfOfContentOwner: str | None = ...,
             **kwargs: typing.Any,
         ) -> JobHttpRequest: ...

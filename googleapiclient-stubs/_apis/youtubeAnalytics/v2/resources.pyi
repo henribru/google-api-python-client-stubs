@@ -25,7 +25,7 @@ class YouTubeAnalyticsResource(googleapiclient.discovery.Resource):
         def insert(
             self,
             *,
-            body: GroupItem = ...,
+            body: GroupItem,
             onBehalfOfContentOwner: str | None = ...,
             **kwargs: typing.Any,
         ) -> GroupItemHttpRequest: ...
@@ -49,7 +49,7 @@ class YouTubeAnalyticsResource(googleapiclient.discovery.Resource):
         def insert(
             self,
             *,
-            body: Group = ...,
+            body: Group,
             onBehalfOfContentOwner: str | None = ...,
             **kwargs: typing.Any,
         ) -> GroupHttpRequest: ...
@@ -70,7 +70,7 @@ class YouTubeAnalyticsResource(googleapiclient.discovery.Resource):
         def update(
             self,
             *,
-            body: Group = ...,
+            body: Group,
             onBehalfOfContentOwner: str | None = ...,
             **kwargs: typing.Any,
         ) -> GroupHttpRequest: ...

@@ -23,7 +23,7 @@ class CloudShellResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: CreatePublicKeyRequest = ...,
+                    body: CreatePublicKeyRequest,
                     **kwargs: typing.Any,
                 ) -> PublicKeyHttpRequest: ...
                 def delete(
@@ -34,7 +34,7 @@ class CloudShellResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: AuthorizeEnvironmentRequest = ...,
+                body: AuthorizeEnvironmentRequest,
                 **kwargs: typing.Any,
             ) -> EmptyHttpRequest: ...
             def get(
@@ -44,16 +44,12 @@ class CloudShellResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: Environment = ...,
+                body: Environment,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> EnvironmentHttpRequest: ...
             def start(
-                self,
-                *,
-                name: str,
-                body: StartEnvironmentRequest = ...,
-                **kwargs: typing.Any,
+                self, *, name: str, body: StartEnvironmentRequest, **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
             def publicKeys(self) -> PublicKeysResource: ...
 

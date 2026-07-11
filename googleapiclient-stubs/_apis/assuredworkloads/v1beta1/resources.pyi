@@ -18,7 +18,7 @@ class AssuredworkloadsResource(googleapiclient.discovery.Resource):
         def archiveResourceEvents(
             self,
             *,
-            body: GoogleCloudAssuredworkloadsV1beta1ArchiveResourceEventsRequest = ...,
+            body: GoogleCloudAssuredworkloadsV1beta1ArchiveResourceEventsRequest,
             **kwargs: typing.Any,
         ) -> (
             GoogleCloudAssuredworkloadsV1beta1ArchiveResourceEventsResponseHttpRequest
@@ -26,7 +26,7 @@ class AssuredworkloadsResource(googleapiclient.discovery.Resource):
         def revertArchivedResourceEvents(
             self,
             *,
-            body: GoogleCloudAssuredworkloadsV1beta1RevertArchivedResourceEventsRequest = ...,
+            body: GoogleCloudAssuredworkloadsV1beta1RevertArchivedResourceEventsRequest,
             **kwargs: typing.Any,
         ) -> GoogleCloudAssuredworkloadsV1beta1RevertArchivedResourceEventsResponseHttpRequest: ...
 
@@ -61,7 +61,7 @@ class AssuredworkloadsResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsRequest = ...,
+                    body: GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsResponseHttpRequest: ...
 
@@ -73,7 +73,7 @@ class AssuredworkloadsResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: GoogleCloudAssuredworkloadsV1beta1ApplyWorkloadUpdateRequest = ...,
+                        body: GoogleCloudAssuredworkloadsV1beta1ApplyWorkloadUpdateRequest,
                         **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
                     def list(
@@ -99,14 +99,14 @@ class AssuredworkloadsResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: GoogleCloudAssuredworkloadsV1beta1AcknowledgeViolationRequest = ...,
+                        body: GoogleCloudAssuredworkloadsV1beta1AcknowledgeViolationRequest,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudAssuredworkloadsV1beta1AcknowledgeViolationResponseHttpRequest: ...
                     def batchAcknowledgeViolations(
                         self,
                         *,
                         parent: str,
-                        body: GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsRequest = ...,
+                        body: GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsRequest,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsResponseHttpRequest: ...
                     def get(
@@ -155,7 +155,7 @@ class AssuredworkloadsResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudAssuredworkloadsV1beta1Workload = ...,
+                    body: GoogleCloudAssuredworkloadsV1beta1Workload,
                     externalId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
@@ -194,7 +194,7 @@ class AssuredworkloadsResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudAssuredworkloadsV1beta1Workload = ...,
+                    body: GoogleCloudAssuredworkloadsV1beta1Workload,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudAssuredworkloadsV1beta1WorkloadHttpRequest: ...
@@ -202,7 +202,7 @@ class AssuredworkloadsResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudAssuredworkloadsV1beta1RestrictAllowedResourcesRequest = ...,
+                    body: GoogleCloudAssuredworkloadsV1beta1RestrictAllowedResourcesRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudAssuredworkloadsV1beta1RestrictAllowedResourcesResponseHttpRequest: ...
                 def updates(self) -> UpdatesResource: ...
@@ -218,7 +218,7 @@ class AssuredworkloadsResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsRequest = ...,
+                body: GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsRequest,
                 **kwargs: typing.Any,
             ) -> GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsResponseHttpRequest: ...
 

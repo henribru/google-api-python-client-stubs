@@ -23,7 +23,7 @@ class NetAppFilesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: ActiveDirectory = ...,
+                    body: ActiveDirectory,
                     activeDirectoryId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -52,7 +52,7 @@ class NetAppFilesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: ActiveDirectory = ...,
+                    body: ActiveDirectory,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -63,7 +63,7 @@ class NetAppFilesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: BackupPolicy = ...,
+                    body: BackupPolicy,
                     backupPolicyId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -92,7 +92,7 @@ class NetAppFilesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: BackupPolicy = ...,
+                    body: BackupPolicy,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -105,7 +105,7 @@ class NetAppFilesResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: Backup = ...,
+                        body: Backup,
                         backupId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
@@ -134,7 +134,7 @@ class NetAppFilesResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: Backup = ...,
+                        body: Backup,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
@@ -143,7 +143,7 @@ class NetAppFilesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: BackupVault = ...,
+                    body: BackupVault,
                     backupVaultId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -172,7 +172,7 @@ class NetAppFilesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: BackupVault = ...,
+                    body: BackupVault,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -184,7 +184,7 @@ class NetAppFilesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: HostGroup = ...,
+                    body: HostGroup,
                     hostGroupId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -213,7 +213,7 @@ class NetAppFilesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: HostGroup = ...,
+                    body: HostGroup,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -224,7 +224,7 @@ class NetAppFilesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: KmsConfig = ...,
+                    body: KmsConfig,
                     kmsConfigId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -235,7 +235,7 @@ class NetAppFilesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: EncryptVolumesRequest = ...,
+                    body: EncryptVolumesRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def get(
@@ -260,7 +260,7 @@ class NetAppFilesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: KmsConfig = ...,
+                    body: KmsConfig,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -268,7 +268,7 @@ class NetAppFilesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: VerifyKmsConfigRequest = ...,
+                    body: VerifyKmsConfigRequest,
                     **kwargs: typing.Any,
                 ) -> VerifyKmsConfigResponseHttpRequest: ...
 
@@ -278,7 +278,7 @@ class NetAppFilesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: CancelOperationRequest = ...,
+                    body: CancelOperationRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleProtobufEmptyHttpRequest: ...
                 def delete(
@@ -335,14 +335,14 @@ class NetAppFilesResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         ontapPath: str,
-                        body: ExecuteOntapPatchRequest = ...,
+                        body: ExecuteOntapPatchRequest,
                         **kwargs: typing.Any,
                     ) -> ExecuteOntapPatchResponseHttpRequest: ...
                     def executeOntapPost(
                         self,
                         *,
                         ontapPath: str,
-                        body: ExecuteOntapPostRequest = ...,
+                        body: ExecuteOntapPostRequest,
                         **kwargs: typing.Any,
                     ) -> ExecuteOntapPostResponseHttpRequest: ...
 
@@ -350,7 +350,7 @@ class NetAppFilesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: StoragePool = ...,
+                    body: StoragePool,
                     storagePoolId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -379,36 +379,32 @@ class NetAppFilesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: StoragePool = ...,
+                    body: StoragePool,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def restoreVolume(
-                    self,
-                    *,
-                    name: str,
-                    body: RestoreVolumeRequest = ...,
-                    **kwargs: typing.Any,
+                    self, *, name: str, body: RestoreVolumeRequest, **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def switch(
                     self,
                     *,
                     name: str,
-                    body: SwitchActiveReplicaZoneRequest = ...,
+                    body: SwitchActiveReplicaZoneRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def updateBackupConfig(
                     self,
                     *,
                     name: str,
-                    body: UpdateBackupConfigRequest = ...,
+                    body: UpdateBackupConfigRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def validateDirectoryService(
                     self,
                     *,
                     name: str,
-                    body: ValidateDirectoryServiceRequest = ...,
+                    body: ValidateDirectoryServiceRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def backupConfigs(self) -> BackupConfigsResource: ...
@@ -422,7 +418,7 @@ class NetAppFilesResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: QuotaRule = ...,
+                        body: QuotaRule,
                         quotaRuleId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
@@ -451,7 +447,7 @@ class NetAppFilesResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: QuotaRule = ...,
+                        body: QuotaRule,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
@@ -462,7 +458,7 @@ class NetAppFilesResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: Replication = ...,
+                        body: Replication,
                         replicationId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
@@ -473,7 +469,7 @@ class NetAppFilesResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: EstablishPeeringRequest = ...,
+                        body: EstablishPeeringRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def get(
@@ -498,7 +494,7 @@ class NetAppFilesResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: Replication = ...,
+                        body: Replication,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
@@ -506,28 +502,28 @@ class NetAppFilesResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: ResumeReplicationRequest = ...,
+                        body: ResumeReplicationRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def reverseDirection(
                         self,
                         *,
                         name: str,
-                        body: ReverseReplicationDirectionRequest = ...,
+                        body: ReverseReplicationDirectionRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def stop(
                         self,
                         *,
                         name: str,
-                        body: StopReplicationRequest = ...,
+                        body: StopReplicationRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def sync(
                         self,
                         *,
                         name: str,
-                        body: SyncReplicationRequest = ...,
+                        body: SyncReplicationRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
 
@@ -537,7 +533,7 @@ class NetAppFilesResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: Snapshot = ...,
+                        body: Snapshot,
                         snapshotId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
@@ -566,7 +562,7 @@ class NetAppFilesResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: Snapshot = ...,
+                        body: Snapshot,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
@@ -575,7 +571,7 @@ class NetAppFilesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: Volume = ...,
+                    body: Volume,
                     volumeId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -586,7 +582,7 @@ class NetAppFilesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: EstablishVolumePeeringRequest = ...,
+                    body: EstablishVolumePeeringRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def get(
@@ -611,7 +607,7 @@ class NetAppFilesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: Volume = ...,
+                    body: Volume,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -619,15 +615,11 @@ class NetAppFilesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: RestoreBackupFilesRequest = ...,
+                    body: RestoreBackupFilesRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def revert(
-                    self,
-                    *,
-                    name: str,
-                    body: RevertVolumeRequest = ...,
-                    **kwargs: typing.Any,
+                    self, *, name: str, body: RevertVolumeRequest, **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def quotaRules(self) -> QuotaRulesResource: ...
                 def replications(self) -> ReplicationsResource: ...

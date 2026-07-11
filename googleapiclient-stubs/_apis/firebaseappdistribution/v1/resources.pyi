@@ -19,7 +19,7 @@ class FirebaseAppDistributionResource(googleapiclient.discovery.Resource):
             self,
             *,
             app: str,
-            body: GoogleFirebaseAppdistroV1UploadReleaseRequest = ...,
+            body: GoogleFirebaseAppdistroV1UploadReleaseRequest,
             **kwargs: typing.Any,
         ) -> GoogleLongrunningOperationHttpRequest: ...
 
@@ -62,7 +62,7 @@ class FirebaseAppDistributionResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: GoogleLongrunningCancelOperationRequest = ...,
+                        body: GoogleLongrunningCancelOperationRequest,
                         **kwargs: typing.Any,
                     ) -> GoogleProtobufEmptyHttpRequest: ...
                     def delete(
@@ -90,7 +90,7 @@ class FirebaseAppDistributionResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: GoogleLongrunningWaitOperationRequest = ...,
+                        body: GoogleLongrunningWaitOperationRequest,
                         **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
 
@@ -98,14 +98,14 @@ class FirebaseAppDistributionResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleFirebaseAppdistroV1BatchDeleteReleasesRequest = ...,
+                    body: GoogleFirebaseAppdistroV1BatchDeleteReleasesRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleProtobufEmptyHttpRequest: ...
                 def distribute(
                     self,
                     *,
                     name: str,
-                    body: GoogleFirebaseAppdistroV1DistributeReleaseRequest = ...,
+                    body: GoogleFirebaseAppdistroV1DistributeReleaseRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleFirebaseAppdistroV1DistributeReleaseResponseHttpRequest: ...
                 def get(
@@ -132,7 +132,7 @@ class FirebaseAppDistributionResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleFirebaseAppdistroV1Release = ...,
+                    body: GoogleFirebaseAppdistroV1Release,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleFirebaseAppdistroV1ReleaseHttpRequest: ...
@@ -150,21 +150,21 @@ class FirebaseAppDistributionResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 group: str,
-                body: GoogleFirebaseAppdistroV1BatchJoinGroupRequest = ...,
+                body: GoogleFirebaseAppdistroV1BatchJoinGroupRequest,
                 **kwargs: typing.Any,
             ) -> GoogleProtobufEmptyHttpRequest: ...
             def batchLeave(
                 self,
                 *,
                 group: str,
-                body: GoogleFirebaseAppdistroV1BatchLeaveGroupRequest = ...,
+                body: GoogleFirebaseAppdistroV1BatchLeaveGroupRequest,
                 **kwargs: typing.Any,
             ) -> GoogleProtobufEmptyHttpRequest: ...
             def create(
                 self,
                 *,
                 parent: str,
-                body: GoogleFirebaseAppdistroV1Group = ...,
+                body: GoogleFirebaseAppdistroV1Group,
                 groupId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleFirebaseAppdistroV1GroupHttpRequest: ...
@@ -191,7 +191,7 @@ class FirebaseAppDistributionResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleFirebaseAppdistroV1Group = ...,
+                body: GoogleFirebaseAppdistroV1Group,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleFirebaseAppdistroV1GroupHttpRequest: ...
@@ -202,14 +202,14 @@ class FirebaseAppDistributionResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 project: str,
-                body: GoogleFirebaseAppdistroV1BatchAddTestersRequest = ...,
+                body: GoogleFirebaseAppdistroV1BatchAddTestersRequest,
                 **kwargs: typing.Any,
             ) -> GoogleFirebaseAppdistroV1BatchAddTestersResponseHttpRequest: ...
             def batchRemove(
                 self,
                 *,
                 project: str,
-                body: GoogleFirebaseAppdistroV1BatchRemoveTestersRequest = ...,
+                body: GoogleFirebaseAppdistroV1BatchRemoveTestersRequest,
                 **kwargs: typing.Any,
             ) -> GoogleFirebaseAppdistroV1BatchRemoveTestersResponseHttpRequest: ...
             def list(
@@ -230,7 +230,7 @@ class FirebaseAppDistributionResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleFirebaseAppdistroV1Tester = ...,
+                body: GoogleFirebaseAppdistroV1Tester,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleFirebaseAppdistroV1TesterHttpRequest: ...

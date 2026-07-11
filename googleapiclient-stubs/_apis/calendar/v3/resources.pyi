@@ -25,7 +25,7 @@ class CalendarResource(googleapiclient.discovery.Resource):
             self,
             *,
             calendarId: str,
-            body: AclRule = ...,
+            body: AclRule,
             sendNotifications: bool | None = ...,
             **kwargs: typing.Any,
         ) -> AclRuleHttpRequest: ...
@@ -47,7 +47,7 @@ class CalendarResource(googleapiclient.discovery.Resource):
             *,
             calendarId: str,
             ruleId: str,
-            body: AclRule = ...,
+            body: AclRule,
             sendNotifications: bool | None = ...,
             **kwargs: typing.Any,
         ) -> AclRuleHttpRequest: ...
@@ -56,7 +56,7 @@ class CalendarResource(googleapiclient.discovery.Resource):
             *,
             calendarId: str,
             ruleId: str,
-            body: AclRule = ...,
+            body: AclRule,
             sendNotifications: bool | None = ...,
             **kwargs: typing.Any,
         ) -> AclRuleHttpRequest: ...
@@ -64,7 +64,7 @@ class CalendarResource(googleapiclient.discovery.Resource):
             self,
             *,
             calendarId: str,
-            body: Channel = ...,
+            body: Channel,
             maxResults: int | None = ...,
             pageToken: str | None = ...,
             showDeleted: bool | None = ...,
@@ -83,7 +83,7 @@ class CalendarResource(googleapiclient.discovery.Resource):
         def insert(
             self,
             *,
-            body: CalendarListEntry = ...,
+            body: CalendarListEntry,
             colorRgbFormat: bool | None = ...,
             **kwargs: typing.Any,
         ) -> CalendarListEntryHttpRequest: ...
@@ -114,7 +114,7 @@ class CalendarResource(googleapiclient.discovery.Resource):
             self,
             *,
             calendarId: str,
-            body: CalendarListEntry = ...,
+            body: CalendarListEntry,
             colorRgbFormat: bool | None = ...,
             **kwargs: typing.Any,
         ) -> CalendarListEntryHttpRequest: ...
@@ -122,14 +122,14 @@ class CalendarResource(googleapiclient.discovery.Resource):
             self,
             *,
             calendarId: str,
-            body: CalendarListEntry = ...,
+            body: CalendarListEntry,
             colorRgbFormat: bool | None = ...,
             **kwargs: typing.Any,
         ) -> CalendarListEntryHttpRequest: ...
         def watch(
             self,
             *,
-            body: Channel = ...,
+            body: Channel,
             maxResults: int | None = ...,
             minAccessRole: typing_extensions.Literal[
                 "freeBusyReader",
@@ -158,19 +158,19 @@ class CalendarResource(googleapiclient.discovery.Resource):
             self, *, calendarId: str, **kwargs: typing.Any
         ) -> CalendarHttpRequest: ...
         def insert(
-            self, *, body: Calendar = ..., **kwargs: typing.Any
+            self, *, body: Calendar, **kwargs: typing.Any
         ) -> CalendarHttpRequest: ...
         def patch(
-            self, *, calendarId: str, body: Calendar = ..., **kwargs: typing.Any
+            self, *, calendarId: str, body: Calendar, **kwargs: typing.Any
         ) -> CalendarHttpRequest: ...
         def update(
-            self, *, calendarId: str, body: Calendar = ..., **kwargs: typing.Any
+            self, *, calendarId: str, body: Calendar, **kwargs: typing.Any
         ) -> CalendarHttpRequest: ...
 
     @typing.type_check_only
     class ChannelsResource(googleapiclient.discovery.Resource):
         def stop(
-            self, *, body: Channel = ..., **kwargs: typing.Any
+            self, *, body: Channel, **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
 
     @typing.type_check_only
@@ -203,7 +203,7 @@ class CalendarResource(googleapiclient.discovery.Resource):
             self,
             *,
             calendarId: str,
-            body: Event = ...,
+            body: Event,
             conferenceDataVersion: int | None = ...,
             supportsAttachments: bool | None = ...,
             **kwargs: typing.Any,
@@ -212,7 +212,7 @@ class CalendarResource(googleapiclient.discovery.Resource):
             self,
             *,
             calendarId: str,
-            body: Event = ...,
+            body: Event,
             conferenceDataVersion: int | None = ...,
             maxAttendees: int | None = ...,
             sendNotifications: bool | None = ...,
@@ -301,7 +301,7 @@ class CalendarResource(googleapiclient.discovery.Resource):
             *,
             calendarId: str,
             eventId: str,
-            body: Event = ...,
+            body: Event,
             alwaysIncludeEmail: bool | None = ...,
             conferenceDataVersion: int | None = ...,
             maxAttendees: int | None = ...,
@@ -326,7 +326,7 @@ class CalendarResource(googleapiclient.discovery.Resource):
             *,
             calendarId: str,
             eventId: str,
-            body: Event = ...,
+            body: Event,
             alwaysIncludeEmail: bool | None = ...,
             conferenceDataVersion: int | None = ...,
             maxAttendees: int | None = ...,
@@ -340,7 +340,7 @@ class CalendarResource(googleapiclient.discovery.Resource):
             self,
             *,
             calendarId: str,
-            body: Channel = ...,
+            body: Channel,
             alwaysIncludeEmail: bool | None = ...,
             eventTypes: typing_extensions.Literal[
                 "birthday",
@@ -383,7 +383,7 @@ class CalendarResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class FreebusyResource(googleapiclient.discovery.Resource):
         def query(
-            self, *, body: FreeBusyRequest = ..., **kwargs: typing.Any
+            self, *, body: FreeBusyRequest, **kwargs: typing.Any
         ) -> FreeBusyResponseHttpRequest: ...
 
     @typing.type_check_only
@@ -403,7 +403,7 @@ class CalendarResource(googleapiclient.discovery.Resource):
         def watch(
             self,
             *,
-            body: Channel = ...,
+            body: Channel,
             maxResults: int | None = ...,
             pageToken: str | None = ...,
             syncToken: str | None = ...,

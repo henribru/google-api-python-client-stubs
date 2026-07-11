@@ -18,11 +18,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class AuthorizedCertificatesResource(googleapiclient.discovery.Resource):
             def create(
-                self,
-                *,
-                appsId: str,
-                body: AuthorizedCertificate = ...,
-                **kwargs: typing.Any,
+                self, *, appsId: str, body: AuthorizedCertificate, **kwargs: typing.Any
             ) -> AuthorizedCertificateHttpRequest: ...
             def delete(
                 self,
@@ -60,7 +56,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 *,
                 appsId: str,
                 authorizedCertificatesId: str,
-                body: AuthorizedCertificate = ...,
+                body: AuthorizedCertificate,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> AuthorizedCertificateHttpRequest: ...
@@ -87,7 +83,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 appsId: str,
-                body: DomainMapping = ...,
+                body: DomainMapping,
                 overrideStrategy: typing_extensions.Literal[
                     "UNSPECIFIED_DOMAIN_OVERRIDE_STRATEGY", "STRICT", "OVERRIDE"
                 ]
@@ -118,7 +114,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 *,
                 appsId: str,
                 domainMappingsId: str,
-                body: DomainMapping = ...,
+                body: DomainMapping,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
@@ -131,11 +127,11 @@ class AppengineResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     appsId: str,
-                    body: BatchUpdateIngressRulesRequest = ...,
+                    body: BatchUpdateIngressRulesRequest,
                     **kwargs: typing.Any,
                 ) -> BatchUpdateIngressRulesResponseHttpRequest: ...
                 def create(
-                    self, *, appsId: str, body: FirewallRule = ..., **kwargs: typing.Any
+                    self, *, appsId: str, body: FirewallRule, **kwargs: typing.Any
                 ) -> FirewallRuleHttpRequest: ...
                 def delete(
                     self, *, appsId: str, ingressRulesId: str, **kwargs: typing.Any
@@ -162,7 +158,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                     *,
                     appsId: str,
                     ingressRulesId: str,
-                    body: FirewallRule = ...,
+                    body: FirewallRule,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> FirewallRuleHttpRequest: ...
@@ -224,7 +220,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                         servicesId: str,
                         versionsId: str,
                         instancesId: str,
-                        body: DebugInstanceRequest = ...,
+                        body: DebugInstanceRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def delete(
@@ -266,7 +262,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                     *,
                     appsId: str,
                     servicesId: str,
-                    body: Version = ...,
+                    body: Version,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
@@ -283,7 +279,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                     appsId: str,
                     servicesId: str,
                     versionsId: str,
-                    body: ExportAppImageRequest = ...,
+                    body: ExportAppImageRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def get(
@@ -322,7 +318,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                     appsId: str,
                     servicesId: str,
                     versionsId: str,
-                    body: Version = ...,
+                    body: Version,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -362,7 +358,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 *,
                 appsId: str,
                 servicesId: str,
-                body: Service = ...,
+                body: Service,
                 migrateTraffic: bool | None = ...,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
@@ -370,7 +366,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
             def versions(self) -> VersionsResource: ...
 
         def create(
-            self, *, body: Application = ..., **kwargs: typing.Any
+            self, *, body: Application, **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
         def get(
             self,
@@ -398,16 +394,12 @@ class AppengineResource(googleapiclient.discovery.Resource):
             self,
             *,
             appsId: str,
-            body: Application = ...,
+            body: Application,
             updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def repair(
-            self,
-            *,
-            appsId: str,
-            body: RepairApplicationRequest = ...,
-            **kwargs: typing.Any,
+            self, *, appsId: str, body: RepairApplicationRequest, **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
         def authorizedCertificates(self) -> AuthorizedCertificatesResource: ...
         def authorizedDomains(self) -> AuthorizedDomainsResource: ...
@@ -433,7 +425,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                         projectsId: str,
                         locationsId: str,
                         applicationsId: str,
-                        body: AuthorizedCertificate = ...,
+                        body: AuthorizedCertificate,
                         **kwargs: typing.Any,
                     ) -> AuthorizedCertificateHttpRequest: ...
                     def delete(
@@ -484,7 +476,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                         locationsId: str,
                         applicationsId: str,
                         authorizedCertificatesId: str,
-                        body: AuthorizedCertificate = ...,
+                        body: AuthorizedCertificate,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> AuthorizedCertificateHttpRequest: ...
@@ -515,7 +507,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                         projectsId: str,
                         locationsId: str,
                         applicationsId: str,
-                        body: DomainMapping = ...,
+                        body: DomainMapping,
                         overrideStrategy: typing_extensions.Literal[
                             "UNSPECIFIED_DOMAIN_OVERRIDE_STRATEGY", "STRICT", "OVERRIDE"
                         ]
@@ -562,7 +554,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                         locationsId: str,
                         applicationsId: str,
                         domainMappingsId: str,
-                        body: DomainMapping = ...,
+                        body: DomainMapping,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
@@ -582,7 +574,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                                 servicesId: str,
                                 versionsId: str,
                                 instancesId: str,
-                                body: DebugInstanceRequest = ...,
+                                body: DebugInstanceRequest,
                                 **kwargs: typing.Any,
                             ) -> OperationHttpRequest: ...
                             def delete(
@@ -615,7 +607,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                             applicationsId: str,
                             servicesId: str,
                             versionsId: str,
-                            body: ExportAppImageRequest = ...,
+                            body: ExportAppImageRequest,
                             **kwargs: typing.Any,
                         ) -> OperationHttpRequest: ...
                         def patch(
@@ -626,7 +618,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                             applicationsId: str,
                             servicesId: str,
                             versionsId: str,
-                            body: Version = ...,
+                            body: Version,
                             updateMask: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> OperationHttpRequest: ...
@@ -648,7 +640,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                         locationsId: str,
                         applicationsId: str,
                         servicesId: str,
-                        body: Service = ...,
+                        body: Service,
                         migrateTraffic: bool | None = ...,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
@@ -661,7 +653,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                     projectsId: str,
                     locationsId: str,
                     applicationsId: str,
-                    body: Application = ...,
+                    body: Application,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...

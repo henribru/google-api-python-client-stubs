@@ -22,7 +22,7 @@ class BaremetalsolutionResource(googleapiclient.discovery.Resource):
                 *,
                 project: str,
                 location: str,
-                body: SubmitProvisioningConfigRequest = ...,
+                body: SubmitProvisioningConfigRequest,
                 **kwargs: typing.Any,
             ) -> ProvisioningConfigHttpRequest: ...
 

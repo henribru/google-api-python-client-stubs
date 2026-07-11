@@ -19,7 +19,7 @@ class SearchConsoleResource(googleapiclient.discovery.Resource):
             self,
             *,
             siteUrl: str,
-            body: SearchAnalyticsQueryRequest = ...,
+            body: SearchAnalyticsQueryRequest,
             **kwargs: typing.Any,
         ) -> SearchAnalyticsQueryResponseHttpRequest: ...
 
@@ -54,7 +54,7 @@ class SearchConsoleResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class IndexResource(googleapiclient.discovery.Resource):
             def inspect(
-                self, *, body: InspectUrlIndexRequest = ..., **kwargs: typing.Any
+                self, *, body: InspectUrlIndexRequest, **kwargs: typing.Any
             ) -> InspectUrlIndexResponseHttpRequest: ...
 
         def index(self) -> IndexResource: ...
@@ -64,7 +64,7 @@ class SearchConsoleResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class MobileFriendlyTestResource(googleapiclient.discovery.Resource):
             def run(
-                self, *, body: RunMobileFriendlyTestRequest = ..., **kwargs: typing.Any
+                self, *, body: RunMobileFriendlyTestRequest, **kwargs: typing.Any
             ) -> RunMobileFriendlyTestResponseHttpRequest: ...
 
         def mobileFriendlyTest(self) -> MobileFriendlyTestResource: ...

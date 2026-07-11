@@ -26,7 +26,7 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: ProjectFeatureSettings = ...,
+                    body: ProjectFeatureSettings,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ProjectFeatureSettingsHttpRequest: ...
@@ -122,7 +122,7 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: CancelOperationRequest = ...,
+                        body: CancelOperationRequest,
                         **kwargs: typing.Any,
                     ) -> EmptyHttpRequest: ...
                     def get(
@@ -133,7 +133,7 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: OSPolicyAssignment = ...,
+                    body: OSPolicyAssignment,
                     osPolicyAssignmentId: str | None = ...,
                     requestId: str | None = ...,
                     **kwargs: typing.Any,
@@ -178,7 +178,7 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: OSPolicyAssignment = ...,
+                    body: OSPolicyAssignment,
                     allowMissing: bool | None = ...,
                     requestId: str | None = ...,
                     updateMask: str | None = ...,
@@ -196,7 +196,7 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: PatchDeployment = ...,
+                body: PatchDeployment,
                 patchDeploymentId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> PatchDeploymentHttpRequest: ...
@@ -223,7 +223,7 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: PatchDeployment = ...,
+                body: PatchDeployment,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> PatchDeploymentHttpRequest: ...
@@ -231,14 +231,14 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: PausePatchDeploymentRequest = ...,
+                body: PausePatchDeploymentRequest,
                 **kwargs: typing.Any,
             ) -> PatchDeploymentHttpRequest: ...
             def resume(
                 self,
                 *,
                 name: str,
-                body: ResumePatchDeploymentRequest = ...,
+                body: ResumePatchDeploymentRequest,
                 **kwargs: typing.Any,
             ) -> PatchDeploymentHttpRequest: ...
 
@@ -262,18 +262,10 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                 ) -> ListPatchJobInstanceDetailsResponseHttpRequest | None: ...
 
             def cancel(
-                self,
-                *,
-                name: str,
-                body: CancelPatchJobRequest = ...,
-                **kwargs: typing.Any,
+                self, *, name: str, body: CancelPatchJobRequest, **kwargs: typing.Any
             ) -> PatchJobHttpRequest: ...
             def execute(
-                self,
-                *,
-                parent: str,
-                body: ExecutePatchJobRequest = ...,
-                **kwargs: typing.Any,
+                self, *, parent: str, body: ExecutePatchJobRequest, **kwargs: typing.Any
             ) -> PatchJobHttpRequest: ...
             def get(
                 self, *, name: str, **kwargs: typing.Any

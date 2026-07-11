@@ -18,7 +18,7 @@ class VaultResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class ExportsResource(googleapiclient.discovery.Resource):
             def create(
-                self, *, matterId: str, body: Export = ..., **kwargs: typing.Any
+                self, *, matterId: str, body: Export, **kwargs: typing.Any
             ) -> ExportHttpRequest: ...
             def delete(
                 self, *, matterId: str, exportId: str, **kwargs: typing.Any
@@ -49,7 +49,7 @@ class VaultResource(googleapiclient.discovery.Resource):
                     *,
                     matterId: str,
                     holdId: str,
-                    body: HeldAccount = ...,
+                    body: HeldAccount,
                     **kwargs: typing.Any,
                 ) -> HeldAccountHttpRequest: ...
                 def delete(
@@ -69,11 +69,11 @@ class VaultResource(googleapiclient.discovery.Resource):
                 *,
                 matterId: str,
                 holdId: str,
-                body: AddHeldAccountsRequest = ...,
+                body: AddHeldAccountsRequest,
                 **kwargs: typing.Any,
             ) -> AddHeldAccountsResponseHttpRequest: ...
             def create(
-                self, *, matterId: str, body: Hold = ..., **kwargs: typing.Any
+                self, *, matterId: str, body: Hold, **kwargs: typing.Any
             ) -> HoldHttpRequest: ...
             def delete(
                 self, *, matterId: str, holdId: str, **kwargs: typing.Any
@@ -111,23 +111,18 @@ class VaultResource(googleapiclient.discovery.Resource):
                 *,
                 matterId: str,
                 holdId: str,
-                body: RemoveHeldAccountsRequest = ...,
+                body: RemoveHeldAccountsRequest,
                 **kwargs: typing.Any,
             ) -> RemoveHeldAccountsResponseHttpRequest: ...
             def update(
-                self,
-                *,
-                matterId: str,
-                holdId: str,
-                body: Hold = ...,
-                **kwargs: typing.Any,
+                self, *, matterId: str, holdId: str, body: Hold, **kwargs: typing.Any
             ) -> HoldHttpRequest: ...
             def accounts(self) -> AccountsResource: ...
 
         @typing.type_check_only
         class SavedQueriesResource(googleapiclient.discovery.Resource):
             def create(
-                self, *, matterId: str, body: SavedQuery = ..., **kwargs: typing.Any
+                self, *, matterId: str, body: SavedQuery, **kwargs: typing.Any
             ) -> SavedQueryHttpRequest: ...
             def delete(
                 self, *, matterId: str, savedQueryId: str, **kwargs: typing.Any
@@ -153,21 +148,17 @@ class VaultResource(googleapiclient.discovery.Resource):
             self,
             *,
             matterId: str,
-            body: AddMatterPermissionsRequest = ...,
+            body: AddMatterPermissionsRequest,
             **kwargs: typing.Any,
         ) -> MatterPermissionHttpRequest: ...
         def close(  # type: ignore[override]
-            self, *, matterId: str, body: CloseMatterRequest = ..., **kwargs: typing.Any
+            self, *, matterId: str, body: CloseMatterRequest, **kwargs: typing.Any
         ) -> CloseMatterResponseHttpRequest: ...
         def count(
-            self,
-            *,
-            matterId: str,
-            body: CountArtifactsRequest = ...,
-            **kwargs: typing.Any,
+            self, *, matterId: str, body: CountArtifactsRequest, **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
         def create(
-            self, *, body: Matter = ..., **kwargs: typing.Any
+            self, *, body: Matter, **kwargs: typing.Any
         ) -> MatterHttpRequest: ...
         def delete(
             self, *, matterId: str, **kwargs: typing.Any
@@ -202,25 +193,17 @@ class VaultResource(googleapiclient.discovery.Resource):
             self,
             *,
             matterId: str,
-            body: RemoveMatterPermissionsRequest = ...,
+            body: RemoveMatterPermissionsRequest,
             **kwargs: typing.Any,
         ) -> EmptyHttpRequest: ...
         def reopen(
-            self,
-            *,
-            matterId: str,
-            body: ReopenMatterRequest = ...,
-            **kwargs: typing.Any,
+            self, *, matterId: str, body: ReopenMatterRequest, **kwargs: typing.Any
         ) -> ReopenMatterResponseHttpRequest: ...
         def undelete(
-            self,
-            *,
-            matterId: str,
-            body: UndeleteMatterRequest = ...,
-            **kwargs: typing.Any,
+            self, *, matterId: str, body: UndeleteMatterRequest, **kwargs: typing.Any
         ) -> MatterHttpRequest: ...
         def update(
-            self, *, matterId: str, body: Matter = ..., **kwargs: typing.Any
+            self, *, matterId: str, body: Matter, **kwargs: typing.Any
         ) -> MatterHttpRequest: ...
         def exports(self) -> ExportsResource: ...
         def holds(self) -> HoldsResource: ...
@@ -229,7 +212,7 @@ class VaultResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class OperationsResource(googleapiclient.discovery.Resource):
         def cancel(
-            self, *, name: str, body: CancelOperationRequest = ..., **kwargs: typing.Any
+            self, *, name: str, body: CancelOperationRequest, **kwargs: typing.Any
         ) -> EmptyHttpRequest: ...
         def delete(self, *, name: str, **kwargs: typing.Any) -> EmptyHttpRequest: ...
         def get(self, *, name: str, **kwargs: typing.Any) -> OperationHttpRequest: ...

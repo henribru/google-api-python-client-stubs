@@ -25,7 +25,7 @@ class NetworkManagementResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: CancelOperationRequest = ...,
+                        body: CancelOperationRequest,
                         **kwargs: typing.Any,
                     ) -> EmptyHttpRequest: ...
                     def delete(
@@ -58,7 +58,7 @@ class NetworkManagementResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: VpcFlowLogsConfig = ...,
+                    body: VpcFlowLogsConfig,
                     vpcFlowLogsConfigId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -87,7 +87,7 @@ class NetworkManagementResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: VpcFlowLogsConfig = ...,
+                    body: VpcFlowLogsConfig,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -127,7 +127,7 @@ class NetworkManagementResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: ConnectivityTest = ...,
+                        body: ConnectivityTest,
                         testId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
@@ -163,7 +163,7 @@ class NetworkManagementResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: ConnectivityTest = ...,
+                        body: ConnectivityTest,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
@@ -171,21 +171,21 @@ class NetworkManagementResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: RerunConnectivityTestRequest = ...,
+                        body: RerunConnectivityTestRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def setIamPolicy(
                         self,
                         *,
                         resource: str,
-                        body: SetIamPolicyRequest = ...,
+                        body: SetIamPolicyRequest,
                         **kwargs: typing.Any,
                     ) -> PolicyHttpRequest: ...
                     def testIamPermissions(
                         self,
                         *,
                         resource: str,
-                        body: TestIamPermissionsRequest = ...,
+                        body: TestIamPermissionsRequest,
                         **kwargs: typing.Any,
                     ) -> TestIamPermissionsResponseHttpRequest: ...
 
@@ -195,7 +195,7 @@ class NetworkManagementResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: CancelOperationRequest = ...,
+                        body: CancelOperationRequest,
                         **kwargs: typing.Any,
                     ) -> EmptyHttpRequest: ...
                     def delete(
@@ -329,7 +329,7 @@ class NetworkManagementResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: NetworkMonitoringProvider = ...,
+                    body: NetworkMonitoringProvider,
                     networkMonitoringProviderId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -376,7 +376,7 @@ class NetworkManagementResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: VpcFlowLogsConfig = ...,
+                    body: VpcFlowLogsConfig,
                     vpcFlowLogsConfigId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -405,7 +405,7 @@ class NetworkManagementResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: VpcFlowLogsConfig = ...,
+                    body: VpcFlowLogsConfig,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...

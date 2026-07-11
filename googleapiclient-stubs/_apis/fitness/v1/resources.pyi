@@ -65,7 +65,7 @@ class FitnessResource(googleapiclient.discovery.Resource):
                     userId: str,
                     dataSourceId: str,
                     datasetId: str,
-                    body: Dataset = ...,
+                    body: Dataset,
                     **kwargs: typing.Any,
                 ) -> DatasetHttpRequest: ...
                 def patch_next(
@@ -75,7 +75,7 @@ class FitnessResource(googleapiclient.discovery.Resource):
                 ) -> DatasetHttpRequest | None: ...
 
             def create(
-                self, *, userId: str, body: DataSource = ..., **kwargs: typing.Any
+                self, *, userId: str, body: DataSource, **kwargs: typing.Any
             ) -> DataSourceHttpRequest: ...
             def delete(
                 self, *, userId: str, dataSourceId: str, **kwargs: typing.Any
@@ -95,7 +95,7 @@ class FitnessResource(googleapiclient.discovery.Resource):
                 *,
                 userId: str,
                 dataSourceId: str,
-                body: DataSource = ...,
+                body: DataSource,
                 **kwargs: typing.Any,
             ) -> DataSourceHttpRequest: ...
             def dataPointChanges(self) -> DataPointChangesResource: ...
@@ -104,7 +104,7 @@ class FitnessResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class DatasetResource(googleapiclient.discovery.Resource):
             def aggregate(
-                self, *, userId: str, body: AggregateRequest = ..., **kwargs: typing.Any
+                self, *, userId: str, body: AggregateRequest, **kwargs: typing.Any
             ) -> AggregateResponseHttpRequest: ...
 
         @typing.type_check_only
@@ -133,7 +133,7 @@ class FitnessResource(googleapiclient.discovery.Resource):
                 *,
                 userId: str,
                 sessionId: str,
-                body: Session = ...,
+                body: Session,
                 **kwargs: typing.Any,
             ) -> SessionHttpRequest: ...
 

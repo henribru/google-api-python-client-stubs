@@ -22,13 +22,13 @@ class ManagedKafkaResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class AclsResource(googleapiclient.discovery.Resource):
                     def addAclEntry(
-                        self, *, acl: str, body: AclEntry = ..., **kwargs: typing.Any
+                        self, *, acl: str, body: AclEntry, **kwargs: typing.Any
                     ) -> AddAclEntryResponseHttpRequest: ...
                     def create(
                         self,
                         *,
                         parent: str,
-                        body: Acl = ...,
+                        body: Acl,
                         aclId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> AclHttpRequest: ...
@@ -55,12 +55,12 @@ class ManagedKafkaResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: Acl = ...,
+                        body: Acl,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> AclHttpRequest: ...
                     def removeAclEntry(
-                        self, *, acl: str, body: AclEntry = ..., **kwargs: typing.Any
+                        self, *, acl: str, body: AclEntry, **kwargs: typing.Any
                     ) -> RemoveAclEntryResponseHttpRequest: ...
 
                 @typing.type_check_only
@@ -95,7 +95,7 @@ class ManagedKafkaResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: ConsumerGroup = ...,
+                        body: ConsumerGroup,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ConsumerGroupHttpRequest: ...
@@ -106,7 +106,7 @@ class ManagedKafkaResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: Topic = ...,
+                        body: Topic,
                         topicId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> TopicHttpRequest: ...
@@ -133,7 +133,7 @@ class ManagedKafkaResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: Topic = ...,
+                        body: Topic,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> TopicHttpRequest: ...
@@ -142,7 +142,7 @@ class ManagedKafkaResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: Cluster = ...,
+                    body: Cluster,
                     clusterId: str | None = ...,
                     requestId: str | None = ...,
                     **kwargs: typing.Any,
@@ -185,7 +185,7 @@ class ManagedKafkaResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: Cluster = ...,
+                    body: Cluster,
                     requestId: str | None = ...,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
@@ -202,7 +202,7 @@ class ManagedKafkaResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: Connector = ...,
+                        body: Connector,
                         connectorId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ConnectorHttpRequest: ...
@@ -229,7 +229,7 @@ class ManagedKafkaResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: Connector = ...,
+                        body: Connector,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ConnectorHttpRequest: ...
@@ -237,28 +237,28 @@ class ManagedKafkaResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: PauseConnectorRequest = ...,
+                        body: PauseConnectorRequest,
                         **kwargs: typing.Any,
                     ) -> PauseConnectorResponseHttpRequest: ...
                     def restart(
                         self,
                         *,
                         name: str,
-                        body: RestartConnectorRequest = ...,
+                        body: RestartConnectorRequest,
                         **kwargs: typing.Any,
                     ) -> RestartConnectorResponseHttpRequest: ...
                     def resume(
                         self,
                         *,
                         name: str,
-                        body: ResumeConnectorRequest = ...,
+                        body: ResumeConnectorRequest,
                         **kwargs: typing.Any,
                     ) -> ResumeConnectorResponseHttpRequest: ...
                     def stop(
                         self,
                         *,
                         name: str,
-                        body: StopConnectorRequest = ...,
+                        body: StopConnectorRequest,
                         **kwargs: typing.Any,
                     ) -> StopConnectorResponseHttpRequest: ...
 
@@ -266,7 +266,7 @@ class ManagedKafkaResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: ConnectCluster = ...,
+                    body: ConnectCluster,
                     connectClusterId: str | None = ...,
                     requestId: str | None = ...,
                     **kwargs: typing.Any,
@@ -300,7 +300,7 @@ class ManagedKafkaResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: ConnectCluster = ...,
+                    body: ConnectCluster,
                     requestId: str | None = ...,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
@@ -313,7 +313,7 @@ class ManagedKafkaResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: CancelOperationRequest = ...,
+                    body: CancelOperationRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def delete(
@@ -346,7 +346,7 @@ class ManagedKafkaResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: CheckCompatibilityRequest = ...,
+                        body: CheckCompatibilityRequest,
                         **kwargs: typing.Any,
                     ) -> CheckCompatibilityResponseHttpRequest: ...
 
@@ -366,7 +366,7 @@ class ManagedKafkaResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: UpdateSchemaConfigRequest = ...,
+                        body: UpdateSchemaConfigRequest,
                         **kwargs: typing.Any,
                     ) -> SchemaConfigHttpRequest: ...
 
@@ -378,7 +378,7 @@ class ManagedKafkaResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             name: str,
-                            body: CheckCompatibilityRequest = ...,
+                            body: CheckCompatibilityRequest,
                             **kwargs: typing.Any,
                         ) -> CheckCompatibilityResponseHttpRequest: ...
 
@@ -398,7 +398,7 @@ class ManagedKafkaResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             name: str,
-                            body: UpdateSchemaConfigRequest = ...,
+                            body: UpdateSchemaConfigRequest,
                             **kwargs: typing.Any,
                         ) -> SchemaConfigHttpRequest: ...
 
@@ -414,7 +414,7 @@ class ManagedKafkaResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             name: str,
-                            body: UpdateSchemaModeRequest = ...,
+                            body: UpdateSchemaModeRequest,
                             **kwargs: typing.Any,
                         ) -> SchemaModeHttpRequest: ...
 
@@ -482,7 +482,7 @@ class ManagedKafkaResource(googleapiclient.discovery.Resource):
                                 self,
                                 *,
                                 parent: str,
-                                body: CreateVersionRequest = ...,
+                                body: CreateVersionRequest,
                                 **kwargs: typing.Any,
                             ) -> CreateVersionResponseHttpRequest: ...
                             def delete(
@@ -534,7 +534,7 @@ class ManagedKafkaResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             parent: str,
-                            body: LookupVersionRequest = ...,
+                            body: LookupVersionRequest,
                             **kwargs: typing.Any,
                         ) -> SchemaVersionHttpRequest: ...
                         def versions(self) -> VersionsResource: ...
@@ -563,7 +563,7 @@ class ManagedKafkaResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: UpdateSchemaModeRequest = ...,
+                        body: UpdateSchemaModeRequest,
                         **kwargs: typing.Any,
                     ) -> SchemaModeHttpRequest: ...
 
@@ -629,7 +629,7 @@ class ManagedKafkaResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             parent: str,
-                            body: CreateVersionRequest = ...,
+                            body: CreateVersionRequest,
                             **kwargs: typing.Any,
                         ) -> CreateVersionResponseHttpRequest: ...
                         def delete(
@@ -681,7 +681,7 @@ class ManagedKafkaResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: LookupVersionRequest = ...,
+                        body: LookupVersionRequest,
                         **kwargs: typing.Any,
                     ) -> SchemaVersionHttpRequest: ...
                     def versions(self) -> VersionsResource: ...
@@ -690,7 +690,7 @@ class ManagedKafkaResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: CreateSchemaRegistryRequest = ...,
+                    body: CreateSchemaRegistryRequest,
                     **kwargs: typing.Any,
                 ) -> SchemaRegistryHttpRequest: ...
                 def delete(

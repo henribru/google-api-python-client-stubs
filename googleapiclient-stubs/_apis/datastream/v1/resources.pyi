@@ -23,7 +23,7 @@ class DatastreamResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: ConnectionProfile = ...,
+                    body: ConnectionProfile,
                     connectionProfileId: str | None = ...,
                     force: bool | None = ...,
                     requestId: str | None = ...,
@@ -41,7 +41,7 @@ class DatastreamResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: DiscoverConnectionProfileRequest = ...,
+                    body: DiscoverConnectionProfileRequest,
                     **kwargs: typing.Any,
                 ) -> DiscoverConnectionProfileResponseHttpRequest: ...
                 def get(
@@ -66,7 +66,7 @@ class DatastreamResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: ConnectionProfile = ...,
+                    body: ConnectionProfile,
                     force: bool | None = ...,
                     requestId: str | None = ...,
                     updateMask: str | None = ...,
@@ -80,7 +80,7 @@ class DatastreamResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: CancelOperationRequest = ...,
+                    body: CancelOperationRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def delete(
@@ -113,7 +113,7 @@ class DatastreamResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: Route = ...,
+                        body: Route,
                         requestId: str | None = ...,
                         routeId: str | None = ...,
                         **kwargs: typing.Any,
@@ -148,7 +148,7 @@ class DatastreamResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: PrivateConnection = ...,
+                    body: PrivateConnection,
                     force: bool | None = ...,
                     privateConnectionId: str | None = ...,
                     requestId: str | None = ...,
@@ -207,21 +207,21 @@ class DatastreamResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: LookupStreamObjectRequest = ...,
+                        body: LookupStreamObjectRequest,
                         **kwargs: typing.Any,
                     ) -> StreamObjectHttpRequest: ...
                     def startBackfillJob(
                         self,
                         *,
                         object: str,
-                        body: StartBackfillJobRequest = ...,
+                        body: StartBackfillJobRequest,
                         **kwargs: typing.Any,
                     ) -> StartBackfillJobResponseHttpRequest: ...
                     def stopBackfillJob(
                         self,
                         *,
                         object: str,
-                        body: StopBackfillJobRequest = ...,
+                        body: StopBackfillJobRequest,
                         **kwargs: typing.Any,
                     ) -> StopBackfillJobResponseHttpRequest: ...
 
@@ -229,7 +229,7 @@ class DatastreamResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: Stream = ...,
+                    body: Stream,
                     force: bool | None = ...,
                     requestId: str | None = ...,
                     streamId: str | None = ...,
@@ -265,7 +265,7 @@ class DatastreamResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: Stream = ...,
+                    body: Stream,
                     force: bool | None = ...,
                     requestId: str | None = ...,
                     updateMask: str | None = ...,
@@ -273,11 +273,7 @@ class DatastreamResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def run(
-                    self,
-                    *,
-                    name: str,
-                    body: RunStreamRequest = ...,
-                    **kwargs: typing.Any,
+                    self, *, name: str, body: RunStreamRequest, **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def objects(self) -> ObjectsResource: ...
 

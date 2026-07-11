@@ -23,7 +23,7 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: CancelOperationRequest = ...,
+                    body: CancelOperationRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def get(
@@ -38,14 +38,14 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: ImportAptArtifactsRequest = ...,
+                        body: ImportAptArtifactsRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def upload(
                         self,
                         *,
                         parent: str,
-                        body: UploadAptArtifactRequest = ...,
+                        body: UploadAptArtifactRequest,
                         **kwargs: typing.Any,
                     ) -> UploadAptArtifactMediaResponseHttpRequest: ...
 
@@ -55,7 +55,7 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: Attachment = ...,
+                        body: Attachment,
                         attachmentId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
@@ -133,7 +133,7 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: GoogleDevtoolsArtifactregistryV1File = ...,
+                        body: GoogleDevtoolsArtifactregistryV1File,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleDevtoolsArtifactregistryV1FileHttpRequest: ...
@@ -141,7 +141,7 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: UploadFileRequest = ...,
+                        body: UploadFileRequest,
                         **kwargs: typing.Any,
                     ) -> UploadFileMediaResponseHttpRequest: ...
 
@@ -151,7 +151,7 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: UploadGenericArtifactRequest = ...,
+                        body: UploadGenericArtifactRequest,
                         **kwargs: typing.Any,
                     ) -> UploadGenericArtifactMediaResponseHttpRequest: ...
 
@@ -161,7 +161,7 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: UploadGoModuleRequest = ...,
+                        body: UploadGoModuleRequest,
                         **kwargs: typing.Any,
                     ) -> UploadGoModuleMediaResponseHttpRequest: ...
 
@@ -171,14 +171,14 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: ImportGoogetArtifactsRequest = ...,
+                        body: ImportGoogetArtifactsRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def upload(
                         self,
                         *,
                         parent: str,
-                        body: UploadGoogetArtifactRequest = ...,
+                        body: UploadGoogetArtifactRequest,
                         **kwargs: typing.Any,
                     ) -> UploadGoogetArtifactMediaResponseHttpRequest: ...
 
@@ -188,7 +188,7 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: UploadKfpArtifactRequest = ...,
+                        body: UploadKfpArtifactRequest,
                         **kwargs: typing.Any,
                     ) -> UploadKfpArtifactMediaResponseHttpRequest: ...
 
@@ -238,7 +238,7 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             parent: str,
-                            body: Tag = ...,
+                            body: Tag,
                             tagId: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> TagHttpRequest: ...
@@ -266,7 +266,7 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             name: str,
-                            body: Tag = ...,
+                            body: Tag,
                             updateMask: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> TagHttpRequest: ...
@@ -277,7 +277,7 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             parent: str,
-                            body: BatchDeleteVersionsRequest = ...,
+                            body: BatchDeleteVersionsRequest,
                             **kwargs: typing.Any,
                         ) -> OperationHttpRequest: ...
                         def delete(
@@ -320,7 +320,7 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             name: str,
-                            body: Version = ...,
+                            body: Version,
                             updateMask: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> VersionHttpRequest: ...
@@ -350,7 +350,7 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: Package = ...,
+                        body: Package,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> PackageHttpRequest: ...
@@ -399,7 +399,7 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: GoogleDevtoolsArtifactregistryV1Rule = ...,
+                        body: GoogleDevtoolsArtifactregistryV1Rule,
                         ruleId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleDevtoolsArtifactregistryV1RuleHttpRequest: ...
@@ -426,7 +426,7 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: GoogleDevtoolsArtifactregistryV1Rule = ...,
+                        body: GoogleDevtoolsArtifactregistryV1Rule,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleDevtoolsArtifactregistryV1RuleHttpRequest: ...
@@ -437,14 +437,14 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: ImportYumArtifactsRequest = ...,
+                        body: ImportYumArtifactsRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def upload(
                         self,
                         *,
                         parent: str,
-                        body: UploadYumArtifactRequest = ...,
+                        body: UploadYumArtifactRequest,
                         **kwargs: typing.Any,
                     ) -> UploadYumArtifactMediaResponseHttpRequest: ...
 
@@ -452,14 +452,14 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     repository: str,
-                    body: CheckPrewarmedArtifactRequest = ...,
+                    body: CheckPrewarmedArtifactRequest,
                     **kwargs: typing.Any,
                 ) -> CheckPrewarmedArtifactResponseHttpRequest: ...
                 def create(
                     self,
                     *,
                     parent: str,
-                    body: Repository = ...,
+                    body: Repository,
                     repositoryId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -470,7 +470,7 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     repository: str,
-                    body: ExportArtifactRequest = ...,
+                    body: ExportArtifactRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def get(
@@ -502,7 +502,7 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: Repository = ...,
+                    body: Repository,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> RepositoryHttpRequest: ...
@@ -510,28 +510,28 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     repository: str,
-                    body: PrewarmArtifactRequest = ...,
+                    body: PrewarmArtifactRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def removePrewarmedArtifact(
                     self,
                     *,
                     repository: str,
-                    body: RemovePrewarmedArtifactRequest = ...,
+                    body: RemovePrewarmedArtifactRequest,
                     **kwargs: typing.Any,
                 ) -> RemovePrewarmedArtifactResponseHttpRequest: ...
                 def setIamPolicy(
                     self,
                     *,
                     resource: str,
-                    body: SetIamPolicyRequest = ...,
+                    body: SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: TestIamPermissionsRequest = ...,
+                    body: TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def aptArtifacts(self) -> AptArtifactsResource: ...
@@ -578,7 +578,7 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: ProjectConfig = ...,
+                body: ProjectConfig,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ProjectConfigHttpRequest: ...
@@ -586,7 +586,7 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: VPCSCConfig = ...,
+                body: VPCSCConfig,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> VPCSCConfigHttpRequest: ...
@@ -600,7 +600,7 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            body: ProjectSettings = ...,
+            body: ProjectSettings,
             updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> ProjectSettingsHttpRequest: ...

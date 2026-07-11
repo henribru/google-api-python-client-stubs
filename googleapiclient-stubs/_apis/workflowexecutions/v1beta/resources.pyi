@@ -25,15 +25,11 @@ class WorkflowExecutionsResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: CancelExecutionRequest = ...,
+                        body: CancelExecutionRequest,
                         **kwargs: typing.Any,
                     ) -> ExecutionHttpRequest: ...
                     def create(
-                        self,
-                        *,
-                        parent: str,
-                        body: Execution = ...,
-                        **kwargs: typing.Any,
+                        self, *, parent: str, body: Execution, **kwargs: typing.Any
                     ) -> ExecutionHttpRequest: ...
                     def get(
                         self,

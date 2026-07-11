@@ -23,7 +23,7 @@ class CloudDeployResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: CustomTargetType = ...,
+                    body: CustomTargetType,
                     customTargetTypeId: str | None = ...,
                     requestId: str | None = ...,
                     validateOnly: bool | None = ...,
@@ -68,7 +68,7 @@ class CloudDeployResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: CustomTargetType = ...,
+                    body: CustomTargetType,
                     allowMissing: bool | None = ...,
                     requestId: str | None = ...,
                     updateMask: str | None = ...,
@@ -79,7 +79,7 @@ class CloudDeployResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: SetIamPolicyRequest = ...,
+                    body: SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
 
@@ -91,7 +91,7 @@ class CloudDeployResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: CancelAutomationRunRequest = ...,
+                        body: CancelAutomationRunRequest,
                         **kwargs: typing.Any,
                     ) -> CancelAutomationRunResponseHttpRequest: ...
                     def get(
@@ -119,7 +119,7 @@ class CloudDeployResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: Automation = ...,
+                        body: Automation,
                         automationId: str | None = ...,
                         requestId: str | None = ...,
                         validateOnly: bool | None = ...,
@@ -157,7 +157,7 @@ class CloudDeployResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: Automation = ...,
+                        body: Automation,
                         allowMissing: bool | None = ...,
                         requestId: str | None = ...,
                         updateMask: str | None = ...,
@@ -193,7 +193,7 @@ class CloudDeployResource(googleapiclient.discovery.Resource):
                                 self,
                                 *,
                                 name: str,
-                                body: TerminateJobRunRequest = ...,
+                                body: TerminateJobRunRequest,
                                 **kwargs: typing.Any,
                             ) -> TerminateJobRunResponseHttpRequest: ...
 
@@ -201,28 +201,28 @@ class CloudDeployResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             name: str,
-                            body: AdvanceRolloutRequest = ...,
+                            body: AdvanceRolloutRequest,
                             **kwargs: typing.Any,
                         ) -> AdvanceRolloutResponseHttpRequest: ...
                         def approve(
                             self,
                             *,
                             name: str,
-                            body: ApproveRolloutRequest = ...,
+                            body: ApproveRolloutRequest,
                             **kwargs: typing.Any,
                         ) -> ApproveRolloutResponseHttpRequest: ...
                         def cancel(
                             self,
                             *,
                             name: str,
-                            body: CancelRolloutRequest = ...,
+                            body: CancelRolloutRequest,
                             **kwargs: typing.Any,
                         ) -> CancelRolloutResponseHttpRequest: ...
                         def create(
                             self,
                             *,
                             parent: str,
-                            body: Rollout = ...,
+                            body: Rollout,
                             overrideDeployPolicy: str | _list[str] | None = ...,
                             requestId: str | None = ...,
                             rolloutId: str | None = ...,
@@ -237,7 +237,7 @@ class CloudDeployResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             rollout: str,
-                            body: IgnoreJobRequest = ...,
+                            body: IgnoreJobRequest,
                             **kwargs: typing.Any,
                         ) -> IgnoreJobResponseHttpRequest: ...
                         def list(
@@ -259,7 +259,7 @@ class CloudDeployResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             rollout: str,
-                            body: RetryJobRequest = ...,
+                            body: RetryJobRequest,
                             **kwargs: typing.Any,
                         ) -> RetryJobResponseHttpRequest: ...
                         def jobRuns(self) -> JobRunsResource: ...
@@ -268,14 +268,14 @@ class CloudDeployResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: AbandonReleaseRequest = ...,
+                        body: AbandonReleaseRequest,
                         **kwargs: typing.Any,
                     ) -> AbandonReleaseResponseHttpRequest: ...
                     def create(
                         self,
                         *,
                         parent: str,
-                        body: Release = ...,
+                        body: Release,
                         overrideDeployPolicy: str | _list[str] | None = ...,
                         releaseId: str | None = ...,
                         requestId: str | None = ...,
@@ -306,7 +306,7 @@ class CloudDeployResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: DeliveryPipeline = ...,
+                    body: DeliveryPipeline,
                     deliveryPipelineId: str | None = ...,
                     requestId: str | None = ...,
                     validateOnly: bool | None = ...,
@@ -352,7 +352,7 @@ class CloudDeployResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: DeliveryPipeline = ...,
+                    body: DeliveryPipeline,
                     allowMissing: bool | None = ...,
                     requestId: str | None = ...,
                     updateMask: str | None = ...,
@@ -363,21 +363,21 @@ class CloudDeployResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: RollbackTargetRequest = ...,
+                    body: RollbackTargetRequest,
                     **kwargs: typing.Any,
                 ) -> RollbackTargetResponseHttpRequest: ...
                 def setIamPolicy(
                     self,
                     *,
                     resource: str,
-                    body: SetIamPolicyRequest = ...,
+                    body: SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: TestIamPermissionsRequest = ...,
+                    body: TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def automationRuns(self) -> AutomationRunsResource: ...
@@ -390,7 +390,7 @@ class CloudDeployResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: DeployPolicy = ...,
+                    body: DeployPolicy,
                     deployPolicyId: str | None = ...,
                     requestId: str | None = ...,
                     validateOnly: bool | None = ...,
@@ -435,7 +435,7 @@ class CloudDeployResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: DeployPolicy = ...,
+                    body: DeployPolicy,
                     allowMissing: bool | None = ...,
                     requestId: str | None = ...,
                     updateMask: str | None = ...,
@@ -446,7 +446,7 @@ class CloudDeployResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: SetIamPolicyRequest = ...,
+                    body: SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
 
@@ -456,7 +456,7 @@ class CloudDeployResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: CancelOperationRequest = ...,
+                    body: CancelOperationRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def delete(
@@ -487,7 +487,7 @@ class CloudDeployResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: Target = ...,
+                    body: Target,
                     requestId: str | None = ...,
                     targetId: str | None = ...,
                     validateOnly: bool | None = ...,
@@ -532,7 +532,7 @@ class CloudDeployResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: Target = ...,
+                    body: Target,
                     allowMissing: bool | None = ...,
                     requestId: str | None = ...,
                     updateMask: str | None = ...,
@@ -543,14 +543,14 @@ class CloudDeployResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: SetIamPolicyRequest = ...,
+                    body: SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: TestIamPermissionsRequest = ...,
+                    body: TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
 

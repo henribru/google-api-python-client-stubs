@@ -19,26 +19,22 @@ class AnalyticsDataResource(googleapiclient.discovery.Resource):
             self, *, name: str, **kwargs: typing.Any
         ) -> MetadataHttpRequest: ...
         def runRealtimeReport(
-            self,
-            *,
-            property: str,
-            body: RunRealtimeReportRequest = ...,
-            **kwargs: typing.Any,
+            self, *, property: str, body: RunRealtimeReportRequest, **kwargs: typing.Any
         ) -> RunRealtimeReportResponseHttpRequest: ...
 
     @typing.type_check_only
     class V1alphaResource(googleapiclient.discovery.Resource):
         def batchRunPivotReports(
-            self, *, body: BatchRunPivotReportsRequest = ..., **kwargs: typing.Any
+            self, *, body: BatchRunPivotReportsRequest, **kwargs: typing.Any
         ) -> BatchRunPivotReportsResponseHttpRequest: ...
         def batchRunReports(
-            self, *, body: BatchRunReportsRequest = ..., **kwargs: typing.Any
+            self, *, body: BatchRunReportsRequest, **kwargs: typing.Any
         ) -> BatchRunReportsResponseHttpRequest: ...
         def runPivotReport(
-            self, *, body: RunPivotReportRequest = ..., **kwargs: typing.Any
+            self, *, body: RunPivotReportRequest, **kwargs: typing.Any
         ) -> RunPivotReportResponseHttpRequest: ...
         def runReport(
-            self, *, body: RunReportRequest = ..., **kwargs: typing.Any
+            self, *, body: RunReportRequest, **kwargs: typing.Any
         ) -> RunReportResponseHttpRequest: ...
 
     def new_batch_http_request(

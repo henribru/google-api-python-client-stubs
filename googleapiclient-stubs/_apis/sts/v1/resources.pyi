@@ -66,10 +66,7 @@ class CloudSecurityTokenResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class V1Resource(googleapiclient.discovery.Resource):
         def token(
-            self,
-            *,
-            body: GoogleIdentityStsV1ExchangeTokenRequest = ...,
-            **kwargs: typing.Any,
+            self, *, body: GoogleIdentityStsV1ExchangeTokenRequest, **kwargs: typing.Any
         ) -> GoogleIdentityStsV1ExchangeTokenResponseHttpRequest: ...
 
     def new_batch_http_request(

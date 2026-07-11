@@ -21,7 +21,7 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
             self,
             *,
             id: int,
-            body: Account = ...,
+            body: Account,
             confirmUnsafeAccountChange: bool | None = ...,
             **kwargs: typing.Any,
         ) -> AccountHttpRequest: ...
@@ -29,7 +29,7 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
             self,
             *,
             id: int,
-            body: Account = ...,
+            body: Account,
             confirmUnsafeAccountChange: bool | None = ...,
             **kwargs: typing.Any,
         ) -> AccountHttpRequest: ...
@@ -47,20 +47,10 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
             self, *, accountId: str, billingId: str, **kwargs: typing.Any
         ) -> BudgetHttpRequest: ...
         def patch(
-            self,
-            *,
-            accountId: str,
-            billingId: str,
-            body: Budget = ...,
-            **kwargs: typing.Any,
+            self, *, accountId: str, billingId: str, body: Budget, **kwargs: typing.Any
         ) -> BudgetHttpRequest: ...
         def update(
-            self,
-            *,
-            accountId: str,
-            billingId: str,
-            body: Budget = ...,
-            **kwargs: typing.Any,
+            self, *, accountId: str, billingId: str, body: Budget, **kwargs: typing.Any
         ) -> BudgetHttpRequest: ...
 
     @typing.type_check_only
@@ -77,7 +67,7 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
             self, *, accountId: int, buyerCreativeId: str, **kwargs: typing.Any
         ) -> CreativeHttpRequest: ...
         def insert(
-            self, *, body: Creative = ..., **kwargs: typing.Any
+            self, *, body: Creative, **kwargs: typing.Any
         ) -> CreativeHttpRequest: ...
         def list(
             self,
@@ -119,15 +109,11 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
             self,
             *,
             proposalId: str,
-            body: DeleteOrderDealsRequest = ...,
+            body: DeleteOrderDealsRequest,
             **kwargs: typing.Any,
         ) -> DeleteOrderDealsResponseHttpRequest: ...
         def insert(
-            self,
-            *,
-            proposalId: str,
-            body: AddOrderDealsRequest = ...,
-            **kwargs: typing.Any,
+            self, *, proposalId: str, body: AddOrderDealsRequest, **kwargs: typing.Any
         ) -> AddOrderDealsResponseHttpRequest: ...
         def list(
             self, *, proposalId: str, pqlQuery: str | None = ..., **kwargs: typing.Any
@@ -136,18 +122,14 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
             self,
             *,
             proposalId: str,
-            body: EditAllOrderDealsRequest = ...,
+            body: EditAllOrderDealsRequest,
             **kwargs: typing.Any,
         ) -> EditAllOrderDealsResponseHttpRequest: ...
 
     @typing.type_check_only
     class MarketplacenotesResource(googleapiclient.discovery.Resource):
         def insert(
-            self,
-            *,
-            proposalId: str,
-            body: AddOrderNotesRequest = ...,
-            **kwargs: typing.Any,
+            self, *, proposalId: str, body: AddOrderNotesRequest, **kwargs: typing.Any
         ) -> AddOrderNotesResponseHttpRequest: ...
         def list(
             self, *, proposalId: str, pqlQuery: str | None = ..., **kwargs: typing.Any
@@ -159,7 +141,7 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
             self,
             *,
             privateAuctionId: str,
-            body: UpdatePrivateAuctionProposalRequest = ...,
+            body: UpdatePrivateAuctionProposalRequest,
             **kwargs: typing.Any,
         ) -> googleapiclient.http.HttpRequest: ...
 
@@ -185,11 +167,7 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
             self, *, accountId: str, configId: str, **kwargs: typing.Any
         ) -> PretargetingConfigHttpRequest: ...
         def insert(
-            self,
-            *,
-            accountId: str,
-            body: PretargetingConfig = ...,
-            **kwargs: typing.Any,
+            self, *, accountId: str, body: PretargetingConfig, **kwargs: typing.Any
         ) -> PretargetingConfigHttpRequest: ...
         def list(
             self, *, accountId: str, **kwargs: typing.Any
@@ -199,7 +177,7 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
             *,
             accountId: str,
             configId: str,
-            body: PretargetingConfig = ...,
+            body: PretargetingConfig,
             **kwargs: typing.Any,
         ) -> PretargetingConfigHttpRequest: ...
         def update(
@@ -207,7 +185,7 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
             *,
             accountId: str,
             configId: str,
-            body: PretargetingConfig = ...,
+            body: PretargetingConfig,
             **kwargs: typing.Any,
         ) -> PretargetingConfigHttpRequest: ...
 
@@ -226,7 +204,7 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
             self, *, proposalId: str, **kwargs: typing.Any
         ) -> ProposalHttpRequest: ...
         def insert(
-            self, *, body: CreateOrdersRequest = ..., **kwargs: typing.Any
+            self, *, body: CreateOrdersRequest, **kwargs: typing.Any
         ) -> CreateOrdersResponseHttpRequest: ...
         def patch(
             self,
@@ -241,7 +219,7 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
                 "unknownAction",
                 "updateNonTerms",
             ],
-            body: Proposal = ...,
+            body: Proposal,
             **kwargs: typing.Any,
         ) -> ProposalHttpRequest: ...
         def search(
@@ -263,7 +241,7 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
                 "unknownAction",
                 "updateNonTerms",
             ],
-            body: Proposal = ...,
+            body: Proposal,
             **kwargs: typing.Any,
         ) -> ProposalHttpRequest: ...
 

@@ -16,7 +16,7 @@ class AreaInsightsResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class V1Resource(googleapiclient.discovery.Resource):
         def computeInsights(
-            self, *, body: ComputeInsightsRequest = ..., **kwargs: typing.Any
+            self, *, body: ComputeInsightsRequest, **kwargs: typing.Any
         ) -> ComputeInsightsResponseHttpRequest: ...
 
     def new_batch_http_request(

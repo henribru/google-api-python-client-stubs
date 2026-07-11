@@ -47,7 +47,7 @@ class ClouderrorreportingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 projectName: str,
-                body: ReportedErrorEvent = ...,
+                body: ReportedErrorEvent,
                 **kwargs: typing.Any,
             ) -> ReportErrorEventResponseHttpRequest: ...
 
@@ -102,7 +102,7 @@ class ClouderrorreportingResource(googleapiclient.discovery.Resource):
                 self, *, groupName: str, **kwargs: typing.Any
             ) -> ErrorGroupHttpRequest: ...
             def update(
-                self, *, name: str, body: ErrorGroup = ..., **kwargs: typing.Any
+                self, *, name: str, body: ErrorGroup, **kwargs: typing.Any
             ) -> ErrorGroupHttpRequest: ...
 
         @typing.type_check_only
@@ -187,7 +187,7 @@ class ClouderrorreportingResource(googleapiclient.discovery.Resource):
                     self, *, groupName: str, **kwargs: typing.Any
                 ) -> ErrorGroupHttpRequest: ...
                 def update(
-                    self, *, name: str, body: ErrorGroup = ..., **kwargs: typing.Any
+                    self, *, name: str, body: ErrorGroup, **kwargs: typing.Any
                 ) -> ErrorGroupHttpRequest: ...
 
             def deleteEvents(

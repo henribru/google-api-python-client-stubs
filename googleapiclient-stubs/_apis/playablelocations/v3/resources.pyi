@@ -18,19 +18,19 @@ class PlayableLocationsResource(googleapiclient.discovery.Resource):
         def logImpressions(
             self,
             *,
-            body: GoogleMapsPlayablelocationsV3LogImpressionsRequest = ...,
+            body: GoogleMapsPlayablelocationsV3LogImpressionsRequest,
             **kwargs: typing.Any,
         ) -> GoogleMapsPlayablelocationsV3LogImpressionsResponseHttpRequest: ...
         def logPlayerReports(
             self,
             *,
-            body: GoogleMapsPlayablelocationsV3LogPlayerReportsRequest = ...,
+            body: GoogleMapsPlayablelocationsV3LogPlayerReportsRequest,
             **kwargs: typing.Any,
         ) -> GoogleMapsPlayablelocationsV3LogPlayerReportsResponseHttpRequest: ...
         def samplePlayableLocations(
             self,
             *,
-            body: GoogleMapsPlayablelocationsV3SamplePlayableLocationsRequest = ...,
+            body: GoogleMapsPlayablelocationsV3SamplePlayableLocationsRequest,
             **kwargs: typing.Any,
         ) -> (
             GoogleMapsPlayablelocationsV3SamplePlayableLocationsResponseHttpRequest

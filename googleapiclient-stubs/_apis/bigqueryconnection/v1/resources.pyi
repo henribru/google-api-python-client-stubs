@@ -23,7 +23,7 @@ class BigQueryConnectionServiceResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: Connection = ...,
+                    body: Connection,
                     connectionId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ConnectionHttpRequest: ...
@@ -37,7 +37,7 @@ class BigQueryConnectionServiceResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: GetIamPolicyRequest = ...,
+                    body: GetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def list(
@@ -57,7 +57,7 @@ class BigQueryConnectionServiceResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: Connection = ...,
+                    body: Connection,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ConnectionHttpRequest: ...
@@ -65,14 +65,14 @@ class BigQueryConnectionServiceResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: SetIamPolicyRequest = ...,
+                    body: SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: TestIamPermissionsRequest = ...,
+                    body: TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
 

@@ -16,7 +16,7 @@ class GenomicsResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class OperationsResource(googleapiclient.discovery.Resource):
         def cancel(
-            self, *, name: str, body: CancelOperationRequest = ..., **kwargs: typing.Any
+            self, *, name: str, body: CancelOperationRequest, **kwargs: typing.Any
         ) -> EmptyHttpRequest: ...
         def get(self, *, name: str, **kwargs: typing.Any) -> OperationHttpRequest: ...
         def list(
@@ -37,7 +37,7 @@ class GenomicsResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class PipelinesResource(googleapiclient.discovery.Resource):
         def create(
-            self, *, body: Pipeline = ..., **kwargs: typing.Any
+            self, *, body: Pipeline, **kwargs: typing.Any
         ) -> PipelineHttpRequest: ...
         def delete(
             self, *, pipelineId: str, **kwargs: typing.Any
@@ -67,10 +67,10 @@ class GenomicsResource(googleapiclient.discovery.Resource):
             previous_response: ListPipelinesResponse,
         ) -> ListPipelinesResponseHttpRequest | None: ...
         def run(
-            self, *, body: RunPipelineRequest = ..., **kwargs: typing.Any
+            self, *, body: RunPipelineRequest, **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
         def setOperationStatus(
-            self, *, body: SetOperationStatusRequest = ..., **kwargs: typing.Any
+            self, *, body: SetOperationStatusRequest, **kwargs: typing.Any
         ) -> EmptyHttpRequest: ...
 
     def new_batch_http_request(

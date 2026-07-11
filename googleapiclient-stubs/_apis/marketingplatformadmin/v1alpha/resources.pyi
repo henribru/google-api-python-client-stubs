@@ -18,11 +18,7 @@ class GoogleMarketingPlatformAdminAPIResource(googleapiclient.discovery.Resource
         @typing.type_check_only
         class AnalyticsAccountLinksResource(googleapiclient.discovery.Resource):
             def create(
-                self,
-                *,
-                parent: str,
-                body: AnalyticsAccountLink = ...,
-                **kwargs: typing.Any,
+                self, *, parent: str, body: AnalyticsAccountLink, **kwargs: typing.Any
             ) -> AnalyticsAccountLinkHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -44,7 +40,7 @@ class GoogleMarketingPlatformAdminAPIResource(googleapiclient.discovery.Resource
                 self,
                 *,
                 analyticsAccountLink: str,
-                body: SetPropertyServiceLevelRequest = ...,
+                body: SetPropertyServiceLevelRequest,
                 **kwargs: typing.Any,
             ) -> SetPropertyServiceLevelResponseHttpRequest: ...
 
@@ -52,7 +48,7 @@ class GoogleMarketingPlatformAdminAPIResource(googleapiclient.discovery.Resource
             self,
             *,
             organization: str,
-            body: FindSalesPartnerManagedClientsRequest = ...,
+            body: FindSalesPartnerManagedClientsRequest,
             **kwargs: typing.Any,
         ) -> FindSalesPartnerManagedClientsResponseHttpRequest: ...
         def get(
@@ -74,7 +70,7 @@ class GoogleMarketingPlatformAdminAPIResource(googleapiclient.discovery.Resource
             self,
             *,
             organization: str,
-            body: ReportPropertyUsageRequest = ...,
+            body: ReportPropertyUsageRequest,
             **kwargs: typing.Any,
         ) -> ReportPropertyUsageResponseHttpRequest: ...
         def analyticsAccountLinks(self) -> AnalyticsAccountLinksResource: ...

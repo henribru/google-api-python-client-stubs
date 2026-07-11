@@ -23,7 +23,7 @@ class CloudLifeSciencesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: CancelOperationRequest = ...,
+                    body: CancelOperationRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def get(
@@ -47,11 +47,7 @@ class CloudLifeSciencesResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class PipelinesResource(googleapiclient.discovery.Resource):
                 def run(
-                    self,
-                    *,
-                    parent: str,
-                    body: RunPipelineRequest = ...,
-                    **kwargs: typing.Any,
+                    self, *, parent: str, body: RunPipelineRequest, **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
 
             def get(

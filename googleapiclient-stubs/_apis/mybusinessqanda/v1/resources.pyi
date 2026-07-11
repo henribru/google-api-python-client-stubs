@@ -40,12 +40,12 @@ class MyBusinessQAndAResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: UpsertAnswerRequest = ...,
+                    body: UpsertAnswerRequest,
                     **kwargs: typing.Any,
                 ) -> AnswerHttpRequest: ...
 
             def create(
-                self, *, parent: str, body: Question = ..., **kwargs: typing.Any
+                self, *, parent: str, body: Question, **kwargs: typing.Any
             ) -> QuestionHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -70,7 +70,7 @@ class MyBusinessQAndAResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: Question = ...,
+                body: Question,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> QuestionHttpRequest: ...

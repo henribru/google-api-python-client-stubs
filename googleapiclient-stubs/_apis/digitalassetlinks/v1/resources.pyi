@@ -16,7 +16,7 @@ class DigitalassetlinksResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class AssetlinksResource(googleapiclient.discovery.Resource):
         def bulkCheck(
-            self, *, body: BulkCheckRequest = ..., **kwargs: typing.Any
+            self, *, body: BulkCheckRequest, **kwargs: typing.Any
         ) -> BulkCheckResponseHttpRequest: ...
         def check(
             self,

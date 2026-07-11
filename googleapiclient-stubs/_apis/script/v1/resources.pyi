@@ -182,11 +182,7 @@ class ScriptResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class DeploymentsResource(googleapiclient.discovery.Resource):
             def create(
-                self,
-                *,
-                scriptId: str,
-                body: DeploymentConfig = ...,
-                **kwargs: typing.Any,
+                self, *, scriptId: str, body: DeploymentConfig, **kwargs: typing.Any
             ) -> DeploymentHttpRequest: ...
             def delete(
                 self, *, scriptId: str, deploymentId: str, **kwargs: typing.Any
@@ -212,14 +208,14 @@ class ScriptResource(googleapiclient.discovery.Resource):
                 *,
                 scriptId: str,
                 deploymentId: str,
-                body: UpdateDeploymentRequest = ...,
+                body: UpdateDeploymentRequest,
                 **kwargs: typing.Any,
             ) -> DeploymentHttpRequest: ...
 
         @typing.type_check_only
         class VersionsResource(googleapiclient.discovery.Resource):
             def create(
-                self, *, scriptId: str, body: Version = ..., **kwargs: typing.Any
+                self, *, scriptId: str, body: Version, **kwargs: typing.Any
             ) -> VersionHttpRequest: ...
             def get(
                 self, *, scriptId: str, versionNumber: int, **kwargs: typing.Any
@@ -239,7 +235,7 @@ class ScriptResource(googleapiclient.discovery.Resource):
             ) -> ListVersionsResponseHttpRequest | None: ...
 
         def create(
-            self, *, body: CreateProjectRequest = ..., **kwargs: typing.Any
+            self, *, body: CreateProjectRequest, **kwargs: typing.Any
         ) -> ProjectHttpRequest: ...
         def get(self, *, scriptId: str, **kwargs: typing.Any) -> ProjectHttpRequest: ...
         def getContent(
@@ -261,7 +257,7 @@ class ScriptResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any,
         ) -> MetricsHttpRequest: ...
         def updateContent(
-            self, *, scriptId: str, body: Content = ..., **kwargs: typing.Any
+            self, *, scriptId: str, body: Content, **kwargs: typing.Any
         ) -> ContentHttpRequest: ...
         def deployments(self) -> DeploymentsResource: ...
         def versions(self) -> VersionsResource: ...
@@ -269,7 +265,7 @@ class ScriptResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class ScriptsResource(googleapiclient.discovery.Resource):
         def run(
-            self, *, scriptId: str, body: ExecutionRequest = ..., **kwargs: typing.Any
+            self, *, scriptId: str, body: ExecutionRequest, **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
 
     def new_batch_http_request(

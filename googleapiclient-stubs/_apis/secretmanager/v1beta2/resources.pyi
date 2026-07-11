@@ -28,21 +28,21 @@ class SecretManagerResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: DestroySecretVersionRequest = ...,
+                        body: DestroySecretVersionRequest,
                         **kwargs: typing.Any,
                     ) -> SecretVersionHttpRequest: ...
                     def disable(
                         self,
                         *,
                         name: str,
-                        body: DisableSecretVersionRequest = ...,
+                        body: DisableSecretVersionRequest,
                         **kwargs: typing.Any,
                     ) -> SecretVersionHttpRequest: ...
                     def enable(
                         self,
                         *,
                         name: str,
-                        body: EnableSecretVersionRequest = ...,
+                        body: EnableSecretVersionRequest,
                         **kwargs: typing.Any,
                     ) -> SecretVersionHttpRequest: ...
                     def get(
@@ -67,14 +67,14 @@ class SecretManagerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: AddSecretVersionRequest = ...,
+                    body: AddSecretVersionRequest,
                     **kwargs: typing.Any,
                 ) -> SecretVersionHttpRequest: ...
                 def create(
                     self,
                     *,
                     parent: str,
-                    body: Secret = ...,
+                    body: Secret,
                     secretId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> SecretHttpRequest: ...
@@ -109,7 +109,7 @@ class SecretManagerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: Secret = ...,
+                    body: Secret,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> SecretHttpRequest: ...
@@ -117,14 +117,14 @@ class SecretManagerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: SetIamPolicyRequest = ...,
+                    body: SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: TestIamPermissionsRequest = ...,
+                    body: TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def versions(self) -> VersionsResource: ...
@@ -160,21 +160,21 @@ class SecretManagerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: DestroySecretVersionRequest = ...,
+                    body: DestroySecretVersionRequest,
                     **kwargs: typing.Any,
                 ) -> SecretVersionHttpRequest: ...
                 def disable(
                     self,
                     *,
                     name: str,
-                    body: DisableSecretVersionRequest = ...,
+                    body: DisableSecretVersionRequest,
                     **kwargs: typing.Any,
                 ) -> SecretVersionHttpRequest: ...
                 def enable(
                     self,
                     *,
                     name: str,
-                    body: EnableSecretVersionRequest = ...,
+                    body: EnableSecretVersionRequest,
                     **kwargs: typing.Any,
                 ) -> SecretVersionHttpRequest: ...
                 def get(
@@ -199,14 +199,14 @@ class SecretManagerResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: AddSecretVersionRequest = ...,
+                body: AddSecretVersionRequest,
                 **kwargs: typing.Any,
             ) -> SecretVersionHttpRequest: ...
             def create(
                 self,
                 *,
                 parent: str,
-                body: Secret = ...,
+                body: Secret,
                 secretId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> SecretHttpRequest: ...
@@ -239,22 +239,18 @@ class SecretManagerResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: Secret = ...,
+                body: Secret,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> SecretHttpRequest: ...
             def setIamPolicy(
-                self,
-                *,
-                resource: str,
-                body: SetIamPolicyRequest = ...,
-                **kwargs: typing.Any,
+                self, *, resource: str, body: SetIamPolicyRequest, **kwargs: typing.Any
             ) -> PolicyHttpRequest: ...
             def testIamPermissions(
                 self,
                 *,
                 resource: str,
-                body: TestIamPermissionsRequest = ...,
+                body: TestIamPermissionsRequest,
                 **kwargs: typing.Any,
             ) -> TestIamPermissionsResponseHttpRequest: ...
             def versions(self) -> VersionsResource: ...

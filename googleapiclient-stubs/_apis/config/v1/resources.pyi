@@ -42,7 +42,7 @@ class ConfigResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: DeploymentGroup = ...,
+                    body: DeploymentGroup,
                     deploymentGroupId: str | None = ...,
                     requestId: str | None = ...,
                     **kwargs: typing.Any,
@@ -66,7 +66,7 @@ class ConfigResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: DeprovisionDeploymentGroupRequest = ...,
+                    body: DeprovisionDeploymentGroupRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def get(
@@ -91,7 +91,7 @@ class ConfigResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: DeploymentGroup = ...,
+                    body: DeploymentGroup,
                     requestId: str | None = ...,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
@@ -100,7 +100,7 @@ class ConfigResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: ProvisionDeploymentGroupRequest = ...,
+                    body: ProvisionDeploymentGroupRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def revisions(self) -> RevisionsResource: ...
@@ -134,7 +134,7 @@ class ConfigResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: ExportRevisionStatefileRequest = ...,
+                        body: ExportRevisionStatefileRequest,
                         **kwargs: typing.Any,
                     ) -> StatefileHttpRequest: ...
                     def get(
@@ -161,7 +161,7 @@ class ConfigResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: Deployment = ...,
+                    body: Deployment,
                     deploymentId: str | None = ...,
                     requestId: str | None = ...,
                     **kwargs: typing.Any,
@@ -182,7 +182,7 @@ class ConfigResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: DeleteStatefileRequest = ...,
+                    body: DeleteStatefileRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def exportLock(
@@ -192,7 +192,7 @@ class ConfigResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: ExportDeploymentStatefileRequest = ...,
+                    body: ExportDeploymentStatefileRequest,
                     **kwargs: typing.Any,
                 ) -> StatefileHttpRequest: ...
                 def get(
@@ -209,7 +209,7 @@ class ConfigResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: ImportStatefileRequest = ...,
+                    body: ImportStatefileRequest,
                     **kwargs: typing.Any,
                 ) -> StatefileHttpRequest: ...
                 def list(
@@ -231,14 +231,14 @@ class ConfigResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: LockDeploymentRequest = ...,
+                    body: LockDeploymentRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def patch(
                     self,
                     *,
                     name: str,
-                    body: Deployment = ...,
+                    body: Deployment,
                     requestId: str | None = ...,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
@@ -247,21 +247,21 @@ class ConfigResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: SetIamPolicyRequest = ...,
+                    body: SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: TestIamPermissionsRequest = ...,
+                    body: TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def unlock(
                     self,
                     *,
                     name: str,
-                    body: UnlockDeploymentRequest = ...,
+                    body: UnlockDeploymentRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def revisions(self) -> RevisionsResource: ...
@@ -272,7 +272,7 @@ class ConfigResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: CancelOperationRequest = ...,
+                    body: CancelOperationRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def delete(
@@ -345,7 +345,7 @@ class ConfigResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: Preview = ...,
+                    body: Preview,
                     previewId: str | None = ...,
                     requestId: str | None = ...,
                     **kwargs: typing.Any,
@@ -361,7 +361,7 @@ class ConfigResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: ExportPreviewResultRequest = ...,
+                    body: ExportPreviewResultRequest,
                     **kwargs: typing.Any,
                 ) -> ExportPreviewResultResponseHttpRequest: ...
                 def get(
@@ -431,7 +431,7 @@ class ConfigResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: AutoMigrationConfig = ...,
+                body: AutoMigrationConfig,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...

@@ -102,7 +102,7 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleLongrunningCancelOperationRequest = ...,
+                    body: GoogleLongrunningCancelOperationRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def delete(
@@ -140,7 +140,7 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaSubscription = ...,
+                    body: GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaSubscription,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaSubscriptionHttpRequest: ...
                 def get(
@@ -166,7 +166,7 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaSubscription = ...,
+                    body: GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaSubscription,
                     requestId: str | None = ...,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
@@ -195,7 +195,7 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudBeyondcorpAppconnectionsV1alphaAppConnection = ...,
+                    body: GoogleCloudBeyondcorpAppconnectionsV1alphaAppConnection,
                     appConnectionId: str | None = ...,
                     requestId: str | None = ...,
                     validateOnly: bool | None = ...,
@@ -243,7 +243,7 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudBeyondcorpAppconnectionsV1alphaAppConnection = ...,
+                    body: GoogleCloudBeyondcorpAppconnectionsV1alphaAppConnection,
                     allowMissing: bool | None = ...,
                     requestId: str | None = ...,
                     updateMask: str | None = ...,
@@ -271,14 +271,14 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: GoogleIamV1SetIamPolicyRequest = ...,
+                    body: GoogleIamV1SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleIamV1PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: GoogleIamV1TestIamPermissionsRequest = ...,
+                    body: GoogleIamV1TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
 
@@ -288,7 +288,7 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudBeyondcorpAppconnectorsV1alphaAppConnector = ...,
+                    body: GoogleCloudBeyondcorpAppconnectorsV1alphaAppConnector,
                     appConnectorId: str | None = ...,
                     requestId: str | None = ...,
                     validateOnly: bool | None = ...,
@@ -336,7 +336,7 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudBeyondcorpAppconnectorsV1alphaAppConnector = ...,
+                    body: GoogleCloudBeyondcorpAppconnectorsV1alphaAppConnector,
                     requestId: str | None = ...,
                     updateMask: str | None = ...,
                     validateOnly: bool | None = ...,
@@ -346,7 +346,7 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     appConnector: str,
-                    body: GoogleCloudBeyondcorpAppconnectorsV1alphaReportStatusRequest = ...,
+                    body: GoogleCloudBeyondcorpAppconnectorsV1alphaReportStatusRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def resolveInstanceConfig(
@@ -356,14 +356,14 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: GoogleIamV1SetIamPolicyRequest = ...,
+                    body: GoogleIamV1SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleIamV1PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: GoogleIamV1TestIamPermissionsRequest = ...,
+                    body: GoogleIamV1TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
 
@@ -373,7 +373,7 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: AppGateway = ...,
+                    body: AppGateway,
                     appGatewayId: str | None = ...,
                     requestId: str | None = ...,
                     validateOnly: bool | None = ...,
@@ -416,14 +416,14 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: GoogleIamV1SetIamPolicyRequest = ...,
+                    body: GoogleIamV1SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleIamV1PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: GoogleIamV1TestIamPermissionsRequest = ...,
+                    body: GoogleIamV1TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
 
@@ -440,14 +440,14 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: GoogleIamV1SetIamPolicyRequest = ...,
+                    body: GoogleIamV1SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleIamV1PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: GoogleIamV1TestIamPermissionsRequest = ...,
+                    body: GoogleIamV1TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
 
@@ -464,14 +464,14 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: GoogleIamV1SetIamPolicyRequest = ...,
+                    body: GoogleIamV1SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleIamV1PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: GoogleIamV1TestIamPermissionsRequest = ...,
+                    body: GoogleIamV1TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
 
@@ -481,7 +481,7 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: Connection = ...,
+                    body: Connection,
                     connectionId: str | None = ...,
                     requestId: str | None = ...,
                     validateOnly: bool | None = ...,
@@ -524,7 +524,7 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: Connection = ...,
+                    body: Connection,
                     allowMissing: bool | None = ...,
                     requestId: str | None = ...,
                     updateMask: str | None = ...,
@@ -549,7 +549,7 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: GoogleIamV1SetIamPolicyRequest = ...,
+                    body: GoogleIamV1SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleIamV1PolicyHttpRequest: ...
 
@@ -559,7 +559,7 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: Connector = ...,
+                    body: Connector,
                     connectorId: str | None = ...,
                     requestId: str | None = ...,
                     validateOnly: bool | None = ...,
@@ -602,7 +602,7 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: Connector = ...,
+                    body: Connector,
                     requestId: str | None = ...,
                     updateMask: str | None = ...,
                     validateOnly: bool | None = ...,
@@ -612,7 +612,7 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     connector: str,
-                    body: ReportStatusRequest = ...,
+                    body: ReportStatusRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def resolveInstanceConfig(
@@ -622,7 +622,7 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: GoogleIamV1SetIamPolicyRequest = ...,
+                    body: GoogleIamV1SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleIamV1PolicyHttpRequest: ...
 
@@ -711,7 +711,7 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleLongrunningCancelOperationRequest = ...,
+                    body: GoogleLongrunningCancelOperationRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def delete(
@@ -744,7 +744,7 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: GoogleCloudBeyondcorpSecuritygatewaysV1alphaApplication = ...,
+                        body: GoogleCloudBeyondcorpSecuritygatewaysV1alphaApplication,
                         applicationId: str | None = ...,
                         requestId: str | None = ...,
                         **kwargs: typing.Any,
@@ -789,7 +789,7 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: GoogleCloudBeyondcorpSecuritygatewaysV1alphaApplication = ...,
+                        body: GoogleCloudBeyondcorpSecuritygatewaysV1alphaApplication,
                         requestId: str | None = ...,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
@@ -798,14 +798,14 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         resource: str,
-                        body: GoogleIamV1SetIamPolicyRequest = ...,
+                        body: GoogleIamV1SetIamPolicyRequest,
                         **kwargs: typing.Any,
                     ) -> GoogleIamV1PolicyHttpRequest: ...
                     def testIamPermissions(
                         self,
                         *,
                         resource: str,
-                        body: GoogleIamV1TestIamPermissionsRequest = ...,
+                        body: GoogleIamV1TestIamPermissionsRequest,
                         **kwargs: typing.Any,
                     ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
 
@@ -813,7 +813,7 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudBeyondcorpSecuritygatewaysV1alphaSecurityGateway = ...,
+                    body: GoogleCloudBeyondcorpSecuritygatewaysV1alphaSecurityGateway,
                     requestId: str | None = ...,
                     securityGatewayId: str | None = ...,
                     **kwargs: typing.Any,
@@ -858,7 +858,7 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudBeyondcorpSecuritygatewaysV1alphaSecurityGateway = ...,
+                    body: GoogleCloudBeyondcorpSecuritygatewaysV1alphaSecurityGateway,
                     requestId: str | None = ...,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
@@ -867,14 +867,14 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: GoogleIamV1SetIamPolicyRequest = ...,
+                    body: GoogleIamV1SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleIamV1PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: GoogleIamV1TestIamPermissionsRequest = ...,
+                    body: GoogleIamV1TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
                 def applications(self) -> ApplicationsResource: ...

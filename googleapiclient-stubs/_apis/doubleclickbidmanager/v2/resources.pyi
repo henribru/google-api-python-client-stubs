@@ -35,9 +35,7 @@ class DoubleClickBidManagerResource(googleapiclient.discovery.Resource):
                 previous_response: ListReportsResponse,
             ) -> ListReportsResponseHttpRequest | None: ...
 
-        def create(
-            self, *, body: Query = ..., **kwargs: typing.Any
-        ) -> QueryHttpRequest: ...
+        def create(self, *, body: Query, **kwargs: typing.Any) -> QueryHttpRequest: ...
         def delete(
             self, *, queryId: str, **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
@@ -59,7 +57,7 @@ class DoubleClickBidManagerResource(googleapiclient.discovery.Resource):
             self,
             *,
             queryId: str,
-            body: RunQueryRequest = ...,
+            body: RunQueryRequest,
             synchronous: bool | None = ...,
             **kwargs: typing.Any,
         ) -> ReportHttpRequest: ...

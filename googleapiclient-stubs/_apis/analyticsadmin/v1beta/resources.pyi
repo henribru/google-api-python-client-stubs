@@ -58,28 +58,28 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            body: GoogleAnalyticsAdminV1betaAccount = ...,
+            body: GoogleAnalyticsAdminV1betaAccount,
             updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> GoogleAnalyticsAdminV1betaAccountHttpRequest: ...
         def provisionAccountTicket(
             self,
             *,
-            body: GoogleAnalyticsAdminV1betaProvisionAccountTicketRequest = ...,
+            body: GoogleAnalyticsAdminV1betaProvisionAccountTicketRequest,
             **kwargs: typing.Any,
         ) -> GoogleAnalyticsAdminV1betaProvisionAccountTicketResponseHttpRequest: ...
         def runAccessReport(
             self,
             *,
             entity: str,
-            body: GoogleAnalyticsAdminV1betaRunAccessReportRequest = ...,
+            body: GoogleAnalyticsAdminV1betaRunAccessReportRequest,
             **kwargs: typing.Any,
         ) -> GoogleAnalyticsAdminV1betaRunAccessReportResponseHttpRequest: ...
         def searchChangeHistoryEvents(
             self,
             *,
             account: str,
-            body: GoogleAnalyticsAdminV1betaSearchChangeHistoryEventsRequest = ...,
+            body: GoogleAnalyticsAdminV1betaSearchChangeHistoryEventsRequest,
             **kwargs: typing.Any,
         ) -> GoogleAnalyticsAdminV1betaSearchChangeHistoryEventsResponseHttpRequest: ...
         def searchChangeHistoryEvents_next(
@@ -99,7 +99,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: GoogleAnalyticsAdminV1betaConversionEvent = ...,
+                body: GoogleAnalyticsAdminV1betaConversionEvent,
                 **kwargs: typing.Any,
             ) -> GoogleAnalyticsAdminV1betaConversionEventHttpRequest: ...
             def delete(
@@ -127,7 +127,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleAnalyticsAdminV1betaConversionEvent = ...,
+                body: GoogleAnalyticsAdminV1betaConversionEvent,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleAnalyticsAdminV1betaConversionEventHttpRequest: ...
@@ -138,14 +138,14 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleAnalyticsAdminV1betaArchiveCustomDimensionRequest = ...,
+                body: GoogleAnalyticsAdminV1betaArchiveCustomDimensionRequest,
                 **kwargs: typing.Any,
             ) -> GoogleProtobufEmptyHttpRequest: ...
             def create(
                 self,
                 *,
                 parent: str,
-                body: GoogleAnalyticsAdminV1betaCustomDimension = ...,
+                body: GoogleAnalyticsAdminV1betaCustomDimension,
                 **kwargs: typing.Any,
             ) -> GoogleAnalyticsAdminV1betaCustomDimensionHttpRequest: ...
             def get(
@@ -170,7 +170,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleAnalyticsAdminV1betaCustomDimension = ...,
+                body: GoogleAnalyticsAdminV1betaCustomDimension,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleAnalyticsAdminV1betaCustomDimensionHttpRequest: ...
@@ -181,14 +181,14 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleAnalyticsAdminV1betaArchiveCustomMetricRequest = ...,
+                body: GoogleAnalyticsAdminV1betaArchiveCustomMetricRequest,
                 **kwargs: typing.Any,
             ) -> GoogleProtobufEmptyHttpRequest: ...
             def create(
                 self,
                 *,
                 parent: str,
-                body: GoogleAnalyticsAdminV1betaCustomMetric = ...,
+                body: GoogleAnalyticsAdminV1betaCustomMetric,
                 **kwargs: typing.Any,
             ) -> GoogleAnalyticsAdminV1betaCustomMetricHttpRequest: ...
             def get(
@@ -213,7 +213,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleAnalyticsAdminV1betaCustomMetric = ...,
+                body: GoogleAnalyticsAdminV1betaCustomMetric,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleAnalyticsAdminV1betaCustomMetricHttpRequest: ...
@@ -228,7 +228,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleAnalyticsAdminV1betaMeasurementProtocolSecret = ...,
+                    body: GoogleAnalyticsAdminV1betaMeasurementProtocolSecret,
                     **kwargs: typing.Any,
                 ) -> GoogleAnalyticsAdminV1betaMeasurementProtocolSecretHttpRequest: ...
                 def delete(
@@ -257,7 +257,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleAnalyticsAdminV1betaMeasurementProtocolSecret = ...,
+                    body: GoogleAnalyticsAdminV1betaMeasurementProtocolSecret,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleAnalyticsAdminV1betaMeasurementProtocolSecretHttpRequest: ...
@@ -266,7 +266,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: GoogleAnalyticsAdminV1betaDataStream = ...,
+                body: GoogleAnalyticsAdminV1betaDataStream,
                 **kwargs: typing.Any,
             ) -> GoogleAnalyticsAdminV1betaDataStreamHttpRequest: ...
             def delete(
@@ -294,7 +294,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleAnalyticsAdminV1betaDataStream = ...,
+                body: GoogleAnalyticsAdminV1betaDataStream,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleAnalyticsAdminV1betaDataStreamHttpRequest: ...
@@ -308,7 +308,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: GoogleAnalyticsAdminV1betaFirebaseLink = ...,
+                body: GoogleAnalyticsAdminV1betaFirebaseLink,
                 **kwargs: typing.Any,
             ) -> GoogleAnalyticsAdminV1betaFirebaseLinkHttpRequest: ...
             def delete(
@@ -336,7 +336,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: GoogleAnalyticsAdminV1betaGoogleAdsLink = ...,
+                body: GoogleAnalyticsAdminV1betaGoogleAdsLink,
                 **kwargs: typing.Any,
             ) -> GoogleAnalyticsAdminV1betaGoogleAdsLinkHttpRequest: ...
             def delete(
@@ -361,7 +361,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleAnalyticsAdminV1betaGoogleAdsLink = ...,
+                body: GoogleAnalyticsAdminV1betaGoogleAdsLink,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleAnalyticsAdminV1betaGoogleAdsLinkHttpRequest: ...
@@ -372,7 +372,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: GoogleAnalyticsAdminV1betaKeyEvent = ...,
+                body: GoogleAnalyticsAdminV1betaKeyEvent,
                 **kwargs: typing.Any,
             ) -> GoogleAnalyticsAdminV1betaKeyEventHttpRequest: ...
             def delete(
@@ -398,7 +398,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleAnalyticsAdminV1betaKeyEvent = ...,
+                body: GoogleAnalyticsAdminV1betaKeyEvent,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleAnalyticsAdminV1betaKeyEventHttpRequest: ...
@@ -407,16 +407,13 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
             self,
             *,
             property: str,
-            body: GoogleAnalyticsAdminV1betaAcknowledgeUserDataCollectionRequest = ...,
+            body: GoogleAnalyticsAdminV1betaAcknowledgeUserDataCollectionRequest,
             **kwargs: typing.Any,
         ) -> (
             GoogleAnalyticsAdminV1betaAcknowledgeUserDataCollectionResponseHttpRequest
         ): ...
         def create(
-            self,
-            *,
-            body: GoogleAnalyticsAdminV1betaProperty = ...,
-            **kwargs: typing.Any,
+            self, *, body: GoogleAnalyticsAdminV1betaProperty, **kwargs: typing.Any
         ) -> GoogleAnalyticsAdminV1betaPropertyHttpRequest: ...
         def delete(
             self, *, name: str, **kwargs: typing.Any
@@ -445,7 +442,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            body: GoogleAnalyticsAdminV1betaProperty = ...,
+            body: GoogleAnalyticsAdminV1betaProperty,
             updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> GoogleAnalyticsAdminV1betaPropertyHttpRequest: ...
@@ -453,14 +450,14 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
             self,
             *,
             entity: str,
-            body: GoogleAnalyticsAdminV1betaRunAccessReportRequest = ...,
+            body: GoogleAnalyticsAdminV1betaRunAccessReportRequest,
             **kwargs: typing.Any,
         ) -> GoogleAnalyticsAdminV1betaRunAccessReportResponseHttpRequest: ...
         def updateDataRetentionSettings(
             self,
             *,
             name: str,
-            body: GoogleAnalyticsAdminV1betaDataRetentionSettings = ...,
+            body: GoogleAnalyticsAdminV1betaDataRetentionSettings,
             updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> GoogleAnalyticsAdminV1betaDataRetentionSettingsHttpRequest: ...

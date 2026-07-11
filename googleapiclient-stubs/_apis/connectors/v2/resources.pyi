@@ -25,7 +25,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: ExecuteActionRequest = ...,
+                        body: ExecuteActionRequest,
                         **kwargs: typing.Any,
                     ) -> ExecuteActionResponseHttpRequest: ...
                     def get(
@@ -70,7 +70,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             parent: str,
-                            body: Entity = ...,
+                            body: Entity,
                             executionConfig_headers: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> EntityHttpRequest: ...
@@ -117,7 +117,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             name: str,
-                            body: Entity = ...,
+                            body: Entity,
                             executionConfig_headers: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> EntityHttpRequest: ...
@@ -125,7 +125,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             entityType: str,
-                            body: Entity = ...,
+                            body: Entity,
                             conditions: str | None = ...,
                             executionConfig_headers: str | None = ...,
                             **kwargs: typing.Any,
@@ -180,7 +180,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: GetResourcePostRequest = ...,
+                        body: GetResourcePostRequest,
                         **kwargs: typing.Any,
                     ) -> GetResourceResponseHttpRequest: ...
                     def list(
@@ -204,7 +204,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: ExecuteToolRequest = ...,
+                        body: ExecuteToolRequest,
                         **kwargs: typing.Any,
                     ) -> ExecuteToolResponseHttpRequest: ...
                     def list(
@@ -237,28 +237,28 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: ExchangeAuthCodeRequest = ...,
+                    body: ExchangeAuthCodeRequest,
                     **kwargs: typing.Any,
                 ) -> ExchangeAuthCodeResponseHttpRequest: ...
                 def executeHttpRequest(
                     self,
                     *,
                     name: str,
-                    body: ExecuteHttpRequestRequest = ...,
+                    body: ExecuteHttpRequestRequest,
                     **kwargs: typing.Any,
                 ) -> ExecuteHttpRequestResponseHttpRequest: ...
                 def executeSqlQuery(
                     self,
                     *,
                     connection: str,
-                    body: ExecuteSqlQueryRequest = ...,
+                    body: ExecuteSqlQueryRequest,
                     **kwargs: typing.Any,
                 ) -> ExecuteSqlQueryResponseHttpRequest: ...
                 def generateConnectionToolspecOverride(
                     self,
                     *,
                     name: str,
-                    body: GenerateCustomToolspecRequest = ...,
+                    body: GenerateCustomToolspecRequest,
                     **kwargs: typing.Any,
                 ) -> GenerateCustomToolspecResponseHttpRequest: ...
                 def listCustomToolNames(
@@ -268,7 +268,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: RefreshAccessTokenRequest = ...,
+                    body: RefreshAccessTokenRequest,
                     **kwargs: typing.Any,
                 ) -> RefreshAccessTokenResponseHttpRequest: ...
                 def actions(self) -> ActionsResource: ...

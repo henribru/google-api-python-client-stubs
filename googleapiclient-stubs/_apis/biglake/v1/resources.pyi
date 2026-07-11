@@ -32,14 +32,14 @@ class BigLakeServiceResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         resource: str,
-                        body: SetIamPolicyRequest = ...,
+                        body: SetIamPolicyRequest,
                         **kwargs: typing.Any,
                     ) -> PolicyHttpRequest: ...
                     def testIamPermissions(
                         self,
                         *,
                         resource: str,
-                        body: TestIamPermissionsRequest = ...,
+                        body: TestIamPermissionsRequest,
                         **kwargs: typing.Any,
                     ) -> TestIamPermissionsResponseHttpRequest: ...
 
@@ -54,14 +54,14 @@ class BigLakeServiceResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: SetIamPolicyRequest = ...,
+                    body: SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: TestIamPermissionsRequest = ...,
+                    body: TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def tables(self) -> TablesResource: ...
@@ -74,17 +74,13 @@ class BigLakeServiceResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any,
             ) -> PolicyHttpRequest: ...
             def setIamPolicy(
-                self,
-                *,
-                resource: str,
-                body: SetIamPolicyRequest = ...,
-                **kwargs: typing.Any,
+                self, *, resource: str, body: SetIamPolicyRequest, **kwargs: typing.Any
             ) -> PolicyHttpRequest: ...
             def testIamPermissions(
                 self,
                 *,
                 resource: str,
-                body: TestIamPermissionsRequest = ...,
+                body: TestIamPermissionsRequest,
                 **kwargs: typing.Any,
             ) -> TestIamPermissionsResponseHttpRequest: ...
             def namespaces(self) -> NamespacesResource: ...
@@ -101,7 +97,7 @@ class BigLakeServiceResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             parent: str,
-                            body: Table = ...,
+                            body: Table,
                             tableId: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> TableHttpRequest: ...
@@ -132,7 +128,7 @@ class BigLakeServiceResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             name: str,
-                            body: Table = ...,
+                            body: Table,
                             updateMask: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> TableHttpRequest: ...
@@ -140,7 +136,7 @@ class BigLakeServiceResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             name: str,
-                            body: RenameTableRequest = ...,
+                            body: RenameTableRequest,
                             **kwargs: typing.Any,
                         ) -> TableHttpRequest: ...
 
@@ -148,7 +144,7 @@ class BigLakeServiceResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: Database = ...,
+                        body: Database,
                         databaseId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> DatabaseHttpRequest: ...
@@ -175,7 +171,7 @@ class BigLakeServiceResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: Database = ...,
+                        body: Database,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> DatabaseHttpRequest: ...
@@ -185,7 +181,7 @@ class BigLakeServiceResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: Catalog = ...,
+                    body: Catalog,
                     catalogId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> CatalogHttpRequest: ...

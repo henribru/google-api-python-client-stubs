@@ -18,13 +18,13 @@ class PolicyTroubleshooterResource(googleapiclient.discovery.Resource):
         def troubleshoot(
             self,
             *,
-            body: GoogleCloudPolicytroubleshooterIamV3betaTroubleshootIamPolicyRequest = ...,
+            body: GoogleCloudPolicytroubleshooterIamV3betaTroubleshootIamPolicyRequest,
             **kwargs: typing.Any,
         ) -> GoogleCloudPolicytroubleshooterIamV3betaTroubleshootIamPolicyResponseHttpRequest: ...
         def troubleshootError(
             self,
             *,
-            body: GoogleCloudPolicytroubleshooterIamV3betaTroubleshootIamPolicyErrorRequest = ...,
+            body: GoogleCloudPolicytroubleshooterIamV3betaTroubleshootIamPolicyErrorRequest,
             **kwargs: typing.Any,
         ) -> GoogleCloudPolicytroubleshooterIamV3betaTroubleshootIamPolicyErrorResponseHttpRequest: ...
 

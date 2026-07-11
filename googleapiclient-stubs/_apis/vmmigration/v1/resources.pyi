@@ -23,14 +23,14 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     group: str,
-                    body: AddGroupMigrationRequest = ...,
+                    body: AddGroupMigrationRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def create(
                     self,
                     *,
                     parent: str,
-                    body: Group = ...,
+                    body: Group,
                     groupId: str | None = ...,
                     requestId: str | None = ...,
                     **kwargs: typing.Any,
@@ -64,7 +64,7 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: Group = ...,
+                    body: Group,
                     requestId: str | None = ...,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
@@ -73,7 +73,7 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     group: str,
-                    body: RemoveGroupMigrationRequest = ...,
+                    body: RemoveGroupMigrationRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
 
@@ -85,7 +85,7 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: CancelImageImportJobRequest = ...,
+                        body: CancelImageImportJobRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def get(
@@ -111,7 +111,7 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: ImageImport = ...,
+                    body: ImageImport,
                     imageImportId: str | None = ...,
                     requestId: str | None = ...,
                     **kwargs: typing.Any,
@@ -149,7 +149,7 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: CancelOperationRequest = ...,
+                    body: CancelOperationRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def delete(
@@ -182,7 +182,7 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: DatacenterConnector = ...,
+                        body: DatacenterConnector,
                         datacenterConnectorId: str | None = ...,
                         requestId: str | None = ...,
                         **kwargs: typing.Any,
@@ -216,7 +216,7 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         datacenterConnector: str,
-                        body: UpgradeApplianceRequest = ...,
+                        body: UpgradeApplianceRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
 
@@ -226,14 +226,14 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: CancelDiskMigrationJobRequest = ...,
+                        body: CancelDiskMigrationJobRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def create(
                         self,
                         *,
                         parent: str,
-                        body: DiskMigrationJob = ...,
+                        body: DiskMigrationJob,
                         diskMigrationJobId: str | None = ...,
                         requestId: str | None = ...,
                         **kwargs: typing.Any,
@@ -263,7 +263,7 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: DiskMigrationJob = ...,
+                        body: DiskMigrationJob,
                         requestId: str | None = ...,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
@@ -272,7 +272,7 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: RunDiskMigrationJobRequest = ...,
+                        body: RunDiskMigrationJobRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
 
@@ -284,14 +284,14 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             name: str,
-                            body: CancelCloneJobRequest = ...,
+                            body: CancelCloneJobRequest,
                             **kwargs: typing.Any,
                         ) -> OperationHttpRequest: ...
                         def create(
                             self,
                             *,
                             parent: str,
-                            body: CloneJob = ...,
+                            body: CloneJob,
                             cloneJobId: str | None = ...,
                             requestId: str | None = ...,
                             **kwargs: typing.Any,
@@ -321,14 +321,14 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             name: str,
-                            body: CancelCutoverJobRequest = ...,
+                            body: CancelCutoverJobRequest,
                             **kwargs: typing.Any,
                         ) -> OperationHttpRequest: ...
                         def create(
                             self,
                             *,
                             parent: str,
-                            body: CutoverJob = ...,
+                            body: CutoverJob,
                             cutoverJobId: str | None = ...,
                             requestId: str | None = ...,
                             **kwargs: typing.Any,
@@ -377,7 +377,7 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: MigratingVm = ...,
+                        body: MigratingVm,
                         migratingVmId: str | None = ...,
                         requestId: str | None = ...,
                         **kwargs: typing.Any,
@@ -389,14 +389,14 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         migratingVm: str,
-                        body: ExtendMigrationRequest = ...,
+                        body: ExtendMigrationRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def finalizeMigration(
                         self,
                         *,
                         migratingVm: str,
-                        body: FinalizeMigrationRequest = ...,
+                        body: FinalizeMigrationRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def get(
@@ -436,7 +436,7 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: MigratingVm = ...,
+                        body: MigratingVm,
                         requestId: str | None = ...,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
@@ -445,21 +445,21 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         migratingVm: str,
-                        body: PauseMigrationRequest = ...,
+                        body: PauseMigrationRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def resumeMigration(
                         self,
                         *,
                         migratingVm: str,
-                        body: ResumeMigrationRequest = ...,
+                        body: ResumeMigrationRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def startMigration(
                         self,
                         *,
                         migratingVm: str,
-                        body: StartMigrationRequest = ...,
+                        body: StartMigrationRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def cloneJobs(self) -> CloneJobsResource: ...
@@ -472,7 +472,7 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: UtilizationReport = ...,
+                        body: UtilizationReport,
                         requestId: str | None = ...,
                         utilizationReportId: str | None = ...,
                         **kwargs: typing.Any,
@@ -518,7 +518,7 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: Source = ...,
+                    body: Source,
                     requestId: str | None = ...,
                     sourceId: str | None = ...,
                     **kwargs: typing.Any,
@@ -584,7 +584,7 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: Source = ...,
+                    body: Source,
                     requestId: str | None = ...,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
@@ -600,7 +600,7 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: TargetProject = ...,
+                    body: TargetProject,
                     requestId: str | None = ...,
                     targetProjectId: str | None = ...,
                     **kwargs: typing.Any,
@@ -634,7 +634,7 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: TargetProject = ...,
+                    body: TargetProject,
                     requestId: str | None = ...,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,

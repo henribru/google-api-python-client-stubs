@@ -16,19 +16,19 @@ class CloudNaturalLanguageResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class DocumentsResource(googleapiclient.discovery.Resource):
         def analyzeEntities(
-            self, *, body: AnalyzeEntitiesRequest = ..., **kwargs: typing.Any
+            self, *, body: AnalyzeEntitiesRequest, **kwargs: typing.Any
         ) -> AnalyzeEntitiesResponseHttpRequest: ...
         def analyzeSentiment(
-            self, *, body: AnalyzeSentimentRequest = ..., **kwargs: typing.Any
+            self, *, body: AnalyzeSentimentRequest, **kwargs: typing.Any
         ) -> AnalyzeSentimentResponseHttpRequest: ...
         def annotateText(
-            self, *, body: AnnotateTextRequest = ..., **kwargs: typing.Any
+            self, *, body: AnnotateTextRequest, **kwargs: typing.Any
         ) -> AnnotateTextResponseHttpRequest: ...
         def classifyText(
-            self, *, body: ClassifyTextRequest = ..., **kwargs: typing.Any
+            self, *, body: ClassifyTextRequest, **kwargs: typing.Any
         ) -> ClassifyTextResponseHttpRequest: ...
         def moderateText(
-            self, *, body: ModerateTextRequest = ..., **kwargs: typing.Any
+            self, *, body: ModerateTextRequest, **kwargs: typing.Any
         ) -> ModerateTextResponseHttpRequest: ...
 
     def new_batch_http_request(

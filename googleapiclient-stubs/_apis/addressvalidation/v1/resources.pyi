@@ -18,7 +18,7 @@ class AddressValidationResource(googleapiclient.discovery.Resource):
         def provideValidationFeedback(
             self,
             *,
-            body: GoogleMapsAddressvalidationV1ProvideValidationFeedbackRequest = ...,
+            body: GoogleMapsAddressvalidationV1ProvideValidationFeedbackRequest,
             **kwargs: typing.Any,
         ) -> (
             GoogleMapsAddressvalidationV1ProvideValidationFeedbackResponseHttpRequest
@@ -26,7 +26,7 @@ class AddressValidationResource(googleapiclient.discovery.Resource):
         def validateAddress(
             self,
             *,
-            body: GoogleMapsAddressvalidationV1ValidateAddressRequest = ...,
+            body: GoogleMapsAddressvalidationV1ValidateAddressRequest,
             **kwargs: typing.Any,
         ) -> GoogleMapsAddressvalidationV1ValidateAddressResponseHttpRequest: ...
 

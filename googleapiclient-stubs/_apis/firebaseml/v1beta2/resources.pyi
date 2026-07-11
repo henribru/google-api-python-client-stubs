@@ -18,7 +18,7 @@ class FirebaseMLResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class ModelsResource(googleapiclient.discovery.Resource):
             def create(
-                self, *, parent: str, body: Model = ..., **kwargs: typing.Any
+                self, *, parent: str, body: Model, **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -45,7 +45,7 @@ class FirebaseMLResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: Model = ...,
+                body: Model,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...

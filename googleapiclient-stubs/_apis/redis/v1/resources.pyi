@@ -23,7 +23,7 @@ class CloudRedisResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: AclPolicy = ...,
+                    body: AclPolicy,
                     aclPolicyId: str | None = ...,
                     requestId: str | None = ...,
                     **kwargs: typing.Any,
@@ -56,7 +56,7 @@ class CloudRedisResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: AclPolicy = ...,
+                    body: AclPolicy,
                     requestId: str | None = ...,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
@@ -77,7 +77,7 @@ class CloudRedisResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: ExportBackupRequest = ...,
+                        body: ExportBackupRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def get(
@@ -147,7 +147,7 @@ class CloudRedisResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         tokenAuthUser: str,
-                        body: AddAuthTokenRequest = ...,
+                        body: AddAuthTokenRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def delete(
@@ -182,21 +182,17 @@ class CloudRedisResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     cluster: str,
-                    body: AddTokenAuthUserRequest = ...,
+                    body: AddTokenAuthUserRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def backup(
-                    self,
-                    *,
-                    name: str,
-                    body: BackupClusterRequest = ...,
-                    **kwargs: typing.Any,
+                    self, *, name: str, body: BackupClusterRequest, **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def create(
                     self,
                     *,
                     parent: str,
-                    body: Cluster = ...,
+                    body: Cluster,
                     clusterId: str | None = ...,
                     requestId: str | None = ...,
                     **kwargs: typing.Any,
@@ -231,7 +227,7 @@ class CloudRedisResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: Cluster = ...,
+                    body: Cluster,
                     requestId: str | None = ...,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
@@ -240,7 +236,7 @@ class CloudRedisResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: RescheduleClusterMaintenanceRequest = ...,
+                    body: RescheduleClusterMaintenanceRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def tokenAuthUsers(self) -> TokenAuthUsersResource: ...
@@ -251,7 +247,7 @@ class CloudRedisResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: Instance = ...,
+                    body: Instance,
                     instanceId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -262,14 +258,14 @@ class CloudRedisResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: ExportInstanceRequest = ...,
+                    body: ExportInstanceRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def failover(
                     self,
                     *,
                     name: str,
-                    body: FailoverInstanceRequest = ...,
+                    body: FailoverInstanceRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def get(
@@ -282,7 +278,7 @@ class CloudRedisResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: ImportInstanceRequest = ...,
+                    body: ImportInstanceRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def list(
@@ -302,7 +298,7 @@ class CloudRedisResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: Instance = ...,
+                    body: Instance,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -310,14 +306,14 @@ class CloudRedisResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: RescheduleMaintenanceRequest = ...,
+                    body: RescheduleMaintenanceRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def upgrade(
                     self,
                     *,
                     name: str,
-                    body: UpgradeInstanceRequest = ...,
+                    body: UpgradeInstanceRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
 

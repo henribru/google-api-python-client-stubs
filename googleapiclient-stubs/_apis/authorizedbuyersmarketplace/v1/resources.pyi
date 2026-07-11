@@ -51,11 +51,7 @@ class AuthorizedBuyersMarketplaceResource(googleapiclient.discovery.Resource):
                 previous_response: ListFinalizedDealsResponse,
             ) -> ListFinalizedDealsResponseHttpRequest | None: ...
             def setReadyToServe(
-                self,
-                *,
-                deal: str,
-                body: SetReadyToServeRequest = ...,
-                **kwargs: typing.Any,
+                self, *, deal: str, body: SetReadyToServeRequest, **kwargs: typing.Any
             ) -> FinalizedDealHttpRequest: ...
 
         def auctionPackages(self) -> AuctionPackagesResource: ...
@@ -87,28 +83,28 @@ class AuthorizedBuyersMarketplaceResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: SubscribeAuctionPackageRequest = ...,
+                body: SubscribeAuctionPackageRequest,
                 **kwargs: typing.Any,
             ) -> AuctionPackageHttpRequest: ...
             def subscribeClients(
                 self,
                 *,
                 auctionPackage: str,
-                body: SubscribeClientsRequest = ...,
+                body: SubscribeClientsRequest,
                 **kwargs: typing.Any,
             ) -> AuctionPackageHttpRequest: ...
             def unsubscribe(
                 self,
                 *,
                 name: str,
-                body: UnsubscribeAuctionPackageRequest = ...,
+                body: UnsubscribeAuctionPackageRequest,
                 **kwargs: typing.Any,
             ) -> AuctionPackageHttpRequest: ...
             def unsubscribeClients(
                 self,
                 *,
                 auctionPackage: str,
-                body: UnsubscribeClientsRequest = ...,
+                body: UnsubscribeClientsRequest,
                 **kwargs: typing.Any,
             ) -> AuctionPackageHttpRequest: ...
 
@@ -120,17 +116,17 @@ class AuthorizedBuyersMarketplaceResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: ActivateClientUserRequest = ...,
+                    body: ActivateClientUserRequest,
                     **kwargs: typing.Any,
                 ) -> ClientUserHttpRequest: ...
                 def create(
-                    self, *, parent: str, body: ClientUser = ..., **kwargs: typing.Any
+                    self, *, parent: str, body: ClientUser, **kwargs: typing.Any
                 ) -> ClientUserHttpRequest: ...
                 def deactivate(
                     self,
                     *,
                     name: str,
-                    body: DeactivateClientUserRequest = ...,
+                    body: DeactivateClientUserRequest,
                     **kwargs: typing.Any,
                 ) -> ClientUserHttpRequest: ...
                 def delete(
@@ -154,21 +150,13 @@ class AuthorizedBuyersMarketplaceResource(googleapiclient.discovery.Resource):
                 ) -> ListClientUsersResponseHttpRequest | None: ...
 
             def activate(
-                self,
-                *,
-                name: str,
-                body: ActivateClientRequest = ...,
-                **kwargs: typing.Any,
+                self, *, name: str, body: ActivateClientRequest, **kwargs: typing.Any
             ) -> ClientHttpRequest: ...
             def create(
-                self, *, parent: str, body: Client = ..., **kwargs: typing.Any
+                self, *, parent: str, body: Client, **kwargs: typing.Any
             ) -> ClientHttpRequest: ...
             def deactivate(
-                self,
-                *,
-                name: str,
-                body: DeactivateClientRequest = ...,
-                **kwargs: typing.Any,
+                self, *, name: str, body: DeactivateClientRequest, **kwargs: typing.Any
             ) -> ClientHttpRequest: ...
             def get(self, *, name: str, **kwargs: typing.Any) -> ClientHttpRequest: ...
             def list(
@@ -189,7 +177,7 @@ class AuthorizedBuyersMarketplaceResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: Client = ...,
+                body: Client,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ClientHttpRequest: ...
@@ -198,7 +186,7 @@ class AuthorizedBuyersMarketplaceResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class FinalizedDealsResource(googleapiclient.discovery.Resource):
             def addCreative(
-                self, *, deal: str, body: AddCreativeRequest = ..., **kwargs: typing.Any
+                self, *, deal: str, body: AddCreativeRequest, **kwargs: typing.Any
             ) -> FinalizedDealHttpRequest: ...
             def get(
                 self, *, name: str, **kwargs: typing.Any
@@ -222,22 +210,18 @@ class AuthorizedBuyersMarketplaceResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: PauseFinalizedDealRequest = ...,
+                body: PauseFinalizedDealRequest,
                 **kwargs: typing.Any,
             ) -> FinalizedDealHttpRequest: ...
             def resume(
                 self,
                 *,
                 name: str,
-                body: ResumeFinalizedDealRequest = ...,
+                body: ResumeFinalizedDealRequest,
                 **kwargs: typing.Any,
             ) -> FinalizedDealHttpRequest: ...
             def setReadyToServe(
-                self,
-                *,
-                deal: str,
-                body: SetReadyToServeRequest = ...,
-                **kwargs: typing.Any,
+                self, *, deal: str, body: SetReadyToServeRequest, **kwargs: typing.Any
             ) -> FinalizedDealHttpRequest: ...
 
         @typing.type_check_only
@@ -248,7 +232,7 @@ class AuthorizedBuyersMarketplaceResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: BatchUpdateDealsRequest = ...,
+                    body: BatchUpdateDealsRequest,
                     **kwargs: typing.Any,
                 ) -> BatchUpdateDealsResponseHttpRequest: ...
                 def get(
@@ -271,26 +255,22 @@ class AuthorizedBuyersMarketplaceResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: Deal = ...,
+                    body: Deal,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> DealHttpRequest: ...
 
             def accept(
-                self,
-                *,
-                name: str,
-                body: AcceptProposalRequest = ...,
-                **kwargs: typing.Any,
+                self, *, name: str, body: AcceptProposalRequest, **kwargs: typing.Any
             ) -> ProposalHttpRequest: ...
             def addNote(
-                self, *, proposal: str, body: AddNoteRequest = ..., **kwargs: typing.Any
+                self, *, proposal: str, body: AddNoteRequest, **kwargs: typing.Any
             ) -> ProposalHttpRequest: ...
             def cancelNegotiation(
                 self,
                 *,
                 proposal: str,
-                body: CancelNegotiationRequest = ...,
+                body: CancelNegotiationRequest,
                 **kwargs: typing.Any,
             ) -> ProposalHttpRequest: ...
             def get(
@@ -314,12 +294,12 @@ class AuthorizedBuyersMarketplaceResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: Proposal = ...,
+                body: Proposal,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ProposalHttpRequest: ...
             def sendRfp(
-                self, *, buyer: str, body: SendRfpRequest = ..., **kwargs: typing.Any
+                self, *, buyer: str, body: SendRfpRequest, **kwargs: typing.Any
             ) -> ProposalHttpRequest: ...
             def deals(self) -> DealsResource: ...
 

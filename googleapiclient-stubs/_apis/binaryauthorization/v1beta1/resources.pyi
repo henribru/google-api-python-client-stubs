@@ -21,7 +21,7 @@ class BinaryAuthorizationResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: Attestor = ...,
+                body: Attestor,
                 attestorId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> AttestorHttpRequest: ...
@@ -52,27 +52,23 @@ class BinaryAuthorizationResource(googleapiclient.discovery.Resource):
                 previous_response: ListAttestorsResponse,
             ) -> ListAttestorsResponseHttpRequest | None: ...
             def setIamPolicy(
-                self,
-                *,
-                resource: str,
-                body: SetIamPolicyRequest = ...,
-                **kwargs: typing.Any,
+                self, *, resource: str, body: SetIamPolicyRequest, **kwargs: typing.Any
             ) -> IamPolicyHttpRequest: ...
             def testIamPermissions(
                 self,
                 *,
                 resource: str,
-                body: TestIamPermissionsRequest = ...,
+                body: TestIamPermissionsRequest,
                 **kwargs: typing.Any,
             ) -> TestIamPermissionsResponseHttpRequest: ...
             def update(
-                self, *, name: str, body: Attestor = ..., **kwargs: typing.Any
+                self, *, name: str, body: Attestor, **kwargs: typing.Any
             ) -> AttestorHttpRequest: ...
             def validateAttestationOccurrence(
                 self,
                 *,
                 attestor: str,
-                body: ValidateAttestationOccurrenceRequest = ...,
+                body: ValidateAttestationOccurrenceRequest,
                 **kwargs: typing.Any,
             ) -> ValidateAttestationOccurrenceResponseHttpRequest: ...
 
@@ -86,17 +82,13 @@ class BinaryAuthorizationResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any,
             ) -> IamPolicyHttpRequest: ...
             def setIamPolicy(
-                self,
-                *,
-                resource: str,
-                body: SetIamPolicyRequest = ...,
-                **kwargs: typing.Any,
+                self, *, resource: str, body: SetIamPolicyRequest, **kwargs: typing.Any
             ) -> IamPolicyHttpRequest: ...
             def testIamPermissions(
                 self,
                 *,
                 resource: str,
-                body: TestIamPermissionsRequest = ...,
+                body: TestIamPermissionsRequest,
                 **kwargs: typing.Any,
             ) -> TestIamPermissionsResponseHttpRequest: ...
 
@@ -104,7 +96,7 @@ class BinaryAuthorizationResource(googleapiclient.discovery.Resource):
             self, *, name: str, **kwargs: typing.Any
         ) -> PolicyHttpRequest: ...
         def updatePolicy(
-            self, *, name: str, body: Policy = ..., **kwargs: typing.Any
+            self, *, name: str, body: Policy, **kwargs: typing.Any
         ) -> PolicyHttpRequest: ...
         def attestors(self) -> AttestorsResource: ...
         def policy(self) -> PolicyResource: ...

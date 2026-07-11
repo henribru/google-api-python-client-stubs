@@ -34,7 +34,7 @@ class CloudbillingResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class SubAccountsResource(googleapiclient.discovery.Resource):
             def create(
-                self, *, parent: str, body: BillingAccount = ..., **kwargs: typing.Any
+                self, *, parent: str, body: BillingAccount, **kwargs: typing.Any
             ) -> BillingAccountHttpRequest: ...
             def list(
                 self,
@@ -54,7 +54,7 @@ class CloudbillingResource(googleapiclient.discovery.Resource):
         def create(
             self,
             *,
-            body: BillingAccount = ...,
+            body: BillingAccount,
             parent: str | None = ...,
             **kwargs: typing.Any,
         ) -> BillingAccountHttpRequest: ...
@@ -83,32 +83,24 @@ class CloudbillingResource(googleapiclient.discovery.Resource):
             previous_response: ListBillingAccountsResponse,
         ) -> ListBillingAccountsResponseHttpRequest | None: ...
         def move(
-            self,
-            *,
-            name: str,
-            body: MoveBillingAccountRequest = ...,
-            **kwargs: typing.Any,
+            self, *, name: str, body: MoveBillingAccountRequest, **kwargs: typing.Any
         ) -> BillingAccountHttpRequest: ...
         def patch(
             self,
             *,
             name: str,
-            body: BillingAccount = ...,
+            body: BillingAccount,
             updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> BillingAccountHttpRequest: ...
         def setIamPolicy(
-            self,
-            *,
-            resource: str,
-            body: SetIamPolicyRequest = ...,
-            **kwargs: typing.Any,
+            self, *, resource: str, body: SetIamPolicyRequest, **kwargs: typing.Any
         ) -> PolicyHttpRequest: ...
         def testIamPermissions(
             self,
             *,
             resource: str,
-            body: TestIamPermissionsRequest = ...,
+            body: TestIamPermissionsRequest,
             **kwargs: typing.Any,
         ) -> TestIamPermissionsResponseHttpRequest: ...
         def projects(self) -> ProjectsResource: ...
@@ -119,7 +111,7 @@ class CloudbillingResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class BillingAccountsResource(googleapiclient.discovery.Resource):
             def create(
-                self, *, parent: str, body: BillingAccount = ..., **kwargs: typing.Any
+                self, *, parent: str, body: BillingAccount, **kwargs: typing.Any
             ) -> BillingAccountHttpRequest: ...
             def list(
                 self,
@@ -147,7 +139,7 @@ class CloudbillingResource(googleapiclient.discovery.Resource):
             self, *, name: str, **kwargs: typing.Any
         ) -> ProjectBillingInfoHttpRequest: ...
         def updateBillingInfo(
-            self, *, name: str, body: ProjectBillingInfo = ..., **kwargs: typing.Any
+            self, *, name: str, body: ProjectBillingInfo, **kwargs: typing.Any
         ) -> ProjectBillingInfoHttpRequest: ...
 
     @typing.type_check_only

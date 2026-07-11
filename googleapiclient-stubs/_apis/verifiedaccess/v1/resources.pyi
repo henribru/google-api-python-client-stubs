@@ -16,10 +16,10 @@ class VerifiedaccessResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class ChallengeResource(googleapiclient.discovery.Resource):
         def create(
-            self, *, body: Empty = ..., **kwargs: typing.Any
+            self, *, body: Empty, **kwargs: typing.Any
         ) -> ChallengeHttpRequest: ...
         def verify(
-            self, *, body: VerifyChallengeResponseRequest = ..., **kwargs: typing.Any
+            self, *, body: VerifyChallengeResponseRequest, **kwargs: typing.Any
         ) -> VerifyChallengeResponseResultHttpRequest: ...
 
     def new_batch_http_request(

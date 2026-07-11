@@ -29,7 +29,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             parent: str,
-                            body: AttributeDefinition = ...,
+                            body: AttributeDefinition,
                             attributeDefinitionId: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> AttributeDefinitionHttpRequest: ...
@@ -57,7 +57,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             name: str,
-                            body: AttributeDefinition = ...,
+                            body: AttributeDefinition,
                             updateMask: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> AttributeDefinitionHttpRequest: ...
@@ -68,7 +68,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             parent: str,
-                            body: ConsentArtifact = ...,
+                            body: ConsentArtifact,
                             **kwargs: typing.Any,
                         ) -> ConsentArtifactHttpRequest: ...
                         def delete(
@@ -98,15 +98,11 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             name: str,
-                            body: ActivateConsentRequest = ...,
+                            body: ActivateConsentRequest,
                             **kwargs: typing.Any,
                         ) -> ConsentHttpRequest: ...
                         def create(
-                            self,
-                            *,
-                            parent: str,
-                            body: Consent = ...,
-                            **kwargs: typing.Any,
+                            self, *, parent: str, body: Consent, **kwargs: typing.Any
                         ) -> ConsentHttpRequest: ...
                         def delete(
                             self, *, name: str, **kwargs: typing.Any
@@ -149,7 +145,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             name: str,
-                            body: Consent = ...,
+                            body: Consent,
                             updateMask: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> ConsentHttpRequest: ...
@@ -157,14 +153,14 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             name: str,
-                            body: RejectConsentRequest = ...,
+                            body: RejectConsentRequest,
                             **kwargs: typing.Any,
                         ) -> ConsentHttpRequest: ...
                         def revoke(
                             self,
                             *,
                             name: str,
-                            body: RevokeConsentRequest = ...,
+                            body: RevokeConsentRequest,
                             **kwargs: typing.Any,
                         ) -> ConsentHttpRequest: ...
 
@@ -174,14 +170,14 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             name: str,
-                            body: ArchiveUserDataMappingRequest = ...,
+                            body: ArchiveUserDataMappingRequest,
                             **kwargs: typing.Any,
                         ) -> ArchiveUserDataMappingResponseHttpRequest: ...
                         def create(
                             self,
                             *,
                             parent: str,
-                            body: UserDataMapping = ...,
+                            body: UserDataMapping,
                             **kwargs: typing.Any,
                         ) -> UserDataMappingHttpRequest: ...
                         def delete(
@@ -208,7 +204,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             name: str,
-                            body: UserDataMapping = ...,
+                            body: UserDataMapping,
                             updateMask: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> UserDataMappingHttpRequest: ...
@@ -217,14 +213,14 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         consentStore: str,
-                        body: CheckDataAccessRequest = ...,
+                        body: CheckDataAccessRequest,
                         **kwargs: typing.Any,
                     ) -> CheckDataAccessResponseHttpRequest: ...
                     def create(
                         self,
                         *,
                         parent: str,
-                        body: ConsentStore = ...,
+                        body: ConsentStore,
                         consentStoreId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ConsentStoreHttpRequest: ...
@@ -235,7 +231,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         consentStore: str,
-                        body: EvaluateUserConsentsRequest = ...,
+                        body: EvaluateUserConsentsRequest,
                         **kwargs: typing.Any,
                     ) -> EvaluateUserConsentsResponseHttpRequest: ...
                     def evaluateUserConsents_next(
@@ -271,7 +267,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: ConsentStore = ...,
+                        body: ConsentStore,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ConsentStoreHttpRequest: ...
@@ -279,21 +275,21 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         consentStore: str,
-                        body: QueryAccessibleDataRequest = ...,
+                        body: QueryAccessibleDataRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def setIamPolicy(
                         self,
                         *,
                         resource: str,
-                        body: SetIamPolicyRequest = ...,
+                        body: SetIamPolicyRequest,
                         **kwargs: typing.Any,
                     ) -> PolicyHttpRequest: ...
                     def testIamPermissions(
                         self,
                         *,
                         resource: str,
-                        body: TestIamPermissionsRequest = ...,
+                        body: TestIamPermissionsRequest,
                         **kwargs: typing.Any,
                     ) -> TestIamPermissionsResponseHttpRequest: ...
                     def attributeDefinitions(self) -> AttributeDefinitionsResource: ...
@@ -314,14 +310,14 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         resource: str,
-                        body: SetIamPolicyRequest = ...,
+                        body: SetIamPolicyRequest,
                         **kwargs: typing.Any,
                     ) -> PolicyHttpRequest: ...
                     def testIamPermissions(
                         self,
                         *,
                         resource: str,
-                        body: TestIamPermissionsRequest = ...,
+                        body: TestIamPermissionsRequest,
                         **kwargs: typing.Any,
                     ) -> TestIamPermissionsResponseHttpRequest: ...
 
@@ -353,7 +349,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                                 self,
                                 *,
                                 resource: str,
-                                body: SetBlobStorageSettingsRequest = ...,
+                                body: SetBlobStorageSettingsRequest,
                                 **kwargs: typing.Any,
                             ) -> OperationHttpRequest: ...
                             def series(self) -> SeriesResource: ...
@@ -432,7 +428,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                                     *,
                                     parent: str,
                                     dicomWebPath: str,
-                                    body: HttpBody = ...,
+                                    body: HttpBody,
                                     **kwargs: typing.Any,
                                 ) -> HttpBodyHttpRequest: ...
                                 def bulkdata(self) -> BulkdataResource: ...
@@ -471,7 +467,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                                 *,
                                 parent: str,
                                 dicomWebPath: str,
-                                body: HttpBody = ...,
+                                body: HttpBody,
                                 **kwargs: typing.Any,
                             ) -> OperationHttpRequest: ...
                             def instances(self) -> InstancesResource: ...
@@ -516,7 +512,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                             *,
                             parent: str,
                             dicomWebPath: str,
-                            body: HttpBody = ...,
+                            body: HttpBody,
                             **kwargs: typing.Any,
                         ) -> HttpBodyHttpRequest: ...
                         def updateInstances(
@@ -524,7 +520,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                             *,
                             parent: str,
                             dicomWebPath: str,
-                            body: HttpBody = ...,
+                            body: HttpBody,
                             **kwargs: typing.Any,
                         ) -> HttpBodyHttpRequest: ...
                         def updateMetadata(
@@ -532,7 +528,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                             *,
                             parent: str,
                             dicomWebPath: str,
-                            body: HttpBody = ...,
+                            body: HttpBody,
                             **kwargs: typing.Any,
                         ) -> OperationHttpRequest: ...
                         def series(self) -> SeriesResource: ...
@@ -541,7 +537,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: DicomStore = ...,
+                        body: DicomStore,
                         dicomStoreId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> DicomStoreHttpRequest: ...
@@ -549,7 +545,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         sourceStore: str,
-                        body: DeidentifyDicomStoreRequest = ...,
+                        body: DeidentifyDicomStoreRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def delete(
@@ -559,7 +555,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: ExportDicomDataRequest = ...,
+                        body: ExportDicomDataRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def get(
@@ -579,7 +575,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: ImportDicomDataRequest = ...,
+                        body: ImportDicomDataRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def list(
@@ -600,7 +596,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: DicomStore = ...,
+                        body: DicomStore,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> DicomStoreHttpRequest: ...
@@ -617,14 +613,14 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         resource: str,
-                        body: SetBlobStorageSettingsRequest = ...,
+                        body: SetBlobStorageSettingsRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def setIamPolicy(
                         self,
                         *,
                         resource: str,
-                        body: SetIamPolicyRequest = ...,
+                        body: SetIamPolicyRequest,
                         **kwargs: typing.Any,
                     ) -> PolicyHttpRequest: ...
                     def storeInstances(
@@ -632,14 +628,14 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         dicomWebPath: str,
-                        body: HttpBody = ...,
+                        body: HttpBody,
                         **kwargs: typing.Any,
                     ) -> HttpBodyHttpRequest: ...
                     def testIamPermissions(
                         self,
                         *,
                         resource: str,
-                        body: TestIamPermissionsRequest = ...,
+                        body: TestIamPermissionsRequest,
                         **kwargs: typing.Any,
                     ) -> TestIamPermissionsResponseHttpRequest: ...
                     def updateInstances(
@@ -647,7 +643,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         dicomWebPath: str,
-                        body: HttpBody = ...,
+                        body: HttpBody,
                         **kwargs: typing.Any,
                     ) -> HttpBodyHttpRequest: ...
                     def dicomWeb(self) -> DicomWebResource: ...
@@ -658,21 +654,13 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                     @typing.type_check_only
                     class FhirResource(googleapiclient.discovery.Resource):
                         def Binary_create(
-                            self,
-                            *,
-                            parent: str,
-                            body: HttpBody = ...,
-                            **kwargs: typing.Any,
+                            self, *, parent: str, body: HttpBody, **kwargs: typing.Any
                         ) -> HttpBodyHttpRequest: ...
                         def Binary_read(
                             self, *, name: str, **kwargs: typing.Any
                         ) -> HttpBodyHttpRequest: ...
                         def Binary_update(
-                            self,
-                            *,
-                            name: str,
-                            body: HttpBody = ...,
-                            **kwargs: typing.Any,
+                            self, *, name: str, body: HttpBody, **kwargs: typing.Any
                         ) -> HttpBodyHttpRequest: ...
                         def Binary_vread(
                             self, *, name: str, **kwargs: typing.Any
@@ -753,7 +741,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                             *,
                             parent: str,
                             type: str,
-                            body: HttpBody = ...,
+                            body: HttpBody,
                             profile: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> HttpBodyHttpRequest: ...
@@ -777,7 +765,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                             *,
                             parent: str,
                             type: str,
-                            body: HttpBody = ...,
+                            body: HttpBody,
                             **kwargs: typing.Any,
                         ) -> HttpBodyHttpRequest: ...
                         def conditionalUpdate(
@@ -785,7 +773,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                             *,
                             parent: str,
                             type: str,
-                            body: HttpBody = ...,
+                            body: HttpBody,
                             **kwargs: typing.Any,
                         ) -> HttpBodyHttpRequest: ...
                         def create(
@@ -793,18 +781,14 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                             *,
                             parent: str,
                             type: str,
-                            body: HttpBody = ...,
+                            body: HttpBody,
                             **kwargs: typing.Any,
                         ) -> HttpBodyHttpRequest: ...
                         def delete(
                             self, *, name: str, **kwargs: typing.Any
                         ) -> HttpBodyHttpRequest: ...
                         def executeBundle(
-                            self,
-                            *,
-                            parent: str,
-                            body: HttpBody = ...,
-                            **kwargs: typing.Any,
+                            self, *, parent: str, body: HttpBody, **kwargs: typing.Any
                         ) -> HttpBodyHttpRequest: ...
                         def history(
                             self,
@@ -817,11 +801,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                             **kwargs: typing.Any,
                         ) -> HttpBodyHttpRequest: ...
                         def patch(
-                            self,
-                            *,
-                            name: str,
-                            body: HttpBody = ...,
-                            **kwargs: typing.Any,
+                            self, *, name: str, body: HttpBody, **kwargs: typing.Any
                         ) -> HttpBodyHttpRequest: ...
                         def read(
                             self, *, name: str, **kwargs: typing.Any
@@ -830,7 +810,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             parent: str,
-                            body: HttpBody = ...,
+                            body: HttpBody,
                             resourceType: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> HttpBodyHttpRequest: ...
@@ -839,15 +819,11 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                             *,
                             parent: str,
                             resourceType: str,
-                            body: HttpBody = ...,
+                            body: HttpBody,
                             **kwargs: typing.Any,
                         ) -> HttpBodyHttpRequest: ...
                         def update(
-                            self,
-                            *,
-                            name: str,
-                            body: HttpBody = ...,
-                            **kwargs: typing.Any,
+                            self, *, name: str, body: HttpBody, **kwargs: typing.Any
                         ) -> HttpBodyHttpRequest: ...
                         def vread(
                             self, *, name: str, **kwargs: typing.Any
@@ -866,14 +842,14 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: ApplyAdminConsentsRequest = ...,
+                        body: ApplyAdminConsentsRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def applyConsents(
                         self,
                         *,
                         name: str,
-                        body: ApplyConsentsRequest = ...,
+                        body: ApplyConsentsRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def bulk_export_group(
@@ -890,21 +866,21 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: BulkDeleteResourcesRequest = ...,
+                        body: BulkDeleteResourcesRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def configureSearch(
                         self,
                         *,
                         name: str,
-                        body: ConfigureSearchRequest = ...,
+                        body: ConfigureSearchRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def create(
                         self,
                         *,
                         parent: str,
-                        body: FhirStore = ...,
+                        body: FhirStore,
                         fhirStoreId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> FhirStoreHttpRequest: ...
@@ -912,7 +888,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         sourceStore: str,
-                        body: DeidentifyFhirStoreRequest = ...,
+                        body: DeidentifyFhirStoreRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def delete(
@@ -929,14 +905,14 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: ExportResourcesRequest = ...,
+                        body: ExportResourcesRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def exportHistory(
                         self,
                         *,
                         name: str,
-                        body: ExportResourcesHistoryRequest = ...,
+                        body: ExportResourcesHistoryRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def get(
@@ -956,14 +932,14 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: ImportResourcesRequest = ...,
+                        body: ImportResourcesRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def importHistory(
                         self,
                         *,
                         name: str,
-                        body: ImportResourcesHistoryRequest = ...,
+                        body: ImportResourcesHistoryRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def list(
@@ -984,7 +960,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: FhirStore = ...,
+                        body: FhirStore,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> FhirStoreHttpRequest: ...
@@ -992,21 +968,21 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: RollbackFhirResourcesRequest = ...,
+                        body: RollbackFhirResourcesRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def setIamPolicy(
                         self,
                         *,
                         resource: str,
-                        body: SetIamPolicyRequest = ...,
+                        body: SetIamPolicyRequest,
                         **kwargs: typing.Any,
                     ) -> PolicyHttpRequest: ...
                     def testIamPermissions(
                         self,
                         *,
                         resource: str,
-                        body: TestIamPermissionsRequest = ...,
+                        body: TestIamPermissionsRequest,
                         **kwargs: typing.Any,
                     ) -> TestIamPermissionsResponseHttpRequest: ...
                     def fhir(self) -> FhirResource: ...
@@ -1036,7 +1012,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             parent: str,
-                            body: CreateMessageRequest = ...,
+                            body: CreateMessageRequest,
                             **kwargs: typing.Any,
                         ) -> MessageHttpRequest: ...
                         def delete(
@@ -1061,7 +1037,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             parent: str,
-                            body: IngestMessageRequest = ...,
+                            body: IngestMessageRequest,
                             **kwargs: typing.Any,
                         ) -> IngestMessageResponseHttpRequest: ...
                         def list(
@@ -1092,7 +1068,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             name: str,
-                            body: Message = ...,
+                            body: Message,
                             updateMask: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> MessageHttpRequest: ...
@@ -1101,7 +1077,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: Hl7V2Store = ...,
+                        body: Hl7V2Store,
                         hl7V2StoreId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> Hl7V2StoreHttpRequest: ...
@@ -1112,7 +1088,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: ExportMessagesRequest = ...,
+                        body: ExportMessagesRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def get(
@@ -1132,7 +1108,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: ImportMessagesRequest = ...,
+                        body: ImportMessagesRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def list(
@@ -1153,7 +1129,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: Hl7V2Store = ...,
+                        body: Hl7V2Store,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> Hl7V2StoreHttpRequest: ...
@@ -1161,21 +1137,21 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: RollbackHl7V2MessagesRequest = ...,
+                        body: RollbackHl7V2MessagesRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def setIamPolicy(
                         self,
                         *,
                         resource: str,
-                        body: SetIamPolicyRequest = ...,
+                        body: SetIamPolicyRequest,
                         **kwargs: typing.Any,
                     ) -> PolicyHttpRequest: ...
                     def testIamPermissions(
                         self,
                         *,
                         resource: str,
-                        body: TestIamPermissionsRequest = ...,
+                        body: TestIamPermissionsRequest,
                         **kwargs: typing.Any,
                     ) -> TestIamPermissionsResponseHttpRequest: ...
                     def messages(self) -> MessagesResource: ...
@@ -1186,7 +1162,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: CancelOperationRequest = ...,
+                        body: CancelOperationRequest,
                         **kwargs: typing.Any,
                     ) -> EmptyHttpRequest: ...
                     def get(
@@ -1212,7 +1188,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: Dataset = ...,
+                    body: Dataset,
                     datasetId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -1220,7 +1196,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     sourceDataset: str,
-                    body: DeidentifyDatasetRequest = ...,
+                    body: DeidentifyDatasetRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
@@ -1253,7 +1229,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: Dataset = ...,
+                    body: Dataset,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> DatasetHttpRequest: ...
@@ -1261,14 +1237,14 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: SetIamPolicyRequest = ...,
+                    body: SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: TestIamPermissionsRequest = ...,
+                    body: TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def consentStores(self) -> ConsentStoresResource: ...
@@ -1286,7 +1262,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         nlpService: str,
-                        body: AnalyzeEntitiesRequest = ...,
+                        body: AnalyzeEntitiesRequest,
                         **kwargs: typing.Any,
                     ) -> AnalyzeEntitiesResponseHttpRequest: ...
 

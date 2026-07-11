@@ -66,7 +66,7 @@ class AdSenseHostResource(googleapiclient.discovery.Resource):
                 *,
                 accountId: str,
                 adClientId: str,
-                body: AdUnit = ...,
+                body: AdUnit,
                 **kwargs: typing.Any,
             ) -> AdUnitHttpRequest: ...
             def list(
@@ -88,7 +88,7 @@ class AdSenseHostResource(googleapiclient.discovery.Resource):
                 accountId: str,
                 adClientId: str,
                 adUnitId: str,
-                body: AdUnit = ...,
+                body: AdUnit,
                 **kwargs: typing.Any,
             ) -> AdUnitHttpRequest: ...
             def update(
@@ -96,7 +96,7 @@ class AdSenseHostResource(googleapiclient.discovery.Resource):
                 *,
                 accountId: str,
                 adClientId: str,
-                body: AdUnit = ...,
+                body: AdUnit,
                 **kwargs: typing.Any,
             ) -> AdUnitHttpRequest: ...
 
@@ -170,7 +170,7 @@ class AdSenseHostResource(googleapiclient.discovery.Resource):
             self, *, adClientId: str, customChannelId: str, **kwargs: typing.Any
         ) -> CustomChannelHttpRequest: ...
         def insert(
-            self, *, adClientId: str, body: CustomChannel = ..., **kwargs: typing.Any
+            self, *, adClientId: str, body: CustomChannel, **kwargs: typing.Any
         ) -> CustomChannelHttpRequest: ...
         def list(
             self,
@@ -190,11 +190,11 @@ class AdSenseHostResource(googleapiclient.discovery.Resource):
             *,
             adClientId: str,
             customChannelId: str,
-            body: CustomChannel = ...,
+            body: CustomChannel,
             **kwargs: typing.Any,
         ) -> CustomChannelHttpRequest: ...
         def update(
-            self, *, adClientId: str, body: CustomChannel = ..., **kwargs: typing.Any
+            self, *, adClientId: str, body: CustomChannel, **kwargs: typing.Any
         ) -> CustomChannelHttpRequest: ...
 
     @typing.type_check_only
@@ -220,7 +220,7 @@ class AdSenseHostResource(googleapiclient.discovery.Resource):
             self, *, adClientId: str, urlChannelId: str, **kwargs: typing.Any
         ) -> UrlChannelHttpRequest: ...
         def insert(
-            self, *, adClientId: str, body: UrlChannel = ..., **kwargs: typing.Any
+            self, *, adClientId: str, body: UrlChannel, **kwargs: typing.Any
         ) -> UrlChannelHttpRequest: ...
         def list(
             self,

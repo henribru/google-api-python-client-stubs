@@ -23,7 +23,7 @@ class CloudFilestoreResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: Backup = ...,
+                    body: Backup,
                     backupId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -52,7 +52,7 @@ class CloudFilestoreResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: Backup = ...,
+                    body: Backup,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -65,7 +65,7 @@ class CloudFilestoreResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: Snapshot = ...,
+                        body: Snapshot,
                         snapshotId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
@@ -95,7 +95,7 @@ class CloudFilestoreResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: Snapshot = ...,
+                        body: Snapshot,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
@@ -104,7 +104,7 @@ class CloudFilestoreResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: Instance = ...,
+                    body: Instance,
                     instanceId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -133,43 +133,35 @@ class CloudFilestoreResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: Instance = ...,
+                    body: Instance,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def pauseReplica(
-                    self,
-                    *,
-                    name: str,
-                    body: PauseReplicaRequest = ...,
-                    **kwargs: typing.Any,
+                    self, *, name: str, body: PauseReplicaRequest, **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def promoteReplica(
                     self,
                     *,
                     name: str,
-                    body: PromoteReplicaRequest = ...,
+                    body: PromoteReplicaRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def restore(
                     self,
                     *,
                     name: str,
-                    body: RestoreInstanceRequest = ...,
+                    body: RestoreInstanceRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def resumeReplica(
-                    self,
-                    *,
-                    name: str,
-                    body: ResumeReplicaRequest = ...,
-                    **kwargs: typing.Any,
+                    self, *, name: str, body: ResumeReplicaRequest, **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def revert(
                     self,
                     *,
                     name: str,
-                    body: RevertInstanceRequest = ...,
+                    body: RevertInstanceRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def snapshots(self) -> SnapshotsResource: ...
@@ -180,7 +172,7 @@ class CloudFilestoreResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: CancelOperationRequest = ...,
+                    body: CancelOperationRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def delete(

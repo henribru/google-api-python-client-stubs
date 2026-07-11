@@ -18,11 +18,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class AssetsResource(googleapiclient.discovery.Resource):
             def group(
-                self,
-                *,
-                parent: str,
-                body: GroupAssetsRequest = ...,
-                **kwargs: typing.Any,
+                self, *, parent: str, body: GroupAssetsRequest, **kwargs: typing.Any
             ) -> GroupAssetsResponseHttpRequest: ...
             def group_next(
                 self,
@@ -51,14 +47,14 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: RunAssetDiscoveryRequest = ...,
+                body: RunAssetDiscoveryRequest,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def updateSecurityMarks(
                 self,
                 *,
                 name: str,
-                body: GoogleCloudSecuritycenterV1beta1SecurityMarks = ...,
+                body: GoogleCloudSecuritycenterV1beta1SecurityMarks,
                 startTime: str | None = ...,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
@@ -67,11 +63,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class OperationsResource(googleapiclient.discovery.Resource):
             def cancel(
-                self,
-                *,
-                name: str,
-                body: CancelOperationRequest = ...,
-                **kwargs: typing.Any,
+                self, *, name: str, body: CancelOperationRequest, **kwargs: typing.Any
             ) -> EmptyHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -103,7 +95,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudSecuritycenterV1beta1Finding = ...,
+                    body: GoogleCloudSecuritycenterV1beta1Finding,
                     findingId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudSecuritycenterV1beta1FindingHttpRequest: ...
@@ -111,7 +103,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GroupFindingsRequest = ...,
+                    body: GroupFindingsRequest,
                     **kwargs: typing.Any,
                 ) -> GroupFindingsResponseHttpRequest: ...
                 def group_next(
@@ -140,7 +132,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudSecuritycenterV1beta1Finding = ...,
+                    body: GoogleCloudSecuritycenterV1beta1Finding,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudSecuritycenterV1beta1FindingHttpRequest: ...
@@ -148,29 +140,25 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: SetFindingStateRequest = ...,
+                    body: SetFindingStateRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudSecuritycenterV1beta1FindingHttpRequest: ...
                 def updateSecurityMarks(
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudSecuritycenterV1beta1SecurityMarks = ...,
+                    body: GoogleCloudSecuritycenterV1beta1SecurityMarks,
                     startTime: str | None = ...,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudSecuritycenterV1beta1SecurityMarksHttpRequest: ...
 
             def create(
-                self, *, parent: str, body: Source = ..., **kwargs: typing.Any
+                self, *, parent: str, body: Source, **kwargs: typing.Any
             ) -> SourceHttpRequest: ...
             def get(self, *, name: str, **kwargs: typing.Any) -> SourceHttpRequest: ...
             def getIamPolicy(
-                self,
-                *,
-                resource: str,
-                body: GetIamPolicyRequest = ...,
-                **kwargs: typing.Any,
+                self, *, resource: str, body: GetIamPolicyRequest, **kwargs: typing.Any
             ) -> PolicyHttpRequest: ...
             def list(
                 self,
@@ -189,22 +177,18 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: Source = ...,
+                body: Source,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> SourceHttpRequest: ...
             def setIamPolicy(
-                self,
-                *,
-                resource: str,
-                body: SetIamPolicyRequest = ...,
-                **kwargs: typing.Any,
+                self, *, resource: str, body: SetIamPolicyRequest, **kwargs: typing.Any
             ) -> PolicyHttpRequest: ...
             def testIamPermissions(
                 self,
                 *,
                 resource: str,
-                body: TestIamPermissionsRequest = ...,
+                body: TestIamPermissionsRequest,
                 **kwargs: typing.Any,
             ) -> TestIamPermissionsResponseHttpRequest: ...
             def findings(self) -> FindingsResource: ...
@@ -216,7 +200,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            body: OrganizationSettings = ...,
+            body: OrganizationSettings,
             updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> OrganizationSettingsHttpRequest: ...

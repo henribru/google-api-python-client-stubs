@@ -18,7 +18,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class ExclusionsResource(googleapiclient.discovery.Resource):
             def create(
-                self, *, parent: str, body: LogExclusion = ..., **kwargs: typing.Any
+                self, *, parent: str, body: LogExclusion, **kwargs: typing.Any
             ) -> LogExclusionHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -43,7 +43,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: LogExclusion = ...,
+                body: LogExclusion,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> LogExclusionHttpRequest: ...
@@ -58,7 +58,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: Link = ...,
+                        body: Link,
                         linkId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
@@ -105,7 +105,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: LogView = ...,
+                        body: LogView,
                         viewId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> LogViewHttpRequest: ...
@@ -132,7 +132,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: LogView = ...,
+                        body: LogView,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> LogViewHttpRequest: ...
@@ -142,7 +142,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: LogBucket = ...,
+                    body: LogBucket,
                     bucketId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> LogBucketHttpRequest: ...
@@ -150,7 +150,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: LogBucket = ...,
+                    body: LogBucket,
                     bucketId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -177,7 +177,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: LogBucket = ...,
+                    body: LogBucket,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> LogBucketHttpRequest: ...
@@ -185,14 +185,14 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: UndeleteBucketRequest = ...,
+                    body: UndeleteBucketRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def updateAsync(
                     self,
                     *,
                     name: str,
-                    body: LogBucket = ...,
+                    body: LogBucket,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -205,7 +205,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: CancelOperationRequest = ...,
+                    body: CancelOperationRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def get(
@@ -250,7 +250,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: SavedQuery = ...,
+                    body: SavedQuery,
                     savedQueryId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> SavedQueryHttpRequest: ...
@@ -278,7 +278,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: SavedQuery = ...,
+                    body: SavedQuery,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> SavedQueryHttpRequest: ...
@@ -332,7 +332,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: LogSink = ...,
+                body: LogSink,
                 customWriterIdentity: str | None = ...,
                 uniqueWriterIdentity: bool | None = ...,
                 **kwargs: typing.Any,
@@ -361,7 +361,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 sinkName: str,
-                body: LogSink = ...,
+                body: LogSink,
                 customWriterIdentity: str | None = ...,
                 uniqueWriterIdentity: bool | None = ...,
                 updateMask: str | None = ...,
@@ -371,7 +371,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 sinkName: str,
-                body: LogSink = ...,
+                body: LogSink,
                 customWriterIdentity: str | None = ...,
                 uniqueWriterIdentity: bool | None = ...,
                 updateMask: str | None = ...,
@@ -392,10 +392,10 @@ class LoggingResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class EntriesResource(googleapiclient.discovery.Resource):
         def copy(
-            self, *, body: CopyLogEntriesRequest = ..., **kwargs: typing.Any
+            self, *, body: CopyLogEntriesRequest, **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
         def list(
-            self, *, body: ListLogEntriesRequest = ..., **kwargs: typing.Any
+            self, *, body: ListLogEntriesRequest, **kwargs: typing.Any
         ) -> ListLogEntriesResponseHttpRequest: ...
         def list_next(
             self,
@@ -403,16 +403,16 @@ class LoggingResource(googleapiclient.discovery.Resource):
             previous_response: ListLogEntriesResponse,
         ) -> ListLogEntriesResponseHttpRequest | None: ...
         def tail(
-            self, *, body: TailLogEntriesRequest = ..., **kwargs: typing.Any
+            self, *, body: TailLogEntriesRequest, **kwargs: typing.Any
         ) -> TailLogEntriesResponseHttpRequest: ...
         def write(
-            self, *, body: WriteLogEntriesRequest = ..., **kwargs: typing.Any
+            self, *, body: WriteLogEntriesRequest, **kwargs: typing.Any
         ) -> WriteLogEntriesResponseHttpRequest: ...
 
     @typing.type_check_only
     class ExclusionsResource(googleapiclient.discovery.Resource):
         def create(
-            self, *, parent: str, body: LogExclusion = ..., **kwargs: typing.Any
+            self, *, parent: str, body: LogExclusion, **kwargs: typing.Any
         ) -> LogExclusionHttpRequest: ...
         def delete(self, *, name: str, **kwargs: typing.Any) -> EmptyHttpRequest: ...
         def get(
@@ -435,7 +435,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            body: LogExclusion = ...,
+            body: LogExclusion,
             updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> LogExclusionHttpRequest: ...
@@ -445,7 +445,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class ExclusionsResource(googleapiclient.discovery.Resource):
             def create(
-                self, *, parent: str, body: LogExclusion = ..., **kwargs: typing.Any
+                self, *, parent: str, body: LogExclusion, **kwargs: typing.Any
             ) -> LogExclusionHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -470,7 +470,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: LogExclusion = ...,
+                body: LogExclusion,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> LogExclusionHttpRequest: ...
@@ -485,7 +485,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: Link = ...,
+                        body: Link,
                         linkId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
@@ -532,7 +532,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: LogView = ...,
+                        body: LogView,
                         viewId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> LogViewHttpRequest: ...
@@ -546,7 +546,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         resource: str,
-                        body: GetIamPolicyRequest = ...,
+                        body: GetIamPolicyRequest,
                         **kwargs: typing.Any,
                     ) -> PolicyHttpRequest: ...
                     def list(
@@ -566,7 +566,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: LogView = ...,
+                        body: LogView,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> LogViewHttpRequest: ...
@@ -574,14 +574,14 @@ class LoggingResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         resource: str,
-                        body: SetIamPolicyRequest = ...,
+                        body: SetIamPolicyRequest,
                         **kwargs: typing.Any,
                     ) -> PolicyHttpRequest: ...
                     def testIamPermissions(
                         self,
                         *,
                         resource: str,
-                        body: TestIamPermissionsRequest = ...,
+                        body: TestIamPermissionsRequest,
                         **kwargs: typing.Any,
                     ) -> TestIamPermissionsResponseHttpRequest: ...
                     def logs(self) -> LogsResource: ...
@@ -590,7 +590,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: LogBucket = ...,
+                    body: LogBucket,
                     bucketId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> LogBucketHttpRequest: ...
@@ -598,7 +598,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: LogBucket = ...,
+                    body: LogBucket,
                     bucketId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -625,7 +625,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: LogBucket = ...,
+                    body: LogBucket,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> LogBucketHttpRequest: ...
@@ -633,14 +633,14 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: UndeleteBucketRequest = ...,
+                    body: UndeleteBucketRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def updateAsync(
                     self,
                     *,
                     name: str,
-                    body: LogBucket = ...,
+                    body: LogBucket,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -653,7 +653,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: LogScope = ...,
+                    body: LogScope,
                     logScopeId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> LogScopeHttpRequest: ...
@@ -680,7 +680,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: LogScope = ...,
+                    body: LogScope,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> LogScopeHttpRequest: ...
@@ -691,7 +691,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: CancelOperationRequest = ...,
+                    body: CancelOperationRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def get(
@@ -736,7 +736,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: SavedQuery = ...,
+                    body: SavedQuery,
                     savedQueryId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> SavedQueryHttpRequest: ...
@@ -764,7 +764,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: SavedQuery = ...,
+                    body: SavedQuery,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> SavedQueryHttpRequest: ...
@@ -819,7 +819,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: LogSink = ...,
+                body: LogSink,
                 customWriterIdentity: str | None = ...,
                 uniqueWriterIdentity: bool | None = ...,
                 **kwargs: typing.Any,
@@ -848,7 +848,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 sinkName: str,
-                body: LogSink = ...,
+                body: LogSink,
                 customWriterIdentity: str | None = ...,
                 uniqueWriterIdentity: bool | None = ...,
                 updateMask: str | None = ...,
@@ -858,7 +858,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 sinkName: str,
-                body: LogSink = ...,
+                body: LogSink,
                 customWriterIdentity: str | None = ...,
                 uniqueWriterIdentity: bool | None = ...,
                 updateMask: str | None = ...,
@@ -875,7 +875,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            body: Settings = ...,
+            body: Settings,
             updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> SettingsHttpRequest: ...
@@ -894,7 +894,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: Link = ...,
+                    body: Link,
                     linkId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -924,7 +924,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: LogView = ...,
+                    body: LogView,
                     viewId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> LogViewHttpRequest: ...
@@ -938,7 +938,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: GetIamPolicyRequest = ...,
+                    body: GetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def list(
@@ -958,7 +958,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: LogView = ...,
+                    body: LogView,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> LogViewHttpRequest: ...
@@ -966,14 +966,14 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: SetIamPolicyRequest = ...,
+                    body: SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: TestIamPermissionsRequest = ...,
+                    body: TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
 
@@ -981,7 +981,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: LogBucket = ...,
+                body: LogBucket,
                 bucketId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> LogBucketHttpRequest: ...
@@ -989,7 +989,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: LogBucket = ...,
+                body: LogBucket,
                 bucketId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
@@ -1016,22 +1016,18 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: LogBucket = ...,
+                body: LogBucket,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> LogBucketHttpRequest: ...
             def undelete(
-                self,
-                *,
-                name: str,
-                body: UndeleteBucketRequest = ...,
-                **kwargs: typing.Any,
+                self, *, name: str, body: UndeleteBucketRequest, **kwargs: typing.Any
             ) -> EmptyHttpRequest: ...
             def updateAsync(
                 self,
                 *,
                 name: str,
-                body: LogBucket = ...,
+                body: LogBucket,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
@@ -1041,11 +1037,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class OperationsResource(googleapiclient.discovery.Resource):
             def cancel(
-                self,
-                *,
-                name: str,
-                body: CancelOperationRequest = ...,
-                **kwargs: typing.Any,
+                self, *, name: str, body: CancelOperationRequest, **kwargs: typing.Any
             ) -> EmptyHttpRequest: ...
             def get(
                 self, *, name: str, **kwargs: typing.Any
@@ -1123,7 +1115,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class ExclusionsResource(googleapiclient.discovery.Resource):
             def create(
-                self, *, parent: str, body: LogExclusion = ..., **kwargs: typing.Any
+                self, *, parent: str, body: LogExclusion, **kwargs: typing.Any
             ) -> LogExclusionHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -1148,7 +1140,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: LogExclusion = ...,
+                body: LogExclusion,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> LogExclusionHttpRequest: ...
@@ -1163,7 +1155,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: Link = ...,
+                        body: Link,
                         linkId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
@@ -1210,7 +1202,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: LogView = ...,
+                        body: LogView,
                         viewId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> LogViewHttpRequest: ...
@@ -1224,7 +1216,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         resource: str,
-                        body: GetIamPolicyRequest = ...,
+                        body: GetIamPolicyRequest,
                         **kwargs: typing.Any,
                     ) -> PolicyHttpRequest: ...
                     def list(
@@ -1244,7 +1236,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: LogView = ...,
+                        body: LogView,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> LogViewHttpRequest: ...
@@ -1252,14 +1244,14 @@ class LoggingResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         resource: str,
-                        body: SetIamPolicyRequest = ...,
+                        body: SetIamPolicyRequest,
                         **kwargs: typing.Any,
                     ) -> PolicyHttpRequest: ...
                     def testIamPermissions(
                         self,
                         *,
                         resource: str,
-                        body: TestIamPermissionsRequest = ...,
+                        body: TestIamPermissionsRequest,
                         **kwargs: typing.Any,
                     ) -> TestIamPermissionsResponseHttpRequest: ...
                     def logs(self) -> LogsResource: ...
@@ -1268,7 +1260,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: LogBucket = ...,
+                    body: LogBucket,
                     bucketId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> LogBucketHttpRequest: ...
@@ -1276,7 +1268,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: LogBucket = ...,
+                    body: LogBucket,
                     bucketId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -1303,7 +1295,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: LogBucket = ...,
+                    body: LogBucket,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> LogBucketHttpRequest: ...
@@ -1311,14 +1303,14 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: UndeleteBucketRequest = ...,
+                    body: UndeleteBucketRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def updateAsync(
                     self,
                     *,
                     name: str,
-                    body: LogBucket = ...,
+                    body: LogBucket,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -1331,7 +1323,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: LogScope = ...,
+                    body: LogScope,
                     logScopeId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> LogScopeHttpRequest: ...
@@ -1358,7 +1350,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: LogScope = ...,
+                    body: LogScope,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> LogScopeHttpRequest: ...
@@ -1369,7 +1361,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: CancelOperationRequest = ...,
+                    body: CancelOperationRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def get(
@@ -1414,7 +1406,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: SavedQuery = ...,
+                    body: SavedQuery,
                     savedQueryId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> SavedQueryHttpRequest: ...
@@ -1442,7 +1434,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: SavedQuery = ...,
+                    body: SavedQuery,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> SavedQueryHttpRequest: ...
@@ -1497,7 +1489,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: LogSink = ...,
+                body: LogSink,
                 customWriterIdentity: str | None = ...,
                 uniqueWriterIdentity: bool | None = ...,
                 **kwargs: typing.Any,
@@ -1526,7 +1518,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 sinkName: str,
-                body: LogSink = ...,
+                body: LogSink,
                 customWriterIdentity: str | None = ...,
                 uniqueWriterIdentity: bool | None = ...,
                 updateMask: str | None = ...,
@@ -1536,7 +1528,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 sinkName: str,
-                body: LogSink = ...,
+                body: LogSink,
                 customWriterIdentity: str | None = ...,
                 uniqueWriterIdentity: bool | None = ...,
                 updateMask: str | None = ...,
@@ -1553,7 +1545,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            body: CmekSettings = ...,
+            body: CmekSettings,
             updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> CmekSettingsHttpRequest: ...
@@ -1561,7 +1553,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            body: Settings = ...,
+            body: Settings,
             updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> SettingsHttpRequest: ...
@@ -1575,7 +1567,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class ExclusionsResource(googleapiclient.discovery.Resource):
             def create(
-                self, *, parent: str, body: LogExclusion = ..., **kwargs: typing.Any
+                self, *, parent: str, body: LogExclusion, **kwargs: typing.Any
             ) -> LogExclusionHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -1600,7 +1592,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: LogExclusion = ...,
+                body: LogExclusion,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> LogExclusionHttpRequest: ...
@@ -1615,7 +1607,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: Link = ...,
+                        body: Link,
                         linkId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
@@ -1662,7 +1654,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: LogView = ...,
+                        body: LogView,
                         viewId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> LogViewHttpRequest: ...
@@ -1676,7 +1668,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         resource: str,
-                        body: GetIamPolicyRequest = ...,
+                        body: GetIamPolicyRequest,
                         **kwargs: typing.Any,
                     ) -> PolicyHttpRequest: ...
                     def list(
@@ -1696,7 +1688,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: LogView = ...,
+                        body: LogView,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> LogViewHttpRequest: ...
@@ -1704,14 +1696,14 @@ class LoggingResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         resource: str,
-                        body: SetIamPolicyRequest = ...,
+                        body: SetIamPolicyRequest,
                         **kwargs: typing.Any,
                     ) -> PolicyHttpRequest: ...
                     def testIamPermissions(
                         self,
                         *,
                         resource: str,
-                        body: TestIamPermissionsRequest = ...,
+                        body: TestIamPermissionsRequest,
                         **kwargs: typing.Any,
                     ) -> TestIamPermissionsResponseHttpRequest: ...
                     def logs(self) -> LogsResource: ...
@@ -1720,7 +1712,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: LogBucket = ...,
+                    body: LogBucket,
                     bucketId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> LogBucketHttpRequest: ...
@@ -1728,7 +1720,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: LogBucket = ...,
+                    body: LogBucket,
                     bucketId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -1755,7 +1747,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: LogBucket = ...,
+                    body: LogBucket,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> LogBucketHttpRequest: ...
@@ -1763,14 +1755,14 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: UndeleteBucketRequest = ...,
+                    body: UndeleteBucketRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def updateAsync(
                     self,
                     *,
                     name: str,
-                    body: LogBucket = ...,
+                    body: LogBucket,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -1783,7 +1775,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: LogScope = ...,
+                    body: LogScope,
                     logScopeId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> LogScopeHttpRequest: ...
@@ -1810,7 +1802,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: LogScope = ...,
+                    body: LogScope,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> LogScopeHttpRequest: ...
@@ -1821,7 +1813,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: CancelOperationRequest = ...,
+                    body: CancelOperationRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def get(
@@ -1866,7 +1858,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: SavedQuery = ...,
+                    body: SavedQuery,
                     savedQueryId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> SavedQueryHttpRequest: ...
@@ -1894,7 +1886,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: SavedQuery = ...,
+                    body: SavedQuery,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> SavedQueryHttpRequest: ...
@@ -1946,7 +1938,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class MetricsResource(googleapiclient.discovery.Resource):
             def create(
-                self, *, parent: str, body: LogMetric = ..., **kwargs: typing.Any
+                self, *, parent: str, body: LogMetric, **kwargs: typing.Any
             ) -> LogMetricHttpRequest: ...
             def delete(
                 self, *, metricName: str, **kwargs: typing.Any
@@ -1968,7 +1960,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 previous_response: ListLogMetricsResponse,
             ) -> ListLogMetricsResponseHttpRequest | None: ...
             def update(
-                self, *, metricName: str, body: LogMetric = ..., **kwargs: typing.Any
+                self, *, metricName: str, body: LogMetric, **kwargs: typing.Any
             ) -> LogMetricHttpRequest: ...
 
         @typing.type_check_only
@@ -1977,7 +1969,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: LogSink = ...,
+                body: LogSink,
                 customWriterIdentity: str | None = ...,
                 uniqueWriterIdentity: bool | None = ...,
                 **kwargs: typing.Any,
@@ -2006,7 +1998,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 sinkName: str,
-                body: LogSink = ...,
+                body: LogSink,
                 customWriterIdentity: str | None = ...,
                 uniqueWriterIdentity: bool | None = ...,
                 updateMask: str | None = ...,
@@ -2016,7 +2008,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 sinkName: str,
-                body: LogSink = ...,
+                body: LogSink,
                 customWriterIdentity: str | None = ...,
                 uniqueWriterIdentity: bool | None = ...,
                 updateMask: str | None = ...,
@@ -2041,7 +2033,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
             self,
             *,
             parent: str,
-            body: LogSink = ...,
+            body: LogSink,
             customWriterIdentity: str | None = ...,
             uniqueWriterIdentity: bool | None = ...,
             **kwargs: typing.Any,
@@ -2068,7 +2060,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
             self,
             *,
             sinkName: str,
-            body: LogSink = ...,
+            body: LogSink,
             customWriterIdentity: str | None = ...,
             uniqueWriterIdentity: bool | None = ...,
             updateMask: str | None = ...,
@@ -2087,7 +2079,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            body: CmekSettings = ...,
+            body: CmekSettings,
             updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> CmekSettingsHttpRequest: ...
@@ -2095,7 +2087,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            body: Settings = ...,
+            body: Settings,
             updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> SettingsHttpRequest: ...

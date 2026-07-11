@@ -6315,26 +6315,6 @@ def build(
 ): ...
 @overload
 def build(
-    serviceName: Literal["gamesManagement"],
-    version: Literal["v1management"],
-    http: httplib2.Http | HttpMock | None = None,
-    discoveryServiceUrl: str | None = None,
-    developerKey: str | None = None,
-    model: Model | None = None,
-    requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: oauth2client.Credentials
-    | google.auth.credentials.Credentials
-    | None = None,
-    cache_discovery: bool = True,
-    cache: Cache | None = None,
-    client_options: dict[str, Any] | ClientOptions | None = None,
-    adc_cert_path: str | None = None,
-    adc_key_path: str | None = None,
-    num_retries: int = 1,
-    static_discovery: bool | None = None,
-) -> googleapiclient._apis.gamesManagement.v1management.GamesManagementResource: ...
-@overload
-def build(
     serviceName: Literal["gameservices"],
     version: Literal["v1"],
     http: httplib2.Http | HttpMock | None = None,
@@ -6373,6 +6353,26 @@ def build(
     num_retries: int = 1,
     static_discovery: bool | None = None,
 ) -> googleapiclient._apis.gameservices.v1beta.GameServicesResource: ...
+@overload
+def build(
+    serviceName: Literal["gamesManagement"],
+    version: Literal["v1management"],
+    http: httplib2.Http | HttpMock | None = None,
+    discoveryServiceUrl: str | None = None,
+    developerKey: str | None = None,
+    model: Model | None = None,
+    requestBuilder: _RequestBuilder = HttpRequest,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
+    cache_discovery: bool = True,
+    cache: Cache | None = None,
+    client_options: dict[str, Any] | ClientOptions | None = None,
+    adc_cert_path: str | None = None,
+    adc_key_path: str | None = None,
+    num_retries: int = 1,
+    static_discovery: bool | None = None,
+) -> googleapiclient._apis.gamesManagement.v1management.GamesManagementResource: ...
 @overload
 def build(
     serviceName: Literal["genomics"],

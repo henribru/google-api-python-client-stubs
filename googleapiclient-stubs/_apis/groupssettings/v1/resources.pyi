@@ -19,10 +19,10 @@ class GroupssettingsResource(googleapiclient.discovery.Resource):
             self, *, groupUniqueId: str, **kwargs: typing.Any
         ) -> GroupsHttpRequest: ...
         def patch(
-            self, *, groupUniqueId: str, body: Groups = ..., **kwargs: typing.Any
+            self, *, groupUniqueId: str, body: Groups, **kwargs: typing.Any
         ) -> GroupsHttpRequest: ...
         def update(
-            self, *, groupUniqueId: str, body: Groups = ..., **kwargs: typing.Any
+            self, *, groupUniqueId: str, body: Groups, **kwargs: typing.Any
         ) -> GroupsHttpRequest: ...
 
     def new_batch_http_request(

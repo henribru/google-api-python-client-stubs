@@ -37,7 +37,7 @@ class DeveloperConnectResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         accountConnector: str,
-                        body: FetchAccessTokenRequest = ...,
+                        body: FetchAccessTokenRequest,
                         **kwargs: typing.Any,
                     ) -> FetchAccessTokenResponseHttpRequest: ...
                     def fetchSelf(
@@ -77,7 +77,7 @@ class DeveloperConnectResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: AccountConnector = ...,
+                    body: AccountConnector,
                     accountConnectorId: str | None = ...,
                     requestId: str | None = ...,
                     validateOnly: bool | None = ...,
@@ -129,7 +129,7 @@ class DeveloperConnectResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: AccountConnector = ...,
+                    body: AccountConnector,
                     allowMissing: bool | None = ...,
                     requestId: str | None = ...,
                     updateMask: str | None = ...,
@@ -146,7 +146,7 @@ class DeveloperConnectResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: GitRepositoryLink = ...,
+                        body: GitRepositoryLink,
                         gitRepositoryLinkId: str | None = ...,
                         requestId: str | None = ...,
                         validateOnly: bool | None = ...,
@@ -182,14 +182,14 @@ class DeveloperConnectResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         gitRepositoryLink: str,
-                        body: FetchReadTokenRequest = ...,
+                        body: FetchReadTokenRequest,
                         **kwargs: typing.Any,
                     ) -> FetchReadTokenResponseHttpRequest: ...
                     def fetchReadWriteToken(
                         self,
                         *,
                         gitRepositoryLink: str,
-                        body: FetchReadWriteTokenRequest = ...,
+                        body: FetchReadWriteTokenRequest,
                         **kwargs: typing.Any,
                     ) -> FetchReadWriteTokenResponseHttpRequest: ...
                     def get(
@@ -214,28 +214,28 @@ class DeveloperConnectResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: ProcessBitbucketCloudWebhookRequest = ...,
+                        body: ProcessBitbucketCloudWebhookRequest,
                         **kwargs: typing.Any,
                     ) -> EmptyHttpRequest: ...
                     def processBitbucketDataCenterWebhook(
                         self,
                         *,
                         name: str,
-                        body: ProcessBitbucketDataCenterWebhookRequest = ...,
+                        body: ProcessBitbucketDataCenterWebhookRequest,
                         **kwargs: typing.Any,
                     ) -> EmptyHttpRequest: ...
                     def processGitLabEnterpriseWebhook(
                         self,
                         *,
                         name: str,
-                        body: ProcessGitLabEnterpriseWebhookRequest = ...,
+                        body: ProcessGitLabEnterpriseWebhookRequest,
                         **kwargs: typing.Any,
                     ) -> EmptyHttpRequest: ...
                     def processGitLabWebhook(
                         self,
                         *,
                         name: str,
-                        body: ProcessGitLabWebhookRequest = ...,
+                        body: ProcessGitLabWebhookRequest,
                         **kwargs: typing.Any,
                     ) -> EmptyHttpRequest: ...
 
@@ -243,7 +243,7 @@ class DeveloperConnectResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: Connection = ...,
+                    body: Connection,
                     connectionId: str | None = ...,
                     requestId: str | None = ...,
                     validateOnly: bool | None = ...,
@@ -296,7 +296,7 @@ class DeveloperConnectResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: Connection = ...,
+                    body: Connection,
                     allowMissing: bool | None = ...,
                     requestId: str | None = ...,
                     updateMask: str | None = ...,
@@ -307,7 +307,7 @@ class DeveloperConnectResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: ProcessGitHubEnterpriseWebhookRequest = ...,
+                    body: ProcessGitHubEnterpriseWebhookRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def gitRepositoryLinks(self) -> GitRepositoryLinksResource: ...
@@ -339,7 +339,7 @@ class DeveloperConnectResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: InsightsConfig = ...,
+                    body: InsightsConfig,
                     insightsConfigId: str | None = ...,
                     validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
@@ -375,7 +375,7 @@ class DeveloperConnectResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: InsightsConfig = ...,
+                    body: InsightsConfig,
                     allowMissing: bool | None = ...,
                     requestId: str | None = ...,
                     validateOnly: bool | None = ...,
@@ -389,7 +389,7 @@ class DeveloperConnectResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: CancelOperationRequest = ...,
+                    body: CancelOperationRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def delete(

@@ -25,7 +25,7 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: GoogleCloudOsconfigV2__PolicyOrchestrator = ...,
+                        body: GoogleCloudOsconfigV2__PolicyOrchestrator,
                         policyOrchestratorId: str | None = ...,
                         requestId: str | None = ...,
                         **kwargs: typing.Any,
@@ -63,7 +63,7 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: GoogleCloudOsconfigV2__PolicyOrchestrator = ...,
+                        body: GoogleCloudOsconfigV2__PolicyOrchestrator,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
@@ -76,7 +76,7 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: CancelOperationRequest = ...,
+                    body: CancelOperationRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def delete(
@@ -118,7 +118,7 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: GoogleCloudOsconfigV2__PolicyOrchestrator = ...,
+                        body: GoogleCloudOsconfigV2__PolicyOrchestrator,
                         policyOrchestratorId: str | None = ...,
                         requestId: str | None = ...,
                         **kwargs: typing.Any,
@@ -156,7 +156,7 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: GoogleCloudOsconfigV2__PolicyOrchestrator = ...,
+                        body: GoogleCloudOsconfigV2__PolicyOrchestrator,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
@@ -169,7 +169,7 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: CancelOperationRequest = ...,
+                    body: CancelOperationRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def delete(
@@ -211,7 +211,7 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: GoogleCloudOsconfigV2__PolicyOrchestrator = ...,
+                        body: GoogleCloudOsconfigV2__PolicyOrchestrator,
                         policyOrchestratorId: str | None = ...,
                         requestId: str | None = ...,
                         **kwargs: typing.Any,
@@ -249,7 +249,7 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: GoogleCloudOsconfigV2__PolicyOrchestrator = ...,
+                        body: GoogleCloudOsconfigV2__PolicyOrchestrator,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
@@ -262,7 +262,7 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: CancelOperationRequest = ...,
+                    body: CancelOperationRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def delete(

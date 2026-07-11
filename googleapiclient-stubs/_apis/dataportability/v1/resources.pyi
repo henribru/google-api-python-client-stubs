@@ -16,7 +16,7 @@ class DataPortabilityResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class AccessTypeResource(googleapiclient.discovery.Resource):
         def check(
-            self, *, body: CheckAccessTypeRequest = ..., **kwargs: typing.Any
+            self, *, body: CheckAccessTypeRequest, **kwargs: typing.Any
         ) -> CheckAccessTypeResponseHttpRequest: ...
 
     @typing.type_check_only
@@ -25,7 +25,7 @@ class DataPortabilityResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            body: CancelPortabilityArchiveRequest = ...,
+            body: CancelPortabilityArchiveRequest,
             **kwargs: typing.Any,
         ) -> CancelPortabilityArchiveResponseHttpRequest: ...
         def getPortabilityArchiveState(
@@ -35,20 +35,20 @@ class DataPortabilityResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            body: RetryPortabilityArchiveRequest = ...,
+            body: RetryPortabilityArchiveRequest,
             **kwargs: typing.Any,
         ) -> RetryPortabilityArchiveResponseHttpRequest: ...
 
     @typing.type_check_only
     class AuthorizationResource(googleapiclient.discovery.Resource):
         def reset(
-            self, *, body: ResetAuthorizationRequest = ..., **kwargs: typing.Any
+            self, *, body: ResetAuthorizationRequest, **kwargs: typing.Any
         ) -> EmptyHttpRequest: ...
 
     @typing.type_check_only
     class PortabilityArchiveResource(googleapiclient.discovery.Resource):
         def initiate(
-            self, *, body: InitiatePortabilityArchiveRequest = ..., **kwargs: typing.Any
+            self, *, body: InitiatePortabilityArchiveRequest, **kwargs: typing.Any
         ) -> InitiatePortabilityArchiveResponseHttpRequest: ...
 
     def new_batch_http_request(

@@ -19,7 +19,7 @@ class PlayIntegrityResource(googleapiclient.discovery.Resource):
             self,
             *,
             packageName: str,
-            body: WriteDeviceRecallRequest = ...,
+            body: WriteDeviceRecallRequest,
             **kwargs: typing.Any,
         ) -> WriteDeviceRecallResponseHttpRequest: ...
 
@@ -29,14 +29,14 @@ class PlayIntegrityResource(googleapiclient.discovery.Resource):
             self,
             *,
             packageName: str,
-            body: DecodeIntegrityTokenRequest = ...,
+            body: DecodeIntegrityTokenRequest,
             **kwargs: typing.Any,
         ) -> DecodeIntegrityTokenResponseHttpRequest: ...
         def decodePcIntegrityToken(
             self,
             *,
             packageName: str,
-            body: DecodePcIntegrityTokenRequest = ...,
+            body: DecodePcIntegrityTokenRequest,
             **kwargs: typing.Any,
         ) -> DecodePcIntegrityTokenResponseHttpRequest: ...
 

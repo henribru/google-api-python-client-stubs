@@ -16,7 +16,7 @@ class CloudShellResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class OperationsResource(googleapiclient.discovery.Resource):
         def cancel(
-            self, *, name: str, body: CancelOperationRequest = ..., **kwargs: typing.Any
+            self, *, name: str, body: CancelOperationRequest, **kwargs: typing.Any
         ) -> EmptyHttpRequest: ...
         def delete(self, *, name: str, **kwargs: typing.Any) -> EmptyHttpRequest: ...
         def get(self, *, name: str, **kwargs: typing.Any) -> OperationHttpRequest: ...
@@ -44,14 +44,14 @@ class CloudShellResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 environment: str,
-                body: AddPublicKeyRequest = ...,
+                body: AddPublicKeyRequest,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def authorize(
                 self,
                 *,
                 name: str,
-                body: AuthorizeEnvironmentRequest = ...,
+                body: AuthorizeEnvironmentRequest,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def generateAccessToken(
@@ -69,15 +69,11 @@ class CloudShellResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 environment: str,
-                body: RemovePublicKeyRequest = ...,
+                body: RemovePublicKeyRequest,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def start(
-                self,
-                *,
-                name: str,
-                body: StartEnvironmentRequest = ...,
-                **kwargs: typing.Any,
+                self, *, name: str, body: StartEnvironmentRequest, **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
 
         def environments(self) -> EnvironmentsResource: ...

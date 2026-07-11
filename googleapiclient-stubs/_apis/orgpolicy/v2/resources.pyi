@@ -37,7 +37,7 @@ class OrgPolicyAPIResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: GoogleCloudOrgpolicyV2Policy = ...,
+                body: GoogleCloudOrgpolicyV2Policy,
                 **kwargs: typing.Any,
             ) -> GoogleCloudOrgpolicyV2PolicyHttpRequest: ...
             def delete(
@@ -66,7 +66,7 @@ class OrgPolicyAPIResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleCloudOrgpolicyV2Policy = ...,
+                body: GoogleCloudOrgpolicyV2Policy,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudOrgpolicyV2PolicyHttpRequest: ...
@@ -98,7 +98,7 @@ class OrgPolicyAPIResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: GoogleCloudOrgpolicyV2CustomConstraint = ...,
+                body: GoogleCloudOrgpolicyV2CustomConstraint,
                 **kwargs: typing.Any,
             ) -> GoogleCloudOrgpolicyV2CustomConstraintHttpRequest: ...
             def delete(
@@ -126,7 +126,7 @@ class OrgPolicyAPIResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleCloudOrgpolicyV2CustomConstraint = ...,
+                body: GoogleCloudOrgpolicyV2CustomConstraint,
                 **kwargs: typing.Any,
             ) -> GoogleCloudOrgpolicyV2CustomConstraintHttpRequest: ...
 
@@ -136,7 +136,7 @@ class OrgPolicyAPIResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: GoogleCloudOrgpolicyV2Policy = ...,
+                body: GoogleCloudOrgpolicyV2Policy,
                 **kwargs: typing.Any,
             ) -> GoogleCloudOrgpolicyV2PolicyHttpRequest: ...
             def delete(
@@ -165,7 +165,7 @@ class OrgPolicyAPIResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleCloudOrgpolicyV2Policy = ...,
+                body: GoogleCloudOrgpolicyV2Policy,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudOrgpolicyV2PolicyHttpRequest: ...
@@ -198,7 +198,7 @@ class OrgPolicyAPIResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: GoogleCloudOrgpolicyV2Policy = ...,
+                body: GoogleCloudOrgpolicyV2Policy,
                 **kwargs: typing.Any,
             ) -> GoogleCloudOrgpolicyV2PolicyHttpRequest: ...
             def delete(
@@ -227,7 +227,7 @@ class OrgPolicyAPIResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleCloudOrgpolicyV2Policy = ...,
+                body: GoogleCloudOrgpolicyV2Policy,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudOrgpolicyV2PolicyHttpRequest: ...

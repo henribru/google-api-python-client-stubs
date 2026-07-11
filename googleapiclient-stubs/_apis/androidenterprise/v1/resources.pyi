@@ -33,7 +33,7 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             enterpriseId: str,
             userId: str,
             deviceId: str,
-            body: DeviceState = ...,
+            body: DeviceState,
             **kwargs: typing.Any,
         ) -> DeviceStateHttpRequest: ...
         def update(
@@ -42,7 +42,7 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             enterpriseId: str,
             userId: str,
             deviceId: str,
-            body: Device = ...,
+            body: Device,
             updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> DeviceHttpRequest: ...
@@ -50,11 +50,7 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class EnrollmentTokensResource(googleapiclient.discovery.Resource):
         def create(
-            self,
-            *,
-            enterpriseId: str,
-            body: EnrollmentToken = ...,
-            **kwargs: typing.Any,
+            self, *, enterpriseId: str, body: EnrollmentToken, **kwargs: typing.Any
         ) -> EnrollmentTokenHttpRequest: ...
 
     @typing.type_check_only
@@ -73,11 +69,11 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             self,
             *,
             enterpriseId: str,
-            body: AdministratorWebTokenSpec = ...,
+            body: AdministratorWebTokenSpec,
             **kwargs: typing.Any,
         ) -> AdministratorWebTokenHttpRequest: ...
         def enroll(
-            self, *, token: str, body: Enterprise = ..., **kwargs: typing.Any
+            self, *, token: str, body: Enterprise, **kwargs: typing.Any
         ) -> EnterpriseHttpRequest: ...
         def generateEnterpriseUpgradeUrl(
             self,
@@ -125,14 +121,10 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             self, *, enterpriseId: str, **kwargs: typing.Any
         ) -> EnterprisesSendTestPushNotificationResponseHttpRequest: ...
         def setAccount(
-            self,
-            *,
-            enterpriseId: str,
-            body: EnterpriseAccount = ...,
-            **kwargs: typing.Any,
+            self, *, enterpriseId: str, body: EnterpriseAccount, **kwargs: typing.Any
         ) -> EnterpriseAccountHttpRequest: ...
         def setStoreLayout(
-            self, *, enterpriseId: str, body: StoreLayout = ..., **kwargs: typing.Any
+            self, *, enterpriseId: str, body: StoreLayout, **kwargs: typing.Any
         ) -> StoreLayoutHttpRequest: ...
         def unenroll(
             self, *, enterpriseId: str, **kwargs: typing.Any
@@ -165,7 +157,7 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             enterpriseId: str,
             userId: str,
             entitlementId: str,
-            body: Entitlement = ...,
+            body: Entitlement,
             install: bool | None = ...,
             **kwargs: typing.Any,
         ) -> EntitlementHttpRequest: ...
@@ -215,7 +207,7 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             userId: str,
             deviceId: str,
             installId: str,
-            body: Install = ...,
+            body: Install,
             **kwargs: typing.Any,
         ) -> InstallHttpRequest: ...
 
@@ -249,7 +241,7 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             userId: str,
             deviceId: str,
             managedConfigurationForDeviceId: str,
-            body: ManagedConfiguration = ...,
+            body: ManagedConfiguration,
             **kwargs: typing.Any,
         ) -> ManagedConfigurationHttpRequest: ...
 
@@ -280,7 +272,7 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             enterpriseId: str,
             userId: str,
             managedConfigurationForUserId: str,
-            body: ManagedConfiguration = ...,
+            body: ManagedConfiguration,
             **kwargs: typing.Any,
         ) -> ManagedConfigurationHttpRequest: ...
 
@@ -303,7 +295,7 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             *,
             enterpriseId: str,
             productId: str,
-            body: ProductsApproveRequest = ...,
+            body: ProductsApproveRequest,
             **kwargs: typing.Any,
         ) -> googleapiclient.http.HttpRequest: ...
         def generateApprovalUrl(
@@ -354,11 +346,7 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             self, *, enterpriseId: str, keyId: str, **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
         def insert(
-            self,
-            *,
-            enterpriseId: str,
-            body: ServiceAccountKey = ...,
-            **kwargs: typing.Any,
+            self, *, enterpriseId: str, body: ServiceAccountKey, **kwargs: typing.Any
         ) -> ServiceAccountKeyHttpRequest: ...
         def list(
             self, *, enterpriseId: str, **kwargs: typing.Any
@@ -387,7 +375,7 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             *,
             enterpriseId: str,
             pageId: str,
-            body: StoreCluster = ...,
+            body: StoreCluster,
             **kwargs: typing.Any,
         ) -> StoreClusterHttpRequest: ...
         def list(
@@ -399,7 +387,7 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             enterpriseId: str,
             pageId: str,
             clusterId: str,
-            body: StoreCluster = ...,
+            body: StoreCluster,
             **kwargs: typing.Any,
         ) -> StoreClusterHttpRequest: ...
 
@@ -412,7 +400,7 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             self, *, enterpriseId: str, pageId: str, **kwargs: typing.Any
         ) -> StorePageHttpRequest: ...
         def insert(
-            self, *, enterpriseId: str, body: StorePage = ..., **kwargs: typing.Any
+            self, *, enterpriseId: str, body: StorePage, **kwargs: typing.Any
         ) -> StorePageHttpRequest: ...
         def list(
             self, *, enterpriseId: str, **kwargs: typing.Any
@@ -422,7 +410,7 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             *,
             enterpriseId: str,
             pageId: str,
-            body: StorePage = ...,
+            body: StorePage,
             **kwargs: typing.Any,
         ) -> StorePageHttpRequest: ...
 
@@ -441,7 +429,7 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             self, *, enterpriseId: str, userId: str, **kwargs: typing.Any
         ) -> ProductSetHttpRequest: ...
         def insert(
-            self, *, enterpriseId: str, body: User = ..., **kwargs: typing.Any
+            self, *, enterpriseId: str, body: User, **kwargs: typing.Any
         ) -> UserHttpRequest: ...
         def list(
             self, *, enterpriseId: str, email: str, **kwargs: typing.Any
@@ -454,16 +442,11 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             *,
             enterpriseId: str,
             userId: str,
-            body: ProductSet = ...,
+            body: ProductSet,
             **kwargs: typing.Any,
         ) -> ProductSetHttpRequest: ...
         def update(
-            self,
-            *,
-            enterpriseId: str,
-            userId: str,
-            body: User = ...,
-            **kwargs: typing.Any,
+            self, *, enterpriseId: str, userId: str, body: User, **kwargs: typing.Any
         ) -> UserHttpRequest: ...
 
     @typing.type_check_only
@@ -475,7 +458,7 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             self, *, enterpriseId: str, webAppId: str, **kwargs: typing.Any
         ) -> WebAppHttpRequest: ...
         def insert(
-            self, *, enterpriseId: str, body: WebApp = ..., **kwargs: typing.Any
+            self, *, enterpriseId: str, body: WebApp, **kwargs: typing.Any
         ) -> WebAppHttpRequest: ...
         def list(
             self, *, enterpriseId: str, **kwargs: typing.Any
@@ -485,7 +468,7 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             *,
             enterpriseId: str,
             webAppId: str,
-            body: WebApp = ...,
+            body: WebApp,
             **kwargs: typing.Any,
         ) -> WebAppHttpRequest: ...
 

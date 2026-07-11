@@ -23,7 +23,7 @@ class CloudWorkstationsResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: CancelOperationRequest = ...,
+                    body: CancelOperationRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleProtobufEmptyHttpRequest: ...
                 def delete(
@@ -58,7 +58,7 @@ class CloudWorkstationsResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             parent: str,
-                            body: Workstation = ...,
+                            body: Workstation,
                             validateOnly: bool | None = ...,
                             workstationId: str | None = ...,
                             **kwargs: typing.Any,
@@ -75,7 +75,7 @@ class CloudWorkstationsResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             workstation: str,
-                            body: GenerateAccessTokenRequest = ...,
+                            body: GenerateAccessTokenRequest,
                             **kwargs: typing.Any,
                         ) -> GenerateAccessTokenResponseHttpRequest: ...
                         def get(
@@ -119,7 +119,7 @@ class CloudWorkstationsResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             name: str,
-                            body: Workstation = ...,
+                            body: Workstation,
                             allowMissing: bool | None = ...,
                             updateMask: str | None = ...,
                             validateOnly: bool | None = ...,
@@ -129,35 +129,35 @@ class CloudWorkstationsResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             workstation: str,
-                            body: PushCredentialsRequest = ...,
+                            body: PushCredentialsRequest,
                             **kwargs: typing.Any,
                         ) -> OperationHttpRequest: ...
                         def setIamPolicy(
                             self,
                             *,
                             resource: str,
-                            body: SetIamPolicyRequest = ...,
+                            body: SetIamPolicyRequest,
                             **kwargs: typing.Any,
                         ) -> PolicyHttpRequest: ...
                         def start(
                             self,
                             *,
                             name: str,
-                            body: StartWorkstationRequest = ...,
+                            body: StartWorkstationRequest,
                             **kwargs: typing.Any,
                         ) -> OperationHttpRequest: ...
                         def stop(
                             self,
                             *,
                             name: str,
-                            body: StopWorkstationRequest = ...,
+                            body: StopWorkstationRequest,
                             **kwargs: typing.Any,
                         ) -> OperationHttpRequest: ...
                         def testIamPermissions(
                             self,
                             *,
                             resource: str,
-                            body: TestIamPermissionsRequest = ...,
+                            body: TestIamPermissionsRequest,
                             **kwargs: typing.Any,
                         ) -> TestIamPermissionsResponseHttpRequest: ...
 
@@ -165,7 +165,7 @@ class CloudWorkstationsResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: WorkstationConfig = ...,
+                        body: WorkstationConfig,
                         validateOnly: bool | None = ...,
                         workstationConfigId: str | None = ...,
                         **kwargs: typing.Any,
@@ -220,7 +220,7 @@ class CloudWorkstationsResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: WorkstationConfig = ...,
+                        body: WorkstationConfig,
                         allowMissing: bool | None = ...,
                         updateMask: str | None = ...,
                         validateOnly: bool | None = ...,
@@ -230,14 +230,14 @@ class CloudWorkstationsResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         resource: str,
-                        body: SetIamPolicyRequest = ...,
+                        body: SetIamPolicyRequest,
                         **kwargs: typing.Any,
                     ) -> PolicyHttpRequest: ...
                     def testIamPermissions(
                         self,
                         *,
                         resource: str,
-                        body: TestIamPermissionsRequest = ...,
+                        body: TestIamPermissionsRequest,
                         **kwargs: typing.Any,
                     ) -> TestIamPermissionsResponseHttpRequest: ...
                     def workstations(self) -> WorkstationsResource: ...
@@ -246,7 +246,7 @@ class CloudWorkstationsResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: WorkstationCluster = ...,
+                    body: WorkstationCluster,
                     validateOnly: bool | None = ...,
                     workstationClusterId: str | None = ...,
                     **kwargs: typing.Any,
@@ -281,7 +281,7 @@ class CloudWorkstationsResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: WorkstationCluster = ...,
+                    body: WorkstationCluster,
                     allowMissing: bool | None = ...,
                     updateMask: str | None = ...,
                     validateOnly: bool | None = ...,

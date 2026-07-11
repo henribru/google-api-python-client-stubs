@@ -23,7 +23,7 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: CapacityCommitment = ...,
+                    body: CapacityCommitment,
                     capacityCommitmentId: str | None = ...,
                     enforceSingleAdminProjectPerOrg: bool | None = ...,
                     **kwargs: typing.Any,
@@ -51,14 +51,14 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: MergeCapacityCommitmentsRequest = ...,
+                    body: MergeCapacityCommitmentsRequest,
                     **kwargs: typing.Any,
                 ) -> CapacityCommitmentHttpRequest: ...
                 def patch(
                     self,
                     *,
                     name: str,
-                    body: CapacityCommitment = ...,
+                    body: CapacityCommitment,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> CapacityCommitmentHttpRequest: ...
@@ -66,7 +66,7 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: SplitCapacityCommitmentRequest = ...,
+                    body: SplitCapacityCommitmentRequest,
                     **kwargs: typing.Any,
                 ) -> SplitCapacityCommitmentResponseHttpRequest: ...
 
@@ -76,7 +76,7 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: ReservationGroup = ...,
+                    body: ReservationGroup,
                     reservationGroupId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ReservationGroupHttpRequest: ...
@@ -108,7 +108,7 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: Assignment = ...,
+                        body: Assignment,
                         assignmentId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> AssignmentHttpRequest: ...
@@ -139,14 +139,14 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: MoveAssignmentRequest = ...,
+                        body: MoveAssignmentRequest,
                         **kwargs: typing.Any,
                     ) -> AssignmentHttpRequest: ...
                     def patch(
                         self,
                         *,
                         name: str,
-                        body: Assignment = ...,
+                        body: Assignment,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> AssignmentHttpRequest: ...
@@ -154,14 +154,14 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         resource: str,
-                        body: SetIamPolicyRequest = ...,
+                        body: SetIamPolicyRequest,
                         **kwargs: typing.Any,
                     ) -> PolicyHttpRequest: ...
                     def testIamPermissions(
                         self,
                         *,
                         resource: str,
-                        body: TestIamPermissionsRequest = ...,
+                        body: TestIamPermissionsRequest,
                         **kwargs: typing.Any,
                     ) -> TestIamPermissionsResponseHttpRequest: ...
 
@@ -169,7 +169,7 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: Reservation = ...,
+                    body: Reservation,
                     reservationId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ReservationHttpRequest: ...
@@ -180,7 +180,7 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: FailoverReservationRequest = ...,
+                    body: FailoverReservationRequest,
                     **kwargs: typing.Any,
                 ) -> ReservationHttpRequest: ...
                 def get(
@@ -210,7 +210,7 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: Reservation = ...,
+                    body: Reservation,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ReservationHttpRequest: ...
@@ -218,14 +218,14 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: SetIamPolicyRequest = ...,
+                    body: SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: TestIamPermissionsRequest = ...,
+                    body: TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def assignments(self) -> AssignmentsResource: ...
@@ -265,7 +265,7 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: BiReservation = ...,
+                body: BiReservation,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> BiReservationHttpRequest: ...

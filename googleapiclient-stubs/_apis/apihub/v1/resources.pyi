@@ -40,7 +40,7 @@ class APIHubResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudApihubV1ManageAddonConfigRequest = ...,
+                    body: GoogleCloudApihubV1ManageAddonConfigRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
 
@@ -50,7 +50,7 @@ class APIHubResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudApihubV1ApiHubInstance = ...,
+                    body: GoogleCloudApihubV1ApiHubInstance,
                     apiHubInstanceId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
@@ -67,7 +67,7 @@ class APIHubResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudApihubV1ApiHubInstance = ...,
+                    body: GoogleCloudApihubV1ApiHubInstance,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
@@ -88,7 +88,7 @@ class APIHubResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             parent: str,
-                            body: GoogleCloudApihubV1ApiOperation = ...,
+                            body: GoogleCloudApihubV1ApiOperation,
                             apiOperationId: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> GoogleCloudApihubV1ApiOperationHttpRequest: ...
@@ -121,7 +121,7 @@ class APIHubResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             name: str,
-                            body: GoogleCloudApihubV1ApiOperation = ...,
+                            body: GoogleCloudApihubV1ApiOperation,
                             updateMask: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> GoogleCloudApihubV1ApiOperationHttpRequest: ...
@@ -132,7 +132,7 @@ class APIHubResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             parent: str,
-                            body: GoogleCloudApihubV1Spec = ...,
+                            body: GoogleCloudApihubV1Spec,
                             specId: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> GoogleCloudApihubV1SpecHttpRequest: ...
@@ -161,7 +161,7 @@ class APIHubResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             name: str,
-                            body: GoogleCloudApihubV1LintSpecRequest = ...,
+                            body: GoogleCloudApihubV1LintSpecRequest,
                             **kwargs: typing.Any,
                         ) -> EmptyHttpRequest: ...
                         def list(
@@ -182,7 +182,7 @@ class APIHubResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             name: str,
-                            body: GoogleCloudApihubV1Spec = ...,
+                            body: GoogleCloudApihubV1Spec,
                             updateMask: str | None = ...,
                             **kwargs: typing.Any,
                         ) -> GoogleCloudApihubV1SpecHttpRequest: ...
@@ -191,7 +191,7 @@ class APIHubResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: GoogleCloudApihubV1Version = ...,
+                        body: GoogleCloudApihubV1Version,
                         versionId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudApihubV1VersionHttpRequest: ...
@@ -223,7 +223,7 @@ class APIHubResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: GoogleCloudApihubV1Version = ...,
+                        body: GoogleCloudApihubV1Version,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudApihubV1VersionHttpRequest: ...
@@ -235,7 +235,7 @@ class APIHubResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudApihubV1Api = ...,
+                    body: GoogleCloudApihubV1Api,
                     apiId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudApihubV1ApiHttpRequest: ...
@@ -263,7 +263,7 @@ class APIHubResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudApihubV1Api = ...,
+                    body: GoogleCloudApihubV1Api,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudApihubV1ApiHttpRequest: ...
@@ -275,7 +275,7 @@ class APIHubResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudApihubV1Attribute = ...,
+                    body: GoogleCloudApihubV1Attribute,
                     attributeId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudApihubV1AttributeHttpRequest: ...
@@ -303,7 +303,7 @@ class APIHubResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudApihubV1Attribute = ...,
+                    body: GoogleCloudApihubV1Attribute,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudApihubV1AttributeHttpRequest: ...
@@ -314,7 +314,7 @@ class APIHubResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudApihubV1Curation = ...,
+                    body: GoogleCloudApihubV1Curation,
                     curationId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudApihubV1CurationHttpRequest: ...
@@ -342,7 +342,7 @@ class APIHubResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudApihubV1Curation = ...,
+                    body: GoogleCloudApihubV1Curation,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudApihubV1CurationHttpRequest: ...
@@ -353,7 +353,7 @@ class APIHubResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudApihubV1Dependency = ...,
+                    body: GoogleCloudApihubV1Dependency,
                     dependencyId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudApihubV1DependencyHttpRequest: ...
@@ -381,7 +381,7 @@ class APIHubResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudApihubV1Dependency = ...,
+                    body: GoogleCloudApihubV1Dependency,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudApihubV1DependencyHttpRequest: ...
@@ -392,7 +392,7 @@ class APIHubResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudApihubV1Deployment = ...,
+                    body: GoogleCloudApihubV1Deployment,
                     deploymentId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudApihubV1DeploymentHttpRequest: ...
@@ -420,7 +420,7 @@ class APIHubResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudApihubV1Deployment = ...,
+                    body: GoogleCloudApihubV1Deployment,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudApihubV1DeploymentHttpRequest: ...
@@ -482,7 +482,7 @@ class APIHubResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudApihubV1ExternalApi = ...,
+                    body: GoogleCloudApihubV1ExternalApi,
                     externalApiId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudApihubV1ExternalApiHttpRequest: ...
@@ -509,7 +509,7 @@ class APIHubResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudApihubV1ExternalApi = ...,
+                    body: GoogleCloudApihubV1ExternalApi,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudApihubV1ExternalApiHttpRequest: ...
@@ -520,7 +520,7 @@ class APIHubResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudApihubV1HostProjectRegistration = ...,
+                    body: GoogleCloudApihubV1HostProjectRegistration,
                     hostProjectRegistrationId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudApihubV1HostProjectRegistrationHttpRequest: ...
@@ -554,7 +554,7 @@ class APIHubResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleLongrunningCancelOperationRequest = ...,
+                    body: GoogleLongrunningCancelOperationRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def delete(
@@ -587,7 +587,7 @@ class APIHubResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: GoogleCloudApihubV1PluginInstance = ...,
+                        body: GoogleCloudApihubV1PluginInstance,
                         pluginInstanceId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
@@ -598,21 +598,21 @@ class APIHubResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: GoogleCloudApihubV1DisablePluginInstanceActionRequest = ...,
+                        body: GoogleCloudApihubV1DisablePluginInstanceActionRequest,
                         **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
                     def enableAction(
                         self,
                         *,
                         name: str,
-                        body: GoogleCloudApihubV1EnablePluginInstanceActionRequest = ...,
+                        body: GoogleCloudApihubV1EnablePluginInstanceActionRequest,
                         **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
                     def executeAction(
                         self,
                         *,
                         name: str,
-                        body: GoogleCloudApihubV1ExecutePluginInstanceActionRequest = ...,
+                        body: GoogleCloudApihubV1ExecutePluginInstanceActionRequest,
                         **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
                     def get(
@@ -638,14 +638,14 @@ class APIHubResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: GoogleCloudApihubV1ManagePluginInstanceSourceDataRequest = ...,
+                        body: GoogleCloudApihubV1ManagePluginInstanceSourceDataRequest,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudApihubV1ManagePluginInstanceSourceDataResponseHttpRequest: ...
                     def patch(
                         self,
                         *,
                         name: str,
-                        body: GoogleCloudApihubV1PluginInstance = ...,
+                        body: GoogleCloudApihubV1PluginInstance,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudApihubV1PluginInstanceHttpRequest: ...
@@ -660,7 +660,7 @@ class APIHubResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudApihubV1Plugin = ...,
+                    body: GoogleCloudApihubV1Plugin,
                     pluginId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudApihubV1PluginHttpRequest: ...
@@ -671,14 +671,14 @@ class APIHubResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudApihubV1DisablePluginRequest = ...,
+                    body: GoogleCloudApihubV1DisablePluginRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudApihubV1PluginHttpRequest: ...
                 def enable(
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudApihubV1EnablePluginRequest = ...,
+                    body: GoogleCloudApihubV1EnablePluginRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudApihubV1PluginHttpRequest: ...
                 def get(
@@ -705,7 +705,7 @@ class APIHubResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudApihubV1StyleGuide = ...,
+                    body: GoogleCloudApihubV1StyleGuide,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudApihubV1StyleGuideHttpRequest: ...
@@ -718,7 +718,7 @@ class APIHubResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudApihubV1RuntimeProjectAttachment = ...,
+                    body: GoogleCloudApihubV1RuntimeProjectAttachment,
                     runtimeProjectAttachmentId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudApihubV1RuntimeProjectAttachmentHttpRequest: ...
@@ -753,7 +753,7 @@ class APIHubResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 location: str,
-                body: GoogleCloudApihubV1CollectApiDataRequest = ...,
+                body: GoogleCloudApihubV1CollectApiDataRequest,
                 **kwargs: typing.Any,
             ) -> GoogleLongrunningOperationHttpRequest: ...
             def get(
@@ -801,7 +801,7 @@ class APIHubResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 location: str,
-                body: GoogleCloudApihubV1SearchResourcesRequest = ...,
+                body: GoogleCloudApihubV1SearchResourcesRequest,
                 **kwargs: typing.Any,
             ) -> GoogleCloudApihubV1SearchResourcesResponseHttpRequest: ...
             def searchResources_next(

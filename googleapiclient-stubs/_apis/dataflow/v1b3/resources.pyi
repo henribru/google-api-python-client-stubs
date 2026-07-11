@@ -24,7 +24,7 @@ class DataflowResource(googleapiclient.discovery.Resource):
                     *,
                     projectId: str,
                     jobId: str,
-                    body: GetDebugConfigRequest = ...,
+                    body: GetDebugConfigRequest,
                     **kwargs: typing.Any,
                 ) -> GetDebugConfigResponseHttpRequest: ...
                 def sendCapture(
@@ -32,7 +32,7 @@ class DataflowResource(googleapiclient.discovery.Resource):
                     *,
                     projectId: str,
                     jobId: str,
-                    body: SendDebugCaptureRequest = ...,
+                    body: SendDebugCaptureRequest,
                     **kwargs: typing.Any,
                 ) -> SendDebugCaptureResponseHttpRequest: ...
 
@@ -72,7 +72,7 @@ class DataflowResource(googleapiclient.discovery.Resource):
                     *,
                     projectId: str,
                     jobId: str,
-                    body: LeaseWorkItemRequest = ...,
+                    body: LeaseWorkItemRequest,
                     **kwargs: typing.Any,
                 ) -> LeaseWorkItemResponseHttpRequest: ...
                 def reportStatus(
@@ -80,7 +80,7 @@ class DataflowResource(googleapiclient.discovery.Resource):
                     *,
                     projectId: str,
                     jobId: str,
-                    body: ReportWorkItemStatusRequest = ...,
+                    body: ReportWorkItemStatusRequest,
                     **kwargs: typing.Any,
                 ) -> ReportWorkItemStatusResponseHttpRequest: ...
 
@@ -114,7 +114,7 @@ class DataflowResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 projectId: str,
-                body: Job = ...,
+                body: Job,
                 location: str | None = ...,
                 replaceJobId: str | None = ...,
                 view: typing_extensions.Literal[
@@ -181,7 +181,7 @@ class DataflowResource(googleapiclient.discovery.Resource):
                 *,
                 projectId: str,
                 jobId: str,
-                body: SnapshotJobRequest = ...,
+                body: SnapshotJobRequest,
                 **kwargs: typing.Any,
             ) -> SnapshotHttpRequest: ...
             def update(
@@ -189,7 +189,7 @@ class DataflowResource(googleapiclient.discovery.Resource):
                 *,
                 projectId: str,
                 jobId: str,
-                body: Job = ...,
+                body: Job,
                 location: str | None = ...,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
@@ -207,7 +207,7 @@ class DataflowResource(googleapiclient.discovery.Resource):
                     *,
                     projectId: str,
                     location: str,
-                    body: LaunchFlexTemplateRequest = ...,
+                    body: LaunchFlexTemplateRequest,
                     **kwargs: typing.Any,
                 ) -> LaunchFlexTemplateResponseHttpRequest: ...
 
@@ -221,7 +221,7 @@ class DataflowResource(googleapiclient.discovery.Resource):
                         projectId: str,
                         location: str,
                         jobId: str,
-                        body: GetDebugConfigRequest = ...,
+                        body: GetDebugConfigRequest,
                         **kwargs: typing.Any,
                     ) -> GetDebugConfigResponseHttpRequest: ...
                     def getWorkerStacktraces(
@@ -230,7 +230,7 @@ class DataflowResource(googleapiclient.discovery.Resource):
                         projectId: str,
                         location: str,
                         jobId: str,
-                        body: GetWorkerStacktracesRequest = ...,
+                        body: GetWorkerStacktracesRequest,
                         **kwargs: typing.Any,
                     ) -> GetWorkerStacktracesResponseHttpRequest: ...
                     def sendCapture(
@@ -239,7 +239,7 @@ class DataflowResource(googleapiclient.discovery.Resource):
                         projectId: str,
                         location: str,
                         jobId: str,
-                        body: SendDebugCaptureRequest = ...,
+                        body: SendDebugCaptureRequest,
                         **kwargs: typing.Any,
                     ) -> SendDebugCaptureResponseHttpRequest: ...
 
@@ -312,7 +312,7 @@ class DataflowResource(googleapiclient.discovery.Resource):
                         projectId: str,
                         location: str,
                         jobId: str,
-                        body: LeaseWorkItemRequest = ...,
+                        body: LeaseWorkItemRequest,
                         **kwargs: typing.Any,
                     ) -> LeaseWorkItemResponseHttpRequest: ...
                     def reportStatus(
@@ -321,7 +321,7 @@ class DataflowResource(googleapiclient.discovery.Resource):
                         projectId: str,
                         location: str,
                         jobId: str,
-                        body: ReportWorkItemStatusRequest = ...,
+                        body: ReportWorkItemStatusRequest,
                         **kwargs: typing.Any,
                     ) -> ReportWorkItemStatusResponseHttpRequest: ...
 
@@ -330,7 +330,7 @@ class DataflowResource(googleapiclient.discovery.Resource):
                     *,
                     projectId: str,
                     location: str,
-                    body: Job = ...,
+                    body: Job,
                     replaceJobId: str | None = ...,
                     view: typing_extensions.Literal[
                         "JOB_VIEW_UNKNOWN",
@@ -412,7 +412,7 @@ class DataflowResource(googleapiclient.discovery.Resource):
                     projectId: str,
                     location: str,
                     jobId: str,
-                    body: SnapshotJobRequest = ...,
+                    body: SnapshotJobRequest,
                     **kwargs: typing.Any,
                 ) -> SnapshotHttpRequest: ...
                 def update(
@@ -421,7 +421,7 @@ class DataflowResource(googleapiclient.discovery.Resource):
                     projectId: str,
                     location: str,
                     jobId: str,
-                    body: Job = ...,
+                    body: Job,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> JobHttpRequest: ...
@@ -465,7 +465,7 @@ class DataflowResource(googleapiclient.discovery.Resource):
                     *,
                     projectId: str,
                     location: str,
-                    body: CreateJobFromTemplateRequest = ...,
+                    body: CreateJobFromTemplateRequest,
                     **kwargs: typing.Any,
                 ) -> JobHttpRequest: ...
                 def get(
@@ -482,7 +482,7 @@ class DataflowResource(googleapiclient.discovery.Resource):
                     *,
                     projectId: str,
                     location: str,
-                    body: LaunchTemplateParameters = ...,
+                    body: LaunchTemplateParameters,
                     dynamicTemplate_gcsPath: str | None = ...,
                     dynamicTemplate_stagingLocation: str | None = ...,
                     gcsPath: str | None = ...,
@@ -495,7 +495,7 @@ class DataflowResource(googleapiclient.discovery.Resource):
                 *,
                 projectId: str,
                 location: str,
-                body: SendWorkerMessagesRequest = ...,
+                body: SendWorkerMessagesRequest,
                 **kwargs: typing.Any,
             ) -> SendWorkerMessagesResponseHttpRequest: ...
             def flexTemplates(self) -> FlexTemplatesResource: ...
@@ -528,7 +528,7 @@ class DataflowResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 projectId: str,
-                body: CreateJobFromTemplateRequest = ...,
+                body: CreateJobFromTemplateRequest,
                 **kwargs: typing.Any,
             ) -> JobHttpRequest: ...
             def get(
@@ -544,7 +544,7 @@ class DataflowResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 projectId: str,
-                body: LaunchTemplateParameters = ...,
+                body: LaunchTemplateParameters,
                 dynamicTemplate_gcsPath: str | None = ...,
                 dynamicTemplate_stagingLocation: str | None = ...,
                 gcsPath: str | None = ...,
@@ -565,7 +565,7 @@ class DataflowResource(googleapiclient.discovery.Resource):
             self,
             *,
             projectId: str,
-            body: SendWorkerMessagesRequest = ...,
+            body: SendWorkerMessagesRequest,
             **kwargs: typing.Any,
         ) -> SendWorkerMessagesResponseHttpRequest: ...
         def jobs(self) -> JobsResource: ...

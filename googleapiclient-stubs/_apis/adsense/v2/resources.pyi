@@ -20,7 +20,7 @@ class AdsenseResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class AdunitsResource(googleapiclient.discovery.Resource):
                 def create(
-                    self, *, parent: str, body: AdUnit = ..., **kwargs: typing.Any
+                    self, *, parent: str, body: AdUnit, **kwargs: typing.Any
                 ) -> AdUnitHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
@@ -58,7 +58,7 @@ class AdsenseResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: AdUnit = ...,
+                    body: AdUnit,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> AdUnitHttpRequest: ...
@@ -66,11 +66,7 @@ class AdsenseResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class CustomchannelsResource(googleapiclient.discovery.Resource):
                 def create(
-                    self,
-                    *,
-                    parent: str,
-                    body: CustomChannel = ...,
-                    **kwargs: typing.Any,
+                    self, *, parent: str, body: CustomChannel, **kwargs: typing.Any
                 ) -> CustomChannelHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -108,7 +104,7 @@ class AdsenseResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: CustomChannel = ...,
+                    body: CustomChannel,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> CustomChannelHttpRequest: ...

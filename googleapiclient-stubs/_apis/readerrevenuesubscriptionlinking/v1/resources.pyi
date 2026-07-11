@@ -28,7 +28,7 @@ class SubscriptionLinkingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: ReaderEntitlements = ...,
+                body: ReaderEntitlements,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> ReaderEntitlementsHttpRequest: ...

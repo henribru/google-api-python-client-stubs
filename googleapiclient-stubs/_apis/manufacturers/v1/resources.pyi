@@ -42,7 +42,7 @@ class ManufacturerCenterResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: ProductCertification = ...,
+                    body: ProductCertification,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ProductCertificationHttpRequest: ...
@@ -93,12 +93,7 @@ class ManufacturerCenterResource(googleapiclient.discovery.Resource):
                 previous_response: ListProductsResponse,
             ) -> ListProductsResponseHttpRequest | None: ...
             def update(
-                self,
-                *,
-                parent: str,
-                name: str,
-                body: Attributes = ...,
-                **kwargs: typing.Any,
+                self, *, parent: str, name: str, body: Attributes, **kwargs: typing.Any
             ) -> EmptyHttpRequest: ...
 
         def languages(self) -> LanguagesResource: ...

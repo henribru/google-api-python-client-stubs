@@ -79,7 +79,7 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                             historyId: str,
                             executionId: str,
                             stepId: str,
-                            body: PerfMetricsSummary = ...,
+                            body: PerfMetricsSummary,
                             **kwargs: typing.Any,
                         ) -> PerfMetricsSummaryHttpRequest: ...
 
@@ -95,7 +95,7 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                                 executionId: str,
                                 stepId: str,
                                 sampleSeriesId: str,
-                                body: BatchCreatePerfSamplesRequest = ...,
+                                body: BatchCreatePerfSamplesRequest,
                                 **kwargs: typing.Any,
                             ) -> BatchCreatePerfSamplesResponseHttpRequest: ...
                             def list(
@@ -123,7 +123,7 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                             historyId: str,
                             executionId: str,
                             stepId: str,
-                            body: PerfSampleSeries = ...,
+                            body: PerfSampleSeries,
                             **kwargs: typing.Any,
                         ) -> PerfSampleSeriesHttpRequest: ...
                         def get(
@@ -225,7 +225,7 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                         projectId: str,
                         historyId: str,
                         executionId: str,
-                        body: Step = ...,
+                        body: Step,
                         requestId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> StepHttpRequest: ...
@@ -269,7 +269,7 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                         historyId: str,
                         executionId: str,
                         stepId: str,
-                        body: Step = ...,
+                        body: Step,
                         requestId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> StepHttpRequest: ...
@@ -280,7 +280,7 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                         historyId: str,
                         executionId: str,
                         stepId: str,
-                        body: PublishXunitXmlFilesRequest = ...,
+                        body: PublishXunitXmlFilesRequest,
                         **kwargs: typing.Any,
                     ) -> StepHttpRequest: ...
                     def perfMetricsSummary(self) -> PerfMetricsSummaryResource: ...
@@ -293,7 +293,7 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                     *,
                     projectId: str,
                     historyId: str,
-                    body: Execution = ...,
+                    body: Execution,
                     requestId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ExecutionHttpRequest: ...
@@ -325,7 +325,7 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                     projectId: str,
                     historyId: str,
                     executionId: str,
-                    body: Execution = ...,
+                    body: Execution,
                     requestId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> ExecutionHttpRequest: ...
@@ -337,7 +337,7 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 projectId: str,
-                body: History = ...,
+                body: History,
                 requestId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> HistoryHttpRequest: ...

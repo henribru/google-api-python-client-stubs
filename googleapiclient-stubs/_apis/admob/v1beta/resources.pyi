@@ -54,7 +54,7 @@ class AdMobResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: BatchCreateAdUnitMappingsRequest = ...,
+                body: BatchCreateAdUnitMappingsRequest,
                 **kwargs: typing.Any,
             ) -> BatchCreateAdUnitMappingsResponseHttpRequest: ...
 
@@ -63,11 +63,7 @@ class AdMobResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class AdUnitMappingsResource(googleapiclient.discovery.Resource):
                 def create(
-                    self,
-                    *,
-                    parent: str,
-                    body: AdUnitMapping = ...,
-                    **kwargs: typing.Any,
+                    self, *, parent: str, body: AdUnitMapping, **kwargs: typing.Any
                 ) -> AdUnitMappingHttpRequest: ...
                 def list(
                     self,
@@ -85,7 +81,7 @@ class AdMobResource(googleapiclient.discovery.Resource):
                 ) -> ListAdUnitMappingsResponseHttpRequest | None: ...
 
             def create(
-                self, *, parent: str, body: AdUnit = ..., **kwargs: typing.Any
+                self, *, parent: str, body: AdUnit, **kwargs: typing.Any
             ) -> AdUnitHttpRequest: ...
             def list(
                 self,
@@ -105,7 +101,7 @@ class AdMobResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class AppsResource(googleapiclient.discovery.Resource):
             def create(
-                self, *, parent: str, body: App = ..., **kwargs: typing.Any
+                self, *, parent: str, body: App, **kwargs: typing.Any
             ) -> AppHttpRequest: ...
             def list(
                 self,
@@ -127,7 +123,7 @@ class AdMobResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: GenerateCampaignReportRequest = ...,
+                body: GenerateCampaignReportRequest,
                 **kwargs: typing.Any,
             ) -> GenerateCampaignReportResponseHttpRequest: ...
 
@@ -139,19 +135,19 @@ class AdMobResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: MediationAbExperiment = ...,
+                    body: MediationAbExperiment,
                     **kwargs: typing.Any,
                 ) -> MediationAbExperimentHttpRequest: ...
                 def stop(
                     self,
                     *,
                     name: str,
-                    body: StopMediationAbExperimentRequest = ...,
+                    body: StopMediationAbExperimentRequest,
                     **kwargs: typing.Any,
                 ) -> MediationAbExperimentHttpRequest: ...
 
             def create(
-                self, *, parent: str, body: MediationGroup = ..., **kwargs: typing.Any
+                self, *, parent: str, body: MediationGroup, **kwargs: typing.Any
             ) -> MediationGroupHttpRequest: ...
             def list(
                 self,
@@ -171,7 +167,7 @@ class AdMobResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: MediationGroup = ...,
+                body: MediationGroup,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> MediationGroupHttpRequest: ...
@@ -183,7 +179,7 @@ class AdMobResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: GenerateMediationReportRequest = ...,
+                body: GenerateMediationReportRequest,
                 **kwargs: typing.Any,
             ) -> GenerateMediationReportResponseHttpRequest: ...
 
@@ -193,7 +189,7 @@ class AdMobResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: GenerateNetworkReportRequest = ...,
+                body: GenerateNetworkReportRequest,
                 **kwargs: typing.Any,
             ) -> GenerateNetworkReportResponseHttpRequest: ...
 

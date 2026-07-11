@@ -22,11 +22,7 @@ class LookerResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class BackupsResource(googleapiclient.discovery.Resource):
                     def create(
-                        self,
-                        *,
-                        parent: str,
-                        body: InstanceBackup = ...,
-                        **kwargs: typing.Any,
+                        self, *, parent: str, body: InstanceBackup, **kwargs: typing.Any
                     ) -> OperationHttpRequest: ...
                     def delete(
                         self, *, name: str, **kwargs: typing.Any
@@ -53,7 +49,7 @@ class LookerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: Instance = ...,
+                    body: Instance,
                     instanceId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -64,7 +60,7 @@ class LookerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: ExportInstanceRequest = ...,
+                    body: ExportInstanceRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def get(
@@ -74,7 +70,7 @@ class LookerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: ImportInstanceRequest = ...,
+                    body: ImportInstanceRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def list(
@@ -95,7 +91,7 @@ class LookerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: Instance = ...,
+                    body: Instance,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -103,21 +99,21 @@ class LookerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: RestartInstanceRequest = ...,
+                    body: RestartInstanceRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def restore(
                     self,
                     *,
                     name: str,
-                    body: RestoreInstanceRequest = ...,
+                    body: RestoreInstanceRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def undelete(
                     self,
                     *,
                     name: str,
-                    body: UndeleteInstanceRequest = ...,
+                    body: UndeleteInstanceRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def backups(self) -> BackupsResource: ...
@@ -128,7 +124,7 @@ class LookerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: CancelOperationRequest = ...,
+                    body: CancelOperationRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def delete(

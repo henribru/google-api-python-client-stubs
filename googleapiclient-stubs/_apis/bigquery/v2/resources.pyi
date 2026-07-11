@@ -39,7 +39,7 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             self,
             *,
             projectId: str,
-            body: Dataset = ...,
+            body: Dataset,
             accessPolicyVersion: int | None = ...,
             **kwargs: typing.Any,
         ) -> DatasetHttpRequest: ...
@@ -63,7 +63,7 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             *,
             projectId: str,
             datasetId: str,
-            body: Dataset = ...,
+            body: Dataset,
             accessPolicyVersion: int | None = ...,
             updateMode: typing_extensions.Literal[
                 "UPDATE_MODE_UNSPECIFIED",
@@ -79,7 +79,7 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             *,
             projectId: str,
             datasetId: str,
-            body: UndeleteDatasetRequest = ...,
+            body: UndeleteDatasetRequest,
             **kwargs: typing.Any,
         ) -> DatasetHttpRequest: ...
         def update(
@@ -87,7 +87,7 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             *,
             projectId: str,
             datasetId: str,
-            body: Dataset = ...,
+            body: Dataset,
             accessPolicyVersion: int | None = ...,
             updateMode: typing_extensions.Literal[
                 "UPDATE_MODE_UNSPECIFIED",
@@ -151,7 +151,7 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             previous_response: GetQueryResultsResponse,
         ) -> GetQueryResultsResponseHttpRequest | None: ...
         def insert(
-            self, *, projectId: str, body: Job = ..., **kwargs: typing.Any
+            self, *, projectId: str, body: Job, **kwargs: typing.Any
         ) -> JobHttpRequest: ...
         def list(
             self,
@@ -173,7 +173,7 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             self, previous_request: JobListHttpRequest, previous_response: JobList
         ) -> JobListHttpRequest | None: ...
         def query(
-            self, *, projectId: str, body: QueryRequest = ..., **kwargs: typing.Any
+            self, *, projectId: str, body: QueryRequest, **kwargs: typing.Any
         ) -> QueryResponseHttpRequest: ...
 
     @typing.type_check_only
@@ -204,7 +204,7 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             projectId: str,
             datasetId: str,
             modelId: str,
-            body: Model = ...,
+            body: Model,
             **kwargs: typing.Any,
         ) -> ModelHttpRequest: ...
 
@@ -246,19 +246,10 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any,
         ) -> RoutineHttpRequest: ...
         def getIamPolicy(
-            self,
-            *,
-            resource: str,
-            body: GetIamPolicyRequest = ...,
-            **kwargs: typing.Any,
+            self, *, resource: str, body: GetIamPolicyRequest, **kwargs: typing.Any
         ) -> PolicyHttpRequest: ...
         def insert(
-            self,
-            *,
-            projectId: str,
-            datasetId: str,
-            body: Routine = ...,
-            **kwargs: typing.Any,
+            self, *, projectId: str, datasetId: str, body: Routine, **kwargs: typing.Any
         ) -> RoutineHttpRequest: ...
         def list(
             self,
@@ -277,17 +268,13 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             previous_response: ListRoutinesResponse,
         ) -> ListRoutinesResponseHttpRequest | None: ...
         def setIamPolicy(
-            self,
-            *,
-            resource: str,
-            body: SetIamPolicyRequest = ...,
-            **kwargs: typing.Any,
+            self, *, resource: str, body: SetIamPolicyRequest, **kwargs: typing.Any
         ) -> PolicyHttpRequest: ...
         def testIamPermissions(
             self,
             *,
             resource: str,
-            body: TestIamPermissionsRequest = ...,
+            body: TestIamPermissionsRequest,
             **kwargs: typing.Any,
         ) -> TestIamPermissionsResponseHttpRequest: ...
         def update(
@@ -296,7 +283,7 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             projectId: str,
             datasetId: str,
             routineId: str,
-            body: Routine = ...,
+            body: Routine,
             **kwargs: typing.Any,
         ) -> RoutineHttpRequest: ...
 
@@ -308,7 +295,7 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             projectId: str,
             datasetId: str,
             tableId: str,
-            body: BatchDeleteRowAccessPoliciesRequest = ...,
+            body: BatchDeleteRowAccessPoliciesRequest,
             **kwargs: typing.Any,
         ) -> googleapiclient.http.HttpRequest: ...
         def delete(
@@ -331,11 +318,7 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any,
         ) -> RowAccessPolicyHttpRequest: ...
         def getIamPolicy(
-            self,
-            *,
-            resource: str,
-            body: GetIamPolicyRequest = ...,
-            **kwargs: typing.Any,
+            self, *, resource: str, body: GetIamPolicyRequest, **kwargs: typing.Any
         ) -> PolicyHttpRequest: ...
         def insert(
             self,
@@ -343,7 +326,7 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             projectId: str,
             datasetId: str,
             tableId: str,
-            body: RowAccessPolicy = ...,
+            body: RowAccessPolicy,
             **kwargs: typing.Any,
         ) -> RowAccessPolicyHttpRequest: ...
         def list(
@@ -365,7 +348,7 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             self,
             *,
             resource: str,
-            body: TestIamPermissionsRequest = ...,
+            body: TestIamPermissionsRequest,
             **kwargs: typing.Any,
         ) -> TestIamPermissionsResponseHttpRequest: ...
         def update(
@@ -375,7 +358,7 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             datasetId: str,
             tableId: str,
             policyId: str,
-            body: RowAccessPolicy = ...,
+            body: RowAccessPolicy,
             **kwargs: typing.Any,
         ) -> RowAccessPolicyHttpRequest: ...
 
@@ -387,7 +370,7 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             projectId: str,
             datasetId: str,
             tableId: str,
-            body: TableDataInsertAllRequest = ...,
+            body: TableDataInsertAllRequest,
             **kwargs: typing.Any,
         ) -> TableDataInsertAllResponseHttpRequest: ...
         def list(
@@ -435,19 +418,10 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any,
         ) -> TableHttpRequest: ...
         def getIamPolicy(
-            self,
-            *,
-            resource: str,
-            body: GetIamPolicyRequest = ...,
-            **kwargs: typing.Any,
+            self, *, resource: str, body: GetIamPolicyRequest, **kwargs: typing.Any
         ) -> PolicyHttpRequest: ...
         def insert(
-            self,
-            *,
-            projectId: str,
-            datasetId: str,
-            body: Table = ...,
-            **kwargs: typing.Any,
+            self, *, projectId: str, datasetId: str, body: Table, **kwargs: typing.Any
         ) -> TableHttpRequest: ...
         def list(
             self,
@@ -467,22 +441,18 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             projectId: str,
             datasetId: str,
             tableId: str,
-            body: Table = ...,
+            body: Table,
             autodetect_schema: bool | None = ...,
             **kwargs: typing.Any,
         ) -> TableHttpRequest: ...
         def setIamPolicy(
-            self,
-            *,
-            resource: str,
-            body: SetIamPolicyRequest = ...,
-            **kwargs: typing.Any,
+            self, *, resource: str, body: SetIamPolicyRequest, **kwargs: typing.Any
         ) -> PolicyHttpRequest: ...
         def testIamPermissions(
             self,
             *,
             resource: str,
-            body: TestIamPermissionsRequest = ...,
+            body: TestIamPermissionsRequest,
             **kwargs: typing.Any,
         ) -> TestIamPermissionsResponseHttpRequest: ...
         def update(
@@ -491,7 +461,7 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             projectId: str,
             datasetId: str,
             tableId: str,
-            body: Table = ...,
+            body: Table,
             autodetect_schema: bool | None = ...,
             **kwargs: typing.Any,
         ) -> TableHttpRequest: ...

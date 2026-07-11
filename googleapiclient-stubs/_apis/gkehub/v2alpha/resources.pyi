@@ -25,7 +25,7 @@ class GKEHubResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: MembershipFeature = ...,
+                        body: MembershipFeature,
                         featureId: str | None = ...,
                         requestId: str | None = ...,
                         **kwargs: typing.Any,
@@ -59,7 +59,7 @@ class GKEHubResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: MembershipFeature = ...,
+                        body: MembershipFeature,
                         allowMissing: bool | None = ...,
                         requestId: str | None = ...,
                         updateMask: str | None = ...,
@@ -74,7 +74,7 @@ class GKEHubResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: CancelOperationRequest = ...,
+                    body: CancelOperationRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def get(

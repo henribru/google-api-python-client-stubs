@@ -35,7 +35,7 @@ class CloudTalentSolutionResource(googleapiclient.discovery.Resource):
             ) -> ListCompanyJobsResponseHttpRequest | None: ...
 
         def create(
-            self, *, body: Company = ..., **kwargs: typing.Any
+            self, *, body: Company, **kwargs: typing.Any
         ) -> CompanyHttpRequest: ...
         def delete(self, *, name: str, **kwargs: typing.Any) -> EmptyHttpRequest: ...
         def get(self, *, name: str, **kwargs: typing.Any) -> CompanyHttpRequest: ...
@@ -56,7 +56,7 @@ class CloudTalentSolutionResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            body: Company = ...,
+            body: Company,
             updateCompanyFields: str | None = ...,
             **kwargs: typing.Any,
         ) -> CompanyHttpRequest: ...
@@ -65,10 +65,10 @@ class CloudTalentSolutionResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class JobsResource(googleapiclient.discovery.Resource):
         def batchDelete(
-            self, *, body: BatchDeleteJobsRequest = ..., **kwargs: typing.Any
+            self, *, body: BatchDeleteJobsRequest, **kwargs: typing.Any
         ) -> EmptyHttpRequest: ...
         def create(
-            self, *, body: CreateJobRequest = ..., **kwargs: typing.Any
+            self, *, body: CreateJobRequest, **kwargs: typing.Any
         ) -> JobHttpRequest: ...
         def delete(
             self,
@@ -78,11 +78,11 @@ class CloudTalentSolutionResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any,
         ) -> EmptyHttpRequest: ...
         def deleteByFilter(
-            self, *, body: DeleteJobsByFilterRequest = ..., **kwargs: typing.Any
+            self, *, body: DeleteJobsByFilterRequest, **kwargs: typing.Any
         ) -> EmptyHttpRequest: ...
         def get(self, *, name: str, **kwargs: typing.Any) -> JobHttpRequest: ...
         def histogram(
-            self, *, body: GetHistogramRequest = ..., **kwargs: typing.Any
+            self, *, body: GetHistogramRequest, **kwargs: typing.Any
         ) -> GetHistogramResponseHttpRequest: ...
         def list(
             self,
@@ -99,10 +99,10 @@ class CloudTalentSolutionResource(googleapiclient.discovery.Resource):
             previous_response: ListJobsResponse,
         ) -> ListJobsResponseHttpRequest | None: ...
         def patch(
-            self, *, name: str, body: UpdateJobRequest = ..., **kwargs: typing.Any
+            self, *, name: str, body: UpdateJobRequest, **kwargs: typing.Any
         ) -> JobHttpRequest: ...
         def search(
-            self, *, body: SearchJobsRequest = ..., **kwargs: typing.Any
+            self, *, body: SearchJobsRequest, **kwargs: typing.Any
         ) -> SearchJobsResponseHttpRequest: ...
         def search_next(
             self,
@@ -110,7 +110,7 @@ class CloudTalentSolutionResource(googleapiclient.discovery.Resource):
             previous_response: SearchJobsResponse,
         ) -> SearchJobsResponseHttpRequest | None: ...
         def searchForAlert(
-            self, *, body: SearchJobsRequest = ..., **kwargs: typing.Any
+            self, *, body: SearchJobsRequest, **kwargs: typing.Any
         ) -> SearchJobsResponseHttpRequest: ...
         def searchForAlert_next(
             self,

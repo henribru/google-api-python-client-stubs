@@ -25,7 +25,7 @@ class DataFusionResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: DnsPeering = ...,
+                        body: DnsPeering,
                         dnsPeeringId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> DnsPeeringHttpRequest: ...
@@ -78,14 +78,14 @@ class DataFusionResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         resource: str,
-                        body: SetIamPolicyRequest = ...,
+                        body: SetIamPolicyRequest,
                         **kwargs: typing.Any,
                     ) -> PolicyHttpRequest: ...
                     def testIamPermissions(
                         self,
                         *,
                         resource: str,
-                        body: TestIamPermissionsRequest = ...,
+                        body: TestIamPermissionsRequest,
                         **kwargs: typing.Any,
                     ) -> TestIamPermissionsResponseHttpRequest: ...
 
@@ -93,7 +93,7 @@ class DataFusionResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: Instance = ...,
+                    body: Instance,
                     instanceId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -129,7 +129,7 @@ class DataFusionResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: Instance = ...,
+                    body: Instance,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -137,28 +137,28 @@ class DataFusionResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: RestartInstanceRequest = ...,
+                    body: RestartInstanceRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def setIamPolicy(
                     self,
                     *,
                     resource: str,
-                    body: SetIamPolicyRequest = ...,
+                    body: SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: TestIamPermissionsRequest = ...,
+                    body: TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def upgrade(
                     self,
                     *,
                     name: str,
-                    body: UpgradeInstanceRequest = ...,
+                    body: UpgradeInstanceRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def dnsPeerings(self) -> DnsPeeringsResource: ...
@@ -170,7 +170,7 @@ class DataFusionResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: CancelOperationRequest = ...,
+                    body: CancelOperationRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def delete(
@@ -234,7 +234,7 @@ class DataFusionResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 resource: str,
-                body: RemoveIamPolicyRequest = ...,
+                body: RemoveIamPolicyRequest,
                 **kwargs: typing.Any,
             ) -> RemoveIamPolicyResponseHttpRequest: ...
             def instances(self) -> InstancesResource: ...

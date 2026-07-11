@@ -108,7 +108,7 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleChromeManagementVersionsV1ClaimCertificateProvisioningProcessRequest = ...,
+                body: GoogleChromeManagementVersionsV1ClaimCertificateProvisioningProcessRequest,
                 **kwargs: typing.Any,
             ) -> GoogleChromeManagementVersionsV1ClaimCertificateProvisioningProcessResponseHttpRequest: ...
             def get(
@@ -118,21 +118,21 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleChromeManagementVersionsV1SetFailureRequest = ...,
+                body: GoogleChromeManagementVersionsV1SetFailureRequest,
                 **kwargs: typing.Any,
             ) -> GoogleChromeManagementVersionsV1SetFailureResponseHttpRequest: ...
             def signData(
                 self,
                 *,
                 name: str,
-                body: GoogleChromeManagementVersionsV1SignDataRequest = ...,
+                body: GoogleChromeManagementVersionsV1SignDataRequest,
                 **kwargs: typing.Any,
             ) -> GoogleLongrunningOperationHttpRequest: ...
             def uploadCertificate(
                 self,
                 *,
                 name: str,
-                body: GoogleChromeManagementVersionsV1UploadCertificateRequest = ...,
+                body: GoogleChromeManagementVersionsV1UploadCertificateRequest,
                 **kwargs: typing.Any,
             ) -> (
                 GoogleChromeManagementVersionsV1UploadCertificateResponseHttpRequest
@@ -145,7 +145,7 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                body: GoogleChromeManagementVersionsV1ConnectorConfig = ...,
+                body: GoogleChromeManagementVersionsV1ConnectorConfig,
                 connectorConfigId: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleChromeManagementVersionsV1ConnectorConfigHttpRequest: ...
@@ -177,7 +177,7 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleChromeManagementVersionsV1ConnectorConfig = ...,
+                body: GoogleChromeManagementVersionsV1ConnectorConfig,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleChromeManagementVersionsV1ConnectorConfigHttpRequest: ...
@@ -193,7 +193,7 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     customer: str,
-                    body: GoogleChromeManagementVersionsV1DisableInsightsRequest = ...,
+                    body: GoogleChromeManagementVersionsV1DisableInsightsRequest,
                     **kwargs: typing.Any,
                 ) -> (
                     GoogleChromeManagementVersionsV1DisableInsightsResponseHttpRequest
@@ -202,7 +202,7 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     customer: str,
-                    body: GoogleChromeManagementVersionsV1EnableInsightsRequest = ...,
+                    body: GoogleChromeManagementVersionsV1EnableInsightsRequest,
                     **kwargs: typing.Any,
                 ) -> (
                     GoogleChromeManagementVersionsV1EnableInsightsResponseHttpRequest
@@ -317,7 +317,7 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleChromeManagementVersionsV1ChromeBrowserProfileCommand = ...,
+                    body: GoogleChromeManagementVersionsV1ChromeBrowserProfileCommand,
                     **kwargs: typing.Any,
                 ) -> GoogleChromeManagementVersionsV1ChromeBrowserProfileCommandHttpRequest: ...
                 def get(
@@ -664,7 +664,7 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleChromeManagementV1TelemetryNotificationConfig = ...,
+                    body: GoogleChromeManagementV1TelemetryNotificationConfig,
                     **kwargs: typing.Any,
                 ) -> GoogleChromeManagementV1TelemetryNotificationConfigHttpRequest: ...
                 def delete(
@@ -721,7 +721,7 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: GoogleChromeManagementVersionsV1MoveThirdPartyProfileUserRequest = ...,
+                body: GoogleChromeManagementVersionsV1MoveThirdPartyProfileUserRequest,
                 **kwargs: typing.Any,
             ) -> GoogleChromeManagementVersionsV1MoveThirdPartyProfileUserResponseHttpRequest: ...
 
@@ -742,7 +742,7 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            body: GoogleLongrunningCancelOperationRequest = ...,
+            body: GoogleLongrunningCancelOperationRequest,
             **kwargs: typing.Any,
         ) -> GoogleProtobufEmptyHttpRequest: ...
         def delete(

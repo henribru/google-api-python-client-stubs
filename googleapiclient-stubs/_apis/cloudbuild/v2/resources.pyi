@@ -25,28 +25,28 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         repository: str,
-                        body: FetchReadTokenRequest = ...,
+                        body: FetchReadTokenRequest,
                         **kwargs: typing.Any,
                     ) -> FetchReadTokenResponseHttpRequest: ...
                     def accessReadWriteToken(
                         self,
                         *,
                         repository: str,
-                        body: FetchReadWriteTokenRequest = ...,
+                        body: FetchReadWriteTokenRequest,
                         **kwargs: typing.Any,
                     ) -> FetchReadWriteTokenResponseHttpRequest: ...
                     def batchCreate(
                         self,
                         *,
                         parent: str,
-                        body: BatchCreateRepositoriesRequest = ...,
+                        body: BatchCreateRepositoriesRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def create(
                         self,
                         *,
                         parent: str,
-                        body: Repository = ...,
+                        body: Repository,
                         repositoryId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
@@ -98,7 +98,7 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: Connection = ...,
+                    body: Connection,
                     connectionId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -151,7 +151,7 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: Connection = ...,
+                    body: Connection,
                     allowMissing: bool | None = ...,
                     etag: str | None = ...,
                     updateMask: str | None = ...,
@@ -161,7 +161,7 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: HttpBody = ...,
+                    body: HttpBody,
                     webhookKey: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
@@ -169,14 +169,14 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     resource: str,
-                    body: SetIamPolicyRequest = ...,
+                    body: SetIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: TestIamPermissionsRequest = ...,
+                    body: TestIamPermissionsRequest,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def repositories(self) -> RepositoriesResource: ...
@@ -187,7 +187,7 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: CancelOperationRequest = ...,
+                    body: CancelOperationRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def get(

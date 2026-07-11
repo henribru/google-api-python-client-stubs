@@ -38,11 +38,7 @@ class FormsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class WatchesResource(googleapiclient.discovery.Resource):
             def create(
-                self,
-                *,
-                formId: str,
-                body: CreateWatchRequest = ...,
-                **kwargs: typing.Any,
+                self, *, formId: str, body: CreateWatchRequest, **kwargs: typing.Any
             ) -> WatchHttpRequest: ...
             def delete(
                 self, *, formId: str, watchId: str, **kwargs: typing.Any
@@ -55,31 +51,19 @@ class FormsResource(googleapiclient.discovery.Resource):
                 *,
                 formId: str,
                 watchId: str,
-                body: RenewWatchRequest = ...,
+                body: RenewWatchRequest,
                 **kwargs: typing.Any,
             ) -> WatchHttpRequest: ...
 
         def batchUpdate(
-            self,
-            *,
-            formId: str,
-            body: BatchUpdateFormRequest = ...,
-            **kwargs: typing.Any,
+            self, *, formId: str, body: BatchUpdateFormRequest, **kwargs: typing.Any
         ) -> BatchUpdateFormResponseHttpRequest: ...
         def create(
-            self,
-            *,
-            body: Form = ...,
-            unpublished: bool | None = ...,
-            **kwargs: typing.Any,
+            self, *, body: Form, unpublished: bool | None = ..., **kwargs: typing.Any
         ) -> FormHttpRequest: ...
         def get(self, *, formId: str, **kwargs: typing.Any) -> FormHttpRequest: ...
         def setPublishSettings(
-            self,
-            *,
-            formId: str,
-            body: SetPublishSettingsRequest = ...,
-            **kwargs: typing.Any,
+            self, *, formId: str, body: SetPublishSettingsRequest, **kwargs: typing.Any
         ) -> SetPublishSettingsResponseHttpRequest: ...
         def responses(self) -> ResponsesResource: ...
         def watches(self) -> WatchesResource: ...

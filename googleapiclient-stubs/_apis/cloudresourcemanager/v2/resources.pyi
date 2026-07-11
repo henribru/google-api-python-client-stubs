@@ -16,16 +16,12 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class FoldersResource(googleapiclient.discovery.Resource):
         def create(
-            self, *, body: Folder = ..., parent: str | None = ..., **kwargs: typing.Any
+            self, *, body: Folder, parent: str | None = ..., **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
         def delete(self, *, name: str, **kwargs: typing.Any) -> FolderHttpRequest: ...
         def get(self, *, name: str, **kwargs: typing.Any) -> FolderHttpRequest: ...
         def getIamPolicy(
-            self,
-            *,
-            resource: str,
-            body: GetIamPolicyRequest = ...,
-            **kwargs: typing.Any,
+            self, *, resource: str, body: GetIamPolicyRequest, **kwargs: typing.Any
         ) -> PolicyHttpRequest: ...
         def list(
             self,
@@ -42,18 +38,18 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
             previous_response: ListFoldersResponse,
         ) -> ListFoldersResponseHttpRequest | None: ...
         def move(
-            self, *, name: str, body: MoveFolderRequest = ..., **kwargs: typing.Any
+            self, *, name: str, body: MoveFolderRequest, **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
         def patch(
             self,
             *,
             name: str,
-            body: Folder = ...,
+            body: Folder,
             updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> FolderHttpRequest: ...
         def search(
-            self, *, body: SearchFoldersRequest = ..., **kwargs: typing.Any
+            self, *, body: SearchFoldersRequest, **kwargs: typing.Any
         ) -> SearchFoldersResponseHttpRequest: ...
         def search_next(
             self,
@@ -61,21 +57,17 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
             previous_response: SearchFoldersResponse,
         ) -> SearchFoldersResponseHttpRequest | None: ...
         def setIamPolicy(
-            self,
-            *,
-            resource: str,
-            body: SetIamPolicyRequest = ...,
-            **kwargs: typing.Any,
+            self, *, resource: str, body: SetIamPolicyRequest, **kwargs: typing.Any
         ) -> PolicyHttpRequest: ...
         def testIamPermissions(
             self,
             *,
             resource: str,
-            body: TestIamPermissionsRequest = ...,
+            body: TestIamPermissionsRequest,
             **kwargs: typing.Any,
         ) -> TestIamPermissionsResponseHttpRequest: ...
         def undelete(
-            self, *, name: str, body: UndeleteFolderRequest = ..., **kwargs: typing.Any
+            self, *, name: str, body: UndeleteFolderRequest, **kwargs: typing.Any
         ) -> FolderHttpRequest: ...
 
     @typing.type_check_only

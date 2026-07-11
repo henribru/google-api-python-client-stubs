@@ -130,7 +130,7 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: CancelOperationRequest = ...,
+                        body: CancelOperationRequest,
                         **kwargs: typing.Any,
                     ) -> EmptyHttpRequest: ...
                     def get(
@@ -141,7 +141,7 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: OSPolicyAssignment = ...,
+                    body: OSPolicyAssignment,
                     osPolicyAssignmentId: str | None = ...,
                     requestId: str | None = ...,
                     **kwargs: typing.Any,
@@ -186,7 +186,7 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: OSPolicyAssignment = ...,
+                    body: OSPolicyAssignment,
                     allowMissing: bool | None = ...,
                     requestId: str | None = ...,
                     updateMask: str | None = ...,

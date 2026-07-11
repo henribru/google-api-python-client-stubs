@@ -18,7 +18,7 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class AccessLevelsResource(googleapiclient.discovery.Resource):
             def create(
-                self, *, parent: str, body: AccessLevel = ..., **kwargs: typing.Any
+                self, *, parent: str, body: AccessLevel, **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -54,7 +54,7 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: AccessLevel = ...,
+                body: AccessLevel,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
@@ -62,7 +62,7 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class ServicePerimetersResource(googleapiclient.discovery.Resource):
             def create(
-                self, *, parent: str, body: ServicePerimeter = ..., **kwargs: typing.Any
+                self, *, parent: str, body: ServicePerimeter, **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -87,13 +87,13 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                body: ServicePerimeter = ...,
+                body: ServicePerimeter,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
 
         def create(
-            self, *, body: AccessPolicy = ..., **kwargs: typing.Any
+            self, *, body: AccessPolicy, **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
         def delete(
             self, *, name: str, **kwargs: typing.Any
@@ -118,7 +118,7 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            body: AccessPolicy = ...,
+            body: AccessPolicy,
             updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...

@@ -25,7 +25,7 @@ class DataprocMetastoreResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: GoogleCloudMetastoreV2alphaBackup = ...,
+                        body: GoogleCloudMetastoreV2alphaBackup,
                         backupId: str | None = ...,
                         requestId: str | None = ...,
                         **kwargs: typing.Any,
@@ -93,35 +93,35 @@ class DataprocMetastoreResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     service: str,
-                    body: GoogleCloudMetastoreV2alphaAlterMetadataResourceLocationRequest = ...,
+                    body: GoogleCloudMetastoreV2alphaAlterMetadataResourceLocationRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def alterTableProperties(
                     self,
                     *,
                     service: str,
-                    body: GoogleCloudMetastoreV2alphaAlterTablePropertiesRequest = ...,
+                    body: GoogleCloudMetastoreV2alphaAlterTablePropertiesRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def cancelMigration(
                     self,
                     *,
                     service: str,
-                    body: GoogleCloudMetastoreV2alphaCancelMigrationRequest = ...,
+                    body: GoogleCloudMetastoreV2alphaCancelMigrationRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def completeMigration(
                     self,
                     *,
                     service: str,
-                    body: GoogleCloudMetastoreV2alphaCompleteMigrationRequest = ...,
+                    body: GoogleCloudMetastoreV2alphaCompleteMigrationRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def create(
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudMetastoreV2alphaService = ...,
+                    body: GoogleCloudMetastoreV2alphaService,
                     requestId: str | None = ...,
                     serviceId: str | None = ...,
                     **kwargs: typing.Any,
@@ -137,7 +137,7 @@ class DataprocMetastoreResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     service: str,
-                    body: GoogleCloudMetastoreV2alphaExportMetadataRequest = ...,
+                    body: GoogleCloudMetastoreV2alphaExportMetadataRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def get(
@@ -147,7 +147,7 @@ class DataprocMetastoreResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudMetastoreV2alphaImportMetadataRequest = ...,
+                    body: GoogleCloudMetastoreV2alphaImportMetadataRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def list(
@@ -171,14 +171,14 @@ class DataprocMetastoreResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     service: str,
-                    body: GoogleCloudMetastoreV2alphaMoveTableToDatabaseRequest = ...,
+                    body: GoogleCloudMetastoreV2alphaMoveTableToDatabaseRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def patch(
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudMetastoreV2alphaService = ...,
+                    body: GoogleCloudMetastoreV2alphaService,
                     requestId: str | None = ...,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
@@ -187,28 +187,28 @@ class DataprocMetastoreResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     service: str,
-                    body: GoogleCloudMetastoreV2alphaQueryMetadataRequest = ...,
+                    body: GoogleCloudMetastoreV2alphaQueryMetadataRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def removeIamPolicy(
                     self,
                     *,
                     resource: str,
-                    body: GoogleCloudMetastoreV2alphaRemoveIamPolicyRequest = ...,
+                    body: GoogleCloudMetastoreV2alphaRemoveIamPolicyRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudMetastoreV2alphaRemoveIamPolicyResponseHttpRequest: ...
                 def restore(
                     self,
                     *,
                     service: str,
-                    body: GoogleCloudMetastoreV2alphaRestoreServiceRequest = ...,
+                    body: GoogleCloudMetastoreV2alphaRestoreServiceRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def startMigration(
                     self,
                     *,
                     service: str,
-                    body: GoogleCloudMetastoreV2alphaStartMigrationRequest = ...,
+                    body: GoogleCloudMetastoreV2alphaStartMigrationRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def backups(self) -> BackupsResource: ...

@@ -16,11 +16,7 @@ class DoubleClickBidManagerResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class QueriesResource(googleapiclient.discovery.Resource):
         def createquery(
-            self,
-            *,
-            body: Query = ...,
-            asynchronous: bool | None = ...,
-            **kwargs: typing.Any,
+            self, *, body: Query, asynchronous: bool | None = ..., **kwargs: typing.Any
         ) -> QueryHttpRequest: ...
         def deletequery(
             self, *, queryId: str, **kwargs: typing.Any
@@ -44,7 +40,7 @@ class DoubleClickBidManagerResource(googleapiclient.discovery.Resource):
             self,
             *,
             queryId: str,
-            body: RunQueryRequest = ...,
+            body: RunQueryRequest,
             asynchronous: bool | None = ...,
             **kwargs: typing.Any,
         ) -> googleapiclient.http.HttpRequest: ...

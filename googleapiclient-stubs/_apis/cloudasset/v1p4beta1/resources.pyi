@@ -36,7 +36,7 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             self,
             *,
             parent: str,
-            body: ExportIamPolicyAnalysisRequest = ...,
+            body: ExportIamPolicyAnalysisRequest,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
 

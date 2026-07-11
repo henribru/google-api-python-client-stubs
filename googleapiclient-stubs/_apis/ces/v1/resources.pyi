@@ -25,7 +25,7 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: Agent = ...,
+                        body: Agent,
                         agentId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> AgentHttpRequest: ...
@@ -59,7 +59,7 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: Agent = ...,
+                        body: Agent,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> AgentHttpRequest: ...
@@ -91,7 +91,7 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: BatchDeleteConversationsRequest = ...,
+                        body: BatchDeleteConversationsRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def delete(
@@ -168,7 +168,7 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: Deployment = ...,
+                        body: Deployment,
                         deploymentId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> DeploymentHttpRequest: ...
@@ -196,7 +196,7 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: Deployment = ...,
+                        body: Deployment,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> DeploymentHttpRequest: ...
@@ -207,7 +207,7 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: Example = ...,
+                        body: Example,
                         exampleId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ExampleHttpRequest: ...
@@ -236,7 +236,7 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: Example = ...,
+                        body: Example,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ExampleHttpRequest: ...
@@ -247,7 +247,7 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: Guardrail = ...,
+                        body: Guardrail,
                         guardrailId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> GuardrailHttpRequest: ...
@@ -281,7 +281,7 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: Guardrail = ...,
+                        body: Guardrail,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> GuardrailHttpRequest: ...
@@ -292,7 +292,7 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         tenant: str,
-                        body: LfA2aV1SendMessageRequest = ...,
+                        body: LfA2aV1SendMessageRequest,
                         **kwargs: typing.Any,
                     ) -> LfA2aV1SendMessageResponseHttpRequest: ...
 
@@ -302,21 +302,21 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: GenerateChatTokenRequest = ...,
+                        body: GenerateChatTokenRequest,
                         **kwargs: typing.Any,
                     ) -> GenerateChatTokenResponseHttpRequest: ...
                     def runSession(
                         self,
                         *,
                         session: str,
-                        body: RunSessionRequest = ...,
+                        body: RunSessionRequest,
                         **kwargs: typing.Any,
                     ) -> RunSessionResponseHttpRequest: ...
                     def streamRunSession(
                         self,
                         *,
                         session: str,
-                        body: RunSessionRequest = ...,
+                        body: RunSessionRequest,
                         **kwargs: typing.Any,
                     ) -> RunSessionResponseHttpRequest: ...
 
@@ -326,7 +326,7 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: Tool = ...,
+                        body: Tool,
                         toolId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ToolHttpRequest: ...
@@ -360,7 +360,7 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: Tool = ...,
+                        body: Tool,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ToolHttpRequest: ...
@@ -371,7 +371,7 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: Toolset = ...,
+                        body: Toolset,
                         toolsetId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ToolsetHttpRequest: ...
@@ -405,7 +405,7 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: Toolset = ...,
+                        body: Toolset,
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> ToolsetHttpRequest: ...
@@ -413,7 +413,7 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         toolset: str,
-                        body: RetrieveToolsRequest = ...,
+                        body: RetrieveToolsRequest,
                         **kwargs: typing.Any,
                     ) -> RetrieveToolsResponseHttpRequest: ...
 
@@ -423,7 +423,7 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        body: AppVersion = ...,
+                        body: AppVersion,
                         appVersionId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> AppVersionHttpRequest: ...
@@ -452,7 +452,7 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        body: RestoreAppVersionRequest = ...,
+                        body: RestoreAppVersionRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
 
@@ -460,7 +460,7 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: App = ...,
+                    body: App,
                     appId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -468,26 +468,14 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                     self, *, name: str, etag: str | None = ..., **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def executeTool(
-                    self,
-                    *,
-                    parent: str,
-                    body: ExecuteToolRequest = ...,
-                    **kwargs: typing.Any,
+                    self, *, parent: str, body: ExecuteToolRequest, **kwargs: typing.Any
                 ) -> ExecuteToolResponseHttpRequest: ...
                 def exportApp(
-                    self,
-                    *,
-                    name: str,
-                    body: ExportAppRequest = ...,
-                    **kwargs: typing.Any,
+                    self, *, name: str, body: ExportAppRequest, **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def get(self, *, name: str, **kwargs: typing.Any) -> AppHttpRequest: ...
                 def importApp(
-                    self,
-                    *,
-                    parent: str,
-                    body: ImportAppRequest = ...,
-                    **kwargs: typing.Any,
+                    self, *, parent: str, body: ImportAppRequest, **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def list(
                     self,
@@ -508,7 +496,7 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: App = ...,
+                    body: App,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> AppHttpRequest: ...
@@ -516,7 +504,7 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: RetrieveToolSchemaRequest = ...,
+                    body: RetrieveToolSchemaRequest,
                     **kwargs: typing.Any,
                 ) -> RetrieveToolSchemaResponseHttpRequest: ...
                 def agents(self) -> AgentsResource: ...
@@ -537,7 +525,7 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: CancelOperationRequest = ...,
+                    body: CancelOperationRequest,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def delete(

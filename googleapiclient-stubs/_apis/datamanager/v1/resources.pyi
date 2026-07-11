@@ -23,14 +23,14 @@ class DataManagerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: RetrieveInsightsRequest = ...,
+                    body: RetrieveInsightsRequest,
                     **kwargs: typing.Any,
                 ) -> RetrieveInsightsResponseHttpRequest: ...
 
             @typing.type_check_only
             class PartnerLinksResource(googleapiclient.discovery.Resource):
                 def create(
-                    self, *, parent: str, body: PartnerLink = ..., **kwargs: typing.Any
+                    self, *, parent: str, body: PartnerLink, **kwargs: typing.Any
                 ) -> PartnerLinkHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -56,7 +56,7 @@ class DataManagerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: UserListDirectLicense = ...,
+                    body: UserListDirectLicense,
                     **kwargs: typing.Any,
                 ) -> UserListDirectLicenseHttpRequest: ...
                 def get(
@@ -80,7 +80,7 @@ class DataManagerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: UserListDirectLicense = ...,
+                    body: UserListDirectLicense,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> UserListDirectLicenseHttpRequest: ...
@@ -112,7 +112,7 @@ class DataManagerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: UserListGlobalLicense = ...,
+                    body: UserListGlobalLicense,
                     **kwargs: typing.Any,
                 ) -> UserListGlobalLicenseHttpRequest: ...
                 def get(
@@ -136,7 +136,7 @@ class DataManagerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: UserListGlobalLicense = ...,
+                    body: UserListGlobalLicense,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> UserListGlobalLicenseHttpRequest: ...
@@ -150,7 +150,7 @@ class DataManagerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: UserList = ...,
+                    body: UserList,
                     validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> UserListHttpRequest: ...
@@ -182,7 +182,7 @@ class DataManagerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: UserList = ...,
+                    body: UserList,
                     updateMask: str | None = ...,
                     validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
@@ -199,22 +199,22 @@ class DataManagerResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class AdEventsResource(googleapiclient.discovery.Resource):
         def ingest(
-            self, *, body: IngestAdEventsRequest = ..., **kwargs: typing.Any
+            self, *, body: IngestAdEventsRequest, **kwargs: typing.Any
         ) -> IngestAdEventsResponseHttpRequest: ...
 
     @typing.type_check_only
     class AudienceMembersResource(googleapiclient.discovery.Resource):
         def ingest(
-            self, *, body: IngestAudienceMembersRequest = ..., **kwargs: typing.Any
+            self, *, body: IngestAudienceMembersRequest, **kwargs: typing.Any
         ) -> IngestAudienceMembersResponseHttpRequest: ...
         def remove(
-            self, *, body: RemoveAudienceMembersRequest = ..., **kwargs: typing.Any
+            self, *, body: RemoveAudienceMembersRequest, **kwargs: typing.Any
         ) -> RemoveAudienceMembersResponseHttpRequest: ...
 
     @typing.type_check_only
     class EventsResource(googleapiclient.discovery.Resource):
         def ingest(
-            self, *, body: IngestEventsRequest = ..., **kwargs: typing.Any
+            self, *, body: IngestEventsRequest, **kwargs: typing.Any
         ) -> IngestEventsResponseHttpRequest: ...
 
     @typing.type_check_only

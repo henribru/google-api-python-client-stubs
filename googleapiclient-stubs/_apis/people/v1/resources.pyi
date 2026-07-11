@@ -21,7 +21,7 @@ class PeopleServiceResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 resourceName: str,
-                body: ModifyContactGroupMembersRequest = ...,
+                body: ModifyContactGroupMembersRequest,
                 **kwargs: typing.Any,
             ) -> ModifyContactGroupMembersResponseHttpRequest: ...
 
@@ -34,7 +34,7 @@ class PeopleServiceResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any,
         ) -> BatchGetContactGroupsResponseHttpRequest: ...
         def create(
-            self, *, body: CreateContactGroupRequest = ..., **kwargs: typing.Any
+            self, *, body: CreateContactGroupRequest, **kwargs: typing.Any
         ) -> ContactGroupHttpRequest: ...
         def delete(
             self,
@@ -69,7 +69,7 @@ class PeopleServiceResource(googleapiclient.discovery.Resource):
             self,
             *,
             resourceName: str,
-            body: UpdateContactGroupRequest = ...,
+            body: UpdateContactGroupRequest,
             **kwargs: typing.Any,
         ) -> ContactGroupHttpRequest: ...
         def members(self) -> MembersResource: ...
@@ -80,7 +80,7 @@ class PeopleServiceResource(googleapiclient.discovery.Resource):
             self,
             *,
             resourceName: str,
-            body: CopyOtherContactToMyContactsGroupRequest = ...,
+            body: CopyOtherContactToMyContactsGroupRequest,
             **kwargs: typing.Any,
         ) -> PersonHttpRequest: ...
         def list(
@@ -171,18 +171,18 @@ class PeopleServiceResource(googleapiclient.discovery.Resource):
             ) -> ListConnectionsResponseHttpRequest | None: ...
 
         def batchCreateContacts(
-            self, *, body: BatchCreateContactsRequest = ..., **kwargs: typing.Any
+            self, *, body: BatchCreateContactsRequest, **kwargs: typing.Any
         ) -> BatchCreateContactsResponseHttpRequest: ...
         def batchDeleteContacts(
-            self, *, body: BatchDeleteContactsRequest = ..., **kwargs: typing.Any
+            self, *, body: BatchDeleteContactsRequest, **kwargs: typing.Any
         ) -> EmptyHttpRequest: ...
         def batchUpdateContacts(
-            self, *, body: BatchUpdateContactsRequest = ..., **kwargs: typing.Any
+            self, *, body: BatchUpdateContactsRequest, **kwargs: typing.Any
         ) -> BatchUpdateContactsResponseHttpRequest: ...
         def createContact(
             self,
             *,
-            body: Person = ...,
+            body: Person,
             personFields: str | None = ...,
             sources: typing_extensions.Literal[
                 "READ_SOURCE_TYPE_UNSPECIFIED",
@@ -386,7 +386,7 @@ class PeopleServiceResource(googleapiclient.discovery.Resource):
             self,
             *,
             resourceName: str,
-            body: Person = ...,
+            body: Person,
             personFields: str | None = ...,
             sources: typing_extensions.Literal[
                 "READ_SOURCE_TYPE_UNSPECIFIED",
@@ -412,7 +412,7 @@ class PeopleServiceResource(googleapiclient.discovery.Resource):
             self,
             *,
             resourceName: str,
-            body: UpdateContactPhotoRequest = ...,
+            body: UpdateContactPhotoRequest,
             **kwargs: typing.Any,
         ) -> UpdateContactPhotoResponseHttpRequest: ...
         def connections(self) -> ConnectionsResource: ...

@@ -32,7 +32,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customerId: str,
-                body: GoogleAdsSearchads360V0Services__SearchSearchAds360Request = ...,
+                body: GoogleAdsSearchads360V0Services__SearchSearchAds360Request,
                 **kwargs: typing.Any,
             ) -> (
                 GoogleAdsSearchads360V0Services__SearchSearchAds360ResponseHttpRequest
@@ -62,7 +62,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
         def search(
             self,
             *,
-            body: GoogleAdsSearchads360V0Services__SearchSearchAds360FieldsRequest = ...,
+            body: GoogleAdsSearchads360V0Services__SearchSearchAds360FieldsRequest,
             **kwargs: typing.Any,
         ) -> (
             GoogleAdsSearchads360V0Services__SearchSearchAds360FieldsResponseHttpRequest

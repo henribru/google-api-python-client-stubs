@@ -23,7 +23,7 @@ class ParallelstoreResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: Instance = ...,
+                    body: Instance,
                     instanceId: str | None = ...,
                     requestId: str | None = ...,
                     **kwargs: typing.Any,
@@ -36,21 +36,13 @@ class ParallelstoreResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def exportData(
-                    self,
-                    *,
-                    name: str,
-                    body: ExportDataRequest = ...,
-                    **kwargs: typing.Any,
+                    self, *, name: str, body: ExportDataRequest, **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> InstanceHttpRequest: ...
                 def importData(
-                    self,
-                    *,
-                    name: str,
-                    body: ImportDataRequest = ...,
-                    **kwargs: typing.Any,
+                    self, *, name: str, body: ImportDataRequest, **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def list(
                     self,
@@ -71,7 +63,7 @@ class ParallelstoreResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: Instance = ...,
+                    body: Instance,
                     requestId: str | None = ...,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
@@ -83,7 +75,7 @@ class ParallelstoreResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: CancelOperationRequest = ...,
+                    body: CancelOperationRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleProtobufEmptyHttpRequest: ...
                 def delete(

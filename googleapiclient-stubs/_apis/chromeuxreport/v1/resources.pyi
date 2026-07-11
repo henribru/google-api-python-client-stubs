@@ -16,10 +16,10 @@ class ChromeUXReportResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class RecordsResource(googleapiclient.discovery.Resource):
         def queryHistoryRecord(
-            self, *, body: QueryHistoryRequest = ..., **kwargs: typing.Any
+            self, *, body: QueryHistoryRequest, **kwargs: typing.Any
         ) -> QueryHistoryResponseHttpRequest: ...
         def queryRecord(
-            self, *, body: QueryRequest = ..., **kwargs: typing.Any
+            self, *, body: QueryRequest, **kwargs: typing.Any
         ) -> QueryResponseHttpRequest: ...
 
     def new_batch_http_request(

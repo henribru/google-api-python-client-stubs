@@ -219,6 +219,7 @@ def write_resource(writer, resource_name, resource, api, top_level=True) -> Set[
                 key2param(param) for param in method.get("parameterOrder", [])
             ]
             if request:
+                required_parameters.append("body")
                 ordered_parameters.append("body")
                 parameters["body"] = (
                     request["$ref"]
