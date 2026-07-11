@@ -1027,6 +1027,7 @@ class GoogleCloudAiplatformV1beta1ToolParallelAiSearch(
     apiKey: str
     customConfigs: dict[str, typing.Any]
     enableDataRetention: bool
+    enableZeroDataRetention: bool
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1UrlContext(

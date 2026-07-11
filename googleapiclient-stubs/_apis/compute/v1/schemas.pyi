@@ -6722,9 +6722,9 @@ class ReservationAggregatedList(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ReservationBlock(typing_extensions.TypedDict, total=False):
-    blockHealthInfo: ReservationBlockHealthInfo
     count: int
     creationTimestamp: str
+    healthInfo: ReservationBlockHealthInfo
     id: str
     inUseCount: int
     inUseHostCount: int
@@ -6851,6 +6851,7 @@ class ReservationSubBlock(typing_extensions.TypedDict, total=False):
     acceleratorTopologiesInfo: AcceleratorTopologiesInfo
     count: int
     creationTimestamp: str
+    healthInfo: ReservationSubBlockHealthInfo
     id: str
     inUseCount: int
     inUseHostCount: int
@@ -6861,7 +6862,6 @@ class ReservationSubBlock(typing_extensions.TypedDict, total=False):
     selfLink: str
     selfLinkWithId: str
     status: typing_extensions.Literal["CREATING", "DELETING", "INVALID", "READY"]
-    subBlockHealthInfo: ReservationSubBlockHealthInfo
     zone: str
 
 @typing.type_check_only

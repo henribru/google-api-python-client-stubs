@@ -88,6 +88,9 @@ class OracleDatabaseResource(googleapiclient.discovery.Resource):
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> AutonomousDatabaseHttpRequest: ...
+                def getRefreshableClones(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> AutonomousDatabaseRefreshableClonesHttpRequest: ...
                 def list(
                     self,
                     *,
@@ -110,6 +113,13 @@ class OracleDatabaseResource(googleapiclient.discovery.Resource):
                     body: AutonomousDatabase = ...,
                     requestId: str | None = ...,
                     updateMask: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def refresh(
+                    self,
+                    *,
+                    name: str,
+                    body: RefreshAutonomousDatabaseRequest = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def restart(
@@ -984,6 +994,14 @@ class AutonomousDatabaseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> AutonomousDatabase: ...
+
+@typing.type_check_only
+class AutonomousDatabaseRefreshableClonesHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> AutonomousDatabaseRefreshableClones: ...
 
 @typing.type_check_only
 class CloudExadataInfrastructureHttpRequest(googleapiclient.http.HttpRequest):

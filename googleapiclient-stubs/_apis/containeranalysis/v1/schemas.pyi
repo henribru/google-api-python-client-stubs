@@ -208,6 +208,13 @@ class CVSS(typing_extensions.TypedDict, total=False):
         "IMPACT_PARTIAL",
         "IMPACT_COMPLETE",
     ]
+    exploitMaturity: typing_extensions.Literal[
+        "EXPLOIT_MATURITY_UNSPECIFIED",
+        "EXPLOIT_MATURITY_NOT_DEFINED",
+        "EXPLOIT_MATURITY_ATTACKED",
+        "EXPLOIT_MATURITY_POC",
+        "EXPLOIT_MATURITY_UNREPORTED",
+    ]
     exploitabilityScore: float
     impactScore: float
     integrityImpact: typing_extensions.Literal[
@@ -1080,7 +1087,9 @@ class Finding(typing_extensions.TypedDict, total=False):
     category: str
     details: str
     location: FindingLocation
-    scanner: typing_extensions.Literal["SCANNER_UNSPECIFIED", "STATIC", "LLM"]
+    scanner: typing_extensions.Literal[
+        "SCANNER_UNSPECIFIED", "STATIC", "LLM", "WS_POLICY"
+    ]
     severity: typing_extensions.Literal["SEVERITY_UNSPECIFIED", "CRITICAL", "HIGH"]
 
 @typing.type_check_only

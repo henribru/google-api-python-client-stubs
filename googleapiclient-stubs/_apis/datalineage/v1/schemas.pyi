@@ -32,7 +32,11 @@ class GoogleCloudDatacatalogLineageConfigmanagementV1ConfigIngestionIngestionRul
     typing_extensions.TypedDict, total=False
 ):
     integration: typing_extensions.Literal[
-        "INTEGRATION_UNSPECIFIED", "DATAPROC", "LOOKER_CORE"
+        "INTEGRATION_UNSPECIFIED",
+        "BIGQUERY",
+        "DATAPROC",
+        "LOOKER_CORE",
+        "MANAGED_AIRFLOW",
     ]
 
 @typing.type_check_only

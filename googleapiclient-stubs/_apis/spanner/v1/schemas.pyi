@@ -202,7 +202,13 @@ class CommitRequest(typing_extensions.TypedDict, total=False):
 class CommitResponse(typing_extensions.TypedDict, total=False):
     commitStats: CommitStats
     commitTimestamp: str
+    isolationLevel: typing_extensions.Literal[
+        "ISOLATION_LEVEL_UNSPECIFIED", "SERIALIZABLE", "REPEATABLE_READ"
+    ]
     precommitToken: MultiplexedSessionPrecommitToken
+    readLockMode: typing_extensions.Literal[
+        "READ_LOCK_MODE_UNSPECIFIED", "PESSIMISTIC", "OPTIMISTIC"
+    ]
     snapshotTimestamp: str
 
 @typing.type_check_only

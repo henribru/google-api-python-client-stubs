@@ -122,13 +122,19 @@ class CloudRunResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class InstancesResource(googleapiclient.discovery.Resource):
             def create(
-                self, *, parent: str, body: Instance = ..., **kwargs: typing.Any
+                self,
+                *,
+                parent: str,
+                body: Instance = ...,
+                dryRun: str | None = ...,
+                **kwargs: typing.Any,
             ) -> InstanceHttpRequest: ...
             def delete(
                 self,
                 *,
                 name: str,
                 apiVersion: str | None = ...,
+                dryRun: str | None = ...,
                 kind: str | None = ...,
                 propagationPolicy: str | None = ...,
                 **kwargs: typing.Any,
@@ -149,7 +155,12 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any,
             ) -> ListInstancesResponseHttpRequest: ...
             def replaceInstance(
-                self, *, name: str, body: Instance = ..., **kwargs: typing.Any
+                self,
+                *,
+                name: str,
+                body: Instance = ...,
+                dryRun: str | None = ...,
+                **kwargs: typing.Any,
             ) -> InstanceHttpRequest: ...
             def start(
                 self,
@@ -169,13 +180,19 @@ class CloudRunResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class JobsResource(googleapiclient.discovery.Resource):
             def create(
-                self, *, parent: str, body: Job = ..., **kwargs: typing.Any
+                self,
+                *,
+                parent: str,
+                body: Job = ...,
+                dryRun: str | None = ...,
+                **kwargs: typing.Any,
             ) -> JobHttpRequest: ...
             def delete(
                 self,
                 *,
                 name: str,
                 apiVersion: str | None = ...,
+                dryRun: str | None = ...,
                 kind: str | None = ...,
                 propagationPolicy: str | None = ...,
                 **kwargs: typing.Any,
@@ -194,7 +211,12 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any,
             ) -> ListJobsResponseHttpRequest: ...
             def replaceJob(
-                self, *, name: str, body: Job = ..., **kwargs: typing.Any
+                self,
+                *,
+                name: str,
+                body: Job = ...,
+                dryRun: str | None = ...,
+                **kwargs: typing.Any,
             ) -> JobHttpRequest: ...
             def run(
                 self, *, name: str, body: RunJobRequest = ..., **kwargs: typing.Any

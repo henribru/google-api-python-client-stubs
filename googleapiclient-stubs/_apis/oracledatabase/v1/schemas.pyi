@@ -207,6 +207,7 @@ class AutonomousDatabaseProperties(typing_extensions.TypedDict, total=False):
     privateEndpoint: str
     privateEndpointIp: str
     privateEndpointLabel: str
+    refreshableClone: bool
     refreshableMode: typing_extensions.Literal[
         "REFRESHABLE_MODE_UNSPECIFIED", "AUTOMATIC", "MANUAL"
     ]
@@ -253,6 +254,15 @@ class AutonomousDatabaseProperties(typing_extensions.TypedDict, total=False):
     totalAutoBackupStorageSizeGbs: float
     usedDataStorageSizeTbs: int
     vaultId: str
+
+@typing.type_check_only
+class AutonomousDatabaseRefreshableClone(typing_extensions.TypedDict, total=False):
+    name: str
+    region: str
+
+@typing.type_check_only
+class AutonomousDatabaseRefreshableClones(typing_extensions.TypedDict, total=False):
+    autonomousDatabaseRefreshableClones: _list[AutonomousDatabaseRefreshableClone]
 
 @typing.type_check_only
 class AutonomousDatabaseStandbySummary(typing_extensions.TypedDict, total=False):
@@ -2213,6 +2223,10 @@ class PolarisIcebergCatalog(typing_extensions.TypedDict, total=False):
     uri: str
 
 @typing.type_check_only
+class RefreshAutonomousDatabaseRequest(typing_extensions.TypedDict, total=False):
+    refreshCutoffTime: str
+
+@typing.type_check_only
 class RemoveVirtualMachineExadbVmClusterRequest(
     typing_extensions.TypedDict, total=False
 ):
@@ -2248,8 +2262,26 @@ class ScheduledOperationDetails(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SourceConfig(typing_extensions.TypedDict, total=False):
+    autoRefreshFrequencySeconds: int
+    autoRefreshPointLagSeconds: int
+    autoRefreshStartTime: str
     automaticBackupsReplicationEnabled: bool
     autonomousDatabase: str
+    autonomousDatabaseBackup: str
+    backupTime: str
+    cloneType: typing_extensions.Literal["CLONE_TYPE_UNSPECIFIED", "FULL", "METADATA"]
+    refreshableMode: typing_extensions.Literal[
+        "REFRESHABLE_MODE_UNSPECIFIED", "AUTOMATIC", "MANUAL"
+    ]
+    sourceType: typing_extensions.Literal[
+        "SOURCE_TYPE_UNSPECIFIED",
+        "CLONE_DATABASE",
+        "CROSS_REGION_DISASTER_RECOVERY",
+        "CLONE_TO_REFRESHABLE",
+        "BACKUP_FROM_ID",
+        "BACKUP_FROM_TIMESTAMP",
+    ]
+    useLatestAvailableBackup: bool
 
 @typing.type_check_only
 class StartAutonomousDatabaseRequest(typing_extensions.TypedDict, total=False): ...
