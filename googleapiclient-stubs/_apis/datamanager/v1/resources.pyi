@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -210,6 +209,9 @@ class DataManagerResource(googleapiclient.discovery.Resource):
         def remove(
             self, *, body: RemoveAudienceMembersRequest, **kwargs: typing.Any
         ) -> RemoveAudienceMembersResponseHttpRequest: ...
+        def removeAll(
+            self, *, body: RemoveAllAudienceMembersRequest, **kwargs: typing.Any
+        ) -> RemoveAllAudienceMembersResponseHttpRequest: ...
 
     @typing.type_check_only
     class EventsResource(googleapiclient.discovery.Resource):
@@ -314,6 +316,14 @@ class PartnerLinkHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> PartnerLink: ...
+
+@typing.type_check_only
+class RemoveAllAudienceMembersResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> RemoveAllAudienceMembersResponse: ...
 
 @typing.type_check_only
 class RemoveAudienceMembersResponseHttpRequest(googleapiclient.http.HttpRequest):

@@ -1,13 +1,11 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class AttributionSettings(typing_extensions.TypedDict, total=False):
+class AttributionSettings(typing.TypedDict, total=False):
     attributionLookbackWindowDays: int
-    attributionModel: typing_extensions.Literal[
+    attributionModel: typing.Literal[
         "ATTRIBUTION_MODEL_UNSPECIFIED",
         "CROSS_CHANNEL_LAST_CLICK",
         "ADS_PREFERRED_LAST_CLICK",
@@ -20,50 +18,48 @@ class AttributionSettings(typing_extensions.TypedDict, total=False):
     conversionType: _list[ConversionType]
 
 @typing.type_check_only
-class ConversionSource(typing_extensions.TypedDict, total=False):
-    controller: typing_extensions.Literal[
+class ConversionSource(typing.TypedDict, total=False):
+    controller: typing.Literal[
         "CONTROLLER_UNSPECIFIED", "MERCHANT", "YOUTUBE_AFFILIATES"
     ]
     expireTime: str
     googleAnalyticsLink: GoogleAnalyticsLink
     merchantCenterDestination: MerchantCenterDestination
     name: str
-    state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "ACTIVE", "ARCHIVED", "PENDING"
-    ]
+    state: typing.Literal["STATE_UNSPECIFIED", "ACTIVE", "ARCHIVED", "PENDING"]
 
 @typing.type_check_only
-class ConversionType(typing_extensions.TypedDict, total=False):
+class ConversionType(typing.TypedDict, total=False):
     name: str
     report: bool
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class GoogleAnalyticsLink(typing_extensions.TypedDict, total=False):
+class GoogleAnalyticsLink(typing.TypedDict, total=False):
     attributionSettings: AttributionSettings
     property: str
     propertyId: str
 
 @typing.type_check_only
-class ListConversionSourcesResponse(typing_extensions.TypedDict, total=False):
+class ListConversionSourcesResponse(typing.TypedDict, total=False):
     conversionSources: _list[ConversionSource]
     nextPageToken: str
 
 @typing.type_check_only
-class MerchantCenterDestination(typing_extensions.TypedDict, total=False):
+class MerchantCenterDestination(typing.TypedDict, total=False):
     attributionSettings: AttributionSettings
     currencyCode: str
     destination: str
     displayName: str
 
 @typing.type_check_only
-class ProductChange(typing_extensions.TypedDict, total=False):
+class ProductChange(typing.TypedDict, total=False):
     newValue: str
     oldValue: str
     regionCode: str
-    reportingContext: typing_extensions.Literal[
+    reportingContext: typing.Literal[
         "REPORTING_CONTEXT_ENUM_UNSPECIFIED",
         "SHOPPING_ADS",
         "DISCOVERY_ADS",
@@ -87,18 +83,16 @@ class ProductChange(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class ProductStatusChangeMessage(typing_extensions.TypedDict, total=False):
+class ProductStatusChangeMessage(typing.TypedDict, total=False):
     account: str
-    attribute: typing_extensions.Literal["ATTRIBUTE_UNSPECIFIED", "STATUS"]
+    attribute: typing.Literal["ATTRIBUTE_UNSPECIFIED", "STATUS"]
     changes: _list[ProductChange]
     eventTime: str
     expirationTime: str
     managingAccount: str
     resource: str
     resourceId: str
-    resourceType: typing_extensions.Literal[
-        "RESOURCE_UNSPECIFIED", "PRODUCT", "ACCOUNT_SERVICE"
-    ]
+    resourceType: typing.Literal["RESOURCE_UNSPECIFIED", "PRODUCT", "ACCOUNT_SERVICE"]
 
 @typing.type_check_only
-class UndeleteConversionSourceRequest(typing_extensions.TypedDict, total=False): ...
+class UndeleteConversionSourceRequest(typing.TypedDict, total=False): ...

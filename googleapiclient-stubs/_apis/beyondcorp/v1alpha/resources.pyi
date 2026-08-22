@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -23,7 +22,7 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     insight: str,
-                    aggregation: typing_extensions.Literal[
+                    aggregation: typing.Literal[
                         "AGGREGATION_UNSPECIFIED",
                         "HOURLY",
                         "DAILY",
@@ -54,9 +53,7 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    view: typing_extensions.Literal[
-                        "INSIGHT_VIEW_UNSPECIFIED", "BASIC", "FULL"
-                    ]
+                    view: typing.Literal["INSIGHT_VIEW_UNSPECIFIED", "BASIC", "FULL"]
                     | None = ...,
                     **kwargs: typing.Any,
                 ) -> (
@@ -66,7 +63,7 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    aggregation: typing_extensions.Literal[
+                    aggregation: typing.Literal[
                         "AGGREGATION_UNSPECIFIED",
                         "HOURLY",
                         "DAILY",
@@ -81,9 +78,7 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
                     pageSize: int | None = ...,
                     pageToken: str | None = ...,
                     startTime: str | None = ...,
-                    view: typing_extensions.Literal[
-                        "INSIGHT_VIEW_UNSPECIFIED", "BASIC", "FULL"
-                    ]
+                    view: typing.Literal["INSIGHT_VIEW_UNSPECIFIED", "BASIC", "FULL"]
                     | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudBeyondcorpSaasplatformInsightsV1alphaListInsightsResponseHttpRequest: ...
@@ -632,7 +627,7 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     insight: str,
-                    aggregation: typing_extensions.Literal[
+                    aggregation: typing.Literal[
                         "AGGREGATION_UNSPECIFIED",
                         "HOURLY",
                         "DAILY",
@@ -663,9 +658,7 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    view: typing_extensions.Literal[
-                        "INSIGHT_VIEW_UNSPECIFIED", "BASIC", "FULL"
-                    ]
+                    view: typing.Literal["INSIGHT_VIEW_UNSPECIFIED", "BASIC", "FULL"]
                     | None = ...,
                     **kwargs: typing.Any,
                 ) -> (
@@ -675,7 +668,7 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    aggregation: typing_extensions.Literal[
+                    aggregation: typing.Literal[
                         "AGGREGATION_UNSPECIFIED",
                         "HOURLY",
                         "DAILY",
@@ -690,9 +683,7 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
                     pageSize: int | None = ...,
                     pageToken: str | None = ...,
                     startTime: str | None = ...,
-                    view: typing_extensions.Literal[
-                        "INSIGHT_VIEW_UNSPECIFIED", "BASIC", "FULL"
-                    ]
+                    view: typing.Literal["INSIGHT_VIEW_UNSPECIFIED", "BASIC", "FULL"]
                     | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudBeyondcorpSaasplatformInsightsV1alphaListInsightsResponseHttpRequest: ...

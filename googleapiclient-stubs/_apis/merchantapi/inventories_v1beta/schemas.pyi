@@ -1,35 +1,33 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class CustomAttribute(typing_extensions.TypedDict, total=False):
+class CustomAttribute(typing.TypedDict, total=False):
     groupValues: _list[CustomAttribute]
     name: str
     value: str
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Interval(typing_extensions.TypedDict, total=False):
+class Interval(typing.TypedDict, total=False):
     endTime: str
     startTime: str
 
 @typing.type_check_only
-class ListLocalInventoriesResponse(typing_extensions.TypedDict, total=False):
+class ListLocalInventoriesResponse(typing.TypedDict, total=False):
     localInventories: _list[LocalInventory]
     nextPageToken: str
 
 @typing.type_check_only
-class ListRegionalInventoriesResponse(typing_extensions.TypedDict, total=False):
+class ListRegionalInventoriesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     regionalInventories: _list[RegionalInventory]
 
 @typing.type_check_only
-class LocalInventory(typing_extensions.TypedDict, total=False):
+class LocalInventory(typing.TypedDict, total=False):
     account: str
     availability: str
     base64EncodedName: str
@@ -45,16 +43,16 @@ class LocalInventory(typing_extensions.TypedDict, total=False):
     storeCode: str
 
 @typing.type_check_only
-class Price(typing_extensions.TypedDict, total=False):
+class Price(typing.TypedDict, total=False):
     amountMicros: str
     currencyCode: str
 
 @typing.type_check_only
-class ProductChange(typing_extensions.TypedDict, total=False):
+class ProductChange(typing.TypedDict, total=False):
     newValue: str
     oldValue: str
     regionCode: str
-    reportingContext: typing_extensions.Literal[
+    reportingContext: typing.Literal[
         "REPORTING_CONTEXT_ENUM_UNSPECIFIED",
         "SHOPPING_ADS",
         "DISCOVERY_ADS",
@@ -78,21 +76,19 @@ class ProductChange(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class ProductStatusChangeMessage(typing_extensions.TypedDict, total=False):
+class ProductStatusChangeMessage(typing.TypedDict, total=False):
     account: str
-    attribute: typing_extensions.Literal["ATTRIBUTE_UNSPECIFIED", "STATUS"]
+    attribute: typing.Literal["ATTRIBUTE_UNSPECIFIED", "STATUS"]
     changes: _list[ProductChange]
     eventTime: str
     expirationTime: str
     managingAccount: str
     resource: str
     resourceId: str
-    resourceType: typing_extensions.Literal[
-        "RESOURCE_UNSPECIFIED", "PRODUCT", "ACCOUNT_SERVICE"
-    ]
+    resourceType: typing.Literal["RESOURCE_UNSPECIFIED", "PRODUCT", "ACCOUNT_SERVICE"]
 
 @typing.type_check_only
-class RegionalInventory(typing_extensions.TypedDict, total=False):
+class RegionalInventory(typing.TypedDict, total=False):
     account: str
     availability: str
     base64EncodedName: str

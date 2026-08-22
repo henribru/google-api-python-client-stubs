@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -33,7 +32,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         executionConfig_headers: str | None = ...,
-                        view: typing_extensions.Literal[
+                        view: typing.Literal[
                             "ACTION_SCHEMA_VIEW_UNSPECIFIED",
                             "ACTION_SCHEMA_VIEW_BASIC",
                             "ACTION_SCHEMA_VIEW_ENRICHED",
@@ -48,7 +47,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                         executionConfig_headers: str | None = ...,
                         pageSize: int | None = ...,
                         pageToken: str | None = ...,
-                        view: typing_extensions.Literal[
+                        view: typing.Literal[
                             "ACTION_VIEW_UNSPECIFIED",
                             "ACTION_VIEW_BASIC",
                             "ACTION_VIEW_FULL",
@@ -137,7 +136,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                         name: str,
                         contextMetadata: str | None = ...,
                         executionConfig_headers: str | None = ...,
-                        view: typing_extensions.Literal[
+                        view: typing.Literal[
                             "ENTITY_TYPE_SCHEMA_VIEW_UNSPECIFIED",
                             "ENTITY_TYPE_SCHEMA_VIEW_BASIC",
                             "ENTITY_TYPE_SCHEMA_VIEW_ENRICHED",
@@ -152,7 +151,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                         executionConfig_headers: str | None = ...,
                         pageSize: int | None = ...,
                         pageToken: str | None = ...,
-                        view: typing_extensions.Literal[
+                        view: typing.Literal[
                             "ENTITY_TYPE_VIEW_UNSPECIFIED",
                             "ENTITY_TYPE_VIEW_BASIC",
                             "ENTITY_TYPE_VIEW_FULL",

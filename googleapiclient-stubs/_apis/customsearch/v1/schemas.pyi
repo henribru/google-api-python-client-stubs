@@ -1,11 +1,9 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class Promotion(typing_extensions.TypedDict, total=False):
+class Promotion(typing.TypedDict, total=False):
     bodyLines: _list[dict[str, typing.Any]]
     displayLink: str
     htmlTitle: str
@@ -14,7 +12,7 @@ class Promotion(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
-class Result(typing_extensions.TypedDict, total=False):
+class Result(typing.TypedDict, total=False):
     cacheId: str
     displayLink: str
     fileFormat: str
@@ -32,7 +30,7 @@ class Result(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
-class Search(typing_extensions.TypedDict, total=False):
+class Search(typing.TypedDict, total=False):
     context: dict[str, typing.Any]
     items: _list[Result]
     kind: str

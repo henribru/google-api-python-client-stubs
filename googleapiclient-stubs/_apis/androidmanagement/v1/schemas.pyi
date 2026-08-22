@@ -1,51 +1,49 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class AdbShellCommandEvent(typing_extensions.TypedDict, total=False):
+class AdbShellCommandEvent(typing.TypedDict, total=False):
     shellCmd: str
 
 @typing.type_check_only
-class AdbShellInteractiveEvent(typing_extensions.TypedDict, total=False): ...
+class AdbShellInteractiveEvent(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class AddEsimParams(typing_extensions.TypedDict, total=False):
+class AddEsimParams(typing.TypedDict, total=False):
     activationCode: str
-    activationState: typing_extensions.Literal[
+    activationState: typing.Literal[
         "ACTIVATION_STATE_UNSPECIFIED", "ACTIVATED", "NOT_ACTIVATED"
     ]
 
 @typing.type_check_only
-class AdvancedSecurityOverrides(typing_extensions.TypedDict, total=False):
-    commonCriteriaMode: typing_extensions.Literal[
+class AdvancedSecurityOverrides(typing.TypedDict, total=False):
+    commonCriteriaMode: typing.Literal[
         "COMMON_CRITERIA_MODE_UNSPECIFIED",
         "COMMON_CRITERIA_MODE_DISABLED",
         "COMMON_CRITERIA_MODE_ENABLED",
     ]
-    contentProtectionPolicy: typing_extensions.Literal[
+    contentProtectionPolicy: typing.Literal[
         "CONTENT_PROTECTION_POLICY_UNSPECIFIED",
         "CONTENT_PROTECTION_DISABLED",
         "CONTENT_PROTECTION_ENFORCED",
         "CONTENT_PROTECTION_USER_CHOICE",
     ]
-    developerSettings: typing_extensions.Literal[
+    developerSettings: typing.Literal[
         "DEVELOPER_SETTINGS_UNSPECIFIED",
         "DEVELOPER_SETTINGS_DISABLED",
         "DEVELOPER_SETTINGS_ALLOWED",
     ]
-    googlePlayProtectVerifyApps: typing_extensions.Literal[
+    googlePlayProtectVerifyApps: typing.Literal[
         "GOOGLE_PLAY_PROTECT_VERIFY_APPS_UNSPECIFIED",
         "VERIFY_APPS_ENFORCED",
         "VERIFY_APPS_USER_CHOICE",
     ]
-    mtePolicy: typing_extensions.Literal[
+    mtePolicy: typing.Literal[
         "MTE_POLICY_UNSPECIFIED", "MTE_USER_CHOICE", "MTE_ENFORCED", "MTE_DISABLED"
     ]
     personalAppsThatCanReadWorkNotifications: _list[str]
-    untrustedAppsPolicy: typing_extensions.Literal[
+    untrustedAppsPolicy: typing.Literal[
         "UNTRUSTED_APPS_POLICY_UNSPECIFIED",
         "DISALLOW_INSTALL",
         "ALLOW_INSTALL_IN_PERSONAL_PROFILE_ONLY",
@@ -53,29 +51,29 @@ class AdvancedSecurityOverrides(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class AlwaysOnVpnPackage(typing_extensions.TypedDict, total=False):
+class AlwaysOnVpnPackage(typing.TypedDict, total=False):
     lockdownEnabled: bool
     packageName: str
 
 @typing.type_check_only
-class ApiLevelCondition(typing_extensions.TypedDict, total=False):
+class ApiLevelCondition(typing.TypedDict, total=False):
     minApiLevel: int
 
 @typing.type_check_only
-class ApnPolicy(typing_extensions.TypedDict, total=False):
+class ApnPolicy(typing.TypedDict, total=False):
     apnSettings: _list[ApnSetting]
-    overrideApns: typing_extensions.Literal[
+    overrideApns: typing.Literal[
         "OVERRIDE_APNS_UNSPECIFIED", "OVERRIDE_APNS_DISABLED", "OVERRIDE_APNS_ENABLED"
     ]
 
 @typing.type_check_only
-class ApnSetting(typing_extensions.TypedDict, total=False):
-    alwaysOnSetting: typing_extensions.Literal[
+class ApnSetting(typing.TypedDict, total=False):
+    alwaysOnSetting: typing.Literal[
         "ALWAYS_ON_SETTING_UNSPECIFIED", "NOT_ALWAYS_ON", "ALWAYS_ON"
     ]
     apn: str
     apnTypes: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "APN_TYPE_UNSPECIFIED",
             "ENTERPRISE",
             "BIP",
@@ -95,7 +93,7 @@ class ApnSetting(typing_extensions.TypedDict, total=False):
             "XCAP",
         ]
     ]
-    authType: typing_extensions.Literal[
+    authType: typing.Literal[
         "AUTH_TYPE_UNSPECIFIED", "NONE", "PAP", "CHAP", "PAP_OR_CHAP"
     ]
     carrierId: int
@@ -105,11 +103,9 @@ class ApnSetting(typing_extensions.TypedDict, total=False):
     mmsc: str
     mtuV4: int
     mtuV6: int
-    mvnoType: typing_extensions.Literal[
-        "MVNO_TYPE_UNSPECIFIED", "GID", "ICCID", "IMSI", "SPN"
-    ]
+    mvnoType: typing.Literal["MVNO_TYPE_UNSPECIFIED", "GID", "ICCID", "IMSI", "SPN"]
     networkTypes: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "NETWORK_TYPE_UNSPECIFIED",
             "EDGE",
             "GPRS",
@@ -127,18 +123,18 @@ class ApnSetting(typing_extensions.TypedDict, total=False):
     ]
     numericOperatorId: str
     password: str
-    protocol: typing_extensions.Literal[
+    protocol: typing.Literal[
         "PROTOCOL_UNSPECIFIED", "IP", "IPV4V6", "IPV6", "NON_IP", "PPP", "UNSTRUCTURED"
     ]
     proxyAddress: str
     proxyPort: int
-    roamingProtocol: typing_extensions.Literal[
+    roamingProtocol: typing.Literal[
         "PROTOCOL_UNSPECIFIED", "IP", "IPV4V6", "IPV6", "NON_IP", "PPP", "UNSTRUCTURED"
     ]
     username: str
 
 @typing.type_check_only
-class AppProcessInfo(typing_extensions.TypedDict, total=False):
+class AppProcessInfo(typing.TypedDict, total=False):
     apkSha256Hash: str
     packageNames: _list[str]
     pid: int
@@ -148,24 +144,24 @@ class AppProcessInfo(typing_extensions.TypedDict, total=False):
     uid: int
 
 @typing.type_check_only
-class AppProcessStartEvent(typing_extensions.TypedDict, total=False):
+class AppProcessStartEvent(typing.TypedDict, total=False):
     processInfo: AppProcessInfo
 
 @typing.type_check_only
-class AppTrackInfo(typing_extensions.TypedDict, total=False):
+class AppTrackInfo(typing.TypedDict, total=False):
     trackAlias: str
     trackId: str
 
 @typing.type_check_only
-class AppVersion(typing_extensions.TypedDict, total=False):
+class AppVersion(typing.TypedDict, total=False):
     production: bool
     trackIds: _list[str]
     versionCode: int
     versionString: str
 
 @typing.type_check_only
-class Application(typing_extensions.TypedDict, total=False):
-    appPricing: typing_extensions.Literal[
+class Application(typing.TypedDict, total=False):
+    appPricing: typing.Literal[
         "APP_PRICING_UNSPECIFIED", "FREE", "FREE_WITH_IN_APP_PURCHASE", "PAID"
     ]
     appTracks: _list[AppTrackInfo]
@@ -173,7 +169,7 @@ class Application(typing_extensions.TypedDict, total=False):
     author: str
     availableCountries: _list[str]
     category: str
-    contentRating: typing_extensions.Literal[
+    contentRating: typing.Literal[
         "CONTENT_RATING_UNSPECIFIED",
         "THREE_YEARS",
         "SEVEN_YEARS",
@@ -182,13 +178,13 @@ class Application(typing_extensions.TypedDict, total=False):
         "EIGHTEEN_YEARS",
     ]
     description: str
-    distributionChannel: typing_extensions.Literal[
+    distributionChannel: typing.Literal[
         "DISTRIBUTION_CHANNEL_UNSPECIFIED",
         "PUBLIC_GOOGLE_HOSTED",
         "PRIVATE_GOOGLE_HOSTED",
         "PRIVATE_SELF_HOSTED",
     ]
-    features: _list[typing_extensions.Literal["APP_FEATURE_UNSPECIFIED", "VPN_APP"]]
+    features: _list[typing.Literal["APP_FEATURE_UNSPECIFIED", "VPN_APP"]]
     fullDescription: str
     iconUrl: str
     managedProperties: _list[ManagedProperty]
@@ -203,9 +199,9 @@ class Application(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class ApplicationEvent(typing_extensions.TypedDict, total=False):
+class ApplicationEvent(typing.TypedDict, total=False):
     createTime: str
-    eventType: typing_extensions.Literal[
+    eventType: typing.Literal[
         "APPLICATION_EVENT_TYPE_UNSPECIFIED",
         "INSTALLED",
         "CHANGED",
@@ -218,39 +214,39 @@ class ApplicationEvent(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class ApplicationPermission(typing_extensions.TypedDict, total=False):
+class ApplicationPermission(typing.TypedDict, total=False):
     description: str
     name: str
     permissionId: str
 
 @typing.type_check_only
-class ApplicationPolicy(typing_extensions.TypedDict, total=False):
+class ApplicationPolicy(typing.TypedDict, total=False):
     accessibleTrackIds: _list[str]
-    alwaysOnVpnLockdownExemption: typing_extensions.Literal[
+    alwaysOnVpnLockdownExemption: typing.Literal[
         "ALWAYS_ON_VPN_LOCKDOWN_EXEMPTION_UNSPECIFIED",
         "VPN_LOCKDOWN_ENFORCED",
         "VPN_LOCKDOWN_EXEMPTION",
     ]
-    autoUpdateMode: typing_extensions.Literal[
+    autoUpdateMode: typing.Literal[
         "AUTO_UPDATE_MODE_UNSPECIFIED",
         "AUTO_UPDATE_DEFAULT",
         "AUTO_UPDATE_POSTPONED",
         "AUTO_UPDATE_HIGH_PRIORITY",
     ]
-    connectedWorkAndPersonalApp: typing_extensions.Literal[
+    connectedWorkAndPersonalApp: typing.Literal[
         "CONNECTED_WORK_AND_PERSONAL_APP_UNSPECIFIED",
         "CONNECTED_WORK_AND_PERSONAL_APP_DISALLOWED",
         "CONNECTED_WORK_AND_PERSONAL_APP_ALLOWED",
     ]
-    credentialProviderPolicy: typing_extensions.Literal[
+    credentialProviderPolicy: typing.Literal[
         "CREDENTIAL_PROVIDER_POLICY_UNSPECIFIED", "CREDENTIAL_PROVIDER_ALLOWED"
     ]
     customAppConfig: CustomAppConfig
-    defaultPermissionPolicy: typing_extensions.Literal[
+    defaultPermissionPolicy: typing.Literal[
         "PERMISSION_POLICY_UNSPECIFIED", "PROMPT", "GRANT", "DENY"
     ]
     delegatedScopes: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "DELEGATED_SCOPE_UNSPECIFIED",
             "CERT_INSTALL",
             "MANAGED_CONFIGURATIONS",
@@ -267,7 +263,7 @@ class ApplicationPolicy(typing_extensions.TypedDict, total=False):
     extensionConfig: ExtensionConfig
     installConstraint: _list[InstallConstraint]
     installPriority: int
-    installType: typing_extensions.Literal[
+    installType: typing.Literal[
         "INSTALL_TYPE_UNSPECIFIED",
         "PREINSTALLED",
         "FORCE_INSTALLED",
@@ -283,7 +279,7 @@ class ApplicationPolicy(typing_extensions.TypedDict, total=False):
     minimumVersionCode: int
     packageName: str
     permissionGrants: _list[PermissionGrant]
-    preferentialNetworkId: typing_extensions.Literal[
+    preferentialNetworkId: typing.Literal[
         "PREFERENTIAL_NETWORK_ID_UNSPECIFIED",
         "NO_PREFERENTIAL_NETWORK",
         "PREFERENTIAL_NETWORK_ID_ONE",
@@ -294,25 +290,25 @@ class ApplicationPolicy(typing_extensions.TypedDict, total=False):
     ]
     roles: _list[Role]
     signingKeyCerts: _list[ApplicationSigningKeyCert]
-    userControlSettings: typing_extensions.Literal[
+    userControlSettings: typing.Literal[
         "USER_CONTROL_SETTINGS_UNSPECIFIED",
         "USER_CONTROL_ALLOWED",
         "USER_CONTROL_DISALLOWED",
     ]
-    workProfileWidgets: typing_extensions.Literal[
+    workProfileWidgets: typing.Literal[
         "WORK_PROFILE_WIDGETS_UNSPECIFIED",
         "WORK_PROFILE_WIDGETS_ALLOWED",
         "WORK_PROFILE_WIDGETS_DISALLOWED",
     ]
 
 @typing.type_check_only
-class ApplicationPolicyChange(typing_extensions.TypedDict, total=False):
+class ApplicationPolicyChange(typing.TypedDict, total=False):
     application: ApplicationPolicy
     updateMask: str
 
 @typing.type_check_only
-class ApplicationReport(typing_extensions.TypedDict, total=False):
-    applicationSource: typing_extensions.Literal[
+class ApplicationReport(typing.TypedDict, total=False):
+    applicationSource: typing.Literal[
         "APPLICATION_SOURCE_UNSPECIFIED",
         "SYSTEM_APP_FACTORY_VERSION",
         "SYSTEM_APP_UPDATED_VERSION",
@@ -327,85 +323,83 @@ class ApplicationReport(typing_extensions.TypedDict, total=False):
     packageSha256Hash: str
     signingKeyCertFingerprints: _list[str]
     signingKeyCerts: _list[ApplicationSigningKeyCert]
-    state: typing_extensions.Literal[
-        "APPLICATION_STATE_UNSPECIFIED", "REMOVED", "INSTALLED"
-    ]
-    userFacingType: typing_extensions.Literal[
+    state: typing.Literal["APPLICATION_STATE_UNSPECIFIED", "REMOVED", "INSTALLED"]
+    userFacingType: typing.Literal[
         "USER_FACING_TYPE_UNSPECIFIED", "NOT_USER_FACING", "USER_FACING"
     ]
     versionCode: int
     versionName: str
 
 @typing.type_check_only
-class ApplicationReportingSettings(typing_extensions.TypedDict, total=False):
+class ApplicationReportingSettings(typing.TypedDict, total=False):
     includeRemovedApps: bool
 
 @typing.type_check_only
-class ApplicationSigningKeyCert(typing_extensions.TypedDict, total=False):
+class ApplicationSigningKeyCert(typing.TypedDict, total=False):
     signingKeyCertFingerprintSha256: str
 
 @typing.type_check_only
-class BackupServiceToggledEvent(typing_extensions.TypedDict, total=False):
+class BackupServiceToggledEvent(typing.TypedDict, total=False):
     adminPackageName: str
     adminUserId: int
-    backupServiceState: typing_extensions.Literal[
+    backupServiceState: typing.Literal[
         "BACKUP_SERVICE_STATE_UNSPECIFIED",
         "BACKUP_SERVICE_DISABLED",
         "BACKUP_SERVICE_ENABLED",
     ]
 
 @typing.type_check_only
-class BatchUsageLogEvents(typing_extensions.TypedDict, total=False):
+class BatchUsageLogEvents(typing.TypedDict, total=False):
     device: str
     retrievalTime: str
     usageLogEvents: _list[UsageLogEvent]
     user: str
 
 @typing.type_check_only
-class BlockAction(typing_extensions.TypedDict, total=False):
+class BlockAction(typing.TypedDict, total=False):
     blockAfterDays: int
-    blockScope: typing_extensions.Literal[
+    blockScope: typing.Literal[
         "BLOCK_SCOPE_UNSPECIFIED", "BLOCK_SCOPE_WORK_PROFILE", "BLOCK_SCOPE_DEVICE"
     ]
 
 @typing.type_check_only
-class CertAuthorityInstalledEvent(typing_extensions.TypedDict, total=False):
+class CertAuthorityInstalledEvent(typing.TypedDict, total=False):
     certificate: str
     success: bool
     userId: int
 
 @typing.type_check_only
-class CertAuthorityRemovedEvent(typing_extensions.TypedDict, total=False):
+class CertAuthorityRemovedEvent(typing.TypedDict, total=False):
     certificate: str
     success: bool
     userId: int
 
 @typing.type_check_only
-class CertValidationFailureEvent(typing_extensions.TypedDict, total=False):
+class CertValidationFailureEvent(typing.TypedDict, total=False):
     failureReason: str
 
 @typing.type_check_only
-class ChoosePrivateKeyRule(typing_extensions.TypedDict, total=False):
+class ChoosePrivateKeyRule(typing.TypedDict, total=False):
     packageNames: _list[str]
     privateKeyAlias: str
     urlPattern: str
 
 @typing.type_check_only
-class ClearAppsDataParams(typing_extensions.TypedDict, total=False):
+class ClearAppsDataParams(typing.TypedDict, total=False):
     packageNames: _list[str]
 
 @typing.type_check_only
-class ClearAppsDataStatus(typing_extensions.TypedDict, total=False):
+class ClearAppsDataStatus(typing.TypedDict, total=False):
     results: dict[str, typing.Any]
 
 @typing.type_check_only
-class Command(typing_extensions.TypedDict, total=False):
+class Command(typing.TypedDict, total=False):
     addEsimParams: AddEsimParams
     clearAppsDataParams: ClearAppsDataParams
     clearAppsDataStatus: ClearAppsDataStatus
     createTime: str
     duration: str
-    errorCode: typing_extensions.Literal[
+    errorCode: typing.Literal[
         "COMMAND_ERROR_CODE_UNSPECIFIED",
         "UNKNOWN",
         "API_LEVEL",
@@ -419,7 +413,7 @@ class Command(typing_extensions.TypedDict, total=False):
     requestDeviceInfoParams: RequestDeviceInfoParams
     requestDeviceInfoStatus: RequestDeviceInfoStatus
     resetPasswordFlags: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "RESET_PASSWORD_FLAG_UNSPECIFIED",
             "REQUIRE_ENTRY",
             "DO_NOT_ASK_CREDENTIALS_ON_BOOT",
@@ -430,7 +424,7 @@ class Command(typing_extensions.TypedDict, total=False):
     startLostModeStatus: StartLostModeStatus
     stopLostModeParams: StopLostModeParams
     stopLostModeStatus: StopLostModeStatus
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "COMMAND_TYPE_UNSPECIFIED",
         "LOCK",
         "RESET_PASSWORD",
@@ -448,13 +442,13 @@ class Command(typing_extensions.TypedDict, total=False):
     wipeParams: WipeParams
 
 @typing.type_check_only
-class CommonCriteriaModeInfo(typing_extensions.TypedDict, total=False):
-    commonCriteriaModeStatus: typing_extensions.Literal[
+class CommonCriteriaModeInfo(typing.TypedDict, total=False):
+    commonCriteriaModeStatus: typing.Literal[
         "COMMON_CRITERIA_MODE_STATUS_UNKNOWN",
         "COMMON_CRITERIA_MODE_DISABLED",
         "COMMON_CRITERIA_MODE_ENABLED",
     ]
-    policySignatureVerificationStatus: typing_extensions.Literal[
+    policySignatureVerificationStatus: typing.Literal[
         "POLICY_SIGNATURE_VERIFICATION_STATUS_UNSPECIFIED",
         "POLICY_SIGNATURE_VERIFICATION_DISABLED",
         "POLICY_SIGNATURE_VERIFICATION_SUCCEEDED",
@@ -463,20 +457,20 @@ class CommonCriteriaModeInfo(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class ComplianceRule(typing_extensions.TypedDict, total=False):
+class ComplianceRule(typing.TypedDict, total=False):
     apiLevelCondition: ApiLevelCondition
     disableApps: bool
     nonComplianceDetailCondition: NonComplianceDetailCondition
     packageNamesToDisable: _list[str]
 
 @typing.type_check_only
-class ConnectEvent(typing_extensions.TypedDict, total=False):
+class ConnectEvent(typing.TypedDict, total=False):
     destinationIpAddress: str
     destinationPort: int
     packageName: str
 
 @typing.type_check_only
-class ContactInfo(typing_extensions.TypedDict, total=False):
+class ContactInfo(typing.TypedDict, total=False):
     contactEmail: str
     dataProtectionOfficerEmail: str
     dataProtectionOfficerName: str
@@ -486,67 +480,82 @@ class ContactInfo(typing_extensions.TypedDict, total=False):
     euRepresentativePhone: str
 
 @typing.type_check_only
-class ContentProviderEndpoint(typing_extensions.TypedDict, total=False):
+class ContentProviderEndpoint(typing.TypedDict, total=False):
     packageName: str
     signingCertsSha256: _list[str]
     uri: str
 
 @typing.type_check_only
-class CrossProfilePolicies(typing_extensions.TypedDict, total=False):
-    crossProfileAppFunctions: typing_extensions.Literal[
+class CrossDevicePolicies(typing.TypedDict, total=False):
+    nearbyAppStreaming: typing.Literal[
+        "NEARBY_APP_STREAMING_UNSPECIFIED",
+        "NEARBY_APP_STREAMING_USER_CHOICE",
+        "NEARBY_APP_STREAMING_DISABLED",
+        "NEARBY_APP_STREAMING_USER_CHOICE_SAME_MANAGED_ACCOUNT",
+    ]
+    nearbyNotificationStreaming: typing.Literal[
+        "NEARBY_NOTIFICATION_STREAMING_UNSPECIFIED",
+        "NEARBY_NOTIFICATION_STREAMING_USER_CHOICE",
+        "NEARBY_NOTIFICATION_STREAMING_DISABLED",
+        "NEARBY_NOTIFICATION_STREAMING_USER_CHOICE_SAME_MANAGED_ACCOUNT",
+    ]
+
+@typing.type_check_only
+class CrossProfilePolicies(typing.TypedDict, total=False):
+    crossProfileAppFunctions: typing.Literal[
         "CROSS_PROFILE_APP_FUNCTIONS_UNSPECIFIED",
         "CROSS_PROFILE_APP_FUNCTIONS_DISALLOWED",
         "CROSS_PROFILE_APP_FUNCTIONS_ALLOWED",
     ]
-    crossProfileCopyPaste: typing_extensions.Literal[
+    crossProfileCopyPaste: typing.Literal[
         "CROSS_PROFILE_COPY_PASTE_UNSPECIFIED",
         "COPY_FROM_WORK_TO_PERSONAL_DISALLOWED",
         "CROSS_PROFILE_COPY_PASTE_ALLOWED",
     ]
-    crossProfileDataSharing: typing_extensions.Literal[
+    crossProfileDataSharing: typing.Literal[
         "CROSS_PROFILE_DATA_SHARING_UNSPECIFIED",
         "CROSS_PROFILE_DATA_SHARING_DISALLOWED",
         "DATA_SHARING_FROM_WORK_TO_PERSONAL_DISALLOWED",
         "CROSS_PROFILE_DATA_SHARING_ALLOWED",
     ]
     exemptionsToShowWorkContactsInPersonalProfile: PackageNameList
-    showWorkContactsInPersonalProfile: typing_extensions.Literal[
+    showWorkContactsInPersonalProfile: typing.Literal[
         "SHOW_WORK_CONTACTS_IN_PERSONAL_PROFILE_UNSPECIFIED",
         "SHOW_WORK_CONTACTS_IN_PERSONAL_PROFILE_DISALLOWED",
         "SHOW_WORK_CONTACTS_IN_PERSONAL_PROFILE_ALLOWED",
         "SHOW_WORK_CONTACTS_IN_PERSONAL_PROFILE_DISALLOWED_EXCEPT_SYSTEM",
     ]
-    workProfileWidgetsDefault: typing_extensions.Literal[
+    workProfileWidgetsDefault: typing.Literal[
         "WORK_PROFILE_WIDGETS_DEFAULT_UNSPECIFIED",
         "WORK_PROFILE_WIDGETS_DEFAULT_ALLOWED",
         "WORK_PROFILE_WIDGETS_DEFAULT_DISALLOWED",
     ]
 
 @typing.type_check_only
-class CryptoSelfTestCompletedEvent(typing_extensions.TypedDict, total=False):
+class CryptoSelfTestCompletedEvent(typing.TypedDict, total=False):
     success: bool
 
 @typing.type_check_only
-class CustomAppConfig(typing_extensions.TypedDict, total=False):
-    userUninstallSettings: typing_extensions.Literal[
+class CustomAppConfig(typing.TypedDict, total=False):
+    userUninstallSettings: typing.Literal[
         "USER_UNINSTALL_SETTINGS_UNSPECIFIED",
         "DISALLOW_UNINSTALL_BY_USER",
         "ALLOW_UNINSTALL_BY_USER",
     ]
 
 @typing.type_check_only
-class Date(typing_extensions.TypedDict, total=False):
+class Date(typing.TypedDict, total=False):
     day: int
     month: int
     year: int
 
 @typing.type_check_only
-class DefaultApplication(typing_extensions.TypedDict, total=False):
+class DefaultApplication(typing.TypedDict, total=False):
     packageName: str
 
 @typing.type_check_only
-class DefaultApplicationContext(typing_extensions.TypedDict, total=False):
-    defaultApplicationScope: typing_extensions.Literal[
+class DefaultApplicationContext(typing.TypedDict, total=False):
+    defaultApplicationScope: typing.Literal[
         "DEFAULT_APPLICATION_SCOPE_UNSPECIFIED",
         "SCOPE_FULLY_MANAGED",
         "SCOPE_WORK_PROFILE",
@@ -554,9 +563,9 @@ class DefaultApplicationContext(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class DefaultApplicationInfo(typing_extensions.TypedDict, total=False):
+class DefaultApplicationInfo(typing.TypedDict, total=False):
     defaultApplicationSettingAttempts: _list[DefaultApplicationSettingAttempt]
-    defaultApplicationType: typing_extensions.Literal[
+    defaultApplicationType: typing.Literal[
         "DEFAULT_APPLICATION_TYPE_UNSPECIFIED",
         "DEFAULT_ASSISTANT",
         "DEFAULT_BROWSER",
@@ -570,16 +579,16 @@ class DefaultApplicationInfo(typing_extensions.TypedDict, total=False):
     packageName: str
 
 @typing.type_check_only
-class DefaultApplicationSetting(typing_extensions.TypedDict, total=False):
+class DefaultApplicationSetting(typing.TypedDict, total=False):
     defaultApplicationScopes: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "DEFAULT_APPLICATION_SCOPE_UNSPECIFIED",
             "SCOPE_FULLY_MANAGED",
             "SCOPE_WORK_PROFILE",
             "SCOPE_PERSONAL_PROFILE",
         ]
     ]
-    defaultApplicationType: typing_extensions.Literal[
+    defaultApplicationType: typing.Literal[
         "DEFAULT_APPLICATION_TYPE_UNSPECIFIED",
         "DEFAULT_ASSISTANT",
         "DEFAULT_BROWSER",
@@ -593,8 +602,8 @@ class DefaultApplicationSetting(typing_extensions.TypedDict, total=False):
     defaultApplications: _list[DefaultApplication]
 
 @typing.type_check_only
-class DefaultApplicationSettingAttempt(typing_extensions.TypedDict, total=False):
-    attemptOutcome: typing_extensions.Literal[
+class DefaultApplicationSettingAttempt(typing.TypedDict, total=False):
+    attemptOutcome: typing.Literal[
         "ATTEMPT_OUTCOME_UNSPECIFIED",
         "SUCCESS",
         "APP_NOT_INSTALLED",
@@ -604,13 +613,13 @@ class DefaultApplicationSettingAttempt(typing_extensions.TypedDict, total=False)
     packageName: str
 
 @typing.type_check_only
-class Device(typing_extensions.TypedDict, total=False):
+class Device(typing.TypedDict, total=False):
     apiLevel: int
     applicationReports: _list[ApplicationReport]
     appliedPasswordPolicies: _list[PasswordRequirements]
     appliedPolicyName: str
     appliedPolicyVersion: str
-    appliedState: typing_extensions.Literal[
+    appliedState: typing.Literal[
         "DEVICE_STATE_UNSPECIFIED",
         "ACTIVE",
         "DISABLED",
@@ -634,7 +643,7 @@ class Device(typing_extensions.TypedDict, total=False):
     lastPolicyComplianceReportTime: str
     lastPolicySyncTime: str
     lastStatusReportTime: str
-    managementMode: typing_extensions.Literal[
+    managementMode: typing.Literal[
         "MANAGEMENT_MODE_UNSPECIFIED", "DEVICE_OWNER", "PROFILE_OWNER"
     ]
     memoryEvents: _list[MemoryEvent]
@@ -642,7 +651,7 @@ class Device(typing_extensions.TypedDict, total=False):
     name: str
     networkInfo: NetworkInfo
     nonComplianceDetails: _list[NonComplianceDetail]
-    ownership: typing_extensions.Literal[
+    ownership: typing.Literal[
         "OWNERSHIP_UNSPECIFIED", "COMPANY_OWNED", "PERSONALLY_OWNED"
     ]
     policyCompliant: bool
@@ -651,7 +660,7 @@ class Device(typing_extensions.TypedDict, total=False):
     previousDeviceNames: _list[str]
     securityPosture: SecurityPosture
     softwareInfo: SoftwareInfo
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "DEVICE_STATE_UNSPECIFIED",
         "ACTIVE",
         "DISABLED",
@@ -666,14 +675,14 @@ class Device(typing_extensions.TypedDict, total=False):
     userName: str
 
 @typing.type_check_only
-class DeviceConnectivityManagement(typing_extensions.TypedDict, total=False):
+class DeviceConnectivityManagement(typing.TypedDict, total=False):
     apnPolicy: ApnPolicy
-    bluetoothSharing: typing_extensions.Literal[
+    bluetoothSharing: typing.Literal[
         "BLUETOOTH_SHARING_UNSPECIFIED",
         "BLUETOOTH_SHARING_ALLOWED",
         "BLUETOOTH_SHARING_DISALLOWED",
     ]
-    configureWifi: typing_extensions.Literal[
+    configureWifi: typing.Literal[
         "CONFIGURE_WIFI_UNSPECIFIED",
         "ALLOW_CONFIGURING_WIFI",
         "DISALLOW_ADD_WIFI_CONFIG",
@@ -681,54 +690,54 @@ class DeviceConnectivityManagement(typing_extensions.TypedDict, total=False):
     ]
     preferentialNetworkServiceSettings: PreferentialNetworkServiceSettings
     privateDnsSettings: PrivateDnsSettings
-    tetheringSettings: typing_extensions.Literal[
+    tetheringSettings: typing.Literal[
         "TETHERING_SETTINGS_UNSPECIFIED",
         "ALLOW_ALL_TETHERING",
         "DISALLOW_WIFI_TETHERING",
         "DISALLOW_ALL_TETHERING",
     ]
-    usbDataAccess: typing_extensions.Literal[
+    usbDataAccess: typing.Literal[
         "USB_DATA_ACCESS_UNSPECIFIED",
         "ALLOW_USB_DATA_TRANSFER",
         "DISALLOW_USB_FILE_TRANSFER",
         "DISALLOW_USB_DATA_TRANSFER",
     ]
-    wifiDirectSettings: typing_extensions.Literal[
+    wifiDirectSettings: typing.Literal[
         "WIFI_DIRECT_SETTINGS_UNSPECIFIED", "ALLOW_WIFI_DIRECT", "DISALLOW_WIFI_DIRECT"
     ]
     wifiRoamingPolicy: WifiRoamingPolicy
     wifiSsidPolicy: WifiSsidPolicy
 
 @typing.type_check_only
-class DeviceRadioState(typing_extensions.TypedDict, total=False):
-    airplaneModeState: typing_extensions.Literal[
+class DeviceRadioState(typing.TypedDict, total=False):
+    airplaneModeState: typing.Literal[
         "AIRPLANE_MODE_STATE_UNSPECIFIED",
         "AIRPLANE_MODE_USER_CHOICE",
         "AIRPLANE_MODE_DISABLED",
     ]
-    cellularTwoGState: typing_extensions.Literal[
+    cellularTwoGState: typing.Literal[
         "CELLULAR_TWO_G_STATE_UNSPECIFIED",
         "CELLULAR_TWO_G_USER_CHOICE",
         "CELLULAR_TWO_G_DISABLED",
     ]
-    minimumWifiSecurityLevel: typing_extensions.Literal[
+    minimumWifiSecurityLevel: typing.Literal[
         "MINIMUM_WIFI_SECURITY_LEVEL_UNSPECIFIED",
         "OPEN_NETWORK_SECURITY",
         "PERSONAL_NETWORK_SECURITY",
         "ENTERPRISE_NETWORK_SECURITY",
         "ENTERPRISE_BIT192_NETWORK_SECURITY",
     ]
-    ultraWidebandState: typing_extensions.Literal[
+    ultraWidebandState: typing.Literal[
         "ULTRA_WIDEBAND_STATE_UNSPECIFIED",
         "ULTRA_WIDEBAND_USER_CHOICE",
         "ULTRA_WIDEBAND_DISABLED",
     ]
-    userInitiatedAddEsimSettings: typing_extensions.Literal[
+    userInitiatedAddEsimSettings: typing.Literal[
         "USER_INITIATED_ADD_ESIM_SETTINGS_UNSPECIFIED",
         "USER_INITIATED_ADD_ESIM_ALLOWED",
         "USER_INITIATED_ADD_ESIM_DISALLOWED",
     ]
-    wifiState: typing_extensions.Literal[
+    wifiState: typing.Literal[
         "WIFI_STATE_UNSPECIFIED",
         "WIFI_STATE_USER_CHOICE",
         "WIFI_ENABLED",
@@ -736,10 +745,10 @@ class DeviceRadioState(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class DeviceSettings(typing_extensions.TypedDict, total=False):
+class DeviceSettings(typing.TypedDict, total=False):
     adbEnabled: bool
     developmentSettingsEnabled: bool
-    encryptionStatus: typing_extensions.Literal[
+    encryptionStatus: typing.Literal[
         "ENCRYPTION_STATUS_UNSPECIFIED",
         "UNSUPPORTED",
         "INACTIVE",
@@ -754,52 +763,50 @@ class DeviceSettings(typing_extensions.TypedDict, total=False):
     verifyAppsEnabled: bool
 
 @typing.type_check_only
-class Display(typing_extensions.TypedDict, total=False):
+class Display(typing.TypedDict, total=False):
     density: int
     displayId: int
     height: int
     name: str
     refreshRate: int
-    state: typing_extensions.Literal[
-        "DISPLAY_STATE_UNSPECIFIED", "OFF", "ON", "DOZE", "SUSPENDED"
-    ]
+    state: typing.Literal["DISPLAY_STATE_UNSPECIFIED", "OFF", "ON", "DOZE", "SUSPENDED"]
     width: int
 
 @typing.type_check_only
-class DisplaySettings(typing_extensions.TypedDict, total=False):
+class DisplaySettings(typing.TypedDict, total=False):
     screenBrightnessSettings: ScreenBrightnessSettings
     screenTimeoutSettings: ScreenTimeoutSettings
 
 @typing.type_check_only
-class DnsEvent(typing_extensions.TypedDict, total=False):
+class DnsEvent(typing.TypedDict, total=False):
     hostname: str
     ipAddresses: _list[str]
     packageName: str
     totalIpAddressesReturned: str
 
 @typing.type_check_only
-class DpcMigrationInfo(typing_extensions.TypedDict, total=False):
+class DpcMigrationInfo(typing.TypedDict, total=False):
     additionalData: str
     previousDpc: str
 
 @typing.type_check_only
-class Eid(typing_extensions.TypedDict, total=False):
+class Eid(typing.TypedDict, total=False):
     eid: str
 
 @typing.type_check_only
-class EidInfo(typing_extensions.TypedDict, total=False):
+class EidInfo(typing.TypedDict, total=False):
     eids: _list[Eid]
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class EnrollmentCompleteEvent(typing_extensions.TypedDict, total=False): ...
+class EnrollmentCompleteEvent(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class EnrollmentToken(typing_extensions.TypedDict, total=False):
+class EnrollmentToken(typing.TypedDict, total=False):
     additionalData: str
-    allowPersonalUsage: typing_extensions.Literal[
+    allowPersonalUsage: typing.Literal[
         "ALLOW_PERSONAL_USAGE_UNSPECIFIED",
         "PERSONAL_USAGE_ALLOWED",
         "PERSONAL_USAGE_DISALLOWED",
@@ -816,11 +823,11 @@ class EnrollmentToken(typing_extensions.TypedDict, total=False):
     value: str
 
 @typing.type_check_only
-class Enterprise(typing_extensions.TypedDict, total=False):
+class Enterprise(typing.TypedDict, total=False):
     appAutoApprovalEnabled: bool
     contactInfo: ContactInfo
     enabledNotificationTypes: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "NOTIFICATION_TYPE_UNSPECIFIED",
             "ENROLLMENT",
             "COMPLIANCE_REPORT",
@@ -831,17 +838,17 @@ class Enterprise(typing_extensions.TypedDict, total=False):
         ]
     ]
     enterpriseDisplayName: str
-    enterpriseType: typing_extensions.Literal[
+    enterpriseType: typing.Literal[
         "ENTERPRISE_TYPE_UNSPECIFIED",
         "MANAGED_GOOGLE_DOMAIN",
         "MANAGED_GOOGLE_PLAY_ACCOUNTS_ENTERPRISE",
     ]
     googleAuthenticationSettings: GoogleAuthenticationSettings
     logo: ExternalData
-    managedGoogleDomainType: typing_extensions.Literal[
+    managedGoogleDomainType: typing.Literal[
         "MANAGED_GOOGLE_DOMAIN_TYPE_UNSPECIFIED", "TYPE_TEAM", "TYPE_DOMAIN"
     ]
-    managedGooglePlayAccountsEnterpriseType: typing_extensions.Literal[
+    managedGooglePlayAccountsEnterpriseType: typing.Literal[
         "MANAGED_GOOGLE_PLAY_ACCOUNTS_ENTERPRISE_TYPE_UNSPECIFIED",
         "CUSTOMER_MANAGED",
         "EMM_MANAGED",
@@ -853,17 +860,15 @@ class Enterprise(typing_extensions.TypedDict, total=False):
     termsAndConditions: _list[TermsAndConditions]
 
 @typing.type_check_only
-class EnterpriseUpgradeEvent(typing_extensions.TypedDict, total=False):
+class EnterpriseUpgradeEvent(typing.TypedDict, total=False):
     enterprise: str
-    upgradeState: typing_extensions.Literal[
-        "UPGRADE_STATE_UNSPECIFIED", "UPGRADE_STATE_SUCCEEDED"
-    ]
+    upgradeState: typing.Literal["UPGRADE_STATE_UNSPECIFIED", "UPGRADE_STATE_SUCCEEDED"]
 
 @typing.type_check_only
-class EsimCommandStatus(typing_extensions.TypedDict, total=False):
+class EsimCommandStatus(typing.TypedDict, total=False):
     esimInfo: EsimInfo
     internalErrorDetails: InternalErrorDetails
-    status: typing_extensions.Literal[
+    status: typing.Literal[
         "STATUS_UNSPECIFIED",
         "SUCCESS",
         "IN_PROGRESS",
@@ -876,60 +881,60 @@ class EsimCommandStatus(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class EsimInfo(typing_extensions.TypedDict, total=False):
+class EsimInfo(typing.TypedDict, total=False):
     iccId: str
 
 @typing.type_check_only
-class EuiccChipInfo(typing_extensions.TypedDict, total=False):
+class EuiccChipInfo(typing.TypedDict, total=False):
     eid: str
 
 @typing.type_check_only
-class ExtensionConfig(typing_extensions.TypedDict, total=False):
+class ExtensionConfig(typing.TypedDict, total=False):
     notificationReceiver: str
     signingKeyFingerprintsSha256: _list[str]
 
 @typing.type_check_only
-class ExternalData(typing_extensions.TypedDict, total=False):
+class ExternalData(typing.TypedDict, total=False):
     sha256Hash: str
     url: str
 
 @typing.type_check_only
-class FilePulledEvent(typing_extensions.TypedDict, total=False):
+class FilePulledEvent(typing.TypedDict, total=False):
     filePath: str
 
 @typing.type_check_only
-class FilePushedEvent(typing_extensions.TypedDict, total=False):
+class FilePushedEvent(typing.TypedDict, total=False):
     filePath: str
 
 @typing.type_check_only
-class FreezePeriod(typing_extensions.TypedDict, total=False):
+class FreezePeriod(typing.TypedDict, total=False):
     endDate: Date
     startDate: Date
 
 @typing.type_check_only
-class GenerateEnterpriseUpgradeUrlRequest(typing_extensions.TypedDict, total=False):
+class GenerateEnterpriseUpgradeUrlRequest(typing.TypedDict, total=False):
     adminEmail: str
     allowedDomains: _list[str]
 
 @typing.type_check_only
-class GenerateEnterpriseUpgradeUrlResponse(typing_extensions.TypedDict, total=False):
+class GenerateEnterpriseUpgradeUrlResponse(typing.TypedDict, total=False):
     url: str
 
 @typing.type_check_only
-class GoogleAuthenticationOptions(typing_extensions.TypedDict, total=False):
-    authenticationRequirement: typing_extensions.Literal[
+class GoogleAuthenticationOptions(typing.TypedDict, total=False):
+    authenticationRequirement: typing.Literal[
         "AUTHENTICATION_REQUIREMENT_UNSPECIFIED", "OPTIONAL", "REQUIRED"
     ]
     requiredAccountEmail: str
 
 @typing.type_check_only
-class GoogleAuthenticationSettings(typing_extensions.TypedDict, total=False):
-    googleAuthenticationRequired: typing_extensions.Literal[
+class GoogleAuthenticationSettings(typing.TypedDict, total=False):
+    googleAuthenticationRequired: typing.Literal[
         "GOOGLE_AUTHENTICATION_REQUIRED_UNSPECIFIED", "NOT_REQUIRED", "REQUIRED"
     ]
 
 @typing.type_check_only
-class HardwareInfo(typing_extensions.TypedDict, total=False):
+class HardwareInfo(typing.TypedDict, total=False):
     batteryShutdownTemperatures: _list[float]
     batteryThrottlingTemperatures: _list[float]
     brand: str
@@ -948,7 +953,7 @@ class HardwareInfo(typing_extensions.TypedDict, total=False):
     skinThrottlingTemperatures: _list[float]
 
 @typing.type_check_only
-class HardwareStatus(typing_extensions.TypedDict, total=False):
+class HardwareStatus(typing.TypedDict, total=False):
     batteryTemperatures: _list[float]
     cpuTemperatures: _list[float]
     cpuUsages: _list[float]
@@ -958,27 +963,27 @@ class HardwareStatus(typing_extensions.TypedDict, total=False):
     skinTemperatures: _list[float]
 
 @typing.type_check_only
-class InstallConstraint(typing_extensions.TypedDict, total=False):
-    chargingConstraint: typing_extensions.Literal[
+class InstallConstraint(typing.TypedDict, total=False):
+    chargingConstraint: typing.Literal[
         "CHARGING_CONSTRAINT_UNSPECIFIED",
         "CHARGING_NOT_REQUIRED",
         "INSTALL_ONLY_WHEN_CHARGING",
     ]
-    deviceIdleConstraint: typing_extensions.Literal[
+    deviceIdleConstraint: typing.Literal[
         "DEVICE_IDLE_CONSTRAINT_UNSPECIFIED",
         "DEVICE_IDLE_NOT_REQUIRED",
         "INSTALL_ONLY_WHEN_DEVICE_IDLE",
     ]
-    networkTypeConstraint: typing_extensions.Literal[
+    networkTypeConstraint: typing.Literal[
         "NETWORK_TYPE_CONSTRAINT_UNSPECIFIED",
         "INSTALL_ON_ANY_NETWORK",
         "INSTALL_ONLY_ON_UNMETERED_NETWORK",
     ]
 
 @typing.type_check_only
-class InternalErrorDetails(typing_extensions.TypedDict, total=False):
+class InternalErrorDetails(typing.TypedDict, total=False):
     errorCode: str
-    errorCodeDetail: typing_extensions.Literal[
+    errorCodeDetail: typing.Literal[
         "ERROR_CODE_DETAIL_UNSPECIFIED",
         "ERROR_TIME_OUT",
         "ERROR_EUICC_MISSING",
@@ -1000,7 +1005,7 @@ class InternalErrorDetails(typing_extensions.TypedDict, total=False):
         "ERROR_SIM_MISSING",
     ]
     operationCode: str
-    operationCodeDetail: typing_extensions.Literal[
+    operationCodeDetail: typing.Literal[
         "OPERATION_CODE_DETAIL_UNSPECIFIED",
         "OPERATION_SYSTEM",
         "OPERATION_SIM_SLOT",
@@ -1016,75 +1021,75 @@ class InternalErrorDetails(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class IssueCommandResponse(typing_extensions.TypedDict, total=False): ...
+class IssueCommandResponse(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class KeyDestructionEvent(typing_extensions.TypedDict, total=False):
+class KeyDestructionEvent(typing.TypedDict, total=False):
     applicationUid: int
     keyAlias: str
     success: bool
 
 @typing.type_check_only
-class KeyGeneratedEvent(typing_extensions.TypedDict, total=False):
+class KeyGeneratedEvent(typing.TypedDict, total=False):
     applicationUid: int
     keyAlias: str
     success: bool
 
 @typing.type_check_only
-class KeyImportEvent(typing_extensions.TypedDict, total=False):
+class KeyImportEvent(typing.TypedDict, total=False):
     applicationUid: int
     keyAlias: str
     success: bool
 
 @typing.type_check_only
-class KeyIntegrityViolationEvent(typing_extensions.TypedDict, total=False):
+class KeyIntegrityViolationEvent(typing.TypedDict, total=False):
     applicationUid: int
     keyAlias: str
 
 @typing.type_check_only
-class KeyedAppState(typing_extensions.TypedDict, total=False):
+class KeyedAppState(typing.TypedDict, total=False):
     createTime: str
     data: str
     key: str
     lastUpdateTime: str
     message: str
-    severity: typing_extensions.Literal["SEVERITY_UNSPECIFIED", "INFO", "ERROR"]
+    severity: typing.Literal["SEVERITY_UNSPECIFIED", "INFO", "ERROR"]
 
 @typing.type_check_only
-class KeyguardDismissAuthAttemptEvent(typing_extensions.TypedDict, total=False):
+class KeyguardDismissAuthAttemptEvent(typing.TypedDict, total=False):
     strongAuthMethodUsed: bool
     success: bool
 
 @typing.type_check_only
-class KeyguardDismissedEvent(typing_extensions.TypedDict, total=False): ...
+class KeyguardDismissedEvent(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class KeyguardSecuredEvent(typing_extensions.TypedDict, total=False): ...
+class KeyguardSecuredEvent(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class KioskCustomization(typing_extensions.TypedDict, total=False):
-    deviceSettings: typing_extensions.Literal[
+class KioskCustomization(typing.TypedDict, total=False):
+    deviceSettings: typing.Literal[
         "DEVICE_SETTINGS_UNSPECIFIED",
         "SETTINGS_ACCESS_ALLOWED",
         "SETTINGS_ACCESS_BLOCKED",
     ]
-    powerButtonActions: typing_extensions.Literal[
+    powerButtonActions: typing.Literal[
         "POWER_BUTTON_ACTIONS_UNSPECIFIED",
         "POWER_BUTTON_AVAILABLE",
         "POWER_BUTTON_BLOCKED",
     ]
-    statusBar: typing_extensions.Literal[
+    statusBar: typing.Literal[
         "STATUS_BAR_UNSPECIFIED",
         "NOTIFICATIONS_AND_SYSTEM_INFO_ENABLED",
         "NOTIFICATIONS_AND_SYSTEM_INFO_DISABLED",
         "SYSTEM_INFO_ONLY",
     ]
-    systemErrorWarnings: typing_extensions.Literal[
+    systemErrorWarnings: typing.Literal[
         "SYSTEM_ERROR_WARNINGS_UNSPECIFIED",
         "ERROR_AND_WARNINGS_ENABLED",
         "ERROR_AND_WARNINGS_MUTED",
     ]
-    systemNavigation: typing_extensions.Literal[
+    systemNavigation: typing.Literal[
         "SYSTEM_NAVIGATION_UNSPECIFIED",
         "NAVIGATION_ENABLED",
         "NAVIGATION_DISABLED",
@@ -1092,81 +1097,81 @@ class KioskCustomization(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class LaunchAppAction(typing_extensions.TypedDict, total=False):
+class LaunchAppAction(typing.TypedDict, total=False):
     packageName: str
 
 @typing.type_check_only
-class ListDevicesResponse(typing_extensions.TypedDict, total=False):
+class ListDevicesResponse(typing.TypedDict, total=False):
     devices: _list[Device]
     nextPageToken: str
 
 @typing.type_check_only
-class ListEnrollmentTokensResponse(typing_extensions.TypedDict, total=False):
+class ListEnrollmentTokensResponse(typing.TypedDict, total=False):
     enrollmentTokens: _list[EnrollmentToken]
     nextPageToken: str
 
 @typing.type_check_only
-class ListEnterprisesResponse(typing_extensions.TypedDict, total=False):
+class ListEnterprisesResponse(typing.TypedDict, total=False):
     enterprises: _list[Enterprise]
     nextPageToken: str
 
 @typing.type_check_only
-class ListMigrationTokensResponse(typing_extensions.TypedDict, total=False):
+class ListMigrationTokensResponse(typing.TypedDict, total=False):
     migrationTokens: _list[MigrationToken]
     nextPageToken: str
 
 @typing.type_check_only
-class ListOperationsResponse(typing_extensions.TypedDict, total=False):
+class ListOperationsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListPoliciesResponse(typing_extensions.TypedDict, total=False):
+class ListPoliciesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     policies: _list[Policy]
 
 @typing.type_check_only
-class ListWebAppsResponse(typing_extensions.TypedDict, total=False):
+class ListWebAppsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     webApps: _list[WebApp]
 
 @typing.type_check_only
-class Location(typing_extensions.TypedDict, total=False):
+class Location(typing.TypedDict, total=False):
     latitude: float
     longitude: float
 
 @typing.type_check_only
-class LogBufferSizeCriticalEvent(typing_extensions.TypedDict, total=False): ...
+class LogBufferSizeCriticalEvent(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class LoggingStartedEvent(typing_extensions.TypedDict, total=False): ...
+class LoggingStartedEvent(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class LoggingStoppedEvent(typing_extensions.TypedDict, total=False): ...
+class LoggingStoppedEvent(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class LostModeLocationEvent(typing_extensions.TypedDict, total=False):
+class LostModeLocationEvent(typing.TypedDict, total=False):
     batteryLevel: int
     location: Location
 
 @typing.type_check_only
-class LostModeOutgoingPhoneCallEvent(typing_extensions.TypedDict, total=False): ...
+class LostModeOutgoingPhoneCallEvent(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ManagedConfigurationTemplate(typing_extensions.TypedDict, total=False):
+class ManagedConfigurationTemplate(typing.TypedDict, total=False):
     configurationVariables: dict[str, typing.Any]
     templateId: str
 
 @typing.type_check_only
-class ManagedProperty(typing_extensions.TypedDict, total=False):
+class ManagedProperty(typing.TypedDict, total=False):
     defaultValue: typing.Any
     description: str
     entries: _list[ManagedPropertyEntry]
     key: str
     nestedProperties: _list[ManagedProperty]
     title: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "MANAGED_PROPERTY_TYPE_UNSPECIFIED",
         "BOOL",
         "STRING",
@@ -1179,25 +1184,25 @@ class ManagedProperty(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class ManagedPropertyEntry(typing_extensions.TypedDict, total=False):
+class ManagedPropertyEntry(typing.TypedDict, total=False):
     name: str
     value: str
 
 @typing.type_check_only
-class MediaMountEvent(typing_extensions.TypedDict, total=False):
+class MediaMountEvent(typing.TypedDict, total=False):
     mountPoint: str
     volumeLabel: str
 
 @typing.type_check_only
-class MediaUnmountEvent(typing_extensions.TypedDict, total=False):
+class MediaUnmountEvent(typing.TypedDict, total=False):
     mountPoint: str
     volumeLabel: str
 
 @typing.type_check_only
-class MemoryEvent(typing_extensions.TypedDict, total=False):
+class MemoryEvent(typing.TypedDict, total=False):
     byteCount: str
     createTime: str
-    eventType: typing_extensions.Literal[
+    eventType: typing.Literal[
         "MEMORY_EVENT_TYPE_UNSPECIFIED",
         "RAM_MEASURED",
         "INTERNAL_STORAGE_MEASURED",
@@ -1207,18 +1212,18 @@ class MemoryEvent(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class MemoryInfo(typing_extensions.TypedDict, total=False):
+class MemoryInfo(typing.TypedDict, total=False):
     totalInternalStorage: str
     totalRam: str
 
 @typing.type_check_only
-class MigrationToken(typing_extensions.TypedDict, total=False):
+class MigrationToken(typing.TypedDict, total=False):
     additionalData: str
     createTime: str
     device: str
     deviceId: str
     expireTime: str
-    managementMode: typing_extensions.Literal[
+    managementMode: typing.Literal[
         "MANAGEMENT_MODE_UNSPECIFIED",
         "WORK_PROFILE_PERSONALLY_OWNED",
         "WORK_PROFILE_COMPANY_OWNED",
@@ -1231,15 +1236,15 @@ class MigrationToken(typing_extensions.TypedDict, total=False):
     value: str
 
 @typing.type_check_only
-class ModifyPolicyApplicationsRequest(typing_extensions.TypedDict, total=False):
+class ModifyPolicyApplicationsRequest(typing.TypedDict, total=False):
     changes: _list[ApplicationPolicyChange]
 
 @typing.type_check_only
-class ModifyPolicyApplicationsResponse(typing_extensions.TypedDict, total=False):
+class ModifyPolicyApplicationsResponse(typing.TypedDict, total=False):
     policy: Policy
 
 @typing.type_check_only
-class NetworkInfo(typing_extensions.TypedDict, total=False):
+class NetworkInfo(typing.TypedDict, total=False):
     imei: str
     meid: str
     networkOperatorName: str
@@ -1247,10 +1252,10 @@ class NetworkInfo(typing_extensions.TypedDict, total=False):
     wifiMacAddress: str
 
 @typing.type_check_only
-class NonComplianceDetail(typing_extensions.TypedDict, total=False):
+class NonComplianceDetail(typing.TypedDict, total=False):
     currentValue: typing.Any
     fieldPath: str
-    installationFailureReason: typing_extensions.Literal[
+    installationFailureReason: typing.Literal[
         "INSTALLATION_FAILURE_REASON_UNSPECIFIED",
         "INSTALLATION_FAILURE_REASON_UNKNOWN",
         "IN_PROGRESS",
@@ -1265,7 +1270,7 @@ class NonComplianceDetail(typing_extensions.TypedDict, total=False):
         "NETWORK_ERROR_UNRELIABLE_CONNECTION",
         "INSUFFICIENT_STORAGE",
     ]
-    nonComplianceReason: typing_extensions.Literal[
+    nonComplianceReason: typing.Literal[
         "NON_COMPLIANCE_REASON_UNSPECIFIED",
         "API_LEVEL",
         "MANAGEMENT_MODE",
@@ -1284,7 +1289,7 @@ class NonComplianceDetail(typing_extensions.TypedDict, total=False):
     packageName: str
     settingName: str
     specificNonComplianceContext: SpecificNonComplianceContext
-    specificNonComplianceReason: typing_extensions.Literal[
+    specificNonComplianceReason: typing.Literal[
         "SPECIFIC_NON_COMPLIANCE_REASON_UNSPECIFIED",
         "PASSWORD_POLICIES_USER_CREDENTIALS_CONFIRMATION_REQUIRED",
         "PASSWORD_POLICIES_PASSWORD_EXPIRED",
@@ -1303,8 +1308,8 @@ class NonComplianceDetail(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class NonComplianceDetailCondition(typing_extensions.TypedDict, total=False):
-    nonComplianceReason: typing_extensions.Literal[
+class NonComplianceDetailCondition(typing.TypedDict, total=False):
+    nonComplianceReason: typing.Literal[
         "NON_COMPLIANCE_REASON_UNSPECIFIED",
         "API_LEVEL",
         "MANAGEMENT_MODE",
@@ -1324,16 +1329,16 @@ class NonComplianceDetailCondition(typing_extensions.TypedDict, total=False):
     settingName: str
 
 @typing.type_check_only
-class OncCertificateProvider(typing_extensions.TypedDict, total=False):
+class OncCertificateProvider(typing.TypedDict, total=False):
     certificateReferences: _list[str]
     contentProviderEndpoint: ContentProviderEndpoint
 
 @typing.type_check_only
-class OncWifiContext(typing_extensions.TypedDict, total=False):
+class OncWifiContext(typing.TypedDict, total=False):
     wifiGuid: str
 
 @typing.type_check_only
-class Operation(typing_extensions.TypedDict, total=False):
+class Operation(typing.TypedDict, total=False):
     done: bool
     error: Status
     metadata: dict[str, typing.Any]
@@ -1341,29 +1346,29 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class OsShutdownEvent(typing_extensions.TypedDict, total=False): ...
+class OsShutdownEvent(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class OsStartupEvent(typing_extensions.TypedDict, total=False):
-    verifiedBootState: typing_extensions.Literal[
+class OsStartupEvent(typing.TypedDict, total=False):
+    verifiedBootState: typing.Literal[
         "VERIFIED_BOOT_STATE_UNSPECIFIED", "GREEN", "YELLOW", "ORANGE"
     ]
-    verityMode: typing_extensions.Literal[
+    verityMode: typing.Literal[
         "DM_VERITY_MODE_UNSPECIFIED", "ENFORCING", "IO_ERROR", "DISABLED"
     ]
 
 @typing.type_check_only
-class PackageNameList(typing_extensions.TypedDict, total=False):
+class PackageNameList(typing.TypedDict, total=False):
     packageNames: _list[str]
 
 @typing.type_check_only
-class PasswordPoliciesContext(typing_extensions.TypedDict, total=False):
-    passwordPolicyScope: typing_extensions.Literal[
+class PasswordPoliciesContext(typing.TypedDict, total=False):
+    passwordPolicyScope: typing.Literal[
         "SCOPE_UNSPECIFIED", "SCOPE_DEVICE", "SCOPE_PROFILE"
     ]
 
 @typing.type_check_only
-class PasswordRequirements(typing_extensions.TypedDict, total=False):
+class PasswordRequirements(typing.TypedDict, total=False):
     maximumFailedPasswordsForWipe: int
     passwordExpirationTimeout: str
     passwordHistoryLength: int
@@ -1374,7 +1379,7 @@ class PasswordRequirements(typing_extensions.TypedDict, total=False):
     passwordMinimumNumeric: int
     passwordMinimumSymbols: int
     passwordMinimumUpperCase: int
-    passwordQuality: typing_extensions.Literal[
+    passwordQuality: typing.Literal[
         "PASSWORD_QUALITY_UNSPECIFIED",
         "BIOMETRIC_WEAK",
         "SOMETHING",
@@ -1387,23 +1392,21 @@ class PasswordRequirements(typing_extensions.TypedDict, total=False):
         "COMPLEXITY_MEDIUM",
         "COMPLEXITY_HIGH",
     ]
-    passwordScope: typing_extensions.Literal[
-        "SCOPE_UNSPECIFIED", "SCOPE_DEVICE", "SCOPE_PROFILE"
-    ]
-    requirePasswordUnlock: typing_extensions.Literal[
+    passwordScope: typing.Literal["SCOPE_UNSPECIFIED", "SCOPE_DEVICE", "SCOPE_PROFILE"]
+    requirePasswordUnlock: typing.Literal[
         "REQUIRE_PASSWORD_UNLOCK_UNSPECIFIED",
         "USE_DEFAULT_DEVICE_TIMEOUT",
         "REQUIRE_EVERY_DAY",
     ]
-    unifiedLockSettings: typing_extensions.Literal[
+    unifiedLockSettings: typing.Literal[
         "UNIFIED_LOCK_SETTINGS_UNSPECIFIED",
         "ALLOW_UNIFIED_WORK_AND_PERSONAL_LOCK",
         "REQUIRE_SEPARATE_WORK_LOCK",
     ]
 
 @typing.type_check_only
-class PerAppResult(typing_extensions.TypedDict, total=False):
-    clearingResult: typing_extensions.Literal[
+class PerAppResult(typing.TypedDict, total=False):
+    clearingResult: typing.Literal[
         "CLEARING_RESULT_UNSPECIFIED",
         "SUCCESS",
         "APP_NOT_FOUND",
@@ -1412,29 +1415,25 @@ class PerAppResult(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class PermissionGrant(typing_extensions.TypedDict, total=False):
+class PermissionGrant(typing.TypedDict, total=False):
     permission: str
-    policy: typing_extensions.Literal[
-        "PERMISSION_POLICY_UNSPECIFIED", "PROMPT", "GRANT", "DENY"
-    ]
+    policy: typing.Literal["PERMISSION_POLICY_UNSPECIFIED", "PROMPT", "GRANT", "DENY"]
 
 @typing.type_check_only
-class PersistentPreferredActivity(typing_extensions.TypedDict, total=False):
+class PersistentPreferredActivity(typing.TypedDict, total=False):
     actions: _list[str]
     categories: _list[str]
     receiverActivity: str
 
 @typing.type_check_only
-class PersonalApplicationPolicy(typing_extensions.TypedDict, total=False):
-    installType: typing_extensions.Literal[
-        "INSTALL_TYPE_UNSPECIFIED", "BLOCKED", "AVAILABLE"
-    ]
+class PersonalApplicationPolicy(typing.TypedDict, total=False):
+    installType: typing.Literal["INSTALL_TYPE_UNSPECIFIED", "BLOCKED", "AVAILABLE"]
     packageName: str
 
 @typing.type_check_only
-class PersonalUsagePolicies(typing_extensions.TypedDict, total=False):
+class PersonalUsagePolicies(typing.TypedDict, total=False):
     accountTypesWithManagementDisabled: _list[str]
-    bluetoothSharing: typing_extensions.Literal[
+    bluetoothSharing: typing.Literal[
         "BLUETOOTH_SHARING_UNSPECIFIED",
         "BLUETOOTH_SHARING_ALLOWED",
         "BLUETOOTH_SHARING_DISALLOWED",
@@ -1442,10 +1441,10 @@ class PersonalUsagePolicies(typing_extensions.TypedDict, total=False):
     cameraDisabled: bool
     maxDaysWithWorkOff: int
     personalApplications: _list[PersonalApplicationPolicy]
-    personalPlayStoreMode: typing_extensions.Literal[
+    personalPlayStoreMode: typing.Literal[
         "PLAY_STORE_MODE_UNSPECIFIED", "BLACKLIST", "BLOCKLIST", "ALLOWLIST"
     ]
-    privateSpacePolicy: typing_extensions.Literal[
+    privateSpacePolicy: typing.Literal[
         "PRIVATE_SPACE_POLICY_UNSPECIFIED",
         "PRIVATE_SPACE_ALLOWED",
         "PRIVATE_SPACE_DISALLOWED",
@@ -1453,45 +1452,45 @@ class PersonalUsagePolicies(typing_extensions.TypedDict, total=False):
     screenCaptureDisabled: bool
 
 @typing.type_check_only
-class Policy(typing_extensions.TypedDict, total=False):
+class Policy(typing.TypedDict, total=False):
     accountTypesWithManagementDisabled: _list[str]
     addUserDisabled: bool
     adjustVolumeDisabled: bool
     advancedSecurityOverrides: AdvancedSecurityOverrides
     alwaysOnVpnPackage: AlwaysOnVpnPackage
     androidDevicePolicyTracks: _list[
-        typing_extensions.Literal["APP_TRACK_UNSPECIFIED", "PRODUCTION", "BETA"]
+        typing.Literal["APP_TRACK_UNSPECIFIED", "PRODUCTION", "BETA"]
     ]
-    appAutoUpdatePolicy: typing_extensions.Literal[
+    appAutoUpdatePolicy: typing.Literal[
         "APP_AUTO_UPDATE_POLICY_UNSPECIFIED",
         "CHOICE_TO_THE_USER",
         "NEVER",
         "WIFI_ONLY",
         "ALWAYS",
     ]
-    appFunctions: typing_extensions.Literal[
+    appFunctions: typing.Literal[
         "APP_FUNCTIONS_UNSPECIFIED", "APP_FUNCTIONS_DISALLOWED", "APP_FUNCTIONS_ALLOWED"
     ]
     applications: _list[ApplicationPolicy]
-    assistContentPolicy: typing_extensions.Literal[
+    assistContentPolicy: typing.Literal[
         "ASSIST_CONTENT_POLICY_UNSPECIFIED",
         "ASSIST_CONTENT_DISALLOWED",
         "ASSIST_CONTENT_ALLOWED",
     ]
-    autoDateAndTimeZone: typing_extensions.Literal[
+    autoDateAndTimeZone: typing.Literal[
         "AUTO_DATE_AND_TIME_ZONE_UNSPECIFIED",
         "AUTO_DATE_AND_TIME_ZONE_USER_CHOICE",
         "AUTO_DATE_AND_TIME_ZONE_ENFORCED",
     ]
     autoTimeRequired: bool
-    autofillPolicy: typing_extensions.Literal[
+    autofillPolicy: typing.Literal[
         "AUTOFILL_POLICY_UNSPECIFIED", "AUTOFILL_USER_CHOICE", "AUTOFILL_DISABLED"
     ]
     blockApplicationsEnabled: bool
     bluetoothConfigDisabled: bool
     bluetoothContactSharingDisabled: bool
     bluetoothDisabled: bool
-    cameraAccess: typing_extensions.Literal[
+    cameraAccess: typing.Literal[
         "CAMERA_ACCESS_UNSPECIFIED",
         "CAMERA_ACCESS_USER_CHOICE",
         "CAMERA_ACCESS_DISABLED",
@@ -1502,30 +1501,31 @@ class Policy(typing_extensions.TypedDict, total=False):
     choosePrivateKeyRules: _list[ChoosePrivateKeyRule]
     complianceRules: _list[ComplianceRule]
     createWindowsDisabled: bool
-    credentialProviderPolicyDefault: typing_extensions.Literal[
+    credentialProviderPolicyDefault: typing.Literal[
         "CREDENTIAL_PROVIDER_POLICY_DEFAULT_UNSPECIFIED",
         "CREDENTIAL_PROVIDER_DEFAULT_DISALLOWED",
         "CREDENTIAL_PROVIDER_DEFAULT_DISALLOWED_EXCEPT_SYSTEM",
     ]
     credentialsConfigDisabled: bool
+    crossDevicePolicies: CrossDevicePolicies
     crossProfilePolicies: CrossProfilePolicies
     dataRoamingDisabled: bool
     debuggingFeaturesAllowed: bool
     defaultApplicationSettings: _list[DefaultApplicationSetting]
-    defaultPermissionPolicy: typing_extensions.Literal[
+    defaultPermissionPolicy: typing.Literal[
         "PERMISSION_POLICY_UNSPECIFIED", "PROMPT", "GRANT", "DENY"
     ]
     deviceConnectivityManagement: DeviceConnectivityManagement
     deviceOwnerLockScreenInfo: UserFacingMessage
     deviceRadioState: DeviceRadioState
     displaySettings: DisplaySettings
-    encryptionPolicy: typing_extensions.Literal[
+    encryptionPolicy: typing.Literal[
         "ENCRYPTION_POLICY_UNSPECIFIED",
         "ENABLED_WITHOUT_PASSWORD",
         "ENABLED_WITH_PASSWORD",
     ]
     ensureVerifyAppsEnabled: bool
-    enterpriseDisplayNameVisibility: typing_extensions.Literal[
+    enterpriseDisplayNameVisibility: typing.Literal[
         "ENTERPRISE_DISPLAY_NAME_VISIBILITY_UNSPECIFIED",
         "ENTERPRISE_DISPLAY_NAME_VISIBLE",
         "ENTERPRISE_DISPLAY_NAME_HIDDEN",
@@ -1537,7 +1537,7 @@ class Policy(typing_extensions.TypedDict, total=False):
     installUnknownSourcesAllowed: bool
     keyguardDisabled: bool
     keyguardDisabledFeatures: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "KEYGUARD_DISABLED_FEATURE_UNSPECIFIED",
             "CAMERA",
             "NOTIFICATIONS",
@@ -1554,7 +1554,7 @@ class Policy(typing_extensions.TypedDict, total=False):
     ]
     kioskCustomLauncherEnabled: bool
     kioskCustomization: KioskCustomization
-    locationMode: typing_extensions.Literal[
+    locationMode: typing.Literal[
         "LOCATION_MODE_UNSPECIFIED",
         "HIGH_ACCURACY",
         "SENSORS_ONLY",
@@ -1566,7 +1566,7 @@ class Policy(typing_extensions.TypedDict, total=False):
     ]
     longSupportMessage: UserFacingMessage
     maximumTimeToLock: str
-    microphoneAccess: typing_extensions.Literal[
+    microphoneAccess: typing.Literal[
         "MICROPHONE_ACCESS_UNSPECIFIED",
         "MICROPHONE_ACCESS_USER_CHOICE",
         "MICROPHONE_ACCESS_DISABLED",
@@ -1590,16 +1590,16 @@ class Policy(typing_extensions.TypedDict, total=False):
     permittedInputMethods: PackageNameList
     persistentPreferredActivities: _list[PersistentPreferredActivity]
     personalUsagePolicies: PersonalUsagePolicies
-    playStoreMode: typing_extensions.Literal[
+    playStoreMode: typing.Literal[
         "PLAY_STORE_MODE_UNSPECIFIED", "WHITELIST", "BLACKLIST"
     ]
     policyEnforcementRules: _list[PolicyEnforcementRule]
-    preferentialNetworkService: typing_extensions.Literal[
+    preferentialNetworkService: typing.Literal[
         "PREFERENTIAL_NETWORK_SERVICE_UNSPECIFIED",
         "PREFERENTIAL_NETWORK_SERVICE_DISABLED",
         "PREFERENTIAL_NETWORK_SERVICE_ENABLED",
     ]
-    printingPolicy: typing_extensions.Literal[
+    printingPolicy: typing.Literal[
         "PRINTING_POLICY_UNSPECIFIED", "PRINTING_DISALLOWED", "PRINTING_ALLOWED"
     ]
     privateKeySelectionEnabled: bool
@@ -1617,9 +1617,7 @@ class Policy(typing_extensions.TypedDict, total=False):
     statusBarDisabled: bool
     statusReportingSettings: StatusReportingSettings
     stayOnPluggedModes: _list[
-        typing_extensions.Literal[
-            "BATTERY_PLUGGED_MODE_UNSPECIFIED", "AC", "USB", "WIRELESS"
-        ]
+        typing.Literal["BATTERY_PLUGGED_MODE_UNSPECIFIED", "AC", "USB", "WIRELESS"]
     ]
     systemUpdate: SystemUpdate
     tetheringConfigDisabled: bool
@@ -1632,21 +1630,19 @@ class Policy(typing_extensions.TypedDict, total=False):
     vpnConfigDisabled: bool
     wifiConfigDisabled: bool
     wifiConfigsLockdownEnabled: bool
-    wipeDataFlags: _list[
-        typing_extensions.Literal["WIPE_DATA_FLAG_UNSPECIFIED", "WIPE_ESIMS"]
-    ]
+    wipeDataFlags: _list[typing.Literal["WIPE_DATA_FLAG_UNSPECIFIED", "WIPE_ESIMS"]]
     workAccountSetupConfig: WorkAccountSetupConfig
 
 @typing.type_check_only
-class PolicyEnforcementRule(typing_extensions.TypedDict, total=False):
+class PolicyEnforcementRule(typing.TypedDict, total=False):
     blockAction: BlockAction
     settingName: str
     wipeAction: WipeAction
 
 @typing.type_check_only
-class PostureDetail(typing_extensions.TypedDict, total=False):
+class PostureDetail(typing.TypedDict, total=False):
     advice: _list[UserFacingMessage]
-    securityRisk: typing_extensions.Literal[
+    securityRisk: typing.Literal[
         "SECURITY_RISK_UNSPECIFIED",
         "UNKNOWN_OS",
         "COMPROMISED_OS",
@@ -1654,10 +1650,10 @@ class PostureDetail(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class PowerManagementEvent(typing_extensions.TypedDict, total=False):
+class PowerManagementEvent(typing.TypedDict, total=False):
     batteryLevel: float
     createTime: str
-    eventType: typing_extensions.Literal[
+    eventType: typing.Literal[
         "POWER_MANAGEMENT_EVENT_TYPE_UNSPECIFIED",
         "BATTERY_LEVEL_COLLECTED",
         "POWER_CONNECTED",
@@ -1669,18 +1665,18 @@ class PowerManagementEvent(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class PreferentialNetworkServiceConfig(typing_extensions.TypedDict, total=False):
-    fallbackToDefaultConnection: typing_extensions.Literal[
+class PreferentialNetworkServiceConfig(typing.TypedDict, total=False):
+    fallbackToDefaultConnection: typing.Literal[
         "FALLBACK_TO_DEFAULT_CONNECTION_UNSPECIFIED",
         "FALLBACK_TO_DEFAULT_CONNECTION_ALLOWED",
         "FALLBACK_TO_DEFAULT_CONNECTION_DISALLOWED",
     ]
-    nonMatchingNetworks: typing_extensions.Literal[
+    nonMatchingNetworks: typing.Literal[
         "NON_MATCHING_NETWORKS_UNSPECIFIED",
         "NON_MATCHING_NETWORKS_ALLOWED",
         "NON_MATCHING_NETWORKS_DISALLOWED",
     ]
-    preferentialNetworkId: typing_extensions.Literal[
+    preferentialNetworkId: typing.Literal[
         "PREFERENTIAL_NETWORK_ID_UNSPECIFIED",
         "NO_PREFERENTIAL_NETWORK",
         "PREFERENTIAL_NETWORK_ID_ONE",
@@ -1691,8 +1687,8 @@ class PreferentialNetworkServiceConfig(typing_extensions.TypedDict, total=False)
     ]
 
 @typing.type_check_only
-class PreferentialNetworkServiceSettings(typing_extensions.TypedDict, total=False):
-    defaultPreferentialNetworkId: typing_extensions.Literal[
+class PreferentialNetworkServiceSettings(typing.TypedDict, total=False):
+    defaultPreferentialNetworkId: typing.Literal[
         "PREFERENTIAL_NETWORK_ID_UNSPECIFIED",
         "NO_PREFERENTIAL_NETWORK",
         "PREFERENTIAL_NETWORK_ID_ONE",
@@ -1704,9 +1700,9 @@ class PreferentialNetworkServiceSettings(typing_extensions.TypedDict, total=Fals
     preferentialNetworkServiceConfigs: _list[PreferentialNetworkServiceConfig]
 
 @typing.type_check_only
-class PrivateDnsSettings(typing_extensions.TypedDict, total=False):
+class PrivateDnsSettings(typing.TypedDict, total=False):
     privateDnsHost: str
-    privateDnsMode: typing_extensions.Literal[
+    privateDnsMode: typing.Literal[
         "PRIVATE_DNS_MODE_UNSPECIFIED",
         "PRIVATE_DNS_USER_CHOICE",
         "PRIVATE_DNS_AUTOMATIC",
@@ -1714,56 +1710,56 @@ class PrivateDnsSettings(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class ProvisioningInfo(typing_extensions.TypedDict, total=False):
+class ProvisioningInfo(typing.TypedDict, total=False):
     apiLevel: int
     authenticatedUserEmail: str
     brand: str
     enterprise: str
     imei: str
-    managementMode: typing_extensions.Literal[
+    managementMode: typing.Literal[
         "MANAGEMENT_MODE_UNSPECIFIED", "DEVICE_OWNER", "PROFILE_OWNER"
     ]
     meid: str
     model: str
     name: str
-    ownership: typing_extensions.Literal[
+    ownership: typing.Literal[
         "OWNERSHIP_UNSPECIFIED", "COMPANY_OWNED", "PERSONALLY_OWNED"
     ]
     serialNumber: str
 
 @typing.type_check_only
-class ProxyInfo(typing_extensions.TypedDict, total=False):
+class ProxyInfo(typing.TypedDict, total=False):
     excludedHosts: _list[str]
     host: str
     pacUri: str
     port: int
 
 @typing.type_check_only
-class RemoteLockEvent(typing_extensions.TypedDict, total=False):
+class RemoteLockEvent(typing.TypedDict, total=False):
     adminPackageName: str
     adminUserId: int
     targetUserId: int
 
 @typing.type_check_only
-class RemoveEsimParams(typing_extensions.TypedDict, total=False):
+class RemoveEsimParams(typing.TypedDict, total=False):
     iccId: str
 
 @typing.type_check_only
-class RemovePolicyApplicationsRequest(typing_extensions.TypedDict, total=False):
+class RemovePolicyApplicationsRequest(typing.TypedDict, total=False):
     packageNames: _list[str]
 
 @typing.type_check_only
-class RemovePolicyApplicationsResponse(typing_extensions.TypedDict, total=False):
+class RemovePolicyApplicationsResponse(typing.TypedDict, total=False):
     policy: Policy
 
 @typing.type_check_only
-class RequestDeviceInfoParams(typing_extensions.TypedDict, total=False):
-    deviceInfo: typing_extensions.Literal["DEVICE_INFO_UNSPECIFIED", "EID"]
+class RequestDeviceInfoParams(typing.TypedDict, total=False):
+    deviceInfo: typing.Literal["DEVICE_INFO_UNSPECIFIED", "EID"]
 
 @typing.type_check_only
-class RequestDeviceInfoStatus(typing_extensions.TypedDict, total=False):
+class RequestDeviceInfoStatus(typing.TypedDict, total=False):
     eidInfo: EidInfo
-    status: typing_extensions.Literal[
+    status: typing.Literal[
         "STATUS_UNSPECIFIED",
         "SUCCEEDED",
         "PENDING_USER_ACTION",
@@ -1772,8 +1768,8 @@ class RequestDeviceInfoStatus(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class Role(typing_extensions.TypedDict, total=False):
-    roleType: typing_extensions.Literal[
+class Role(typing.TypedDict, total=False):
+    roleType: typing.Literal[
         "ROLE_TYPE_UNSPECIFIED",
         "COMPANION_APP",
         "KIOSK",
@@ -1782,9 +1778,9 @@ class Role(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class ScreenBrightnessSettings(typing_extensions.TypedDict, total=False):
+class ScreenBrightnessSettings(typing.TypedDict, total=False):
     screenBrightness: int
-    screenBrightnessMode: typing_extensions.Literal[
+    screenBrightnessMode: typing.Literal[
         "SCREEN_BRIGHTNESS_MODE_UNSPECIFIED",
         "BRIGHTNESS_USER_CHOICE",
         "BRIGHTNESS_AUTOMATIC",
@@ -1792,36 +1788,36 @@ class ScreenBrightnessSettings(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class ScreenTimeoutSettings(typing_extensions.TypedDict, total=False):
+class ScreenTimeoutSettings(typing.TypedDict, total=False):
     screenTimeout: str
-    screenTimeoutMode: typing_extensions.Literal[
+    screenTimeoutMode: typing.Literal[
         "SCREEN_TIMEOUT_MODE_UNSPECIFIED",
         "SCREEN_TIMEOUT_USER_CHOICE",
         "SCREEN_TIMEOUT_ENFORCED",
     ]
 
 @typing.type_check_only
-class SecurityPosture(typing_extensions.TypedDict, total=False):
-    devicePosture: typing_extensions.Literal[
+class SecurityPosture(typing.TypedDict, total=False):
+    devicePosture: typing.Literal[
         "POSTURE_UNSPECIFIED", "SECURE", "AT_RISK", "POTENTIALLY_COMPROMISED"
     ]
     postureDetails: _list[PostureDetail]
 
 @typing.type_check_only
-class SetupAction(typing_extensions.TypedDict, total=False):
+class SetupAction(typing.TypedDict, total=False):
     description: UserFacingMessage
     launchApp: LaunchAppAction
     title: UserFacingMessage
 
 @typing.type_check_only
-class SigninDetail(typing_extensions.TypedDict, total=False):
-    allowPersonalUsage: typing_extensions.Literal[
+class SigninDetail(typing.TypedDict, total=False):
+    allowPersonalUsage: typing.Literal[
         "ALLOW_PERSONAL_USAGE_UNSPECIFIED",
         "PERSONAL_USAGE_ALLOWED",
         "PERSONAL_USAGE_DISALLOWED",
         "PERSONAL_USAGE_DISALLOWED_USERLESS",
     ]
-    defaultStatus: typing_extensions.Literal[
+    defaultStatus: typing.Literal[
         "SIGNIN_DETAIL_DEFAULT_STATUS_UNSPECIFIED",
         "SIGNIN_DETAIL_IS_DEFAULT",
         "SIGNIN_DETAIL_IS_NOT_DEFAULT",
@@ -1833,18 +1829,18 @@ class SigninDetail(typing_extensions.TypedDict, total=False):
     tokenTag: str
 
 @typing.type_check_only
-class SigninDetailGoogleAuthenticationOptions(typing_extensions.TypedDict, total=False):
-    authenticationRequirement: typing_extensions.Literal[
+class SigninDetailGoogleAuthenticationOptions(typing.TypedDict, total=False):
+    authenticationRequirement: typing.Literal[
         "AUTHENTICATION_REQUIREMENT_UNSPECIFIED", "OPTIONAL", "REQUIRED"
     ]
 
 @typing.type_check_only
-class SignupUrl(typing_extensions.TypedDict, total=False):
+class SignupUrl(typing.TypedDict, total=False):
     name: str
     url: str
 
 @typing.type_check_only
-class SoftwareInfo(typing_extensions.TypedDict, total=False):
+class SoftwareInfo(typing.TypedDict, total=False):
     androidBuildNumber: str
     androidBuildTime: str
     androidDevicePolicyVersionCode: int
@@ -1858,13 +1854,13 @@ class SoftwareInfo(typing_extensions.TypedDict, total=False):
     systemUpdateInfo: SystemUpdateInfo
 
 @typing.type_check_only
-class SpecificNonComplianceContext(typing_extensions.TypedDict, total=False):
+class SpecificNonComplianceContext(typing.TypedDict, total=False):
     defaultApplicationContext: DefaultApplicationContext
     oncWifiContext: OncWifiContext
     passwordPoliciesContext: PasswordPoliciesContext
 
 @typing.type_check_only
-class StartLostModeParams(typing_extensions.TypedDict, total=False):
+class StartLostModeParams(typing.TypedDict, total=False):
     lostEmailAddress: str
     lostMessage: UserFacingMessage
     lostOrganization: UserFacingMessage
@@ -1872,8 +1868,8 @@ class StartLostModeParams(typing_extensions.TypedDict, total=False):
     lostStreetAddress: UserFacingMessage
 
 @typing.type_check_only
-class StartLostModeStatus(typing_extensions.TypedDict, total=False):
-    status: typing_extensions.Literal[
+class StartLostModeStatus(typing.TypedDict, total=False):
+    status: typing.Literal[
         "STATUS_UNSPECIFIED",
         "SUCCESS",
         "RESET_PASSWORD_RECENTLY",
@@ -1882,13 +1878,13 @@ class StartLostModeStatus(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class StatusReportingSettings(typing_extensions.TypedDict, total=False):
+class StatusReportingSettings(typing.TypedDict, total=False):
     applicationReportingSettings: ApplicationReportingSettings
     applicationReportsEnabled: bool
     commonCriteriaModeEnabled: bool
@@ -1903,33 +1899,29 @@ class StatusReportingSettings(typing_extensions.TypedDict, total=False):
     systemPropertiesEnabled: bool
 
 @typing.type_check_only
-class StopLostModeParams(typing_extensions.TypedDict, total=False): ...
+class StopLostModeParams(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class StopLostModeStatus(typing_extensions.TypedDict, total=False):
-    status: typing_extensions.Literal[
-        "STATUS_UNSPECIFIED", "SUCCESS", "NOT_IN_LOST_MODE"
-    ]
+class StopLostModeStatus(typing.TypedDict, total=False):
+    status: typing.Literal["STATUS_UNSPECIFIED", "SUCCESS", "NOT_IN_LOST_MODE"]
 
 @typing.type_check_only
-class StopLostModeUserAttemptEvent(typing_extensions.TypedDict, total=False):
-    status: typing_extensions.Literal[
-        "STATUS_UNSPECIFIED", "ATTEMPT_SUCCEEDED", "ATTEMPT_FAILED"
-    ]
+class StopLostModeUserAttemptEvent(typing.TypedDict, total=False):
+    status: typing.Literal["STATUS_UNSPECIFIED", "ATTEMPT_SUCCEEDED", "ATTEMPT_FAILED"]
 
 @typing.type_check_only
-class SystemUpdate(typing_extensions.TypedDict, total=False):
+class SystemUpdate(typing.TypedDict, total=False):
     endMinutes: int
     freezePeriods: _list[FreezePeriod]
     startMinutes: int
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "SYSTEM_UPDATE_TYPE_UNSPECIFIED", "AUTOMATIC", "WINDOWED", "POSTPONE"
     ]
 
 @typing.type_check_only
-class SystemUpdateInfo(typing_extensions.TypedDict, total=False):
+class SystemUpdateInfo(typing.TypedDict, total=False):
     updateReceivedTime: str
-    updateStatus: typing_extensions.Literal[
+    updateStatus: typing.Literal[
         "UPDATE_STATUS_UNKNOWN",
         "UP_TO_DATE",
         "UNKNOWN_UPDATE_AVAILABLE",
@@ -1938,37 +1930,33 @@ class SystemUpdateInfo(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class TelephonyInfo(typing_extensions.TypedDict, total=False):
-    activationState: typing_extensions.Literal[
+class TelephonyInfo(typing.TypedDict, total=False):
+    activationState: typing.Literal[
         "ACTIVATION_STATE_UNSPECIFIED", "ACTIVATED", "NOT_ACTIVATED"
     ]
     carrierName: str
-    configMode: typing_extensions.Literal[
+    configMode: typing.Literal[
         "CONFIG_MODE_UNSPECIFIED", "ADMIN_CONFIGURED", "USER_CONFIGURED"
     ]
     iccId: str
     phoneNumber: str
 
 @typing.type_check_only
-class TermsAndConditions(typing_extensions.TypedDict, total=False):
+class TermsAndConditions(typing.TypedDict, total=False):
     content: UserFacingMessage
     header: UserFacingMessage
 
 @typing.type_check_only
-class UsageLog(typing_extensions.TypedDict, total=False):
+class UsageLog(typing.TypedDict, total=False):
     enabledLogTypes: _list[
-        typing_extensions.Literal[
-            "LOG_TYPE_UNSPECIFIED", "SECURITY_LOGS", "NETWORK_ACTIVITY_LOGS"
-        ]
+        typing.Literal["LOG_TYPE_UNSPECIFIED", "SECURITY_LOGS", "NETWORK_ACTIVITY_LOGS"]
     ]
     uploadOnCellularAllowed: _list[
-        typing_extensions.Literal[
-            "LOG_TYPE_UNSPECIFIED", "SECURITY_LOGS", "NETWORK_ACTIVITY_LOGS"
-        ]
+        typing.Literal["LOG_TYPE_UNSPECIFIED", "SECURITY_LOGS", "NETWORK_ACTIVITY_LOGS"]
     ]
 
 @typing.type_check_only
-class UsageLogEvent(typing_extensions.TypedDict, total=False):
+class UsageLogEvent(typing.TypedDict, total=False):
     adbShellCommandEvent: AdbShellCommandEvent
     adbShellInteractiveEvent: AdbShellInteractiveEvent
     appProcessStartEvent: AppProcessStartEvent
@@ -1982,7 +1970,7 @@ class UsageLogEvent(typing_extensions.TypedDict, total=False):
     enrollmentCompleteEvent: EnrollmentCompleteEvent
     eventId: str
     eventTime: str
-    eventType: typing_extensions.Literal[
+    eventType: typing.Literal[
         "EVENT_TYPE_UNSPECIFIED",
         "ADB_SHELL_COMMAND",
         "ADB_SHELL_INTERACTIVE",
@@ -2040,17 +2028,17 @@ class UsageLogEvent(typing_extensions.TypedDict, total=False):
     wipeFailureEvent: WipeFailureEvent
 
 @typing.type_check_only
-class User(typing_extensions.TypedDict, total=False):
+class User(typing.TypedDict, total=False):
     accountIdentifier: str
 
 @typing.type_check_only
-class UserFacingMessage(typing_extensions.TypedDict, total=False):
+class UserFacingMessage(typing.TypedDict, total=False):
     defaultMessage: str
     localizedMessages: dict[str, typing.Any]
 
 @typing.type_check_only
-class WebApp(typing_extensions.TypedDict, total=False):
-    displayMode: typing_extensions.Literal[
+class WebApp(typing.TypedDict, total=False):
+    displayMode: typing.Literal[
         "DISPLAY_MODE_UNSPECIFIED", "MINIMAL_UI", "STANDALONE", "FULL_SCREEN"
     ]
     icons: _list[WebAppIcon]
@@ -2060,13 +2048,13 @@ class WebApp(typing_extensions.TypedDict, total=False):
     versionCode: str
 
 @typing.type_check_only
-class WebAppIcon(typing_extensions.TypedDict, total=False):
+class WebAppIcon(typing.TypedDict, total=False):
     imageData: str
 
 @typing.type_check_only
-class WebToken(typing_extensions.TypedDict, total=False):
+class WebToken(typing.TypedDict, total=False):
     enabledFeatures: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "FEATURE_UNSPECIFIED",
             "PLAY_SEARCH",
             "PRIVATE_APPS",
@@ -2079,17 +2067,17 @@ class WebToken(typing_extensions.TypedDict, total=False):
     name: str
     parentFrameUrl: str
     permissions: _list[
-        typing_extensions.Literal["WEB_TOKEN_PERMISSION_UNSPECIFIED", "APPROVE_APPS"]
+        typing.Literal["WEB_TOKEN_PERMISSION_UNSPECIFIED", "APPROVE_APPS"]
     ]
     value: str
 
 @typing.type_check_only
-class WifiRoamingPolicy(typing_extensions.TypedDict, total=False):
+class WifiRoamingPolicy(typing.TypedDict, total=False):
     wifiRoamingSettings: _list[WifiRoamingSetting]
 
 @typing.type_check_only
-class WifiRoamingSetting(typing_extensions.TypedDict, total=False):
-    wifiRoamingMode: typing_extensions.Literal[
+class WifiRoamingSetting(typing.TypedDict, total=False):
+    wifiRoamingMode: typing.Literal[
         "WIFI_ROAMING_MODE_UNSPECIFIED",
         "WIFI_ROAMING_DISABLED",
         "WIFI_ROAMING_DEFAULT",
@@ -2098,28 +2086,28 @@ class WifiRoamingSetting(typing_extensions.TypedDict, total=False):
     wifiSsid: str
 
 @typing.type_check_only
-class WifiSsid(typing_extensions.TypedDict, total=False):
+class WifiSsid(typing.TypedDict, total=False):
     wifiSsid: str
 
 @typing.type_check_only
-class WifiSsidPolicy(typing_extensions.TypedDict, total=False):
-    wifiSsidPolicyType: typing_extensions.Literal[
+class WifiSsidPolicy(typing.TypedDict, total=False):
+    wifiSsidPolicyType: typing.Literal[
         "WIFI_SSID_POLICY_TYPE_UNSPECIFIED", "WIFI_SSID_DENYLIST", "WIFI_SSID_ALLOWLIST"
     ]
     wifiSsids: _list[WifiSsid]
 
 @typing.type_check_only
-class WipeAction(typing_extensions.TypedDict, total=False):
+class WipeAction(typing.TypedDict, total=False):
     preserveFrp: bool
     wipeAfterDays: int
 
 @typing.type_check_only
-class WipeFailureEvent(typing_extensions.TypedDict, total=False): ...
+class WipeFailureEvent(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class WipeParams(typing_extensions.TypedDict, total=False):
+class WipeParams(typing.TypedDict, total=False):
     wipeDataFlags: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "WIPE_DATA_FLAG_UNSPECIFIED",
             "PRESERVE_RESET_PROTECTION_DATA",
             "WIPE_EXTERNAL_STORAGE",
@@ -2129,8 +2117,8 @@ class WipeParams(typing_extensions.TypedDict, total=False):
     wipeReason: UserFacingMessage
 
 @typing.type_check_only
-class WorkAccountSetupConfig(typing_extensions.TypedDict, total=False):
-    authenticationType: typing_extensions.Literal[
+class WorkAccountSetupConfig(typing.TypedDict, total=False):
+    authenticationType: typing.Literal[
         "AUTHENTICATION_TYPE_UNSPECIFIED",
         "AUTHENTICATION_TYPE_NOT_ENFORCED",
         "GOOGLE_AUTHENTICATED",

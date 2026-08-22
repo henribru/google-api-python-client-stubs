@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -244,7 +243,7 @@ class DriveResource(googleapiclient.discovery.Resource):
             supportsTeamDrives: bool | None = ...,
             timedTextLanguage: str | None = ...,
             timedTextTrackName: str | None = ...,
-            visibility: typing_extensions.Literal["DEFAULT", "PRIVATE"] | None = ...,
+            visibility: typing.Literal["DEFAULT", "PRIVATE"] | None = ...,
             **kwargs: typing.Any,
         ) -> FileHttpRequest: ...
         def delete(
@@ -291,7 +290,7 @@ class DriveResource(googleapiclient.discovery.Resource):
             acknowledgeAbuse: bool | None = ...,
             includeLabels: str | None = ...,
             includePermissionsForView: str | None = ...,
-            projection: typing_extensions.Literal["BASIC", "FULL"] | None = ...,
+            projection: typing.Literal["BASIC", "FULL"] | None = ...,
             revisionId: str | None = ...,
             supportsAllDrives: bool | None = ...,
             supportsTeamDrives: bool | None = ...,
@@ -305,7 +304,7 @@ class DriveResource(googleapiclient.discovery.Resource):
             acknowledgeAbuse: bool | None = ...,
             includeLabels: str | None = ...,
             includePermissionsForView: str | None = ...,
-            projection: typing_extensions.Literal["BASIC", "FULL"] | None = ...,
+            projection: typing.Literal["BASIC", "FULL"] | None = ...,
             revisionId: str | None = ...,
             supportsAllDrives: bool | None = ...,
             supportsTeamDrives: bool | None = ...,
@@ -328,14 +327,14 @@ class DriveResource(googleapiclient.discovery.Resource):
             timedTextLanguage: str | None = ...,
             timedTextTrackName: str | None = ...,
             useContentAsIndexableText: bool | None = ...,
-            visibility: typing_extensions.Literal["DEFAULT", "PRIVATE"] | None = ...,
+            visibility: typing.Literal["DEFAULT", "PRIVATE"] | None = ...,
             **kwargs: typing.Any,
         ) -> FileHttpRequest: ...
         def list(
             self,
             *,
             corpora: str | None = ...,
-            corpus: typing_extensions.Literal["DEFAULT", "DOMAIN"] | None = ...,
+            corpus: typing.Literal["DEFAULT", "DOMAIN"] | None = ...,
             driveId: str | None = ...,
             includeItemsFromAllDrives: bool | None = ...,
             includeLabels: str | None = ...,
@@ -344,7 +343,7 @@ class DriveResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            projection: typing_extensions.Literal["BASIC", "FULL"] | None = ...,
+            projection: typing.Literal["BASIC", "FULL"] | None = ...,
             q: str | None = ...,
             spaces: str | None = ...,
             supportsAllDrives: bool | None = ...,
@@ -379,7 +378,7 @@ class DriveResource(googleapiclient.discovery.Resource):
             enforceSingleParent: bool | None = ...,
             includeLabels: str | None = ...,
             includePermissionsForView: str | None = ...,
-            modifiedDateBehavior: typing_extensions.Literal[
+            modifiedDateBehavior: typing.Literal[
                 "fromBody",
                 "fromBodyIfNeeded",
                 "fromBodyOrNow",
@@ -442,7 +441,7 @@ class DriveResource(googleapiclient.discovery.Resource):
             enforceSingleParent: bool | None = ...,
             includeLabels: str | None = ...,
             includePermissionsForView: str | None = ...,
-            modifiedDateBehavior: typing_extensions.Literal[
+            modifiedDateBehavior: typing.Literal[
                 "fromBody",
                 "fromBodyIfNeeded",
                 "fromBodyOrNow",
@@ -473,7 +472,7 @@ class DriveResource(googleapiclient.discovery.Resource):
             acknowledgeAbuse: bool | None = ...,
             includeLabels: str | None = ...,
             includePermissionsForView: str | None = ...,
-            projection: typing_extensions.Literal["BASIC", "FULL"] | None = ...,
+            projection: typing.Literal["BASIC", "FULL"] | None = ...,
             revisionId: str | None = ...,
             supportsAllDrives: bool | None = ...,
             supportsTeamDrives: bool | None = ...,

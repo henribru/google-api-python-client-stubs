@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -68,7 +67,7 @@ class KmsinventoryResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        fallbackScope: typing_extensions.Literal[
+                        fallbackScope: typing.Literal[
                             "FALLBACK_SCOPE_UNSPECIFIED", "FALLBACK_SCOPE_PROJECT"
                         ]
                         | None = ...,

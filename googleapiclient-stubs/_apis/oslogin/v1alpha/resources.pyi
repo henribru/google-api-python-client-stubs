@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -55,7 +54,7 @@ class CloudOSLoginResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                operatingSystemType: typing_extensions.Literal[
+                operatingSystemType: typing.Literal[
                     "OPERATING_SYSTEM_TYPE_UNSPECIFIED", "LINUX", "WINDOWS"
                 ]
                 | None = ...,
@@ -95,13 +94,13 @@ class CloudOSLoginResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            operatingSystemType: typing_extensions.Literal[
+            operatingSystemType: typing.Literal[
                 "OPERATING_SYSTEM_TYPE_UNSPECIFIED", "LINUX", "WINDOWS"
             ]
             | None = ...,
             projectId: str | None = ...,
             systemId: str | None = ...,
-            view: typing_extensions.Literal[
+            view: typing.Literal[
                 "LOGIN_PROFILE_VIEW_UNSPECIFIED", "BASIC", "SECURITY_KEY"
             ]
             | None = ...,
@@ -114,7 +113,7 @@ class CloudOSLoginResource(googleapiclient.discovery.Resource):
             body: SshPublicKey,
             projectId: str | None = ...,
             regions: str | _list[str] | None = ...,
-            view: typing_extensions.Literal[
+            view: typing.Literal[
                 "LOGIN_PROFILE_VIEW_UNSPECIFIED", "BASIC", "SECURITY_KEY"
             ]
             | None = ...,

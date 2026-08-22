@@ -1,105 +1,104 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class AccessControlSettings(typing_extensions.TypedDict, total=False):
+class AccessControlSettings(typing.TypedDict, total=False):
     allowlistedMediaPlanners: _list[str]
 
 @typing.type_check_only
-class ActivateCuratedPackageRequest(typing_extensions.TypedDict, total=False): ...
+class ActivateCuratedPackageRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ActivateDataSegmentRequest(typing_extensions.TypedDict, total=False): ...
+class ActivateDataSegmentRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class AdSize(typing_extensions.TypedDict, total=False):
+class AdSize(typing.TypedDict, total=False):
     height: str
-    type: typing_extensions.Literal[
-        "TYPE_UNSPECIFIED", "PIXEL", "INTERSTITIAL", "NATIVE", "FLUID"
-    ]
+    type: typing.Literal["TYPE_UNSPECIFIED", "PIXEL", "INTERSTITIAL", "NATIVE", "FLUID"]
     width: str
 
 @typing.type_check_only
-class CriteriaTargeting(typing_extensions.TypedDict, total=False):
+class CriteriaTargeting(typing.TypedDict, total=False):
     excludedCriteriaIds: _list[str]
     targetedCriteriaIds: _list[str]
 
 @typing.type_check_only
-class CuratedPackage(typing_extensions.TypedDict, total=False):
+class CuratedPackage(typing.TypedDict, total=False):
     accessSettings: AccessControlSettings
     createTime: str
+    curationFeeVisibility: typing.Literal[
+        "CURATION_FEE_VISIBILITY_UNSPECIFIED", "DISCLOSED", "NON_DISCLOSED"
+    ]
     description: str
     displayName: str
     feeCpm: Money
     floorPriceCpm: Money
+    millipercentOfMediaFee: str
     name: str
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "INACTIVE"]
+    state: typing.Literal["STATE_UNSPECIFIED", "ACTIVE", "INACTIVE"]
     targeting: PackageTargeting
     updateTime: str
 
 @typing.type_check_only
-class DataSegment(typing_extensions.TypedDict, total=False):
+class DataSegment(typing.TypedDict, total=False):
     cpmFee: Money
     createTime: str
+    millipercentOfMediaFee: str
     name: str
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "INACTIVE"]
+    state: typing.Literal["STATE_UNSPECIFIED", "ACTIVE", "INACTIVE", "SUSPENDED"]
     updateTime: str
 
 @typing.type_check_only
-class DeactivateCuratedPackageRequest(typing_extensions.TypedDict, total=False): ...
+class DeactivateCuratedPackageRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class DeactivateDataSegmentRequest(typing_extensions.TypedDict, total=False): ...
+class DeactivateDataSegmentRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ListCuratedPackagesResponse(typing_extensions.TypedDict, total=False):
+class ListCuratedPackagesResponse(typing.TypedDict, total=False):
     curatedPackages: _list[CuratedPackage]
     nextPageToken: str
 
 @typing.type_check_only
-class ListDataSegmentsResponse(typing_extensions.TypedDict, total=False):
+class ListDataSegmentsResponse(typing.TypedDict, total=False):
     dataSegments: _list[DataSegment]
     nextPageToken: str
 
 @typing.type_check_only
-class ListMediaPlannersResponse(typing_extensions.TypedDict, total=False):
+class ListMediaPlannersResponse(typing.TypedDict, total=False):
     mediaPlanners: _list[MediaPlanner]
     nextPageToken: str
 
 @typing.type_check_only
-class MediaPlanner(typing_extensions.TypedDict, total=False):
+class MediaPlanner(typing.TypedDict, total=False):
     accountId: str
     ancestorNames: _list[str]
     displayName: str
     name: str
 
 @typing.type_check_only
-class Money(typing_extensions.TypedDict, total=False):
+class Money(typing.TypedDict, total=False):
     currencyCode: str
     nanos: int
     units: str
 
 @typing.type_check_only
-class PackagePlacementTargeting(typing_extensions.TypedDict, total=False):
+class PackagePlacementTargeting(typing.TypedDict, total=False):
     includedMobileAppCategoryTargeting: _list[str]
     mobileAppTargeting: StringTargetingDimension
     uriTargeting: StringTargetingDimension
 
 @typing.type_check_only
-class PackagePublisherProvidedSignalsTargeting(
-    typing_extensions.TypedDict, total=False
-):
+class PackagePublisherProvidedSignalsTargeting(typing.TypedDict, total=False):
     audienceTargeting: TaxonomyTargeting
     contentTargeting: TaxonomyTargeting
     videoAndAudioSignalsTargeting: StringTargetingDimension
 
 @typing.type_check_only
-class PackageTargeting(typing_extensions.TypedDict, total=False):
+class PackageTargeting(typing.TypedDict, total=False):
     geoTargeting: CriteriaTargeting
-    includedAcceleratedMobilePageType: typing_extensions.Literal[
+    includedAcceleratedMobilePageType: typing.Literal[
         "ACCELERATED_MOBILE_PAGE_TYPE_UNSPECIFIED",
         "ACCELERATED_MOBILE_PAGE_TYPE_NON_AMP",
         "ACCELERATED_MOBILE_PAGE_TYPE_AMP",
@@ -107,13 +106,13 @@ class PackageTargeting(typing_extensions.TypedDict, total=False):
     ]
     includedAdSizes: _list[AdSize]
     includedAuthorizedSellerStatuses: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "AUTHORIZED_SELLER_STATUS_UNSPECIFIED",
             "AUTHORIZED_SELLER_STATUS_DIRECT",
             "AUTHORIZED_SELLER_STATUS_RESELLER",
         ]
     ]
-    includedCreativeFormat: typing_extensions.Literal[
+    includedCreativeFormat: typing.Literal[
         "CREATIVE_FORMAT_UNSPECIFIED",
         "CREATIVE_FORMAT_DISPLAY",
         "CREATIVE_FORMAT_VIDEO",
@@ -121,7 +120,7 @@ class PackageTargeting(typing_extensions.TypedDict, total=False):
     ]
     includedDataSegments: _list[str]
     includedDeviceTypes: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "DEVICE_TYPE_UNSPECIFIED",
             "DEVICE_TYPE_PERSONAL_COMPUTER",
             "DEVICE_TYPE_CONNECTED_TV",
@@ -129,29 +128,29 @@ class PackageTargeting(typing_extensions.TypedDict, total=False):
             "DEVICE_TYPE_TABLET",
         ]
     ]
-    includedEnvironment: typing_extensions.Literal[
+    includedEnvironment: typing.Literal[
         "ENVIRONMENT_UNSPECIFIED", "ENVIRONMENT_SITE", "ENVIRONMENT_APP"
     ]
     includedNativeInventoryTypes: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "NATIVE_INVENTORY_TYPE_UNSPECIFIED",
             "NATIVE_INVENTORY_TYPE_NATIVE_ONLY",
             "NATIVE_INVENTORY_TYPE_NATIVE_OR_BANNER",
         ]
     ]
     includedOpenMeasurementTypes: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "OPEN_MEASUREMENT_TYPE_UNSPECIFIED", "OPEN_MEASUREMENT_TYPE_OMID_V1"
         ]
     ]
     includedRestrictedCategories: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "RESTRICTED_CATEGORY_UNSPECIFIED",
             "RESTRICTED_CATEGORY_ALCOHOL",
             "RESTRICTED_CATEGORY_GAMBLING",
         ]
     ]
-    includedRewardedType: typing_extensions.Literal[
+    includedRewardedType: typing.Literal[
         "REWARDED_TYPE_UNSPECIFIED",
         "REWARDED_TYPE_NON_REWARDED",
         "REWARDED_TYPE_REWARDED",
@@ -166,13 +165,13 @@ class PackageTargeting(typing_extensions.TypedDict, total=False):
     videoTargeting: PackageVideoTargeting
 
 @typing.type_check_only
-class PackageVideoTargeting(typing_extensions.TypedDict, total=False):
-    includedContentDeliveryMethod: typing_extensions.Literal[
+class PackageVideoTargeting(typing.TypedDict, total=False):
+    includedContentDeliveryMethod: typing.Literal[
         "CONTENT_DELIVERY_METHOD_UNSPECIFIED",
         "CONTENT_DELIVERY_METHOD_STREAMING",
         "CONTENT_DELIVERY_METHOD_PROGRESSIVE",
     ]
-    includedMaximumAdDurationTargeting: typing_extensions.Literal[
+    includedMaximumAdDurationTargeting: typing.Literal[
         "MAXIMUM_VIDEO_AD_DURATION_UNSPECIFIED",
         "MAXIMUM_VIDEO_AD_DURATION_FIFTEEN_SECONDS",
         "MAXIMUM_VIDEO_AD_DURATION_TWENTY_SECONDS",
@@ -182,7 +181,7 @@ class PackageVideoTargeting(typing_extensions.TypedDict, total=False):
         "MAXIMUM_VIDEO_AD_DURATION_ONE_HUNDRED_TWENTY_SECONDS",
     ]
     includedMimeTypes: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "VIDEO_MIME_TYPE_UNSPECIFIED",
             "VIDEO_MIME_TYPE_THREEGPP",
             "VIDEO_MIME_TYPE_APPLICATION_MPEGURL",
@@ -193,7 +192,7 @@ class PackageVideoTargeting(typing_extensions.TypedDict, total=False):
         ]
     ]
     includedPlaybackMethods: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "PLAYBACK_METHOD_UNSPECIFIED",
             "PLAYBACK_METHOD_AUTO_PLAY_SOUND_ON",
             "PLAYBACK_METHOD_AUTO_PLAY_SOUND_OFF",
@@ -202,7 +201,7 @@ class PackageVideoTargeting(typing_extensions.TypedDict, total=False):
     ]
     includedPlayerSizeTargeting: VideoPlayerSizeTargeting
     includedPositionTypes: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "POSITION_TYPE_UNSPECIFIED",
             "POSITION_TYPE_MIDROLL",
             "POSITION_TYPE_POSTROLL",
@@ -213,29 +212,29 @@ class PackageVideoTargeting(typing_extensions.TypedDict, total=False):
     plcmtTargeting: VideoPlcmtTargeting
 
 @typing.type_check_only
-class StringTargetingDimension(typing_extensions.TypedDict, total=False):
-    selectionType: typing_extensions.Literal[
+class StringTargetingDimension(typing.TypedDict, total=False):
+    selectionType: typing.Literal[
         "SELECTION_TYPE_UNSPECIFIED", "SELECTION_TYPE_INCLUDE", "SELECTION_TYPE_EXCLUDE"
     ]
     values: _list[str]
 
 @typing.type_check_only
-class TaxonomyTargeting(typing_extensions.TypedDict, total=False):
+class TaxonomyTargeting(typing.TypedDict, total=False):
     excludedTaxonomyIds: _list[str]
     targetedTaxonomyIds: _list[str]
 
 @typing.type_check_only
-class VideoPlayerSizeTargeting(typing_extensions.TypedDict, total=False):
+class VideoPlayerSizeTargeting(typing.TypedDict, total=False):
     minimumHeight: str
     minimumWidth: str
 
 @typing.type_check_only
-class VideoPlcmtTargeting(typing_extensions.TypedDict, total=False):
-    selectionType: typing_extensions.Literal[
+class VideoPlcmtTargeting(typing.TypedDict, total=False):
+    selectionType: typing.Literal[
         "SELECTION_TYPE_UNSPECIFIED", "SELECTION_TYPE_INCLUDE", "SELECTION_TYPE_EXCLUDE"
     ]
     videoPlcmtTypes: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "VIDEO_PLCMT_TYPE_UNSPECIFIED",
             "INSTREAM",
             "ACCOMPANYING_CONTENT",

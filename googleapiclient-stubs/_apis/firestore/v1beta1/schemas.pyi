@@ -1,30 +1,28 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class Aggregation(typing_extensions.TypedDict, total=False):
+class Aggregation(typing.TypedDict, total=False):
     alias: str
     avg: Avg
     count: Count
     sum: Sum
 
 @typing.type_check_only
-class AggregationResult(typing_extensions.TypedDict, total=False):
+class AggregationResult(typing.TypedDict, total=False):
     aggregateFields: dict[str, typing.Any]
 
 @typing.type_check_only
-class ArrayValue(typing_extensions.TypedDict, total=False):
+class ArrayValue(typing.TypedDict, total=False):
     values: _list[Value]
 
 @typing.type_check_only
-class Avg(typing_extensions.TypedDict, total=False):
+class Avg(typing.TypedDict, total=False):
     field: FieldReference
 
 @typing.type_check_only
-class BatchGetDocumentsRequest(typing_extensions.TypedDict, total=False):
+class BatchGetDocumentsRequest(typing.TypedDict, total=False):
     documents: _list[str]
     mask: DocumentMask
     newTransaction: TransactionOptions
@@ -32,112 +30,112 @@ class BatchGetDocumentsRequest(typing_extensions.TypedDict, total=False):
     transaction: str
 
 @typing.type_check_only
-class BatchGetDocumentsResponse(typing_extensions.TypedDict, total=False):
+class BatchGetDocumentsResponse(typing.TypedDict, total=False):
     found: Document
     missing: str
     readTime: str
     transaction: str
 
 @typing.type_check_only
-class BatchWriteRequest(typing_extensions.TypedDict, total=False):
+class BatchWriteRequest(typing.TypedDict, total=False):
     labels: dict[str, typing.Any]
     writes: _list[Write]
 
 @typing.type_check_only
-class BatchWriteResponse(typing_extensions.TypedDict, total=False):
+class BatchWriteResponse(typing.TypedDict, total=False):
     status: _list[Status]
     writeResults: _list[WriteResult]
 
 @typing.type_check_only
-class BeginTransactionRequest(typing_extensions.TypedDict, total=False):
+class BeginTransactionRequest(typing.TypedDict, total=False):
     options: TransactionOptions
 
 @typing.type_check_only
-class BeginTransactionResponse(typing_extensions.TypedDict, total=False):
+class BeginTransactionResponse(typing.TypedDict, total=False):
     transaction: str
 
 @typing.type_check_only
-class BitSequence(typing_extensions.TypedDict, total=False):
+class BitSequence(typing.TypedDict, total=False):
     bitmap: str
     padding: int
 
 @typing.type_check_only
-class BloomFilter(typing_extensions.TypedDict, total=False):
+class BloomFilter(typing.TypedDict, total=False):
     bits: BitSequence
     hashCount: int
 
 @typing.type_check_only
-class CollectionSelector(typing_extensions.TypedDict, total=False):
+class CollectionSelector(typing.TypedDict, total=False):
     allDescendants: bool
     collectionId: str
 
 @typing.type_check_only
-class CommitRequest(typing_extensions.TypedDict, total=False):
+class CommitRequest(typing.TypedDict, total=False):
     transaction: str
     writes: _list[Write]
 
 @typing.type_check_only
-class CommitResponse(typing_extensions.TypedDict, total=False):
+class CommitResponse(typing.TypedDict, total=False):
     commitTime: str
     writeResults: _list[WriteResult]
 
 @typing.type_check_only
-class CompositeFilter(typing_extensions.TypedDict, total=False):
+class CompositeFilter(typing.TypedDict, total=False):
     filters: _list[Filter]
-    op: typing_extensions.Literal["OPERATOR_UNSPECIFIED", "AND", "OR"]
+    op: typing.Literal["OPERATOR_UNSPECIFIED", "AND", "OR"]
 
 @typing.type_check_only
-class Count(typing_extensions.TypedDict, total=False):
+class Count(typing.TypedDict, total=False):
     upTo: str
 
 @typing.type_check_only
-class Cursor(typing_extensions.TypedDict, total=False):
+class Cursor(typing.TypedDict, total=False):
     before: bool
     values: _list[Value]
 
 @typing.type_check_only
-class Document(typing_extensions.TypedDict, total=False):
+class Document(typing.TypedDict, total=False):
     createTime: str
     fields: dict[str, typing.Any]
     name: str
     updateTime: str
 
 @typing.type_check_only
-class DocumentChange(typing_extensions.TypedDict, total=False):
+class DocumentChange(typing.TypedDict, total=False):
     document: Document
     removedTargetIds: _list[int]
     targetIds: _list[int]
 
 @typing.type_check_only
-class DocumentDelete(typing_extensions.TypedDict, total=False):
+class DocumentDelete(typing.TypedDict, total=False):
     document: str
     readTime: str
     removedTargetIds: _list[int]
 
 @typing.type_check_only
-class DocumentMask(typing_extensions.TypedDict, total=False):
+class DocumentMask(typing.TypedDict, total=False):
     fieldPaths: _list[str]
 
 @typing.type_check_only
-class DocumentRemove(typing_extensions.TypedDict, total=False):
+class DocumentRemove(typing.TypedDict, total=False):
     document: str
     readTime: str
     removedTargetIds: _list[int]
 
 @typing.type_check_only
-class DocumentTransform(typing_extensions.TypedDict, total=False):
+class DocumentTransform(typing.TypedDict, total=False):
     document: str
     fieldTransforms: _list[FieldTransform]
 
 @typing.type_check_only
-class DocumentsTarget(typing_extensions.TypedDict, total=False):
+class DocumentsTarget(typing.TypedDict, total=False):
     documents: _list[str]
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ExecutePipelineRequest(typing_extensions.TypedDict, total=False):
+class ExecutePipelineRequest(typing.TypedDict, total=False):
     autoCommitTransaction: bool
     newTransaction: TransactionOptions
     readTime: str
@@ -145,42 +143,42 @@ class ExecutePipelineRequest(typing_extensions.TypedDict, total=False):
     transaction: str
 
 @typing.type_check_only
-class ExecutePipelineResponse(typing_extensions.TypedDict, total=False):
+class ExecutePipelineResponse(typing.TypedDict, total=False):
     executionTime: str
     explainStats: ExplainStats
     results: _list[Document]
     transaction: str
 
 @typing.type_check_only
-class ExecutionStats(typing_extensions.TypedDict, total=False):
+class ExecutionStats(typing.TypedDict, total=False):
     debugStats: dict[str, typing.Any]
     executionDuration: str
     readOperations: str
     resultsReturned: str
 
 @typing.type_check_only
-class ExistenceFilter(typing_extensions.TypedDict, total=False):
+class ExistenceFilter(typing.TypedDict, total=False):
     count: int
     targetId: int
     unchangedNames: BloomFilter
 
 @typing.type_check_only
-class ExplainMetrics(typing_extensions.TypedDict, total=False):
+class ExplainMetrics(typing.TypedDict, total=False):
     executionStats: ExecutionStats
     planSummary: PlanSummary
 
 @typing.type_check_only
-class ExplainOptions(typing_extensions.TypedDict, total=False):
+class ExplainOptions(typing.TypedDict, total=False):
     analyze: bool
 
 @typing.type_check_only
-class ExplainStats(typing_extensions.TypedDict, total=False):
+class ExplainStats(typing.TypedDict, total=False):
     data: dict[str, typing.Any]
 
 @typing.type_check_only
-class FieldFilter(typing_extensions.TypedDict, total=False):
+class FieldFilter(typing.TypedDict, total=False):
     field: FieldReference
-    op: typing_extensions.Literal[
+    op: typing.Literal[
         "OPERATOR_UNSPECIFIED",
         "LESS_THAN",
         "LESS_THAN_OR_EQUAL",
@@ -196,30 +194,28 @@ class FieldFilter(typing_extensions.TypedDict, total=False):
     value: Value
 
 @typing.type_check_only
-class FieldReference(typing_extensions.TypedDict, total=False):
+class FieldReference(typing.TypedDict, total=False):
     fieldPath: str
 
 @typing.type_check_only
-class FieldTransform(typing_extensions.TypedDict, total=False):
+class FieldTransform(typing.TypedDict, total=False):
     appendMissingElements: ArrayValue
     fieldPath: str
     increment: Value
     maximum: Value
     minimum: Value
     removeAllFromArray: ArrayValue
-    setToServerValue: typing_extensions.Literal[
-        "SERVER_VALUE_UNSPECIFIED", "REQUEST_TIME"
-    ]
+    setToServerValue: typing.Literal["SERVER_VALUE_UNSPECIFIED", "REQUEST_TIME"]
 
 @typing.type_check_only
-class Filter(typing_extensions.TypedDict, total=False):
+class Filter(typing.TypedDict, total=False):
     compositeFilter: CompositeFilter
     fieldFilter: FieldFilter
     unaryFilter: UnaryFilter
 
 @typing.type_check_only
-class FindNearest(typing_extensions.TypedDict, total=False):
-    distanceMeasure: typing_extensions.Literal[
+class FindNearest(typing.TypedDict, total=False):
+    distanceMeasure: typing.Literal[
         "DISTANCE_MEASURE_UNSPECIFIED", "EUCLIDEAN", "COSINE", "DOT_PRODUCT"
     ]
     distanceResultField: str
@@ -229,19 +225,17 @@ class FindNearest(typing_extensions.TypedDict, total=False):
     vectorField: FieldReference
 
 @typing.type_check_only
-class Function(typing_extensions.TypedDict, total=False):
+class Function(typing.TypedDict, total=False):
     args: _list[Value]
     name: str
     options: dict[str, typing.Any]
 
 @typing.type_check_only
-class GoogleFirestoreAdminV1BulkDeleteDocumentsMetadata(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleFirestoreAdminV1BulkDeleteDocumentsMetadata(typing.TypedDict, total=False):
     collectionIds: _list[str]
     endTime: str
     namespaceIds: _list[str]
-    operationState: typing_extensions.Literal[
+    operationState: typing.Literal[
         "OPERATION_STATE_UNSPECIFIED",
         "INITIALIZING",
         "PROCESSING",
@@ -257,12 +251,10 @@ class GoogleFirestoreAdminV1BulkDeleteDocumentsMetadata(
     startTime: str
 
 @typing.type_check_only
-class GoogleFirestoreAdminV1CloneDatabaseMetadata(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleFirestoreAdminV1CloneDatabaseMetadata(typing.TypedDict, total=False):
     database: str
     endTime: str
-    operationState: typing_extensions.Literal[
+    operationState: typing.Literal[
         "OPERATION_STATE_UNSPECIFIED",
         "INITIALIZING",
         "PROCESSING",
@@ -277,34 +269,28 @@ class GoogleFirestoreAdminV1CloneDatabaseMetadata(
     startTime: str
 
 @typing.type_check_only
-class GoogleFirestoreAdminV1CreateDatabaseMetadata(
-    typing_extensions.TypedDict, total=False
-): ...
+class GoogleFirestoreAdminV1CreateDatabaseMetadata(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class GoogleFirestoreAdminV1DeleteDatabaseMetadata(
-    typing_extensions.TypedDict, total=False
-): ...
+class GoogleFirestoreAdminV1DeleteDatabaseMetadata(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class GoogleFirestoreAdminV1PitrSnapshot(typing_extensions.TypedDict, total=False):
+class GoogleFirestoreAdminV1PitrSnapshot(typing.TypedDict, total=False):
     database: str
     databaseUid: str
     snapshotTime: str
 
 @typing.type_check_only
-class GoogleFirestoreAdminV1Progress(typing_extensions.TypedDict, total=False):
+class GoogleFirestoreAdminV1Progress(typing.TypedDict, total=False):
     completedWork: str
     estimatedWork: str
 
 @typing.type_check_only
-class GoogleFirestoreAdminV1RestoreDatabaseMetadata(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleFirestoreAdminV1RestoreDatabaseMetadata(typing.TypedDict, total=False):
     backup: str
     database: str
     endTime: str
-    operationState: typing_extensions.Literal[
+    operationState: typing.Literal[
         "OPERATION_STATE_UNSPECIFIED",
         "INITIALIZING",
         "PROCESSING",
@@ -318,17 +304,13 @@ class GoogleFirestoreAdminV1RestoreDatabaseMetadata(
     startTime: str
 
 @typing.type_check_only
-class GoogleFirestoreAdminV1UpdateDatabaseMetadata(
-    typing_extensions.TypedDict, total=False
-): ...
+class GoogleFirestoreAdminV1UpdateDatabaseMetadata(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class GoogleFirestoreAdminV1beta1ExportDocumentsMetadata(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleFirestoreAdminV1beta1ExportDocumentsMetadata(typing.TypedDict, total=False):
     collectionIds: _list[str]
     endTime: str
-    operationState: typing_extensions.Literal[
+    operationState: typing.Literal[
         "STATE_UNSPECIFIED",
         "INITIALIZING",
         "PROCESSING",
@@ -344,26 +326,20 @@ class GoogleFirestoreAdminV1beta1ExportDocumentsMetadata(
     startTime: str
 
 @typing.type_check_only
-class GoogleFirestoreAdminV1beta1ExportDocumentsRequest(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleFirestoreAdminV1beta1ExportDocumentsRequest(typing.TypedDict, total=False):
     collectionIds: _list[str]
     outputUriPrefix: str
 
 @typing.type_check_only
-class GoogleFirestoreAdminV1beta1ExportDocumentsResponse(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleFirestoreAdminV1beta1ExportDocumentsResponse(typing.TypedDict, total=False):
     outputUriPrefix: str
 
 @typing.type_check_only
-class GoogleFirestoreAdminV1beta1ImportDocumentsMetadata(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleFirestoreAdminV1beta1ImportDocumentsMetadata(typing.TypedDict, total=False):
     collectionIds: _list[str]
     endTime: str
     inputUriPrefix: str
-    operationState: typing_extensions.Literal[
+    operationState: typing.Literal[
         "STATE_UNSPECIFIED",
         "INITIALIZING",
         "PROCESSING",
@@ -378,58 +354,48 @@ class GoogleFirestoreAdminV1beta1ImportDocumentsMetadata(
     startTime: str
 
 @typing.type_check_only
-class GoogleFirestoreAdminV1beta1ImportDocumentsRequest(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleFirestoreAdminV1beta1ImportDocumentsRequest(typing.TypedDict, total=False):
     collectionIds: _list[str]
     inputUriPrefix: str
 
 @typing.type_check_only
-class GoogleFirestoreAdminV1beta1Index(typing_extensions.TypedDict, total=False):
+class GoogleFirestoreAdminV1beta1Index(typing.TypedDict, total=False):
     collectionId: str
     fields: _list[GoogleFirestoreAdminV1beta1IndexField]
     name: str
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "CREATING", "READY", "ERROR"]
+    state: typing.Literal["STATE_UNSPECIFIED", "CREATING", "READY", "ERROR"]
 
 @typing.type_check_only
-class GoogleFirestoreAdminV1beta1IndexField(typing_extensions.TypedDict, total=False):
+class GoogleFirestoreAdminV1beta1IndexField(typing.TypedDict, total=False):
     fieldPath: str
-    mode: typing_extensions.Literal[
+    mode: typing.Literal[
         "MODE_UNSPECIFIED", "ASCENDING", "DESCENDING", "ARRAY_CONTAINS"
     ]
 
 @typing.type_check_only
-class GoogleFirestoreAdminV1beta1IndexOperationMetadata(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleFirestoreAdminV1beta1IndexOperationMetadata(typing.TypedDict, total=False):
     cancelled: bool
     documentProgress: GoogleFirestoreAdminV1beta1Progress
     endTime: str
     index: str
-    operationType: typing_extensions.Literal[
-        "OPERATION_TYPE_UNSPECIFIED", "CREATING_INDEX"
-    ]
+    operationType: typing.Literal["OPERATION_TYPE_UNSPECIFIED", "CREATING_INDEX"]
     startTime: str
 
 @typing.type_check_only
-class GoogleFirestoreAdminV1beta1ListIndexesResponse(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleFirestoreAdminV1beta1ListIndexesResponse(typing.TypedDict, total=False):
     indexes: _list[GoogleFirestoreAdminV1beta1Index]
     nextPageToken: str
 
 @typing.type_check_only
-class GoogleFirestoreAdminV1beta1LocationMetadata(
-    typing_extensions.TypedDict, total=False
-): ...
+class GoogleFirestoreAdminV1beta1LocationMetadata(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class GoogleFirestoreAdminV1beta1Progress(typing_extensions.TypedDict, total=False):
+class GoogleFirestoreAdminV1beta1Progress(typing.TypedDict, total=False):
     workCompleted: str
     workEstimated: str
 
 @typing.type_check_only
-class GoogleLongrunningOperation(typing_extensions.TypedDict, total=False):
+class GoogleLongrunningOperation(typing.TypedDict, total=False):
     done: bool
     error: Status
     metadata: dict[str, typing.Any]
@@ -437,34 +403,34 @@ class GoogleLongrunningOperation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class LatLng(typing_extensions.TypedDict, total=False):
+class LatLng(typing.TypedDict, total=False):
     latitude: float
     longitude: float
 
 @typing.type_check_only
-class ListCollectionIdsRequest(typing_extensions.TypedDict, total=False):
+class ListCollectionIdsRequest(typing.TypedDict, total=False):
     pageSize: int
     pageToken: str
     readTime: str
 
 @typing.type_check_only
-class ListCollectionIdsResponse(typing_extensions.TypedDict, total=False):
+class ListCollectionIdsResponse(typing.TypedDict, total=False):
     collectionIds: _list[str]
     nextPageToken: str
 
 @typing.type_check_only
-class ListDocumentsResponse(typing_extensions.TypedDict, total=False):
+class ListDocumentsResponse(typing.TypedDict, total=False):
     documents: _list[Document]
     nextPageToken: str
 
 @typing.type_check_only
-class ListenRequest(typing_extensions.TypedDict, total=False):
+class ListenRequest(typing.TypedDict, total=False):
     addTarget: Target
     labels: dict[str, typing.Any]
     removeTarget: int
 
 @typing.type_check_only
-class ListenResponse(typing_extensions.TypedDict, total=False):
+class ListenResponse(typing.TypedDict, total=False):
     documentChange: DocumentChange
     documentDelete: DocumentDelete
     documentRemove: DocumentRemove
@@ -472,18 +438,16 @@ class ListenResponse(typing_extensions.TypedDict, total=False):
     targetChange: TargetChange
 
 @typing.type_check_only
-class MapValue(typing_extensions.TypedDict, total=False):
+class MapValue(typing.TypedDict, total=False):
     fields: dict[str, typing.Any]
 
 @typing.type_check_only
-class Order(typing_extensions.TypedDict, total=False):
-    direction: typing_extensions.Literal[
-        "DIRECTION_UNSPECIFIED", "ASCENDING", "DESCENDING"
-    ]
+class Order(typing.TypedDict, total=False):
+    direction: typing.Literal["DIRECTION_UNSPECIFIED", "ASCENDING", "DESCENDING"]
     field: FieldReference
 
 @typing.type_check_only
-class PartitionQueryRequest(typing_extensions.TypedDict, total=False):
+class PartitionQueryRequest(typing.TypedDict, total=False):
     pageSize: int
     pageToken: str
     partitionCount: str
@@ -491,49 +455,49 @@ class PartitionQueryRequest(typing_extensions.TypedDict, total=False):
     structuredQuery: StructuredQuery
 
 @typing.type_check_only
-class PartitionQueryResponse(typing_extensions.TypedDict, total=False):
+class PartitionQueryResponse(typing.TypedDict, total=False):
     nextPageToken: str
     partitions: _list[Cursor]
 
 @typing.type_check_only
-class Pipeline(typing_extensions.TypedDict, total=False):
+class Pipeline(typing.TypedDict, total=False):
     stages: _list[Stage]
 
 @typing.type_check_only
-class PlanSummary(typing_extensions.TypedDict, total=False):
+class PlanSummary(typing.TypedDict, total=False):
     indexesUsed: _list[dict[str, typing.Any]]
 
 @typing.type_check_only
-class Precondition(typing_extensions.TypedDict, total=False):
+class Precondition(typing.TypedDict, total=False):
     exists: bool
     updateTime: str
 
 @typing.type_check_only
-class Projection(typing_extensions.TypedDict, total=False):
+class Projection(typing.TypedDict, total=False):
     fields: _list[FieldReference]
 
 @typing.type_check_only
-class QueryTarget(typing_extensions.TypedDict, total=False):
+class QueryTarget(typing.TypedDict, total=False):
     parent: str
     structuredQuery: StructuredQuery
 
 @typing.type_check_only
-class ReadOnly(typing_extensions.TypedDict, total=False):
+class ReadOnly(typing.TypedDict, total=False):
     readTime: str
 
 @typing.type_check_only
-class ReadWrite(typing_extensions.TypedDict, total=False):
-    concurrencyMode: typing_extensions.Literal[
+class ReadWrite(typing.TypedDict, total=False):
+    concurrencyMode: typing.Literal[
         "CONCURRENCY_MODE_UNSPECIFIED", "OPTIMISTIC", "PESSIMISTIC"
     ]
     retryTransaction: str
 
 @typing.type_check_only
-class RollbackRequest(typing_extensions.TypedDict, total=False):
+class RollbackRequest(typing.TypedDict, total=False):
     transaction: str
 
 @typing.type_check_only
-class RunAggregationQueryRequest(typing_extensions.TypedDict, total=False):
+class RunAggregationQueryRequest(typing.TypedDict, total=False):
     explainOptions: ExplainOptions
     newTransaction: TransactionOptions
     readTime: str
@@ -541,14 +505,14 @@ class RunAggregationQueryRequest(typing_extensions.TypedDict, total=False):
     transaction: str
 
 @typing.type_check_only
-class RunAggregationQueryResponse(typing_extensions.TypedDict, total=False):
+class RunAggregationQueryResponse(typing.TypedDict, total=False):
     explainMetrics: ExplainMetrics
     readTime: str
     result: AggregationResult
     transaction: str
 
 @typing.type_check_only
-class RunQueryRequest(typing_extensions.TypedDict, total=False):
+class RunQueryRequest(typing.TypedDict, total=False):
     explainOptions: ExplainOptions
     newTransaction: TransactionOptions
     readTime: str
@@ -556,7 +520,7 @@ class RunQueryRequest(typing_extensions.TypedDict, total=False):
     transaction: str
 
 @typing.type_check_only
-class RunQueryResponse(typing_extensions.TypedDict, total=False):
+class RunQueryResponse(typing.TypedDict, total=False):
     document: Document
     done: bool
     explainMetrics: ExplainMetrics
@@ -565,28 +529,28 @@ class RunQueryResponse(typing_extensions.TypedDict, total=False):
     transaction: str
 
 @typing.type_check_only
-class Stage(typing_extensions.TypedDict, total=False):
+class Stage(typing.TypedDict, total=False):
     args: _list[Value]
     name: str
     options: dict[str, typing.Any]
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class StructuredAggregationQuery(typing_extensions.TypedDict, total=False):
+class StructuredAggregationQuery(typing.TypedDict, total=False):
     aggregations: _list[Aggregation]
     structuredQuery: StructuredQuery
 
 @typing.type_check_only
-class StructuredPipeline(typing_extensions.TypedDict, total=False):
+class StructuredPipeline(typing.TypedDict, total=False):
     options: dict[str, typing.Any]
     pipeline: Pipeline
 
-AlternativeStructuredQuery = typing_extensions.TypedDict(
+AlternativeStructuredQuery = typing.TypedDict(
     "AlternativeStructuredQuery",
     {
         "endAt": Cursor,
@@ -606,11 +570,11 @@ AlternativeStructuredQuery = typing_extensions.TypedDict(
 class StructuredQuery(AlternativeStructuredQuery): ...
 
 @typing.type_check_only
-class Sum(typing_extensions.TypedDict, total=False):
+class Sum(typing.TypedDict, total=False):
     field: FieldReference
 
 @typing.type_check_only
-class Target(typing_extensions.TypedDict, total=False):
+class Target(typing.TypedDict, total=False):
     documents: DocumentsTarget
     expectedCount: int
     once: bool
@@ -620,29 +584,27 @@ class Target(typing_extensions.TypedDict, total=False):
     targetId: int
 
 @typing.type_check_only
-class TargetChange(typing_extensions.TypedDict, total=False):
+class TargetChange(typing.TypedDict, total=False):
     cause: Status
     readTime: str
     resumeToken: str
-    targetChangeType: typing_extensions.Literal[
-        "NO_CHANGE", "ADD", "REMOVE", "CURRENT", "RESET"
-    ]
+    targetChangeType: typing.Literal["NO_CHANGE", "ADD", "REMOVE", "CURRENT", "RESET"]
     targetIds: _list[int]
 
 @typing.type_check_only
-class TransactionOptions(typing_extensions.TypedDict, total=False):
+class TransactionOptions(typing.TypedDict, total=False):
     readOnly: ReadOnly
     readWrite: ReadWrite
 
 @typing.type_check_only
-class UnaryFilter(typing_extensions.TypedDict, total=False):
+class UnaryFilter(typing.TypedDict, total=False):
     field: FieldReference
-    op: typing_extensions.Literal[
+    op: typing.Literal[
         "OPERATOR_UNSPECIFIED", "IS_NAN", "IS_NULL", "IS_NOT_NAN", "IS_NOT_NULL"
     ]
 
 @typing.type_check_only
-class Value(typing_extensions.TypedDict, total=False):
+class Value(typing.TypedDict, total=False):
     arrayValue: ArrayValue
     booleanValue: bool
     bytesValue: str
@@ -652,7 +614,7 @@ class Value(typing_extensions.TypedDict, total=False):
     geoPointValue: LatLng
     integerValue: str
     mapValue: MapValue
-    nullValue: typing_extensions.Literal["NULL_VALUE"]
+    nullValue: typing.Literal["NULL_VALUE"]
     pipelineValue: Pipeline
     referenceValue: str
     stringValue: str
@@ -660,7 +622,7 @@ class Value(typing_extensions.TypedDict, total=False):
     variableReferenceValue: str
 
 @typing.type_check_only
-class Write(typing_extensions.TypedDict, total=False):
+class Write(typing.TypedDict, total=False):
     currentDocument: Precondition
     delete: str
     transform: DocumentTransform
@@ -669,20 +631,20 @@ class Write(typing_extensions.TypedDict, total=False):
     updateTransforms: _list[FieldTransform]
 
 @typing.type_check_only
-class WriteRequest(typing_extensions.TypedDict, total=False):
+class WriteRequest(typing.TypedDict, total=False):
     labels: dict[str, typing.Any]
     streamId: str
     streamToken: str
     writes: _list[Write]
 
 @typing.type_check_only
-class WriteResponse(typing_extensions.TypedDict, total=False):
+class WriteResponse(typing.TypedDict, total=False):
     commitTime: str
     streamId: str
     streamToken: str
     writeResults: _list[WriteResult]
 
 @typing.type_check_only
-class WriteResult(typing_extensions.TypedDict, total=False):
+class WriteResult(typing.TypedDict, total=False):
     transformResults: _list[Value]
     updateTime: str

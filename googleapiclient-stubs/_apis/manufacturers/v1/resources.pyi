@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -59,11 +58,11 @@ class ManufacturerCenterResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 name: str,
-                include: typing_extensions.Literal[
+                include: typing.Literal[
                     "UNKNOWN", "ATTRIBUTES", "ISSUES", "DESTINATION_STATUSES"
                 ]
                 | _list[
-                    typing_extensions.Literal[
+                    typing.Literal[
                         "UNKNOWN", "ATTRIBUTES", "ISSUES", "DESTINATION_STATUSES"
                     ]
                 ]
@@ -74,11 +73,11 @@ class ManufacturerCenterResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                include: typing_extensions.Literal[
+                include: typing.Literal[
                     "UNKNOWN", "ATTRIBUTES", "ISSUES", "DESTINATION_STATUSES"
                 ]
                 | _list[
-                    typing_extensions.Literal[
+                    typing.Literal[
                         "UNKNOWN", "ATTRIBUTES", "ISSUES", "DESTINATION_STATUSES"
                     ]
                 ]

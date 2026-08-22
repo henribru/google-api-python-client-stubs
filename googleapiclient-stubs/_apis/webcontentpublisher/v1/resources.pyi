@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -41,6 +40,14 @@ class WebContentPublisherResource(googleapiclient.discovery.Resource):
                     previous_request: ListCtasResponseHttpRequest,
                     previous_response: ListCtasResponse,
                 ) -> ListCtasResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: Cta,
+                    updateMask: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> CtaHttpRequest: ...
 
             def create(
                 self,
@@ -90,6 +97,16 @@ class WebContentPublisherResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any,
         ) -> CheckFreeAccessResponseHttpRequest: ...
 
+    @typing.type_check_only
+    class UsersResource(googleapiclient.discovery.Resource):
+        def generatePlatformSiteTokens(
+            self,
+            *,
+            name: str,
+            body: GeneratePlatformSiteTokensRequest,
+            **kwargs: typing.Any,
+        ) -> GeneratePlatformSiteTokensResponseHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[
@@ -104,6 +121,7 @@ class WebContentPublisherResource(googleapiclient.discovery.Resource):
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def organizations(self) -> OrganizationsResource: ...
     def publications(self) -> PublicationsResource: ...
+    def users(self) -> UsersResource: ...
 
 @typing.type_check_only
 class CheckFreeAccessResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -120,6 +138,14 @@ class CtaHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Cta: ...
+
+@typing.type_check_only
+class GeneratePlatformSiteTokensResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GeneratePlatformSiteTokensResponse: ...
 
 @typing.type_check_only
 class ListCtasResponseHttpRequest(googleapiclient.http.HttpRequest):

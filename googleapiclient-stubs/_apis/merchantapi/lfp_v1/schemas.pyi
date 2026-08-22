@@ -1,32 +1,30 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class CountrySettings(typing_extensions.TypedDict, total=False):
+class CountrySettings(typing.TypedDict, total=False):
     freeLocalListingsEnabled: bool
-    instockServingVerificationState: typing_extensions.Literal[
+    instockServingVerificationState: typing.Literal[
         "VERIFICATION_STATE_UNSPECIFIED",
         "VERIFICATION_STATE_NOT_APPROVED",
         "VERIFICATION_STATE_IN_PROGRESS",
         "VERIFICATION_STATE_APPROVED",
     ]
-    inventoryVerificationState: typing_extensions.Literal[
+    inventoryVerificationState: typing.Literal[
         "VERIFICATION_STATE_UNSPECIFIED",
         "VERIFICATION_STATE_NOT_APPROVED",
         "VERIFICATION_STATE_IN_PROGRESS",
         "VERIFICATION_STATE_APPROVED",
     ]
     localInventoryAdsEnabled: bool
-    pickupServingVerificationState: typing_extensions.Literal[
+    pickupServingVerificationState: typing.Literal[
         "VERIFICATION_STATE_UNSPECIFIED",
         "VERIFICATION_STATE_NOT_APPROVED",
         "VERIFICATION_STATE_IN_PROGRESS",
         "VERIFICATION_STATE_APPROVED",
     ]
-    productPageType: typing_extensions.Literal[
+    productPageType: typing.Literal[
         "PRODUCT_PAGE_TYPE_UNSPECIFIED",
         "GOOGLE_HOSTED",
         "MERCHANT_HOSTED",
@@ -35,17 +33,17 @@ class CountrySettings(typing_extensions.TypedDict, total=False):
     regionCode: str
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class InventoryStats(typing_extensions.TypedDict, total=False):
+class InventoryStats(typing.TypedDict, total=False):
     submittedEntries: str
     submittedInStockEntries: str
     submittedProducts: str
     unsubmittedEntries: str
 
 @typing.type_check_only
-class LfpInventory(typing_extensions.TypedDict, total=False):
+class LfpInventory(typing.TypedDict, total=False):
     availability: str
     collectionTime: str
     contentLanguage: str
@@ -62,7 +60,7 @@ class LfpInventory(typing_extensions.TypedDict, total=False):
     targetAccount: str
 
 @typing.type_check_only
-class LfpMerchantState(typing_extensions.TypedDict, total=False):
+class LfpMerchantState(typing.TypedDict, total=False):
     countrySettings: _list[CountrySettings]
     inventoryStats: InventoryStats
     linkedGbps: str
@@ -70,7 +68,7 @@ class LfpMerchantState(typing_extensions.TypedDict, total=False):
     storeStates: _list[LfpStoreState]
 
 @typing.type_check_only
-class LfpSale(typing_extensions.TypedDict, total=False):
+class LfpSale(typing.TypedDict, total=False):
     contentLanguage: str
     feedLabel: str
     gtin: str
@@ -85,9 +83,9 @@ class LfpSale(typing_extensions.TypedDict, total=False):
     uid: str
 
 @typing.type_check_only
-class LfpStore(typing_extensions.TypedDict, total=False):
+class LfpStore(typing.TypedDict, total=False):
     gcidCategory: _list[str]
-    matchingState: typing_extensions.Literal[
+    matchingState: typing.Literal[
         "STORE_MATCHING_STATE_UNSPECIFIED",
         "STORE_MATCHING_STATE_MATCHED",
         "STORE_MATCHING_STATE_FAILED",
@@ -103,8 +101,8 @@ class LfpStore(typing_extensions.TypedDict, total=False):
     websiteUri: str
 
 @typing.type_check_only
-class LfpStoreState(typing_extensions.TypedDict, total=False):
-    matchingState: typing_extensions.Literal[
+class LfpStoreState(typing.TypedDict, total=False):
+    matchingState: typing.Literal[
         "STORE_MATCHING_STATE_UNSPECIFIED",
         "STORE_MATCHING_STATE_MATCHED",
         "STORE_MATCHING_STATE_FAILED",
@@ -113,21 +111,21 @@ class LfpStoreState(typing_extensions.TypedDict, total=False):
     storeCode: str
 
 @typing.type_check_only
-class ListLfpStoresResponse(typing_extensions.TypedDict, total=False):
+class ListLfpStoresResponse(typing.TypedDict, total=False):
     lfpStores: _list[LfpStore]
     nextPageToken: str
 
 @typing.type_check_only
-class Price(typing_extensions.TypedDict, total=False):
+class Price(typing.TypedDict, total=False):
     amountMicros: str
     currencyCode: str
 
 @typing.type_check_only
-class ProductChange(typing_extensions.TypedDict, total=False):
+class ProductChange(typing.TypedDict, total=False):
     newValue: str
     oldValue: str
     regionCode: str
-    reportingContext: typing_extensions.Literal[
+    reportingContext: typing.Literal[
         "REPORTING_CONTEXT_ENUM_UNSPECIFIED",
         "SHOPPING_ADS",
         "DISCOVERY_ADS",
@@ -151,15 +149,13 @@ class ProductChange(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class ProductStatusChangeMessage(typing_extensions.TypedDict, total=False):
+class ProductStatusChangeMessage(typing.TypedDict, total=False):
     account: str
-    attribute: typing_extensions.Literal["ATTRIBUTE_UNSPECIFIED", "STATUS"]
+    attribute: typing.Literal["ATTRIBUTE_UNSPECIFIED", "STATUS"]
     changes: _list[ProductChange]
     eventTime: str
     expirationTime: str
     managingAccount: str
     resource: str
     resourceId: str
-    resourceType: typing_extensions.Literal[
-        "RESOURCE_UNSPECIFIED", "PRODUCT", "ACCOUNT_SERVICE"
-    ]
+    resourceType: typing.Literal["RESOURCE_UNSPECIFIED", "PRODUCT", "ACCOUNT_SERVICE"]

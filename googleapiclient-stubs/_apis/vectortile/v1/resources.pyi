@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -25,7 +24,7 @@ class SemanticTileResource(googleapiclient.discovery.Resource):
             clientInfo_applicationVersion: str | None = ...,
             clientInfo_deviceModel: str | None = ...,
             clientInfo_operatingSystem: str | None = ...,
-            clientInfo_platform: typing_extensions.Literal[
+            clientInfo_platform: typing.Literal[
                 "PLATFORM_UNSPECIFIED",
                 "EDITOR",
                 "MAC_OS",
@@ -61,7 +60,7 @@ class SemanticTileResource(googleapiclient.discovery.Resource):
             clientInfo_applicationVersion: str | None = ...,
             clientInfo_deviceModel: str | None = ...,
             clientInfo_operatingSystem: str | None = ...,
-            clientInfo_platform: typing_extensions.Literal[
+            clientInfo_platform: typing.Literal[
                 "PLATFORM_UNSPECIFIED",
                 "EDITOR",
                 "MAC_OS",
@@ -75,11 +74,11 @@ class SemanticTileResource(googleapiclient.discovery.Resource):
             clientInfo_userId: str | None = ...,
             maxElevationResolutionCells: int | None = ...,
             minElevationResolutionCells: int | None = ...,
-            terrainFormats: typing_extensions.Literal[
+            terrainFormats: typing.Literal[
                 "TERRAIN_FORMAT_UNKNOWN", "FIRST_DERIVATIVE", "SECOND_DERIVATIVE"
             ]
             | _list[
-                typing_extensions.Literal[
+                typing.Literal[
                     "TERRAIN_FORMAT_UNKNOWN", "FIRST_DERIVATIVE", "SECOND_DERIVATIVE"
                 ]
             ]

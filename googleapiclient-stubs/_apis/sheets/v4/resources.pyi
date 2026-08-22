@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -48,17 +47,17 @@ class SheetsResource(googleapiclient.discovery.Resource):
                 range: str,
                 body: ValueRange,
                 includeValuesInResponse: bool | None = ...,
-                insertDataOption: typing_extensions.Literal["OVERWRITE", "INSERT_ROWS"]
+                insertDataOption: typing.Literal["OVERWRITE", "INSERT_ROWS"]
                 | None = ...,
-                responseDateTimeRenderOption: typing_extensions.Literal[
+                responseDateTimeRenderOption: typing.Literal[
                     "SERIAL_NUMBER", "FORMATTED_STRING"
                 ]
                 | None = ...,
-                responseValueRenderOption: typing_extensions.Literal[
+                responseValueRenderOption: typing.Literal[
                     "FORMATTED_VALUE", "UNFORMATTED_VALUE", "FORMULA"
                 ]
                 | None = ...,
-                valueInputOption: typing_extensions.Literal[
+                valueInputOption: typing.Literal[
                     "INPUT_VALUE_OPTION_UNSPECIFIED", "RAW", "USER_ENTERED"
                 ]
                 | None = ...,
@@ -82,16 +81,16 @@ class SheetsResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 spreadsheetId: str,
-                dateTimeRenderOption: typing_extensions.Literal[
+                dateTimeRenderOption: typing.Literal[
                     "SERIAL_NUMBER", "FORMATTED_STRING"
                 ]
                 | None = ...,
-                majorDimension: typing_extensions.Literal[
+                majorDimension: typing.Literal[
                     "DIMENSION_UNSPECIFIED", "ROWS", "COLUMNS"
                 ]
                 | None = ...,
                 ranges: str | _list[str] | None = ...,
-                valueRenderOption: typing_extensions.Literal[
+                valueRenderOption: typing.Literal[
                     "FORMATTED_VALUE", "UNFORMATTED_VALUE", "FORMULA"
                 ]
                 | None = ...,
@@ -131,15 +130,15 @@ class SheetsResource(googleapiclient.discovery.Resource):
                 *,
                 spreadsheetId: str,
                 range: str,
-                dateTimeRenderOption: typing_extensions.Literal[
+                dateTimeRenderOption: typing.Literal[
                     "SERIAL_NUMBER", "FORMATTED_STRING"
                 ]
                 | None = ...,
-                majorDimension: typing_extensions.Literal[
+                majorDimension: typing.Literal[
                     "DIMENSION_UNSPECIFIED", "ROWS", "COLUMNS"
                 ]
                 | None = ...,
-                valueRenderOption: typing_extensions.Literal[
+                valueRenderOption: typing.Literal[
                     "FORMATTED_VALUE", "UNFORMATTED_VALUE", "FORMULA"
                 ]
                 | None = ...,
@@ -152,15 +151,15 @@ class SheetsResource(googleapiclient.discovery.Resource):
                 range: str,
                 body: ValueRange,
                 includeValuesInResponse: bool | None = ...,
-                responseDateTimeRenderOption: typing_extensions.Literal[
+                responseDateTimeRenderOption: typing.Literal[
                     "SERIAL_NUMBER", "FORMATTED_STRING"
                 ]
                 | None = ...,
-                responseValueRenderOption: typing_extensions.Literal[
+                responseValueRenderOption: typing.Literal[
                     "FORMATTED_VALUE", "UNFORMATTED_VALUE", "FORMULA"
                 ]
                 | None = ...,
-                valueInputOption: typing_extensions.Literal[
+                valueInputOption: typing.Literal[
                     "INPUT_VALUE_OPTION_UNSPECIFIED", "RAW", "USER_ENTERED"
                 ]
                 | None = ...,

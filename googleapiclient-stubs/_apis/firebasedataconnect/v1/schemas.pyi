@@ -1,28 +1,32 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
+class CancelOperationRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ClientCache(typing_extensions.TypedDict, total=False):
+class ClientCache(typing.TypedDict, total=False):
     entityIdIncluded: bool
     strictValidationEnabled: bool
 
 @typing.type_check_only
-class CloudSqlInstance(typing_extensions.TypedDict, total=False):
+class CloudSqlInstance(typing.TypedDict, total=False):
+    edition: typing.Literal[
+        "EDITION_UNSPECIFIED",
+        "EDITION_ENTERPRISE",
+        "EDITION_ENTERPRISE_PLUS",
+        "EDITION_DEVELOPER",
+    ]
     instance: str
 
 @typing.type_check_only
-class CodeChunk(typing_extensions.TypedDict, total=False):
+class CodeChunk(typing.TypedDict, total=False):
     code: str
     languageCode: str
 
 @typing.type_check_only
-class Connector(typing_extensions.TypedDict, total=False):
+class Connector(typing.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     clientCache: ClientCache
     createTime: str
@@ -36,83 +40,83 @@ class Connector(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class DataConnectProperties(typing_extensions.TypedDict, total=False):
+class DataConnectProperties(typing.TypedDict, total=False):
     entityId: str
     entityIds: _list[str]
     maxAge: str
     path: _list[typing.Any]
 
 @typing.type_check_only
-class Datasource(typing_extensions.TypedDict, total=False):
+class Datasource(typing.TypedDict, total=False):
     httpGraphql: HttpGraphql
     postgresql: PostgreSql
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ExecuteMutationRequest(typing_extensions.TypedDict, total=False):
+class ExecuteMutationRequest(typing.TypedDict, total=False):
     operationName: str
     variables: dict[str, typing.Any]
 
 @typing.type_check_only
-class ExecuteMutationResponse(typing_extensions.TypedDict, total=False):
+class ExecuteMutationResponse(typing.TypedDict, total=False):
     data: dict[str, typing.Any]
     errors: _list[GraphqlError]
     extensions: GraphqlResponseExtensions
 
 @typing.type_check_only
-class ExecuteQueryRequest(typing_extensions.TypedDict, total=False):
+class ExecuteQueryRequest(typing.TypedDict, total=False):
     operationName: str
     variables: dict[str, typing.Any]
 
 @typing.type_check_only
-class ExecuteQueryResponse(typing_extensions.TypedDict, total=False):
+class ExecuteQueryResponse(typing.TypedDict, total=False):
     data: dict[str, typing.Any]
     errors: _list[GraphqlError]
     extensions: GraphqlResponseExtensions
 
 @typing.type_check_only
-class File(typing_extensions.TypedDict, total=False):
+class File(typing.TypedDict, total=False):
     content: str
     path: str
 
 @typing.type_check_only
-class GenerateQueryRequest(typing_extensions.TypedDict, total=False):
+class GenerateQueryRequest(typing.TypedDict, total=False):
     prompt: str
     schemas: _list[Schema]
 
 @typing.type_check_only
-class GenerateQueryResponse(typing_extensions.TypedDict, total=False):
+class GenerateQueryResponse(typing.TypedDict, total=False):
     part: Part
     status: GenerationStatus
 
 @typing.type_check_only
-class GenerateSchemaRequest(typing_extensions.TypedDict, total=False):
+class GenerateSchemaRequest(typing.TypedDict, total=False):
     prompt: str
 
 @typing.type_check_only
-class GenerateSchemaResponse(typing_extensions.TypedDict, total=False):
+class GenerateSchemaResponse(typing.TypedDict, total=False):
     part: Part
     status: GenerationStatus
 
 @typing.type_check_only
-class GenerationStatus(typing_extensions.TypedDict, total=False):
+class GenerationStatus(typing.TypedDict, total=False):
     message: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED", "ANALYZING_CODE", "GENERATING_CODE", "COMPLETED"
     ]
 
 @typing.type_check_only
-class GraphqlError(typing_extensions.TypedDict, total=False):
+class GraphqlError(typing.TypedDict, total=False):
     extensions: GraphqlErrorExtensions
     locations: _list[SourceLocation]
     message: str
     path: _list[typing.Any]
 
 @typing.type_check_only
-class GraphqlErrorExtensions(typing_extensions.TypedDict, total=False):
-    code: typing_extensions.Literal[
+class GraphqlErrorExtensions(typing.TypedDict, total=False):
+    code: typing.Literal[
         "OK",
         "CANCELLED",
         "UNKNOWN",
@@ -133,7 +137,7 @@ class GraphqlErrorExtensions(typing_extensions.TypedDict, total=False):
     ]
     debugDetails: str
     file: str
-    warningLevel: typing_extensions.Literal[
+    warningLevel: typing.Literal[
         "WARNING_LEVEL_UNKNOWN",
         "LOG_ONLY",
         "INTERACTIVE_ACK",
@@ -143,74 +147,74 @@ class GraphqlErrorExtensions(typing_extensions.TypedDict, total=False):
     workarounds: _list[Workaround]
 
 @typing.type_check_only
-class GraphqlRequest(typing_extensions.TypedDict, total=False):
+class GraphqlRequest(typing.TypedDict, total=False):
     extensions: GraphqlRequestExtensions
     operationName: str
     query: str
     variables: dict[str, typing.Any]
 
 @typing.type_check_only
-class GraphqlRequestExtensions(typing_extensions.TypedDict, total=False):
+class GraphqlRequestExtensions(typing.TypedDict, total=False):
     impersonate: Impersonation
 
 @typing.type_check_only
-class GraphqlResponse(typing_extensions.TypedDict, total=False):
+class GraphqlResponse(typing.TypedDict, total=False):
     data: dict[str, typing.Any]
     errors: _list[GraphqlError]
     extensions: GraphqlResponseExtensions
 
 @typing.type_check_only
-class GraphqlResponseExtensions(typing_extensions.TypedDict, total=False):
+class GraphqlResponseExtensions(typing.TypedDict, total=False):
     dataConnect: _list[DataConnectProperties]
 
 @typing.type_check_only
-class HttpGraphql(typing_extensions.TypedDict, total=False):
+class HttpGraphql(typing.TypedDict, total=False):
     timeout: str
     uri: str
 
 @typing.type_check_only
-class ImpersonateRequest(typing_extensions.TypedDict, total=False):
+class ImpersonateRequest(typing.TypedDict, total=False):
     extensions: GraphqlRequestExtensions
     operationName: str
     variables: dict[str, typing.Any]
 
 @typing.type_check_only
-class Impersonation(typing_extensions.TypedDict, total=False):
+class Impersonation(typing.TypedDict, total=False):
     authClaims: dict[str, typing.Any]
     includeDebugDetails: bool
     unauthenticated: bool
 
 @typing.type_check_only
-class ListConnectorsResponse(typing_extensions.TypedDict, total=False):
+class ListConnectorsResponse(typing.TypedDict, total=False):
     connectors: _list[Connector]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListLocationsResponse(typing_extensions.TypedDict, total=False):
+class ListLocationsResponse(typing.TypedDict, total=False):
     locations: _list[Location]
     nextPageToken: str
 
 @typing.type_check_only
-class ListOperationsResponse(typing_extensions.TypedDict, total=False):
+class ListOperationsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListSchemasResponse(typing_extensions.TypedDict, total=False):
+class ListSchemasResponse(typing.TypedDict, total=False):
     nextPageToken: str
     schemas: _list[Schema]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListServicesResponse(typing_extensions.TypedDict, total=False):
+class ListServicesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     services: _list[Service]
     unreachable: _list[str]
 
 @typing.type_check_only
-class Location(typing_extensions.TypedDict, total=False):
+class Location(typing.TypedDict, total=False):
     displayName: str
     labels: dict[str, typing.Any]
     locationId: str
@@ -218,7 +222,7 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class Operation(typing_extensions.TypedDict, total=False):
+class Operation(typing.TypedDict, total=False):
     done: bool
     error: Status
     metadata: dict[str, typing.Any]
@@ -226,7 +230,7 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class OperationMetadata(typing_extensions.TypedDict, total=False):
+class OperationMetadata(typing.TypedDict, total=False):
     apiVersion: str
     createTime: str
     endTime: str
@@ -236,26 +240,26 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
-class Part(typing_extensions.TypedDict, total=False):
+class Part(typing.TypedDict, total=False):
     codeChunk: CodeChunk
     textChunk: TextChunk
 
 @typing.type_check_only
-class PostgreSql(typing_extensions.TypedDict, total=False):
+class PostgreSql(typing.TypedDict, total=False):
     cloudSql: CloudSqlInstance
     database: str
     ephemeral: bool
     schema: str
-    schemaMigration: typing_extensions.Literal[
+    schemaMigration: typing.Literal[
         "SQL_SCHEMA_MIGRATION_UNSPECIFIED", "MIGRATE_COMPATIBLE"
     ]
-    schemaValidation: typing_extensions.Literal[
+    schemaValidation: typing.Literal[
         "SQL_SCHEMA_VALIDATION_UNSPECIFIED", "NONE", "STRICT", "COMPATIBLE"
     ]
     unlinked: bool
 
 @typing.type_check_only
-class Schema(typing_extensions.TypedDict, total=False):
+class Schema(typing.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     createTime: str
     datasources: _list[Datasource]
@@ -269,38 +273,41 @@ class Schema(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class Service(typing_extensions.TypedDict, total=False):
+class Service(typing.TypedDict, total=False):
     annotations: dict[str, typing.Any]
+    connectors: _list[Connector]
     createTime: str
     displayName: str
     etag: str
     labels: dict[str, typing.Any]
     name: str
     reconciling: bool
+    schemas: _list[Schema]
+    source: Source
     uid: str
     updateTime: str
 
 @typing.type_check_only
-class Source(typing_extensions.TypedDict, total=False):
+class Source(typing.TypedDict, total=False):
     files: _list[File]
 
 @typing.type_check_only
-class SourceLocation(typing_extensions.TypedDict, total=False):
+class SourceLocation(typing.TypedDict, total=False):
     column: int
     line: int
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class TextChunk(typing_extensions.TypedDict, total=False):
+class TextChunk(typing.TypedDict, total=False):
     text: str
 
 @typing.type_check_only
-class Workaround(typing_extensions.TypedDict, total=False):
+class Workaround(typing.TypedDict, total=False):
     description: str
     reason: str
     replace: str

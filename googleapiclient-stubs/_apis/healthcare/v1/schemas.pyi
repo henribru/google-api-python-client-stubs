@@ -1,162 +1,154 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class AccessDeterminationLogConfig(typing_extensions.TypedDict, total=False):
-    logLevel: typing_extensions.Literal[
-        "LOG_LEVEL_UNSPECIFIED", "DISABLED", "MINIMUM", "VERBOSE"
-    ]
+class AccessDeterminationLogConfig(typing.TypedDict, total=False):
+    logLevel: typing.Literal["LOG_LEVEL_UNSPECIFIED", "DISABLED", "MINIMUM", "VERBOSE"]
 
 @typing.type_check_only
-class ActivateConsentRequest(typing_extensions.TypedDict, total=False):
+class ActivateConsentRequest(typing.TypedDict, total=False):
     consentArtifact: str
     expireTime: str
     ttl: str
 
 @typing.type_check_only
-class AdminConsents(typing_extensions.TypedDict, total=False):
+class AdminConsents(typing.TypedDict, total=False):
     names: _list[str]
 
 @typing.type_check_only
-class AnalyzeEntitiesRequest(typing_extensions.TypedDict, total=False):
-    alternativeOutputFormat: typing_extensions.Literal[
+class AnalyzeEntitiesRequest(typing.TypedDict, total=False):
+    alternativeOutputFormat: typing.Literal[
         "ALTERNATIVE_OUTPUT_FORMAT_UNSPECIFIED", "FHIR_BUNDLE"
     ]
     documentContent: str
     licensedVocabularies: _list[
-        typing_extensions.Literal[
-            "LICENSED_VOCABULARY_UNSPECIFIED", "ICD10CM", "SNOMEDCT_US"
-        ]
+        typing.Literal["LICENSED_VOCABULARY_UNSPECIFIED", "ICD10CM", "SNOMEDCT_US"]
     ]
 
 @typing.type_check_only
-class AnalyzeEntitiesResponse(typing_extensions.TypedDict, total=False):
+class AnalyzeEntitiesResponse(typing.TypedDict, total=False):
     entities: _list[Entity]
     entityMentions: _list[EntityMention]
     fhirBundle: str
     relationships: _list[EntityMentionRelationship]
 
 @typing.type_check_only
-class ApplyAdminConsentsErrorDetail(typing_extensions.TypedDict, total=False):
+class ApplyAdminConsentsErrorDetail(typing.TypedDict, total=False):
     consentErrors: _list[ConsentErrors]
     existingOperationId: str
 
 @typing.type_check_only
-class ApplyAdminConsentsRequest(typing_extensions.TypedDict, total=False):
+class ApplyAdminConsentsRequest(typing.TypedDict, total=False):
     newConsentsList: AdminConsents
     validateOnly: bool
 
 @typing.type_check_only
-class ApplyAdminConsentsResponse(typing_extensions.TypedDict, total=False):
+class ApplyAdminConsentsResponse(typing.TypedDict, total=False):
     affectedResources: str
     consentApplySuccess: str
     failedResources: str
 
 @typing.type_check_only
-class ApplyConsentsRequest(typing_extensions.TypedDict, total=False):
+class ApplyConsentsRequest(typing.TypedDict, total=False):
     patientScope: PatientScope
     timeRange: TimeRange
     validateOnly: bool
 
 @typing.type_check_only
-class ApplyConsentsResponse(typing_extensions.TypedDict, total=False):
+class ApplyConsentsResponse(typing.TypedDict, total=False):
     affectedResources: str
     consentApplyFailure: str
     consentApplySuccess: str
     failedResources: str
 
 @typing.type_check_only
-class ArchiveUserDataMappingRequest(typing_extensions.TypedDict, total=False): ...
+class ArchiveUserDataMappingRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ArchiveUserDataMappingResponse(typing_extensions.TypedDict, total=False): ...
+class ArchiveUserDataMappingResponse(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Attribute(typing_extensions.TypedDict, total=False):
+class Attribute(typing.TypedDict, total=False):
     attributeDefinitionId: str
     values: _list[str]
 
 @typing.type_check_only
-class AttributeDefinition(typing_extensions.TypedDict, total=False):
+class AttributeDefinition(typing.TypedDict, total=False):
     allowedValues: _list[str]
-    category: typing_extensions.Literal["CATEGORY_UNSPECIFIED", "RESOURCE", "REQUEST"]
+    category: typing.Literal["CATEGORY_UNSPECIFIED", "RESOURCE", "REQUEST"]
     consentDefaultValues: _list[str]
     dataMappingDefaultValue: str
     description: str
     name: str
 
 @typing.type_check_only
-class AuditConfig(typing_extensions.TypedDict, total=False):
+class AuditConfig(typing.TypedDict, total=False):
     auditLogConfigs: _list[AuditLogConfig]
     service: str
 
 @typing.type_check_only
-class AuditLogConfig(typing_extensions.TypedDict, total=False):
+class AuditLogConfig(typing.TypedDict, total=False):
     exemptedMembers: _list[str]
-    logType: typing_extensions.Literal[
+    logType: typing.Literal[
         "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
     ]
 
 @typing.type_check_only
-class Binding(typing_extensions.TypedDict, total=False):
+class Binding(typing.TypedDict, total=False):
     condition: Expr
     members: _list[str]
     role: str
 
 @typing.type_check_only
-class BlobStorageInfo(typing_extensions.TypedDict, total=False):
+class BlobStorageInfo(typing.TypedDict, total=False):
     sizeBytes: str
-    storageClass: typing_extensions.Literal[
+    storageClass: typing.Literal[
         "BLOB_STORAGE_CLASS_UNSPECIFIED", "STANDARD", "NEARLINE", "COLDLINE", "ARCHIVE"
     ]
     storageClassUpdateTime: str
 
 @typing.type_check_only
-class BlobStorageSettings(typing_extensions.TypedDict, total=False):
-    blobStorageClass: typing_extensions.Literal[
+class BlobStorageSettings(typing.TypedDict, total=False):
+    blobStorageClass: typing.Literal[
         "BLOB_STORAGE_CLASS_UNSPECIFIED", "STANDARD", "NEARLINE", "COLDLINE", "ARCHIVE"
     ]
 
 @typing.type_check_only
-class BulkDeleteResourcesRequest(typing_extensions.TypedDict, total=False):
+class BulkDeleteResourcesRequest(typing.TypedDict, total=False):
     gcsDestination: GoogleCloudHealthcareV1FhirGcsDestination
     type: str
     until: str
     validateOnly: bool
-    versionConfig: typing_extensions.Literal[
+    versionConfig: typing.Literal[
         "VERSION_CONFIG_UNSPECIFIED", "ALL", "CURRENT_ONLY", "HISTORY_ONLY"
     ]
 
 @typing.type_check_only
-class BulkExportGcsDestination(typing_extensions.TypedDict, total=False):
+class BulkExportGcsDestination(typing.TypedDict, total=False):
     uriPrefix: str
 
 @typing.type_check_only
-class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
+class CancelOperationRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class CharacterMaskConfig(typing_extensions.TypedDict, total=False):
+class CharacterMaskConfig(typing.TypedDict, total=False):
     maskingCharacter: str
 
 @typing.type_check_only
-class CheckDataAccessRequest(typing_extensions.TypedDict, total=False):
+class CheckDataAccessRequest(typing.TypedDict, total=False):
     consentList: ConsentList
     dataId: str
     requestAttributes: dict[str, typing.Any]
-    responseView: typing_extensions.Literal[
-        "RESPONSE_VIEW_UNSPECIFIED", "BASIC", "FULL"
-    ]
+    responseView: typing.Literal["RESPONSE_VIEW_UNSPECIFIED", "BASIC", "FULL"]
 
 @typing.type_check_only
-class CheckDataAccessResponse(typing_extensions.TypedDict, total=False):
+class CheckDataAccessResponse(typing.TypedDict, total=False):
     consentDetails: dict[str, typing.Any]
     consented: bool
 
 @typing.type_check_only
-class Consent(typing_extensions.TypedDict, total=False):
+class Consent(typing.TypedDict, total=False):
     consentArtifact: str
     expireTime: str
     metadata: dict[str, typing.Any]
@@ -164,20 +156,20 @@ class Consent(typing_extensions.TypedDict, total=False):
     policies: _list[GoogleCloudHealthcareV1ConsentPolicy]
     revisionCreateTime: str
     revisionId: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED", "ACTIVE", "ARCHIVED", "REVOKED", "DRAFT", "REJECTED"
     ]
     ttl: str
     userId: str
 
 @typing.type_check_only
-class ConsentAccessorScope(typing_extensions.TypedDict, total=False):
+class ConsentAccessorScope(typing.TypedDict, total=False):
     actor: str
     environment: str
     purpose: str
 
 @typing.type_check_only
-class ConsentArtifact(typing_extensions.TypedDict, total=False):
+class ConsentArtifact(typing.TypedDict, total=False):
     consentContentScreenshots: _list[Image]
     consentContentVersion: str
     guardianSignature: Signature
@@ -188,21 +180,21 @@ class ConsentArtifact(typing_extensions.TypedDict, total=False):
     witnessSignature: Signature
 
 @typing.type_check_only
-class ConsentConfig(typing_extensions.TypedDict, total=False):
+class ConsentConfig(typing.TypedDict, total=False):
     accessDeterminationLogConfig: AccessDeterminationLogConfig
     accessEnforced: bool
     consentHeaderHandling: ConsentHeaderHandling
     enforcedAdminConsents: _list[str]
-    version: typing_extensions.Literal["CONSENT_ENFORCEMENT_VERSION_UNSPECIFIED", "V1"]
+    version: typing.Literal["CONSENT_ENFORCEMENT_VERSION_UNSPECIFIED", "V1"]
 
 @typing.type_check_only
-class ConsentErrors(typing_extensions.TypedDict, total=False):
+class ConsentErrors(typing.TypedDict, total=False):
     error: Status
     name: str
 
 @typing.type_check_only
-class ConsentEvaluation(typing_extensions.TypedDict, total=False):
-    evaluationResult: typing_extensions.Literal[
+class ConsentEvaluation(typing.TypedDict, total=False):
+    evaluationResult: typing.Literal[
         "EVALUATION_RESULT_UNSPECIFIED",
         "NOT_APPLICABLE",
         "NO_MATCHING_POLICY",
@@ -211,33 +203,33 @@ class ConsentEvaluation(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class ConsentHeaderHandling(typing_extensions.TypedDict, total=False):
-    profile: typing_extensions.Literal[
+class ConsentHeaderHandling(typing.TypedDict, total=False):
+    profile: typing.Literal[
         "SCOPE_PROFILE_UNSPECIFIED", "PERMIT_EMPTY_SCOPE", "REQUIRED_ON_READ"
     ]
 
 @typing.type_check_only
-class ConsentList(typing_extensions.TypedDict, total=False):
+class ConsentList(typing.TypedDict, total=False):
     consents: _list[str]
 
 @typing.type_check_only
-class ConsentStore(typing_extensions.TypedDict, total=False):
+class ConsentStore(typing.TypedDict, total=False):
     defaultConsentTtl: str
     enableConsentCreateOnUpdate: bool
     labels: dict[str, typing.Any]
     name: str
 
 @typing.type_check_only
-class CreateMessageRequest(typing_extensions.TypedDict, total=False):
+class CreateMessageRequest(typing.TypedDict, total=False):
     message: Message
 
 @typing.type_check_only
-class CryptoHashConfig(typing_extensions.TypedDict, total=False):
+class CryptoHashConfig(typing.TypedDict, total=False):
     cryptoKey: str
     kmsWrapped: KmsWrappedCryptoKey
 
 @typing.type_check_only
-class Dataset(typing_extensions.TypedDict, total=False):
+class Dataset(typing.TypedDict, total=False):
     encryptionSpec: EncryptionSpec
     name: str
     satisfiesPzi: bool
@@ -245,17 +237,17 @@ class Dataset(typing_extensions.TypedDict, total=False):
     timeZone: str
 
 @typing.type_check_only
-class DateShiftConfig(typing_extensions.TypedDict, total=False):
+class DateShiftConfig(typing.TypedDict, total=False):
     cryptoKey: str
     kmsWrapped: KmsWrappedCryptoKey
 
 @typing.type_check_only
-class DeidentifiedStoreDestination(typing_extensions.TypedDict, total=False):
+class DeidentifiedStoreDestination(typing.TypedDict, total=False):
     config: DeidentifyConfig
     store: str
 
 @typing.type_check_only
-class DeidentifyConfig(typing_extensions.TypedDict, total=False):
+class DeidentifyConfig(typing.TypedDict, total=False):
     dicom: DicomConfig
     fhir: FhirConfig
     image: ImageConfig
@@ -263,20 +255,20 @@ class DeidentifyConfig(typing_extensions.TypedDict, total=False):
     useRegionalDataProcessing: bool
 
 @typing.type_check_only
-class DeidentifyDatasetRequest(typing_extensions.TypedDict, total=False):
+class DeidentifyDatasetRequest(typing.TypedDict, total=False):
     config: DeidentifyConfig
     destinationDataset: str
     gcsConfigUri: str
 
 @typing.type_check_only
-class DeidentifyDicomStoreRequest(typing_extensions.TypedDict, total=False):
+class DeidentifyDicomStoreRequest(typing.TypedDict, total=False):
     config: DeidentifyConfig
     destinationStore: str
     filterConfig: DicomFilterConfig
     gcsConfigUri: str
 
 @typing.type_check_only
-class DeidentifyFhirStoreRequest(typing_extensions.TypedDict, total=False):
+class DeidentifyFhirStoreRequest(typing.TypedDict, total=False):
     config: DeidentifyConfig
     destinationStore: str
     gcsConfigUri: str
@@ -284,11 +276,11 @@ class DeidentifyFhirStoreRequest(typing_extensions.TypedDict, total=False):
     skipModifiedResources: bool
 
 @typing.type_check_only
-class DeidentifySummary(typing_extensions.TypedDict, total=False): ...
+class DeidentifySummary(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class DicomConfig(typing_extensions.TypedDict, total=False):
-    filterProfile: typing_extensions.Literal[
+class DicomConfig(typing.TypedDict, total=False):
+    filterProfile: typing.Literal[
         "TAG_FILTER_PROFILE_UNSPECIFIED",
         "MINIMAL_KEEP_LIST_PROFILE",
         "ATTRIBUTE_CONFIDENTIALITY_BASIC_PROFILE",
@@ -300,15 +292,15 @@ class DicomConfig(typing_extensions.TypedDict, total=False):
     skipIdRedaction: bool
 
 @typing.type_check_only
-class DicomFilterConfig(typing_extensions.TypedDict, total=False):
+class DicomFilterConfig(typing.TypedDict, total=False):
     resourcePathsGcsUri: str
 
 @typing.type_check_only
-class DicomNotificationConfig(typing_extensions.TypedDict, total=False):
+class DicomNotificationConfig(typing.TypedDict, total=False):
     pubsubTopic: str
 
 @typing.type_check_only
-class DicomStore(typing_extensions.TypedDict, total=False):
+class DicomStore(typing.TypedDict, total=False):
     labels: dict[str, typing.Any]
     name: str
     notificationConfig: NotificationConfig
@@ -316,7 +308,7 @@ class DicomStore(typing_extensions.TypedDict, total=False):
     streamConfigs: _list[GoogleCloudHealthcareV1DicomStreamConfig]
 
 @typing.type_check_only
-class DicomStoreMetrics(typing_extensions.TypedDict, total=False):
+class DicomStoreMetrics(typing.TypedDict, total=False):
     blobStorageSizeBytes: str
     instanceCount: str
     name: str
@@ -325,20 +317,20 @@ class DicomStoreMetrics(typing_extensions.TypedDict, total=False):
     studyCount: str
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class EncryptionSpec(typing_extensions.TypedDict, total=False):
+class EncryptionSpec(typing.TypedDict, total=False):
     kmsKeyName: str
 
 @typing.type_check_only
-class Entity(typing_extensions.TypedDict, total=False):
+class Entity(typing.TypedDict, total=False):
     entityId: str
     preferredTerm: str
     vocabularyCodes: _list[str]
 
 @typing.type_check_only
-class EntityMention(typing_extensions.TypedDict, total=False):
+class EntityMention(typing.TypedDict, total=False):
     certaintyAssessment: Feature
     confidence: float
     linkedEntities: _list[LinkedEntity]
@@ -349,42 +341,40 @@ class EntityMention(typing_extensions.TypedDict, total=False):
     type: str
 
 @typing.type_check_only
-class EntityMentionRelationship(typing_extensions.TypedDict, total=False):
+class EntityMentionRelationship(typing.TypedDict, total=False):
     confidence: float
     objectId: str
     subjectId: str
 
 @typing.type_check_only
-class EvaluateUserConsentsRequest(typing_extensions.TypedDict, total=False):
+class EvaluateUserConsentsRequest(typing.TypedDict, total=False):
     consentList: ConsentList
     pageSize: int
     pageToken: str
     requestAttributes: dict[str, typing.Any]
     resourceAttributes: dict[str, typing.Any]
-    responseView: typing_extensions.Literal[
-        "RESPONSE_VIEW_UNSPECIFIED", "BASIC", "FULL"
-    ]
+    responseView: typing.Literal["RESPONSE_VIEW_UNSPECIFIED", "BASIC", "FULL"]
     userId: str
 
 @typing.type_check_only
-class EvaluateUserConsentsResponse(typing_extensions.TypedDict, total=False):
+class EvaluateUserConsentsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     results: _list[Result]
 
 @typing.type_check_only
-class ExplainDataAccessConsentInfo(typing_extensions.TypedDict, total=False):
+class ExplainDataAccessConsentInfo(typing.TypedDict, total=False):
     cascadeOrigins: _list[str]
     consentResource: str
     enforcementTime: str
     matchingAccessorScopes: _list[ConsentAccessorScope]
     patientConsentOwner: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "CONSENT_POLICY_TYPE_UNSPECIFIED",
         "CONSENT_POLICY_TYPE_PATIENT",
         "CONSENT_POLICY_TYPE_ADMIN",
     ]
     variants: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "CONSENT_VARIANT_UNSPECIFIED",
             "CONSENT_VARIANT_STANDARD",
             "CONSENT_VARIANT_CASCADE",
@@ -392,9 +382,9 @@ class ExplainDataAccessConsentInfo(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class ExplainDataAccessConsentScope(typing_extensions.TypedDict, total=False):
+class ExplainDataAccessConsentScope(typing.TypedDict, total=False):
     accessorScope: ConsentAccessorScope
-    decision: typing_extensions.Literal[
+    decision: typing.Literal[
         "CONSENT_DECISION_TYPE_UNSPECIFIED",
         "CONSENT_DECISION_TYPE_PERMIT",
         "CONSENT_DECISION_TYPE_DENY",
@@ -403,20 +393,20 @@ class ExplainDataAccessConsentScope(typing_extensions.TypedDict, total=False):
     exceptions: _list[ExplainDataAccessConsentScope]
 
 @typing.type_check_only
-class ExplainDataAccessResponse(typing_extensions.TypedDict, total=False):
+class ExplainDataAccessResponse(typing.TypedDict, total=False):
     consentScopes: _list[ExplainDataAccessConsentScope]
     warning: str
 
 @typing.type_check_only
-class ExportDicomDataRequest(typing_extensions.TypedDict, total=False):
+class ExportDicomDataRequest(typing.TypedDict, total=False):
     bigqueryDestination: GoogleCloudHealthcareV1DicomBigQueryDestination
     gcsDestination: GoogleCloudHealthcareV1DicomGcsDestination
 
 @typing.type_check_only
-class ExportDicomDataResponse(typing_extensions.TypedDict, total=False): ...
+class ExportDicomDataResponse(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ExportMessagesRequest(typing_extensions.TypedDict, total=False):
+class ExportMessagesRequest(typing.TypedDict, total=False):
     endTime: str
     filter: str
     gcsDestination: GcsDestination
@@ -424,49 +414,49 @@ class ExportMessagesRequest(typing_extensions.TypedDict, total=False):
     startTime: str
 
 @typing.type_check_only
-class ExportMessagesResponse(typing_extensions.TypedDict, total=False): ...
+class ExportMessagesResponse(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ExportResourcesRequest(typing_extensions.TypedDict, total=False):
+class ExportResourcesRequest(typing.TypedDict, total=False):
     _since: str
     _type: str
     bigqueryDestination: GoogleCloudHealthcareV1FhirBigQueryDestination
     gcsDestination: GoogleCloudHealthcareV1FhirGcsDestination
 
 @typing.type_check_only
-class ExportResourcesResponse(typing_extensions.TypedDict, total=False): ...
+class ExportResourcesResponse(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Expr(typing_extensions.TypedDict, total=False):
+class Expr(typing.TypedDict, total=False):
     description: str
     expression: str
     location: str
     title: str
 
 @typing.type_check_only
-class Feature(typing_extensions.TypedDict, total=False):
+class Feature(typing.TypedDict, total=False):
     confidence: float
     value: str
 
 @typing.type_check_only
-class FhirConfig(typing_extensions.TypedDict, total=False):
+class FhirConfig(typing.TypedDict, total=False):
     defaultKeepExtensions: bool
     fieldMetadataList: _list[FieldMetadata]
 
 @typing.type_check_only
-class FhirFilter(typing_extensions.TypedDict, total=False):
+class FhirFilter(typing.TypedDict, total=False):
     resources: Resources
 
 @typing.type_check_only
-class FhirNotificationConfig(typing_extensions.TypedDict, total=False):
+class FhirNotificationConfig(typing.TypedDict, total=False):
     pubsubTopic: str
     sendFullResource: bool
     sendPreviousResourceOnDelete: bool
 
 @typing.type_check_only
-class FhirStore(typing_extensions.TypedDict, total=False):
+class FhirStore(typing.TypedDict, total=False):
     bulkExportGcsDestination: BulkExportGcsDestination
-    complexDataTypeReferenceParsing: typing_extensions.Literal[
+    complexDataTypeReferenceParsing: typing.Literal[
         "COMPLEX_DATA_TYPE_REFERENCE_PARSING_UNSPECIFIED", "DISABLED", "ENABLED"
     ]
     consentConfig: ConsentConfig
@@ -480,24 +470,22 @@ class FhirStore(typing_extensions.TypedDict, total=False):
     notificationConfigs: _list[FhirNotificationConfig]
     streamConfigs: _list[StreamConfig]
     validationConfig: ValidationConfig
-    version: typing_extensions.Literal[
-        "VERSION_UNSPECIFIED", "DSTU2", "STU3", "R4", "R5"
-    ]
+    version: typing.Literal["VERSION_UNSPECIFIED", "DSTU2", "STU3", "R4", "R5"]
 
 @typing.type_check_only
-class FhirStoreMetric(typing_extensions.TypedDict, total=False):
+class FhirStoreMetric(typing.TypedDict, total=False):
     count: str
     resourceType: str
     structuredStorageSizeBytes: str
     versionedStorageSizeBytes: str
 
 @typing.type_check_only
-class FhirStoreMetrics(typing_extensions.TypedDict, total=False):
+class FhirStoreMetrics(typing.TypedDict, total=False):
     metrics: _list[FhirStoreMetric]
     name: str
 
 @typing.type_check_only
-class Field(typing_extensions.TypedDict, total=False):
+class Field(typing.TypedDict, total=False):
     maxOccurs: int
     minOccurs: int
     name: str
@@ -505,18 +493,16 @@ class Field(typing_extensions.TypedDict, total=False):
     type: str
 
 @typing.type_check_only
-class FieldMetadata(typing_extensions.TypedDict, total=False):
-    action: typing_extensions.Literal[
+class FieldMetadata(typing.TypedDict, total=False):
+    action: typing.Literal[
         "ACTION_UNSPECIFIED", "TRANSFORM", "INSPECT_AND_TRANSFORM", "DO_NOT_TRANSFORM"
     ]
     paths: _list[str]
 
 @typing.type_check_only
-class GcsDestination(typing_extensions.TypedDict, total=False):
-    contentStructure: typing_extensions.Literal[
-        "CONTENT_STRUCTURE_UNSPECIFIED", "MESSAGE_JSON"
-    ]
-    messageView: typing_extensions.Literal[
+class GcsDestination(typing.TypedDict, total=False):
+    contentStructure: typing.Literal["CONTENT_STRUCTURE_UNSPECIFIED", "MESSAGE_JSON"]
+    messageView: typing.Literal[
         "MESSAGE_VIEW_UNSPECIFIED",
         "RAW_ONLY",
         "PARSED_ONLY",
@@ -527,103 +513,91 @@ class GcsDestination(typing_extensions.TypedDict, total=False):
     uriPrefix: str
 
 @typing.type_check_only
-class GcsSource(typing_extensions.TypedDict, total=False):
+class GcsSource(typing.TypedDict, total=False):
     uri: str
 
 @typing.type_check_only
-class GoogleCloudHealthcareV1ConsentGcsDestination(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudHealthcareV1ConsentGcsDestination(typing.TypedDict, total=False):
     uriPrefix: str
 
 @typing.type_check_only
-class GoogleCloudHealthcareV1ConsentPolicy(typing_extensions.TypedDict, total=False):
+class GoogleCloudHealthcareV1ConsentPolicy(typing.TypedDict, total=False):
     authorizationRule: Expr
     resourceAttributes: _list[Attribute]
 
 @typing.type_check_only
 class GoogleCloudHealthcareV1DeidentifyDeidentifyDicomStoreSummary(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
 class GoogleCloudHealthcareV1DeidentifyDeidentifyFhirStoreSummary(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
-class GoogleCloudHealthcareV1DicomBigQueryDestination(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudHealthcareV1DicomBigQueryDestination(typing.TypedDict, total=False):
     force: bool
     includeSourceStore: bool
     schemaFlattened: SchemaFlattened
     schemaJson: SchemaJSON
     tableUri: str
-    writeDisposition: typing_extensions.Literal[
+    writeDisposition: typing.Literal[
         "WRITE_DISPOSITION_UNSPECIFIED", "WRITE_EMPTY", "WRITE_TRUNCATE", "WRITE_APPEND"
     ]
 
 @typing.type_check_only
-class GoogleCloudHealthcareV1DicomGcsDestination(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudHealthcareV1DicomGcsDestination(typing.TypedDict, total=False):
     mimeType: str
     uriPrefix: str
 
 @typing.type_check_only
-class GoogleCloudHealthcareV1DicomGcsSource(typing_extensions.TypedDict, total=False):
+class GoogleCloudHealthcareV1DicomGcsSource(typing.TypedDict, total=False):
     uri: str
 
 @typing.type_check_only
-class GoogleCloudHealthcareV1DicomStreamConfig(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudHealthcareV1DicomStreamConfig(typing.TypedDict, total=False):
     bigqueryDestination: GoogleCloudHealthcareV1DicomBigQueryDestination
 
 @typing.type_check_only
-class GoogleCloudHealthcareV1FhirBigQueryDestination(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudHealthcareV1FhirBigQueryDestination(typing.TypedDict, total=False):
     datasetUri: str
     force: bool
     schemaConfig: SchemaConfig
-    writeDisposition: typing_extensions.Literal[
+    writeDisposition: typing.Literal[
         "WRITE_DISPOSITION_UNSPECIFIED", "WRITE_EMPTY", "WRITE_TRUNCATE", "WRITE_APPEND"
     ]
 
 @typing.type_check_only
-class GoogleCloudHealthcareV1FhirGcsDestination(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudHealthcareV1FhirGcsDestination(typing.TypedDict, total=False):
     uriPrefix: str
 
 @typing.type_check_only
-class GoogleCloudHealthcareV1FhirGcsSource(typing_extensions.TypedDict, total=False):
+class GoogleCloudHealthcareV1FhirGcsSource(typing.TypedDict, total=False):
     uri: str
 
 @typing.type_check_only
-class GroupOrSegment(typing_extensions.TypedDict, total=False):
+class GroupOrSegment(typing.TypedDict, total=False):
     group: SchemaGroup
     segment: SchemaSegment
 
 @typing.type_check_only
-class Hl7SchemaConfig(typing_extensions.TypedDict, total=False):
+class Hl7SchemaConfig(typing.TypedDict, total=False):
     messageSchemaConfigs: dict[str, typing.Any]
     version: _list[VersionSource]
 
 @typing.type_check_only
-class Hl7TypesConfig(typing_extensions.TypedDict, total=False):
+class Hl7TypesConfig(typing.TypedDict, total=False):
     type: _list[Type]
     version: _list[VersionSource]
 
 @typing.type_check_only
-class Hl7V2NotificationConfig(typing_extensions.TypedDict, total=False):
+class Hl7V2NotificationConfig(typing.TypedDict, total=False):
     filter: str
     pubsubTopic: str
 
 @typing.type_check_only
-class Hl7V2Store(typing_extensions.TypedDict, total=False):
+class Hl7V2Store(typing.TypedDict, total=False):
     labels: dict[str, typing.Any]
     name: str
     notificationConfigs: _list[Hl7V2NotificationConfig]
@@ -631,30 +605,30 @@ class Hl7V2Store(typing_extensions.TypedDict, total=False):
     rejectDuplicateMessage: bool
 
 @typing.type_check_only
-class Hl7V2StoreMetric(typing_extensions.TypedDict, total=False):
+class Hl7V2StoreMetric(typing.TypedDict, total=False):
     count: str
     messageType: str
     structuredStorageSizeBytes: str
 
 @typing.type_check_only
-class Hl7V2StoreMetrics(typing_extensions.TypedDict, total=False):
+class Hl7V2StoreMetrics(typing.TypedDict, total=False):
     metrics: _list[Hl7V2StoreMetric]
     name: str
 
 @typing.type_check_only
-class HttpBody(typing_extensions.TypedDict, total=False):
+class HttpBody(typing.TypedDict, total=False):
     contentType: str
     data: str
     extensions: _list[dict[str, typing.Any]]
 
 @typing.type_check_only
-class Image(typing_extensions.TypedDict, total=False):
+class Image(typing.TypedDict, total=False):
     gcsUri: str
     rawBytes: str
 
 @typing.type_check_only
-class ImageConfig(typing_extensions.TypedDict, total=False):
-    textRedactionMode: typing_extensions.Literal[
+class ImageConfig(typing.TypedDict, total=False):
+    textRedactionMode: typing.Literal[
         "TEXT_REDACTION_MODE_UNSPECIFIED",
         "REDACT_ALL_TEXT",
         "REDACT_SENSITIVE_TEXT",
@@ -662,23 +636,23 @@ class ImageConfig(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class ImportDicomDataRequest(typing_extensions.TypedDict, total=False):
+class ImportDicomDataRequest(typing.TypedDict, total=False):
     blobStorageSettings: BlobStorageSettings
     gcsSource: GoogleCloudHealthcareV1DicomGcsSource
 
 @typing.type_check_only
-class ImportDicomDataResponse(typing_extensions.TypedDict, total=False): ...
+class ImportDicomDataResponse(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ImportMessagesRequest(typing_extensions.TypedDict, total=False):
+class ImportMessagesRequest(typing.TypedDict, total=False):
     gcsSource: GcsSource
 
 @typing.type_check_only
-class ImportMessagesResponse(typing_extensions.TypedDict, total=False): ...
+class ImportMessagesResponse(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ImportResourcesRequest(typing_extensions.TypedDict, total=False):
-    contentStructure: typing_extensions.Literal[
+class ImportResourcesRequest(typing.TypedDict, total=False):
+    contentStructure: typing.Literal[
         "CONTENT_STRUCTURE_UNSPECIFIED",
         "BUNDLE",
         "RESOURCE",
@@ -688,10 +662,10 @@ class ImportResourcesRequest(typing_extensions.TypedDict, total=False):
     gcsSource: GoogleCloudHealthcareV1FhirGcsSource
 
 @typing.type_check_only
-class ImportResourcesResponse(typing_extensions.TypedDict, total=False): ...
+class ImportResourcesResponse(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class InfoTypeTransformation(typing_extensions.TypedDict, total=False):
+class InfoTypeTransformation(typing.TypedDict, total=False):
     characterMaskConfig: CharacterMaskConfig
     cryptoHashConfig: CryptoHashConfig
     dateShiftConfig: DateShiftConfig
@@ -700,91 +674,91 @@ class InfoTypeTransformation(typing_extensions.TypedDict, total=False):
     replaceWithInfoTypeConfig: ReplaceWithInfoTypeConfig
 
 @typing.type_check_only
-class IngestMessageRequest(typing_extensions.TypedDict, total=False):
+class IngestMessageRequest(typing.TypedDict, total=False):
     message: Message
 
 @typing.type_check_only
-class IngestMessageResponse(typing_extensions.TypedDict, total=False):
+class IngestMessageResponse(typing.TypedDict, total=False):
     hl7Ack: str
     message: Message
 
 @typing.type_check_only
-class KmsWrappedCryptoKey(typing_extensions.TypedDict, total=False):
+class KmsWrappedCryptoKey(typing.TypedDict, total=False):
     cryptoKey: str
     wrappedKey: str
 
 @typing.type_check_only
-class LinkedEntity(typing_extensions.TypedDict, total=False):
+class LinkedEntity(typing.TypedDict, total=False):
     entityId: str
 
 @typing.type_check_only
-class ListAttributeDefinitionsResponse(typing_extensions.TypedDict, total=False):
+class ListAttributeDefinitionsResponse(typing.TypedDict, total=False):
     attributeDefinitions: _list[AttributeDefinition]
     nextPageToken: str
 
 @typing.type_check_only
-class ListConsentArtifactsResponse(typing_extensions.TypedDict, total=False):
+class ListConsentArtifactsResponse(typing.TypedDict, total=False):
     consentArtifacts: _list[ConsentArtifact]
     nextPageToken: str
 
 @typing.type_check_only
-class ListConsentRevisionsResponse(typing_extensions.TypedDict, total=False):
+class ListConsentRevisionsResponse(typing.TypedDict, total=False):
     consents: _list[Consent]
     nextPageToken: str
 
 @typing.type_check_only
-class ListConsentStoresResponse(typing_extensions.TypedDict, total=False):
+class ListConsentStoresResponse(typing.TypedDict, total=False):
     consentStores: _list[ConsentStore]
     nextPageToken: str
 
 @typing.type_check_only
-class ListConsentsResponse(typing_extensions.TypedDict, total=False):
+class ListConsentsResponse(typing.TypedDict, total=False):
     consents: _list[Consent]
     nextPageToken: str
 
 @typing.type_check_only
-class ListDatasetsResponse(typing_extensions.TypedDict, total=False):
+class ListDatasetsResponse(typing.TypedDict, total=False):
     datasets: _list[Dataset]
     nextPageToken: str
 
 @typing.type_check_only
-class ListDicomStoresResponse(typing_extensions.TypedDict, total=False):
+class ListDicomStoresResponse(typing.TypedDict, total=False):
     dicomStores: _list[DicomStore]
     nextPageToken: str
 
 @typing.type_check_only
-class ListFhirStoresResponse(typing_extensions.TypedDict, total=False):
+class ListFhirStoresResponse(typing.TypedDict, total=False):
     fhirStores: _list[FhirStore]
     nextPageToken: str
 
 @typing.type_check_only
-class ListHl7V2StoresResponse(typing_extensions.TypedDict, total=False):
+class ListHl7V2StoresResponse(typing.TypedDict, total=False):
     hl7V2Stores: _list[Hl7V2Store]
     nextPageToken: str
 
 @typing.type_check_only
-class ListLocationsResponse(typing_extensions.TypedDict, total=False):
+class ListLocationsResponse(typing.TypedDict, total=False):
     locations: _list[Location]
     nextPageToken: str
 
 @typing.type_check_only
-class ListMessagesResponse(typing_extensions.TypedDict, total=False):
+class ListMessagesResponse(typing.TypedDict, total=False):
     hl7V2Messages: _list[Message]
     nextPageToken: str
 
 @typing.type_check_only
-class ListOperationsResponse(typing_extensions.TypedDict, total=False):
+class ListOperationsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListUserDataMappingsResponse(typing_extensions.TypedDict, total=False):
+class ListUserDataMappingsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     userDataMappings: _list[UserDataMapping]
 
 @typing.type_check_only
-class Location(typing_extensions.TypedDict, total=False):
+class Location(typing.TypedDict, total=False):
     displayName: str
     labels: dict[str, typing.Any]
     locationId: str
@@ -792,7 +766,7 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class Message(typing_extensions.TypedDict, total=False):
+class Message(typing.TypedDict, total=False):
     createTime: str
     data: str
     labels: dict[str, typing.Any]
@@ -805,12 +779,12 @@ class Message(typing_extensions.TypedDict, total=False):
     sendTime: str
 
 @typing.type_check_only
-class NotificationConfig(typing_extensions.TypedDict, total=False):
+class NotificationConfig(typing.TypedDict, total=False):
     pubsubTopic: str
     sendForBulkImport: bool
 
 @typing.type_check_only
-class Operation(typing_extensions.TypedDict, total=False):
+class Operation(typing.TypedDict, total=False):
     done: bool
     error: Status
     metadata: dict[str, typing.Any]
@@ -818,7 +792,7 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class OperationMetadata(typing_extensions.TypedDict, total=False):
+class OperationMetadata(typing.TypedDict, total=False):
     apiMethodName: str
     cancelRequested: bool
     counter: ProgressCounter
@@ -827,34 +801,34 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     logsUrl: str
 
 @typing.type_check_only
-class ParsedData(typing_extensions.TypedDict, total=False):
+class ParsedData(typing.TypedDict, total=False):
     segments: _list[Segment]
 
 @typing.type_check_only
-class ParserConfig(typing_extensions.TypedDict, total=False):
+class ParserConfig(typing.TypedDict, total=False):
     allowNullHeader: bool
     schema: SchemaPackage
     segmentTerminator: str
-    version: typing_extensions.Literal["PARSER_VERSION_UNSPECIFIED", "V1", "V2", "V3"]
+    version: typing.Literal["PARSER_VERSION_UNSPECIFIED", "V1", "V2", "V3"]
 
 @typing.type_check_only
-class PatientId(typing_extensions.TypedDict, total=False):
+class PatientId(typing.TypedDict, total=False):
     type: str
     value: str
 
 @typing.type_check_only
-class PatientScope(typing_extensions.TypedDict, total=False):
+class PatientScope(typing.TypedDict, total=False):
     patientIds: _list[str]
 
 @typing.type_check_only
-class Policy(typing_extensions.TypedDict, total=False):
+class Policy(typing.TypedDict, total=False):
     auditConfigs: _list[AuditConfig]
     bindings: _list[Binding]
     etag: str
     version: int
 
 @typing.type_check_only
-class ProgressCounter(typing_extensions.TypedDict, total=False):
+class ProgressCounter(typing.TypedDict, total=False):
     failure: str
     pending: str
     secondaryFailure: str
@@ -862,51 +836,51 @@ class ProgressCounter(typing_extensions.TypedDict, total=False):
     success: str
 
 @typing.type_check_only
-class PubsubDestination(typing_extensions.TypedDict, total=False):
+class PubsubDestination(typing.TypedDict, total=False):
     pubsubTopic: str
 
 @typing.type_check_only
-class QueryAccessibleDataRequest(typing_extensions.TypedDict, total=False):
+class QueryAccessibleDataRequest(typing.TypedDict, total=False):
     gcsDestination: GoogleCloudHealthcareV1ConsentGcsDestination
     requestAttributes: dict[str, typing.Any]
     resourceAttributes: dict[str, typing.Any]
 
 @typing.type_check_only
-class QueryAccessibleDataResponse(typing_extensions.TypedDict, total=False):
+class QueryAccessibleDataResponse(typing.TypedDict, total=False):
     gcsUris: _list[str]
 
 @typing.type_check_only
-class RedactConfig(typing_extensions.TypedDict, total=False): ...
+class RedactConfig(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class RejectConsentRequest(typing_extensions.TypedDict, total=False):
+class RejectConsentRequest(typing.TypedDict, total=False):
     consentArtifact: str
 
 @typing.type_check_only
-class ReplaceWithInfoTypeConfig(typing_extensions.TypedDict, total=False): ...
+class ReplaceWithInfoTypeConfig(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Resources(typing_extensions.TypedDict, total=False):
+class Resources(typing.TypedDict, total=False):
     resources: _list[str]
 
 @typing.type_check_only
-class Result(typing_extensions.TypedDict, total=False):
+class Result(typing.TypedDict, total=False):
     consentDetails: dict[str, typing.Any]
     consented: bool
     dataId: str
 
 @typing.type_check_only
-class RevokeConsentRequest(typing_extensions.TypedDict, total=False):
+class RevokeConsentRequest(typing.TypedDict, total=False):
     consentArtifact: str
 
 @typing.type_check_only
-class RollbackFhirResourceFilteringFields(typing_extensions.TypedDict, total=False):
+class RollbackFhirResourceFilteringFields(typing.TypedDict, total=False):
     metadataFilter: str
     operationIds: _list[str]
 
 @typing.type_check_only
-class RollbackFhirResourcesRequest(typing_extensions.TypedDict, total=False):
-    changeType: typing_extensions.Literal[
+class RollbackFhirResourcesRequest(typing.TypedDict, total=False):
+    changeType: typing.Literal[
         "CHANGE_TYPE_UNSPECIFIED", "ALL", "CREATE", "UPDATE", "DELETE"
     ]
     excludeRollbacks: bool
@@ -918,16 +892,16 @@ class RollbackFhirResourcesRequest(typing_extensions.TypedDict, total=False):
     type: _list[str]
 
 @typing.type_check_only
-class RollbackFhirResourcesResponse(typing_extensions.TypedDict, total=False):
+class RollbackFhirResourcesResponse(typing.TypedDict, total=False):
     fhirStore: str
 
 @typing.type_check_only
-class RollbackHL7MessagesFilteringFields(typing_extensions.TypedDict, total=False):
+class RollbackHL7MessagesFilteringFields(typing.TypedDict, total=False):
     operationIds: _list[str]
 
 @typing.type_check_only
-class RollbackHl7V2MessagesRequest(typing_extensions.TypedDict, total=False):
-    changeType: typing_extensions.Literal[
+class RollbackHl7V2MessagesRequest(typing.TypedDict, total=False):
+    changeType: typing.Literal[
         "CHANGE_TYPE_UNSPECIFIED", "ALL", "CREATE", "UPDATE", "DELETE"
     ]
     excludeRollbacks: bool
@@ -938,22 +912,20 @@ class RollbackHl7V2MessagesRequest(typing_extensions.TypedDict, total=False):
     rollbackTime: str
 
 @typing.type_check_only
-class RollbackHl7V2MessagesResponse(typing_extensions.TypedDict, total=False):
+class RollbackHl7V2MessagesResponse(typing.TypedDict, total=False):
     hl7v2Store: str
 
 @typing.type_check_only
-class SchemaConfig(typing_extensions.TypedDict, total=False):
+class SchemaConfig(typing.TypedDict, total=False):
     lastUpdatedPartitionConfig: TimePartitioning
     recursiveStructureDepth: str
-    schemaType: typing_extensions.Literal[
-        "SCHEMA_TYPE_UNSPECIFIED", "ANALYTICS", "ANALYTICS_V2"
-    ]
+    schemaType: typing.Literal["SCHEMA_TYPE_UNSPECIFIED", "ANALYTICS", "ANALYTICS_V2"]
 
 @typing.type_check_only
-class SchemaFlattened(typing_extensions.TypedDict, total=False): ...
+class SchemaFlattened(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class SchemaGroup(typing_extensions.TypedDict, total=False):
+class SchemaGroup(typing.TypedDict, total=False):
     choice: bool
     maxOccurs: int
     members: _list[GroupOrSegment]
@@ -961,88 +933,88 @@ class SchemaGroup(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class SchemaJSON(typing_extensions.TypedDict, total=False): ...
+class SchemaJSON(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class SchemaPackage(typing_extensions.TypedDict, total=False):
+class SchemaPackage(typing.TypedDict, total=False):
     ignoreMinOccurs: bool
     schemas: _list[Hl7SchemaConfig]
-    schematizedParsingType: typing_extensions.Literal[
+    schematizedParsingType: typing.Literal[
         "SCHEMATIZED_PARSING_TYPE_UNSPECIFIED", "SOFT_FAIL", "HARD_FAIL"
     ]
     types: _list[Hl7TypesConfig]
-    unexpectedSegmentHandling: typing_extensions.Literal[
+    unexpectedSegmentHandling: typing.Literal[
         "UNEXPECTED_SEGMENT_HANDLING_MODE_UNSPECIFIED", "FAIL", "SKIP", "PARSE"
     ]
 
 @typing.type_check_only
-class SchemaSegment(typing_extensions.TypedDict, total=False):
+class SchemaSegment(typing.TypedDict, total=False):
     maxOccurs: int
     minOccurs: int
     type: str
 
 @typing.type_check_only
-class SchematizedData(typing_extensions.TypedDict, total=False):
+class SchematizedData(typing.TypedDict, total=False):
     data: str
     error: str
 
 @typing.type_check_only
-class Segment(typing_extensions.TypedDict, total=False):
+class Segment(typing.TypedDict, total=False):
     fields: dict[str, typing.Any]
     segmentId: str
     setId: str
 
 @typing.type_check_only
-class SeriesMetrics(typing_extensions.TypedDict, total=False):
+class SeriesMetrics(typing.TypedDict, total=False):
     blobStorageSizeBytes: str
     instanceCount: str
     series: str
     structuredStorageSizeBytes: str
 
 @typing.type_check_only
-class SetBlobStorageSettingsRequest(typing_extensions.TypedDict, total=False):
+class SetBlobStorageSettingsRequest(typing.TypedDict, total=False):
     blobStorageSettings: BlobStorageSettings
     filterConfig: DicomFilterConfig
 
 @typing.type_check_only
-class SetBlobStorageSettingsResponse(typing_extensions.TypedDict, total=False): ...
+class SetBlobStorageSettingsResponse(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
+class SetIamPolicyRequest(typing.TypedDict, total=False):
     policy: Policy
     updateMask: str
 
 @typing.type_check_only
-class Signature(typing_extensions.TypedDict, total=False):
+class Signature(typing.TypedDict, total=False):
     image: Image
     metadata: dict[str, typing.Any]
     signatureTime: str
     userId: str
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class StorageInfo(typing_extensions.TypedDict, total=False):
+class StorageInfo(typing.TypedDict, total=False):
     blobStorageInfo: BlobStorageInfo
     referencedResource: str
     structuredStorageInfo: StructuredStorageInfo
 
 @typing.type_check_only
-class StreamConfig(typing_extensions.TypedDict, total=False):
+class StreamConfig(typing.TypedDict, total=False):
     bigqueryDestination: GoogleCloudHealthcareV1FhirBigQueryDestination
     deidentifiedStoreDestination: DeidentifiedStoreDestination
     resourceTypes: _list[str]
 
 @typing.type_check_only
-class StructuredStorageInfo(typing_extensions.TypedDict, total=False):
+class StructuredStorageInfo(typing.TypedDict, total=False):
     sizeBytes: str
 
 @typing.type_check_only
-class StudyMetrics(typing_extensions.TypedDict, total=False):
+class StudyMetrics(typing.TypedDict, total=False):
     blobStorageSizeBytes: str
     instanceCount: str
     seriesCount: str
@@ -1050,50 +1022,48 @@ class StudyMetrics(typing_extensions.TypedDict, total=False):
     study: str
 
 @typing.type_check_only
-class TagFilterList(typing_extensions.TypedDict, total=False):
+class TagFilterList(typing.TypedDict, total=False):
     tags: _list[str]
 
 @typing.type_check_only
-class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
+class TestIamPermissionsRequest(typing.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
-class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
+class TestIamPermissionsResponse(typing.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
-class TextConfig(typing_extensions.TypedDict, total=False):
+class TextConfig(typing.TypedDict, total=False):
     additionalTransformations: _list[InfoTypeTransformation]
     excludeInfoTypes: _list[str]
     transformations: _list[InfoTypeTransformation]
 
 @typing.type_check_only
-class TextSpan(typing_extensions.TypedDict, total=False):
+class TextSpan(typing.TypedDict, total=False):
     beginOffset: int
     content: str
 
 @typing.type_check_only
-class TimePartitioning(typing_extensions.TypedDict, total=False):
+class TimePartitioning(typing.TypedDict, total=False):
     expirationMs: str
-    type: typing_extensions.Literal[
-        "PARTITION_TYPE_UNSPECIFIED", "HOUR", "DAY", "MONTH", "YEAR"
-    ]
+    type: typing.Literal["PARTITION_TYPE_UNSPECIFIED", "HOUR", "DAY", "MONTH", "YEAR"]
 
 @typing.type_check_only
-class TimeRange(typing_extensions.TypedDict, total=False):
+class TimeRange(typing.TypedDict, total=False):
     end: str
     start: str
 
 @typing.type_check_only
-class Type(typing_extensions.TypedDict, total=False):
+class Type(typing.TypedDict, total=False):
     fields: _list[Field]
     name: str
-    primitive: typing_extensions.Literal[
+    primitive: typing.Literal[
         "PRIMITIVE_UNSPECIFIED", "STRING", "VARIES", "UNESCAPED_STRING"
     ]
 
 @typing.type_check_only
-class UserDataMapping(typing_extensions.TypedDict, total=False):
+class UserDataMapping(typing.TypedDict, total=False):
     archiveTime: str
     archived: bool
     dataId: str
@@ -1102,7 +1072,7 @@ class UserDataMapping(typing_extensions.TypedDict, total=False):
     userId: str
 
 @typing.type_check_only
-class ValidationConfig(typing_extensions.TypedDict, total=False):
+class ValidationConfig(typing.TypedDict, total=False):
     disableFhirpathValidation: bool
     disableProfileValidation: bool
     disableReferenceTypeValidation: bool
@@ -1111,6 +1081,6 @@ class ValidationConfig(typing_extensions.TypedDict, total=False):
     enabledImplementationGuides: _list[str]
 
 @typing.type_check_only
-class VersionSource(typing_extensions.TypedDict, total=False):
+class VersionSource(typing.TypedDict, total=False):
     mshField: str
     value: str

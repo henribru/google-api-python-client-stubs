@@ -1,11 +1,9 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class Attributes(typing_extensions.TypedDict, total=False):
+class Attributes(typing.TypedDict, total=False):
     additionalImageLink: _list[Image]
     ageGroup: str
     brand: str
@@ -50,12 +48,12 @@ class Attributes(typing_extensions.TypedDict, total=False):
     virtualModelLink: str
 
 @typing.type_check_only
-class Capacity(typing_extensions.TypedDict, total=False):
+class Capacity(typing.TypedDict, total=False):
     unit: str
     value: str
 
 @typing.type_check_only
-class Certification(typing_extensions.TypedDict, total=False):
+class Certification(typing.TypedDict, total=False):
     authority: str
     code: str
     link: str
@@ -65,36 +63,34 @@ class Certification(typing_extensions.TypedDict, total=False):
     value: str
 
 @typing.type_check_only
-class Count(typing_extensions.TypedDict, total=False):
+class Count(typing.TypedDict, total=False):
     unit: str
     value: str
 
 @typing.type_check_only
-class DestinationStatus(typing_extensions.TypedDict, total=False):
+class DestinationStatus(typing.TypedDict, total=False):
     approvedCountries: _list[str]
     destination: str
     disapprovedCountries: _list[str]
     pendingCountries: _list[str]
-    status: typing_extensions.Literal["UNKNOWN", "ACTIVE", "PENDING", "DISAPPROVED"]
+    status: typing.Literal["UNKNOWN", "ACTIVE", "PENDING", "DISAPPROVED"]
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class FeatureDescription(typing_extensions.TypedDict, total=False):
+class FeatureDescription(typing.TypedDict, total=False):
     headline: str
     image: Image
     text: str
 
 @typing.type_check_only
-class FloatUnit(typing_extensions.TypedDict, total=False):
+class FloatUnit(typing.TypedDict, total=False):
     amount: float
     unit: str
 
 @typing.type_check_only
-class GoogleShoppingManufacturersV1ProductCertification(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleShoppingManufacturersV1ProductCertification(typing.TypedDict, total=False):
     authority: str
     code: str
     link: str
@@ -104,7 +100,7 @@ class GoogleShoppingManufacturersV1ProductCertification(
     value: str
 
 @typing.type_check_only
-class Grocery(typing_extensions.TypedDict, total=False):
+class Grocery(typing.TypedDict, total=False):
     activeIngredients: str
     alcoholByVolume: float
     allergens: str
@@ -116,9 +112,9 @@ class Grocery(typing_extensions.TypedDict, total=False):
     storageInstructions: str
 
 @typing.type_check_only
-class Image(typing_extensions.TypedDict, total=False):
+class Image(typing.TypedDict, total=False):
     imageUrl: str
-    status: typing_extensions.Literal[
+    status: typing.Literal[
         "STATUS_UNSPECIFIED",
         "PENDING_PROCESSING",
         "PENDING_CRAWL",
@@ -133,36 +129,34 @@ class Image(typing_extensions.TypedDict, total=False):
         "HOSTLOADED",
         "HTTP_404",
     ]
-    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "CRAWLED", "UPLOADED"]
+    type: typing.Literal["TYPE_UNSPECIFIED", "CRAWLED", "UPLOADED"]
 
 @typing.type_check_only
-class Issue(typing_extensions.TypedDict, total=False):
+class Issue(typing.TypedDict, total=False):
     applicableCountries: _list[str]
     attribute: str
     description: str
     destination: str
-    resolution: typing_extensions.Literal[
+    resolution: typing.Literal[
         "RESOLUTION_UNSPECIFIED", "USER_ACTION", "PENDING_PROCESSING"
     ]
-    severity: typing_extensions.Literal[
-        "SEVERITY_UNSPECIFIED", "ERROR", "WARNING", "INFO"
-    ]
+    severity: typing.Literal["SEVERITY_UNSPECIFIED", "ERROR", "WARNING", "INFO"]
     timestamp: str
     title: str
     type: str
 
 @typing.type_check_only
-class ListProductCertificationsResponse(typing_extensions.TypedDict, total=False):
+class ListProductCertificationsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     productCertifications: _list[ProductCertification]
 
 @typing.type_check_only
-class ListProductsResponse(typing_extensions.TypedDict, total=False):
+class ListProductsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     products: _list[Product]
 
 @typing.type_check_only
-class Nutrition(typing_extensions.TypedDict, total=False):
+class Nutrition(typing.TypedDict, total=False):
     addedSugars: FloatUnit
     addedSugarsDailyPercentage: float
     calcium: FloatUnit
@@ -208,12 +202,12 @@ class Nutrition(typing_extensions.TypedDict, total=False):
     voluntaryNutritionFact: _list[VoluntaryNutritionFact]
 
 @typing.type_check_only
-class Price(typing_extensions.TypedDict, total=False):
+class Price(typing.TypedDict, total=False):
     amount: str
     currency: str
 
 @typing.type_check_only
-class Product(typing_extensions.TypedDict, total=False):
+class Product(typing.TypedDict, total=False):
     attributes: Attributes
     contentLanguage: str
     destinationStatuses: _list[DestinationStatus]
@@ -225,7 +219,7 @@ class Product(typing_extensions.TypedDict, total=False):
     targetCountry: str
 
 @typing.type_check_only
-class ProductCertification(typing_extensions.TypedDict, total=False):
+class ProductCertification(typing.TypedDict, total=False):
     brand: str
     certification: _list[Certification]
     countryCode: _list[str]
@@ -238,13 +232,13 @@ class ProductCertification(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
-class ProductDetail(typing_extensions.TypedDict, total=False):
+class ProductDetail(typing.TypedDict, total=False):
     attributeName: str
     attributeValue: str
     sectionName: str
 
 @typing.type_check_only
-class VoluntaryNutritionFact(typing_extensions.TypedDict, total=False):
+class VoluntaryNutritionFact(typing.TypedDict, total=False):
     dailyPercentage: float
     name: str
     value: FloatUnit

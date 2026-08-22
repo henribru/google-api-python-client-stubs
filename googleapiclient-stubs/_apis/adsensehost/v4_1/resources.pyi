@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -149,8 +148,8 @@ class AdSenseHostResource(googleapiclient.discovery.Resource):
         def start(
             self,
             *,
-            productCode: typing_extensions.Literal["AFC", "AFG", "AFMC", "AFS", "AFV"]
-            | _list[typing_extensions.Literal["AFC", "AFG", "AFMC", "AFS", "AFV"]],
+            productCode: typing.Literal["AFC", "AFG", "AFMC", "AFS", "AFV"]
+            | _list[typing.Literal["AFC", "AFG", "AFMC", "AFS", "AFV"]],
             websiteUrl: str,
             callbackUrl: str | None = ...,
             userLocale: str | None = ...,

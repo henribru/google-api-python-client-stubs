@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -116,7 +115,7 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     notebookInstance: str,
-                    type: typing_extensions.Literal[
+                    type: typing.Literal[
                         "UPGRADE_TYPE_UNSPECIFIED",
                         "UPGRADE_FRAMEWORK",
                         "UPGRADE_OS",

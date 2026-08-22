@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -30,7 +29,7 @@ class Oauth2Resource(googleapiclient.discovery.Resource):
         self,
         *,
         access_token: str | None = ...,
-        alt: typing_extensions.Literal["json"] | None = ...,
+        alt: typing.Literal["json"] | None = ...,
         fields: str | None = ...,
         id_token: str | None = ...,
         key: str | None = ...,

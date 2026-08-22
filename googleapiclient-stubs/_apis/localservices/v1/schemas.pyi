@@ -1,13 +1,9 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class GoogleAdsHomeservicesLocalservicesV1AccountReport(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsHomeservicesLocalservicesV1AccountReport(typing.TypedDict, total=False):
     accountId: str
     aggregatorInfo: GoogleAdsHomeservicesLocalservicesV1AggregatorInfo
     averageFiveStarRating: float
@@ -27,15 +23,11 @@ class GoogleAdsHomeservicesLocalservicesV1AccountReport(
     totalReview: int
 
 @typing.type_check_only
-class GoogleAdsHomeservicesLocalservicesV1AggregatorInfo(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsHomeservicesLocalservicesV1AggregatorInfo(typing.TypedDict, total=False):
     aggregatorProviderId: str
 
 @typing.type_check_only
-class GoogleAdsHomeservicesLocalservicesV1BookingLead(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsHomeservicesLocalservicesV1BookingLead(typing.TypedDict, total=False):
     bookingAppointmentTimestamp: str
     consumerEmail: str
     consumerPhoneNumber: str
@@ -44,15 +36,13 @@ class GoogleAdsHomeservicesLocalservicesV1BookingLead(
 
 @typing.type_check_only
 class GoogleAdsHomeservicesLocalservicesV1DetailedLeadReport(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     accountId: str
     aggregatorInfo: GoogleAdsHomeservicesLocalservicesV1AggregatorInfo
     bookingLead: GoogleAdsHomeservicesLocalservicesV1BookingLead
     businessName: str
-    chargeStatus: typing_extensions.Literal[
-        "CHARGE_STATUS_UNSPECIFIED", "CHARGED", "NOT_CHARGED"
-    ]
+    chargeStatus: typing.Literal["CHARGE_STATUS_UNSPECIFIED", "CHARGED", "NOT_CHARGED"]
     currencyCode: str
     disputeStatus: str
     geo: str
@@ -61,7 +51,7 @@ class GoogleAdsHomeservicesLocalservicesV1DetailedLeadReport(
     leadCreationTimestamp: str
     leadId: str
     leadPrice: float
-    leadType: typing_extensions.Literal[
+    leadType: typing.Literal[
         "LEAD_TYPE_UNSPECIFIED", "MESSAGE", "PHONE_CALL", "BOOKING"
     ]
     messageLead: GoogleAdsHomeservicesLocalservicesV1MessageLead
@@ -69,37 +59,33 @@ class GoogleAdsHomeservicesLocalservicesV1DetailedLeadReport(
     timezone: GoogleTypeTimeZone
 
 @typing.type_check_only
-class GoogleAdsHomeservicesLocalservicesV1MessageLead(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsHomeservicesLocalservicesV1MessageLead(typing.TypedDict, total=False):
     consumerPhoneNumber: str
     customerName: str
     jobType: str
     postalCode: str
 
 @typing.type_check_only
-class GoogleAdsHomeservicesLocalservicesV1PhoneLead(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsHomeservicesLocalservicesV1PhoneLead(typing.TypedDict, total=False):
     chargedCallTimestamp: str
     chargedConnectedCallDurationSeconds: str
     consumerPhoneNumber: str
 
 @typing.type_check_only
 class GoogleAdsHomeservicesLocalservicesV1SearchAccountReportsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     accountReports: _list[GoogleAdsHomeservicesLocalservicesV1AccountReport]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleAdsHomeservicesLocalservicesV1SearchDetailedLeadReportsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     detailedLeadReports: _list[GoogleAdsHomeservicesLocalservicesV1DetailedLeadReport]
     nextPageToken: str
 
 @typing.type_check_only
-class GoogleTypeTimeZone(typing_extensions.TypedDict, total=False):
+class GoogleTypeTimeZone(typing.TypedDict, total=False):
     id: str
     version: str

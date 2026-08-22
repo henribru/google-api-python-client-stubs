@@ -1,13 +1,12 @@
 import types
 from email.generator import BytesGenerator
-from typing import Any, Protocol, TypeVar, overload
+from typing import Any, Literal, Protocol, TypeVar, overload
 
 import google.auth.credentials
 import httplib2
 import oauth2client  # type: ignore[import-not-found]
 from _typeshed import Incomplete
 from google.api_core.client_options import ClientOptions
-from typing_extensions import Literal
 
 from googleapiclient.discovery_cache.base import Cache
 from googleapiclient.http import HttpMock, HttpRequest

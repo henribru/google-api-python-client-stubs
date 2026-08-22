@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -26,7 +25,7 @@ class CloudCommercePartnerProcurementServiceResource(
                 self,
                 *,
                 name: str,
-                view: typing_extensions.Literal[
+                view: typing.Literal[
                     "ACCOUNT_VIEW_UNSPECIFIED",
                     "ACCOUNT_VIEW_BASIC",
                     "ACCOUNT_VIEW_FULL",

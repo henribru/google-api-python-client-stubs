@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -98,8 +97,7 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             self,
             *,
             enterpriseId: str,
-            keyType: typing_extensions.Literal["googleCredentials", "pkcs12"]
-            | None = ...,
+            keyType: typing.Literal["googleCredentials", "pkcs12"] | None = ...,
             **kwargs: typing.Any,
         ) -> ServiceAccountHttpRequest: ...
         def getStoreLayout(
@@ -111,9 +109,7 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
         def pullNotificationSet(
             self,
             *,
-            requestMode: typing_extensions.Literal[
-                "waitForNotifications", "returnImmediately"
-            ]
+            requestMode: typing.Literal["waitForNotifications", "returnImmediately"]
             | None = ...,
             **kwargs: typing.Any,
         ) -> NotificationSetHttpRequest: ...

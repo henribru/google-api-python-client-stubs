@@ -1,17 +1,15 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class AppendOnly(typing_extensions.TypedDict, total=False): ...
+class AppendOnly(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class AvroFileFormat(typing_extensions.TypedDict, total=False): ...
+class AvroFileFormat(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class BackfillAllStrategy(typing_extensions.TypedDict, total=False):
+class BackfillAllStrategy(typing.TypedDict, total=False):
     mongodbExcludedObjects: MongodbCluster
     mysqlExcludedObjects: MysqlRdbms
     oracleExcludedObjects: OracleRdbms
@@ -22,12 +20,12 @@ class BackfillAllStrategy(typing_extensions.TypedDict, total=False):
     sqlServerExcludedObjects: SqlServerRdbms
 
 @typing.type_check_only
-class BackfillJob(typing_extensions.TypedDict, total=False):
+class BackfillJob(typing.TypedDict, total=False):
     errors: _list[Error]
     eventFilter: EventFilter
     lastEndTime: str
     lastStartTime: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "NOT_STARTED",
         "PENDING",
@@ -37,24 +35,24 @@ class BackfillJob(typing_extensions.TypedDict, total=False):
         "COMPLETED",
         "UNSUPPORTED",
     ]
-    trigger: typing_extensions.Literal["TRIGGER_UNSPECIFIED", "AUTOMATIC", "MANUAL"]
+    trigger: typing.Literal["TRIGGER_UNSPECIFIED", "AUTOMATIC", "MANUAL"]
 
 @typing.type_check_only
-class BackfillNoneStrategy(typing_extensions.TypedDict, total=False): ...
+class BackfillNoneStrategy(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class BadRequest(typing_extensions.TypedDict, total=False):
+class BadRequest(typing.TypedDict, total=False):
     fieldViolations: _list[FieldViolation]
 
 @typing.type_check_only
-class BasicEncryption(typing_extensions.TypedDict, total=False): ...
+class BasicEncryption(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class BigQueryClustering(typing_extensions.TypedDict, total=False):
+class BigQueryClustering(typing.TypedDict, total=False):
     columns: _list[str]
 
 @typing.type_check_only
-class BigQueryDestinationConfig(typing_extensions.TypedDict, total=False):
+class BigQueryDestinationConfig(typing.TypedDict, total=False):
     appendOnly: AppendOnly
     blmtConfig: BlmtConfig
     dataFreshness: str
@@ -63,42 +61,42 @@ class BigQueryDestinationConfig(typing_extensions.TypedDict, total=False):
     sourceHierarchyDatasets: SourceHierarchyDatasets
 
 @typing.type_check_only
-class BigQueryPartitioning(typing_extensions.TypedDict, total=False):
+class BigQueryPartitioning(typing.TypedDict, total=False):
     ingestionTimePartition: IngestionTimePartition
     integerRangePartition: IntegerRangePartition
     requirePartitionFilter: bool
     timeUnitPartition: TimeUnitPartition
 
 @typing.type_check_only
-class BigQueryProfile(typing_extensions.TypedDict, total=False): ...
+class BigQueryProfile(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class BinaryLogParser(typing_extensions.TypedDict, total=False):
+class BinaryLogParser(typing.TypedDict, total=False):
     logFileDirectories: LogFileDirectories
     oracleAsmLogFileAccess: OracleAsmLogFileAccess
 
 @typing.type_check_only
-class BinaryLogPosition(typing_extensions.TypedDict, total=False): ...
+class BinaryLogPosition(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class BlmtConfig(typing_extensions.TypedDict, total=False):
+class BlmtConfig(typing.TypedDict, total=False):
     bucket: str
     connectionName: str
-    fileFormat: typing_extensions.Literal["FILE_FORMAT_UNSPECIFIED", "PARQUET"]
+    fileFormat: typing.Literal["FILE_FORMAT_UNSPECIFIED", "PARQUET"]
     rootPath: str
-    tableFormat: typing_extensions.Literal["TABLE_FORMAT_UNSPECIFIED", "ICEBERG"]
+    tableFormat: typing.Literal["TABLE_FORMAT_UNSPECIFIED", "ICEBERG"]
 
 @typing.type_check_only
-class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
+class CancelOperationRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class CdcStrategy(typing_extensions.TypedDict, total=False):
+class CdcStrategy(typing.TypedDict, total=False):
     mostRecentStartPosition: MostRecentStartPosition
     nextAvailableStartPosition: NextAvailableStartPosition
     specificStartPosition: SpecificStartPosition
 
 @typing.type_check_only
-class ConnectionProfile(typing_extensions.TypedDict, total=False):
+class ConnectionProfile(typing.TypedDict, total=False):
     bigqueryProfile: BigQueryProfile
     createTime: str
     dataverseProfile: DataverseProfile
@@ -121,43 +119,44 @@ class ConnectionProfile(typing_extensions.TypedDict, total=False):
     sqlServerProfile: SqlServerProfile
     staticServiceIpConnectivity: StaticServiceIpConnectivity
     updateTime: str
+    workdayProfile: WorkdayProfile
 
 @typing.type_check_only
-class CustomizationRule(typing_extensions.TypedDict, total=False):
+class CustomizationRule(typing.TypedDict, total=False):
     bigqueryClustering: BigQueryClustering
     bigqueryPartitioning: BigQueryPartitioning
 
 @typing.type_check_only
-class DatasetTemplate(typing_extensions.TypedDict, total=False):
+class DatasetTemplate(typing.TypedDict, total=False):
     datasetIdPrefix: str
     kmsKeyName: str
     location: str
 
 @typing.type_check_only
-class DataverseProfile(typing_extensions.TypedDict, total=False):
+class DataverseProfile(typing.TypedDict, total=False):
     environmentUrl: str
     oauthClientCredentials: OauthClientCredentials
     tenantId: str
 
 @typing.type_check_only
-class DataverseSourceConfig(typing_extensions.TypedDict, total=False):
+class DataverseSourceConfig(typing.TypedDict, total=False):
     excludeObjects: SourceCatalog
     includeObjects: SourceCatalog
     pollingInterval: str
 
 @typing.type_check_only
-class DebugInfo(typing_extensions.TypedDict, total=False):
+class DebugInfo(typing.TypedDict, total=False):
     detail: str
     stackEntries: _list[str]
 
 @typing.type_check_only
-class DestinationConfig(typing_extensions.TypedDict, total=False):
+class DestinationConfig(typing.TypedDict, total=False):
     bigqueryDestinationConfig: BigQueryDestinationConfig
     destinationConnectionProfile: str
     gcsDestinationConfig: GcsDestinationConfig
 
 @typing.type_check_only
-class DiscoverConnectionProfileRequest(typing_extensions.TypedDict, total=False):
+class DiscoverConnectionProfileRequest(typing.TypedDict, total=False):
     connectionProfile: ConnectionProfile
     connectionProfileName: str
     fullHierarchy: bool
@@ -172,7 +171,7 @@ class DiscoverConnectionProfileRequest(typing_extensions.TypedDict, total=False)
     sqlServerRdbms: SqlServerRdbms
 
 @typing.type_check_only
-class DiscoverConnectionProfileResponse(typing_extensions.TypedDict, total=False):
+class DiscoverConnectionProfileResponse(typing.TypedDict, total=False):
     mongodbCluster: MongodbCluster
     mysqlRdbms: MysqlRdbms
     oracleRdbms: OracleRdbms
@@ -183,21 +182,21 @@ class DiscoverConnectionProfileResponse(typing_extensions.TypedDict, total=False
     sqlServerRdbms: SqlServerRdbms
 
 @typing.type_check_only
-class DropLargeObjects(typing_extensions.TypedDict, total=False): ...
+class DropLargeObjects(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class EncryptionAndServerValidation(typing_extensions.TypedDict, total=False):
+class EncryptionAndServerValidation(typing.TypedDict, total=False):
     caCertificate: str
     serverCertificateHostname: str
 
 @typing.type_check_only
-class EncryptionNotEnforced(typing_extensions.TypedDict, total=False): ...
+class EncryptionNotEnforced(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Error(typing_extensions.TypedDict, total=False):
+class Error(typing.TypedDict, total=False):
     details: dict[str, typing.Any]
     errorTime: str
     errorUuid: str
@@ -205,29 +204,29 @@ class Error(typing_extensions.TypedDict, total=False):
     reason: str
 
 @typing.type_check_only
-class ErrorInfo(typing_extensions.TypedDict, total=False):
+class ErrorInfo(typing.TypedDict, total=False):
     domain: str
     metadata: dict[str, typing.Any]
     reason: str
 
 @typing.type_check_only
-class EventFilter(typing_extensions.TypedDict, total=False):
+class EventFilter(typing.TypedDict, total=False):
     sqlWhereClause: str
 
 @typing.type_check_only
-class FetchStaticIpsResponse(typing_extensions.TypedDict, total=False):
+class FetchStaticIpsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     staticIps: _list[str]
 
 @typing.type_check_only
-class FieldViolation(typing_extensions.TypedDict, total=False):
+class FieldViolation(typing.TypedDict, total=False):
     description: str
     field: str
     localizedMessage: LocalizedMessage
     reason: str
 
 @typing.type_check_only
-class ForwardSshTunnelConnectivity(typing_extensions.TypedDict, total=False):
+class ForwardSshTunnelConnectivity(typing.TypedDict, total=False):
     hostname: str
     password: str
     port: int
@@ -235,7 +234,7 @@ class ForwardSshTunnelConnectivity(typing_extensions.TypedDict, total=False):
     username: str
 
 @typing.type_check_only
-class GcsDestinationConfig(typing_extensions.TypedDict, total=False):
+class GcsDestinationConfig(typing.TypedDict, total=False):
     avroFileFormat: AvroFileFormat
     fileRotationInterval: str
     fileRotationMb: int
@@ -243,25 +242,25 @@ class GcsDestinationConfig(typing_extensions.TypedDict, total=False):
     path: str
 
 @typing.type_check_only
-class GcsProfile(typing_extensions.TypedDict, total=False):
+class GcsProfile(typing.TypedDict, total=False):
     bucket: str
     rootPath: str
 
 @typing.type_check_only
-class Gtid(typing_extensions.TypedDict, total=False): ...
+class Gtid(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Help(typing_extensions.TypedDict, total=False):
+class Help(typing.TypedDict, total=False):
     links: _list[Link]
 
 @typing.type_check_only
-class HostAddress(typing_extensions.TypedDict, total=False):
+class HostAddress(typing.TypedDict, total=False):
     hostname: str
     port: int
 
 @typing.type_check_only
-class IngestionTimePartition(typing_extensions.TypedDict, total=False):
-    partitioningTimeGranularity: typing_extensions.Literal[
+class IngestionTimePartition(typing.TypedDict, total=False):
+    partitioningTimeGranularity: typing.Literal[
         "PARTITIONING_TIME_GRANULARITY_UNSPECIFIED",
         "PARTITIONING_TIME_GRANULARITY_HOUR",
         "PARTITIONING_TIME_GRANULARITY_DAY",
@@ -270,73 +269,73 @@ class IngestionTimePartition(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class IntegerRangePartition(typing_extensions.TypedDict, total=False):
+class IntegerRangePartition(typing.TypedDict, total=False):
     column: str
     end: str
     interval: str
     start: str
 
 @typing.type_check_only
-class JsonFileFormat(typing_extensions.TypedDict, total=False):
-    compression: typing_extensions.Literal[
+class JsonFileFormat(typing.TypedDict, total=False):
+    compression: typing.Literal[
         "JSON_COMPRESSION_UNSPECIFIED", "NO_COMPRESSION", "GZIP"
     ]
-    schemaFileFormat: typing_extensions.Literal[
+    schemaFileFormat: typing.Literal[
         "SCHEMA_FILE_FORMAT_UNSPECIFIED", "NO_SCHEMA_FILE", "AVRO_SCHEMA_FILE"
     ]
 
 @typing.type_check_only
-class Link(typing_extensions.TypedDict, total=False):
+class Link(typing.TypedDict, total=False):
     description: str
     url: str
 
 @typing.type_check_only
-class ListConnectionProfilesResponse(typing_extensions.TypedDict, total=False):
+class ListConnectionProfilesResponse(typing.TypedDict, total=False):
     connectionProfiles: _list[ConnectionProfile]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListLocationsResponse(typing_extensions.TypedDict, total=False):
+class ListLocationsResponse(typing.TypedDict, total=False):
     locations: _list[Location]
     nextPageToken: str
 
 @typing.type_check_only
-class ListOperationsResponse(typing_extensions.TypedDict, total=False):
+class ListOperationsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListPrivateConnectionsResponse(typing_extensions.TypedDict, total=False):
+class ListPrivateConnectionsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     privateConnections: _list[PrivateConnection]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListRoutesResponse(typing_extensions.TypedDict, total=False):
+class ListRoutesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     routes: _list[Route]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListStreamObjectsResponse(typing_extensions.TypedDict, total=False):
+class ListStreamObjectsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     streamObjects: _list[StreamObject]
 
 @typing.type_check_only
-class ListStreamsResponse(typing_extensions.TypedDict, total=False):
+class ListStreamsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     streams: _list[Stream]
     unreachable: _list[str]
 
 @typing.type_check_only
-class LocalizedMessage(typing_extensions.TypedDict, total=False):
+class LocalizedMessage(typing.TypedDict, total=False):
     locale: str
     message: str
 
 @typing.type_check_only
-class Location(typing_extensions.TypedDict, total=False):
+class Location(typing.TypedDict, total=False):
     displayName: str
     labels: dict[str, typing.Any]
     locationId: str
@@ -344,49 +343,49 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class LogFileDirectories(typing_extensions.TypedDict, total=False):
+class LogFileDirectories(typing.TypedDict, total=False):
     archivedLogDirectory: str
     onlineLogDirectory: str
 
 @typing.type_check_only
-class LogMiner(typing_extensions.TypedDict, total=False): ...
+class LogMiner(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class LookupStreamObjectRequest(typing_extensions.TypedDict, total=False):
+class LookupStreamObjectRequest(typing.TypedDict, total=False):
     sourceObjectIdentifier: SourceObjectIdentifier
 
 @typing.type_check_only
-class Merge(typing_extensions.TypedDict, total=False): ...
+class Merge(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class MongodbChangeStreamPosition(typing_extensions.TypedDict, total=False):
+class MongodbChangeStreamPosition(typing.TypedDict, total=False):
     startTime: str
 
 @typing.type_check_only
-class MongodbCluster(typing_extensions.TypedDict, total=False):
+class MongodbCluster(typing.TypedDict, total=False):
     databases: _list[MongodbDatabase]
 
 @typing.type_check_only
-class MongodbCollection(typing_extensions.TypedDict, total=False):
+class MongodbCollection(typing.TypedDict, total=False):
     collection: str
     fields: _list[MongodbField]
 
 @typing.type_check_only
-class MongodbDatabase(typing_extensions.TypedDict, total=False):
+class MongodbDatabase(typing.TypedDict, total=False):
     collections: _list[MongodbCollection]
     database: str
 
 @typing.type_check_only
-class MongodbField(typing_extensions.TypedDict, total=False):
+class MongodbField(typing.TypedDict, total=False):
     field: str
 
 @typing.type_check_only
-class MongodbObjectIdentifier(typing_extensions.TypedDict, total=False):
+class MongodbObjectIdentifier(typing.TypedDict, total=False):
     collection: str
     database: str
 
 @typing.type_check_only
-class MongodbProfile(typing_extensions.TypedDict, total=False):
+class MongodbProfile(typing.TypedDict, total=False):
     additionalOptions: dict[str, typing.Any]
     hostAddresses: _list[HostAddress]
     password: str
@@ -398,16 +397,14 @@ class MongodbProfile(typing_extensions.TypedDict, total=False):
     username: str
 
 @typing.type_check_only
-class MongodbSourceConfig(typing_extensions.TypedDict, total=False):
+class MongodbSourceConfig(typing.TypedDict, total=False):
     excludeObjects: MongodbCluster
     includeObjects: MongodbCluster
-    jsonMode: typing_extensions.Literal[
-        "MONGODB_JSON_MODE_UNSPECIFIED", "STRICT", "CANONICAL"
-    ]
+    jsonMode: typing.Literal["MONGODB_JSON_MODE_UNSPECIFIED", "STRICT", "CANONICAL"]
     maxConcurrentBackfillTasks: int
 
 @typing.type_check_only
-class MongodbSslConfig(typing_extensions.TypedDict, total=False):
+class MongodbSslConfig(typing.TypedDict, total=False):
     caCertificate: str
     caCertificateSet: bool
     clientCertificate: str
@@ -417,10 +414,10 @@ class MongodbSslConfig(typing_extensions.TypedDict, total=False):
     secretManagerStoredClientKey: str
 
 @typing.type_check_only
-class MostRecentStartPosition(typing_extensions.TypedDict, total=False): ...
+class MostRecentStartPosition(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class MysqlColumn(typing_extensions.TypedDict, total=False):
+class MysqlColumn(typing.TypedDict, total=False):
     collation: str
     column: str
     dataType: str
@@ -432,26 +429,26 @@ class MysqlColumn(typing_extensions.TypedDict, total=False):
     scale: int
 
 @typing.type_check_only
-class MysqlDatabase(typing_extensions.TypedDict, total=False):
+class MysqlDatabase(typing.TypedDict, total=False):
     database: str
     mysqlTables: _list[MysqlTable]
 
 @typing.type_check_only
-class MysqlGtidPosition(typing_extensions.TypedDict, total=False):
+class MysqlGtidPosition(typing.TypedDict, total=False):
     gtidSet: str
 
 @typing.type_check_only
-class MysqlLogPosition(typing_extensions.TypedDict, total=False):
+class MysqlLogPosition(typing.TypedDict, total=False):
     logFile: str
     logPosition: int
 
 @typing.type_check_only
-class MysqlObjectIdentifier(typing_extensions.TypedDict, total=False):
+class MysqlObjectIdentifier(typing.TypedDict, total=False):
     database: str
     table: str
 
 @typing.type_check_only
-class MysqlProfile(typing_extensions.TypedDict, total=False):
+class MysqlProfile(typing.TypedDict, total=False):
     hostname: str
     password: str
     port: int
@@ -460,11 +457,11 @@ class MysqlProfile(typing_extensions.TypedDict, total=False):
     username: str
 
 @typing.type_check_only
-class MysqlRdbms(typing_extensions.TypedDict, total=False):
+class MysqlRdbms(typing.TypedDict, total=False):
     mysqlDatabases: _list[MysqlDatabase]
 
 @typing.type_check_only
-class MysqlSourceConfig(typing_extensions.TypedDict, total=False):
+class MysqlSourceConfig(typing.TypedDict, total=False):
     binaryLogPosition: BinaryLogPosition
     excludeObjects: MysqlRdbms
     gtid: Gtid
@@ -473,7 +470,7 @@ class MysqlSourceConfig(typing_extensions.TypedDict, total=False):
     maxConcurrentCdcTasks: int
 
 @typing.type_check_only
-class MysqlSslConfig(typing_extensions.TypedDict, total=False):
+class MysqlSslConfig(typing.TypedDict, total=False):
     caCertificate: str
     caCertificateSet: bool
     clientCertificate: str
@@ -482,30 +479,35 @@ class MysqlSslConfig(typing_extensions.TypedDict, total=False):
     clientKeySet: bool
 
 @typing.type_check_only
-class MysqlTable(typing_extensions.TypedDict, total=False):
+class MysqlTable(typing.TypedDict, total=False):
     mysqlColumns: _list[MysqlColumn]
     table: str
 
 @typing.type_check_only
-class NextAvailableStartPosition(typing_extensions.TypedDict, total=False): ...
+class NextAvailableStartPosition(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Oauth2ClientCredentials(typing_extensions.TypedDict, total=False):
+class Oauth2ClientCredentials(typing.TypedDict, total=False):
     clientId: str
     clientSecret: str
     secretManagerStoredClientSecret: str
 
 @typing.type_check_only
-class OauthClientCredentials(typing_extensions.TypedDict, total=False):
+class OauthClientCredentials(typing.TypedDict, total=False):
     clientId: str
     clientSecret: Secret
 
 @typing.type_check_only
-class ObjectFilter(typing_extensions.TypedDict, total=False):
+class OauthRefreshTokenCredentials(typing.TypedDict, total=False):
+    oauthClientCredentials: OauthClientCredentials
+    refreshToken: Secret
+
+@typing.type_check_only
+class ObjectFilter(typing.TypedDict, total=False):
     sourceObjectIdentifier: SourceObjectIdentifier
 
 @typing.type_check_only
-class Operation(typing_extensions.TypedDict, total=False):
+class Operation(typing.TypedDict, total=False):
     done: bool
     error: Status
     metadata: dict[str, typing.Any]
@@ -513,7 +515,7 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class OperationMetadata(typing_extensions.TypedDict, total=False):
+class OperationMetadata(typing.TypedDict, total=False):
     apiVersion: str
     createTime: str
     endTime: str
@@ -524,7 +526,7 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
-class OracleAsmConfig(typing_extensions.TypedDict, total=False):
+class OracleAsmConfig(typing.TypedDict, total=False):
     asmService: str
     connectionAttributes: dict[str, typing.Any]
     hostname: str
@@ -535,10 +537,10 @@ class OracleAsmConfig(typing_extensions.TypedDict, total=False):
     username: str
 
 @typing.type_check_only
-class OracleAsmLogFileAccess(typing_extensions.TypedDict, total=False): ...
+class OracleAsmLogFileAccess(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class OracleColumn(typing_extensions.TypedDict, total=False):
+class OracleColumn(typing.TypedDict, total=False):
     column: str
     dataType: str
     encoding: str
@@ -550,12 +552,12 @@ class OracleColumn(typing_extensions.TypedDict, total=False):
     scale: int
 
 @typing.type_check_only
-class OracleObjectIdentifier(typing_extensions.TypedDict, total=False):
+class OracleObjectIdentifier(typing.TypedDict, total=False):
     schema: str
     table: str
 
 @typing.type_check_only
-class OracleProfile(typing_extensions.TypedDict, total=False):
+class OracleProfile(typing.TypedDict, total=False):
     connectionAttributes: dict[str, typing.Any]
     databaseService: str
     hostname: str
@@ -567,20 +569,20 @@ class OracleProfile(typing_extensions.TypedDict, total=False):
     username: str
 
 @typing.type_check_only
-class OracleRdbms(typing_extensions.TypedDict, total=False):
+class OracleRdbms(typing.TypedDict, total=False):
     oracleSchemas: _list[OracleSchema]
 
 @typing.type_check_only
-class OracleSchema(typing_extensions.TypedDict, total=False):
+class OracleSchema(typing.TypedDict, total=False):
     oracleTables: _list[OracleTable]
     schema: str
 
 @typing.type_check_only
-class OracleScnPosition(typing_extensions.TypedDict, total=False):
+class OracleScnPosition(typing.TypedDict, total=False):
     scn: str
 
 @typing.type_check_only
-class OracleSourceConfig(typing_extensions.TypedDict, total=False):
+class OracleSourceConfig(typing.TypedDict, total=False):
     binaryLogParser: BinaryLogParser
     dropLargeObjects: DropLargeObjects
     excludeObjects: OracleRdbms
@@ -591,18 +593,18 @@ class OracleSourceConfig(typing_extensions.TypedDict, total=False):
     streamLargeObjects: StreamLargeObjects
 
 @typing.type_check_only
-class OracleSslConfig(typing_extensions.TypedDict, total=False):
+class OracleSslConfig(typing.TypedDict, total=False):
     caCertificate: str
     caCertificateSet: bool
     serverCertificateDistinguishedName: str
 
 @typing.type_check_only
-class OracleTable(typing_extensions.TypedDict, total=False):
+class OracleTable(typing.TypedDict, total=False):
     oracleColumns: _list[OracleColumn]
     table: str
 
 @typing.type_check_only
-class PostgresqlColumn(typing_extensions.TypedDict, total=False):
+class PostgresqlColumn(typing.TypedDict, total=False):
     column: str
     dataType: str
     length: int
@@ -613,12 +615,12 @@ class PostgresqlColumn(typing_extensions.TypedDict, total=False):
     scale: int
 
 @typing.type_check_only
-class PostgresqlObjectIdentifier(typing_extensions.TypedDict, total=False):
+class PostgresqlObjectIdentifier(typing.TypedDict, total=False):
     schema: str
     table: str
 
 @typing.type_check_only
-class PostgresqlProfile(typing_extensions.TypedDict, total=False):
+class PostgresqlProfile(typing.TypedDict, total=False):
     database: str
     hostname: str
     password: str
@@ -628,16 +630,16 @@ class PostgresqlProfile(typing_extensions.TypedDict, total=False):
     username: str
 
 @typing.type_check_only
-class PostgresqlRdbms(typing_extensions.TypedDict, total=False):
+class PostgresqlRdbms(typing.TypedDict, total=False):
     postgresqlSchemas: _list[PostgresqlSchema]
 
 @typing.type_check_only
-class PostgresqlSchema(typing_extensions.TypedDict, total=False):
+class PostgresqlSchema(typing.TypedDict, total=False):
     postgresqlTables: _list[PostgresqlTable]
     schema: str
 
 @typing.type_check_only
-class PostgresqlSourceConfig(typing_extensions.TypedDict, total=False):
+class PostgresqlSourceConfig(typing.TypedDict, total=False):
     excludeObjects: PostgresqlRdbms
     includeObjects: PostgresqlRdbms
     maxConcurrentBackfillTasks: int
@@ -645,27 +647,27 @@ class PostgresqlSourceConfig(typing_extensions.TypedDict, total=False):
     replicationSlot: str
 
 @typing.type_check_only
-class PostgresqlSslConfig(typing_extensions.TypedDict, total=False):
+class PostgresqlSslConfig(typing.TypedDict, total=False):
     serverAndClientVerification: ServerAndClientVerification
     serverVerification: ServerVerification
 
 @typing.type_check_only
-class PostgresqlTable(typing_extensions.TypedDict, total=False):
+class PostgresqlTable(typing.TypedDict, total=False):
     postgresqlColumns: _list[PostgresqlColumn]
     table: str
 
 @typing.type_check_only
-class PreconditionFailure(typing_extensions.TypedDict, total=False):
+class PreconditionFailure(typing.TypedDict, total=False):
     violations: _list[PreconditionFailureViolation]
 
 @typing.type_check_only
-class PreconditionFailureViolation(typing_extensions.TypedDict, total=False):
+class PreconditionFailureViolation(typing.TypedDict, total=False):
     description: str
     subject: str
     type: str
 
 @typing.type_check_only
-class PrivateConnection(typing_extensions.TypedDict, total=False):
+class PrivateConnection(typing.TypedDict, total=False):
     createTime: str
     displayName: str
     error: Error
@@ -674,7 +676,7 @@ class PrivateConnection(typing_extensions.TypedDict, total=False):
     pscInterfaceConfig: PscInterfaceConfig
     satisfiesPzi: bool
     satisfiesPzs: bool
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "CREATING",
         "CREATED",
@@ -686,19 +688,19 @@ class PrivateConnection(typing_extensions.TypedDict, total=False):
     vpcPeeringConfig: VpcPeeringConfig
 
 @typing.type_check_only
-class PrivateConnectivity(typing_extensions.TypedDict, total=False):
+class PrivateConnectivity(typing.TypedDict, total=False):
     privateConnection: str
 
 @typing.type_check_only
-class PscInterfaceConfig(typing_extensions.TypedDict, total=False):
+class PscInterfaceConfig(typing.TypedDict, total=False):
     networkAttachment: str
 
 @typing.type_check_only
-class QuotaFailure(typing_extensions.TypedDict, total=False):
+class QuotaFailure(typing.TypedDict, total=False):
     violations: _list[QuotaFailureViolation]
 
 @typing.type_check_only
-class QuotaFailureViolation(typing_extensions.TypedDict, total=False):
+class QuotaFailureViolation(typing.TypedDict, total=False):
     apiService: str
     description: str
     futureQuotaValue: str
@@ -709,23 +711,23 @@ class QuotaFailureViolation(typing_extensions.TypedDict, total=False):
     subject: str
 
 @typing.type_check_only
-class RequestInfo(typing_extensions.TypedDict, total=False):
+class RequestInfo(typing.TypedDict, total=False):
     requestId: str
     servingData: str
 
 @typing.type_check_only
-class ResourceInfo(typing_extensions.TypedDict, total=False):
+class ResourceInfo(typing.TypedDict, total=False):
     description: str
     owner: str
     resourceName: str
     resourceType: str
 
 @typing.type_check_only
-class RetryInfo(typing_extensions.TypedDict, total=False):
+class RetryInfo(typing.TypedDict, total=False):
     retryDelay: str
 
 @typing.type_check_only
-class Route(typing_extensions.TypedDict, total=False):
+class Route(typing.TypedDict, total=False):
     createTime: str
     destinationAddress: str
     destinationPort: int
@@ -735,97 +737,97 @@ class Route(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class RuleSet(typing_extensions.TypedDict, total=False):
+class RuleSet(typing.TypedDict, total=False):
     customizationRules: _list[CustomizationRule]
     objectFilter: ObjectFilter
 
 @typing.type_check_only
-class RunStreamRequest(typing_extensions.TypedDict, total=False):
+class RunStreamRequest(typing.TypedDict, total=False):
     cdcStrategy: CdcStrategy
     force: bool
 
 @typing.type_check_only
-class SalesforceField(typing_extensions.TypedDict, total=False):
+class SalesforceField(typing.TypedDict, total=False):
     dataType: str
     name: str
     nillable: bool
 
 @typing.type_check_only
-class SalesforceMarketingCloudProfile(typing_extensions.TypedDict, total=False):
+class SalesforceMarketingCloudProfile(typing.TypedDict, total=False):
     oauthClientCredentials: OauthClientCredentials
     subdomain: str
 
 @typing.type_check_only
-class SalesforceMarketingCloudSourceConfig(typing_extensions.TypedDict, total=False):
+class SalesforceMarketingCloudSourceConfig(typing.TypedDict, total=False):
     excludeObjects: SourceCatalog
     fullRefreshPollingInterval: str
     includeObjects: SourceCatalog
     pollingInterval: str
 
 @typing.type_check_only
-class SalesforceObject(typing_extensions.TypedDict, total=False):
+class SalesforceObject(typing.TypedDict, total=False):
     fields: _list[SalesforceField]
     objectName: str
 
 @typing.type_check_only
-class SalesforceObjectIdentifier(typing_extensions.TypedDict, total=False):
+class SalesforceObjectIdentifier(typing.TypedDict, total=False):
     objectName: str
 
 @typing.type_check_only
-class SalesforceOrg(typing_extensions.TypedDict, total=False):
+class SalesforceOrg(typing.TypedDict, total=False):
     objects: _list[SalesforceObject]
 
 @typing.type_check_only
-class SalesforceProfile(typing_extensions.TypedDict, total=False):
+class SalesforceProfile(typing.TypedDict, total=False):
     domain: str
     oauth2ClientCredentials: Oauth2ClientCredentials
     userCredentials: UserCredentials
 
 @typing.type_check_only
-class SalesforceSourceConfig(typing_extensions.TypedDict, total=False):
+class SalesforceSourceConfig(typing.TypedDict, total=False):
     excludeObjects: SalesforceOrg
     includeObjects: SalesforceOrg
     pollingInterval: str
 
 @typing.type_check_only
-class Secret(typing_extensions.TypedDict, total=False):
+class Secret(typing.TypedDict, total=False):
     rawValue: str
     secretVersion: str
 
 @typing.type_check_only
-class ServerAndClientVerification(typing_extensions.TypedDict, total=False):
+class ServerAndClientVerification(typing.TypedDict, total=False):
     caCertificate: str
     clientCertificate: str
     clientKey: str
     serverCertificateHostname: str
 
 @typing.type_check_only
-class ServerVerification(typing_extensions.TypedDict, total=False):
+class ServerVerification(typing.TypedDict, total=False):
     caCertificate: str
     serverCertificateHostname: str
 
 @typing.type_check_only
-class ServiceNowProfile(typing_extensions.TypedDict, total=False):
+class ServiceNowProfile(typing.TypedDict, total=False):
     instance: str
     oauthClientCredentials: OauthClientCredentials
     userPasswordCredentials: UserPasswordCredentials
 
 @typing.type_check_only
-class ServiceNowSourceConfig(typing_extensions.TypedDict, total=False):
+class ServiceNowSourceConfig(typing.TypedDict, total=False):
     excludeObjects: SourceCatalog
     includeObjects: SourceCatalog
     pollingInterval: str
 
 @typing.type_check_only
-class SingleTargetDataset(typing_extensions.TypedDict, total=False):
+class SingleTargetDataset(typing.TypedDict, total=False):
     datasetId: str
 
 @typing.type_check_only
-class SourceCatalog(typing_extensions.TypedDict, total=False):
+class SourceCatalog(typing.TypedDict, total=False):
     objects: _list[SourceObject]
 
 @typing.type_check_only
-class SourceConfig(typing_extensions.TypedDict, total=False):
+class SourceConfig(typing.TypedDict, total=False):
     dataverseSourceConfig: DataverseSourceConfig
     mongodbSourceConfig: MongodbSourceConfig
     mysqlSourceConfig: MysqlSourceConfig
@@ -837,19 +839,20 @@ class SourceConfig(typing_extensions.TypedDict, total=False):
     sourceConnectionProfile: str
     spannerSourceConfig: SpannerSourceConfig
     sqlServerSourceConfig: SqlServerSourceConfig
+    workdaySourceConfig: WorkdaySourceConfig
 
 @typing.type_check_only
-class SourceHierarchyDatasets(typing_extensions.TypedDict, total=False):
+class SourceHierarchyDatasets(typing.TypedDict, total=False):
     datasetTemplate: DatasetTemplate
     projectId: str
 
 @typing.type_check_only
-class SourceObject(typing_extensions.TypedDict, total=False):
+class SourceObject(typing.TypedDict, total=False):
     objectName: str
     properties: _list[SourceProperty]
 
 @typing.type_check_only
-class SourceObjectIdentifier(typing_extensions.TypedDict, total=False):
+class SourceObjectIdentifier(typing.TypedDict, total=False):
     mongodbIdentifier: MongodbObjectIdentifier
     mysqlIdentifier: MysqlObjectIdentifier
     oracleIdentifier: OracleObjectIdentifier
@@ -859,43 +862,43 @@ class SourceObjectIdentifier(typing_extensions.TypedDict, total=False):
     sqlServerIdentifier: SqlServerObjectIdentifier
 
 @typing.type_check_only
-class SourceProperty(typing_extensions.TypedDict, total=False):
+class SourceProperty(typing.TypedDict, total=False):
     primaryKey: bool
     properties: _list[SourceProperty]
     propertyName: str
 
 @typing.type_check_only
-class SpannerChangeStreamPosition(typing_extensions.TypedDict, total=False):
+class SpannerChangeStreamPosition(typing.TypedDict, total=False):
     startTime: str
 
 @typing.type_check_only
-class SpannerColumn(typing_extensions.TypedDict, total=False):
+class SpannerColumn(typing.TypedDict, total=False):
     column: str
     dataType: str
     isPrimaryKey: bool
     ordinalPosition: str
 
 @typing.type_check_only
-class SpannerDatabase(typing_extensions.TypedDict, total=False):
+class SpannerDatabase(typing.TypedDict, total=False):
     schemas: _list[SpannerSchema]
 
 @typing.type_check_only
-class SpannerObjectIdentifier(typing_extensions.TypedDict, total=False):
+class SpannerObjectIdentifier(typing.TypedDict, total=False):
     schema: str
     table: str
 
 @typing.type_check_only
-class SpannerProfile(typing_extensions.TypedDict, total=False):
+class SpannerProfile(typing.TypedDict, total=False):
     database: str
     host: str
 
 @typing.type_check_only
-class SpannerSchema(typing_extensions.TypedDict, total=False):
+class SpannerSchema(typing.TypedDict, total=False):
     schema: str
     tables: _list[SpannerTable]
 
 @typing.type_check_only
-class SpannerSourceConfig(typing_extensions.TypedDict, total=False):
+class SpannerSourceConfig(typing.TypedDict, total=False):
     backfillDataBoostEnabled: bool
     changeStreamName: str
     excludeObjects: SpannerDatabase
@@ -903,17 +906,17 @@ class SpannerSourceConfig(typing_extensions.TypedDict, total=False):
     includeObjects: SpannerDatabase
     maxConcurrentBackfillTasks: int
     maxConcurrentCdcTasks: int
-    spannerRpcPriority: typing_extensions.Literal[
+    spannerRpcPriority: typing.Literal[
         "SPANNER_RPC_PRIORITY_UNSPECIFIED", "LOW", "MEDIUM", "HIGH"
     ]
 
 @typing.type_check_only
-class SpannerTable(typing_extensions.TypedDict, total=False):
+class SpannerTable(typing.TypedDict, total=False):
     columns: _list[SpannerColumn]
     table: str
 
 @typing.type_check_only
-class SpecificStartPosition(typing_extensions.TypedDict, total=False):
+class SpecificStartPosition(typing.TypedDict, total=False):
     mongodbChangeStreamPosition: MongodbChangeStreamPosition
     mysqlGtidPosition: MysqlGtidPosition
     mysqlLogPosition: MysqlLogPosition
@@ -922,10 +925,10 @@ class SpecificStartPosition(typing_extensions.TypedDict, total=False):
     sqlServerLsnPosition: SqlServerLsnPosition
 
 @typing.type_check_only
-class SqlServerChangeTables(typing_extensions.TypedDict, total=False): ...
+class SqlServerChangeTables(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class SqlServerColumn(typing_extensions.TypedDict, total=False):
+class SqlServerColumn(typing.TypedDict, total=False):
     column: str
     dataType: str
     length: int
@@ -936,16 +939,16 @@ class SqlServerColumn(typing_extensions.TypedDict, total=False):
     scale: int
 
 @typing.type_check_only
-class SqlServerLsnPosition(typing_extensions.TypedDict, total=False):
+class SqlServerLsnPosition(typing.TypedDict, total=False):
     lsn: str
 
 @typing.type_check_only
-class SqlServerObjectIdentifier(typing_extensions.TypedDict, total=False):
+class SqlServerObjectIdentifier(typing.TypedDict, total=False):
     schema: str
     table: str
 
 @typing.type_check_only
-class SqlServerProfile(typing_extensions.TypedDict, total=False):
+class SqlServerProfile(typing.TypedDict, total=False):
     database: str
     hostname: str
     password: str
@@ -955,16 +958,16 @@ class SqlServerProfile(typing_extensions.TypedDict, total=False):
     username: str
 
 @typing.type_check_only
-class SqlServerRdbms(typing_extensions.TypedDict, total=False):
+class SqlServerRdbms(typing.TypedDict, total=False):
     schemas: _list[SqlServerSchema]
 
 @typing.type_check_only
-class SqlServerSchema(typing_extensions.TypedDict, total=False):
+class SqlServerSchema(typing.TypedDict, total=False):
     schema: str
     tables: _list[SqlServerTable]
 
 @typing.type_check_only
-class SqlServerSourceConfig(typing_extensions.TypedDict, total=False):
+class SqlServerSourceConfig(typing.TypedDict, total=False):
     changeTables: SqlServerChangeTables
     excludeObjects: SqlServerRdbms
     includeObjects: SqlServerRdbms
@@ -973,52 +976,52 @@ class SqlServerSourceConfig(typing_extensions.TypedDict, total=False):
     transactionLogs: SqlServerTransactionLogs
 
 @typing.type_check_only
-class SqlServerSslConfig(typing_extensions.TypedDict, total=False):
+class SqlServerSslConfig(typing.TypedDict, total=False):
     basicEncryption: BasicEncryption
     encryptionAndServerValidation: EncryptionAndServerValidation
     encryptionNotEnforced: EncryptionNotEnforced
 
 @typing.type_check_only
-class SqlServerTable(typing_extensions.TypedDict, total=False):
+class SqlServerTable(typing.TypedDict, total=False):
     columns: _list[SqlServerColumn]
     table: str
 
 @typing.type_check_only
-class SqlServerTransactionLogs(typing_extensions.TypedDict, total=False): ...
+class SqlServerTransactionLogs(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class SrvConnectionFormat(typing_extensions.TypedDict, total=False): ...
+class SrvConnectionFormat(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class StandardConnectionFormat(typing_extensions.TypedDict, total=False):
+class StandardConnectionFormat(typing.TypedDict, total=False):
     directConnection: bool
 
 @typing.type_check_only
-class StartBackfillJobRequest(typing_extensions.TypedDict, total=False):
+class StartBackfillJobRequest(typing.TypedDict, total=False):
     eventFilter: EventFilter
 
 @typing.type_check_only
-class StartBackfillJobResponse(typing_extensions.TypedDict, total=False):
+class StartBackfillJobResponse(typing.TypedDict, total=False):
     object: StreamObject
 
 @typing.type_check_only
-class StaticServiceIpConnectivity(typing_extensions.TypedDict, total=False): ...
+class StaticServiceIpConnectivity(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class StopBackfillJobRequest(typing_extensions.TypedDict, total=False): ...
+class StopBackfillJobRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class StopBackfillJobResponse(typing_extensions.TypedDict, total=False):
+class StopBackfillJobResponse(typing.TypedDict, total=False):
     object: StreamObject
 
 @typing.type_check_only
-class Stream(typing_extensions.TypedDict, total=False):
+class Stream(typing.TypedDict, total=False):
     backfillAll: BackfillAllStrategy
     backfillNone: BackfillNoneStrategy
     createTime: str
@@ -1033,7 +1036,7 @@ class Stream(typing_extensions.TypedDict, total=False):
     satisfiesPzi: bool
     satisfiesPzs: bool
     sourceConfig: SourceConfig
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "NOT_STARTED",
         "RUNNING",
@@ -1047,10 +1050,10 @@ class Stream(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class StreamLargeObjects(typing_extensions.TypedDict, total=False): ...
+class StreamLargeObjects(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class StreamObject(typing_extensions.TypedDict, total=False):
+class StreamObject(typing.TypedDict, total=False):
     backfillJob: BackfillJob
     createTime: str
     customizationRules: _list[CustomizationRule]
@@ -1061,9 +1064,9 @@ class StreamObject(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class TimeUnitPartition(typing_extensions.TypedDict, total=False):
+class TimeUnitPartition(typing.TypedDict, total=False):
     column: str
-    partitioningTimeGranularity: typing_extensions.Literal[
+    partitioningTimeGranularity: typing.Literal[
         "PARTITIONING_TIME_GRANULARITY_UNSPECIFIED",
         "PARTITIONING_TIME_GRANULARITY_HOUR",
         "PARTITIONING_TIME_GRANULARITY_DAY",
@@ -1072,7 +1075,7 @@ class TimeUnitPartition(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class UserCredentials(typing_extensions.TypedDict, total=False):
+class UserCredentials(typing.TypedDict, total=False):
     password: str
     secretManagerStoredPassword: str
     secretManagerStoredSecurityToken: str
@@ -1080,31 +1083,43 @@ class UserCredentials(typing_extensions.TypedDict, total=False):
     username: str
 
 @typing.type_check_only
-class UserPasswordCredentials(typing_extensions.TypedDict, total=False):
+class UserPasswordCredentials(typing.TypedDict, total=False):
     password: Secret
     username: str
 
 @typing.type_check_only
-class Validation(typing_extensions.TypedDict, total=False):
+class Validation(typing.TypedDict, total=False):
     code: str
     description: str
     message: _list[ValidationMessage]
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED", "NOT_EXECUTED", "FAILED", "PASSED", "WARNING"
     ]
 
 @typing.type_check_only
-class ValidationMessage(typing_extensions.TypedDict, total=False):
+class ValidationMessage(typing.TypedDict, total=False):
     code: str
-    level: typing_extensions.Literal["LEVEL_UNSPECIFIED", "WARNING", "ERROR"]
+    level: typing.Literal["LEVEL_UNSPECIFIED", "WARNING", "ERROR"]
     message: str
     metadata: dict[str, typing.Any]
 
 @typing.type_check_only
-class ValidationResult(typing_extensions.TypedDict, total=False):
+class ValidationResult(typing.TypedDict, total=False):
     validations: _list[Validation]
 
 @typing.type_check_only
-class VpcPeeringConfig(typing_extensions.TypedDict, total=False):
+class VpcPeeringConfig(typing.TypedDict, total=False):
     subnet: str
     vpc: str
+
+@typing.type_check_only
+class WorkdayProfile(typing.TypedDict, total=False):
+    host: str
+    oauthRefreshTokenCredentials: OauthRefreshTokenCredentials
+    tenant: str
+
+@typing.type_check_only
+class WorkdaySourceConfig(typing.TypedDict, total=False):
+    excludeObjects: SourceCatalog
+    includeObjects: SourceCatalog
+    pollingInterval: str

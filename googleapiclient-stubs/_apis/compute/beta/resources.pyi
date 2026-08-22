@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -1193,7 +1192,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             forwardingRule: str,
-            view: typing_extensions.Literal["BASIC", "FULL"] | None = ...,
+            view: typing.Literal["BASIC", "FULL"] | None = ...,
             **kwargs: typing.Any,
         ) -> ForwardingRuleHttpRequest: ...
         def insert(
@@ -1424,7 +1423,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             forwardingRule: str,
-            view: typing_extensions.Literal["BASIC", "FULL"] | None = ...,
+            view: typing.Literal["BASIC", "FULL"] | None = ...,
             **kwargs: typing.Any,
         ) -> ForwardingRuleHttpRequest: ...
         def insert(
@@ -2659,9 +2658,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             instanceTemplate: str,
-            view: typing_extensions.Literal[
-                "BASIC", "FULL", "INSTANCE_VIEW_UNSPECIFIED"
-            ]
+            view: typing.Literal["BASIC", "FULL", "INSTANCE_VIEW_UNSPECIFIED"]
             | None = ...,
             **kwargs: typing.Any,
         ) -> InstanceTemplateHttpRequest: ...
@@ -2690,9 +2687,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             orderBy: str | None = ...,
             pageToken: str | None = ...,
             returnPartialSuccess: bool | None = ...,
-            view: typing_extensions.Literal[
-                "BASIC", "FULL", "INSTANCE_VIEW_UNSPECIFIED"
-            ]
+            view: typing.Literal["BASIC", "FULL", "INSTANCE_VIEW_UNSPECIFIED"]
             | None = ...,
             **kwargs: typing.Any,
         ) -> InstanceTemplateListHttpRequest: ...
@@ -2836,9 +2831,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             instance: str,
-            view: typing_extensions.Literal[
-                "BASIC", "FULL", "INSTANCE_VIEW_UNSPECIFIED"
-            ]
+            view: typing.Literal["BASIC", "FULL", "INSTANCE_VIEW_UNSPECIFIED"]
             | None = ...,
             **kwargs: typing.Any,
         ) -> InstanceHttpRequest: ...
@@ -2919,9 +2912,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             orderBy: str | None = ...,
             pageToken: str | None = ...,
             returnPartialSuccess: bool | None = ...,
-            view: typing_extensions.Literal[
-                "BASIC", "FULL", "INSTANCE_VIEW_UNSPECIFIED"
-            ]
+            view: typing.Literal["BASIC", "FULL", "INSTANCE_VIEW_UNSPECIFIED"]
             | None = ...,
             **kwargs: typing.Any,
         ) -> InstanceListHttpRequest: ...
@@ -3226,11 +3217,9 @@ class ComputeResource(googleapiclient.discovery.Resource):
             instance: str,
             body: Instance,
             discardLocalSsd: bool | None = ...,
-            minimalAction: typing_extensions.Literal[
-                "INVALID", "NO_EFFECT", "REFRESH", "RESTART"
-            ]
+            minimalAction: typing.Literal["INVALID", "NO_EFFECT", "REFRESH", "RESTART"]
             | None = ...,
-            mostDisruptiveAllowedAction: typing_extensions.Literal[
+            mostDisruptiveAllowedAction: typing.Literal[
                 "INVALID", "NO_EFFECT", "REFRESH", "RESTART"
             ]
             | None = ...,
@@ -4048,6 +4037,28 @@ class ComputeResource(googleapiclient.discovery.Resource):
         ) -> MachineTypeListHttpRequest | None: ...
 
     @typing.type_check_only
+    class ManagedRulesetsResource(googleapiclient.discovery.Resource):
+        def get(
+            self, *, project: str, managedRuleset: str, **kwargs: typing.Any
+        ) -> ManagedRulesetHttpRequest: ...
+        def list(
+            self,
+            *,
+            project: str,
+            filter: str | None = ...,
+            maxResults: int | None = ...,
+            orderBy: str | None = ...,
+            pageToken: str | None = ...,
+            returnPartialSuccess: bool | None = ...,
+            **kwargs: typing.Any,
+        ) -> ManagedRulesetListHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ManagedRulesetListHttpRequest,
+            previous_response: ManagedRulesetList,
+        ) -> ManagedRulesetListHttpRequest | None: ...
+
+    @typing.type_check_only
     class NetworkAttachmentsResource(googleapiclient.discovery.Resource):
         def aggregatedList(
             self,
@@ -4606,7 +4617,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             network: str,
-            direction: typing_extensions.Literal["INCOMING", "OUTGOING"] | None = ...,
+            direction: typing.Literal["INCOMING", "OUTGOING"] | None = ...,
             filter: str | None = ...,
             maxResults: int | None = ...,
             orderBy: str | None = ...,
@@ -7042,9 +7053,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             instanceTemplate: str,
-            view: typing_extensions.Literal[
-                "BASIC", "FULL", "INSTANCE_VIEW_UNSPECIFIED"
-            ]
+            view: typing.Literal["BASIC", "FULL", "INSTANCE_VIEW_UNSPECIFIED"]
             | None = ...,
             **kwargs: typing.Any,
         ) -> InstanceTemplateHttpRequest: ...
@@ -7067,9 +7076,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             orderBy: str | None = ...,
             pageToken: str | None = ...,
             returnPartialSuccess: bool | None = ...,
-            view: typing_extensions.Literal[
-                "BASIC", "FULL", "INSTANCE_VIEW_UNSPECIFIED"
-            ]
+            view: typing.Literal["BASIC", "FULL", "INSTANCE_VIEW_UNSPECIFIED"]
             | None = ...,
             **kwargs: typing.Any,
         ) -> InstanceTemplateListHttpRequest: ...
@@ -8492,6 +8499,28 @@ class ComputeResource(googleapiclient.discovery.Resource):
         ) -> RegionListHttpRequest | None: ...
 
     @typing.type_check_only
+    class ReliabilityRisksResource(googleapiclient.discovery.Resource):
+        def get(
+            self, *, project: str, reliabilityRisk: str, **kwargs: typing.Any
+        ) -> ReliabilityRiskHttpRequest: ...
+        def list(
+            self,
+            *,
+            project: str,
+            filter: str | None = ...,
+            maxResults: int | None = ...,
+            orderBy: str | None = ...,
+            pageToken: str | None = ...,
+            returnPartialSuccess: bool | None = ...,
+            **kwargs: typing.Any,
+        ) -> ReliabilityRisksListResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ReliabilityRisksListResponseHttpRequest,
+            previous_response: ReliabilityRisksListResponse,
+        ) -> ReliabilityRisksListResponseHttpRequest | None: ...
+
+    @typing.type_check_only
     class ReservationBlocksResource(googleapiclient.discovery.Resource):
         def get(
             self,
@@ -8500,7 +8529,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             zone: str,
             reservation: str,
             reservationBlock: str,
-            view: typing_extensions.Literal["BASIC", "BLOCK_VIEW_UNSPECIFIED", "FULL"]
+            view: typing.Literal["BASIC", "BLOCK_VIEW_UNSPECIFIED", "FULL"]
             | None = ...,
             **kwargs: typing.Any,
         ) -> ReservationBlocksGetResponseHttpRequest: ...
@@ -8625,7 +8654,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             zone: str,
             parentName: str,
             reservationSubBlock: str,
-            view: typing_extensions.Literal[
+            view: typing.Literal[
                 "SUB_BLOCK_VIEW_BASIC",
                 "SUB_BLOCK_VIEW_FULL",
                 "SUB_BLOCK_VIEW_UNSPECIFIED",
@@ -9169,9 +9198,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             router: str,
-            addressFamily: typing_extensions.Literal[
-                "IPV4", "IPV6", "UNSPECIFIED_IP_VERSION"
-            ]
+            addressFamily: typing.Literal["IPV4", "IPV6", "UNSPECIFIED_IP_VERSION"]
             | None = ...,
             destinationPrefix: str | None = ...,
             filter: str | None = ...,
@@ -9181,9 +9208,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             peer: str | None = ...,
             policyApplied: bool | None = ...,
             returnPartialSuccess: bool | None = ...,
-            routeType: typing_extensions.Literal[
-                "ADVERTISED", "LEARNED", "UNSPECIFIED_ROUTE_TYPE"
-            ]
+            routeType: typing.Literal["ADVERTISED", "LEARNED", "UNSPECIFIED_ROUTE_TYPE"]
             | None = ...,
             **kwargs: typing.Any,
         ) -> RoutersListBgpRoutesHttpRequest: ...
@@ -10074,8 +10099,8 @@ class ComputeResource(googleapiclient.discovery.Resource):
             pageToken: str | None = ...,
             returnPartialSuccess: bool | None = ...,
             serviceProjectNumber: str | None = ...,
-            views: typing_extensions.Literal["DEFAULT", "WITH_UTILIZATION"]
-            | _list[typing_extensions.Literal["DEFAULT", "WITH_UTILIZATION"]]
+            views: typing.Literal["DEFAULT", "WITH_UTILIZATION"]
+            | _list[typing.Literal["DEFAULT", "WITH_UTILIZATION"]]
             | None = ...,
             **kwargs: typing.Any,
         ) -> SubnetworkAggregatedListHttpRequest: ...
@@ -10109,8 +10134,8 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             subnetwork: str,
-            views: typing_extensions.Literal["DEFAULT", "WITH_UTILIZATION"]
-            | _list[typing_extensions.Literal["DEFAULT", "WITH_UTILIZATION"]]
+            views: typing.Literal["DEFAULT", "WITH_UTILIZATION"]
+            | _list[typing.Literal["DEFAULT", "WITH_UTILIZATION"]]
             | None = ...,
             **kwargs: typing.Any,
         ) -> SubnetworkHttpRequest: ...
@@ -10142,8 +10167,8 @@ class ComputeResource(googleapiclient.discovery.Resource):
             orderBy: str | None = ...,
             pageToken: str | None = ...,
             returnPartialSuccess: bool | None = ...,
-            views: typing_extensions.Literal["DEFAULT", "WITH_UTILIZATION"]
-            | _list[typing_extensions.Literal["DEFAULT", "WITH_UTILIZATION"]]
+            views: typing.Literal["DEFAULT", "WITH_UTILIZATION"]
+            | _list[typing.Literal["DEFAULT", "WITH_UTILIZATION"]]
             | None = ...,
             **kwargs: typing.Any,
         ) -> SubnetworkListHttpRequest: ...
@@ -11419,6 +11444,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
     def licenses(self) -> LicensesResource: ...
     def machineImages(self) -> MachineImagesResource: ...
     def machineTypes(self) -> MachineTypesResource: ...
+    def managedRulesets(self) -> ManagedRulesetsResource: ...
     def networkAttachments(self) -> NetworkAttachmentsResource: ...
     def networkEdgeSecurityServices(self) -> NetworkEdgeSecurityServicesResource: ...
     def networkEndpointGroups(self) -> NetworkEndpointGroupsResource: ...
@@ -11480,6 +11506,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
     def regionUrlMaps(self) -> RegionUrlMapsResource: ...
     def regionZones(self) -> RegionZonesResource: ...
     def regions(self) -> RegionsResource: ...
+    def reliabilityRisks(self) -> ReliabilityRisksResource: ...
     def reservationBlocks(self) -> ReservationBlocksResource: ...
     def reservationSlots(self) -> ReservationSlotsResource: ...
     def reservationSubBlocks(self) -> ReservationSubBlocksResource: ...
@@ -12606,6 +12633,22 @@ class MachineTypeListHttpRequest(googleapiclient.http.HttpRequest):
     ) -> MachineTypeList: ...
 
 @typing.type_check_only
+class ManagedRulesetHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ManagedRuleset: ...
+
+@typing.type_check_only
+class ManagedRulesetListHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ManagedRulesetList: ...
+
+@typing.type_check_only
 class MultiMigHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -13184,6 +13227,22 @@ class RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponse: ...
+
+@typing.type_check_only
+class ReliabilityRiskHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ReliabilityRisk: ...
+
+@typing.type_check_only
+class ReliabilityRisksListResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ReliabilityRisksListResponse: ...
 
 @typing.type_check_only
 class ReservationHttpRequest(googleapiclient.http.HttpRequest):

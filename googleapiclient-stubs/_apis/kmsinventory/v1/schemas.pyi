@@ -1,20 +1,14 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class GoogleCloudKmsInventoryV1ListCryptoKeysResponse(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudKmsInventoryV1ListCryptoKeysResponse(typing.TypedDict, total=False):
     cryptoKeys: _list[GoogleCloudKmsV1CryptoKey]
     nextPageToken: str
 
 @typing.type_check_only
-class GoogleCloudKmsInventoryV1ProtectedResource(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudKmsInventoryV1ProtectedResource(typing.TypedDict, total=False):
     cloudProduct: str
     createTime: str
     cryptoKeyVersion: str
@@ -27,9 +21,7 @@ class GoogleCloudKmsInventoryV1ProtectedResource(
     resourceType: str
 
 @typing.type_check_only
-class GoogleCloudKmsInventoryV1ProtectedResourcesSummary(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudKmsInventoryV1ProtectedResourcesSummary(typing.TypedDict, total=False):
     cloudProducts: dict[str, typing.Any]
     locations: dict[str, typing.Any]
     name: str
@@ -40,15 +32,15 @@ class GoogleCloudKmsInventoryV1ProtectedResourcesSummary(
 
 @typing.type_check_only
 class GoogleCloudKmsInventoryV1SearchProtectedResourcesResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     nextPageToken: str
     protectedResources: _list[GoogleCloudKmsInventoryV1ProtectedResource]
 
 @typing.type_check_only
-class GoogleCloudKmsInventoryV1Warning(typing_extensions.TypedDict, total=False):
+class GoogleCloudKmsInventoryV1Warning(typing.TypedDict, total=False):
     displayMessage: str
-    warningCode: typing_extensions.Literal[
+    warningCode: typing.Literal[
         "WARNING_CODE_UNSPECIFIED",
         "INSUFFICIENT_PERMISSIONS_PARTIAL_DATA",
         "RESOURCE_LIMIT_EXCEEDED_PARTIAL_DATA",
@@ -56,7 +48,7 @@ class GoogleCloudKmsInventoryV1Warning(typing_extensions.TypedDict, total=False)
     ]
 
 @typing.type_check_only
-class GoogleCloudKmsV1CryptoKey(typing_extensions.TypedDict, total=False):
+class GoogleCloudKmsV1CryptoKey(typing.TypedDict, total=False):
     createTime: str
     cryptoKeyBackend: str
     destroyScheduledDuration: str
@@ -66,7 +58,7 @@ class GoogleCloudKmsV1CryptoKey(typing_extensions.TypedDict, total=False):
     name: str
     nextRotationTime: str
     primary: GoogleCloudKmsV1CryptoKeyVersion
-    purpose: typing_extensions.Literal[
+    purpose: typing.Literal[
         "CRYPTO_KEY_PURPOSE_UNSPECIFIED",
         "ENCRYPT_DECRYPT",
         "ASYMMETRIC_SIGN",
@@ -74,13 +66,14 @@ class GoogleCloudKmsV1CryptoKey(typing_extensions.TypedDict, total=False):
         "RAW_ENCRYPT_DECRYPT",
         "MAC",
         "KEY_ENCAPSULATION",
+        "AES_WRAPPING",
     ]
     rotationPeriod: str
     versionTemplate: GoogleCloudKmsV1CryptoKeyVersionTemplate
 
 @typing.type_check_only
-class GoogleCloudKmsV1CryptoKeyVersion(typing_extensions.TypedDict, total=False):
-    algorithm: typing_extensions.Literal[
+class GoogleCloudKmsV1CryptoKeyVersion(typing.TypedDict, total=False):
+    algorithm: typing.Literal[
         "CRYPTO_KEY_VERSION_ALGORITHM_UNSPECIFIED",
         "GOOGLE_SYMMETRIC_ENCRYPTION",
         "AES_128_GCM",
@@ -128,6 +121,9 @@ class GoogleCloudKmsV1CryptoKeyVersion(typing_extensions.TypedDict, total=False)
         "PQ_SIGN_ML_DSA_44_EXTERNAL_MU",
         "PQ_SIGN_ML_DSA_65_EXTERNAL_MU",
         "PQ_SIGN_ML_DSA_87_EXTERNAL_MU",
+        "KEM_ECDH_P256",
+        "KEM_ECDH_P384",
+        "AES_256_KWP",
     ]
     attestation: GoogleCloudKmsV1KeyOperationAttestation
     createTime: str
@@ -137,11 +133,12 @@ class GoogleCloudKmsV1CryptoKeyVersion(typing_extensions.TypedDict, total=False)
     externalProtectionLevelOptions: GoogleCloudKmsV1ExternalProtectionLevelOptions
     generateTime: str
     generationFailureReason: str
+    hsmTrusted: bool
     importFailureReason: str
     importJob: str
     importTime: str
     name: str
-    protectionLevel: typing_extensions.Literal[
+    protectionLevel: typing.Literal[
         "PROTECTION_LEVEL_UNSPECIFIED",
         "SOFTWARE",
         "HSM",
@@ -150,7 +147,7 @@ class GoogleCloudKmsV1CryptoKeyVersion(typing_extensions.TypedDict, total=False)
         "HSM_SINGLE_TENANT",
     ]
     reimportEligible: bool
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "CRYPTO_KEY_VERSION_STATE_UNSPECIFIED",
         "PENDING_GENERATION",
         "ENABLED",
@@ -163,12 +160,11 @@ class GoogleCloudKmsV1CryptoKeyVersion(typing_extensions.TypedDict, total=False)
         "PENDING_EXTERNAL_DESTRUCTION",
         "EXTERNAL_DESTRUCTION_FAILED",
     ]
+    trustedWrappingEnabled: bool
 
 @typing.type_check_only
-class GoogleCloudKmsV1CryptoKeyVersionTemplate(
-    typing_extensions.TypedDict, total=False
-):
-    algorithm: typing_extensions.Literal[
+class GoogleCloudKmsV1CryptoKeyVersionTemplate(typing.TypedDict, total=False):
+    algorithm: typing.Literal[
         "CRYPTO_KEY_VERSION_ALGORITHM_UNSPECIFIED",
         "GOOGLE_SYMMETRIC_ENCRYPTION",
         "AES_128_GCM",
@@ -216,8 +212,11 @@ class GoogleCloudKmsV1CryptoKeyVersionTemplate(
         "PQ_SIGN_ML_DSA_44_EXTERNAL_MU",
         "PQ_SIGN_ML_DSA_65_EXTERNAL_MU",
         "PQ_SIGN_ML_DSA_87_EXTERNAL_MU",
+        "KEM_ECDH_P256",
+        "KEM_ECDH_P384",
+        "AES_256_KWP",
     ]
-    protectionLevel: typing_extensions.Literal[
+    protectionLevel: typing.Literal[
         "PROTECTION_LEVEL_UNSPECIFIED",
         "SOFTWARE",
         "HSM",
@@ -227,18 +226,15 @@ class GoogleCloudKmsV1CryptoKeyVersionTemplate(
     ]
 
 @typing.type_check_only
-class GoogleCloudKmsV1ExternalProtectionLevelOptions(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudKmsV1ExternalProtectionLevelOptions(typing.TypedDict, total=False):
+    ekmConnectionBackendOverride: str
     ekmConnectionKeyPath: str
     externalKeyUri: str
 
 @typing.type_check_only
-class GoogleCloudKmsV1KeyAccessJustificationsPolicy(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudKmsV1KeyAccessJustificationsPolicy(typing.TypedDict, total=False):
     allowedAccessReasons: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "REASON_UNSPECIFIED",
             "CUSTOMER_INITIATED_SUPPORT",
             "GOOGLE_INITIATED_SERVICE",
@@ -255,16 +251,16 @@ class GoogleCloudKmsV1KeyAccessJustificationsPolicy(
     ]
 
 @typing.type_check_only
-class GoogleCloudKmsV1KeyOperationAttestation(typing_extensions.TypedDict, total=False):
+class GoogleCloudKmsV1KeyOperationAttestation(typing.TypedDict, total=False):
     certChains: GoogleCloudKmsV1KeyOperationAttestationCertificateChains
     content: str
-    format: typing_extensions.Literal[
+    format: typing.Literal[
         "ATTESTATION_FORMAT_UNSPECIFIED", "CAVIUM_V1_COMPRESSED", "CAVIUM_V2_COMPRESSED"
     ]
 
 @typing.type_check_only
 class GoogleCloudKmsV1KeyOperationAttestationCertificateChains(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     caviumCerts: _list[str]
     googleCardCerts: _list[str]

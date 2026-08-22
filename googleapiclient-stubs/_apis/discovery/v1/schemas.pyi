@@ -1,16 +1,14 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class DirectoryList(typing_extensions.TypedDict, total=False):
+class DirectoryList(typing.TypedDict, total=False):
     discoveryVersion: str
     items: _list[dict[str, typing.Any]]
     kind: str
 
-AlternativeJsonSchema = typing_extensions.TypedDict(
+AlternativeJsonSchema = typing.TypedDict(
     "AlternativeJsonSchema",
     {
         "$ref": str,
@@ -43,7 +41,7 @@ AlternativeJsonSchema = typing_extensions.TypedDict(
 class JsonSchema(AlternativeJsonSchema): ...
 
 @typing.type_check_only
-class RestDescription(typing_extensions.TypedDict, total=False):
+class RestDescription(typing.TypedDict, total=False):
     auth: dict[str, typing.Any]
     basePath: str
     baseUrl: str
@@ -77,7 +75,7 @@ class RestDescription(typing_extensions.TypedDict, total=False):
     version_module: bool
 
 @typing.type_check_only
-class RestMethod(typing_extensions.TypedDict, total=False):
+class RestMethod(typing.TypedDict, total=False):
     apiVersion: str
     deprecated: bool
     description: str
@@ -98,7 +96,7 @@ class RestMethod(typing_extensions.TypedDict, total=False):
     useMediaDownloadService: bool
 
 @typing.type_check_only
-class RestResource(typing_extensions.TypedDict, total=False):
+class RestResource(typing.TypedDict, total=False):
     deprecated: bool
     methods: dict[str, typing.Any]
     resources: dict[str, typing.Any]

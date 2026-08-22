@@ -1,11 +1,9 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class CreateAuthUriResponse(typing_extensions.TypedDict, total=False):
+class CreateAuthUriResponse(typing.TypedDict, total=False):
     allProviders: _list[str]
     authUri: str
     captchaRequired: bool
@@ -17,17 +15,17 @@ class CreateAuthUriResponse(typing_extensions.TypedDict, total=False):
     signinMethods: _list[str]
 
 @typing.type_check_only
-class DeleteAccountResponse(typing_extensions.TypedDict, total=False):
+class DeleteAccountResponse(typing.TypedDict, total=False):
     kind: str
 
 @typing.type_check_only
-class DownloadAccountResponse(typing_extensions.TypedDict, total=False):
+class DownloadAccountResponse(typing.TypedDict, total=False):
     kind: str
     nextPageToken: str
     users: _list[UserInfo]
 
 @typing.type_check_only
-class EmailLinkSigninResponse(typing_extensions.TypedDict, total=False):
+class EmailLinkSigninResponse(typing.TypedDict, total=False):
     email: str
     expiresIn: str
     idToken: str
@@ -36,7 +34,7 @@ class EmailLinkSigninResponse(typing_extensions.TypedDict, total=False):
     localId: str
     refreshToken: str
 
-AlternativeEmailTemplate = typing_extensions.TypedDict(
+AlternativeEmailTemplate = typing.TypedDict(
     "AlternativeEmailTemplate",
     {
         "body": str,
@@ -53,26 +51,24 @@ AlternativeEmailTemplate = typing_extensions.TypedDict(
 class EmailTemplate(AlternativeEmailTemplate): ...
 
 @typing.type_check_only
-class GetAccountInfoResponse(typing_extensions.TypedDict, total=False):
+class GetAccountInfoResponse(typing.TypedDict, total=False):
     kind: str
     users: _list[UserInfo]
 
 @typing.type_check_only
-class GetOobConfirmationCodeResponse(typing_extensions.TypedDict, total=False):
+class GetOobConfirmationCodeResponse(typing.TypedDict, total=False):
     email: str
     kind: str
     oobCode: str
 
 @typing.type_check_only
-class GetRecaptchaParamResponse(typing_extensions.TypedDict, total=False):
+class GetRecaptchaParamResponse(typing.TypedDict, total=False):
     kind: str
     recaptchaSiteKey: str
     recaptchaStoken: str
 
 @typing.type_check_only
-class IdentitytoolkitRelyingpartyCreateAuthUriRequest(
-    typing_extensions.TypedDict, total=False
-):
+class IdentitytoolkitRelyingpartyCreateAuthUriRequest(typing.TypedDict, total=False):
     appId: str
     authFlowType: str
     clientId: str
@@ -91,34 +87,26 @@ class IdentitytoolkitRelyingpartyCreateAuthUriRequest(
     tenantProjectNumber: str
 
 @typing.type_check_only
-class IdentitytoolkitRelyingpartyDeleteAccountRequest(
-    typing_extensions.TypedDict, total=False
-):
+class IdentitytoolkitRelyingpartyDeleteAccountRequest(typing.TypedDict, total=False):
     delegatedProjectNumber: str
     idToken: str
     localId: str
 
 @typing.type_check_only
-class IdentitytoolkitRelyingpartyDownloadAccountRequest(
-    typing_extensions.TypedDict, total=False
-):
+class IdentitytoolkitRelyingpartyDownloadAccountRequest(typing.TypedDict, total=False):
     delegatedProjectNumber: str
     maxResults: int
     nextPageToken: str
     targetProjectId: str
 
 @typing.type_check_only
-class IdentitytoolkitRelyingpartyEmailLinkSigninRequest(
-    typing_extensions.TypedDict, total=False
-):
+class IdentitytoolkitRelyingpartyEmailLinkSigninRequest(typing.TypedDict, total=False):
     email: str
     idToken: str
     oobCode: str
 
 @typing.type_check_only
-class IdentitytoolkitRelyingpartyGetAccountInfoRequest(
-    typing_extensions.TypedDict, total=False
-):
+class IdentitytoolkitRelyingpartyGetAccountInfoRequest(typing.TypedDict, total=False):
     delegatedProjectNumber: str
     email: _list[str]
     idToken: str
@@ -127,7 +115,7 @@ class IdentitytoolkitRelyingpartyGetAccountInfoRequest(
 
 @typing.type_check_only
 class IdentitytoolkitRelyingpartyGetProjectConfigResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     allowPasswordUser: bool
     apiKey: str
@@ -146,9 +134,7 @@ class IdentitytoolkitRelyingpartyGetProjectConfigResponse(
 class IdentitytoolkitRelyingpartyGetPublicKeysResponse(dict[str, typing.Any]): ...
 
 @typing.type_check_only
-class IdentitytoolkitRelyingpartyResetPasswordRequest(
-    typing_extensions.TypedDict, total=False
-):
+class IdentitytoolkitRelyingpartyResetPasswordRequest(typing.TypedDict, total=False):
     email: str
     newPassword: str
     oldPassword: str
@@ -156,7 +142,7 @@ class IdentitytoolkitRelyingpartyResetPasswordRequest(
 
 @typing.type_check_only
 class IdentitytoolkitRelyingpartySendVerificationCodeRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     iosReceipt: str
     iosSecret: str
@@ -165,14 +151,12 @@ class IdentitytoolkitRelyingpartySendVerificationCodeRequest(
 
 @typing.type_check_only
 class IdentitytoolkitRelyingpartySendVerificationCodeResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     sessionInfo: str
 
 @typing.type_check_only
-class IdentitytoolkitRelyingpartySetAccountInfoRequest(
-    typing_extensions.TypedDict, total=False
-):
+class IdentitytoolkitRelyingpartySetAccountInfoRequest(typing.TypedDict, total=False):
     captchaChallenge: str
     captchaResponse: str
     createdAt: str
@@ -198,9 +182,7 @@ class IdentitytoolkitRelyingpartySetAccountInfoRequest(
     validSince: str
 
 @typing.type_check_only
-class IdentitytoolkitRelyingpartySetProjectConfigRequest(
-    typing_extensions.TypedDict, total=False
-):
+class IdentitytoolkitRelyingpartySetProjectConfigRequest(typing.TypedDict, total=False):
     allowPasswordUser: bool
     apiKey: str
     authorizedDomains: _list[str]
@@ -215,27 +197,21 @@ class IdentitytoolkitRelyingpartySetProjectConfigRequest(
 
 @typing.type_check_only
 class IdentitytoolkitRelyingpartySetProjectConfigResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     projectId: str
 
 @typing.type_check_only
-class IdentitytoolkitRelyingpartySignOutUserRequest(
-    typing_extensions.TypedDict, total=False
-):
+class IdentitytoolkitRelyingpartySignOutUserRequest(typing.TypedDict, total=False):
     instanceId: str
     localId: str
 
 @typing.type_check_only
-class IdentitytoolkitRelyingpartySignOutUserResponse(
-    typing_extensions.TypedDict, total=False
-):
+class IdentitytoolkitRelyingpartySignOutUserResponse(typing.TypedDict, total=False):
     localId: str
 
 @typing.type_check_only
-class IdentitytoolkitRelyingpartySignupNewUserRequest(
-    typing_extensions.TypedDict, total=False
-):
+class IdentitytoolkitRelyingpartySignupNewUserRequest(typing.TypedDict, total=False):
     captchaChallenge: str
     captchaResponse: str
     disabled: bool
@@ -252,9 +228,7 @@ class IdentitytoolkitRelyingpartySignupNewUserRequest(
     tenantProjectNumber: str
 
 @typing.type_check_only
-class IdentitytoolkitRelyingpartyUploadAccountRequest(
-    typing_extensions.TypedDict, total=False
-):
+class IdentitytoolkitRelyingpartyUploadAccountRequest(typing.TypedDict, total=False):
     allowOverwrite: bool
     blockSize: int
     cpuMemCost: int
@@ -271,9 +245,7 @@ class IdentitytoolkitRelyingpartyUploadAccountRequest(
     users: _list[UserInfo]
 
 @typing.type_check_only
-class IdentitytoolkitRelyingpartyVerifyAssertionRequest(
-    typing_extensions.TypedDict, total=False
-):
+class IdentitytoolkitRelyingpartyVerifyAssertionRequest(typing.TypedDict, total=False):
     autoCreate: bool
     delegatedProjectNumber: str
     idToken: str
@@ -290,7 +262,7 @@ class IdentitytoolkitRelyingpartyVerifyAssertionRequest(
 
 @typing.type_check_only
 class IdentitytoolkitRelyingpartyVerifyCustomTokenRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     delegatedProjectNumber: str
     instanceId: str
@@ -298,9 +270,7 @@ class IdentitytoolkitRelyingpartyVerifyCustomTokenRequest(
     token: str
 
 @typing.type_check_only
-class IdentitytoolkitRelyingpartyVerifyPasswordRequest(
-    typing_extensions.TypedDict, total=False
-):
+class IdentitytoolkitRelyingpartyVerifyPasswordRequest(typing.TypedDict, total=False):
     captchaChallenge: str
     captchaResponse: str
     delegatedProjectNumber: str
@@ -315,7 +285,7 @@ class IdentitytoolkitRelyingpartyVerifyPasswordRequest(
 
 @typing.type_check_only
 class IdentitytoolkitRelyingpartyVerifyPhoneNumberRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     code: str
     idToken: str
@@ -327,7 +297,7 @@ class IdentitytoolkitRelyingpartyVerifyPhoneNumberRequest(
 
 @typing.type_check_only
 class IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     expiresIn: str
     idToken: str
@@ -341,7 +311,7 @@ class IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse(
     verificationProofExpiresIn: str
 
 @typing.type_check_only
-class IdpConfig(typing_extensions.TypedDict, total=False):
+class IdpConfig(typing.TypedDict, total=False):
     clientId: str
     enabled: bool
     experimentPercent: int
@@ -350,7 +320,7 @@ class IdpConfig(typing_extensions.TypedDict, total=False):
     whitelistedAudiences: _list[str]
 
 @typing.type_check_only
-class Relyingparty(typing_extensions.TypedDict, total=False):
+class Relyingparty(typing.TypedDict, total=False):
     androidInstallApp: bool
     androidMinimumVersion: str
     androidPackageName: str
@@ -368,14 +338,14 @@ class Relyingparty(typing_extensions.TypedDict, total=False):
     userIp: str
 
 @typing.type_check_only
-class ResetPasswordResponse(typing_extensions.TypedDict, total=False):
+class ResetPasswordResponse(typing.TypedDict, total=False):
     email: str
     kind: str
     newEmail: str
     requestType: str
 
 @typing.type_check_only
-class SetAccountInfoResponse(typing_extensions.TypedDict, total=False):
+class SetAccountInfoResponse(typing.TypedDict, total=False):
     displayName: str
     email: str
     emailVerified: bool
@@ -390,7 +360,7 @@ class SetAccountInfoResponse(typing_extensions.TypedDict, total=False):
     refreshToken: str
 
 @typing.type_check_only
-class SignupNewUserResponse(typing_extensions.TypedDict, total=False):
+class SignupNewUserResponse(typing.TypedDict, total=False):
     displayName: str
     email: str
     expiresIn: str
@@ -400,12 +370,12 @@ class SignupNewUserResponse(typing_extensions.TypedDict, total=False):
     refreshToken: str
 
 @typing.type_check_only
-class UploadAccountResponse(typing_extensions.TypedDict, total=False):
+class UploadAccountResponse(typing.TypedDict, total=False):
     error: _list[dict[str, typing.Any]]
     kind: str
 
 @typing.type_check_only
-class UserInfo(typing_extensions.TypedDict, total=False):
+class UserInfo(typing.TypedDict, total=False):
     createdAt: str
     customAttributes: str
     customAuth: bool
@@ -427,7 +397,7 @@ class UserInfo(typing_extensions.TypedDict, total=False):
     version: int
 
 @typing.type_check_only
-class VerifyAssertionResponse(typing_extensions.TypedDict, total=False):
+class VerifyAssertionResponse(typing.TypedDict, total=False):
     action: str
     appInstallationUrl: str
     appScheme: str
@@ -469,7 +439,7 @@ class VerifyAssertionResponse(typing_extensions.TypedDict, total=False):
     verifiedProvider: _list[str]
 
 @typing.type_check_only
-class VerifyCustomTokenResponse(typing_extensions.TypedDict, total=False):
+class VerifyCustomTokenResponse(typing.TypedDict, total=False):
     expiresIn: str
     idToken: str
     isNewUser: bool
@@ -477,7 +447,7 @@ class VerifyCustomTokenResponse(typing_extensions.TypedDict, total=False):
     refreshToken: str
 
 @typing.type_check_only
-class VerifyPasswordResponse(typing_extensions.TypedDict, total=False):
+class VerifyPasswordResponse(typing.TypedDict, total=False):
     displayName: str
     email: str
     expiresIn: str

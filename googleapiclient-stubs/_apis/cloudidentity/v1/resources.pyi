@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -200,7 +199,7 @@ class CloudIdentityResource(googleapiclient.discovery.Resource):
             orderBy: str | None = ...,
             pageSize: int | None = ...,
             pageToken: str | None = ...,
-            view: typing_extensions.Literal[
+            view: typing.Literal[
                 "VIEW_UNSPECIFIED", "COMPANY_INVENTORY", "USER_ASSIGNED_DEVICES"
             ]
             | None = ...,
@@ -245,8 +244,7 @@ class CloudIdentityResource(googleapiclient.discovery.Resource):
                 parent: str,
                 pageSize: int | None = ...,
                 pageToken: str | None = ...,
-                view: typing_extensions.Literal["VIEW_UNSPECIFIED", "BASIC", "FULL"]
-                | None = ...,
+                view: typing.Literal["VIEW_UNSPECIFIED", "BASIC", "FULL"] | None = ...,
                 **kwargs: typing.Any,
             ) -> ListMembershipsResponseHttpRequest: ...
             def list_next(
@@ -316,7 +314,7 @@ class CloudIdentityResource(googleapiclient.discovery.Resource):
             self,
             *,
             body: Group,
-            initialGroupConfig: typing_extensions.Literal[
+            initialGroupConfig: typing.Literal[
                 "INITIAL_GROUP_CONFIG_UNSPECIFIED", "WITH_INITIAL_OWNER", "EMPTY"
             ]
             | None = ...,
@@ -335,8 +333,7 @@ class CloudIdentityResource(googleapiclient.discovery.Resource):
             pageSize: int | None = ...,
             pageToken: str | None = ...,
             parent: str | None = ...,
-            view: typing_extensions.Literal["VIEW_UNSPECIFIED", "BASIC", "FULL"]
-            | None = ...,
+            view: typing.Literal["VIEW_UNSPECIFIED", "BASIC", "FULL"] | None = ...,
             **kwargs: typing.Any,
         ) -> ListGroupsResponseHttpRequest: ...
         def list_next(
@@ -365,8 +362,7 @@ class CloudIdentityResource(googleapiclient.discovery.Resource):
             pageSize: int | None = ...,
             pageToken: str | None = ...,
             query: str | None = ...,
-            view: typing_extensions.Literal["VIEW_UNSPECIFIED", "BASIC", "FULL"]
-            | None = ...,
+            view: typing.Literal["VIEW_UNSPECIFIED", "BASIC", "FULL"] | None = ...,
             **kwargs: typing.Any,
         ) -> SearchGroupsResponseHttpRequest: ...
         def search_next(

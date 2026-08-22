@@ -1,44 +1,42 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class AuditConfig(typing_extensions.TypedDict, total=False):
+class AuditConfig(typing.TypedDict, total=False):
     auditLogConfigs: _list[AuditLogConfig]
     service: str
 
 @typing.type_check_only
-class AuditLogConfig(typing_extensions.TypedDict, total=False):
+class AuditLogConfig(typing.TypedDict, total=False):
     exemptedMembers: _list[str]
-    logType: typing_extensions.Literal[
+    logType: typing.Literal[
         "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
     ]
 
 @typing.type_check_only
-class BatchCreateRepositoriesRequest(typing_extensions.TypedDict, total=False):
+class BatchCreateRepositoriesRequest(typing.TypedDict, total=False):
     requests: _list[CreateRepositoryRequest]
 
 @typing.type_check_only
-class BatchCreateRepositoriesResponse(typing_extensions.TypedDict, total=False):
+class BatchCreateRepositoriesResponse(typing.TypedDict, total=False):
     repositories: _list[Repository]
 
 @typing.type_check_only
-class Binding(typing_extensions.TypedDict, total=False):
+class Binding(typing.TypedDict, total=False):
     condition: Expr
     members: _list[str]
     role: str
 
 @typing.type_check_only
-class BitbucketCloudConfig(typing_extensions.TypedDict, total=False):
+class BitbucketCloudConfig(typing.TypedDict, total=False):
     authorizerCredential: UserCredential
     readAuthorizerCredential: UserCredential
     webhookSecretSecretVersion: str
     workspace: str
 
 @typing.type_check_only
-class BitbucketDataCenterConfig(typing_extensions.TypedDict, total=False):
+class BitbucketDataCenterConfig(typing.TypedDict, total=False):
     authorizerCredential: UserCredential
     hostUri: str
     readAuthorizerCredential: UserCredential
@@ -48,17 +46,17 @@ class BitbucketDataCenterConfig(typing_extensions.TypedDict, total=False):
     webhookSecretSecretVersion: str
 
 @typing.type_check_only
-class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
+class CancelOperationRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ChildStatusReference(typing_extensions.TypedDict, total=False):
+class ChildStatusReference(typing.TypedDict, total=False):
     name: str
     pipelineTaskName: str
-    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "TASK_RUN"]
+    type: typing.Literal["TYPE_UNSPECIFIED", "TASK_RUN"]
     whenExpressions: _list[WhenExpression]
 
 @typing.type_check_only
-class Connection(typing_extensions.TypedDict, total=False):
+class Connection(typing.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     bitbucketCloudConfig: BitbucketCloudConfig
     bitbucketDataCenterConfig: BitbucketDataCenterConfig
@@ -74,82 +72,80 @@ class Connection(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class CreateRepositoryRequest(typing_extensions.TypedDict, total=False):
+class CreateRepositoryRequest(typing.TypedDict, total=False):
     parent: str
     repository: Repository
     repositoryId: str
 
 @typing.type_check_only
-class EmbeddedTask(typing_extensions.TypedDict, total=False):
+class EmbeddedTask(typing.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     taskSpec: TaskSpec
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class EmptyDirVolumeSource(typing_extensions.TypedDict, total=False): ...
+class EmptyDirVolumeSource(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class EnvVar(typing_extensions.TypedDict, total=False):
+class EnvVar(typing.TypedDict, total=False):
     name: str
     value: str
 
 @typing.type_check_only
-class ExecAction(typing_extensions.TypedDict, total=False):
+class ExecAction(typing.TypedDict, total=False):
     command: _list[str]
 
 @typing.type_check_only
-class Expr(typing_extensions.TypedDict, total=False):
+class Expr(typing.TypedDict, total=False):
     description: str
     expression: str
     location: str
     title: str
 
 @typing.type_check_only
-class FetchGitRefsResponse(typing_extensions.TypedDict, total=False):
+class FetchGitRefsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     refNames: _list[str]
 
 @typing.type_check_only
-class FetchLinkableRepositoriesResponse(typing_extensions.TypedDict, total=False):
+class FetchLinkableRepositoriesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     repositories: _list[Repository]
 
 @typing.type_check_only
-class FetchReadTokenRequest(typing_extensions.TypedDict, total=False): ...
+class FetchReadTokenRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class FetchReadTokenResponse(typing_extensions.TypedDict, total=False):
+class FetchReadTokenResponse(typing.TypedDict, total=False):
     expirationTime: str
     token: str
 
 @typing.type_check_only
-class FetchReadWriteTokenRequest(typing_extensions.TypedDict, total=False): ...
+class FetchReadWriteTokenRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class FetchReadWriteTokenResponse(typing_extensions.TypedDict, total=False):
+class FetchReadWriteTokenResponse(typing.TypedDict, total=False):
     expirationTime: str
     token: str
 
 @typing.type_check_only
-class GitHubConfig(typing_extensions.TypedDict, total=False):
+class GitHubConfig(typing.TypedDict, total=False):
     appInstallationId: str
     authorizerCredential: OAuthCredential
 
 @typing.type_check_only
-class GoogleDevtoolsCloudbuildV2Condition(typing_extensions.TypedDict, total=False):
+class GoogleDevtoolsCloudbuildV2Condition(typing.TypedDict, total=False):
     lastTransitionTime: str
     message: str
     reason: str
-    severity: typing_extensions.Literal["SEVERITY_UNSPECIFIED", "WARNING", "INFO"]
-    status: typing_extensions.Literal["UNKNOWN", "TRUE", "FALSE"]
+    severity: typing.Literal["SEVERITY_UNSPECIFIED", "WARNING", "INFO"]
+    status: typing.Literal["UNKNOWN", "TRUE", "FALSE"]
     type: str
 
 @typing.type_check_only
-class GoogleDevtoolsCloudbuildV2GitHubEnterpriseConfig(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleDevtoolsCloudbuildV2GitHubEnterpriseConfig(typing.TypedDict, total=False):
     apiKey: str
     appId: str
     appInstallationId: str
@@ -162,7 +158,7 @@ class GoogleDevtoolsCloudbuildV2GitHubEnterpriseConfig(
     webhookSecretSecretVersion: str
 
 @typing.type_check_only
-class GoogleDevtoolsCloudbuildV2GitLabConfig(typing_extensions.TypedDict, total=False):
+class GoogleDevtoolsCloudbuildV2GitLabConfig(typing.TypedDict, total=False):
     authorizerCredential: UserCredential
     hostUri: str
     readAuthorizerCredential: UserCredential
@@ -172,9 +168,7 @@ class GoogleDevtoolsCloudbuildV2GitLabConfig(typing_extensions.TypedDict, total=
     webhookSecretSecretVersion: str
 
 @typing.type_check_only
-class GoogleDevtoolsCloudbuildV2OperationMetadata(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleDevtoolsCloudbuildV2OperationMetadata(typing.TypedDict, total=False):
     apiVersion: str
     createTime: str
     endTime: str
@@ -184,22 +178,20 @@ class GoogleDevtoolsCloudbuildV2OperationMetadata(
     verb: str
 
 @typing.type_check_only
-class GoogleDevtoolsCloudbuildV2ServiceDirectoryConfig(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleDevtoolsCloudbuildV2ServiceDirectoryConfig(typing.TypedDict, total=False):
     service: str
 
 @typing.type_check_only
-class HttpBody(typing_extensions.TypedDict, total=False):
+class HttpBody(typing.TypedDict, total=False):
     contentType: str
     data: str
     extensions: _list[dict[str, typing.Any]]
 
 @typing.type_check_only
-class InstallationState(typing_extensions.TypedDict, total=False):
+class InstallationState(typing.TypedDict, total=False):
     actionUri: str
     message: str
-    stage: typing_extensions.Literal[
+    stage: typing.Literal[
         "STAGE_UNSPECIFIED",
         "PENDING_CREATE_APP",
         "PENDING_USER_OAUTH",
@@ -208,24 +200,24 @@ class InstallationState(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class ListConnectionsResponse(typing_extensions.TypedDict, total=False):
+class ListConnectionsResponse(typing.TypedDict, total=False):
     connections: _list[Connection]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListLocationsResponse(typing_extensions.TypedDict, total=False):
+class ListLocationsResponse(typing.TypedDict, total=False):
     locations: _list[Location]
     nextPageToken: str
 
 @typing.type_check_only
-class ListRepositoriesResponse(typing_extensions.TypedDict, total=False):
+class ListRepositoriesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     repositories: _list[Repository]
     unreachable: _list[str]
 
 @typing.type_check_only
-class Location(typing_extensions.TypedDict, total=False):
+class Location(typing.TypedDict, total=False):
     displayName: str
     labels: dict[str, typing.Any]
     locationId: str
@@ -233,12 +225,12 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class OAuthCredential(typing_extensions.TypedDict, total=False):
+class OAuthCredential(typing.TypedDict, total=False):
     oauthTokenSecretVersion: str
     username: str
 
 @typing.type_check_only
-class Operation(typing_extensions.TypedDict, total=False):
+class Operation(typing.TypedDict, total=False):
     done: bool
     error: Status
     metadata: dict[str, typing.Any]
@@ -246,7 +238,7 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class OperationMetadata(typing_extensions.TypedDict, total=False):
+class OperationMetadata(typing.TypedDict, total=False):
     apiVersion: str
     cancelRequested: bool
     createTime: str
@@ -256,29 +248,29 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
-class Param(typing_extensions.TypedDict, total=False):
+class Param(typing.TypedDict, total=False):
     name: str
     value: ParamValue
 
 @typing.type_check_only
-class ParamSpec(typing_extensions.TypedDict, total=False):
+class ParamSpec(typing.TypedDict, total=False):
     default: ParamValue
     description: str
     name: str
-    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "STRING", "ARRAY", "OBJECT"]
+    type: typing.Literal["TYPE_UNSPECIFIED", "STRING", "ARRAY", "OBJECT"]
 
 @typing.type_check_only
-class ParamValue(typing_extensions.TypedDict, total=False):
+class ParamValue(typing.TypedDict, total=False):
     arrayVal: _list[str]
     objectVal: dict[str, typing.Any]
     stringVal: str
-    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "STRING", "ARRAY", "OBJECT"]
+    type: typing.Literal["TYPE_UNSPECIFIED", "STRING", "ARRAY", "OBJECT"]
 
 @typing.type_check_only
-class PipelineRef(typing_extensions.TypedDict, total=False):
+class PipelineRef(typing.TypedDict, total=False):
     name: str
     params: _list[Param]
-    resolver: typing_extensions.Literal[
+    resolver: typing.Literal[
         "RESOLVER_NAME_UNSPECIFIED",
         "BUNDLES",
         "GCB_REPO",
@@ -288,14 +280,14 @@ class PipelineRef(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class PipelineResult(typing_extensions.TypedDict, total=False):
+class PipelineResult(typing.TypedDict, total=False):
     description: str
     name: str
-    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "STRING", "ARRAY", "OBJECT"]
+    type: typing.Literal["TYPE_UNSPECIFIED", "STRING", "ARRAY", "OBJECT"]
     value: ResultValue
 
 @typing.type_check_only
-class PipelineRun(typing_extensions.TypedDict, total=False):
+class PipelineRun(typing.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     childReferences: _list[ChildStatusReference]
     completionTime: str
@@ -307,7 +299,7 @@ class PipelineRun(typing_extensions.TypedDict, total=False):
     name: str
     params: _list[Param]
     pipelineRef: PipelineRef
-    pipelineRunStatus: typing_extensions.Literal[
+    pipelineRunStatus: typing.Literal[
         "PIPELINE_RUN_STATUS_UNSPECIFIED", "PIPELINE_RUN_CANCELLED"
     ]
     pipelineSpec: PipelineSpec
@@ -329,12 +321,12 @@ class PipelineRun(typing_extensions.TypedDict, total=False):
     workspaces: _list[WorkspaceBinding]
 
 @typing.type_check_only
-class PipelineRunResult(typing_extensions.TypedDict, total=False):
+class PipelineRunResult(typing.TypedDict, total=False):
     name: str
     value: ResultValue
 
 @typing.type_check_only
-class PipelineSpec(typing_extensions.TypedDict, total=False):
+class PipelineSpec(typing.TypedDict, total=False):
     finallyTasks: _list[PipelineTask]
     generatedYaml: str
     params: _list[ParamSpec]
@@ -343,7 +335,7 @@ class PipelineSpec(typing_extensions.TypedDict, total=False):
     workspaces: _list[PipelineWorkspaceDeclaration]
 
 @typing.type_check_only
-class PipelineTask(typing_extensions.TypedDict, total=False):
+class PipelineTask(typing.TypedDict, total=False):
     name: str
     params: _list[Param]
     retries: int
@@ -355,34 +347,32 @@ class PipelineTask(typing_extensions.TypedDict, total=False):
     workspaces: _list[WorkspacePipelineTaskBinding]
 
 @typing.type_check_only
-class PipelineWorkspaceDeclaration(typing_extensions.TypedDict, total=False):
+class PipelineWorkspaceDeclaration(typing.TypedDict, total=False):
     description: str
     name: str
     optional: bool
 
 @typing.type_check_only
-class Policy(typing_extensions.TypedDict, total=False):
+class Policy(typing.TypedDict, total=False):
     auditConfigs: _list[AuditConfig]
     bindings: _list[Binding]
     etag: str
     version: int
 
 @typing.type_check_only
-class Probe(typing_extensions.TypedDict, total=False):
+class Probe(typing.TypedDict, total=False):
     exec: ExecAction
     periodSeconds: int
 
 @typing.type_check_only
-class PropertySpec(typing_extensions.TypedDict, total=False):
-    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "STRING"]
+class PropertySpec(typing.TypedDict, total=False):
+    type: typing.Literal["TYPE_UNSPECIFIED", "STRING"]
 
 @typing.type_check_only
-class Provenance(typing_extensions.TypedDict, total=False):
-    enabled: typing_extensions.Literal[
-        "ENABLED_UNSPECIFIED", "REQUIRED", "OPTIMISTIC", "DISABLED"
-    ]
-    region: typing_extensions.Literal["REGION_UNSPECIFIED", "GLOBAL"]
-    storage: typing_extensions.Literal[
+class Provenance(typing.TypedDict, total=False):
+    enabled: typing.Literal["ENABLED_UNSPECIFIED", "REQUIRED", "OPTIMISTIC", "DISABLED"]
+    region: typing.Literal["REGION_UNSPECIFIED", "GLOBAL"]
+    storage: typing.Literal[
         "STORAGE_UNSPECIFIED",
         "PREFER_ARTIFACT_PROJECT",
         "ARTIFACT_PROJECT_ONLY",
@@ -390,7 +380,7 @@ class Provenance(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class Repository(typing_extensions.TypedDict, total=False):
+class Repository(typing.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     createTime: str
     etag: str
@@ -400,14 +390,14 @@ class Repository(typing_extensions.TypedDict, total=False):
     webhookId: str
 
 @typing.type_check_only
-class ResultValue(typing_extensions.TypedDict, total=False):
+class ResultValue(typing.TypedDict, total=False):
     arrayVal: _list[str]
     objectVal: dict[str, typing.Any]
     stringVal: str
-    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "STRING", "ARRAY", "OBJECT"]
+    type: typing.Literal["TYPE_UNSPECIFIED", "STRING", "ARRAY", "OBJECT"]
 
 @typing.type_check_only
-class RunWorkflowCustomOperationMetadata(typing_extensions.TypedDict, total=False):
+class RunWorkflowCustomOperationMetadata(typing.TypedDict, total=False):
     apiVersion: str
     createTime: str
     endTime: str
@@ -417,19 +407,19 @@ class RunWorkflowCustomOperationMetadata(typing_extensions.TypedDict, total=Fals
     verb: str
 
 @typing.type_check_only
-class SecretVolumeSource(typing_extensions.TypedDict, total=False):
+class SecretVolumeSource(typing.TypedDict, total=False):
     secretName: str
     secretVersion: str
 
 @typing.type_check_only
-class Security(typing_extensions.TypedDict, total=False):
-    privilegeMode: typing_extensions.Literal[
+class Security(typing.TypedDict, total=False):
+    privilegeMode: typing.Literal[
         "PRIVILEGE_MODE_UNSPECIFIED", "PRIVILEGED", "UNPRIVILEGED"
     ]
     serviceAccount: str
 
 @typing.type_check_only
-class SecurityContext(typing_extensions.TypedDict, total=False):
+class SecurityContext(typing.TypedDict, total=False):
     allowPrivilegeEscalation: bool
     privileged: bool
     runAsGroup: str
@@ -437,12 +427,12 @@ class SecurityContext(typing_extensions.TypedDict, total=False):
     runAsUser: str
 
 @typing.type_check_only
-class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
+class SetIamPolicyRequest(typing.TypedDict, total=False):
     policy: Policy
     updateMask: str
 
 @typing.type_check_only
-class Sidecar(typing_extensions.TypedDict, total=False):
+class Sidecar(typing.TypedDict, total=False):
     args: _list[str]
     command: _list[str]
     env: _list[EnvVar]
@@ -455,27 +445,25 @@ class Sidecar(typing_extensions.TypedDict, total=False):
     workingDir: str
 
 @typing.type_check_only
-class SkippedTask(typing_extensions.TypedDict, total=False):
+class SkippedTask(typing.TypedDict, total=False):
     name: str
     reason: str
     whenExpressions: _list[WhenExpression]
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class Step(typing_extensions.TypedDict, total=False):
+class Step(typing.TypedDict, total=False):
     args: _list[str]
     command: _list[str]
     env: _list[EnvVar]
     image: str
     name: str
-    onError: typing_extensions.Literal[
-        "ON_ERROR_TYPE_UNSPECIFIED", "STOP_AND_FAIL", "CONTINUE"
-    ]
+    onError: typing.Literal["ON_ERROR_TYPE_UNSPECIFIED", "STOP_AND_FAIL", "CONTINUE"]
     params: _list[Param]
     ref: StepRef
     script: str
@@ -485,10 +473,10 @@ class Step(typing_extensions.TypedDict, total=False):
     workingDir: str
 
 @typing.type_check_only
-class StepRef(typing_extensions.TypedDict, total=False):
+class StepRef(typing.TypedDict, total=False):
     name: str
     params: _list[Param]
-    resolver: typing_extensions.Literal[
+    resolver: typing.Literal[
         "RESOLVER_NAME_UNSPECIFIED",
         "BUNDLES",
         "GCB_REPO",
@@ -498,15 +486,15 @@ class StepRef(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class StepTemplate(typing_extensions.TypedDict, total=False):
+class StepTemplate(typing.TypedDict, total=False):
     env: _list[EnvVar]
     volumeMounts: _list[VolumeMount]
 
 @typing.type_check_only
-class TaskRef(typing_extensions.TypedDict, total=False):
+class TaskRef(typing.TypedDict, total=False):
     name: str
     params: _list[Param]
-    resolver: typing_extensions.Literal[
+    resolver: typing.Literal[
         "RESOLVER_NAME_UNSPECIFIED",
         "BUNDLES",
         "GCB_REPO",
@@ -516,20 +504,18 @@ class TaskRef(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class TaskResult(typing_extensions.TypedDict, total=False):
+class TaskResult(typing.TypedDict, total=False):
     description: str
     name: str
     properties: dict[str, typing.Any]
-    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "STRING", "ARRAY", "OBJECT"]
+    type: typing.Literal["TYPE_UNSPECIFIED", "STRING", "ARRAY", "OBJECT"]
     value: ParamValue
 
 @typing.type_check_only
-class TaskSpec(typing_extensions.TypedDict, total=False):
+class TaskSpec(typing.TypedDict, total=False):
     description: str
     managedSidecars: _list[
-        typing_extensions.Literal[
-            "MANAGED_SIDECAR_UNSPECIFIED", "PRIVILEGED_DOCKER_DAEMON"
-        ]
+        typing.Literal["MANAGED_SIDECAR_UNSPECIFIED", "PRIVILEGED_DOCKER_DAEMON"]
     ]
     params: _list[ParamSpec]
     results: _list[TaskResult]
@@ -540,14 +526,14 @@ class TaskSpec(typing_extensions.TypedDict, total=False):
     workspaces: _list[WorkspaceDeclaration]
 
 @typing.type_check_only
-class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
+class TestIamPermissionsRequest(typing.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
-class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
+class TestIamPermissionsResponse(typing.TypedDict, total=False):
     permissions: _list[str]
 
-AlternativeTimeoutFields = typing_extensions.TypedDict(
+AlternativeTimeoutFields = typing.TypedDict(
     "AlternativeTimeoutFields",
     {
         "finally": str,
@@ -561,12 +547,12 @@ AlternativeTimeoutFields = typing_extensions.TypedDict(
 class TimeoutFields(AlternativeTimeoutFields): ...
 
 @typing.type_check_only
-class UserCredential(typing_extensions.TypedDict, total=False):
+class UserCredential(typing.TypedDict, total=False):
     userTokenSecretVersion: str
     username: str
 
 @typing.type_check_only
-class VolumeMount(typing_extensions.TypedDict, total=False):
+class VolumeMount(typing.TypedDict, total=False):
     mountPath: str
     name: str
     readOnly: bool
@@ -574,30 +560,30 @@ class VolumeMount(typing_extensions.TypedDict, total=False):
     subPathExpr: str
 
 @typing.type_check_only
-class VolumeSource(typing_extensions.TypedDict, total=False):
+class VolumeSource(typing.TypedDict, total=False):
     emptyDir: EmptyDirVolumeSource
     name: str
 
 @typing.type_check_only
-class WhenExpression(typing_extensions.TypedDict, total=False):
-    expressionOperator: typing_extensions.Literal[
+class WhenExpression(typing.TypedDict, total=False):
+    expressionOperator: typing.Literal[
         "EXPRESSION_OPERATOR_UNSPECIFIED", "IN", "NOT_IN"
     ]
     input: str
     values: _list[str]
 
 @typing.type_check_only
-class Worker(typing_extensions.TypedDict, total=False):
+class Worker(typing.TypedDict, total=False):
     machineType: str
 
 @typing.type_check_only
-class WorkspaceBinding(typing_extensions.TypedDict, total=False):
+class WorkspaceBinding(typing.TypedDict, total=False):
     name: str
     secret: SecretVolumeSource
     subPath: str
 
 @typing.type_check_only
-class WorkspaceDeclaration(typing_extensions.TypedDict, total=False):
+class WorkspaceDeclaration(typing.TypedDict, total=False):
     description: str
     mountPath: str
     name: str
@@ -605,7 +591,7 @@ class WorkspaceDeclaration(typing_extensions.TypedDict, total=False):
     readOnly: bool
 
 @typing.type_check_only
-class WorkspacePipelineTaskBinding(typing_extensions.TypedDict, total=False):
+class WorkspacePipelineTaskBinding(typing.TypedDict, total=False):
     name: str
     subPath: str
     workspace: str

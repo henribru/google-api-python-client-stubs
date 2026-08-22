@@ -1,6 +1,6 @@
 [project]
 name = "google-api-python-client-stubs"
-version = "1.39.0"
+version = "1.40.0"
 description = "Type stubs for google-api-python-client"
 authors = [ 
     { name = "Henrik Bruåsdal", email = "henrik.bruasdal@gmail.com" },
@@ -13,15 +13,14 @@ classifiers = [
    "Typing :: Stubs Only",
 ]
 dependencies = [
-    "google-api-python-client>=2.198.0",
+    "google-api-python-client>=2.199.0",
     "types-httplib2>=0.22.0.2",
-    "typing-extensions>=3.10.0",
 ]
-requires-python = ">=3.7"
+requires-python = ">=3.10"
 
 [dependency-groups]
 dev = [
-    "mypy>=1.17.0 ; python_full_version >= '3.9'",
+    "mypy>=1.17.0",
     "ruff>=0.12.4",
     "stubdefaulter>=0.1.0",
 ]

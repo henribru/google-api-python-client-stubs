@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -20,7 +19,7 @@ class PagespeedInsightsResource(googleapiclient.discovery.Resource):
             *,
             url: str,
             captchaToken: str | None = ...,
-            category: typing_extensions.Literal[
+            category: typing.Literal[
                 "CATEGORY_UNSPECIFIED",
                 "ACCESSIBILITY",
                 "BEST_PRACTICES",
@@ -30,7 +29,7 @@ class PagespeedInsightsResource(googleapiclient.discovery.Resource):
                 "AGENTIC_BROWSING",
             ]
             | _list[
-                typing_extensions.Literal[
+                typing.Literal[
                     "CATEGORY_UNSPECIFIED",
                     "ACCESSIBILITY",
                     "BEST_PRACTICES",
@@ -42,9 +41,7 @@ class PagespeedInsightsResource(googleapiclient.discovery.Resource):
             ]
             | None = ...,
             locale: str | None = ...,
-            strategy: typing_extensions.Literal[
-                "STRATEGY_UNSPECIFIED", "DESKTOP", "MOBILE"
-            ]
+            strategy: typing.Literal["STRATEGY_UNSPECIFIED", "DESKTOP", "MOBILE"]
             | None = ...,
             utm_campaign: str | None = ...,
             utm_source: str | None = ...,

@@ -1,12 +1,10 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class AbortInfo(typing_extensions.TypedDict, total=False):
-    cause: typing_extensions.Literal[
+class AbortInfo(typing.TypedDict, total=False):
+    cause: typing.Literal[
         "CAUSE_UNSPECIFIED",
         "UNKNOWN_NETWORK",
         "UNKNOWN_PROJECT",
@@ -58,68 +56,68 @@ class AbortInfo(typing_extensions.TypedDict, total=False):
     resourceUri: str
 
 @typing.type_check_only
-class AppEngineVersionEndpoint(typing_extensions.TypedDict, total=False):
+class AppEngineVersionEndpoint(typing.TypedDict, total=False):
     uri: str
 
 @typing.type_check_only
-class AppEngineVersionInfo(typing_extensions.TypedDict, total=False):
+class AppEngineVersionInfo(typing.TypedDict, total=False):
     displayName: str
     environment: str
     runtime: str
     uri: str
 
 @typing.type_check_only
-class AuditConfig(typing_extensions.TypedDict, total=False):
+class AuditConfig(typing.TypedDict, total=False):
     auditLogConfigs: _list[AuditLogConfig]
     service: str
 
 @typing.type_check_only
-class AuditLogConfig(typing_extensions.TypedDict, total=False):
+class AuditLogConfig(typing.TypedDict, total=False):
     exemptedMembers: _list[str]
-    logType: typing_extensions.Literal[
+    logType: typing.Literal[
         "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
     ]
 
 @typing.type_check_only
-class Binding(typing_extensions.TypedDict, total=False):
+class Binding(typing.TypedDict, total=False):
     condition: Expr
     members: _list[str]
     role: str
 
 @typing.type_check_only
-class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
+class CancelOperationRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class CloudFunctionEndpoint(typing_extensions.TypedDict, total=False):
+class CloudFunctionEndpoint(typing.TypedDict, total=False):
     uri: str
 
 @typing.type_check_only
-class CloudFunctionInfo(typing_extensions.TypedDict, total=False):
+class CloudFunctionInfo(typing.TypedDict, total=False):
     displayName: str
     location: str
     uri: str
     versionId: str
 
 @typing.type_check_only
-class CloudRunJobInfo(typing_extensions.TypedDict, total=False):
+class CloudRunJobInfo(typing.TypedDict, total=False):
     displayName: str
     location: str
     uri: str
 
 @typing.type_check_only
-class CloudRunRevisionEndpoint(typing_extensions.TypedDict, total=False):
+class CloudRunRevisionEndpoint(typing.TypedDict, total=False):
     serviceUri: str
     uri: str
 
 @typing.type_check_only
-class CloudRunRevisionInfo(typing_extensions.TypedDict, total=False):
+class CloudRunRevisionInfo(typing.TypedDict, total=False):
     displayName: str
     location: str
     serviceUri: str
     uri: str
 
 @typing.type_check_only
-class CloudSQLInstanceInfo(typing_extensions.TypedDict, total=False):
+class CloudSQLInstanceInfo(typing.TypedDict, total=False):
     displayName: str
     externalIp: str
     internalIp: str
@@ -128,7 +126,7 @@ class CloudSQLInstanceInfo(typing_extensions.TypedDict, total=False):
     uri: str
 
 @typing.type_check_only
-class ConnectivityTest(typing_extensions.TypedDict, total=False):
+class ConnectivityTest(typing.TypedDict, total=False):
     bypassFirewallChecks: bool
     createTime: str
     description: str
@@ -146,8 +144,8 @@ class ConnectivityTest(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class DeliverInfo(typing_extensions.TypedDict, total=False):
-    googleServiceType: typing_extensions.Literal[
+class DeliverInfo(typing.TypedDict, total=False):
+    googleServiceType: typing.Literal[
         "GOOGLE_SERVICE_TYPE_UNSPECIFIED",
         "IAP",
         "GFE_PROXY_OR_HEALTH_CHECK_PROBER",
@@ -159,7 +157,7 @@ class DeliverInfo(typing_extensions.TypedDict, total=False):
     pscGoogleApiTarget: str
     resourceUri: str
     storageBucket: str
-    target: typing_extensions.Literal[
+    target: typing.Literal[
         "TARGET_UNSPECIFIED",
         "INSTANCE",
         "INTERNET",
@@ -185,7 +183,7 @@ class DeliverInfo(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class DirectVpcEgressConnectionInfo(typing_extensions.TypedDict, total=False):
+class DirectVpcEgressConnectionInfo(typing.TypedDict, total=False):
     networkUri: str
     region: str
     selectedIpAddress: str
@@ -193,8 +191,8 @@ class DirectVpcEgressConnectionInfo(typing_extensions.TypedDict, total=False):
     subnetworkUri: str
 
 @typing.type_check_only
-class DropInfo(typing_extensions.TypedDict, total=False):
-    cause: typing_extensions.Literal[
+class DropInfo(typing.TypedDict, total=False):
+    cause: typing.Literal[
         "CAUSE_UNSPECIFIED",
         "UNKNOWN_EXTERNAL_ADDRESS",
         "FOREIGN_IP_DISALLOWED",
@@ -287,6 +285,8 @@ class DropInfo(typing_extensions.TypedDict, total=False):
         "NO_TRAFFIC_SELECTOR_TO_GCP_DESTINATION",
         "NO_KNOWN_ROUTE_FROM_PEERED_NETWORK_TO_DESTINATION",
         "PRIVATE_NAT_TO_PSC_ENDPOINT_UNSUPPORTED",
+        "PRIVATE_NAT_SOURCE_IP_IN_EXCLUDED_RANGE",
+        "PRIVATE_NAT_SOURCE_IP_IS_A_LINK_LOCAL_IP_IN_GKE",
         "PSC_PORT_MAPPING_PORT_MISMATCH",
         "PSC_PORT_MAPPING_WITHOUT_PSC_CONNECTION_UNSUPPORTED",
         "UNSUPPORTED_ROUTE_MATCHED_FOR_NAT64_DESTINATION",
@@ -314,12 +314,12 @@ class DropInfo(typing_extensions.TypedDict, total=False):
     sourceIp: str
 
 @typing.type_check_only
-class EdgeLocation(typing_extensions.TypedDict, total=False):
+class EdgeLocation(typing.TypedDict, total=False):
     metropolitanArea: str
 
 @typing.type_check_only
-class EffectiveVpcFlowLogsConfig(typing_extensions.TypedDict, total=False):
-    aggregationInterval: typing_extensions.Literal[
+class EffectiveVpcFlowLogsConfig(typing.TypedDict, total=False):
+    aggregationInterval: typing.Literal[
         "AGGREGATION_INTERVAL_UNSPECIFIED",
         "INTERVAL_5_SEC",
         "INTERVAL_30_SEC",
@@ -328,7 +328,7 @@ class EffectiveVpcFlowLogsConfig(typing_extensions.TypedDict, total=False):
         "INTERVAL_10_MIN",
         "INTERVAL_15_MIN",
     ]
-    crossProjectMetadata: typing_extensions.Literal[
+    crossProjectMetadata: typing.Literal[
         "CROSS_PROJECT_METADATA_UNSPECIFIED",
         "CROSS_PROJECT_METADATA_ENABLED",
         "CROSS_PROJECT_METADATA_DISABLED",
@@ -336,7 +336,7 @@ class EffectiveVpcFlowLogsConfig(typing_extensions.TypedDict, total=False):
     filterExpr: str
     flowSampling: float
     interconnectAttachment: str
-    metadata: typing_extensions.Literal[
+    metadata: typing.Literal[
         "METADATA_UNSPECIFIED",
         "INCLUDE_ALL_METADATA",
         "EXCLUDE_ALL_METADATA",
@@ -345,7 +345,7 @@ class EffectiveVpcFlowLogsConfig(typing_extensions.TypedDict, total=False):
     metadataFields: _list[str]
     name: str
     network: str
-    scope: typing_extensions.Literal[
+    scope: typing.Literal[
         "SCOPE_UNSPECIFIED",
         "SUBNET",
         "COMPUTE_API_SUBNET",
@@ -354,15 +354,15 @@ class EffectiveVpcFlowLogsConfig(typing_extensions.TypedDict, total=False):
         "INTERCONNECT_ATTACHMENT",
         "ORGANIZATION",
     ]
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ENABLED", "DISABLED"]
+    state: typing.Literal["STATE_UNSPECIFIED", "ENABLED", "DISABLED"]
     subnet: str
     vpnTunnel: str
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Endpoint(typing_extensions.TypedDict, total=False):
+class Endpoint(typing.TypedDict, total=False):
     appEngineVersion: AppEngineVersionEndpoint
     cloudFunction: CloudFunctionEndpoint
     cloudRunJob: str
@@ -371,7 +371,7 @@ class Endpoint(typing_extensions.TypedDict, total=False):
     datastreamPrivateConnection: str
     dmsPrivateConnection: str
     forwardingRule: str
-    forwardingRuleTarget: typing_extensions.Literal[
+    forwardingRuleTarget: typing.Literal[
         "FORWARDING_RULE_TARGET_UNSPECIFIED",
         "INSTANCE",
         "LOAD_BALANCER",
@@ -384,7 +384,7 @@ class Endpoint(typing_extensions.TypedDict, total=False):
     instance: str
     ipAddress: str
     loadBalancerId: str
-    loadBalancerType: typing_extensions.Literal[
+    loadBalancerType: typing.Literal[
         "LOAD_BALANCER_TYPE_UNSPECIFIED",
         "HTTPS_ADVANCED_LOAD_BALANCER",
         "HTTPS_LOAD_BALANCER",
@@ -398,7 +398,7 @@ class Endpoint(typing_extensions.TypedDict, total=False):
         "TCP_UDP_INTERNAL_LOAD_BALANCER",
     ]
     network: str
-    networkType: typing_extensions.Literal[
+    networkType: typing.Literal[
         "NETWORK_TYPE_UNSPECIFIED", "GCP_NETWORK", "NON_GCP_NETWORK", "INTERNET"
     ]
     port: int
@@ -407,7 +407,7 @@ class Endpoint(typing_extensions.TypedDict, total=False):
     redisInstance: str
 
 @typing.type_check_only
-class EndpointInfo(typing_extensions.TypedDict, total=False):
+class EndpointInfo(typing.TypedDict, total=False):
     destinationIp: str
     destinationNetworkUri: str
     destinationPort: int
@@ -418,18 +418,18 @@ class EndpointInfo(typing_extensions.TypedDict, total=False):
     sourcePort: int
 
 @typing.type_check_only
-class Expr(typing_extensions.TypedDict, total=False):
+class Expr(typing.TypedDict, total=False):
     description: str
     expression: str
     location: str
     title: str
 
 @typing.type_check_only
-class FirewallInfo(typing_extensions.TypedDict, total=False):
+class FirewallInfo(typing.TypedDict, total=False):
     action: str
     direction: str
     displayName: str
-    firewallRuleType: typing_extensions.Literal[
+    firewallRuleType: typing.Literal[
         "FIREWALL_RULE_TYPE_UNSPECIFIED",
         "HIERARCHICAL_FIREWALL_POLICY_RULE",
         "VPC_FIREWALL_RULE",
@@ -450,16 +450,16 @@ class FirewallInfo(typing_extensions.TypedDict, total=False):
     priority: int
     targetServiceAccounts: _list[str]
     targetTags: _list[str]
-    targetType: typing_extensions.Literal[
+    targetType: typing.Literal[
         "TARGET_TYPE_UNSPECIFIED", "INSTANCES", "INTERNAL_MANAGED_LB"
     ]
     uri: str
 
 @typing.type_check_only
-class ForwardInfo(typing_extensions.TypedDict, total=False):
+class ForwardInfo(typing.TypedDict, total=False):
     ipAddress: str
     resourceUri: str
-    target: typing_extensions.Literal[
+    target: typing.Literal[
         "TARGET_UNSPECIFIED",
         "PEERING_VPC",
         "VPN_GATEWAY",
@@ -474,8 +474,15 @@ class ForwardInfo(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class ForwardingRuleInfo(typing_extensions.TypedDict, total=False):
+class ForwardingRuleInfo(typing.TypedDict, total=False):
     displayName: str
+    envoyHealthCheckFirewallsConfigState: typing.Literal[
+        "HEALTH_CHECK_FIREWALLS_CONFIG_STATE_UNSPECIFIED",
+        "FIREWALLS_CONFIGURED",
+        "FIREWALLS_PARTIALLY_CONFIGURED",
+        "FIREWALLS_NOT_CONFIGURED",
+        "FIREWALLS_UNSUPPORTED",
+    ]
     loadBalancerName: str
     matchedPortRange: str
     matchedProtocol: str
@@ -488,7 +495,7 @@ class ForwardingRuleInfo(typing_extensions.TypedDict, total=False):
     vip: str
 
 @typing.type_check_only
-class GKEMasterInfo(typing_extensions.TypedDict, total=False):
+class GKEMasterInfo(typing.TypedDict, total=False):
     clusterNetworkUri: str
     clusterUri: str
     dnsEndpoint: str
@@ -496,15 +503,15 @@ class GKEMasterInfo(typing_extensions.TypedDict, total=False):
     internalIp: str
 
 @typing.type_check_only
-class GkeNetworkPolicyInfo(typing_extensions.TypedDict, total=False):
+class GkeNetworkPolicyInfo(typing.TypedDict, total=False):
     action: str
     direction: str
     displayName: str
     uri: str
 
 @typing.type_check_only
-class GkeNetworkPolicySkippedInfo(typing_extensions.TypedDict, total=False):
-    reason: typing_extensions.Literal[
+class GkeNetworkPolicySkippedInfo(typing.TypedDict, total=False):
+    reason: typing.Literal[
         "REASON_UNSPECIFIED",
         "NETWORK_POLICY_DISABLED",
         "INGRESS_SOURCE_ON_SAME_NODE",
@@ -514,14 +521,14 @@ class GkeNetworkPolicySkippedInfo(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class GkePodInfo(typing_extensions.TypedDict, total=False):
+class GkePodInfo(typing.TypedDict, total=False):
     ipAddress: str
     networkUri: str
     podUri: str
 
 @typing.type_check_only
-class GoogleServiceInfo(typing_extensions.TypedDict, total=False):
-    googleServiceType: typing_extensions.Literal[
+class GoogleServiceInfo(typing.TypedDict, total=False):
+    googleServiceType: typing.Literal[
         "GOOGLE_SERVICE_TYPE_UNSPECIFIED",
         "IAP",
         "GFE_PROXY_OR_HEALTH_CHECK_PROBER",
@@ -534,13 +541,13 @@ class GoogleServiceInfo(typing_extensions.TypedDict, total=False):
     sourceIp: str
 
 @typing.type_check_only
-class HybridSubnetInfo(typing_extensions.TypedDict, total=False):
+class HybridSubnetInfo(typing.TypedDict, total=False):
     displayName: str
     region: str
     uri: str
 
 @typing.type_check_only
-class InstanceInfo(typing_extensions.TypedDict, total=False):
+class InstanceInfo(typing.TypedDict, total=False):
     displayName: str
     externalIp: str
     interface: str
@@ -550,25 +557,25 @@ class InstanceInfo(typing_extensions.TypedDict, total=False):
     pscNetworkAttachmentUri: str
     running: bool
     serviceAccount: str
-    status: typing_extensions.Literal["STATUS_UNSPECIFIED", "RUNNING", "NOT_RUNNING"]
+    status: typing.Literal["STATUS_UNSPECIFIED", "RUNNING", "NOT_RUNNING"]
     uri: str
 
 @typing.type_check_only
-class InterconnectAttachmentInfo(typing_extensions.TypedDict, total=False):
+class InterconnectAttachmentInfo(typing.TypedDict, total=False):
     cloudRouterUri: str
     displayName: str
     interconnectUri: str
     l2AttachmentMatchedIpAddress: str
     region: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "TYPE_UNSPECIFIED", "DEDICATED", "PARTNER", "PARTNER_PROVIDER", "L2_DEDICATED"
     ]
     uri: str
 
 @typing.type_check_only
-class IpMasqueradingSkippedInfo(typing_extensions.TypedDict, total=False):
+class IpMasqueradingSkippedInfo(typing.TypedDict, total=False):
     nonMasqueradeRange: str
-    reason: typing_extensions.Literal[
+    reason: typing.Literal[
         "REASON_UNSPECIFIED",
         "DESTINATION_IP_IN_CONFIGURED_NON_MASQUERADE_RANGE",
         "DESTINATION_IP_IN_DEFAULT_NON_MASQUERADE_RANGE",
@@ -580,52 +587,52 @@ class IpMasqueradingSkippedInfo(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class LatencyDistribution(typing_extensions.TypedDict, total=False):
+class LatencyDistribution(typing.TypedDict, total=False):
     latencyPercentiles: _list[LatencyPercentile]
 
 @typing.type_check_only
-class LatencyPercentile(typing_extensions.TypedDict, total=False):
+class LatencyPercentile(typing.TypedDict, total=False):
     latencyMicros: str
     percent: int
 
 @typing.type_check_only
-class ListConnectivityTestsResponse(typing_extensions.TypedDict, total=False):
+class ListConnectivityTestsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     resources: _list[ConnectivityTest]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListLocationsResponse(typing_extensions.TypedDict, total=False):
+class ListLocationsResponse(typing.TypedDict, total=False):
     locations: _list[Location]
     nextPageToken: str
 
 @typing.type_check_only
-class ListOperationsResponse(typing_extensions.TypedDict, total=False):
+class ListOperationsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListVpcFlowLogsConfigsResponse(typing_extensions.TypedDict, total=False):
+class ListVpcFlowLogsConfigsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     unreachable: _list[str]
     vpcFlowLogsConfigs: _list[VpcFlowLogsConfig]
 
 @typing.type_check_only
-class LoadBalancerBackend(typing_extensions.TypedDict, total=False):
+class LoadBalancerBackend(typing.TypedDict, total=False):
     displayName: str
     healthCheckAllowingFirewallRules: _list[str]
     healthCheckBlockingFirewallRules: _list[str]
-    healthCheckFirewallState: typing_extensions.Literal[
+    healthCheckFirewallState: typing.Literal[
         "HEALTH_CHECK_FIREWALL_STATE_UNSPECIFIED", "CONFIGURED", "MISCONFIGURED"
     ]
     uri: str
 
 @typing.type_check_only
-class LoadBalancerBackendInfo(typing_extensions.TypedDict, total=False):
+class LoadBalancerBackendInfo(typing.TypedDict, total=False):
     backendBucketUri: str
     backendServiceUri: str
-    healthCheckFirewallsConfigState: typing_extensions.Literal[
+    healthCheckFirewallsConfigState: typing.Literal[
         "HEALTH_CHECK_FIREWALLS_CONFIG_STATE_UNSPECIFIED",
         "FIREWALLS_CONFIGURED",
         "FIREWALLS_PARTIALLY_CONFIGURED",
@@ -641,14 +648,14 @@ class LoadBalancerBackendInfo(typing_extensions.TypedDict, total=False):
     pscServiceAttachmentUri: str
 
 @typing.type_check_only
-class LoadBalancerInfo(typing_extensions.TypedDict, total=False):
-    backendType: typing_extensions.Literal[
+class LoadBalancerInfo(typing.TypedDict, total=False):
+    backendType: typing.Literal[
         "BACKEND_TYPE_UNSPECIFIED", "BACKEND_SERVICE", "TARGET_POOL", "TARGET_INSTANCE"
     ]
     backendUri: str
     backends: _list[LoadBalancerBackend]
     healthCheckUri: str
-    loadBalancerType: typing_extensions.Literal[
+    loadBalancerType: typing.Literal[
         "LOAD_BALANCER_TYPE_UNSPECIFIED",
         "INTERNAL_TCP_UDP",
         "NETWORK_TCP_UDP",
@@ -658,7 +665,7 @@ class LoadBalancerInfo(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class Location(typing_extensions.TypedDict, total=False):
+class Location(typing.TypedDict, total=False):
     displayName: str
     labels: dict[str, typing.Any]
     locationId: str
@@ -666,8 +673,8 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class NatInfo(typing_extensions.TypedDict, total=False):
-    cloudNatGatewayType: typing_extensions.Literal[
+class NatInfo(typing.TypedDict, total=False):
+    cloudNatGatewayType: typing.Literal[
         "CLOUD_NAT_GATEWAY_TYPE_UNSPECIFIED",
         "PUBLIC_NAT44",
         "PUBLIC_NAT64",
@@ -687,7 +694,8 @@ class NatInfo(typing_extensions.TypedDict, total=False):
     oldSourcePort: int
     protocol: str
     routerUri: str
-    type: typing_extensions.Literal[
+    ruleNumber: int
+    type: typing.Literal[
         "TYPE_UNSPECIFIED",
         "INTERNAL_TO_EXTERNAL",
         "EXTERNAL_TO_INTERNAL",
@@ -697,7 +705,7 @@ class NatInfo(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class NetworkInfo(typing_extensions.TypedDict, total=False):
+class NetworkInfo(typing.TypedDict, total=False):
     displayName: str
     matchedIpRange: str
     matchedSubnetUri: str
@@ -705,11 +713,11 @@ class NetworkInfo(typing_extensions.TypedDict, total=False):
     uri: str
 
 @typing.type_check_only
-class NgfwPacketInspectionInfo(typing_extensions.TypedDict, total=False):
+class NgfwPacketInspectionInfo(typing.TypedDict, total=False):
     securityProfileGroupUri: str
 
 @typing.type_check_only
-class Operation(typing_extensions.TypedDict, total=False):
+class Operation(typing.TypedDict, total=False):
     done: bool
     error: Status
     metadata: dict[str, typing.Any]
@@ -717,7 +725,7 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class OperationMetadata(typing_extensions.TypedDict, total=False):
+class OperationMetadata(typing.TypedDict, total=False):
     apiVersion: str
     cancelRequested: bool
     createTime: str
@@ -727,19 +735,19 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
-class Policy(typing_extensions.TypedDict, total=False):
+class Policy(typing.TypedDict, total=False):
     auditConfigs: _list[AuditConfig]
     bindings: _list[Binding]
     etag: str
     version: int
 
 @typing.type_check_only
-class PrivateConnectionInfo(typing_extensions.TypedDict, total=False):
+class PrivateConnectionInfo(typing.TypedDict, total=False):
     uri: str
 
 @typing.type_check_only
-class ProbingDetails(typing_extensions.TypedDict, total=False):
-    abortCause: typing_extensions.Literal[
+class ProbingDetails(typing.TypedDict, total=False):
+    abortCause: typing.Literal[
         "PROBING_ABORT_CAUSE_UNSPECIFIED", "PERMISSION_DENIED", "NO_SOURCE_LOCATION"
     ]
     destinationEgressLocation: EdgeLocation
@@ -748,7 +756,7 @@ class ProbingDetails(typing_extensions.TypedDict, total=False):
     error: Status
     probedAllDevices: bool
     probingLatency: LatencyDistribution
-    result: typing_extensions.Literal[
+    result: typing.Literal[
         "PROBING_RESULT_UNSPECIFIED",
         "REACHABLE",
         "UNREACHABLE",
@@ -760,7 +768,7 @@ class ProbingDetails(typing_extensions.TypedDict, total=False):
     verifyTime: str
 
 @typing.type_check_only
-class ProxyConnectionInfo(typing_extensions.TypedDict, total=False):
+class ProxyConnectionInfo(typing.TypedDict, total=False):
     networkUri: str
     newDestinationIp: str
     newDestinationPort: int
@@ -774,22 +782,22 @@ class ProxyConnectionInfo(typing_extensions.TypedDict, total=False):
     subnetUri: str
 
 @typing.type_check_only
-class QueryOrgVpcFlowLogsConfigsResponse(typing_extensions.TypedDict, total=False):
+class QueryOrgVpcFlowLogsConfigsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     unreachable: _list[str]
     vpcFlowLogsConfigs: _list[VpcFlowLogsConfig]
 
 @typing.type_check_only
-class ReachabilityDetails(typing_extensions.TypedDict, total=False):
+class ReachabilityDetails(typing.TypedDict, total=False):
     error: Status
-    result: typing_extensions.Literal[
+    result: typing.Literal[
         "RESULT_UNSPECIFIED", "REACHABLE", "UNREACHABLE", "AMBIGUOUS", "UNDETERMINED"
     ]
     traces: _list[Trace]
     verifyTime: str
 
 @typing.type_check_only
-class RedisClusterInfo(typing_extensions.TypedDict, total=False):
+class RedisClusterInfo(typing.TypedDict, total=False):
     discoveryEndpointIpAddress: str
     displayName: str
     location: str
@@ -798,7 +806,7 @@ class RedisClusterInfo(typing_extensions.TypedDict, total=False):
     uri: str
 
 @typing.type_check_only
-class RedisInstanceInfo(typing_extensions.TypedDict, total=False):
+class RedisInstanceInfo(typing.TypedDict, total=False):
     displayName: str
     networkUri: str
     primaryEndpointIp: str
@@ -807,10 +815,10 @@ class RedisInstanceInfo(typing_extensions.TypedDict, total=False):
     uri: str
 
 @typing.type_check_only
-class RerunConnectivityTestRequest(typing_extensions.TypedDict, total=False): ...
+class RerunConnectivityTestRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class RouteInfo(typing_extensions.TypedDict, total=False):
+class RouteInfo(typing.TypedDict, total=False):
     advertisedRouteNextHopUri: str
     advertisedRouteSourceRouterUri: str
     destIpRange: str
@@ -823,7 +831,7 @@ class RouteInfo(typing_extensions.TypedDict, total=False):
     networkUri: str
     nextHop: str
     nextHopNetworkUri: str
-    nextHopType: typing_extensions.Literal[
+    nextHopType: typing.Literal[
         "NEXT_HOP_TYPE_UNSPECIFIED",
         "NEXT_HOP_IP",
         "NEXT_HOP_INSTANCE",
@@ -845,10 +853,8 @@ class RouteInfo(typing_extensions.TypedDict, total=False):
     priority: int
     protocols: _list[str]
     region: str
-    routeScope: typing_extensions.Literal[
-        "ROUTE_SCOPE_UNSPECIFIED", "NETWORK", "NCC_HUB"
-    ]
-    routeType: typing_extensions.Literal[
+    routeScope: typing.Literal["ROUTE_SCOPE_UNSPECIFIED", "NETWORK", "NCC_HUB"]
+    routeType: typing.Literal[
         "ROUTE_TYPE_UNSPECIFIED",
         "SUBNET",
         "STATIC",
@@ -864,30 +870,30 @@ class RouteInfo(typing_extensions.TypedDict, total=False):
     uri: str
 
 @typing.type_check_only
-class ServerlessExternalConnectionInfo(typing_extensions.TypedDict, total=False):
+class ServerlessExternalConnectionInfo(typing.TypedDict, total=False):
     selectedIpAddress: str
 
 @typing.type_check_only
-class ServerlessNegInfo(typing_extensions.TypedDict, total=False):
+class ServerlessNegInfo(typing.TypedDict, total=False):
     negUri: str
 
 @typing.type_check_only
-class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
+class SetIamPolicyRequest(typing.TypedDict, total=False):
     policy: Policy
     updateMask: str
 
 @typing.type_check_only
-class ShowEffectiveFlowLogsConfigsResponse(typing_extensions.TypedDict, total=False):
+class ShowEffectiveFlowLogsConfigsResponse(typing.TypedDict, total=False):
     effectiveFlowLogsConfigs: _list[EffectiveVpcFlowLogsConfig]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class SingleEdgeResponse(typing_extensions.TypedDict, total=False):
+class SingleEdgeResponse(typing.TypedDict, total=False):
     destinationEgressLocation: EdgeLocation
     destinationRouter: str
     probingLatency: LatencyDistribution
-    result: typing_extensions.Literal[
+    result: typing.Literal[
         "PROBING_RESULT_UNSPECIFIED",
         "REACHABLE",
         "UNREACHABLE",
@@ -898,13 +904,13 @@ class SingleEdgeResponse(typing_extensions.TypedDict, total=False):
     successfulProbeCount: int
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class Step(typing_extensions.TypedDict, total=False):
+class Step(typing.TypedDict, total=False):
     abort: AbortInfo
     appEngineVersion: AppEngineVersionInfo
     causesDrop: bool
@@ -943,7 +949,7 @@ class Step(typing_extensions.TypedDict, total=False):
     route: RouteInfo
     serverlessExternalConnection: ServerlessExternalConnectionInfo
     serverlessNeg: ServerlessNegInfo
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "START_FROM_INSTANCE",
         "START_FROM_INTERNET",
@@ -1000,32 +1006,32 @@ class Step(typing_extensions.TypedDict, total=False):
     vpnTunnel: VpnTunnelInfo
 
 @typing.type_check_only
-class StorageBucketInfo(typing_extensions.TypedDict, total=False):
+class StorageBucketInfo(typing.TypedDict, total=False):
     bucket: str
 
 @typing.type_check_only
-class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
+class TestIamPermissionsRequest(typing.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
-class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
+class TestIamPermissionsResponse(typing.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
-class Trace(typing_extensions.TypedDict, total=False):
+class Trace(typing.TypedDict, total=False):
     endpointInfo: EndpointInfo
     forwardTraceId: int
     steps: _list[Step]
 
 @typing.type_check_only
-class VpcConnectorInfo(typing_extensions.TypedDict, total=False):
+class VpcConnectorInfo(typing.TypedDict, total=False):
     displayName: str
     location: str
     uri: str
 
 @typing.type_check_only
-class VpcFlowLogsConfig(typing_extensions.TypedDict, total=False):
-    aggregationInterval: typing_extensions.Literal[
+class VpcFlowLogsConfig(typing.TypedDict, total=False):
+    aggregationInterval: typing.Literal[
         "AGGREGATION_INTERVAL_UNSPECIFIED",
         "INTERVAL_5_SEC",
         "INTERVAL_30_SEC",
@@ -1035,7 +1041,7 @@ class VpcFlowLogsConfig(typing_extensions.TypedDict, total=False):
         "INTERVAL_15_MIN",
     ]
     createTime: str
-    crossProjectMetadata: typing_extensions.Literal[
+    crossProjectMetadata: typing.Literal[
         "CROSS_PROJECT_METADATA_UNSPECIFIED",
         "CROSS_PROJECT_METADATA_ENABLED",
         "CROSS_PROJECT_METADATA_DISABLED",
@@ -1045,7 +1051,7 @@ class VpcFlowLogsConfig(typing_extensions.TypedDict, total=False):
     flowSampling: float
     interconnectAttachment: str
     labels: dict[str, typing.Any]
-    metadata: typing_extensions.Literal[
+    metadata: typing.Literal[
         "METADATA_UNSPECIFIED",
         "INCLUDE_ALL_METADATA",
         "EXCLUDE_ALL_METADATA",
@@ -1054,9 +1060,9 @@ class VpcFlowLogsConfig(typing_extensions.TypedDict, total=False):
     metadataFields: _list[str]
     name: str
     network: str
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ENABLED", "DISABLED"]
+    state: typing.Literal["STATE_UNSPECIFIED", "ENABLED", "DISABLED"]
     subnet: str
-    targetResourceState: typing_extensions.Literal[
+    targetResourceState: typing.Literal[
         "TARGET_RESOURCE_STATE_UNSPECIFIED",
         "TARGET_RESOURCE_EXISTS",
         "TARGET_RESOURCE_DOES_NOT_EXIST",
@@ -1065,7 +1071,7 @@ class VpcFlowLogsConfig(typing_extensions.TypedDict, total=False):
     vpnTunnel: str
 
 @typing.type_check_only
-class VpnGatewayInfo(typing_extensions.TypedDict, total=False):
+class VpnGatewayInfo(typing.TypedDict, total=False):
     displayName: str
     ipAddress: str
     networkUri: str
@@ -1074,13 +1080,13 @@ class VpnGatewayInfo(typing_extensions.TypedDict, total=False):
     vpnTunnelUri: str
 
 @typing.type_check_only
-class VpnTunnelInfo(typing_extensions.TypedDict, total=False):
+class VpnTunnelInfo(typing.TypedDict, total=False):
     displayName: str
     networkUri: str
     region: str
     remoteGateway: str
     remoteGatewayIp: str
-    routingType: typing_extensions.Literal[
+    routingType: typing.Literal[
         "ROUTING_TYPE_UNSPECIFIED", "ROUTE_BASED", "POLICY_BASED", "DYNAMIC"
     ]
     sourceGateway: str

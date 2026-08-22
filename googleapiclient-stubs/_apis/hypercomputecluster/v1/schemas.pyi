@@ -1,26 +1,24 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class BootDisk(typing_extensions.TypedDict, total=False):
+class BootDisk(typing.TypedDict, total=False):
     sizeGb: str
     type: str
 
 @typing.type_check_only
-class BucketReference(typing_extensions.TypedDict, total=False):
+class BucketReference(typing.TypedDict, total=False):
     bucket: str
 
 @typing.type_check_only
-class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
+class CancelOperationRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class CheckClusterHealth(typing_extensions.TypedDict, total=False): ...
+class CheckClusterHealth(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Cluster(typing_extensions.TypedDict, total=False):
+class Cluster(typing.TypedDict, total=False):
     computeResources: dict[str, typing.Any]
     createTime: str
     description: str
@@ -33,151 +31,151 @@ class Cluster(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class ComputeInstance(typing_extensions.TypedDict, total=False):
+class ComputeInstance(typing.TypedDict, total=False):
     instance: str
 
 @typing.type_check_only
-class ComputeInstanceSlurmNodeSet(typing_extensions.TypedDict, total=False):
+class ComputeInstanceSlurmNodeSet(typing.TypedDict, total=False):
     bootDisk: BootDisk
     labels: dict[str, typing.Any]
     startupScript: str
 
 @typing.type_check_only
-class ComputeResource(typing_extensions.TypedDict, total=False):
+class ComputeResource(typing.TypedDict, total=False):
     config: ComputeResourceConfig
 
 @typing.type_check_only
-class ComputeResourceConfig(typing_extensions.TypedDict, total=False):
+class ComputeResourceConfig(typing.TypedDict, total=False):
     newFlexStartInstances: NewFlexStartInstancesConfig
     newOnDemandInstances: NewOnDemandInstancesConfig
     newReservedInstances: NewReservedInstancesConfig
     newSpotInstances: NewSpotInstancesConfig
 
 @typing.type_check_only
-class CreateFilestoreInstance(typing_extensions.TypedDict, total=False):
+class CreateFilestoreInstance(typing.TypedDict, total=False):
     filestore: str
 
 @typing.type_check_only
-class CreateLoginNode(typing_extensions.TypedDict, total=False): ...
+class CreateLoginNode(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class CreateLustreInstance(typing_extensions.TypedDict, total=False):
+class CreateLustreInstance(typing.TypedDict, total=False):
     lustre: str
 
 @typing.type_check_only
-class CreateNetwork(typing_extensions.TypedDict, total=False):
+class CreateNetwork(typing.TypedDict, total=False):
     network: str
 
 @typing.type_check_only
-class CreateNodeset(typing_extensions.TypedDict, total=False):
+class CreateNodeset(typing.TypedDict, total=False):
     nodesets: _list[str]
 
 @typing.type_check_only
-class CreateOrchestrator(typing_extensions.TypedDict, total=False): ...
+class CreateOrchestrator(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class CreatePartition(typing_extensions.TypedDict, total=False):
+class CreatePartition(typing.TypedDict, total=False):
     partitions: _list[str]
 
 @typing.type_check_only
-class CreatePrivateServiceAccess(typing_extensions.TypedDict, total=False): ...
+class CreatePrivateServiceAccess(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class CreateStorageBucket(typing_extensions.TypedDict, total=False):
+class CreateStorageBucket(typing.TypedDict, total=False):
     bucket: str
 
 @typing.type_check_only
-class DeleteFilestoreInstance(typing_extensions.TypedDict, total=False):
+class DeleteFilestoreInstance(typing.TypedDict, total=False):
     filestore: str
 
 @typing.type_check_only
-class DeleteLoginNode(typing_extensions.TypedDict, total=False): ...
+class DeleteLoginNode(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class DeleteLustreInstance(typing_extensions.TypedDict, total=False):
+class DeleteLustreInstance(typing.TypedDict, total=False):
     lustre: str
 
 @typing.type_check_only
-class DeleteNetwork(typing_extensions.TypedDict, total=False):
+class DeleteNetwork(typing.TypedDict, total=False):
     network: str
 
 @typing.type_check_only
-class DeleteNodeset(typing_extensions.TypedDict, total=False):
+class DeleteNodeset(typing.TypedDict, total=False):
     nodesets: _list[str]
 
 @typing.type_check_only
-class DeleteOrchestrator(typing_extensions.TypedDict, total=False): ...
+class DeleteOrchestrator(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class DeletePartition(typing_extensions.TypedDict, total=False):
+class DeletePartition(typing.TypedDict, total=False):
     partitions: _list[str]
 
 @typing.type_check_only
-class DeletePrivateServiceAccess(typing_extensions.TypedDict, total=False): ...
+class DeletePrivateServiceAccess(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class DeleteStorageBucket(typing_extensions.TypedDict, total=False):
+class DeleteStorageBucket(typing.TypedDict, total=False):
     bucket: str
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ExistingBucketConfig(typing_extensions.TypedDict, total=False):
+class ExistingBucketConfig(typing.TypedDict, total=False):
     bucket: str
 
 @typing.type_check_only
-class ExistingFilestoreConfig(typing_extensions.TypedDict, total=False):
+class ExistingFilestoreConfig(typing.TypedDict, total=False):
     filestore: str
 
 @typing.type_check_only
-class ExistingLustreConfig(typing_extensions.TypedDict, total=False):
+class ExistingLustreConfig(typing.TypedDict, total=False):
     lustre: str
 
 @typing.type_check_only
-class ExistingNetworkConfig(typing_extensions.TypedDict, total=False):
+class ExistingNetworkConfig(typing.TypedDict, total=False):
     network: str
     subnetwork: str
 
 @typing.type_check_only
-class FileShareConfig(typing_extensions.TypedDict, total=False):
+class FileShareConfig(typing.TypedDict, total=False):
     capacityGb: str
     fileShare: str
 
 @typing.type_check_only
-class FilestoreReference(typing_extensions.TypedDict, total=False):
+class FilestoreReference(typing.TypedDict, total=False):
     filestore: str
 
 @typing.type_check_only
-class GcsAutoclassConfig(typing_extensions.TypedDict, total=False):
+class GcsAutoclassConfig(typing.TypedDict, total=False):
     enabled: bool
-    terminalStorageClass: typing_extensions.Literal[
+    terminalStorageClass: typing.Literal[
         "TERMINAL_STORAGE_CLASS_UNSPECIFIED", "NEARLINE", "ARCHIVE"
     ]
 
 @typing.type_check_only
-class GcsHierarchicalNamespaceConfig(typing_extensions.TypedDict, total=False):
+class GcsHierarchicalNamespaceConfig(typing.TypedDict, total=False):
     enabled: bool
 
 @typing.type_check_only
-class ListClustersResponse(typing_extensions.TypedDict, total=False):
+class ListClustersResponse(typing.TypedDict, total=False):
     clusters: _list[Cluster]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListLocationsResponse(typing_extensions.TypedDict, total=False):
+class ListLocationsResponse(typing.TypedDict, total=False):
     locations: _list[Location]
     nextPageToken: str
 
 @typing.type_check_only
-class ListOperationsResponse(typing_extensions.TypedDict, total=False):
+class ListOperationsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
     unreachable: _list[str]
 
 @typing.type_check_only
-class Location(typing_extensions.TypedDict, total=False):
+class Location(typing.TypedDict, total=False):
     displayName: str
     labels: dict[str, typing.Any]
     locationId: str
@@ -185,49 +183,54 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class LustreReference(typing_extensions.TypedDict, total=False):
+class LustreReference(typing.TypedDict, total=False):
     lustre: str
 
 @typing.type_check_only
-class NetworkReference(typing_extensions.TypedDict, total=False):
+class NetworkReference(typing.TypedDict, total=False):
     network: str
     subnetwork: str
 
 @typing.type_check_only
-class NetworkResource(typing_extensions.TypedDict, total=False):
+class NetworkResource(typing.TypedDict, total=False):
     config: NetworkResourceConfig
     network: NetworkReference
 
 @typing.type_check_only
-class NetworkResourceConfig(typing_extensions.TypedDict, total=False):
+class NetworkResourceConfig(typing.TypedDict, total=False):
     existingNetwork: ExistingNetworkConfig
     newNetwork: NewNetworkConfig
 
 @typing.type_check_only
-class NewBucketConfig(typing_extensions.TypedDict, total=False):
+class NewBucketConfig(typing.TypedDict, total=False):
     autoclass: GcsAutoclassConfig
     bucket: str
     hierarchicalNamespace: GcsHierarchicalNamespaceConfig
-    storageClass: typing_extensions.Literal[
-        "STORAGE_CLASS_UNSPECIFIED", "STANDARD", "NEARLINE", "COLDLINE", "ARCHIVE"
+    storageClass: typing.Literal[
+        "STORAGE_CLASS_UNSPECIFIED",
+        "STANDARD",
+        "NEARLINE",
+        "COLDLINE",
+        "ARCHIVE",
+        "RAPID",
     ]
 
 @typing.type_check_only
-class NewFilestoreConfig(typing_extensions.TypedDict, total=False):
+class NewFilestoreConfig(typing.TypedDict, total=False):
     description: str
     fileShares: _list[FileShareConfig]
     filestore: str
-    protocol: typing_extensions.Literal["PROTOCOL_UNSPECIFIED", "NFSV3", "NFSV41"]
-    tier: typing_extensions.Literal["TIER_UNSPECIFIED", "ZONAL", "REGIONAL"]
+    protocol: typing.Literal["PROTOCOL_UNSPECIFIED", "NFSV3", "NFSV41"]
+    tier: typing.Literal["TIER_UNSPECIFIED", "ZONAL", "REGIONAL"]
 
 @typing.type_check_only
-class NewFlexStartInstancesConfig(typing_extensions.TypedDict, total=False):
+class NewFlexStartInstancesConfig(typing.TypedDict, total=False):
     machineType: str
     maxDuration: str
     zone: str
 
 @typing.type_check_only
-class NewLustreConfig(typing_extensions.TypedDict, total=False):
+class NewLustreConfig(typing.TypedDict, total=False):
     capacityGb: str
     description: str
     filesystem: str
@@ -235,29 +238,29 @@ class NewLustreConfig(typing_extensions.TypedDict, total=False):
     perUnitStorageThroughput: str
 
 @typing.type_check_only
-class NewNetworkConfig(typing_extensions.TypedDict, total=False):
+class NewNetworkConfig(typing.TypedDict, total=False):
     description: str
     network: str
 
 @typing.type_check_only
-class NewOnDemandInstancesConfig(typing_extensions.TypedDict, total=False):
+class NewOnDemandInstancesConfig(typing.TypedDict, total=False):
     machineType: str
     zone: str
 
 @typing.type_check_only
-class NewReservedInstancesConfig(typing_extensions.TypedDict, total=False):
+class NewReservedInstancesConfig(typing.TypedDict, total=False):
     reservation: str
 
 @typing.type_check_only
-class NewSpotInstancesConfig(typing_extensions.TypedDict, total=False):
+class NewSpotInstancesConfig(typing.TypedDict, total=False):
     machineType: str
-    terminationAction: typing_extensions.Literal[
+    terminationAction: typing.Literal[
         "TERMINATION_ACTION_UNSPECIFIED", "STOP", "DELETE"
     ]
     zone: str
 
 @typing.type_check_only
-class Operation(typing_extensions.TypedDict, total=False):
+class Operation(typing.TypedDict, total=False):
     done: bool
     error: Status
     metadata: dict[str, typing.Any]
@@ -265,7 +268,7 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class OperationMetadata(typing_extensions.TypedDict, total=False):
+class OperationMetadata(typing.TypedDict, total=False):
     apiVersion: str
     createTime: str
     endTime: str
@@ -275,11 +278,11 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
-class OperationProgress(typing_extensions.TypedDict, total=False):
+class OperationProgress(typing.TypedDict, total=False):
     steps: _list[OperationStep]
 
 @typing.type_check_only
-class OperationStep(typing_extensions.TypedDict, total=False):
+class OperationStep(typing.TypedDict, total=False):
     checkClusterHealth: CheckClusterHealth
     createFilestoreInstance: CreateFilestoreInstance
     createLoginNode: CreateLoginNode
@@ -299,20 +302,18 @@ class OperationStep(typing_extensions.TypedDict, total=False):
     deletePartition: DeletePartition
     deletePrivateServiceAccess: DeletePrivateServiceAccess
     deleteStorageBucket: DeleteStorageBucket
-    state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "WAITING", "IN_PROGRESS", "DONE"
-    ]
+    state: typing.Literal["STATE_UNSPECIFIED", "WAITING", "IN_PROGRESS", "DONE"]
     updateLoginNode: UpdateLoginNode
     updateNodeset: UpdateNodeset
     updateOrchestrator: UpdateOrchestrator
     updatePartition: UpdatePartition
 
 @typing.type_check_only
-class Orchestrator(typing_extensions.TypedDict, total=False):
+class Orchestrator(typing.TypedDict, total=False):
     slurm: SlurmOrchestrator
 
 @typing.type_check_only
-class SlurmLoginNodes(typing_extensions.TypedDict, total=False):
+class SlurmLoginNodes(typing.TypedDict, total=False):
     bootDisk: BootDisk
     count: str
     enableOsLogin: bool
@@ -325,7 +326,7 @@ class SlurmLoginNodes(typing_extensions.TypedDict, total=False):
     zone: str
 
 @typing.type_check_only
-class SlurmNodeSet(typing_extensions.TypedDict, total=False):
+class SlurmNodeSet(typing.TypedDict, total=False):
     computeId: str
     computeInstance: ComputeInstanceSlurmNodeSet
     id: str
@@ -334,7 +335,7 @@ class SlurmNodeSet(typing_extensions.TypedDict, total=False):
     storageConfigs: _list[StorageConfig]
 
 @typing.type_check_only
-class SlurmOrchestrator(typing_extensions.TypedDict, total=False):
+class SlurmOrchestrator(typing.TypedDict, total=False):
     defaultPartition: str
     epilogBashScripts: _list[str]
     loginNodes: SlurmLoginNodes
@@ -343,30 +344,30 @@ class SlurmOrchestrator(typing_extensions.TypedDict, total=False):
     prologBashScripts: _list[str]
 
 @typing.type_check_only
-class SlurmPartition(typing_extensions.TypedDict, total=False):
+class SlurmPartition(typing.TypedDict, total=False):
     id: str
     nodeSetIds: _list[str]
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class StorageConfig(typing_extensions.TypedDict, total=False):
+class StorageConfig(typing.TypedDict, total=False):
     id: str
     localMount: str
 
 @typing.type_check_only
-class StorageResource(typing_extensions.TypedDict, total=False):
+class StorageResource(typing.TypedDict, total=False):
     bucket: BucketReference
     config: StorageResourceConfig
     filestore: FilestoreReference
     lustre: LustreReference
 
 @typing.type_check_only
-class StorageResourceConfig(typing_extensions.TypedDict, total=False):
+class StorageResourceConfig(typing.TypedDict, total=False):
     existingBucket: ExistingBucketConfig
     existingFilestore: ExistingFilestoreConfig
     existingLustre: ExistingLustreConfig
@@ -375,15 +376,15 @@ class StorageResourceConfig(typing_extensions.TypedDict, total=False):
     newLustre: NewLustreConfig
 
 @typing.type_check_only
-class UpdateLoginNode(typing_extensions.TypedDict, total=False): ...
+class UpdateLoginNode(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class UpdateNodeset(typing_extensions.TypedDict, total=False):
+class UpdateNodeset(typing.TypedDict, total=False):
     nodesets: _list[str]
 
 @typing.type_check_only
-class UpdateOrchestrator(typing_extensions.TypedDict, total=False): ...
+class UpdateOrchestrator(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class UpdatePartition(typing_extensions.TypedDict, total=False):
+class UpdatePartition(typing.TypedDict, total=False):
     partitions: _list[str]

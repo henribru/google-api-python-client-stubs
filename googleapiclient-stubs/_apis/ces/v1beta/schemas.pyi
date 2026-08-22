@@ -1,25 +1,23 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class Action(typing_extensions.TypedDict, total=False):
+class Action(typing.TypedDict, total=False):
     connectionActionId: str
     entityOperation: ActionEntityOperation
     inputFields: _list[str]
     outputFields: _list[str]
 
 @typing.type_check_only
-class ActionEntityOperation(typing_extensions.TypedDict, total=False):
+class ActionEntityOperation(typing.TypedDict, total=False):
     entityId: str
-    operation: typing_extensions.Literal[
+    operation: typing.Literal[
         "OPERATION_TYPE_UNSPECIFIED", "LIST", "GET", "CREATE", "UPDATE", "DELETE"
     ]
 
 @typing.type_check_only
-class Agent(typing_extensions.TypedDict, total=False):
+class Agent(typing.TypedDict, total=False):
     afterAgentCallbacks: _list[Callback]
     afterModelCallbacks: _list[Callback]
     afterToolCallbacks: _list[Callback]
@@ -45,12 +43,12 @@ class Agent(typing_extensions.TypedDict, total=False):
     validationErrors: _list[str]
 
 @typing.type_check_only
-class AgentAgentToolset(typing_extensions.TypedDict, total=False):
+class AgentAgentToolset(typing.TypedDict, total=False):
     toolIds: _list[str]
     toolset: str
 
 @typing.type_check_only
-class AgentCard(typing_extensions.TypedDict, total=False):
+class AgentCard(typing.TypedDict, total=False):
     description: str
     name: str
     skills: _list[AgentSkill]
@@ -58,17 +56,17 @@ class AgentCard(typing_extensions.TypedDict, total=False):
     version: str
 
 @typing.type_check_only
-class AgentInterface(typing_extensions.TypedDict, total=False):
+class AgentInterface(typing.TypedDict, total=False):
     protocolBinding: str
     protocolVersion: str
     tenant: str
     url: str
 
 @typing.type_check_only
-class AgentLlmAgent(typing_extensions.TypedDict, total=False): ...
+class AgentLlmAgent(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class AgentRemoteDialogflowAgent(typing_extensions.TypedDict, total=False):
+class AgentRemoteDialogflowAgent(typing.TypedDict, total=False):
     agent: str
     environmentId: str
     flowId: str
@@ -78,7 +76,7 @@ class AgentRemoteDialogflowAgent(typing_extensions.TypedDict, total=False):
     respectResponseInterruptionSettings: bool
 
 @typing.type_check_only
-class AgentSkill(typing_extensions.TypedDict, total=False):
+class AgentSkill(typing.TypedDict, total=False):
     description: str
     examples: _list[str]
     id: str
@@ -88,27 +86,26 @@ class AgentSkill(typing_extensions.TypedDict, total=False):
     tags: _list[str]
 
 @typing.type_check_only
-class AgentTool(typing_extensions.TypedDict, total=False):
+class AgentTool(typing.TypedDict, total=False):
     agent: str
     description: str
     name: str
-    rootAgent: str
 
 @typing.type_check_only
-class AgentTransfer(typing_extensions.TypedDict, total=False):
+class AgentTransfer(typing.TypedDict, total=False):
     displayName: str
     targetAgent: str
 
 @typing.type_check_only
-class AggregatedMetrics(typing_extensions.TypedDict, total=False):
+class AggregatedMetrics(typing.TypedDict, total=False):
     metricsByAppVersion: _list[AggregatedMetricsMetricsByAppVersion]
 
 @typing.type_check_only
-class AggregatedMetricsHallucinationMetrics(typing_extensions.TypedDict, total=False):
+class AggregatedMetricsHallucinationMetrics(typing.TypedDict, total=False):
     score: float
 
 @typing.type_check_only
-class AggregatedMetricsMetricsByAppVersion(typing_extensions.TypedDict, total=False):
+class AggregatedMetricsMetricsByAppVersion(typing.TypedDict, total=False):
     appVersionId: str
     failCount: int
     hallucinationMetrics: _list[AggregatedMetricsHallucinationMetrics]
@@ -120,7 +117,7 @@ class AggregatedMetricsMetricsByAppVersion(typing_extensions.TypedDict, total=Fa
     turnLatencyMetrics: _list[AggregatedMetricsTurnLatencyMetrics]
 
 @typing.type_check_only
-class AggregatedMetricsMetricsByTurn(typing_extensions.TypedDict, total=False):
+class AggregatedMetricsMetricsByTurn(typing.TypedDict, total=False):
     hallucinationMetrics: _list[AggregatedMetricsHallucinationMetrics]
     semanticSimilarityMetrics: _list[AggregatedMetricsSemanticSimilarityMetrics]
     toolCallLatencyMetrics: _list[AggregatedMetricsToolCallLatencyMetrics]
@@ -129,30 +126,28 @@ class AggregatedMetricsMetricsByTurn(typing_extensions.TypedDict, total=False):
     turnLatencyMetrics: _list[AggregatedMetricsTurnLatencyMetrics]
 
 @typing.type_check_only
-class AggregatedMetricsSemanticSimilarityMetrics(
-    typing_extensions.TypedDict, total=False
-):
+class AggregatedMetricsSemanticSimilarityMetrics(typing.TypedDict, total=False):
     score: float
 
 @typing.type_check_only
-class AggregatedMetricsToolCallLatencyMetrics(typing_extensions.TypedDict, total=False):
+class AggregatedMetricsToolCallLatencyMetrics(typing.TypedDict, total=False):
     averageLatency: str
     tool: str
 
 @typing.type_check_only
-class AggregatedMetricsToolMetrics(typing_extensions.TypedDict, total=False):
+class AggregatedMetricsToolMetrics(typing.TypedDict, total=False):
     failCount: int
     passCount: int
     tool: str
 
 @typing.type_check_only
-class AggregatedMetricsTurnLatencyMetrics(typing_extensions.TypedDict, total=False):
+class AggregatedMetricsTurnLatencyMetrics(typing.TypedDict, total=False):
     averageLatency: str
 
 @typing.type_check_only
-class AmbientSoundConfig(typing_extensions.TypedDict, total=False):
+class AmbientSoundConfig(typing.TypedDict, total=False):
     gcsUri: str
-    prebuiltAmbientNoise: typing_extensions.Literal[
+    prebuiltAmbientNoise: typing.Literal[
         "PREBUILT_AMBIENT_NOISE_UNSPECIFIED",
         "RETAIL_STORE",
         "CONVENTION_HALL",
@@ -162,7 +157,7 @@ class AmbientSoundConfig(typing_extensions.TypedDict, total=False):
     volumeGainDb: float
 
 @typing.type_check_only
-class ApiAuthentication(typing_extensions.TypedDict, total=False):
+class ApiAuthentication(typing.TypedDict, total=False):
     apiKeyConfig: ApiKeyConfig
     bearerTokenConfig: BearerTokenConfig
     oauthConfig: OAuthConfig
@@ -170,15 +165,15 @@ class ApiAuthentication(typing_extensions.TypedDict, total=False):
     serviceAgentIdTokenAuthConfig: ServiceAgentIdTokenAuthConfig
 
 @typing.type_check_only
-class ApiKeyConfig(typing_extensions.TypedDict, total=False):
+class ApiKeyConfig(typing.TypedDict, total=False):
     apiKeySecretVersion: str
     keyName: str
-    requestLocation: typing_extensions.Literal[
+    requestLocation: typing.Literal[
         "REQUEST_LOCATION_UNSPECIFIED", "HEADER", "QUERY_STRING"
     ]
 
 @typing.type_check_only
-class App(typing_extensions.TypedDict, total=False):
+class App(typing.TypedDict, total=False):
     audioProcessingConfig: AudioProcessingConfig
     clientCertificateSettings: ClientCertificateSettings
     createTime: str
@@ -204,7 +199,7 @@ class App(typing_extensions.TypedDict, total=False):
     predefinedVariableDeclarations: _list[AppVariableDeclaration]
     rootAgent: str
     timeZoneSettings: TimeZoneSettings
-    toolExecutionMode: typing_extensions.Literal[
+    toolExecutionMode: typing.Literal[
         "TOOL_EXECUTION_MODE_UNSPECIFIED", "PARALLEL", "SEQUENTIAL"
     ]
     updateTime: str
@@ -213,7 +208,7 @@ class App(typing_extensions.TypedDict, total=False):
     vpcScSettings: VpcScSettings
 
 @typing.type_check_only
-class AppSnapshot(typing_extensions.TypedDict, total=False):
+class AppSnapshot(typing.TypedDict, total=False):
     agents: _list[Agent]
     app: App
     examples: _list[Example]
@@ -222,13 +217,13 @@ class AppSnapshot(typing_extensions.TypedDict, total=False):
     toolsets: _list[Toolset]
 
 @typing.type_check_only
-class AppVariableDeclaration(typing_extensions.TypedDict, total=False):
+class AppVariableDeclaration(typing.TypedDict, total=False):
     description: str
     name: str
     schema: Schema
 
 @typing.type_check_only
-class AppVersion(typing_extensions.TypedDict, total=False):
+class AppVersion(typing.TypedDict, total=False):
     createTime: str
     creator: str
     description: str
@@ -238,59 +233,59 @@ class AppVersion(typing_extensions.TypedDict, total=False):
     snapshot: AppSnapshot
 
 @typing.type_check_only
-class AudioProcessingConfig(typing_extensions.TypedDict, total=False):
+class AudioProcessingConfig(typing.TypedDict, total=False):
     ambientSoundConfig: AmbientSoundConfig
     bargeInConfig: BargeInConfig
     inactivityTimeout: str
     synthesizeSpeechConfigs: dict[str, typing.Any]
 
 @typing.type_check_only
-class AudioRecordingConfig(typing_extensions.TypedDict, total=False):
+class AudioRecordingConfig(typing.TypedDict, total=False):
     gcsBucket: str
     gcsPathPrefix: str
 
 @typing.type_check_only
-class BargeInConfig(typing_extensions.TypedDict, total=False):
+class BargeInConfig(typing.TypedDict, total=False):
     bargeInAwareness: bool
     disableBargeIn: bool
 
 @typing.type_check_only
-class BatchDeleteConversationsRequest(typing_extensions.TypedDict, total=False):
+class BatchDeleteConversationsRequest(typing.TypedDict, total=False):
     conversations: _list[str]
 
 @typing.type_check_only
-class BatchDeleteConversationsResponse(typing_extensions.TypedDict, total=False):
+class BatchDeleteConversationsResponse(typing.TypedDict, total=False):
     deletedConversations: _list[str]
     errorMessages: _list[str]
     failedConversations: _list[str]
 
 @typing.type_check_only
-class BearerTokenConfig(typing_extensions.TypedDict, total=False):
+class BearerTokenConfig(typing.TypedDict, total=False):
     token: str
 
 @typing.type_check_only
-class BigQueryExportSettings(typing_extensions.TypedDict, total=False):
+class BigQueryExportSettings(typing.TypedDict, total=False):
     dataset: str
     enabled: bool
     project: str
 
 @typing.type_check_only
-class Blob(typing_extensions.TypedDict, total=False):
+class Blob(typing.TypedDict, total=False):
     data: str
     mimeType: str
 
 @typing.type_check_only
-class Callback(typing_extensions.TypedDict, total=False):
+class Callback(typing.TypedDict, total=False):
     description: str
     disabled: bool
     proactiveExecutionEnabled: bool
     pythonCode: str
 
 @typing.type_check_only
-class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
+class CancelOperationRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Changelog(typing_extensions.TypedDict, total=False):
+class Changelog(typing.TypedDict, total=False):
     action: str
     author: str
     createTime: str
@@ -305,31 +300,43 @@ class Changelog(typing_extensions.TypedDict, total=False):
     sequenceNumber: str
 
 @typing.type_check_only
-class ChannelProfile(typing_extensions.TypedDict, total=False):
-    channelType: typing_extensions.Literal[
+class ChannelProfile(typing.TypedDict, total=False):
+    channelType: typing.Literal[
         "UNKNOWN",
         "WEB_UI",
         "API",
         "TWILIO",
         "GOOGLE_TELEPHONY_PLATFORM",
         "CONTACT_CENTER_AS_A_SERVICE",
+        "CONTACT_CENTER_AS_A_SERVICE_CHAT",
         "FIVE9",
         "CONTACT_CENTER_INTEGRATION",
+        "WHATSAPP",
+        "INSTAGRAM",
     ]
     disableBargeInControl: bool
     disableDtmf: bool
+    instagramConfig: ChannelProfileInstagramConfig
     noiseSuppressionLevel: str
     personaProperty: ChannelProfilePersonaProperty
     profileId: str
     webWidgetConfig: ChannelProfileWebWidgetConfig
+    whatsappConfig: ChannelProfileWhatsAppConfig
 
 @typing.type_check_only
-class ChannelProfilePersonaProperty(typing_extensions.TypedDict, total=False):
-    persona: typing_extensions.Literal["UNKNOWN", "CONCISE", "CHATTY"]
+class ChannelProfileInstagramConfig(typing.TypedDict, total=False):
+    description: str
+    displayName: str
+    instagramAccountId: str
+    thumbnailUrl: str
 
 @typing.type_check_only
-class ChannelProfileWebWidgetConfig(typing_extensions.TypedDict, total=False):
-    modality: typing_extensions.Literal[
+class ChannelProfilePersonaProperty(typing.TypedDict, total=False):
+    persona: typing.Literal["UNKNOWN", "CONCISE", "CHATTY"]
+
+@typing.type_check_only
+class ChannelProfileWebWidgetConfig(typing.TypedDict, total=False):
+    modality: typing.Literal[
         "MODALITY_UNSPECIFIED",
         "CHAT_AND_VOICE",
         "VOICE_ONLY",
@@ -337,20 +344,27 @@ class ChannelProfileWebWidgetConfig(typing_extensions.TypedDict, total=False):
         "CHAT_VOICE_AND_VIDEO",
     ]
     securitySettings: ChannelProfileWebWidgetConfigSecuritySettings
-    theme: typing_extensions.Literal["THEME_UNSPECIFIED", "LIGHT", "DARK"]
+    theme: typing.Literal["THEME_UNSPECIFIED", "LIGHT", "DARK"]
     webWidgetTitle: str
 
 @typing.type_check_only
-class ChannelProfileWebWidgetConfigSecuritySettings(
-    typing_extensions.TypedDict, total=False
-):
+class ChannelProfileWebWidgetConfigSecuritySettings(typing.TypedDict, total=False):
     allowedOrigins: _list[str]
     enableOriginCheck: bool
     enablePublicAccess: bool
     enableRecaptcha: bool
 
 @typing.type_check_only
-class Chunk(typing_extensions.TypedDict, total=False):
+class ChannelProfileWhatsAppConfig(typing.TypedDict, total=False):
+    description: str
+    displayName: str
+    phoneNumber: str
+    phoneNumberId: str
+    thumbnailUrl: str
+    wabaId: str
+
+@typing.type_check_only
+class Chunk(typing.TypedDict, total=False):
     agentTransfer: AgentTransfer
     blob: Blob
     defaultVariables: dict[str, typing.Any]
@@ -363,38 +377,39 @@ class Chunk(typing_extensions.TypedDict, total=False):
     updatedVariables: dict[str, typing.Any]
 
 @typing.type_check_only
-class Citations(typing_extensions.TypedDict, total=False):
+class Citations(typing.TypedDict, total=False):
     citedChunks: _list[CitationsCitedChunk]
 
 @typing.type_check_only
-class CitationsCitedChunk(typing_extensions.TypedDict, total=False):
+class CitationsCitedChunk(typing.TypedDict, total=False):
+    requiresAttribution: bool
     text: str
     title: str
     uri: str
 
 @typing.type_check_only
-class ClientCertificateSettings(typing_extensions.TypedDict, total=False):
+class ClientCertificateSettings(typing.TypedDict, total=False):
     passphrase: str
     privateKey: str
     tlsCertificate: str
 
 @typing.type_check_only
-class ClientFunction(typing_extensions.TypedDict, total=False):
+class ClientFunction(typing.TypedDict, total=False):
     description: str
     name: str
     parameters: Schema
     response: Schema
 
 @typing.type_check_only
-class CloudLoggingSettings(typing_extensions.TypedDict, total=False):
+class CloudLoggingSettings(typing.TypedDict, total=False):
     enableCloudLogging: bool
 
 @typing.type_check_only
-class CodeBlock(typing_extensions.TypedDict, total=False):
+class CodeBlock(typing.TypedDict, total=False):
     pythonCode: str
 
 @typing.type_check_only
-class ConnectorTool(typing_extensions.TypedDict, total=False):
+class ConnectorTool(typing.TypedDict, total=False):
     action: Action
     authConfig: EndUserAuthConfig
     connection: str
@@ -402,22 +417,22 @@ class ConnectorTool(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class ConnectorToolset(typing_extensions.TypedDict, total=False):
+class ConnectorToolset(typing.TypedDict, total=False):
     authConfig: EndUserAuthConfig
     connection: str
     connectorActions: _list[Action]
 
 @typing.type_check_only
-class Conversation(typing_extensions.TypedDict, total=False):
+class Conversation(typing.TypedDict, total=False):
     appVersion: str
-    channelType: typing_extensions.Literal[
+    channelType: typing.Literal[
         "CHANNEL_TYPE_UNSPECIFIED", "TEXT", "AUDIO", "MULTIMODAL"
     ]
     deployment: str
     endTime: str
     entryAgent: str
     inputTypes: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "INPUT_TYPE_UNSPECIFIED",
             "INPUT_TYPE_TEXT",
             "INPUT_TYPE_EVENT",
@@ -431,7 +446,7 @@ class Conversation(typing_extensions.TypedDict, total=False):
     languageCode: str
     messages: _list[Message]
     name: str
-    source: typing_extensions.Literal[
+    source: typing.Literal[
         "SOURCE_UNSPECIFIED", "LIVE", "SIMULATOR", "EVAL", "AGENT_TOOL"
     ]
     startTime: str
@@ -439,182 +454,186 @@ class Conversation(typing_extensions.TypedDict, total=False):
     turns: _list[ConversationTurn]
 
 @typing.type_check_only
-class ConversationLoggingSettings(typing_extensions.TypedDict, total=False):
+class ConversationLoggingSettings(typing.TypedDict, total=False):
     disableConversationLogging: bool
     retentionWindow: str
 
 @typing.type_check_only
-class ConversationTurn(typing_extensions.TypedDict, total=False):
+class ConversationTurn(typing.TypedDict, total=False):
     messages: _list[Message]
+    resolvedDeveloperInstruction: str
     rootSpan: Span
+    templateAttributes: dict[str, typing.Any]
+    userIntendedText: str
 
 @typing.type_check_only
-class DataStore(typing_extensions.TypedDict, total=False):
+class DataStore(typing.TypedDict, total=False):
     connectorConfig: DataStoreConnectorConfig
     createTime: str
     displayName: str
-    documentProcessingMode: typing_extensions.Literal[
+    documentProcessingMode: typing.Literal[
         "DOCUMENT_PROCESSING_MODE_UNSPECIFIED", "DOCUMENTS", "CHUNKS"
     ]
     name: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "DATA_STORE_TYPE_UNSPECIFIED", "PUBLIC_WEB", "UNSTRUCTURED", "FAQ", "CONNECTOR"
     ]
 
 @typing.type_check_only
-class DataStoreConnectorConfig(typing_extensions.TypedDict, total=False):
+class DataStoreConnectorConfig(typing.TypedDict, total=False):
     collection: str
     collectionDisplayName: str
     dataSource: str
 
 @typing.type_check_only
-class DataStoreSettings(typing_extensions.TypedDict, total=False):
+class DataStoreSettings(typing.TypedDict, total=False):
     engines: _list[DataStoreSettingsEngine]
 
 @typing.type_check_only
-class DataStoreSettingsEngine(typing_extensions.TypedDict, total=False):
+class DataStoreSettingsEngine(typing.TypedDict, total=False):
     name: str
-    type: typing_extensions.Literal[
-        "TYPE_UNSPECIFIED", "ENGINE_TYPE_SEARCH", "ENGINE_TYPE_CHAT"
-    ]
+    type: typing.Literal["TYPE_UNSPECIFIED", "ENGINE_TYPE_SEARCH", "ENGINE_TYPE_CHAT"]
 
 @typing.type_check_only
-class DataStoreTool(typing_extensions.TypedDict, total=False):
+class DataStoreTool(typing.TypedDict, total=False):
     boostSpecs: _list[DataStoreToolBoostSpecs]
     dataStoreSource: DataStoreToolDataStoreSource
     description: str
     engineSource: DataStoreToolEngineSource
-    filterParameterBehavior: typing_extensions.Literal[
+    filterParameterBehavior: typing.Literal[
         "FILTER_PARAMETER_BEHAVIOR_UNSPECIFIED", "ALWAYS_INCLUDE", "NEVER_INCLUDE"
     ]
     modalityConfigs: _list[DataStoreToolModalityConfig]
     name: str
 
 @typing.type_check_only
-class DataStoreToolBoostSpec(typing_extensions.TypedDict, total=False):
+class DataStoreToolBoostSpec(typing.TypedDict, total=False):
     conditionBoostSpecs: _list[DataStoreToolBoostSpecConditionBoostSpec]
 
 @typing.type_check_only
-class DataStoreToolBoostSpecConditionBoostSpec(
-    typing_extensions.TypedDict, total=False
-):
+class DataStoreToolBoostSpecConditionBoostSpec(typing.TypedDict, total=False):
     boost: float
     boostControlSpec: DataStoreToolBoostSpecConditionBoostSpecBoostControlSpec
     condition: str
 
 @typing.type_check_only
 class DataStoreToolBoostSpecConditionBoostSpecBoostControlSpec(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    attributeType: typing_extensions.Literal[
+    attributeType: typing.Literal[
         "ATTRIBUTE_TYPE_UNSPECIFIED", "NUMERICAL", "FRESHNESS"
     ]
     controlPoints: _list[
         DataStoreToolBoostSpecConditionBoostSpecBoostControlSpecControlPoint
     ]
     fieldName: str
-    interpolationType: typing_extensions.Literal[
-        "INTERPOLATION_TYPE_UNSPECIFIED", "LINEAR"
-    ]
+    interpolationType: typing.Literal["INTERPOLATION_TYPE_UNSPECIFIED", "LINEAR"]
 
 @typing.type_check_only
 class DataStoreToolBoostSpecConditionBoostSpecBoostControlSpecControlPoint(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     attributeValue: str
     boostAmount: float
 
 @typing.type_check_only
-class DataStoreToolBoostSpecs(typing_extensions.TypedDict, total=False):
+class DataStoreToolBoostSpecs(typing.TypedDict, total=False):
     dataStores: _list[str]
     spec: _list[DataStoreToolBoostSpec]
 
 @typing.type_check_only
-class DataStoreToolDataStoreSource(typing_extensions.TypedDict, total=False):
+class DataStoreToolDataStoreSource(typing.TypedDict, total=False):
     dataStore: DataStore
     filter: str
 
 @typing.type_check_only
-class DataStoreToolEngineSource(typing_extensions.TypedDict, total=False):
+class DataStoreToolEngineSource(typing.TypedDict, total=False):
     dataStoreSources: _list[DataStoreToolDataStoreSource]
     engine: str
     filter: str
 
 @typing.type_check_only
-class DataStoreToolGroundingConfig(typing_extensions.TypedDict, total=False):
+class DataStoreToolGroundingConfig(typing.TypedDict, total=False):
     disabled: bool
     groundingLevel: float
 
 @typing.type_check_only
-class DataStoreToolModalityConfig(typing_extensions.TypedDict, total=False):
+class DataStoreToolModalityConfig(typing.TypedDict, total=False):
     groundingConfig: DataStoreToolGroundingConfig
-    modalityType: typing_extensions.Literal[
-        "MODALITY_TYPE_UNSPECIFIED", "TEXT", "AUDIO"
-    ]
+    modalityType: typing.Literal["MODALITY_TYPE_UNSPECIFIED", "TEXT", "AUDIO"]
     rewriterConfig: DataStoreToolRewriterConfig
+    snippetsConfig: DataStoreToolSnippetsConfig
     summarizationConfig: DataStoreToolSummarizationConfig
 
 @typing.type_check_only
-class DataStoreToolRewriterConfig(typing_extensions.TypedDict, total=False):
+class DataStoreToolRewriterConfig(typing.TypedDict, total=False):
     disabled: bool
     modelSettings: ModelSettings
     prompt: str
 
 @typing.type_check_only
-class DataStoreToolSummarizationConfig(typing_extensions.TypedDict, total=False):
+class DataStoreToolSnippetsConfig(typing.TypedDict, total=False):
+    enableSnippets: bool
+
+@typing.type_check_only
+class DataStoreToolSummarizationConfig(typing.TypedDict, total=False):
     disabled: bool
     modelSettings: ModelSettings
     prompt: str
 
 @typing.type_check_only
-class DeleteEvaluationRunOperationMetadata(
-    typing_extensions.TypedDict, total=False
-): ...
+class DeleteEvaluationRunOperationMetadata(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Deployment(typing_extensions.TypedDict, total=False):
+class Deployment(typing.TypedDict, total=False):
     appVersion: str
     channelProfile: ChannelProfile
     createTime: str
     displayName: str
     etag: str
     experimentConfig: ExperimentConfig
+    instagramCredentials: InstagramCredentials
+    modality: typing.Literal[
+        "MODALITY_UNSPECIFIED", "MODALITY_TEXT", "MODALITY_VOICE", "MODALITY_VIDEO"
+    ]
+    modelSettings: ModelSettings
     name: str
     updateTime: str
+    whatsappCredentials: WhatsAppCredentials
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class EndSession(typing_extensions.TypedDict, total=False):
+class EndSession(typing.TypedDict, total=False):
     metadata: dict[str, typing.Any]
 
 @typing.type_check_only
-class EndUserAuthConfig(typing_extensions.TypedDict, total=False):
+class EndUserAuthConfig(typing.TypedDict, total=False):
     oauth2AuthCodeConfig: EndUserAuthConfigOauth2AuthCodeConfig
     oauth2JwtBearerConfig: EndUserAuthConfigOauth2JwtBearerConfig
 
 @typing.type_check_only
-class EndUserAuthConfigOauth2AuthCodeConfig(typing_extensions.TypedDict, total=False):
+class EndUserAuthConfigOauth2AuthCodeConfig(typing.TypedDict, total=False):
     oauthToken: str
 
 @typing.type_check_only
-class EndUserAuthConfigOauth2JwtBearerConfig(typing_extensions.TypedDict, total=False):
+class EndUserAuthConfigOauth2JwtBearerConfig(typing.TypedDict, total=False):
     clientKey: str
     issuer: str
     subject: str
 
 @typing.type_check_only
-class EndpointControlPolicy(typing_extensions.TypedDict, total=False):
+class EndpointControlPolicy(typing.TypedDict, total=False):
     allowedOrigins: _list[str]
-    enforcementScope: typing_extensions.Literal[
+    enforcementScope: typing.Literal[
         "ENFORCEMENT_SCOPE_UNSPECIFIED", "VPCSC_ONLY", "ALWAYS"
     ]
 
 @typing.type_check_only
-class ErrorHandlingSettings(typing_extensions.TypedDict, total=False):
+class ErrorHandlingSettings(typing.TypedDict, total=False):
     endSessionConfig: ErrorHandlingSettingsEndSessionConfig
-    errorHandlingStrategy: typing_extensions.Literal[
+    errorHandlingStrategy: typing.Literal[
         "ERROR_HANDLING_STRATEGY_UNSPECIFIED",
         "NONE",
         "FALLBACK_RESPONSE",
@@ -623,18 +642,16 @@ class ErrorHandlingSettings(typing_extensions.TypedDict, total=False):
     fallbackResponseConfig: ErrorHandlingSettingsFallbackResponseConfig
 
 @typing.type_check_only
-class ErrorHandlingSettingsEndSessionConfig(typing_extensions.TypedDict, total=False):
+class ErrorHandlingSettingsEndSessionConfig(typing.TypedDict, total=False):
     escalateSession: bool
 
 @typing.type_check_only
-class ErrorHandlingSettingsFallbackResponseConfig(
-    typing_extensions.TypedDict, total=False
-):
+class ErrorHandlingSettingsFallbackResponseConfig(typing.TypedDict, total=False):
     customFallbackMessages: dict[str, typing.Any]
     maxFallbackAttempts: int
 
 @typing.type_check_only
-class Evaluation(typing_extensions.TypedDict, total=False):
+class Evaluation(typing.TypedDict, total=False):
     aggregatedMetrics: AggregatedMetrics
     createTime: str
     createdBy: str
@@ -656,18 +673,16 @@ class Evaluation(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class EvaluationConfig(typing_extensions.TypedDict, total=False):
-    evaluationChannel: typing_extensions.Literal[
-        "EVALUATION_CHANNEL_UNSPECIFIED", "TEXT", "AUDIO"
-    ]
+class EvaluationConfig(typing.TypedDict, total=False):
+    evaluationChannel: typing.Literal["EVALUATION_CHANNEL_UNSPECIFIED", "TEXT", "AUDIO"]
     inputAudioConfig: InputAudioConfig
     outputAudioConfig: OutputAudioConfig
-    toolCallBehaviour: typing_extensions.Literal[
+    toolCallBehaviour: typing.Literal[
         "EVALUATION_TOOL_CALL_BEHAVIOUR_UNSPECIFIED", "REAL", "FAKE"
     ]
 
 @typing.type_check_only
-class EvaluationDataset(typing_extensions.TypedDict, total=False):
+class EvaluationDataset(typing.TypedDict, total=False):
     aggregatedMetrics: AggregatedMetrics
     createTime: str
     createdBy: str
@@ -679,9 +694,9 @@ class EvaluationDataset(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class EvaluationErrorInfo(typing_extensions.TypedDict, total=False):
+class EvaluationErrorInfo(typing.TypedDict, total=False):
     errorMessage: str
-    errorType: typing_extensions.Literal[
+    errorType: typing.Literal[
         "ERROR_TYPE_UNSPECIFIED",
         "RUNTIME_FAILURE",
         "CONVERSATION_RETRIEVAL_FAILURE",
@@ -694,7 +709,7 @@ class EvaluationErrorInfo(typing_extensions.TypedDict, total=False):
     userFacingErrorMessage: str
 
 @typing.type_check_only
-class EvaluationExpectation(typing_extensions.TypedDict, total=False):
+class EvaluationExpectation(typing.TypedDict, total=False):
     createTime: str
     displayName: str
     etag: str
@@ -704,16 +719,16 @@ class EvaluationExpectation(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class EvaluationExpectationLlmCriteria(typing_extensions.TypedDict, total=False):
+class EvaluationExpectationLlmCriteria(typing.TypedDict, total=False):
     prompt: str
 
 @typing.type_check_only
-class EvaluationGolden(typing_extensions.TypedDict, total=False):
+class EvaluationGolden(typing.TypedDict, total=False):
     evaluationExpectations: _list[str]
     turns: _list[EvaluationGoldenTurn]
 
 @typing.type_check_only
-class EvaluationGoldenExpectation(typing_extensions.TypedDict, total=False):
+class EvaluationGoldenExpectation(typing.TypedDict, total=False):
     agentResponse: Message
     agentResponseHallucinationMetricsConfigOverride: (
         EvaluationMetricsConfigHallucinationMetricsConfig
@@ -722,8 +737,12 @@ class EvaluationGoldenExpectation(typing_extensions.TypedDict, total=False):
         EvaluationMetricsConfigSemanticSimilarityMetricsConfig
     )
     agentTransfer: AgentTransfer
+    comparisonType: typing.Literal[
+        "COMPARISON_TYPE_UNSPECIFIED", "EQUALS", "CONTAINS", "SEMANTIC_SIMILARITY"
+    ]
     expectationLevelMetricsThresholdsOverride: EvaluationMetricsThresholdsGoldenEvaluationMetricsThresholdsExpectationLevelMetricsThresholds
     mockToolResponse: ToolResponse
+    noToolCalls: bool
     note: str
     skipEvaluation: bool
     toolCall: ToolCall
@@ -731,8 +750,8 @@ class EvaluationGoldenExpectation(typing_extensions.TypedDict, total=False):
     updatedVariables: dict[str, typing.Any]
 
 @typing.type_check_only
-class EvaluationGoldenTurn(typing_extensions.TypedDict, total=False):
-    hallucinationMetricBehaviorOverride: typing_extensions.Literal[
+class EvaluationGoldenTurn(typing.TypedDict, total=False):
+    hallucinationMetricBehaviorOverride: typing.Literal[
         "HALLUCINATION_METRIC_BEHAVIOR_UNSPECIFIED", "DISABLED", "ENABLED"
     ]
     rootSpan: Span
@@ -740,20 +759,18 @@ class EvaluationGoldenTurn(typing_extensions.TypedDict, total=False):
     turnLevelMetricsThresholdsOverride: EvaluationMetricsThresholdsGoldenEvaluationMetricsThresholdsTurnLevelMetricsThresholds
 
 @typing.type_check_only
-class EvaluationMetricsConfig(typing_extensions.TypedDict, total=False):
+class EvaluationMetricsConfig(typing.TypedDict, total=False):
     goldenMetricsConfig: EvaluationMetricsConfigGoldenMetricsConfig
     scenarioMetricsConfig: EvaluationMetricsConfigScenarioMetricsConfig
 
 @typing.type_check_only
 class EvaluationMetricsConfigExpectationsMetMetricsConfig(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     enableExpectationsMetMetrics: bool
 
 @typing.type_check_only
-class EvaluationMetricsConfigGoldenMetricsConfig(
-    typing_extensions.TypedDict, total=False
-):
+class EvaluationMetricsConfigGoldenMetricsConfig(typing.TypedDict, total=False):
     semanticSimilarityMetricsConfig: (
         EvaluationMetricsConfigSemanticSimilarityMetricsConfig
     )
@@ -763,54 +780,48 @@ class EvaluationMetricsConfigGoldenMetricsConfig(
     toolCorrectnessMetricsConfig: EvaluationMetricsConfigToolCorrectnessMetricsConfig
 
 @typing.type_check_only
-class EvaluationMetricsConfigHallucinationMetricsConfig(
-    typing_extensions.TypedDict, total=False
-):
+class EvaluationMetricsConfigHallucinationMetricsConfig(typing.TypedDict, total=False):
     enableHallucinationMetrics: bool
 
 @typing.type_check_only
-class EvaluationMetricsConfigScenarioMetricsConfig(
-    typing_extensions.TypedDict, total=False
-):
+class EvaluationMetricsConfigScenarioMetricsConfig(typing.TypedDict, total=False):
     expectationsMetMetricsConfig: EvaluationMetricsConfigExpectationsMetMetricsConfig
     userGoalMetMetricsConfig: EvaluationMetricsConfigUserGoalMetMetricsConfig
 
 @typing.type_check_only
 class EvaluationMetricsConfigSemanticSimilarityMetricsConfig(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     enableSemanticSimilarityMetrics: bool
 
 @typing.type_check_only
 class EvaluationMetricsConfigToolCorrectnessMetricsConfig(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     enableToolCorrectnessMetrics: bool
 
 @typing.type_check_only
-class EvaluationMetricsConfigUserGoalMetMetricsConfig(
-    typing_extensions.TypedDict, total=False
-):
+class EvaluationMetricsConfigUserGoalMetMetricsConfig(typing.TypedDict, total=False):
     enableUserGoalMetMetrics: bool
 
 @typing.type_check_only
-class EvaluationMetricsThresholds(typing_extensions.TypedDict, total=False):
+class EvaluationMetricsThresholds(typing.TypedDict, total=False):
     goldenEvaluationMetricsThresholds: (
         EvaluationMetricsThresholdsGoldenEvaluationMetricsThresholds
     )
-    goldenHallucinationMetricBehavior: typing_extensions.Literal[
+    goldenHallucinationMetricBehavior: typing.Literal[
         "HALLUCINATION_METRIC_BEHAVIOR_UNSPECIFIED", "DISABLED", "ENABLED"
     ]
-    hallucinationMetricBehavior: typing_extensions.Literal[
+    hallucinationMetricBehavior: typing.Literal[
         "HALLUCINATION_METRIC_BEHAVIOR_UNSPECIFIED", "DISABLED", "ENABLED"
     ]
-    scenarioHallucinationMetricBehavior: typing_extensions.Literal[
+    scenarioHallucinationMetricBehavior: typing.Literal[
         "HALLUCINATION_METRIC_BEHAVIOR_UNSPECIFIED", "DISABLED", "ENABLED"
     ]
 
 @typing.type_check_only
 class EvaluationMetricsThresholdsGoldenEvaluationMetricsThresholds(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     expectationLevelMetricsThresholds: EvaluationMetricsThresholdsGoldenEvaluationMetricsThresholdsExpectationLevelMetricsThresholds
     toolMatchingSettings: EvaluationMetricsThresholdsToolMatchingSettings
@@ -818,30 +829,28 @@ class EvaluationMetricsThresholdsGoldenEvaluationMetricsThresholds(
 
 @typing.type_check_only
 class EvaluationMetricsThresholdsGoldenEvaluationMetricsThresholdsExpectationLevelMetricsThresholds(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     toolInvocationParameterCorrectnessThreshold: float
 
 @typing.type_check_only
 class EvaluationMetricsThresholdsGoldenEvaluationMetricsThresholdsTurnLevelMetricsThresholds(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     overallToolInvocationCorrectnessThreshold: float
-    semanticSimilarityChannel: typing_extensions.Literal[
+    semanticSimilarityChannel: typing.Literal[
         "SEMANTIC_SIMILARITY_CHANNEL_UNSPECIFIED", "TEXT", "AUDIO"
     ]
     semanticSimilaritySuccessThreshold: int
 
 @typing.type_check_only
-class EvaluationMetricsThresholdsToolMatchingSettings(
-    typing_extensions.TypedDict, total=False
-):
-    extraToolCallBehavior: typing_extensions.Literal[
+class EvaluationMetricsThresholdsToolMatchingSettings(typing.TypedDict, total=False):
+    extraToolCallBehavior: typing.Literal[
         "EXTRA_TOOL_CALL_BEHAVIOR_UNSPECIFIED", "FAIL", "ALLOW"
     ]
 
 @typing.type_check_only
-class EvaluationPersona(typing_extensions.TypedDict, total=False):
+class EvaluationPersona(typing.TypedDict, total=False):
     description: str
     displayName: str
     name: str
@@ -849,8 +858,8 @@ class EvaluationPersona(typing_extensions.TypedDict, total=False):
     speechConfig: EvaluationPersonaSpeechConfig
 
 @typing.type_check_only
-class EvaluationPersonaSpeechConfig(typing_extensions.TypedDict, total=False):
-    environment: typing_extensions.Literal[
+class EvaluationPersonaSpeechConfig(typing.TypedDict, total=False):
+    environment: typing.Literal[
         "BACKGROUND_ENVIRONMENT_UNSPECIFIED",
         "CALL_CENTER",
         "TRAFFIC",
@@ -861,7 +870,7 @@ class EvaluationPersonaSpeechConfig(typing_extensions.TypedDict, total=False):
     voiceId: str
 
 @typing.type_check_only
-class EvaluationResult(typing_extensions.TypedDict, total=False):
+class EvaluationResult(typing.TypedDict, total=False):
     appVersion: str
     appVersionDisplayName: str
     changelog: str
@@ -873,61 +882,58 @@ class EvaluationResult(typing_extensions.TypedDict, total=False):
     errorInfo: EvaluationErrorInfo
     evaluationMetricsThresholds: EvaluationMetricsThresholds
     evaluationRun: str
-    evaluationStatus: typing_extensions.Literal[
-        "OUTCOME_UNSPECIFIED", "PASS", "FAIL", "SKIPPED"
-    ]
-    executionState: typing_extensions.Literal[
-        "EXECUTION_STATE_UNSPECIFIED", "RUNNING", "COMPLETED", "ERROR"
+    evaluationStatus: typing.Literal["OUTCOME_UNSPECIFIED", "PASS", "FAIL", "SKIPPED"]
+    executionState: typing.Literal[
+        "EXECUTION_STATE_UNSPECIFIED",
+        "QUEUED",
+        "RUNNING",
+        "COMPLETED",
+        "ERROR",
+        "CANCELLED",
     ]
     goldenResult: EvaluationResultGoldenResult
-    goldenRunMethod: typing_extensions.Literal[
-        "GOLDEN_RUN_METHOD_UNSPECIFIED", "STABLE", "NAIVE"
-    ]
+    goldenRunMethod: typing.Literal["GOLDEN_RUN_METHOD_UNSPECIFIED", "STABLE", "NAIVE"]
     initiatedBy: str
     name: str
+    outcomeMetadata: typing.Literal["OUTCOME_METADATA_UNSPECIFIED", "GRACEFUL_HANDOFF"]
     persona: EvaluationPersona
+    rootSpan: Span
     scenarioResult: EvaluationResultScenarioResult
 
 @typing.type_check_only
-class EvaluationResultEvaluationExpectationResult(
-    typing_extensions.TypedDict, total=False
-):
+class EvaluationResultEvaluationExpectationResult(typing.TypedDict, total=False):
     evaluationExpectation: str
     explanation: str
-    outcome: typing_extensions.Literal["OUTCOME_UNSPECIFIED", "PASS", "FAIL", "SKIPPED"]
+    outcome: typing.Literal["OUTCOME_UNSPECIFIED", "PASS", "FAIL", "SKIPPED"]
     prompt: str
 
 @typing.type_check_only
-class EvaluationResultGoldenExpectationOutcome(
-    typing_extensions.TypedDict, total=False
-):
+class EvaluationResultGoldenExpectationOutcome(typing.TypedDict, total=False):
     expectation: EvaluationGoldenExpectation
     observedAgentResponse: Message
     observedAgentTransfer: AgentTransfer
     observedPayload: dict[str, typing.Any]
     observedToolCall: ToolCall
     observedToolResponse: ToolResponse
-    outcome: typing_extensions.Literal["OUTCOME_UNSPECIFIED", "PASS", "FAIL", "SKIPPED"]
+    outcome: typing.Literal["OUTCOME_UNSPECIFIED", "PASS", "FAIL", "SKIPPED"]
     semanticSimilarityResult: EvaluationResultSemanticSimilarityResult
     toolInvocationResult: EvaluationResultGoldenExpectationOutcomeToolInvocationResult
 
 @typing.type_check_only
 class EvaluationResultGoldenExpectationOutcomeToolInvocationResult(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     explanation: str
-    outcome: typing_extensions.Literal["OUTCOME_UNSPECIFIED", "PASS", "FAIL", "SKIPPED"]
+    outcome: typing.Literal["OUTCOME_UNSPECIFIED", "PASS", "FAIL", "SKIPPED"]
     parameterCorrectnessScore: float
 
 @typing.type_check_only
-class EvaluationResultGoldenResult(typing_extensions.TypedDict, total=False):
+class EvaluationResultGoldenResult(typing.TypedDict, total=False):
     evaluationExpectationResults: _list[EvaluationResultEvaluationExpectationResult]
     turnReplayResults: _list[EvaluationResultGoldenResultTurnReplayResult]
 
 @typing.type_check_only
-class EvaluationResultGoldenResultTurnReplayResult(
-    typing_extensions.TypedDict, total=False
-):
+class EvaluationResultGoldenResultTurnReplayResult(typing.TypedDict, total=False):
     conversation: str
     errorInfo: EvaluationErrorInfo
     expectationOutcome: _list[EvaluationResultGoldenExpectationOutcome]
@@ -941,36 +947,32 @@ class EvaluationResultGoldenResultTurnReplayResult(
     turnLatency: str
 
 @typing.type_check_only
-class EvaluationResultHallucinationResult(typing_extensions.TypedDict, total=False):
+class EvaluationResultHallucinationResult(typing.TypedDict, total=False):
     explanation: str
     label: str
     score: int
 
 @typing.type_check_only
-class EvaluationResultOverallToolInvocationResult(
-    typing_extensions.TypedDict, total=False
-):
-    outcome: typing_extensions.Literal["OUTCOME_UNSPECIFIED", "PASS", "FAIL", "SKIPPED"]
+class EvaluationResultOverallToolInvocationResult(typing.TypedDict, total=False):
+    outcome: typing.Literal["OUTCOME_UNSPECIFIED", "PASS", "FAIL", "SKIPPED"]
     toolInvocationScore: float
 
 @typing.type_check_only
-class EvaluationResultScenarioExpectationOutcome(
-    typing_extensions.TypedDict, total=False
-):
+class EvaluationResultScenarioExpectationOutcome(typing.TypedDict, total=False):
     expectation: EvaluationScenarioExpectation
     observedAgentResponse: Message
     observedToolCall: EvaluationResultScenarioExpectationOutcomeObservedToolCall
-    outcome: typing_extensions.Literal["OUTCOME_UNSPECIFIED", "PASS", "FAIL", "SKIPPED"]
+    outcome: typing.Literal["OUTCOME_UNSPECIFIED", "PASS", "FAIL", "SKIPPED"]
 
 @typing.type_check_only
 class EvaluationResultScenarioExpectationOutcomeObservedToolCall(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     toolCall: ToolCall
     toolResponse: ToolResponse
 
 @typing.type_check_only
-class EvaluationResultScenarioResult(typing_extensions.TypedDict, total=False):
+class EvaluationResultScenarioResult(typing.TypedDict, total=False):
     allExpectationsSatisfied: bool
     conversation: str
     evaluationExpectationResults: _list[EvaluationResultEvaluationExpectationResult]
@@ -986,22 +988,20 @@ class EvaluationResultScenarioResult(typing_extensions.TypedDict, total=False):
     userGoalSatisfactionResult: EvaluationResultUserGoalSatisfactionResult
 
 @typing.type_check_only
-class EvaluationResultScenarioRubricOutcome(typing_extensions.TypedDict, total=False):
+class EvaluationResultScenarioRubricOutcome(typing.TypedDict, total=False):
     rubric: str
     score: float
     scoreExplanation: str
 
 @typing.type_check_only
-class EvaluationResultSemanticSimilarityResult(
-    typing_extensions.TypedDict, total=False
-):
+class EvaluationResultSemanticSimilarityResult(typing.TypedDict, total=False):
     explanation: str
     label: str
-    outcome: typing_extensions.Literal["OUTCOME_UNSPECIFIED", "PASS", "FAIL", "SKIPPED"]
+    outcome: typing.Literal["OUTCOME_UNSPECIFIED", "PASS", "FAIL", "SKIPPED"]
     score: int
 
 @typing.type_check_only
-class EvaluationResultSpanLatency(typing_extensions.TypedDict, total=False):
+class EvaluationResultSpanLatency(typing.TypedDict, total=False):
     callback: str
     displayName: str
     endTime: str
@@ -1010,18 +1010,18 @@ class EvaluationResultSpanLatency(typing_extensions.TypedDict, total=False):
     resource: str
     startTime: str
     toolset: ToolsetTool
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "TYPE_UNSPECIFIED", "TOOL", "USER_CALLBACK", "GUARDRAIL", "LLM"
     ]
 
 @typing.type_check_only
-class EvaluationResultTaskCompletionResult(typing_extensions.TypedDict, total=False):
+class EvaluationResultTaskCompletionResult(typing.TypedDict, total=False):
     explanation: str
     label: str
     score: int
 
 @typing.type_check_only
-class EvaluationResultToolCallLatency(typing_extensions.TypedDict, total=False):
+class EvaluationResultToolCallLatency(typing.TypedDict, total=False):
     displayName: str
     endTime: str
     executionLatency: str
@@ -1029,15 +1029,13 @@ class EvaluationResultToolCallLatency(typing_extensions.TypedDict, total=False):
     tool: str
 
 @typing.type_check_only
-class EvaluationResultUserGoalSatisfactionResult(
-    typing_extensions.TypedDict, total=False
-):
+class EvaluationResultUserGoalSatisfactionResult(typing.TypedDict, total=False):
     explanation: str
     label: str
     score: int
 
 @typing.type_check_only
-class EvaluationRun(typing_extensions.TypedDict, total=False):
+class EvaluationRun(typing.TypedDict, total=False):
     appVersion: str
     appVersionDisplayName: str
     changelog: str
@@ -1050,13 +1048,11 @@ class EvaluationRun(typing_extensions.TypedDict, total=False):
     evaluationDataset: str
     evaluationResults: _list[str]
     evaluationRunSummaries: dict[str, typing.Any]
-    evaluationType: typing_extensions.Literal[
+    evaluationType: typing.Literal[
         "EVALUATION_TYPE_UNSPECIFIED", "GOLDEN", "SCENARIO", "MIXED"
     ]
     evaluations: _list[str]
-    goldenRunMethod: typing_extensions.Literal[
-        "GOLDEN_RUN_METHOD_UNSPECIFIED", "STABLE", "NAIVE"
-    ]
+    goldenRunMethod: typing.Literal["GOLDEN_RUN_METHOD_UNSPECIFIED", "STABLE", "NAIVE"]
     initiatedBy: str
     latencyReport: LatencyReport
     name: str
@@ -1066,18 +1062,30 @@ class EvaluationRun(typing_extensions.TypedDict, total=False):
     progress: EvaluationRunProgress
     runCount: int
     scheduledEvaluationRun: str
-    state: typing_extensions.Literal[
-        "EVALUATION_RUN_STATE_UNSPECIFIED", "RUNNING", "COMPLETED", "ERROR"
+    state: typing.Literal[
+        "EVALUATION_RUN_STATE_UNSPECIFIED",
+        "QUEUED",
+        "RUNNING",
+        "COMPLETED",
+        "ERROR",
+        "CANCELLED",
     ]
 
 @typing.type_check_only
-class EvaluationRunEvaluationRunSummary(typing_extensions.TypedDict, total=False):
+class EvaluationRunCachingSettings(typing.TypedDict, total=False):
+    runCachingMode: typing.Literal[
+        "EVALUATION_RUN_CACHING_MODE_UNSPECIFIED", "FORCE_RUN", "SKIP_IF_UNCHANGED"
+    ]
+
+@typing.type_check_only
+class EvaluationRunEvaluationRunSummary(typing.TypedDict, total=False):
     errorCount: int
     failedCount: int
     passedCount: int
 
 @typing.type_check_only
-class EvaluationRunProgress(typing_extensions.TypedDict, total=False):
+class EvaluationRunProgress(typing.TypedDict, total=False):
+    cancelledCount: int
     completedCount: int
     errorCount: int
     failedCount: int
@@ -1085,17 +1093,20 @@ class EvaluationRunProgress(typing_extensions.TypedDict, total=False):
     totalCount: int
 
 @typing.type_check_only
-class EvaluationScenario(typing_extensions.TypedDict, total=False):
+class EvaluationScenario(typing.TypedDict, total=False):
     evaluationExpectations: _list[str]
     maxTurns: int
     rubrics: _list[str]
+    scenarioExecutionMode: typing.Literal[
+        "SCENARIO_EXECUTION_MODE_UNSPECIFIED", "QUALITY_OPTIMIZED", "SPEED_OPTIMIZED"
+    ]
     scenarioExpectations: _list[EvaluationScenarioExpectation]
     task: str
-    taskCompletionBehavior: typing_extensions.Literal[
+    taskCompletionBehavior: typing.Literal[
         "TASK_COMPLETION_BEHAVIOR_UNSPECIFIED", "TASK_SATISFIED", "TASK_REJECTED"
     ]
     userFacts: _list[EvaluationScenarioUserFact]
-    userGoalBehavior: typing_extensions.Literal[
+    userGoalBehavior: typing.Literal[
         "USER_GOAL_BEHAVIOR_UNSPECIFIED",
         "USER_GOAL_SATISFIED",
         "USER_GOAL_REJECTED",
@@ -1104,50 +1115,50 @@ class EvaluationScenario(typing_extensions.TypedDict, total=False):
     variableOverrides: dict[str, typing.Any]
 
 @typing.type_check_only
-class EvaluationScenarioExpectation(typing_extensions.TypedDict, total=False):
+class EvaluationScenarioExpectation(typing.TypedDict, total=False):
     agentResponse: Message
     toolExpectation: EvaluationScenarioExpectationToolExpectation
 
 @typing.type_check_only
-class EvaluationScenarioExpectationToolExpectation(
-    typing_extensions.TypedDict, total=False
-):
+class EvaluationScenarioExpectationToolExpectation(typing.TypedDict, total=False):
     expectedToolCall: ToolCall
     mockToolResponse: ToolResponse
 
 @typing.type_check_only
-class EvaluationScenarioUserFact(typing_extensions.TypedDict, total=False):
+class EvaluationScenarioUserFact(typing.TypedDict, total=False):
     name: str
     value: str
 
 @typing.type_check_only
-class EvaluationSettings(typing_extensions.TypedDict, total=False):
-    goldenEvaluationToolCallBehaviour: typing_extensions.Literal[
+class EvaluationSettings(typing.TypedDict, total=False):
+    evaluationRunCachingSettings: EvaluationRunCachingSettings
+    goldenEvaluationToolCallBehaviour: typing.Literal[
         "EVALUATION_TOOL_CALL_BEHAVIOUR_UNSPECIFIED", "REAL", "FAKE"
     ]
-    goldenRunMethod: typing_extensions.Literal[
-        "GOLDEN_RUN_METHOD_UNSPECIFIED", "STABLE", "NAIVE"
-    ]
+    goldenRunMethod: typing.Literal["GOLDEN_RUN_METHOD_UNSPECIFIED", "STABLE", "NAIVE"]
     metricsConfig: EvaluationMetricsConfig
-    scenarioConversationInitiator: typing_extensions.Literal[
+    scenarioConversationInitiator: typing.Literal[
         "SCENARIO_CONVERSATION_INITIATOR_UNSPECIFIED", "USER", "AGENT"
     ]
-    scenarioEvaluationToolCallBehaviour: typing_extensions.Literal[
+    scenarioEvaluationToolCallBehaviour: typing.Literal[
         "EVALUATION_TOOL_CALL_BEHAVIOUR_UNSPECIFIED", "REAL", "FAKE"
+    ]
+    scenarioExecutionMode: typing.Literal[
+        "SCENARIO_EXECUTION_MODE_UNSPECIFIED", "QUALITY_OPTIMIZED", "SPEED_OPTIMIZED"
     ]
 
 @typing.type_check_only
-class EvaluationStep(typing_extensions.TypedDict, total=False):
+class EvaluationStep(typing.TypedDict, total=False):
     agentTransfer: AgentTransfer
     expectation: EvaluationGoldenExpectation
     userInput: SessionInput
 
 @typing.type_check_only
-class Event(typing_extensions.TypedDict, total=False):
+class Event(typing.TypedDict, total=False):
     event: str
 
 @typing.type_check_only
-class Example(typing_extensions.TypedDict, total=False):
+class Example(typing.TypedDict, total=False):
     createTime: str
     description: str
     displayName: str
@@ -1159,7 +1170,7 @@ class Example(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class ExecuteToolRequest(typing_extensions.TypedDict, total=False):
+class ExecuteToolRequest(typing.TypedDict, total=False):
     args: dict[str, typing.Any]
     context: dict[str, typing.Any]
     mockConfig: MockConfig
@@ -1168,107 +1179,104 @@ class ExecuteToolRequest(typing_extensions.TypedDict, total=False):
     variables: dict[str, typing.Any]
 
 @typing.type_check_only
-class ExecuteToolResponse(typing_extensions.TypedDict, total=False):
+class ExecuteToolResponse(typing.TypedDict, total=False):
+    citations: Citations
+    googleSearchSuggestions: GoogleSearchSuggestions
     response: dict[str, typing.Any]
     tool: str
     toolsetTool: ToolsetTool
     variables: dict[str, typing.Any]
 
 @typing.type_check_only
-class ExperimentConfig(typing_extensions.TypedDict, total=False):
+class ExperimentConfig(typing.TypedDict, total=False):
     versionRelease: ExperimentConfigVersionRelease
 
 @typing.type_check_only
-class ExperimentConfigVersionRelease(typing_extensions.TypedDict, total=False):
-    state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "PENDING", "RUNNING", "DONE", "EXPIRED"
-    ]
+class ExperimentConfigVersionRelease(typing.TypedDict, total=False):
+    state: typing.Literal["STATE_UNSPECIFIED", "PENDING", "RUNNING", "DONE", "EXPIRED"]
     trafficAllocations: _list[ExperimentConfigVersionReleaseTrafficAllocation]
 
 @typing.type_check_only
-class ExperimentConfigVersionReleaseTrafficAllocation(
-    typing_extensions.TypedDict, total=False
-):
+class ExperimentConfigVersionReleaseTrafficAllocation(typing.TypedDict, total=False):
     appVersion: str
     id: str
     trafficPercentage: int
 
 @typing.type_check_only
-class ExportAppRequest(typing_extensions.TypedDict, total=False):
+class ExportAppRequest(typing.TypedDict, total=False):
     appVersion: str
-    exportFormat: typing_extensions.Literal["EXPORT_FORMAT_UNSPECIFIED", "JSON", "YAML"]
+    exportFormat: typing.Literal["EXPORT_FORMAT_UNSPECIFIED", "JSON", "YAML"]
     gcsUri: str
 
 @typing.type_check_only
-class ExportAppResponse(typing_extensions.TypedDict, total=False):
+class ExportAppResponse(typing.TypedDict, total=False):
     appContent: str
     appUri: str
 
 @typing.type_check_only
-class ExportEvaluationResultsRequest(typing_extensions.TypedDict, total=False):
+class ExportEvaluationResultsRequest(typing.TypedDict, total=False):
     exportOptions: ExportOptions
     names: _list[str]
 
 @typing.type_check_only
-class ExportEvaluationResultsResponse(typing_extensions.TypedDict, total=False):
+class ExportEvaluationResultsResponse(typing.TypedDict, total=False):
     evaluationResultsContent: str
     evaluationResultsUri: str
 
 @typing.type_check_only
-class ExportEvaluationRunsRequest(typing_extensions.TypedDict, total=False):
+class ExportEvaluationRunsRequest(typing.TypedDict, total=False):
     exportOptions: ExportOptions
     names: _list[str]
 
 @typing.type_check_only
-class ExportEvaluationRunsResponse(typing_extensions.TypedDict, total=False):
+class ExportEvaluationRunsResponse(typing.TypedDict, total=False):
     evaluationRunsContent: str
     evaluationRunsUri: str
 
 @typing.type_check_only
-class ExportEvaluationsRequest(typing_extensions.TypedDict, total=False):
+class ExportEvaluationsRequest(typing.TypedDict, total=False):
     exportOptions: ExportOptions
     includeEvaluationResults: bool
     includeEvaluations: bool
     names: _list[str]
 
 @typing.type_check_only
-class ExportEvaluationsResponse(typing_extensions.TypedDict, total=False):
+class ExportEvaluationsResponse(typing.TypedDict, total=False):
     evaluationsContent: str
     evaluationsUri: str
     failedEvaluations: dict[str, typing.Any]
 
 @typing.type_check_only
-class ExportOptions(typing_extensions.TypedDict, total=False):
-    exportFormat: typing_extensions.Literal["EXPORT_FORMAT_UNSPECIFIED", "JSON", "YAML"]
+class ExportOptions(typing.TypedDict, total=False):
+    exportFormat: typing.Literal["EXPORT_FORMAT_UNSPECIFIED", "JSON", "YAML"]
     gcsUri: str
 
 @typing.type_check_only
-class ExpressionCondition(typing_extensions.TypedDict, total=False):
+class ExpressionCondition(typing.TypedDict, total=False):
     expression: str
 
 @typing.type_check_only
-class FileContext(typing_extensions.TypedDict, total=False):
+class FileContext(typing.TypedDict, total=False):
     fileBytes: FileContextFileBytes
 
 @typing.type_check_only
-class FileContextFileBytes(typing_extensions.TypedDict, total=False):
+class FileContextFileBytes(typing.TypedDict, total=False):
     data: str
     fileName: str
     mimeType: str
 
 @typing.type_check_only
-class FileSearchTool(typing_extensions.TypedDict, total=False):
-    corpusType: typing_extensions.Literal[
-        "CORPUS_TYPE_UNSPECIFIED", "USER_OWNED", "FULLY_MANAGED"
-    ]
+class FileSearchTool(typing.TypedDict, total=False):
+    corpusType: typing.Literal["CORPUS_TYPE_UNSPECIFIED", "USER_OWNED", "FULLY_MANAGED"]
     description: str
     fileCorpus: str
     name: str
 
 @typing.type_check_only
-class GenerateAppResourceRequest(typing_extensions.TypedDict, total=False):
+class GenerateAppResourceRequest(typing.TypedDict, total=False):
     agent: Agent
     appGenerationConfig: GenerateAppResourceRequestAppGenerationConfig
+    appVersionContext: GenerateAppResourceRequestAppVersionContext
     evaluationGenerationConfig: GenerateAppResourceRequestEvaluationGenerationConfig
     evaluationPersonasGenerationConfig: (
         GenerateAppResourceRequestEvaluationPersonasGenerationConfig
@@ -1283,9 +1291,7 @@ class GenerateAppResourceRequest(typing_extensions.TypedDict, total=False):
     toolset: Toolset
 
 @typing.type_check_only
-class GenerateAppResourceRequestAppGenerationConfig(
-    typing_extensions.TypedDict, total=False
-):
+class GenerateAppResourceRequestAppGenerationConfig(typing.TypedDict, total=False):
     context: str
     datasetId: str
     fileContexts: _list[FileContext]
@@ -1293,41 +1299,43 @@ class GenerateAppResourceRequestAppGenerationConfig(
     generateEvaluations: bool
 
 @typing.type_check_only
+class GenerateAppResourceRequestAppVersionContext(typing.TypedDict, total=False):
+    agentResourceName: str
+    appVersion: str
+
+@typing.type_check_only
 class GenerateAppResourceRequestEvaluationGenerationConfig(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     datasetId: str
 
 @typing.type_check_only
 class GenerateAppResourceRequestEvaluationPersonasGenerationConfig(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
-class GenerateAppResourceRequestHillClimbingFixConfig(
-    typing_extensions.TypedDict, total=False
-):
+class GenerateAppResourceRequestHillClimbingFixConfig(typing.TypedDict, total=False):
     qualityReport: QualityReport
 
 @typing.type_check_only
 class GenerateAppResourceRequestQualityReportGenerationConfig(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
+    algorithm: typing.Literal[
+        "LOSS_ATTRIBUTION_ALGORITHM_UNSPECIFIED", "APP_CENTRIC", "AGENT_CENTRIC"
+    ]
     evaluationRun: str
 
 @typing.type_check_only
-class GenerateAppResourceRequestRefineInstructions(
-    typing_extensions.TypedDict, total=False
-):
+class GenerateAppResourceRequestRefineInstructions(typing.TypedDict, total=False):
     endIndex: str
     fieldMask: str
     instructions: str
     startIndex: str
 
 @typing.type_check_only
-class GenerateAppResourceRequestToolGenerationConfig(
-    typing_extensions.TypedDict, total=False
-):
+class GenerateAppResourceRequestToolGenerationConfig(typing.TypedDict, total=False):
     context: str
     fileContexts: _list[FileContext]
     openApiToolsetGenerationConfig: (
@@ -1336,7 +1344,7 @@ class GenerateAppResourceRequestToolGenerationConfig(
 
 @typing.type_check_only
 class GenerateAppResourceRequestToolGenerationConfigOpenApiToolsetGenerationConfig(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     operationGenerationConfigs: _list[
         GenerateAppResourceRequestToolGenerationConfigOpenApiToolsetGenerationConfigOperationGenerationConfig
@@ -1345,7 +1353,7 @@ class GenerateAppResourceRequestToolGenerationConfigOpenApiToolsetGenerationConf
 
 @typing.type_check_only
 class GenerateAppResourceRequestToolGenerationConfigOpenApiToolsetGenerationConfigOperationGenerationConfig(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     method: str
     path: str
@@ -1353,7 +1361,7 @@ class GenerateAppResourceRequestToolGenerationConfigOpenApiToolsetGenerationConf
     responseJson: str
 
 @typing.type_check_only
-class GenerateAppResourceResponse(typing_extensions.TypedDict, total=False):
+class GenerateAppResourceResponse(typing.TypedDict, total=False):
     agent: Agent
     appResources: GenerateAppResourceResponseAppResources
     appSnapshot: AppSnapshot
@@ -1364,51 +1372,50 @@ class GenerateAppResourceResponse(typing_extensions.TypedDict, total=False):
     toolset: Toolset
 
 @typing.type_check_only
-class GenerateAppResourceResponseAppResources(typing_extensions.TypedDict, total=False):
+class GenerateAppResourceResponseAppResources(typing.TypedDict, total=False):
     appSnapshot: AppSnapshot
     evaluations: _list[Evaluation]
 
 @typing.type_check_only
-class GenerateAppResourceResponseEvaluations(typing_extensions.TypedDict, total=False):
+class GenerateAppResourceResponseEvaluations(typing.TypedDict, total=False):
     evaluations: _list[Evaluation]
 
 @typing.type_check_only
-class GenerateAppResourceResponseGenerateResultInfo(
-    typing_extensions.TypedDict, total=False
-):
+class GenerateAppResourceResponseGenerateResultInfo(typing.TypedDict, total=False):
     explanation: str
 
 @typing.type_check_only
-class GenerateAppResourceResponseTools(typing_extensions.TypedDict, total=False):
+class GenerateAppResourceResponseTools(typing.TypedDict, total=False):
     tools: _list[Tool]
 
 @typing.type_check_only
-class GenerateChatTokenRequest(typing_extensions.TypedDict, total=False):
+class GenerateChatTokenRequest(typing.TypedDict, total=False):
     deployment: str
     liveHandoffEnabled: bool
     recaptchaToken: str
 
 @typing.type_check_only
-class GenerateChatTokenResponse(typing_extensions.TypedDict, total=False):
+class GenerateChatTokenResponse(typing.TypedDict, total=False):
     chatToken: str
     expireTime: str
 
 @typing.type_check_only
-class GenerateEvaluationOperationMetadata(typing_extensions.TypedDict, total=False): ...
+class GenerateEvaluationOperationMetadata(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class GenerateEvaluationRequest(typing_extensions.TypedDict, total=False):
-    source: typing_extensions.Literal[
+class GenerateEvaluationRequest(typing.TypedDict, total=False):
+    evaluationType: typing.Literal["EVALUATION_TYPE_UNSPECIFIED", "GOLDEN", "SCENARIO"]
+    source: typing.Literal[
         "SOURCE_UNSPECIFIED", "LIVE", "SIMULATOR", "EVAL", "AGENT_TOOL"
     ]
 
 @typing.type_check_only
-class GoogleSearchSuggestions(typing_extensions.TypedDict, total=False):
+class GoogleSearchSuggestions(typing.TypedDict, total=False):
     htmls: _list[str]
     webSearchQueries: _list[WebSearchQuery]
 
 @typing.type_check_only
-class GoogleSearchTool(typing_extensions.TypedDict, total=False):
+class GoogleSearchTool(typing.TypedDict, total=False):
     contextUrls: _list[str]
     description: str
     excludeDomains: _list[str]
@@ -1417,12 +1424,12 @@ class GoogleSearchTool(typing_extensions.TypedDict, total=False):
     promptConfig: GoogleSearchToolPromptConfig
 
 @typing.type_check_only
-class GoogleSearchToolPromptConfig(typing_extensions.TypedDict, total=False):
+class GoogleSearchToolPromptConfig(typing.TypedDict, total=False):
     textPrompt: str
     voicePrompt: str
 
 @typing.type_check_only
-class Guardrail(typing_extensions.TypedDict, total=False):
+class Guardrail(typing.TypedDict, total=False):
     action: TriggerAction
     codeCallback: GuardrailCodeCallback
     contentFilter: GuardrailContentFilter
@@ -1438,19 +1445,19 @@ class Guardrail(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class GuardrailCodeCallback(typing_extensions.TypedDict, total=False):
+class GuardrailCodeCallback(typing.TypedDict, total=False):
     afterAgentCallback: Callback
     afterModelCallback: Callback
     beforeAgentCallback: Callback
     beforeModelCallback: Callback
 
 @typing.type_check_only
-class GuardrailContentFilter(typing_extensions.TypedDict, total=False):
+class GuardrailContentFilter(typing.TypedDict, total=False):
     bannedContents: _list[str]
     bannedContentsInAgentResponse: _list[str]
     bannedContentsInUserInput: _list[str]
     disregardDiacritics: bool
-    matchType: typing_extensions.Literal[
+    matchType: typing.Literal[
         "MATCH_TYPE_UNSPECIFIED",
         "SIMPLE_STRING_MATCH",
         "WORD_BOUNDARY_STRING_MATCH",
@@ -1458,12 +1465,12 @@ class GuardrailContentFilter(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class GuardrailLlmPolicy(typing_extensions.TypedDict, total=False):
+class GuardrailLlmPolicy(typing.TypedDict, total=False):
     allowShortUtterance: bool
     failOpen: bool
     maxConversationMessages: int
     modelSettings: ModelSettings
-    policyScope: typing_extensions.Literal[
+    policyScope: typing.Literal[
         "POLICY_SCOPE_UNSPECIFIED",
         "USER_QUERY",
         "AGENT_RESPONSE",
@@ -1472,31 +1479,29 @@ class GuardrailLlmPolicy(typing_extensions.TypedDict, total=False):
     prompt: str
 
 @typing.type_check_only
-class GuardrailLlmPromptSecurity(typing_extensions.TypedDict, total=False):
+class GuardrailLlmPromptSecurity(typing.TypedDict, total=False):
     customPolicy: GuardrailLlmPolicy
     defaultSettings: GuardrailLlmPromptSecurityDefaultSecuritySettings
     failOpen: bool
 
 @typing.type_check_only
-class GuardrailLlmPromptSecurityDefaultSecuritySettings(
-    typing_extensions.TypedDict, total=False
-):
+class GuardrailLlmPromptSecurityDefaultSecuritySettings(typing.TypedDict, total=False):
     defaultPromptTemplate: str
 
 @typing.type_check_only
-class GuardrailModelSafety(typing_extensions.TypedDict, total=False):
+class GuardrailModelSafety(typing.TypedDict, total=False):
     safetySettings: _list[GuardrailModelSafetySafetySetting]
 
 @typing.type_check_only
-class GuardrailModelSafetySafetySetting(typing_extensions.TypedDict, total=False):
-    category: typing_extensions.Literal[
+class GuardrailModelSafetySafetySetting(typing.TypedDict, total=False):
+    category: typing.Literal[
         "HARM_CATEGORY_UNSPECIFIED",
         "HARM_CATEGORY_HATE_SPEECH",
         "HARM_CATEGORY_DANGEROUS_CONTENT",
         "HARM_CATEGORY_HARASSMENT",
         "HARM_CATEGORY_SEXUALLY_EXPLICIT",
     ]
-    threshold: typing_extensions.Literal[
+    threshold: typing.Literal[
         "HARM_BLOCK_THRESHOLD_UNSPECIFIED",
         "BLOCK_LOW_AND_ABOVE",
         "BLOCK_MEDIUM_AND_ABOVE",
@@ -1506,12 +1511,12 @@ class GuardrailModelSafetySafetySetting(typing_extensions.TypedDict, total=False
     ]
 
 @typing.type_check_only
-class Image(typing_extensions.TypedDict, total=False):
+class Image(typing.TypedDict, total=False):
     data: str
     mimeType: str
 
 @typing.type_check_only
-class ImportAppRequest(typing_extensions.TypedDict, total=False):
+class ImportAppRequest(typing.TypedDict, total=False):
     appContent: str
     appId: str
     displayName: str
@@ -1520,43 +1525,42 @@ class ImportAppRequest(typing_extensions.TypedDict, total=False):
     importOptions: ImportAppRequestImportOptions
 
 @typing.type_check_only
-class ImportAppRequestImportOptions(typing_extensions.TypedDict, total=False):
-    conflictResolutionStrategy: typing_extensions.Literal[
+class ImportAppRequestImportOptions(typing.TypedDict, total=False):
+    conflictResolutionStrategy: typing.Literal[
         "CONFLICT_RESOLUTION_STRATEGY_UNSPECIFIED", "REPLACE", "OVERWRITE"
     ]
+    validateOnly: bool
 
 @typing.type_check_only
-class ImportAppResponse(typing_extensions.TypedDict, total=False):
+class ImportAppResponse(typing.TypedDict, total=False):
     name: str
     warnings: _list[str]
 
 @typing.type_check_only
-class ImportEvaluationsOperationMetadata(typing_extensions.TypedDict, total=False):
+class ImportEvaluationsOperationMetadata(typing.TypedDict, total=False):
     createTime: str
     endTime: str
     statusMessage: str
 
 @typing.type_check_only
-class ImportEvaluationsRequest(typing_extensions.TypedDict, total=False):
+class ImportEvaluationsRequest(typing.TypedDict, total=False):
     conversationList: ImportEvaluationsRequestConversationList
     csvContent: str
     gcsUri: str
     importOptions: ImportEvaluationsRequestImportOptions
 
 @typing.type_check_only
-class ImportEvaluationsRequestConversationList(
-    typing_extensions.TypedDict, total=False
-):
+class ImportEvaluationsRequestConversationList(typing.TypedDict, total=False):
     conversations: _list[str]
 
 @typing.type_check_only
-class ImportEvaluationsRequestImportOptions(typing_extensions.TypedDict, total=False):
-    conflictResolutionStrategy: typing_extensions.Literal[
+class ImportEvaluationsRequestImportOptions(typing.TypedDict, total=False):
+    conflictResolutionStrategy: typing.Literal[
         "CONFLICT_RESOLUTION_STRATEGY_UNSPECIFIED", "OVERWRITE", "SKIP", "DUPLICATE"
     ]
 
 @typing.type_check_only
-class ImportEvaluationsResponse(typing_extensions.TypedDict, total=False):
+class ImportEvaluationsResponse(typing.TypedDict, total=False):
     errorMessages: _list[str]
     evaluationResultImportFailureCount: int
     evaluationResults: _list[EvaluationResult]
@@ -1566,22 +1570,27 @@ class ImportEvaluationsResponse(typing_extensions.TypedDict, total=False):
     importFailureCount: int
 
 @typing.type_check_only
-class InputAudioConfig(typing_extensions.TypedDict, total=False):
-    audioEncoding: typing_extensions.Literal[
+class InputAudioConfig(typing.TypedDict, total=False):
+    audioEncoding: typing.Literal[
         "AUDIO_ENCODING_UNSPECIFIED", "LINEAR16", "MULAW", "ALAW"
     ]
     noiseSuppressionLevel: str
     sampleRateHertz: int
 
 @typing.type_check_only
-class LanguageSettings(typing_extensions.TypedDict, total=False):
+class InstagramCredentials(typing.TypedDict, total=False):
+    authCode: str
+    conversationProfileId: str
+
+@typing.type_check_only
+class LanguageSettings(typing.TypedDict, total=False):
     defaultLanguageCode: str
     enableMultilingualSupport: bool
     fallbackAction: str
     supportedLanguageCodes: _list[str]
 
 @typing.type_check_only
-class LatencyReport(typing_extensions.TypedDict, total=False):
+class LatencyReport(typing.TypedDict, total=False):
     callbackLatencies: _list[LatencyReportCallbackLatency]
     guardrailLatencies: _list[LatencyReportGuardrailLatency]
     llmCallLatencies: _list[LatencyReportLlmCallLatency]
@@ -1589,37 +1598,103 @@ class LatencyReport(typing_extensions.TypedDict, total=False):
     toolLatencies: _list[LatencyReportToolLatency]
 
 @typing.type_check_only
-class LatencyReportCallbackLatency(typing_extensions.TypedDict, total=False):
+class LatencyReportCallbackLatency(typing.TypedDict, total=False):
     latencyMetrics: LatencyReportLatencyMetrics
     stage: str
 
 @typing.type_check_only
-class LatencyReportGuardrailLatency(typing_extensions.TypedDict, total=False):
+class LatencyReportGuardrailLatency(typing.TypedDict, total=False):
     guardrail: str
     guardrailDisplayName: str
     latencyMetrics: LatencyReportLatencyMetrics
 
 @typing.type_check_only
-class LatencyReportLatencyMetrics(typing_extensions.TypedDict, total=False):
+class LatencyReportLatencyMetrics(typing.TypedDict, total=False):
     callCount: int
     p50Latency: str
     p90Latency: str
     p99Latency: str
 
 @typing.type_check_only
-class LatencyReportLlmCallLatency(typing_extensions.TypedDict, total=False):
+class LatencyReportLlmCallLatency(typing.TypedDict, total=False):
     latencyMetrics: LatencyReportLatencyMetrics
     model: str
 
 @typing.type_check_only
-class LatencyReportToolLatency(typing_extensions.TypedDict, total=False):
+class LatencyReportToolLatency(typing.TypedDict, total=False):
     latencyMetrics: LatencyReportLatencyMetrics
     tool: str
     toolDisplayName: str
     toolsetTool: ToolsetTool
 
 @typing.type_check_only
-class LfA2aV1Artifact(typing_extensions.TypedDict, total=False):
+class LfA2aV1APIKeySecurityScheme(typing.TypedDict, total=False):
+    description: str
+    location: str
+    name: str
+
+@typing.type_check_only
+class LfA2aV1AgentCapabilities(typing.TypedDict, total=False):
+    extendedAgentCard: bool
+    extensions: _list[LfA2aV1AgentExtension]
+    pushNotifications: bool
+    streaming: bool
+
+@typing.type_check_only
+class LfA2aV1AgentCard(typing.TypedDict, total=False):
+    capabilities: LfA2aV1AgentCapabilities
+    defaultInputModes: _list[str]
+    defaultOutputModes: _list[str]
+    description: str
+    documentationUrl: str
+    iconUrl: str
+    name: str
+    provider: LfA2aV1AgentProvider
+    securityRequirements: _list[LfA2aV1SecurityRequirement]
+    securitySchemes: dict[str, typing.Any]
+    signatures: _list[LfA2aV1AgentCardSignature]
+    skills: _list[LfA2aV1AgentSkill]
+    supportedInterfaces: _list[LfA2aV1AgentInterface]
+    version: str
+
+@typing.type_check_only
+class LfA2aV1AgentCardSignature(typing.TypedDict, total=False):
+    header: dict[str, typing.Any]
+    protected: str
+    signature: str
+
+@typing.type_check_only
+class LfA2aV1AgentExtension(typing.TypedDict, total=False):
+    description: str
+    params: dict[str, typing.Any]
+    required: bool
+    uri: str
+
+@typing.type_check_only
+class LfA2aV1AgentInterface(typing.TypedDict, total=False):
+    protocolBinding: str
+    protocolVersion: str
+    tenant: str
+    url: str
+
+@typing.type_check_only
+class LfA2aV1AgentProvider(typing.TypedDict, total=False):
+    organization: str
+    url: str
+
+@typing.type_check_only
+class LfA2aV1AgentSkill(typing.TypedDict, total=False):
+    description: str
+    examples: _list[str]
+    id: str
+    inputModes: _list[str]
+    name: str
+    outputModes: _list[str]
+    securityRequirements: _list[LfA2aV1SecurityRequirement]
+    tags: _list[str]
+
+@typing.type_check_only
+class LfA2aV1Artifact(typing.TypedDict, total=False):
     artifactId: str
     description: str
     extensions: _list[str]
@@ -1628,23 +1703,79 @@ class LfA2aV1Artifact(typing_extensions.TypedDict, total=False):
     parts: _list[LfA2aV1Part]
 
 @typing.type_check_only
-class LfA2aV1AuthenticationInfo(typing_extensions.TypedDict, total=False):
+class LfA2aV1AuthenticationInfo(typing.TypedDict, total=False):
     credentials: str
     scheme: str
 
 @typing.type_check_only
-class LfA2aV1Message(typing_extensions.TypedDict, total=False):
+class LfA2aV1AuthorizationCodeOAuthFlow(typing.TypedDict, total=False):
+    authorizationUrl: str
+    pkceRequired: bool
+    refreshUrl: str
+    scopes: dict[str, typing.Any]
+    tokenUrl: str
+
+@typing.type_check_only
+class LfA2aV1ClientCredentialsOAuthFlow(typing.TypedDict, total=False):
+    refreshUrl: str
+    scopes: dict[str, typing.Any]
+    tokenUrl: str
+
+@typing.type_check_only
+class LfA2aV1DeviceCodeOAuthFlow(typing.TypedDict, total=False):
+    deviceAuthorizationUrl: str
+    refreshUrl: str
+    scopes: dict[str, typing.Any]
+    tokenUrl: str
+
+@typing.type_check_only
+class LfA2aV1HTTPAuthSecurityScheme(typing.TypedDict, total=False):
+    bearerFormat: str
+    description: str
+    scheme: str
+
+@typing.type_check_only
+class LfA2aV1ImplicitOAuthFlow(typing.TypedDict, total=False):
+    authorizationUrl: str
+    refreshUrl: str
+    scopes: dict[str, typing.Any]
+
+@typing.type_check_only
+class LfA2aV1Message(typing.TypedDict, total=False):
     contextId: str
     extensions: _list[str]
     messageId: str
     metadata: dict[str, typing.Any]
     parts: _list[LfA2aV1Part]
     referenceTaskIds: _list[str]
-    role: typing_extensions.Literal["ROLE_UNSPECIFIED", "ROLE_USER", "ROLE_AGENT"]
+    role: typing.Literal["ROLE_UNSPECIFIED", "ROLE_USER", "ROLE_AGENT"]
     taskId: str
 
 @typing.type_check_only
-class LfA2aV1Part(typing_extensions.TypedDict, total=False):
+class LfA2aV1MutualTlsSecurityScheme(typing.TypedDict, total=False):
+    description: str
+
+@typing.type_check_only
+class LfA2aV1OAuth2SecurityScheme(typing.TypedDict, total=False):
+    description: str
+    flows: LfA2aV1OAuthFlows
+    oauth2MetadataUrl: str
+
+@typing.type_check_only
+class LfA2aV1OAuthFlows(typing.TypedDict, total=False):
+    authorizationCode: LfA2aV1AuthorizationCodeOAuthFlow
+    clientCredentials: LfA2aV1ClientCredentialsOAuthFlow
+    deviceCode: LfA2aV1DeviceCodeOAuthFlow
+    implicit: LfA2aV1ImplicitOAuthFlow
+    password: LfA2aV1PasswordOAuthFlow
+
+@typing.type_check_only
+class LfA2aV1OpenIdConnectSecurityScheme(typing.TypedDict, total=False):
+    description: str
+    openIdConnectUrl: str
+
+@typing.type_check_only
+class LfA2aV1Part(typing.TypedDict, total=False):
     data: typing.Any
     filename: str
     mediaType: str
@@ -1654,25 +1785,47 @@ class LfA2aV1Part(typing_extensions.TypedDict, total=False):
     url: str
 
 @typing.type_check_only
-class LfA2aV1SendMessageConfiguration(typing_extensions.TypedDict, total=False):
+class LfA2aV1PasswordOAuthFlow(typing.TypedDict, total=False):
+    refreshUrl: str
+    scopes: dict[str, typing.Any]
+    tokenUrl: str
+
+@typing.type_check_only
+class LfA2aV1SecurityRequirement(typing.TypedDict, total=False):
+    schemes: dict[str, typing.Any]
+
+@typing.type_check_only
+class LfA2aV1SecurityScheme(typing.TypedDict, total=False):
+    apiKeySecurityScheme: LfA2aV1APIKeySecurityScheme
+    httpAuthSecurityScheme: LfA2aV1HTTPAuthSecurityScheme
+    mtlsSecurityScheme: LfA2aV1MutualTlsSecurityScheme
+    oauth2SecurityScheme: LfA2aV1OAuth2SecurityScheme
+    openIdConnectSecurityScheme: LfA2aV1OpenIdConnectSecurityScheme
+
+@typing.type_check_only
+class LfA2aV1SendMessageConfiguration(typing.TypedDict, total=False):
     acceptedOutputModes: _list[str]
     historyLength: int
     returnImmediately: bool
     taskPushNotificationConfig: LfA2aV1TaskPushNotificationConfig
 
 @typing.type_check_only
-class LfA2aV1SendMessageRequest(typing_extensions.TypedDict, total=False):
+class LfA2aV1SendMessageRequest(typing.TypedDict, total=False):
     configuration: LfA2aV1SendMessageConfiguration
     message: LfA2aV1Message
     metadata: dict[str, typing.Any]
 
 @typing.type_check_only
-class LfA2aV1SendMessageResponse(typing_extensions.TypedDict, total=False):
+class LfA2aV1SendMessageResponse(typing.TypedDict, total=False):
     message: LfA2aV1Message
     task: LfA2aV1Task
 
 @typing.type_check_only
-class LfA2aV1Task(typing_extensions.TypedDict, total=False):
+class LfA2aV1StringList(typing.TypedDict, total=False):
+    list: _list[str]
+
+@typing.type_check_only
+class LfA2aV1Task(typing.TypedDict, total=False):
     artifacts: _list[LfA2aV1Artifact]
     contextId: str
     history: _list[LfA2aV1Message]
@@ -1681,7 +1834,7 @@ class LfA2aV1Task(typing_extensions.TypedDict, total=False):
     status: LfA2aV1TaskStatus
 
 @typing.type_check_only
-class LfA2aV1TaskPushNotificationConfig(typing_extensions.TypedDict, total=False):
+class LfA2aV1TaskPushNotificationConfig(typing.TypedDict, total=False):
     authentication: LfA2aV1AuthenticationInfo
     id: str
     taskId: str
@@ -1690,9 +1843,9 @@ class LfA2aV1TaskPushNotificationConfig(typing_extensions.TypedDict, total=False
     url: str
 
 @typing.type_check_only
-class LfA2aV1TaskStatus(typing_extensions.TypedDict, total=False):
+class LfA2aV1TaskStatus(typing.TypedDict, total=False):
     message: LfA2aV1Message
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "TASK_STATE_UNSPECIFIED",
         "TASK_STATE_SUBMITTED",
         "TASK_STATE_WORKING",
@@ -1706,99 +1859,99 @@ class LfA2aV1TaskStatus(typing_extensions.TypedDict, total=False):
     timestamp: str
 
 @typing.type_check_only
-class ListAgentsResponse(typing_extensions.TypedDict, total=False):
+class ListAgentsResponse(typing.TypedDict, total=False):
     agents: _list[Agent]
     nextPageToken: str
 
 @typing.type_check_only
-class ListAppVersionsResponse(typing_extensions.TypedDict, total=False):
+class ListAppVersionsResponse(typing.TypedDict, total=False):
     appVersions: _list[AppVersion]
     nextPageToken: str
 
 @typing.type_check_only
-class ListAppsResponse(typing_extensions.TypedDict, total=False):
+class ListAppsResponse(typing.TypedDict, total=False):
     apps: _list[App]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListChangelogsResponse(typing_extensions.TypedDict, total=False):
+class ListChangelogsResponse(typing.TypedDict, total=False):
     changelogs: _list[Changelog]
     nextPageToken: str
 
 @typing.type_check_only
-class ListConversationsResponse(typing_extensions.TypedDict, total=False):
+class ListConversationsResponse(typing.TypedDict, total=False):
     conversations: _list[Conversation]
     nextPageToken: str
 
 @typing.type_check_only
-class ListDeploymentsResponse(typing_extensions.TypedDict, total=False):
+class ListDeploymentsResponse(typing.TypedDict, total=False):
     deployments: _list[Deployment]
     nextPageToken: str
 
 @typing.type_check_only
-class ListEvaluationDatasetsResponse(typing_extensions.TypedDict, total=False):
+class ListEvaluationDatasetsResponse(typing.TypedDict, total=False):
     evaluationDatasets: _list[EvaluationDataset]
     nextPageToken: str
 
 @typing.type_check_only
-class ListEvaluationExpectationsResponse(typing_extensions.TypedDict, total=False):
+class ListEvaluationExpectationsResponse(typing.TypedDict, total=False):
     evaluationExpectations: _list[EvaluationExpectation]
     nextPageToken: str
 
 @typing.type_check_only
-class ListEvaluationResultsResponse(typing_extensions.TypedDict, total=False):
+class ListEvaluationResultsResponse(typing.TypedDict, total=False):
     evaluationResults: _list[EvaluationResult]
     nextPageToken: str
 
 @typing.type_check_only
-class ListEvaluationRunsResponse(typing_extensions.TypedDict, total=False):
+class ListEvaluationRunsResponse(typing.TypedDict, total=False):
     evaluationRuns: _list[EvaluationRun]
     nextPageToken: str
 
 @typing.type_check_only
-class ListEvaluationsResponse(typing_extensions.TypedDict, total=False):
+class ListEvaluationsResponse(typing.TypedDict, total=False):
     evaluations: _list[Evaluation]
     nextPageToken: str
 
 @typing.type_check_only
-class ListExamplesResponse(typing_extensions.TypedDict, total=False):
+class ListExamplesResponse(typing.TypedDict, total=False):
     examples: _list[Example]
     nextPageToken: str
 
 @typing.type_check_only
-class ListGuardrailsResponse(typing_extensions.TypedDict, total=False):
+class ListGuardrailsResponse(typing.TypedDict, total=False):
     guardrails: _list[Guardrail]
     nextPageToken: str
 
 @typing.type_check_only
-class ListLocationsResponse(typing_extensions.TypedDict, total=False):
+class ListLocationsResponse(typing.TypedDict, total=False):
     locations: _list[Location]
     nextPageToken: str
 
 @typing.type_check_only
-class ListOperationsResponse(typing_extensions.TypedDict, total=False):
+class ListOperationsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListScheduledEvaluationRunsResponse(typing_extensions.TypedDict, total=False):
+class ListScheduledEvaluationRunsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     scheduledEvaluationRuns: _list[ScheduledEvaluationRun]
 
 @typing.type_check_only
-class ListToolsResponse(typing_extensions.TypedDict, total=False):
+class ListToolsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     tools: _list[Tool]
 
 @typing.type_check_only
-class ListToolsetsResponse(typing_extensions.TypedDict, total=False):
+class ListToolsetsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     toolsets: _list[Toolset]
 
 @typing.type_check_only
-class Location(typing_extensions.TypedDict, total=False):
+class Location(typing.TypedDict, total=False):
     displayName: str
     labels: dict[str, typing.Any]
     locationId: str
@@ -1806,7 +1959,7 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class LoggingSettings(typing_extensions.TypedDict, total=False):
+class LoggingSettings(typing.TypedDict, total=False):
     audioRecordingConfig: AudioRecordingConfig
     bigqueryExportSettings: BigQueryExportSettings
     cloudLoggingSettings: CloudLoggingSettings
@@ -1815,9 +1968,10 @@ class LoggingSettings(typing_extensions.TypedDict, total=False):
     metricAnalysisSettings: MetricAnalysisSettings
     redactionConfig: RedactionConfig
     unredactedAudioRecordingConfig: AudioRecordingConfig
+    unredactedBigqueryExportSettings: BigQueryExportSettings
 
 @typing.type_check_only
-class McpTool(typing_extensions.TypedDict, total=False):
+class McpTool(typing.TypedDict, total=False):
     apiAuthentication: ApiAuthentication
     customHeaders: dict[str, typing.Any]
     description: str
@@ -1827,24 +1981,24 @@ class McpTool(typing_extensions.TypedDict, total=False):
     outputSchema: Schema
     serverAddress: str
     serviceDirectoryConfig: ServiceDirectoryConfig
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "INACTIVE", "STALE"]
+    state: typing.Literal["STATE_UNSPECIFIED", "ACTIVE", "INACTIVE", "STALE"]
     tlsConfig: TlsConfig
 
 @typing.type_check_only
-class McpToolDefinition(typing_extensions.TypedDict, total=False):
+class McpToolDefinition(typing.TypedDict, total=False):
     description: str
     inputSchema: Schema
     outputSchema: Schema
 
 @typing.type_check_only
-class McpToolOverride(typing_extensions.TypedDict, total=False):
+class McpToolOverride(typing.TypedDict, total=False):
     descriptionOverride: str
     nameOverride: str
     snapshot: McpToolDefinition
     tool: str
 
 @typing.type_check_only
-class McpToolset(typing_extensions.TypedDict, total=False):
+class McpToolset(typing.TypedDict, total=False):
     apiAuthentication: ApiAuthentication
     customHeaders: dict[str, typing.Any]
     serverAddress: str
@@ -1853,24 +2007,24 @@ class McpToolset(typing_extensions.TypedDict, total=False):
     toolOverrides: _list[McpToolOverride]
 
 @typing.type_check_only
-class Message(typing_extensions.TypedDict, total=False):
+class Message(typing.TypedDict, total=False):
     chunks: _list[Chunk]
     eventTime: str
     role: str
 
 @typing.type_check_only
-class MetricAnalysisSettings(typing_extensions.TypedDict, total=False):
+class MetricAnalysisSettings(typing.TypedDict, total=False):
     llmMetricsOptedOut: bool
 
 @typing.type_check_only
-class MockConfig(typing_extensions.TypedDict, total=False):
+class MockConfig(typing.TypedDict, total=False):
     mockedToolCalls: _list[MockedToolCall]
-    unmatchedToolCallBehavior: typing_extensions.Literal[
+    unmatchedToolCallBehavior: typing.Literal[
         "UNMATCHED_TOOL_CALL_BEHAVIOR_UNSPECIFIED", "FAIL", "PASS_THROUGH"
     ]
 
 @typing.type_check_only
-class MockedToolCall(typing_extensions.TypedDict, total=False):
+class MockedToolCall(typing.TypedDict, total=False):
     expectedArgsPattern: dict[str, typing.Any]
     mockResponse: dict[str, typing.Any]
     tool: str
@@ -1878,22 +2032,20 @@ class MockedToolCall(typing_extensions.TypedDict, total=False):
     toolset: ToolsetTool
 
 @typing.type_check_only
-class ModelSettings(typing_extensions.TypedDict, total=False):
+class ModelSettings(typing.TypedDict, total=False):
     model: str
     temperature: float
 
 @typing.type_check_only
-class OAuthConfig(typing_extensions.TypedDict, total=False):
+class OAuthConfig(typing.TypedDict, total=False):
     clientId: str
     clientSecretVersion: str
-    oauthGrantType: typing_extensions.Literal[
-        "OAUTH_GRANT_TYPE_UNSPECIFIED", "CLIENT_CREDENTIAL"
-    ]
+    oauthGrantType: typing.Literal["OAUTH_GRANT_TYPE_UNSPECIFIED", "CLIENT_CREDENTIAL"]
     scopes: _list[str]
     tokenEndpoint: str
 
 @typing.type_check_only
-class OpenApiTool(typing_extensions.TypedDict, total=False):
+class OpenApiTool(typing.TypedDict, total=False):
     apiAuthentication: ApiAuthentication
     description: str
     ignoreUnknownFields: bool
@@ -1904,7 +2056,7 @@ class OpenApiTool(typing_extensions.TypedDict, total=False):
     url: str
 
 @typing.type_check_only
-class OpenApiToolset(typing_extensions.TypedDict, total=False):
+class OpenApiToolset(typing.TypedDict, total=False):
     apiAuthentication: ApiAuthentication
     ignoreUnknownFields: bool
     openApiSchema: str
@@ -1913,7 +2065,7 @@ class OpenApiToolset(typing_extensions.TypedDict, total=False):
     url: str
 
 @typing.type_check_only
-class Operation(typing_extensions.TypedDict, total=False):
+class Operation(typing.TypedDict, total=False):
     done: bool
     error: Status
     metadata: dict[str, typing.Any]
@@ -1921,128 +2073,134 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class OperationMetadata(typing_extensions.TypedDict, total=False):
+class OperationMetadata(typing.TypedDict, total=False):
     createTime: str
     endTime: str
     requestedCancellation: bool
     statusMessage: str
 
 @typing.type_check_only
-class OptimizationConfig(typing_extensions.TypedDict, total=False):
+class OptimizationConfig(typing.TypedDict, total=False):
     assistantSession: str
     errorMessage: str
     generateLossReport: bool
     lossReport: dict[str, typing.Any]
     reportSummary: str
     shouldSuggestFix: bool
-    status: typing_extensions.Literal[
+    status: typing.Literal[
         "OPTIMIZATION_STATUS_UNSPECIFIED", "RUNNING", "COMPLETED", "ERROR"
     ]
 
 @typing.type_check_only
-class OutputAudioConfig(typing_extensions.TypedDict, total=False):
-    audioEncoding: typing_extensions.Literal[
+class OutputAudioConfig(typing.TypedDict, total=False):
+    audioEncoding: typing.Literal[
         "AUDIO_ENCODING_UNSPECIFIED", "LINEAR16", "MULAW", "ALAW"
     ]
     sampleRateHertz: int
 
 @typing.type_check_only
-class PersonaRunConfig(typing_extensions.TypedDict, total=False):
+class PersonaRunConfig(typing.TypedDict, total=False):
     persona: str
     taskCount: int
 
 @typing.type_check_only
-class PythonCodeCondition(typing_extensions.TypedDict, total=False):
+class PythonCodeCondition(typing.TypedDict, total=False):
     pythonCode: str
 
 @typing.type_check_only
-class PythonFunction(typing_extensions.TypedDict, total=False):
+class PythonFunction(typing.TypedDict, total=False):
     description: str
     name: str
     pythonCode: str
     serviceDirectoryConfig: ServiceDirectoryConfig
 
 @typing.type_check_only
-class QualityReport(typing_extensions.TypedDict, total=False):
+class QualityReport(typing.TypedDict, total=False):
     evaluationRuns: _list[str]
     generalIssues: _list[QualityReportIssue]
     issues: _list[QualityReportAgentIssues]
 
 @typing.type_check_only
-class QualityReportAgentIssues(typing_extensions.TypedDict, total=False):
+class QualityReportAgentIssues(typing.TypedDict, total=False):
     agent: str
     issues: _list[QualityReportIssue]
 
 @typing.type_check_only
-class QualityReportIssue(typing_extensions.TypedDict, total=False):
+class QualityReportIssue(typing.TypedDict, total=False):
     description: str
     occurrenceCount: int
     proposedSolution: str
 
 @typing.type_check_only
-class RedactionConfig(typing_extensions.TypedDict, total=False):
+class RedactionConfig(typing.TypedDict, total=False):
     deidentifyTemplate: str
     enableRedaction: bool
     inspectTemplate: str
 
 @typing.type_check_only
-class RemoteAgentTool(typing_extensions.TypedDict, total=False):
+class RemoteAgentTool(typing.TypedDict, total=False):
     agentCard: AgentCard
     description: str
     name: str
 
 @typing.type_check_only
-class RestoreAppVersionRequest(typing_extensions.TypedDict, total=False): ...
+class RestoreAppVersionRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class RetrieveToolSchemaRequest(typing_extensions.TypedDict, total=False):
+class RetrieveToolSchemaRequest(typing.TypedDict, total=False):
     tool: str
     toolsetTool: ToolsetTool
 
 @typing.type_check_only
-class RetrieveToolSchemaResponse(typing_extensions.TypedDict, total=False):
+class RetrieveToolSchemaResponse(typing.TypedDict, total=False):
     inputSchema: Schema
     outputSchema: Schema
     tool: str
     toolsetTool: ToolsetTool
 
 @typing.type_check_only
-class RetrieveToolsRequest(typing_extensions.TypedDict, total=False):
+class RetrieveToolsRequest(typing.TypedDict, total=False):
     bypassPersistenceConfig: bool
     toolIds: _list[str]
 
 @typing.type_check_only
-class RetrieveToolsResponse(typing_extensions.TypedDict, total=False):
+class RetrieveToolsResponse(typing.TypedDict, total=False):
     tools: _list[Tool]
 
 @typing.type_check_only
-class RunEvaluationRequest(typing_extensions.TypedDict, total=False):
+class RunEvaluationRequest(typing.TypedDict, total=False):
     app: str
     appVersion: str
     config: EvaluationConfig
     displayName: str
     evaluationDataset: str
+    evaluationRunCachingSettings: EvaluationRunCachingSettings
     evaluations: _list[str]
     generateLatencyReport: bool
-    goldenRunMethod: typing_extensions.Literal[
-        "GOLDEN_RUN_METHOD_UNSPECIFIED", "STABLE", "NAIVE"
-    ]
+    goldenRunMethod: typing.Literal["GOLDEN_RUN_METHOD_UNSPECIFIED", "STABLE", "NAIVE"]
     optimizationConfig: OptimizationConfig
     personaRunConfigs: _list[PersonaRunConfig]
     runCount: int
     scheduledEvaluationRun: str
 
 @typing.type_check_only
-class RunSessionRequest(typing_extensions.TypedDict, total=False):
+class RunEvaluationResultMetricsRequest(typing.TypedDict, total=False): ...
+
+@typing.type_check_only
+class RunEvaluationResultMetricsResponse(typing.TypedDict, total=False):
+    status: typing.Literal["OUTCOME_UNSPECIFIED", "PASS", "FAIL", "SKIPPED"]
+
+@typing.type_check_only
+class RunSessionRequest(typing.TypedDict, total=False):
     config: SessionConfig
     inputs: _list[SessionInput]
 
 @typing.type_check_only
-class RunSessionResponse(typing_extensions.TypedDict, total=False):
+class RunSessionResponse(typing.TypedDict, total=False):
     outputs: _list[SessionOutput]
 
 @typing.type_check_only
-class ScheduledEvaluationRun(typing_extensions.TypedDict, total=False):
+class ScheduledEvaluationRun(typing.TypedDict, total=False):
     active: bool
     createTime: str
     createdBy: str
@@ -2059,15 +2217,15 @@ class ScheduledEvaluationRun(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class ScheduledEvaluationRunSchedulingConfig(typing_extensions.TypedDict, total=False):
+class ScheduledEvaluationRunSchedulingConfig(typing.TypedDict, total=False):
     daysOfWeek: _list[int]
-    frequency: typing_extensions.Literal[
+    frequency: typing.Literal[
         "FREQUENCY_UNSPECIFIED", "NONE", "DAILY", "WEEKLY", "BIWEEKLY"
     ]
     startTime: str
 
 @typing.type_check_only
-class Schema(typing_extensions.TypedDict, total=False):
+class Schema(typing.TypedDict, total=False):
     additionalProperties: Schema
     anyOf: _list[Schema]
     default: typing.Any
@@ -2085,13 +2243,13 @@ class Schema(typing_extensions.TypedDict, total=False):
     ref: str
     required: _list[str]
     title: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "TYPE_UNSPECIFIED", "STRING", "INTEGER", "NUMBER", "BOOLEAN", "OBJECT", "ARRAY"
     ]
     uniqueItems: bool
 
 @typing.type_check_only
-class SecuritySettings(typing_extensions.TypedDict, total=False):
+class SecuritySettings(typing.TypedDict, total=False):
     createTime: str
     endpointControlPolicy: EndpointControlPolicy
     etag: str
@@ -2099,22 +2257,23 @@ class SecuritySettings(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class ServiceAccountAuthConfig(typing_extensions.TypedDict, total=False):
+class ServiceAccountAuthConfig(typing.TypedDict, total=False):
     scopes: _list[str]
     serviceAccount: str
 
 @typing.type_check_only
-class ServiceAgentIdTokenAuthConfig(typing_extensions.TypedDict, total=False): ...
+class ServiceAgentIdTokenAuthConfig(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ServiceDirectoryConfig(typing_extensions.TypedDict, total=False):
+class ServiceDirectoryConfig(typing.TypedDict, total=False):
     service: str
 
 @typing.type_check_only
-class SessionConfig(typing_extensions.TypedDict, total=False):
+class SessionConfig(typing.TypedDict, total=False):
     deployment: str
     enableTextStreaming: bool
     entryAgent: str
+    excludeDiagnosticInfo: bool
     historicalContexts: _list[Message]
     inputAudioConfig: InputAudioConfig
     outputAudioConfig: OutputAudioConfig
@@ -2123,15 +2282,13 @@ class SessionConfig(typing_extensions.TypedDict, total=False):
     useToolFakes: bool
 
 @typing.type_check_only
-class SessionConfigRemoteDialogflowQueryParameters(
-    typing_extensions.TypedDict, total=False
-):
+class SessionConfigRemoteDialogflowQueryParameters(typing.TypedDict, total=False):
     endUserMetadata: dict[str, typing.Any]
     payload: dict[str, typing.Any]
     webhookHeaders: dict[str, typing.Any]
 
 @typing.type_check_only
-class SessionInput(typing_extensions.TypedDict, total=False):
+class SessionInput(typing.TypedDict, total=False):
     audio: str
     blob: Blob
     dtmf: str
@@ -2143,9 +2300,10 @@ class SessionInput(typing_extensions.TypedDict, total=False):
     willContinue: bool
 
 @typing.type_check_only
-class SessionOutput(typing_extensions.TypedDict, total=False):
+class SessionOutput(typing.TypedDict, total=False):
     audio: str
     citations: Citations
+    context: _list[dict[str, typing.Any]]
     diagnosticInfo: SessionOutputDiagnosticInfo
     endSession: EndSession
     googleSearchSuggestions: GoogleSearchSuggestions
@@ -2156,12 +2314,12 @@ class SessionOutput(typing_extensions.TypedDict, total=False):
     turnIndex: int
 
 @typing.type_check_only
-class SessionOutputDiagnosticInfo(typing_extensions.TypedDict, total=False):
+class SessionOutputDiagnosticInfo(typing.TypedDict, total=False):
     messages: _list[Message]
     rootSpan: Span
 
 @typing.type_check_only
-class Span(typing_extensions.TypedDict, total=False):
+class Span(typing.TypedDict, total=False):
     attributes: dict[str, typing.Any]
     childSpans: _list[Span]
     duration: str
@@ -2170,45 +2328,49 @@ class Span(typing_extensions.TypedDict, total=False):
     startTime: str
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class SynthesizeSpeechConfig(typing_extensions.TypedDict, total=False):
+class SynthesizeSpeechConfig(typing.TypedDict, total=False):
+    consentAudioGcsUri: str
+    instruction: str
+    model: str
     speakingRate: float
     voice: str
+    voiceSampleGcsUri: str
 
 @typing.type_check_only
-class SystemTool(typing_extensions.TypedDict, total=False):
+class SystemTool(typing.TypedDict, total=False):
     description: str
     name: str
 
 @typing.type_check_only
-class TestPersonaVoiceRequest(typing_extensions.TypedDict, total=False):
+class TestPersonaVoiceRequest(typing.TypedDict, total=False):
     personaId: str
     text: str
 
 @typing.type_check_only
-class TestPersonaVoiceResponse(typing_extensions.TypedDict, total=False):
+class TestPersonaVoiceResponse(typing.TypedDict, total=False):
     audio: str
 
 @typing.type_check_only
-class TimeZoneSettings(typing_extensions.TypedDict, total=False):
+class TimeZoneSettings(typing.TypedDict, total=False):
     timeZone: str
 
 @typing.type_check_only
-class TlsConfig(typing_extensions.TypedDict, total=False):
+class TlsConfig(typing.TypedDict, total=False):
     caCerts: _list[TlsConfigCaCert]
 
 @typing.type_check_only
-class TlsConfigCaCert(typing_extensions.TypedDict, total=False):
+class TlsConfigCaCert(typing.TypedDict, total=False):
     cert: str
     displayName: str
 
 @typing.type_check_only
-class Tool(typing_extensions.TypedDict, total=False):
+class Tool(typing.TypedDict, total=False):
     agentTool: AgentTool
     clientFunction: ClientFunction
     connectorTool: ConnectorTool
@@ -2216,7 +2378,7 @@ class Tool(typing_extensions.TypedDict, total=False):
     dataStoreTool: DataStoreTool
     displayName: str
     etag: str
-    executionType: typing_extensions.Literal[
+    executionType: typing.Literal[
         "EXECUTION_TYPE_UNSPECIFIED", "SYNCHRONOUS", "ASYNCHRONOUS"
     ]
     fileSearchTool: FileSearchTool
@@ -2234,7 +2396,7 @@ class Tool(typing_extensions.TypedDict, total=False):
     widgetTool: WidgetTool
 
 @typing.type_check_only
-class ToolCall(typing_extensions.TypedDict, total=False):
+class ToolCall(typing.TypedDict, total=False):
     args: dict[str, typing.Any]
     displayName: str
     id: str
@@ -2242,16 +2404,16 @@ class ToolCall(typing_extensions.TypedDict, total=False):
     toolsetTool: ToolsetTool
 
 @typing.type_check_only
-class ToolCalls(typing_extensions.TypedDict, total=False):
+class ToolCalls(typing.TypedDict, total=False):
     toolCalls: _list[ToolCall]
 
 @typing.type_check_only
-class ToolFakeConfig(typing_extensions.TypedDict, total=False):
+class ToolFakeConfig(typing.TypedDict, total=False):
     codeBlock: CodeBlock
     enableFakeMode: bool
 
 @typing.type_check_only
-class ToolResponse(typing_extensions.TypedDict, total=False):
+class ToolResponse(typing.TypedDict, total=False):
     displayName: str
     id: str
     response: dict[str, typing.Any]
@@ -2259,100 +2421,110 @@ class ToolResponse(typing_extensions.TypedDict, total=False):
     toolsetTool: ToolsetTool
 
 @typing.type_check_only
-class ToolResponses(typing_extensions.TypedDict, total=False):
+class ToolResponses(typing.TypedDict, total=False):
     toolResponses: _list[ToolResponse]
 
 @typing.type_check_only
-class Toolset(typing_extensions.TypedDict, total=False):
+class Toolset(typing.TypedDict, total=False):
     connectorToolset: ConnectorToolset
     createTime: str
     description: str
     displayName: str
     etag: str
-    executionType: typing_extensions.Literal[
+    executionType: typing.Literal[
         "EXECUTION_TYPE_UNSPECIFIED", "SYNCHRONOUS", "ASYNCHRONOUS"
     ]
     mcpToolset: McpToolset
     name: str
     openApiToolset: OpenApiToolset
+    timeout: str
     toolFakeConfig: ToolFakeConfig
     updateTime: str
 
 @typing.type_check_only
-class ToolsetTool(typing_extensions.TypedDict, total=False):
+class ToolsetTool(typing.TypedDict, total=False):
     toolId: str
     toolset: str
 
 @typing.type_check_only
-class TransferRule(typing_extensions.TypedDict, total=False):
+class TransferRule(typing.TypedDict, total=False):
     childAgent: str
     deterministicTransfer: TransferRuleDeterministicTransfer
-    direction: typing_extensions.Literal[
+    direction: typing.Literal[
         "DIRECTION_UNSPECIFIED", "PARENT_TO_CHILD", "CHILD_TO_PARENT"
     ]
     disablePlannerTransfer: TransferRuleDisablePlannerTransfer
 
 @typing.type_check_only
-class TransferRuleDeterministicTransfer(typing_extensions.TypedDict, total=False):
+class TransferRuleDeterministicTransfer(typing.TypedDict, total=False):
     expressionCondition: ExpressionCondition
     pythonCodeCondition: PythonCodeCondition
 
 @typing.type_check_only
-class TransferRuleDisablePlannerTransfer(typing_extensions.TypedDict, total=False):
+class TransferRuleDisablePlannerTransfer(typing.TypedDict, total=False):
     expressionCondition: ExpressionCondition
 
 @typing.type_check_only
-class TriggerAction(typing_extensions.TypedDict, total=False):
+class TriggerAction(typing.TypedDict, total=False):
     generativeAnswer: TriggerActionGenerativeAnswer
     respondImmediately: TriggerActionRespondImmediately
     transferAgent: TriggerActionTransferAgent
 
 @typing.type_check_only
-class TriggerActionGenerativeAnswer(typing_extensions.TypedDict, total=False):
+class TriggerActionGenerativeAnswer(typing.TypedDict, total=False):
     prompt: str
 
 @typing.type_check_only
-class TriggerActionRespondImmediately(typing_extensions.TypedDict, total=False):
+class TriggerActionRespondImmediately(typing.TypedDict, total=False):
     responses: _list[TriggerActionResponse]
 
 @typing.type_check_only
-class TriggerActionResponse(typing_extensions.TypedDict, total=False):
+class TriggerActionResponse(typing.TypedDict, total=False):
     disabled: bool
     text: str
 
 @typing.type_check_only
-class TriggerActionTransferAgent(typing_extensions.TypedDict, total=False):
+class TriggerActionTransferAgent(typing.TypedDict, total=False):
     agent: str
 
 @typing.type_check_only
-class UploadEvaluationAudioRequest(typing_extensions.TypedDict, total=False):
+class UploadEvaluationAudioRequest(typing.TypedDict, total=False):
     audioContent: str
     previousAudioGcsUri: str
 
 @typing.type_check_only
-class UploadEvaluationAudioResponse(typing_extensions.TypedDict, total=False):
+class UploadEvaluationAudioResponse(typing.TypedDict, total=False):
     audioGcsUri: str
     duration: str
     transcript: str
 
 @typing.type_check_only
-class VpcScSettings(typing_extensions.TypedDict, total=False):
+class VpcScSettings(typing.TypedDict, total=False):
     allowedOrigins: _list[str]
 
 @typing.type_check_only
-class WebSearchQuery(typing_extensions.TypedDict, total=False):
+class WebSearchQuery(typing.TypedDict, total=False):
     query: str
     uri: str
 
 @typing.type_check_only
-class WidgetTool(typing_extensions.TypedDict, total=False):
+class WhatsAppCredentials(typing.TypedDict, total=False):
+    authCode: str
+    businessAccountId: str
+    conversationProfileId: str
+    phoneNumber: str
+    pin: str
+    wabaId: str
+
+@typing.type_check_only
+class WidgetTool(typing.TypedDict, total=False):
     dataMapping: WidgetToolDataMapping
     description: str
     name: str
     parameters: Schema
     textResponseConfig: WidgetToolTextResponseConfig
     uiConfig: dict[str, typing.Any]
-    widgetType: typing_extensions.Literal[
+    widgetType: typing.Literal[
         "WIDGET_TYPE_UNSPECIFIED",
         "CUSTOM",
         "PRODUCT_CAROUSEL",
@@ -2369,19 +2541,15 @@ class WidgetTool(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class WidgetToolDataMapping(typing_extensions.TypedDict, total=False):
+class WidgetToolDataMapping(typing.TypedDict, total=False):
     fieldMappings: dict[str, typing.Any]
-    mode: typing_extensions.Literal[
-        "MODE_UNSPECIFIED", "FIELD_MAPPING", "PYTHON_SCRIPT"
-    ]
+    mode: typing.Literal["MODE_UNSPECIFIED", "FIELD_MAPPING", "PYTHON_SCRIPT"]
     pythonFunction: PythonFunction
     pythonScript: str
     sourceToolName: str
 
 @typing.type_check_only
-class WidgetToolTextResponseConfig(typing_extensions.TypedDict, total=False):
+class WidgetToolTextResponseConfig(typing.TypedDict, total=False):
     staticText: str
     textResponseInstruction: str
-    type: typing_extensions.Literal[
-        "TYPE_UNSPECIFIED", "NONE", "LLM_GENERATED", "STATIC"
-    ]
+    type: typing.Literal["TYPE_UNSPECIFIED", "NONE", "LLM_GENERATED", "STATIC"]

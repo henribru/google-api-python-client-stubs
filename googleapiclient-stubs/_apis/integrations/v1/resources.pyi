@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -20,9 +19,7 @@ class IntegrationsResource(googleapiclient.discovery.Resource):
             *,
             code: str | None = ...,
             gcpProjectId: str | None = ...,
-            product: typing_extensions.Literal[
-                "UNSPECIFIED_PRODUCT", "IP", "APIGEE", "SECURITY"
-            ]
+            product: typing.Literal["UNSPECIFIED_PRODUCT", "IP", "APIGEE", "SECURITY"]
             | None = ...,
             redirectUri: str | None = ...,
             state: str | None = ...,
@@ -411,7 +408,7 @@ class IntegrationsResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             name: str,
-                            fileFormat: typing_extensions.Literal[
+                            fileFormat: typing.Literal[
                                 "FILE_FORMAT_UNSPECIFIED", "JSON", "YAML"
                             ]
                             | None = ...,
@@ -494,17 +491,17 @@ class IntegrationsResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        fileFormat: typing_extensions.Literal[
+                        fileFormat: typing.Literal[
                             "FILE_FORMAT_UNSPECIFIED", "JSON", "YAML"
                         ]
                         | None = ...,
-                        files: typing_extensions.Literal[
+                        files: typing.Literal[
                             "INTEGRATION_FILE_UNSPECIFIED",
                             "INTEGRATION",
                             "INTEGRATION_CONFIG_VARIABLES",
                         ]
                         | _list[
-                            typing_extensions.Literal[
+                            typing.Literal[
                                 "INTEGRATION_FILE_UNSPECIFIED",
                                 "INTEGRATION",
                                 "INTEGRATION_CONFIG_VARIABLES",
@@ -517,13 +514,13 @@ class IntegrationsResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        files: typing_extensions.Literal[
+                        files: typing.Literal[
                             "INTEGRATION_FILE_UNSPECIFIED",
                             "INTEGRATION",
                             "INTEGRATION_CONFIG_VARIABLES",
                         ]
                         | _list[
-                            typing_extensions.Literal[
+                            typing.Literal[
                                 "INTEGRATION_FILE_UNSPECIFIED",
                                 "INTEGRATION",
                                 "INTEGRATION_CONFIG_VARIABLES",
@@ -881,17 +878,17 @@ class IntegrationsResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             name: str,
-                            fileFormat: typing_extensions.Literal[
+                            fileFormat: typing.Literal[
                                 "FILE_FORMAT_UNSPECIFIED", "JSON", "YAML"
                             ]
                             | None = ...,
-                            files: typing_extensions.Literal[
+                            files: typing.Literal[
                                 "INTEGRATION_FILE_UNSPECIFIED",
                                 "INTEGRATION",
                                 "INTEGRATION_CONFIG_VARIABLES",
                             ]
                             | _list[
-                                typing_extensions.Literal[
+                                typing.Literal[
                                     "INTEGRATION_FILE_UNSPECIFIED",
                                     "INTEGRATION",
                                     "INTEGRATION_CONFIG_VARIABLES",
@@ -1199,7 +1196,7 @@ class IntegrationsResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    fileFormat: typing_extensions.Literal[
+                    fileFormat: typing.Literal[
                         "FILE_FORMAT_UNSPECIFIED", "JSON", "YAML"
                     ]
                     | None = ...,

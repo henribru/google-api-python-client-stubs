@@ -1,19 +1,23 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class CustomAttribute(typing.TypedDict, total=False):
+    groupValues: _list[CustomAttribute]
+    name: str
+    value: str
 
 @typing.type_check_only
-class Interval(typing_extensions.TypedDict, total=False):
+class Empty(typing.TypedDict, total=False): ...
+
+@typing.type_check_only
+class Interval(typing.TypedDict, total=False):
     endTime: str
     startTime: str
 
 @typing.type_check_only
-class InventoryLoyaltyProgram(typing_extensions.TypedDict, total=False):
+class InventoryLoyaltyProgram(typing.TypedDict, total=False):
     cashbackForFutureUse: Price
     loyaltyPoints: str
     memberPriceEffectiveInterval: Interval
@@ -23,17 +27,17 @@ class InventoryLoyaltyProgram(typing_extensions.TypedDict, total=False):
     tierLabel: str
 
 @typing.type_check_only
-class ListLocalInventoriesResponse(typing_extensions.TypedDict, total=False):
+class ListLocalInventoriesResponse(typing.TypedDict, total=False):
     localInventories: _list[LocalInventory]
     nextPageToken: str
 
 @typing.type_check_only
-class ListRegionalInventoriesResponse(typing_extensions.TypedDict, total=False):
+class ListRegionalInventoriesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     regionalInventories: _list[RegionalInventory]
 
 @typing.type_check_only
-class LocalInventory(typing_extensions.TypedDict, total=False):
+class LocalInventory(typing.TypedDict, total=False):
     account: str
     base64EncodedName: str
     localInventoryAttributes: LocalInventoryAttributes
@@ -41,21 +45,22 @@ class LocalInventory(typing_extensions.TypedDict, total=False):
     storeCode: str
 
 @typing.type_check_only
-class LocalInventoryAttributes(typing_extensions.TypedDict, total=False):
-    availability: typing_extensions.Literal[
+class LocalInventoryAttributes(typing.TypedDict, total=False):
+    availability: typing.Literal[
         "LOCAL_INVENTORY_AVAILABILITY_UNSPECIFIED",
         "IN_STOCK",
         "LIMITED_AVAILABILITY",
         "ON_DISPLAY_TO_ORDER",
         "OUT_OF_STOCK",
     ]
+    customAttributes: _list[CustomAttribute]
     instoreProductLocation: str
     localShippingLabel: str
     loyaltyPrograms: _list[InventoryLoyaltyProgram]
-    pickupMethod: typing_extensions.Literal[
+    pickupMethod: typing.Literal[
         "PICKUP_METHOD_UNSPECIFIED", "BUY", "RESERVE", "SHIP_TO_STORE", "NOT_SUPPORTED"
     ]
-    pickupSla: typing_extensions.Literal[
+    pickupSla: typing.Literal[
         "PICKUP_SLA_UNSPECIFIED",
         "SAME_DAY",
         "NEXT_DAY",
@@ -73,16 +78,16 @@ class LocalInventoryAttributes(typing_extensions.TypedDict, total=False):
     salePriceEffectiveDate: Interval
 
 @typing.type_check_only
-class Price(typing_extensions.TypedDict, total=False):
+class Price(typing.TypedDict, total=False):
     amountMicros: str
     currencyCode: str
 
 @typing.type_check_only
-class ProductChange(typing_extensions.TypedDict, total=False):
+class ProductChange(typing.TypedDict, total=False):
     newValue: str
     oldValue: str
     regionCode: str
-    reportingContext: typing_extensions.Literal[
+    reportingContext: typing.Literal[
         "REPORTING_CONTEXT_ENUM_UNSPECIFIED",
         "SHOPPING_ADS",
         "DISCOVERY_ADS",
@@ -106,21 +111,19 @@ class ProductChange(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class ProductStatusChangeMessage(typing_extensions.TypedDict, total=False):
+class ProductStatusChangeMessage(typing.TypedDict, total=False):
     account: str
-    attribute: typing_extensions.Literal["ATTRIBUTE_UNSPECIFIED", "STATUS"]
+    attribute: typing.Literal["ATTRIBUTE_UNSPECIFIED", "STATUS"]
     changes: _list[ProductChange]
     eventTime: str
     expirationTime: str
     managingAccount: str
     resource: str
     resourceId: str
-    resourceType: typing_extensions.Literal[
-        "RESOURCE_UNSPECIFIED", "PRODUCT", "ACCOUNT_SERVICE"
-    ]
+    resourceType: typing.Literal["RESOURCE_UNSPECIFIED", "PRODUCT", "ACCOUNT_SERVICE"]
 
 @typing.type_check_only
-class RegionalInventory(typing_extensions.TypedDict, total=False):
+class RegionalInventory(typing.TypedDict, total=False):
     account: str
     base64EncodedName: str
     name: str
@@ -128,8 +131,8 @@ class RegionalInventory(typing_extensions.TypedDict, total=False):
     regionalInventoryAttributes: RegionalInventoryAttributes
 
 @typing.type_check_only
-class RegionalInventoryAttributes(typing_extensions.TypedDict, total=False):
-    availability: typing_extensions.Literal[
+class RegionalInventoryAttributes(typing.TypedDict, total=False):
+    availability: typing.Literal[
         "REGIONAL_INVENTORY_AVAILABILITY_UNSPECIFIED", "IN_STOCK", "OUT_OF_STOCK"
     ]
     loyaltyPrograms: _list[InventoryLoyaltyProgram]

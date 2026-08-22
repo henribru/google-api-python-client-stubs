@@ -1,11 +1,9 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class Tokeninfo(typing_extensions.TypedDict, total=False):
+class Tokeninfo(typing.TypedDict, total=False):
     audience: str
     email: str
     expires_in: int
@@ -15,7 +13,7 @@ class Tokeninfo(typing_extensions.TypedDict, total=False):
     verified_email: bool
 
 @typing.type_check_only
-class Userinfo(typing_extensions.TypedDict, total=False):
+class Userinfo(typing.TypedDict, total=False):
     email: str
     family_name: str
     gender: str

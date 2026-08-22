@@ -1,29 +1,27 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ListPlaceActionLinksResponse(typing_extensions.TypedDict, total=False):
+class ListPlaceActionLinksResponse(typing.TypedDict, total=False):
     nextPageToken: str
     placeActionLinks: _list[PlaceActionLink]
 
 @typing.type_check_only
-class ListPlaceActionTypeMetadataResponse(typing_extensions.TypedDict, total=False):
+class ListPlaceActionTypeMetadataResponse(typing.TypedDict, total=False):
     nextPageToken: str
     placeActionTypeMetadata: _list[PlaceActionTypeMetadata]
 
 @typing.type_check_only
-class PlaceActionLink(typing_extensions.TypedDict, total=False):
+class PlaceActionLink(typing.TypedDict, total=False):
     createTime: str
     isEditable: bool
     isPreferred: bool
     name: str
-    placeActionType: typing_extensions.Literal[
+    placeActionType: typing.Literal[
         "PLACE_ACTION_TYPE_UNSPECIFIED",
         "APPOINTMENT",
         "ONLINE_APPOINTMENT",
@@ -34,16 +32,16 @@ class PlaceActionLink(typing_extensions.TypedDict, total=False):
         "SHOP_ONLINE",
         "SOLOPRENEUR_APPOINTMENT",
     ]
-    providerType: typing_extensions.Literal[
+    providerType: typing.Literal[
         "PROVIDER_TYPE_UNSPECIFIED", "MERCHANT", "AGGREGATOR_3P"
     ]
     updateTime: str
     uri: str
 
 @typing.type_check_only
-class PlaceActionTypeMetadata(typing_extensions.TypedDict, total=False):
+class PlaceActionTypeMetadata(typing.TypedDict, total=False):
     displayName: str
-    placeActionType: typing_extensions.Literal[
+    placeActionType: typing.Literal[
         "PLACE_ACTION_TYPE_UNSPECIFIED",
         "APPOINTMENT",
         "ONLINE_APPOINTMENT",

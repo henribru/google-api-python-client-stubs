@@ -1,31 +1,29 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class ConfigMapEnvSource(typing_extensions.TypedDict, total=False):
+class ConfigMapEnvSource(typing.TypedDict, total=False):
     localObjectReference: LocalObjectReference
     name: str
     optional: bool
 
 @typing.type_check_only
-class ConfigMapKeySelector(typing_extensions.TypedDict, total=False):
+class ConfigMapKeySelector(typing.TypedDict, total=False):
     key: str
     localObjectReference: LocalObjectReference
     name: str
     optional: bool
 
 @typing.type_check_only
-class ConfigMapVolumeSource(typing_extensions.TypedDict, total=False):
+class ConfigMapVolumeSource(typing.TypedDict, total=False):
     defaultMode: int
     items: _list[KeyToPath]
     name: str
     optional: bool
 
 @typing.type_check_only
-class Container(typing_extensions.TypedDict, total=False):
+class Container(typing.TypedDict, total=False):
     args: _list[str]
     command: _list[str]
     env: _list[EnvVar]
@@ -45,65 +43,65 @@ class Container(typing_extensions.TypedDict, total=False):
     workingDir: str
 
 @typing.type_check_only
-class ContainerPort(typing_extensions.TypedDict, total=False):
+class ContainerPort(typing.TypedDict, total=False):
     containerPort: int
     name: str
     protocol: str
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class EnvFromSource(typing_extensions.TypedDict, total=False):
+class EnvFromSource(typing.TypedDict, total=False):
     configMapRef: ConfigMapEnvSource
     prefix: str
     secretRef: SecretEnvSource
 
 @typing.type_check_only
-class EnvVar(typing_extensions.TypedDict, total=False):
+class EnvVar(typing.TypedDict, total=False):
     name: str
     value: str
     valueFrom: EnvVarSource
 
 @typing.type_check_only
-class EnvVarSource(typing_extensions.TypedDict, total=False):
+class EnvVarSource(typing.TypedDict, total=False):
     configMapKeyRef: ConfigMapKeySelector
     secretKeyRef: SecretKeySelector
 
 @typing.type_check_only
-class ExecAction(typing_extensions.TypedDict, total=False):
+class ExecAction(typing.TypedDict, total=False):
     command: _list[str]
 
 @typing.type_check_only
-class GRPCAction(typing_extensions.TypedDict, total=False):
+class GRPCAction(typing.TypedDict, total=False):
     port: int
     service: str
 
 @typing.type_check_only
-class GoogleRpcStatus(typing_extensions.TypedDict, total=False):
+class GoogleRpcStatus(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class HTTPGetAction(typing_extensions.TypedDict, total=False):
+class HTTPGetAction(typing.TypedDict, total=False):
     host: str
     httpHeaders: _list[HTTPHeader]
     path: str
     scheme: str
 
 @typing.type_check_only
-class HTTPHeader(typing_extensions.TypedDict, total=False):
+class HTTPHeader(typing.TypedDict, total=False):
     name: str
     value: str
 
 @typing.type_check_only
-class InstanceAttemptResult(typing_extensions.TypedDict, total=False):
+class InstanceAttemptResult(typing.TypedDict, total=False):
     exitCode: int
     status: GoogleRpcStatus
 
 @typing.type_check_only
-class InstanceSpec(typing_extensions.TypedDict, total=False):
+class InstanceSpec(typing.TypedDict, total=False):
     activeDeadlineSeconds: str
     containers: _list[Container]
     restartPolicy: str
@@ -112,7 +110,7 @@ class InstanceSpec(typing_extensions.TypedDict, total=False):
     volumes: _list[Volume]
 
 @typing.type_check_only
-class InstanceStatus(typing_extensions.TypedDict, total=False):
+class InstanceStatus(typing.TypedDict, total=False):
     completionTime: str
     failed: int
     index: int
@@ -123,11 +121,11 @@ class InstanceStatus(typing_extensions.TypedDict, total=False):
     succeeded: int
 
 @typing.type_check_only
-class InstanceTemplateSpec(typing_extensions.TypedDict, total=False):
+class InstanceTemplateSpec(typing.TypedDict, total=False):
     spec: InstanceSpec
 
 @typing.type_check_only
-class Job(typing_extensions.TypedDict, total=False):
+class Job(typing.TypedDict, total=False):
     apiVersion: str
     kind: str
     metadata: ObjectMeta
@@ -135,7 +133,7 @@ class Job(typing_extensions.TypedDict, total=False):
     status: JobStatus
 
 @typing.type_check_only
-class JobCondition(typing_extensions.TypedDict, total=False):
+class JobCondition(typing.TypedDict, total=False):
     lastTransitionTime: str
     message: str
     reason: str
@@ -144,7 +142,7 @@ class JobCondition(typing_extensions.TypedDict, total=False):
     type: str
 
 @typing.type_check_only
-class JobSpec(typing_extensions.TypedDict, total=False):
+class JobSpec(typing.TypedDict, total=False):
     activeDeadlineSeconds: str
     backoffLimit: int
     completions: int
@@ -153,7 +151,7 @@ class JobSpec(typing_extensions.TypedDict, total=False):
     ttlSecondsAfterFinished: int
 
 @typing.type_check_only
-class JobStatus(typing_extensions.TypedDict, total=False):
+class JobStatus(typing.TypedDict, total=False):
     active: int
     completionTime: str
     conditions: _list[JobCondition]
@@ -165,13 +163,13 @@ class JobStatus(typing_extensions.TypedDict, total=False):
     succeeded: int
 
 @typing.type_check_only
-class KeyToPath(typing_extensions.TypedDict, total=False):
+class KeyToPath(typing.TypedDict, total=False):
     key: str
     mode: int
     path: str
 
 @typing.type_check_only
-class ListJobsResponse(typing_extensions.TypedDict, total=False):
+class ListJobsResponse(typing.TypedDict, total=False):
     apiVersion: str
     items: _list[Job]
     kind: str
@@ -179,7 +177,7 @@ class ListJobsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     unreachable: _list[str]
 
-AlternativeListMeta = typing_extensions.TypedDict(
+AlternativeListMeta = typing.TypedDict(
     "AlternativeListMeta",
     {
         "continue": str,
@@ -193,11 +191,11 @@ AlternativeListMeta = typing_extensions.TypedDict(
 class ListMeta(AlternativeListMeta): ...
 
 @typing.type_check_only
-class LocalObjectReference(typing_extensions.TypedDict, total=False):
+class LocalObjectReference(typing.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class ObjectMeta(typing_extensions.TypedDict, total=False):
+class ObjectMeta(typing.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     clusterName: str
     creationTimestamp: str
@@ -215,7 +213,7 @@ class ObjectMeta(typing_extensions.TypedDict, total=False):
     uid: str
 
 @typing.type_check_only
-class OwnerReference(typing_extensions.TypedDict, total=False):
+class OwnerReference(typing.TypedDict, total=False):
     apiVersion: str
     blockOwnerDeletion: bool
     controller: bool
@@ -224,7 +222,7 @@ class OwnerReference(typing_extensions.TypedDict, total=False):
     uid: str
 
 @typing.type_check_only
-class Probe(typing_extensions.TypedDict, total=False):
+class Probe(typing.TypedDict, total=False):
     exec: ExecAction
     failureThreshold: int
     grpc: GRPCAction
@@ -236,47 +234,47 @@ class Probe(typing_extensions.TypedDict, total=False):
     timeoutSeconds: int
 
 @typing.type_check_only
-class ResourceRequirements(typing_extensions.TypedDict, total=False):
+class ResourceRequirements(typing.TypedDict, total=False):
     limits: dict[str, typing.Any]
     requests: dict[str, typing.Any]
 
 @typing.type_check_only
-class SecretEnvSource(typing_extensions.TypedDict, total=False):
+class SecretEnvSource(typing.TypedDict, total=False):
     localObjectReference: LocalObjectReference
     name: str
     optional: bool
 
 @typing.type_check_only
-class SecretKeySelector(typing_extensions.TypedDict, total=False):
+class SecretKeySelector(typing.TypedDict, total=False):
     key: str
     localObjectReference: LocalObjectReference
     name: str
     optional: bool
 
 @typing.type_check_only
-class SecretVolumeSource(typing_extensions.TypedDict, total=False):
+class SecretVolumeSource(typing.TypedDict, total=False):
     defaultMode: int
     items: _list[KeyToPath]
     optional: bool
     secretName: str
 
 @typing.type_check_only
-class SecurityContext(typing_extensions.TypedDict, total=False):
+class SecurityContext(typing.TypedDict, total=False):
     runAsUser: int
 
 @typing.type_check_only
-class TCPSocketAction(typing_extensions.TypedDict, total=False):
+class TCPSocketAction(typing.TypedDict, total=False):
     host: str
     port: int
 
 @typing.type_check_only
-class Volume(typing_extensions.TypedDict, total=False):
+class Volume(typing.TypedDict, total=False):
     configMap: ConfigMapVolumeSource
     name: str
     secret: SecretVolumeSource
 
 @typing.type_check_only
-class VolumeMount(typing_extensions.TypedDict, total=False):
+class VolumeMount(typing.TypedDict, total=False):
     mountPath: str
     name: str
     readOnly: bool

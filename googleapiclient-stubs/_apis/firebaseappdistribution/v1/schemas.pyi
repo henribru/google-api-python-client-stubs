@@ -1,11 +1,9 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class GdataBlobstore2Info(typing_extensions.TypedDict, total=False):
+class GdataBlobstore2Info(typing.TypedDict, total=False):
     blobGeneration: str
     blobId: str
     downloadExternalReadToken: str
@@ -15,7 +13,7 @@ class GdataBlobstore2Info(typing_extensions.TypedDict, total=False):
     uploadMetadataContainer: str
 
 @typing.type_check_only
-class GdataCompositeMedia(typing_extensions.TypedDict, total=False):
+class GdataCompositeMedia(typing.TypedDict, total=False):
     blobRef: str
     blobstore2Info: GdataBlobstore2Info
     cosmoBinaryReference: str
@@ -25,13 +23,13 @@ class GdataCompositeMedia(typing_extensions.TypedDict, total=False):
     md5Hash: str
     objectId: GdataObjectId
     path: str
-    referenceType: typing_extensions.Literal[
+    referenceType: typing.Literal[
         "PATH", "BLOB_REF", "INLINE", "BIGSTORE_REF", "COSMO_BINARY_REFERENCE"
     ]
     sha1Hash: str
 
 @typing.type_check_only
-class GdataContentTypeInfo(typing_extensions.TypedDict, total=False):
+class GdataContentTypeInfo(typing.TypedDict, total=False):
     bestGuess: str
     fromBytes: str
     fromFileName: str
@@ -41,7 +39,7 @@ class GdataContentTypeInfo(typing_extensions.TypedDict, total=False):
     fusionIdDetectionMetadata: str
 
 @typing.type_check_only
-class GdataDiffChecksumsResponse(typing_extensions.TypedDict, total=False):
+class GdataDiffChecksumsResponse(typing.TypedDict, total=False):
     checksumsLocation: GdataCompositeMedia
     chunkSizeBytes: str
     objectLocation: GdataCompositeMedia
@@ -49,32 +47,32 @@ class GdataDiffChecksumsResponse(typing_extensions.TypedDict, total=False):
     objectVersion: str
 
 @typing.type_check_only
-class GdataDiffDownloadResponse(typing_extensions.TypedDict, total=False):
+class GdataDiffDownloadResponse(typing.TypedDict, total=False):
     objectLocation: GdataCompositeMedia
 
 @typing.type_check_only
-class GdataDiffUploadRequest(typing_extensions.TypedDict, total=False):
+class GdataDiffUploadRequest(typing.TypedDict, total=False):
     checksumsInfo: GdataCompositeMedia
     objectInfo: GdataCompositeMedia
     objectVersion: str
 
 @typing.type_check_only
-class GdataDiffUploadResponse(typing_extensions.TypedDict, total=False):
+class GdataDiffUploadResponse(typing.TypedDict, total=False):
     objectVersion: str
     originalObject: GdataCompositeMedia
 
 @typing.type_check_only
-class GdataDiffVersionResponse(typing_extensions.TypedDict, total=False):
+class GdataDiffVersionResponse(typing.TypedDict, total=False):
     objectSizeBytes: str
     objectVersion: str
 
 @typing.type_check_only
-class GdataDownloadParameters(typing_extensions.TypedDict, total=False):
+class GdataDownloadParameters(typing.TypedDict, total=False):
     allowGzipCompression: bool
     ignoreRange: bool
 
 @typing.type_check_only
-class GdataMedia(typing_extensions.TypedDict, total=False):
+class GdataMedia(typing.TypedDict, total=False):
     algorithm: str
     bigstoreObjectRef: str
     blobRef: str
@@ -100,7 +98,7 @@ class GdataMedia(typing_extensions.TypedDict, total=False):
     mediaId: str
     objectId: GdataObjectId
     path: str
-    referenceType: typing_extensions.Literal[
+    referenceType: typing.Literal[
         "PATH",
         "BLOB_REF",
         "INLINE",
@@ -122,14 +120,14 @@ class GdataMedia(typing_extensions.TypedDict, total=False):
     token: str
 
 @typing.type_check_only
-class GdataObjectId(typing_extensions.TypedDict, total=False):
+class GdataObjectId(typing.TypedDict, total=False):
     bucketName: str
     generation: str
     objectName: str
 
 @typing.type_check_only
-class GoogleFirebaseAppdistroV1AabInfo(typing_extensions.TypedDict, total=False):
-    integrationState: typing_extensions.Literal[
+class GoogleFirebaseAppdistroV1AabInfo(typing.TypedDict, total=False):
+    integrationState: typing.Literal[
         "AAB_INTEGRATION_STATE_UNSPECIFIED",
         "INTEGRATED",
         "PLAY_ACCOUNT_NOT_LINKED",
@@ -140,67 +138,56 @@ class GoogleFirebaseAppdistroV1AabInfo(typing_extensions.TypedDict, total=False)
         "ADHOC_SHARING_KEY_NOT_GENERATED",
         "ADHOC_SHARING_KEY_NOT_REGISTERED",
         "PLAY_ANDROID_DEVELOPER_CONSOLE_ACCOUNT_NOT_FOUND",
+        "PLAY_ANDROID_DEVELOPER_CONSOLE_PACKAGE_NOT_FOUND",
     ]
     name: str
     testCertificate: GoogleFirebaseAppdistroV1TestCertificate
 
 @typing.type_check_only
-class GoogleFirebaseAppdistroV1BatchAddTestersRequest(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleFirebaseAppdistroV1BatchAddTestersRequest(typing.TypedDict, total=False):
     emails: _list[str]
 
 @typing.type_check_only
-class GoogleFirebaseAppdistroV1BatchAddTestersResponse(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleFirebaseAppdistroV1BatchAddTestersResponse(typing.TypedDict, total=False):
     testers: _list[GoogleFirebaseAppdistroV1Tester]
 
 @typing.type_check_only
 class GoogleFirebaseAppdistroV1BatchDeleteReleasesRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     names: _list[str]
 
 @typing.type_check_only
-class GoogleFirebaseAppdistroV1BatchJoinGroupRequest(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleFirebaseAppdistroV1BatchJoinGroupRequest(typing.TypedDict, total=False):
     createMissingTesters: bool
     emails: _list[str]
 
 @typing.type_check_only
-class GoogleFirebaseAppdistroV1BatchLeaveGroupRequest(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleFirebaseAppdistroV1BatchLeaveGroupRequest(typing.TypedDict, total=False):
     emails: _list[str]
 
 @typing.type_check_only
-class GoogleFirebaseAppdistroV1BatchRemoveTestersRequest(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleFirebaseAppdistroV1BatchRemoveTestersRequest(typing.TypedDict, total=False):
     emails: _list[str]
 
 @typing.type_check_only
 class GoogleFirebaseAppdistroV1BatchRemoveTestersResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     emails: _list[str]
 
 @typing.type_check_only
-class GoogleFirebaseAppdistroV1DistributeReleaseRequest(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleFirebaseAppdistroV1DistributeReleaseRequest(typing.TypedDict, total=False):
     groupAliases: _list[str]
     testerEmails: _list[str]
 
 @typing.type_check_only
 class GoogleFirebaseAppdistroV1DistributeReleaseResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
-class GoogleFirebaseAppdistroV1FeedbackReport(typing_extensions.TypedDict, total=False):
+class GoogleFirebaseAppdistroV1FeedbackReport(typing.TypedDict, total=False):
     createTime: str
     firebaseConsoleUri: str
     name: str
@@ -209,7 +196,7 @@ class GoogleFirebaseAppdistroV1FeedbackReport(typing_extensions.TypedDict, total
     text: str
 
 @typing.type_check_only
-class GoogleFirebaseAppdistroV1Group(typing_extensions.TypedDict, total=False):
+class GoogleFirebaseAppdistroV1Group(typing.TypedDict, total=False):
     displayName: str
     inviteLinkCount: int
     name: str
@@ -218,81 +205,87 @@ class GoogleFirebaseAppdistroV1Group(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleFirebaseAppdistroV1ListFeedbackReportsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     feedbackReports: _list[GoogleFirebaseAppdistroV1FeedbackReport]
     nextPageToken: str
 
 @typing.type_check_only
-class GoogleFirebaseAppdistroV1ListGroupsResponse(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleFirebaseAppdistroV1ListGroupsResponse(typing.TypedDict, total=False):
     groups: _list[GoogleFirebaseAppdistroV1Group]
     nextPageToken: str
 
 @typing.type_check_only
-class GoogleFirebaseAppdistroV1ListReleasesResponse(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleFirebaseAppdistroV1ListReleasesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     releases: _list[GoogleFirebaseAppdistroV1Release]
+    totalSize: int
 
 @typing.type_check_only
-class GoogleFirebaseAppdistroV1ListTestersResponse(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleFirebaseAppdistroV1ListTestersResponse(typing.TypedDict, total=False):
     nextPageToken: str
     testers: _list[GoogleFirebaseAppdistroV1Tester]
 
 @typing.type_check_only
-class GoogleFirebaseAppdistroV1Release(typing_extensions.TypedDict, total=False):
+class GoogleFirebaseAppdistroV1Release(typing.TypedDict, total=False):
+    acceptedInvitationCount: int
+    androidPackageRegistrationState: typing.Literal[
+        "ANDROID_PACKAGE_REGISTRATION_STATE_UNSPECIFIED",
+        "REGISTERED",
+        "NOT_REGISTERED",
+        "REGISTERED_WITH_ANOTHER_CERTIFICATE_FINGERPRINT",
+    ]
     binaryDownloadUri: str
+    binaryType: typing.Literal["BINARY_TYPE_UNSPECIFIED", "IPA", "APK", "AAB"]
     buildVersion: str
     createTime: str
     displayVersion: str
     expireTime: str
+    feedbackCount: int
     firebaseConsoleUri: str
+    installationCount: int
     name: str
+    openInvitationCount: int
     releaseNotes: GoogleFirebaseAppdistroV1ReleaseNotes
+    testState: typing.Literal[
+        "TEST_STATE_UNSPECIFIED",
+        "NO_TESTS_REQUESTED",
+        "IN_PROGRESS",
+        "PASSED",
+        "FAILED",
+        "INCONCLUSIVE",
+    ]
     testingUri: str
     updateTime: str
 
 @typing.type_check_only
-class GoogleFirebaseAppdistroV1ReleaseNotes(typing_extensions.TypedDict, total=False):
+class GoogleFirebaseAppdistroV1ReleaseNotes(typing.TypedDict, total=False):
     text: str
 
 @typing.type_check_only
-class GoogleFirebaseAppdistroV1TestCertificate(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleFirebaseAppdistroV1TestCertificate(typing.TypedDict, total=False):
     hashMd5: str
     hashSha1: str
     hashSha256: str
 
 @typing.type_check_only
-class GoogleFirebaseAppdistroV1Tester(typing_extensions.TypedDict, total=False):
+class GoogleFirebaseAppdistroV1Tester(typing.TypedDict, total=False):
     displayName: str
     groups: _list[str]
     lastActivityTime: str
     name: str
 
 @typing.type_check_only
-class GoogleFirebaseAppdistroV1UploadReleaseMetadata(
-    typing_extensions.TypedDict, total=False
-): ...
+class GoogleFirebaseAppdistroV1UploadReleaseMetadata(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class GoogleFirebaseAppdistroV1UploadReleaseRequest(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleFirebaseAppdistroV1UploadReleaseRequest(typing.TypedDict, total=False):
     blob: GdataMedia
 
 @typing.type_check_only
-class GoogleFirebaseAppdistroV1UploadReleaseResponse(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleFirebaseAppdistroV1UploadReleaseResponse(typing.TypedDict, total=False):
     release: GoogleFirebaseAppdistroV1Release
-    result: typing_extensions.Literal[
+    result: typing.Literal[
         "UPLOAD_RELEASE_RESULT_UNSPECIFIED",
         "RELEASE_CREATED",
         "RELEASE_UPDATED",
@@ -300,18 +293,16 @@ class GoogleFirebaseAppdistroV1UploadReleaseResponse(
     ]
 
 @typing.type_check_only
-class GoogleLongrunningCancelOperationRequest(
-    typing_extensions.TypedDict, total=False
-): ...
+class GoogleLongrunningCancelOperationRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class GoogleLongrunningListOperationsResponse(typing_extensions.TypedDict, total=False):
+class GoogleLongrunningListOperationsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     operations: _list[GoogleLongrunningOperation]
     unreachable: _list[str]
 
 @typing.type_check_only
-class GoogleLongrunningOperation(typing_extensions.TypedDict, total=False):
+class GoogleLongrunningOperation(typing.TypedDict, total=False):
     done: bool
     error: GoogleRpcStatus
     metadata: dict[str, typing.Any]
@@ -319,14 +310,14 @@ class GoogleLongrunningOperation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class GoogleLongrunningWaitOperationRequest(typing_extensions.TypedDict, total=False):
+class GoogleLongrunningWaitOperationRequest(typing.TypedDict, total=False):
     timeout: str
 
 @typing.type_check_only
-class GoogleProtobufEmpty(typing_extensions.TypedDict, total=False): ...
+class GoogleProtobufEmpty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class GoogleRpcStatus(typing_extensions.TypedDict, total=False):
+class GoogleRpcStatus(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str

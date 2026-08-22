@@ -1,18 +1,14 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class GoogleCloudResourcesettingsV1ListSettingsResponse(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudResourcesettingsV1ListSettingsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     settings: _list[GoogleCloudResourcesettingsV1Setting]
 
 @typing.type_check_only
-class GoogleCloudResourcesettingsV1Setting(typing_extensions.TypedDict, total=False):
+class GoogleCloudResourcesettingsV1Setting(typing.TypedDict, total=False):
     effectiveValue: GoogleCloudResourcesettingsV1Value
     etag: str
     localValue: GoogleCloudResourcesettingsV1Value
@@ -20,10 +16,8 @@ class GoogleCloudResourcesettingsV1Setting(typing_extensions.TypedDict, total=Fa
     name: str
 
 @typing.type_check_only
-class GoogleCloudResourcesettingsV1SettingMetadata(
-    typing_extensions.TypedDict, total=False
-):
-    dataType: typing_extensions.Literal[
+class GoogleCloudResourcesettingsV1SettingMetadata(typing.TypedDict, total=False):
+    dataType: typing.Literal[
         "DATA_TYPE_UNSPECIFIED",
         "BOOLEAN",
         "STRING",
@@ -38,7 +32,7 @@ class GoogleCloudResourcesettingsV1SettingMetadata(
     readOnly: bool
 
 @typing.type_check_only
-class GoogleCloudResourcesettingsV1Value(typing_extensions.TypedDict, total=False):
+class GoogleCloudResourcesettingsV1Value(typing.TypedDict, total=False):
     booleanValue: bool
     durationValue: str
     enumValue: GoogleCloudResourcesettingsV1ValueEnumValue
@@ -47,19 +41,13 @@ class GoogleCloudResourcesettingsV1Value(typing_extensions.TypedDict, total=Fals
     stringValue: str
 
 @typing.type_check_only
-class GoogleCloudResourcesettingsV1ValueEnumValue(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudResourcesettingsV1ValueEnumValue(typing.TypedDict, total=False):
     value: str
 
 @typing.type_check_only
-class GoogleCloudResourcesettingsV1ValueStringMap(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudResourcesettingsV1ValueStringMap(typing.TypedDict, total=False):
     mappings: dict[str, typing.Any]
 
 @typing.type_check_only
-class GoogleCloudResourcesettingsV1ValueStringSet(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudResourcesettingsV1ValueStringSet(typing.TypedDict, total=False):
     values: _list[str]

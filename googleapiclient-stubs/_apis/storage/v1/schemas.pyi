@@ -1,16 +1,14 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class AdvanceRelocateBucketOperationRequest(typing_extensions.TypedDict, total=False):
+class AdvanceRelocateBucketOperationRequest(typing.TypedDict, total=False):
     expireTime: str
     ttl: str
 
 @typing.type_check_only
-class AnywhereCache(typing_extensions.TypedDict, total=False):
+class AnywhereCache(typing.TypedDict, total=False):
     admissionPolicy: str
     anywhereCacheId: str
     bucket: str
@@ -26,13 +24,13 @@ class AnywhereCache(typing_extensions.TypedDict, total=False):
     zone: str
 
 @typing.type_check_only
-class AnywhereCaches(typing_extensions.TypedDict, total=False):
+class AnywhereCaches(typing.TypedDict, total=False):
     items: _list[AnywhereCache]
     kind: str
     nextPageToken: str
 
 @typing.type_check_only
-class Bucket(typing_extensions.TypedDict, total=False):
+class Bucket(typing.TypedDict, total=False):
     acl: _list[BucketAccessControl]
     autoclass: dict[str, typing.Any]
     billing: dict[str, typing.Any]
@@ -73,7 +71,7 @@ class Bucket(typing_extensions.TypedDict, total=False):
     website: dict[str, typing.Any]
 
 @typing.type_check_only
-class BucketAccessControl(typing_extensions.TypedDict, total=False):
+class BucketAccessControl(typing.TypedDict, total=False):
     bucket: str
     domain: str
     email: str
@@ -87,12 +85,12 @@ class BucketAccessControl(typing_extensions.TypedDict, total=False):
     selfLink: str
 
 @typing.type_check_only
-class BucketAccessControls(typing_extensions.TypedDict, total=False):
+class BucketAccessControls(typing.TypedDict, total=False):
     items: _list[BucketAccessControl]
     kind: str
 
 @typing.type_check_only
-class BucketStorageLayout(typing_extensions.TypedDict, total=False):
+class BucketStorageLayout(typing.TypedDict, total=False):
     bucket: str
     customPlacementConfig: dict[str, typing.Any]
     hierarchicalNamespace: dict[str, typing.Any]
@@ -101,14 +99,14 @@ class BucketStorageLayout(typing_extensions.TypedDict, total=False):
     locationType: str
 
 @typing.type_check_only
-class Buckets(typing_extensions.TypedDict, total=False):
+class Buckets(typing.TypedDict, total=False):
     items: _list[Bucket]
     kind: str
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class BulkRestoreObjectsRequest(typing_extensions.TypedDict, total=False):
+class BulkRestoreObjectsRequest(typing.TypedDict, total=False):
     allowOverwrite: bool
     copySourceAcl: bool
     createdAfterTime: str
@@ -118,7 +116,7 @@ class BulkRestoreObjectsRequest(typing_extensions.TypedDict, total=False):
     softDeletedBeforeTime: str
 
 @typing.type_check_only
-class Channel(typing_extensions.TypedDict, total=False):
+class Channel(typing.TypedDict, total=False):
     address: str
     expiration: str
     id: str
@@ -131,21 +129,21 @@ class Channel(typing_extensions.TypedDict, total=False):
     type: str
 
 @typing.type_check_only
-class ComposeRequest(typing_extensions.TypedDict, total=False):
+class ComposeRequest(typing.TypedDict, total=False):
     deleteSourceObjects: bool
     destination: Object
     kind: str
     sourceObjects: _list[dict[str, typing.Any]]
 
 @typing.type_check_only
-class Expr(typing_extensions.TypedDict, total=False):
+class Expr(typing.TypedDict, total=False):
     description: str
     expression: str
     location: str
     title: str
 
 @typing.type_check_only
-class Folder(typing_extensions.TypedDict, total=False):
+class Folder(typing.TypedDict, total=False):
     bucket: str
     createTime: str
     id: str
@@ -157,19 +155,19 @@ class Folder(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class Folders(typing_extensions.TypedDict, total=False):
+class Folders(typing.TypedDict, total=False):
     items: _list[Folder]
     kind: str
     nextPageToken: str
 
 @typing.type_check_only
-class GoogleLongrunningListOperationsResponse(typing_extensions.TypedDict, total=False):
+class GoogleLongrunningListOperationsResponse(typing.TypedDict, total=False):
     kind: str
     nextPageToken: str
     operations: _list[GoogleLongrunningOperation]
 
 @typing.type_check_only
-class GoogleLongrunningOperation(typing_extensions.TypedDict, total=False):
+class GoogleLongrunningOperation(typing.TypedDict, total=False):
     done: bool
     error: GoogleRpcStatus
     kind: str
@@ -179,19 +177,19 @@ class GoogleLongrunningOperation(typing_extensions.TypedDict, total=False):
     selfLink: str
 
 @typing.type_check_only
-class GoogleRpcStatus(typing_extensions.TypedDict, total=False):
+class GoogleRpcStatus(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class HmacKey(typing_extensions.TypedDict, total=False):
+class HmacKey(typing.TypedDict, total=False):
     kind: str
     metadata: HmacKeyMetadata
     secret: str
 
 @typing.type_check_only
-class HmacKeyMetadata(typing_extensions.TypedDict, total=False):
+class HmacKeyMetadata(typing.TypedDict, total=False):
     accessId: str
     etag: str
     id: str
@@ -204,30 +202,31 @@ class HmacKeyMetadata(typing_extensions.TypedDict, total=False):
     updated: str
 
 @typing.type_check_only
-class HmacKeysMetadata(typing_extensions.TypedDict, total=False):
+class HmacKeysMetadata(typing.TypedDict, total=False):
     items: _list[HmacKeyMetadata]
     kind: str
     nextPageToken: str
 
 @typing.type_check_only
-class ManagedFolder(typing_extensions.TypedDict, total=False):
+class ManagedFolder(typing.TypedDict, total=False):
     bucket: str
     createTime: str
     id: str
     kind: str
     metageneration: str
     name: str
+    rapidCacheConfig: RapidCacheConfig
     selfLink: str
     updateTime: str
 
 @typing.type_check_only
-class ManagedFolders(typing_extensions.TypedDict, total=False):
+class ManagedFolders(typing.TypedDict, total=False):
     items: _list[ManagedFolder]
     kind: str
     nextPageToken: str
 
 @typing.type_check_only
-class Notification(typing_extensions.TypedDict, total=False):
+class Notification(typing.TypedDict, total=False):
     custom_attributes: dict[str, typing.Any]
     etag: str
     event_types: _list[str]
@@ -239,12 +238,12 @@ class Notification(typing_extensions.TypedDict, total=False):
     topic: str
 
 @typing.type_check_only
-class Notifications(typing_extensions.TypedDict, total=False):
+class Notifications(typing.TypedDict, total=False):
     items: _list[Notification]
     kind: str
 
 @typing.type_check_only
-class Object(typing_extensions.TypedDict, total=False):
+class Object(typing.TypedDict, total=False):
     acl: _list[ObjectAccessControl]
     bucket: str
     cacheControl: str
@@ -285,7 +284,7 @@ class Object(typing_extensions.TypedDict, total=False):
     updated: str
 
 @typing.type_check_only
-class ObjectAccessControl(typing_extensions.TypedDict, total=False):
+class ObjectAccessControl(typing.TypedDict, total=False):
     bucket: str
     domain: str
     email: str
@@ -301,25 +300,25 @@ class ObjectAccessControl(typing_extensions.TypedDict, total=False):
     selfLink: str
 
 @typing.type_check_only
-class ObjectAccessControls(typing_extensions.TypedDict, total=False):
+class ObjectAccessControls(typing.TypedDict, total=False):
     items: _list[ObjectAccessControl]
     kind: str
 
 @typing.type_check_only
-class ObjectCustomContextPayload(typing_extensions.TypedDict, total=False):
+class ObjectCustomContextPayload(typing.TypedDict, total=False):
     createTime: str
     updateTime: str
     value: str
 
 @typing.type_check_only
-class Objects(typing_extensions.TypedDict, total=False):
+class Objects(typing.TypedDict, total=False):
     items: _list[Object]
     kind: str
     nextPageToken: str
     prefixes: _list[str]
 
 @typing.type_check_only
-class Policy(typing_extensions.TypedDict, total=False):
+class Policy(typing.TypedDict, total=False):
     bindings: _list[dict[str, typing.Any]]
     etag: str
     kind: str
@@ -327,14 +326,46 @@ class Policy(typing_extensions.TypedDict, total=False):
     version: int
 
 @typing.type_check_only
-class RelocateBucketRequest(typing_extensions.TypedDict, total=False):
+class RapidCache(typing.TypedDict, total=False):
+    admissionPolicy: str
+    bucket: str
+    cacheType: str
+    createTime: str
+    id: str
+    ingestOnWrite: bool
+    kind: str
+    pendingUpdate: bool
+    rapidCacheId: str
+    selfLink: str
+    state: str
+    ttl: str
+    updateTime: str
+    zone: str
+
+@typing.type_check_only
+class RapidCacheConfig(typing.TypedDict, total=False):
+    policies: dict[str, typing.Any]
+
+@typing.type_check_only
+class RapidCachePolicy(typing.TypedDict, total=False):
+    ingestOnWrite: typing.Literal["enabled", "unspecified"]
+    rapidCacheId: str
+
+@typing.type_check_only
+class RapidCaches(typing.TypedDict, total=False):
+    items: _list[RapidCache]
+    kind: str
+    nextPageToken: str
+
+@typing.type_check_only
+class RelocateBucketRequest(typing.TypedDict, total=False):
     destinationCustomPlacementConfig: dict[str, typing.Any]
     destinationKmsKeyName: str
     destinationLocation: str
     validateOnly: bool
 
 @typing.type_check_only
-class RewriteResponse(typing_extensions.TypedDict, total=False):
+class RewriteResponse(typing.TypedDict, total=False):
     done: bool
     kind: str
     objectSize: str
@@ -343,11 +374,11 @@ class RewriteResponse(typing_extensions.TypedDict, total=False):
     totalBytesRewritten: str
 
 @typing.type_check_only
-class ServiceAccount(typing_extensions.TypedDict, total=False):
+class ServiceAccount(typing.TypedDict, total=False):
     email_address: str
     kind: str
 
 @typing.type_check_only
-class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
+class TestIamPermissionsResponse(typing.TypedDict, total=False):
     kind: str
     permissions: _list[str]

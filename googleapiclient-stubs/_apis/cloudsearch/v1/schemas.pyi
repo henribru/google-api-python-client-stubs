@@ -1,55 +1,53 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class Action(typing_extensions.TypedDict, total=False):
+class Action(typing.TypedDict, total=False):
     title: str
     url: str
 
 @typing.type_check_only
-class AuditLoggingSettings(typing_extensions.TypedDict, total=False):
+class AuditLoggingSettings(typing.TypedDict, total=False):
     logAdminReadActions: bool
     logDataReadActions: bool
     logDataWriteActions: bool
     project: str
 
 @typing.type_check_only
-class BackgroundColoredText(typing_extensions.TypedDict, total=False):
-    backgroundColor: typing_extensions.Literal[
+class BackgroundColoredText(typing.TypedDict, total=False):
+    backgroundColor: typing.Literal[
         "UNKNOWN_COLOR", "WHITE", "YELLOW", "ORANGE", "GREEN", "BLUE", "GREY"
     ]
     text: str
 
 @typing.type_check_only
-class BooleanOperatorOptions(typing_extensions.TypedDict, total=False):
+class BooleanOperatorOptions(typing.TypedDict, total=False):
     operatorName: str
 
 @typing.type_check_only
-class BooleanPropertyOptions(typing_extensions.TypedDict, total=False):
+class BooleanPropertyOptions(typing.TypedDict, total=False):
     operatorOptions: BooleanOperatorOptions
 
 @typing.type_check_only
-class CheckAccessResponse(typing_extensions.TypedDict, total=False):
+class CheckAccessResponse(typing.TypedDict, total=False):
     hasAccess: bool
 
 @typing.type_check_only
-class CompositeFilter(typing_extensions.TypedDict, total=False):
-    logicOperator: typing_extensions.Literal["AND", "OR", "NOT"]
+class CompositeFilter(typing.TypedDict, total=False):
+    logicOperator: typing.Literal["AND", "OR", "NOT"]
     subFilters: _list[Filter]
 
 @typing.type_check_only
-class Content(typing_extensions.TypedDict, total=False):
+class Content(typing.TypedDict, total=False):
     actions: _list[Action]
     description: SafeHtmlProto
     subtitle: BackgroundColoredText
     title: BackgroundColoredText
 
 @typing.type_check_only
-class Context(typing_extensions.TypedDict, total=False):
-    app: _list[typing_extensions.Literal["UNKNOWN_APP", "TOPAZ", "MOMA"]]
+class Context(typing.TypedDict, total=False):
+    app: _list[typing.Literal["UNKNOWN_APP", "TOPAZ", "MOMA"]]
     dayOfWeek: _list[int]
     endDateSec: str
     endDayOffsetSec: str
@@ -59,55 +57,51 @@ class Context(typing_extensions.TypedDict, total=False):
     startDateSec: str
     startDayOffsetSec: str
     surface: _list[
-        typing_extensions.Literal[
-            "UNKNOWN_SURFACE", "DESKTOP", "ANDROID", "IOS", "MOBILE", "ANY"
-        ]
+        typing.Literal["UNKNOWN_SURFACE", "DESKTOP", "ANDROID", "IOS", "MOBILE", "ANY"]
     ]
     type: _list[
-        typing_extensions.Literal[
-            "UNKNOWN_CARD_TYPE", "HOMEPAGE_CARD", "ANSWER_CARD", "RHS_CARD"
-        ]
+        typing.Literal["UNKNOWN_CARD_TYPE", "HOMEPAGE_CARD", "ANSWER_CARD", "RHS_CARD"]
     ]
 
 @typing.type_check_only
-class ContextAttribute(typing_extensions.TypedDict, total=False):
+class ContextAttribute(typing.TypedDict, total=False):
     name: str
     values: _list[str]
 
 @typing.type_check_only
-class CustomerIndexStats(typing_extensions.TypedDict, total=False):
+class CustomerIndexStats(typing.TypedDict, total=False):
     date: Date
     itemCountByStatus: _list[ItemCountByStatus]
 
 @typing.type_check_only
-class CustomerQueryStats(typing_extensions.TypedDict, total=False):
+class CustomerQueryStats(typing.TypedDict, total=False):
     date: Date
     queryCountByStatus: _list[QueryCountByStatus]
 
 @typing.type_check_only
-class CustomerSearchApplicationStats(typing_extensions.TypedDict, total=False):
+class CustomerSearchApplicationStats(typing.TypedDict, total=False):
     count: str
     date: Date
 
 @typing.type_check_only
-class CustomerSessionStats(typing_extensions.TypedDict, total=False):
+class CustomerSessionStats(typing.TypedDict, total=False):
     date: Date
     searchSessionsCount: str
 
 @typing.type_check_only
-class CustomerSettings(typing_extensions.TypedDict, total=False):
+class CustomerSettings(typing.TypedDict, total=False):
     auditLoggingSettings: AuditLoggingSettings
     vpcSettings: VPCSettings
 
 @typing.type_check_only
-class CustomerUserStats(typing_extensions.TypedDict, total=False):
+class CustomerUserStats(typing.TypedDict, total=False):
     date: Date
     oneDayActiveUsersCount: str
     sevenDaysActiveUsersCount: str
     thirtyDaysActiveUsersCount: str
 
 @typing.type_check_only
-class DataSource(typing_extensions.TypedDict, total=False):
+class DataSource(typing.TypedDict, total=False):
     disableModifications: bool
     disableServing: bool
     displayName: str
@@ -119,74 +113,72 @@ class DataSource(typing_extensions.TypedDict, total=False):
     shortName: str
 
 @typing.type_check_only
-class DataSourceIndexStats(typing_extensions.TypedDict, total=False):
+class DataSourceIndexStats(typing.TypedDict, total=False):
     date: Date
     itemCountByStatus: _list[ItemCountByStatus]
 
 @typing.type_check_only
-class DataSourceRestriction(typing_extensions.TypedDict, total=False):
+class DataSourceRestriction(typing.TypedDict, total=False):
     filterOptions: _list[FilterOptions]
     source: Source
 
 @typing.type_check_only
-class Date(typing_extensions.TypedDict, total=False):
+class Date(typing.TypedDict, total=False):
     day: int
     month: int
     year: int
 
 @typing.type_check_only
-class DateOperatorOptions(typing_extensions.TypedDict, total=False):
+class DateOperatorOptions(typing.TypedDict, total=False):
     greaterThanOperatorName: str
     lessThanOperatorName: str
     operatorName: str
 
 @typing.type_check_only
-class DatePropertyOptions(typing_extensions.TypedDict, total=False):
+class DatePropertyOptions(typing.TypedDict, total=False):
     operatorOptions: DateOperatorOptions
 
 @typing.type_check_only
-class DateValues(typing_extensions.TypedDict, total=False):
+class DateValues(typing.TypedDict, total=False):
     values: _list[Date]
 
 @typing.type_check_only
-class DebugOptions(typing_extensions.TypedDict, total=False):
+class DebugOptions(typing.TypedDict, total=False):
     enableDebugging: bool
 
 @typing.type_check_only
-class DeleteQueueItemsRequest(typing_extensions.TypedDict, total=False):
+class DeleteQueueItemsRequest(typing.TypedDict, total=False):
     connectorName: str
     debugOptions: DebugOptions
     queue: str
 
 @typing.type_check_only
-class DisplayedProperty(typing_extensions.TypedDict, total=False):
+class DisplayedProperty(typing.TypedDict, total=False):
     propertyName: str
 
 @typing.type_check_only
-class DoubleOperatorOptions(typing_extensions.TypedDict, total=False):
+class DoubleOperatorOptions(typing.TypedDict, total=False):
     operatorName: str
 
 @typing.type_check_only
-class DoublePropertyOptions(typing_extensions.TypedDict, total=False):
+class DoublePropertyOptions(typing.TypedDict, total=False):
     operatorOptions: DoubleOperatorOptions
 
 @typing.type_check_only
-class DoubleValues(typing_extensions.TypedDict, total=False):
+class DoubleValues(typing.TypedDict, total=False):
     values: _list[float]
 
 @typing.type_check_only
-class DriveFollowUpRestrict(typing_extensions.TypedDict, total=False):
-    type: typing_extensions.Literal[
-        "UNSPECIFIED", "FOLLOWUP_SUGGESTIONS", "FOLLOWUP_ACTION_ITEMS"
-    ]
+class DriveFollowUpRestrict(typing.TypedDict, total=False):
+    type: typing.Literal["UNSPECIFIED", "FOLLOWUP_SUGGESTIONS", "FOLLOWUP_ACTION_ITEMS"]
 
 @typing.type_check_only
-class DriveLocationRestrict(typing_extensions.TypedDict, total=False):
-    type: typing_extensions.Literal["UNSPECIFIED", "TRASHED", "STARRED"]
+class DriveLocationRestrict(typing.TypedDict, total=False):
+    type: typing.Literal["UNSPECIFIED", "TRASHED", "STARRED"]
 
 @typing.type_check_only
-class DriveMimeTypeRestrict(typing_extensions.TypedDict, total=False):
-    type: typing_extensions.Literal[
+class DriveMimeTypeRestrict(typing.TypedDict, total=False):
+    type: typing.Literal[
         "UNSPECIFIED",
         "PDF",
         "DOCUMENT",
@@ -205,8 +197,8 @@ class DriveMimeTypeRestrict(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class DriveTimeSpanRestrict(typing_extensions.TypedDict, total=False):
-    type: typing_extensions.Literal[
+class DriveTimeSpanRestrict(typing.TypedDict, total=False):
+    type: typing.Literal[
         "UNSPECIFIED",
         "TODAY",
         "YESTERDAY",
@@ -216,7 +208,7 @@ class DriveTimeSpanRestrict(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class EmailAddress(typing_extensions.TypedDict, total=False):
+class EmailAddress(typing.TypedDict, total=False):
     customType: str
     emailAddress: str
     emailUrl: str
@@ -224,28 +216,24 @@ class EmailAddress(typing_extensions.TypedDict, total=False):
     type: str
 
 @typing.type_check_only
-class EnterpriseTopazFrontendTeamsLink(typing_extensions.TypedDict, total=False):
+class EnterpriseTopazFrontendTeamsLink(typing.TypedDict, total=False):
     type: str
     url: SafeUrlProto
 
 @typing.type_check_only
-class EnterpriseTopazFrontendTeamsPersonCorePhoneNumber(
-    typing_extensions.TypedDict, total=False
-):
+class EnterpriseTopazFrontendTeamsPersonCorePhoneNumber(typing.TypedDict, total=False):
     phoneNumber: str
     phoneUrl: SafeUrlProto
-    type: typing_extensions.Literal["UNKNOWN", "MOBILE", "OFFICE", "OTHER"]
+    type: typing.Literal["UNKNOWN", "MOBILE", "OFFICE", "OTHER"]
 
 @typing.type_check_only
-class EnterpriseTopazSidekickAgendaEntry(typing_extensions.TypedDict, total=False):
+class EnterpriseTopazSidekickAgendaEntry(typing.TypedDict, total=False):
     agendaItemUrl: str
-    chronology: typing_extensions.Literal[
+    chronology: typing.Literal[
         "STALE", "ALL_DAY", "PAST", "RECENTLY_PAST", "PRESENT", "NEAR_FUTURE", "FUTURE"
     ]
     creator: EnterpriseTopazSidekickPerson
-    currentUserAttendingStatus: typing_extensions.Literal[
-        "AWAITING", "YES", "NO", "MAYBE"
-    ]
+    currentUserAttendingStatus: typing.Literal["AWAITING", "YES", "NO", "MAYBE"]
     description: str
     document: _list[EnterpriseTopazSidekickCommonDocument]
     endDate: str
@@ -272,31 +260,27 @@ class EnterpriseTopazSidekickAgendaEntry(typing_extensions.TypedDict, total=Fals
     title: str
 
 @typing.type_check_only
-class EnterpriseTopazSidekickAgendaGroupCardProto(
-    typing_extensions.TypedDict, total=False
-):
+class EnterpriseTopazSidekickAgendaGroupCardProto(typing.TypedDict, total=False):
     agendaItem: _list[EnterpriseTopazSidekickAgendaItem]
     context: EnterpriseTopazSidekickAgendaGroupCardProtoContext
     currentAgendaItem: EnterpriseTopazSidekickAgendaItem
 
 @typing.type_check_only
-class EnterpriseTopazSidekickAgendaGroupCardProtoContext(
-    typing_extensions.TypedDict, total=False
-):
+class EnterpriseTopazSidekickAgendaGroupCardProtoContext(typing.TypedDict, total=False):
     context: str
     date: str
-    eventsRestrict: typing_extensions.Literal["NONE", "NEXT_MEETING"]
+    eventsRestrict: typing.Literal["NONE", "NEXT_MEETING"]
 
 @typing.type_check_only
-class EnterpriseTopazSidekickAgendaItem(typing_extensions.TypedDict, total=False):
+class EnterpriseTopazSidekickAgendaItem(typing.TypedDict, total=False):
     conflictedGroup: EnterpriseTopazSidekickConflictingEventsCardProto
     gapBefore: EnterpriseTopazSidekickGap
     meeting: EnterpriseTopazSidekickAgendaEntry
 
 @typing.type_check_only
-class EnterpriseTopazSidekickAnswerAnswerList(typing_extensions.TypedDict, total=False):
+class EnterpriseTopazSidekickAnswerAnswerList(typing.TypedDict, total=False):
     labeledAnswer: _list[EnterpriseTopazSidekickAnswerAnswerListLabeledAnswer]
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "UNKNOWN",
         "PERSON_ADDRESS",
         "PERSON_BIRTHDAY",
@@ -309,30 +293,30 @@ class EnterpriseTopazSidekickAnswerAnswerList(typing_extensions.TypedDict, total
 
 @typing.type_check_only
 class EnterpriseTopazSidekickAnswerAnswerListLabeledAnswer(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     answer: str
     label: str
 
 @typing.type_check_only
 class EnterpriseTopazSidekickAnswerSuggestedQueryAnswerCard(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     suggestedQueryCategory: _list[EnterpriseTopazSidekickAnswerSuggestedQueryCategory]
 
 @typing.type_check_only
 class EnterpriseTopazSidekickAnswerSuggestedQueryCategory(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    category: typing_extensions.Literal["UNKNOWN", "CALENDAR", "DOCUMENT", "PEOPLE"]
+    category: typing.Literal["UNKNOWN", "CALENDAR", "DOCUMENT", "PEOPLE"]
     isEnabled: bool
     query: _list[str]
 
 @typing.type_check_only
-class EnterpriseTopazSidekickAssistCardProto(typing_extensions.TypedDict, total=False):
+class EnterpriseTopazSidekickAssistCardProto(typing.TypedDict, total=False):
     agendaGroupCardProto: EnterpriseTopazSidekickAgendaGroupCardProto
     cardMetadata: EnterpriseTopazSidekickCardMetadata
-    cardType: typing_extensions.Literal[
+    cardType: typing.Literal[
         "UNKNOWN_TYPE",
         "AGENDA",
         "CHANGELISTS",
@@ -387,40 +371,38 @@ class EnterpriseTopazSidekickAssistCardProto(typing_extensions.TypedDict, total=
     workInProgressCardProto: EnterpriseTopazSidekickRecentDocumentsCardProto
 
 @typing.type_check_only
-class EnterpriseTopazSidekickCardMetadata(typing_extensions.TypedDict, total=False):
-    cardCategory: typing_extensions.Literal[
-        "DEFAULT", "ANSWER", "KNOWLEDGE", "HOMEPAGE"
-    ]
+class EnterpriseTopazSidekickCardMetadata(typing.TypedDict, total=False):
+    cardCategory: typing.Literal["DEFAULT", "ANSWER", "KNOWLEDGE", "HOMEPAGE"]
     cardId: str
-    chronology: typing_extensions.Literal[
+    chronology: typing.Literal[
         "UNKNOWN", "PAST", "RECENTLY_PAST", "PRESENT", "NEAR_FUTURE", "FUTURE"
     ]
     debugInfo: str
     nlpMetadata: EnterpriseTopazSidekickNlpMetadata
     rankingParams: EnterpriseTopazSidekickRankingParams
-    renderMode: typing_extensions.Literal["UNKNOWN_RENDER", "COLLAPSED", "EXPANDED"]
+    renderMode: typing.Literal["UNKNOWN_RENDER", "COLLAPSED", "EXPANDED"]
 
 @typing.type_check_only
-class EnterpriseTopazSidekickCommonDebugInfo(typing_extensions.TypedDict, total=False):
+class EnterpriseTopazSidekickCommonDebugInfo(typing.TypedDict, total=False):
     message: str
 
 @typing.type_check_only
-class EnterpriseTopazSidekickCommonDocument(typing_extensions.TypedDict, total=False):
-    accessType: typing_extensions.Literal["UNKNOWN_ACCESS", "ALLOWED", "NOT_ALLOWED"]
+class EnterpriseTopazSidekickCommonDocument(typing.TypedDict, total=False):
+    accessType: typing.Literal["UNKNOWN_ACCESS", "ALLOWED", "NOT_ALLOWED"]
     debugInfo: EnterpriseTopazSidekickCommonDebugInfo
     documentId: str
     driveDocumentMetadata: EnterpriseTopazSidekickCommonDocumentDriveDocumentMetadata
     genericUrl: str
     justification: EnterpriseTopazSidekickCommonDocumentJustification
     mimeType: str
-    provenance: typing_extensions.Literal[
+    provenance: typing.Literal[
         "UNKNOWN_PROVENANCE",
         "CALENDAR_DESCRIPTION",
         "CALENDAR_ATTACHMENT",
         "MINED",
         "CALENDAR_ASSIST_ATTACHMENT",
     ]
-    reason: typing_extensions.Literal[
+    reason: typing.Literal[
         "UNKNOWN",
         "TRENDING_IN_COLLABORATORS",
         "TRENDING_IN_DOMAIN",
@@ -438,7 +420,7 @@ class EnterpriseTopazSidekickCommonDocument(typing_extensions.TypedDict, total=F
     snippet: str
     thumbnailUrl: str
     title: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "UNKNOWN",
         "DOCUMENT",
         "PRESENTATION",
@@ -473,7 +455,7 @@ class EnterpriseTopazSidekickCommonDocument(typing_extensions.TypedDict, total=F
 
 @typing.type_check_only
 class EnterpriseTopazSidekickCommonDocumentDriveDocumentMetadata(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     documentId: str
     isPrivate: bool
@@ -483,7 +465,7 @@ class EnterpriseTopazSidekickCommonDocumentDriveDocumentMetadata(
     lastUpdatedTimeMs: str
     lastViewTimeMs: str
     owner: EnterpriseTopazSidekickCommonPerson
-    scope: typing_extensions.Literal[
+    scope: typing.Literal[
         "UNKNOWN_DOCUMENT_SCOPE",
         "LIMITED",
         "DASHER_DOMAIN_WITH_LINK",
@@ -494,11 +476,9 @@ class EnterpriseTopazSidekickCommonDocumentDriveDocumentMetadata(
     ]
 
 @typing.type_check_only
-class EnterpriseTopazSidekickCommonDocumentJustification(
-    typing_extensions.TypedDict, total=False
-):
+class EnterpriseTopazSidekickCommonDocumentJustification(typing.TypedDict, total=False):
     justification: str
-    reason: typing_extensions.Literal[
+    reason: typing.Literal[
         "UNKNOWN",
         "TRENDING_IN_COLLABORATORS",
         "TRENDING_IN_DOMAIN",
@@ -515,7 +495,7 @@ class EnterpriseTopazSidekickCommonDocumentJustification(
     ]
 
 @typing.type_check_only
-class EnterpriseTopazSidekickCommonPerson(typing_extensions.TypedDict, total=False):
+class EnterpriseTopazSidekickCommonPerson(typing.TypedDict, total=False):
     birthday: EnterpriseTopazSidekickCommonPersonBirthday
     cellPhone: str
     department: str
@@ -534,32 +514,26 @@ class EnterpriseTopazSidekickCommonPerson(typing_extensions.TypedDict, total=Fal
     streetAddress: str
 
 @typing.type_check_only
-class EnterpriseTopazSidekickCommonPersonBirthday(
-    typing_extensions.TypedDict, total=False
-):
+class EnterpriseTopazSidekickCommonPersonBirthday(typing.TypedDict, total=False):
     value: str
 
 @typing.type_check_only
-class EnterpriseTopazSidekickConflictingEventsCardProto(
-    typing_extensions.TypedDict, total=False
-):
+class EnterpriseTopazSidekickConflictingEventsCardProto(typing.TypedDict, total=False):
     conflictingEvent: _list[EnterpriseTopazSidekickAgendaEntry]
     mainEvent: EnterpriseTopazSidekickAgendaEntry
 
 @typing.type_check_only
-class EnterpriseTopazSidekickDocumentGroup(typing_extensions.TypedDict, total=False):
-    groupType: typing_extensions.Literal["UNKNOWN_TYPE", "ALL"]
+class EnterpriseTopazSidekickDocumentGroup(typing.TypedDict, total=False):
+    groupType: typing.Literal["UNKNOWN_TYPE", "ALL"]
     personalizedDocument: _list[EnterpriseTopazSidekickCommonDocument]
 
 @typing.type_check_only
-class EnterpriseTopazSidekickDocumentPerCategoryList(
-    typing_extensions.TypedDict, total=False
-):
+class EnterpriseTopazSidekickDocumentPerCategoryList(typing.TypedDict, total=False):
     documents: _list[
         EnterpriseTopazSidekickDocumentPerCategoryListDocumentPerCategoryListEntry
     ]
     helpMessage: str
-    listType: typing_extensions.Literal[
+    listType: typing.Literal[
         "UNKNOWN_LIST_TYPE", "MENTIONS", "SHARES", "NEEDS_ATTENTION", "VIEWS", "EDITS"
     ]
     listTypeDescription: str
@@ -567,9 +541,9 @@ class EnterpriseTopazSidekickDocumentPerCategoryList(
 
 @typing.type_check_only
 class EnterpriseTopazSidekickDocumentPerCategoryListDocumentPerCategoryListEntry(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    category: typing_extensions.Literal[
+    category: typing.Literal[
         "UNKNOWN_DOCUMENT",
         "ACTIONABLE",
         "VIEWED",
@@ -585,9 +559,7 @@ class EnterpriseTopazSidekickDocumentPerCategoryListDocumentPerCategoryListEntry
     rationale: str
 
 @typing.type_check_only
-class EnterpriseTopazSidekickFindMeetingTimeCardProto(
-    typing_extensions.TypedDict, total=False
-):
+class EnterpriseTopazSidekickFindMeetingTimeCardProto(typing.TypedDict, total=False):
     commonAvailableTimeSlots: _list[EnterpriseTopazSidekickTimeSlot]
     invitees: _list[EnterpriseTopazSidekickPerson]
     requester: EnterpriseTopazSidekickPerson
@@ -597,7 +569,7 @@ class EnterpriseTopazSidekickFindMeetingTimeCardProto(
     timezoneId: str
 
 @typing.type_check_only
-class EnterpriseTopazSidekickGap(typing_extensions.TypedDict, total=False):
+class EnterpriseTopazSidekickGap(typing.TypedDict, total=False):
     displayRemainingTime: str
     endTime: str
     endTimeMs: str
@@ -606,58 +578,48 @@ class EnterpriseTopazSidekickGap(typing_extensions.TypedDict, total=False):
     startTimeMs: str
 
 @typing.type_check_only
-class EnterpriseTopazSidekickGenericAnswerCard(
-    typing_extensions.TypedDict, total=False
-):
+class EnterpriseTopazSidekickGenericAnswerCard(typing.TypedDict, total=False):
     answer: str
     title: str
 
 @typing.type_check_only
-class EnterpriseTopazSidekickGetAndKeepAheadCardProto(
-    typing_extensions.TypedDict, total=False
-):
+class EnterpriseTopazSidekickGetAndKeepAheadCardProto(typing.TypedDict, total=False):
     declinedEvents: EnterpriseTopazSidekickGetAndKeepAheadCardProtoDeclinedEvents
     mentionedDocuments: EnterpriseTopazSidekickDocumentPerCategoryList
     sharedDocuments: EnterpriseTopazSidekickDocumentPerCategoryList
 
 @typing.type_check_only
 class EnterpriseTopazSidekickGetAndKeepAheadCardProtoDeclinedEvents(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     events: _list[EnterpriseTopazSidekickAgendaEntry]
 
 @typing.type_check_only
-class EnterpriseTopazSidekickMeetingNotesCardError(
-    typing_extensions.TypedDict, total=False
-):
+class EnterpriseTopazSidekickMeetingNotesCardError(typing.TypedDict, total=False):
     description: str
     event: EnterpriseTopazSidekickAgendaEntry
-    reason: typing_extensions.Literal["NONE", "NOT_OWNER", "UNKNOWN"]
+    reason: typing.Literal["NONE", "NOT_OWNER", "UNKNOWN"]
 
 @typing.type_check_only
-class EnterpriseTopazSidekickMeetingNotesCardProto(
-    typing_extensions.TypedDict, total=False
-):
+class EnterpriseTopazSidekickMeetingNotesCardProto(typing.TypedDict, total=False):
     event: EnterpriseTopazSidekickAgendaEntry
     fileId: str
     title: str
     url: str
 
 @typing.type_check_only
-class EnterpriseTopazSidekickMeetingNotesCardRequest(
-    typing_extensions.TypedDict, total=False
-):
-    canCreateFor: _list[typing_extensions.Literal["UNKNOWN", "MYSELF", "ALL_ATTENDEES"]]
+class EnterpriseTopazSidekickMeetingNotesCardRequest(typing.TypedDict, total=False):
+    canCreateFor: _list[typing.Literal["UNKNOWN", "MYSELF", "ALL_ATTENDEES"]]
     error: EnterpriseTopazSidekickMeetingNotesCardError
     event: EnterpriseTopazSidekickAgendaEntry
 
 @typing.type_check_only
-class EnterpriseTopazSidekickNlpMetadata(typing_extensions.TypedDict, total=False):
+class EnterpriseTopazSidekickNlpMetadata(typing.TypedDict, total=False):
     confidence: float
 
 @typing.type_check_only
 class EnterpriseTopazSidekickPeopleAnswerDisambiguationInfo(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     disambiguation: _list[
         EnterpriseTopazSidekickPeopleAnswerDisambiguationInfoDisambiguationPerson
@@ -666,26 +628,26 @@ class EnterpriseTopazSidekickPeopleAnswerDisambiguationInfo(
 
 @typing.type_check_only
 class EnterpriseTopazSidekickPeopleAnswerDisambiguationInfoDisambiguationPerson(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     person: EnterpriseTopazSidekickCommonPerson
     query: str
 
 @typing.type_check_only
 class EnterpriseTopazSidekickPeopleAnswerPeopleAnswerCardHeader(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     title: str
 
 @typing.type_check_only
 class EnterpriseTopazSidekickPeopleAnswerPersonAnswerCard(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     answer: _list[SafeHtmlProto]
     answerText: EnterpriseTopazSidekickAnswerAnswerList
     disambiguationInfo: EnterpriseTopazSidekickPeopleAnswerDisambiguationInfo
     header: EnterpriseTopazSidekickPeopleAnswerPeopleAnswerCardHeader
-    responseStatus: typing_extensions.Literal[
+    responseStatus: typing.Literal[
         "UNKNOWN", "SUCCESS", "MISSING_PERSON", "MISSING_DATA"
     ]
     statusMessage: str
@@ -693,30 +655,26 @@ class EnterpriseTopazSidekickPeopleAnswerPersonAnswerCard(
 
 @typing.type_check_only
 class EnterpriseTopazSidekickPeopleAnswerRelatedPeopleAnswerCard(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     disambiguationInfo: EnterpriseTopazSidekickPeopleAnswerDisambiguationInfo
     header: EnterpriseTopazSidekickPeopleAnswerPeopleAnswerCardHeader
     relatedPeople: _list[EnterpriseTopazSidekickCommonPerson]
-    relationType: typing_extensions.Literal[
-        "UNKNOWN", "DIRECT_REPORTS", "MANAGER", "PEERS"
-    ]
-    responseStatus: typing_extensions.Literal[
+    relationType: typing.Literal["UNKNOWN", "DIRECT_REPORTS", "MANAGER", "PEERS"]
+    responseStatus: typing.Literal[
         "UNKNOWN", "SUCCESS", "MISSING_PERSON", "MISSING_DATA"
     ]
     statusMessage: str
     subject: EnterpriseTopazSidekickCommonPerson
 
 @typing.type_check_only
-class EnterpriseTopazSidekickPeopleDisambiguationCard(
-    typing_extensions.TypedDict, total=False
-):
+class EnterpriseTopazSidekickPeopleDisambiguationCard(typing.TypedDict, total=False):
     person: _list[EnterpriseTopazSidekickCommonPerson]
 
 @typing.type_check_only
-class EnterpriseTopazSidekickPerson(typing_extensions.TypedDict, total=False):
-    affinityLevel: typing_extensions.Literal["UNKNOWN", "LOW", "MEDIUM", "HIGH"]
-    attendingStatus: typing_extensions.Literal["AWAITING", "YES", "NO", "MAYBE"]
+class EnterpriseTopazSidekickPerson(typing.TypedDict, total=False):
+    affinityLevel: typing.Literal["UNKNOWN", "LOW", "MEDIUM", "HIGH"]
+    attendingStatus: typing.Literal["AWAITING", "YES", "NO", "MAYBE"]
     email: str
     gaiaId: str
     isGroup: bool
@@ -725,57 +683,49 @@ class EnterpriseTopazSidekickPerson(typing_extensions.TypedDict, total=False):
     photoUrl: str
 
 @typing.type_check_only
-class EnterpriseTopazSidekickPersonProfileCard(
-    typing_extensions.TypedDict, total=False
-):
+class EnterpriseTopazSidekickPersonProfileCard(typing.TypedDict, total=False):
     relatedPeople: _list[EnterpriseTopazSidekickPersonProfileCardRelatedPeople]
     subject: EnterpriseTopazSidekickCommonPerson
 
 @typing.type_check_only
 class EnterpriseTopazSidekickPersonProfileCardRelatedPeople(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     relatedPerson: _list[EnterpriseTopazSidekickCommonPerson]
-    relation: typing_extensions.Literal["UNKNOWN", "MANAGER", "DIRECT_REPORT"]
+    relation: typing.Literal["UNKNOWN", "MANAGER", "DIRECT_REPORT"]
 
 @typing.type_check_only
-class EnterpriseTopazSidekickPersonalizedDocsCardProto(
-    typing_extensions.TypedDict, total=False
-):
+class EnterpriseTopazSidekickPersonalizedDocsCardProto(typing.TypedDict, total=False):
     documentGroup: _list[EnterpriseTopazSidekickDocumentGroup]
 
 @typing.type_check_only
-class EnterpriseTopazSidekickRankingParams(typing_extensions.TypedDict, total=False):
+class EnterpriseTopazSidekickRankingParams(typing.TypedDict, total=False):
     endTimeMs: str
-    priority: typing_extensions.Literal[
+    priority: typing.Literal[
         "UNKNOWN", "CRITICAL", "IMPORTANT", "HIGH", "NORMAL", "BEST_EFFORT"
     ]
     score: float
     spanMs: str
     startTimeMs: str
-    type: typing_extensions.Literal["FIXED", "FLEXIBLE"]
+    type: typing.Literal["FIXED", "FLEXIBLE"]
 
 @typing.type_check_only
-class EnterpriseTopazSidekickRecentDocumentsCardProto(
-    typing_extensions.TypedDict, total=False
-):
+class EnterpriseTopazSidekickRecentDocumentsCardProto(typing.TypedDict, total=False):
     document: _list[EnterpriseTopazSidekickCommonDocument]
 
 @typing.type_check_only
-class EnterpriseTopazSidekickScheduledMeeting(typing_extensions.TypedDict, total=False):
+class EnterpriseTopazSidekickScheduledMeeting(typing.TypedDict, total=False):
     meetingLocation: str
     meetingTime: EnterpriseTopazSidekickTimeSlot
     meetingTitle: str
 
 @typing.type_check_only
-class EnterpriseTopazSidekickShareMeetingDocsCardProto(
-    typing_extensions.TypedDict, total=False
-):
+class EnterpriseTopazSidekickShareMeetingDocsCardProto(typing.TypedDict, total=False):
     document: _list[EnterpriseTopazSidekickCommonDocument]
     event: EnterpriseTopazSidekickAgendaEntry
 
 @typing.type_check_only
-class EnterpriseTopazSidekickTimeSlot(typing_extensions.TypedDict, total=False):
+class EnterpriseTopazSidekickTimeSlot(typing.TypedDict, total=False):
     endTimeDay: str
     endTimeHourAndMinute: str
     endTimeInMillis: str
@@ -784,42 +734,42 @@ class EnterpriseTopazSidekickTimeSlot(typing_extensions.TypedDict, total=False):
     startTimeInMillis: str
 
 @typing.type_check_only
-class EnumOperatorOptions(typing_extensions.TypedDict, total=False):
+class EnumOperatorOptions(typing.TypedDict, total=False):
     operatorName: str
 
 @typing.type_check_only
-class EnumPropertyOptions(typing_extensions.TypedDict, total=False):
+class EnumPropertyOptions(typing.TypedDict, total=False):
     operatorOptions: EnumOperatorOptions
-    orderedRanking: typing_extensions.Literal["NO_ORDER", "ASCENDING", "DESCENDING"]
+    orderedRanking: typing.Literal["NO_ORDER", "ASCENDING", "DESCENDING"]
     possibleValues: _list[EnumValuePair]
 
 @typing.type_check_only
-class EnumValuePair(typing_extensions.TypedDict, total=False):
+class EnumValuePair(typing.TypedDict, total=False):
     integerValue: int
     stringValue: str
 
 @typing.type_check_only
-class EnumValues(typing_extensions.TypedDict, total=False):
+class EnumValues(typing.TypedDict, total=False):
     values: _list[str]
 
 @typing.type_check_only
-class ErrorInfo(typing_extensions.TypedDict, total=False):
+class ErrorInfo(typing.TypedDict, total=False):
     errorMessages: _list[ErrorMessage]
 
 @typing.type_check_only
-class ErrorMessage(typing_extensions.TypedDict, total=False):
+class ErrorMessage(typing.TypedDict, total=False):
     errorMessage: str
     source: Source
 
 @typing.type_check_only
-class FacetBucket(typing_extensions.TypedDict, total=False):
+class FacetBucket(typing.TypedDict, total=False):
     count: int
     filter: Filter
     percentage: int
     value: Value
 
 @typing.type_check_only
-class FacetOptions(typing_extensions.TypedDict, total=False):
+class FacetOptions(typing.TypedDict, total=False):
     integerFacetingOptions: IntegerFacetingOptions
     numFacetBuckets: int
     objectType: str
@@ -827,144 +777,140 @@ class FacetOptions(typing_extensions.TypedDict, total=False):
     sourceName: str
 
 @typing.type_check_only
-class FacetResult(typing_extensions.TypedDict, total=False):
+class FacetResult(typing.TypedDict, total=False):
     buckets: _list[FacetBucket]
     objectType: str
     operatorName: str
     sourceName: str
 
 @typing.type_check_only
-class FieldViolation(typing_extensions.TypedDict, total=False):
+class FieldViolation(typing.TypedDict, total=False):
     description: str
     field: str
 
 @typing.type_check_only
-class Filter(typing_extensions.TypedDict, total=False):
+class Filter(typing.TypedDict, total=False):
     compositeFilter: CompositeFilter
     valueFilter: ValueFilter
 
 @typing.type_check_only
-class FilterOptions(typing_extensions.TypedDict, total=False):
+class FilterOptions(typing.TypedDict, total=False):
     filter: Filter
     objectType: str
 
 @typing.type_check_only
-class FreshnessOptions(typing_extensions.TypedDict, total=False):
+class FreshnessOptions(typing.TypedDict, total=False):
     freshnessDuration: str
     freshnessProperty: str
 
 @typing.type_check_only
-class GSuitePrincipal(typing_extensions.TypedDict, total=False):
+class GSuitePrincipal(typing.TypedDict, total=False):
     gsuiteDomain: bool
     gsuiteGroupEmail: str
     gsuiteUserEmail: str
 
 @typing.type_check_only
-class GetCustomerIndexStatsResponse(typing_extensions.TypedDict, total=False):
+class GetCustomerIndexStatsResponse(typing.TypedDict, total=False):
     averageIndexedItemCount: str
     stats: _list[CustomerIndexStats]
 
 @typing.type_check_only
-class GetCustomerQueryStatsResponse(typing_extensions.TypedDict, total=False):
+class GetCustomerQueryStatsResponse(typing.TypedDict, total=False):
     stats: _list[CustomerQueryStats]
     totalQueryCount: str
 
 @typing.type_check_only
-class GetCustomerSearchApplicationStatsResponse(
-    typing_extensions.TypedDict, total=False
-):
+class GetCustomerSearchApplicationStatsResponse(typing.TypedDict, total=False):
     averageSearchApplicationCount: str
     stats: _list[CustomerSearchApplicationStats]
 
 @typing.type_check_only
-class GetCustomerSessionStatsResponse(typing_extensions.TypedDict, total=False):
+class GetCustomerSessionStatsResponse(typing.TypedDict, total=False):
     stats: _list[CustomerSessionStats]
 
 @typing.type_check_only
-class GetCustomerUserStatsResponse(typing_extensions.TypedDict, total=False):
+class GetCustomerUserStatsResponse(typing.TypedDict, total=False):
     stats: _list[CustomerUserStats]
 
 @typing.type_check_only
-class GetDataSourceIndexStatsResponse(typing_extensions.TypedDict, total=False):
+class GetDataSourceIndexStatsResponse(typing.TypedDict, total=False):
     averageIndexedItemCount: str
     stats: _list[DataSourceIndexStats]
 
 @typing.type_check_only
-class GetSearchApplicationQueryStatsResponse(typing_extensions.TypedDict, total=False):
+class GetSearchApplicationQueryStatsResponse(typing.TypedDict, total=False):
     stats: _list[SearchApplicationQueryStats]
     totalQueryCount: str
 
 @typing.type_check_only
-class GetSearchApplicationSessionStatsResponse(
-    typing_extensions.TypedDict, total=False
-):
+class GetSearchApplicationSessionStatsResponse(typing.TypedDict, total=False):
     stats: _list[SearchApplicationSessionStats]
 
 @typing.type_check_only
-class GetSearchApplicationUserStatsResponse(typing_extensions.TypedDict, total=False):
+class GetSearchApplicationUserStatsResponse(typing.TypedDict, total=False):
     stats: _list[SearchApplicationUserStats]
 
 @typing.type_check_only
-class HtmlOperatorOptions(typing_extensions.TypedDict, total=False):
+class HtmlOperatorOptions(typing.TypedDict, total=False):
     operatorName: str
 
 @typing.type_check_only
-class HtmlPropertyOptions(typing_extensions.TypedDict, total=False):
+class HtmlPropertyOptions(typing.TypedDict, total=False):
     operatorOptions: HtmlOperatorOptions
     retrievalImportance: RetrievalImportance
 
 @typing.type_check_only
-class HtmlValues(typing_extensions.TypedDict, total=False):
+class HtmlValues(typing.TypedDict, total=False):
     values: _list[str]
 
 @typing.type_check_only
-class IndexItemOptions(typing_extensions.TypedDict, total=False):
+class IndexItemOptions(typing.TypedDict, total=False):
     allowUnknownGsuitePrincipals: bool
 
 @typing.type_check_only
-class IndexItemRequest(typing_extensions.TypedDict, total=False):
+class IndexItemRequest(typing.TypedDict, total=False):
     connectorName: str
     debugOptions: DebugOptions
     indexItemOptions: IndexItemOptions
     item: Item
-    mode: typing_extensions.Literal["UNSPECIFIED", "SYNCHRONOUS", "ASYNCHRONOUS"]
+    mode: typing.Literal["UNSPECIFIED", "SYNCHRONOUS", "ASYNCHRONOUS"]
 
 @typing.type_check_only
-class InitializeCustomerRequest(typing_extensions.TypedDict, total=False): ...
+class InitializeCustomerRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class IntegerFacetingOptions(typing_extensions.TypedDict, total=False):
+class IntegerFacetingOptions(typing.TypedDict, total=False):
     integerBuckets: _list[str]
 
 @typing.type_check_only
-class IntegerOperatorOptions(typing_extensions.TypedDict, total=False):
+class IntegerOperatorOptions(typing.TypedDict, total=False):
     greaterThanOperatorName: str
     lessThanOperatorName: str
     operatorName: str
 
 @typing.type_check_only
-class IntegerPropertyOptions(typing_extensions.TypedDict, total=False):
+class IntegerPropertyOptions(typing.TypedDict, total=False):
     integerFacetingOptions: IntegerFacetingOptions
     maximumValue: str
     minimumValue: str
     operatorOptions: IntegerOperatorOptions
-    orderedRanking: typing_extensions.Literal["NO_ORDER", "ASCENDING", "DESCENDING"]
+    orderedRanking: typing.Literal["NO_ORDER", "ASCENDING", "DESCENDING"]
 
 @typing.type_check_only
-class IntegerValues(typing_extensions.TypedDict, total=False):
+class IntegerValues(typing.TypedDict, total=False):
     values: _list[str]
 
 @typing.type_check_only
-class Interaction(typing_extensions.TypedDict, total=False):
+class Interaction(typing.TypedDict, total=False):
     interactionTime: str
     principal: Principal
-    type: typing_extensions.Literal["UNSPECIFIED", "VIEW", "EDIT"]
+    type: typing.Literal["UNSPECIFIED", "VIEW", "EDIT"]
 
 @typing.type_check_only
-class Item(typing_extensions.TypedDict, total=False):
+class Item(typing.TypedDict, total=False):
     acl: ItemAcl
     content: ItemContent
-    itemType: typing_extensions.Literal[
+    itemType: typing.Literal[
         "UNSPECIFIED", "CONTENT_ITEM", "CONTAINER_ITEM", "VIRTUAL_CONTAINER_ITEM"
     ]
     metadata: ItemMetadata
@@ -976,8 +922,8 @@ class Item(typing_extensions.TypedDict, total=False):
     version: str
 
 @typing.type_check_only
-class ItemAcl(typing_extensions.TypedDict, total=False):
-    aclInheritanceType: typing_extensions.Literal[
+class ItemAcl(typing.TypedDict, total=False):
+    aclInheritanceType: typing.Literal[
         "NOT_APPLICABLE", "CHILD_OVERRIDE", "PARENT_OVERRIDE", "BOTH_PERMIT"
     ]
     deniedReaders: _list[Principal]
@@ -986,22 +932,22 @@ class ItemAcl(typing_extensions.TypedDict, total=False):
     readers: _list[Principal]
 
 @typing.type_check_only
-class ItemContent(typing_extensions.TypedDict, total=False):
+class ItemContent(typing.TypedDict, total=False):
     contentDataRef: UploadItemRef
-    contentFormat: typing_extensions.Literal["UNSPECIFIED", "HTML", "TEXT", "RAW"]
+    contentFormat: typing.Literal["UNSPECIFIED", "HTML", "TEXT", "RAW"]
     hash: str
     inlineContent: str
 
 @typing.type_check_only
-class ItemCountByStatus(typing_extensions.TypedDict, total=False):
+class ItemCountByStatus(typing.TypedDict, total=False):
     count: str
     indexedItemsCount: str
-    statusCode: typing_extensions.Literal[
+    statusCode: typing.Literal[
         "CODE_UNSPECIFIED", "ERROR", "MODIFIED", "NEW_ITEM", "ACCEPTED"
     ]
 
 @typing.type_check_only
-class ItemMetadata(typing_extensions.TypedDict, total=False):
+class ItemMetadata(typing.TypedDict, total=False):
     containerName: str
     contentLanguage: str
     contextAttributes: _list[ContextAttribute]
@@ -1017,58 +963,56 @@ class ItemMetadata(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class ItemStatus(typing_extensions.TypedDict, total=False):
-    code: typing_extensions.Literal[
+class ItemStatus(typing.TypedDict, total=False):
+    code: typing.Literal[
         "CODE_UNSPECIFIED", "ERROR", "MODIFIED", "NEW_ITEM", "ACCEPTED"
     ]
     processingErrors: _list[ProcessingError]
     repositoryErrors: _list[RepositoryError]
 
 @typing.type_check_only
-class ItemStructuredData(typing_extensions.TypedDict, total=False):
+class ItemStructuredData(typing.TypedDict, total=False):
     hash: str
     object: StructuredDataObject
 
 @typing.type_check_only
-class ListDataSourceResponse(typing_extensions.TypedDict, total=False):
+class ListDataSourceResponse(typing.TypedDict, total=False):
     nextPageToken: str
     sources: _list[DataSource]
 
 @typing.type_check_only
-class ListItemNamesForUnmappedIdentityResponse(
-    typing_extensions.TypedDict, total=False
-):
+class ListItemNamesForUnmappedIdentityResponse(typing.TypedDict, total=False):
     itemNames: _list[str]
     nextPageToken: str
 
 @typing.type_check_only
-class ListItemsResponse(typing_extensions.TypedDict, total=False):
+class ListItemsResponse(typing.TypedDict, total=False):
     items: _list[Item]
     nextPageToken: str
 
 @typing.type_check_only
-class ListOperationsResponse(typing_extensions.TypedDict, total=False):
+class ListOperationsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListQuerySourcesResponse(typing_extensions.TypedDict, total=False):
+class ListQuerySourcesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     sources: _list[QuerySource]
 
 @typing.type_check_only
-class ListSearchApplicationsResponse(typing_extensions.TypedDict, total=False):
+class ListSearchApplicationsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     searchApplications: _list[SearchApplication]
 
 @typing.type_check_only
-class ListUnmappedIdentitiesResponse(typing_extensions.TypedDict, total=False):
+class ListUnmappedIdentitiesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     unmappedIdentities: _list[UnmappedIdentity]
 
 @typing.type_check_only
-class MapInfo(typing_extensions.TypedDict, total=False):
+class MapInfo(typing.TypedDict, total=False):
     lat: float
     locationUrl: SafeUrlProto
     long: float
@@ -1076,22 +1020,22 @@ class MapInfo(typing_extensions.TypedDict, total=False):
     zoom: int
 
 @typing.type_check_only
-class MapTile(typing_extensions.TypedDict, total=False):
+class MapTile(typing.TypedDict, total=False):
     imageUrl: SafeUrlProto
     tileX: float
     tileY: float
 
 @typing.type_check_only
-class MatchRange(typing_extensions.TypedDict, total=False):
+class MatchRange(typing.TypedDict, total=False):
     end: int
     start: int
 
 @typing.type_check_only
-class Media(typing_extensions.TypedDict, total=False):
+class Media(typing.TypedDict, total=False):
     resourceName: str
 
 @typing.type_check_only
-class Metadata(typing_extensions.TypedDict, total=False):
+class Metadata(typing.TypedDict, total=False):
     createTime: str
     displayOptions: ResultDisplayMetadata
     fields: _list[NamedProperty]
@@ -1103,15 +1047,15 @@ class Metadata(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class Metaline(typing_extensions.TypedDict, total=False):
+class Metaline(typing.TypedDict, total=False):
     properties: _list[DisplayedProperty]
 
 @typing.type_check_only
-class Name(typing_extensions.TypedDict, total=False):
+class Name(typing.TypedDict, total=False):
     displayName: str
 
 @typing.type_check_only
-class NamedProperty(typing_extensions.TypedDict, total=False):
+class NamedProperty(typing.TypedDict, total=False):
     booleanValue: bool
     dateValues: DateValues
     doubleValues: DoubleValues
@@ -1124,32 +1068,32 @@ class NamedProperty(typing_extensions.TypedDict, total=False):
     timestampValues: TimestampValues
 
 @typing.type_check_only
-class ObjectDefinition(typing_extensions.TypedDict, total=False):
+class ObjectDefinition(typing.TypedDict, total=False):
     name: str
     options: ObjectOptions
     propertyDefinitions: _list[PropertyDefinition]
 
 @typing.type_check_only
-class ObjectDisplayOptions(typing_extensions.TypedDict, total=False):
+class ObjectDisplayOptions(typing.TypedDict, total=False):
     metalines: _list[Metaline]
     objectDisplayLabel: str
 
 @typing.type_check_only
-class ObjectOptions(typing_extensions.TypedDict, total=False):
+class ObjectOptions(typing.TypedDict, total=False):
     displayOptions: ObjectDisplayOptions
     freshnessOptions: FreshnessOptions
     suggestionFilteringOperators: _list[str]
 
 @typing.type_check_only
-class ObjectPropertyOptions(typing_extensions.TypedDict, total=False):
+class ObjectPropertyOptions(typing.TypedDict, total=False):
     subobjectProperties: _list[PropertyDefinition]
 
 @typing.type_check_only
-class ObjectValues(typing_extensions.TypedDict, total=False):
+class ObjectValues(typing.TypedDict, total=False):
     values: _list[StructuredDataObject]
 
 @typing.type_check_only
-class Operation(typing_extensions.TypedDict, total=False):
+class Operation(typing.TypedDict, total=False):
     done: bool
     error: Status
     metadata: dict[str, typing.Any]
@@ -1157,15 +1101,15 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class PeoplePromotionCard(typing_extensions.TypedDict, total=False):
+class PeoplePromotionCard(typing.TypedDict, total=False):
     people: _list[PersonCore]
 
 @typing.type_check_only
-class PeopleSuggestion(typing_extensions.TypedDict, total=False):
+class PeopleSuggestion(typing.TypedDict, total=False):
     person: Person
 
 @typing.type_check_only
-class Person(typing_extensions.TypedDict, total=False):
+class Person(typing.TypedDict, total=False):
     emailAddresses: _list[EmailAddress]
     name: str
     obfuscatedId: str
@@ -1174,11 +1118,11 @@ class Person(typing_extensions.TypedDict, total=False):
     photos: _list[Photo]
 
 @typing.type_check_only
-class PersonCore(typing_extensions.TypedDict, total=False):
+class PersonCore(typing.TypedDict, total=False):
     addressMeAs: str
     adminTo: _list[PersonCore]
     admins: _list[PersonCore]
-    availabilityStatus: typing_extensions.Literal[
+    availabilityStatus: typing.Literal[
         "UNKNOWN", "OUT_OF_OFFICE", "OUTSIDE_WORKING_HOURS", "AVAILABLE"
     ]
     birthday: Date
@@ -1215,39 +1159,37 @@ class PersonCore(typing_extensions.TypedDict, total=False):
     waldoComeBackTime: str
 
 @typing.type_check_only
-class PhoneNumber(typing_extensions.TypedDict, total=False):
+class PhoneNumber(typing.TypedDict, total=False):
     phoneNumber: str
-    type: typing_extensions.Literal["OTHER", "MOBILE", "OFFICE"]
+    type: typing.Literal["OTHER", "MOBILE", "OFFICE"]
 
 @typing.type_check_only
-class Photo(typing_extensions.TypedDict, total=False):
+class Photo(typing.TypedDict, total=False):
     url: str
 
 @typing.type_check_only
-class PollItemsRequest(typing_extensions.TypedDict, total=False):
+class PollItemsRequest(typing.TypedDict, total=False):
     connectorName: str
     debugOptions: DebugOptions
     limit: int
     queue: str
     statusCodes: _list[
-        typing_extensions.Literal[
-            "CODE_UNSPECIFIED", "ERROR", "MODIFIED", "NEW_ITEM", "ACCEPTED"
-        ]
+        typing.Literal["CODE_UNSPECIFIED", "ERROR", "MODIFIED", "NEW_ITEM", "ACCEPTED"]
     ]
 
 @typing.type_check_only
-class PollItemsResponse(typing_extensions.TypedDict, total=False):
+class PollItemsResponse(typing.TypedDict, total=False):
     items: _list[Item]
 
 @typing.type_check_only
-class Principal(typing_extensions.TypedDict, total=False):
+class Principal(typing.TypedDict, total=False):
     groupResourceName: str
     gsuitePrincipal: GSuitePrincipal
     userResourceName: str
 
 @typing.type_check_only
-class ProcessingError(typing_extensions.TypedDict, total=False):
-    code: typing_extensions.Literal[
+class ProcessingError(typing.TypedDict, total=False):
+    code: typing.Literal[
         "PROCESSING_ERROR_CODE_UNSPECIFIED",
         "MALFORMED_REQUEST",
         "UNSUPPORTED_CONTENT_FORMAT",
@@ -1258,7 +1200,7 @@ class ProcessingError(typing_extensions.TypedDict, total=False):
     fieldViolations: _list[FieldViolation]
 
 @typing.type_check_only
-class PropertyDefinition(typing_extensions.TypedDict, total=False):
+class PropertyDefinition(typing.TypedDict, total=False):
     booleanPropertyOptions: BooleanPropertyOptions
     datePropertyOptions: DatePropertyOptions
     displayOptions: PropertyDisplayOptions
@@ -1278,65 +1220,65 @@ class PropertyDefinition(typing_extensions.TypedDict, total=False):
     timestampPropertyOptions: TimestampPropertyOptions
 
 @typing.type_check_only
-class PropertyDisplayOptions(typing_extensions.TypedDict, total=False):
+class PropertyDisplayOptions(typing.TypedDict, total=False):
     displayLabel: str
 
 @typing.type_check_only
-class PushItem(typing_extensions.TypedDict, total=False):
+class PushItem(typing.TypedDict, total=False):
     contentHash: str
     metadataHash: str
     payload: str
     queue: str
     repositoryError: RepositoryError
     structuredDataHash: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "UNSPECIFIED", "MODIFIED", "NOT_MODIFIED", "REPOSITORY_ERROR", "REQUEUE"
     ]
 
 @typing.type_check_only
-class PushItemRequest(typing_extensions.TypedDict, total=False):
+class PushItemRequest(typing.TypedDict, total=False):
     connectorName: str
     debugOptions: DebugOptions
     item: PushItem
 
 @typing.type_check_only
-class QueryActivity(typing_extensions.TypedDict, total=False):
+class QueryActivity(typing.TypedDict, total=False):
     query: str
 
 @typing.type_check_only
-class QueryCountByStatus(typing_extensions.TypedDict, total=False):
+class QueryCountByStatus(typing.TypedDict, total=False):
     count: str
     statusCode: int
 
 @typing.type_check_only
-class QueryInterpretation(typing_extensions.TypedDict, total=False):
-    interpretationType: typing_extensions.Literal["NONE", "BLEND", "REPLACE"]
+class QueryInterpretation(typing.TypedDict, total=False):
+    interpretationType: typing.Literal["NONE", "BLEND", "REPLACE"]
     interpretedQuery: str
     interpretedQueryActualResultCount: int
     interpretedQueryEstimatedResultCount: str
-    reason: typing_extensions.Literal[
+    reason: typing.Literal[
         "UNSPECIFIED",
         "QUERY_HAS_NATURAL_LANGUAGE_INTENT",
         "NOT_ENOUGH_RESULTS_FOUND_FOR_USER_QUERY",
     ]
 
 @typing.type_check_only
-class QueryInterpretationConfig(typing_extensions.TypedDict, total=False):
+class QueryInterpretationConfig(typing.TypedDict, total=False):
     forceDisableSupplementalResults: bool
     forceVerbatimMode: bool
 
 @typing.type_check_only
-class QueryInterpretationOptions(typing_extensions.TypedDict, total=False):
+class QueryInterpretationOptions(typing.TypedDict, total=False):
     disableNlInterpretation: bool
     disableSupplementalResults: bool
     enableVerbatimMode: bool
 
 @typing.type_check_only
-class QueryItem(typing_extensions.TypedDict, total=False):
+class QueryItem(typing.TypedDict, total=False):
     isSynthetic: bool
 
 @typing.type_check_only
-class QueryOperator(typing_extensions.TypedDict, total=False):
+class QueryOperator(typing.TypedDict, total=False):
     displayName: str
     enumValues: _list[str]
     greaterThanOperatorName: str
@@ -1348,7 +1290,7 @@ class QueryOperator(typing_extensions.TypedDict, total=False):
     lessThanOperatorName: str
     objectType: str
     operatorName: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "UNKNOWN",
         "INTEGER",
         "DOUBLE",
@@ -1361,32 +1303,32 @@ class QueryOperator(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class QuerySource(typing_extensions.TypedDict, total=False):
+class QuerySource(typing.TypedDict, total=False):
     displayName: str
     operators: _list[QueryOperator]
     shortName: str
     source: Source
 
 @typing.type_check_only
-class QuerySuggestion(typing_extensions.TypedDict, total=False):
+class QuerySuggestion(typing.TypedDict, total=False):
     lastQueryTime: str
-    sourceCorpus: typing_extensions.Literal[
+    sourceCorpus: typing.Literal[
         "SOURCE_CORPUS_UNSPECIFIED", "GMAIL", "DRIVE", "CHAT", "CALENDAR"
     ]
 
 @typing.type_check_only
-class RemoveActivityRequest(typing_extensions.TypedDict, total=False):
+class RemoveActivityRequest(typing.TypedDict, total=False):
     requestOptions: RequestOptions
     userActivity: UserActivity
 
 @typing.type_check_only
-class RemoveActivityResponse(typing_extensions.TypedDict, total=False): ...
+class RemoveActivityResponse(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class RepositoryError(typing_extensions.TypedDict, total=False):
+class RepositoryError(typing.TypedDict, total=False):
     errorMessage: str
     httpStatusCode: int
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "UNKNOWN",
         "NETWORK_ERROR",
         "DNS_ERROR",
@@ -1400,23 +1342,24 @@ class RepositoryError(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class RequestOptions(typing_extensions.TypedDict, total=False):
+class RequestOptions(typing.TypedDict, total=False):
     clientDisplayLanguageCode: str
+    countryCode: str
     debugOptions: DebugOptions
     languageCode: str
     searchApplicationId: str
     timeZone: str
 
 @typing.type_check_only
-class ResetSearchApplicationRequest(typing_extensions.TypedDict, total=False):
+class ResetSearchApplicationRequest(typing.TypedDict, total=False):
     debugOptions: DebugOptions
 
 @typing.type_check_only
-class ResponseDebugInfo(typing_extensions.TypedDict, total=False):
+class ResponseDebugInfo(typing.TypedDict, total=False):
     formattedDebugInfo: str
 
 @typing.type_check_only
-class RestrictItem(typing_extensions.TypedDict, total=False):
+class RestrictItem(typing.TypedDict, total=False):
     driveFollowUpRestrict: DriveFollowUpRestrict
     driveLocationRestrict: DriveLocationRestrict
     driveMimeTypeRestrict: DriveMimeTypeRestrict
@@ -1424,52 +1367,52 @@ class RestrictItem(typing_extensions.TypedDict, total=False):
     searchOperator: str
 
 @typing.type_check_only
-class ResultCounts(typing_extensions.TypedDict, total=False):
+class ResultCounts(typing.TypedDict, total=False):
     sourceResultCounts: _list[SourceResultCount]
 
 @typing.type_check_only
-class ResultDebugInfo(typing_extensions.TypedDict, total=False):
+class ResultDebugInfo(typing.TypedDict, total=False):
     formattedDebugInfo: str
 
 @typing.type_check_only
-class ResultDisplayField(typing_extensions.TypedDict, total=False):
+class ResultDisplayField(typing.TypedDict, total=False):
     label: str
     operatorName: str
     property: NamedProperty
 
 @typing.type_check_only
-class ResultDisplayLine(typing_extensions.TypedDict, total=False):
+class ResultDisplayLine(typing.TypedDict, total=False):
     fields: _list[ResultDisplayField]
 
 @typing.type_check_only
-class ResultDisplayMetadata(typing_extensions.TypedDict, total=False):
+class ResultDisplayMetadata(typing.TypedDict, total=False):
     metalines: _list[ResultDisplayLine]
     objectTypeLabel: str
 
 @typing.type_check_only
-class RetrievalImportance(typing_extensions.TypedDict, total=False):
-    importance: typing_extensions.Literal["DEFAULT", "HIGHEST", "HIGH", "LOW", "NONE"]
+class RetrievalImportance(typing.TypedDict, total=False):
+    importance: typing.Literal["DEFAULT", "HIGHEST", "HIGH", "LOW", "NONE"]
 
 @typing.type_check_only
-class SafeHtmlProto(typing_extensions.TypedDict, total=False):
+class SafeHtmlProto(typing.TypedDict, total=False):
     privateDoNotAccessOrElseSafeHtmlWrappedValue: str
 
 @typing.type_check_only
-class SafeUrlProto(typing_extensions.TypedDict, total=False):
+class SafeUrlProto(typing.TypedDict, total=False):
     privateDoNotAccessOrElseSafeUrlWrappedValue: str
 
 @typing.type_check_only
-class Schema(typing_extensions.TypedDict, total=False):
+class Schema(typing.TypedDict, total=False):
     objectDefinitions: _list[ObjectDefinition]
     operationIds: _list[str]
 
 @typing.type_check_only
-class ScoringConfig(typing_extensions.TypedDict, total=False):
+class ScoringConfig(typing.TypedDict, total=False):
     disableFreshness: bool
     disablePersonalization: bool
 
 @typing.type_check_only
-class SearchApplication(typing_extensions.TypedDict, total=False):
+class SearchApplication(typing.TypedDict, total=False):
     dataSourceRestrictions: _list[DataSourceRestriction]
     defaultFacetOptions: _list[FacetOptions]
     defaultSortOptions: SortOptions
@@ -1483,39 +1426,39 @@ class SearchApplication(typing_extensions.TypedDict, total=False):
     sourceConfig: _list[SourceConfig]
 
 @typing.type_check_only
-class SearchApplicationQueryStats(typing_extensions.TypedDict, total=False):
+class SearchApplicationQueryStats(typing.TypedDict, total=False):
     date: Date
     queryCountByStatus: _list[QueryCountByStatus]
 
 @typing.type_check_only
-class SearchApplicationSessionStats(typing_extensions.TypedDict, total=False):
+class SearchApplicationSessionStats(typing.TypedDict, total=False):
     date: Date
     searchSessionsCount: str
 
 @typing.type_check_only
-class SearchApplicationUserStats(typing_extensions.TypedDict, total=False):
+class SearchApplicationUserStats(typing.TypedDict, total=False):
     date: Date
     oneDayActiveUsersCount: str
     sevenDaysActiveUsersCount: str
     thirtyDaysActiveUsersCount: str
 
 @typing.type_check_only
-class SearchItemsByViewUrlRequest(typing_extensions.TypedDict, total=False):
+class SearchItemsByViewUrlRequest(typing.TypedDict, total=False):
     debugOptions: DebugOptions
     pageToken: str
     viewUrl: str
 
 @typing.type_check_only
-class SearchItemsByViewUrlResponse(typing_extensions.TypedDict, total=False):
+class SearchItemsByViewUrlResponse(typing.TypedDict, total=False):
     items: _list[Item]
     nextPageToken: str
 
 @typing.type_check_only
-class SearchQualityMetadata(typing_extensions.TypedDict, total=False):
+class SearchQualityMetadata(typing.TypedDict, total=False):
     quality: float
 
 @typing.type_check_only
-class SearchRequest(typing_extensions.TypedDict, total=False):
+class SearchRequest(typing.TypedDict, total=False):
     contextAttributes: _list[ContextAttribute]
     dataSourceRestrictions: _list[DataSourceRestriction]
     facetOptions: _list[FacetOptions]
@@ -1527,7 +1470,7 @@ class SearchRequest(typing_extensions.TypedDict, total=False):
     start: int
 
 @typing.type_check_only
-class SearchResponse(typing_extensions.TypedDict, total=False):
+class SearchResponse(typing.TypedDict, total=False):
     debugInfo: ResponseDebugInfo
     errorInfo: ErrorInfo
     facetResults: _list[FacetResult]
@@ -1541,7 +1484,7 @@ class SearchResponse(typing_extensions.TypedDict, total=False):
     structuredResults: _list[StructuredResult]
 
 @typing.type_check_only
-class SearchResult(typing_extensions.TypedDict, total=False):
+class SearchResult(typing.TypedDict, total=False):
     clusteredResults: _list[SearchResult]
     debugInfo: ResultDebugInfo
     metadata: Metadata
@@ -1550,19 +1493,19 @@ class SearchResult(typing_extensions.TypedDict, total=False):
     url: str
 
 @typing.type_check_only
-class Snippet(typing_extensions.TypedDict, total=False):
+class Snippet(typing.TypedDict, total=False):
     matchRanges: _list[MatchRange]
     snippet: str
 
 @typing.type_check_only
-class SortOptions(typing_extensions.TypedDict, total=False):
+class SortOptions(typing.TypedDict, total=False):
     operatorName: str
-    sortOrder: typing_extensions.Literal["ASCENDING", "DESCENDING"]
+    sortOrder: typing.Literal["ASCENDING", "DESCENDING"]
 
 @typing.type_check_only
-class Source(typing_extensions.TypedDict, total=False):
+class Source(typing.TypedDict, total=False):
     name: str
-    predefinedSource: typing_extensions.Literal[
+    predefinedSource: typing.Literal[
         "NONE",
         "QUERY_HISTORY",
         "PERSON",
@@ -1575,89 +1518,89 @@ class Source(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class SourceConfig(typing_extensions.TypedDict, total=False):
+class SourceConfig(typing.TypedDict, total=False):
     crowdingConfig: SourceCrowdingConfig
     scoringConfig: SourceScoringConfig
     source: Source
 
 @typing.type_check_only
-class SourceCrowdingConfig(typing_extensions.TypedDict, total=False):
+class SourceCrowdingConfig(typing.TypedDict, total=False):
     numResults: int
     numSuggestions: int
 
 @typing.type_check_only
-class SourceResultCount(typing_extensions.TypedDict, total=False):
+class SourceResultCount(typing.TypedDict, total=False):
     hasMoreResults: bool
     resultCountEstimate: str
     resultCountExact: str
     source: Source
 
 @typing.type_check_only
-class SourceScoringConfig(typing_extensions.TypedDict, total=False):
-    sourceImportance: typing_extensions.Literal["DEFAULT", "LOW", "HIGH"]
+class SourceScoringConfig(typing.TypedDict, total=False):
+    sourceImportance: typing.Literal["DEFAULT", "LOW", "HIGH"]
 
 @typing.type_check_only
-class SpellResult(typing_extensions.TypedDict, total=False):
+class SpellResult(typing.TypedDict, total=False):
     suggestedQuery: str
     suggestedQueryHtml: SafeHtmlProto
-    suggestionType: typing_extensions.Literal[
+    suggestionType: typing.Literal[
         "SUGGESTION_TYPE_UNSPECIFIED",
         "NON_EMPTY_RESULTS_SPELL_SUGGESTION",
         "ZERO_RESULTS_FULL_PAGE_REPLACEMENT",
     ]
 
 @typing.type_check_only
-class StartUploadItemRequest(typing_extensions.TypedDict, total=False):
+class StartUploadItemRequest(typing.TypedDict, total=False):
     connectorName: str
     debugOptions: DebugOptions
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class StructuredDataObject(typing_extensions.TypedDict, total=False):
+class StructuredDataObject(typing.TypedDict, total=False):
     properties: _list[NamedProperty]
 
 @typing.type_check_only
-class StructuredResult(typing_extensions.TypedDict, total=False):
+class StructuredResult(typing.TypedDict, total=False):
     person: Person
 
 @typing.type_check_only
-class SuggestRequest(typing_extensions.TypedDict, total=False):
+class SuggestRequest(typing.TypedDict, total=False):
     dataSourceRestrictions: _list[DataSourceRestriction]
     query: str
     requestOptions: RequestOptions
 
 @typing.type_check_only
-class SuggestResponse(typing_extensions.TypedDict, total=False):
+class SuggestResponse(typing.TypedDict, total=False):
     suggestResults: _list[SuggestResult]
 
 @typing.type_check_only
-class SuggestResult(typing_extensions.TypedDict, total=False):
+class SuggestResult(typing.TypedDict, total=False):
     peopleSuggestion: PeopleSuggestion
     querySuggestion: QuerySuggestion
     source: Source
     suggestedQuery: str
 
 @typing.type_check_only
-class TextOperatorOptions(typing_extensions.TypedDict, total=False):
+class TextOperatorOptions(typing.TypedDict, total=False):
     exactMatchWithOperator: bool
     operatorName: str
 
 @typing.type_check_only
-class TextPropertyOptions(typing_extensions.TypedDict, total=False):
+class TextPropertyOptions(typing.TypedDict, total=False):
     operatorOptions: TextOperatorOptions
     retrievalImportance: RetrievalImportance
 
 @typing.type_check_only
-class TextValues(typing_extensions.TypedDict, total=False):
+class TextValues(typing.TypedDict, total=False):
     values: _list[str]
 
 @typing.type_check_only
-class ThirdPartyGenericCard(typing_extensions.TypedDict, total=False):
+class ThirdPartyGenericCard(typing.TypedDict, total=False):
     cardId: str
     category: str
     content: Content
@@ -1666,23 +1609,23 @@ class ThirdPartyGenericCard(typing_extensions.TypedDict, total=False):
     priority: int
 
 @typing.type_check_only
-class TimestampOperatorOptions(typing_extensions.TypedDict, total=False):
+class TimestampOperatorOptions(typing.TypedDict, total=False):
     greaterThanOperatorName: str
     lessThanOperatorName: str
     operatorName: str
 
 @typing.type_check_only
-class TimestampPropertyOptions(typing_extensions.TypedDict, total=False):
+class TimestampPropertyOptions(typing.TypedDict, total=False):
     operatorOptions: TimestampOperatorOptions
 
 @typing.type_check_only
-class TimestampValues(typing_extensions.TypedDict, total=False):
+class TimestampValues(typing.TypedDict, total=False):
     values: _list[str]
 
 @typing.type_check_only
-class UnmappedIdentity(typing_extensions.TypedDict, total=False):
+class UnmappedIdentity(typing.TypedDict, total=False):
     externalIdentity: Principal
-    resolutionStatusCode: typing_extensions.Literal[
+    resolutionStatusCode: typing.Literal[
         "CODE_UNSPECIFIED",
         "NOT_FOUND",
         "IDENTITY_SOURCE_NOT_FOUND",
@@ -1692,37 +1635,37 @@ class UnmappedIdentity(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class UnreserveItemsRequest(typing_extensions.TypedDict, total=False):
+class UnreserveItemsRequest(typing.TypedDict, total=False):
     connectorName: str
     debugOptions: DebugOptions
     queue: str
 
 @typing.type_check_only
-class UpdateDataSourceRequest(typing_extensions.TypedDict, total=False):
+class UpdateDataSourceRequest(typing.TypedDict, total=False):
     debugOptions: DebugOptions
     source: DataSource
     updateMask: str
 
 @typing.type_check_only
-class UpdateSchemaRequest(typing_extensions.TypedDict, total=False):
+class UpdateSchemaRequest(typing.TypedDict, total=False):
     debugOptions: DebugOptions
     schema: Schema
     validateOnly: bool
 
 @typing.type_check_only
-class UploadItemRef(typing_extensions.TypedDict, total=False):
+class UploadItemRef(typing.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class UserActivity(typing_extensions.TypedDict, total=False):
+class UserActivity(typing.TypedDict, total=False):
     queryActivity: QueryActivity
 
 @typing.type_check_only
-class VPCSettings(typing_extensions.TypedDict, total=False):
+class VPCSettings(typing.TypedDict, total=False):
     project: str
 
 @typing.type_check_only
-class Value(typing_extensions.TypedDict, total=False):
+class Value(typing.TypedDict, total=False):
     booleanValue: bool
     dateValue: Date
     doubleValue: float
@@ -1731,6 +1674,6 @@ class Value(typing_extensions.TypedDict, total=False):
     timestampValue: str
 
 @typing.type_check_only
-class ValueFilter(typing_extensions.TypedDict, total=False):
+class ValueFilter(typing.TypedDict, total=False):
     operatorName: str
     value: Value

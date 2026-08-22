@@ -1,11 +1,9 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class AcceleratorConfig(typing_extensions.TypedDict, total=False):
+class AcceleratorConfig(typing.TypedDict, total=False):
     acceleratorCount: str
     acceleratorType: str
     gpuDriverInstallationConfig: GPUDriverInstallationConfig
@@ -14,34 +12,34 @@ class AcceleratorConfig(typing_extensions.TypedDict, total=False):
     maxTimeSharedClientsPerGpu: str
 
 @typing.type_check_only
-class AccurateTimeConfig(typing_extensions.TypedDict, total=False):
+class AccurateTimeConfig(typing.TypedDict, total=False):
     enablePtpKvmTimeSync: bool
 
 @typing.type_check_only
-class AdditionalIPRangesConfig(typing_extensions.TypedDict, total=False):
+class AdditionalIPRangesConfig(typing.TypedDict, total=False):
     podIpv4RangeNames: _list[str]
-    status: typing_extensions.Literal["STATUS_UNSPECIFIED", "ACTIVE", "DRAINING"]
+    status: typing.Literal["STATUS_UNSPECIFIED", "ACTIVE", "DRAINING"]
     subnetwork: str
 
 @typing.type_check_only
-class AdditionalNodeNetworkConfig(typing_extensions.TypedDict, total=False):
+class AdditionalNodeNetworkConfig(typing.TypedDict, total=False):
     network: str
     subnetwork: str
 
 @typing.type_check_only
-class AdditionalPodNetworkConfig(typing_extensions.TypedDict, total=False):
+class AdditionalPodNetworkConfig(typing.TypedDict, total=False):
     maxPodsPerNode: MaxPodsConstraint
     networkAttachment: str
     secondaryPodRange: str
     subnetwork: str
 
 @typing.type_check_only
-class AdditionalPodRangesConfig(typing_extensions.TypedDict, total=False):
+class AdditionalPodRangesConfig(typing.TypedDict, total=False):
     podRangeInfo: _list[RangeInfo]
     podRangeNames: _list[str]
 
 @typing.type_check_only
-class AddonsConfig(typing_extensions.TypedDict, total=False):
+class AddonsConfig(typing.TypedDict, total=False):
     agentSandboxConfig: AgentSandboxConfig
     cloudRunConfig: CloudRunConfig
     configConnectorConfig: ConfigConnectorConfig
@@ -67,17 +65,17 @@ class AddonsConfig(typing_extensions.TypedDict, total=False):
     statefulHaConfig: StatefulHAConfig
 
 @typing.type_check_only
-class AdvancedDatapathObservabilityConfig(typing_extensions.TypedDict, total=False):
+class AdvancedDatapathObservabilityConfig(typing.TypedDict, total=False):
     enableMetrics: bool
     enableRelay: bool
-    relayMode: typing_extensions.Literal[
+    relayMode: typing.Literal[
         "RELAY_MODE_UNSPECIFIED", "DISABLED", "INTERNAL_VPC_LB", "EXTERNAL_LB"
     ]
 
 @typing.type_check_only
-class AdvancedMachineFeatures(typing_extensions.TypedDict, total=False):
+class AdvancedMachineFeatures(typing.TypedDict, total=False):
     enableNestedVirtualization: bool
-    performanceMonitoringUnit: typing_extensions.Literal[
+    performanceMonitoringUnit: typing.Literal[
         "PERFORMANCE_MONITORING_UNIT_UNSPECIFIED",
         "ARCHITECTURAL",
         "STANDARD",
@@ -86,33 +84,33 @@ class AdvancedMachineFeatures(typing_extensions.TypedDict, total=False):
     threadsPerCore: str
 
 @typing.type_check_only
-class AgentSandboxConfig(typing_extensions.TypedDict, total=False):
+class AgentSandboxConfig(typing.TypedDict, total=False):
     enabled: bool
 
 @typing.type_check_only
-class AnonymousAuthenticationConfig(typing_extensions.TypedDict, total=False):
-    mode: typing_extensions.Literal["MODE_UNSPECIFIED", "ENABLED", "LIMITED"]
+class AnonymousAuthenticationConfig(typing.TypedDict, total=False):
+    mode: typing.Literal["MODE_UNSPECIFIED", "ENABLED", "LIMITED"]
 
 @typing.type_check_only
-class AuthenticatorGroupsConfig(typing_extensions.TypedDict, total=False):
+class AuthenticatorGroupsConfig(typing.TypedDict, total=False):
     enabled: bool
     securityGroup: str
 
 @typing.type_check_only
-class AutoIpamConfig(typing_extensions.TypedDict, total=False):
+class AutoIpamConfig(typing.TypedDict, total=False):
     enabled: bool
 
 @typing.type_check_only
-class AutoMonitoringConfig(typing_extensions.TypedDict, total=False):
-    scope: typing_extensions.Literal["SCOPE_UNSPECIFIED", "ALL", "NONE"]
+class AutoMonitoringConfig(typing.TypedDict, total=False):
+    scope: typing.Literal["SCOPE_UNSPECIFIED", "ALL", "NONE"]
 
 @typing.type_check_only
-class AutoUpgradeOptions(typing_extensions.TypedDict, total=False):
+class AutoUpgradeOptions(typing.TypedDict, total=False):
     autoUpgradeStartTime: str
     description: str
 
 @typing.type_check_only
-class Autopilot(typing_extensions.TypedDict, total=False):
+class Autopilot(typing.TypedDict, total=False):
     clusterPolicyConfig: ClusterPolicyConfig
     conversionStatus: AutopilotConversionStatus
     enabled: bool
@@ -120,11 +118,11 @@ class Autopilot(typing_extensions.TypedDict, total=False):
     workloadPolicyConfig: WorkloadPolicyConfig
 
 @typing.type_check_only
-class AutopilotCompatibilityIssue(typing_extensions.TypedDict, total=False):
+class AutopilotCompatibilityIssue(typing.TypedDict, total=False):
     constraintType: str
     description: str
     documentationUrl: str
-    incompatibilityType: typing_extensions.Literal[
+    incompatibilityType: typing.Literal[
         "UNSPECIFIED",
         "INCOMPATIBILITY",
         "ADDITIONAL_CONFIG_REQUIRED",
@@ -134,15 +132,15 @@ class AutopilotCompatibilityIssue(typing_extensions.TypedDict, total=False):
     subjects: _list[str]
 
 @typing.type_check_only
-class AutopilotConfig(typing_extensions.TypedDict, total=False):
+class AutopilotConfig(typing.TypedDict, total=False):
     enabled: bool
 
 @typing.type_check_only
-class AutopilotConversionStatus(typing_extensions.TypedDict, total=False):
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "DONE"]
+class AutopilotConversionStatus(typing.TypedDict, total=False):
+    state: typing.Literal["STATE_UNSPECIFIED", "DONE"]
 
 @typing.type_check_only
-class AutoprovisioningNodePoolDefaults(typing_extensions.TypedDict, total=False):
+class AutoprovisioningNodePoolDefaults(typing.TypedDict, total=False):
     bootDiskKmsKey: str
     diskSizeGb: int
     diskType: str
@@ -156,27 +154,27 @@ class AutoprovisioningNodePoolDefaults(typing_extensions.TypedDict, total=False)
     upgradeSettings: UpgradeSettings
 
 @typing.type_check_only
-class AutoscaledRolloutPolicy(typing_extensions.TypedDict, total=False):
+class AutoscaledRolloutPolicy(typing.TypedDict, total=False):
     waitForDrainDuration: str
 
 @typing.type_check_only
-class AvailableVersion(typing_extensions.TypedDict, total=False):
+class AvailableVersion(typing.TypedDict, total=False):
     reason: str
     version: str
 
 @typing.type_check_only
-class BestEffortProvisioning(typing_extensions.TypedDict, total=False):
+class BestEffortProvisioning(typing.TypedDict, total=False):
     enabled: bool
     minProvisionNodes: int
 
 @typing.type_check_only
-class BigQueryDestination(typing_extensions.TypedDict, total=False):
+class BigQueryDestination(typing.TypedDict, total=False):
     datasetId: str
 
 @typing.type_check_only
-class BinaryAuthorization(typing_extensions.TypedDict, total=False):
+class BinaryAuthorization(typing.TypedDict, total=False):
     enabled: bool
-    evaluationMode: typing_extensions.Literal[
+    evaluationMode: typing.Literal[
         "EVALUATION_MODE_UNSPECIFIED",
         "DISABLED",
         "PROJECT_SINGLETON_POLICY_ENFORCE",
@@ -186,12 +184,12 @@ class BinaryAuthorization(typing_extensions.TypedDict, total=False):
     policyBindings: _list[PolicyBinding]
 
 @typing.type_check_only
-class BlueGreenInfo(typing_extensions.TypedDict, total=False):
+class BlueGreenInfo(typing.TypedDict, total=False):
     blueInstanceGroupUrls: _list[str]
     bluePoolDeletionStartTime: str
     greenInstanceGroupUrls: _list[str]
     greenPoolVersion: str
-    phase: typing_extensions.Literal[
+    phase: typing.Literal[
         "PHASE_UNSPECIFIED",
         "UPDATE_STARTED",
         "CREATING_GREEN_POOL",
@@ -204,69 +202,69 @@ class BlueGreenInfo(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class BlueGreenSettings(typing_extensions.TypedDict, total=False):
+class BlueGreenSettings(typing.TypedDict, total=False):
     autoscaledRolloutPolicy: AutoscaledRolloutPolicy
     nodePoolSoakDuration: str
     standardRolloutPolicy: StandardRolloutPolicy
 
 @typing.type_check_only
-class BootDisk(typing_extensions.TypedDict, total=False):
+class BootDisk(typing.TypedDict, total=False):
     diskType: str
     provisionedIops: str
     provisionedThroughput: str
     sizeGb: str
 
 @typing.type_check_only
-class BootDiskProfile(typing_extensions.TypedDict, total=False):
+class BootDiskProfile(typing.TypedDict, total=False):
     swapSizeGib: str
     swapSizePercent: int
 
 @typing.type_check_only
-class CancelOperationRequest(typing_extensions.TypedDict, total=False):
+class CancelOperationRequest(typing.TypedDict, total=False):
     name: str
     operationId: str
     projectId: str
     zone: str
 
 @typing.type_check_only
-class CertificateAuthorityDomainConfig(typing_extensions.TypedDict, total=False):
+class CertificateAuthorityDomainConfig(typing.TypedDict, total=False):
     fqdns: _list[str]
     gcpSecretManagerCertificateConfig: GCPSecretManagerCertificateConfig
 
 @typing.type_check_only
-class CertificateConfig(typing_extensions.TypedDict, total=False):
+class CertificateConfig(typing.TypedDict, total=False):
     gcpSecretManagerSecretUri: str
 
 @typing.type_check_only
-class CertificateConfigPair(typing_extensions.TypedDict, total=False):
+class CertificateConfigPair(typing.TypedDict, total=False):
     cert: CertificateConfig
     key: CertificateConfig
 
 @typing.type_check_only
-class CheckAutopilotCompatibilityResponse(typing_extensions.TypedDict, total=False):
+class CheckAutopilotCompatibilityResponse(typing.TypedDict, total=False):
     issues: _list[AutopilotCompatibilityIssue]
     summary: str
 
 @typing.type_check_only
-class CidrBlock(typing_extensions.TypedDict, total=False):
+class CidrBlock(typing.TypedDict, total=False):
     cidrBlock: str
     displayName: str
 
 @typing.type_check_only
-class ClientCertificateConfig(typing_extensions.TypedDict, total=False):
+class ClientCertificateConfig(typing.TypedDict, total=False):
     issueClientCertificate: bool
 
 @typing.type_check_only
-class CloudRunConfig(typing_extensions.TypedDict, total=False):
+class CloudRunConfig(typing.TypedDict, total=False):
     disabled: bool
-    loadBalancerType: typing_extensions.Literal[
+    loadBalancerType: typing.Literal[
         "LOAD_BALANCER_TYPE_UNSPECIFIED",
         "LOAD_BALANCER_TYPE_EXTERNAL",
         "LOAD_BALANCER_TYPE_INTERNAL",
     ]
 
 @typing.type_check_only
-class Cluster(typing_extensions.TypedDict, total=False):
+class Cluster(typing.TypedDict, total=False):
     addonsConfig: AddonsConfig
     alphaClusterFeatureGates: _list[str]
     anonymousAuthenticationConfig: AnonymousAuthenticationConfig
@@ -353,7 +351,7 @@ class Cluster(typing_extensions.TypedDict, total=False):
     selfLink: str
     servicesIpv4Cidr: str
     shieldedNodes: ShieldedNodes
-    status: typing_extensions.Literal[
+    status: typing.Literal[
         "STATUS_UNSPECIFIED",
         "PROVISIONING",
         "RUNNING",
@@ -374,13 +372,13 @@ class Cluster(typing_extensions.TypedDict, total=False):
     zone: str
 
 @typing.type_check_only
-class ClusterAutoscaling(typing_extensions.TypedDict, total=False):
-    autopilotGeneralProfile: typing_extensions.Literal[
+class ClusterAutoscaling(typing.TypedDict, total=False):
+    autopilotGeneralProfile: typing.Literal[
         "AUTOPILOT_GENERAL_PROFILE_UNSPECIFIED", "NO_PERFORMANCE", "NONE"
     ]
     autoprovisioningLocations: _list[str]
     autoprovisioningNodePoolDefaults: AutoprovisioningNodePoolDefaults
-    autoscalingProfile: typing_extensions.Literal[
+    autoscalingProfile: typing.Literal[
         "PROFILE_UNSPECIFIED", "OPTIMIZE_UTILIZATION", "BALANCED"
     ]
     defaultComputeClassConfig: DefaultComputeClassConfig
@@ -388,22 +386,22 @@ class ClusterAutoscaling(typing_extensions.TypedDict, total=False):
     resourceLimits: _list[ResourceLimit]
 
 @typing.type_check_only
-class ClusterNetworkPerformanceConfig(typing_extensions.TypedDict, total=False):
-    totalEgressBandwidthTier: typing_extensions.Literal["TIER_UNSPECIFIED", "TIER_1"]
+class ClusterNetworkPerformanceConfig(typing.TypedDict, total=False):
+    totalEgressBandwidthTier: typing.Literal["TIER_UNSPECIFIED", "TIER_1"]
 
 @typing.type_check_only
-class ClusterPolicyConfig(typing_extensions.TypedDict, total=False):
+class ClusterPolicyConfig(typing.TypedDict, total=False):
     noStandardNodePools: bool
     noSystemImpersonation: bool
     noSystemMutation: bool
     noUnsafeWebhooks: bool
 
 @typing.type_check_only
-class ClusterTelemetry(typing_extensions.TypedDict, total=False):
-    type: typing_extensions.Literal["UNSPECIFIED", "DISABLED", "ENABLED", "SYSTEM_ONLY"]
+class ClusterTelemetry(typing.TypedDict, total=False):
+    type: typing.Literal["UNSPECIFIED", "DISABLED", "ENABLED", "SYSTEM_ONLY"]
 
 @typing.type_check_only
-class ClusterUpdate(typing_extensions.TypedDict, total=False):
+class ClusterUpdate(typing.TypedDict, total=False):
     additionalPodRangesConfig: AdditionalPodRangesConfig
     desiredAdditionalIpRangesConfig: DesiredAdditionalIPRangesConfig
     desiredAddonsConfig: AddonsConfig
@@ -421,13 +419,14 @@ class ClusterUpdate(typing_extensions.TypedDict, total=False):
     desiredControlPlaneEndpointsConfig: ControlPlaneEndpointsConfig
     desiredCostManagementConfig: CostManagementConfig
     desiredDatabaseEncryption: DatabaseEncryption
-    desiredDatapathProvider: typing_extensions.Literal[
+    desiredDatapathProvider: typing.Literal[
         "DATAPATH_PROVIDER_UNSPECIFIED", "LEGACY_DATAPATH", "ADVANCED_DATAPATH"
     ]
     desiredDefaultEnablePrivateNodes: bool
     desiredDefaultSnatStatus: DefaultSnatStatus
     desiredDisableL4LbFirewallReconciliation: bool
     desiredDnsConfig: DNSConfig
+    desiredEmulatedVersion: str
     desiredEnableCiliumClusterwideNetworkPolicy: bool
     desiredEnableFqdnNetworkPolicy: bool
     desiredEnableMultiNetworking: bool
@@ -441,7 +440,7 @@ class ClusterUpdate(typing_extensions.TypedDict, total=False):
     desiredImage: str
     desiredImageProject: str
     desiredImageType: str
-    desiredInTransitEncryptionConfig: typing_extensions.Literal[
+    desiredInTransitEncryptionConfig: typing.Literal[
         "IN_TRANSIT_ENCRYPTION_CONFIG_UNSPECIFIED",
         "IN_TRANSIT_ENCRYPTION_DISABLED",
         "IN_TRANSIT_ENCRYPTION_INTER_NODE_TRANSPARENT",
@@ -480,7 +479,7 @@ class ClusterUpdate(typing_extensions.TypedDict, total=False):
     desiredPodAutoscaling: PodAutoscaling
     desiredPodSecurityPolicyConfig: PodSecurityPolicyConfig
     desiredPrivateClusterConfig: PrivateClusterConfig
-    desiredPrivateIpv6GoogleAccess: typing_extensions.Literal[
+    desiredPrivateIpv6GoogleAccess: typing.Literal[
         "PRIVATE_IPV6_GOOGLE_ACCESS_UNSPECIFIED",
         "PRIVATE_IPV6_GOOGLE_ACCESS_DISABLED",
         "PRIVATE_IPV6_GOOGLE_ACCESS_TO_GOOGLE",
@@ -498,9 +497,7 @@ class ClusterUpdate(typing_extensions.TypedDict, total=False):
     desiredSecurityPostureConfig: SecurityPostureConfig
     desiredServiceExternalIpsConfig: ServiceExternalIPsConfig
     desiredShieldedNodes: ShieldedNodes
-    desiredStackType: typing_extensions.Literal[
-        "STACK_TYPE_UNSPECIFIED", "IPV4", "IPV4_IPV6"
-    ]
+    desiredStackType: typing.Literal["STACK_TYPE_UNSPECIFIED", "IPV4", "IPV4_IPV6"]
     desiredTpuConfig: TpuConfig
     desiredUserManagedKeysConfig: UserManagedKeysConfig
     desiredVerticalPodAutoscaling: VerticalPodAutoscaling
@@ -515,18 +512,16 @@ class ClusterUpdate(typing_extensions.TypedDict, total=False):
     userManagedKeysConfig: UserManagedKeysConfig
 
 @typing.type_check_only
-class ClusterUpgradeInfo(typing_extensions.TypedDict, total=False):
+class ClusterUpgradeInfo(typing.TypedDict, total=False):
     autoUpgradeStatus: _list[
-        typing_extensions.Literal[
-            "UNKNOWN", "ACTIVE", "MINOR_UPGRADE_PAUSED", "UPGRADE_PAUSED"
-        ]
+        typing.Literal["UNKNOWN", "ACTIVE", "MINOR_UPGRADE_PAUSED", "UPGRADE_PAUSED"]
     ]
     endOfExtendedSupportTimestamp: str
     endOfStandardSupportTimestamp: str
     minorTargetVersion: str
     patchTargetVersion: str
     pausedReason: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "AUTO_UPGRADE_PAUSED_REASON_UNSPECIFIED",
             "MAINTENANCE_WINDOW",
             "MAINTENANCE_EXCLUSION_NO_UPGRADES",
@@ -540,80 +535,80 @@ class ClusterUpgradeInfo(typing_extensions.TypedDict, total=False):
     upgradeDetails: _list[UpgradeDetails]
 
 @typing.type_check_only
-class CompatibilityStatus(typing_extensions.TypedDict, total=False):
+class CompatibilityStatus(typing.TypedDict, total=False):
     downgradableVersion: str
     emulatedVersionTime: str
 
 @typing.type_check_only
-class CompleteControlPlaneUpgradeRequest(typing_extensions.TypedDict, total=False):
+class CompleteControlPlaneUpgradeRequest(typing.TypedDict, total=False):
     version: str
 
 @typing.type_check_only
-class CompleteIPRotationRequest(typing_extensions.TypedDict, total=False):
+class CompleteIPRotationRequest(typing.TypedDict, total=False):
     clusterId: str
     name: str
     projectId: str
     zone: str
 
 @typing.type_check_only
-class CompleteNodePoolUpgradeRequest(typing_extensions.TypedDict, total=False): ...
+class CompleteNodePoolUpgradeRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class CompliancePostureConfig(typing_extensions.TypedDict, total=False):
+class CompliancePostureConfig(typing.TypedDict, total=False):
     complianceStandards: _list[ComplianceStandard]
-    mode: typing_extensions.Literal["MODE_UNSPECIFIED", "DISABLED", "ENABLED"]
+    mode: typing.Literal["MODE_UNSPECIFIED", "DISABLED", "ENABLED"]
 
 @typing.type_check_only
-class ComplianceStandard(typing_extensions.TypedDict, total=False):
+class ComplianceStandard(typing.TypedDict, total=False):
     standard: str
 
 @typing.type_check_only
-class ConfidentialNodes(typing_extensions.TypedDict, total=False):
-    confidentialInstanceType: typing_extensions.Literal[
+class ConfidentialNodes(typing.TypedDict, total=False):
+    confidentialInstanceType: typing.Literal[
         "CONFIDENTIAL_INSTANCE_TYPE_UNSPECIFIED", "SEV", "SEV_SNP", "TDX"
     ]
     enabled: bool
 
 @typing.type_check_only
-class ConfigConnectorConfig(typing_extensions.TypedDict, total=False):
+class ConfigConnectorConfig(typing.TypedDict, total=False):
     enabled: bool
 
 @typing.type_check_only
-class ConsumptionMeteringConfig(typing_extensions.TypedDict, total=False):
+class ConsumptionMeteringConfig(typing.TypedDict, total=False):
     enabled: bool
 
 @typing.type_check_only
-class ContainerdConfig(typing_extensions.TypedDict, total=False):
+class ContainerdConfig(typing.TypedDict, total=False):
     privateRegistryAccessConfig: PrivateRegistryAccessConfig
     registryHosts: _list[RegistryHostConfig]
     writableCgroups: WritableCgroups
 
 @typing.type_check_only
-class ControlPlaneEgress(typing_extensions.TypedDict, total=False):
-    mode: typing_extensions.Literal["MODE_UNSPECIFIED", "VIA_CONTROL_PLANE", "NONE"]
+class ControlPlaneEgress(typing.TypedDict, total=False):
+    mode: typing.Literal["MODE_UNSPECIFIED", "VIA_CONTROL_PLANE", "NONE"]
 
 @typing.type_check_only
-class ControlPlaneEndpointsConfig(typing_extensions.TypedDict, total=False):
+class ControlPlaneEndpointsConfig(typing.TypedDict, total=False):
     dnsEndpointConfig: DNSEndpointConfig
     ipEndpointsConfig: IPEndpointsConfig
 
 @typing.type_check_only
-class CostManagementConfig(typing_extensions.TypedDict, total=False):
+class CostManagementConfig(typing.TypedDict, total=False):
     enabled: bool
 
 @typing.type_check_only
-class CrashLoopBackOffConfig(typing_extensions.TypedDict, total=False):
+class CrashLoopBackOffConfig(typing.TypedDict, total=False):
     maxContainerRestartPeriod: str
 
 @typing.type_check_only
-class CreateClusterRequest(typing_extensions.TypedDict, total=False):
+class CreateClusterRequest(typing.TypedDict, total=False):
     cluster: Cluster
     parent: str
     projectId: str
     zone: str
 
 @typing.type_check_only
-class CreateNodePoolRequest(typing_extensions.TypedDict, total=False):
+class CreateNodePoolRequest(typing.TypedDict, total=False):
     clusterId: str
     nodePool: NodePool
     parent: str
@@ -621,44 +616,44 @@ class CreateNodePoolRequest(typing_extensions.TypedDict, total=False):
     zone: str
 
 @typing.type_check_only
-class CustomImageConfig(typing_extensions.TypedDict, total=False):
+class CustomImageConfig(typing.TypedDict, total=False):
     image: str
     imageProject: str
 
 @typing.type_check_only
-class CustomImageInfo(typing_extensions.TypedDict, total=False):
+class CustomImageInfo(typing.TypedDict, total=False):
     upgradeMessage: str
 
 @typing.type_check_only
-class CustomNodeInit(typing_extensions.TypedDict, total=False):
+class CustomNodeInit(typing.TypedDict, total=False):
     initScript: InitScript
 
 @typing.type_check_only
-class DNSConfig(typing_extensions.TypedDict, total=False):
+class DNSConfig(typing.TypedDict, total=False):
     additiveVpcScopeDnsDomain: str
-    clusterDns: typing_extensions.Literal[
+    clusterDns: typing.Literal[
         "PROVIDER_UNSPECIFIED", "PLATFORM_DEFAULT", "CLOUD_DNS", "KUBE_DNS"
     ]
     clusterDnsDomain: str
-    clusterDnsScope: typing_extensions.Literal[
+    clusterDnsScope: typing.Literal[
         "DNS_SCOPE_UNSPECIFIED", "CLUSTER_SCOPE", "VPC_SCOPE"
     ]
 
 @typing.type_check_only
-class DNSEndpointConfig(typing_extensions.TypedDict, total=False):
+class DNSEndpointConfig(typing.TypedDict, total=False):
     allowExternalTraffic: bool
     enableK8sCertsViaDns: bool
     enableK8sTokensViaDns: bool
     endpoint: str
 
 @typing.type_check_only
-class DailyMaintenanceWindow(typing_extensions.TypedDict, total=False):
+class DailyMaintenanceWindow(typing.TypedDict, total=False):
     duration: str
     startTime: str
 
 @typing.type_check_only
-class DatabaseEncryption(typing_extensions.TypedDict, total=False):
-    currentState: typing_extensions.Literal[
+class DatabaseEncryption(typing.TypedDict, total=False):
+    currentState: typing.Literal[
         "CURRENT_STATE_UNSPECIFIED",
         "CURRENT_STATE_ENCRYPTED",
         "CURRENT_STATE_DECRYPTED",
@@ -673,54 +668,57 @@ class DatabaseEncryption(typing_extensions.TypedDict, total=False):
     decryptionKeys: _list[str]
     keyName: str
     lastOperationErrors: _list[OperationError]
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "UNKNOWN", "ENCRYPTED", "DECRYPTED", "ALL_OBJECTS_ENCRYPTION_ENABLED"
     ]
 
 @typing.type_check_only
-class DataplaneV2Config(typing_extensions.TypedDict, total=False):
-    scalabilityMode: typing_extensions.Literal[
+class DataplaneV2Config(typing.TypedDict, total=False):
+    scalabilityMode: typing.Literal[
         "SCALABILITY_MODE_UNSPECIFIED", "DISABLED", "SCALE_OPTIMIZED"
     ]
 
 @typing.type_check_only
-class Date(typing_extensions.TypedDict, total=False):
+class Date(typing.TypedDict, total=False):
     day: int
     month: int
     year: int
 
 @typing.type_check_only
-class DedicatedLocalSsdProfile(typing_extensions.TypedDict, total=False):
+class DedicatedLocalSsdProfile(typing.TypedDict, total=False):
     diskCount: str
 
 @typing.type_check_only
-class DefaultComputeClassConfig(typing_extensions.TypedDict, total=False):
+class DefaultComputeClassConfig(typing.TypedDict, total=False):
     enabled: bool
 
 @typing.type_check_only
-class DefaultSnatStatus(typing_extensions.TypedDict, total=False):
+class DefaultSnatStatus(typing.TypedDict, total=False):
     disabled: bool
 
 @typing.type_check_only
-class DesiredAdditionalIPRangesConfig(typing_extensions.TypedDict, total=False):
+class DesiredAdditionalIPRangesConfig(typing.TypedDict, total=False):
     additionalIpRangesConfigs: _list[AdditionalIPRangesConfig]
 
 @typing.type_check_only
-class DesiredEnterpriseConfig(typing_extensions.TypedDict, total=False):
-    desiredTier: typing_extensions.Literal[
-        "CLUSTER_TIER_UNSPECIFIED", "STANDARD", "ENTERPRISE"
-    ]
+class DesiredEnterpriseConfig(typing.TypedDict, total=False):
+    desiredTier: typing.Literal["CLUSTER_TIER_UNSPECIFIED", "STANDARD", "ENTERPRISE"]
 
 @typing.type_check_only
-class DisruptionBudget(typing_extensions.TypedDict, total=False):
+class DiskIoScheduler(typing.TypedDict, total=False):
+    nodeAttachedDiskIoScheduler: str
+    nodeSystemIoScheduler: str
+
+@typing.type_check_only
+class DisruptionBudget(typing.TypedDict, total=False):
     lastDisruptionTime: str
     lastMinorVersionDisruptionTime: str
     minorVersionDisruptionInterval: str
     patchVersionDisruptionInterval: str
 
 @typing.type_check_only
-class DisruptionEvent(typing_extensions.TypedDict, total=False):
-    disruptionType: typing_extensions.Literal[
+class DisruptionEvent(typing.TypedDict, total=False):
+    disruptionType: typing.Literal[
         "DISRUPTION_TYPE_UNSPECIFIED", "POD_NOT_ENOUGH_PDB", "POD_PDB_VIOLATION"
     ]
     pdbBlockedNode: str
@@ -728,41 +726,37 @@ class DisruptionEvent(typing_extensions.TypedDict, total=False):
     pdbViolationTimeout: str
 
 @typing.type_check_only
-class DnsCacheConfig(typing_extensions.TypedDict, total=False):
+class DnsCacheConfig(typing.TypedDict, total=False):
     enabled: bool
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class EncryptionConfig(typing_extensions.TypedDict, total=False):
+class EncryptionConfig(typing.TypedDict, total=False):
     disabled: bool
 
 @typing.type_check_only
-class EnterpriseConfig(typing_extensions.TypedDict, total=False):
-    clusterTier: typing_extensions.Literal[
-        "CLUSTER_TIER_UNSPECIFIED", "STANDARD", "ENTERPRISE"
-    ]
-    desiredTier: typing_extensions.Literal[
-        "CLUSTER_TIER_UNSPECIFIED", "STANDARD", "ENTERPRISE"
-    ]
+class EnterpriseConfig(typing.TypedDict, total=False):
+    clusterTier: typing.Literal["CLUSTER_TIER_UNSPECIFIED", "STANDARD", "ENTERPRISE"]
+    desiredTier: typing.Literal["CLUSTER_TIER_UNSPECIFIED", "STANDARD", "ENTERPRISE"]
 
 @typing.type_check_only
-class EphemeralLocalSsdProfile(typing_extensions.TypedDict, total=False):
+class EphemeralLocalSsdProfile(typing.TypedDict, total=False):
     swapSizeGib: str
     swapSizePercent: int
 
 @typing.type_check_only
-class EphemeralStorageConfig(typing_extensions.TypedDict, total=False):
+class EphemeralStorageConfig(typing.TypedDict, total=False):
     localSsdCount: int
 
 @typing.type_check_only
-class EphemeralStorageLocalSsdConfig(typing_extensions.TypedDict, total=False):
+class EphemeralStorageLocalSsdConfig(typing.TypedDict, total=False):
     dataCacheCount: int
     localSsdCount: int
 
 @typing.type_check_only
-class EvictionGracePeriod(typing_extensions.TypedDict, total=False):
+class EvictionGracePeriod(typing.TypedDict, total=False):
     imagefsAvailable: str
     imagefsInodesFree: str
     memoryAvailable: str
@@ -771,7 +765,7 @@ class EvictionGracePeriod(typing_extensions.TypedDict, total=False):
     pidAvailable: str
 
 @typing.type_check_only
-class EvictionMinimumReclaim(typing_extensions.TypedDict, total=False):
+class EvictionMinimumReclaim(typing.TypedDict, total=False):
     imagefsAvailable: str
     imagefsInodesFree: str
     memoryAvailable: str
@@ -780,7 +774,7 @@ class EvictionMinimumReclaim(typing_extensions.TypedDict, total=False):
     pidAvailable: str
 
 @typing.type_check_only
-class EvictionSignals(typing_extensions.TypedDict, total=False):
+class EvictionSignals(typing.TypedDict, total=False):
     imagefsAvailable: str
     imagefsInodesFree: str
     memoryAvailable: str
@@ -789,19 +783,19 @@ class EvictionSignals(typing_extensions.TypedDict, total=False):
     pidAvailable: str
 
 @typing.type_check_only
-class ExclusionUntilEndOfSupport(typing_extensions.TypedDict, total=False):
+class ExclusionUntilEndOfSupport(typing.TypedDict, total=False):
     enabled: bool
     endTime: str
     startTime: str
 
 @typing.type_check_only
-class FastSocket(typing_extensions.TypedDict, total=False):
+class FastSocket(typing.TypedDict, total=False):
     enabled: bool
 
 @typing.type_check_only
-class Filter(typing_extensions.TypedDict, total=False):
+class Filter(typing.TypedDict, total=False):
     eventType: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "EVENT_TYPE_UNSPECIFIED",
             "UPGRADE_AVAILABLE_EVENT",
             "UPGRADE_EVENT",
@@ -811,40 +805,36 @@ class Filter(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class Fleet(typing_extensions.TypedDict, total=False):
+class Fleet(typing.TypedDict, total=False):
     membership: str
-    membershipType: typing_extensions.Literal[
-        "MEMBERSHIP_TYPE_UNSPECIFIED", "LIGHTWEIGHT"
-    ]
+    membershipType: typing.Literal["MEMBERSHIP_TYPE_UNSPECIFIED", "LIGHTWEIGHT"]
     preRegistered: bool
     project: str
 
 @typing.type_check_only
-class GCPSecretManagerCertificateConfig(typing_extensions.TypedDict, total=False):
+class GCPSecretManagerCertificateConfig(typing.TypedDict, total=False):
     secretUri: str
 
 @typing.type_check_only
-class GPUDirectConfig(typing_extensions.TypedDict, total=False):
-    gpuDirectStrategy: typing_extensions.Literal[
-        "GPU_DIRECT_STRATEGY_UNSPECIFIED", "RDMA"
-    ]
+class GPUDirectConfig(typing.TypedDict, total=False):
+    gpuDirectStrategy: typing.Literal["GPU_DIRECT_STRATEGY_UNSPECIFIED", "RDMA"]
 
 @typing.type_check_only
-class GPUDriverInstallationConfig(typing_extensions.TypedDict, total=False):
-    gpuDriverVersion: typing_extensions.Literal[
+class GPUDriverInstallationConfig(typing.TypedDict, total=False):
+    gpuDriverVersion: typing.Literal[
         "GPU_DRIVER_VERSION_UNSPECIFIED", "INSTALLATION_DISABLED", "DEFAULT", "LATEST"
     ]
 
 @typing.type_check_only
-class GPUSharingConfig(typing_extensions.TypedDict, total=False):
-    gpuSharingStrategy: typing_extensions.Literal[
+class GPUSharingConfig(typing.TypedDict, total=False):
+    gpuSharingStrategy: typing.Literal[
         "GPU_SHARING_STRATEGY_UNSPECIFIED", "TIME_SHARING", "MPS"
     ]
     maxSharedClientsPerGpu: str
 
 @typing.type_check_only
-class GatewayAPIConfig(typing_extensions.TypedDict, total=False):
-    channel: typing_extensions.Literal[
+class GatewayAPIConfig(typing.TypedDict, total=False):
+    channel: typing.Literal[
         "CHANNEL_UNSPECIFIED",
         "CHANNEL_DISABLED",
         "CHANNEL_EXPERIMENTAL",
@@ -852,28 +842,28 @@ class GatewayAPIConfig(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class GcePersistentDiskCsiDriverConfig(typing_extensions.TypedDict, total=False):
+class GcePersistentDiskCsiDriverConfig(typing.TypedDict, total=False):
     enabled: bool
 
 @typing.type_check_only
-class GcfsConfig(typing_extensions.TypedDict, total=False):
+class GcfsConfig(typing.TypedDict, total=False):
     enabled: bool
 
 @typing.type_check_only
-class GcpFilestoreCsiDriverConfig(typing_extensions.TypedDict, total=False):
+class GcpFilestoreCsiDriverConfig(typing.TypedDict, total=False):
     enabled: bool
 
 @typing.type_check_only
-class GcsFuseCsiDriverConfig(typing_extensions.TypedDict, total=False):
+class GcsFuseCsiDriverConfig(typing.TypedDict, total=False):
     enabled: bool
 
 @typing.type_check_only
-class GetJSONWebKeysResponse(typing_extensions.TypedDict, total=False):
+class GetJSONWebKeysResponse(typing.TypedDict, total=False):
     cacheHeader: HttpCacheControlResponseHeader
     keys: _list[Jwk]
 
 @typing.type_check_only
-class GetOpenIDConfigResponse(typing_extensions.TypedDict, total=False):
+class GetOpenIDConfigResponse(typing.TypedDict, total=False):
     cacheHeader: HttpCacheControlResponseHeader
     claims_supported: _list[str]
     grant_types: _list[str]
@@ -884,26 +874,26 @@ class GetOpenIDConfigResponse(typing_extensions.TypedDict, total=False):
     subject_types_supported: _list[str]
 
 @typing.type_check_only
-class GkeAutoUpgradeConfig(typing_extensions.TypedDict, total=False):
-    patchMode: typing_extensions.Literal["PATCH_MODE_UNSPECIFIED", "ACCELERATED"]
+class GkeAutoUpgradeConfig(typing.TypedDict, total=False):
+    patchMode: typing.Literal["PATCH_MODE_UNSPECIFIED", "ACCELERATED"]
 
 @typing.type_check_only
-class GkeBackupAgentConfig(typing_extensions.TypedDict, total=False):
+class GkeBackupAgentConfig(typing.TypedDict, total=False):
     enabled: bool
 
 @typing.type_check_only
-class HighScaleCheckpointingConfig(typing_extensions.TypedDict, total=False):
+class HighScaleCheckpointingConfig(typing.TypedDict, total=False):
     enabled: bool
 
 @typing.type_check_only
-class HorizontalPodAutoscaling(typing_extensions.TypedDict, total=False):
+class HorizontalPodAutoscaling(typing.TypedDict, total=False):
     disabled: bool
 
 @typing.type_check_only
-class HostConfig(typing_extensions.TypedDict, total=False):
+class HostConfig(typing.TypedDict, total=False):
     ca: _list[CertificateConfig]
     capabilities: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "HOST_CAPABILITY_UNSPECIFIED",
             "HOST_CAPABILITY_PULL",
             "HOST_CAPABILITY_RESOLVE",
@@ -917,33 +907,33 @@ class HostConfig(typing_extensions.TypedDict, total=False):
     overridePath: bool
 
 @typing.type_check_only
-class HostMaintenancePolicy(typing_extensions.TypedDict, total=False):
-    maintenanceInterval: typing_extensions.Literal[
+class HostMaintenancePolicy(typing.TypedDict, total=False):
+    maintenanceInterval: typing.Literal[
         "MAINTENANCE_INTERVAL_UNSPECIFIED", "AS_NEEDED", "PERIODIC"
     ]
     opportunisticMaintenanceStrategy: OpportunisticMaintenanceStrategy
 
 @typing.type_check_only
-class HttpCacheControlResponseHeader(typing_extensions.TypedDict, total=False):
+class HttpCacheControlResponseHeader(typing.TypedDict, total=False):
     age: str
     directive: str
     expires: str
 
 @typing.type_check_only
-class HttpLoadBalancing(typing_extensions.TypedDict, total=False):
+class HttpLoadBalancing(typing.TypedDict, total=False):
     disabled: bool
 
 @typing.type_check_only
-class HugepagesConfig(typing_extensions.TypedDict, total=False):
+class HugepagesConfig(typing.TypedDict, total=False):
     hugepageSize1g: int
     hugepageSize2m: int
 
 @typing.type_check_only
-class ILBSubsettingConfig(typing_extensions.TypedDict, total=False):
+class ILBSubsettingConfig(typing.TypedDict, total=False):
     enabled: bool
 
 @typing.type_check_only
-class IPAllocationPolicy(typing_extensions.TypedDict, total=False):
+class IPAllocationPolicy(typing.TypedDict, total=False):
     additionalIpRangesConfigs: _list[AdditionalIPRangesConfig]
     additionalPodRangesConfig: AdditionalPodRangesConfig
     allowRouteOverlap: bool
@@ -953,7 +943,7 @@ class IPAllocationPolicy(typing_extensions.TypedDict, total=False):
     clusterSecondaryRangeName: str
     createSubnetwork: bool
     defaultPodIpv4RangeUtilization: float
-    ipv6AccessType: typing_extensions.Literal[
+    ipv6AccessType: typing.Literal[
         "IPV6_ACCESS_TYPE_UNSPECIFIED", "INTERNAL", "EXTERNAL"
     ]
     networkTierConfig: NetworkTierConfig
@@ -964,7 +954,7 @@ class IPAllocationPolicy(typing_extensions.TypedDict, total=False):
     servicesIpv4CidrBlock: str
     servicesIpv6CidrBlock: str
     servicesSecondaryRangeName: str
-    stackType: typing_extensions.Literal["STACK_TYPE_UNSPECIFIED", "IPV4", "IPV4_IPV6"]
+    stackType: typing.Literal["STACK_TYPE_UNSPECIFIED", "IPV4", "IPV4_IPV6"]
     subnetIpv6CidrBlock: str
     subnetworkName: str
     tpuIpv4CidrBlock: str
@@ -972,7 +962,7 @@ class IPAllocationPolicy(typing_extensions.TypedDict, total=False):
     useRoutes: bool
 
 @typing.type_check_only
-class IPEndpointsConfig(typing_extensions.TypedDict, total=False):
+class IPEndpointsConfig(typing.TypedDict, total=False):
     authorizedNetworksConfig: MasterAuthorizedNetworksConfig
     enablePublicEndpoint: bool
     enabled: bool
@@ -982,27 +972,27 @@ class IPEndpointsConfig(typing_extensions.TypedDict, total=False):
     publicEndpoint: str
 
 @typing.type_check_only
-class IdentityServiceConfig(typing_extensions.TypedDict, total=False):
+class IdentityServiceConfig(typing.TypedDict, total=False):
     enabled: bool
 
 @typing.type_check_only
-class InitScript(typing_extensions.TypedDict, total=False):
+class InitScript(typing.TypedDict, total=False):
     args: _list[str]
     gcpSecretManagerSecretUri: str
     gcsGeneration: str
     gcsUri: str
 
 @typing.type_check_only
-class IntraNodeVisibilityConfig(typing_extensions.TypedDict, total=False):
+class IntraNodeVisibilityConfig(typing.TypedDict, total=False):
     enabled: bool
 
 @typing.type_check_only
-class IstioConfig(typing_extensions.TypedDict, total=False):
-    auth: typing_extensions.Literal["AUTH_NONE", "AUTH_MUTUAL_TLS"]
+class IstioConfig(typing.TypedDict, total=False):
+    auth: typing.Literal["AUTH_NONE", "AUTH_MUTUAL_TLS"]
     disabled: bool
 
 @typing.type_check_only
-class Jwk(typing_extensions.TypedDict, total=False):
+class Jwk(typing.TypedDict, total=False):
     alg: str
     crv: str
     e: str
@@ -1014,33 +1004,40 @@ class Jwk(typing_extensions.TypedDict, total=False):
     y: str
 
 @typing.type_check_only
-class K8sBetaAPIConfig(typing_extensions.TypedDict, total=False):
+class K8sBetaAPIConfig(typing.TypedDict, total=False):
     enabledApis: _list[str]
 
 @typing.type_check_only
-class KalmConfig(typing_extensions.TypedDict, total=False):
+class KalmConfig(typing.TypedDict, total=False):
     enabled: bool
 
 @typing.type_check_only
-class KubernetesDashboard(typing_extensions.TypedDict, total=False):
+class KubeletCertInfo(typing.TypedDict, total=False):
+    nonTpmBootstrapCertExpireTime: str
+    tpmBootstrapCertExpireTime: str
+
+@typing.type_check_only
+class KubernetesDashboard(typing.TypedDict, total=False):
     disabled: bool
 
 @typing.type_check_only
-class LegacyAbac(typing_extensions.TypedDict, total=False):
+class LegacyAbac(typing.TypedDict, total=False):
     enabled: bool
 
 @typing.type_check_only
-class LinuxNodeConfig(typing_extensions.TypedDict, total=False):
+class LinuxNodeConfig(typing.TypedDict, total=False):
     accurateTimeConfig: AccurateTimeConfig
-    cgroupMode: typing_extensions.Literal[
+    cgroupMode: typing.Literal[
         "CGROUP_MODE_UNSPECIFIED", "CGROUP_MODE_V1", "CGROUP_MODE_V2"
     ]
     customNodeInit: CustomNodeInit
+    diskIoScheduler: DiskIoScheduler
     hugepages: HugepagesConfig
     nodeKernelModuleLoading: NodeKernelModuleLoading
+    nodeVfioConfig: NodeVfioConfig
     swapConfig: SwapConfig
     sysctls: dict[str, typing.Any]
-    transparentHugepageDefrag: typing_extensions.Literal[
+    transparentHugepageDefrag: typing.Literal[
         "TRANSPARENT_HUGEPAGE_DEFRAG_UNSPECIFIED",
         "TRANSPARENT_HUGEPAGE_DEFRAG_ALWAYS",
         "TRANSPARENT_HUGEPAGE_DEFRAG_DEFER",
@@ -1048,7 +1045,7 @@ class LinuxNodeConfig(typing_extensions.TypedDict, total=False):
         "TRANSPARENT_HUGEPAGE_DEFRAG_MADVISE",
         "TRANSPARENT_HUGEPAGE_DEFRAG_NEVER",
     ]
-    transparentHugepageEnabled: typing_extensions.Literal[
+    transparentHugepageEnabled: typing.Literal[
         "TRANSPARENT_HUGEPAGE_ENABLED_UNSPECIFIED",
         "TRANSPARENT_HUGEPAGE_ENABLED_ALWAYS",
         "TRANSPARENT_HUGEPAGE_ENABLED_MADVISE",
@@ -1056,43 +1053,43 @@ class LinuxNodeConfig(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class ListClustersResponse(typing_extensions.TypedDict, total=False):
+class ListClustersResponse(typing.TypedDict, total=False):
     clusters: _list[Cluster]
     missingZones: _list[str]
 
 @typing.type_check_only
-class ListLocationsResponse(typing_extensions.TypedDict, total=False):
+class ListLocationsResponse(typing.TypedDict, total=False):
     locations: _list[Location]
     nextPageToken: str
 
 @typing.type_check_only
-class ListNodePoolsResponse(typing_extensions.TypedDict, total=False):
+class ListNodePoolsResponse(typing.TypedDict, total=False):
     nodePools: _list[NodePool]
 
 @typing.type_check_only
-class ListOperationsResponse(typing_extensions.TypedDict, total=False):
+class ListOperationsResponse(typing.TypedDict, total=False):
     missingZones: _list[str]
     operations: _list[Operation]
 
 @typing.type_check_only
-class ListUsableSubnetworksResponse(typing_extensions.TypedDict, total=False):
+class ListUsableSubnetworksResponse(typing.TypedDict, total=False):
     nextPageToken: str
     subnetworks: _list[UsableSubnetwork]
 
 @typing.type_check_only
-class LocalNvmeSsdBlockConfig(typing_extensions.TypedDict, total=False):
+class LocalNvmeSsdBlockConfig(typing.TypedDict, total=False):
     localSsdCount: int
 
 @typing.type_check_only
-class Location(typing_extensions.TypedDict, total=False):
+class Location(typing.TypedDict, total=False):
     name: str
     recommended: bool
-    type: typing_extensions.Literal["LOCATION_TYPE_UNSPECIFIED", "ZONE", "REGION"]
+    type: typing.Literal["LOCATION_TYPE_UNSPECIFIED", "ZONE", "REGION"]
 
 @typing.type_check_only
-class LoggingComponentConfig(typing_extensions.TypedDict, total=False):
+class LoggingComponentConfig(typing.TypedDict, total=False):
     enableComponents: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "COMPONENT_UNSPECIFIED",
             "SYSTEM_COMPONENTS",
             "WORKLOADS",
@@ -1107,64 +1104,62 @@ class LoggingComponentConfig(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class LoggingConfig(typing_extensions.TypedDict, total=False):
+class LoggingConfig(typing.TypedDict, total=False):
     componentConfig: LoggingComponentConfig
 
 @typing.type_check_only
-class LoggingVariantConfig(typing_extensions.TypedDict, total=False):
-    variant: typing_extensions.Literal[
-        "VARIANT_UNSPECIFIED", "DEFAULT", "MAX_THROUGHPUT"
-    ]
+class LoggingVariantConfig(typing.TypedDict, total=False):
+    variant: typing.Literal["VARIANT_UNSPECIFIED", "DEFAULT", "MAX_THROUGHPUT"]
 
 @typing.type_check_only
-class LustreCsiDriverConfig(typing_extensions.TypedDict, total=False):
+class LustreCsiDriverConfig(typing.TypedDict, total=False):
     disableMultiNic: bool
     enableLegacyLustrePort: bool
     enabled: bool
 
 @typing.type_check_only
-class MaintenanceExclusionOptions(typing_extensions.TypedDict, total=False):
-    endTimeBehavior: typing_extensions.Literal[
+class MaintenanceExclusionOptions(typing.TypedDict, total=False):
+    endTimeBehavior: typing.Literal[
         "END_TIME_BEHAVIOR_UNSPECIFIED", "UNTIL_END_OF_SUPPORT"
     ]
-    scope: typing_extensions.Literal[
+    scope: typing.Literal[
         "NO_UPGRADES", "NO_MINOR_UPGRADES", "NO_MINOR_OR_NODE_UPGRADES"
     ]
 
 @typing.type_check_only
-class MaintenancePolicy(typing_extensions.TypedDict, total=False):
+class MaintenancePolicy(typing.TypedDict, total=False):
     disruptionBudget: DisruptionBudget
     resourceVersion: str
     window: MaintenanceWindow
 
 @typing.type_check_only
-class MaintenanceWindow(typing_extensions.TypedDict, total=False):
+class MaintenanceWindow(typing.TypedDict, total=False):
     dailyMaintenanceWindow: DailyMaintenanceWindow
     maintenanceExclusions: dict[str, typing.Any]
     recurringMaintenanceWindow: RecurringMaintenanceWindow
     recurringWindow: RecurringTimeWindow
 
 @typing.type_check_only
-class ManagedMachineLearningDiagnosticsConfig(typing_extensions.TypedDict, total=False):
+class ManagedMachineLearningDiagnosticsConfig(typing.TypedDict, total=False):
     enabled: bool
 
 @typing.type_check_only
-class ManagedOpenTelemetryConfig(typing_extensions.TypedDict, total=False):
-    scope: typing_extensions.Literal[
+class ManagedOpenTelemetryConfig(typing.TypedDict, total=False):
+    scope: typing.Literal[
         "SCOPE_UNSPECIFIED", "NONE", "COLLECTION_AND_INSTRUMENTATION_COMPONENTS"
     ]
 
 @typing.type_check_only
-class ManagedPrometheusConfig(typing_extensions.TypedDict, total=False):
+class ManagedPrometheusConfig(typing.TypedDict, total=False):
     autoMonitoringConfig: AutoMonitoringConfig
     enabled: bool
 
 @typing.type_check_only
-class Master(typing_extensions.TypedDict, total=False):
+class Master(typing.TypedDict, total=False):
     compatibilityStatus: CompatibilityStatus
 
 @typing.type_check_only
-class MasterAuth(typing_extensions.TypedDict, total=False):
+class MasterAuth(typing.TypedDict, total=False):
     clientCertificate: str
     clientCertificateConfig: ClientCertificateConfig
     clientKey: str
@@ -1173,35 +1168,35 @@ class MasterAuth(typing_extensions.TypedDict, total=False):
     username: str
 
 @typing.type_check_only
-class MasterAuthorizedNetworksConfig(typing_extensions.TypedDict, total=False):
+class MasterAuthorizedNetworksConfig(typing.TypedDict, total=False):
     cidrBlocks: _list[CidrBlock]
     enabled: bool
     gcpPublicCidrsAccessEnabled: bool
     privateEndpointEnforcementEnabled: bool
 
 @typing.type_check_only
-class MaxPodsConstraint(typing_extensions.TypedDict, total=False):
+class MaxPodsConstraint(typing.TypedDict, total=False):
     maxPodsPerNode: str
 
 @typing.type_check_only
-class MemoryManager(typing_extensions.TypedDict, total=False):
+class MemoryManager(typing.TypedDict, total=False):
     policy: str
 
 @typing.type_check_only
-class MeshCertificates(typing_extensions.TypedDict, total=False):
+class MeshCertificates(typing.TypedDict, total=False):
     enableCertificates: bool
 
 @typing.type_check_only
-class Metric(typing_extensions.TypedDict, total=False):
+class Metric(typing.TypedDict, total=False):
     doubleValue: float
     intValue: str
     name: str
     stringValue: str
 
 @typing.type_check_only
-class MonitoringComponentConfig(typing_extensions.TypedDict, total=False):
+class MonitoringComponentConfig(typing.TypedDict, total=False):
     enableComponents: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "COMPONENT_UNSPECIFIED",
             "SYSTEM_COMPONENTS",
             "WORKLOADS",
@@ -1222,14 +1217,14 @@ class MonitoringComponentConfig(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class MonitoringConfig(typing_extensions.TypedDict, total=False):
+class MonitoringConfig(typing.TypedDict, total=False):
     advancedDatapathObservabilityConfig: AdvancedDatapathObservabilityConfig
     componentConfig: MonitoringComponentConfig
     managedPrometheusConfig: ManagedPrometheusConfig
 
 @typing.type_check_only
-class NetworkConfig(typing_extensions.TypedDict, total=False):
-    datapathProvider: typing_extensions.Literal[
+class NetworkConfig(typing.TypedDict, total=False):
+    datapathProvider: typing.Literal[
         "DATAPATH_PROVIDER_UNSPECIFIED", "LEGACY_DATAPATH", "ADVANCED_DATAPATH"
     ]
     dataplaneV2Config: DataplaneV2Config
@@ -1243,14 +1238,14 @@ class NetworkConfig(typing_extensions.TypedDict, total=False):
     enableL4ilbSubsetting: bool
     enableMultiNetworking: bool
     gatewayApiConfig: GatewayAPIConfig
-    inTransitEncryptionConfig: typing_extensions.Literal[
+    inTransitEncryptionConfig: typing.Literal[
         "IN_TRANSIT_ENCRYPTION_CONFIG_UNSPECIFIED",
         "IN_TRANSIT_ENCRYPTION_DISABLED",
         "IN_TRANSIT_ENCRYPTION_INTER_NODE_TRANSPARENT",
     ]
     network: str
     networkPerformanceConfig: ClusterNetworkPerformanceConfig
-    privateIpv6GoogleAccess: typing_extensions.Literal[
+    privateIpv6GoogleAccess: typing.Literal[
         "PRIVATE_IPV6_GOOGLE_ACCESS_UNSPECIFIED",
         "PRIVATE_IPV6_GOOGLE_ACCESS_DISABLED",
         "PRIVATE_IPV6_GOOGLE_ACCESS_TO_GOOGLE",
@@ -1260,28 +1255,26 @@ class NetworkConfig(typing_extensions.TypedDict, total=False):
     subnetwork: str
 
 @typing.type_check_only
-class NetworkPerformanceConfig(typing_extensions.TypedDict, total=False):
-    externalIpEgressBandwidthTier: typing_extensions.Literal[
-        "TIER_UNSPECIFIED", "TIER_1"
-    ]
-    totalEgressBandwidthTier: typing_extensions.Literal["TIER_UNSPECIFIED", "TIER_1"]
+class NetworkPerformanceConfig(typing.TypedDict, total=False):
+    externalIpEgressBandwidthTier: typing.Literal["TIER_UNSPECIFIED", "TIER_1"]
+    totalEgressBandwidthTier: typing.Literal["TIER_UNSPECIFIED", "TIER_1"]
 
 @typing.type_check_only
-class NetworkPolicy(typing_extensions.TypedDict, total=False):
+class NetworkPolicy(typing.TypedDict, total=False):
     enabled: bool
-    provider: typing_extensions.Literal["PROVIDER_UNSPECIFIED", "CALICO"]
+    provider: typing.Literal["PROVIDER_UNSPECIFIED", "CALICO"]
 
 @typing.type_check_only
-class NetworkPolicyConfig(typing_extensions.TypedDict, total=False):
+class NetworkPolicyConfig(typing.TypedDict, total=False):
     disabled: bool
 
 @typing.type_check_only
-class NetworkTags(typing_extensions.TypedDict, total=False):
+class NetworkTags(typing.TypedDict, total=False):
     tags: _list[str]
 
 @typing.type_check_only
-class NetworkTierConfig(typing_extensions.TypedDict, total=False):
-    networkTier: typing_extensions.Literal[
+class NetworkTierConfig(typing.TypedDict, total=False):
+    networkTier: typing.Literal[
         "NETWORK_TIER_UNSPECIFIED",
         "NETWORK_TIER_DEFAULT",
         "NETWORK_TIER_PREMIUM",
@@ -1289,13 +1282,13 @@ class NetworkTierConfig(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class NodeAffinity(typing_extensions.TypedDict, total=False):
+class NodeAffinity(typing.TypedDict, total=False):
     key: str
-    operator: typing_extensions.Literal["OPERATOR_UNSPECIFIED", "IN", "NOT_IN"]
+    operator: typing.Literal["OPERATOR_UNSPECIFIED", "IN", "NOT_IN"]
     values: _list[str]
 
 @typing.type_check_only
-class NodeConfig(typing_extensions.TypedDict, total=False):
+class NodeConfig(typing.TypedDict, total=False):
     accelerators: _list[AcceleratorConfig]
     advancedMachineFeatures: AdvancedMachineFeatures
     bootDisk: BootDisk
@@ -1305,7 +1298,7 @@ class NodeConfig(typing_extensions.TypedDict, total=False):
     containerdConfig: ContainerdConfig
     diskSizeGb: int
     diskType: str
-    effectiveCgroupMode: typing_extensions.Literal[
+    effectiveCgroupMode: typing.Literal[
         "EFFECTIVE_CGROUP_MODE_UNSPECIFIED",
         "EFFECTIVE_CGROUP_MODE_V1",
         "EFFECTIVE_CGROUP_MODE_V2",
@@ -1325,7 +1318,7 @@ class NodeConfig(typing_extensions.TypedDict, total=False):
     linuxNodeConfig: LinuxNodeConfig
     localNvmeSsdBlockConfig: LocalNvmeSsdBlockConfig
     localSsdCount: int
-    localSsdEncryptionMode: typing_extensions.Literal[
+    localSsdEncryptionMode: typing.Literal[
         "LOCAL_SSD_ENCRYPTION_MODE_UNSPECIFIED",
         "STANDARD_ENCRYPTION",
         "EPHEMERAL_KEY_ENCRYPTION",
@@ -1357,7 +1350,7 @@ class NodeConfig(typing_extensions.TypedDict, total=False):
     workloadMetadataConfig: WorkloadMetadataConfig
 
 @typing.type_check_only
-class NodeConfigDefaults(typing_extensions.TypedDict, total=False):
+class NodeConfigDefaults(typing.TypedDict, total=False):
     containerdConfig: ContainerdConfig
     gcfsConfig: GcfsConfig
     hostMaintenancePolicy: HostMaintenancePolicy
@@ -1365,25 +1358,25 @@ class NodeConfigDefaults(typing_extensions.TypedDict, total=False):
     nodeKubeletConfig: NodeKubeletConfig
 
 @typing.type_check_only
-class NodeCreationConfig(typing_extensions.TypedDict, total=False):
-    nodeCreationMode: typing_extensions.Literal[
+class NodeCreationConfig(typing.TypedDict, total=False):
+    nodeCreationMode: typing.Literal[
         "MODE_UNSPECIFIED", "VIA_KUBELET", "VIA_CONTROL_PLANE"
     ]
 
 @typing.type_check_only
-class NodeDrainConfig(typing_extensions.TypedDict, total=False):
+class NodeDrainConfig(typing.TypedDict, total=False):
     graceTerminationDuration: str
     pdbTimeoutDuration: str
     respectPdbDuringNodePoolDeletion: bool
 
 @typing.type_check_only
-class NodeKernelModuleLoading(typing_extensions.TypedDict, total=False):
-    policy: typing_extensions.Literal[
+class NodeKernelModuleLoading(typing.TypedDict, total=False):
+    policy: typing.Literal[
         "POLICY_UNSPECIFIED", "ENFORCE_SIGNED_MODULES", "DO_NOT_ENFORCE_SIGNED_MODULES"
     ]
 
 @typing.type_check_only
-class NodeKubeletConfig(typing_extensions.TypedDict, total=False):
+class NodeKubeletConfig(typing.TypedDict, total=False):
     allowedUnsafeSysctls: _list[str]
     containerLogMaxFiles: int
     containerLogMaxSize: str
@@ -1409,17 +1402,17 @@ class NodeKubeletConfig(typing_extensions.TypedDict, total=False):
     topologyManager: TopologyManager
 
 @typing.type_check_only
-class NodeLabels(typing_extensions.TypedDict, total=False):
+class NodeLabels(typing.TypedDict, total=False):
     labels: dict[str, typing.Any]
 
 @typing.type_check_only
-class NodeManagement(typing_extensions.TypedDict, total=False):
+class NodeManagement(typing.TypedDict, total=False):
     autoRepair: bool
     autoUpgrade: bool
     upgradeOptions: AutoUpgradeOptions
 
 @typing.type_check_only
-class NodeNetworkConfig(typing_extensions.TypedDict, total=False):
+class NodeNetworkConfig(typing.TypedDict, total=False):
     acceleratorNetworkProfile: str
     additionalNodeNetworkConfigs: _list[AdditionalNodeNetworkConfig]
     additionalPodNetworkConfigs: _list[AdditionalPodNetworkConfig]
@@ -1435,7 +1428,7 @@ class NodeNetworkConfig(typing_extensions.TypedDict, total=False):
     subnetwork: str
 
 @typing.type_check_only
-class NodePool(typing_extensions.TypedDict, total=False):
+class NodePool(typing.TypedDict, total=False):
     autopilotConfig: AutopilotConfig
     autoscaling: NodePoolAutoscaling
     bestEffortProvisioning: BestEffortProvisioning
@@ -1444,6 +1437,7 @@ class NodePool(typing_extensions.TypedDict, total=False):
     etag: str
     initialNodeCount: int
     instanceGroupUrls: _list[str]
+    kubeletCertInfo: KubeletCertInfo
     locations: _list[str]
     maintenancePolicy: NodePoolMaintenancePolicy
     management: NodeManagement
@@ -1455,7 +1449,7 @@ class NodePool(typing_extensions.TypedDict, total=False):
     podIpv4CidrSize: int
     queuedProvisioning: QueuedProvisioning
     selfLink: str
-    status: typing_extensions.Literal[
+    status: typing.Literal[
         "STATUS_UNSPECIFIED",
         "PROVISIONING",
         "RUNNING",
@@ -1470,46 +1464,42 @@ class NodePool(typing_extensions.TypedDict, total=False):
     version: str
 
 @typing.type_check_only
-class NodePoolAutoConfig(typing_extensions.TypedDict, total=False):
+class NodePoolAutoConfig(typing.TypedDict, total=False):
     linuxNodeConfig: LinuxNodeConfig
     networkTags: NetworkTags
     nodeKubeletConfig: NodeKubeletConfig
     resourceManagerTags: ResourceManagerTags
 
 @typing.type_check_only
-class NodePoolAutoscaling(typing_extensions.TypedDict, total=False):
+class NodePoolAutoscaling(typing.TypedDict, total=False):
     autoprovisioned: bool
     enabled: bool
-    locationPolicy: typing_extensions.Literal[
-        "LOCATION_POLICY_UNSPECIFIED", "BALANCED", "ANY"
-    ]
+    locationPolicy: typing.Literal["LOCATION_POLICY_UNSPECIFIED", "BALANCED", "ANY"]
     maxNodeCount: int
     minNodeCount: int
     totalMaxNodeCount: int
     totalMinNodeCount: int
 
 @typing.type_check_only
-class NodePoolDefaults(typing_extensions.TypedDict, total=False):
+class NodePoolDefaults(typing.TypedDict, total=False):
     nodeConfigDefaults: NodeConfigDefaults
 
 @typing.type_check_only
-class NodePoolLoggingConfig(typing_extensions.TypedDict, total=False):
+class NodePoolLoggingConfig(typing.TypedDict, total=False):
     variantConfig: LoggingVariantConfig
 
 @typing.type_check_only
-class NodePoolMaintenancePolicy(typing_extensions.TypedDict, total=False):
+class NodePoolMaintenancePolicy(typing.TypedDict, total=False):
     exclusionUntilEndOfSupport: ExclusionUntilEndOfSupport
 
 @typing.type_check_only
-class NodePoolUpgradeConcurrencyConfig(typing_extensions.TypedDict, total=False):
+class NodePoolUpgradeConcurrencyConfig(typing.TypedDict, total=False):
     maxCount: str
 
 @typing.type_check_only
-class NodePoolUpgradeInfo(typing_extensions.TypedDict, total=False):
+class NodePoolUpgradeInfo(typing.TypedDict, total=False):
     autoUpgradeStatus: _list[
-        typing_extensions.Literal[
-            "UNKNOWN", "ACTIVE", "MINOR_UPGRADE_PAUSED", "UPGRADE_PAUSED"
-        ]
+        typing.Literal["UNKNOWN", "ACTIVE", "MINOR_UPGRADE_PAUSED", "UPGRADE_PAUSED"]
     ]
     customImageInfo: CustomImageInfo
     endOfExtendedSupportTimestamp: str
@@ -1517,7 +1507,7 @@ class NodePoolUpgradeInfo(typing_extensions.TypedDict, total=False):
     minorTargetVersion: str
     patchTargetVersion: str
     pausedReason: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "AUTO_UPGRADE_PAUSED_REASON_UNSPECIFIED",
             "MAINTENANCE_WINDOW",
             "MAINTENANCE_EXCLUSION_NO_UPGRADES",
@@ -1528,27 +1518,31 @@ class NodePoolUpgradeInfo(typing_extensions.TypedDict, total=False):
     upgradeDetails: _list[UpgradeDetails]
 
 @typing.type_check_only
-class NodeReadinessConfig(typing_extensions.TypedDict, total=False):
+class NodeReadinessConfig(typing.TypedDict, total=False):
     enabled: bool
 
 @typing.type_check_only
-class NodeTaint(typing_extensions.TypedDict, total=False):
-    effect: typing_extensions.Literal[
+class NodeTaint(typing.TypedDict, total=False):
+    effect: typing.Literal[
         "EFFECT_UNSPECIFIED", "NO_SCHEDULE", "PREFER_NO_SCHEDULE", "NO_EXECUTE"
     ]
     key: str
     value: str
 
 @typing.type_check_only
-class NodeTaints(typing_extensions.TypedDict, total=False):
+class NodeTaints(typing.TypedDict, total=False):
     taints: _list[NodeTaint]
 
 @typing.type_check_only
-class NotificationConfig(typing_extensions.TypedDict, total=False):
+class NodeVfioConfig(typing.TypedDict, total=False):
+    dmaEntryLimit: int
+
+@typing.type_check_only
+class NotificationConfig(typing.TypedDict, total=False):
     pubsub: PubSub
 
 @typing.type_check_only
-class Operation(typing_extensions.TypedDict, total=False):
+class Operation(typing.TypedDict, total=False):
     clusterConditions: _list[StatusCondition]
     detail: str
     endTime: str
@@ -1556,7 +1550,7 @@ class Operation(typing_extensions.TypedDict, total=False):
     location: str
     name: str
     nodepoolConditions: _list[StatusCondition]
-    operationType: typing_extensions.Literal[
+    operationType: typing.Literal[
         "TYPE_UNSPECIFIED",
         "CREATE_CLUSTER",
         "DELETE_CLUSTER",
@@ -1580,7 +1574,7 @@ class Operation(typing_extensions.TypedDict, total=False):
     progress: OperationProgress
     selfLink: str
     startTime: str
-    status: typing_extensions.Literal[
+    status: typing.Literal[
         "STATUS_UNSPECIFIED", "PENDING", "RUNNING", "DONE", "ABORTING"
     ]
     statusMessage: str
@@ -1588,70 +1582,68 @@ class Operation(typing_extensions.TypedDict, total=False):
     zone: str
 
 @typing.type_check_only
-class OperationError(typing_extensions.TypedDict, total=False):
+class OperationError(typing.TypedDict, total=False):
     errorMessage: str
     keyName: str
     timestamp: str
 
 @typing.type_check_only
-class OperationProgress(typing_extensions.TypedDict, total=False):
+class OperationProgress(typing.TypedDict, total=False):
     metrics: _list[Metric]
     name: str
     stages: _list[OperationProgress]
-    status: typing_extensions.Literal[
+    status: typing.Literal[
         "STATUS_UNSPECIFIED", "PENDING", "RUNNING", "DONE", "ABORTING"
     ]
 
 @typing.type_check_only
-class OpportunisticMaintenanceStrategy(typing_extensions.TypedDict, total=False):
+class OpportunisticMaintenanceStrategy(typing.TypedDict, total=False):
     maintenanceAvailabilityWindow: str
     minNodesPerPool: str
     nodeIdleTimeWindow: str
 
 @typing.type_check_only
-class ParallelstoreCsiDriverConfig(typing_extensions.TypedDict, total=False):
+class ParallelstoreCsiDriverConfig(typing.TypedDict, total=False):
     enabled: bool
 
 @typing.type_check_only
-class ParentProductConfig(typing_extensions.TypedDict, total=False):
+class ParentProductConfig(typing.TypedDict, total=False):
     labels: dict[str, typing.Any]
     productName: str
 
 @typing.type_check_only
-class PdbBlockedPod(typing_extensions.TypedDict, total=False):
+class PdbBlockedPod(typing.TypedDict, total=False):
     name: str
     namespace: str
 
 @typing.type_check_only
-class PlacementPolicy(typing_extensions.TypedDict, total=False):
+class PlacementPolicy(typing.TypedDict, total=False):
     policyName: str
     tpuTopology: str
-    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "COMPACT"]
+    type: typing.Literal["TYPE_UNSPECIFIED", "COMPACT"]
 
 @typing.type_check_only
-class PodAutoscaling(typing_extensions.TypedDict, total=False):
-    hpaProfile: typing_extensions.Literal[
-        "HPA_PROFILE_UNSPECIFIED", "NONE", "PERFORMANCE"
-    ]
+class PodAutoscaling(typing.TypedDict, total=False):
+    hpaProfile: typing.Literal["HPA_PROFILE_UNSPECIFIED", "NONE", "PERFORMANCE"]
 
 @typing.type_check_only
-class PodCIDROverprovisionConfig(typing_extensions.TypedDict, total=False):
+class PodCIDROverprovisionConfig(typing.TypedDict, total=False):
     disable: bool
 
 @typing.type_check_only
-class PodSecurityPolicyConfig(typing_extensions.TypedDict, total=False):
+class PodSecurityPolicyConfig(typing.TypedDict, total=False):
     enabled: bool
 
 @typing.type_check_only
-class PodSnapshotConfig(typing_extensions.TypedDict, total=False):
+class PodSnapshotConfig(typing.TypedDict, total=False):
     enabled: bool
 
 @typing.type_check_only
-class PolicyBinding(typing_extensions.TypedDict, total=False):
+class PolicyBinding(typing.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class PrivateClusterConfig(typing_extensions.TypedDict, total=False):
+class PrivateClusterConfig(typing.TypedDict, total=False):
     enablePrivateEndpoint: bool
     enablePrivateNodes: bool
     masterGlobalAccessConfig: PrivateClusterMasterGlobalAccessConfig
@@ -1662,100 +1654,97 @@ class PrivateClusterConfig(typing_extensions.TypedDict, total=False):
     publicEndpoint: str
 
 @typing.type_check_only
-class PrivateClusterMasterGlobalAccessConfig(typing_extensions.TypedDict, total=False):
+class PrivateClusterMasterGlobalAccessConfig(typing.TypedDict, total=False):
     enabled: bool
 
 @typing.type_check_only
-class PrivateRegistryAccessConfig(typing_extensions.TypedDict, total=False):
+class PrivateRegistryAccessConfig(typing.TypedDict, total=False):
     certificateAuthorityDomainConfig: _list[CertificateAuthorityDomainConfig]
     enabled: bool
 
 @typing.type_check_only
-class PrivilegedAdmissionConfig(typing_extensions.TypedDict, total=False):
+class PrivilegedAdmissionConfig(typing.TypedDict, total=False):
     allowlistPaths: _list[str]
 
 @typing.type_check_only
-class ProtectConfig(typing_extensions.TypedDict, total=False):
+class ProtectConfig(typing.TypedDict, total=False):
     workloadConfig: WorkloadConfig
-    workloadVulnerabilityMode: typing_extensions.Literal[
+    workloadVulnerabilityMode: typing.Literal[
         "WORKLOAD_VULNERABILITY_MODE_UNSPECIFIED", "DISABLED", "BASIC"
     ]
 
 @typing.type_check_only
-class PubSub(typing_extensions.TypedDict, total=False):
+class PubSub(typing.TypedDict, total=False):
     enabled: bool
     filter: Filter
     topic: str
 
 @typing.type_check_only
-class QueuedProvisioning(typing_extensions.TypedDict, total=False):
+class QueuedProvisioning(typing.TypedDict, total=False):
     enabled: bool
 
 @typing.type_check_only
-class RBACBindingConfig(typing_extensions.TypedDict, total=False):
+class RBACBindingConfig(typing.TypedDict, total=False):
     enableInsecureBindingSystemAuthenticated: bool
     enableInsecureBindingSystemUnauthenticated: bool
 
 @typing.type_check_only
-class RangeInfo(typing_extensions.TypedDict, total=False):
+class RangeInfo(typing.TypedDict, total=False):
     rangeName: str
     utilization: float
 
 @typing.type_check_only
-class RayClusterLoggingConfig(typing_extensions.TypedDict, total=False):
+class RayClusterLoggingConfig(typing.TypedDict, total=False):
     enabled: bool
 
 @typing.type_check_only
-class RayClusterMonitoringConfig(typing_extensions.TypedDict, total=False):
+class RayClusterMonitoringConfig(typing.TypedDict, total=False):
     enabled: bool
 
 @typing.type_check_only
-class RayOperatorConfig(typing_extensions.TypedDict, total=False):
+class RayOperatorConfig(typing.TypedDict, total=False):
     enabled: bool
     rayClusterLoggingConfig: RayClusterLoggingConfig
     rayClusterMonitoringConfig: RayClusterMonitoringConfig
 
 @typing.type_check_only
-class RecurringMaintenanceWindow(typing_extensions.TypedDict, total=False):
+class RecurringMaintenanceWindow(typing.TypedDict, total=False):
     delayUntil: Date
     recurrence: str
     windowDuration: str
     windowStartTime: TimeOfDay
 
 @typing.type_check_only
-class RecurringTimeWindow(typing_extensions.TypedDict, total=False):
+class RecurringTimeWindow(typing.TypedDict, total=False):
     recurrence: str
     window: TimeWindow
 
 @typing.type_check_only
-class RegistryHeader(typing_extensions.TypedDict, total=False):
+class RegistryHeader(typing.TypedDict, total=False):
     key: str
     value: _list[str]
 
 @typing.type_check_only
-class RegistryHostConfig(typing_extensions.TypedDict, total=False):
+class RegistryHostConfig(typing.TypedDict, total=False):
     hosts: _list[HostConfig]
     server: str
 
 @typing.type_check_only
-class ReleaseChannel(typing_extensions.TypedDict, total=False):
-    channel: typing_extensions.Literal[
-        "UNSPECIFIED", "RAPID", "REGULAR", "STABLE", "EXTENDED"
-    ]
+class ReleaseChannel(typing.TypedDict, total=False):
+    channel: typing.Literal["UNSPECIFIED", "RAPID", "REGULAR", "STABLE", "EXTENDED"]
 
 @typing.type_check_only
-class ReleaseChannelConfig(typing_extensions.TypedDict, total=False):
+class ReleaseChannelConfig(typing.TypedDict, total=False):
     availableVersions: _list[AvailableVersion]
-    channel: typing_extensions.Literal[
-        "UNSPECIFIED", "RAPID", "REGULAR", "STABLE", "EXTENDED"
-    ]
+    channel: typing.Literal["UNSPECIFIED", "RAPID", "REGULAR", "STABLE", "EXTENDED"]
+    customVersions: _list[str]
     defaultVersion: str
     upgradeTargetVersion: str
     validVersions: _list[str]
 
 @typing.type_check_only
-class ReservationAffinity(typing_extensions.TypedDict, total=False):
-    consumeReservationType: typing_extensions.Literal[
+class ReservationAffinity(typing.TypedDict, total=False):
+    consumeReservationType: typing.Literal[
         "UNSPECIFIED",
         "NO_RESERVATION",
         "ANY_RESERVATION",
@@ -1766,27 +1755,27 @@ class ReservationAffinity(typing_extensions.TypedDict, total=False):
     values: _list[str]
 
 @typing.type_check_only
-class ResourceLabels(typing_extensions.TypedDict, total=False):
+class ResourceLabels(typing.TypedDict, total=False):
     labels: dict[str, typing.Any]
 
 @typing.type_check_only
-class ResourceLimit(typing_extensions.TypedDict, total=False):
+class ResourceLimit(typing.TypedDict, total=False):
     maximum: str
     minimum: str
     resourceType: str
 
 @typing.type_check_only
-class ResourceManagerTags(typing_extensions.TypedDict, total=False):
+class ResourceManagerTags(typing.TypedDict, total=False):
     tags: dict[str, typing.Any]
 
 @typing.type_check_only
-class ResourceUsageExportConfig(typing_extensions.TypedDict, total=False):
+class ResourceUsageExportConfig(typing.TypedDict, total=False):
     bigqueryDestination: BigQueryDestination
     consumptionMeteringConfig: ConsumptionMeteringConfig
     enableNetworkEgressMetering: bool
 
 @typing.type_check_only
-class RollbackNodePoolUpgradeRequest(typing_extensions.TypedDict, total=False):
+class RollbackNodePoolUpgradeRequest(typing.TypedDict, total=False):
     clusterId: str
     name: str
     nodePoolId: str
@@ -1795,51 +1784,49 @@ class RollbackNodePoolUpgradeRequest(typing_extensions.TypedDict, total=False):
     zone: str
 
 @typing.type_check_only
-class RollbackSafeUpgrade(typing_extensions.TypedDict, total=False):
+class RollbackSafeUpgrade(typing.TypedDict, total=False):
     controlPlaneSoakDuration: str
 
 @typing.type_check_only
-class RollbackSafeUpgradeStatus(typing_extensions.TypedDict, total=False):
+class RollbackSafeUpgradeStatus(typing.TypedDict, total=False):
     controlPlaneUpgradeRollbackEndTime: str
-    mode: typing_extensions.Literal[
-        "MODE_UNSPECIFIED", "KCP_MINOR_UPGRADE_ROLLBACK_SAFE_MODE"
-    ]
+    mode: typing.Literal["MODE_UNSPECIFIED", "KCP_MINOR_UPGRADE_ROLLBACK_SAFE_MODE"]
     previousVersion: str
 
 @typing.type_check_only
-class RotationConfig(typing_extensions.TypedDict, total=False):
+class RotationConfig(typing.TypedDict, total=False):
     enabled: bool
     rotationInterval: str
 
 @typing.type_check_only
-class SandboxConfig(typing_extensions.TypedDict, total=False):
+class SandboxConfig(typing.TypedDict, total=False):
     sandboxType: str
-    type: typing_extensions.Literal["UNSPECIFIED", "GVISOR"]
+    type: typing.Literal["UNSPECIFIED", "GVISOR"]
 
 @typing.type_check_only
-class ScheduleUpgradeConfig(typing_extensions.TypedDict, total=False):
+class ScheduleUpgradeConfig(typing.TypedDict, total=False):
     enabled: bool
 
 @typing.type_check_only
-class SecondaryBootDisk(typing_extensions.TypedDict, total=False):
+class SecondaryBootDisk(typing.TypedDict, total=False):
     diskImage: str
-    mode: typing_extensions.Literal["MODE_UNSPECIFIED", "CONTAINER_IMAGE_CACHE"]
+    mode: typing.Literal["MODE_UNSPECIFIED", "CONTAINER_IMAGE_CACHE"]
 
 @typing.type_check_only
-class SecondaryBootDiskUpdateStrategy(typing_extensions.TypedDict, total=False): ...
+class SecondaryBootDiskUpdateStrategy(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class SecretManagerConfig(typing_extensions.TypedDict, total=False):
+class SecretManagerConfig(typing.TypedDict, total=False):
     enabled: bool
     rotationConfig: RotationConfig
 
 @typing.type_check_only
-class SecretSyncConfig(typing_extensions.TypedDict, total=False):
+class SecretSyncConfig(typing.TypedDict, total=False):
     enabled: bool
     rotationConfig: SyncRotationConfig
 
 @typing.type_check_only
-class SecurityBulletinEvent(typing_extensions.TypedDict, total=False):
+class SecurityBulletinEvent(typing.TypedDict, total=False):
     affectedSupportedMinors: _list[str]
     briefDescription: str
     bulletinId: str
@@ -1853,11 +1840,9 @@ class SecurityBulletinEvent(typing_extensions.TypedDict, total=False):
     suggestedUpgradeTarget: str
 
 @typing.type_check_only
-class SecurityPostureConfig(typing_extensions.TypedDict, total=False):
-    mode: typing_extensions.Literal[
-        "MODE_UNSPECIFIED", "DISABLED", "BASIC", "ENTERPRISE"
-    ]
-    vulnerabilityMode: typing_extensions.Literal[
+class SecurityPostureConfig(typing.TypedDict, total=False):
+    mode: typing.Literal["MODE_UNSPECIFIED", "DISABLED", "BASIC", "ENTERPRISE"]
+    vulnerabilityMode: typing.Literal[
         "VULNERABILITY_MODE_UNSPECIFIED",
         "VULNERABILITY_DISABLED",
         "VULNERABILITY_BASIC",
@@ -1865,7 +1850,7 @@ class SecurityPostureConfig(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class ServerConfig(typing_extensions.TypedDict, total=False):
+class ServerConfig(typing.TypedDict, total=False):
     channels: _list[ReleaseChannelConfig]
     defaultClusterVersion: str
     defaultImageType: str
@@ -1875,11 +1860,11 @@ class ServerConfig(typing_extensions.TypedDict, total=False):
     windowsVersionMaps: dict[str, typing.Any]
 
 @typing.type_check_only
-class ServiceExternalIPsConfig(typing_extensions.TypedDict, total=False):
+class ServiceExternalIPsConfig(typing.TypedDict, total=False):
     enabled: bool
 
 @typing.type_check_only
-class SetAddonsConfigRequest(typing_extensions.TypedDict, total=False):
+class SetAddonsConfigRequest(typing.TypedDict, total=False):
     addonsConfig: AddonsConfig
     clusterId: str
     name: str
@@ -1887,7 +1872,7 @@ class SetAddonsConfigRequest(typing_extensions.TypedDict, total=False):
     zone: str
 
 @typing.type_check_only
-class SetLabelsRequest(typing_extensions.TypedDict, total=False):
+class SetLabelsRequest(typing.TypedDict, total=False):
     clusterId: str
     labelFingerprint: str
     name: str
@@ -1896,7 +1881,7 @@ class SetLabelsRequest(typing_extensions.TypedDict, total=False):
     zone: str
 
 @typing.type_check_only
-class SetLegacyAbacRequest(typing_extensions.TypedDict, total=False):
+class SetLegacyAbacRequest(typing.TypedDict, total=False):
     clusterId: str
     enabled: bool
     name: str
@@ -1904,7 +1889,7 @@ class SetLegacyAbacRequest(typing_extensions.TypedDict, total=False):
     zone: str
 
 @typing.type_check_only
-class SetLocationsRequest(typing_extensions.TypedDict, total=False):
+class SetLocationsRequest(typing.TypedDict, total=False):
     clusterId: str
     locations: _list[str]
     name: str
@@ -1912,7 +1897,7 @@ class SetLocationsRequest(typing_extensions.TypedDict, total=False):
     zone: str
 
 @typing.type_check_only
-class SetLoggingServiceRequest(typing_extensions.TypedDict, total=False):
+class SetLoggingServiceRequest(typing.TypedDict, total=False):
     clusterId: str
     loggingService: str
     name: str
@@ -1920,7 +1905,7 @@ class SetLoggingServiceRequest(typing_extensions.TypedDict, total=False):
     zone: str
 
 @typing.type_check_only
-class SetMaintenancePolicyRequest(typing_extensions.TypedDict, total=False):
+class SetMaintenancePolicyRequest(typing.TypedDict, total=False):
     clusterId: str
     maintenancePolicy: MaintenancePolicy
     name: str
@@ -1928,8 +1913,8 @@ class SetMaintenancePolicyRequest(typing_extensions.TypedDict, total=False):
     zone: str
 
 @typing.type_check_only
-class SetMasterAuthRequest(typing_extensions.TypedDict, total=False):
-    action: typing_extensions.Literal[
+class SetMasterAuthRequest(typing.TypedDict, total=False):
+    action: typing.Literal[
         "UNKNOWN", "SET_PASSWORD", "GENERATE_PASSWORD", "SET_USERNAME"
     ]
     clusterId: str
@@ -1939,7 +1924,7 @@ class SetMasterAuthRequest(typing_extensions.TypedDict, total=False):
     zone: str
 
 @typing.type_check_only
-class SetMonitoringServiceRequest(typing_extensions.TypedDict, total=False):
+class SetMonitoringServiceRequest(typing.TypedDict, total=False):
     clusterId: str
     monitoringService: str
     name: str
@@ -1947,7 +1932,7 @@ class SetMonitoringServiceRequest(typing_extensions.TypedDict, total=False):
     zone: str
 
 @typing.type_check_only
-class SetNetworkPolicyRequest(typing_extensions.TypedDict, total=False):
+class SetNetworkPolicyRequest(typing.TypedDict, total=False):
     clusterId: str
     name: str
     networkPolicy: NetworkPolicy
@@ -1955,7 +1940,7 @@ class SetNetworkPolicyRequest(typing_extensions.TypedDict, total=False):
     zone: str
 
 @typing.type_check_only
-class SetNodePoolAutoscalingRequest(typing_extensions.TypedDict, total=False):
+class SetNodePoolAutoscalingRequest(typing.TypedDict, total=False):
     autoscaling: NodePoolAutoscaling
     clusterId: str
     name: str
@@ -1964,7 +1949,7 @@ class SetNodePoolAutoscalingRequest(typing_extensions.TypedDict, total=False):
     zone: str
 
 @typing.type_check_only
-class SetNodePoolManagementRequest(typing_extensions.TypedDict, total=False):
+class SetNodePoolManagementRequest(typing.TypedDict, total=False):
     clusterId: str
     management: NodeManagement
     name: str
@@ -1973,7 +1958,7 @@ class SetNodePoolManagementRequest(typing_extensions.TypedDict, total=False):
     zone: str
 
 @typing.type_check_only
-class SetNodePoolSizeRequest(typing_extensions.TypedDict, total=False):
+class SetNodePoolSizeRequest(typing.TypedDict, total=False):
     clusterId: str
     name: str
     nodeCount: int
@@ -1982,35 +1967,35 @@ class SetNodePoolSizeRequest(typing_extensions.TypedDict, total=False):
     zone: str
 
 @typing.type_check_only
-class ShieldedInstanceConfig(typing_extensions.TypedDict, total=False):
+class ShieldedInstanceConfig(typing.TypedDict, total=False):
     enableIntegrityMonitoring: bool
     enableSecureBoot: bool
 
 @typing.type_check_only
-class ShieldedNodes(typing_extensions.TypedDict, total=False):
+class ShieldedNodes(typing.TypedDict, total=False):
     enabled: bool
 
 @typing.type_check_only
-class SliceControllerConfig(typing_extensions.TypedDict, total=False):
+class SliceControllerConfig(typing.TypedDict, total=False):
     enabled: bool
 
 @typing.type_check_only
-class SlurmOperatorConfig(typing_extensions.TypedDict, total=False):
+class SlurmOperatorConfig(typing.TypedDict, total=False):
     enabled: bool
 
 @typing.type_check_only
-class SoleTenantConfig(typing_extensions.TypedDict, total=False):
+class SoleTenantConfig(typing.TypedDict, total=False):
     minNodeCpus: int
     nodeAffinities: _list[NodeAffinity]
 
 @typing.type_check_only
-class StandardRolloutPolicy(typing_extensions.TypedDict, total=False):
+class StandardRolloutPolicy(typing.TypedDict, total=False):
     batchNodeCount: int
     batchPercentage: float
     batchSoakDuration: str
 
 @typing.type_check_only
-class StartIPRotationRequest(typing_extensions.TypedDict, total=False):
+class StartIPRotationRequest(typing.TypedDict, total=False):
     clusterId: str
     name: str
     projectId: str
@@ -2018,18 +2003,18 @@ class StartIPRotationRequest(typing_extensions.TypedDict, total=False):
     zone: str
 
 @typing.type_check_only
-class StatefulHAConfig(typing_extensions.TypedDict, total=False):
+class StatefulHAConfig(typing.TypedDict, total=False):
     enabled: bool
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class StatusCondition(typing_extensions.TypedDict, total=False):
-    canonicalCode: typing_extensions.Literal[
+class StatusCondition(typing.TypedDict, total=False):
+    canonicalCode: typing.Literal[
         "OK",
         "CANCELLED",
         "UNKNOWN",
@@ -2048,7 +2033,7 @@ class StatusCondition(typing_extensions.TypedDict, total=False):
         "UNAVAILABLE",
         "DATA_LOSS",
     ]
-    code: typing_extensions.Literal[
+    code: typing.Literal[
         "UNKNOWN",
         "GCE_STOCKOUT",
         "GKE_SERVICE_ACCOUNT_DELETED",
@@ -2062,7 +2047,7 @@ class StatusCondition(typing_extensions.TypedDict, total=False):
     message: str
 
 @typing.type_check_only
-class SwapConfig(typing_extensions.TypedDict, total=False):
+class SwapConfig(typing.TypedDict, total=False):
     bootDiskProfile: BootDiskProfile
     dedicatedLocalSsdProfile: DedicatedLocalSsdProfile
     enabled: bool
@@ -2070,42 +2055,42 @@ class SwapConfig(typing_extensions.TypedDict, total=False):
     ephemeralLocalSsdProfile: EphemeralLocalSsdProfile
 
 @typing.type_check_only
-class SyncRotationConfig(typing_extensions.TypedDict, total=False):
+class SyncRotationConfig(typing.TypedDict, total=False):
     enabled: bool
     rotationInterval: str
 
 @typing.type_check_only
-class TaintConfig(typing_extensions.TypedDict, total=False):
-    architectureTaintBehavior: typing_extensions.Literal[
+class TaintConfig(typing.TypedDict, total=False):
+    architectureTaintBehavior: typing.Literal[
         "ARCHITECTURE_TAINT_BEHAVIOR_UNSPECIFIED", "NONE", "ARM"
     ]
 
 @typing.type_check_only
-class TimeOfDay(typing_extensions.TypedDict, total=False):
+class TimeOfDay(typing.TypedDict, total=False):
     hours: int
     minutes: int
     nanos: int
     seconds: int
 
 @typing.type_check_only
-class TimeWindow(typing_extensions.TypedDict, total=False):
+class TimeWindow(typing.TypedDict, total=False):
     endTime: str
     maintenanceExclusionOptions: MaintenanceExclusionOptions
     startTime: str
 
 @typing.type_check_only
-class TopologyManager(typing_extensions.TypedDict, total=False):
+class TopologyManager(typing.TypedDict, total=False):
     policy: str
     scope: str
 
 @typing.type_check_only
-class TpuConfig(typing_extensions.TypedDict, total=False):
+class TpuConfig(typing.TypedDict, total=False):
     enabled: bool
     ipv4CidrBlock: str
     useServiceNetworking: bool
 
 @typing.type_check_only
-class UpdateClusterRequest(typing_extensions.TypedDict, total=False):
+class UpdateClusterRequest(typing.TypedDict, total=False):
     clusterId: str
     name: str
     projectId: str
@@ -2113,11 +2098,11 @@ class UpdateClusterRequest(typing_extensions.TypedDict, total=False):
     zone: str
 
 @typing.type_check_only
-class UpdateInfo(typing_extensions.TypedDict, total=False):
+class UpdateInfo(typing.TypedDict, total=False):
     blueGreenInfo: BlueGreenInfo
 
 @typing.type_check_only
-class UpdateMasterRequest(typing_extensions.TypedDict, total=False):
+class UpdateMasterRequest(typing.TypedDict, total=False):
     clusterId: str
     masterVersion: str
     name: str
@@ -2125,7 +2110,7 @@ class UpdateMasterRequest(typing_extensions.TypedDict, total=False):
     zone: str
 
 @typing.type_check_only
-class UpdateNodePoolRequest(typing_extensions.TypedDict, total=False):
+class UpdateNodePoolRequest(typing.TypedDict, total=False):
     accelerators: _list[AcceleratorConfig]
     bootDisk: BootDisk
     clusterId: str
@@ -2169,51 +2154,47 @@ class UpdateNodePoolRequest(typing_extensions.TypedDict, total=False):
     zone: str
 
 @typing.type_check_only
-class UpgradeAvailableEvent(typing_extensions.TypedDict, total=False):
+class UpgradeAvailableEvent(typing.TypedDict, total=False):
     releaseChannel: ReleaseChannel
     resource: str
-    resourceType: typing_extensions.Literal[
+    resourceType: typing.Literal[
         "UPGRADE_RESOURCE_TYPE_UNSPECIFIED", "MASTER", "NODE_POOL"
     ]
     version: str
     windowsVersions: WindowsVersions
 
 @typing.type_check_only
-class UpgradeDetails(typing_extensions.TypedDict, total=False):
+class UpgradeDetails(typing.TypedDict, total=False):
     endTime: str
     initialEmulatedVersion: str
     initialVersion: str
     startTime: str
-    startType: typing_extensions.Literal[
-        "START_TYPE_UNSPECIFIED", "AUTOMATIC", "MANUAL"
-    ]
-    state: typing_extensions.Literal[
-        "UNKNOWN", "FAILED", "SUCCEEDED", "CANCELED", "RUNNING"
-    ]
+    startType: typing.Literal["START_TYPE_UNSPECIFIED", "AUTOMATIC", "MANUAL"]
+    state: typing.Literal["UNKNOWN", "FAILED", "SUCCEEDED", "CANCELED", "RUNNING"]
     targetEmulatedVersion: str
     targetVersion: str
 
 @typing.type_check_only
-class UpgradeEvent(typing_extensions.TypedDict, total=False):
+class UpgradeEvent(typing.TypedDict, total=False):
     currentEmulatedVersion: str
     currentVersion: str
     operation: str
     operationStartTime: str
     resource: str
-    resourceType: typing_extensions.Literal[
+    resourceType: typing.Literal[
         "UPGRADE_RESOURCE_TYPE_UNSPECIFIED", "MASTER", "NODE_POOL"
     ]
     targetEmulatedVersion: str
     targetVersion: str
 
 @typing.type_check_only
-class UpgradeInfoEvent(typing_extensions.TypedDict, total=False):
+class UpgradeInfoEvent(typing.TypedDict, total=False):
     currentEmulatedVersion: str
     currentVersion: str
     description: str
     disruptionEvent: DisruptionEvent
     endTime: str
-    eventType: typing_extensions.Literal[
+    eventType: typing.Literal[
         "EVENT_TYPE_UNSPECIFIED",
         "END_OF_SUPPORT",
         "COS_MILESTONE_VERSION_UPDATE",
@@ -2223,28 +2204,28 @@ class UpgradeInfoEvent(typing_extensions.TypedDict, total=False):
     extendedSupportEndTime: str
     operation: str
     resource: str
-    resourceType: typing_extensions.Literal[
+    resourceType: typing.Literal[
         "UPGRADE_RESOURCE_TYPE_UNSPECIFIED", "MASTER", "NODE_POOL"
     ]
     standardSupportEndTime: str
     startTime: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED", "SCHEDULED", "STARTED", "SUCCEEDED", "FAILED", "CANCELED"
     ]
     targetEmulatedVersion: str
     targetVersion: str
 
 @typing.type_check_only
-class UpgradeSettings(typing_extensions.TypedDict, total=False):
+class UpgradeSettings(typing.TypedDict, total=False):
     blueGreenSettings: BlueGreenSettings
     maxSurge: int
     maxUnavailable: int
-    strategy: typing_extensions.Literal[
+    strategy: typing.Literal[
         "NODE_POOL_UPDATE_STRATEGY_UNSPECIFIED", "BLUE_GREEN", "SURGE", "SHORT_LIVED"
     ]
 
 @typing.type_check_only
-class UsableSubnetwork(typing_extensions.TypedDict, total=False):
+class UsableSubnetwork(typing.TypedDict, total=False):
     ipCidrRange: str
     network: str
     secondaryIpRanges: _list[UsableSubnetworkSecondaryRange]
@@ -2252,10 +2233,10 @@ class UsableSubnetwork(typing_extensions.TypedDict, total=False):
     subnetwork: str
 
 @typing.type_check_only
-class UsableSubnetworkSecondaryRange(typing_extensions.TypedDict, total=False):
+class UsableSubnetworkSecondaryRange(typing.TypedDict, total=False):
     ipCidrRange: str
     rangeName: str
-    status: typing_extensions.Literal[
+    status: typing.Literal[
         "UNKNOWN",
         "UNUSED",
         "IN_USE_SERVICE",
@@ -2264,7 +2245,7 @@ class UsableSubnetworkSecondaryRange(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class UserManagedKeysConfig(typing_extensions.TypedDict, total=False):
+class UserManagedKeysConfig(typing.TypedDict, total=False):
     aggregationCa: str
     clusterCa: str
     controlPlaneDiskEncryptionKey: str
@@ -2276,61 +2257,61 @@ class UserManagedKeysConfig(typing_extensions.TypedDict, total=False):
     serviceAccountVerificationKeys: _list[str]
 
 @typing.type_check_only
-class VerticalPodAutoscaling(typing_extensions.TypedDict, total=False):
+class VerticalPodAutoscaling(typing.TypedDict, total=False):
     enabled: bool
 
 @typing.type_check_only
-class VirtualNIC(typing_extensions.TypedDict, total=False):
+class VirtualNIC(typing.TypedDict, total=False):
     enabled: bool
 
 @typing.type_check_only
-class WindowsNodeConfig(typing_extensions.TypedDict, total=False):
-    osVersion: typing_extensions.Literal[
+class WindowsNodeConfig(typing.TypedDict, total=False):
+    osVersion: typing.Literal[
         "OS_VERSION_UNSPECIFIED", "OS_VERSION_LTSC2019", "OS_VERSION_LTSC2022"
     ]
 
 @typing.type_check_only
-class WindowsVersion(typing_extensions.TypedDict, total=False):
+class WindowsVersion(typing.TypedDict, total=False):
     imageType: str
     osVersion: str
     supportEndDate: Date
 
 @typing.type_check_only
-class WindowsVersions(typing_extensions.TypedDict, total=False):
+class WindowsVersions(typing.TypedDict, total=False):
     windowsVersions: _list[WindowsVersion]
 
 @typing.type_check_only
-class WorkloadALTSConfig(typing_extensions.TypedDict, total=False):
+class WorkloadALTSConfig(typing.TypedDict, total=False):
     enableAlts: bool
 
 @typing.type_check_only
-class WorkloadCertificates(typing_extensions.TypedDict, total=False):
+class WorkloadCertificates(typing.TypedDict, total=False):
     enableCertificates: bool
 
 @typing.type_check_only
-class WorkloadConfig(typing_extensions.TypedDict, total=False):
-    auditMode: typing_extensions.Literal[
+class WorkloadConfig(typing.TypedDict, total=False):
+    auditMode: typing.Literal[
         "MODE_UNSPECIFIED", "DISABLED", "BASIC", "BASELINE", "RESTRICTED"
     ]
 
 @typing.type_check_only
-class WorkloadIdentityConfig(typing_extensions.TypedDict, total=False):
+class WorkloadIdentityConfig(typing.TypedDict, total=False):
     identityNamespace: str
     identityProvider: str
     workloadPool: str
 
 @typing.type_check_only
-class WorkloadMetadataConfig(typing_extensions.TypedDict, total=False):
-    mode: typing_extensions.Literal["MODE_UNSPECIFIED", "GCE_METADATA", "GKE_METADATA"]
-    nodeMetadata: typing_extensions.Literal[
+class WorkloadMetadataConfig(typing.TypedDict, total=False):
+    mode: typing.Literal["MODE_UNSPECIFIED", "GCE_METADATA", "GKE_METADATA"]
+    nodeMetadata: typing.Literal[
         "UNSPECIFIED", "SECURE", "EXPOSE", "GKE_METADATA_SERVER"
     ]
 
 @typing.type_check_only
-class WorkloadPolicyConfig(typing_extensions.TypedDict, total=False):
+class WorkloadPolicyConfig(typing.TypedDict, total=False):
     allowNetAdmin: bool
     autopilotCompatibilityAuditingEnabled: bool
 
 @typing.type_check_only
-class WritableCgroups(typing_extensions.TypedDict, total=False):
+class WritableCgroups(typing.TypedDict, total=False):
     enabled: bool

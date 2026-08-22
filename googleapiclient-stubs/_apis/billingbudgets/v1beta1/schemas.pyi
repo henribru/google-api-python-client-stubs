@@ -1,13 +1,9 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class GoogleCloudBillingBudgetsV1beta1AllUpdatesRule(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudBillingBudgetsV1beta1AllUpdatesRule(typing.TypedDict, total=False):
     disableDefaultIamRecipients: bool
     enableProjectLevelRecipients: bool
     monitoringNotificationChannels: _list[str]
@@ -15,45 +11,41 @@ class GoogleCloudBillingBudgetsV1beta1AllUpdatesRule(
     schemaVersion: str
 
 @typing.type_check_only
-class GoogleCloudBillingBudgetsV1beta1Budget(typing_extensions.TypedDict, total=False):
+class GoogleCloudBillingBudgetsV1beta1Budget(typing.TypedDict, total=False):
     allUpdatesRule: GoogleCloudBillingBudgetsV1beta1AllUpdatesRule
     amount: GoogleCloudBillingBudgetsV1beta1BudgetAmount
     budgetFilter: GoogleCloudBillingBudgetsV1beta1Filter
     displayName: str
     etag: str
     name: str
-    ownershipScope: typing_extensions.Literal[
+    ownershipScope: typing.Literal[
         "OWNERSHIP_SCOPE_UNSPECIFIED", "ALL_USERS", "BILLING_ACCOUNT"
     ]
     thresholdRules: _list[GoogleCloudBillingBudgetsV1beta1ThresholdRule]
 
 @typing.type_check_only
-class GoogleCloudBillingBudgetsV1beta1BudgetAmount(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudBillingBudgetsV1beta1BudgetAmount(typing.TypedDict, total=False):
     lastPeriodAmount: GoogleCloudBillingBudgetsV1beta1LastPeriodAmount
     specifiedAmount: GoogleTypeMoney
 
 @typing.type_check_only
 class GoogleCloudBillingBudgetsV1beta1CreateBudgetRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     budget: GoogleCloudBillingBudgetsV1beta1Budget
 
 @typing.type_check_only
-class GoogleCloudBillingBudgetsV1beta1CustomPeriod(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudBillingBudgetsV1beta1CustomPeriod(typing.TypedDict, total=False):
     endDate: GoogleTypeDate
     startDate: GoogleTypeDate
 
 @typing.type_check_only
-class GoogleCloudBillingBudgetsV1beta1Filter(typing_extensions.TypedDict, total=False):
-    calendarPeriod: typing_extensions.Literal[
+class GoogleCloudBillingBudgetsV1beta1Filter(typing.TypedDict, total=False):
+    calendarPeriod: typing.Literal[
         "CALENDAR_PERIOD_UNSPECIFIED", "MONTH", "QUARTER", "YEAR"
     ]
     creditTypes: _list[str]
-    creditTypesTreatment: typing_extensions.Literal[
+    creditTypesTreatment: typing.Literal[
         "CREDIT_TYPES_TREATMENT_UNSPECIFIED",
         "INCLUDE_ALL_CREDITS",
         "EXCLUDE_ALL_CREDITS",
@@ -68,43 +60,39 @@ class GoogleCloudBillingBudgetsV1beta1Filter(typing_extensions.TypedDict, total=
 
 @typing.type_check_only
 class GoogleCloudBillingBudgetsV1beta1LastPeriodAmount(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
 class GoogleCloudBillingBudgetsV1beta1ListBudgetsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     budgets: _list[GoogleCloudBillingBudgetsV1beta1Budget]
     nextPageToken: str
 
 @typing.type_check_only
-class GoogleCloudBillingBudgetsV1beta1ThresholdRule(
-    typing_extensions.TypedDict, total=False
-):
-    spendBasis: typing_extensions.Literal[
-        "BASIS_UNSPECIFIED", "CURRENT_SPEND", "FORECASTED_SPEND"
-    ]
+class GoogleCloudBillingBudgetsV1beta1ThresholdRule(typing.TypedDict, total=False):
+    spendBasis: typing.Literal["BASIS_UNSPECIFIED", "CURRENT_SPEND", "FORECASTED_SPEND"]
     thresholdPercent: float
 
 @typing.type_check_only
 class GoogleCloudBillingBudgetsV1beta1UpdateBudgetRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     budget: GoogleCloudBillingBudgetsV1beta1Budget
     updateMask: str
 
 @typing.type_check_only
-class GoogleProtobufEmpty(typing_extensions.TypedDict, total=False): ...
+class GoogleProtobufEmpty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class GoogleTypeDate(typing_extensions.TypedDict, total=False):
+class GoogleTypeDate(typing.TypedDict, total=False):
     day: int
     month: int
     year: int
 
 @typing.type_check_only
-class GoogleTypeMoney(typing_extensions.TypedDict, total=False):
+class GoogleTypeMoney(typing.TypedDict, total=False):
     currencyCode: str
     nanos: int
     units: str

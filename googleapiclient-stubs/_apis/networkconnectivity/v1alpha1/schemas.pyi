@@ -1,12 +1,10 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class AllocationOptions(typing_extensions.TypedDict, total=False):
-    allocationStrategy: typing_extensions.Literal[
+class AllocationOptions(typing.TypedDict, total=False):
+    allocationStrategy: typing.Literal[
         "ALLOCATION_STRATEGY_UNSPECIFIED",
         "RANDOM",
         "FIRST_AVAILABLE",
@@ -16,46 +14,44 @@ class AllocationOptions(typing_extensions.TypedDict, total=False):
     firstAvailableRangesLookupSize: int
 
 @typing.type_check_only
-class AuditConfig(typing_extensions.TypedDict, total=False):
+class AuditConfig(typing.TypedDict, total=False):
     auditLogConfigs: _list[AuditLogConfig]
     service: str
 
 @typing.type_check_only
-class AuditLogConfig(typing_extensions.TypedDict, total=False):
+class AuditLogConfig(typing.TypedDict, total=False):
     exemptedMembers: _list[str]
-    logType: typing_extensions.Literal[
+    logType: typing.Literal[
         "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
     ]
 
 @typing.type_check_only
-class Binding(typing_extensions.TypedDict, total=False):
+class Binding(typing.TypedDict, total=False):
     condition: Expr
     members: _list[str]
     role: str
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Expr(typing_extensions.TypedDict, total=False):
+class Expr(typing.TypedDict, total=False):
     description: str
     expression: str
     location: str
     title: str
 
 @typing.type_check_only
-class GoogleLongrunningCancelOperationRequest(
-    typing_extensions.TypedDict, total=False
-): ...
+class GoogleLongrunningCancelOperationRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class GoogleLongrunningListOperationsResponse(typing_extensions.TypedDict, total=False):
+class GoogleLongrunningListOperationsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     operations: _list[GoogleLongrunningOperation]
     unreachable: _list[str]
 
 @typing.type_check_only
-class GoogleLongrunningOperation(typing_extensions.TypedDict, total=False):
+class GoogleLongrunningOperation(typing.TypedDict, total=False):
     done: bool
     error: GoogleRpcStatus
     metadata: dict[str, typing.Any]
@@ -63,26 +59,26 @@ class GoogleLongrunningOperation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class GoogleRpcStatus(typing_extensions.TypedDict, total=False):
+class GoogleRpcStatus(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class Hub(typing_extensions.TypedDict, total=False):
+class Hub(typing.TypedDict, total=False):
     createTime: str
     description: str
     labels: dict[str, typing.Any]
     name: str
     spokes: _list[str]
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "DELETING", "UPDATING", "FAILED"
     ]
     uniqueId: str
     updateTime: str
 
 @typing.type_check_only
-class InternalRange(typing_extensions.TypedDict, total=False):
+class InternalRange(typing.TypedDict, total=False):
     allocationOptions: AllocationOptions
     createTime: str
     description: str
@@ -94,51 +90,49 @@ class InternalRange(typing_extensions.TypedDict, total=False):
     name: str
     network: str
     overlaps: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "OVERLAP_UNSPECIFIED",
             "OVERLAP_ROUTE_RANGE",
             "OVERLAP_EXISTING_SUBNET_RANGE",
         ]
     ]
-    peering: typing_extensions.Literal[
-        "PEERING_UNSPECIFIED", "FOR_SELF", "FOR_PEER", "NOT_SHARED"
-    ]
+    peering: typing.Literal["PEERING_UNSPECIFIED", "FOR_SELF", "FOR_PEER", "NOT_SHARED"]
     prefixLength: int
-    rangeStatus: typing_extensions.Literal[
-        "RANGE_STATUS_UNSPECIFIED", "ACTIVE", "OBSOLETE"
+    rangeStatus: typing.Literal[
+        "RANGE_STATUS_UNSPECIFIED", "ACTIVE", "OBSOLETE", "CREATING", "DELETING"
     ]
     targetCidrRange: _list[str]
     updateTime: str
-    usage: typing_extensions.Literal[
+    usage: typing.Literal[
         "USAGE_UNSPECIFIED", "FOR_VPC", "EXTERNAL_TO_VPC", "FOR_MIGRATION"
     ]
     users: _list[str]
 
 @typing.type_check_only
-class ListHubsResponse(typing_extensions.TypedDict, total=False):
+class ListHubsResponse(typing.TypedDict, total=False):
     hubs: _list[Hub]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListInternalRangesResponse(typing_extensions.TypedDict, total=False):
+class ListInternalRangesResponse(typing.TypedDict, total=False):
     internalRanges: _list[InternalRange]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListLocationsResponse(typing_extensions.TypedDict, total=False):
+class ListLocationsResponse(typing.TypedDict, total=False):
     locations: _list[Location]
     nextPageToken: str
 
 @typing.type_check_only
-class ListSpokesResponse(typing_extensions.TypedDict, total=False):
+class ListSpokesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     spokes: _list[Spoke]
     unreachable: _list[str]
 
 @typing.type_check_only
-class Location(typing_extensions.TypedDict, total=False):
+class Location(typing.TypedDict, total=False):
     displayName: str
     labels: dict[str, typing.Any]
     locationId: str
@@ -146,12 +140,12 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class Migration(typing_extensions.TypedDict, total=False):
+class Migration(typing.TypedDict, total=False):
     source: str
     target: str
 
 @typing.type_check_only
-class OperationMetadata(typing_extensions.TypedDict, total=False):
+class OperationMetadata(typing.TypedDict, total=False):
     apiVersion: str
     createTime: str
     endTime: str
@@ -161,25 +155,25 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
-class Policy(typing_extensions.TypedDict, total=False):
+class Policy(typing.TypedDict, total=False):
     auditConfigs: _list[AuditConfig]
     bindings: _list[Binding]
     etag: str
     version: int
 
 @typing.type_check_only
-class RouterApplianceInstance(typing_extensions.TypedDict, total=False):
+class RouterApplianceInstance(typing.TypedDict, total=False):
     ipAddress: str
     networkInterface: str
     virtualMachine: str
 
 @typing.type_check_only
-class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
+class SetIamPolicyRequest(typing.TypedDict, total=False):
     policy: Policy
     updateMask: str
 
 @typing.type_check_only
-class Spoke(typing_extensions.TypedDict, total=False):
+class Spoke(typing.TypedDict, total=False):
     createTime: str
     description: str
     hub: str
@@ -188,16 +182,16 @@ class Spoke(typing_extensions.TypedDict, total=False):
     linkedRouterApplianceInstances: _list[RouterApplianceInstance]
     linkedVpnTunnels: _list[str]
     name: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "DELETING", "UPDATING", "FAILED"
     ]
     uniqueId: str
     updateTime: str
 
 @typing.type_check_only
-class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
+class TestIamPermissionsRequest(typing.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
-class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
+class TestIamPermissionsResponse(typing.TypedDict, total=False):
     permissions: _list[str]

@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -376,6 +375,16 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                 def revisions(self) -> RevisionsResource: ...
 
             @typing.type_check_only
+            class SourceUploadsResource(googleapiclient.discovery.Resource):
+                def upload(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleCloudRunV2UploadSourceRequest,
+                    **kwargs: typing.Any,
+                ) -> GoogleCloudRunV2UploadSourceResponseHttpRequest: ...
+
+            @typing.type_check_only
             class WorkerPoolsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class RevisionsResource(googleapiclient.discovery.Resource):
@@ -494,6 +503,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
             def jobs(self) -> JobsResource: ...
             def operations(self) -> OperationsResource: ...
             def services(self) -> ServicesResource: ...
+            def sourceUploads(self) -> SourceUploadsResource: ...
             def workerPools(self) -> WorkerPoolsResource: ...
 
         def locations(self) -> LocationsResource: ...
@@ -655,6 +665,14 @@ class GoogleCloudRunV2TaskHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudRunV2Task: ...
+
+@typing.type_check_only
+class GoogleCloudRunV2UploadSourceResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudRunV2UploadSourceResponse: ...
 
 @typing.type_check_only
 class GoogleCloudRunV2WorkerPoolHttpRequest(googleapiclient.http.HttpRequest):

@@ -1,17 +1,13 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class Account(typing_extensions.TypedDict, total=False):
+class Account(typing.TypedDict, total=False):
     accountPermissionIds: _list[str]
-    accountProfile: typing_extensions.Literal[
-        "ACCOUNT_PROFILE_BASIC", "ACCOUNT_PROFILE_STANDARD"
-    ]
+    accountProfile: typing.Literal["ACCOUNT_PROFILE_BASIC", "ACCOUNT_PROFILE_STANDARD"]
     active: bool
-    activeAdsLimitTier: typing_extensions.Literal[
+    activeAdsLimitTier: typing.Literal[
         "ACTIVE_ADS_TIER_40K",
         "ACTIVE_ADS_TIER_75K",
         "ACTIVE_ADS_TIER_100K",
@@ -38,10 +34,10 @@ class Account(typing_extensions.TypedDict, total=False):
     teaserSizeLimit: str
 
 @typing.type_check_only
-class AccountActiveAdSummary(typing_extensions.TypedDict, total=False):
+class AccountActiveAdSummary(typing.TypedDict, total=False):
     accountId: str
     activeAds: str
-    activeAdsLimitTier: typing_extensions.Literal[
+    activeAdsLimitTier: typing.Literal[
         "ACTIVE_ADS_TIER_40K",
         "ACTIVE_ADS_TIER_75K",
         "ACTIVE_ADS_TIER_100K",
@@ -55,34 +51,34 @@ class AccountActiveAdSummary(typing_extensions.TypedDict, total=False):
     kind: str
 
 @typing.type_check_only
-class AccountPermission(typing_extensions.TypedDict, total=False):
+class AccountPermission(typing.TypedDict, total=False):
     accountProfiles: _list[
-        typing_extensions.Literal["ACCOUNT_PROFILE_BASIC", "ACCOUNT_PROFILE_STANDARD"]
+        typing.Literal["ACCOUNT_PROFILE_BASIC", "ACCOUNT_PROFILE_STANDARD"]
     ]
     id: str
     kind: str
-    level: typing_extensions.Literal["USER", "ADMINISTRATOR"]
+    level: typing.Literal["USER", "ADMINISTRATOR"]
     name: str
     permissionGroupId: str
 
 @typing.type_check_only
-class AccountPermissionGroup(typing_extensions.TypedDict, total=False):
+class AccountPermissionGroup(typing.TypedDict, total=False):
     id: str
     kind: str
     name: str
 
 @typing.type_check_only
-class AccountPermissionGroupsListResponse(typing_extensions.TypedDict, total=False):
+class AccountPermissionGroupsListResponse(typing.TypedDict, total=False):
     accountPermissionGroups: _list[AccountPermissionGroup]
     kind: str
 
 @typing.type_check_only
-class AccountPermissionsListResponse(typing_extensions.TypedDict, total=False):
+class AccountPermissionsListResponse(typing.TypedDict, total=False):
     accountPermissions: _list[AccountPermission]
     kind: str
 
 @typing.type_check_only
-class AccountUserProfile(typing_extensions.TypedDict, total=False):
+class AccountUserProfile(typing.TypedDict, total=False):
     accountId: str
     active: bool
     advertiserFilter: ObjectFilter
@@ -95,35 +91,35 @@ class AccountUserProfile(typing_extensions.TypedDict, total=False):
     name: str
     siteFilter: ObjectFilter
     subaccountId: str
-    traffickerType: typing_extensions.Literal[
+    traffickerType: typing.Literal[
         "INTERNAL_NON_TRAFFICKER", "INTERNAL_TRAFFICKER", "EXTERNAL_TRAFFICKER"
     ]
-    userAccessType: typing_extensions.Literal[
+    userAccessType: typing.Literal[
         "NORMAL_USER", "SUPER_USER", "INTERNAL_ADMINISTRATOR", "READ_ONLY_SUPER_USER"
     ]
     userRoleFilter: ObjectFilter
     userRoleId: str
 
 @typing.type_check_only
-class AccountUserProfilesListResponse(typing_extensions.TypedDict, total=False):
+class AccountUserProfilesListResponse(typing.TypedDict, total=False):
     accountUserProfiles: _list[AccountUserProfile]
     kind: str
     nextPageToken: str
 
 @typing.type_check_only
-class AccountsListResponse(typing_extensions.TypedDict, total=False):
+class AccountsListResponse(typing.TypedDict, total=False):
     accounts: _list[Account]
     kind: str
     nextPageToken: str
 
 @typing.type_check_only
-class Activities(typing_extensions.TypedDict, total=False):
+class Activities(typing.TypedDict, total=False):
     filters: _list[DimensionValue]
     kind: str
     metricNames: _list[str]
 
 @typing.type_check_only
-class Ad(typing_extensions.TypedDict, total=False):
+class Ad(typing.TypedDict, total=False):
     accountId: str
     active: bool
     advertiserId: str
@@ -135,7 +131,7 @@ class Ad(typing_extensions.TypedDict, total=False):
     clickThroughUrl: ClickThroughUrl
     clickThroughUrlSuffixProperties: ClickThroughUrlSuffixProperties
     comments: str
-    compatibility: typing_extensions.Literal[
+    compatibility: typing.Literal[
         "DISPLAY",
         "DISPLAY_INTERSTITIAL",
         "APP",
@@ -170,7 +166,7 @@ class Ad(typing_extensions.TypedDict, total=False):
     subaccountId: str
     targetingTemplateId: str
     technologyTargeting: TechnologyTargeting
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "AD_SERVING_STANDARD_AD",
         "AD_SERVING_DEFAULT_AD",
         "AD_SERVING_CLICK_TRACKER",
@@ -179,23 +175,23 @@ class Ad(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class AdBlockingConfiguration(typing_extensions.TypedDict, total=False):
+class AdBlockingConfiguration(typing.TypedDict, total=False):
     enabled: bool
 
 @typing.type_check_only
-class AdsListResponse(typing_extensions.TypedDict, total=False):
+class AdsListResponse(typing.TypedDict, total=False):
     ads: _list[Ad]
     kind: str
     nextPageToken: str
 
 @typing.type_check_only
-class Advertiser(typing_extensions.TypedDict, total=False):
+class Advertiser(typing.TypedDict, total=False):
     accountId: str
     advertiserGroupId: str
     clickThroughUrlSuffix: str
     defaultClickThroughEventTagId: str
     defaultEmail: str
-    euPoliticalAdsDeclaration: typing_extensions.Literal[
+    euPoliticalAdsDeclaration: typing.Literal[
         "ADVERTISER_PLANS_TO_SERVE_EU_POLITICAL_ADS",
         "ADVERTISER_DOES_NOT_PLAN_TO_SERVE_EU_POLITICAL_ADS",
     ]
@@ -207,55 +203,55 @@ class Advertiser(typing_extensions.TypedDict, total=False):
     measurementPartnerLink: MeasurementPartnerAdvertiserLink
     name: str
     originalFloodlightConfigurationId: str
-    status: typing_extensions.Literal["APPROVED", "ON_HOLD"]
+    status: typing.Literal["APPROVED", "ON_HOLD"]
     subaccountId: str
     suspended: bool
 
 @typing.type_check_only
-class AdvertiserGroup(typing_extensions.TypedDict, total=False):
+class AdvertiserGroup(typing.TypedDict, total=False):
     accountId: str
     id: str
     kind: str
     name: str
 
 @typing.type_check_only
-class AdvertiserGroupsListResponse(typing_extensions.TypedDict, total=False):
+class AdvertiserGroupsListResponse(typing.TypedDict, total=False):
     advertiserGroups: _list[AdvertiserGroup]
     kind: str
     nextPageToken: str
 
 @typing.type_check_only
-class AdvertiserInvoicesListResponse(typing_extensions.TypedDict, total=False):
+class AdvertiserInvoicesListResponse(typing.TypedDict, total=False):
     invoices: _list[Invoice]
     kind: str
     nextPageToken: str
 
 @typing.type_check_only
-class AdvertiserLandingPagesListResponse(typing_extensions.TypedDict, total=False):
+class AdvertiserLandingPagesListResponse(typing.TypedDict, total=False):
     kind: str
     landingPages: _list[LandingPage]
     nextPageToken: str
 
 @typing.type_check_only
-class AdvertisersListResponse(typing_extensions.TypedDict, total=False):
+class AdvertisersListResponse(typing.TypedDict, total=False):
     advertisers: _list[Advertiser]
     kind: str
     nextPageToken: str
 
 @typing.type_check_only
-class AudienceSegment(typing_extensions.TypedDict, total=False):
+class AudienceSegment(typing.TypedDict, total=False):
     allocation: int
     id: str
     name: str
 
 @typing.type_check_only
-class AudienceSegmentGroup(typing_extensions.TypedDict, total=False):
+class AudienceSegmentGroup(typing.TypedDict, total=False):
     audienceSegments: _list[AudienceSegment]
     id: str
     name: str
 
 @typing.type_check_only
-class BillingAssignment(typing_extensions.TypedDict, total=False):
+class BillingAssignment(typing.TypedDict, total=False):
     accountId: str
     advertiserId: str
     campaignId: str
@@ -263,19 +259,17 @@ class BillingAssignment(typing_extensions.TypedDict, total=False):
     subaccountId: str
 
 @typing.type_check_only
-class BillingAssignmentsListResponse(typing_extensions.TypedDict, total=False):
+class BillingAssignmentsListResponse(typing.TypedDict, total=False):
     billingAssignments: _list[BillingAssignment]
     kind: str
 
 @typing.type_check_only
-class BillingProfile(typing_extensions.TypedDict, total=False):
+class BillingProfile(typing.TypedDict, total=False):
     consolidatedInvoice: bool
     countryCode: str
     currencyCode: str
     id: str
-    invoiceLevel: typing_extensions.Literal[
-        "ACCOUNT_LEVEL", "ADVERTISER_LEVEL", "CAMPAIGN_LEVEL"
-    ]
+    invoiceLevel: typing.Literal["ACCOUNT_LEVEL", "ADVERTISER_LEVEL", "CAMPAIGN_LEVEL"]
     isDefault: bool
     kind: str
     name: str
@@ -283,16 +277,16 @@ class BillingProfile(typing_extensions.TypedDict, total=False):
     paymentsCustomerId: str
     purchaseOrder: str
     secondaryPaymentsCustomerId: str
-    status: typing_extensions.Literal["UNDER_REVIEW", "ACTIVE", "ARCHIVED"]
+    status: typing.Literal["UNDER_REVIEW", "ACTIVE", "ARCHIVED"]
 
 @typing.type_check_only
-class BillingProfilesListResponse(typing_extensions.TypedDict, total=False):
+class BillingProfilesListResponse(typing.TypedDict, total=False):
     billingProfiles: _list[BillingProfile]
     kind: str
     nextPageToken: str
 
 @typing.type_check_only
-class BillingRate(typing_extensions.TypedDict, total=False):
+class BillingRate(typing.TypedDict, total=False):
     currencyCode: str
     endDate: str
     id: str
@@ -300,7 +294,7 @@ class BillingRate(typing_extensions.TypedDict, total=False):
     rateInMicros: str
     startDate: str
     tieredRates: _list[BillingRateTieredRate]
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "AD_SERVING",
         "CLICKS",
         "MINIMUM_SERVICE",
@@ -334,22 +328,22 @@ class BillingRate(typing_extensions.TypedDict, total=False):
         "AUDIO_AD_SERVING",
         "ADVANCED_DISPLAY_AD_SERVING",
     ]
-    unitOfMeasure: typing_extensions.Literal["CPM", "CPC", "EA", "P2C"]
+    unitOfMeasure: typing.Literal["CPM", "CPC", "EA", "P2C"]
 
 @typing.type_check_only
-class BillingRateTieredRate(typing_extensions.TypedDict, total=False):
+class BillingRateTieredRate(typing.TypedDict, total=False):
     highValue: str
     lowValue: str
     rateInMicros: str
 
 @typing.type_check_only
-class BillingRatesListResponse(typing_extensions.TypedDict, total=False):
+class BillingRatesListResponse(typing.TypedDict, total=False):
     billingRates: _list[BillingRate]
     kind: str
     nextPageToken: str
 
 @typing.type_check_only
-class Browser(typing_extensions.TypedDict, total=False):
+class Browser(typing.TypedDict, total=False):
     browserVersionId: str
     dartId: str
     kind: str
@@ -358,12 +352,12 @@ class Browser(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class BrowsersListResponse(typing_extensions.TypedDict, total=False):
+class BrowsersListResponse(typing.TypedDict, total=False):
     browsers: _list[Browser]
     kind: str
 
 @typing.type_check_only
-class Campaign(typing_extensions.TypedDict, total=False):
+class Campaign(typing.TypedDict, total=False):
     accountId: str
     adBlockingConfiguration: AdBlockingConfiguration
     additionalCreativeOptimizationConfigurations: _list[
@@ -383,7 +377,7 @@ class Campaign(typing_extensions.TypedDict, total=False):
     defaultClickThroughEventTagProperties: DefaultClickThroughEventTagProperties
     defaultLandingPageId: str
     endDate: str
-    euPoliticalAdsDeclaration: typing_extensions.Literal[
+    euPoliticalAdsDeclaration: typing.Literal[
         "CONTAINS_EU_POLITICAL_ADS", "DOES_NOT_CONTAIN_EU_POLITICAL_ADS"
     ]
     eventTagOverrides: _list[EventTagOverride]
@@ -398,20 +392,18 @@ class Campaign(typing_extensions.TypedDict, total=False):
     subaccountId: str
 
 @typing.type_check_only
-class CampaignCreativeAssociation(typing_extensions.TypedDict, total=False):
+class CampaignCreativeAssociation(typing.TypedDict, total=False):
     creativeId: str
     kind: str
 
 @typing.type_check_only
-class CampaignCreativeAssociationsListResponse(
-    typing_extensions.TypedDict, total=False
-):
+class CampaignCreativeAssociationsListResponse(typing.TypedDict, total=False):
     campaignCreativeAssociations: _list[CampaignCreativeAssociation]
     kind: str
     nextPageToken: str
 
 @typing.type_check_only
-class CampaignSummary(typing_extensions.TypedDict, total=False):
+class CampaignSummary(typing.TypedDict, total=False):
     billingInvoiceCode: str
     campaignId: str
     preTaxAmountMicros: str
@@ -419,26 +411,26 @@ class CampaignSummary(typing_extensions.TypedDict, total=False):
     totalAmountMicros: str
 
 @typing.type_check_only
-class CampaignsListResponse(typing_extensions.TypedDict, total=False):
+class CampaignsListResponse(typing.TypedDict, total=False):
     campaigns: _list[Campaign]
     kind: str
     nextPageToken: str
 
 @typing.type_check_only
-class CartData(typing_extensions.TypedDict, total=False):
+class CartData(typing.TypedDict, total=False):
     items: _list[CartDataItem]
     merchantFeedLabel: str
     merchantFeedLanguage: str
     merchantId: str
 
 @typing.type_check_only
-class CartDataItem(typing_extensions.TypedDict, total=False):
+class CartDataItem(typing.TypedDict, total=False):
     itemId: str
     quantity: int
     unitPrice: float
 
 @typing.type_check_only
-class ChangeLog(typing_extensions.TypedDict, total=False):
+class ChangeLog(typing.TypedDict, total=False):
     accountId: str
     action: str
     changeTime: str
@@ -455,18 +447,18 @@ class ChangeLog(typing_extensions.TypedDict, total=False):
     userProfileName: str
 
 @typing.type_check_only
-class ChangeLogsListResponse(typing_extensions.TypedDict, total=False):
+class ChangeLogsListResponse(typing.TypedDict, total=False):
     changeLogs: _list[ChangeLog]
     kind: str
     nextPageToken: str
 
 @typing.type_check_only
-class CitiesListResponse(typing_extensions.TypedDict, total=False):
+class CitiesListResponse(typing.TypedDict, total=False):
     cities: _list[City]
     kind: str
 
 @typing.type_check_only
-class City(typing_extensions.TypedDict, total=False):
+class City(typing.TypedDict, total=False):
     countryCode: str
     countryDartId: str
     dartId: str
@@ -478,37 +470,42 @@ class City(typing_extensions.TypedDict, total=False):
     regionDartId: str
 
 @typing.type_check_only
-class ClickTag(typing_extensions.TypedDict, total=False):
+class ClickTag(typing.TypedDict, total=False):
     clickThroughUrl: CreativeClickThroughUrl
     eventName: str
     name: str
 
 @typing.type_check_only
-class ClickThroughUrl(typing_extensions.TypedDict, total=False):
+class ClickThroughUrl(typing.TypedDict, total=False):
     computedClickThroughUrl: str
     customClickThroughUrl: str
     defaultLandingPage: bool
     landingPageId: str
 
 @typing.type_check_only
-class ClickThroughUrlSuffixProperties(typing_extensions.TypedDict, total=False):
+class ClickThroughUrlSuffixProperties(typing.TypedDict, total=False):
     clickThroughUrlSuffix: str
     overrideInheritedSuffix: bool
 
 @typing.type_check_only
-class CompanionClickThroughOverride(typing_extensions.TypedDict, total=False):
+class ColumnHeader(typing.TypedDict, total=False):
+    name: str
+    type: typing.Literal["COLUMN_TYPE_UNSPECIFIED", "DIMENSION", "METRIC"]
+
+@typing.type_check_only
+class CompanionClickThroughOverride(typing.TypedDict, total=False):
     clickThroughUrl: ClickThroughUrl
     creativeId: str
 
 @typing.type_check_only
-class CompanionSetting(typing_extensions.TypedDict, total=False):
+class CompanionSetting(typing.TypedDict, total=False):
     companionsDisabled: bool
     enabledSizes: _list[Size]
     imageOnly: bool
     kind: str
 
 @typing.type_check_only
-class CompatibleFields(typing_extensions.TypedDict, total=False):
+class CompatibleFields(typing.TypedDict, total=False):
     crossDimensionReachReportCompatibleFields: CrossDimensionReachReportCompatibleFields
     crossMediaReachReportCompatibleFields: CrossMediaReachReportCompatibleFields
     floodlightReportCompatibleFields: FloodlightReportCompatibleFields
@@ -518,60 +515,60 @@ class CompatibleFields(typing_extensions.TypedDict, total=False):
     reportCompatibleFields: ReportCompatibleFields
 
 @typing.type_check_only
-class ConnectionType(typing_extensions.TypedDict, total=False):
+class ConnectionType(typing.TypedDict, total=False):
     id: str
     kind: str
     name: str
 
 @typing.type_check_only
-class ConnectionTypesListResponse(typing_extensions.TypedDict, total=False):
+class ConnectionTypesListResponse(typing.TypedDict, total=False):
     connectionTypes: _list[ConnectionType]
     kind: str
 
 @typing.type_check_only
-class ContentCategoriesListResponse(typing_extensions.TypedDict, total=False):
+class ContentCategoriesListResponse(typing.TypedDict, total=False):
     contentCategories: _list[ContentCategory]
     kind: str
     nextPageToken: str
 
 @typing.type_check_only
-class ContentCategory(typing_extensions.TypedDict, total=False):
+class ContentCategory(typing.TypedDict, total=False):
     accountId: str
     id: str
     kind: str
     name: str
 
 @typing.type_check_only
-class ContentSource(typing_extensions.TypedDict, total=False):
+class ContentSource(typing.TypedDict, total=False):
     contentSourceName: str
     createInfo: LastModifiedInfo
     lastModifiedInfo: LastModifiedInfo
     metaData: ContentSourceMetaData
     resourceLink: str
-    resourceType: typing_extensions.Literal[
+    resourceType: typing.Literal[
         "RESOURCE_TYPE_UNSPECIFIED",
         "RESOURCE_TYPE_GOOGLE_SPREADSHEET",
         "RESOURCE_TYPE_REMOTE_FILE",
     ]
 
 @typing.type_check_only
-class ContentSourceMetaData(typing_extensions.TypedDict, total=False):
+class ContentSourceMetaData(typing.TypedDict, total=False):
     charset: str
     fieldNames: _list[str]
     rowNumber: int
     separator: str
 
 @typing.type_check_only
-class ContextualKeyword(typing_extensions.TypedDict, total=False):
+class ContextualKeyword(typing.TypedDict, total=False):
     keyword: str
 
 @typing.type_check_only
-class ContextualKeywordTargeting(typing_extensions.TypedDict, total=False):
+class ContextualKeywordTargeting(typing.TypedDict, total=False):
     keywords: _list[ContextualKeyword]
 
 @typing.type_check_only
-class Conversion(typing_extensions.TypedDict, total=False):
-    adUserDataConsent: typing_extensions.Literal["GRANTED", "DENIED"]
+class Conversion(typing.TypedDict, total=False):
+    adUserDataConsent: typing.Literal["GRANTED", "DENIED"]
     cartData: CartData
     childDirectedTreatment: bool
     customVariables: _list[CustomFloodlightVariable]
@@ -596,57 +593,57 @@ class Conversion(typing_extensions.TypedDict, total=False):
     value: float
 
 @typing.type_check_only
-class ConversionError(typing_extensions.TypedDict, total=False):
-    code: typing_extensions.Literal[
+class ConversionError(typing.TypedDict, total=False):
+    code: typing.Literal[
         "INVALID_ARGUMENT", "INTERNAL", "PERMISSION_DENIED", "NOT_FOUND"
     ]
     kind: str
     message: str
 
 @typing.type_check_only
-class ConversionStatus(typing_extensions.TypedDict, total=False):
+class ConversionStatus(typing.TypedDict, total=False):
     conversion: Conversion
     errors: _list[ConversionError]
     kind: str
 
 @typing.type_check_only
-class ConversionsBatchInsertRequest(typing_extensions.TypedDict, total=False):
+class ConversionsBatchInsertRequest(typing.TypedDict, total=False):
     conversions: _list[Conversion]
     encryptionInfo: EncryptionInfo
     kind: str
 
 @typing.type_check_only
-class ConversionsBatchInsertResponse(typing_extensions.TypedDict, total=False):
+class ConversionsBatchInsertResponse(typing.TypedDict, total=False):
     hasFailures: bool
     kind: str
     status: _list[ConversionStatus]
 
 @typing.type_check_only
-class ConversionsBatchUpdateRequest(typing_extensions.TypedDict, total=False):
+class ConversionsBatchUpdateRequest(typing.TypedDict, total=False):
     conversions: _list[Conversion]
     encryptionInfo: EncryptionInfo
     kind: str
 
 @typing.type_check_only
-class ConversionsBatchUpdateResponse(typing_extensions.TypedDict, total=False):
+class ConversionsBatchUpdateResponse(typing.TypedDict, total=False):
     hasFailures: bool
     kind: str
     status: _list[ConversionStatus]
 
 @typing.type_check_only
-class CountriesListResponse(typing_extensions.TypedDict, total=False):
+class CountriesListResponse(typing.TypedDict, total=False):
     countries: _list[Country]
     kind: str
 
 @typing.type_check_only
-class Country(typing_extensions.TypedDict, total=False):
+class Country(typing.TypedDict, total=False):
     countryCode: str
     dartId: str
     kind: str
     name: str
     sslEnabled: bool
     tvDataProviders: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "INVALID_TV_DATA_PROVIDER",
             "INTAGE_JP",
             "IBOPE_AR",
@@ -661,7 +658,7 @@ class Country(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class Creative(typing_extensions.TypedDict, total=False):
+class Creative(typing.TypedDict, total=False):
     accountId: str
     active: bool
     adParameters: str
@@ -670,13 +667,13 @@ class Creative(typing_extensions.TypedDict, total=False):
     advertiserId: str
     allowScriptAccess: bool
     archived: bool
-    artworkType: typing_extensions.Literal[
+    artworkType: typing.Literal[
         "ARTWORK_TYPE_FLASH",
         "ARTWORK_TYPE_HTML5",
         "ARTWORK_TYPE_MIXED",
         "ARTWORK_TYPE_IMAGE",
     ]
-    authoringSource: typing_extensions.Literal[
+    authoringSource: typing.Literal[
         "CREATIVE_AUTHORING_SOURCE_DCM",
         "CREATIVE_AUTHORING_SOURCE_DBM",
         "CREATIVE_AUTHORING_SOURCE_STUDIO",
@@ -689,12 +686,12 @@ class Creative(typing_extensions.TypedDict, total=False):
         "CREATIVE_AUTHORING_SOURCE_BORNLOGIC",
         "CREATIVE_AUTHORING_SOURCE_BEGEN_AI",
     ]
-    authoringTool: typing_extensions.Literal["NINJA", "SWIFFY"]
+    authoringTool: typing.Literal["NINJA", "SWIFFY"]
     autoAdvanceImages: bool
     backgroundColor: str
     backupImageClickThroughUrl: CreativeClickThroughUrl
     backupImageFeatures: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "CSS_FONT_FACE",
             "CSS_BACKGROUND_SIZE",
             "CSS_BORDER_IMAGE",
@@ -769,7 +766,7 @@ class Creative(typing_extensions.TypedDict, total=False):
     commercialId: str
     companionCreatives: _list[str]
     compatibility: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "DISPLAY",
             "DISPLAY_INTERSTITIAL",
             "APP",
@@ -812,12 +809,17 @@ class Creative(typing_extensions.TypedDict, total=False):
     studioCreativeId: str
     studioTraffickedCreativeId: str
     subaccountId: str
+    syntheticContentAttestationStatus: typing.Literal[
+        "SYNTHETIC_CONTENT_ATTESTATION_STATUS_UNSPECIFIED",
+        "IS_SYNTHETIC",
+        "NOT_SYNTHETIC",
+    ]
     thirdPartyBackupImageImpressionsUrl: str
     thirdPartyRichMediaImpressionsUrl: str
     thirdPartyUrls: _list[ThirdPartyTrackingUrl]
     timerCustomEvents: _list[CreativeCustomEvent]
     totalFileSize: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "IMAGE",
         "DISPLAY_REDIRECT",
         "CUSTOM_DISPLAY",
@@ -848,14 +850,14 @@ class Creative(typing_extensions.TypedDict, total=False):
     version: int
 
 @typing.type_check_only
-class CreativeAsset(typing_extensions.TypedDict, total=False):
+class CreativeAsset(typing.TypedDict, total=False):
     actionScript3: bool
     active: bool
     additionalSizes: _list[Size]
-    alignment: typing_extensions.Literal[
+    alignment: typing.Literal[
         "ALIGNMENT_TOP", "ALIGNMENT_RIGHT", "ALIGNMENT_BOTTOM", "ALIGNMENT_LEFT"
     ]
-    artworkType: typing_extensions.Literal[
+    artworkType: typing.Literal[
         "ARTWORK_TYPE_FLASH",
         "ARTWORK_TYPE_HTML5",
         "ARTWORK_TYPE_MIXED",
@@ -866,7 +868,7 @@ class CreativeAsset(typing_extensions.TypedDict, total=False):
     audioSampleRate: int
     backupImageExit: CreativeCustomEvent
     bitRate: int
-    childAssetType: typing_extensions.Literal[
+    childAssetType: typing.Literal[
         "CHILD_ASSET_TYPE_FLASH",
         "CHILD_ASSET_TYPE_VIDEO",
         "CHILD_ASSET_TYPE_IMAGE",
@@ -876,7 +878,7 @@ class CreativeAsset(typing_extensions.TypedDict, total=False):
     companionCreativeIds: _list[str]
     customStartTimeValue: int
     detectedFeatures: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "CSS_FONT_FACE",
             "CSS_BACKGROUND_SIZE",
             "CSS_BORDER_IMAGE",
@@ -945,7 +947,7 @@ class CreativeAsset(typing_extensions.TypedDict, total=False):
             "SVG_FE_IMAGE",
         ]
     ]
-    displayType: typing_extensions.Literal[
+    displayType: typing.Literal[
         "ASSET_DISPLAY_TYPE_INPAGE",
         "ASSET_DISPLAY_TYPE_FLOATING",
         "ASSET_DISPLAY_TYPE_OVERLAY",
@@ -958,7 +960,7 @@ class CreativeAsset(typing_extensions.TypedDict, total=False):
         "ASSET_DISPLAY_TYPE_BACKDROP",
     ]
     duration: int
-    durationType: typing_extensions.Literal[
+    durationType: typing.Literal[
         "ASSET_DURATION_TYPE_AUTO",
         "ASSET_DURATION_TYPE_NONE",
         "ASSET_DURATION_TYPE_CUSTOM",
@@ -975,20 +977,20 @@ class CreativeAsset(typing_extensions.TypedDict, total=False):
     mediaDuration: float
     mimeType: str
     offset: OffsetPosition
-    orientation: typing_extensions.Literal["LANDSCAPE", "PORTRAIT", "SQUARE"]
+    orientation: typing.Literal["LANDSCAPE", "PORTRAIT", "SQUARE"]
     originalBackup: bool
     politeLoad: bool
     position: OffsetPosition
-    positionLeftUnit: typing_extensions.Literal[
+    positionLeftUnit: typing.Literal[
         "OFFSET_UNIT_PIXEL", "OFFSET_UNIT_PERCENT", "OFFSET_UNIT_PIXEL_FROM_CENTER"
     ]
-    positionTopUnit: typing_extensions.Literal[
+    positionTopUnit: typing.Literal[
         "OFFSET_UNIT_PIXEL", "OFFSET_UNIT_PERCENT", "OFFSET_UNIT_PIXEL_FROM_CENTER"
     ]
     progressiveServingUrl: str
     pushdown: bool
     pushdownDuration: float
-    role: typing_extensions.Literal[
+    role: typing.Literal[
         "PRIMARY",
         "BACKUP_IMAGE",
         "ADDITIONAL_IMAGE",
@@ -1002,31 +1004,29 @@ class CreativeAsset(typing_extensions.TypedDict, total=False):
     ]
     size: Size
     sslCompliant: bool
-    startTimeType: typing_extensions.Literal[
+    startTimeType: typing.Literal[
         "ASSET_START_TIME_TYPE_NONE", "ASSET_START_TIME_TYPE_CUSTOM"
     ]
     streamingServingUrl: str
     transparency: bool
     verticallyLocked: bool
-    windowMode: typing_extensions.Literal["OPAQUE", "WINDOW", "TRANSPARENT"]
+    windowMode: typing.Literal["OPAQUE", "WINDOW", "TRANSPARENT"]
     zIndex: int
     zipFilename: str
     zipFilesize: str
 
 @typing.type_check_only
-class CreativeAssetId(typing_extensions.TypedDict, total=False):
+class CreativeAssetId(typing.TypedDict, total=False):
     name: str
-    type: typing_extensions.Literal[
-        "IMAGE", "FLASH", "VIDEO", "HTML", "HTML_IMAGE", "AUDIO"
-    ]
+    type: typing.Literal["IMAGE", "FLASH", "VIDEO", "HTML", "HTML_IMAGE", "AUDIO"]
 
 @typing.type_check_only
-class CreativeAssetMetadata(typing_extensions.TypedDict, total=False):
+class CreativeAssetMetadata(typing.TypedDict, total=False):
     assetIdentifier: CreativeAssetId
     clickTags: _list[ClickTag]
     counterCustomEvents: _list[CreativeCustomEvent]
     detectedFeatures: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "CSS_FONT_FACE",
             "CSS_BACKGROUND_SIZE",
             "CSS_BORDER_IMAGE",
@@ -1102,7 +1102,7 @@ class CreativeAssetMetadata(typing_extensions.TypedDict, total=False):
     richMedia: bool
     timerCustomEvents: _list[CreativeCustomEvent]
     warnedValidationRules: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "CLICK_TAG_NON_TOP_LEVEL",
             "CLICK_TAG_MISSING",
             "CLICK_TAG_MORE_THAN_ONE",
@@ -1133,7 +1133,7 @@ class CreativeAssetMetadata(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class CreativeAssignment(typing_extensions.TypedDict, total=False):
+class CreativeAssignment(typing.TypedDict, total=False):
     active: bool
     applyEventTags: bool
     clickThroughUrl: ClickThroughUrl
@@ -1149,20 +1149,20 @@ class CreativeAssignment(typing_extensions.TypedDict, total=False):
     weight: int
 
 @typing.type_check_only
-class CreativeClickThroughUrl(typing_extensions.TypedDict, total=False):
+class CreativeClickThroughUrl(typing.TypedDict, total=False):
     computedClickThroughUrl: str
     customClickThroughUrl: str
     landingPageId: str
 
 @typing.type_check_only
-class CreativeCustomEvent(typing_extensions.TypedDict, total=False):
+class CreativeCustomEvent(typing.TypedDict, total=False):
     advertiserCustomEventId: str
     advertiserCustomEventName: str
-    advertiserCustomEventType: typing_extensions.Literal[
+    advertiserCustomEventType: typing.Literal[
         "ADVERTISER_EVENT_TIMER", "ADVERTISER_EVENT_EXIT", "ADVERTISER_EVENT_COUNTER"
     ]
     artworkLabel: str
-    artworkType: typing_extensions.Literal[
+    artworkType: typing.Literal[
         "ARTWORK_TYPE_FLASH",
         "ARTWORK_TYPE_HTML5",
         "ARTWORK_TYPE_MIXED",
@@ -1171,13 +1171,13 @@ class CreativeCustomEvent(typing_extensions.TypedDict, total=False):
     exitClickThroughUrl: CreativeClickThroughUrl
     id: str
     popupWindowProperties: PopupWindowProperties
-    targetType: typing_extensions.Literal[
+    targetType: typing.Literal[
         "TARGET_BLANK", "TARGET_TOP", "TARGET_SELF", "TARGET_PARENT", "TARGET_POPUP"
     ]
     videoReportingId: str
 
 @typing.type_check_only
-class CreativeField(typing_extensions.TypedDict, total=False):
+class CreativeField(typing.TypedDict, total=False):
     accountId: str
     advertiserId: str
     advertiserIdDimensionValue: DimensionValue
@@ -1187,30 +1187,30 @@ class CreativeField(typing_extensions.TypedDict, total=False):
     subaccountId: str
 
 @typing.type_check_only
-class CreativeFieldAssignment(typing_extensions.TypedDict, total=False):
+class CreativeFieldAssignment(typing.TypedDict, total=False):
     creativeFieldId: str
     creativeFieldValueId: str
 
 @typing.type_check_only
-class CreativeFieldValue(typing_extensions.TypedDict, total=False):
+class CreativeFieldValue(typing.TypedDict, total=False):
     id: str
     kind: str
     value: str
 
 @typing.type_check_only
-class CreativeFieldValuesListResponse(typing_extensions.TypedDict, total=False):
+class CreativeFieldValuesListResponse(typing.TypedDict, total=False):
     creativeFieldValues: _list[CreativeFieldValue]
     kind: str
     nextPageToken: str
 
 @typing.type_check_only
-class CreativeFieldsListResponse(typing_extensions.TypedDict, total=False):
+class CreativeFieldsListResponse(typing.TypedDict, total=False):
     creativeFields: _list[CreativeField]
     kind: str
     nextPageToken: str
 
 @typing.type_check_only
-class CreativeGroup(typing_extensions.TypedDict, total=False):
+class CreativeGroup(typing.TypedDict, total=False):
     accountId: str
     advertiserId: str
     advertiserIdDimensionValue: DimensionValue
@@ -1221,24 +1221,22 @@ class CreativeGroup(typing_extensions.TypedDict, total=False):
     subaccountId: str
 
 @typing.type_check_only
-class CreativeGroupAssignment(typing_extensions.TypedDict, total=False):
+class CreativeGroupAssignment(typing.TypedDict, total=False):
     creativeGroupId: str
-    creativeGroupNumber: typing_extensions.Literal[
-        "CREATIVE_GROUP_ONE", "CREATIVE_GROUP_TWO"
-    ]
+    creativeGroupNumber: typing.Literal["CREATIVE_GROUP_ONE", "CREATIVE_GROUP_TWO"]
 
 @typing.type_check_only
-class CreativeGroupsListResponse(typing_extensions.TypedDict, total=False):
+class CreativeGroupsListResponse(typing.TypedDict, total=False):
     creativeGroups: _list[CreativeGroup]
     kind: str
     nextPageToken: str
 
 @typing.type_check_only
-class CreativeOptimizationConfiguration(typing_extensions.TypedDict, total=False):
+class CreativeOptimizationConfiguration(typing.TypedDict, total=False):
     id: str
     name: str
     optimizationActivitys: _list[OptimizationActivity]
-    optimizationModel: typing_extensions.Literal[
+    optimizationModel: typing.Literal[
         "CLICK",
         "POST_CLICK",
         "POST_IMPRESSION",
@@ -1247,13 +1245,13 @@ class CreativeOptimizationConfiguration(typing_extensions.TypedDict, total=False
     ]
 
 @typing.type_check_only
-class CreativeRotation(typing_extensions.TypedDict, total=False):
+class CreativeRotation(typing.TypedDict, total=False):
     creativeAssignments: _list[CreativeAssignment]
     creativeOptimizationConfigurationId: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "CREATIVE_ROTATION_TYPE_SEQUENTIAL", "CREATIVE_ROTATION_TYPE_RANDOM"
     ]
-    weightCalculationStrategy: typing_extensions.Literal[
+    weightCalculationStrategy: typing.Literal[
         "WEIGHT_STRATEGY_EQUAL",
         "WEIGHT_STRATEGY_CUSTOM",
         "WEIGHT_STRATEGY_HIGHEST_CTR",
@@ -1261,15 +1259,13 @@ class CreativeRotation(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class CreativesListResponse(typing_extensions.TypedDict, total=False):
+class CreativesListResponse(typing.TypedDict, total=False):
     creatives: _list[Creative]
     kind: str
     nextPageToken: str
 
 @typing.type_check_only
-class CrossDimensionReachReportCompatibleFields(
-    typing_extensions.TypedDict, total=False
-):
+class CrossDimensionReachReportCompatibleFields(typing.TypedDict, total=False):
     breakdown: _list[Dimension]
     dimensionFilters: _list[Dimension]
     kind: str
@@ -1277,16 +1273,16 @@ class CrossDimensionReachReportCompatibleFields(
     overlapMetrics: _list[Metric]
 
 @typing.type_check_only
-class CrossMediaReachReportCompatibleFields(typing_extensions.TypedDict, total=False):
+class CrossMediaReachReportCompatibleFields(typing.TypedDict, total=False):
     dimensionFilters: _list[Dimension]
     dimensions: _list[Dimension]
     kind: str
     metrics: _list[Metric]
 
 @typing.type_check_only
-class CustomFloodlightVariable(typing_extensions.TypedDict, total=False):
+class CustomFloodlightVariable(typing.TypedDict, total=False):
     kind: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "U1",
         "U2",
         "U3",
@@ -1391,39 +1387,39 @@ class CustomFloodlightVariable(typing_extensions.TypedDict, total=False):
     value: str
 
 @typing.type_check_only
-class CustomRichMediaEvents(typing_extensions.TypedDict, total=False):
+class CustomRichMediaEvents(typing.TypedDict, total=False):
     filteredEventIds: _list[DimensionValue]
     kind: str
 
 @typing.type_check_only
-class CustomRule(typing_extensions.TypedDict, total=False):
+class CustomRule(typing.TypedDict, total=False):
     name: str
     priority: int
     ruleBlocks: _list[RuleBlock]
 
 @typing.type_check_only
-class CustomValueField(typing_extensions.TypedDict, total=False):
+class CustomValueField(typing.TypedDict, total=False):
     fieldId: int
     requestKey: str
 
 @typing.type_check_only
-class CustomViewabilityMetric(typing_extensions.TypedDict, total=False):
+class CustomViewabilityMetric(typing.TypedDict, total=False):
     configuration: CustomViewabilityMetricConfiguration
     id: str
     name: str
 
 @typing.type_check_only
-class CustomViewabilityMetricConfiguration(typing_extensions.TypedDict, total=False):
+class CustomViewabilityMetricConfiguration(typing.TypedDict, total=False):
     audible: bool
     timeMillis: int
     timePercent: int
     viewabilityPercent: int
 
 @typing.type_check_only
-class DateRange(typing_extensions.TypedDict, total=False):
+class DateRange(typing.TypedDict, total=False):
     endDate: str
     kind: str
-    relativeDateRange: typing_extensions.Literal[
+    relativeDateRange: typing.Literal[
         "TODAY",
         "YESTERDAY",
         "WEEK_TO_DATE",
@@ -1445,9 +1441,9 @@ class DateRange(typing_extensions.TypedDict, total=False):
     startDate: str
 
 @typing.type_check_only
-class DayPartTargeting(typing_extensions.TypedDict, total=False):
+class DayPartTargeting(typing.TypedDict, total=False):
     daysOfWeek: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"
         ]
     ]
@@ -1455,7 +1451,7 @@ class DayPartTargeting(typing_extensions.TypedDict, total=False):
     userLocalTime: bool
 
 @typing.type_check_only
-class DeepLink(typing_extensions.TypedDict, total=False):
+class DeepLink(typing.TypedDict, total=False):
     appUrl: str
     fallbackUrl: str
     kind: str
@@ -1463,16 +1459,16 @@ class DeepLink(typing_extensions.TypedDict, total=False):
     remarketingListIds: _list[str]
 
 @typing.type_check_only
-class DefaultClickThroughEventTagProperties(typing_extensions.TypedDict, total=False):
+class DefaultClickThroughEventTagProperties(typing.TypedDict, total=False):
     defaultClickThroughEventTagId: str
     overrideInheritedEventTag: bool
 
 @typing.type_check_only
-class DeliverySchedule(typing_extensions.TypedDict, total=False):
+class DeliverySchedule(typing.TypedDict, total=False):
     frequencyCap: FrequencyCap
     hardCutoff: bool
     impressionRatio: str
-    priority: typing_extensions.Literal[
+    priority: typing.Literal[
         "AD_PRIORITY_01",
         "AD_PRIORITY_02",
         "AD_PRIORITY_03",
@@ -1492,21 +1488,19 @@ class DeliverySchedule(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class DependentFieldValue(typing_extensions.TypedDict, total=False):
+class DependentFieldValue(typing.TypedDict, total=False):
     dynamicFeedId: str
     elementId: str
     fieldId: int
 
 @typing.type_check_only
-class DfareportingStudioCreativeAssetsInsertRequest(
-    typing_extensions.TypedDict, total=False
-):
+class DfareportingStudioCreativeAssetsInsertRequest(typing.TypedDict, total=False):
     studioAccountId: str
     studioAdvertiserId: str
     studioCreativeId: str
 
 @typing.type_check_only
-class DfpSettings(typing_extensions.TypedDict, total=False):
+class DfpSettings(typing.TypedDict, total=False):
     dfpNetworkCode: str
     dfpNetworkName: str
     programmaticPlacementAccepted: bool
@@ -1514,36 +1508,34 @@ class DfpSettings(typing_extensions.TypedDict, total=False):
     publisherPortalOnly: bool
 
 @typing.type_check_only
-class Dimension(typing_extensions.TypedDict, total=False):
+class Dimension(typing.TypedDict, total=False):
     kind: str
     name: str
 
 @typing.type_check_only
-class DimensionFilter(typing_extensions.TypedDict, total=False):
+class DimensionFilter(typing.TypedDict, total=False):
     dimensionName: str
     kind: str
     value: str
 
 @typing.type_check_only
-class DimensionValue(typing_extensions.TypedDict, total=False):
+class DimensionValue(typing.TypedDict, total=False):
     dimensionName: str
     etag: str
     id: str
     kind: str
-    matchType: typing_extensions.Literal[
-        "EXACT", "BEGINS_WITH", "CONTAINS", "WILDCARD_EXPRESSION"
-    ]
+    matchType: typing.Literal["EXACT", "BEGINS_WITH", "CONTAINS", "WILDCARD_EXPRESSION"]
     value: str
 
 @typing.type_check_only
-class DimensionValueList(typing_extensions.TypedDict, total=False):
+class DimensionValueList(typing.TypedDict, total=False):
     etag: str
     items: _list[DimensionValue]
     kind: str
     nextPageToken: str
 
 @typing.type_check_only
-class DimensionValueRequest(typing_extensions.TypedDict, total=False):
+class DimensionValueRequest(typing.TypedDict, total=False):
     dimensionName: str
     endDate: str
     filters: _list[DimensionFilter]
@@ -1551,11 +1543,11 @@ class DimensionValueRequest(typing_extensions.TypedDict, total=False):
     startDate: str
 
 @typing.type_check_only
-class DirectorySite(typing_extensions.TypedDict, total=False):
+class DirectorySite(typing.TypedDict, total=False):
     id: str
     idDimensionValue: DimensionValue
     inpageTagFormats: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "STANDARD",
             "IFRAME_JAVASCRIPT_INPAGE",
             "INTERNAL_REDIRECT_INPAGE",
@@ -1563,7 +1555,7 @@ class DirectorySite(typing_extensions.TypedDict, total=False):
         ]
     ]
     interstitialTagFormats: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "IFRAME_JAVASCRIPT_INTERSTITIAL",
             "INTERNAL_REDIRECT_INTERSTITIAL",
             "JAVASCRIPT_INTERSTITIAL",
@@ -1576,20 +1568,20 @@ class DirectorySite(typing_extensions.TypedDict, total=False):
     url: str
 
 @typing.type_check_only
-class DirectorySiteSettings(typing_extensions.TypedDict, total=False):
+class DirectorySiteSettings(typing.TypedDict, total=False):
     activeViewOptOut: bool
     dfpSettings: DfpSettings
     instreamVideoPlacementAccepted: bool
     interstitialPlacementAccepted: bool
 
 @typing.type_check_only
-class DirectorySitesListResponse(typing_extensions.TypedDict, total=False):
+class DirectorySitesListResponse(typing.TypedDict, total=False):
     directorySites: _list[DirectorySite]
     kind: str
     nextPageToken: str
 
 @typing.type_check_only
-class DynamicFeed(typing_extensions.TypedDict, total=False):
+class DynamicFeed(typing.TypedDict, total=False):
     contentSource: ContentSource
     createInfo: LastModifiedInfo
     dynamicFeedId: str
@@ -1599,20 +1591,18 @@ class DynamicFeed(typing_extensions.TypedDict, total=False):
     feedSchedule: FeedSchedule
     hasPublished: bool
     lastModifiedInfo: LastModifiedInfo
-    status: typing_extensions.Literal["STATUS_UNKNOWN", "ACTIVE", "INACTIVE", "DELETED"]
+    status: typing.Literal["STATUS_UNKNOWN", "ACTIVE", "INACTIVE", "DELETED"]
     studioAdvertiserId: str
 
 @typing.type_check_only
-class DynamicFeedsInsertRequest(typing_extensions.TypedDict, total=False):
+class DynamicFeedsInsertRequest(typing.TypedDict, total=False):
     dynamicFeed: DynamicFeed
     dynamicProfileId: str
 
 @typing.type_check_only
-class DynamicProfile(typing_extensions.TypedDict, total=False):
+class DynamicProfile(typing.TypedDict, total=False):
     active: DynamicProfileVersion
-    archiveStatus: typing_extensions.Literal[
-        "ARCHIVE_STATUS_UNKNOWN", "UNARCHIVED", "ARCHIVED"
-    ]
+    archiveStatus: typing.Literal["ARCHIVE_STATUS_UNKNOWN", "UNARCHIVED", "ARCHIVED"]
     createInfo: LastModifiedInfo
     description: str
     draft: DynamicProfileVersion
@@ -1620,55 +1610,55 @@ class DynamicProfile(typing_extensions.TypedDict, total=False):
     kind: str
     lastModifiedInfo: LastModifiedInfo
     name: str
-    status: typing_extensions.Literal["STATUS_UNKNOWN", "ACTIVE", "INACTIVE", "DELETED"]
+    status: typing.Literal["STATUS_UNKNOWN", "ACTIVE", "INACTIVE", "DELETED"]
     studioAdvertiserId: str
 
 @typing.type_check_only
-class DynamicProfileFeedSettings(typing_extensions.TypedDict, total=False):
+class DynamicProfileFeedSettings(typing.TypedDict, total=False):
     dynamicFeedId: str
     dynamicRules: DynamicRules
     quantity: int
 
 @typing.type_check_only
-class DynamicProfileGenerateCodeResponse(typing_extensions.TypedDict, total=False):
+class DynamicProfileGenerateCodeResponse(typing.TypedDict, total=False):
     code: str
 
 @typing.type_check_only
-class DynamicProfileVersion(typing_extensions.TypedDict, total=False):
+class DynamicProfileVersion(typing.TypedDict, total=False):
     dynamicProfileFeedSettings: _list[DynamicProfileFeedSettings]
     versionId: str
 
 @typing.type_check_only
-class DynamicRules(typing_extensions.TypedDict, total=False):
+class DynamicRules(typing.TypedDict, total=False):
     autoTargetedFieldIds: _list[int]
     customRules: _list[CustomRule]
     customValueFields: _list[CustomValueField]
     proximityFilter: ProximityFilter
     remarketingValueAttributes: _list[RemarketingValueAttribute]
-    rotationType: typing_extensions.Literal[
+    rotationType: typing.Literal[
         "ROTATION_TYPE_UNKNOWN", "RANDOM", "OPTIMIZED", "WEIGHTED"
     ]
-    ruleType: typing_extensions.Literal[
+    ruleType: typing.Literal[
         "RULE_SET_TYPE_UNKNOWN", "OPEN", "AUTO", "CUSTOM", "PROXIMITY_TARGETING"
     ]
     weightFieldId: int
 
 @typing.type_check_only
-class DynamicTargetingKey(typing_extensions.TypedDict, total=False):
+class DynamicTargetingKey(typing.TypedDict, total=False):
     kind: str
     name: str
     objectId: str
-    objectType: typing_extensions.Literal[
+    objectType: typing.Literal[
         "OBJECT_ADVERTISER", "OBJECT_AD", "OBJECT_CREATIVE", "OBJECT_PLACEMENT"
     ]
 
 @typing.type_check_only
-class DynamicTargetingKeysListResponse(typing_extensions.TypedDict, total=False):
+class DynamicTargetingKeysListResponse(typing.TypedDict, total=False):
     dynamicTargetingKeys: _list[DynamicTargetingKey]
     kind: str
 
 @typing.type_check_only
-class Element(typing_extensions.TypedDict, total=False):
+class Element(typing.TypedDict, total=False):
     activeFieldId: int
     createInfo: LastModifiedInfo
     defaultFieldId: int
@@ -1683,9 +1673,9 @@ class Element(typing_extensions.TypedDict, total=False):
     startTimestampFieldId: int
 
 @typing.type_check_only
-class EncryptionInfo(typing_extensions.TypedDict, total=False):
+class EncryptionInfo(typing.TypedDict, total=False):
     encryptionEntityId: str
-    encryptionEntityType: typing_extensions.Literal[
+    encryptionEntityType: typing.Literal[
         "ENCRYPTION_ENTITY_TYPE_UNKNOWN",
         "DCM_ACCOUNT",
         "DCM_ADVERTISER",
@@ -1694,13 +1684,13 @@ class EncryptionInfo(typing_extensions.TypedDict, total=False):
         "ADWORDS_CUSTOMER",
         "DFP_NETWORK_CODE",
     ]
-    encryptionSource: typing_extensions.Literal[
+    encryptionSource: typing.Literal[
         "ENCRYPTION_SCOPE_UNKNOWN", "AD_SERVING", "DATA_TRANSFER"
     ]
     kind: str
 
 @typing.type_check_only
-class EventTag(typing_extensions.TypedDict, total=False):
+class EventTag(typing.TypedDict, total=False):
     accountId: str
     advertiserId: str
     advertiserIdDimensionValue: DimensionValue
@@ -1711,12 +1701,12 @@ class EventTag(typing_extensions.TypedDict, total=False):
     id: str
     kind: str
     name: str
-    siteFilterType: typing_extensions.Literal["ALLOWLIST", "BLOCKLIST"]
+    siteFilterType: typing.Literal["ALLOWLIST", "BLOCKLIST"]
     siteIds: _list[str]
     sslCompliant: bool
-    status: typing_extensions.Literal["ENABLED", "DISABLED"]
+    status: typing.Literal["ENABLED", "DISABLED"]
     subaccountId: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "IMPRESSION_IMAGE_EVENT_TAG",
         "IMPRESSION_JAVASCRIPT_EVENT_TAG",
         "CLICK_THROUGH_EVENT_TAG",
@@ -1725,24 +1715,24 @@ class EventTag(typing_extensions.TypedDict, total=False):
     urlEscapeLevels: int
 
 @typing.type_check_only
-class EventTagOverride(typing_extensions.TypedDict, total=False):
+class EventTagOverride(typing.TypedDict, total=False):
     enabled: bool
     id: str
 
 @typing.type_check_only
-class EventTagsListResponse(typing_extensions.TypedDict, total=False):
+class EventTagsListResponse(typing.TypedDict, total=False):
     eventTags: _list[EventTag]
     kind: str
 
 @typing.type_check_only
-class FeedField(typing_extensions.TypedDict, total=False):
+class FeedField(typing.TypedDict, total=False):
     defaultValue: str
     filterable: bool
     id: int
     name: str
     renderable: bool
     required: bool
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "TYPE_UNKNOWN",
         "STRING",
         "LONG",
@@ -1780,10 +1770,10 @@ class FeedField(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class FeedIngestionStatus(typing_extensions.TypedDict, total=False):
+class FeedIngestionStatus(typing.TypedDict, total=False):
     ingestionErrorRecords: _list[IngestionErrorRecord]
     ingestionStatus: IngestionStatus
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "FEED_PROCESSING_STATE_UNKNOWN",
         "CANCELLED",
         "INGESTING_QUEUED",
@@ -1797,7 +1787,7 @@ class FeedIngestionStatus(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class FeedSchedule(typing_extensions.TypedDict, total=False):
+class FeedSchedule(typing.TypedDict, total=False):
     repeatValue: str
     scheduleEnabled: bool
     startHour: str
@@ -1805,11 +1795,11 @@ class FeedSchedule(typing_extensions.TypedDict, total=False):
     timeZone: str
 
 @typing.type_check_only
-class FieldError(typing_extensions.TypedDict, total=False):
+class FieldError(typing.TypedDict, total=False):
     fieldId: int
     fieldName: str
     fieldValues: _list[str]
-    ingestionError: typing_extensions.Literal[
+    ingestionError: typing.Literal[
         "UNKNOWN_PARSING_ERROR",
         "MISSING_ID",
         "MISSING_REPORTING_LABEL",
@@ -1856,11 +1846,11 @@ class FieldError(typing_extensions.TypedDict, total=False):
     isError: bool
 
 @typing.type_check_only
-class FieldFilter(typing_extensions.TypedDict, total=False):
+class FieldFilter(typing.TypedDict, total=False):
     boolValue: bool
     dependentFieldValue: DependentFieldValue
     fieldId: int
-    matchType: typing_extensions.Literal[
+    matchType: typing.Literal[
         "LHS_MATCH_TYPE_UNKNOWN",
         "EQUALS_OR_UNRESTRICTED",
         "EQUALS",
@@ -1869,54 +1859,54 @@ class FieldFilter(typing_extensions.TypedDict, total=False):
     ]
     requestValue: RequestValue
     stringValue: str
-    valueType: typing_extensions.Literal[
+    valueType: typing.Literal[
         "RHS_VALUE_TYPE_UNKNOWN", "STRING", "REQUEST", "BOOL", "DEPENDENT"
     ]
 
 @typing.type_check_only
-class File(typing_extensions.TypedDict, total=False):
+class File(typing.TypedDict, total=False):
     dateRange: DateRange
     etag: str
     fileName: str
-    format: typing_extensions.Literal["CSV", "EXCEL"]
+    format: typing.Literal["CSV", "EXCEL"]
     id: str
     kind: str
     lastModifiedTime: str
     reportId: str
-    status: typing_extensions.Literal[
+    status: typing.Literal[
         "PROCESSING", "REPORT_AVAILABLE", "FAILED", "CANCELLED", "QUEUED"
     ]
     urls: dict[str, typing.Any]
 
 @typing.type_check_only
-class FileList(typing_extensions.TypedDict, total=False):
+class FileList(typing.TypedDict, total=False):
     etag: str
     items: _list[File]
     kind: str
     nextPageToken: str
 
 @typing.type_check_only
-class FloodlightActivitiesGenerateTagResponse(typing_extensions.TypedDict, total=False):
+class FloodlightActivitiesGenerateTagResponse(typing.TypedDict, total=False):
     floodlightActivityTag: str
     globalSiteTagGlobalSnippet: str
     kind: str
 
 @typing.type_check_only
-class FloodlightActivitiesListResponse(typing_extensions.TypedDict, total=False):
+class FloodlightActivitiesListResponse(typing.TypedDict, total=False):
     floodlightActivities: _list[FloodlightActivity]
     kind: str
     nextPageToken: str
 
 @typing.type_check_only
-class FloodlightActivity(typing_extensions.TypedDict, total=False):
+class FloodlightActivity(typing.TypedDict, total=False):
     accountId: str
     advertiserId: str
     advertiserIdDimensionValue: DimensionValue
     attributionEnabled: bool
-    cacheBustingType: typing_extensions.Literal[
+    cacheBustingType: typing.Literal[
         "JAVASCRIPT", "ACTIVE_SERVER_PAGE", "JSP", "PHP", "COLD_FUSION"
     ]
-    conversionCategory: typing_extensions.Literal[
+    conversionCategory: typing.Literal[
         "CONVERSION_CATEGORY_DEFAULT",
         "CONVERSION_CATEGORY_PURCHASE",
         "CONVERSION_CATEGORY_SIGNUP",
@@ -1935,7 +1925,7 @@ class FloodlightActivity(typing_extensions.TypedDict, total=False):
         "CONVERSION_CATEGORY_CONVERTED_LEAD",
         "CONVERSION_CATEGORY_IN_APP_AD_REVENUE",
     ]
-    countingMethod: typing_extensions.Literal[
+    countingMethod: typing.Literal[
         "STANDARD_COUNTING",
         "UNIQUE_COUNTING",
         "SESSION_COUNTING",
@@ -1947,10 +1937,10 @@ class FloodlightActivity(typing_extensions.TypedDict, total=False):
     floodlightActivityGroupId: str
     floodlightActivityGroupName: str
     floodlightActivityGroupTagString: str
-    floodlightActivityGroupType: typing_extensions.Literal["COUNTER", "SALE"]
+    floodlightActivityGroupType: typing.Literal["COUNTER", "SALE"]
     floodlightConfigurationId: str
     floodlightConfigurationIdDimensionValue: DimensionValue
-    floodlightTagType: typing_extensions.Literal["IFRAME", "IMAGE", "GLOBAL_SITE_TAG"]
+    floodlightTagType: typing.Literal["IFRAME", "IMAGE", "GLOBAL_SITE_TAG"]
     id: str
     idDimensionValue: DimensionValue
     kind: str
@@ -1960,14 +1950,14 @@ class FloodlightActivity(typing_extensions.TypedDict, total=False):
     secure: bool
     sslCompliant: bool
     sslRequired: bool
-    status: typing_extensions.Literal[
+    status: typing.Literal[
         "ACTIVE", "ARCHIVED_AND_DISABLED", "ARCHIVED", "DISABLED_POLICY"
     ]
     subaccountId: str
-    tagFormat: typing_extensions.Literal["HTML", "XHTML"]
+    tagFormat: typing.Literal["HTML", "XHTML"]
     tagString: str
     userDefinedVariableTypes: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "U1",
             "U2",
             "U3",
@@ -2072,13 +2062,13 @@ class FloodlightActivity(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class FloodlightActivityDynamicTag(typing_extensions.TypedDict, total=False):
+class FloodlightActivityDynamicTag(typing.TypedDict, total=False):
     id: str
     name: str
     tag: str
 
 @typing.type_check_only
-class FloodlightActivityGroup(typing_extensions.TypedDict, total=False):
+class FloodlightActivityGroup(typing.TypedDict, total=False):
     accountId: str
     advertiserId: str
     advertiserIdDimensionValue: DimensionValue
@@ -2090,16 +2080,16 @@ class FloodlightActivityGroup(typing_extensions.TypedDict, total=False):
     name: str
     subaccountId: str
     tagString: str
-    type: typing_extensions.Literal["COUNTER", "SALE"]
+    type: typing.Literal["COUNTER", "SALE"]
 
 @typing.type_check_only
-class FloodlightActivityGroupsListResponse(typing_extensions.TypedDict, total=False):
+class FloodlightActivityGroupsListResponse(typing.TypedDict, total=False):
     floodlightActivityGroups: _list[FloodlightActivityGroup]
     kind: str
     nextPageToken: str
 
 @typing.type_check_only
-class FloodlightActivityPublisherDynamicTag(typing_extensions.TypedDict, total=False):
+class FloodlightActivityPublisherDynamicTag(typing.TypedDict, total=False):
     clickThrough: bool
     directorySiteId: str
     dynamicTag: FloodlightActivityDynamicTag
@@ -2108,20 +2098,20 @@ class FloodlightActivityPublisherDynamicTag(typing_extensions.TypedDict, total=F
     viewThrough: bool
 
 @typing.type_check_only
-class FloodlightConfiguration(typing_extensions.TypedDict, total=False):
+class FloodlightConfiguration(typing.TypedDict, total=False):
     accountId: str
     advertiserId: str
     advertiserIdDimensionValue: DimensionValue
     analyticsDataSharingEnabled: bool
     customViewabilityMetric: CustomViewabilityMetric
     exposureToConversionEnabled: bool
-    firstDayOfWeek: typing_extensions.Literal["SUNDAY", "MONDAY"]
+    firstDayOfWeek: typing.Literal["SUNDAY", "MONDAY"]
     id: str
     idDimensionValue: DimensionValue
     inAppAttributionTrackingEnabled: bool
     kind: str
     lookbackConfiguration: LookbackConfiguration
-    naturalSearchConversionAttributionOption: typing_extensions.Literal[
+    naturalSearchConversionAttributionOption: typing.Literal[
         "EXCLUDE_NATURAL_SEARCH_CONVERSION_ATTRIBUTION",
         "INCLUDE_NATURAL_SEARCH_CONVERSION_ATTRIBUTION",
         "INCLUDE_NATURAL_SEARCH_TIERED_CONVERSION_ATTRIBUTION",
@@ -2133,34 +2123,32 @@ class FloodlightConfiguration(typing_extensions.TypedDict, total=False):
     userDefinedVariableConfigurations: _list[UserDefinedVariableConfiguration]
 
 @typing.type_check_only
-class FloodlightConfigurationsListResponse(typing_extensions.TypedDict, total=False):
+class FloodlightConfigurationsListResponse(typing.TypedDict, total=False):
     floodlightConfigurations: _list[FloodlightConfiguration]
     kind: str
 
 @typing.type_check_only
-class FloodlightReportCompatibleFields(typing_extensions.TypedDict, total=False):
+class FloodlightReportCompatibleFields(typing.TypedDict, total=False):
     dimensionFilters: _list[Dimension]
     dimensions: _list[Dimension]
     kind: str
     metrics: _list[Metric]
 
 @typing.type_check_only
-class FrequencyCap(typing_extensions.TypedDict, total=False):
+class FrequencyCap(typing.TypedDict, total=False):
     duration: str
     impressions: str
 
 @typing.type_check_only
-class FsCommand(typing_extensions.TypedDict, total=False):
+class FsCommand(typing.TypedDict, total=False):
     left: int
-    positionOption: typing_extensions.Literal[
-        "CENTERED", "DISTANCE_FROM_TOP_LEFT_CORNER"
-    ]
+    positionOption: typing.Literal["CENTERED", "DISTANCE_FROM_TOP_LEFT_CORNER"]
     top: int
     windowHeight: int
     windowWidth: int
 
 @typing.type_check_only
-class GeoTargeting(typing_extensions.TypedDict, total=False):
+class GeoTargeting(typing.TypedDict, total=False):
     cities: _list[City]
     countries: _list[Country]
     excludeCountries: bool
@@ -2169,12 +2157,12 @@ class GeoTargeting(typing_extensions.TypedDict, total=False):
     regions: _list[Region]
 
 @typing.type_check_only
-class IngestionErrorRecord(typing_extensions.TypedDict, total=False):
+class IngestionErrorRecord(typing.TypedDict, total=False):
     errors: _list[FieldError]
     recordId: str
 
 @typing.type_check_only
-class IngestionStatus(typing_extensions.TypedDict, total=False):
+class IngestionStatus(typing.TypedDict, total=False):
     numActiveRows: str
     numRowsProcessed: str
     numRowsTotal: str
@@ -2182,13 +2170,13 @@ class IngestionStatus(typing_extensions.TypedDict, total=False):
     numWarningsTotal: str
 
 @typing.type_check_only
-class Invoice(typing_extensions.TypedDict, total=False):
+class Invoice(typing.TypedDict, total=False):
     campaign_summaries: _list[CampaignSummary]
     correctedInvoiceId: str
     currencyCode: str
     dueDate: str
     id: str
-    invoiceType: typing_extensions.Literal[
+    invoiceType: typing.Literal[
         "INVOICE_TYPE_UNSPECIFIED", "INVOICE_TYPE_CREDIT", "INVOICE_TYPE_INVOICE"
     ]
     issueDate: str
@@ -2205,11 +2193,11 @@ class Invoice(typing_extensions.TypedDict, total=False):
     totalTaxAmountMicros: str
 
 @typing.type_check_only
-class KeyValueTargetingExpression(typing_extensions.TypedDict, total=False):
+class KeyValueTargetingExpression(typing.TypedDict, total=False):
     expression: str
 
 @typing.type_check_only
-class LandingPage(typing_extensions.TypedDict, total=False):
+class LandingPage(typing.TypedDict, total=False):
     advertiserId: str
     archived: bool
     deepLinks: _list[DeepLink]
@@ -2219,40 +2207,40 @@ class LandingPage(typing_extensions.TypedDict, total=False):
     url: str
 
 @typing.type_check_only
-class Language(typing_extensions.TypedDict, total=False):
+class Language(typing.TypedDict, total=False):
     id: str
     kind: str
     languageCode: str
     name: str
 
 @typing.type_check_only
-class LanguageTargeting(typing_extensions.TypedDict, total=False):
+class LanguageTargeting(typing.TypedDict, total=False):
     languages: _list[Language]
 
 @typing.type_check_only
-class LanguagesListResponse(typing_extensions.TypedDict, total=False):
+class LanguagesListResponse(typing.TypedDict, total=False):
     kind: str
     languages: _list[Language]
 
 @typing.type_check_only
-class LastModifiedInfo(typing_extensions.TypedDict, total=False):
+class LastModifiedInfo(typing.TypedDict, total=False):
     time: str
 
 @typing.type_check_only
-class ListPopulationClause(typing_extensions.TypedDict, total=False):
+class ListPopulationClause(typing.TypedDict, total=False):
     terms: _list[ListPopulationTerm]
 
 @typing.type_check_only
-class ListPopulationRule(typing_extensions.TypedDict, total=False):
+class ListPopulationRule(typing.TypedDict, total=False):
     floodlightActivityId: str
     floodlightActivityName: str
     listPopulationClauses: _list[ListPopulationClause]
 
 @typing.type_check_only
-class ListPopulationTerm(typing_extensions.TypedDict, total=False):
+class ListPopulationTerm(typing.TypedDict, total=False):
     contains: bool
     negation: bool
-    operator: typing_extensions.Literal[
+    operator: typing.Literal[
         "NUM_EQUALS",
         "NUM_LESS_THAN",
         "NUM_LESS_THAN_EQUAL",
@@ -2262,7 +2250,7 @@ class ListPopulationTerm(typing_extensions.TypedDict, total=False):
         "STRING_CONTAINS",
     ]
     remarketingListId: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "CUSTOM_VARIABLE_TERM", "LIST_MEMBERSHIP_TERM", "REFERRER_TERM"
     ]
     value: str
@@ -2270,17 +2258,17 @@ class ListPopulationTerm(typing_extensions.TypedDict, total=False):
     variableName: str
 
 @typing.type_check_only
-class ListTargetingExpression(typing_extensions.TypedDict, total=False):
+class ListTargetingExpression(typing.TypedDict, total=False):
     expression: str
 
 @typing.type_check_only
-class LookbackConfiguration(typing_extensions.TypedDict, total=False):
+class LookbackConfiguration(typing.TypedDict, total=False):
     clickDuration: int
     postImpressionActivitiesDuration: int
 
 @typing.type_check_only
-class MeasurementPartnerAdvertiserLink(typing_extensions.TypedDict, total=False):
-    linkStatus: typing_extensions.Literal[
+class MeasurementPartnerAdvertiserLink(typing.TypedDict, total=False):
+    linkStatus: typing.Literal[
         "MEASUREMENT_PARTNER_UNLINKED",
         "MEASUREMENT_PARTNER_LINKED",
         "MEASUREMENT_PARTNER_LINK_PENDING",
@@ -2291,14 +2279,12 @@ class MeasurementPartnerAdvertiserLink(typing_extensions.TypedDict, total=False)
         "MEASUREMENT_PARTNER_MODE_CHANGE_PENDING",
         "MEASUREMENT_PARTNER_UNLINK_PENDING",
     ]
-    measurementPartner: typing_extensions.Literal[
-        "NONE", "INTEGRAL_AD_SCIENCE", "DOUBLE_VERIFY"
-    ]
+    measurementPartner: typing.Literal["NONE", "INTEGRAL_AD_SCIENCE", "DOUBLE_VERIFY"]
     partnerAdvertiserId: str
 
 @typing.type_check_only
-class MeasurementPartnerCampaignLink(typing_extensions.TypedDict, total=False):
-    linkStatus: typing_extensions.Literal[
+class MeasurementPartnerCampaignLink(typing.TypedDict, total=False):
+    linkStatus: typing.Literal[
         "MEASUREMENT_PARTNER_UNLINKED",
         "MEASUREMENT_PARTNER_LINKED",
         "MEASUREMENT_PARTNER_LINK_PENDING",
@@ -2309,14 +2295,12 @@ class MeasurementPartnerCampaignLink(typing_extensions.TypedDict, total=False):
         "MEASUREMENT_PARTNER_MODE_CHANGE_PENDING",
         "MEASUREMENT_PARTNER_UNLINK_PENDING",
     ]
-    measurementPartner: typing_extensions.Literal[
-        "NONE", "INTEGRAL_AD_SCIENCE", "DOUBLE_VERIFY"
-    ]
+    measurementPartner: typing.Literal["NONE", "INTEGRAL_AD_SCIENCE", "DOUBLE_VERIFY"]
     partnerCampaignId: str
 
 @typing.type_check_only
-class MeasurementPartnerWrappingData(typing_extensions.TypedDict, total=False):
-    linkStatus: typing_extensions.Literal[
+class MeasurementPartnerWrappingData(typing.TypedDict, total=False):
+    linkStatus: typing.Literal[
         "MEASUREMENT_PARTNER_UNLINKED",
         "MEASUREMENT_PARTNER_LINKED",
         "MEASUREMENT_PARTNER_LINK_PENDING",
@@ -2327,10 +2311,8 @@ class MeasurementPartnerWrappingData(typing_extensions.TypedDict, total=False):
         "MEASUREMENT_PARTNER_MODE_CHANGE_PENDING",
         "MEASUREMENT_PARTNER_UNLINK_PENDING",
     ]
-    measurementPartner: typing_extensions.Literal[
-        "NONE", "INTEGRAL_AD_SCIENCE", "DOUBLE_VERIFY"
-    ]
-    tagWrappingMode: typing_extensions.Literal[
+    measurementPartner: typing.Literal["NONE", "INTEGRAL_AD_SCIENCE", "DOUBLE_VERIFY"]
+    tagWrappingMode: typing.Literal[
         "NONE",
         "BLOCKING",
         "MONITORING",
@@ -2351,12 +2333,12 @@ class MeasurementPartnerWrappingData(typing_extensions.TypedDict, total=False):
     wrappedTag: str
 
 @typing.type_check_only
-class Metric(typing_extensions.TypedDict, total=False):
+class Metric(typing.TypedDict, total=False):
     kind: str
     name: str
 
 @typing.type_check_only
-class Metro(typing_extensions.TypedDict, total=False):
+class Metro(typing.TypedDict, total=False):
     countryCode: str
     countryDartId: str
     dartId: str
@@ -2366,13 +2348,13 @@ class Metro(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class MetrosListResponse(typing_extensions.TypedDict, total=False):
+class MetrosListResponse(typing.TypedDict, total=False):
     kind: str
     metros: _list[Metro]
 
 @typing.type_check_only
-class MobileApp(typing_extensions.TypedDict, total=False):
-    directory: typing_extensions.Literal[
+class MobileApp(typing.TypedDict, total=False):
+    directory: typing.Literal[
         "UNKNOWN",
         "APPLE_APP_STORE",
         "GOOGLE_PLAY_STORE",
@@ -2391,13 +2373,13 @@ class MobileApp(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
-class MobileAppsListResponse(typing_extensions.TypedDict, total=False):
+class MobileAppsListResponse(typing.TypedDict, total=False):
     kind: str
     mobileApps: _list[MobileApp]
     nextPageToken: str
 
 @typing.type_check_only
-class MobileCarrier(typing_extensions.TypedDict, total=False):
+class MobileCarrier(typing.TypedDict, total=False):
     countryCode: str
     countryDartId: str
     id: str
@@ -2405,12 +2387,12 @@ class MobileCarrier(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class MobileCarriersListResponse(typing_extensions.TypedDict, total=False):
+class MobileCarriersListResponse(typing.TypedDict, total=False):
     kind: str
     mobileCarriers: _list[MobileCarrier]
 
 @typing.type_check_only
-class ObaIcon(typing_extensions.TypedDict, total=False):
+class ObaIcon(typing.TypedDict, total=False):
     iconClickThroughUrl: str
     iconClickTrackingUrl: str
     iconViewTrackingUrl: str
@@ -2421,13 +2403,13 @@ class ObaIcon(typing_extensions.TypedDict, total=False):
     yPosition: str
 
 @typing.type_check_only
-class ObjectFilter(typing_extensions.TypedDict, total=False):
+class ObjectFilter(typing.TypedDict, total=False):
     kind: str
     objectIds: _list[str]
-    status: typing_extensions.Literal["NONE", "ASSIGNED", "ALL"]
+    status: typing.Literal["NONE", "ASSIGNED", "ALL"]
 
 @typing.type_check_only
-class OfflineUserAddressInfo(typing_extensions.TypedDict, total=False):
+class OfflineUserAddressInfo(typing.TypedDict, total=False):
     city: str
     countryCode: str
     hashedFirstName: str
@@ -2437,17 +2419,17 @@ class OfflineUserAddressInfo(typing_extensions.TypedDict, total=False):
     state: str
 
 @typing.type_check_only
-class OffsetPosition(typing_extensions.TypedDict, total=False):
+class OffsetPosition(typing.TypedDict, total=False):
     left: int
     top: int
 
 @typing.type_check_only
-class OmnitureSettings(typing_extensions.TypedDict, total=False):
+class OmnitureSettings(typing.TypedDict, total=False):
     omnitureCostDataEnabled: bool
     omnitureIntegrationEnabled: bool
 
 @typing.type_check_only
-class OperatingSystem(typing_extensions.TypedDict, total=False):
+class OperatingSystem(typing.TypedDict, total=False):
     dartId: str
     desktop: bool
     kind: str
@@ -2455,7 +2437,7 @@ class OperatingSystem(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class OperatingSystemVersion(typing_extensions.TypedDict, total=False):
+class OperatingSystemVersion(typing.TypedDict, total=False):
     id: str
     kind: str
     majorVersion: str
@@ -2464,23 +2446,23 @@ class OperatingSystemVersion(typing_extensions.TypedDict, total=False):
     operatingSystem: OperatingSystem
 
 @typing.type_check_only
-class OperatingSystemVersionsListResponse(typing_extensions.TypedDict, total=False):
+class OperatingSystemVersionsListResponse(typing.TypedDict, total=False):
     kind: str
     operatingSystemVersions: _list[OperatingSystemVersion]
 
 @typing.type_check_only
-class OperatingSystemsListResponse(typing_extensions.TypedDict, total=False):
+class OperatingSystemsListResponse(typing.TypedDict, total=False):
     kind: str
     operatingSystems: _list[OperatingSystem]
 
 @typing.type_check_only
-class OptimizationActivity(typing_extensions.TypedDict, total=False):
+class OptimizationActivity(typing.TypedDict, total=False):
     floodlightActivityId: str
     floodlightActivityIdDimensionValue: DimensionValue
     weight: int
 
 @typing.type_check_only
-class PathToConversionReportCompatibleFields(typing_extensions.TypedDict, total=False):
+class PathToConversionReportCompatibleFields(typing.TypedDict, total=False):
     conversionDimensions: _list[Dimension]
     customFloodlightVariables: _list[Dimension]
     kind: str
@@ -2488,9 +2470,9 @@ class PathToConversionReportCompatibleFields(typing_extensions.TypedDict, total=
     perInteractionDimensions: _list[Dimension]
 
 @typing.type_check_only
-class Placement(typing_extensions.TypedDict, total=False):
+class Placement(typing.TypedDict, total=False):
     accountId: str
-    activeStatus: typing_extensions.Literal[
+    activeStatus: typing.Literal[
         "PLACEMENT_STATUS_UNKNOWN",
         "PLACEMENT_STATUS_ACTIVE",
         "PLACEMENT_STATUS_INACTIVE",
@@ -2506,7 +2488,7 @@ class Placement(typing_extensions.TypedDict, total=False):
     campaignId: str
     campaignIdDimensionValue: DimensionValue
     comment: str
-    compatibility: typing_extensions.Literal[
+    compatibility: typing.Literal[
         "DISPLAY",
         "DISPLAY_INTERSTITIAL",
         "APP",
@@ -2529,9 +2511,7 @@ class Placement(typing_extensions.TypedDict, total=False):
     name: str
     partnerWrappingData: MeasurementPartnerWrappingData
     paymentApproved: bool
-    paymentSource: typing_extensions.Literal[
-        "PLACEMENT_AGENCY_PAID", "PLACEMENT_PUBLISHER_PAID"
-    ]
+    paymentSource: typing.Literal["PLACEMENT_AGENCY_PAID", "PLACEMENT_PUBLISHER_PAID"]
     placementGroupId: str
     placementGroupIdDimensionValue: DimensionValue
     placementStrategyId: str
@@ -2543,7 +2523,7 @@ class Placement(typing_extensions.TypedDict, total=False):
     siteServed: bool
     size: Size
     sslRequired: bool
-    status: typing_extensions.Literal[
+    status: typing.Literal[
         "PENDING_REVIEW",
         "PAYMENT_ACCEPTED",
         "PAYMENT_REJECTED",
@@ -2553,7 +2533,7 @@ class Placement(typing_extensions.TypedDict, total=False):
     ]
     subaccountId: str
     tagFormats: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "PLACEMENT_TAG_STANDARD",
             "PLACEMENT_TAG_IFRAME_JAVASCRIPT",
             "PLACEMENT_TAG_IFRAME_ILAYER",
@@ -2579,25 +2559,25 @@ class Placement(typing_extensions.TypedDict, total=False):
     tagSetting: TagSetting
     videoActiveViewOptOut: bool
     videoSettings: VideoSettings
-    vpaidAdapterChoice: typing_extensions.Literal["DEFAULT", "FLASH", "HTML5", "BOTH"]
+    vpaidAdapterChoice: typing.Literal["DEFAULT", "FLASH", "HTML5", "BOTH"]
     wrappingOptOut: bool
     youtubeSettings: YoutubeSettings
 
 @typing.type_check_only
-class PlacementAssignment(typing_extensions.TypedDict, total=False):
+class PlacementAssignment(typing.TypedDict, total=False):
     active: bool
     placementId: str
     placementIdDimensionValue: DimensionValue
     sslRequired: bool
 
 @typing.type_check_only
-class PlacementConversionDomainOverride(typing_extensions.TypedDict, total=False):
+class PlacementConversionDomainOverride(typing.TypedDict, total=False):
     conversionDomains: _list[PlacementSingleConversionDomain]
 
 @typing.type_check_only
-class PlacementGroup(typing_extensions.TypedDict, total=False):
+class PlacementGroup(typing.TypedDict, total=False):
     accountId: str
-    activeStatus: typing_extensions.Literal[
+    activeStatus: typing.Literal[
         "PLACEMENT_STATUS_UNKNOWN",
         "PLACEMENT_STATUS_ACTIVE",
         "PLACEMENT_STATUS_INACTIVE",
@@ -2620,9 +2600,7 @@ class PlacementGroup(typing_extensions.TypedDict, total=False):
     kind: str
     lastModifiedInfo: LastModifiedInfo
     name: str
-    placementGroupType: typing_extensions.Literal[
-        "PLACEMENT_PACKAGE", "PLACEMENT_ROADBLOCK"
-    ]
+    placementGroupType: typing.Literal["PLACEMENT_PACKAGE", "PLACEMENT_ROADBLOCK"]
     placementStrategyId: str
     pricingSchedule: PricingSchedule
     primaryPlacementId: str
@@ -2632,61 +2610,61 @@ class PlacementGroup(typing_extensions.TypedDict, total=False):
     subaccountId: str
 
 @typing.type_check_only
-class PlacementGroupsListResponse(typing_extensions.TypedDict, total=False):
+class PlacementGroupsListResponse(typing.TypedDict, total=False):
     kind: str
     nextPageToken: str
     placementGroups: _list[PlacementGroup]
 
 @typing.type_check_only
-class PlacementSingleConversionDomain(typing_extensions.TypedDict, total=False):
+class PlacementSingleConversionDomain(typing.TypedDict, total=False):
     conversionDomainId: str
     conversionDomainValue: str
 
 @typing.type_check_only
-class PlacementStrategiesListResponse(typing_extensions.TypedDict, total=False):
+class PlacementStrategiesListResponse(typing.TypedDict, total=False):
     kind: str
     nextPageToken: str
     placementStrategies: _list[PlacementStrategy]
 
 @typing.type_check_only
-class PlacementStrategy(typing_extensions.TypedDict, total=False):
+class PlacementStrategy(typing.TypedDict, total=False):
     accountId: str
     id: str
     kind: str
     name: str
 
 @typing.type_check_only
-class PlacementTag(typing_extensions.TypedDict, total=False):
+class PlacementTag(typing.TypedDict, total=False):
     placementId: str
     tagDatas: _list[TagData]
 
 @typing.type_check_only
-class PlacementsGenerateTagsResponse(typing_extensions.TypedDict, total=False):
+class PlacementsGenerateTagsResponse(typing.TypedDict, total=False):
     kind: str
     placementTags: _list[PlacementTag]
 
 @typing.type_check_only
-class PlacementsListResponse(typing_extensions.TypedDict, total=False):
+class PlacementsListResponse(typing.TypedDict, total=False):
     kind: str
     nextPageToken: str
     placements: _list[Placement]
 
 @typing.type_check_only
-class PlatformType(typing_extensions.TypedDict, total=False):
+class PlatformType(typing.TypedDict, total=False):
     id: str
     kind: str
     name: str
 
 @typing.type_check_only
-class PlatformTypesListResponse(typing_extensions.TypedDict, total=False):
+class PlatformTypesListResponse(typing.TypedDict, total=False):
     kind: str
     platformTypes: _list[PlatformType]
 
 @typing.type_check_only
-class PopupWindowProperties(typing_extensions.TypedDict, total=False):
+class PopupWindowProperties(typing.TypedDict, total=False):
     dimension: Size
     offset: OffsetPosition
-    positionType: typing_extensions.Literal["CENTER", "COORDINATES"]
+    positionType: typing.Literal["CENTER", "COORDINATES"]
     showAddressBar: bool
     showMenuBar: bool
     showScrollBar: bool
@@ -2695,7 +2673,7 @@ class PopupWindowProperties(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
-class PostalCode(typing_extensions.TypedDict, total=False):
+class PostalCode(typing.TypedDict, total=False):
     code: str
     countryCode: str
     countryDartId: str
@@ -2703,20 +2681,20 @@ class PostalCode(typing_extensions.TypedDict, total=False):
     kind: str
 
 @typing.type_check_only
-class PostalCodesListResponse(typing_extensions.TypedDict, total=False):
+class PostalCodesListResponse(typing.TypedDict, total=False):
     kind: str
     postalCodes: _list[PostalCode]
 
 @typing.type_check_only
-class PricingSchedule(typing_extensions.TypedDict, total=False):
-    capCostOption: typing_extensions.Literal[
+class PricingSchedule(typing.TypedDict, total=False):
+    capCostOption: typing.Literal[
         "CAP_COST_NONE", "CAP_COST_MONTHLY", "CAP_COST_CUMULATIVE"
     ]
     endDate: str
     flighted: bool
     floodlightActivityId: str
     pricingPeriods: _list[PricingSchedulePricingPeriod]
-    pricingType: typing_extensions.Literal[
+    pricingType: typing.Literal[
         "PRICING_TYPE_CPM",
         "PRICING_TYPE_CPC",
         "PRICING_TYPE_CPA",
@@ -2728,7 +2706,7 @@ class PricingSchedule(typing_extensions.TypedDict, total=False):
     testingStartDate: str
 
 @typing.type_check_only
-class PricingSchedulePricingPeriod(typing_extensions.TypedDict, total=False):
+class PricingSchedulePricingPeriod(typing.TypedDict, total=False):
     endDate: str
     pricingComment: str
     rateOrCostNanos: str
@@ -2736,9 +2714,9 @@ class PricingSchedulePricingPeriod(typing_extensions.TypedDict, total=False):
     units: str
 
 @typing.type_check_only
-class ProximityFilter(typing_extensions.TypedDict, total=False):
+class ProximityFilter(typing.TypedDict, total=False):
     fieldId: int
-    radiusBucketType: typing_extensions.Literal[
+    radiusBucketType: typing.Literal[
         "RADIUS_BUCKET_TYPE_UNKNOWN",
         "SMALL",
         "MEDIUM",
@@ -2746,13 +2724,11 @@ class ProximityFilter(typing_extensions.TypedDict, total=False):
         "MULTI_REGIONAL",
         "NATIONAL",
     ]
-    radiusUnitType: typing_extensions.Literal[
-        "RADIUS_UNIT_TYPE_UNKNOWN", "KILOMETERS", "MILES"
-    ]
+    radiusUnitType: typing.Literal["RADIUS_UNIT_TYPE_UNKNOWN", "KILOMETERS", "MILES"]
     radiusValue: int
 
 @typing.type_check_only
-class ReachReportCompatibleFields(typing_extensions.TypedDict, total=False):
+class ReachReportCompatibleFields(typing.TypedDict, total=False):
     dimensionFilters: _list[Dimension]
     dimensions: _list[Dimension]
     kind: str
@@ -2761,13 +2737,13 @@ class ReachReportCompatibleFields(typing_extensions.TypedDict, total=False):
     reachByFrequencyMetrics: _list[Metric]
 
 @typing.type_check_only
-class Recipient(typing_extensions.TypedDict, total=False):
-    deliveryType: typing_extensions.Literal["LINK", "ATTACHMENT"]
+class Recipient(typing.TypedDict, total=False):
+    deliveryType: typing.Literal["LINK", "ATTACHMENT"]
     email: str
     kind: str
 
 @typing.type_check_only
-class Region(typing_extensions.TypedDict, total=False):
+class Region(typing.TypedDict, total=False):
     countryCode: str
     countryDartId: str
     dartId: str
@@ -2776,12 +2752,12 @@ class Region(typing_extensions.TypedDict, total=False):
     regionCode: str
 
 @typing.type_check_only
-class RegionsListResponse(typing_extensions.TypedDict, total=False):
+class RegionsListResponse(typing.TypedDict, total=False):
     kind: str
     regions: _list[Region]
 
 @typing.type_check_only
-class RemarketingList(typing_extensions.TypedDict, total=False):
+class RemarketingList(typing.TypedDict, total=False):
     accountId: str
     active: bool
     advertiserId: str
@@ -2792,7 +2768,7 @@ class RemarketingList(typing_extensions.TypedDict, total=False):
     lifeSpan: str
     listPopulationRule: ListPopulationRule
     listSize: str
-    listSource: typing_extensions.Literal[
+    listSource: typing.Literal[
         "REMARKETING_LIST_SOURCE_OTHER",
         "REMARKETING_LIST_SOURCE_ADX",
         "REMARKETING_LIST_SOURCE_DFP",
@@ -2809,25 +2785,25 @@ class RemarketingList(typing_extensions.TypedDict, total=False):
     subaccountId: str
 
 @typing.type_check_only
-class RemarketingListShare(typing_extensions.TypedDict, total=False):
+class RemarketingListShare(typing.TypedDict, total=False):
     kind: str
     remarketingListId: str
     sharedAccountIds: _list[str]
     sharedAdvertiserIds: _list[str]
 
 @typing.type_check_only
-class RemarketingListsListResponse(typing_extensions.TypedDict, total=False):
+class RemarketingListsListResponse(typing.TypedDict, total=False):
     kind: str
     nextPageToken: str
     remarketingLists: _list[RemarketingList]
 
 @typing.type_check_only
-class RemarketingValueAttribute(typing_extensions.TypedDict, total=False):
+class RemarketingValueAttribute(typing.TypedDict, total=False):
     fieldId: int
     userAttributeIds: _list[str]
 
 @typing.type_check_only
-class Report(typing_extensions.TypedDict, total=False):
+class Report(typing.TypedDict, total=False):
     accountId: str
     criteria: dict[str, typing.Any]
     crossMediaReachCriteria: dict[str, typing.Any]
@@ -2835,7 +2811,7 @@ class Report(typing_extensions.TypedDict, total=False):
     etag: str
     fileName: str
     floodlightCriteria: dict[str, typing.Any]
-    format: typing_extensions.Literal["CSV", "EXCEL"]
+    format: typing.Literal["CSV", "EXCEL"]
     id: str
     kind: str
     lastModifiedTime: str
@@ -2845,12 +2821,12 @@ class Report(typing_extensions.TypedDict, total=False):
     reachCriteria: dict[str, typing.Any]
     schedule: dict[str, typing.Any]
     subAccountId: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "STANDARD", "REACH", "PATH_TO_CONVERSION", "FLOODLIGHT", "CROSS_MEDIA_REACH"
     ]
 
 @typing.type_check_only
-class ReportCompatibleFields(typing_extensions.TypedDict, total=False):
+class ReportCompatibleFields(typing.TypedDict, total=False):
     dimensionFilters: _list[Dimension]
     dimensions: _list[Dimension]
     kind: str
@@ -2858,36 +2834,57 @@ class ReportCompatibleFields(typing_extensions.TypedDict, total=False):
     pivotedActivityMetrics: _list[Metric]
 
 @typing.type_check_only
-class ReportList(typing_extensions.TypedDict, total=False):
+class ReportDataQueryRequest(typing.TypedDict, total=False):
+    dateRange: DateRange
+    dimensionFilters: _list[DimensionValue]
+    dimensionNames: _list[str]
+    maxResults: int
+    metricNames: _list[str]
+    pageToken: str
+    sortBys: _list[SortBy]
+
+@typing.type_check_only
+class ReportDataResponse(typing.TypedDict, total=False):
+    columnHeaders: _list[ColumnHeader]
+    nextPageToken: str
+    rows: _list[ReportDataRow]
+    totalRow: ReportDataRow
+
+@typing.type_check_only
+class ReportDataRow(typing.TypedDict, total=False):
+    values: _list[str]
+
+@typing.type_check_only
+class ReportList(typing.TypedDict, total=False):
     etag: str
     items: _list[Report]
     kind: str
     nextPageToken: str
 
 @typing.type_check_only
-class ReportsConfiguration(typing_extensions.TypedDict, total=False):
+class ReportsConfiguration(typing.TypedDict, total=False):
     exposureToConversionEnabled: bool
     lookbackConfiguration: LookbackConfiguration
     reportGenerationTimeZoneId: str
 
 @typing.type_check_only
-class RequestValue(typing_extensions.TypedDict, total=False):
+class RequestValue(typing.TypedDict, total=False):
     excludeFromUserAttributeIds: _list[str]
     key: str
     userAttributeIds: _list[str]
 
 @typing.type_check_only
-class RichMediaExitOverride(typing_extensions.TypedDict, total=False):
+class RichMediaExitOverride(typing.TypedDict, total=False):
     clickThroughUrl: ClickThroughUrl
     enabled: bool
     exitId: str
 
 @typing.type_check_only
-class RuleBlock(typing_extensions.TypedDict, total=False):
+class RuleBlock(typing.TypedDict, total=False):
     fieldFilter: _list[FieldFilter]
 
 @typing.type_check_only
-class Site(typing_extensions.TypedDict, total=False):
+class Site(typing.TypedDict, total=False):
     accountId: str
     adServingPlatformId: str
     approved: bool
@@ -2904,16 +2901,16 @@ class Site(typing_extensions.TypedDict, total=False):
     videoSettings: SiteVideoSettings
 
 @typing.type_check_only
-class SiteCompanionSetting(typing_extensions.TypedDict, total=False):
+class SiteCompanionSetting(typing.TypedDict, total=False):
     companionsDisabled: bool
     enabledSizes: _list[Size]
     imageOnly: bool
     kind: str
 
 @typing.type_check_only
-class SiteContact(typing_extensions.TypedDict, total=False):
+class SiteContact(typing.TypedDict, total=False):
     address: str
-    contactType: typing_extensions.Literal["SALES_PERSON", "TRAFFICKER"]
+    contactType: typing.Literal["SALES_PERSON", "TRAFFICKER"]
     email: str
     firstName: str
     id: str
@@ -2922,47 +2919,45 @@ class SiteContact(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
-class SiteSettings(typing_extensions.TypedDict, total=False):
+class SiteSettings(typing.TypedDict, total=False):
     activeViewOptOut: bool
     adBlockingOptOut: bool
     disableNewCookie: bool
     tagSetting: TagSetting
     videoActiveViewOptOutTemplate: bool
-    vpaidAdapterChoiceTemplate: typing_extensions.Literal[
-        "DEFAULT", "FLASH", "HTML5", "BOTH"
-    ]
+    vpaidAdapterChoiceTemplate: typing.Literal["DEFAULT", "FLASH", "HTML5", "BOTH"]
 
 @typing.type_check_only
-class SiteSkippableSetting(typing_extensions.TypedDict, total=False):
+class SiteSkippableSetting(typing.TypedDict, total=False):
     kind: str
     progressOffset: VideoOffset
     skipOffset: VideoOffset
     skippable: bool
 
 @typing.type_check_only
-class SiteTranscodeSetting(typing_extensions.TypedDict, total=False):
+class SiteTranscodeSetting(typing.TypedDict, total=False):
     enabledVideoFormats: _list[int]
     kind: str
 
 @typing.type_check_only
-class SiteVideoSettings(typing_extensions.TypedDict, total=False):
+class SiteVideoSettings(typing.TypedDict, total=False):
     companionSettings: SiteCompanionSetting
     kind: str
     obaEnabled: bool
     obaSettings: ObaIcon
-    orientation: typing_extensions.Literal["ANY", "LANDSCAPE", "PORTRAIT"]
+    orientation: typing.Literal["ANY", "LANDSCAPE", "PORTRAIT"]
     publisherSpecificationId: str
     skippableSettings: SiteSkippableSetting
     transcodeSettings: SiteTranscodeSetting
 
 @typing.type_check_only
-class SitesListResponse(typing_extensions.TypedDict, total=False):
+class SitesListResponse(typing.TypedDict, total=False):
     kind: str
     nextPageToken: str
     sites: _list[Site]
 
 @typing.type_check_only
-class Size(typing_extensions.TypedDict, total=False):
+class Size(typing.TypedDict, total=False):
     height: int
     iab: bool
     id: str
@@ -2970,37 +2965,42 @@ class Size(typing_extensions.TypedDict, total=False):
     width: int
 
 @typing.type_check_only
-class SizesListResponse(typing_extensions.TypedDict, total=False):
+class SizesListResponse(typing.TypedDict, total=False):
     kind: str
     sizes: _list[Size]
 
 @typing.type_check_only
-class SkippableSetting(typing_extensions.TypedDict, total=False):
+class SkippableSetting(typing.TypedDict, total=False):
     kind: str
     progressOffset: VideoOffset
     skipOffset: VideoOffset
     skippable: bool
 
 @typing.type_check_only
-class SortedDimension(typing_extensions.TypedDict, total=False):
-    kind: str
+class SortBy(typing.TypedDict, total=False):
     name: str
-    sortOrder: typing_extensions.Literal["ASCENDING", "DESCENDING"]
+    sortOrder: typing.Literal["ASCENDING", "DESCENDING"]
 
 @typing.type_check_only
-class StudioCreative(typing_extensions.TypedDict, total=False):
+class SortedDimension(typing.TypedDict, total=False):
+    kind: str
+    name: str
+    sortOrder: typing.Literal["ASCENDING", "DESCENDING"]
+
+@typing.type_check_only
+class StudioCreative(typing.TypedDict, total=False):
     assetIds: _list[str]
     backupImageAssetId: str
     createdInfo: LastModifiedInfo
     dimension: StudioCreativeDimension
     dynamicProfileId: str
-    format: typing_extensions.Literal[
+    format: typing.Literal[
         "UNKNOWN", "BANNER", "EXPANDING", "INTERSTITIAL", "VPAID_LINEAR_VIDEO"
     ]
     id: str
     lastModifiedInfo: LastModifiedInfo
     name: str
-    status: typing_extensions.Literal[
+    status: typing.Literal[
         "UNKNOWN_STATUS",
         "IN_DEVELOPMENT",
         "PUBLISHED",
@@ -3013,7 +3013,7 @@ class StudioCreative(typing_extensions.TypedDict, total=False):
     studioCampaignId: str
 
 @typing.type_check_only
-class StudioCreativeAsset(typing_extensions.TypedDict, total=False):
+class StudioCreativeAsset(typing.TypedDict, total=False):
     createInfo: LastModifiedInfo
     filename: str
     filesize: str
@@ -3022,20 +3022,20 @@ class StudioCreativeAsset(typing_extensions.TypedDict, total=False):
     studioAccountId: str
     studioAdvertiserId: str
     studioCreativeId: str
-    type: typing_extensions.Literal["UNKNOWN_TYPE", "HTML", "VIDEO", "IMAGE", "FONT"]
+    type: typing.Literal["UNKNOWN_TYPE", "HTML", "VIDEO", "IMAGE", "FONT"]
     videoProcessingData: VideoProcessingData
 
 @typing.type_check_only
-class StudioCreativeAssetsResponse(typing_extensions.TypedDict, total=False):
+class StudioCreativeAssetsResponse(typing.TypedDict, total=False):
     assets: _list[StudioCreativeAsset]
 
 @typing.type_check_only
-class StudioCreativeDimension(typing_extensions.TypedDict, total=False):
+class StudioCreativeDimension(typing.TypedDict, total=False):
     height: int
     width: int
 
 @typing.type_check_only
-class Subaccount(typing_extensions.TypedDict, total=False):
+class Subaccount(typing.TypedDict, total=False):
     accountId: str
     availablePermissionIds: _list[str]
     id: str
@@ -3043,17 +3043,17 @@ class Subaccount(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class SubaccountsListResponse(typing_extensions.TypedDict, total=False):
+class SubaccountsListResponse(typing.TypedDict, total=False):
     kind: str
     nextPageToken: str
     subaccounts: _list[Subaccount]
 
 @typing.type_check_only
-class TagData(typing_extensions.TypedDict, total=False):
+class TagData(typing.TypedDict, total=False):
     adId: str
     clickTag: str
     creativeId: str
-    format: typing_extensions.Literal[
+    format: typing.Literal[
         "PLACEMENT_TAG_STANDARD",
         "PLACEMENT_TAG_IFRAME_JAVASCRIPT",
         "PLACEMENT_TAG_IFRAME_ILAYER",
@@ -3078,31 +3078,29 @@ class TagData(typing_extensions.TypedDict, total=False):
     impressionTag: str
 
 @typing.type_check_only
-class TagSetting(typing_extensions.TypedDict, total=False):
+class TagSetting(typing.TypedDict, total=False):
     additionalKeyValues: str
     includeClickThroughUrls: bool
     includeClickTracking: bool
     includeUnescapedlpurlMacro: bool
-    keywordOption: typing_extensions.Literal[
+    keywordOption: typing.Literal[
         "PLACEHOLDER_WITH_LIST_OF_KEYWORDS",
         "IGNORE",
         "GENERATE_SEPARATE_TAG_FOR_EACH_KEYWORD",
     ]
 
 @typing.type_check_only
-class TagSettings(typing_extensions.TypedDict, total=False):
+class TagSettings(typing.TypedDict, total=False):
     dynamicTagEnabled: bool
     imageTagEnabled: bool
 
 @typing.type_check_only
-class TargetWindow(typing_extensions.TypedDict, total=False):
+class TargetWindow(typing.TypedDict, total=False):
     customHtml: str
-    targetWindowOption: typing_extensions.Literal[
-        "NEW_WINDOW", "CURRENT_WINDOW", "CUSTOM"
-    ]
+    targetWindowOption: typing.Literal["NEW_WINDOW", "CURRENT_WINDOW", "CUSTOM"]
 
 @typing.type_check_only
-class TargetableRemarketingList(typing_extensions.TypedDict, total=False):
+class TargetableRemarketingList(typing.TypedDict, total=False):
     accountId: str
     active: bool
     advertiserId: str
@@ -3112,7 +3110,7 @@ class TargetableRemarketingList(typing_extensions.TypedDict, total=False):
     kind: str
     lifeSpan: str
     listSize: str
-    listSource: typing_extensions.Literal[
+    listSource: typing.Literal[
         "REMARKETING_LIST_SOURCE_OTHER",
         "REMARKETING_LIST_SOURCE_ADX",
         "REMARKETING_LIST_SOURCE_DFP",
@@ -3129,13 +3127,13 @@ class TargetableRemarketingList(typing_extensions.TypedDict, total=False):
     subaccountId: str
 
 @typing.type_check_only
-class TargetableRemarketingListsListResponse(typing_extensions.TypedDict, total=False):
+class TargetableRemarketingListsListResponse(typing.TypedDict, total=False):
     kind: str
     nextPageToken: str
     targetableRemarketingLists: _list[TargetableRemarketingList]
 
 @typing.type_check_only
-class TargetingTemplate(typing_extensions.TypedDict, total=False):
+class TargetingTemplate(typing.TypedDict, total=False):
     accountId: str
     advertiserId: str
     advertiserIdDimensionValue: DimensionValue
@@ -3152,13 +3150,13 @@ class TargetingTemplate(typing_extensions.TypedDict, total=False):
     technologyTargeting: TechnologyTargeting
 
 @typing.type_check_only
-class TargetingTemplatesListResponse(typing_extensions.TypedDict, total=False):
+class TargetingTemplatesListResponse(typing.TypedDict, total=False):
     kind: str
     nextPageToken: str
     targetingTemplates: _list[TargetingTemplate]
 
 @typing.type_check_only
-class TechnologyTargeting(typing_extensions.TypedDict, total=False):
+class TechnologyTargeting(typing.TypedDict, total=False):
     browsers: _list[Browser]
     connectionTypes: _list[ConnectionType]
     mobileCarriers: _list[MobileCarrier]
@@ -3167,13 +3165,13 @@ class TechnologyTargeting(typing_extensions.TypedDict, total=False):
     platformTypes: _list[PlatformType]
 
 @typing.type_check_only
-class ThirdPartyAuthenticationToken(typing_extensions.TypedDict, total=False):
+class ThirdPartyAuthenticationToken(typing.TypedDict, total=False):
     name: str
     value: str
 
 @typing.type_check_only
-class ThirdPartyTrackingUrl(typing_extensions.TypedDict, total=False):
-    thirdPartyUrlType: typing_extensions.Literal[
+class ThirdPartyTrackingUrl(typing.TypedDict, total=False):
+    thirdPartyUrlType: typing.Literal[
         "IMPRESSION",
         "CLICK_TRACKING",
         "VIDEO_START",
@@ -3197,23 +3195,23 @@ class ThirdPartyTrackingUrl(typing_extensions.TypedDict, total=False):
     url: str
 
 @typing.type_check_only
-class TranscodeSetting(typing_extensions.TypedDict, total=False):
+class TranscodeSetting(typing.TypedDict, total=False):
     enabledVideoFormats: _list[int]
     kind: str
 
 @typing.type_check_only
-class TvCampaignDetail(typing_extensions.TypedDict, total=False):
+class TvCampaignDetail(typing.TypedDict, total=False):
     id: str
     kind: str
     timepoints: _list[TvCampaignTimepoint]
 
 @typing.type_check_only
-class TvCampaignSummariesListResponse(typing_extensions.TypedDict, total=False):
+class TvCampaignSummariesListResponse(typing.TypedDict, total=False):
     kind: str
     tvCampaignSummaries: _list[TvCampaignSummary]
 
 @typing.type_check_only
-class TvCampaignSummary(typing_extensions.TypedDict, total=False):
+class TvCampaignSummary(typing.TypedDict, total=False):
     endDate: str
     grp: str
     id: str
@@ -3222,13 +3220,13 @@ class TvCampaignSummary(typing_extensions.TypedDict, total=False):
     name: str
     spend: float
     startDate: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "CAMPAIGN_COMPONENT_TYPE_UNSPECIFIED", "COMPANY", "BRAND", "PRODUCT", "CAMPAIGN"
     ]
 
 @typing.type_check_only
-class TvCampaignTimepoint(typing_extensions.TypedDict, total=False):
-    dateWindow: typing_extensions.Literal[
+class TvCampaignTimepoint(typing.TypedDict, total=False):
+    dateWindow: typing.Literal[
         "WEEKS_UNSPECIFIED",
         "DAYS_ONE",
         "WEEKS_ONE",
@@ -3240,17 +3238,17 @@ class TvCampaignTimepoint(typing_extensions.TypedDict, total=False):
     startDate: str
 
 @typing.type_check_only
-class UniversalAdId(typing_extensions.TypedDict, total=False):
-    registry: typing_extensions.Literal[
+class UniversalAdId(typing.TypedDict, total=False):
+    registry: typing.Literal[
         "OTHER", "AD_ID_OFFICIAL", "CLEARCAST", "DCM", "ARPP", "CUSV"
     ]
     value: str
 
 @typing.type_check_only
-class UserDefinedVariableConfiguration(typing_extensions.TypedDict, total=False):
-    dataType: typing_extensions.Literal["STRING", "NUMBER"]
+class UserDefinedVariableConfiguration(typing.TypedDict, total=False):
+    dataType: typing.Literal["STRING", "NUMBER"]
     reportName: str
-    variableType: typing_extensions.Literal[
+    variableType: typing.Literal[
         "U1",
         "U2",
         "U3",
@@ -3354,13 +3352,13 @@ class UserDefinedVariableConfiguration(typing_extensions.TypedDict, total=False)
     ]
 
 @typing.type_check_only
-class UserIdentifier(typing_extensions.TypedDict, total=False):
+class UserIdentifier(typing.TypedDict, total=False):
     addressInfo: OfflineUserAddressInfo
     hashedEmail: str
     hashedPhoneNumber: str
 
 @typing.type_check_only
-class UserProfile(typing_extensions.TypedDict, total=False):
+class UserProfile(typing.TypedDict, total=False):
     accountId: str
     accountName: str
     etag: str
@@ -3371,13 +3369,13 @@ class UserProfile(typing_extensions.TypedDict, total=False):
     userName: str
 
 @typing.type_check_only
-class UserProfileList(typing_extensions.TypedDict, total=False):
+class UserProfileList(typing.TypedDict, total=False):
     etag: str
     items: _list[UserProfile]
     kind: str
 
 @typing.type_check_only
-class UserRole(typing_extensions.TypedDict, total=False):
+class UserRole(typing.TypedDict, total=False):
     accountId: str
     defaultUserRole: bool
     id: str
@@ -3388,8 +3386,8 @@ class UserRole(typing_extensions.TypedDict, total=False):
     subaccountId: str
 
 @typing.type_check_only
-class UserRolePermission(typing_extensions.TypedDict, total=False):
-    availability: typing_extensions.Literal[
+class UserRolePermission(typing.TypedDict, total=False):
+    availability: typing.Literal[
         "NOT_AVAILABLE_BY_DEFAULT",
         "ACCOUNT_BY_DEFAULT",
         "SUBACCOUNT_AND_ACCOUNT_BY_DEFAULT",
@@ -3403,70 +3401,68 @@ class UserRolePermission(typing_extensions.TypedDict, total=False):
     permissionGroupId: str
 
 @typing.type_check_only
-class UserRolePermissionGroup(typing_extensions.TypedDict, total=False):
+class UserRolePermissionGroup(typing.TypedDict, total=False):
     id: str
     kind: str
     name: str
 
 @typing.type_check_only
-class UserRolePermissionGroupsListResponse(typing_extensions.TypedDict, total=False):
+class UserRolePermissionGroupsListResponse(typing.TypedDict, total=False):
     kind: str
     userRolePermissionGroups: _list[UserRolePermissionGroup]
 
 @typing.type_check_only
-class UserRolePermissionsListResponse(typing_extensions.TypedDict, total=False):
+class UserRolePermissionsListResponse(typing.TypedDict, total=False):
     kind: str
     userRolePermissions: _list[UserRolePermission]
 
 @typing.type_check_only
-class UserRolesListResponse(typing_extensions.TypedDict, total=False):
+class UserRolesListResponse(typing.TypedDict, total=False):
     kind: str
     nextPageToken: str
     userRoles: _list[UserRole]
 
 @typing.type_check_only
-class VideoFormat(typing_extensions.TypedDict, total=False):
-    fileType: typing_extensions.Literal["FLV", "THREEGPP", "MP4", "WEBM", "M3U8"]
+class VideoFormat(typing.TypedDict, total=False):
+    fileType: typing.Literal["FLV", "THREEGPP", "MP4", "WEBM", "M3U8"]
     id: int
     kind: str
     resolution: Size
     targetBitRate: int
 
 @typing.type_check_only
-class VideoFormatsListResponse(typing_extensions.TypedDict, total=False):
+class VideoFormatsListResponse(typing.TypedDict, total=False):
     kind: str
     videoFormats: _list[VideoFormat]
 
 @typing.type_check_only
-class VideoOffset(typing_extensions.TypedDict, total=False):
+class VideoOffset(typing.TypedDict, total=False):
     offsetPercentage: int
     offsetSeconds: int
 
 @typing.type_check_only
-class VideoProcessingData(typing_extensions.TypedDict, total=False):
+class VideoProcessingData(typing.TypedDict, total=False):
     errorReason: str
-    processingState: typing_extensions.Literal[
-        "UNKNOWN", "PROCESSING", "SUCCEEDED", "FAILED"
-    ]
+    processingState: typing.Literal["UNKNOWN", "PROCESSING", "SUCCEEDED", "FAILED"]
 
 @typing.type_check_only
-class VideoSettings(typing_extensions.TypedDict, total=False):
+class VideoSettings(typing.TypedDict, total=False):
     companionSettings: CompanionSetting
     durationSeconds: int
     kind: str
     obaEnabled: bool
     obaSettings: ObaIcon
-    orientation: typing_extensions.Literal["ANY", "LANDSCAPE", "PORTRAIT"]
+    orientation: typing.Literal["ANY", "LANDSCAPE", "PORTRAIT"]
     publisherSpecificationId: str
     skippableSettings: SkippableSetting
     transcodeSettings: TranscodeSetting
 
 @typing.type_check_only
-class YoutubeSettings(typing_extensions.TypedDict, total=False):
+class YoutubeSettings(typing.TypedDict, total=False):
     businessLogoCreativeIds: _list[str]
     businessName: str
     callToActions: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "CALL_TO_ACTION_UNKNOWN",
             "CALL_TO_ACTION_LEARN_MORE",
             "CALL_TO_ACTION_GET_QUOTE",

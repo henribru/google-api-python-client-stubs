@@ -1,11 +1,9 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class About(typing_extensions.TypedDict, total=False):
+class About(typing.TypedDict, total=False):
     additionalRoleInfo: _list[dict[str, typing.Any]]
     canCreateDrives: bool
     canCreateTeamDrives: bool
@@ -36,7 +34,7 @@ class About(typing_extensions.TypedDict, total=False):
     user: User
 
 @typing.type_check_only
-class App(typing_extensions.TypedDict, total=False):
+class App(typing.TypedDict, total=False):
     authorized: bool
     createInFolderTemplate: str
     createUrl: str
@@ -63,7 +61,7 @@ class App(typing_extensions.TypedDict, total=False):
     useByDefault: bool
 
 @typing.type_check_only
-class AppList(typing_extensions.TypedDict, total=False):
+class AppList(typing.TypedDict, total=False):
     defaultAppIds: _list[str]
     etag: str
     items: _list[App]
@@ -71,7 +69,7 @@ class AppList(typing_extensions.TypedDict, total=False):
     selfLink: str
 
 @typing.type_check_only
-class Change(typing_extensions.TypedDict, total=False):
+class Change(typing.TypedDict, total=False):
     changeType: str
     deleted: bool
     drive: Drive
@@ -87,7 +85,7 @@ class Change(typing_extensions.TypedDict, total=False):
     type: str
 
 @typing.type_check_only
-class ChangeList(typing_extensions.TypedDict, total=False):
+class ChangeList(typing.TypedDict, total=False):
     etag: str
     items: _list[Change]
     kind: str
@@ -98,7 +96,7 @@ class ChangeList(typing_extensions.TypedDict, total=False):
     selfLink: str
 
 @typing.type_check_only
-class Channel(typing_extensions.TypedDict, total=False):
+class Channel(typing.TypedDict, total=False):
     address: str
     expiration: str
     id: str
@@ -111,7 +109,7 @@ class Channel(typing_extensions.TypedDict, total=False):
     type: str
 
 @typing.type_check_only
-class ChildList(typing_extensions.TypedDict, total=False):
+class ChildList(typing.TypedDict, total=False):
     etag: str
     items: _list[ChildReference]
     kind: str
@@ -120,19 +118,19 @@ class ChildList(typing_extensions.TypedDict, total=False):
     selfLink: str
 
 @typing.type_check_only
-class ChildReference(typing_extensions.TypedDict, total=False):
+class ChildReference(typing.TypedDict, total=False):
     childLink: str
     id: str
     kind: str
     selfLink: str
 
 @typing.type_check_only
-class ClientEncryptionDetails(typing_extensions.TypedDict, total=False):
+class ClientEncryptionDetails(typing.TypedDict, total=False):
     decryptionMetadata: DecryptionMetadata
     encryptionState: str
 
 @typing.type_check_only
-class Comment(typing_extensions.TypedDict, total=False):
+class Comment(typing.TypedDict, total=False):
     anchor: str
     author: User
     commentId: str
@@ -150,7 +148,7 @@ class Comment(typing_extensions.TypedDict, total=False):
     status: str
 
 @typing.type_check_only
-class CommentList(typing_extensions.TypedDict, total=False):
+class CommentList(typing.TypedDict, total=False):
     items: _list[Comment]
     kind: str
     nextLink: str
@@ -158,7 +156,7 @@ class CommentList(typing_extensions.TypedDict, total=False):
     selfLink: str
 
 @typing.type_check_only
-class CommentReply(typing_extensions.TypedDict, total=False):
+class CommentReply(typing.TypedDict, total=False):
     author: User
     content: str
     createdDate: str
@@ -170,7 +168,7 @@ class CommentReply(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
-class CommentReplyList(typing_extensions.TypedDict, total=False):
+class CommentReplyList(typing.TypedDict, total=False):
     items: _list[CommentReply]
     kind: str
     nextLink: str
@@ -178,7 +176,7 @@ class CommentReplyList(typing_extensions.TypedDict, total=False):
     selfLink: str
 
 @typing.type_check_only
-class ContentRestriction(typing_extensions.TypedDict, total=False):
+class ContentRestriction(typing.TypedDict, total=False):
     ownerRestricted: bool
     readOnly: bool
     reason: str
@@ -188,7 +186,7 @@ class ContentRestriction(typing_extensions.TypedDict, total=False):
     type: str
 
 @typing.type_check_only
-class DecryptionMetadata(typing_extensions.TypedDict, total=False):
+class DecryptionMetadata(typing.TypedDict, total=False):
     aes256GcmChunkSize: str
     encryptionResourceKeyHash: str
     jwt: str
@@ -198,7 +196,7 @@ class DecryptionMetadata(typing_extensions.TypedDict, total=False):
     wrappedKey: str
 
 @typing.type_check_only
-class Drive(typing_extensions.TypedDict, total=False):
+class Drive(typing.TypedDict, total=False):
     backgroundImageFile: dict[str, typing.Any]
     backgroundImageLink: str
     capabilities: dict[str, typing.Any]
@@ -213,13 +211,13 @@ class Drive(typing_extensions.TypedDict, total=False):
     themeId: str
 
 @typing.type_check_only
-class DriveList(typing_extensions.TypedDict, total=False):
+class DriveList(typing.TypedDict, total=False):
     items: _list[Drive]
     kind: str
     nextPageToken: str
 
 @typing.type_check_only
-class File(typing_extensions.TypedDict, total=False):
+class File(typing.TypedDict, total=False):
     alternateLink: str
     appDataContents: bool
     canComment: bool
@@ -299,7 +297,7 @@ class File(typing_extensions.TypedDict, total=False):
     writersCanShare: bool
 
 @typing.type_check_only
-class FileList(typing_extensions.TypedDict, total=False):
+class FileList(typing.TypedDict, total=False):
     etag: str
     incompleteSearch: bool
     items: _list[File]
@@ -309,7 +307,7 @@ class FileList(typing_extensions.TypedDict, total=False):
     selfLink: str
 
 @typing.type_check_only
-class GenerateCseTokenResponse(typing_extensions.TypedDict, total=False):
+class GenerateCseTokenResponse(typing.TypedDict, total=False):
     currentKaclsId: str
     currentKaclsName: str
     fileId: str
@@ -317,20 +315,20 @@ class GenerateCseTokenResponse(typing_extensions.TypedDict, total=False):
     kind: str
 
 @typing.type_check_only
-class GeneratedIds(typing_extensions.TypedDict, total=False):
+class GeneratedIds(typing.TypedDict, total=False):
     ids: _list[str]
     kind: str
     space: str
 
 @typing.type_check_only
-class Label(typing_extensions.TypedDict, total=False):
+class Label(typing.TypedDict, total=False):
     fields: dict[str, typing.Any]
     id: str
     kind: str
     revisionId: str
 
 @typing.type_check_only
-class LabelField(typing_extensions.TypedDict, total=False):
+class LabelField(typing.TypedDict, total=False):
     dateString: _list[str]
     id: str
     integer: _list[str]
@@ -341,7 +339,7 @@ class LabelField(typing_extensions.TypedDict, total=False):
     valueType: str
 
 @typing.type_check_only
-class LabelFieldModification(typing_extensions.TypedDict, total=False):
+class LabelFieldModification(typing.TypedDict, total=False):
     fieldId: str
     kind: str
     setDateValues: _list[str]
@@ -352,37 +350,37 @@ class LabelFieldModification(typing_extensions.TypedDict, total=False):
     unsetValues: bool
 
 @typing.type_check_only
-class LabelList(typing_extensions.TypedDict, total=False):
+class LabelList(typing.TypedDict, total=False):
     items: _list[Label]
     kind: str
     nextPageToken: str
 
 @typing.type_check_only
-class LabelModification(typing_extensions.TypedDict, total=False):
+class LabelModification(typing.TypedDict, total=False):
     fieldModifications: _list[LabelFieldModification]
     kind: str
     labelId: str
     removeLabel: bool
 
 @typing.type_check_only
-class ModifyLabelsRequest(typing_extensions.TypedDict, total=False):
+class ModifyLabelsRequest(typing.TypedDict, total=False):
     kind: str
     labelModifications: _list[LabelModification]
 
 @typing.type_check_only
-class ModifyLabelsResponse(typing_extensions.TypedDict, total=False):
+class ModifyLabelsResponse(typing.TypedDict, total=False):
     kind: str
     modifiedLabels: _list[Label]
 
 @typing.type_check_only
-class ParentList(typing_extensions.TypedDict, total=False):
+class ParentList(typing.TypedDict, total=False):
     etag: str
     items: _list[ParentReference]
     kind: str
     selfLink: str
 
 @typing.type_check_only
-class ParentReference(typing_extensions.TypedDict, total=False):
+class ParentReference(typing.TypedDict, total=False):
     id: str
     isRoot: bool
     kind: str
@@ -390,7 +388,7 @@ class ParentReference(typing_extensions.TypedDict, total=False):
     selfLink: str
 
 @typing.type_check_only
-class Permission(typing_extensions.TypedDict, total=False):
+class Permission(typing.TypedDict, total=False):
     additionalRoles: _list[str]
     authKey: str
     deleted: bool
@@ -414,12 +412,12 @@ class Permission(typing_extensions.TypedDict, total=False):
     withLink: bool
 
 @typing.type_check_only
-class PermissionId(typing_extensions.TypedDict, total=False):
+class PermissionId(typing.TypedDict, total=False):
     id: str
     kind: str
 
 @typing.type_check_only
-class PermissionList(typing_extensions.TypedDict, total=False):
+class PermissionList(typing.TypedDict, total=False):
     etag: str
     items: _list[Permission]
     kind: str
@@ -427,7 +425,7 @@ class PermissionList(typing_extensions.TypedDict, total=False):
     selfLink: str
 
 @typing.type_check_only
-class Property(typing_extensions.TypedDict, total=False):
+class Property(typing.TypedDict, total=False):
     etag: str
     key: str
     kind: str
@@ -436,14 +434,14 @@ class Property(typing_extensions.TypedDict, total=False):
     visibility: str
 
 @typing.type_check_only
-class PropertyList(typing_extensions.TypedDict, total=False):
+class PropertyList(typing.TypedDict, total=False):
     etag: str
     items: _list[Property]
     kind: str
     selfLink: str
 
 @typing.type_check_only
-class Revision(typing_extensions.TypedDict, total=False):
+class Revision(typing.TypedDict, total=False):
     downloadUrl: str
     etag: str
     exportLinks: dict[str, typing.Any]
@@ -464,7 +462,7 @@ class Revision(typing_extensions.TypedDict, total=False):
     selfLink: str
 
 @typing.type_check_only
-class RevisionList(typing_extensions.TypedDict, total=False):
+class RevisionList(typing.TypedDict, total=False):
     etag: str
     items: _list[Revision]
     kind: str
@@ -472,12 +470,12 @@ class RevisionList(typing_extensions.TypedDict, total=False):
     selfLink: str
 
 @typing.type_check_only
-class StartPageToken(typing_extensions.TypedDict, total=False):
+class StartPageToken(typing.TypedDict, total=False):
     kind: str
     startPageToken: str
 
 @typing.type_check_only
-class TeamDrive(typing_extensions.TypedDict, total=False):
+class TeamDrive(typing.TypedDict, total=False):
     backgroundImageFile: dict[str, typing.Any]
     backgroundImageLink: str
     capabilities: dict[str, typing.Any]
@@ -491,13 +489,13 @@ class TeamDrive(typing_extensions.TypedDict, total=False):
     themeId: str
 
 @typing.type_check_only
-class TeamDriveList(typing_extensions.TypedDict, total=False):
+class TeamDriveList(typing.TypedDict, total=False):
     items: _list[TeamDrive]
     kind: str
     nextPageToken: str
 
 @typing.type_check_only
-class User(typing_extensions.TypedDict, total=False):
+class User(typing.TypedDict, total=False):
     displayName: str
     emailAddress: str
     isAuthenticatedUser: bool

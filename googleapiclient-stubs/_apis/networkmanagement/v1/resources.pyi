@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -234,7 +233,7 @@ class NetworkManagementResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         hostname: str | None = ...,
-                        monitoringPointType: typing_extensions.Literal[
+                        monitoringPointType: typing.Literal[
                             "MONITORING_POINT_TYPE_UNSPECIFIED",
                             "CONTAINER",
                             "KVM",

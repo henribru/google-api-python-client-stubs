@@ -1,11 +1,9 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class Account(typing_extensions.TypedDict, total=False):
+class Account(typing.TypedDict, total=False):
     applyPretargetingToNonGuaranteedDeals: bool
     bidderLocation: _list[dict[str, typing.Any]]
     cookieMatchingNid: str
@@ -17,43 +15,43 @@ class Account(typing_extensions.TypedDict, total=False):
     numberActiveCreatives: int
 
 @typing.type_check_only
-class AccountsList(typing_extensions.TypedDict, total=False):
+class AccountsList(typing.TypedDict, total=False):
     items: _list[Account]
     kind: str
 
 @typing.type_check_only
-class AddOrderDealsRequest(typing_extensions.TypedDict, total=False):
+class AddOrderDealsRequest(typing.TypedDict, total=False):
     deals: _list[MarketplaceDeal]
     proposalRevisionNumber: str
     updateAction: str
 
 @typing.type_check_only
-class AddOrderDealsResponse(typing_extensions.TypedDict, total=False):
+class AddOrderDealsResponse(typing.TypedDict, total=False):
     deals: _list[MarketplaceDeal]
     proposalRevisionNumber: str
 
 @typing.type_check_only
-class AddOrderNotesRequest(typing_extensions.TypedDict, total=False):
+class AddOrderNotesRequest(typing.TypedDict, total=False):
     notes: _list[MarketplaceNote]
 
 @typing.type_check_only
-class AddOrderNotesResponse(typing_extensions.TypedDict, total=False):
+class AddOrderNotesResponse(typing.TypedDict, total=False):
     notes: _list[MarketplaceNote]
 
 @typing.type_check_only
-class BillingInfo(typing_extensions.TypedDict, total=False):
+class BillingInfo(typing.TypedDict, total=False):
     accountId: int
     accountName: str
     billingId: _list[str]
     kind: str
 
 @typing.type_check_only
-class BillingInfoList(typing_extensions.TypedDict, total=False):
+class BillingInfoList(typing.TypedDict, total=False):
     items: _list[BillingInfo]
     kind: str
 
 @typing.type_check_only
-class Budget(typing_extensions.TypedDict, total=False):
+class Budget(typing.TypedDict, total=False):
     accountId: str
     billingId: str
     budgetAmount: str
@@ -62,25 +60,25 @@ class Budget(typing_extensions.TypedDict, total=False):
     kind: str
 
 @typing.type_check_only
-class Buyer(typing_extensions.TypedDict, total=False):
+class Buyer(typing.TypedDict, total=False):
     accountId: str
 
 @typing.type_check_only
-class ContactInformation(typing_extensions.TypedDict, total=False):
+class ContactInformation(typing.TypedDict, total=False):
     email: str
     name: str
 
 @typing.type_check_only
-class CreateOrdersRequest(typing_extensions.TypedDict, total=False):
+class CreateOrdersRequest(typing.TypedDict, total=False):
     proposals: _list[Proposal]
     webPropertyCode: str
 
 @typing.type_check_only
-class CreateOrdersResponse(typing_extensions.TypedDict, total=False):
+class CreateOrdersResponse(typing.TypedDict, total=False):
     proposals: _list[Proposal]
 
 @typing.type_check_only
-class Creative(typing_extensions.TypedDict, total=False):
+class Creative(typing.TypedDict, total=False):
     HTMLSnippet: str
     accountId: int
     adChoicesDestinationUrl: str
@@ -114,23 +112,23 @@ class Creative(typing_extensions.TypedDict, total=False):
     width: int
 
 @typing.type_check_only
-class CreativeDealIds(typing_extensions.TypedDict, total=False):
+class CreativeDealIds(typing.TypedDict, total=False):
     dealStatuses: _list[dict[str, typing.Any]]
     kind: str
 
 @typing.type_check_only
-class CreativesList(typing_extensions.TypedDict, total=False):
+class CreativesList(typing.TypedDict, total=False):
     items: _list[Creative]
     kind: str
     nextPageToken: str
 
 @typing.type_check_only
-class DealServingMetadata(typing_extensions.TypedDict, total=False):
+class DealServingMetadata(typing.TypedDict, total=False):
     alcoholAdsAllowed: bool
     dealPauseStatus: DealServingMetadataDealPauseStatus
 
 @typing.type_check_only
-class DealServingMetadataDealPauseStatus(typing_extensions.TypedDict, total=False):
+class DealServingMetadataDealPauseStatus(typing.TypedDict, total=False):
     buyerPauseReason: str
     firstPausedBy: str
     hasBuyerPaused: bool
@@ -138,7 +136,7 @@ class DealServingMetadataDealPauseStatus(typing_extensions.TypedDict, total=Fals
     sellerPauseReason: str
 
 @typing.type_check_only
-class DealTerms(typing_extensions.TypedDict, total=False):
+class DealTerms(typing.TypedDict, total=False):
     brandingType: str
     crossListedExternalDealIdType: str
     description: str
@@ -151,7 +149,7 @@ class DealTerms(typing_extensions.TypedDict, total=False):
     sellerTimeZone: str
 
 @typing.type_check_only
-class DealTermsGuaranteedFixedPriceTerms(typing_extensions.TypedDict, total=False):
+class DealTermsGuaranteedFixedPriceTerms(typing.TypedDict, total=False):
     billingInfo: DealTermsGuaranteedFixedPriceTermsBillingInfo
     fixedPrices: _list[PricePerBuyer]
     guaranteedImpressions: str
@@ -159,96 +157,94 @@ class DealTermsGuaranteedFixedPriceTerms(typing_extensions.TypedDict, total=Fals
     minimumDailyLooks: str
 
 @typing.type_check_only
-class DealTermsGuaranteedFixedPriceTermsBillingInfo(
-    typing_extensions.TypedDict, total=False
-):
+class DealTermsGuaranteedFixedPriceTermsBillingInfo(typing.TypedDict, total=False):
     currencyConversionTimeMs: str
     dfpLineItemId: str
     originalContractedQuantity: str
     price: Price
 
 @typing.type_check_only
-class DealTermsNonGuaranteedAuctionTerms(typing_extensions.TypedDict, total=False):
+class DealTermsNonGuaranteedAuctionTerms(typing.TypedDict, total=False):
     autoOptimizePrivateAuction: bool
     reservePricePerBuyers: _list[PricePerBuyer]
 
 @typing.type_check_only
-class DealTermsNonGuaranteedFixedPriceTerms(typing_extensions.TypedDict, total=False):
+class DealTermsNonGuaranteedFixedPriceTerms(typing.TypedDict, total=False):
     fixedPrices: _list[PricePerBuyer]
 
 @typing.type_check_only
-class DealTermsRubiconNonGuaranteedTerms(typing_extensions.TypedDict, total=False):
+class DealTermsRubiconNonGuaranteedTerms(typing.TypedDict, total=False):
     priorityPrice: Price
     standardPrice: Price
 
 @typing.type_check_only
-class DeleteOrderDealsRequest(typing_extensions.TypedDict, total=False):
+class DeleteOrderDealsRequest(typing.TypedDict, total=False):
     dealIds: _list[str]
     proposalRevisionNumber: str
     updateAction: str
 
 @typing.type_check_only
-class DeleteOrderDealsResponse(typing_extensions.TypedDict, total=False):
+class DeleteOrderDealsResponse(typing.TypedDict, total=False):
     deals: _list[MarketplaceDeal]
     proposalRevisionNumber: str
 
 @typing.type_check_only
-class DeliveryControl(typing_extensions.TypedDict, total=False):
+class DeliveryControl(typing.TypedDict, total=False):
     creativeBlockingLevel: str
     deliveryRateType: str
     frequencyCaps: _list[DeliveryControlFrequencyCap]
 
 @typing.type_check_only
-class DeliveryControlFrequencyCap(typing_extensions.TypedDict, total=False):
+class DeliveryControlFrequencyCap(typing.TypedDict, total=False):
     maxImpressions: int
     numTimeUnits: int
     timeUnitType: str
 
 @typing.type_check_only
-class Dimension(typing_extensions.TypedDict, total=False):
+class Dimension(typing.TypedDict, total=False):
     dimensionType: str
     dimensionValues: _list[DimensionDimensionValue]
 
 @typing.type_check_only
-class DimensionDimensionValue(typing_extensions.TypedDict, total=False):
+class DimensionDimensionValue(typing.TypedDict, total=False):
     id: int
     name: str
     percentage: int
 
 @typing.type_check_only
-class EditAllOrderDealsRequest(typing_extensions.TypedDict, total=False):
+class EditAllOrderDealsRequest(typing.TypedDict, total=False):
     deals: _list[MarketplaceDeal]
     proposal: Proposal
     proposalRevisionNumber: str
     updateAction: str
 
 @typing.type_check_only
-class EditAllOrderDealsResponse(typing_extensions.TypedDict, total=False):
+class EditAllOrderDealsResponse(typing.TypedDict, total=False):
     deals: _list[MarketplaceDeal]
     orderRevisionNumber: str
 
 @typing.type_check_only
-class GetOffersResponse(typing_extensions.TypedDict, total=False):
+class GetOffersResponse(typing.TypedDict, total=False):
     products: _list[Product]
 
 @typing.type_check_only
-class GetOrderDealsResponse(typing_extensions.TypedDict, total=False):
+class GetOrderDealsResponse(typing.TypedDict, total=False):
     deals: _list[MarketplaceDeal]
 
 @typing.type_check_only
-class GetOrderNotesResponse(typing_extensions.TypedDict, total=False):
+class GetOrderNotesResponse(typing.TypedDict, total=False):
     notes: _list[MarketplaceNote]
 
 @typing.type_check_only
-class GetOrdersResponse(typing_extensions.TypedDict, total=False):
+class GetOrdersResponse(typing.TypedDict, total=False):
     proposals: _list[Proposal]
 
 @typing.type_check_only
-class GetPublisherProfilesByAccountIdResponse(typing_extensions.TypedDict, total=False):
+class GetPublisherProfilesByAccountIdResponse(typing.TypedDict, total=False):
     profiles: _list[PublisherProfileApiProto]
 
 @typing.type_check_only
-class MarketplaceDeal(typing_extensions.TypedDict, total=False):
+class MarketplaceDeal(typing.TypedDict, total=False):
     buyerPrivateData: PrivateData
     creationTimeMs: str
     creativePreApprovalPolicy: str
@@ -277,19 +273,19 @@ class MarketplaceDeal(typing_extensions.TypedDict, total=False):
     webPropertyCode: str
 
 @typing.type_check_only
-class MarketplaceDealParty(typing_extensions.TypedDict, total=False):
+class MarketplaceDealParty(typing.TypedDict, total=False):
     buyer: Buyer
     seller: Seller
 
 @typing.type_check_only
-class MarketplaceLabel(typing_extensions.TypedDict, total=False):
+class MarketplaceLabel(typing.TypedDict, total=False):
     accountId: str
     createTimeMs: str
     deprecatedMarketplaceDealParty: MarketplaceDealParty
     label: str
 
 @typing.type_check_only
-class MarketplaceNote(typing_extensions.TypedDict, total=False):
+class MarketplaceNote(typing.TypedDict, total=False):
     creatorRole: str
     dealId: str
     kind: str
@@ -300,12 +296,12 @@ class MarketplaceNote(typing_extensions.TypedDict, total=False):
     timestampMs: str
 
 @typing.type_check_only
-class MobileApplication(typing_extensions.TypedDict, total=False):
+class MobileApplication(typing.TypedDict, total=False):
     appStore: str
     externalAppId: str
 
 @typing.type_check_only
-class PerformanceReport(typing_extensions.TypedDict, total=False):
+class PerformanceReport(typing.TypedDict, total=False):
     bidRate: float
     bidRequestRate: float
     calloutStatusRate: _list[typing.Any]
@@ -330,12 +326,12 @@ class PerformanceReport(typing_extensions.TypedDict, total=False):
     unsuccessfulRequestRate: float
 
 @typing.type_check_only
-class PerformanceReportList(typing_extensions.TypedDict, total=False):
+class PerformanceReportList(typing.TypedDict, total=False):
     kind: str
     performanceReport: _list[PerformanceReport]
 
 @typing.type_check_only
-class PretargetingConfig(typing_extensions.TypedDict, total=False):
+class PretargetingConfig(typing.TypedDict, total=False):
     billingId: str
     configId: str
     configName: str
@@ -365,31 +361,31 @@ class PretargetingConfig(typing_extensions.TypedDict, total=False):
     videoPlayerSizes: _list[dict[str, typing.Any]]
 
 @typing.type_check_only
-class PretargetingConfigList(typing_extensions.TypedDict, total=False):
+class PretargetingConfigList(typing.TypedDict, total=False):
     items: _list[PretargetingConfig]
     kind: str
 
 @typing.type_check_only
-class Price(typing_extensions.TypedDict, total=False):
+class Price(typing.TypedDict, total=False):
     amountMicros: float
     currencyCode: str
     expectedCpmMicros: float
     pricingType: str
 
 @typing.type_check_only
-class PricePerBuyer(typing_extensions.TypedDict, total=False):
+class PricePerBuyer(typing.TypedDict, total=False):
     auctionTier: str
     billedBuyer: Buyer
     buyer: Buyer
     price: Price
 
 @typing.type_check_only
-class PrivateData(typing_extensions.TypedDict, total=False):
+class PrivateData(typing.TypedDict, total=False):
     referenceId: str
     referencePayload: str
 
 @typing.type_check_only
-class Product(typing_extensions.TypedDict, total=False):
+class Product(typing.TypedDict, total=False):
     billedBuyer: Buyer
     buyer: Buyer
     creationTimeMs: str
@@ -419,7 +415,7 @@ class Product(typing_extensions.TypedDict, total=False):
     webPropertyCode: str
 
 @typing.type_check_only
-class Proposal(typing_extensions.TypedDict, total=False):
+class Proposal(typing.TypedDict, total=False):
     billedBuyer: Buyer
     buyer: Buyer
     buyerContacts: _list[ContactInformation]
@@ -445,7 +441,7 @@ class Proposal(typing_extensions.TypedDict, total=False):
     sellerContacts: _list[ContactInformation]
 
 @typing.type_check_only
-class PublisherProfileApiProto(typing_extensions.TypedDict, total=False):
+class PublisherProfileApiProto(typing.TypedDict, total=False):
     audience: str
     buyerPitchStatement: str
     directContact: str
@@ -473,24 +469,24 @@ class PublisherProfileApiProto(typing_extensions.TypedDict, total=False):
     topHeadlines: _list[str]
 
 @typing.type_check_only
-class PublisherProvidedForecast(typing_extensions.TypedDict, total=False):
+class PublisherProvidedForecast(typing.TypedDict, total=False):
     dimensions: _list[Dimension]
     weeklyImpressions: str
     weeklyUniques: str
 
 @typing.type_check_only
-class Seller(typing_extensions.TypedDict, total=False):
+class Seller(typing.TypedDict, total=False):
     accountId: str
     subAccountId: str
 
 @typing.type_check_only
-class SharedTargeting(typing_extensions.TypedDict, total=False):
+class SharedTargeting(typing.TypedDict, total=False):
     exclusions: _list[TargetingValue]
     inclusions: _list[TargetingValue]
     key: str
 
 @typing.type_check_only
-class TargetingValue(typing_extensions.TypedDict, total=False):
+class TargetingValue(typing.TypedDict, total=False):
     creativeSizeValue: TargetingValueCreativeSize
     dayPartTargetingValue: TargetingValueDayPartTargeting
     demogAgeCriteriaValue: TargetingValueDemogAgeCriteria
@@ -500,7 +496,7 @@ class TargetingValue(typing_extensions.TypedDict, total=False):
     stringValue: str
 
 @typing.type_check_only
-class TargetingValueCreativeSize(typing_extensions.TypedDict, total=False):
+class TargetingValueCreativeSize(typing.TypedDict, total=False):
     allowedFormats: _list[str]
     companionSizes: _list[TargetingValueSize]
     creativeSizeType: str
@@ -509,12 +505,12 @@ class TargetingValueCreativeSize(typing_extensions.TypedDict, total=False):
     skippableAdType: str
 
 @typing.type_check_only
-class TargetingValueDayPartTargeting(typing_extensions.TypedDict, total=False):
+class TargetingValueDayPartTargeting(typing.TypedDict, total=False):
     dayParts: _list[TargetingValueDayPartTargetingDayPart]
     timeZoneType: str
 
 @typing.type_check_only
-class TargetingValueDayPartTargetingDayPart(typing_extensions.TypedDict, total=False):
+class TargetingValueDayPartTargetingDayPart(typing.TypedDict, total=False):
     dayOfWeek: str
     endHour: int
     endMinute: int
@@ -522,24 +518,24 @@ class TargetingValueDayPartTargetingDayPart(typing_extensions.TypedDict, total=F
     startMinute: int
 
 @typing.type_check_only
-class TargetingValueDemogAgeCriteria(typing_extensions.TypedDict, total=False):
+class TargetingValueDemogAgeCriteria(typing.TypedDict, total=False):
     demogAgeCriteriaIds: _list[str]
 
 @typing.type_check_only
-class TargetingValueDemogGenderCriteria(typing_extensions.TypedDict, total=False):
+class TargetingValueDemogGenderCriteria(typing.TypedDict, total=False):
     demogGenderCriteriaIds: _list[str]
 
 @typing.type_check_only
-class TargetingValueRequestPlatformTargeting(typing_extensions.TypedDict, total=False):
+class TargetingValueRequestPlatformTargeting(typing.TypedDict, total=False):
     requestPlatforms: _list[str]
 
 @typing.type_check_only
-class TargetingValueSize(typing_extensions.TypedDict, total=False):
+class TargetingValueSize(typing.TypedDict, total=False):
     height: int
     width: int
 
 @typing.type_check_only
-class UpdatePrivateAuctionProposalRequest(typing_extensions.TypedDict, total=False):
+class UpdatePrivateAuctionProposalRequest(typing.TypedDict, total=False):
     externalDealId: str
     note: MarketplaceNote
     proposalRevisionNumber: str

@@ -1,26 +1,24 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class ChannelGrouping(typing_extensions.TypedDict, total=False):
+class ChannelGrouping(typing.TypedDict, total=False):
     fallbackName: str
     name: str
     rules: _list[Rule]
 
 @typing.type_check_only
-class DisjunctiveMatchStatement(typing_extensions.TypedDict, total=False):
+class DisjunctiveMatchStatement(typing.TypedDict, total=False):
     eventFilters: _list[EventFilter]
 
 @typing.type_check_only
-class EventFilter(typing_extensions.TypedDict, total=False):
+class EventFilter(typing.TypedDict, total=False):
     dimensionFilter: PathQueryOptionsFilter
 
 @typing.type_check_only
-class FilterPair(typing_extensions.TypedDict, total=False):
-    type: typing_extensions.Literal[
+class FilterPair(typing.TypedDict, total=False):
+    type: typing.Literal[
         "FILTER_UNKNOWN",
         "FILTER_DATE",
         "FILTER_DAY_OF_WEEK",
@@ -319,27 +317,27 @@ class FilterPair(typing_extensions.TypedDict, total=False):
     value: str
 
 @typing.type_check_only
-class ListQueriesResponse(typing_extensions.TypedDict, total=False):
+class ListQueriesResponse(typing.TypedDict, total=False):
     kind: str
     nextPageToken: str
     queries: _list[Query]
 
 @typing.type_check_only
-class ListReportsResponse(typing_extensions.TypedDict, total=False):
+class ListReportsResponse(typing.TypedDict, total=False):
     kind: str
     nextPageToken: str
     reports: _list[Report]
 
 @typing.type_check_only
-class Options(typing_extensions.TypedDict, total=False):
+class Options(typing.TypedDict, total=False):
     includeOnlyTargetedUserLists: bool
     pathQueryOptions: PathQueryOptions
 
 @typing.type_check_only
-class Parameters(typing_extensions.TypedDict, total=False):
+class Parameters(typing.TypedDict, total=False):
     filters: _list[FilterPair]
     groupBys: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "FILTER_UNKNOWN",
             "FILTER_DATE",
             "FILTER_DAY_OF_WEEK",
@@ -638,7 +636,7 @@ class Parameters(typing_extensions.TypedDict, total=False):
     ]
     includeInviteData: bool
     metrics: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "METRIC_UNKNOWN",
             "METRIC_IMPRESSIONS",
             "METRIC_CLICKS",
@@ -1118,7 +1116,7 @@ class Parameters(typing_extensions.TypedDict, total=False):
         ]
     ]
     options: Options
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "TYPE_GENERAL",
         "TYPE_AUDIENCE_PERFORMANCE",
         "TYPE_INVENTORY_AVAILABILITY",
@@ -1156,18 +1154,18 @@ class Parameters(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class PathFilter(typing_extensions.TypedDict, total=False):
+class PathFilter(typing.TypedDict, total=False):
     eventFilters: _list[EventFilter]
-    pathMatchPosition: typing_extensions.Literal["ANY", "FIRST", "LAST"]
+    pathMatchPosition: typing.Literal["ANY", "FIRST", "LAST"]
 
 @typing.type_check_only
-class PathQueryOptions(typing_extensions.TypedDict, total=False):
+class PathQueryOptions(typing.TypedDict, total=False):
     channelGrouping: ChannelGrouping
     pathFilters: _list[PathFilter]
 
 @typing.type_check_only
-class PathQueryOptionsFilter(typing_extensions.TypedDict, total=False):
-    filter: typing_extensions.Literal[
+class PathQueryOptionsFilter(typing.TypedDict, total=False):
+    filter: typing.Literal[
         "FILTER_UNKNOWN",
         "FILTER_DATE",
         "FILTER_DAY_OF_WEEK",
@@ -1463,13 +1461,13 @@ class PathQueryOptionsFilter(typing_extensions.TypedDict, total=False):
         "FILTER_TRUEVIEW_TARGETING_EXPANSION",
         "FILTER_PUBLISHER_TRAFFIC_SOURCE",
     ]
-    match: typing_extensions.Literal[
+    match: typing.Literal[
         "UNKNOWN", "EXACT", "PARTIAL", "BEGINS_WITH", "WILDCARD_EXPRESSION"
     ]
     values: _list[str]
 
 @typing.type_check_only
-class Query(typing_extensions.TypedDict, total=False):
+class Query(typing.TypedDict, total=False):
     kind: str
     metadata: QueryMetadata
     params: Parameters
@@ -1480,8 +1478,8 @@ class Query(typing_extensions.TypedDict, total=False):
     timezoneCode: str
 
 @typing.type_check_only
-class QueryMetadata(typing_extensions.TypedDict, total=False):
-    dataRange: typing_extensions.Literal[
+class QueryMetadata(typing.TypedDict, total=False):
+    dataRange: typing.Literal[
         "CUSTOM_DATES",
         "CURRENT_DAY",
         "PREVIOUS_DAY",
@@ -1503,7 +1501,7 @@ class QueryMetadata(typing_extensions.TypedDict, total=False):
         "TYPE_NOT_SUPPORTED",
         "LAST_60_DAYS",
     ]
-    format: typing_extensions.Literal["CSV", "EXCEL_CSV", "XLSX"]
+    format: typing.Literal["CSV", "EXCEL_CSV", "XLSX"]
     googleCloudStoragePathForLatestReport: str
     googleDrivePathForLatestReport: str
     latestReportRunTimeMs: str
@@ -1515,9 +1513,9 @@ class QueryMetadata(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
-class QuerySchedule(typing_extensions.TypedDict, total=False):
+class QuerySchedule(typing.TypedDict, total=False):
     endTimeMs: str
-    frequency: typing_extensions.Literal[
+    frequency: typing.Literal[
         "ONE_TIME", "DAILY", "WEEKLY", "SEMI_MONTHLY", "MONTHLY", "QUARTERLY", "YEARLY"
     ]
     nextRunMinuteOfDay: int
@@ -1525,14 +1523,14 @@ class QuerySchedule(typing_extensions.TypedDict, total=False):
     startTimeMs: str
 
 @typing.type_check_only
-class Report(typing_extensions.TypedDict, total=False):
+class Report(typing.TypedDict, total=False):
     key: ReportKey
     metadata: ReportMetadata
     params: Parameters
 
 @typing.type_check_only
-class ReportFailure(typing_extensions.TypedDict, total=False):
-    errorCode: typing_extensions.Literal[
+class ReportFailure(typing.TypedDict, total=False):
+    errorCode: typing.Literal[
         "AUTHENTICATION_ERROR",
         "UNAUTHORIZED_API_ACCESS",
         "SERVER_ERROR",
@@ -1554,32 +1552,32 @@ class ReportFailure(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class ReportKey(typing_extensions.TypedDict, total=False):
+class ReportKey(typing.TypedDict, total=False):
     queryId: str
     reportId: str
 
 @typing.type_check_only
-class ReportMetadata(typing_extensions.TypedDict, total=False):
+class ReportMetadata(typing.TypedDict, total=False):
     googleCloudStoragePath: str
     reportDataEndTimeMs: str
     reportDataStartTimeMs: str
     status: ReportStatus
 
 @typing.type_check_only
-class ReportStatus(typing_extensions.TypedDict, total=False):
+class ReportStatus(typing.TypedDict, total=False):
     failure: ReportFailure
     finishTimeMs: str
-    format: typing_extensions.Literal["CSV", "EXCEL_CSV", "XLSX"]
-    state: typing_extensions.Literal["RUNNING", "DONE", "FAILED"]
+    format: typing.Literal["CSV", "EXCEL_CSV", "XLSX"]
+    state: typing.Literal["RUNNING", "DONE", "FAILED"]
 
 @typing.type_check_only
-class Rule(typing_extensions.TypedDict, total=False):
+class Rule(typing.TypedDict, total=False):
     disjunctiveMatchStatements: _list[DisjunctiveMatchStatement]
     name: str
 
 @typing.type_check_only
-class RunQueryRequest(typing_extensions.TypedDict, total=False):
-    dataRange: typing_extensions.Literal[
+class RunQueryRequest(typing.TypedDict, total=False):
+    dataRange: typing.Literal[
         "CUSTOM_DATES",
         "CURRENT_DAY",
         "PREVIOUS_DAY",

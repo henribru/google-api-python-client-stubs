@@ -1,19 +1,17 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class AddEnableRulesMetadata(typing_extensions.TypedDict, total=False): ...
+class AddEnableRulesMetadata(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class AddEnableRulesResponse(typing_extensions.TypedDict, total=False):
+class AddEnableRulesResponse(typing.TypedDict, total=False):
     addedValues: _list[str]
     parent: str
 
 @typing.type_check_only
-class AdminQuotaPolicy(typing_extensions.TypedDict, total=False):
+class AdminQuotaPolicy(typing.TypedDict, total=False):
     container: str
     dimensions: dict[str, typing.Any]
     metric: str
@@ -22,55 +20,52 @@ class AdminQuotaPolicy(typing_extensions.TypedDict, total=False):
     unit: str
 
 @typing.type_check_only
-class Analysis(typing_extensions.TypedDict, total=False):
-    analysis: AnalysisResult
-    analysisType: typing_extensions.Literal[
+class Analysis(typing.TypedDict, total=False):
+    analysisResult: AnalysisResult
+    analysisType: typing.Literal[
         "ANALYSIS_TYPE_UNSPECIFIED",
         "ANALYSIS_TYPE_DEPENDENCY",
         "ANALYSIS_TYPE_RESOURCE_USAGE",
-        "ANALYSIS_TYPE_RESOURCE_EXISTENCE",
     ]
     displayName: str
     service: str
 
 @typing.type_check_only
-class AnalysisResult(typing_extensions.TypedDict, total=False):
+class AnalysisResult(typing.TypedDict, total=False):
     blockers: _list[Impact]
     warnings: _list[Impact]
 
 @typing.type_check_only
-class AnalyzeConsumerPolicyMetadata(typing_extensions.TypedDict, total=False): ...
+class AnalyzeConsumerPolicyMetadata(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class AnalyzeConsumerPolicyResponse(typing_extensions.TypedDict, total=False):
+class AnalyzeConsumerPolicyResponse(typing.TypedDict, total=False):
     analysis: _list[Analysis]
 
 @typing.type_check_only
-class Api(typing_extensions.TypedDict, total=False):
+class Api(typing.TypedDict, total=False):
     edition: str
     methods: _list[Method]
     mixins: _list[Mixin]
     name: str
     options: _list[Option]
     sourceContext: SourceContext
-    syntax: typing_extensions.Literal[
-        "SYNTAX_PROTO2", "SYNTAX_PROTO3", "SYNTAX_EDITIONS"
-    ]
+    syntax: typing.Literal["SYNTAX_PROTO2", "SYNTAX_PROTO3", "SYNTAX_EDITIONS"]
     version: str
 
 @typing.type_check_only
-class Aspect(typing_extensions.TypedDict, total=False):
+class Aspect(typing.TypedDict, total=False):
     kind: str
     rules: _list[AspectRule]
     spec: dict[str, typing.Any]
 
 @typing.type_check_only
-class AspectRule(typing_extensions.TypedDict, total=False):
+class AspectRule(typing.TypedDict, total=False):
     config: dict[str, typing.Any]
     selector: str
 
 @typing.type_check_only
-class AuthProvider(typing_extensions.TypedDict, total=False):
+class AuthProvider(typing.TypedDict, total=False):
     audiences: str
     authorizationUrl: str
     id: str
@@ -79,28 +74,28 @@ class AuthProvider(typing_extensions.TypedDict, total=False):
     jwtLocations: _list[JwtLocation]
 
 @typing.type_check_only
-class AuthRequirement(typing_extensions.TypedDict, total=False):
+class AuthRequirement(typing.TypedDict, total=False):
     audiences: str
     providerId: str
 
 @typing.type_check_only
-class Authentication(typing_extensions.TypedDict, total=False):
+class Authentication(typing.TypedDict, total=False):
     providers: _list[AuthProvider]
     rules: _list[AuthenticationRule]
 
 @typing.type_check_only
-class AuthenticationRule(typing_extensions.TypedDict, total=False):
+class AuthenticationRule(typing.TypedDict, total=False):
     allowWithoutCredential: bool
     oauth: OAuthRequirements
     requirements: _list[AuthRequirement]
     selector: str
 
 @typing.type_check_only
-class Backend(typing_extensions.TypedDict, total=False):
+class Backend(typing.TypedDict, total=False):
     rules: _list[BackendRule]
 
 @typing.type_check_only
-class BackendRule(typing_extensions.TypedDict, total=False):
+class BackendRule(typing.TypedDict, total=False):
     address: str
     deadline: float
     disableAuth: bool
@@ -109,69 +104,69 @@ class BackendRule(typing_extensions.TypedDict, total=False):
     minDeadline: float
     operationDeadline: float
     overridesByRequestProtocol: dict[str, typing.Any]
-    pathTranslation: typing_extensions.Literal[
+    pathTranslation: typing.Literal[
         "PATH_TRANSLATION_UNSPECIFIED", "CONSTANT_ADDRESS", "APPEND_PATH_TO_ADDRESS"
     ]
     protocol: str
     selector: str
 
 @typing.type_check_only
-class BatchCreateAdminOverridesResponse(typing_extensions.TypedDict, total=False):
+class BatchCreateAdminOverridesResponse(typing.TypedDict, total=False):
     overrides: _list[QuotaOverride]
 
 @typing.type_check_only
-class BatchCreateConsumerOverridesResponse(typing_extensions.TypedDict, total=False):
+class BatchCreateConsumerOverridesResponse(typing.TypedDict, total=False):
     overrides: _list[QuotaOverride]
 
 @typing.type_check_only
-class BatchEnableServicesRequest(typing_extensions.TypedDict, total=False):
+class BatchEnableServicesRequest(typing.TypedDict, total=False):
     serviceIds: _list[str]
 
 @typing.type_check_only
-class BatchEnableServicesResponse(typing_extensions.TypedDict, total=False):
+class BatchEnableServicesResponse(typing.TypedDict, total=False):
     failures: _list[EnableFailure]
     services: _list[GoogleApiServiceusageV1Service]
 
 @typing.type_check_only
-class BatchingConfigProto(typing_extensions.TypedDict, total=False):
+class BatchingConfigProto(typing.TypedDict, total=False):
     batchDescriptor: BatchingDescriptorProto
     thresholds: BatchingSettingsProto
 
 @typing.type_check_only
-class BatchingDescriptorProto(typing_extensions.TypedDict, total=False):
+class BatchingDescriptorProto(typing.TypedDict, total=False):
     batchedField: str
     discriminatorFields: _list[str]
     subresponseField: str
 
 @typing.type_check_only
-class BatchingSettingsProto(typing_extensions.TypedDict, total=False):
+class BatchingSettingsProto(typing.TypedDict, total=False):
     delayThreshold: str
     elementCountLimit: int
     elementCountThreshold: int
     flowControlByteLimit: int
     flowControlElementLimit: int
-    flowControlLimitExceededBehavior: typing_extensions.Literal[
+    flowControlLimitExceededBehavior: typing.Literal[
         "UNSET_BEHAVIOR", "THROW_EXCEPTION", "BLOCK", "IGNORE"
     ]
     requestByteLimit: int
     requestByteThreshold: str
 
 @typing.type_check_only
-class Billing(typing_extensions.TypedDict, total=False):
+class Billing(typing.TypedDict, total=False):
     consumerDestinations: _list[BillingDestination]
 
 @typing.type_check_only
-class BillingDestination(typing_extensions.TypedDict, total=False):
+class BillingDestination(typing.TypedDict, total=False):
     metrics: _list[str]
     monitoredResource: str
 
 @typing.type_check_only
-class ClientLibrarySettings(typing_extensions.TypedDict, total=False):
+class ClientLibrarySettings(typing.TypedDict, total=False):
     cppSettings: CppSettings
     dotnetSettings: DotnetSettings
     goSettings: GoSettings
     javaSettings: JavaSettings
-    launchStage: typing_extensions.Literal[
+    launchStage: typing.Literal[
         "LAUNCH_STAGE_UNSPECIFIED",
         "UNIMPLEMENTED",
         "PRELAUNCH",
@@ -189,9 +184,9 @@ class ClientLibrarySettings(typing_extensions.TypedDict, total=False):
     version: str
 
 @typing.type_check_only
-class CommonLanguageSettings(typing_extensions.TypedDict, total=False):
+class CommonLanguageSettings(typing.TypedDict, total=False):
     destinations: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "CLIENT_LIBRARY_DESTINATION_UNSPECIFIED", "GITHUB", "PACKAGE_MANAGER"
         ]
     ]
@@ -199,25 +194,30 @@ class CommonLanguageSettings(typing_extensions.TypedDict, total=False):
     selectiveGapicGeneration: SelectiveGapicGeneration
 
 @typing.type_check_only
-class ConsumerPolicy(typing_extensions.TypedDict, total=False):
-    annotations: dict[str, typing.Any]
+class ConsumerPolicy(typing.TypedDict, total=False):
+    createTime: str
     enableRules: _list[EnableRule]
     etag: str
     name: str
     updateTime: str
 
 @typing.type_check_only
-class ConsumerQuotaLimit(typing_extensions.TypedDict, total=False):
+class ConsumerQuotaLimit(typing.TypedDict, total=False):
     allowsAdminOverrides: bool
     isPrecise: bool
     metric: str
     name: str
     quotaBuckets: _list[QuotaBucket]
     supportedLocations: _list[str]
+    trafficSource: typing.Literal[
+        "TRAFFIC_SOURCE_UNSPECIFIED",
+        "TRAFFIC_SOURCE_NONAGENTIC",
+        "TRAFFIC_SOURCE_AGENTIC",
+    ]
     unit: str
 
 @typing.type_check_only
-class ConsumerQuotaMetric(typing_extensions.TypedDict, total=False):
+class ConsumerQuotaMetric(typing.TypedDict, total=False):
     consumerQuotaLimits: _list[ConsumerQuotaLimit]
     descendantConsumerQuotaLimits: _list[ConsumerQuotaLimit]
     displayName: str
@@ -226,24 +226,24 @@ class ConsumerQuotaMetric(typing_extensions.TypedDict, total=False):
     unit: str
 
 @typing.type_check_only
-class ContentSecurity(typing_extensions.TypedDict, total=False):
+class ContentSecurity(typing.TypedDict, total=False):
     contentSecurityProviders: _list[ContentSecurityProvider]
 
 @typing.type_check_only
-class ContentSecurityPolicy(typing_extensions.TypedDict, total=False):
+class ContentSecurityPolicy(typing.TypedDict, total=False):
     mcpContentSecurity: ContentSecurity
     name: str
 
 @typing.type_check_only
-class ContentSecurityProvider(typing_extensions.TypedDict, total=False):
+class ContentSecurityProvider(typing.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class Context(typing_extensions.TypedDict, total=False):
+class Context(typing.TypedDict, total=False):
     rules: _list[ContextRule]
 
 @typing.type_check_only
-class ContextRule(typing_extensions.TypedDict, total=False):
+class ContextRule(typing.TypedDict, total=False):
     allowedRequestExtensions: _list[str]
     allowedResponseExtensions: _list[str]
     provided: _list[str]
@@ -251,44 +251,44 @@ class ContextRule(typing_extensions.TypedDict, total=False):
     selector: str
 
 @typing.type_check_only
-class Control(typing_extensions.TypedDict, total=False):
+class Control(typing.TypedDict, total=False):
     environment: str
     methodPolicies: _list[MethodPolicy]
 
 @typing.type_check_only
-class CppSettings(typing_extensions.TypedDict, total=False):
+class CppSettings(typing.TypedDict, total=False):
     common: CommonLanguageSettings
 
 @typing.type_check_only
-class CreateAdminQuotaPolicyMetadata(typing_extensions.TypedDict, total=False): ...
+class CreateAdminQuotaPolicyMetadata(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class CustomError(typing_extensions.TypedDict, total=False):
+class CustomError(typing.TypedDict, total=False):
     rules: _list[CustomErrorRule]
     types: _list[str]
 
 @typing.type_check_only
-class CustomErrorRule(typing_extensions.TypedDict, total=False):
+class CustomErrorRule(typing.TypedDict, total=False):
     isErrorType: bool
     selector: str
 
 @typing.type_check_only
-class CustomHttpPattern(typing_extensions.TypedDict, total=False):
+class CustomHttpPattern(typing.TypedDict, total=False):
     kind: str
     path: str
 
 @typing.type_check_only
-class DeleteAdminQuotaPolicyMetadata(typing_extensions.TypedDict, total=False): ...
+class DeleteAdminQuotaPolicyMetadata(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class DisableServiceRequest(typing_extensions.TypedDict, total=False): ...
+class DisableServiceRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class DisableServiceResponse(typing_extensions.TypedDict, total=False):
+class DisableServiceResponse(typing.TypedDict, total=False):
     service: GoogleApiServiceusageV1Service
 
 @typing.type_check_only
-class Documentation(typing_extensions.TypedDict, total=False):
+class Documentation(typing.TypedDict, total=False):
     additionalIamInfo: str
     documentationRootUrl: str
     overview: str
@@ -299,14 +299,14 @@ class Documentation(typing_extensions.TypedDict, total=False):
     summary: str
 
 @typing.type_check_only
-class DocumentationRule(typing_extensions.TypedDict, total=False):
+class DocumentationRule(typing.TypedDict, total=False):
     deprecationDescription: str
     description: str
     disableReplacementWords: str
     selector: str
 
 @typing.type_check_only
-class DotnetSettings(typing_extensions.TypedDict, total=False):
+class DotnetSettings(typing.TypedDict, total=False):
     common: CommonLanguageSettings
     forcedNamespaceAliases: _list[str]
     handwrittenSignatures: _list[str]
@@ -315,62 +315,59 @@ class DotnetSettings(typing_extensions.TypedDict, total=False):
     renamedServices: dict[str, typing.Any]
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class EnableFailure(typing_extensions.TypedDict, total=False):
+class EnableFailure(typing.TypedDict, total=False):
     errorMessage: str
     serviceId: str
 
 @typing.type_check_only
-class EnableRule(typing_extensions.TypedDict, total=False):
-    enableType: typing_extensions.Literal[
+class EnableRule(typing.TypedDict, total=False):
+    enableType: typing.Literal[
         "ENABLE_TYPE_UNSPECIFIED", "CLIENT", "RESOURCE", "V1_COMPATIBLE"
     ]
-    groups: _list[str]
     services: _list[str]
     values: _list[str]
 
 @typing.type_check_only
-class EnableServiceRequest(typing_extensions.TypedDict, total=False): ...
+class EnableServiceRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class EnableServiceResponse(typing_extensions.TypedDict, total=False):
+class EnableServiceResponse(typing.TypedDict, total=False):
     service: GoogleApiServiceusageV1Service
 
 @typing.type_check_only
-class Endpoint(typing_extensions.TypedDict, total=False):
+class Endpoint(typing.TypedDict, total=False):
     aliases: _list[str]
     allowCors: bool
     name: str
     target: str
 
 @typing.type_check_only
-class Enum(typing_extensions.TypedDict, total=False):
+class Enum(typing.TypedDict, total=False):
     edition: str
     enumvalue: _list[EnumValue]
     name: str
     options: _list[Option]
     sourceContext: SourceContext
-    syntax: typing_extensions.Literal[
-        "SYNTAX_PROTO2", "SYNTAX_PROTO3", "SYNTAX_EDITIONS"
-    ]
+    syntax: typing.Literal["SYNTAX_PROTO2", "SYNTAX_PROTO3", "SYNTAX_EDITIONS"]
 
 @typing.type_check_only
-class EnumValue(typing_extensions.TypedDict, total=False):
+class EnumValue(typing.TypedDict, total=False):
     name: str
     number: int
     options: _list[Option]
 
 @typing.type_check_only
-class ExperimentalFeatures(typing_extensions.TypedDict, total=False):
+class ExperimentalFeatures(typing.TypedDict, total=False):
     protobufPythonicTypesEnabled: bool
     restAsyncIoEnabled: bool
     unversionedPackageDisabled: bool
 
 @typing.type_check_only
-class Field(typing_extensions.TypedDict, total=False):
-    cardinality: typing_extensions.Literal[
+class Field(typing.TypedDict, total=False):
+    cardinality: typing.Literal[
         "CARDINALITY_UNKNOWN",
         "CARDINALITY_OPTIONAL",
         "CARDINALITY_REQUIRED",
@@ -378,7 +375,7 @@ class Field(typing_extensions.TypedDict, total=False):
     ]
     defaultValue: str
     jsonName: str
-    kind: typing_extensions.Literal[
+    kind: typing.Literal[
         "TYPE_UNKNOWN",
         "TYPE_DOUBLE",
         "TYPE_FLOAT",
@@ -407,26 +404,26 @@ class Field(typing_extensions.TypedDict, total=False):
     typeUrl: str
 
 @typing.type_check_only
-class FieldPolicy(typing_extensions.TypedDict, total=False):
+class FieldPolicy(typing.TypedDict, total=False):
     resourcePermission: str
     resourceType: str
     selector: str
 
 @typing.type_check_only
-class GetServiceIdentityMetadata(typing_extensions.TypedDict, total=False): ...
+class GetServiceIdentityMetadata(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class GetServiceIdentityResponse(typing_extensions.TypedDict, total=False):
+class GetServiceIdentityResponse(typing.TypedDict, total=False):
     identity: ServiceIdentity
-    state: typing_extensions.Literal["IDENTITY_STATE_UNSPECIFIED", "ACTIVE"]
+    state: typing.Literal["IDENTITY_STATE_UNSPECIFIED", "ACTIVE"]
 
 @typing.type_check_only
-class GoSettings(typing_extensions.TypedDict, total=False):
+class GoSettings(typing.TypedDict, total=False):
     common: CommonLanguageSettings
     renamedServices: dict[str, typing.Any]
 
 @typing.type_check_only
-class GoogleApiService(typing_extensions.TypedDict, total=False):
+class GoogleApiService(typing.TypedDict, total=False):
     apis: _list[Api]
     aspects: _list[Aspect]
     authentication: Authentication
@@ -458,20 +455,18 @@ class GoogleApiService(typing_extensions.TypedDict, total=False):
     usage: Usage
 
 @typing.type_check_only
-class GoogleApiServiceusageV1OperationMetadata(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleApiServiceusageV1OperationMetadata(typing.TypedDict, total=False):
     resourceNames: _list[str]
 
 @typing.type_check_only
-class GoogleApiServiceusageV1Service(typing_extensions.TypedDict, total=False):
+class GoogleApiServiceusageV1Service(typing.TypedDict, total=False):
     config: GoogleApiServiceusageV1ServiceConfig
     name: str
     parent: str
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "DISABLED", "ENABLED"]
+    state: typing.Literal["STATE_UNSPECIFIED", "DISABLED", "ENABLED"]
 
 @typing.type_check_only
-class GoogleApiServiceusageV1ServiceConfig(typing_extensions.TypedDict, total=False):
+class GoogleApiServiceusageV1ServiceConfig(typing.TypedDict, total=False):
     apis: _list[Api]
     authentication: Authentication
     documentation: Documentation
@@ -485,22 +480,46 @@ class GoogleApiServiceusageV1ServiceConfig(typing_extensions.TypedDict, total=Fa
 
 @typing.type_check_only
 class GoogleApiServiceusageV1beta1GetServiceIdentityResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     identity: GoogleApiServiceusageV1beta1ServiceIdentity
-    state: typing_extensions.Literal["IDENTITY_STATE_UNSPECIFIED", "ACTIVE"]
+    state: typing.Literal["IDENTITY_STATE_UNSPECIFIED", "ACTIVE"]
 
 @typing.type_check_only
-class GoogleApiServiceusageV1beta1ServiceIdentity(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleApiServiceusageV1beta1ServiceIdentity(typing.TypedDict, total=False):
     email: str
     uniqueId: str
 
 @typing.type_check_only
-class GoogleApiServiceusageV2alphaConsumerPolicy(
-    typing_extensions.TypedDict, total=False
+class GoogleApiServiceusageV2alphaAnalysis(typing.TypedDict, total=False):
+    analysisResult: GoogleApiServiceusageV2alphaAnalysisResult
+    analysisType: typing.Literal[
+        "ANALYSIS_TYPE_UNSPECIFIED",
+        "ANALYSIS_TYPE_DEPENDENCY",
+        "ANALYSIS_TYPE_RESOURCE_USAGE",
+        "ANALYSIS_TYPE_RESOURCE_EXISTENCE",
+    ]
+    displayName: str
+    service: str
+
+@typing.type_check_only
+class GoogleApiServiceusageV2alphaAnalysisResult(typing.TypedDict, total=False):
+    blockers: _list[GoogleApiServiceusageV2alphaImpact]
+    warnings: _list[GoogleApiServiceusageV2alphaImpact]
+
+@typing.type_check_only
+class GoogleApiServiceusageV2alphaAnalyzeConsumerPolicyMetadata(
+    typing.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleApiServiceusageV2alphaAnalyzeConsumerPolicyResponse(
+    typing.TypedDict, total=False
 ):
+    analysis: _list[GoogleApiServiceusageV2alphaAnalysis]
+
+@typing.type_check_only
+class GoogleApiServiceusageV2alphaConsumerPolicy(typing.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     createTime: str
     enableRules: _list[GoogleApiServiceusageV2alphaEnableRule]
@@ -509,18 +528,28 @@ class GoogleApiServiceusageV2alphaConsumerPolicy(
     updateTime: str
 
 @typing.type_check_only
-class GoogleApiServiceusageV2alphaEnableRule(typing_extensions.TypedDict, total=False):
+class GoogleApiServiceusageV2alphaEnableRule(typing.TypedDict, total=False):
     services: _list[str]
 
 @typing.type_check_only
+class GoogleApiServiceusageV2alphaImpact(typing.TypedDict, total=False):
+    detail: str
+    impactType: typing.Literal[
+        "IMPACT_TYPE_UNSPECIFIED",
+        "DEPENDENCY_MISSING_DEPENDENCIES",
+        "RESOURCE_EXISTENCE_PROJECT",
+    ]
+    parent: str
+
+@typing.type_check_only
 class GoogleApiServiceusageV2alphaUpdateConsumerPolicyMetadata(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
-class GoogleApiServiceusageV2betaAnalysis(typing_extensions.TypedDict, total=False):
+class GoogleApiServiceusageV2betaAnalysis(typing.TypedDict, total=False):
     analysisResult: GoogleApiServiceusageV2betaAnalysisResult
-    analysisType: typing_extensions.Literal[
+    analysisType: typing.Literal[
         "ANALYSIS_TYPE_UNSPECIFIED",
         "ANALYSIS_TYPE_DEPENDENCY",
         "ANALYSIS_TYPE_RESOURCE_USAGE",
@@ -529,27 +558,23 @@ class GoogleApiServiceusageV2betaAnalysis(typing_extensions.TypedDict, total=Fal
     service: str
 
 @typing.type_check_only
-class GoogleApiServiceusageV2betaAnalysisResult(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleApiServiceusageV2betaAnalysisResult(typing.TypedDict, total=False):
     blockers: _list[GoogleApiServiceusageV2betaImpact]
     warnings: _list[GoogleApiServiceusageV2betaImpact]
 
 @typing.type_check_only
 class GoogleApiServiceusageV2betaAnalyzeConsumerPolicyMetadata(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
 class GoogleApiServiceusageV2betaAnalyzeConsumerPolicyResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     analysis: _list[GoogleApiServiceusageV2betaAnalysis]
 
 @typing.type_check_only
-class GoogleApiServiceusageV2betaConsumerPolicy(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleApiServiceusageV2betaConsumerPolicy(typing.TypedDict, total=False):
     createTime: str
     enableRules: _list[GoogleApiServiceusageV2betaEnableRule]
     etag: str
@@ -557,25 +582,23 @@ class GoogleApiServiceusageV2betaConsumerPolicy(
     updateTime: str
 
 @typing.type_check_only
-class GoogleApiServiceusageV2betaEnableRule(typing_extensions.TypedDict, total=False):
+class GoogleApiServiceusageV2betaEnableRule(typing.TypedDict, total=False):
     services: _list[str]
 
 @typing.type_check_only
-class GoogleApiServiceusageV2betaImpact(typing_extensions.TypedDict, total=False):
+class GoogleApiServiceusageV2betaImpact(typing.TypedDict, total=False):
     detail: str
-    impactType: typing_extensions.Literal[
+    impactType: typing.Literal[
         "IMPACT_TYPE_UNSPECIFIED", "DEPENDENCY_MISSING_DEPENDENCIES"
     ]
     missingDependency: str
 
 @typing.type_check_only
-class GoogleApiServiceusageV2betaMcpEnableRule(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleApiServiceusageV2betaMcpEnableRule(typing.TypedDict, total=False):
     mcpServices: _list[GoogleApiServiceusageV2betaMcpService]
 
 @typing.type_check_only
-class GoogleApiServiceusageV2betaMcpPolicy(typing_extensions.TypedDict, total=False):
+class GoogleApiServiceusageV2betaMcpPolicy(typing.TypedDict, total=False):
     createTime: str
     etag: str
     mcpEnableRules: _list[GoogleApiServiceusageV2betaMcpEnableRule]
@@ -583,26 +606,26 @@ class GoogleApiServiceusageV2betaMcpPolicy(typing_extensions.TypedDict, total=Fa
     updateTime: str
 
 @typing.type_check_only
-class GoogleApiServiceusageV2betaMcpService(typing_extensions.TypedDict, total=False):
+class GoogleApiServiceusageV2betaMcpService(typing.TypedDict, total=False):
     service: str
 
 @typing.type_check_only
 class GoogleApiServiceusageV2betaUpdateConsumerPolicyMetadata(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
 class GoogleApiServiceusageV2betaUpdateMcpPolicyMetadata(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
-class Http(typing_extensions.TypedDict, total=False):
+class Http(typing.TypedDict, total=False):
     fullyDecodeReservedExpansion: bool
     rules: _list[HttpRule]
 
 @typing.type_check_only
-class HttpRule(typing_extensions.TypedDict, total=False):
+class HttpRule(typing.TypedDict, total=False):
     additionalBindings: _list[HttpRule]
     body: str
     custom: CustomHttpPattern
@@ -615,23 +638,21 @@ class HttpRule(typing_extensions.TypedDict, total=False):
     selector: str
 
 @typing.type_check_only
-class Impact(typing_extensions.TypedDict, total=False):
+class Impact(typing.TypedDict, total=False):
     detail: str
-    impactType: typing_extensions.Literal[
-        "IMPACT_TYPE_UNSPECIFIED",
-        "DEPENDENCY_MISSING_DEPENDENCIES",
-        "RESOURCE_EXISTENCE_PROJECT",
+    impactType: typing.Literal[
+        "IMPACT_TYPE_UNSPECIFIED", "DEPENDENCY_MISSING_DEPENDENCIES"
     ]
-    parent: str
+    missingDependency: str
 
 @typing.type_check_only
-class ImportAdminOverridesMetadata(typing_extensions.TypedDict, total=False): ...
+class ImportAdminOverridesMetadata(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ImportAdminOverridesRequest(typing_extensions.TypedDict, total=False):
+class ImportAdminOverridesRequest(typing.TypedDict, total=False):
     force: bool
     forceOnly: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "QUOTA_SAFETY_CHECK_UNSPECIFIED",
             "LIMIT_DECREASE_BELOW_USAGE",
             "LIMIT_DECREASE_PERCENTAGE_TOO_HIGH",
@@ -640,24 +661,24 @@ class ImportAdminOverridesRequest(typing_extensions.TypedDict, total=False):
     inlineSource: OverrideInlineSource
 
 @typing.type_check_only
-class ImportAdminOverridesResponse(typing_extensions.TypedDict, total=False):
+class ImportAdminOverridesResponse(typing.TypedDict, total=False):
     overrides: _list[QuotaOverride]
 
 @typing.type_check_only
-class ImportAdminQuotaPoliciesMetadata(typing_extensions.TypedDict, total=False): ...
+class ImportAdminQuotaPoliciesMetadata(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ImportAdminQuotaPoliciesResponse(typing_extensions.TypedDict, total=False):
+class ImportAdminQuotaPoliciesResponse(typing.TypedDict, total=False):
     policies: _list[AdminQuotaPolicy]
 
 @typing.type_check_only
-class ImportConsumerOverridesMetadata(typing_extensions.TypedDict, total=False): ...
+class ImportConsumerOverridesMetadata(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ImportConsumerOverridesRequest(typing_extensions.TypedDict, total=False):
+class ImportConsumerOverridesRequest(typing.TypedDict, total=False):
     force: bool
     forceOnly: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "QUOTA_SAFETY_CHECK_UNSPECIFIED",
             "LIMIT_DECREASE_BELOW_USAGE",
             "LIMIT_DECREASE_PERCENTAGE_TOO_HIGH",
@@ -666,80 +687,80 @@ class ImportConsumerOverridesRequest(typing_extensions.TypedDict, total=False):
     inlineSource: OverrideInlineSource
 
 @typing.type_check_only
-class ImportConsumerOverridesResponse(typing_extensions.TypedDict, total=False):
+class ImportConsumerOverridesResponse(typing.TypedDict, total=False):
     overrides: _list[QuotaOverride]
 
 @typing.type_check_only
-class JavaSettings(typing_extensions.TypedDict, total=False):
+class JavaSettings(typing.TypedDict, total=False):
     common: CommonLanguageSettings
     libraryPackage: str
     serviceClassNames: dict[str, typing.Any]
 
 @typing.type_check_only
-class JwtLocation(typing_extensions.TypedDict, total=False):
+class JwtLocation(typing.TypedDict, total=False):
     cookie: str
     header: str
     query: str
     valuePrefix: str
 
 @typing.type_check_only
-class LabelDescriptor(typing_extensions.TypedDict, total=False):
+class LabelDescriptor(typing.TypedDict, total=False):
     description: str
     key: str
-    valueType: typing_extensions.Literal["STRING", "BOOL", "INT64"]
+    valueType: typing.Literal["STRING", "BOOL", "INT64"]
 
 @typing.type_check_only
-class ListAdminOverridesResponse(typing_extensions.TypedDict, total=False):
+class ListAdminOverridesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     overrides: _list[QuotaOverride]
 
 @typing.type_check_only
-class ListConsumerOverridesResponse(typing_extensions.TypedDict, total=False):
+class ListConsumerOverridesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     overrides: _list[QuotaOverride]
 
 @typing.type_check_only
-class ListConsumerQuotaMetricsResponse(typing_extensions.TypedDict, total=False):
+class ListConsumerQuotaMetricsResponse(typing.TypedDict, total=False):
     metrics: _list[ConsumerQuotaMetric]
     nextPageToken: str
 
 @typing.type_check_only
-class ListOperationsResponse(typing_extensions.TypedDict, total=False):
+class ListOperationsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListServicesResponse(typing_extensions.TypedDict, total=False):
+class ListServicesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     services: _list[Service]
 
 @typing.type_check_only
-class LogDescriptor(typing_extensions.TypedDict, total=False):
+class LogDescriptor(typing.TypedDict, total=False):
     description: str
     displayName: str
     labels: _list[LabelDescriptor]
     name: str
 
 @typing.type_check_only
-class Logging(typing_extensions.TypedDict, total=False):
+class Logging(typing.TypedDict, total=False):
     consumerDestinations: _list[LoggingDestination]
     producerDestinations: _list[LoggingDestination]
 
 @typing.type_check_only
-class LoggingDestination(typing_extensions.TypedDict, total=False):
+class LoggingDestination(typing.TypedDict, total=False):
     logs: _list[str]
     monitoredResource: str
 
 @typing.type_check_only
-class LongRunning(typing_extensions.TypedDict, total=False):
+class LongRunning(typing.TypedDict, total=False):
     initialPollDelay: str
     maxPollDelay: str
     pollDelayMultiplier: float
     totalPollTimeout: str
 
 @typing.type_check_only
-class Method(typing_extensions.TypedDict, total=False):
+class Method(typing.TypedDict, total=False):
     edition: str
     name: str
     options: _list[Option]
@@ -747,28 +768,26 @@ class Method(typing_extensions.TypedDict, total=False):
     requestTypeUrl: str
     responseStreaming: bool
     responseTypeUrl: str
-    syntax: typing_extensions.Literal[
-        "SYNTAX_PROTO2", "SYNTAX_PROTO3", "SYNTAX_EDITIONS"
-    ]
+    syntax: typing.Literal["SYNTAX_PROTO2", "SYNTAX_PROTO3", "SYNTAX_EDITIONS"]
 
 @typing.type_check_only
-class MethodPolicy(typing_extensions.TypedDict, total=False):
+class MethodPolicy(typing.TypedDict, total=False):
     requestPolicies: _list[FieldPolicy]
     selector: str
 
 @typing.type_check_only
-class MethodSettings(typing_extensions.TypedDict, total=False):
+class MethodSettings(typing.TypedDict, total=False):
     autoPopulatedFields: _list[str]
     batching: BatchingConfigProto
     longRunning: LongRunning
     selector: str
 
 @typing.type_check_only
-class MetricDescriptor(typing_extensions.TypedDict, total=False):
+class MetricDescriptor(typing.TypedDict, total=False):
     description: str
     displayName: str
     labels: _list[LabelDescriptor]
-    launchStage: typing_extensions.Literal[
+    launchStage: typing.Literal[
         "LAUNCH_STAGE_UNSPECIFIED",
         "UNIMPLEMENTED",
         "PRELAUNCH",
@@ -779,14 +798,14 @@ class MetricDescriptor(typing_extensions.TypedDict, total=False):
         "DEPRECATED",
     ]
     metadata: MetricDescriptorMetadata
-    metricKind: typing_extensions.Literal[
+    metricKind: typing.Literal[
         "METRIC_KIND_UNSPECIFIED", "GAUGE", "DELTA", "CUMULATIVE"
     ]
     monitoredResourceTypes: _list[str]
     name: str
     type: str
     unit: str
-    valueType: typing_extensions.Literal[
+    valueType: typing.Literal[
         "VALUE_TYPE_UNSPECIFIED",
         "BOOL",
         "INT64",
@@ -797,9 +816,9 @@ class MetricDescriptor(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class MetricDescriptorMetadata(typing_extensions.TypedDict, total=False):
+class MetricDescriptorMetadata(typing.TypedDict, total=False):
     ingestDelay: str
-    launchStage: typing_extensions.Literal[
+    launchStage: typing.Literal[
         "LAUNCH_STAGE_UNSPECIFIED",
         "UNIMPLEMENTED",
         "PRELAUNCH",
@@ -811,7 +830,7 @@ class MetricDescriptorMetadata(typing_extensions.TypedDict, total=False):
     ]
     samplePeriod: str
     timeSeriesResourceHierarchyLevel: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "TIME_SERIES_RESOURCE_HIERARCHY_LEVEL_UNSPECIFIED",
             "PROJECT",
             "ORGANIZATION",
@@ -820,21 +839,23 @@ class MetricDescriptorMetadata(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class MetricRule(typing_extensions.TypedDict, total=False):
+class MetricRule(typing.TypedDict, total=False):
+    agenticMetricCosts: dict[str, typing.Any]
     metricCosts: dict[str, typing.Any]
+    nonagenticMetricCosts: dict[str, typing.Any]
     selector: str
 
 @typing.type_check_only
-class Mixin(typing_extensions.TypedDict, total=False):
+class Mixin(typing.TypedDict, total=False):
     name: str
     root: str
 
 @typing.type_check_only
-class MonitoredResourceDescriptor(typing_extensions.TypedDict, total=False):
+class MonitoredResourceDescriptor(typing.TypedDict, total=False):
     description: str
     displayName: str
     labels: _list[LabelDescriptor]
-    launchStage: typing_extensions.Literal[
+    launchStage: typing.Literal[
         "LAUNCH_STAGE_UNSPECIFIED",
         "UNIMPLEMENTED",
         "PRELAUNCH",
@@ -848,25 +869,25 @@ class MonitoredResourceDescriptor(typing_extensions.TypedDict, total=False):
     type: str
 
 @typing.type_check_only
-class Monitoring(typing_extensions.TypedDict, total=False):
+class Monitoring(typing.TypedDict, total=False):
     consumerDestinations: _list[MonitoringDestination]
     producerDestinations: _list[MonitoringDestination]
 
 @typing.type_check_only
-class MonitoringDestination(typing_extensions.TypedDict, total=False):
+class MonitoringDestination(typing.TypedDict, total=False):
     metrics: _list[str]
     monitoredResource: str
 
 @typing.type_check_only
-class NodeSettings(typing_extensions.TypedDict, total=False):
+class NodeSettings(typing.TypedDict, total=False):
     common: CommonLanguageSettings
 
 @typing.type_check_only
-class OAuthRequirements(typing_extensions.TypedDict, total=False):
+class OAuthRequirements(typing.TypedDict, total=False):
     canonicalScopes: str
 
 @typing.type_check_only
-class Operation(typing_extensions.TypedDict, total=False):
+class Operation(typing.TypedDict, total=False):
     done: bool
     error: Status
     metadata: dict[str, typing.Any]
@@ -874,31 +895,31 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class OperationMetadata(typing_extensions.TypedDict, total=False):
+class OperationMetadata(typing.TypedDict, total=False):
     resourceNames: _list[str]
 
 @typing.type_check_only
-class Option(typing_extensions.TypedDict, total=False):
+class Option(typing.TypedDict, total=False):
     name: str
     value: dict[str, typing.Any]
 
 @typing.type_check_only
-class OverrideInlineSource(typing_extensions.TypedDict, total=False):
+class OverrideInlineSource(typing.TypedDict, total=False):
     overrides: _list[QuotaOverride]
 
 @typing.type_check_only
-class Page(typing_extensions.TypedDict, total=False):
+class Page(typing.TypedDict, total=False):
     content: str
     name: str
     subpages: _list[Page]
 
 @typing.type_check_only
-class PhpSettings(typing_extensions.TypedDict, total=False):
+class PhpSettings(typing.TypedDict, total=False):
     common: CommonLanguageSettings
     libraryPackage: str
 
 @typing.type_check_only
-class ProducerQuotaPolicy(typing_extensions.TypedDict, total=False):
+class ProducerQuotaPolicy(typing.TypedDict, total=False):
     container: str
     dimensions: dict[str, typing.Any]
     metric: str
@@ -907,7 +928,7 @@ class ProducerQuotaPolicy(typing_extensions.TypedDict, total=False):
     unit: str
 
 @typing.type_check_only
-class Publishing(typing_extensions.TypedDict, total=False):
+class Publishing(typing.TypedDict, total=False):
     apiShortName: str
     codeownerGithubTeams: _list[str]
     docTagPrefix: str
@@ -916,7 +937,7 @@ class Publishing(typing_extensions.TypedDict, total=False):
     librarySettings: _list[ClientLibrarySettings]
     methodSettings: _list[MethodSettings]
     newIssueUri: str
-    organization: typing_extensions.Literal[
+    organization: typing.Literal[
         "CLIENT_LIBRARY_ORGANIZATION_UNSPECIFIED",
         "CLOUD",
         "ADS",
@@ -931,17 +952,17 @@ class Publishing(typing_extensions.TypedDict, total=False):
     restReferenceDocumentationUri: str
 
 @typing.type_check_only
-class PythonSettings(typing_extensions.TypedDict, total=False):
+class PythonSettings(typing.TypedDict, total=False):
     common: CommonLanguageSettings
     experimentalFeatures: ExperimentalFeatures
 
 @typing.type_check_only
-class Quota(typing_extensions.TypedDict, total=False):
+class Quota(typing.TypedDict, total=False):
     limits: _list[QuotaLimit]
     metricRules: _list[MetricRule]
 
 @typing.type_check_only
-class QuotaBucket(typing_extensions.TypedDict, total=False):
+class QuotaBucket(typing.TypedDict, total=False):
     adminOverride: QuotaOverride
     consumerOverride: QuotaOverride
     defaultLimit: str
@@ -952,7 +973,7 @@ class QuotaBucket(typing_extensions.TypedDict, total=False):
     rolloutInfo: RolloutInfo
 
 @typing.type_check_only
-class QuotaLimit(typing_extensions.TypedDict, total=False):
+class QuotaLimit(typing.TypedDict, total=False):
     defaultLimit: str
     description: str
     displayName: str
@@ -961,11 +982,16 @@ class QuotaLimit(typing_extensions.TypedDict, total=False):
     maxLimit: str
     metric: str
     name: str
+    trafficSource: typing.Literal[
+        "TRAFFIC_SOURCE_UNSPECIFIED",
+        "TRAFFIC_SOURCE_NONAGENTIC",
+        "TRAFFIC_SOURCE_AGENTIC",
+    ]
     unit: str
     values: dict[str, typing.Any]
 
 @typing.type_check_only
-class QuotaOverride(typing_extensions.TypedDict, total=False):
+class QuotaOverride(typing.TypedDict, total=False):
     adminOverrideAncestor: str
     dimensions: dict[str, typing.Any]
     metric: str
@@ -974,35 +1000,35 @@ class QuotaOverride(typing_extensions.TypedDict, total=False):
     unit: str
 
 @typing.type_check_only
-class RemoveEnableRulesMetadata(typing_extensions.TypedDict, total=False): ...
+class RemoveEnableRulesMetadata(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class RemoveEnableRulesResponse(typing_extensions.TypedDict, total=False):
+class RemoveEnableRulesResponse(typing.TypedDict, total=False):
     parent: str
     removedValues: _list[str]
 
 @typing.type_check_only
-class RolloutInfo(typing_extensions.TypedDict, total=False):
+class RolloutInfo(typing.TypedDict, total=False):
     defaultLimitOngoingRollout: bool
 
 @typing.type_check_only
-class RubySettings(typing_extensions.TypedDict, total=False):
+class RubySettings(typing.TypedDict, total=False):
     common: CommonLanguageSettings
 
 @typing.type_check_only
-class SelectiveGapicGeneration(typing_extensions.TypedDict, total=False):
+class SelectiveGapicGeneration(typing.TypedDict, total=False):
     generateOmittedAsInternal: bool
     methods: _list[str]
 
 @typing.type_check_only
-class Service(typing_extensions.TypedDict, total=False):
+class Service(typing.TypedDict, total=False):
     config: ServiceConfig
     name: str
     parent: str
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "DISABLED", "ENABLED"]
+    state: typing.Literal["STATE_UNSPECIFIED", "DISABLED", "ENABLED"]
 
 @typing.type_check_only
-class ServiceConfig(typing_extensions.TypedDict, total=False):
+class ServiceConfig(typing.TypedDict, total=False):
     apis: _list[Api]
     authentication: Authentication
     documentation: Documentation
@@ -1015,68 +1041,66 @@ class ServiceConfig(typing_extensions.TypedDict, total=False):
     usage: Usage
 
 @typing.type_check_only
-class ServiceIdentity(typing_extensions.TypedDict, total=False):
+class ServiceIdentity(typing.TypedDict, total=False):
     email: str
     uniqueId: str
 
 @typing.type_check_only
-class SourceContext(typing_extensions.TypedDict, total=False):
+class SourceContext(typing.TypedDict, total=False):
     fileName: str
 
 @typing.type_check_only
-class SourceInfo(typing_extensions.TypedDict, total=False):
+class SourceInfo(typing.TypedDict, total=False):
     sourceFiles: _list[dict[str, typing.Any]]
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class SystemParameter(typing_extensions.TypedDict, total=False):
+class SystemParameter(typing.TypedDict, total=False):
     httpHeader: str
     name: str
     urlQueryParameter: str
 
 @typing.type_check_only
-class SystemParameterRule(typing_extensions.TypedDict, total=False):
+class SystemParameterRule(typing.TypedDict, total=False):
     parameters: _list[SystemParameter]
     selector: str
 
 @typing.type_check_only
-class SystemParameters(typing_extensions.TypedDict, total=False):
+class SystemParameters(typing.TypedDict, total=False):
     rules: _list[SystemParameterRule]
 
 @typing.type_check_only
-class Type(typing_extensions.TypedDict, total=False):
+class Type(typing.TypedDict, total=False):
     edition: str
     fields: _list[Field]
     name: str
     oneofs: _list[str]
     options: _list[Option]
     sourceContext: SourceContext
-    syntax: typing_extensions.Literal[
-        "SYNTAX_PROTO2", "SYNTAX_PROTO3", "SYNTAX_EDITIONS"
-    ]
+    syntax: typing.Literal["SYNTAX_PROTO2", "SYNTAX_PROTO3", "SYNTAX_EDITIONS"]
 
 @typing.type_check_only
-class UpdateAdminQuotaPolicyMetadata(typing_extensions.TypedDict, total=False): ...
+class UpdateAdminQuotaPolicyMetadata(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class UpdateConsumerPolicyMetadata(typing_extensions.TypedDict, total=False): ...
+class UpdateConsumerPolicyMetadata(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class UpdateContentSecurityPolicyMetadata(typing_extensions.TypedDict, total=False): ...
+class UpdateContentSecurityPolicyMetadata(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Usage(typing_extensions.TypedDict, total=False):
+class Usage(typing.TypedDict, total=False):
     producerNotificationChannel: str
     requirements: _list[str]
     rules: _list[UsageRule]
 
 @typing.type_check_only
-class UsageRule(typing_extensions.TypedDict, total=False):
+class UsageRule(typing.TypedDict, total=False):
     allowUnregisteredCalls: bool
     selector: str
     skipServiceControl: bool

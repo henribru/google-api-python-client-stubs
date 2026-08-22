@@ -1,11 +1,9 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class About(typing_extensions.TypedDict, total=False):
+class About(typing.TypedDict, total=False):
     appInstalled: bool
     canCreateDrives: bool
     canCreateTeamDrives: bool
@@ -21,7 +19,7 @@ class About(typing_extensions.TypedDict, total=False):
     user: User
 
 @typing.type_check_only
-class AccessProposal(typing_extensions.TypedDict, total=False):
+class AccessProposal(typing.TypedDict, total=False):
     createTime: str
     fileId: str
     proposalId: str
@@ -31,16 +29,16 @@ class AccessProposal(typing_extensions.TypedDict, total=False):
     rolesAndViews: _list[AccessProposalRoleAndView]
 
 @typing.type_check_only
-class AccessProposalRoleAndView(typing_extensions.TypedDict, total=False):
+class AccessProposalRoleAndView(typing.TypedDict, total=False):
     role: str
     view: str
 
 @typing.type_check_only
-class AddReviewer(typing_extensions.TypedDict, total=False):
+class AddReviewer(typing.TypedDict, total=False):
     addedReviewerEmail: str
 
 @typing.type_check_only
-class App(typing_extensions.TypedDict, total=False):
+class App(typing.TypedDict, total=False):
     authorized: bool
     createInFolderTemplate: str
     createUrl: str
@@ -67,49 +65,54 @@ class App(typing_extensions.TypedDict, total=False):
     useByDefault: bool
 
 @typing.type_check_only
-class AppIcons(typing_extensions.TypedDict, total=False):
+class AppIcons(typing.TypedDict, total=False):
     category: str
     iconUrl: str
     size: int
 
 @typing.type_check_only
-class AppList(typing_extensions.TypedDict, total=False):
+class AppList(typing.TypedDict, total=False):
     defaultAppIds: _list[str]
     items: _list[App]
     kind: str
     selfLink: str
 
 @typing.type_check_only
-class Approval(typing_extensions.TypedDict, total=False):
+class Approval(typing.TypedDict, total=False):
     approvalId: str
     completeTime: str
     createTime: str
     dueTime: str
+    fileContentChangeBehavior: typing.Literal[
+        "FILE_CONTENT_CHANGE_BEHAVIOR_UNSPECIFIED",
+        "RESET_APPROVAL",
+        "NO_APPROVAL_ACTION",
+    ]
     initiator: User
     kind: str
     modifyTime: str
     reviewerResponses: _list[ReviewerResponse]
-    status: typing_extensions.Literal[
+    status: typing.Literal[
         "STATUS_UNSPECIFIED", "IN_PROGRESS", "APPROVED", "CANCELLED", "DECLINED"
     ]
     targetFileId: str
 
 @typing.type_check_only
-class ApprovalList(typing_extensions.TypedDict, total=False):
+class ApprovalList(typing.TypedDict, total=False):
     items: _list[Approval]
     kind: str
     nextPageToken: str
 
 @typing.type_check_only
-class ApproveApprovalRequest(typing_extensions.TypedDict, total=False):
+class ApproveApprovalRequest(typing.TypedDict, total=False):
     message: str
 
 @typing.type_check_only
-class CancelApprovalRequest(typing_extensions.TypedDict, total=False):
+class CancelApprovalRequest(typing.TypedDict, total=False):
     message: str
 
 @typing.type_check_only
-class Change(typing_extensions.TypedDict, total=False):
+class Change(typing.TypedDict, total=False):
     changeType: str
     drive: Drive
     driveId: str
@@ -123,14 +126,14 @@ class Change(typing_extensions.TypedDict, total=False):
     type: str
 
 @typing.type_check_only
-class ChangeList(typing_extensions.TypedDict, total=False):
+class ChangeList(typing.TypedDict, total=False):
     changes: _list[Change]
     kind: str
     newStartPageToken: str
     nextPageToken: str
 
 @typing.type_check_only
-class Channel(typing_extensions.TypedDict, total=False):
+class Channel(typing.TypedDict, total=False):
     address: str
     expiration: str
     id: str
@@ -143,12 +146,12 @@ class Channel(typing_extensions.TypedDict, total=False):
     type: str
 
 @typing.type_check_only
-class ClientEncryptionDetails(typing_extensions.TypedDict, total=False):
+class ClientEncryptionDetails(typing.TypedDict, total=False):
     decryptionMetadata: DecryptionMetadata
     encryptionState: str
 
 @typing.type_check_only
-class Comment(typing_extensions.TypedDict, total=False):
+class Comment(typing.TypedDict, total=False):
     anchor: str
     assigneeEmailAddress: str
     author: User
@@ -165,17 +168,17 @@ class Comment(typing_extensions.TypedDict, total=False):
     resolved: bool
 
 @typing.type_check_only
-class CommentApprovalRequest(typing_extensions.TypedDict, total=False):
+class CommentApprovalRequest(typing.TypedDict, total=False):
     message: str
 
 @typing.type_check_only
-class CommentList(typing_extensions.TypedDict, total=False):
+class CommentList(typing.TypedDict, total=False):
     comments: _list[Comment]
     kind: str
     nextPageToken: str
 
 @typing.type_check_only
-class ContentRestriction(typing_extensions.TypedDict, total=False):
+class ContentRestriction(typing.TypedDict, total=False):
     ownerRestricted: bool
     readOnly: bool
     reason: str
@@ -185,11 +188,11 @@ class ContentRestriction(typing_extensions.TypedDict, total=False):
     type: str
 
 @typing.type_check_only
-class DeclineApprovalRequest(typing_extensions.TypedDict, total=False):
+class DeclineApprovalRequest(typing.TypedDict, total=False):
     message: str
 
 @typing.type_check_only
-class DecryptionMetadata(typing_extensions.TypedDict, total=False):
+class DecryptionMetadata(typing.TypedDict, total=False):
     aes256GcmChunkSize: str
     encryptionResourceKeyHash: str
     jwt: str
@@ -199,17 +202,17 @@ class DecryptionMetadata(typing_extensions.TypedDict, total=False):
     wrappedKey: str
 
 @typing.type_check_only
-class DownloadRestriction(typing_extensions.TypedDict, total=False):
+class DownloadRestriction(typing.TypedDict, total=False):
     restrictedForReaders: bool
     restrictedForWriters: bool
 
 @typing.type_check_only
-class DownloadRestrictionsMetadata(typing_extensions.TypedDict, total=False):
+class DownloadRestrictionsMetadata(typing.TypedDict, total=False):
     effectiveDownloadRestrictionWithContext: DownloadRestriction
     itemDownloadRestriction: DownloadRestriction
 
 @typing.type_check_only
-class Drive(typing_extensions.TypedDict, total=False):
+class Drive(typing.TypedDict, total=False):
     backgroundImageFile: dict[str, typing.Any]
     backgroundImageLink: str
     capabilities: dict[str, typing.Any]
@@ -224,13 +227,13 @@ class Drive(typing_extensions.TypedDict, total=False):
     themeId: str
 
 @typing.type_check_only
-class DriveList(typing_extensions.TypedDict, total=False):
+class DriveList(typing.TypedDict, total=False):
     drives: _list[Drive]
     kind: str
     nextPageToken: str
 
 @typing.type_check_only
-class File(typing_extensions.TypedDict, total=False):
+class File(typing.TypedDict, total=False):
     appProperties: dict[str, typing.Any]
     capabilities: dict[str, typing.Any]
     clientEncryptionDetails: ClientEncryptionDetails
@@ -298,14 +301,14 @@ class File(typing_extensions.TypedDict, total=False):
     writersCanShare: bool
 
 @typing.type_check_only
-class FileList(typing_extensions.TypedDict, total=False):
+class FileList(typing.TypedDict, total=False):
     files: _list[File]
     incompleteSearch: bool
     kind: str
     nextPageToken: str
 
 @typing.type_check_only
-class GenerateCseTokenResponse(typing_extensions.TypedDict, total=False):
+class GenerateCseTokenResponse(typing.TypedDict, total=False):
     currentKaclsId: str
     currentKaclsName: str
     fileId: str
@@ -313,20 +316,20 @@ class GenerateCseTokenResponse(typing_extensions.TypedDict, total=False):
     kind: str
 
 @typing.type_check_only
-class GeneratedIds(typing_extensions.TypedDict, total=False):
+class GeneratedIds(typing.TypedDict, total=False):
     ids: _list[str]
     kind: str
     space: str
 
 @typing.type_check_only
-class Label(typing_extensions.TypedDict, total=False):
+class Label(typing.TypedDict, total=False):
     fields: dict[str, typing.Any]
     id: str
     kind: str
     revisionId: str
 
 @typing.type_check_only
-class LabelField(typing_extensions.TypedDict, total=False):
+class LabelField(typing.TypedDict, total=False):
     dateString: _list[str]
     id: str
     integer: _list[str]
@@ -337,7 +340,7 @@ class LabelField(typing_extensions.TypedDict, total=False):
     valueType: str
 
 @typing.type_check_only
-class LabelFieldModification(typing_extensions.TypedDict, total=False):
+class LabelFieldModification(typing.TypedDict, total=False):
     fieldId: str
     kind: str
     setDateValues: _list[str]
@@ -348,35 +351,35 @@ class LabelFieldModification(typing_extensions.TypedDict, total=False):
     unsetValues: bool
 
 @typing.type_check_only
-class LabelList(typing_extensions.TypedDict, total=False):
+class LabelList(typing.TypedDict, total=False):
     kind: str
     labels: _list[Label]
     nextPageToken: str
 
 @typing.type_check_only
-class LabelModification(typing_extensions.TypedDict, total=False):
+class LabelModification(typing.TypedDict, total=False):
     fieldModifications: _list[LabelFieldModification]
     kind: str
     labelId: str
     removeLabel: bool
 
 @typing.type_check_only
-class ListAccessProposalsResponse(typing_extensions.TypedDict, total=False):
+class ListAccessProposalsResponse(typing.TypedDict, total=False):
     accessProposals: _list[AccessProposal]
     nextPageToken: str
 
 @typing.type_check_only
-class ModifyLabelsRequest(typing_extensions.TypedDict, total=False):
+class ModifyLabelsRequest(typing.TypedDict, total=False):
     kind: str
     labelModifications: _list[LabelModification]
 
 @typing.type_check_only
-class ModifyLabelsResponse(typing_extensions.TypedDict, total=False):
+class ModifyLabelsResponse(typing.TypedDict, total=False):
     kind: str
     modifiedLabels: _list[Label]
 
 @typing.type_check_only
-class Operation(typing_extensions.TypedDict, total=False):
+class Operation(typing.TypedDict, total=False):
     done: bool
     error: Status
     metadata: dict[str, typing.Any]
@@ -384,7 +387,7 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class Permission(typing_extensions.TypedDict, total=False):
+class Permission(typing.TypedDict, total=False):
     allowFileDiscovery: bool
     deleted: bool
     displayName: str
@@ -403,24 +406,24 @@ class Permission(typing_extensions.TypedDict, total=False):
     view: str
 
 @typing.type_check_only
-class PermissionList(typing_extensions.TypedDict, total=False):
+class PermissionList(typing.TypedDict, total=False):
     kind: str
     nextPageToken: str
     permissions: _list[Permission]
 
 @typing.type_check_only
-class ReassignApprovalRequest(typing_extensions.TypedDict, total=False):
+class ReassignApprovalRequest(typing.TypedDict, total=False):
     addReviewers: _list[AddReviewer]
     message: str
     replaceReviewers: _list[ReplaceReviewer]
 
 @typing.type_check_only
-class ReplaceReviewer(typing_extensions.TypedDict, total=False):
+class ReplaceReviewer(typing.TypedDict, total=False):
     addedReviewerEmail: str
     removedReviewerEmail: str
 
 @typing.type_check_only
-class Reply(typing_extensions.TypedDict, total=False):
+class Reply(typing.TypedDict, total=False):
     action: str
     assigneeEmailAddress: str
     author: User
@@ -434,28 +437,28 @@ class Reply(typing_extensions.TypedDict, total=False):
     modifiedTime: str
 
 @typing.type_check_only
-class ReplyList(typing_extensions.TypedDict, total=False):
+class ReplyList(typing.TypedDict, total=False):
     kind: str
     nextPageToken: str
     replies: _list[Reply]
 
 @typing.type_check_only
-class ResolveAccessProposalRequest(typing_extensions.TypedDict, total=False):
-    action: typing_extensions.Literal["ACTION_UNSPECIFIED", "ACCEPT", "DENY"]
+class ResolveAccessProposalRequest(typing.TypedDict, total=False):
+    action: typing.Literal["ACTION_UNSPECIFIED", "ACCEPT", "DENY"]
     role: _list[str]
     sendNotification: bool
     view: str
 
 @typing.type_check_only
-class ReviewerResponse(typing_extensions.TypedDict, total=False):
+class ReviewerResponse(typing.TypedDict, total=False):
     kind: str
-    response: typing_extensions.Literal[
+    response: typing.Literal[
         "RESPONSE_UNSPECIFIED", "NO_RESPONSE", "APPROVED", "DECLINED"
     ]
     reviewer: User
 
 @typing.type_check_only
-class Revision(typing_extensions.TypedDict, total=False):
+class Revision(typing.TypedDict, total=False):
     exportLinks: dict[str, typing.Any]
     id: str
     keepForever: bool
@@ -472,31 +475,36 @@ class Revision(typing_extensions.TypedDict, total=False):
     size: str
 
 @typing.type_check_only
-class RevisionList(typing_extensions.TypedDict, total=False):
+class RevisionList(typing.TypedDict, total=False):
     kind: str
     nextPageToken: str
     revisions: _list[Revision]
 
 @typing.type_check_only
-class StartApprovalRequest(typing_extensions.TypedDict, total=False):
+class StartApprovalRequest(typing.TypedDict, total=False):
     dueTime: str
+    fileContentChangeBehavior: typing.Literal[
+        "FILE_CONTENT_CHANGE_BEHAVIOR_UNSPECIFIED",
+        "RESET_APPROVAL",
+        "NO_APPROVAL_ACTION",
+    ]
     lockFile: bool
     message: str
     reviewerEmails: _list[str]
 
 @typing.type_check_only
-class StartPageToken(typing_extensions.TypedDict, total=False):
+class StartPageToken(typing.TypedDict, total=False):
     kind: str
     startPageToken: str
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class TeamDrive(typing_extensions.TypedDict, total=False):
+class TeamDrive(typing.TypedDict, total=False):
     backgroundImageFile: dict[str, typing.Any]
     backgroundImageLink: str
     capabilities: dict[str, typing.Any]
@@ -510,13 +518,13 @@ class TeamDrive(typing_extensions.TypedDict, total=False):
     themeId: str
 
 @typing.type_check_only
-class TeamDriveList(typing_extensions.TypedDict, total=False):
+class TeamDriveList(typing.TypedDict, total=False):
     kind: str
     nextPageToken: str
     teamDrives: _list[TeamDrive]
 
 @typing.type_check_only
-class User(typing_extensions.TypedDict, total=False):
+class User(typing.TypedDict, total=False):
     displayName: str
     emailAddress: str
     kind: str

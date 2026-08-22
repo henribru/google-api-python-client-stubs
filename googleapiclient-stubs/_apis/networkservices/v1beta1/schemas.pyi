@@ -1,11 +1,30 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class AgentGateway(typing_extensions.TypedDict, total=False):
+class AgentConnectivityTemplate(typing.TypedDict, total=False):
+    accessPath: typing.Literal[
+        "ACCESS_PATH_UNSPECIFIED", "CLIENT_TO_AGENT", "AGENT_TO_ANYWHERE"
+    ]
+    accessTypes: _list[typing.Literal["ACCESS_TYPE_UNSPECIFIED", "PUBLIC", "PRIVATE"]]
+    agentCompute: typing.Literal[
+        "AGENT_COMPUTE_UNSPECIFIED", "GKE", "CLOUD_RUN", "BORG"
+    ]
+    createTime: str
+    deploymentModel: typing.Literal[
+        "DEPLOYMENT_MODEL_UNSPECIFIED", "CENTRALIZED", "AMBIENT"
+    ]
+    description: str
+    egressNetworkConfig: EgressNetworkConfig
+    etag: str
+    labels: dict[str, typing.Any]
+    name: str
+    updateTime: str
+
+@typing.type_check_only
+class AgentGateway(typing.TypedDict, total=False):
+    agentConnectivityTemplate: str
     agentGatewayCard: AgentGatewayAgentGatewayOutputCard
     createTime: str
     description: str
@@ -14,53 +33,45 @@ class AgentGateway(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     name: str
     networkConfig: AgentGatewayNetworkConfig
-    protocols: _list[typing_extensions.Literal["PROTOCOL_UNSPECIFIED", "MCP"]]
+    protocols: _list[typing.Literal["PROTOCOL_UNSPECIFIED", "MCP"]]
     registries: _list[str]
     selfManaged: AgentGatewaySelfManaged
     updateTime: str
 
 @typing.type_check_only
-class AgentGatewayAgentGatewayOutputCard(typing_extensions.TypedDict, total=False):
+class AgentGatewayAgentGatewayOutputCard(typing.TypedDict, total=False):
     mtlsEndpoint: str
     rootCertificates: _list[str]
     serviceExtensionsServiceAccount: str
 
 @typing.type_check_only
-class AgentGatewayGoogleManaged(typing_extensions.TypedDict, total=False):
-    governedAccessPath: typing_extensions.Literal[
+class AgentGatewayGoogleManaged(typing.TypedDict, total=False):
+    governedAccessPath: typing.Literal[
         "GOVERNED_ACCESS_PATH_UNSPECIFIED", "AGENT_TO_ANYWHERE", "CLIENT_TO_AGENT"
     ]
 
 @typing.type_check_only
-class AgentGatewayNetworkConfig(typing_extensions.TypedDict, total=False):
+class AgentGatewayNetworkConfig(typing.TypedDict, total=False):
     dnsPeeringConfig: AgentGatewayNetworkConfigDnsPeeringConfig
     egress: AgentGatewayNetworkConfigEgress
 
 @typing.type_check_only
-class AgentGatewayNetworkConfigDnsPeeringConfig(
-    typing_extensions.TypedDict, total=False
-):
+class AgentGatewayNetworkConfigDnsPeeringConfig(typing.TypedDict, total=False):
     domains: _list[str]
     targetNetwork: str
     targetProject: str
 
 @typing.type_check_only
-class AgentGatewayNetworkConfigEgress(typing_extensions.TypedDict, total=False):
+class AgentGatewayNetworkConfigEgress(typing.TypedDict, total=False):
     networkAttachment: str
-    trustConfig: AgentGatewayNetworkConfigEgressTrustConfig
 
 @typing.type_check_only
-class AgentGatewayNetworkConfigEgressTrustConfig(
-    typing_extensions.TypedDict, total=False
-):
-    pemCertificates: _list[str]
-
-@typing.type_check_only
-class AgentGatewaySelfManaged(typing_extensions.TypedDict, total=False):
+class AgentGatewaySelfManaged(typing.TypedDict, total=False):
     resourceUri: str
+    resourceUris: _list[str]
 
 @typing.type_check_only
-class AuthzExtension(typing_extensions.TypedDict, total=False):
+class AuthzExtension(typing.TypedDict, total=False):
     authority: str
     createTime: str
     description: str
@@ -68,7 +79,7 @@ class AuthzExtension(typing_extensions.TypedDict, total=False):
     forwardAttributes: _list[str]
     forwardHeaders: _list[str]
     labels: dict[str, typing.Any]
-    loadBalancingScheme: typing_extensions.Literal[
+    loadBalancingScheme: typing.Literal[
         "LOAD_BALANCING_SCHEME_UNSPECIFIED", "INTERNAL_MANAGED", "EXTERNAL_MANAGED"
     ]
     metadata: dict[str, typing.Any]
@@ -76,22 +87,36 @@ class AuthzExtension(typing_extensions.TypedDict, total=False):
     service: str
     timeout: str
     updateTime: str
-    wireFormat: typing_extensions.Literal[
+    wireFormat: typing.Literal[
         "WIRE_FORMAT_UNSPECIFIED", "EXT_PROC_GRPC", "EXT_AUTHZ_GRPC"
     ]
 
 @typing.type_check_only
-class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
+class CancelOperationRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class DnsPeeringConfig(typing.TypedDict, total=False):
+    domain: str
+    targetNetwork: str
 
 @typing.type_check_only
-class EndpointMatcher(typing_extensions.TypedDict, total=False):
+class EgressNetworkConfig(typing.TypedDict, total=False):
+    dnsPeeringConfig: DnsPeeringConfig
+    networkAttachment: str
+    trustConfig: str
+    vpcEgress: typing.Literal[
+        "VPC_EGRESS_UNSPECIFIED", "ALL_TRAFFIC", "PRIVATE_RANGES_ONLY"
+    ]
+
+@typing.type_check_only
+class Empty(typing.TypedDict, total=False): ...
+
+@typing.type_check_only
+class EndpointMatcher(typing.TypedDict, total=False):
     metadataLabelMatcher: MetadataLabelMatcher
 
 @typing.type_check_only
-class EndpointPolicy(typing_extensions.TypedDict, total=False):
+class EndpointPolicy(typing.TypedDict, total=False):
     authorizationPolicy: str
     clientTlsPolicy: str
     createTime: str
@@ -102,19 +127,81 @@ class EndpointPolicy(typing_extensions.TypedDict, total=False):
     securityPolicy: str
     serverTlsPolicy: str
     trafficPortSelector: TrafficPortSelector
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "ENDPOINT_POLICY_TYPE_UNSPECIFIED", "SIDECAR_PROXY", "GRPC_SERVER"
     ]
     updateTime: str
 
 @typing.type_check_only
-class ExtensionChain(typing_extensions.TypedDict, total=False):
+class ExtensionBinding(typing.TypedDict, total=False):
+    createTime: str
+    description: str
+    etag: str
+    failOpen: bool
+    labels: dict[str, typing.Any]
+    matchConditions: _list[ExtensionBindingMatchCondition]
+    name: str
+    priority: int
+    producerExtension: str
+    producerMetadata: dict[str, typing.Any]
+    target: ExtensionBindingTarget
+    updateTime: str
+
+@typing.type_check_only
+class ExtensionBindingMatchCondition(typing.TypedDict, total=False):
+    to: ExtensionBindingMatchConditionTo
+
+@typing.type_check_only
+class ExtensionBindingMatchConditionHeaderMatch(typing.TypedDict, total=False):
+    name: str
+    value: ExtensionBindingMatchConditionStringMatch
+
+@typing.type_check_only
+class ExtensionBindingMatchConditionStringMatch(typing.TypedDict, total=False):
+    contains: str
+    exact: str
+    ignoreCase: bool
+    prefix: str
+    suffix: str
+
+@typing.type_check_only
+class ExtensionBindingMatchConditionTo(typing.TypedDict, total=False):
+    destination: ExtensionBindingMatchConditionToDestination
+    notDestination: ExtensionBindingMatchConditionToDestination
+
+@typing.type_check_only
+class ExtensionBindingMatchConditionToDestination(typing.TypedDict, total=False):
+    headerSet: ExtensionBindingMatchConditionToDestinationHeaderSet
+    hosts: _list[ExtensionBindingMatchConditionStringMatch]
+    paths: _list[ExtensionBindingMatchConditionStringMatch]
+    resources: _list[ExtensionBindingMatchConditionStringMatch]
+
+@typing.type_check_only
+class ExtensionBindingMatchConditionToDestinationHeaderSet(
+    typing.TypedDict, total=False
+):
+    headers: _list[ExtensionBindingMatchConditionHeaderMatch]
+
+@typing.type_check_only
+class ExtensionBindingTarget(typing.TypedDict, total=False):
+    resources: _list[str]
+    scope: ExtensionBindingTargetScope
+
+@typing.type_check_only
+class ExtensionBindingTargetScope(typing.TypedDict, total=False):
+    parent: str
+    resourceTypes: _list[
+        typing.Literal["RESOURCE_TYPE_UNSPECIFIED", "AI_APPLICATION", "AGENT_GATEWAY"]
+    ]
+
+@typing.type_check_only
+class ExtensionChain(typing.TypedDict, total=False):
     extensions: _list[ExtensionChainExtension]
     matchCondition: ExtensionChainMatchCondition
     name: str
 
 @typing.type_check_only
-class ExtensionChainExtension(typing_extensions.TypedDict, total=False):
+class ExtensionChainExtension(typing.TypedDict, total=False):
     allowDynamicForwarding: bool
     authority: str
     failOpen: bool
@@ -123,19 +210,19 @@ class ExtensionChainExtension(typing_extensions.TypedDict, total=False):
     metadata: dict[str, typing.Any]
     name: str
     observabilityMode: bool
-    requestBodySendMode: typing_extensions.Literal[
+    requestBodySendMode: typing.Literal[
         "BODY_SEND_MODE_UNSPECIFIED",
         "BODY_SEND_MODE_STREAMED",
         "BODY_SEND_MODE_FULL_DUPLEX_STREAMED",
     ]
-    responseBodySendMode: typing_extensions.Literal[
+    responseBodySendMode: typing.Literal[
         "BODY_SEND_MODE_UNSPECIFIED",
         "BODY_SEND_MODE_STREAMED",
         "BODY_SEND_MODE_FULL_DUPLEX_STREAMED",
     ]
     service: str
     supportedEvents: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "EVENT_TYPE_UNSPECIFIED",
             "REQUEST_HEADERS",
             "REQUEST_BODY",
@@ -148,40 +235,34 @@ class ExtensionChainExtension(typing_extensions.TypedDict, total=False):
     timeout: str
 
 @typing.type_check_only
-class ExtensionChainMatchCondition(typing_extensions.TypedDict, total=False):
+class ExtensionChainMatchCondition(typing.TypedDict, total=False):
     celExpression: str
 
 @typing.type_check_only
-class Gateway(typing_extensions.TypedDict, total=False):
+class Gateway(typing.TypedDict, total=False):
     addresses: _list[str]
     allPorts: bool
     allowGlobalAccess: bool
     certificateUrls: _list[str]
     createTime: str
     description: str
-    envoyHeaders: typing_extensions.Literal[
-        "ENVOY_HEADERS_UNSPECIFIED", "NONE", "DEBUG_HEADERS"
-    ]
+    envoyHeaders: typing.Literal["ENVOY_HEADERS_UNSPECIFIED", "NONE", "DEBUG_HEADERS"]
     gatewaySecurityPolicy: str
-    ipVersion: typing_extensions.Literal["IP_VERSION_UNSPECIFIED", "IPV4", "IPV6"]
+    ipVersion: typing.Literal["IP_VERSION_UNSPECIFIED", "IPV4", "IPV6"]
     labels: dict[str, typing.Any]
     name: str
     network: str
     ports: _list[int]
-    routingMode: typing_extensions.Literal[
-        "EXPLICIT_ROUTING_MODE", "NEXT_HOP_ROUTING_MODE"
-    ]
+    routingMode: typing.Literal["EXPLICIT_ROUTING_MODE", "NEXT_HOP_ROUTING_MODE"]
     scope: str
     selfLink: str
     serverTlsPolicy: str
     subnetwork: str
-    type: typing_extensions.Literal[
-        "TYPE_UNSPECIFIED", "OPEN_MESH", "SECURE_WEB_GATEWAY"
-    ]
+    type: typing.Literal["TYPE_UNSPECIFIED", "OPEN_MESH", "SECURE_WEB_GATEWAY"]
     updateTime: str
 
 @typing.type_check_only
-class GatewayRouteView(typing_extensions.TypedDict, total=False):
+class GatewayRouteView(typing.TypedDict, total=False):
     name: str
     routeId: str
     routeLocation: str
@@ -189,7 +270,7 @@ class GatewayRouteView(typing_extensions.TypedDict, total=False):
     routeType: str
 
 @typing.type_check_only
-class GrpcRoute(typing_extensions.TypedDict, total=False):
+class GrpcRoute(typing.TypedDict, total=False):
     createTime: str
     description: str
     gateways: _list[str]
@@ -202,45 +283,45 @@ class GrpcRoute(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class GrpcRouteDestination(typing_extensions.TypedDict, total=False):
+class GrpcRouteDestination(typing.TypedDict, total=False):
     serviceName: str
     weight: int
 
 @typing.type_check_only
-class GrpcRouteFaultInjectionPolicy(typing_extensions.TypedDict, total=False):
+class GrpcRouteFaultInjectionPolicy(typing.TypedDict, total=False):
     abort: GrpcRouteFaultInjectionPolicyAbort
     delay: GrpcRouteFaultInjectionPolicyDelay
 
 @typing.type_check_only
-class GrpcRouteFaultInjectionPolicyAbort(typing_extensions.TypedDict, total=False):
+class GrpcRouteFaultInjectionPolicyAbort(typing.TypedDict, total=False):
     httpStatus: int
     percentage: int
 
 @typing.type_check_only
-class GrpcRouteFaultInjectionPolicyDelay(typing_extensions.TypedDict, total=False):
+class GrpcRouteFaultInjectionPolicyDelay(typing.TypedDict, total=False):
     fixedDelay: str
     percentage: int
 
 @typing.type_check_only
-class GrpcRouteHeaderMatch(typing_extensions.TypedDict, total=False):
+class GrpcRouteHeaderMatch(typing.TypedDict, total=False):
     key: str
-    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "EXACT", "REGULAR_EXPRESSION"]
+    type: typing.Literal["TYPE_UNSPECIFIED", "EXACT", "REGULAR_EXPRESSION"]
     value: str
 
 @typing.type_check_only
-class GrpcRouteMethodMatch(typing_extensions.TypedDict, total=False):
+class GrpcRouteMethodMatch(typing.TypedDict, total=False):
     caseSensitive: bool
     grpcMethod: str
     grpcService: str
-    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "EXACT", "REGULAR_EXPRESSION"]
+    type: typing.Literal["TYPE_UNSPECIFIED", "EXACT", "REGULAR_EXPRESSION"]
 
 @typing.type_check_only
-class GrpcRouteRetryPolicy(typing_extensions.TypedDict, total=False):
+class GrpcRouteRetryPolicy(typing.TypedDict, total=False):
     numRetries: int
     retryConditions: _list[str]
 
 @typing.type_check_only
-class GrpcRouteRouteAction(typing_extensions.TypedDict, total=False):
+class GrpcRouteRouteAction(typing.TypedDict, total=False):
     destinations: _list[GrpcRouteDestination]
     faultInjectionPolicy: GrpcRouteFaultInjectionPolicy
     idleTimeout: str
@@ -249,21 +330,21 @@ class GrpcRouteRouteAction(typing_extensions.TypedDict, total=False):
     timeout: str
 
 @typing.type_check_only
-class GrpcRouteRouteMatch(typing_extensions.TypedDict, total=False):
+class GrpcRouteRouteMatch(typing.TypedDict, total=False):
     headers: _list[GrpcRouteHeaderMatch]
     method: GrpcRouteMethodMatch
 
 @typing.type_check_only
-class GrpcRouteRouteRule(typing_extensions.TypedDict, total=False):
+class GrpcRouteRouteRule(typing.TypedDict, total=False):
     action: GrpcRouteRouteAction
     matches: _list[GrpcRouteRouteMatch]
 
 @typing.type_check_only
-class GrpcRouteStatefulSessionAffinityPolicy(typing_extensions.TypedDict, total=False):
+class GrpcRouteStatefulSessionAffinityPolicy(typing.TypedDict, total=False):
     cookieTtl: str
 
 @typing.type_check_only
-class HttpRoute(typing_extensions.TypedDict, total=False):
+class HttpRoute(typing.TypedDict, total=False):
     createTime: str
     description: str
     gateways: _list[str]
@@ -276,7 +357,7 @@ class HttpRoute(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class HttpRouteCorsPolicy(typing_extensions.TypedDict, total=False):
+class HttpRouteCorsPolicy(typing.TypedDict, total=False):
     allowCredentials: bool
     allowHeaders: _list[str]
     allowMethods: _list[str]
@@ -287,29 +368,29 @@ class HttpRouteCorsPolicy(typing_extensions.TypedDict, total=False):
     maxAge: str
 
 @typing.type_check_only
-class HttpRouteDestination(typing_extensions.TypedDict, total=False):
+class HttpRouteDestination(typing.TypedDict, total=False):
     requestHeaderModifier: HttpRouteHeaderModifier
     responseHeaderModifier: HttpRouteHeaderModifier
     serviceName: str
     weight: int
 
 @typing.type_check_only
-class HttpRouteFaultInjectionPolicy(typing_extensions.TypedDict, total=False):
+class HttpRouteFaultInjectionPolicy(typing.TypedDict, total=False):
     abort: HttpRouteFaultInjectionPolicyAbort
     delay: HttpRouteFaultInjectionPolicyDelay
 
 @typing.type_check_only
-class HttpRouteFaultInjectionPolicyAbort(typing_extensions.TypedDict, total=False):
+class HttpRouteFaultInjectionPolicyAbort(typing.TypedDict, total=False):
     httpStatus: int
     percentage: int
 
 @typing.type_check_only
-class HttpRouteFaultInjectionPolicyDelay(typing_extensions.TypedDict, total=False):
+class HttpRouteFaultInjectionPolicyDelay(typing.TypedDict, total=False):
     fixedDelay: str
     percentage: int
 
 @typing.type_check_only
-class HttpRouteHeaderMatch(typing_extensions.TypedDict, total=False):
+class HttpRouteHeaderMatch(typing.TypedDict, total=False):
     exactMatch: str
     header: str
     invertMatch: bool
@@ -320,37 +401,37 @@ class HttpRouteHeaderMatch(typing_extensions.TypedDict, total=False):
     suffixMatch: str
 
 @typing.type_check_only
-class HttpRouteHeaderMatchIntegerRange(typing_extensions.TypedDict, total=False):
+class HttpRouteHeaderMatchIntegerRange(typing.TypedDict, total=False):
     end: int
     start: int
 
 @typing.type_check_only
-class HttpRouteHeaderModifier(typing_extensions.TypedDict, total=False):
+class HttpRouteHeaderModifier(typing.TypedDict, total=False):
     add: dict[str, typing.Any]
     remove: _list[str]
     set: dict[str, typing.Any]
 
 @typing.type_check_only
-class HttpRouteHttpDirectResponse(typing_extensions.TypedDict, total=False):
+class HttpRouteHttpDirectResponse(typing.TypedDict, total=False):
     bytesBody: str
     status: int
     stringBody: str
 
 @typing.type_check_only
-class HttpRouteQueryParameterMatch(typing_extensions.TypedDict, total=False):
+class HttpRouteQueryParameterMatch(typing.TypedDict, total=False):
     exactMatch: str
     presentMatch: bool
     queryParameter: str
     regexMatch: str
 
 @typing.type_check_only
-class HttpRouteRedirect(typing_extensions.TypedDict, total=False):
+class HttpRouteRedirect(typing.TypedDict, total=False):
     hostRedirect: str
     httpsRedirect: bool
     pathRedirect: str
     portRedirect: int
     prefixRewrite: str
-    responseCode: typing_extensions.Literal[
+    responseCode: typing.Literal[
         "RESPONSE_CODE_UNSPECIFIED",
         "MOVED_PERMANENTLY_DEFAULT",
         "FOUND",
@@ -361,18 +442,18 @@ class HttpRouteRedirect(typing_extensions.TypedDict, total=False):
     stripQuery: bool
 
 @typing.type_check_only
-class HttpRouteRequestMirrorPolicy(typing_extensions.TypedDict, total=False):
+class HttpRouteRequestMirrorPolicy(typing.TypedDict, total=False):
     destination: HttpRouteDestination
     mirrorPercent: float
 
 @typing.type_check_only
-class HttpRouteRetryPolicy(typing_extensions.TypedDict, total=False):
+class HttpRouteRetryPolicy(typing.TypedDict, total=False):
     numRetries: int
     perTryTimeout: str
     retryConditions: _list[str]
 
 @typing.type_check_only
-class HttpRouteRouteAction(typing_extensions.TypedDict, total=False):
+class HttpRouteRouteAction(typing.TypedDict, total=False):
     corsPolicy: HttpRouteCorsPolicy
     destinations: _list[HttpRouteDestination]
     directResponse: HttpRouteHttpDirectResponse
@@ -388,7 +469,7 @@ class HttpRouteRouteAction(typing_extensions.TypedDict, total=False):
     urlRewrite: HttpRouteURLRewrite
 
 @typing.type_check_only
-class HttpRouteRouteMatch(typing_extensions.TypedDict, total=False):
+class HttpRouteRouteMatch(typing.TypedDict, total=False):
     fullPathMatch: str
     headers: _list[HttpRouteHeaderMatch]
     ignoreCase: bool
@@ -397,40 +478,40 @@ class HttpRouteRouteMatch(typing_extensions.TypedDict, total=False):
     regexMatch: str
 
 @typing.type_check_only
-class HttpRouteRouteRule(typing_extensions.TypedDict, total=False):
+class HttpRouteRouteRule(typing.TypedDict, total=False):
     action: HttpRouteRouteAction
     matches: _list[HttpRouteRouteMatch]
 
 @typing.type_check_only
-class HttpRouteStatefulSessionAffinityPolicy(typing_extensions.TypedDict, total=False):
+class HttpRouteStatefulSessionAffinityPolicy(typing.TypedDict, total=False):
     cookieTtl: str
 
 @typing.type_check_only
-class HttpRouteURLRewrite(typing_extensions.TypedDict, total=False):
+class HttpRouteURLRewrite(typing.TypedDict, total=False):
     hostRewrite: str
     pathPrefixRewrite: str
 
 @typing.type_check_only
-class LbEdgeExtension(typing_extensions.TypedDict, total=False):
+class LbEdgeExtension(typing.TypedDict, total=False):
     createTime: str
     description: str
     extensionChains: _list[ExtensionChain]
     forwardingRules: _list[str]
     labels: dict[str, typing.Any]
-    loadBalancingScheme: typing_extensions.Literal[
+    loadBalancingScheme: typing.Literal[
         "LOAD_BALANCING_SCHEME_UNSPECIFIED", "INTERNAL_MANAGED", "EXTERNAL_MANAGED"
     ]
     name: str
     updateTime: str
 
 @typing.type_check_only
-class LbRouteExtension(typing_extensions.TypedDict, total=False):
+class LbRouteExtension(typing.TypedDict, total=False):
     createTime: str
     description: str
     extensionChains: _list[ExtensionChain]
     forwardingRules: _list[str]
     labels: dict[str, typing.Any]
-    loadBalancingScheme: typing_extensions.Literal[
+    loadBalancingScheme: typing.Literal[
         "LOAD_BALANCING_SCHEME_UNSPECIFIED", "INTERNAL_MANAGED", "EXTERNAL_MANAGED"
     ]
     metadata: dict[str, typing.Any]
@@ -438,12 +519,12 @@ class LbRouteExtension(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class LbTcpExtension(typing_extensions.TypedDict, total=False):
+class LbTcpExtension(typing.TypedDict, total=False):
     createTime: str
     description: str
     extensionChains: _list[ExtensionChain]
     labels: dict[str, typing.Any]
-    loadBalancingScheme: typing_extensions.Literal[
+    loadBalancingScheme: typing.Literal[
         "LOAD_BALANCING_SCHEME_UNSPECIFIED", "INTERNAL_MANAGED", "EXTERNAL_MANAGED"
     ]
     name: str
@@ -451,13 +532,13 @@ class LbTcpExtension(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class LbTrafficExtension(typing_extensions.TypedDict, total=False):
+class LbTrafficExtension(typing.TypedDict, total=False):
     createTime: str
     description: str
     extensionChains: _list[ExtensionChain]
     forwardingRules: _list[str]
     labels: dict[str, typing.Any]
-    loadBalancingScheme: typing_extensions.Literal[
+    loadBalancingScheme: typing.Literal[
         "LOAD_BALANCING_SCHEME_UNSPECIFIED", "INTERNAL_MANAGED", "EXTERNAL_MANAGED"
     ]
     metadata: dict[str, typing.Any]
@@ -465,132 +546,150 @@ class LbTrafficExtension(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class ListAgentGatewaysResponse(typing_extensions.TypedDict, total=False):
+class ListAgentConnectivityTemplatesResponse(typing.TypedDict, total=False):
+    agentConnectivityTemplates: _list[AgentConnectivityTemplate]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListAgentGatewaysResponse(typing.TypedDict, total=False):
     agentGateways: _list[AgentGateway]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListAuthzExtensionsResponse(typing_extensions.TypedDict, total=False):
+class ListAuthzExtensionsResponse(typing.TypedDict, total=False):
     authzExtensions: _list[AuthzExtension]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListEndpointPoliciesResponse(typing_extensions.TypedDict, total=False):
+class ListEndpointPoliciesResponse(typing.TypedDict, total=False):
     endpointPolicies: _list[EndpointPolicy]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListGatewayRouteViewsResponse(typing_extensions.TypedDict, total=False):
+class ListExtensionBindingsResponse(typing.TypedDict, total=False):
+    extensionBindings: _list[ExtensionBinding]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListGatewayRouteViewsResponse(typing.TypedDict, total=False):
     gatewayRouteViews: _list[GatewayRouteView]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListGatewaysResponse(typing_extensions.TypedDict, total=False):
+class ListGatewaysResponse(typing.TypedDict, total=False):
     gateways: _list[Gateway]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListGrpcRoutesResponse(typing_extensions.TypedDict, total=False):
+class ListGrpcRoutesResponse(typing.TypedDict, total=False):
     grpcRoutes: _list[GrpcRoute]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListHttpRoutesResponse(typing_extensions.TypedDict, total=False):
+class ListHttpRoutesResponse(typing.TypedDict, total=False):
     httpRoutes: _list[HttpRoute]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListLbEdgeExtensionsResponse(typing_extensions.TypedDict, total=False):
+class ListLbEdgeExtensionsResponse(typing.TypedDict, total=False):
     lbEdgeExtensions: _list[LbEdgeExtension]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListLbRouteExtensionsResponse(typing_extensions.TypedDict, total=False):
+class ListLbRouteExtensionsResponse(typing.TypedDict, total=False):
     lbRouteExtensions: _list[LbRouteExtension]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListLbTcpExtensionsResponse(typing_extensions.TypedDict, total=False):
+class ListLbTcpExtensionsResponse(typing.TypedDict, total=False):
     lbTcpExtensions: _list[LbTcpExtension]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListLbTrafficExtensionsResponse(typing_extensions.TypedDict, total=False):
+class ListLbTrafficExtensionsResponse(typing.TypedDict, total=False):
     lbTrafficExtensions: _list[LbTrafficExtension]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListLocationsResponse(typing_extensions.TypedDict, total=False):
+class ListLocationsResponse(typing.TypedDict, total=False):
     locations: _list[Location]
     nextPageToken: str
 
 @typing.type_check_only
-class ListMeshRouteViewsResponse(typing_extensions.TypedDict, total=False):
+class ListMeshRouteViewsResponse(typing.TypedDict, total=False):
     meshRouteViews: _list[MeshRouteView]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListMeshesResponse(typing_extensions.TypedDict, total=False):
+class ListMeshesResponse(typing.TypedDict, total=False):
     meshes: _list[Mesh]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListOperationsResponse(typing_extensions.TypedDict, total=False):
+class ListOperationsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListServiceBindingsResponse(typing_extensions.TypedDict, total=False):
+class ListProducerExtensionsResponse(typing.TypedDict, total=False):
+    nextPageToken: str
+    producerExtensions: _list[ProducerExtension]
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListServiceBindingsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     serviceBindings: _list[ServiceBinding]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListServiceLbPoliciesResponse(typing_extensions.TypedDict, total=False):
+class ListServiceLbPoliciesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     serviceLbPolicies: _list[ServiceLbPolicy]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListTcpRoutesResponse(typing_extensions.TypedDict, total=False):
+class ListTcpRoutesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     tcpRoutes: _list[TcpRoute]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListTlsRoutesResponse(typing_extensions.TypedDict, total=False):
+class ListTlsRoutesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     tlsRoutes: _list[TlsRoute]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListWasmPluginVersionsResponse(typing_extensions.TypedDict, total=False):
+class ListWasmPluginVersionsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     unreachable: _list[str]
     wasmPluginVersions: _list[WasmPluginVersion]
 
 @typing.type_check_only
-class ListWasmPluginsResponse(typing_extensions.TypedDict, total=False):
+class ListWasmPluginsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     unreachable: _list[str]
     wasmPlugins: _list[WasmPlugin]
 
 @typing.type_check_only
-class Location(typing_extensions.TypedDict, total=False):
+class Location(typing.TypedDict, total=False):
     displayName: str
     labels: dict[str, typing.Any]
     locationId: str
@@ -598,8 +697,8 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class LoggingConfig(typing_extensions.TypedDict, total=False):
-    logSeverity: typing_extensions.Literal[
+class LoggingConfig(typing.TypedDict, total=False):
+    logSeverity: typing.Literal[
         "LOG_SEVERITY_UNSPECIFIED",
         "NONE",
         "DEBUG",
@@ -613,12 +712,10 @@ class LoggingConfig(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class Mesh(typing_extensions.TypedDict, total=False):
+class Mesh(typing.TypedDict, total=False):
     createTime: str
     description: str
-    envoyHeaders: typing_extensions.Literal[
-        "ENVOY_HEADERS_UNSPECIFIED", "NONE", "DEBUG_HEADERS"
-    ]
+    envoyHeaders: typing.Literal["ENVOY_HEADERS_UNSPECIFIED", "NONE", "DEBUG_HEADERS"]
     interceptionPort: int
     labels: dict[str, typing.Any]
     name: str
@@ -626,7 +723,7 @@ class Mesh(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class MeshRouteView(typing_extensions.TypedDict, total=False):
+class MeshRouteView(typing.TypedDict, total=False):
     name: str
     routeId: str
     routeLocation: str
@@ -634,19 +731,19 @@ class MeshRouteView(typing_extensions.TypedDict, total=False):
     routeType: str
 
 @typing.type_check_only
-class MetadataLabelMatcher(typing_extensions.TypedDict, total=False):
-    metadataLabelMatchCriteria: typing_extensions.Literal[
+class MetadataLabelMatcher(typing.TypedDict, total=False):
+    metadataLabelMatchCriteria: typing.Literal[
         "METADATA_LABEL_MATCH_CRITERIA_UNSPECIFIED", "MATCH_ANY", "MATCH_ALL"
     ]
     metadataLabels: _list[MetadataLabels]
 
 @typing.type_check_only
-class MetadataLabels(typing_extensions.TypedDict, total=False):
+class MetadataLabels(typing.TypedDict, total=False):
     labelName: str
     labelValue: str
 
 @typing.type_check_only
-class Operation(typing_extensions.TypedDict, total=False):
+class Operation(typing.TypedDict, total=False):
     done: bool
     error: Status
     metadata: dict[str, typing.Any]
@@ -654,7 +751,7 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class OperationMetadata(typing_extensions.TypedDict, total=False):
+class OperationMetadata(typing.TypedDict, total=False):
     apiVersion: str
     createTime: str
     endTime: str
@@ -664,11 +761,39 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
-class RetryFilterPerRouteConfig(typing_extensions.TypedDict, total=False):
+class ProducerExtension(typing.TypedDict, total=False):
+    createTime: str
+    description: str
+    etag: str
+    extensionSettings: ProducerExtensionExtensionSettings
+    labels: dict[str, typing.Any]
+    name: str
+    phase: typing.Literal["PHASE_UNSPECIFIED", "TRAFFIC", "AUTHZ"]
+    updateTime: str
+
+@typing.type_check_only
+class ProducerExtensionExtensionSettings(typing.TypedDict, total=False):
+    authority: str
+    observabilityMode: bool
+    service: str
+    supportedEvents: _list[
+        typing.Literal[
+            "EVENT_TYPE_UNSPECIFIED",
+            "REQUEST_HEADERS",
+            "REQUEST_BODY",
+            "RESPONSE_HEADERS",
+            "RESPONSE_BODY",
+            "REQUEST_TRAILERS",
+            "RESPONSE_TRAILERS",
+        ]
+    ]
+
+@typing.type_check_only
+class RetryFilterPerRouteConfig(typing.TypedDict, total=False):
     cryptoKeyName: str
 
 @typing.type_check_only
-class ServiceBinding(typing_extensions.TypedDict, total=False):
+class ServiceBinding(typing.TypedDict, total=False):
     createTime: str
     description: str
     labels: dict[str, typing.Any]
@@ -678,14 +803,14 @@ class ServiceBinding(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class ServiceLbPolicy(typing_extensions.TypedDict, total=False):
+class ServiceLbPolicy(typing.TypedDict, total=False):
     autoCapacityDrain: ServiceLbPolicyAutoCapacityDrain
     createTime: str
     description: str
     failoverConfig: ServiceLbPolicyFailoverConfig
     isolationConfig: ServiceLbPolicyIsolationConfig
     labels: dict[str, typing.Any]
-    loadBalancingAlgorithm: typing_extensions.Literal[
+    loadBalancingAlgorithm: typing.Literal[
         "LOAD_BALANCING_ALGORITHM_UNSPECIFIED",
         "SPRAY_TO_WORLD",
         "SPRAY_TO_REGION",
@@ -696,30 +821,26 @@ class ServiceLbPolicy(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class ServiceLbPolicyAutoCapacityDrain(typing_extensions.TypedDict, total=False):
+class ServiceLbPolicyAutoCapacityDrain(typing.TypedDict, total=False):
     enable: bool
 
 @typing.type_check_only
-class ServiceLbPolicyFailoverConfig(typing_extensions.TypedDict, total=False):
+class ServiceLbPolicyFailoverConfig(typing.TypedDict, total=False):
     failoverHealthThreshold: int
 
 @typing.type_check_only
-class ServiceLbPolicyIsolationConfig(typing_extensions.TypedDict, total=False):
-    isolationGranularity: typing_extensions.Literal[
-        "ISOLATION_GRANULARITY_UNSPECIFIED", "REGION"
-    ]
-    isolationMode: typing_extensions.Literal[
-        "ISOLATION_MODE_UNSPECIFIED", "NEAREST", "STRICT"
-    ]
+class ServiceLbPolicyIsolationConfig(typing.TypedDict, total=False):
+    isolationGranularity: typing.Literal["ISOLATION_GRANULARITY_UNSPECIFIED", "REGION"]
+    isolationMode: typing.Literal["ISOLATION_MODE_UNSPECIFIED", "NEAREST", "STRICT"]
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class TcpRoute(typing_extensions.TypedDict, total=False):
+class TcpRoute(typing.TypedDict, total=False):
     createTime: str
     description: str
     gateways: _list[str]
@@ -731,28 +852,28 @@ class TcpRoute(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class TcpRouteRouteAction(typing_extensions.TypedDict, total=False):
+class TcpRouteRouteAction(typing.TypedDict, total=False):
     destinations: _list[TcpRouteRouteDestination]
     idleTimeout: str
     originalDestination: bool
 
 @typing.type_check_only
-class TcpRouteRouteDestination(typing_extensions.TypedDict, total=False):
+class TcpRouteRouteDestination(typing.TypedDict, total=False):
     serviceName: str
     weight: int
 
 @typing.type_check_only
-class TcpRouteRouteMatch(typing_extensions.TypedDict, total=False):
+class TcpRouteRouteMatch(typing.TypedDict, total=False):
     address: str
     port: str
 
 @typing.type_check_only
-class TcpRouteRouteRule(typing_extensions.TypedDict, total=False):
+class TcpRouteRouteRule(typing.TypedDict, total=False):
     action: TcpRouteRouteAction
     matches: _list[TcpRouteRouteMatch]
 
 @typing.type_check_only
-class TlsRoute(typing_extensions.TypedDict, total=False):
+class TlsRoute(typing.TypedDict, total=False):
     createTime: str
     description: str
     gateways: _list[str]
@@ -765,31 +886,31 @@ class TlsRoute(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class TlsRouteRouteAction(typing_extensions.TypedDict, total=False):
+class TlsRouteRouteAction(typing.TypedDict, total=False):
     destinations: _list[TlsRouteRouteDestination]
     idleTimeout: str
 
 @typing.type_check_only
-class TlsRouteRouteDestination(typing_extensions.TypedDict, total=False):
+class TlsRouteRouteDestination(typing.TypedDict, total=False):
     serviceName: str
     weight: int
 
 @typing.type_check_only
-class TlsRouteRouteMatch(typing_extensions.TypedDict, total=False):
+class TlsRouteRouteMatch(typing.TypedDict, total=False):
     alpn: _list[str]
     sniHost: _list[str]
 
 @typing.type_check_only
-class TlsRouteRouteRule(typing_extensions.TypedDict, total=False):
+class TlsRouteRouteRule(typing.TypedDict, total=False):
     action: TlsRouteRouteAction
     matches: _list[TlsRouteRouteMatch]
 
 @typing.type_check_only
-class TrafficPortSelector(typing_extensions.TypedDict, total=False):
+class TrafficPortSelector(typing.TypedDict, total=False):
     ports: _list[str]
 
 @typing.type_check_only
-class WasmPlugin(typing_extensions.TypedDict, total=False):
+class WasmPlugin(typing.TypedDict, total=False):
     createTime: str
     description: str
     kmsKeyName: str
@@ -803,19 +924,19 @@ class WasmPlugin(typing_extensions.TypedDict, total=False):
     versions: dict[str, typing.Any]
 
 @typing.type_check_only
-class WasmPluginLogConfig(typing_extensions.TypedDict, total=False):
+class WasmPluginLogConfig(typing.TypedDict, total=False):
     enable: bool
-    minLogLevel: typing_extensions.Literal[
+    minLogLevel: typing.Literal[
         "LOG_LEVEL_UNSPECIFIED", "TRACE", "DEBUG", "INFO", "WARN", "ERROR", "CRITICAL"
     ]
     sampleRate: float
 
 @typing.type_check_only
-class WasmPluginUsedBy(typing_extensions.TypedDict, total=False):
+class WasmPluginUsedBy(typing.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class WasmPluginVersion(typing_extensions.TypedDict, total=False):
+class WasmPluginVersion(typing.TypedDict, total=False):
     createTime: str
     description: str
     imageDigest: str
@@ -828,7 +949,7 @@ class WasmPluginVersion(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class WasmPluginVersionDetails(typing_extensions.TypedDict, total=False):
+class WasmPluginVersionDetails(typing.TypedDict, total=False):
     createTime: str
     description: str
     imageDigest: str

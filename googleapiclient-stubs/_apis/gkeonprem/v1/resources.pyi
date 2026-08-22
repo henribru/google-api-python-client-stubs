@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -62,9 +61,7 @@ class GKEOnPremResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     allowMissing: bool | None = ...,
-                    view: typing_extensions.Literal[
-                        "CLUSTER_VIEW_UNSPECIFIED", "BASIC", "FULL"
-                    ]
+                    view: typing.Literal["CLUSTER_VIEW_UNSPECIFIED", "BASIC", "FULL"]
                     | None = ...,
                     **kwargs: typing.Any,
                 ) -> BareMetalAdminClusterHttpRequest: ...
@@ -82,9 +79,7 @@ class GKEOnPremResource(googleapiclient.discovery.Resource):
                     allowMissing: bool | None = ...,
                     pageSize: int | None = ...,
                     pageToken: str | None = ...,
-                    view: typing_extensions.Literal[
-                        "CLUSTER_VIEW_UNSPECIFIED", "BASIC", "FULL"
-                    ]
+                    view: typing.Literal["CLUSTER_VIEW_UNSPECIFIED", "BASIC", "FULL"]
                     | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListBareMetalAdminClustersResponseHttpRequest: ...
@@ -190,7 +185,7 @@ class GKEOnPremResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        view: typing_extensions.Literal[
+                        view: typing.Literal[
                             "NODE_POOL_VIEW_UNSPECIFIED", "BASIC", "FULL"
                         ]
                         | None = ...,
@@ -209,7 +204,7 @@ class GKEOnPremResource(googleapiclient.discovery.Resource):
                         parent: str,
                         pageSize: int | None = ...,
                         pageToken: str | None = ...,
-                        view: typing_extensions.Literal[
+                        view: typing.Literal[
                             "NODE_POOL_VIEW_UNSPECIFIED", "BASIC", "FULL"
                         ]
                         | None = ...,
@@ -309,9 +304,7 @@ class GKEOnPremResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     allowMissing: bool | None = ...,
-                    view: typing_extensions.Literal[
-                        "CLUSTER_VIEW_UNSPECIFIED", "BASIC", "FULL"
-                    ]
+                    view: typing.Literal["CLUSTER_VIEW_UNSPECIFIED", "BASIC", "FULL"]
                     | None = ...,
                     **kwargs: typing.Any,
                 ) -> BareMetalClusterHttpRequest: ...
@@ -330,9 +323,7 @@ class GKEOnPremResource(googleapiclient.discovery.Resource):
                     filter: str | None = ...,
                     pageSize: int | None = ...,
                     pageToken: str | None = ...,
-                    view: typing_extensions.Literal[
-                        "CLUSTER_VIEW_UNSPECIFIED", "BASIC", "FULL"
-                    ]
+                    view: typing.Literal["CLUSTER_VIEW_UNSPECIFIED", "BASIC", "FULL"]
                     | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListBareMetalClustersResponseHttpRequest: ...
@@ -464,9 +455,7 @@ class GKEOnPremResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     allowMissing: bool | None = ...,
-                    view: typing_extensions.Literal[
-                        "CLUSTER_VIEW_UNSPECIFIED", "BASIC", "FULL"
-                    ]
+                    view: typing.Literal["CLUSTER_VIEW_UNSPECIFIED", "BASIC", "FULL"]
                     | None = ...,
                     **kwargs: typing.Any,
                 ) -> VmwareAdminClusterHttpRequest: ...
@@ -484,9 +473,7 @@ class GKEOnPremResource(googleapiclient.discovery.Resource):
                     allowMissing: bool | None = ...,
                     pageSize: int | None = ...,
                     pageToken: str | None = ...,
-                    view: typing_extensions.Literal[
-                        "CLUSTER_VIEW_UNSPECIFIED", "BASIC", "FULL"
-                    ]
+                    view: typing.Literal["CLUSTER_VIEW_UNSPECIFIED", "BASIC", "FULL"]
                     | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListVmwareAdminClustersResponseHttpRequest: ...
@@ -607,7 +594,7 @@ class GKEOnPremResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        view: typing_extensions.Literal[
+                        view: typing.Literal[
                             "NODE_POOL_VIEW_UNSPECIFIED", "BASIC", "FULL"
                         ]
                         | None = ...,
@@ -626,7 +613,7 @@ class GKEOnPremResource(googleapiclient.discovery.Resource):
                         parent: str,
                         pageSize: int | None = ...,
                         pageToken: str | None = ...,
-                        view: typing_extensions.Literal[
+                        view: typing.Literal[
                             "NODE_POOL_VIEW_UNSPECIFIED", "BASIC", "FULL"
                         ]
                         | None = ...,
@@ -705,9 +692,7 @@ class GKEOnPremResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     allowMissing: bool | None = ...,
-                    view: typing_extensions.Literal[
-                        "CLUSTER_VIEW_UNSPECIFIED", "BASIC", "FULL"
-                    ]
+                    view: typing.Literal["CLUSTER_VIEW_UNSPECIFIED", "BASIC", "FULL"]
                     | None = ...,
                     **kwargs: typing.Any,
                 ) -> VmwareClusterHttpRequest: ...
@@ -726,9 +711,7 @@ class GKEOnPremResource(googleapiclient.discovery.Resource):
                     filter: str | None = ...,
                     pageSize: int | None = ...,
                     pageToken: str | None = ...,
-                    view: typing_extensions.Literal[
-                        "CLUSTER_VIEW_UNSPECIFIED", "BASIC", "FULL"
-                    ]
+                    view: typing.Literal["CLUSTER_VIEW_UNSPECIFIED", "BASIC", "FULL"]
                     | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListVmwareClustersResponseHttpRequest: ...

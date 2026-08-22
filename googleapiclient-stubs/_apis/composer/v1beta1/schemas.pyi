@@ -1,32 +1,30 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class AirflowMetadataRetentionPolicyConfig(typing_extensions.TypedDict, total=False):
+class AirflowMetadataRetentionPolicyConfig(typing.TypedDict, total=False):
     retentionDays: int
-    retentionMode: typing_extensions.Literal[
+    retentionMode: typing.Literal[
         "RETENTION_MODE_UNSPECIFIED",
         "RETENTION_MODE_ENABLED",
         "RETENTION_MODE_DISABLED",
     ]
 
 @typing.type_check_only
-class AllowedIpRange(typing_extensions.TypedDict, total=False):
+class AllowedIpRange(typing.TypedDict, total=False):
     description: str
     value: str
 
 @typing.type_check_only
-class CheckUpgradeRequest(typing_extensions.TypedDict, total=False):
+class CheckUpgradeRequest(typing.TypedDict, total=False):
     imageVersion: str
 
 @typing.type_check_only
-class CheckUpgradeResponse(typing_extensions.TypedDict, total=False):
+class CheckUpgradeResponse(typing.TypedDict, total=False):
     buildLogUri: str
     configConflicts: _list[ConfigConflict]
-    containsPypiModulesConflict: typing_extensions.Literal[
+    containsPypiModulesConflict: typing.Literal[
         "CONFLICT_RESULT_UNSPECIFIED", "CONFLICT", "NO_CONFLICT"
     ]
     imageVersion: str
@@ -34,19 +32,19 @@ class CheckUpgradeResponse(typing_extensions.TypedDict, total=False):
     pypiDependencies: dict[str, typing.Any]
 
 @typing.type_check_only
-class CidrBlock(typing_extensions.TypedDict, total=False):
+class CidrBlock(typing.TypedDict, total=False):
     cidrBlock: str
     displayName: str
 
 @typing.type_check_only
-class CloudDataLineageIntegration(typing_extensions.TypedDict, total=False):
+class CloudDataLineageIntegration(typing.TypedDict, total=False):
     enabled: bool
 
 @typing.type_check_only
-class ComposerWorkload(typing_extensions.TypedDict, total=False):
+class ComposerWorkload(typing.TypedDict, total=False):
     name: str
     status: ComposerWorkloadStatus
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "COMPOSER_WORKLOAD_TYPE_UNSPECIFIED",
         "CELERY_WORKER",
         "KUBERNETES_WORKER",
@@ -59,9 +57,9 @@ class ComposerWorkload(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class ComposerWorkloadStatus(typing_extensions.TypedDict, total=False):
+class ComposerWorkloadStatus(typing.TypedDict, total=False):
     detailedStatusMessage: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "COMPOSER_WORKLOAD_STATE_UNSPECIFIED",
         "PENDING",
         "OK",
@@ -73,58 +71,56 @@ class ComposerWorkloadStatus(typing_extensions.TypedDict, total=False):
     statusMessage: str
 
 @typing.type_check_only
-class ConfigConflict(typing_extensions.TypedDict, total=False):
+class ConfigConflict(typing.TypedDict, total=False):
     message: str
-    type: typing_extensions.Literal[
-        "CONFLICT_TYPE_UNSPECIFIED", "BLOCKING", "NON_BLOCKING"
-    ]
+    type: typing.Literal["CONFLICT_TYPE_UNSPECIFIED", "BLOCKING", "NON_BLOCKING"]
 
 @typing.type_check_only
-class DagProcessorResource(typing_extensions.TypedDict, total=False):
+class DagProcessorResource(typing.TypedDict, total=False):
     count: int
     cpu: float
     memoryGb: float
     storageGb: float
 
 @typing.type_check_only
-class DataRetentionConfig(typing_extensions.TypedDict, total=False):
+class DataRetentionConfig(typing.TypedDict, total=False):
     airflowDatabaseRetentionDays: int
     airflowMetadataRetentionConfig: AirflowMetadataRetentionPolicyConfig
     taskLogsRetentionConfig: TaskLogsRetentionConfig
 
 @typing.type_check_only
-class DatabaseConfig(typing_extensions.TypedDict, total=False):
+class DatabaseConfig(typing.TypedDict, total=False):
     machineType: str
     zone: str
 
 @typing.type_check_only
-class DatabaseFailoverRequest(typing_extensions.TypedDict, total=False): ...
+class DatabaseFailoverRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class DatabaseFailoverResponse(typing_extensions.TypedDict, total=False): ...
+class DatabaseFailoverResponse(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Date(typing_extensions.TypedDict, total=False):
+class Date(typing.TypedDict, total=False):
     day: int
     month: int
     year: int
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class EncryptionConfig(typing_extensions.TypedDict, total=False):
+class EncryptionConfig(typing.TypedDict, total=False):
     kmsKeyName: str
 
 @typing.type_check_only
-class Environment(typing_extensions.TypedDict, total=False):
+class Environment(typing.TypedDict, total=False):
     config: EnvironmentConfig
     createTime: str
     labels: dict[str, typing.Any]
     name: str
     satisfiesPzi: bool
     satisfiesPzs: bool
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED", "CREATING", "RUNNING", "UPDATING", "DELETING", "ERROR"
     ]
     storageConfig: StorageConfig
@@ -132,14 +128,14 @@ class Environment(typing_extensions.TypedDict, total=False):
     uuid: str
 
 @typing.type_check_only
-class EnvironmentConfig(typing_extensions.TypedDict, total=False):
+class EnvironmentConfig(typing.TypedDict, total=False):
     airflowByoidUri: str
     airflowUri: str
     dagGcsPrefix: str
     dataRetentionConfig: DataRetentionConfig
     databaseConfig: DatabaseConfig
     encryptionConfig: EncryptionConfig
-    environmentSize: typing_extensions.Literal[
+    environmentSize: typing.Literal[
         "ENVIRONMENT_SIZE_UNSPECIFIED",
         "ENVIRONMENT_SIZE_SMALL",
         "ENVIRONMENT_SIZE_MEDIUM",
@@ -153,40 +149,38 @@ class EnvironmentConfig(typing_extensions.TypedDict, total=False):
     nodeCount: int
     privateEnvironmentConfig: PrivateEnvironmentConfig
     recoveryConfig: RecoveryConfig
-    resilienceMode: typing_extensions.Literal[
-        "RESILIENCE_MODE_UNSPECIFIED", "HIGH_RESILIENCE"
-    ]
+    resilienceMode: typing.Literal["RESILIENCE_MODE_UNSPECIFIED", "HIGH_RESILIENCE"]
     softwareConfig: SoftwareConfig
     webServerConfig: WebServerConfig
     webServerNetworkAccessControl: WebServerNetworkAccessControl
     workloadsConfig: WorkloadsConfig
 
 @typing.type_check_only
-class ExecuteAirflowCommandRequest(typing_extensions.TypedDict, total=False):
+class ExecuteAirflowCommandRequest(typing.TypedDict, total=False):
     command: str
     parameters: _list[str]
     subcommand: str
 
 @typing.type_check_only
-class ExecuteAirflowCommandResponse(typing_extensions.TypedDict, total=False):
+class ExecuteAirflowCommandResponse(typing.TypedDict, total=False):
     error: str
     executionId: str
     pod: str
     podNamespace: str
 
 @typing.type_check_only
-class ExitInfo(typing_extensions.TypedDict, total=False):
+class ExitInfo(typing.TypedDict, total=False):
     error: str
     exitCode: int
 
 @typing.type_check_only
-class FetchDatabasePropertiesResponse(typing_extensions.TypedDict, total=False):
+class FetchDatabasePropertiesResponse(typing.TypedDict, total=False):
     isFailoverReplicaAvailable: bool
     primaryGceZone: str
     secondaryGceZone: str
 
 @typing.type_check_only
-class IPAllocationPolicy(typing_extensions.TypedDict, total=False):
+class IPAllocationPolicy(typing.TypedDict, total=False):
     clusterIpv4CidrBlock: str
     clusterSecondaryRangeName: str
     servicesIpv4CidrBlock: str
@@ -194,7 +188,7 @@ class IPAllocationPolicy(typing_extensions.TypedDict, total=False):
     useIpAliases: bool
 
 @typing.type_check_only
-class ImageVersion(typing_extensions.TypedDict, total=False):
+class ImageVersion(typing.TypedDict, total=False):
     creationDisabled: bool
     imageVersionId: str
     isDefault: bool
@@ -203,43 +197,43 @@ class ImageVersion(typing_extensions.TypedDict, total=False):
     upgradeDisabled: bool
 
 @typing.type_check_only
-class Line(typing_extensions.TypedDict, total=False):
+class Line(typing.TypedDict, total=False):
     content: str
     lineNumber: int
 
 @typing.type_check_only
-class ListEnvironmentsResponse(typing_extensions.TypedDict, total=False):
+class ListEnvironmentsResponse(typing.TypedDict, total=False):
     environments: _list[Environment]
     nextPageToken: str
 
 @typing.type_check_only
-class ListImageVersionsResponse(typing_extensions.TypedDict, total=False):
+class ListImageVersionsResponse(typing.TypedDict, total=False):
     imageVersions: _list[ImageVersion]
     nextPageToken: str
 
 @typing.type_check_only
-class ListOperationsResponse(typing_extensions.TypedDict, total=False):
+class ListOperationsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListUserWorkloadsConfigMapsResponse(typing_extensions.TypedDict, total=False):
+class ListUserWorkloadsConfigMapsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     userWorkloadsConfigMaps: _list[UserWorkloadsConfigMap]
 
 @typing.type_check_only
-class ListUserWorkloadsSecretsResponse(typing_extensions.TypedDict, total=False):
+class ListUserWorkloadsSecretsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     userWorkloadsSecrets: _list[UserWorkloadsSecret]
 
 @typing.type_check_only
-class ListWorkloadsResponse(typing_extensions.TypedDict, total=False):
+class ListWorkloadsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     workloads: _list[ComposerWorkload]
 
 @typing.type_check_only
-class LoadSnapshotRequest(typing_extensions.TypedDict, total=False):
+class LoadSnapshotRequest(typing.TypedDict, total=False):
     skipAirflowOverridesSetting: bool
     skipEnvironmentVariablesSetting: bool
     skipGcsDataCopying: bool
@@ -247,27 +241,27 @@ class LoadSnapshotRequest(typing_extensions.TypedDict, total=False):
     snapshotPath: str
 
 @typing.type_check_only
-class LoadSnapshotResponse(typing_extensions.TypedDict, total=False): ...
+class LoadSnapshotResponse(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class MaintenanceWindow(typing_extensions.TypedDict, total=False):
+class MaintenanceWindow(typing.TypedDict, total=False):
     endTime: str
     recurrence: str
     startTime: str
 
 @typing.type_check_only
-class MasterAuthorizedNetworksConfig(typing_extensions.TypedDict, total=False):
+class MasterAuthorizedNetworksConfig(typing.TypedDict, total=False):
     cidrBlocks: _list[CidrBlock]
     enabled: bool
 
 @typing.type_check_only
-class NetworkingConfig(typing_extensions.TypedDict, total=False):
-    connectionType: typing_extensions.Literal[
+class NetworkingConfig(typing.TypedDict, total=False):
+    connectionType: typing.Literal[
         "CONNECTION_TYPE_UNSPECIFIED", "VPC_PEERING", "PRIVATE_SERVICE_CONNECT"
     ]
 
 @typing.type_check_only
-class NodeConfig(typing_extensions.TypedDict, total=False):
+class NodeConfig(typing.TypedDict, total=False):
     composerInternalIpv4CidrBlock: str
     composerNetworkAttachment: str
     diskSizeGb: int
@@ -284,7 +278,7 @@ class NodeConfig(typing_extensions.TypedDict, total=False):
     trafficRoutingConfig: TrafficRoutingConfig
 
 @typing.type_check_only
-class Operation(typing_extensions.TypedDict, total=False):
+class Operation(typing.TypedDict, total=False):
     done: bool
     error: Status
     metadata: dict[str, typing.Any]
@@ -292,10 +286,10 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class OperationMetadata(typing_extensions.TypedDict, total=False):
+class OperationMetadata(typing.TypedDict, total=False):
     createTime: str
     endTime: str
-    operationType: typing_extensions.Literal[
+    operationType: typing.Literal[
         "TYPE_UNSPECIFIED",
         "CREATE",
         "DELETE",
@@ -308,31 +302,31 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     ]
     resource: str
     resourceUuid: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED", "PENDING", "RUNNING", "SUCCESSFUL", "FAILED"
     ]
 
 @typing.type_check_only
-class PollAirflowCommandRequest(typing_extensions.TypedDict, total=False):
+class PollAirflowCommandRequest(typing.TypedDict, total=False):
     executionId: str
     nextLineNumber: int
     pod: str
     podNamespace: str
 
 @typing.type_check_only
-class PollAirflowCommandResponse(typing_extensions.TypedDict, total=False):
+class PollAirflowCommandResponse(typing.TypedDict, total=False):
     exitInfo: ExitInfo
     output: _list[Line]
     outputEnd: bool
 
 @typing.type_check_only
-class PrivateClusterConfig(typing_extensions.TypedDict, total=False):
+class PrivateClusterConfig(typing.TypedDict, total=False):
     enablePrivateEndpoint: bool
     masterIpv4CidrBlock: str
     masterIpv4ReservedRange: str
 
 @typing.type_check_only
-class PrivateEnvironmentConfig(typing_extensions.TypedDict, total=False):
+class PrivateEnvironmentConfig(typing.TypedDict, total=False):
     cloudComposerConnectionSubnetwork: str
     cloudComposerNetworkIpv4CidrBlock: str
     cloudComposerNetworkIpv4ReservedRange: str
@@ -341,124 +335,127 @@ class PrivateEnvironmentConfig(typing_extensions.TypedDict, total=False):
     enablePrivateEnvironment: bool
     enablePrivatelyUsedPublicIps: bool
     networkingConfig: NetworkingConfig
-    networkingType: typing_extensions.Literal[
-        "NETWORKING_TYPE_UNSPECIFIED", "PRIVATE", "PUBLIC"
-    ]
+    networkingType: typing.Literal["NETWORKING_TYPE_UNSPECIFIED", "PRIVATE", "PUBLIC"]
     privateClusterConfig: PrivateClusterConfig
     webServerIpv4CidrBlock: str
     webServerIpv4ReservedRange: str
 
 @typing.type_check_only
-class RecoveryConfig(typing_extensions.TypedDict, total=False):
+class RecoveryConfig(typing.TypedDict, total=False):
     scheduledSnapshotsConfig: ScheduledSnapshotsConfig
 
 @typing.type_check_only
-class RestartWebServerRequest(typing_extensions.TypedDict, total=False): ...
+class RestartWebServerRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class SaveSnapshotRequest(typing_extensions.TypedDict, total=False):
+class SaveSnapshotRequest(typing.TypedDict, total=False):
     snapshotLocation: str
 
 @typing.type_check_only
-class SaveSnapshotResponse(typing_extensions.TypedDict, total=False):
+class SaveSnapshotResponse(typing.TypedDict, total=False):
     snapshotPath: str
 
 @typing.type_check_only
-class ScheduledSnapshotsConfig(typing_extensions.TypedDict, total=False):
+class ScheduledSnapshotsConfig(typing.TypedDict, total=False):
     enabled: bool
     snapshotCreationSchedule: str
     snapshotLocation: str
     timeZone: str
 
 @typing.type_check_only
-class SchedulerResource(typing_extensions.TypedDict, total=False):
+class SchedulerResource(typing.TypedDict, total=False):
     count: int
     cpu: float
     memoryGb: float
     storageGb: float
 
 @typing.type_check_only
-class SoftwareConfig(typing_extensions.TypedDict, total=False):
+class SoftwareConfig(typing.TypedDict, total=False):
     airflowConfigOverrides: dict[str, typing.Any]
+    auditLogsReplicationMode: typing.Literal[
+        "AUDIT_LOGS_REPLICATION_MODE_UNSPECIFIED",
+        "AUDIT_LOGS_REPLICATION_DISABLED",
+        "AUDIT_LOGS_REPLICATION_ENABLED",
+    ]
     cloudDataLineageIntegration: CloudDataLineageIntegration
     envVariables: dict[str, typing.Any]
     imageVersion: str
     pypiPackages: dict[str, typing.Any]
     pythonVersion: str
     schedulerCount: int
-    webServerPluginsMode: typing_extensions.Literal[
+    webServerPluginsMode: typing.Literal[
         "WEB_SERVER_PLUGINS_MODE_UNSPECIFIED", "PLUGINS_DISABLED", "PLUGINS_ENABLED"
     ]
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class StopAirflowCommandRequest(typing_extensions.TypedDict, total=False):
+class StopAirflowCommandRequest(typing.TypedDict, total=False):
     executionId: str
     force: bool
     pod: str
     podNamespace: str
 
 @typing.type_check_only
-class StopAirflowCommandResponse(typing_extensions.TypedDict, total=False):
+class StopAirflowCommandResponse(typing.TypedDict, total=False):
     isDone: bool
     output: _list[str]
 
 @typing.type_check_only
-class StorageConfig(typing_extensions.TypedDict, total=False):
+class StorageConfig(typing.TypedDict, total=False):
     bucket: str
 
 @typing.type_check_only
-class TaskLogsRetentionConfig(typing_extensions.TypedDict, total=False):
-    storageMode: typing_extensions.Literal[
+class TaskLogsRetentionConfig(typing.TypedDict, total=False):
+    storageMode: typing.Literal[
         "TASK_LOGS_STORAGE_MODE_UNSPECIFIED",
         "CLOUD_LOGGING_AND_CLOUD_STORAGE",
         "CLOUD_LOGGING_ONLY",
     ]
 
 @typing.type_check_only
-class TrafficRoutingConfig(typing_extensions.TypedDict, total=False):
-    cloudRunFunctionsRouting: typing_extensions.Literal[
+class TrafficRoutingConfig(typing.TypedDict, total=False):
+    cloudRunFunctionsRouting: typing.Literal[
         "ROUTING_MODE_UNSPECIFIED", "DIRECT", "VIA_NETWORK_ATTACHMENT"
     ]
 
 @typing.type_check_only
-class TriggererResource(typing_extensions.TypedDict, total=False):
+class TriggererResource(typing.TypedDict, total=False):
     count: int
     cpu: float
     memoryGb: float
 
 @typing.type_check_only
-class UserWorkloadsConfigMap(typing_extensions.TypedDict, total=False):
+class UserWorkloadsConfigMap(typing.TypedDict, total=False):
     data: dict[str, typing.Any]
     name: str
 
 @typing.type_check_only
-class UserWorkloadsSecret(typing_extensions.TypedDict, total=False):
+class UserWorkloadsSecret(typing.TypedDict, total=False):
     data: dict[str, typing.Any]
     name: str
     type: str
 
 @typing.type_check_only
-class WebServerConfig(typing_extensions.TypedDict, total=False):
+class WebServerConfig(typing.TypedDict, total=False):
     machineType: str
 
 @typing.type_check_only
-class WebServerNetworkAccessControl(typing_extensions.TypedDict, total=False):
+class WebServerNetworkAccessControl(typing.TypedDict, total=False):
     allowedIpRanges: _list[AllowedIpRange]
 
 @typing.type_check_only
-class WebServerResource(typing_extensions.TypedDict, total=False):
+class WebServerResource(typing.TypedDict, total=False):
     cpu: float
     memoryGb: float
     storageGb: float
 
 @typing.type_check_only
-class WorkerResource(typing_extensions.TypedDict, total=False):
+class WorkerResource(typing.TypedDict, total=False):
     cpu: float
     maxCount: int
     memoryGb: float
@@ -466,7 +463,7 @@ class WorkerResource(typing_extensions.TypedDict, total=False):
     storageGb: float
 
 @typing.type_check_only
-class WorkloadsConfig(typing_extensions.TypedDict, total=False):
+class WorkloadsConfig(typing.TypedDict, total=False):
     dagProcessor: DagProcessorResource
     scheduler: SchedulerResource
     triggerer: TriggererResource

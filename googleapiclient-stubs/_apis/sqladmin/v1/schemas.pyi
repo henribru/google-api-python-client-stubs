@@ -1,30 +1,28 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class AclEntry(typing_extensions.TypedDict, total=False):
+class AclEntry(typing.TypedDict, total=False):
     expirationTime: str
     kind: str
     name: str
     value: str
 
 @typing.type_check_only
-class AcquireSsrsLeaseContext(typing_extensions.TypedDict, total=False):
+class AcquireSsrsLeaseContext(typing.TypedDict, total=False):
     duration: str
     reportDatabase: str
     serviceLogin: str
     setupLogin: str
 
 @typing.type_check_only
-class AdvancedMachineFeatures(typing_extensions.TypedDict, total=False):
+class AdvancedMachineFeatures(typing.TypedDict, total=False):
     threadsPerCore: int
 
 @typing.type_check_only
-class ApiWarning(typing_extensions.TypedDict, total=False):
-    code: typing_extensions.Literal[
+class ApiWarning(typing.TypedDict, total=False):
+    code: typing.Literal[
         "SQL_API_WARNING_CODE_UNSPECIFIED",
         "REGION_UNREACHABLE",
         "MAX_RESULTS_EXCEEDS_LIMIT",
@@ -35,19 +33,17 @@ class ApiWarning(typing_extensions.TypedDict, total=False):
     region: str
 
 @typing.type_check_only
-class AvailableDatabaseVersion(typing_extensions.TypedDict, total=False):
+class AvailableDatabaseVersion(typing.TypedDict, total=False):
     displayName: str
     majorVersion: str
     name: str
 
 @typing.type_check_only
-class Backup(typing_extensions.TypedDict, total=False):
+class Backup(typing.TypedDict, total=False):
     backupInterval: Interval
-    backupKind: typing_extensions.Literal[
-        "SQL_BACKUP_KIND_UNSPECIFIED", "SNAPSHOT", "PHYSICAL"
-    ]
+    backupKind: typing.Literal["SQL_BACKUP_KIND_UNSPECIFIED", "SNAPSHOT", "PHYSICAL"]
     backupRun: str
-    databaseVersion: typing_extensions.Literal[
+    databaseVersion: typing.Literal[
         "SQL_DATABASE_VERSION_UNSPECIFIED",
         "MYSQL_5_1",
         "MYSQL_5_5",
@@ -120,7 +116,7 @@ class Backup(typing_extensions.TypedDict, total=False):
     satisfiesPzi: bool
     satisfiesPzs: bool
     selfLink: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "SQL_BACKUP_STATE_UNSPECIFIED",
         "ENQUEUED",
         "RUNNING",
@@ -131,14 +127,14 @@ class Backup(typing_extensions.TypedDict, total=False):
     ]
     timeZone: str
     ttlDays: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "SQL_BACKUP_TYPE_UNSPECIFIED", "AUTOMATED", "ON_DEMAND", "FINAL"
     ]
 
 @typing.type_check_only
-class BackupConfiguration(typing_extensions.TypedDict, total=False):
+class BackupConfiguration(typing.TypedDict, total=False):
     backupRetentionSettings: BackupRetentionSettings
-    backupTier: typing_extensions.Literal[
+    backupTier: typing.Literal[
         "BACKUP_TIER_UNSPECIFIED", "STANDARD", "ADVANCED", "ENHANCED"
     ]
     binaryLogEnabled: bool
@@ -149,7 +145,7 @@ class BackupConfiguration(typing_extensions.TypedDict, total=False):
     replicationLogArchivingEnabled: bool
     startTime: str
     transactionLogRetentionDays: int
-    transactionalLogStorageState: typing_extensions.Literal[
+    transactionalLogStorageState: typing.Literal[
         "TRANSACTIONAL_LOG_STORAGE_STATE_UNSPECIFIED",
         "DISK",
         "SWITCHING_TO_CLOUD_STORAGE",
@@ -158,29 +154,25 @@ class BackupConfiguration(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class BackupContext(typing_extensions.TypedDict, total=False):
+class BackupContext(typing.TypedDict, total=False):
     backupId: str
     kind: str
     name: str
 
 @typing.type_check_only
-class BackupReencryptionConfig(typing_extensions.TypedDict, total=False):
+class BackupReencryptionConfig(typing.TypedDict, total=False):
     backupLimit: int
-    backupType: typing_extensions.Literal[
-        "BACKUP_TYPE_UNSPECIFIED", "AUTOMATED", "ON_DEMAND"
-    ]
+    backupType: typing.Literal["BACKUP_TYPE_UNSPECIFIED", "AUTOMATED", "ON_DEMAND"]
 
 @typing.type_check_only
-class BackupRetentionSettings(typing_extensions.TypedDict, total=False):
+class BackupRetentionSettings(typing.TypedDict, total=False):
     retainedBackups: int
-    retentionUnit: typing_extensions.Literal["RETENTION_UNIT_UNSPECIFIED", "COUNT"]
+    retentionUnit: typing.Literal["RETENTION_UNIT_UNSPECIFIED", "COUNT"]
 
 @typing.type_check_only
-class BackupRun(typing_extensions.TypedDict, total=False):
-    backupKind: typing_extensions.Literal[
-        "SQL_BACKUP_KIND_UNSPECIFIED", "SNAPSHOT", "PHYSICAL"
-    ]
-    databaseVersion: typing_extensions.Literal[
+class BackupRun(typing.TypedDict, total=False):
+    backupKind: typing.Literal["SQL_BACKUP_KIND_UNSPECIFIED", "SNAPSHOT", "PHYSICAL"]
+    databaseVersion: typing.Literal[
         "SQL_DATABASE_VERSION_UNSPECIFIED",
         "MYSQL_5_1",
         "MYSQL_5_5",
@@ -251,7 +243,7 @@ class BackupRun(typing_extensions.TypedDict, total=False):
     maxChargeableBytes: str
     selfLink: str
     startTime: str
-    status: typing_extensions.Literal[
+    status: typing.Literal[
         "SQL_BACKUP_RUN_STATUS_UNSPECIFIED",
         "ENQUEUED",
         "OVERDUE",
@@ -264,25 +256,23 @@ class BackupRun(typing_extensions.TypedDict, total=False):
         "DELETED",
     ]
     timeZone: str
-    type: typing_extensions.Literal[
-        "SQL_BACKUP_RUN_TYPE_UNSPECIFIED", "AUTOMATED", "ON_DEMAND"
-    ]
+    type: typing.Literal["SQL_BACKUP_RUN_TYPE_UNSPECIFIED", "AUTOMATED", "ON_DEMAND"]
     windowStartTime: str
 
 @typing.type_check_only
-class BackupRunsListResponse(typing_extensions.TypedDict, total=False):
+class BackupRunsListResponse(typing.TypedDict, total=False):
     items: _list[BackupRun]
     kind: str
     nextPageToken: str
 
 @typing.type_check_only
-class BinLogCoordinates(typing_extensions.TypedDict, total=False):
+class BinLogCoordinates(typing.TypedDict, total=False):
     binLogFileName: str
     binLogPosition: str
     kind: str
 
 @typing.type_check_only
-class CloneContext(typing_extensions.TypedDict, total=False):
+class CloneContext(typing.TypedDict, total=False):
     allocatedIpRange: str
     binLogCoordinates: BinLogCoordinates
     databaseNames: _list[str]
@@ -297,24 +287,25 @@ class CloneContext(typing_extensions.TypedDict, total=False):
     sourceInstanceDeletionTime: str
 
 @typing.type_check_only
-class Column(typing_extensions.TypedDict, total=False):
+class Column(typing.TypedDict, total=False):
     name: str
     type: str
 
 @typing.type_check_only
-class ConnectPoolNodeConfig(typing_extensions.TypedDict, total=False):
+class ConnectPoolNodeConfig(typing.TypedDict, total=False):
     dnsName: str
     dnsNames: _list[DnsNameMapping]
     ipAddresses: _list[IpMapping]
     name: str
 
 @typing.type_check_only
-class ConnectSettings(typing_extensions.TypedDict, total=False):
-    backendType: typing_extensions.Literal[
+class ConnectSettings(typing.TypedDict, total=False):
+    backendType: typing.Literal[
         "SQL_BACKEND_TYPE_UNSPECIFIED", "FIRST_GEN", "SECOND_GEN", "EXTERNAL"
     ]
+    connectionName: str
     customSubjectAlternativeNames: _list[str]
-    databaseVersion: typing_extensions.Literal[
+    databaseVersion: typing.Literal[
         "SQL_DATABASE_VERSION_UNSPECIFIED",
         "MYSQL_5_1",
         "MYSQL_5_5",
@@ -377,16 +368,14 @@ class ConnectSettings(typing_extensions.TypedDict, total=False):
     ipAddresses: _list[IpMapping]
     kind: str
     mdxProtocolSupport: _list[
-        typing_extensions.Literal[
-            "MDX_PROTOCOL_SUPPORT_UNSPECIFIED", "CLIENT_PROTOCOL_TYPE"
-        ]
+        typing.Literal["MDX_PROTOCOL_SUPPORT_UNSPECIFIED", "CLIENT_PROTOCOL_TYPE"]
     ]
     nodeCount: int
     nodes: _list[ConnectPoolNodeConfig]
     pscEnabled: bool
     region: str
     serverCaCert: SslCert
-    serverCaMode: typing_extensions.Literal[
+    serverCaMode: typing.Literal[
         "CA_MODE_UNSPECIFIED",
         "GOOGLE_MANAGED_INTERNAL_CA",
         "GOOGLE_MANAGED_CAS_CA",
@@ -394,22 +383,22 @@ class ConnectSettings(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class ConnectionPoolConfig(typing_extensions.TypedDict, total=False):
+class ConnectionPoolConfig(typing.TypedDict, total=False):
     connectionPoolingEnabled: bool
     flags: _list[ConnectionPoolFlags]
     poolerCount: int
 
 @typing.type_check_only
-class ConnectionPoolFlags(typing_extensions.TypedDict, total=False):
+class ConnectionPoolFlags(typing.TypedDict, total=False):
     name: str
     value: str
 
 @typing.type_check_only
-class DataCacheConfig(typing_extensions.TypedDict, total=False):
+class DataCacheConfig(typing.TypedDict, total=False):
     dataCacheEnabled: bool
 
 @typing.type_check_only
-class Database(typing_extensions.TypedDict, total=False):
+class Database(typing.TypedDict, total=False):
     charset: str
     collation: str
     etag: str
@@ -421,21 +410,22 @@ class Database(typing_extensions.TypedDict, total=False):
     sqlserverDatabaseDetails: SqlServerDatabaseDetails
 
 @typing.type_check_only
-class DatabaseFlags(typing_extensions.TypedDict, total=False):
+class DatabaseFlags(typing.TypedDict, total=False):
     name: str
     value: str
 
 @typing.type_check_only
-class DatabaseInstance(typing_extensions.TypedDict, total=False):
+class DatabaseInstance(typing.TypedDict, total=False):
     availableMaintenanceVersions: _list[str]
-    backendType: typing_extensions.Literal[
+    backendType: typing.Literal[
         "SQL_BACKEND_TYPE_UNSPECIFIED", "FIRST_GEN", "SECOND_GEN", "EXTERNAL"
     ]
     connectionName: str
     createTime: str
     currentDiskSize: str
+    databaseCenterIntegrationEnabled: bool
     databaseInstalledVersion: str
-    databaseVersion: typing_extensions.Literal[
+    databaseVersion: typing.Literal[
         "SQL_DATABASE_VERSION_UNSPECIFIED",
         "MYSQL_5_1",
         "MYSQL_5_5",
@@ -502,7 +492,7 @@ class DatabaseInstance(typing_extensions.TypedDict, total=False):
     gceZone: str
     geminiConfig: GeminiInstanceConfig
     includeReplicasForMajorVersionUpgrade: bool
-    instanceType: typing_extensions.Literal[
+    instanceType: typing.Literal[
         "SQL_INSTANCE_TYPE_UNSPECIFIED",
         "CLOUD_SQL_INSTANCE",
         "ON_PREMISES_INSTANCE",
@@ -536,12 +526,12 @@ class DatabaseInstance(typing_extensions.TypedDict, total=False):
     serverCaCert: SslCert
     serviceAccountEmailAddress: str
     settings: Settings
-    sqlNetworkArchitecture: typing_extensions.Literal[
+    sqlNetworkArchitecture: typing.Literal[
         "SQL_NETWORK_ARCHITECTURE_UNSPECIFIED",
         "NEW_NETWORK_ARCHITECTURE",
         "OLD_NETWORK_ARCHITECTURE",
     ]
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "SQL_INSTANCE_STATE_UNSPECIFIED",
         "RUNNABLE",
         "SUSPENDED",
@@ -553,7 +543,7 @@ class DatabaseInstance(typing_extensions.TypedDict, total=False):
         "REPAIRING",
     ]
     suspensionReason: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "SQL_SUSPENSION_REASON_UNSPECIFIED",
             "BILLING_ISSUE",
             "LEGAL_ISSUE",
@@ -568,22 +558,22 @@ class DatabaseInstance(typing_extensions.TypedDict, total=False):
     writeEndpoint: str
 
 @typing.type_check_only
-class DatabasesListResponse(typing_extensions.TypedDict, total=False):
+class DatabasesListResponse(typing.TypedDict, total=False):
     items: _list[Database]
     kind: str
 
 @typing.type_check_only
-class DemoteContext(typing_extensions.TypedDict, total=False):
+class DemoteContext(typing.TypedDict, total=False):
     kind: str
     sourceRepresentativeInstanceName: str
 
 @typing.type_check_only
-class DemoteMasterConfiguration(typing_extensions.TypedDict, total=False):
+class DemoteMasterConfiguration(typing.TypedDict, total=False):
     kind: str
     mysqlReplicaConfiguration: DemoteMasterMySqlReplicaConfiguration
 
 @typing.type_check_only
-class DemoteMasterContext(typing_extensions.TypedDict, total=False):
+class DemoteMasterContext(typing.TypedDict, total=False):
     kind: str
     masterInstanceName: str
     replicaConfiguration: DemoteMasterConfiguration
@@ -591,7 +581,7 @@ class DemoteMasterContext(typing_extensions.TypedDict, total=False):
     verifyGtidConsistency: bool
 
 @typing.type_check_only
-class DemoteMasterMySqlReplicaConfiguration(typing_extensions.TypedDict, total=False):
+class DemoteMasterMySqlReplicaConfiguration(typing.TypedDict, total=False):
     caCertificate: str
     clientCertificate: str
     clientKey: str
@@ -600,58 +590,57 @@ class DemoteMasterMySqlReplicaConfiguration(typing_extensions.TypedDict, total=F
     username: str
 
 @typing.type_check_only
-class DenyMaintenancePeriod(typing_extensions.TypedDict, total=False):
+class DenyMaintenancePeriod(typing.TypedDict, total=False):
     endDate: str
     startDate: str
     time: str
 
 @typing.type_check_only
-class DiskEncryptionConfiguration(typing_extensions.TypedDict, total=False):
+class DiskEncryptionConfiguration(typing.TypedDict, total=False):
     kind: str
     kmsKeyName: str
 
 @typing.type_check_only
-class DiskEncryptionStatus(typing_extensions.TypedDict, total=False):
+class DiskEncryptionStatus(typing.TypedDict, total=False):
     kind: str
     kmsKeyVersionName: str
 
 @typing.type_check_only
-class DnsNameMapping(typing_extensions.TypedDict, total=False):
-    connectionType: typing_extensions.Literal[
+class DnsNameMapping(typing.TypedDict, total=False):
+    connectionType: typing.Literal[
         "CONNECTION_TYPE_UNSPECIFIED",
         "PUBLIC",
         "PRIVATE_SERVICES_ACCESS",
         "PRIVATE_SERVICE_CONNECT",
     ]
-    dnsScope: typing_extensions.Literal["DNS_SCOPE_UNSPECIFIED", "INSTANCE", "CLUSTER"]
+    dnsScope: typing.Literal["DNS_SCOPE_UNSPECIFIED", "INSTANCE", "CLUSTER"]
     name: str
-    recordManager: typing_extensions.Literal[
+    recordManager: typing.Literal[
         "RECORD_MANAGER_UNSPECIFIED", "CUSTOMER", "CLOUD_SQL_AUTOMATION"
     ]
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ExecuteSqlPayload(typing_extensions.TypedDict, total=False):
+class ExecuteSqlPayload(typing.TypedDict, total=False):
     application: str
     autoIamAuthn: bool
     database: str
-    partialResultMode: typing_extensions.Literal[
+    partialResultMode: typing.Literal[
         "PARTIAL_RESULT_MODE_UNSPECIFIED", "FAIL_PARTIAL_RESULT", "ALLOW_PARTIAL_RESULT"
     ]
+    passwordSecretVersion: str
     rowLimit: str
     sqlStatement: str
     user: str
 
 @typing.type_check_only
-class ExportContext(typing_extensions.TypedDict, total=False):
+class ExportContext(typing.TypedDict, total=False):
     bakExportOptions: dict[str, typing.Any]
     csvExportOptions: dict[str, typing.Any]
     databases: _list[str]
-    fileType: typing_extensions.Literal[
-        "SQL_FILE_TYPE_UNSPECIFIED", "SQL", "CSV", "BAK", "TDE"
-    ]
+    fileType: typing.Literal["SQL_FILE_TYPE_UNSPECIFIED", "SQL", "CSV", "BAK", "TDE"]
     kind: str
     offload: bool
     sqlExportOptions: dict[str, typing.Any]
@@ -659,25 +648,25 @@ class ExportContext(typing_extensions.TypedDict, total=False):
     uri: str
 
 @typing.type_check_only
-class ExternalSyncSelectedObject(typing_extensions.TypedDict, total=False):
+class ExternalSyncSelectedObject(typing.TypedDict, total=False):
     database: str
 
 @typing.type_check_only
-class FailoverContext(typing_extensions.TypedDict, total=False):
+class FailoverContext(typing.TypedDict, total=False):
     kind: str
     settingsVersion: str
 
 @typing.type_check_only
-class FinalBackupConfig(typing_extensions.TypedDict, total=False):
+class FinalBackupConfig(typing.TypedDict, total=False):
     enabled: bool
     retentionDays: int
 
 @typing.type_check_only
-class Flag(typing_extensions.TypedDict, total=False):
+class Flag(typing.TypedDict, total=False):
     allowedIntValues: _list[str]
     allowedStringValues: _list[str]
     appliesTo: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "SQL_DATABASE_VERSION_UNSPECIFIED",
             "MYSQL_5_1",
             "MYSQL_5_5",
@@ -736,7 +725,7 @@ class Flag(typing_extensions.TypedDict, total=False):
             "SQLSERVER_2025_EXPRESS",
         ]
     ]
-    flagScope: typing_extensions.Literal[
+    flagScope: typing.Literal[
         "SQL_FLAG_SCOPE_UNSPECIFIED",
         "SQL_FLAG_SCOPE_DATABASE",
         "SQL_FLAG_SCOPE_CONNECTION_POOL",
@@ -749,7 +738,7 @@ class Flag(typing_extensions.TypedDict, total=False):
     recommendedIntValue: str
     recommendedStringValue: str
     requiresRestart: bool
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "SQL_FLAG_TYPE_UNSPECIFIED",
         "BOOLEAN",
         "STRING",
@@ -761,12 +750,12 @@ class Flag(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class FlagsListResponse(typing_extensions.TypedDict, total=False):
+class FlagsListResponse(typing.TypedDict, total=False):
     items: _list[Flag]
     kind: str
 
 @typing.type_check_only
-class GeminiInstanceConfig(typing_extensions.TypedDict, total=False):
+class GeminiInstanceConfig(typing.TypedDict, total=False):
     activeQueryEnabled: bool
     entitled: bool
     flagRecommenderEnabled: bool
@@ -775,24 +764,22 @@ class GeminiInstanceConfig(typing_extensions.TypedDict, total=False):
     oomSessionCancelEnabled: bool
 
 @typing.type_check_only
-class GenerateEphemeralCertRequest(typing_extensions.TypedDict, total=False):
+class GenerateEphemeralCertRequest(typing.TypedDict, total=False):
     access_token: str
     public_key: str
     readTime: str
     validDuration: str
 
 @typing.type_check_only
-class GenerateEphemeralCertResponse(typing_extensions.TypedDict, total=False):
+class GenerateEphemeralCertResponse(typing.TypedDict, total=False):
     ephemeralCert: SslCert
 
 @typing.type_check_only
-class ImportContext(typing_extensions.TypedDict, total=False):
+class ImportContext(typing.TypedDict, total=False):
     bakImportOptions: dict[str, typing.Any]
     csvImportOptions: dict[str, typing.Any]
     database: str
-    fileType: typing_extensions.Literal[
-        "SQL_FILE_TYPE_UNSPECIFIED", "SQL", "CSV", "BAK", "TDE"
-    ]
+    fileType: typing.Literal["SQL_FILE_TYPE_UNSPECIFIED", "SQL", "CSV", "BAK", "TDE"]
     importUser: str
     kind: str
     sqlImportOptions: dict[str, typing.Any]
@@ -800,7 +787,7 @@ class ImportContext(typing_extensions.TypedDict, total=False):
     uri: str
 
 @typing.type_check_only
-class InsightsConfig(typing_extensions.TypedDict, total=False):
+class InsightsConfig(typing.TypedDict, total=False):
     enhancedQueryInsightsEnabled: bool
     queryInsightsEnabled: bool
     queryPlansPerMinute: int
@@ -809,79 +796,75 @@ class InsightsConfig(typing_extensions.TypedDict, total=False):
     recordClientAddress: bool
 
 @typing.type_check_only
-class InstanceReference(typing_extensions.TypedDict, total=False):
+class InstanceReference(typing.TypedDict, total=False):
     name: str
     project: str
     region: str
 
 @typing.type_check_only
-class InstancesAcquireSsrsLeaseRequest(typing_extensions.TypedDict, total=False):
+class InstancesAcquireSsrsLeaseRequest(typing.TypedDict, total=False):
     acquireSsrsLeaseContext: AcquireSsrsLeaseContext
 
 @typing.type_check_only
-class InstancesCloneRequest(typing_extensions.TypedDict, total=False):
+class InstancesCloneRequest(typing.TypedDict, total=False):
     cloneContext: CloneContext
 
 @typing.type_check_only
-class InstancesDemoteMasterRequest(typing_extensions.TypedDict, total=False):
+class InstancesDemoteMasterRequest(typing.TypedDict, total=False):
     demoteMasterContext: DemoteMasterContext
 
 @typing.type_check_only
-class InstancesDemoteRequest(typing_extensions.TypedDict, total=False):
+class InstancesDemoteRequest(typing.TypedDict, total=False):
     demoteContext: DemoteContext
 
 @typing.type_check_only
-class InstancesExportRequest(typing_extensions.TypedDict, total=False):
+class InstancesExportRequest(typing.TypedDict, total=False):
     exportContext: ExportContext
 
 @typing.type_check_only
-class InstancesFailoverRequest(typing_extensions.TypedDict, total=False):
+class InstancesFailoverRequest(typing.TypedDict, total=False):
     failoverContext: FailoverContext
 
 @typing.type_check_only
-class InstancesImportRequest(typing_extensions.TypedDict, total=False):
+class InstancesImportRequest(typing.TypedDict, total=False):
     importContext: ImportContext
 
 @typing.type_check_only
-class InstancesListEntraIdCertificatesResponse(
-    typing_extensions.TypedDict, total=False
-):
+class InstancesListEntraIdCertificatesResponse(typing.TypedDict, total=False):
     activeVersion: str
     certs: _list[SslCert]
     kind: str
 
 @typing.type_check_only
-class InstancesListResponse(typing_extensions.TypedDict, total=False):
+class InstancesListResponse(typing.TypedDict, total=False):
     items: _list[DatabaseInstance]
     kind: str
     nextPageToken: str
     warnings: _list[ApiWarning]
 
 @typing.type_check_only
-class InstancesListServerCasResponse(typing_extensions.TypedDict, total=False):
+class InstancesListServerCasResponse(typing.TypedDict, total=False):
     activeVersion: str
     certs: _list[SslCert]
     kind: str
 
 @typing.type_check_only
-class InstancesListServerCertificatesResponse(typing_extensions.TypedDict, total=False):
+class InstancesListServerCertificatesResponse(typing.TypedDict, total=False):
     activeVersion: str
     caCerts: _list[SslCert]
     kind: str
     serverCerts: _list[SslCert]
 
 @typing.type_check_only
-class InstancesPreCheckMajorVersionUpgradeRequest(
-    typing_extensions.TypedDict, total=False
-):
+class InstancesPreCheckMajorVersionUpgradeRequest(typing.TypedDict, total=False):
     preCheckMajorVersionUpgradeContext: PreCheckMajorVersionUpgradeContext
 
 @typing.type_check_only
-class InstancesReencryptRequest(typing_extensions.TypedDict, total=False):
+class InstancesReencryptRequest(typing.TypedDict, total=False):
     backupReencryptionConfig: BackupReencryptionConfig
 
 @typing.type_check_only
-class InstancesRestoreBackupRequest(typing_extensions.TypedDict, total=False):
+class InstancesRestoreBackupRequest(typing.TypedDict, total=False):
     backup: str
     backupdrBackup: str
     restoreBackupContext: RestoreBackupContext
@@ -889,30 +872,28 @@ class InstancesRestoreBackupRequest(typing_extensions.TypedDict, total=False):
     restoreInstanceSettings: DatabaseInstance
 
 @typing.type_check_only
-class InstancesRotateEntraIdCertificateRequest(
-    typing_extensions.TypedDict, total=False
-):
+class InstancesRotateEntraIdCertificateRequest(typing.TypedDict, total=False):
     rotateEntraIdCertificateContext: RotateEntraIdCertificateContext
 
 @typing.type_check_only
-class InstancesRotateServerCaRequest(typing_extensions.TypedDict, total=False):
+class InstancesRotateServerCaRequest(typing.TypedDict, total=False):
     rotateServerCaContext: RotateServerCaContext
 
 @typing.type_check_only
-class InstancesRotateServerCertificateRequest(typing_extensions.TypedDict, total=False):
+class InstancesRotateServerCertificateRequest(typing.TypedDict, total=False):
     rotateServerCertificateContext: RotateServerCertificateContext
 
 @typing.type_check_only
-class InstancesTruncateLogRequest(typing_extensions.TypedDict, total=False):
+class InstancesTruncateLogRequest(typing.TypedDict, total=False):
     truncateLogContext: TruncateLogContext
 
 @typing.type_check_only
-class Interval(typing_extensions.TypedDict, total=False):
+class Interval(typing.TypedDict, total=False):
     endTime: str
     startTime: str
 
 @typing.type_check_only
-class IpConfiguration(typing_extensions.TypedDict, total=False):
+class IpConfiguration(typing.TypedDict, total=False):
     allocatedIpRange: str
     authorizedNetworks: _list[AclEntry]
     customSubjectAlternativeNames: _list[str]
@@ -921,19 +902,19 @@ class IpConfiguration(typing_extensions.TypedDict, total=False):
     privateNetwork: str
     pscConfig: PscConfig
     requireSsl: bool
-    serverCaMode: typing_extensions.Literal[
+    serverCaMode: typing.Literal[
         "CA_MODE_UNSPECIFIED",
         "GOOGLE_MANAGED_INTERNAL_CA",
         "GOOGLE_MANAGED_CAS_CA",
         "CUSTOMER_MANAGED_CAS_CA",
     ]
     serverCaPool: str
-    serverCertificateRotationMode: typing_extensions.Literal[
+    serverCertificateRotationMode: typing.Literal[
         "SERVER_CERTIFICATE_ROTATION_MODE_UNSPECIFIED",
         "NO_AUTOMATIC_ROTATION",
         "AUTOMATIC_ROTATION_DURING_MAINTENANCE",
     ]
-    sslMode: typing_extensions.Literal[
+    sslMode: typing.Literal[
         "SSL_MODE_UNSPECIFIED",
         "ALLOW_UNENCRYPTED_AND_ENCRYPTED",
         "ENCRYPTED_ONLY",
@@ -941,10 +922,10 @@ class IpConfiguration(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class IpMapping(typing_extensions.TypedDict, total=False):
+class IpMapping(typing.TypedDict, total=False):
     ipAddress: str
     timeToRetire: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "SQL_IP_ADDRESS_TYPE_UNSPECIFIED",
         "PRIMARY",
         "OUTGOING",
@@ -953,38 +934,38 @@ class IpMapping(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class ListBackupsResponse(typing_extensions.TypedDict, total=False):
+class ListBackupsResponse(typing.TypedDict, total=False):
     backups: _list[Backup]
     nextPageToken: str
     warnings: _list[ApiWarning]
 
 @typing.type_check_only
-class LocationPreference(typing_extensions.TypedDict, total=False):
+class LocationPreference(typing.TypedDict, total=False):
     followGaeApplication: str
     kind: str
     secondaryZone: str
     zone: str
 
 @typing.type_check_only
-class MaintenanceWindow(typing_extensions.TypedDict, total=False):
+class MaintenanceWindow(typing.TypedDict, total=False):
     day: int
     hour: int
     kind: str
-    updateTrack: typing_extensions.Literal[
+    updateTrack: typing.Literal[
         "SQL_UPDATE_TRACK_UNSPECIFIED", "canary", "stable", "week5"
     ]
 
 @typing.type_check_only
-class Message(typing_extensions.TypedDict, total=False):
+class Message(typing.TypedDict, total=False):
     message: str
     severity: str
 
 @typing.type_check_only
-class Metadata(typing_extensions.TypedDict, total=False):
+class Metadata(typing.TypedDict, total=False):
     sqlStatementExecutionTime: str
 
 @typing.type_check_only
-class MySqlReplicaConfiguration(typing_extensions.TypedDict, total=False):
+class MySqlReplicaConfiguration(typing.TypedDict, total=False):
     caCertificate: str
     clientCertificate: str
     clientKey: str
@@ -998,27 +979,28 @@ class MySqlReplicaConfiguration(typing_extensions.TypedDict, total=False):
     verifyServerCertificate: bool
 
 @typing.type_check_only
-class MySqlSyncConfig(typing_extensions.TypedDict, total=False):
+class MySqlSyncConfig(typing.TypedDict, total=False):
     initialSyncFlags: _list[SyncFlags]
 
 @typing.type_check_only
-class OnPremisesConfiguration(typing_extensions.TypedDict, total=False):
+class OnPremisesConfiguration(typing.TypedDict, total=False):
     caCertificate: str
     clientCertificate: str
     clientKey: str
+    dmsManaged: bool
     dumpFilePath: str
     hostPort: str
     kind: str
     password: str
     selectedObjects: _list[SelectedObjects]
     sourceInstance: InstanceReference
-    sslOption: typing_extensions.Literal[
+    sslOption: typing.Literal[
         "SSL_OPTION_UNSPECIFIED", "DISABLE", "REQUIRE", "VERIFY_CA"
     ]
     username: str
 
 @typing.type_check_only
-class Operation(typing_extensions.TypedDict, total=False):
+class Operation(typing.TypedDict, total=False):
     acquireSsrsLeaseContext: AcquireSsrsLeaseContext
     apiWarning: ApiWarning
     backupContext: BackupContext
@@ -1029,7 +1011,7 @@ class Operation(typing_extensions.TypedDict, total=False):
     insertTime: str
     kind: str
     name: str
-    operationType: typing_extensions.Literal[
+    operationType: typing.Literal[
         "SQL_OPERATION_TYPE_UNSPECIFIED",
         "IMPORT",
         "EXPORT",
@@ -1088,7 +1070,7 @@ class Operation(typing_extensions.TypedDict, total=False):
     preCheckMajorVersionUpgradeContext: PreCheckMajorVersionUpgradeContext
     selfLink: str
     startTime: str
-    status: typing_extensions.Literal[
+    status: typing.Literal[
         "SQL_OPERATION_STATUS_UNSPECIFIED", "PENDING", "RUNNING", "DONE"
     ]
     subOperationType: SqlSubOperationType
@@ -1098,18 +1080,18 @@ class Operation(typing_extensions.TypedDict, total=False):
     user: str
 
 @typing.type_check_only
-class OperationError(typing_extensions.TypedDict, total=False):
+class OperationError(typing.TypedDict, total=False):
     code: str
     kind: str
     message: str
 
 @typing.type_check_only
-class OperationErrors(typing_extensions.TypedDict, total=False):
+class OperationErrors(typing.TypedDict, total=False):
     errors: _list[OperationError]
     kind: str
 
 @typing.type_check_only
-class OperationMetadata(typing_extensions.TypedDict, total=False):
+class OperationMetadata(typing.TypedDict, total=False):
     apiVersion: str
     cancelRequested: bool
     createTime: str
@@ -1119,21 +1101,19 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
-class OperationsListResponse(typing_extensions.TypedDict, total=False):
+class OperationsListResponse(typing.TypedDict, total=False):
     items: _list[Operation]
     kind: str
     nextPageToken: str
 
 @typing.type_check_only
-class PasswordStatus(typing_extensions.TypedDict, total=False):
+class PasswordStatus(typing.TypedDict, total=False):
     locked: bool
     passwordExpirationTime: str
 
 @typing.type_check_only
-class PasswordValidationPolicy(typing_extensions.TypedDict, total=False):
-    complexity: typing_extensions.Literal[
-        "COMPLEXITY_UNSPECIFIED", "COMPLEXITY_DEFAULT"
-    ]
+class PasswordValidationPolicy(typing.TypedDict, total=False):
+    complexity: typing.Literal["COMPLEXITY_UNSPECIFIED", "COMPLEXITY_DEFAULT"]
     disallowCompromisedCredentials: bool
     disallowUsernameSubstring: bool
     enablePasswordPolicy: bool
@@ -1142,20 +1122,32 @@ class PasswordValidationPolicy(typing_extensions.TypedDict, total=False):
     reuseInterval: int
 
 @typing.type_check_only
-class PerformDiskShrinkContext(typing_extensions.TypedDict, total=False):
+class PerformDiskShrinkContext(typing.TypedDict, total=False):
     targetSizeGb: str
 
 @typing.type_check_only
-class PerformanceCaptureConfig(typing_extensions.TypedDict, total=False):
+class PerformanceCaptureConfig(typing.TypedDict, total=False):
+    cpuUtilizationThresholdPercent: int
     enabled: bool
+    historyListLengthThresholdCount: int
+    memoryUsageThresholdPercent: int
     probeThreshold: int
     probingIntervalSeconds: int
     runningThreadsThreshold: int
     secondsBehindSourceThreshold: int
+    semaphoreWaitThresholdCount: int
     transactionDurationThreshold: int
+    transactionKillExcludedUserHosts: _list[str]
+    transactionKillThresholdSeconds: int
+    transactionKillType: typing.Literal[
+        "TRANSACTION_KILL_TYPE_UNSPECIFIED",
+        "READ_ONLY_TRANSACTIONS",
+        "ALL_TRANSACTIONS",
+    ]
+    transactionLockWaitThresholdCount: int
 
 @typing.type_check_only
-class PointInTimeRestoreContext(typing_extensions.TypedDict, total=False):
+class PointInTimeRestoreContext(typing.TypedDict, total=False):
     allocatedIpRange: str
     datasource: str
     pointInTime: str
@@ -1168,7 +1160,7 @@ class PointInTimeRestoreContext(typing_extensions.TypedDict, total=False):
     targetInstanceSettings: DatabaseInstance
 
 @typing.type_check_only
-class PoolNodeConfig(typing_extensions.TypedDict, total=False):
+class PoolNodeConfig(typing.TypedDict, total=False):
     dnsName: str
     dnsNames: _list[DnsNameMapping]
     gceZone: str
@@ -1176,7 +1168,7 @@ class PoolNodeConfig(typing_extensions.TypedDict, total=False):
     name: str
     pscAutoConnections: _list[PscAutoConnectionConfig]
     pscServiceAttachmentLink: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "SQL_INSTANCE_STATE_UNSPECIFIED",
         "RUNNABLE",
         "SUSPENDED",
@@ -1189,10 +1181,10 @@ class PoolNodeConfig(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class PreCheckMajorVersionUpgradeContext(typing_extensions.TypedDict, total=False):
+class PreCheckMajorVersionUpgradeContext(typing.TypedDict, total=False):
     kind: str
     preCheckResponse: _list[PreCheckResponse]
-    targetDatabaseVersion: typing_extensions.Literal[
+    targetDatabaseVersion: typing.Literal[
         "SQL_DATABASE_VERSION_UNSPECIFIED",
         "MYSQL_5_1",
         "MYSQL_5_5",
@@ -1252,25 +1244,35 @@ class PreCheckMajorVersionUpgradeContext(typing_extensions.TypedDict, total=Fals
     ]
 
 @typing.type_check_only
-class PreCheckResponse(typing_extensions.TypedDict, total=False):
+class PreCheckResponse(typing.TypedDict, total=False):
     actionsRequired: _list[str]
     message: str
-    messageType: typing_extensions.Literal[
-        "MESSAGE_TYPE_UNSPECIFIED", "INFO", "WARNING", "ERROR"
-    ]
+    messageType: typing.Literal["MESSAGE_TYPE_UNSPECIFIED", "INFO", "WARNING", "ERROR"]
 
 @typing.type_check_only
-class PscAutoConnectionConfig(typing_extensions.TypedDict, total=False):
+class PscAutoConnectionConfig(typing.TypedDict, total=False):
     consumerNetwork: str
     consumerNetworkStatus: str
     consumerProject: str
+    instanceAutoDnsStatus: typing.Literal[
+        "AUTO_DNS_STATUS_UNSPECIFIED",
+        "AUTO_DNS_OK",
+        "AUTO_DNS_FAILED",
+        "AUTO_DNS_UNKNOWN",
+    ]
     ipAddress: str
     serviceConnectionPolicy: str
     serviceConnectionPolicyCreationResult: str
     status: str
+    writeEndpointAutoDnsStatus: typing.Literal[
+        "AUTO_DNS_STATUS_UNSPECIFIED",
+        "AUTO_DNS_OK",
+        "AUTO_DNS_FAILED",
+        "AUTO_DNS_UNKNOWN",
+    ]
 
 @typing.type_check_only
-class PscConfig(typing_extensions.TypedDict, total=False):
+class PscConfig(typing.TypedDict, total=False):
     allowedConsumerProjects: _list[str]
     networkAttachmentUri: str
     pscAutoConnectionPolicyEnabled: bool
@@ -1280,7 +1282,7 @@ class PscConfig(typing_extensions.TypedDict, total=False):
     pscWriteEndpointDnsEnabled: bool
 
 @typing.type_check_only
-class QueryResult(typing_extensions.TypedDict, total=False):
+class QueryResult(typing.TypedDict, total=False):
     columns: _list[Column]
     message: str
     partialResult: bool
@@ -1288,7 +1290,7 @@ class QueryResult(typing_extensions.TypedDict, total=False):
     status: Status
 
 @typing.type_check_only
-class ReadPoolAutoScaleConfig(typing_extensions.TypedDict, total=False):
+class ReadPoolAutoScaleConfig(typing.TypedDict, total=False):
     disableScaleIn: bool
     enabled: bool
     maxNodeCount: int
@@ -1298,21 +1300,21 @@ class ReadPoolAutoScaleConfig(typing_extensions.TypedDict, total=False):
     targetMetrics: _list[TargetMetric]
 
 @typing.type_check_only
-class ReplicaConfiguration(typing_extensions.TypedDict, total=False):
+class ReplicaConfiguration(typing.TypedDict, total=False):
     cascadableReplica: bool
     failoverTarget: bool
     kind: str
     mysqlReplicaConfiguration: MySqlReplicaConfiguration
 
 @typing.type_check_only
-class ReplicationCluster(typing_extensions.TypedDict, total=False):
+class ReplicationCluster(typing.TypedDict, total=False):
     drReplica: bool
     failoverDrReplicaName: str
     psaWriteEndpoint: str
 
 @typing.type_check_only
-class Reschedule(typing_extensions.TypedDict, total=False):
-    rescheduleType: typing_extensions.Literal[
+class Reschedule(typing.TypedDict, total=False):
+    rescheduleType: typing.Literal[
         "RESCHEDULE_TYPE_UNSPECIFIED",
         "IMMEDIATE",
         "NEXT_AVAILABLE_WINDOW",
@@ -1321,63 +1323,63 @@ class Reschedule(typing_extensions.TypedDict, total=False):
     scheduleTime: str
 
 @typing.type_check_only
-class RestoreBackupContext(typing_extensions.TypedDict, total=False):
+class RestoreBackupContext(typing.TypedDict, total=False):
     backupRunId: str
     instanceId: str
     kind: str
     project: str
 
 @typing.type_check_only
-class RotateEntraIdCertificateContext(typing_extensions.TypedDict, total=False):
+class RotateEntraIdCertificateContext(typing.TypedDict, total=False):
     kind: str
     nextVersion: str
 
 @typing.type_check_only
-class RotateServerCaContext(typing_extensions.TypedDict, total=False):
+class RotateServerCaContext(typing.TypedDict, total=False):
     kind: str
     nextVersion: str
 
 @typing.type_check_only
-class RotateServerCertificateContext(typing_extensions.TypedDict, total=False):
+class RotateServerCertificateContext(typing.TypedDict, total=False):
     kind: str
     nextVersion: str
 
 @typing.type_check_only
-class Row(typing_extensions.TypedDict, total=False):
+class Row(typing.TypedDict, total=False):
     values: _list[Value]
 
 @typing.type_check_only
-class SelectedObjects(typing_extensions.TypedDict, total=False):
+class SelectedObjects(typing.TypedDict, total=False):
     database: str
 
 @typing.type_check_only
-class Settings(typing_extensions.TypedDict, total=False):
+class Settings(typing.TypedDict, total=False):
     acceleratedReplicaMode: bool
-    activationPolicy: typing_extensions.Literal[
+    activationPolicy: typing.Literal[
         "SQL_ACTIVATION_POLICY_UNSPECIFIED", "ALWAYS", "NEVER", "ON_DEMAND"
     ]
     activeDirectoryConfig: SqlActiveDirectoryConfig
     advancedMachineFeatures: AdvancedMachineFeatures
     authorizedGaeApplications: _list[str]
     autoUpgradeEnabled: bool
-    availabilityType: typing_extensions.Literal[
+    availabilityType: typing.Literal[
         "SQL_AVAILABILITY_TYPE_UNSPECIFIED", "ZONAL", "REGIONAL"
     ]
     backupConfiguration: BackupConfiguration
     collation: str
     connectionPoolConfig: ConnectionPoolConfig
-    connectorEnforcement: typing_extensions.Literal[
+    connectorEnforcement: typing.Literal[
         "CONNECTOR_ENFORCEMENT_UNSPECIFIED", "NOT_REQUIRED", "REQUIRED"
     ]
     crashSafeReplicationEnabled: bool
-    dataApiAccess: typing_extensions.Literal[
+    dataApiAccess: typing.Literal[
         "DATA_API_ACCESS_UNSPECIFIED", "DISALLOW_DATA_API", "ALLOW_DATA_API"
     ]
     dataCacheConfig: DataCacheConfig
     dataDiskProvisionedIops: str
     dataDiskProvisionedThroughput: str
     dataDiskSizeGb: str
-    dataDiskType: typing_extensions.Literal[
+    dataDiskType: typing.Literal[
         "SQL_DATA_DISK_TYPE_UNSPECIFIED",
         "PD_SSD",
         "PD_HDD",
@@ -1388,7 +1390,7 @@ class Settings(typing_extensions.TypedDict, total=False):
     databaseReplicationEnabled: bool
     deletionProtectionEnabled: bool
     denyMaintenancePeriods: _list[DenyMaintenancePeriod]
-    edition: typing_extensions.Literal[
+    edition: typing.Literal[
         "EDITION_UNSPECIFIED", "ENTERPRISE", "ENTERPRISE_PLUS", "DEVELOPER"
     ]
     enableDataplexIntegration: bool
@@ -1402,12 +1404,10 @@ class Settings(typing_extensions.TypedDict, total=False):
     maintenanceWindow: MaintenanceWindow
     passwordValidationPolicy: PasswordValidationPolicy
     performanceCaptureConfig: PerformanceCaptureConfig
-    pricingPlan: typing_extensions.Literal[
-        "SQL_PRICING_PLAN_UNSPECIFIED", "PACKAGE", "PER_USE"
-    ]
+    pricingPlan: typing.Literal["SQL_PRICING_PLAN_UNSPECIFIED", "PACKAGE", "PER_USE"]
     readPoolAutoScaleConfig: ReadPoolAutoScaleConfig
     replicationLagMaxSeconds: int
-    replicationType: typing_extensions.Literal[
+    replicationType: typing.Literal[
         "SQL_REPLICATION_TYPE_UNSPECIFIED", "SYNCHRONOUS", "ASYNCHRONOUS"
     ]
     retainBackupsOnDelete: bool
@@ -1420,12 +1420,12 @@ class Settings(typing_extensions.TypedDict, total=False):
     userLabels: dict[str, typing.Any]
 
 @typing.type_check_only
-class SqlActiveDirectoryConfig(typing_extensions.TypedDict, total=False):
+class SqlActiveDirectoryConfig(typing.TypedDict, total=False):
     adminCredentialSecretName: str
     dnsServers: _list[str]
     domain: str
     kind: str
-    mode: typing_extensions.Literal[
+    mode: typing.Literal[
         "ACTIVE_DIRECTORY_MODE_UNSPECIFIED",
         "MANAGED_ACTIVE_DIRECTORY",
         "SELF_MANAGED_ACTIVE_DIRECTORY",
@@ -1434,10 +1434,10 @@ class SqlActiveDirectoryConfig(typing_extensions.TypedDict, total=False):
     organizationalUnit: str
 
 @typing.type_check_only
-class SqlExternalSyncSettingError(typing_extensions.TypedDict, total=False):
+class SqlExternalSyncSettingError(typing.TypedDict, total=False):
     detail: str
     kind: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "SQL_EXTERNAL_SYNC_SETTING_ERROR_TYPE_UNSPECIFIED",
         "CONNECTION_FAILURE",
         "BINLOG_NOT_ENABLED",
@@ -1500,124 +1500,108 @@ class SqlExternalSyncSettingError(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class SqlInstancesAcquireSsrsLeaseResponse(typing_extensions.TypedDict, total=False):
+class SqlInstancesAcquireSsrsLeaseResponse(typing.TypedDict, total=False):
     operationId: str
 
 @typing.type_check_only
-class SqlInstancesExecuteSqlResponse(typing_extensions.TypedDict, total=False):
+class SqlInstancesExecuteSqlResponse(typing.TypedDict, total=False):
     messages: _list[Message]
     metadata: Metadata
     results: _list[QueryResult]
     status: Status
 
 @typing.type_check_only
-class SqlInstancesGetDiskShrinkConfigResponse(typing_extensions.TypedDict, total=False):
+class SqlInstancesGetDiskShrinkConfigResponse(typing.TypedDict, total=False):
     kind: str
     message: str
     minimalTargetSizeGb: str
 
 @typing.type_check_only
-class SqlInstancesGetLatestRecoveryTimeResponse(
-    typing_extensions.TypedDict, total=False
-):
+class SqlInstancesGetLatestRecoveryTimeResponse(typing.TypedDict, total=False):
     earliestRecoveryTime: str
     kind: str
     latestRecoveryTime: str
 
 @typing.type_check_only
-class SqlInstancesReleaseSsrsLeaseResponse(typing_extensions.TypedDict, total=False):
+class SqlInstancesReleaseSsrsLeaseResponse(typing.TypedDict, total=False):
     operationId: str
 
 @typing.type_check_only
-class SqlInstancesRescheduleMaintenanceRequestBody(
-    typing_extensions.TypedDict, total=False
-):
+class SqlInstancesRescheduleMaintenanceRequestBody(typing.TypedDict, total=False):
     reschedule: Reschedule
 
 @typing.type_check_only
-class SqlInstancesResetReplicaSizeRequest(typing_extensions.TypedDict, total=False): ...
+class SqlInstancesResetReplicaSizeRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class SqlInstancesStartExternalSyncRequest(typing_extensions.TypedDict, total=False):
-    migrationType: typing_extensions.Literal[
-        "MIGRATION_TYPE_UNSPECIFIED", "LOGICAL", "PHYSICAL"
-    ]
+class SqlInstancesStartExternalSyncRequest(typing.TypedDict, total=False):
+    migrationType: typing.Literal["MIGRATION_TYPE_UNSPECIFIED", "LOGICAL", "PHYSICAL"]
     mysqlSyncConfig: MySqlSyncConfig
     replicaOverwriteEnabled: bool
     skipVerification: bool
-    syncMode: typing_extensions.Literal[
-        "EXTERNAL_SYNC_MODE_UNSPECIFIED", "ONLINE", "OFFLINE"
-    ]
-    syncParallelLevel: typing_extensions.Literal[
+    syncMode: typing.Literal["EXTERNAL_SYNC_MODE_UNSPECIFIED", "ONLINE", "OFFLINE"]
+    syncParallelLevel: typing.Literal[
         "EXTERNAL_SYNC_PARALLEL_LEVEL_UNSPECIFIED", "MIN", "OPTIMAL", "MAX"
     ]
 
 @typing.type_check_only
-class SqlInstancesVerifyExternalSyncSettingsRequest(
-    typing_extensions.TypedDict, total=False
-):
-    migrationType: typing_extensions.Literal[
-        "MIGRATION_TYPE_UNSPECIFIED", "LOGICAL", "PHYSICAL"
-    ]
+class SqlInstancesVerifyExternalSyncSettingsRequest(typing.TypedDict, total=False):
+    migrationType: typing.Literal["MIGRATION_TYPE_UNSPECIFIED", "LOGICAL", "PHYSICAL"]
     mysqlSyncConfig: MySqlSyncConfig
     selectedObjects: _list[ExternalSyncSelectedObject]
-    syncMode: typing_extensions.Literal[
-        "EXTERNAL_SYNC_MODE_UNSPECIFIED", "ONLINE", "OFFLINE"
-    ]
-    syncParallelLevel: typing_extensions.Literal[
+    syncMode: typing.Literal["EXTERNAL_SYNC_MODE_UNSPECIFIED", "ONLINE", "OFFLINE"]
+    syncParallelLevel: typing.Literal[
         "EXTERNAL_SYNC_PARALLEL_LEVEL_UNSPECIFIED", "MIN", "OPTIMAL", "MAX"
     ]
     verifyConnectionOnly: bool
     verifyReplicationOnly: bool
 
 @typing.type_check_only
-class SqlInstancesVerifyExternalSyncSettingsResponse(
-    typing_extensions.TypedDict, total=False
-):
+class SqlInstancesVerifyExternalSyncSettingsResponse(typing.TypedDict, total=False):
     errors: _list[SqlExternalSyncSettingError]
     kind: str
     warnings: _list[SqlExternalSyncSettingError]
 
 @typing.type_check_only
-class SqlOutOfDiskReport(typing_extensions.TypedDict, total=False):
+class SqlOutOfDiskReport(typing.TypedDict, total=False):
     sqlMinRecommendedIncreaseSizeGb: int
-    sqlOutOfDiskState: typing_extensions.Literal[
+    sqlOutOfDiskState: typing.Literal[
         "SQL_OUT_OF_DISK_STATE_UNSPECIFIED", "NORMAL", "SOFT_SHUTDOWN"
     ]
 
 @typing.type_check_only
-class SqlScheduledMaintenance(typing_extensions.TypedDict, total=False):
+class SqlScheduledMaintenance(typing.TypedDict, total=False):
     canDefer: bool
     canReschedule: bool
     scheduleDeadlineTime: str
     startTime: str
 
 @typing.type_check_only
-class SqlServerAuditConfig(typing_extensions.TypedDict, total=False):
+class SqlServerAuditConfig(typing.TypedDict, total=False):
     bucket: str
     kind: str
     retentionInterval: str
     uploadInterval: str
 
 @typing.type_check_only
-class SqlServerDatabaseDetails(typing_extensions.TypedDict, total=False):
+class SqlServerDatabaseDetails(typing.TypedDict, total=False):
     compatibilityLevel: int
     recoveryModel: str
 
 @typing.type_check_only
-class SqlServerEntraIdConfig(typing_extensions.TypedDict, total=False):
+class SqlServerEntraIdConfig(typing.TypedDict, total=False):
     applicationId: str
     kind: str
     tenantId: str
 
 @typing.type_check_only
-class SqlServerUserDetails(typing_extensions.TypedDict, total=False):
+class SqlServerUserDetails(typing.TypedDict, total=False):
     disabled: bool
     serverRoles: _list[str]
 
 @typing.type_check_only
-class SqlSubOperationType(typing_extensions.TypedDict, total=False):
-    maintenanceType: typing_extensions.Literal[
+class SqlSubOperationType(typing.TypedDict, total=False):
+    maintenanceType: typing.Literal[
         "SQL_MAINTENANCE_TYPE_UNSPECIFIED",
         "INSTANCE_MAINTENANCE",
         "REPLICA_INCLUDED_MAINTENANCE",
@@ -1626,7 +1610,7 @@ class SqlSubOperationType(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class SslCert(typing_extensions.TypedDict, total=False):
+class SslCert(typing.TypedDict, total=False):
     cert: str
     certSerialNumber: str
     commonName: str
@@ -1638,49 +1622,49 @@ class SslCert(typing_extensions.TypedDict, total=False):
     sha1Fingerprint: str
 
 @typing.type_check_only
-class SslCertDetail(typing_extensions.TypedDict, total=False):
+class SslCertDetail(typing.TypedDict, total=False):
     certInfo: SslCert
     certPrivateKey: str
 
 @typing.type_check_only
-class SslCertsCreateEphemeralRequest(typing_extensions.TypedDict, total=False):
+class SslCertsCreateEphemeralRequest(typing.TypedDict, total=False):
     access_token: str
     public_key: str
 
 @typing.type_check_only
-class SslCertsInsertRequest(typing_extensions.TypedDict, total=False):
+class SslCertsInsertRequest(typing.TypedDict, total=False):
     commonName: str
 
 @typing.type_check_only
-class SslCertsInsertResponse(typing_extensions.TypedDict, total=False):
+class SslCertsInsertResponse(typing.TypedDict, total=False):
     clientCert: SslCertDetail
     kind: str
     operation: Operation
     serverCaCert: SslCert
 
 @typing.type_check_only
-class SslCertsListResponse(typing_extensions.TypedDict, total=False):
+class SslCertsListResponse(typing.TypedDict, total=False):
     items: _list[SslCert]
     kind: str
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class SyncFlags(typing_extensions.TypedDict, total=False):
+class SyncFlags(typing.TypedDict, total=False):
     name: str
     value: str
 
 @typing.type_check_only
-class TargetMetric(typing_extensions.TypedDict, total=False):
+class TargetMetric(typing.TypedDict, total=False):
     metric: str
     targetValue: float
 
 @typing.type_check_only
-class Tier(typing_extensions.TypedDict, total=False):
+class Tier(typing.TypedDict, total=False):
     DiskQuota: str
     RAM: str
     kind: str
@@ -1688,19 +1672,19 @@ class Tier(typing_extensions.TypedDict, total=False):
     tier: str
 
 @typing.type_check_only
-class TiersListResponse(typing_extensions.TypedDict, total=False):
+class TiersListResponse(typing.TypedDict, total=False):
     items: _list[Tier]
     kind: str
 
 @typing.type_check_only
-class TruncateLogContext(typing_extensions.TypedDict, total=False):
+class TruncateLogContext(typing.TypedDict, total=False):
     kind: str
     logType: str
 
 @typing.type_check_only
-class User(typing_extensions.TypedDict, total=False):
+class User(typing.TypedDict, total=False):
     databaseRoles: _list[str]
-    dualPasswordType: typing_extensions.Literal[
+    dualPasswordType: typing.Literal[
         "DUAL_PASSWORD_TYPE_UNSPECIFIED",
         "NO_MODIFY_DUAL_PASSWORD",
         "NO_DUAL_PASSWORD",
@@ -1709,15 +1693,16 @@ class User(typing_extensions.TypedDict, total=False):
     etag: str
     host: str
     iamEmail: str
-    iamStatus: typing_extensions.Literal["IAM_STATUS_UNSPECIFIED", "INACTIVE", "ACTIVE"]
+    iamStatus: typing.Literal["IAM_STATUS_UNSPECIFIED", "INACTIVE", "ACTIVE"]
     instance: str
     kind: str
     name: str
     password: str
     passwordPolicy: UserPasswordValidationPolicy
     project: str
+    serverRoles: _list[str]
     sqlserverUserDetails: SqlServerUserDetails
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "BUILT_IN",
         "CLOUD_IAM_USER",
         "CLOUD_IAM_SERVICE_ACCOUNT",
@@ -1729,7 +1714,7 @@ class User(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class UserPasswordValidationPolicy(typing_extensions.TypedDict, total=False):
+class UserPasswordValidationPolicy(typing.TypedDict, total=False):
     allowedFailedAttempts: int
     enableFailedAttemptsCheck: bool
     enablePasswordVerification: bool
@@ -1737,12 +1722,12 @@ class UserPasswordValidationPolicy(typing_extensions.TypedDict, total=False):
     status: PasswordStatus
 
 @typing.type_check_only
-class UsersListResponse(typing_extensions.TypedDict, total=False):
+class UsersListResponse(typing.TypedDict, total=False):
     items: _list[User]
     kind: str
     nextPageToken: str
 
 @typing.type_check_only
-class Value(typing_extensions.TypedDict, total=False):
+class Value(typing.TypedDict, total=False):
     nullValue: bool
     value: str

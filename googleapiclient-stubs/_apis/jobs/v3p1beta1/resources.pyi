@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -69,7 +68,7 @@ class CloudTalentSolutionResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 filter: str | None = ...,
-                jobView: typing_extensions.Literal[
+                jobView: typing.Literal[
                     "JOB_VIEW_UNSPECIFIED",
                     "JOB_VIEW_ID_ONLY",
                     "JOB_VIEW_MINIMAL",
@@ -121,11 +120,9 @@ class CloudTalentSolutionResource(googleapiclient.discovery.Resource):
             languageCodes: str | _list[str] | None = ...,
             pageSize: int | None = ...,
             query: str | None = ...,
-            scope: typing_extensions.Literal[
-                "COMPLETION_SCOPE_UNSPECIFIED", "TENANT", "PUBLIC"
-            ]
+            scope: typing.Literal["COMPLETION_SCOPE_UNSPECIFIED", "TENANT", "PUBLIC"]
             | None = ...,
-            type: typing_extensions.Literal[
+            type: typing.Literal[
                 "COMPLETION_TYPE_UNSPECIFIED", "JOB_TITLE", "COMPANY_NAME", "COMBINED"
             ]
             | None = ...,

@@ -1,11 +1,9 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class A2ASkill(typing_extensions.TypedDict, total=False):
+class A2ASkill(typing.TypedDict, total=False):
     description: str
     examples: _list[str]
     id: str
@@ -13,7 +11,7 @@ class A2ASkill(typing_extensions.TypedDict, total=False):
     tags: _list[str]
 
 @typing.type_check_only
-class Agent(typing_extensions.TypedDict, total=False):
+class Agent(typing.TypedDict, total=False):
     agentId: str
     attributes: dict[str, typing.Any]
     card: Card
@@ -29,12 +27,12 @@ class Agent(typing_extensions.TypedDict, total=False):
     version: str
 
 @typing.type_check_only
-class AgentSpec(typing_extensions.TypedDict, total=False):
+class AgentSpec(typing.TypedDict, total=False):
     content: dict[str, typing.Any]
-    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "NO_SPEC", "A2A_AGENT_CARD"]
+    type: typing.Literal["TYPE_UNSPECIFIED", "NO_SPEC", "A2A_AGENT_CARD"]
 
 @typing.type_check_only
-class Annotations(typing_extensions.TypedDict, total=False):
+class Annotations(typing.TypedDict, total=False):
     destructiveHint: bool
     idempotentHint: bool
     openWorldHint: bool
@@ -42,13 +40,17 @@ class Annotations(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
-class AuthProviderBinding(typing_extensions.TypedDict, total=False):
+class ArchiveUploadSource(typing.TypedDict, total=False):
+    archiveContent: str
+
+@typing.type_check_only
+class AuthProviderBinding(typing.TypedDict, total=False):
     authProvider: str
     continueUri: str
     scopes: _list[str]
 
 @typing.type_check_only
-class Binding(typing_extensions.TypedDict, total=False):
+class Binding(typing.TypedDict, total=False):
     authProviderBinding: AuthProviderBinding
     createTime: str
     description: str
@@ -59,18 +61,18 @@ class Binding(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
+class CancelOperationRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Card(typing_extensions.TypedDict, total=False):
+class Card(typing.TypedDict, total=False):
     content: dict[str, typing.Any]
-    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "A2A_AGENT_CARD"]
+    type: typing.Literal["TYPE_UNSPECIFIED", "A2A_AGENT_CARD"]
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Endpoint(typing_extensions.TypedDict, total=False):
+class Endpoint(typing.TypedDict, total=False):
     attributes: dict[str, typing.Any]
     createTime: str
     description: str
@@ -81,60 +83,89 @@ class Endpoint(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class EndpointSpec(typing_extensions.TypedDict, total=False):
+class EndpointSpec(typing.TypedDict, total=False):
     content: dict[str, typing.Any]
-    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "NO_SPEC"]
+    type: typing.Literal["TYPE_UNSPECIFIED", "NO_SPEC"]
 
 @typing.type_check_only
-class FetchAvailableBindingsResponse(typing_extensions.TypedDict, total=False):
+class FetchAvailableBindingsResponse(typing.TypedDict, total=False):
     bindings: _list[Binding]
     nextPageToken: str
 
 @typing.type_check_only
-class Interface(typing_extensions.TypedDict, total=False):
-    protocolBinding: typing_extensions.Literal[
+class Frontmatter(typing.TypedDict, total=False):
+    compatibility: str
+    description: str
+    license: str
+    metadata: dict[str, typing.Any]
+    name: str
+
+@typing.type_check_only
+class GcsSource(typing.TypedDict, total=False):
+    generation: str
+    uri: str
+
+@typing.type_check_only
+class Interface(typing.TypedDict, total=False):
+    protocolBinding: typing.Literal[
         "PROTOCOL_BINDING_UNSPECIFIED", "JSONRPC", "GRPC", "HTTP_JSON"
     ]
     url: str
 
 @typing.type_check_only
-class ListAgentsResponse(typing_extensions.TypedDict, total=False):
+class ListAgentsResponse(typing.TypedDict, total=False):
     agents: _list[Agent]
     nextPageToken: str
 
 @typing.type_check_only
-class ListBindingsResponse(typing_extensions.TypedDict, total=False):
+class ListBindingsResponse(typing.TypedDict, total=False):
     bindings: _list[Binding]
     nextPageToken: str
 
 @typing.type_check_only
-class ListEndpointsResponse(typing_extensions.TypedDict, total=False):
+class ListEndpointsResponse(typing.TypedDict, total=False):
     endpoints: _list[Endpoint]
     nextPageToken: str
 
 @typing.type_check_only
-class ListLocationsResponse(typing_extensions.TypedDict, total=False):
+class ListLocationsResponse(typing.TypedDict, total=False):
     locations: _list[Location]
     nextPageToken: str
 
 @typing.type_check_only
-class ListMcpServersResponse(typing_extensions.TypedDict, total=False):
+class ListMcpServersResponse(typing.TypedDict, total=False):
     mcpServers: _list[McpServer]
     nextPageToken: str
 
 @typing.type_check_only
-class ListOperationsResponse(typing_extensions.TypedDict, total=False):
+class ListOperationsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListServicesResponse(typing_extensions.TypedDict, total=False):
+class ListPublishersResponse(typing.TypedDict, total=False):
+    nextPageToken: str
+    publishers: _list[Publisher]
+
+@typing.type_check_only
+class ListServicesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     services: _list[Service]
 
 @typing.type_check_only
-class Location(typing_extensions.TypedDict, total=False):
+class ListSkillRevisionsResponse(typing.TypedDict, total=False):
+    nextPageToken: str
+    skillRevisions: _list[SkillRevision]
+
+@typing.type_check_only
+class ListSkillsResponse(typing.TypedDict, total=False):
+    nextPageToken: str
+    skills: _list[Skill]
+    unreachable: _list[str]
+
+@typing.type_check_only
+class Location(typing.TypedDict, total=False):
     displayName: str
     labels: dict[str, typing.Any]
     locationId: str
@@ -142,7 +173,7 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class McpServer(typing_extensions.TypedDict, total=False):
+class McpServer(typing.TypedDict, total=False):
     attributes: dict[str, typing.Any]
     createTime: str
     description: str
@@ -154,12 +185,12 @@ class McpServer(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class McpServerSpec(typing_extensions.TypedDict, total=False):
+class McpServerSpec(typing.TypedDict, total=False):
     content: dict[str, typing.Any]
-    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "NO_SPEC", "TOOL_SPEC"]
+    type: typing.Literal["TYPE_UNSPECIFIED", "NO_SPEC", "TOOL_SPEC"]
 
 @typing.type_check_only
-class Operation(typing_extensions.TypedDict, total=False):
+class Operation(typing.TypedDict, total=False):
     done: bool
     error: Status
     metadata: dict[str, typing.Any]
@@ -167,7 +198,7 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class OperationMetadata(typing_extensions.TypedDict, total=False):
+class OperationMetadata(typing.TypedDict, total=False):
     apiVersion: str
     createTime: str
     endTime: str
@@ -177,35 +208,51 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
-class Protocol(typing_extensions.TypedDict, total=False):
+class Protocol(typing.TypedDict, total=False):
     interfaces: _list[Interface]
     protocolVersion: str
-    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "A2A_AGENT", "CUSTOM"]
+    type: typing.Literal["TYPE_UNSPECIFIED", "A2A_AGENT", "CUSTOM"]
 
 @typing.type_check_only
-class SearchAgentsRequest(typing_extensions.TypedDict, total=False):
+class Publisher(typing.TypedDict, total=False):
+    displayName: str
+    documentationUri: str
+    name: str
+    publisherTier: typing.Literal[
+        "PUBLISHER_TIER_UNSPECIFIED", "FIRST_PARTY", "THIRD_PARTY", "PRIVATE"
+    ]
+    supportUri: str
+    verifiedPrefix: str
+
+@typing.type_check_only
+class SearchAgentsRequest(typing.TypedDict, total=False):
     pageSize: int
     pageToken: str
     searchString: str
 
 @typing.type_check_only
-class SearchAgentsResponse(typing_extensions.TypedDict, total=False):
+class SearchAgentsResponse(typing.TypedDict, total=False):
     agents: _list[Agent]
     nextPageToken: str
 
 @typing.type_check_only
-class SearchMcpServersRequest(typing_extensions.TypedDict, total=False):
+class SearchMcpServersRequest(typing.TypedDict, total=False):
     pageSize: int
     pageToken: str
     searchString: str
 
 @typing.type_check_only
-class SearchMcpServersResponse(typing_extensions.TypedDict, total=False):
+class SearchMcpServersResponse(typing.TypedDict, total=False):
     mcpServers: _list[McpServer]
     nextPageToken: str
 
 @typing.type_check_only
-class Service(typing_extensions.TypedDict, total=False):
+class SearchSkillsResponse(typing.TypedDict, total=False):
+    nextPageToken: str
+    skills: _list[Skill]
+
+@typing.type_check_only
+class Service(typing.TypedDict, total=False):
     agentSpec: AgentSpec
     createTime: str
     description: str
@@ -218,21 +265,68 @@ class Service(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class Source(typing_extensions.TypedDict, total=False):
+class Skill(typing.TypedDict, total=False):
+    createTime: str
+    defaultRevision: str
+    description: str
+    displayName: str
+    frontmatter: Frontmatter
+    initialRevision: SkillRevision
+    name: str
+    publisher: str
+    skillId: str
+    state: typing.Literal[
+        "STATE_UNSPECIFIED",
+        "STATE_CREATING",
+        "STATE_DRAFT",
+        "STATE_ACTIVE",
+        "STATE_DISABLED",
+        "STATE_DEPRECATED",
+        "STATE_DECOMMISSIONED",
+        "STATE_DELETING",
+    ]
+    targetState: typing.Literal[
+        "TARGET_STATE_UNSPECIFIED",
+        "TARGET_STATE_DRAFT",
+        "TARGET_STATE_ACTIVE",
+        "TARGET_STATE_DISABLED",
+        "TARGET_STATE_DEPRECATED",
+        "TARGET_STATE_DECOMMISSIONED",
+    ]
+    type: typing.Literal["TYPE_UNSPECIFIED", "SIMPLE"]
+    uid: str
+    updateTime: str
+
+@typing.type_check_only
+class SkillRevision(typing.TypedDict, total=False):
+    archiveUploadSource: ArchiveUploadSource
+    createTime: str
+    frontmatter: Frontmatter
+    gcsSource: GcsSource
+    name: str
+    sha256Hash: str
+    sizeBytes: str
+    state: typing.Literal[
+        "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "FAILED", "DELETING"
+    ]
+    uid: str
+
+@typing.type_check_only
+class Source(typing.TypedDict, total=False):
     identifier: str
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class Target(typing_extensions.TypedDict, total=False):
+class Target(typing.TypedDict, total=False):
     identifier: str
 
 @typing.type_check_only
-class Tool(typing_extensions.TypedDict, total=False):
+class Tool(typing.TypedDict, total=False):
     annotations: Annotations
     description: str
     name: str

@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -40,7 +39,7 @@ class TranslateResource(googleapiclient.discovery.Resource):
             q: str | _list[str],
             target: str,
             cid: str | _list[str] | None = ...,
-            format: typing_extensions.Literal["html", "text"] | None = ...,
+            format: typing.Literal["html", "text"] | None = ...,
             model: str | None = ...,
             source: str | None = ...,
             **kwargs: typing.Any,

@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -41,9 +40,7 @@ class ParameterManagerResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        view: typing_extensions.Literal[
-                            "VIEW_UNSPECIFIED", "BASIC", "FULL"
-                        ]
+                        view: typing.Literal["VIEW_UNSPECIFIED", "BASIC", "FULL"]
                         | None = ...,
                         **kwargs: typing.Any,
                     ) -> ParameterVersionHttpRequest: ...
@@ -120,6 +117,111 @@ class ParameterManagerResource(googleapiclient.discovery.Resource):
                 ) -> ParameterHttpRequest: ...
                 def versions(self) -> VersionsResource: ...
 
+            @typing.type_check_only
+            class TemplatesResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class VersionsResource(googleapiclient.discovery.Resource):
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: TemplateVersion,
+                        requestId: str | None = ...,
+                        templateVersionId: str | None = ...,
+                        **kwargs: typing.Any,
+                    ) -> TemplateVersionHttpRequest: ...
+                    def delete(
+                        self,
+                        *,
+                        name: str,
+                        requestId: str | None = ...,
+                        **kwargs: typing.Any,
+                    ) -> EmptyHttpRequest: ...
+                    def get(
+                        self,
+                        *,
+                        name: str,
+                        view: typing.Literal["VIEW_UNSPECIFIED", "BASIC", "FULL"]
+                        | None = ...,
+                        **kwargs: typing.Any,
+                    ) -> TemplateVersionHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        filter: str | None = ...,
+                        orderBy: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
+                        **kwargs: typing.Any,
+                    ) -> ListTemplateVersionsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListTemplateVersionsResponseHttpRequest,
+                        previous_response: ListTemplateVersionsResponse,
+                    ) -> ListTemplateVersionsResponseHttpRequest | None: ...
+                    def patch(
+                        self,
+                        *,
+                        name: str,
+                        body: TemplateVersion,
+                        requestId: str | None = ...,
+                        updateMask: str | None = ...,
+                        **kwargs: typing.Any,
+                    ) -> TemplateVersionHttpRequest: ...
+                    def render(
+                        self,
+                        *,
+                        name: str,
+                        parameterVersion: str | None = ...,
+                        **kwargs: typing.Any,
+                    ) -> RenderTemplateVersionResponseHttpRequest: ...
+
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: Template,
+                    requestId: str | None = ...,
+                    templateId: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> TemplateHttpRequest: ...
+                def delete(
+                    self,
+                    *,
+                    name: str,
+                    requestId: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> EmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> TemplateHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str | None = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> ListTemplatesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListTemplatesResponseHttpRequest,
+                    previous_response: ListTemplatesResponse,
+                ) -> ListTemplatesResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: Template,
+                    requestId: str | None = ...,
+                    updateMask: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> TemplateHttpRequest: ...
+                def versions(self) -> VersionsResource: ...
+
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
@@ -139,6 +241,7 @@ class ParameterManagerResource(googleapiclient.discovery.Resource):
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
             def parameters(self) -> ParametersResource: ...
+            def templates(self) -> TemplatesResource: ...
 
         def locations(self) -> LocationsResource: ...
 
@@ -189,6 +292,22 @@ class ListParametersResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListParametersResponse: ...
 
 @typing.type_check_only
+class ListTemplateVersionsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListTemplateVersionsResponse: ...
+
+@typing.type_check_only
+class ListTemplatesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListTemplatesResponse: ...
+
+@typing.type_check_only
 class LocationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -219,3 +338,27 @@ class RenderParameterVersionResponseHttpRequest(googleapiclient.http.HttpRequest
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> RenderParameterVersionResponse: ...
+
+@typing.type_check_only
+class RenderTemplateVersionResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> RenderTemplateVersionResponse: ...
+
+@typing.type_check_only
+class TemplateHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> Template: ...
+
+@typing.type_check_only
+class TemplateVersionHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> TemplateVersion: ...

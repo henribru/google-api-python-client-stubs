@@ -1,36 +1,34 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class Account(typing_extensions.TypedDict, total=False):
+class Account(typing.TypedDict, total=False):
     googleAuto: GoogleAuto
 
 @typing.type_check_only
-class AndroidDevice(typing_extensions.TypedDict, total=False):
+class AndroidDevice(typing.TypedDict, total=False):
     androidModelId: str
     androidVersionId: str
     locale: str
     orientation: str
 
 @typing.type_check_only
-class AndroidDeviceCatalog(typing_extensions.TypedDict, total=False):
+class AndroidDeviceCatalog(typing.TypedDict, total=False):
     models: _list[AndroidModel]
     runtimeConfiguration: AndroidRuntimeConfiguration
     versions: _list[AndroidVersion]
 
 @typing.type_check_only
-class AndroidDeviceList(typing_extensions.TypedDict, total=False):
+class AndroidDeviceList(typing.TypedDict, total=False):
     androidDevices: _list[AndroidDevice]
 
 @typing.type_check_only
-class AndroidInstrumentationTest(typing_extensions.TypedDict, total=False):
+class AndroidInstrumentationTest(typing.TypedDict, total=False):
     appApk: FileReference
     appBundle: AppBundle
     appPackageId: str
-    orchestratorOption: typing_extensions.Literal[
+    orchestratorOption: typing.Literal[
         "ORCHESTRATOR_OPTION_UNSPECIFIED", "USE_ORCHESTRATOR", "DO_NOT_USE_ORCHESTRATOR"
     ]
     shardingOption: ShardingOption
@@ -40,25 +38,21 @@ class AndroidInstrumentationTest(typing_extensions.TypedDict, total=False):
     testTargets: _list[str]
 
 @typing.type_check_only
-class AndroidMatrix(typing_extensions.TypedDict, total=False):
+class AndroidMatrix(typing.TypedDict, total=False):
     androidModelIds: _list[str]
     androidVersionIds: _list[str]
     locales: _list[str]
     orientations: _list[str]
 
 @typing.type_check_only
-class AndroidModel(typing_extensions.TypedDict, total=False):
+class AndroidModel(typing.TypedDict, total=False):
     accessDeniedReasons: _list[
-        typing_extensions.Literal[
-            "ACCESS_DENIED_REASON_UNSPECIFIED", "EULA_NOT_ACCEPTED"
-        ]
+        typing.Literal["ACCESS_DENIED_REASON_UNSPECIFIED", "EULA_NOT_ACCEPTED"]
     ]
     brand: str
     codename: str
-    form: typing_extensions.Literal[
-        "DEVICE_FORM_UNSPECIFIED", "VIRTUAL", "PHYSICAL", "EMULATOR"
-    ]
-    formFactor: typing_extensions.Literal[
+    form: typing.Literal["DEVICE_FORM_UNSPECIFIED", "VIRTUAL", "PHYSICAL", "EMULATOR"]
+    formFactor: typing.Literal[
         "DEVICE_FORM_FACTOR_UNSPECIFIED",
         "PHONE",
         "TABLET",
@@ -83,7 +77,7 @@ class AndroidModel(typing_extensions.TypedDict, total=False):
     thumbnailUrl: str
 
 @typing.type_check_only
-class AndroidRoboTest(typing_extensions.TypedDict, total=False):
+class AndroidRoboTest(typing.TypedDict, total=False):
     appApk: FileReference
     appBundle: AppBundle
     appInitialActivity: str
@@ -91,19 +85,19 @@ class AndroidRoboTest(typing_extensions.TypedDict, total=False):
     maxDepth: int
     maxSteps: int
     roboDirectives: _list[RoboDirective]
-    roboMode: typing_extensions.Literal[
+    roboMode: typing.Literal[
         "ROBO_MODE_UNSPECIFIED", "ROBO_VERSION_1", "ROBO_VERSION_2"
     ]
     roboScript: FileReference
     startingIntents: _list[RoboStartingIntent]
 
 @typing.type_check_only
-class AndroidRuntimeConfiguration(typing_extensions.TypedDict, total=False):
+class AndroidRuntimeConfiguration(typing.TypedDict, total=False):
     locales: _list[Locale]
     orientations: _list[Orientation]
 
 @typing.type_check_only
-class AndroidTestLoop(typing_extensions.TypedDict, total=False):
+class AndroidTestLoop(typing.TypedDict, total=False):
     appApk: FileReference
     appBundle: AppBundle
     appPackageId: str
@@ -111,7 +105,7 @@ class AndroidTestLoop(typing_extensions.TypedDict, total=False):
     scenarios: _list[int]
 
 @typing.type_check_only
-class AndroidVersion(typing_extensions.TypedDict, total=False):
+class AndroidVersion(typing.TypedDict, total=False):
     apiLevel: int
     codeName: str
     distribution: Distribution
@@ -121,16 +115,16 @@ class AndroidVersion(typing_extensions.TypedDict, total=False):
     versionString: str
 
 @typing.type_check_only
-class Apk(typing_extensions.TypedDict, total=False):
+class Apk(typing.TypedDict, total=False):
     location: FileReference
     packageName: str
 
 @typing.type_check_only
-class ApkDetail(typing_extensions.TypedDict, total=False):
+class ApkDetail(typing.TypedDict, total=False):
     apkManifest: ApkManifest
 
 @typing.type_check_only
-class ApkManifest(typing_extensions.TypedDict, total=False):
+class ApkManifest(typing.TypedDict, total=False):
     applicationLabel: str
     intentFilters: _list[IntentFilter]
     maxSdkVersion: int
@@ -146,20 +140,20 @@ class ApkManifest(typing_extensions.TypedDict, total=False):
     versionName: str
 
 @typing.type_check_only
-class ApkSplits(typing_extensions.TypedDict, total=False):
+class ApkSplits(typing.TypedDict, total=False):
     bundleSplits: _list[FileReference]
 
 @typing.type_check_only
-class AppBundle(typing_extensions.TypedDict, total=False):
+class AppBundle(typing.TypedDict, total=False):
     apks: ApkSplits
     bundleLocation: FileReference
 
 @typing.type_check_only
-class CancelDeviceSessionRequest(typing_extensions.TypedDict, total=False): ...
+class CancelDeviceSessionRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class CancelTestMatrixResponse(typing_extensions.TypedDict, total=False):
-    testState: typing_extensions.Literal[
+class CancelTestMatrixResponse(typing.TypedDict, total=False):
+    testState: typing.Literal[
         "TEST_STATE_UNSPECIFIED",
         "VALIDATING",
         "PENDING",
@@ -174,40 +168,38 @@ class CancelTestMatrixResponse(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class ClientInfo(typing_extensions.TypedDict, total=False):
+class ClientInfo(typing.TypedDict, total=False):
     clientInfoDetails: _list[ClientInfoDetail]
     name: str
 
 @typing.type_check_only
-class ClientInfoDetail(typing_extensions.TypedDict, total=False):
+class ClientInfoDetail(typing.TypedDict, total=False):
     key: str
     value: str
 
 @typing.type_check_only
-class Date(typing_extensions.TypedDict, total=False):
+class Date(typing.TypedDict, total=False):
     day: int
     month: int
     year: int
 
 @typing.type_check_only
-class DeviceFile(typing_extensions.TypedDict, total=False):
+class DeviceFile(typing.TypedDict, total=False):
     obbFile: ObbFile
     regularFile: RegularFile
 
 @typing.type_check_only
-class DeviceIpBlock(typing_extensions.TypedDict, total=False):
+class DeviceIpBlock(typing.TypedDict, total=False):
     addedDate: Date
     block: str
-    form: typing_extensions.Literal[
-        "DEVICE_FORM_UNSPECIFIED", "VIRTUAL", "PHYSICAL", "EMULATOR"
-    ]
+    form: typing.Literal["DEVICE_FORM_UNSPECIFIED", "VIRTUAL", "PHYSICAL", "EMULATOR"]
 
 @typing.type_check_only
-class DeviceIpBlockCatalog(typing_extensions.TypedDict, total=False):
+class DeviceIpBlockCatalog(typing.TypedDict, total=False):
     ipBlocks: _list[DeviceIpBlock]
 
 @typing.type_check_only
-class DeviceSession(typing_extensions.TypedDict, total=False):
+class DeviceSession(typing.TypedDict, total=False):
     activeStartTime: str
     androidDevice: AndroidDevice
     createTime: str
@@ -215,7 +207,7 @@ class DeviceSession(typing_extensions.TypedDict, total=False):
     expireTime: str
     inactivityTimeout: str
     name: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "SESSION_STATE_UNSPECIFIED",
         "REQUESTED",
         "PENDING",
@@ -229,83 +221,83 @@ class DeviceSession(typing_extensions.TypedDict, total=False):
     ttl: str
 
 @typing.type_check_only
-class DirectAccessVersionInfo(typing_extensions.TypedDict, total=False):
+class DirectAccessVersionInfo(typing.TypedDict, total=False):
     directAccessSupported: bool
     minimumAndroidStudioVersion: str
 
 @typing.type_check_only
-class Distribution(typing_extensions.TypedDict, total=False):
+class Distribution(typing.TypedDict, total=False):
     marketShare: float
     measurementTime: str
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Environment(typing_extensions.TypedDict, total=False):
+class Environment(typing.TypedDict, total=False):
     androidDevice: AndroidDevice
     iosDevice: IosDevice
 
 @typing.type_check_only
-class EnvironmentMatrix(typing_extensions.TypedDict, total=False):
+class EnvironmentMatrix(typing.TypedDict, total=False):
     androidDeviceList: AndroidDeviceList
     androidMatrix: AndroidMatrix
     iosDeviceList: IosDeviceList
 
 @typing.type_check_only
-class EnvironmentVariable(typing_extensions.TypedDict, total=False):
+class EnvironmentVariable(typing.TypedDict, total=False):
     key: str
     value: str
 
 @typing.type_check_only
-class FileReference(typing_extensions.TypedDict, total=False):
+class FileReference(typing.TypedDict, total=False):
     gcsPath: str
 
 @typing.type_check_only
-class GetApkDetailsResponse(typing_extensions.TypedDict, total=False):
+class GetApkDetailsResponse(typing.TypedDict, total=False):
     apkDetail: ApkDetail
 
 @typing.type_check_only
-class GoogleAuto(typing_extensions.TypedDict, total=False): ...
+class GoogleAuto(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class GoogleCloudStorage(typing_extensions.TypedDict, total=False):
+class GoogleCloudStorage(typing.TypedDict, total=False):
     gcsPath: str
 
 @typing.type_check_only
-class IntentFilter(typing_extensions.TypedDict, total=False):
+class IntentFilter(typing.TypedDict, total=False):
     actionNames: _list[str]
     categoryNames: _list[str]
     mimeType: str
 
 @typing.type_check_only
-class IosDevice(typing_extensions.TypedDict, total=False):
+class IosDevice(typing.TypedDict, total=False):
     iosModelId: str
     iosVersionId: str
     locale: str
     orientation: str
 
 @typing.type_check_only
-class IosDeviceCatalog(typing_extensions.TypedDict, total=False):
+class IosDeviceCatalog(typing.TypedDict, total=False):
     models: _list[IosModel]
     runtimeConfiguration: IosRuntimeConfiguration
     versions: _list[IosVersion]
     xcodeVersions: _list[XcodeVersion]
 
 @typing.type_check_only
-class IosDeviceFile(typing_extensions.TypedDict, total=False):
+class IosDeviceFile(typing.TypedDict, total=False):
     bundleId: str
     content: FileReference
     devicePath: str
 
 @typing.type_check_only
-class IosDeviceList(typing_extensions.TypedDict, total=False):
+class IosDeviceList(typing.TypedDict, total=False):
     iosDevices: _list[IosDevice]
 
 @typing.type_check_only
-class IosModel(typing_extensions.TypedDict, total=False):
+class IosModel(typing.TypedDict, total=False):
     deviceCapabilities: _list[str]
-    formFactor: typing_extensions.Literal[
+    formFactor: typing.Literal[
         "DEVICE_FORM_FACTOR_UNSPECIFIED",
         "PHONE",
         "TABLET",
@@ -325,31 +317,31 @@ class IosModel(typing_extensions.TypedDict, total=False):
     tags: _list[str]
 
 @typing.type_check_only
-class IosRoboTest(typing_extensions.TypedDict, total=False):
+class IosRoboTest(typing.TypedDict, total=False):
     appBundleId: str
     appIpa: FileReference
     roboScript: FileReference
 
 @typing.type_check_only
-class IosRuntimeConfiguration(typing_extensions.TypedDict, total=False):
+class IosRuntimeConfiguration(typing.TypedDict, total=False):
     locales: _list[Locale]
     orientations: _list[Orientation]
 
 @typing.type_check_only
-class IosTestLoop(typing_extensions.TypedDict, total=False):
+class IosTestLoop(typing.TypedDict, total=False):
     appBundleId: str
     appIpa: FileReference
     scenarios: _list[int]
 
 @typing.type_check_only
-class IosTestSetup(typing_extensions.TypedDict, total=False):
+class IosTestSetup(typing.TypedDict, total=False):
     additionalIpas: _list[FileReference]
     networkProfile: str
     pullDirectories: _list[IosDeviceFile]
     pushFiles: _list[IosDeviceFile]
 
 @typing.type_check_only
-class IosVersion(typing_extensions.TypedDict, total=False):
+class IosVersion(typing.TypedDict, total=False):
     id: str
     majorVersion: int
     minorVersion: int
@@ -357,7 +349,7 @@ class IosVersion(typing_extensions.TypedDict, total=False):
     tags: _list[str]
 
 @typing.type_check_only
-class IosXcTest(typing_extensions.TypedDict, total=False):
+class IosXcTest(typing.TypedDict, total=False):
     appBundleId: str
     testSpecialEntitlements: bool
     testsZip: FileReference
@@ -365,66 +357,66 @@ class IosXcTest(typing_extensions.TypedDict, total=False):
     xctestrun: FileReference
 
 @typing.type_check_only
-class LabInfo(typing_extensions.TypedDict, total=False):
+class LabInfo(typing.TypedDict, total=False):
     name: str
     regionCode: str
 
 @typing.type_check_only
-class LauncherActivityIntent(typing_extensions.TypedDict, total=False): ...
+class LauncherActivityIntent(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ListDeviceSessionsResponse(typing_extensions.TypedDict, total=False):
+class ListDeviceSessionsResponse(typing.TypedDict, total=False):
     deviceSessions: _list[DeviceSession]
     nextPageToken: str
 
 @typing.type_check_only
-class Locale(typing_extensions.TypedDict, total=False):
+class Locale(typing.TypedDict, total=False):
     id: str
     name: str
     region: str
     tags: _list[str]
 
 @typing.type_check_only
-class ManualSharding(typing_extensions.TypedDict, total=False):
+class ManualSharding(typing.TypedDict, total=False):
     testTargetsForShard: _list[TestTargetsForShard]
 
 @typing.type_check_only
-class MatrixErrorDetail(typing_extensions.TypedDict, total=False):
+class MatrixErrorDetail(typing.TypedDict, total=False):
     message: str
     reason: str
 
 @typing.type_check_only
-class Metadata(typing_extensions.TypedDict, total=False):
+class Metadata(typing.TypedDict, total=False):
     name: str
     value: str
 
 @typing.type_check_only
-class NetworkConfiguration(typing_extensions.TypedDict, total=False):
+class NetworkConfiguration(typing.TypedDict, total=False):
     downRule: TrafficRule
     id: str
     upRule: TrafficRule
 
 @typing.type_check_only
-class NetworkConfigurationCatalog(typing_extensions.TypedDict, total=False):
+class NetworkConfigurationCatalog(typing.TypedDict, total=False):
     configurations: _list[NetworkConfiguration]
 
 @typing.type_check_only
-class NoActivityIntent(typing_extensions.TypedDict, total=False): ...
+class NoActivityIntent(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ObbFile(typing_extensions.TypedDict, total=False):
+class ObbFile(typing.TypedDict, total=False):
     obb: FileReference
     obbFileName: str
 
 @typing.type_check_only
-class Orientation(typing_extensions.TypedDict, total=False):
+class Orientation(typing.TypedDict, total=False):
     id: str
     name: str
     tags: _list[str]
 
 @typing.type_check_only
-class PerAndroidVersionInfo(typing_extensions.TypedDict, total=False):
-    deviceCapacity: typing_extensions.Literal[
+class PerAndroidVersionInfo(typing.TypedDict, total=False):
+    deviceCapacity: typing.Literal[
         "DEVICE_CAPACITY_UNSPECIFIED",
         "DEVICE_CAPACITY_HIGH",
         "DEVICE_CAPACITY_MEDIUM",
@@ -436,8 +428,8 @@ class PerAndroidVersionInfo(typing_extensions.TypedDict, total=False):
     versionId: str
 
 @typing.type_check_only
-class PerIosVersionInfo(typing_extensions.TypedDict, total=False):
-    deviceCapacity: typing_extensions.Literal[
+class PerIosVersionInfo(typing.TypedDict, total=False):
+    deviceCapacity: typing.Literal[
         "DEVICE_CAPACITY_UNSPECIFIED",
         "DEVICE_CAPACITY_HIGH",
         "DEVICE_CAPACITY_MEDIUM",
@@ -447,46 +439,46 @@ class PerIosVersionInfo(typing_extensions.TypedDict, total=False):
     versionId: str
 
 @typing.type_check_only
-class ProvidedSoftwareCatalog(typing_extensions.TypedDict, total=False):
+class ProvidedSoftwareCatalog(typing.TypedDict, total=False):
     androidxOrchestratorVersion: str
     orchestratorVersion: str
 
 @typing.type_check_only
-class RegularFile(typing_extensions.TypedDict, total=False):
+class RegularFile(typing.TypedDict, total=False):
     content: FileReference
     devicePath: str
 
 @typing.type_check_only
-class ResultStorage(typing_extensions.TypedDict, total=False):
+class ResultStorage(typing.TypedDict, total=False):
     googleCloudStorage: GoogleCloudStorage
     resultsUrl: str
     toolResultsExecution: ToolResultsExecution
     toolResultsHistory: ToolResultsHistory
 
 @typing.type_check_only
-class RoboDirective(typing_extensions.TypedDict, total=False):
-    actionType: typing_extensions.Literal[
+class RoboDirective(typing.TypedDict, total=False):
+    actionType: typing.Literal[
         "ACTION_TYPE_UNSPECIFIED", "SINGLE_CLICK", "ENTER_TEXT", "IGNORE"
     ]
     inputText: str
     resourceName: str
 
 @typing.type_check_only
-class RoboStartingIntent(typing_extensions.TypedDict, total=False):
+class RoboStartingIntent(typing.TypedDict, total=False):
     launcherActivity: LauncherActivityIntent
     noActivity: NoActivityIntent
     startActivity: StartActivityIntent
     timeout: str
 
 @typing.type_check_only
-class Service(typing_extensions.TypedDict, total=False):
+class Service(typing.TypedDict, total=False):
     intentFilter: _list[IntentFilter]
     name: str
 
 @typing.type_check_only
-class SessionStateEvent(typing_extensions.TypedDict, total=False):
+class SessionStateEvent(typing.TypedDict, total=False):
     eventTime: str
-    sessionState: typing_extensions.Literal[
+    sessionState: typing.Literal[
         "SESSION_STATE_UNSPECIFIED",
         "REQUESTED",
         "PENDING",
@@ -499,39 +491,39 @@ class SessionStateEvent(typing_extensions.TypedDict, total=False):
     stateMessage: str
 
 @typing.type_check_only
-class Shard(typing_extensions.TypedDict, total=False):
+class Shard(typing.TypedDict, total=False):
     estimatedShardDuration: str
     numShards: int
     shardIndex: int
     testTargetsForShard: TestTargetsForShard
 
 @typing.type_check_only
-class ShardingOption(typing_extensions.TypedDict, total=False):
+class ShardingOption(typing.TypedDict, total=False):
     manualSharding: ManualSharding
     smartSharding: SmartSharding
     uniformSharding: UniformSharding
 
 @typing.type_check_only
-class SmartSharding(typing_extensions.TypedDict, total=False):
+class SmartSharding(typing.TypedDict, total=False):
     targetedShardDuration: str
 
 @typing.type_check_only
-class StartActivityIntent(typing_extensions.TypedDict, total=False):
+class StartActivityIntent(typing.TypedDict, total=False):
     action: str
     categories: _list[str]
     uri: str
 
 @typing.type_check_only
-class SystraceSetup(typing_extensions.TypedDict, total=False):
+class SystraceSetup(typing.TypedDict, total=False):
     durationSeconds: int
 
 @typing.type_check_only
-class TestDetails(typing_extensions.TypedDict, total=False):
+class TestDetails(typing.TypedDict, total=False):
     errorMessage: str
     progressMessages: _list[str]
 
 @typing.type_check_only
-class TestEnvironmentCatalog(typing_extensions.TypedDict, total=False):
+class TestEnvironmentCatalog(typing.TypedDict, total=False):
     androidDeviceCatalog: AndroidDeviceCatalog
     deviceIpBlockCatalog: DeviceIpBlockCatalog
     iosDeviceCatalog: IosDeviceCatalog
@@ -539,13 +531,13 @@ class TestEnvironmentCatalog(typing_extensions.TypedDict, total=False):
     softwareCatalog: ProvidedSoftwareCatalog
 
 @typing.type_check_only
-class TestExecution(typing_extensions.TypedDict, total=False):
+class TestExecution(typing.TypedDict, total=False):
     environment: Environment
     id: str
     matrixId: str
     projectId: str
     shard: Shard
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "TEST_STATE_UNSPECIFIED",
         "VALIDATING",
         "PENDING",
@@ -564,13 +556,13 @@ class TestExecution(typing_extensions.TypedDict, total=False):
     toolResultsStep: ToolResultsStep
 
 @typing.type_check_only
-class TestMatrix(typing_extensions.TypedDict, total=False):
+class TestMatrix(typing.TypedDict, total=False):
     clientInfo: ClientInfo
     environmentMatrix: EnvironmentMatrix
     extendedInvalidMatrixDetails: _list[MatrixErrorDetail]
     failFast: bool
     flakyTestAttempts: int
-    invalidMatrixDetails: typing_extensions.Literal[
+    invalidMatrixDetails: typing.Literal[
         "INVALID_MATRIX_DETAILS_UNSPECIFIED",
         "DETAILS_UNAVAILABLE",
         "MALFORMED_APK",
@@ -611,12 +603,12 @@ class TestMatrix(typing_extensions.TypedDict, total=False):
         "SERVICE_NOT_ACTIVATED",
         "UNKNOWN_PERMISSION_ERROR",
     ]
-    outcomeSummary: typing_extensions.Literal[
+    outcomeSummary: typing.Literal[
         "OUTCOME_SUMMARY_UNSPECIFIED", "SUCCESS", "FAILURE", "INCONCLUSIVE", "SKIPPED"
     ]
     projectId: str
     resultStorage: ResultStorage
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "TEST_STATE_UNSPECIFIED",
         "VALIDATING",
         "PENDING",
@@ -635,7 +627,7 @@ class TestMatrix(typing_extensions.TypedDict, total=False):
     timestamp: str
 
 @typing.type_check_only
-class TestSetup(typing_extensions.TypedDict, total=False):
+class TestSetup(typing.TypedDict, total=False):
     account: Account
     additionalApks: _list[Apk]
     directoriesToPull: _list[str]
@@ -647,7 +639,7 @@ class TestSetup(typing_extensions.TypedDict, total=False):
     systrace: SystraceSetup
 
 @typing.type_check_only
-class TestSpecification(typing_extensions.TypedDict, total=False):
+class TestSpecification(typing.TypedDict, total=False):
     androidInstrumentationTest: AndroidInstrumentationTest
     androidRoboTest: AndroidRoboTest
     androidTestLoop: AndroidTestLoop
@@ -661,29 +653,29 @@ class TestSpecification(typing_extensions.TypedDict, total=False):
     testTimeout: str
 
 @typing.type_check_only
-class TestTargetsForShard(typing_extensions.TypedDict, total=False):
+class TestTargetsForShard(typing.TypedDict, total=False):
     testTargets: _list[str]
 
 @typing.type_check_only
-class ToolResultsExecution(typing_extensions.TypedDict, total=False):
+class ToolResultsExecution(typing.TypedDict, total=False):
     executionId: str
     historyId: str
     projectId: str
 
 @typing.type_check_only
-class ToolResultsHistory(typing_extensions.TypedDict, total=False):
+class ToolResultsHistory(typing.TypedDict, total=False):
     historyId: str
     projectId: str
 
 @typing.type_check_only
-class ToolResultsStep(typing_extensions.TypedDict, total=False):
+class ToolResultsStep(typing.TypedDict, total=False):
     executionId: str
     historyId: str
     projectId: str
     stepId: str
 
 @typing.type_check_only
-class TrafficRule(typing_extensions.TypedDict, total=False):
+class TrafficRule(typing.TypedDict, total=False):
     bandwidth: float
     burst: float
     delay: str
@@ -691,20 +683,20 @@ class TrafficRule(typing_extensions.TypedDict, total=False):
     packetLossRatio: float
 
 @typing.type_check_only
-class UniformSharding(typing_extensions.TypedDict, total=False):
+class UniformSharding(typing.TypedDict, total=False):
     numShards: int
 
 @typing.type_check_only
-class UsesFeature(typing_extensions.TypedDict, total=False):
+class UsesFeature(typing.TypedDict, total=False):
     isRequired: bool
     name: str
 
 @typing.type_check_only
-class UsesPermissionTag(typing_extensions.TypedDict, total=False):
+class UsesPermissionTag(typing.TypedDict, total=False):
     maxSdkVersion: int
     name: str
 
 @typing.type_check_only
-class XcodeVersion(typing_extensions.TypedDict, total=False):
+class XcodeVersion(typing.TypedDict, total=False):
     tags: _list[str]
     version: str

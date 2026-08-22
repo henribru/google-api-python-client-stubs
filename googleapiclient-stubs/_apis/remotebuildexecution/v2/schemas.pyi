@@ -1,11 +1,9 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class BuildBazelRemoteExecutionV2Action(typing_extensions.TypedDict, total=False):
+class BuildBazelRemoteExecutionV2Action(typing.TypedDict, total=False):
     commandDigest: BuildBazelRemoteExecutionV2Digest
     doNotCache: bool
     inputRootDigest: BuildBazelRemoteExecutionV2Digest
@@ -15,12 +13,12 @@ class BuildBazelRemoteExecutionV2Action(typing_extensions.TypedDict, total=False
 
 @typing.type_check_only
 class BuildBazelRemoteExecutionV2ActionCacheUpdateCapabilities(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     updateEnabled: bool
 
 @typing.type_check_only
-class BuildBazelRemoteExecutionV2ActionResult(typing_extensions.TypedDict, total=False):
+class BuildBazelRemoteExecutionV2ActionResult(typing.TypedDict, total=False):
     executionMetadata: BuildBazelRemoteExecutionV2ExecutedActionMetadata
     exitCode: int
     outputDirectories: _list[BuildBazelRemoteExecutionV2OutputDirectory]
@@ -34,72 +32,62 @@ class BuildBazelRemoteExecutionV2ActionResult(typing_extensions.TypedDict, total
     stdoutRaw: str
 
 @typing.type_check_only
-class BuildBazelRemoteExecutionV2BatchReadBlobsRequest(
-    typing_extensions.TypedDict, total=False
-):
+class BuildBazelRemoteExecutionV2BatchReadBlobsRequest(typing.TypedDict, total=False):
     digests: _list[BuildBazelRemoteExecutionV2Digest]
 
 @typing.type_check_only
-class BuildBazelRemoteExecutionV2BatchReadBlobsResponse(
-    typing_extensions.TypedDict, total=False
-):
+class BuildBazelRemoteExecutionV2BatchReadBlobsResponse(typing.TypedDict, total=False):
     responses: _list[BuildBazelRemoteExecutionV2BatchReadBlobsResponseResponse]
 
 @typing.type_check_only
 class BuildBazelRemoteExecutionV2BatchReadBlobsResponseResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     data: str
     digest: BuildBazelRemoteExecutionV2Digest
     status: GoogleRpcStatus
 
 @typing.type_check_only
-class BuildBazelRemoteExecutionV2BatchUpdateBlobsRequest(
-    typing_extensions.TypedDict, total=False
-):
+class BuildBazelRemoteExecutionV2BatchUpdateBlobsRequest(typing.TypedDict, total=False):
     requests: _list[BuildBazelRemoteExecutionV2BatchUpdateBlobsRequestRequest]
 
 @typing.type_check_only
 class BuildBazelRemoteExecutionV2BatchUpdateBlobsRequestRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     data: str
     digest: BuildBazelRemoteExecutionV2Digest
 
 @typing.type_check_only
 class BuildBazelRemoteExecutionV2BatchUpdateBlobsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     responses: _list[BuildBazelRemoteExecutionV2BatchUpdateBlobsResponseResponse]
 
 @typing.type_check_only
 class BuildBazelRemoteExecutionV2BatchUpdateBlobsResponseResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     digest: BuildBazelRemoteExecutionV2Digest
     status: GoogleRpcStatus
 
 @typing.type_check_only
-class BuildBazelRemoteExecutionV2CacheCapabilities(
-    typing_extensions.TypedDict, total=False
-):
+class BuildBazelRemoteExecutionV2CacheCapabilities(typing.TypedDict, total=False):
     actionCacheUpdateCapabilities: (
         BuildBazelRemoteExecutionV2ActionCacheUpdateCapabilities
     )
     cachePriorityCapabilities: BuildBazelRemoteExecutionV2PriorityCapabilities
     digestFunction: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "UNKNOWN", "SHA256", "SHA1", "MD5", "VSO", "SHA384", "SHA512", "MURMUR3"
         ]
     ]
     maxBatchTotalSizeBytes: str
-    supportedCompressor: _list[typing_extensions.Literal["IDENTITY", "ZSTD"]]
-    symlinkAbsolutePathStrategy: typing_extensions.Literal[
-        "UNKNOWN", "DISALLOWED", "ALLOWED"
-    ]
+    supportedCompressor: _list[typing.Literal["IDENTITY", "ZSTD"]]
+    symlinkAbsolutePathStrategy: typing.Literal["UNKNOWN", "DISALLOWED", "ALLOWED"]
 
 @typing.type_check_only
-class BuildBazelRemoteExecutionV2Command(typing_extensions.TypedDict, total=False):
+class BuildBazelRemoteExecutionV2Command(typing.TypedDict, total=False):
     arguments: _list[str]
     environmentVariables: _list[BuildBazelRemoteExecutionV2CommandEnvironmentVariable]
     outputDirectories: _list[str]
@@ -111,54 +99,46 @@ class BuildBazelRemoteExecutionV2Command(typing_extensions.TypedDict, total=Fals
 
 @typing.type_check_only
 class BuildBazelRemoteExecutionV2CommandEnvironmentVariable(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     name: str
     value: str
 
 @typing.type_check_only
-class BuildBazelRemoteExecutionV2Digest(typing_extensions.TypedDict, total=False):
+class BuildBazelRemoteExecutionV2Digest(typing.TypedDict, total=False):
     hash: str
     sizeBytes: str
 
 @typing.type_check_only
-class BuildBazelRemoteExecutionV2Directory(typing_extensions.TypedDict, total=False):
+class BuildBazelRemoteExecutionV2Directory(typing.TypedDict, total=False):
     directories: _list[BuildBazelRemoteExecutionV2DirectoryNode]
     files: _list[BuildBazelRemoteExecutionV2FileNode]
     nodeProperties: BuildBazelRemoteExecutionV2NodeProperties
     symlinks: _list[BuildBazelRemoteExecutionV2SymlinkNode]
 
 @typing.type_check_only
-class BuildBazelRemoteExecutionV2DirectoryNode(
-    typing_extensions.TypedDict, total=False
-):
+class BuildBazelRemoteExecutionV2DirectoryNode(typing.TypedDict, total=False):
     digest: BuildBazelRemoteExecutionV2Digest
     name: str
 
 @typing.type_check_only
 class BuildBazelRemoteExecutionV2ExecuteOperationMetadata(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     actionDigest: BuildBazelRemoteExecutionV2Digest
-    stage: typing_extensions.Literal[
-        "UNKNOWN", "CACHE_CHECK", "QUEUED", "EXECUTING", "COMPLETED"
-    ]
+    stage: typing.Literal["UNKNOWN", "CACHE_CHECK", "QUEUED", "EXECUTING", "COMPLETED"]
     stderrStreamName: str
     stdoutStreamName: str
 
 @typing.type_check_only
-class BuildBazelRemoteExecutionV2ExecuteRequest(
-    typing_extensions.TypedDict, total=False
-):
+class BuildBazelRemoteExecutionV2ExecuteRequest(typing.TypedDict, total=False):
     actionDigest: BuildBazelRemoteExecutionV2Digest
     executionPolicy: BuildBazelRemoteExecutionV2ExecutionPolicy
     resultsCachePolicy: BuildBazelRemoteExecutionV2ResultsCachePolicy
     skipCacheLookup: bool
 
 @typing.type_check_only
-class BuildBazelRemoteExecutionV2ExecuteResponse(
-    typing_extensions.TypedDict, total=False
-):
+class BuildBazelRemoteExecutionV2ExecuteResponse(typing.TypedDict, total=False):
     cachedResult: bool
     message: str
     result: BuildBazelRemoteExecutionV2ActionResult
@@ -166,9 +146,7 @@ class BuildBazelRemoteExecutionV2ExecuteResponse(
     status: GoogleRpcStatus
 
 @typing.type_check_only
-class BuildBazelRemoteExecutionV2ExecutedActionMetadata(
-    typing_extensions.TypedDict, total=False
-):
+class BuildBazelRemoteExecutionV2ExecutedActionMetadata(typing.TypedDict, total=False):
     auxiliaryMetadata: _list[dict[str, typing.Any]]
     executionCompletedTimestamp: str
     executionStartTimestamp: str
@@ -182,10 +160,8 @@ class BuildBazelRemoteExecutionV2ExecutedActionMetadata(
     workerStartTimestamp: str
 
 @typing.type_check_only
-class BuildBazelRemoteExecutionV2ExecutionCapabilities(
-    typing_extensions.TypedDict, total=False
-):
-    digestFunction: typing_extensions.Literal[
+class BuildBazelRemoteExecutionV2ExecutionCapabilities(typing.TypedDict, total=False):
+    digestFunction: typing.Literal[
         "UNKNOWN", "SHA256", "SHA1", "MD5", "VSO", "SHA384", "SHA512", "MURMUR3"
     ]
     execEnabled: bool
@@ -193,64 +169,54 @@ class BuildBazelRemoteExecutionV2ExecutionCapabilities(
     supportedNodeProperties: _list[str]
 
 @typing.type_check_only
-class BuildBazelRemoteExecutionV2ExecutionPolicy(
-    typing_extensions.TypedDict, total=False
-):
+class BuildBazelRemoteExecutionV2ExecutionPolicy(typing.TypedDict, total=False):
     priority: int
 
 @typing.type_check_only
-class BuildBazelRemoteExecutionV2FileNode(typing_extensions.TypedDict, total=False):
+class BuildBazelRemoteExecutionV2FileNode(typing.TypedDict, total=False):
     digest: BuildBazelRemoteExecutionV2Digest
     isExecutable: bool
     name: str
     nodeProperties: BuildBazelRemoteExecutionV2NodeProperties
 
 @typing.type_check_only
-class BuildBazelRemoteExecutionV2FindMissingBlobsRequest(
-    typing_extensions.TypedDict, total=False
-):
+class BuildBazelRemoteExecutionV2FindMissingBlobsRequest(typing.TypedDict, total=False):
     blobDigests: _list[BuildBazelRemoteExecutionV2Digest]
 
 @typing.type_check_only
 class BuildBazelRemoteExecutionV2FindMissingBlobsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     missingBlobDigests: _list[BuildBazelRemoteExecutionV2Digest]
 
 @typing.type_check_only
-class BuildBazelRemoteExecutionV2GetTreeResponse(
-    typing_extensions.TypedDict, total=False
-):
+class BuildBazelRemoteExecutionV2GetTreeResponse(typing.TypedDict, total=False):
     directories: _list[BuildBazelRemoteExecutionV2Directory]
     nextPageToken: str
 
 @typing.type_check_only
-class BuildBazelRemoteExecutionV2LogFile(typing_extensions.TypedDict, total=False):
+class BuildBazelRemoteExecutionV2LogFile(typing.TypedDict, total=False):
     digest: BuildBazelRemoteExecutionV2Digest
     humanReadable: bool
 
 @typing.type_check_only
-class BuildBazelRemoteExecutionV2NodeProperties(
-    typing_extensions.TypedDict, total=False
-):
+class BuildBazelRemoteExecutionV2NodeProperties(typing.TypedDict, total=False):
     mtime: str
     properties: _list[BuildBazelRemoteExecutionV2NodeProperty]
     unixMode: int
 
 @typing.type_check_only
-class BuildBazelRemoteExecutionV2NodeProperty(typing_extensions.TypedDict, total=False):
+class BuildBazelRemoteExecutionV2NodeProperty(typing.TypedDict, total=False):
     name: str
     value: str
 
 @typing.type_check_only
-class BuildBazelRemoteExecutionV2OutputDirectory(
-    typing_extensions.TypedDict, total=False
-):
+class BuildBazelRemoteExecutionV2OutputDirectory(typing.TypedDict, total=False):
     path: str
     treeDigest: BuildBazelRemoteExecutionV2Digest
 
 @typing.type_check_only
-class BuildBazelRemoteExecutionV2OutputFile(typing_extensions.TypedDict, total=False):
+class BuildBazelRemoteExecutionV2OutputFile(typing.TypedDict, total=False):
     contents: str
     digest: BuildBazelRemoteExecutionV2Digest
     isExecutable: bool
@@ -258,41 +224,33 @@ class BuildBazelRemoteExecutionV2OutputFile(typing_extensions.TypedDict, total=F
     path: str
 
 @typing.type_check_only
-class BuildBazelRemoteExecutionV2OutputSymlink(
-    typing_extensions.TypedDict, total=False
-):
+class BuildBazelRemoteExecutionV2OutputSymlink(typing.TypedDict, total=False):
     nodeProperties: BuildBazelRemoteExecutionV2NodeProperties
     path: str
     target: str
 
 @typing.type_check_only
-class BuildBazelRemoteExecutionV2Platform(typing_extensions.TypedDict, total=False):
+class BuildBazelRemoteExecutionV2Platform(typing.TypedDict, total=False):
     properties: _list[BuildBazelRemoteExecutionV2PlatformProperty]
 
 @typing.type_check_only
-class BuildBazelRemoteExecutionV2PlatformProperty(
-    typing_extensions.TypedDict, total=False
-):
+class BuildBazelRemoteExecutionV2PlatformProperty(typing.TypedDict, total=False):
     name: str
     value: str
 
 @typing.type_check_only
-class BuildBazelRemoteExecutionV2PriorityCapabilities(
-    typing_extensions.TypedDict, total=False
-):
+class BuildBazelRemoteExecutionV2PriorityCapabilities(typing.TypedDict, total=False):
     priorities: _list[BuildBazelRemoteExecutionV2PriorityCapabilitiesPriorityRange]
 
 @typing.type_check_only
 class BuildBazelRemoteExecutionV2PriorityCapabilitiesPriorityRange(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     maxPriority: int
     minPriority: int
 
 @typing.type_check_only
-class BuildBazelRemoteExecutionV2RequestMetadata(
-    typing_extensions.TypedDict, total=False
-):
+class BuildBazelRemoteExecutionV2RequestMetadata(typing.TypedDict, total=False):
     actionId: str
     actionMnemonic: str
     configurationId: str
@@ -302,15 +260,11 @@ class BuildBazelRemoteExecutionV2RequestMetadata(
     toolInvocationId: str
 
 @typing.type_check_only
-class BuildBazelRemoteExecutionV2ResultsCachePolicy(
-    typing_extensions.TypedDict, total=False
-):
+class BuildBazelRemoteExecutionV2ResultsCachePolicy(typing.TypedDict, total=False):
     priority: int
 
 @typing.type_check_only
-class BuildBazelRemoteExecutionV2ServerCapabilities(
-    typing_extensions.TypedDict, total=False
-):
+class BuildBazelRemoteExecutionV2ServerCapabilities(typing.TypedDict, total=False):
     cacheCapabilities: BuildBazelRemoteExecutionV2CacheCapabilities
     deprecatedApiVersion: BuildBazelSemverSemVer
     executionCapabilities: BuildBazelRemoteExecutionV2ExecutionCapabilities
@@ -318,37 +272,35 @@ class BuildBazelRemoteExecutionV2ServerCapabilities(
     lowApiVersion: BuildBazelSemverSemVer
 
 @typing.type_check_only
-class BuildBazelRemoteExecutionV2SymlinkNode(typing_extensions.TypedDict, total=False):
+class BuildBazelRemoteExecutionV2SymlinkNode(typing.TypedDict, total=False):
     name: str
     nodeProperties: BuildBazelRemoteExecutionV2NodeProperties
     target: str
 
 @typing.type_check_only
-class BuildBazelRemoteExecutionV2ToolDetails(typing_extensions.TypedDict, total=False):
+class BuildBazelRemoteExecutionV2ToolDetails(typing.TypedDict, total=False):
     toolName: str
     toolVersion: str
 
 @typing.type_check_only
-class BuildBazelRemoteExecutionV2Tree(typing_extensions.TypedDict, total=False):
+class BuildBazelRemoteExecutionV2Tree(typing.TypedDict, total=False):
     children: _list[BuildBazelRemoteExecutionV2Directory]
     root: BuildBazelRemoteExecutionV2Directory
 
 @typing.type_check_only
 class BuildBazelRemoteExecutionV2WaitExecutionRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
-class BuildBazelSemverSemVer(typing_extensions.TypedDict, total=False):
+class BuildBazelSemverSemVer(typing.TypedDict, total=False):
     major: int
     minor: int
     patch: int
     prerelease: str
 
 @typing.type_check_only
-class GoogleDevtoolsRemotebuildbotCommandDurations(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleDevtoolsRemotebuildbotCommandDurations(typing.TypedDict, total=False):
     casRelease: str
     cmWaitForAssignment: str
     dockerPrep: str
@@ -364,16 +316,14 @@ class GoogleDevtoolsRemotebuildbotCommandDurations(
     uploadStartTime: str
 
 @typing.type_check_only
-class GoogleDevtoolsRemotebuildbotCommandEvents(
-    typing_extensions.TypedDict, total=False
-):
-    cmUsage: typing_extensions.Literal["CONFIG_NONE", "CONFIG_MATCH", "CONFIG_MISMATCH"]
+class GoogleDevtoolsRemotebuildbotCommandEvents(typing.TypedDict, total=False):
+    cmUsage: typing.Literal["CONFIG_NONE", "CONFIG_MATCH", "CONFIG_MISMATCH"]
     dockerCacheHit: bool
     dockerImageName: str
     inputCacheMiss: float
     numErrors: str
     numWarnings: str
-    outputLocation: typing_extensions.Literal[
+    outputLocation: typing.Literal[
         "LOCATION_UNDEFINED",
         "LOCATION_NONE",
         "LOCATION_EXEC_ROOT_RELATIVE",
@@ -385,10 +335,8 @@ class GoogleDevtoolsRemotebuildbotCommandEvents(
     usedAsyncContainer: bool
 
 @typing.type_check_only
-class GoogleDevtoolsRemotebuildbotCommandStatus(
-    typing_extensions.TypedDict, total=False
-):
-    code: typing_extensions.Literal[
+class GoogleDevtoolsRemotebuildbotCommandStatus(typing.TypedDict, total=False):
+    code: typing.Literal[
         "OK",
         "INVALID_ARGUMENT",
         "DEADLINE_EXCEEDED",
@@ -436,18 +384,14 @@ class GoogleDevtoolsRemotebuildbotCommandStatus(
     message: str
 
 @typing.type_check_only
-class GoogleDevtoolsRemotebuildbotResourceUsage(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleDevtoolsRemotebuildbotResourceUsage(typing.TypedDict, total=False):
     cpuUsedPercent: float
     diskUsage: GoogleDevtoolsRemotebuildbotResourceUsageStat
     memoryUsage: GoogleDevtoolsRemotebuildbotResourceUsageStat
     totalDiskIoStats: GoogleDevtoolsRemotebuildbotResourceUsageIOStats
 
 @typing.type_check_only
-class GoogleDevtoolsRemotebuildbotResourceUsageIOStats(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleDevtoolsRemotebuildbotResourceUsageIOStats(typing.TypedDict, total=False):
     readBytesCount: str
     readCount: str
     readTimeMs: str
@@ -456,29 +400,27 @@ class GoogleDevtoolsRemotebuildbotResourceUsageIOStats(
     writeTimeMs: str
 
 @typing.type_check_only
-class GoogleDevtoolsRemotebuildbotResourceUsageStat(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleDevtoolsRemotebuildbotResourceUsageStat(typing.TypedDict, total=False):
     total: str
     used: str
 
 @typing.type_check_only
 class GoogleDevtoolsRemotebuildexecutionAdminV1alphaAcceleratorConfig(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     acceleratorCount: str
     acceleratorType: str
 
 @typing.type_check_only
 class GoogleDevtoolsRemotebuildexecutionAdminV1alphaAutoscale(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     maxSize: str
     minSize: str
 
 @typing.type_check_only
 class GoogleDevtoolsRemotebuildexecutionAdminV1alphaCreateInstanceRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     instance: GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance
     instanceId: str
@@ -486,7 +428,7 @@ class GoogleDevtoolsRemotebuildexecutionAdminV1alphaCreateInstanceRequest(
 
 @typing.type_check_only
 class GoogleDevtoolsRemotebuildexecutionAdminV1alphaCreateWorkerPoolRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     parent: str
     poolId: str
@@ -494,19 +436,19 @@ class GoogleDevtoolsRemotebuildexecutionAdminV1alphaCreateWorkerPoolRequest(
 
 @typing.type_check_only
 class GoogleDevtoolsRemotebuildexecutionAdminV1alphaDeleteInstanceRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     name: str
 
 @typing.type_check_only
 class GoogleDevtoolsRemotebuildexecutionAdminV1alphaDeleteWorkerPoolRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     name: str
 
 @typing.type_check_only
 class GoogleDevtoolsRemotebuildexecutionAdminV1alphaFeaturePolicy(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     containerImageSources: (
         GoogleDevtoolsRemotebuildexecutionAdminV1alphaFeaturePolicyFeature
@@ -522,71 +464,65 @@ class GoogleDevtoolsRemotebuildexecutionAdminV1alphaFeaturePolicy(
     dockerSiblingContainers: (
         GoogleDevtoolsRemotebuildexecutionAdminV1alphaFeaturePolicyFeature
     )
-    linuxIsolation: typing_extensions.Literal[
-        "LINUX_ISOLATION_UNSPECIFIED", "GVISOR", "OFF"
-    ]
+    linuxIsolation: typing.Literal["LINUX_ISOLATION_UNSPECIFIED", "GVISOR", "OFF"]
 
 @typing.type_check_only
 class GoogleDevtoolsRemotebuildexecutionAdminV1alphaFeaturePolicyFeature(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     allowedValues: _list[str]
-    policy: typing_extensions.Literal[
-        "POLICY_UNSPECIFIED", "ALLOWED", "FORBIDDEN", "RESTRICTED"
-    ]
+    policy: typing.Literal["POLICY_UNSPECIFIED", "ALLOWED", "FORBIDDEN", "RESTRICTED"]
 
 @typing.type_check_only
 class GoogleDevtoolsRemotebuildexecutionAdminV1alphaGetInstanceRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     name: str
 
 @typing.type_check_only
 class GoogleDevtoolsRemotebuildexecutionAdminV1alphaGetWorkerPoolRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     name: str
 
 @typing.type_check_only
 class GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     featurePolicy: GoogleDevtoolsRemotebuildexecutionAdminV1alphaFeaturePolicy
     location: str
     loggingEnabled: bool
     name: str
-    state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "CREATING", "RUNNING", "INACTIVE"
-    ]
+    state: typing.Literal["STATE_UNSPECIFIED", "CREATING", "RUNNING", "INACTIVE"]
 
 @typing.type_check_only
 class GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     parent: str
 
 @typing.type_check_only
 class GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     instances: _list[GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance]
 
 @typing.type_check_only
 class GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     filter: str
     parent: str
 
 @typing.type_check_only
 class GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     workerPools: _list[GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool]
 
 @typing.type_check_only
 class GoogleDevtoolsRemotebuildexecutionAdminV1alphaUpdateInstanceRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     instance: GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance
     loggingEnabled: bool
@@ -595,14 +531,14 @@ class GoogleDevtoolsRemotebuildexecutionAdminV1alphaUpdateInstanceRequest(
 
 @typing.type_check_only
 class GoogleDevtoolsRemotebuildexecutionAdminV1alphaUpdateWorkerPoolRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     updateMask: str
     workerPool: GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool
 
 @typing.type_check_only
 class GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerConfig(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     accelerator: GoogleDevtoolsRemotebuildexecutionAdminV1alphaAcceleratorConfig
     diskSizeGb: str
@@ -618,49 +554,41 @@ class GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerConfig(
 
 @typing.type_check_only
 class GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     autoscale: GoogleDevtoolsRemotebuildexecutionAdminV1alphaAutoscale
     channel: str
     name: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED", "CREATING", "RUNNING", "UPDATING", "DELETING", "INACTIVE"
     ]
     workerConfig: GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerConfig
     workerCount: str
 
 @typing.type_check_only
-class GoogleDevtoolsRemoteworkersV1test2AdminTemp(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleDevtoolsRemoteworkersV1test2AdminTemp(typing.TypedDict, total=False):
     arg: str
-    command: typing_extensions.Literal[
+    command: typing.Literal[
         "UNSPECIFIED", "BOT_UPDATE", "BOT_RESTART", "BOT_TERMINATE", "HOST_RESTART"
     ]
 
 @typing.type_check_only
-class GoogleDevtoolsRemoteworkersV1test2Blob(typing_extensions.TypedDict, total=False):
+class GoogleDevtoolsRemoteworkersV1test2Blob(typing.TypedDict, total=False):
     contents: str
     digest: GoogleDevtoolsRemoteworkersV1test2Digest
 
 @typing.type_check_only
-class GoogleDevtoolsRemoteworkersV1test2CommandOutputs(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleDevtoolsRemoteworkersV1test2CommandOutputs(typing.TypedDict, total=False):
     exitCode: int
     outputs: GoogleDevtoolsRemoteworkersV1test2Digest
 
 @typing.type_check_only
-class GoogleDevtoolsRemoteworkersV1test2CommandOverhead(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleDevtoolsRemoteworkersV1test2CommandOverhead(typing.TypedDict, total=False):
     duration: str
     overhead: str
 
 @typing.type_check_only
-class GoogleDevtoolsRemoteworkersV1test2CommandResult(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleDevtoolsRemoteworkersV1test2CommandResult(typing.TypedDict, total=False):
     duration: str
     exitCode: int
     metadata: _list[dict[str, typing.Any]]
@@ -669,16 +597,14 @@ class GoogleDevtoolsRemoteworkersV1test2CommandResult(
     status: GoogleRpcStatus
 
 @typing.type_check_only
-class GoogleDevtoolsRemoteworkersV1test2CommandTask(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleDevtoolsRemoteworkersV1test2CommandTask(typing.TypedDict, total=False):
     expectedOutputs: GoogleDevtoolsRemoteworkersV1test2CommandTaskOutputs
     inputs: GoogleDevtoolsRemoteworkersV1test2CommandTaskInputs
     timeouts: GoogleDevtoolsRemoteworkersV1test2CommandTaskTimeouts
 
 @typing.type_check_only
 class GoogleDevtoolsRemoteworkersV1test2CommandTaskInputs(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     arguments: _list[str]
     environmentVariables: _list[
@@ -690,14 +616,14 @@ class GoogleDevtoolsRemoteworkersV1test2CommandTaskInputs(
 
 @typing.type_check_only
 class GoogleDevtoolsRemoteworkersV1test2CommandTaskInputsEnvironmentVariable(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     name: str
     value: str
 
 @typing.type_check_only
 class GoogleDevtoolsRemoteworkersV1test2CommandTaskOutputs(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     directories: _list[str]
     files: _list[str]
@@ -706,44 +632,38 @@ class GoogleDevtoolsRemoteworkersV1test2CommandTaskOutputs(
 
 @typing.type_check_only
 class GoogleDevtoolsRemoteworkersV1test2CommandTaskTimeouts(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     execution: str
     idle: str
     shutdown: str
 
 @typing.type_check_only
-class GoogleDevtoolsRemoteworkersV1test2Digest(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleDevtoolsRemoteworkersV1test2Digest(typing.TypedDict, total=False):
     hash: str
     sizeBytes: str
 
 @typing.type_check_only
-class GoogleDevtoolsRemoteworkersV1test2Directory(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleDevtoolsRemoteworkersV1test2Directory(typing.TypedDict, total=False):
     directories: _list[GoogleDevtoolsRemoteworkersV1test2DirectoryMetadata]
     files: _list[GoogleDevtoolsRemoteworkersV1test2FileMetadata]
 
 @typing.type_check_only
 class GoogleDevtoolsRemoteworkersV1test2DirectoryMetadata(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     digest: GoogleDevtoolsRemoteworkersV1test2Digest
     path: str
 
 @typing.type_check_only
-class GoogleDevtoolsRemoteworkersV1test2FileMetadata(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleDevtoolsRemoteworkersV1test2FileMetadata(typing.TypedDict, total=False):
     contents: str
     digest: GoogleDevtoolsRemoteworkersV1test2Digest
     isExecutable: bool
     path: str
 
 @typing.type_check_only
-class GoogleLongrunningOperation(typing_extensions.TypedDict, total=False):
+class GoogleLongrunningOperation(typing.TypedDict, total=False):
     done: bool
     error: GoogleRpcStatus
     metadata: dict[str, typing.Any]
@@ -751,7 +671,7 @@ class GoogleLongrunningOperation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class GoogleRpcStatus(typing_extensions.TypedDict, total=False):
+class GoogleRpcStatus(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str

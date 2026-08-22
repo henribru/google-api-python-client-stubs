@@ -1,33 +1,31 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class ApproximateProgress(typing_extensions.TypedDict, total=False):
+class ApproximateProgress(typing.TypedDict, total=False):
     percentComplete: float
     position: Position
     remainingTime: str
 
 @typing.type_check_only
-class ApproximateReportedProgress(typing_extensions.TypedDict, total=False):
+class ApproximateReportedProgress(typing.TypedDict, total=False):
     consumedParallelism: ReportedParallelism
     fractionConsumed: float
     position: Position
     remainingParallelism: ReportedParallelism
 
 @typing.type_check_only
-class ApproximateSplitRequest(typing_extensions.TypedDict, total=False):
+class ApproximateSplitRequest(typing.TypedDict, total=False):
     fractionConsumed: float
     fractionOfRemainder: float
     position: Position
 
 @typing.type_check_only
-class AutoscalingEvent(typing_extensions.TypedDict, total=False):
+class AutoscalingEvent(typing.TypedDict, total=False):
     currentNumWorkers: str
     description: StructuredMessage
-    eventType: typing_extensions.Literal[
+    eventType: typing.Literal[
         "TYPE_UNKNOWN",
         "TARGET_NUM_WORKERS_CHANGED",
         "CURRENT_NUM_WORKERS_CHANGED",
@@ -39,8 +37,18 @@ class AutoscalingEvent(typing_extensions.TypedDict, total=False):
     workerPool: str
 
 @typing.type_check_only
-class AutoscalingSettings(typing_extensions.TypedDict, total=False):
-    algorithm: typing_extensions.Literal[
+class AutoscalingSchedule(typing.TypedDict, total=False):
+    crontab: str
+    duration: str
+    name: str
+    parameters: Parameters
+    priority: str
+    timeZone: str
+    updateTime: str
+
+@typing.type_check_only
+class AutoscalingSettings(typing.TypedDict, total=False):
+    algorithm: typing.Literal[
         "AUTOSCALING_ALGORITHM_UNKNOWN",
         "AUTOSCALING_ALGORITHM_NONE",
         "AUTOSCALING_ALGORITHM_BASIC",
@@ -48,59 +56,59 @@ class AutoscalingSettings(typing_extensions.TypedDict, total=False):
     maxNumWorkers: int
 
 @typing.type_check_only
-class Base2Exponent(typing_extensions.TypedDict, total=False):
+class Base2Exponent(typing.TypedDict, total=False):
     numberOfBuckets: int
     scale: int
 
 @typing.type_check_only
-class BigQueryIODetails(typing_extensions.TypedDict, total=False):
+class BigQueryIODetails(typing.TypedDict, total=False):
     dataset: str
     projectId: str
     query: str
     table: str
 
 @typing.type_check_only
-class BigTableIODetails(typing_extensions.TypedDict, total=False):
+class BigTableIODetails(typing.TypedDict, total=False):
     instanceId: str
     projectId: str
     tableId: str
 
 @typing.type_check_only
-class BoundedTrie(typing_extensions.TypedDict, total=False):
+class BoundedTrie(typing.TypedDict, total=False):
     bound: int
     root: BoundedTrieNode
     singleton: _list[str]
 
 @typing.type_check_only
-class BoundedTrieNode(typing_extensions.TypedDict, total=False):
+class BoundedTrieNode(typing.TypedDict, total=False):
     children: dict[str, typing.Any]
     truncated: bool
 
 @typing.type_check_only
-class BucketOptions(typing_extensions.TypedDict, total=False):
+class BucketOptions(typing.TypedDict, total=False):
     exponential: Base2Exponent
     linear: Linear
 
 @typing.type_check_only
-class CPUTime(typing_extensions.TypedDict, total=False):
+class CPUTime(typing.TypedDict, total=False):
     rate: float
     timestamp: str
     totalMs: str
 
 @typing.type_check_only
-class ComponentSource(typing_extensions.TypedDict, total=False):
+class ComponentSource(typing.TypedDict, total=False):
     name: str
     originalTransformOrCollection: str
     userName: str
 
 @typing.type_check_only
-class ComponentTransform(typing_extensions.TypedDict, total=False):
+class ComponentTransform(typing.TypedDict, total=False):
     name: str
     originalTransform: str
     userName: str
 
 @typing.type_check_only
-class ComputationTopology(typing_extensions.TypedDict, total=False):
+class ComputationTopology(typing.TypedDict, total=False):
     computationId: str
     inputs: _list[StreamLocation]
     keyRanges: _list[KeyRangeLocation]
@@ -109,12 +117,12 @@ class ComputationTopology(typing_extensions.TypedDict, total=False):
     systemStageName: str
 
 @typing.type_check_only
-class ConcatPosition(typing_extensions.TypedDict, total=False):
+class ConcatPosition(typing.TypedDict, total=False):
     index: int
     position: Position
 
 @typing.type_check_only
-class ContainerSpec(typing_extensions.TypedDict, total=False):
+class ContainerSpec(typing.TypedDict, total=False):
     defaultEnvironment: FlexTemplateRuntimeEnvironment
     image: str
     imageRepositoryCertPath: str
@@ -124,9 +132,9 @@ class ContainerSpec(typing_extensions.TypedDict, total=False):
     sdkInfo: SDKInfo
 
 @typing.type_check_only
-class CounterMetadata(typing_extensions.TypedDict, total=False):
+class CounterMetadata(typing.TypedDict, total=False):
     description: str
-    kind: typing_extensions.Literal[
+    kind: typing.Literal[
         "INVALID",
         "SUM",
         "MAX",
@@ -139,7 +147,7 @@ class CounterMetadata(typing_extensions.TypedDict, total=False):
         "LATEST_VALUE",
     ]
     otherUnits: str
-    standardUnits: typing_extensions.Literal[
+    standardUnits: typing.Literal[
         "BYTES",
         "BYTES_PER_SEC",
         "MILLISECONDS",
@@ -151,25 +159,25 @@ class CounterMetadata(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class CounterStructuredName(typing_extensions.TypedDict, total=False):
+class CounterStructuredName(typing.TypedDict, total=False):
     componentStepName: str
     executionStepName: str
     inputIndex: int
     name: str
-    origin: typing_extensions.Literal["SYSTEM", "USER"]
+    origin: typing.Literal["SYSTEM", "USER"]
     originNamespace: str
     originalRequestingStepName: str
     originalStepName: str
-    portion: typing_extensions.Literal["ALL", "KEY", "VALUE"]
+    portion: typing.Literal["ALL", "KEY", "VALUE"]
     workerId: str
 
 @typing.type_check_only
-class CounterStructuredNameAndMetadata(typing_extensions.TypedDict, total=False):
+class CounterStructuredNameAndMetadata(typing.TypedDict, total=False):
     metadata: CounterMetadata
     name: CounterStructuredName
 
 @typing.type_check_only
-class CounterUpdate(typing_extensions.TypedDict, total=False):
+class CounterUpdate(typing.TypedDict, total=False):
     boolean: bool
     boundedTrie: BoundedTrie
     cumulative: bool
@@ -188,7 +196,7 @@ class CounterUpdate(typing_extensions.TypedDict, total=False):
     structuredNameAndMetadata: CounterStructuredNameAndMetadata
 
 @typing.type_check_only
-class CreateJobFromTemplateRequest(typing_extensions.TypedDict, total=False):
+class CreateJobFromTemplateRequest(typing.TypedDict, total=False):
     environment: RuntimeEnvironment
     gcsPath: str
     jobName: str
@@ -196,24 +204,24 @@ class CreateJobFromTemplateRequest(typing_extensions.TypedDict, total=False):
     parameters: dict[str, typing.Any]
 
 @typing.type_check_only
-class CustomSourceLocation(typing_extensions.TypedDict, total=False):
+class CustomSourceLocation(typing.TypedDict, total=False):
     stateful: bool
 
 @typing.type_check_only
-class DataDiskAssignment(typing_extensions.TypedDict, total=False):
+class DataDiskAssignment(typing.TypedDict, total=False):
     dataDisks: _list[str]
     vmInstance: str
 
 @typing.type_check_only
-class DataSamplingConfig(typing_extensions.TypedDict, total=False):
+class DataSamplingConfig(typing.TypedDict, total=False):
     behaviors: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "DATA_SAMPLING_BEHAVIOR_UNSPECIFIED", "DISABLED", "ALWAYS_ON", "EXCEPTIONS"
         ]
     ]
 
 @typing.type_check_only
-class DataSamplingReport(typing_extensions.TypedDict, total=False):
+class DataSamplingReport(typing.TypedDict, total=False):
     bytesWrittenDelta: str
     elementsSampledBytes: str
     elementsSampledCount: str
@@ -223,33 +231,33 @@ class DataSamplingReport(typing_extensions.TypedDict, total=False):
     translationErrorsCount: str
 
 @typing.type_check_only
-class DataflowGaugeValue(typing_extensions.TypedDict, total=False):
+class DataflowGaugeValue(typing.TypedDict, total=False):
     measuredTime: str
     value: str
 
 @typing.type_check_only
-class DataflowHistogramValue(typing_extensions.TypedDict, total=False):
+class DataflowHistogramValue(typing.TypedDict, total=False):
     bucketCounts: _list[str]
     bucketOptions: BucketOptions
     count: str
     outlierStats: OutlierStats
 
 @typing.type_check_only
-class DatastoreIODetails(typing_extensions.TypedDict, total=False):
+class DatastoreIODetails(typing.TypedDict, total=False):
     namespace: str
     projectId: str
 
 @typing.type_check_only
-class DebugOptions(typing_extensions.TypedDict, total=False):
+class DebugOptions(typing.TypedDict, total=False):
     dataSampling: DataSamplingConfig
     enableHotKeyLogging: bool
 
 @typing.type_check_only
-class DeleteSnapshotResponse(typing_extensions.TypedDict, total=False): ...
+class DeleteSnapshotResponse(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class DerivedSource(typing_extensions.TypedDict, total=False):
-    derivationMode: typing_extensions.Literal[
+class DerivedSource(typing.TypedDict, total=False):
+    derivationMode: typing.Literal[
         "SOURCE_DERIVATION_MODE_UNKNOWN",
         "SOURCE_DERIVATION_MODE_INDEPENDENT",
         "SOURCE_DERIVATION_MODE_CHILD_OF_CURRENT",
@@ -258,13 +266,13 @@ class DerivedSource(typing_extensions.TypedDict, total=False):
     source: Source
 
 @typing.type_check_only
-class Disk(typing_extensions.TypedDict, total=False):
+class Disk(typing.TypedDict, total=False):
     diskType: str
     mountPoint: str
     sizeGb: int
 
 @typing.type_check_only
-class DisplayData(typing_extensions.TypedDict, total=False):
+class DisplayData(typing.TypedDict, total=False):
     boolValue: bool
     durationValue: str
     floatValue: float
@@ -279,7 +287,7 @@ class DisplayData(typing_extensions.TypedDict, total=False):
     url: str
 
 @typing.type_check_only
-class DistributionUpdate(typing_extensions.TypedDict, total=False):
+class DistributionUpdate(typing.TypedDict, total=False):
     count: SplitInt64
     histogram: Histogram
     max: SplitInt64
@@ -288,17 +296,17 @@ class DistributionUpdate(typing_extensions.TypedDict, total=False):
     sumOfSquares: float
 
 @typing.type_check_only
-class DynamicSourceSplit(typing_extensions.TypedDict, total=False):
+class DynamicSourceSplit(typing.TypedDict, total=False):
     primary: DerivedSource
     residual: DerivedSource
 
 @typing.type_check_only
-class Environment(typing_extensions.TypedDict, total=False):
+class Environment(typing.TypedDict, total=False):
     clusterManagerApiService: str
     dataset: str
     debugOptions: DebugOptions
     experiments: _list[str]
-    flexResourceSchedulingGoal: typing_extensions.Literal[
+    flexResourceSchedulingGoal: typing.Literal[
         "FLEXRS_UNSPECIFIED", "FLEXRS_SPEED_OPTIMIZED", "FLEXRS_COST_OPTIMIZED"
     ]
     internalExperiments: dict[str, typing.Any]
@@ -306,10 +314,8 @@ class Environment(typing_extensions.TypedDict, total=False):
     serviceAccountEmail: str
     serviceKmsKeyName: str
     serviceOptions: _list[str]
-    shuffleMode: typing_extensions.Literal[
-        "SHUFFLE_MODE_UNSPECIFIED", "VM_BASED", "SERVICE_BASED"
-    ]
-    streamingMode: typing_extensions.Literal[
+    shuffleMode: typing.Literal["SHUFFLE_MODE_UNSPECIFIED", "VM_BASED", "SERVICE_BASED"]
+    streamingMode: typing.Literal[
         "STREAMING_MODE_UNSPECIFIED",
         "STREAMING_MODE_EXACTLY_ONCE",
         "STREAMING_MODE_AT_LEAST_ONCE",
@@ -324,10 +330,10 @@ class Environment(typing_extensions.TypedDict, total=False):
     workerZone: str
 
 @typing.type_check_only
-class ExecutionStageState(typing_extensions.TypedDict, total=False):
+class ExecutionStageState(typing.TypedDict, total=False):
     currentStateTime: str
     executionStageName: str
-    executionStageState: typing_extensions.Literal[
+    executionStageState: typing.Literal[
         "JOB_STATE_UNKNOWN",
         "JOB_STATE_STOPPED",
         "JOB_STATE_RUNNING",
@@ -346,12 +352,12 @@ class ExecutionStageState(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class ExecutionStageSummary(typing_extensions.TypedDict, total=False):
+class ExecutionStageSummary(typing.TypedDict, total=False):
     componentSource: _list[ComponentSource]
     componentTransform: _list[ComponentTransform]
     id: str
     inputSource: _list[StageSource]
-    kind: typing_extensions.Literal[
+    kind: typing.Literal[
         "UNKNOWN_KIND",
         "PAR_DO_KIND",
         "GROUP_BY_KEY_KIND",
@@ -367,23 +373,23 @@ class ExecutionStageSummary(typing_extensions.TypedDict, total=False):
     prerequisiteStage: _list[str]
 
 @typing.type_check_only
-class FailedLocation(typing_extensions.TypedDict, total=False):
+class FailedLocation(typing.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class FileIODetails(typing_extensions.TypedDict, total=False):
+class FileIODetails(typing.TypedDict, total=False):
     filePattern: str
 
 @typing.type_check_only
-class FlattenInstruction(typing_extensions.TypedDict, total=False):
+class FlattenInstruction(typing.TypedDict, total=False):
     inputs: _list[InstructionInput]
 
 @typing.type_check_only
-class FlexTemplateRuntimeEnvironment(typing_extensions.TypedDict, total=False):
+class FlexTemplateRuntimeEnvironment(typing.TypedDict, total=False):
     additionalExperiments: _list[str]
     additionalPipelineOptions: _list[str]
     additionalUserLabels: dict[str, typing.Any]
-    autoscalingAlgorithm: typing_extensions.Literal[
+    autoscalingAlgorithm: typing.Literal[
         "AUTOSCALING_ALGORITHM_UNKNOWN",
         "AUTOSCALING_ALGORITHM_NONE",
         "AUTOSCALING_ALGORITHM_BASIC",
@@ -392,10 +398,10 @@ class FlexTemplateRuntimeEnvironment(typing_extensions.TypedDict, total=False):
     dumpHeapOnOom: bool
     enableLauncherVmSerialPortLogging: bool
     enableStreamingEngine: bool
-    flexrsGoal: typing_extensions.Literal[
+    flexrsGoal: typing.Literal[
         "FLEXRS_UNSPECIFIED", "FLEXRS_SPEED_OPTIMIZED", "FLEXRS_COST_OPTIMIZED"
     ]
-    ipConfiguration: typing_extensions.Literal[
+    ipConfiguration: typing.Literal[
         "WORKER_IP_UNSPECIFIED", "WORKER_IP_PUBLIC", "WORKER_IP_PRIVATE"
     ]
     kmsKeyName: str
@@ -408,7 +414,7 @@ class FlexTemplateRuntimeEnvironment(typing_extensions.TypedDict, total=False):
     sdkContainerImage: str
     serviceAccountEmail: str
     stagingLocation: str
-    streamingMode: typing_extensions.Literal[
+    streamingMode: typing.Literal[
         "STREAMING_MODE_UNSPECIFIED",
         "STREAMING_MODE_EXACTLY_ONCE",
         "STREAMING_MODE_AT_LEAST_ONCE",
@@ -420,77 +426,77 @@ class FlexTemplateRuntimeEnvironment(typing_extensions.TypedDict, total=False):
     zone: str
 
 @typing.type_check_only
-class FloatingPointList(typing_extensions.TypedDict, total=False):
+class FloatingPointList(typing.TypedDict, total=False):
     elements: _list[float]
 
 @typing.type_check_only
-class FloatingPointMean(typing_extensions.TypedDict, total=False):
+class FloatingPointMean(typing.TypedDict, total=False):
     count: SplitInt64
     sum: float
 
 @typing.type_check_only
-class GPUUsage(typing_extensions.TypedDict, total=False):
+class GPUUsage(typing.TypedDict, total=False):
     timestamp: str
     utilization: GPUUtilization
 
 @typing.type_check_only
-class GPUUtilization(typing_extensions.TypedDict, total=False):
+class GPUUtilization(typing.TypedDict, total=False):
     rate: float
 
 @typing.type_check_only
-class GetDebugConfigRequest(typing_extensions.TypedDict, total=False):
+class GetDebugConfigRequest(typing.TypedDict, total=False):
     componentId: str
     location: str
     workerId: str
 
 @typing.type_check_only
-class GetDebugConfigResponse(typing_extensions.TypedDict, total=False):
+class GetDebugConfigResponse(typing.TypedDict, total=False):
     config: str
 
 @typing.type_check_only
-class GetTemplateResponse(typing_extensions.TypedDict, total=False):
+class GetTemplateResponse(typing.TypedDict, total=False):
     metadata: TemplateMetadata
     runtimeMetadata: RuntimeMetadata
     status: Status
-    templateType: typing_extensions.Literal["UNKNOWN", "LEGACY", "FLEX"]
+    templateType: typing.Literal["UNKNOWN", "LEGACY", "FLEX"]
 
 @typing.type_check_only
-class GetWorkerStacktracesRequest(typing_extensions.TypedDict, total=False):
+class GetWorkerStacktracesRequest(typing.TypedDict, total=False):
     endTime: str
     workerId: str
 
 @typing.type_check_only
-class GetWorkerStacktracesResponse(typing_extensions.TypedDict, total=False):
+class GetWorkerStacktracesResponse(typing.TypedDict, total=False):
     sdks: _list[Sdk]
 
 @typing.type_check_only
-class Histogram(typing_extensions.TypedDict, total=False):
+class Histogram(typing.TypedDict, total=False):
     bucketCounts: _list[str]
     firstBucketOffset: int
 
 @typing.type_check_only
-class HotKeyDebuggingInfo(typing_extensions.TypedDict, total=False):
+class HotKeyDebuggingInfo(typing.TypedDict, total=False):
     detectedHotKeys: dict[str, typing.Any]
 
 @typing.type_check_only
-class HotKeyDetection(typing_extensions.TypedDict, total=False):
+class HotKeyDetection(typing.TypedDict, total=False):
     hotKeyAge: str
     systemName: str
     userStepName: str
 
 @typing.type_check_only
-class HotKeyInfo(typing_extensions.TypedDict, total=False):
+class HotKeyInfo(typing.TypedDict, total=False):
     hotKeyAge: str
     key: str
     keyTruncated: bool
 
 @typing.type_check_only
-class InstructionInput(typing_extensions.TypedDict, total=False):
+class InstructionInput(typing.TypedDict, total=False):
     outputNum: int
     producerInstructionIndex: int
 
 @typing.type_check_only
-class InstructionOutput(typing_extensions.TypedDict, total=False):
+class InstructionOutput(typing.TypedDict, total=False):
     codec: dict[str, typing.Any]
     name: str
     onlyCountKeyBytes: bool
@@ -499,25 +505,25 @@ class InstructionOutput(typing_extensions.TypedDict, total=False):
     systemName: str
 
 @typing.type_check_only
-class IntegerGauge(typing_extensions.TypedDict, total=False):
+class IntegerGauge(typing.TypedDict, total=False):
     timestamp: str
     value: SplitInt64
 
 @typing.type_check_only
-class IntegerList(typing_extensions.TypedDict, total=False):
+class IntegerList(typing.TypedDict, total=False):
     elements: _list[SplitInt64]
 
 @typing.type_check_only
-class IntegerMean(typing_extensions.TypedDict, total=False):
+class IntegerMean(typing.TypedDict, total=False):
     count: SplitInt64
     sum: SplitInt64
 
 @typing.type_check_only
-class Job(typing_extensions.TypedDict, total=False):
+class Job(typing.TypedDict, total=False):
     clientRequestId: str
     createTime: str
     createdFromSnapshotId: str
-    currentState: typing_extensions.Literal[
+    currentState: typing.Literal[
         "JOB_STATE_UNKNOWN",
         "JOB_STATE_STOPPED",
         "JOB_STATE_RUNNING",
@@ -547,7 +553,7 @@ class Job(typing_extensions.TypedDict, total=False):
     projectId: str
     replaceJobId: str
     replacedByJobId: str
-    requestedState: typing_extensions.Literal[
+    requestedState: typing.Literal[
         "JOB_STATE_UNKNOWN",
         "JOB_STATE_STOPPED",
         "JOB_STATE_RUNNING",
@@ -574,27 +580,25 @@ class Job(typing_extensions.TypedDict, total=False):
     stepsLocation: str
     tempFiles: _list[str]
     transformNameMapping: dict[str, typing.Any]
-    type: typing_extensions.Literal[
-        "JOB_TYPE_UNKNOWN", "JOB_TYPE_BATCH", "JOB_TYPE_STREAMING"
-    ]
+    type: typing.Literal["JOB_TYPE_UNKNOWN", "JOB_TYPE_BATCH", "JOB_TYPE_STREAMING"]
 
 @typing.type_check_only
-class JobExecutionDetails(typing_extensions.TypedDict, total=False):
+class JobExecutionDetails(typing.TypedDict, total=False):
     nextPageToken: str
     stages: _list[StageSummary]
 
 @typing.type_check_only
-class JobExecutionInfo(typing_extensions.TypedDict, total=False):
+class JobExecutionInfo(typing.TypedDict, total=False):
     stages: dict[str, typing.Any]
 
 @typing.type_check_only
-class JobExecutionStageInfo(typing_extensions.TypedDict, total=False):
+class JobExecutionStageInfo(typing.TypedDict, total=False):
     stepName: _list[str]
 
 @typing.type_check_only
-class JobMessage(typing_extensions.TypedDict, total=False):
+class JobMessage(typing.TypedDict, total=False):
     id: str
-    messageImportance: typing_extensions.Literal[
+    messageImportance: typing.Literal[
         "JOB_MESSAGE_IMPORTANCE_UNKNOWN",
         "JOB_MESSAGE_DEBUG",
         "JOB_MESSAGE_DETAILED",
@@ -606,7 +610,7 @@ class JobMessage(typing_extensions.TypedDict, total=False):
     time: str
 
 @typing.type_check_only
-class JobMetadata(typing_extensions.TypedDict, total=False):
+class JobMetadata(typing.TypedDict, total=False):
     bigTableDetails: _list[BigTableIODetails]
     bigqueryDetails: _list[BigQueryIODetails]
     datastoreDetails: _list[DatastoreIODetails]
@@ -617,18 +621,18 @@ class JobMetadata(typing_extensions.TypedDict, total=False):
     userDisplayProperties: dict[str, typing.Any]
 
 @typing.type_check_only
-class JobMetrics(typing_extensions.TypedDict, total=False):
+class JobMetrics(typing.TypedDict, total=False):
     metricTime: str
     metrics: _list[MetricUpdate]
 
 @typing.type_check_only
-class KeyRangeDataDiskAssignment(typing_extensions.TypedDict, total=False):
+class KeyRangeDataDiskAssignment(typing.TypedDict, total=False):
     dataDisk: str
     end: str
     start: str
 
 @typing.type_check_only
-class KeyRangeLocation(typing_extensions.TypedDict, total=False):
+class KeyRangeLocation(typing.TypedDict, total=False):
     dataDisk: str
     deliveryEndpoint: str
     deprecatedPersistentDirectory: str
@@ -636,7 +640,7 @@ class KeyRangeLocation(typing_extensions.TypedDict, total=False):
     start: str
 
 @typing.type_check_only
-class LaunchFlexTemplateParameter(typing_extensions.TypedDict, total=False):
+class LaunchFlexTemplateParameter(typing.TypedDict, total=False):
     containerSpec: ContainerSpec
     containerSpecGcsPath: str
     environment: FlexTemplateRuntimeEnvironment
@@ -647,16 +651,16 @@ class LaunchFlexTemplateParameter(typing_extensions.TypedDict, total=False):
     update: bool
 
 @typing.type_check_only
-class LaunchFlexTemplateRequest(typing_extensions.TypedDict, total=False):
+class LaunchFlexTemplateRequest(typing.TypedDict, total=False):
     launchParameter: LaunchFlexTemplateParameter
     validateOnly: bool
 
 @typing.type_check_only
-class LaunchFlexTemplateResponse(typing_extensions.TypedDict, total=False):
+class LaunchFlexTemplateResponse(typing.TypedDict, total=False):
     job: Job
 
 @typing.type_check_only
-class LaunchTemplateParameters(typing_extensions.TypedDict, total=False):
+class LaunchTemplateParameters(typing.TypedDict, total=False):
     environment: RuntimeEnvironment
     jobName: str
     parameters: dict[str, typing.Any]
@@ -664,11 +668,11 @@ class LaunchTemplateParameters(typing_extensions.TypedDict, total=False):
     update: bool
 
 @typing.type_check_only
-class LaunchTemplateResponse(typing_extensions.TypedDict, total=False):
+class LaunchTemplateResponse(typing.TypedDict, total=False):
     job: Job
 
 @typing.type_check_only
-class LeaseWorkItemRequest(typing_extensions.TypedDict, total=False):
+class LeaseWorkItemRequest(typing.TypedDict, total=False):
     currentWorkerTime: str
     location: str
     projectNumber: str
@@ -679,41 +683,41 @@ class LeaseWorkItemRequest(typing_extensions.TypedDict, total=False):
     workerId: str
 
 @typing.type_check_only
-class LeaseWorkItemResponse(typing_extensions.TypedDict, total=False):
+class LeaseWorkItemResponse(typing.TypedDict, total=False):
     unifiedWorkerResponse: dict[str, typing.Any]
     workItems: _list[WorkItem]
 
 @typing.type_check_only
-class Linear(typing_extensions.TypedDict, total=False):
+class Linear(typing.TypedDict, total=False):
     numberOfBuckets: int
     start: float
     width: float
 
 @typing.type_check_only
-class ListJobMessagesResponse(typing_extensions.TypedDict, total=False):
+class ListJobMessagesResponse(typing.TypedDict, total=False):
     autoscalingEvents: _list[AutoscalingEvent]
     jobMessages: _list[JobMessage]
     nextPageToken: str
 
 @typing.type_check_only
-class ListJobsResponse(typing_extensions.TypedDict, total=False):
+class ListJobsResponse(typing.TypedDict, total=False):
     failedLocation: _list[FailedLocation]
     jobs: _list[Job]
     nextPageToken: str
 
 @typing.type_check_only
-class ListSnapshotsResponse(typing_extensions.TypedDict, total=False):
+class ListSnapshotsResponse(typing.TypedDict, total=False):
     snapshots: _list[Snapshot]
 
 @typing.type_check_only
-class MapTask(typing_extensions.TypedDict, total=False):
+class MapTask(typing.TypedDict, total=False):
     counterPrefix: str
     instructions: _list[ParallelInstruction]
     stageName: str
     systemName: str
 
 @typing.type_check_only
-class MemInfo(typing_extensions.TypedDict, total=False):
+class MemInfo(typing.TypedDict, total=False):
     currentLimitBytes: str
     currentOoms: str
     currentRssBytes: str
@@ -721,18 +725,18 @@ class MemInfo(typing_extensions.TypedDict, total=False):
     totalGbMs: str
 
 @typing.type_check_only
-class MetricShortId(typing_extensions.TypedDict, total=False):
+class MetricShortId(typing.TypedDict, total=False):
     metricIndex: int
     shortId: str
 
 @typing.type_check_only
-class MetricStructuredName(typing_extensions.TypedDict, total=False):
+class MetricStructuredName(typing.TypedDict, total=False):
     context: dict[str, typing.Any]
     name: str
     origin: str
 
 @typing.type_check_only
-class MetricUpdate(typing_extensions.TypedDict, total=False):
+class MetricUpdate(typing.TypedDict, total=False):
     boundedTrie: typing.Any
     cumulative: bool
     distribution: typing.Any
@@ -748,7 +752,7 @@ class MetricUpdate(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class MetricValue(typing_extensions.TypedDict, total=False):
+class MetricValue(typing.TypedDict, total=False):
     metric: str
     metricLabels: dict[str, typing.Any]
     valueGauge64: DataflowGaugeValue
@@ -756,16 +760,16 @@ class MetricValue(typing_extensions.TypedDict, total=False):
     valueInt64: str
 
 @typing.type_check_only
-class MountedDataDisk(typing_extensions.TypedDict, total=False):
+class MountedDataDisk(typing.TypedDict, total=False):
     dataDisk: str
 
 @typing.type_check_only
-class MultiOutputInfo(typing_extensions.TypedDict, total=False):
+class MultiOutputInfo(typing.TypedDict, total=False):
     tag: str
 
 @typing.type_check_only
-class NameAndKind(typing_extensions.TypedDict, total=False):
-    kind: typing_extensions.Literal[
+class NameAndKind(typing.TypedDict, total=False):
+    kind: typing.Literal[
         "INVALID",
         "SUM",
         "MAX",
@@ -780,20 +784,20 @@ class NameAndKind(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class OutlierStats(typing_extensions.TypedDict, total=False):
+class OutlierStats(typing.TypedDict, total=False):
     overflowCount: str
     overflowMean: float
     underflowCount: str
     underflowMean: float
 
 @typing.type_check_only
-class Package(typing_extensions.TypedDict, total=False):
+class Package(typing.TypedDict, total=False):
     location: str
     name: str
     sha256: str
 
 @typing.type_check_only
-class ParDoInstruction(typing_extensions.TypedDict, total=False):
+class ParDoInstruction(typing.TypedDict, total=False):
     input: InstructionInput
     multiOutputInfos: _list[MultiOutputInfo]
     numOutputs: int
@@ -801,7 +805,7 @@ class ParDoInstruction(typing_extensions.TypedDict, total=False):
     userFn: dict[str, typing.Any]
 
 @typing.type_check_only
-class ParallelInstruction(typing_extensions.TypedDict, total=False):
+class ParallelInstruction(typing.TypedDict, total=False):
     flatten: FlattenInstruction
     name: str
     originalName: str
@@ -813,12 +817,12 @@ class ParallelInstruction(typing_extensions.TypedDict, total=False):
     write: WriteInstruction
 
 @typing.type_check_only
-class Parameter(typing_extensions.TypedDict, total=False):
+class Parameter(typing.TypedDict, total=False):
     key: str
     value: typing.Any
 
 @typing.type_check_only
-class ParameterMetadata(typing_extensions.TypedDict, total=False):
+class ParameterMetadata(typing.TypedDict, total=False):
     customMetadata: dict[str, typing.Any]
     defaultValue: str
     enumOptions: _list[ParameterMetadataEnumOption]
@@ -828,7 +832,7 @@ class ParameterMetadata(typing_extensions.TypedDict, total=False):
     isOptional: bool
     label: str
     name: str
-    paramType: typing_extensions.Literal[
+    paramType: typing.Literal[
         "DEFAULT",
         "TEXT",
         "GCS_READ_BUCKET",
@@ -858,13 +862,20 @@ class ParameterMetadata(typing_extensions.TypedDict, total=False):
     regexes: _list[str]
 
 @typing.type_check_only
-class ParameterMetadataEnumOption(typing_extensions.TypedDict, total=False):
+class ParameterMetadataEnumOption(typing.TypedDict, total=False):
     description: str
     label: str
     value: str
 
 @typing.type_check_only
-class PartialGroupByKeyInstruction(typing_extensions.TypedDict, total=False):
+class Parameters(typing.TypedDict, total=False):
+    cpuUtilizationTarget: float
+    latencyTarget: str
+    maxWorkerCount: int
+    minWorkerCount: int
+
+@typing.type_check_only
+class PartialGroupByKeyInstruction(typing.TypedDict, total=False):
     input: InstructionInput
     inputElementCodec: dict[str, typing.Any]
     originalCombineValuesInputStoreName: str
@@ -873,29 +884,29 @@ class PartialGroupByKeyInstruction(typing_extensions.TypedDict, total=False):
     valueCombiningFn: dict[str, typing.Any]
 
 @typing.type_check_only
-class PerStepNamespaceMetrics(typing_extensions.TypedDict, total=False):
+class PerStepNamespaceMetrics(typing.TypedDict, total=False):
     metricValues: _list[MetricValue]
     metricsNamespace: str
     originalStep: str
 
 @typing.type_check_only
-class PerWorkerMetrics(typing_extensions.TypedDict, total=False):
+class PerWorkerMetrics(typing.TypedDict, total=False):
     perStepNamespaceMetrics: _list[PerStepNamespaceMetrics]
 
 @typing.type_check_only
-class PipelineDescription(typing_extensions.TypedDict, total=False):
+class PipelineDescription(typing.TypedDict, total=False):
     displayData: _list[DisplayData]
     executionPipelineStage: _list[ExecutionStageSummary]
     originalPipelineTransform: _list[TransformSummary]
     stepNamesHash: str
 
 @typing.type_check_only
-class Point(typing_extensions.TypedDict, total=False):
+class Point(typing.TypedDict, total=False):
     time: str
     value: float
 
 @typing.type_check_only
-class Position(typing_extensions.TypedDict, total=False):
+class Position(typing.TypedDict, total=False):
     byteOffset: str
     concatPosition: ConcatPosition
     end: bool
@@ -904,17 +915,17 @@ class Position(typing_extensions.TypedDict, total=False):
     shufflePosition: str
 
 @typing.type_check_only
-class ProgressTimeseries(typing_extensions.TypedDict, total=False):
+class ProgressTimeseries(typing.TypedDict, total=False):
     currentProgress: float
     dataPoints: _list[Point]
 
 @typing.type_check_only
-class PubSubIODetails(typing_extensions.TypedDict, total=False):
+class PubSubIODetails(typing.TypedDict, total=False):
     subscription: str
     topic: str
 
 @typing.type_check_only
-class PubsubLocation(typing_extensions.TypedDict, total=False):
+class PubsubLocation(typing.TypedDict, total=False):
     dropLateData: bool
     dynamicDestinations: bool
     idLabel: str
@@ -925,17 +936,17 @@ class PubsubLocation(typing_extensions.TypedDict, total=False):
     withAttributes: bool
 
 @typing.type_check_only
-class PubsubSnapshotMetadata(typing_extensions.TypedDict, total=False):
+class PubsubSnapshotMetadata(typing.TypedDict, total=False):
     expireTime: str
     snapshotName: str
     topicName: str
 
 @typing.type_check_only
-class ReadInstruction(typing_extensions.TypedDict, total=False):
+class ReadInstruction(typing.TypedDict, total=False):
     source: Source
 
 @typing.type_check_only
-class ReportWorkItemStatusRequest(typing_extensions.TypedDict, total=False):
+class ReportWorkItemStatusRequest(typing.TypedDict, total=False):
     currentWorkerTime: str
     location: str
     projectNumber: str
@@ -944,34 +955,34 @@ class ReportWorkItemStatusRequest(typing_extensions.TypedDict, total=False):
     workerId: str
 
 @typing.type_check_only
-class ReportWorkItemStatusResponse(typing_extensions.TypedDict, total=False):
+class ReportWorkItemStatusResponse(typing.TypedDict, total=False):
     unifiedWorkerResponse: dict[str, typing.Any]
     workItemServiceStates: _list[WorkItemServiceState]
 
 @typing.type_check_only
-class ReportedParallelism(typing_extensions.TypedDict, total=False):
+class ReportedParallelism(typing.TypedDict, total=False):
     isInfinite: bool
     value: float
 
 @typing.type_check_only
-class ResourceUtilizationReport(typing_extensions.TypedDict, total=False):
+class ResourceUtilizationReport(typing.TypedDict, total=False):
     containers: dict[str, typing.Any]
     cpuTime: _list[CPUTime]
     gpuUsage: _list[GPUUsage]
     memoryInfo: _list[MemInfo]
 
 @typing.type_check_only
-class ResourceUtilizationReportResponse(typing_extensions.TypedDict, total=False): ...
+class ResourceUtilizationReportResponse(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class RuntimeEnvironment(typing_extensions.TypedDict, total=False):
+class RuntimeEnvironment(typing.TypedDict, total=False):
     additionalExperiments: _list[str]
     additionalPipelineOptions: _list[str]
     additionalUserLabels: dict[str, typing.Any]
     bypassTempDirValidation: bool
     diskSizeGb: int
     enableStreamingEngine: bool
-    ipConfiguration: typing_extensions.Literal[
+    ipConfiguration: typing.Literal[
         "WORKER_IP_UNSPECIFIED", "WORKER_IP_PUBLIC", "WORKER_IP_PRIVATE"
     ]
     kmsKeyName: str
@@ -980,7 +991,7 @@ class RuntimeEnvironment(typing_extensions.TypedDict, total=False):
     network: str
     numWorkers: int
     serviceAccountEmail: str
-    streamingMode: typing_extensions.Literal[
+    streamingMode: typing.Literal[
         "STREAMING_MODE_UNSPECIFIED",
         "STREAMING_MODE_EXACTLY_ONCE",
         "STREAMING_MODE_AT_LEAST_ONCE",
@@ -992,79 +1003,76 @@ class RuntimeEnvironment(typing_extensions.TypedDict, total=False):
     zone: str
 
 @typing.type_check_only
-class RuntimeMetadata(typing_extensions.TypedDict, total=False):
+class RuntimeMetadata(typing.TypedDict, total=False):
     parameters: _list[ParameterMetadata]
     sdkInfo: SDKInfo
 
 @typing.type_check_only
-class RuntimeUpdatableParams(typing_extensions.TypedDict, total=False):
+class RuntimeUpdatableParams(typing.TypedDict, total=False):
     acceptableBacklogDuration: str
     autoscalingTier: str
     latencyTier: str
     maxNumWorkers: int
     minNumWorkers: int
+    schedules: _list[AutoscalingSchedule]
     workerUtilizationHint: float
 
 @typing.type_check_only
-class SDKInfo(typing_extensions.TypedDict, total=False):
-    language: typing_extensions.Literal["UNKNOWN", "JAVA", "PYTHON", "GO", "YAML"]
+class SDKInfo(typing.TypedDict, total=False):
+    language: typing.Literal["UNKNOWN", "JAVA", "PYTHON", "GO", "YAML"]
     version: str
 
 @typing.type_check_only
-class Sdk(typing_extensions.TypedDict, total=False):
+class Sdk(typing.TypedDict, total=False):
     sdkId: str
     stacks: _list[Stack]
 
 @typing.type_check_only
-class SdkBug(typing_extensions.TypedDict, total=False):
-    severity: typing_extensions.Literal[
-        "SEVERITY_UNSPECIFIED", "NOTICE", "WARNING", "SEVERE"
-    ]
-    type: typing_extensions.Literal[
-        "TYPE_UNSPECIFIED", "GENERAL", "PERFORMANCE", "DATALOSS"
-    ]
+class SdkBug(typing.TypedDict, total=False):
+    severity: typing.Literal["SEVERITY_UNSPECIFIED", "NOTICE", "WARNING", "SEVERE"]
+    type: typing.Literal["TYPE_UNSPECIFIED", "GENERAL", "PERFORMANCE", "DATALOSS"]
     uri: str
 
 @typing.type_check_only
-class SdkHarnessContainerImage(typing_extensions.TypedDict, total=False):
+class SdkHarnessContainerImage(typing.TypedDict, total=False):
     capabilities: _list[str]
     containerImage: str
     environmentId: str
     useSingleCorePerContainer: bool
 
 @typing.type_check_only
-class SdkVersion(typing_extensions.TypedDict, total=False):
+class SdkVersion(typing.TypedDict, total=False):
     bugs: _list[SdkBug]
-    sdkSupportStatus: typing_extensions.Literal[
+    sdkSupportStatus: typing.Literal[
         "UNKNOWN", "SUPPORTED", "STALE", "DEPRECATED", "UNSUPPORTED"
     ]
     version: str
     versionDisplayName: str
 
 @typing.type_check_only
-class SendDebugCaptureRequest(typing_extensions.TypedDict, total=False):
+class SendDebugCaptureRequest(typing.TypedDict, total=False):
     componentId: str
     data: str
-    dataFormat: typing_extensions.Literal[
+    dataFormat: typing.Literal[
         "DATA_FORMAT_UNSPECIFIED", "RAW", "JSON", "ZLIB", "BROTLI"
     ]
     location: str
     workerId: str
 
 @typing.type_check_only
-class SendDebugCaptureResponse(typing_extensions.TypedDict, total=False): ...
+class SendDebugCaptureResponse(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class SendWorkerMessagesRequest(typing_extensions.TypedDict, total=False):
+class SendWorkerMessagesRequest(typing.TypedDict, total=False):
     location: str
     workerMessages: _list[WorkerMessage]
 
 @typing.type_check_only
-class SendWorkerMessagesResponse(typing_extensions.TypedDict, total=False):
+class SendWorkerMessagesResponse(typing.TypedDict, total=False):
     workerMessageResponses: _list[WorkerMessageResponse]
 
 @typing.type_check_only
-class SeqMapTask(typing_extensions.TypedDict, total=False):
+class SeqMapTask(typing.TypedDict, total=False):
     inputs: _list[SideInputInfo]
     name: str
     outputInfos: _list[SeqMapTaskOutputInfo]
@@ -1073,32 +1081,32 @@ class SeqMapTask(typing_extensions.TypedDict, total=False):
     userFn: dict[str, typing.Any]
 
 @typing.type_check_only
-class SeqMapTaskOutputInfo(typing_extensions.TypedDict, total=False):
+class SeqMapTaskOutputInfo(typing.TypedDict, total=False):
     sink: Sink
     tag: str
 
 @typing.type_check_only
-class ServiceResources(typing_extensions.TypedDict, total=False):
+class ServiceResources(typing.TypedDict, total=False):
     zones: _list[str]
 
 @typing.type_check_only
-class ShellTask(typing_extensions.TypedDict, total=False):
+class ShellTask(typing.TypedDict, total=False):
     command: str
     exitCode: int
 
 @typing.type_check_only
-class SideInputInfo(typing_extensions.TypedDict, total=False):
+class SideInputInfo(typing.TypedDict, total=False):
     kind: dict[str, typing.Any]
     sources: _list[Source]
     tag: str
 
 @typing.type_check_only
-class Sink(typing_extensions.TypedDict, total=False):
+class Sink(typing.TypedDict, total=False):
     codec: dict[str, typing.Any]
     spec: dict[str, typing.Any]
 
 @typing.type_check_only
-class Snapshot(typing_extensions.TypedDict, total=False):
+class Snapshot(typing.TypedDict, total=False):
     creationTime: str
     description: str
     diskSizeBytes: str
@@ -1107,20 +1115,20 @@ class Snapshot(typing_extensions.TypedDict, total=False):
     pubsubMetadata: _list[PubsubSnapshotMetadata]
     region: str
     sourceJobId: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "UNKNOWN_SNAPSHOT_STATE", "PENDING", "RUNNING", "READY", "FAILED", "DELETED"
     ]
     ttl: str
 
 @typing.type_check_only
-class SnapshotJobRequest(typing_extensions.TypedDict, total=False):
+class SnapshotJobRequest(typing.TypedDict, total=False):
     description: str
     location: str
     snapshotSources: bool
     ttl: str
 
 @typing.type_check_only
-class Source(typing_extensions.TypedDict, total=False):
+class Source(typing.TypedDict, total=False):
     baseSpecs: _list[dict[str, typing.Any]]
     codec: dict[str, typing.Any]
     doesNotNeedSplitting: bool
@@ -1128,28 +1136,28 @@ class Source(typing_extensions.TypedDict, total=False):
     spec: dict[str, typing.Any]
 
 @typing.type_check_only
-class SourceFork(typing_extensions.TypedDict, total=False):
+class SourceFork(typing.TypedDict, total=False):
     primary: SourceSplitShard
     primarySource: DerivedSource
     residual: SourceSplitShard
     residualSource: DerivedSource
 
 @typing.type_check_only
-class SourceGetMetadataRequest(typing_extensions.TypedDict, total=False):
+class SourceGetMetadataRequest(typing.TypedDict, total=False):
     source: Source
 
 @typing.type_check_only
-class SourceGetMetadataResponse(typing_extensions.TypedDict, total=False):
+class SourceGetMetadataResponse(typing.TypedDict, total=False):
     metadata: SourceMetadata
 
 @typing.type_check_only
-class SourceMetadata(typing_extensions.TypedDict, total=False):
+class SourceMetadata(typing.TypedDict, total=False):
     estimatedSizeBytes: str
     infinite: bool
     producesSortedKeys: bool
 
 @typing.type_check_only
-class SourceOperationRequest(typing_extensions.TypedDict, total=False):
+class SourceOperationRequest(typing.TypedDict, total=False):
     getMetadata: SourceGetMetadataRequest
     name: str
     originalName: str
@@ -1158,24 +1166,24 @@ class SourceOperationRequest(typing_extensions.TypedDict, total=False):
     systemName: str
 
 @typing.type_check_only
-class SourceOperationResponse(typing_extensions.TypedDict, total=False):
+class SourceOperationResponse(typing.TypedDict, total=False):
     getMetadata: SourceGetMetadataResponse
     split: SourceSplitResponse
 
 @typing.type_check_only
-class SourceSplitOptions(typing_extensions.TypedDict, total=False):
+class SourceSplitOptions(typing.TypedDict, total=False):
     desiredBundleSizeBytes: str
     desiredShardSizeBytes: str
 
 @typing.type_check_only
-class SourceSplitRequest(typing_extensions.TypedDict, total=False):
+class SourceSplitRequest(typing.TypedDict, total=False):
     options: SourceSplitOptions
     source: Source
 
 @typing.type_check_only
-class SourceSplitResponse(typing_extensions.TypedDict, total=False):
+class SourceSplitResponse(typing.TypedDict, total=False):
     bundles: _list[DerivedSource]
-    outcome: typing_extensions.Literal[
+    outcome: typing.Literal[
         "SOURCE_SPLIT_OUTCOME_UNKNOWN",
         "SOURCE_SPLIT_OUTCOME_USE_CURRENT",
         "SOURCE_SPLIT_OUTCOME_SPLITTING_HAPPENED",
@@ -1183,8 +1191,8 @@ class SourceSplitResponse(typing_extensions.TypedDict, total=False):
     shards: _list[SourceSplitShard]
 
 @typing.type_check_only
-class SourceSplitShard(typing_extensions.TypedDict, total=False):
-    derivationMode: typing_extensions.Literal[
+class SourceSplitShard(typing.TypedDict, total=False):
+    derivationMode: typing.Literal[
         "SOURCE_DERIVATION_MODE_UNKNOWN",
         "SOURCE_DERIVATION_MODE_INDEPENDENT",
         "SOURCE_DERIVATION_MODE_CHILD_OF_CURRENT",
@@ -1193,18 +1201,18 @@ class SourceSplitShard(typing_extensions.TypedDict, total=False):
     source: Source
 
 @typing.type_check_only
-class SpannerIODetails(typing_extensions.TypedDict, total=False):
+class SpannerIODetails(typing.TypedDict, total=False):
     databaseId: str
     instanceId: str
     projectId: str
 
 @typing.type_check_only
-class SplitInt64(typing_extensions.TypedDict, total=False):
+class SplitInt64(typing.TypedDict, total=False):
     highBits: int
     lowBits: int
 
 @typing.type_check_only
-class Stack(typing_extensions.TypedDict, total=False):
+class Stack(typing.TypedDict, total=False):
     stackContent: str
     threadCount: int
     threadName: str
@@ -1212,25 +1220,25 @@ class Stack(typing_extensions.TypedDict, total=False):
     timestamp: str
 
 @typing.type_check_only
-class StageExecutionDetails(typing_extensions.TypedDict, total=False):
+class StageExecutionDetails(typing.TypedDict, total=False):
     nextPageToken: str
     workers: _list[WorkerDetails]
 
 @typing.type_check_only
-class StageSource(typing_extensions.TypedDict, total=False):
+class StageSource(typing.TypedDict, total=False):
     name: str
     originalTransformOrCollection: str
     sizeBytes: str
     userName: str
 
 @typing.type_check_only
-class StageSummary(typing_extensions.TypedDict, total=False):
+class StageSummary(typing.TypedDict, total=False):
     endTime: str
     metrics: _list[MetricUpdate]
     progress: ProgressTimeseries
     stageId: str
     startTime: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "EXECUTION_STATE_UNKNOWN",
         "EXECUTION_STATE_NOT_STARTED",
         "EXECUTION_STATE_RUNNING",
@@ -1241,56 +1249,56 @@ class StageSummary(typing_extensions.TypedDict, total=False):
     stragglerSummary: StragglerSummary
 
 @typing.type_check_only
-class StateFamilyConfig(typing_extensions.TypedDict, total=False):
+class StateFamilyConfig(typing.TypedDict, total=False):
     isRead: bool
     stateFamily: str
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class Step(typing_extensions.TypedDict, total=False):
+class Step(typing.TypedDict, total=False):
     kind: str
     name: str
     properties: dict[str, typing.Any]
 
 @typing.type_check_only
-class Straggler(typing_extensions.TypedDict, total=False):
+class Straggler(typing.TypedDict, total=False):
     batchStraggler: StragglerInfo
     streamingStraggler: StreamingStragglerInfo
 
 @typing.type_check_only
-class StragglerDebuggingInfo(typing_extensions.TypedDict, total=False):
+class StragglerDebuggingInfo(typing.TypedDict, total=False):
     hotKey: HotKeyDebuggingInfo
 
 @typing.type_check_only
-class StragglerInfo(typing_extensions.TypedDict, total=False):
+class StragglerInfo(typing.TypedDict, total=False):
     causes: dict[str, typing.Any]
     startTime: str
 
 @typing.type_check_only
-class StragglerSummary(typing_extensions.TypedDict, total=False):
+class StragglerSummary(typing.TypedDict, total=False):
     recentStragglers: _list[Straggler]
     stragglerCauseCount: dict[str, typing.Any]
     totalStragglerCount: str
 
 @typing.type_check_only
-class StreamLocation(typing_extensions.TypedDict, total=False):
+class StreamLocation(typing.TypedDict, total=False):
     customSourceLocation: CustomSourceLocation
     pubsubLocation: PubsubLocation
     sideInputLocation: StreamingSideInputLocation
     streamingStageLocation: StreamingStageLocation
 
 @typing.type_check_only
-class StreamingApplianceSnapshotConfig(typing_extensions.TypedDict, total=False):
+class StreamingApplianceSnapshotConfig(typing.TypedDict, total=False):
     importStateEndpoint: str
     snapshotId: str
 
 @typing.type_check_only
-class StreamingComputationConfig(typing_extensions.TypedDict, total=False):
+class StreamingComputationConfig(typing.TypedDict, total=False):
     computationId: str
     instructions: _list[ParallelInstruction]
     stageName: str
@@ -1298,22 +1306,22 @@ class StreamingComputationConfig(typing_extensions.TypedDict, total=False):
     transformUserNameToStateFamily: dict[str, typing.Any]
 
 @typing.type_check_only
-class StreamingComputationRanges(typing_extensions.TypedDict, total=False):
+class StreamingComputationRanges(typing.TypedDict, total=False):
     computationId: str
     rangeAssignments: _list[KeyRangeDataDiskAssignment]
 
 @typing.type_check_only
-class StreamingComputationTask(typing_extensions.TypedDict, total=False):
+class StreamingComputationTask(typing.TypedDict, total=False):
     computationRanges: _list[StreamingComputationRanges]
     dataDisks: _list[MountedDataDisk]
-    taskType: typing_extensions.Literal[
+    taskType: typing.Literal[
         "STREAMING_COMPUTATION_TASK_UNKNOWN",
         "STREAMING_COMPUTATION_TASK_STOP",
         "STREAMING_COMPUTATION_TASK_START",
     ]
 
 @typing.type_check_only
-class StreamingConfigTask(typing_extensions.TypedDict, total=False):
+class StreamingConfigTask(typing.TypedDict, total=False):
     commitStreamChunkSizeBytes: str
     getDataStreamChunkSizeBytes: str
     maxWorkItemCommitBytes: str
@@ -1327,7 +1335,7 @@ class StreamingConfigTask(typing_extensions.TypedDict, total=False):
     windmillServicePort: str
 
 @typing.type_check_only
-class StreamingOperationalLimits(typing_extensions.TypedDict, total=False):
+class StreamingOperationalLimits(typing.TypedDict, total=False):
     maxBagElementBytes: str
     maxGlobalDataBytes: str
     maxKeyBytes: str
@@ -1338,7 +1346,7 @@ class StreamingOperationalLimits(typing_extensions.TypedDict, total=False):
     maxValueBytes: str
 
 @typing.type_check_only
-class StreamingScalingReport(typing_extensions.TypedDict, total=False):
+class StreamingScalingReport(typing.TypedDict, total=False):
     activeBundleCount: int
     activeThreadCount: int
     maximumBundleCount: int
@@ -1350,11 +1358,11 @@ class StreamingScalingReport(typing_extensions.TypedDict, total=False):
     outstandingBytesCount: int
 
 @typing.type_check_only
-class StreamingScalingReportResponse(typing_extensions.TypedDict, total=False):
+class StreamingScalingReportResponse(typing.TypedDict, total=False):
     maximumThreadCount: int
 
 @typing.type_check_only
-class StreamingSetupTask(typing_extensions.TypedDict, total=False):
+class StreamingSetupTask(typing.TypedDict, total=False):
     drain: bool
     receiveWorkPort: int
     snapshotConfig: StreamingApplianceSnapshotConfig
@@ -1362,16 +1370,16 @@ class StreamingSetupTask(typing_extensions.TypedDict, total=False):
     workerHarnessPort: int
 
 @typing.type_check_only
-class StreamingSideInputLocation(typing_extensions.TypedDict, total=False):
+class StreamingSideInputLocation(typing.TypedDict, total=False):
     stateFamily: str
     tag: str
 
 @typing.type_check_only
-class StreamingStageLocation(typing_extensions.TypedDict, total=False):
+class StreamingStageLocation(typing.TypedDict, total=False):
     streamId: str
 
 @typing.type_check_only
-class StreamingStragglerInfo(typing_extensions.TypedDict, total=False):
+class StreamingStragglerInfo(typing.TypedDict, total=False):
     dataWatermarkLag: str
     endTime: str
     startTime: str
@@ -1379,17 +1387,17 @@ class StreamingStragglerInfo(typing_extensions.TypedDict, total=False):
     workerName: str
 
 @typing.type_check_only
-class StringList(typing_extensions.TypedDict, total=False):
+class StringList(typing.TypedDict, total=False):
     elements: _list[str]
 
 @typing.type_check_only
-class StructuredMessage(typing_extensions.TypedDict, total=False):
+class StructuredMessage(typing.TypedDict, total=False):
     messageKey: str
     messageText: str
     parameters: _list[Parameter]
 
 @typing.type_check_only
-class TaskRunnerSettings(typing_extensions.TypedDict, total=False):
+class TaskRunnerSettings(typing.TypedDict, total=False):
     alsologtostderr: bool
     baseTaskDir: str
     baseUrl: str
@@ -1411,7 +1419,7 @@ class TaskRunnerSettings(typing_extensions.TypedDict, total=False):
     workflowFileName: str
 
 @typing.type_check_only
-class TemplateMetadata(typing_extensions.TypedDict, total=False):
+class TemplateMetadata(typing.TypedDict, total=False):
     defaultStreamingMode: str
     description: str
     name: str
@@ -1422,7 +1430,7 @@ class TemplateMetadata(typing_extensions.TypedDict, total=False):
     yamlDefinition: str
 
 @typing.type_check_only
-class TopologyConfig(typing_extensions.TypedDict, total=False):
+class TopologyConfig(typing.TypedDict, total=False):
     computations: _list[ComputationTopology]
     dataDiskAssignments: _list[DataDiskAssignment]
     forwardingKeyBits: int
@@ -1430,11 +1438,11 @@ class TopologyConfig(typing_extensions.TypedDict, total=False):
     userStageToComputationNameMap: dict[str, typing.Any]
 
 @typing.type_check_only
-class TransformSummary(typing_extensions.TypedDict, total=False):
+class TransformSummary(typing.TypedDict, total=False):
     displayData: _list[DisplayData]
     id: str
     inputCollectionName: _list[str]
-    kind: typing_extensions.Literal[
+    kind: typing.Literal[
         "UNKNOWN_KIND",
         "PAR_DO_KIND",
         "GROUP_BY_KEY_KIND",
@@ -1449,7 +1457,7 @@ class TransformSummary(typing_extensions.TypedDict, total=False):
     outputCollectionName: _list[str]
 
 @typing.type_check_only
-class WorkItem(typing_extensions.TypedDict, total=False):
+class WorkItem(typing.TypedDict, total=False):
     configuration: str
     id: str
     initialReportIndex: str
@@ -1467,13 +1475,13 @@ class WorkItem(typing_extensions.TypedDict, total=False):
     streamingSetupTask: StreamingSetupTask
 
 @typing.type_check_only
-class WorkItemDetails(typing_extensions.TypedDict, total=False):
+class WorkItemDetails(typing.TypedDict, total=False):
     attemptId: str
     endTime: str
     metrics: _list[MetricUpdate]
     progress: ProgressTimeseries
     startTime: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "EXECUTION_STATE_UNKNOWN",
         "EXECUTION_STATE_NOT_STARTED",
         "EXECUTION_STATE_RUNNING",
@@ -1485,7 +1493,7 @@ class WorkItemDetails(typing_extensions.TypedDict, total=False):
     taskId: str
 
 @typing.type_check_only
-class WorkItemServiceState(typing_extensions.TypedDict, total=False):
+class WorkItemServiceState(typing.TypedDict, total=False):
     completeWorkStatus: Status
     harnessData: dict[str, typing.Any]
     hotKeyDetection: HotKeyDetection
@@ -1498,7 +1506,7 @@ class WorkItemServiceState(typing_extensions.TypedDict, total=False):
     suggestedStopPosition: Position
 
 @typing.type_check_only
-class WorkItemStatus(typing_extensions.TypedDict, total=False):
+class WorkItemStatus(typing.TypedDict, total=False):
     completed: bool
     counterUpdates: _list[CounterUpdate]
     dynamicSourceSplit: DynamicSourceSplit
@@ -1515,12 +1523,12 @@ class WorkItemStatus(typing_extensions.TypedDict, total=False):
     workItemId: str
 
 @typing.type_check_only
-class WorkerDetails(typing_extensions.TypedDict, total=False):
+class WorkerDetails(typing.TypedDict, total=False):
     workItems: _list[WorkItemDetails]
     workerName: str
 
 @typing.type_check_only
-class WorkerHealthReport(typing_extensions.TypedDict, total=False):
+class WorkerHealthReport(typing.TypedDict, total=False):
     msg: str
     pods: _list[dict[str, typing.Any]]
     reportInterval: str
@@ -1530,13 +1538,13 @@ class WorkerHealthReport(typing_extensions.TypedDict, total=False):
     vmStartupTime: str
 
 @typing.type_check_only
-class WorkerHealthReportResponse(typing_extensions.TypedDict, total=False):
+class WorkerHealthReportResponse(typing.TypedDict, total=False):
     reportInterval: str
 
 @typing.type_check_only
-class WorkerLifecycleEvent(typing_extensions.TypedDict, total=False):
+class WorkerLifecycleEvent(typing.TypedDict, total=False):
     containerStartTime: str
-    event: typing_extensions.Literal[
+    event: typing.Literal[
         "UNKNOWN_EVENT",
         "OS_START",
         "CONTAINER_START",
@@ -1549,7 +1557,7 @@ class WorkerLifecycleEvent(typing_extensions.TypedDict, total=False):
     metadata: dict[str, typing.Any]
 
 @typing.type_check_only
-class WorkerMessage(typing_extensions.TypedDict, total=False):
+class WorkerMessage(typing.TypedDict, total=False):
     dataSamplingReport: DataSamplingReport
     labels: dict[str, typing.Any]
     perWorkerMetrics: PerWorkerMetrics
@@ -1563,12 +1571,12 @@ class WorkerMessage(typing_extensions.TypedDict, total=False):
     workerThreadScalingReport: WorkerThreadScalingReport
 
 @typing.type_check_only
-class WorkerMessageCode(typing_extensions.TypedDict, total=False):
+class WorkerMessageCode(typing.TypedDict, total=False):
     code: str
     parameters: dict[str, typing.Any]
 
 @typing.type_check_only
-class WorkerMessageResponse(typing_extensions.TypedDict, total=False):
+class WorkerMessageResponse(typing.TypedDict, total=False):
     streamingScalingReportResponse: StreamingScalingReportResponse
     workerHealthReportResponse: WorkerHealthReportResponse
     workerMetricsResponse: ResourceUtilizationReportResponse
@@ -1576,10 +1584,10 @@ class WorkerMessageResponse(typing_extensions.TypedDict, total=False):
     workerThreadScalingReportResponse: WorkerThreadScalingReportResponse
 
 @typing.type_check_only
-class WorkerPool(typing_extensions.TypedDict, total=False):
+class WorkerPool(typing.TypedDict, total=False):
     autoscalingSettings: AutoscalingSettings
     dataDisks: _list[Disk]
-    defaultPackageSet: typing_extensions.Literal[
+    defaultPackageSet: typing.Literal[
         "DEFAULT_PACKAGE_SET_UNKNOWN",
         "DEFAULT_PACKAGE_SET_NONE",
         "DEFAULT_PACKAGE_SET_JAVA",
@@ -1590,7 +1598,7 @@ class WorkerPool(typing_extensions.TypedDict, total=False):
     diskSizeGb: int
     diskSourceImage: str
     diskType: str
-    ipConfiguration: typing_extensions.Literal[
+    ipConfiguration: typing.Literal[
         "WORKER_IP_UNSPECIFIED", "WORKER_IP_PUBLIC", "WORKER_IP_PRIVATE"
     ]
     kind: str
@@ -1605,7 +1613,7 @@ class WorkerPool(typing_extensions.TypedDict, total=False):
     sdkHarnessContainerImages: _list[SdkHarnessContainerImage]
     subnetwork: str
     taskrunnerSettings: TaskRunnerSettings
-    teardownPolicy: typing_extensions.Literal[
+    teardownPolicy: typing.Literal[
         "TEARDOWN_POLICY_UNKNOWN",
         "TEARDOWN_ALWAYS",
         "TEARDOWN_ON_SUCCESS",
@@ -1615,7 +1623,7 @@ class WorkerPool(typing_extensions.TypedDict, total=False):
     zone: str
 
 @typing.type_check_only
-class WorkerSettings(typing_extensions.TypedDict, total=False):
+class WorkerSettings(typing.TypedDict, total=False):
     baseUrl: str
     reportingEnabled: bool
     servicePath: str
@@ -1624,21 +1632,21 @@ class WorkerSettings(typing_extensions.TypedDict, total=False):
     workerId: str
 
 @typing.type_check_only
-class WorkerShutdownNotice(typing_extensions.TypedDict, total=False):
+class WorkerShutdownNotice(typing.TypedDict, total=False):
     reason: str
 
 @typing.type_check_only
-class WorkerShutdownNoticeResponse(typing_extensions.TypedDict, total=False): ...
+class WorkerShutdownNoticeResponse(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class WorkerThreadScalingReport(typing_extensions.TypedDict, total=False):
+class WorkerThreadScalingReport(typing.TypedDict, total=False):
     currentThreadCount: int
 
 @typing.type_check_only
-class WorkerThreadScalingReportResponse(typing_extensions.TypedDict, total=False):
+class WorkerThreadScalingReportResponse(typing.TypedDict, total=False):
     recommendedThreadCount: int
 
 @typing.type_check_only
-class WriteInstruction(typing_extensions.TypedDict, total=False):
+class WriteInstruction(typing.TypedDict, total=False):
     input: InstructionInput
     sink: Sink

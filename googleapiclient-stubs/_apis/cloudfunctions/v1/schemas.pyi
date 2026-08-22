@@ -1,42 +1,40 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class AuditConfig(typing_extensions.TypedDict, total=False):
+class AuditConfig(typing.TypedDict, total=False):
     auditLogConfigs: _list[AuditLogConfig]
     service: str
 
 @typing.type_check_only
-class AuditLogConfig(typing_extensions.TypedDict, total=False):
+class AuditLogConfig(typing.TypedDict, total=False):
     exemptedMembers: _list[str]
-    logType: typing_extensions.Literal[
+    logType: typing.Literal[
         "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
     ]
 
 @typing.type_check_only
-class AutomaticUpdatePolicy(typing_extensions.TypedDict, total=False): ...
+class AutomaticUpdatePolicy(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Binding(typing_extensions.TypedDict, total=False):
+class Binding(typing.TypedDict, total=False):
     condition: Expr
     members: _list[str]
     role: str
 
 @typing.type_check_only
-class CallFunctionRequest(typing_extensions.TypedDict, total=False):
+class CallFunctionRequest(typing.TypedDict, total=False):
     data: str
 
 @typing.type_check_only
-class CallFunctionResponse(typing_extensions.TypedDict, total=False):
+class CallFunctionResponse(typing.TypedDict, total=False):
     error: str
     executionId: str
     result: str
 
 @typing.type_check_only
-class CloudFunction(typing_extensions.TypedDict, total=False):
+class CloudFunction(typing.TypedDict, total=False):
     automaticUpdatePolicy: AutomaticUpdatePolicy
     availableMemoryMb: int
     buildEnvironmentVariables: dict[str, typing.Any]
@@ -45,7 +43,7 @@ class CloudFunction(typing_extensions.TypedDict, total=False):
     buildServiceAccount: str
     buildWorkerPool: str
     description: str
-    dockerRegistry: typing_extensions.Literal[
+    dockerRegistry: typing.Literal[
         "DOCKER_REGISTRY_UNSPECIFIED", "CONTAINER_REGISTRY", "ARTIFACT_REGISTRY"
     ]
     dockerRepository: str
@@ -53,7 +51,7 @@ class CloudFunction(typing_extensions.TypedDict, total=False):
     environmentVariables: dict[str, typing.Any]
     eventTrigger: EventTrigger
     httpsTrigger: HttpsTrigger
-    ingressSettings: typing_extensions.Literal[
+    ingressSettings: typing.Literal[
         "INGRESS_SETTINGS_UNSPECIFIED",
         "ALLOW_ALL",
         "ALLOW_INTERNAL_ONLY",
@@ -76,7 +74,7 @@ class CloudFunction(typing_extensions.TypedDict, total=False):
     sourceRepository: SourceRepository
     sourceToken: str
     sourceUploadUrl: str
-    status: typing_extensions.Literal[
+    status: typing.Literal[
         "CLOUD_FUNCTION_STATUS_UNSPECIFIED",
         "ACTIVE",
         "OFFLINE",
@@ -88,72 +86,72 @@ class CloudFunction(typing_extensions.TypedDict, total=False):
     updateTime: str
     versionId: str
     vpcConnector: str
-    vpcConnectorEgressSettings: typing_extensions.Literal[
+    vpcConnectorEgressSettings: typing.Literal[
         "VPC_CONNECTOR_EGRESS_SETTINGS_UNSPECIFIED",
         "PRIVATE_RANGES_ONLY",
         "ALL_TRAFFIC",
     ]
 
 @typing.type_check_only
-class EventTrigger(typing_extensions.TypedDict, total=False):
+class EventTrigger(typing.TypedDict, total=False):
     eventType: str
     failurePolicy: FailurePolicy
     resource: str
     service: str
 
 @typing.type_check_only
-class Expr(typing_extensions.TypedDict, total=False):
+class Expr(typing.TypedDict, total=False):
     description: str
     expression: str
     location: str
     title: str
 
 @typing.type_check_only
-class FailurePolicy(typing_extensions.TypedDict, total=False):
+class FailurePolicy(typing.TypedDict, total=False):
     retry: Retry
 
 @typing.type_check_only
-class GenerateDownloadUrlRequest(typing_extensions.TypedDict, total=False):
+class GenerateDownloadUrlRequest(typing.TypedDict, total=False):
     versionId: str
 
 @typing.type_check_only
-class GenerateDownloadUrlResponse(typing_extensions.TypedDict, total=False):
+class GenerateDownloadUrlResponse(typing.TypedDict, total=False):
     downloadUrl: str
 
 @typing.type_check_only
-class GenerateUploadUrlRequest(typing_extensions.TypedDict, total=False):
+class GenerateUploadUrlRequest(typing.TypedDict, total=False):
     kmsKeyName: str
 
 @typing.type_check_only
-class GenerateUploadUrlResponse(typing_extensions.TypedDict, total=False):
+class GenerateUploadUrlResponse(typing.TypedDict, total=False):
     uploadUrl: str
 
 @typing.type_check_only
-class HttpsTrigger(typing_extensions.TypedDict, total=False):
-    securityLevel: typing_extensions.Literal[
+class HttpsTrigger(typing.TypedDict, total=False):
+    securityLevel: typing.Literal[
         "SECURITY_LEVEL_UNSPECIFIED", "SECURE_ALWAYS", "SECURE_OPTIONAL"
     ]
     url: str
 
 @typing.type_check_only
-class ListFunctionsResponse(typing_extensions.TypedDict, total=False):
+class ListFunctionsResponse(typing.TypedDict, total=False):
     functions: _list[CloudFunction]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListLocationsResponse(typing_extensions.TypedDict, total=False):
+class ListLocationsResponse(typing.TypedDict, total=False):
     locations: _list[Location]
     nextPageToken: str
 
 @typing.type_check_only
-class ListOperationsResponse(typing_extensions.TypedDict, total=False):
+class ListOperationsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
     unreachable: _list[str]
 
 @typing.type_check_only
-class Location(typing_extensions.TypedDict, total=False):
+class Location(typing.TypedDict, total=False):
     displayName: str
     labels: dict[str, typing.Any]
     locationId: str
@@ -161,11 +159,11 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class OnDeployUpdatePolicy(typing_extensions.TypedDict, total=False):
+class OnDeployUpdatePolicy(typing.TypedDict, total=False):
     runtimeVersion: str
 
 @typing.type_check_only
-class Operation(typing_extensions.TypedDict, total=False):
+class Operation(typing.TypedDict, total=False):
     done: bool
     error: Status
     metadata: dict[str, typing.Any]
@@ -173,67 +171,67 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class OperationMetadataV1(typing_extensions.TypedDict, total=False):
+class OperationMetadataV1(typing.TypedDict, total=False):
     buildId: str
     buildName: str
     request: dict[str, typing.Any]
     sourceToken: str
     target: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "OPERATION_UNSPECIFIED", "CREATE_FUNCTION", "UPDATE_FUNCTION", "DELETE_FUNCTION"
     ]
     updateTime: str
     versionId: str
 
 @typing.type_check_only
-class Policy(typing_extensions.TypedDict, total=False):
+class Policy(typing.TypedDict, total=False):
     auditConfigs: _list[AuditConfig]
     bindings: _list[Binding]
     etag: str
     version: int
 
 @typing.type_check_only
-class Retry(typing_extensions.TypedDict, total=False): ...
+class Retry(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class SecretEnvVar(typing_extensions.TypedDict, total=False):
+class SecretEnvVar(typing.TypedDict, total=False):
     key: str
     projectId: str
     secret: str
     version: str
 
 @typing.type_check_only
-class SecretVersion(typing_extensions.TypedDict, total=False):
+class SecretVersion(typing.TypedDict, total=False):
     path: str
     version: str
 
 @typing.type_check_only
-class SecretVolume(typing_extensions.TypedDict, total=False):
+class SecretVolume(typing.TypedDict, total=False):
     mountPath: str
     projectId: str
     secret: str
     versions: _list[SecretVersion]
 
 @typing.type_check_only
-class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
+class SetIamPolicyRequest(typing.TypedDict, total=False):
     policy: Policy
     updateMask: str
 
 @typing.type_check_only
-class SourceRepository(typing_extensions.TypedDict, total=False):
+class SourceRepository(typing.TypedDict, total=False):
     deployedUrl: str
     url: str
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
+class TestIamPermissionsRequest(typing.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
-class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
+class TestIamPermissionsResponse(typing.TypedDict, total=False):
     permissions: _list[str]

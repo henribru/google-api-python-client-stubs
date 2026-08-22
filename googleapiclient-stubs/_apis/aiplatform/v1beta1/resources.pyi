@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -1255,6 +1254,180 @@ class AiplatformResource(googleapiclient.discovery.Resource):
             body: GoogleCloudAiplatformV1beta1UploadRagFileRequest,
             **kwargs: typing.Any,
         ) -> GoogleCloudAiplatformV1beta1UploadRagFileResponseHttpRequest: ...
+
+    @typing.type_check_only
+    class MemoryBanksResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class MemoriesResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class OperationsResource(googleapiclient.discovery.Resource):
+                def cancel(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleProtobufEmptyHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleProtobufEmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    name: str,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    returnPartialSuccess: bool | None = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
+                    previous_response: GoogleLongrunningListOperationsResponse,
+                ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
+                def wait(
+                    self, *, name: str, timeout: str | None = ..., **kwargs: typing.Any
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+
+            @typing.type_check_only
+            class RevisionsResource(googleapiclient.discovery.Resource):
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudAiplatformV1beta1MemoryRevisionHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> (
+                    GoogleCloudAiplatformV1beta1ListMemoryRevisionsResponseHttpRequest
+                ): ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudAiplatformV1beta1ListMemoryRevisionsResponseHttpRequest,
+                    previous_response: GoogleCloudAiplatformV1beta1ListMemoryRevisionsResponse,
+                ) -> (
+                    GoogleCloudAiplatformV1beta1ListMemoryRevisionsResponseHttpRequest
+                    | None
+                ): ...
+
+            def create(
+                self,
+                *,
+                parent: str,
+                body: GoogleCloudAiplatformV1beta1Memory,
+                memoryId: str | None = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleLongrunningOperationHttpRequest: ...
+            def delete(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleLongrunningOperationHttpRequest: ...
+            def generate(
+                self,
+                *,
+                parent: str,
+                body: GoogleCloudAiplatformV1beta1GenerateMemoriesRequest,
+                **kwargs: typing.Any,
+            ) -> GoogleLongrunningOperationHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleCloudAiplatformV1beta1MemoryHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                filter: str | None = ...,
+                orderBy: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleCloudAiplatformV1beta1ListMemoriesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleCloudAiplatformV1beta1ListMemoriesResponseHttpRequest,
+                previous_response: GoogleCloudAiplatformV1beta1ListMemoriesResponse,
+            ) -> GoogleCloudAiplatformV1beta1ListMemoriesResponseHttpRequest | None: ...
+            def patch(
+                self,
+                *,
+                name: str,
+                body: GoogleCloudAiplatformV1beta1Memory,
+                updateMask: str | None = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleLongrunningOperationHttpRequest: ...
+            def purge(
+                self,
+                *,
+                parent: str,
+                body: GoogleCloudAiplatformV1beta1PurgeMemoriesRequest,
+                **kwargs: typing.Any,
+            ) -> GoogleLongrunningOperationHttpRequest: ...
+            def retrieve(
+                self,
+                *,
+                parent: str,
+                body: GoogleCloudAiplatformV1beta1RetrieveMemoriesRequest,
+                **kwargs: typing.Any,
+            ) -> GoogleCloudAiplatformV1beta1RetrieveMemoriesResponseHttpRequest: ...
+            def retrieveProfiles(
+                self,
+                *,
+                parent: str,
+                body: GoogleCloudAiplatformV1beta1RetrieveProfilesRequest,
+                **kwargs: typing.Any,
+            ) -> GoogleCloudAiplatformV1beta1RetrieveProfilesResponseHttpRequest: ...
+            def rollback(
+                self,
+                *,
+                name: str,
+                body: GoogleCloudAiplatformV1beta1RollbackMemoryRequest,
+                **kwargs: typing.Any,
+            ) -> GoogleLongrunningOperationHttpRequest: ...
+            def operations(self) -> OperationsResource: ...
+            def revisions(self) -> RevisionsResource: ...
+
+        @typing.type_check_only
+        class OperationsResource(googleapiclient.discovery.Resource):
+            def cancel(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleProtobufEmptyHttpRequest: ...
+            def delete(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleProtobufEmptyHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleLongrunningOperationHttpRequest: ...
+            def list(
+                self,
+                *,
+                name: str,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
+                returnPartialSuccess: bool | None = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
+                previous_response: GoogleLongrunningListOperationsResponse,
+            ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
+            def wait(
+                self, *, name: str, timeout: str | None = ..., **kwargs: typing.Any
+            ) -> GoogleLongrunningOperationHttpRequest: ...
+
+        def ingestEvents(
+            self,
+            *,
+            parent: str,
+            body: GoogleCloudAiplatformV1beta1IngestEventsRequest,
+            **kwargs: typing.Any,
+        ) -> GoogleLongrunningOperationHttpRequest: ...
+        def memories(self) -> MemoriesResource: ...
+        def operations(self) -> OperationsResource: ...
 
     @typing.type_check_only
     class MetadataStoresResource(googleapiclient.discovery.Resource):
@@ -4775,6 +4948,7 @@ class AiplatformResource(googleapiclient.discovery.Resource):
                     *,
                     indexEndpoint: str,
                     body: GoogleCloudAiplatformV1beta1DeployedIndex,
+                    updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def patch(
@@ -4925,6 +5099,197 @@ class AiplatformResource(googleapiclient.discovery.Resource):
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> GenaiVertexV1beta1DeleteInteractionResponseHttpRequest: ...
+
+            @typing.type_check_only
+            class MemoryBanksResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class MemoriesResource(googleapiclient.discovery.Resource):
+                    @typing.type_check_only
+                    class OperationsResource(googleapiclient.discovery.Resource):
+                        def cancel(
+                            self, *, name: str, **kwargs: typing.Any
+                        ) -> GoogleProtobufEmptyHttpRequest: ...
+                        def delete(
+                            self, *, name: str, **kwargs: typing.Any
+                        ) -> GoogleProtobufEmptyHttpRequest: ...
+                        def get(
+                            self, *, name: str, **kwargs: typing.Any
+                        ) -> GoogleLongrunningOperationHttpRequest: ...
+                        def list(
+                            self,
+                            *,
+                            name: str,
+                            filter: str | None = ...,
+                            pageSize: int | None = ...,
+                            pageToken: str | None = ...,
+                            returnPartialSuccess: bool | None = ...,
+                            **kwargs: typing.Any,
+                        ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
+                        def list_next(
+                            self,
+                            previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
+                            previous_response: GoogleLongrunningListOperationsResponse,
+                        ) -> (
+                            GoogleLongrunningListOperationsResponseHttpRequest | None
+                        ): ...
+                        def wait(
+                            self,
+                            *,
+                            name: str,
+                            timeout: str | None = ...,
+                            **kwargs: typing.Any,
+                        ) -> GoogleLongrunningOperationHttpRequest: ...
+
+                    @typing.type_check_only
+                    class RevisionsResource(googleapiclient.discovery.Resource):
+                        def get(
+                            self, *, name: str, **kwargs: typing.Any
+                        ) -> GoogleCloudAiplatformV1beta1MemoryRevisionHttpRequest: ...
+                        def list(
+                            self,
+                            *,
+                            parent: str,
+                            filter: str | None = ...,
+                            pageSize: int | None = ...,
+                            pageToken: str | None = ...,
+                            **kwargs: typing.Any,
+                        ) -> GoogleCloudAiplatformV1beta1ListMemoryRevisionsResponseHttpRequest: ...
+                        def list_next(
+                            self,
+                            previous_request: GoogleCloudAiplatformV1beta1ListMemoryRevisionsResponseHttpRequest,
+                            previous_response: GoogleCloudAiplatformV1beta1ListMemoryRevisionsResponse,
+                        ) -> (
+                            GoogleCloudAiplatformV1beta1ListMemoryRevisionsResponseHttpRequest
+                            | None
+                        ): ...
+
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: GoogleCloudAiplatformV1beta1Memory,
+                        memoryId: str | None = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
+                    def generate(
+                        self,
+                        *,
+                        parent: str,
+                        body: GoogleCloudAiplatformV1beta1GenerateMemoriesRequest,
+                        **kwargs: typing.Any,
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleCloudAiplatformV1beta1MemoryHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        filter: str | None = ...,
+                        orderBy: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
+                        **kwargs: typing.Any,
+                    ) -> (
+                        GoogleCloudAiplatformV1beta1ListMemoriesResponseHttpRequest
+                    ): ...
+                    def list_next(
+                        self,
+                        previous_request: GoogleCloudAiplatformV1beta1ListMemoriesResponseHttpRequest,
+                        previous_response: GoogleCloudAiplatformV1beta1ListMemoriesResponse,
+                    ) -> (
+                        GoogleCloudAiplatformV1beta1ListMemoriesResponseHttpRequest
+                        | None
+                    ): ...
+                    def patch(
+                        self,
+                        *,
+                        name: str,
+                        body: GoogleCloudAiplatformV1beta1Memory,
+                        updateMask: str | None = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
+                    def purge(
+                        self,
+                        *,
+                        parent: str,
+                        body: GoogleCloudAiplatformV1beta1PurgeMemoriesRequest,
+                        **kwargs: typing.Any,
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
+                    def retrieve(
+                        self,
+                        *,
+                        parent: str,
+                        body: GoogleCloudAiplatformV1beta1RetrieveMemoriesRequest,
+                        **kwargs: typing.Any,
+                    ) -> (
+                        GoogleCloudAiplatformV1beta1RetrieveMemoriesResponseHttpRequest
+                    ): ...
+                    def retrieveProfiles(
+                        self,
+                        *,
+                        parent: str,
+                        body: GoogleCloudAiplatformV1beta1RetrieveProfilesRequest,
+                        **kwargs: typing.Any,
+                    ) -> (
+                        GoogleCloudAiplatformV1beta1RetrieveProfilesResponseHttpRequest
+                    ): ...
+                    def rollback(
+                        self,
+                        *,
+                        name: str,
+                        body: GoogleCloudAiplatformV1beta1RollbackMemoryRequest,
+                        **kwargs: typing.Any,
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
+                    def operations(self) -> OperationsResource: ...
+                    def revisions(self) -> RevisionsResource: ...
+
+                @typing.type_check_only
+                class OperationsResource(googleapiclient.discovery.Resource):
+                    def cancel(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleProtobufEmptyHttpRequest: ...
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleProtobufEmptyHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        name: str,
+                        filter: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
+                        returnPartialSuccess: bool | None = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
+                        previous_response: GoogleLongrunningListOperationsResponse,
+                    ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
+                    def wait(
+                        self,
+                        *,
+                        name: str,
+                        timeout: str | None = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
+
+                def ingestEvents(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleCloudAiplatformV1beta1IngestEventsRequest,
+                    **kwargs: typing.Any,
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+                def memories(self) -> MemoriesResource: ...
+                def operations(self) -> OperationsResource: ...
 
             @typing.type_check_only
             class MetadataStoresResource(googleapiclient.discovery.Resource):
@@ -5985,7 +6350,7 @@ class AiplatformResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        view: typing_extensions.Literal[
+                        view: typing.Literal[
                             "ANALYZED_SESSION_VIEW_UNSPECIFIED",
                             "ANALYZED_SESSION_VIEW_BASIC",
                             "ANALYZED_SESSION_VIEW_FULL",
@@ -6001,7 +6366,7 @@ class AiplatformResource(googleapiclient.discovery.Resource):
                         orderBy: str | None = ...,
                         pageSize: int | None = ...,
                         pageToken: str | None = ...,
-                        view: typing_extensions.Literal[
+                        view: typing.Literal[
                             "ANALYZED_SESSION_VIEW_UNSPECIFIED",
                             "ANALYZED_SESSION_VIEW_BASIC",
                             "ANALYZED_SESSION_VIEW_FULL",
@@ -6180,7 +6545,7 @@ class AiplatformResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    view: typing_extensions.Literal[
+                    view: typing.Literal[
                         "NOTEBOOK_EXECUTION_JOB_VIEW_UNSPECIFIED",
                         "NOTEBOOK_EXECUTION_JOB_VIEW_BASIC",
                         "NOTEBOOK_EXECUTION_JOB_VIEW_FULL",
@@ -6196,7 +6561,7 @@ class AiplatformResource(googleapiclient.discovery.Resource):
                     orderBy: str | None = ...,
                     pageSize: int | None = ...,
                     pageToken: str | None = ...,
-                    view: typing_extensions.Literal[
+                    view: typing.Literal[
                         "NOTEBOOK_EXECUTION_JOB_VIEW_UNSPECIFIED",
                         "NOTEBOOK_EXECUTION_JOB_VIEW_BASIC",
                         "NOTEBOOK_EXECUTION_JOB_VIEW_FULL",
@@ -6865,7 +7230,29 @@ class AiplatformResource(googleapiclient.discovery.Resource):
                     ) -> GoogleApiHttpBodyHttpRequest: ...
                     def invoke(self) -> InvokeResource: ...
 
+                @typing.type_check_only
+                class V1Resource(googleapiclient.discovery.Resource):
+                    @typing.type_check_only
+                    class ResponsesResource(googleapiclient.discovery.Resource):
+                        def compact(
+                            self,
+                            *,
+                            endpoint: str,
+                            body: GoogleApiHttpBody,
+                            deployedModelId: str | None = ...,
+                            **kwargs: typing.Any,
+                        ) -> GoogleApiHttpBodyHttpRequest: ...
+                        def delete(
+                            self, *, name: str, **kwargs: typing.Any
+                        ) -> GoogleApiHttpBodyHttpRequest: ...
+                        def get(
+                            self, *, name: str, **kwargs: typing.Any
+                        ) -> GoogleApiHttpBodyHttpRequest: ...
+
+                    def responses(self) -> ResponsesResource: ...
+
                 def models(self) -> ModelsResource: ...
+                def v1(self) -> V1Resource: ...
 
             @typing.type_check_only
             class RagCorporaResource(googleapiclient.discovery.Resource):
@@ -7367,7 +7754,16 @@ class AiplatformResource(googleapiclient.discovery.Resource):
                         self, *, name: str, **kwargs: typing.Any
                     ) -> GoogleProtobufEmptyHttpRequest: ...
                     def get(
-                        self, *, name: str, **kwargs: typing.Any
+                        self,
+                        *,
+                        name: str,
+                        view: typing.Literal[
+                            "A2A_TASK_VIEW_UNSPECIFIED",
+                            "A2A_TASK_VIEW_BASIC",
+                            "A2A_TASK_VIEW_FULL",
+                        ]
+                        | None = ...,
+                        **kwargs: typing.Any,
                     ) -> GoogleCloudAiplatformV1beta1A2aTaskHttpRequest: ...
                     def list(
                         self,
@@ -7452,6 +7848,56 @@ class AiplatformResource(googleapiclient.discovery.Resource):
                             **kwargs: typing.Any,
                         ) -> GoogleLongrunningOperationHttpRequest: ...
 
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: GoogleCloudAiplatformV1beta1FeedbackEntry,
+                        **kwargs: typing.Any,
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleCloudAiplatformV1beta1FeedbackEntryHttpRequest: ...
+                    def getFeedbackContext(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleCloudAiplatformV1beta1FeedbackContextHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        filter: str | None = ...,
+                        orderBy: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleCloudAiplatformV1beta1ListFeedbackEntriesResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: GoogleCloudAiplatformV1beta1ListFeedbackEntriesResponseHttpRequest,
+                        previous_response: GoogleCloudAiplatformV1beta1ListFeedbackEntriesResponse,
+                    ) -> (
+                        GoogleCloudAiplatformV1beta1ListFeedbackEntriesResponseHttpRequest
+                        | None
+                    ): ...
+                    def patch(
+                        self,
+                        *,
+                        name: str,
+                        body: GoogleCloudAiplatformV1beta1FeedbackEntry,
+                        updateMask: str | None = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
+                    def updateFeedbackContext(
+                        self,
+                        *,
+                        name: str,
+                        body: GoogleCloudAiplatformV1beta1FeedbackContext,
+                        updateMask: str | None = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
                     def operations(self) -> OperationsResource: ...
 
                 @typing.type_check_only
@@ -8186,6 +8632,13 @@ class AiplatformResource(googleapiclient.discovery.Resource):
                         body: GoogleCloudAiplatformV1beta1SessionEvent,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudAiplatformV1beta1AppendEventResponseHttpRequest: ...
+                    def compact(
+                        self,
+                        *,
+                        name: str,
+                        body: GoogleCloudAiplatformV1beta1CompactSessionRequest,
+                        **kwargs: typing.Any,
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
                     def create(
                         self,
                         *,
@@ -8563,6 +9016,46 @@ class AiplatformResource(googleapiclient.discovery.Resource):
                         **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
 
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleCloudAiplatformV1beta1ServingProfile,
+                    servingProfileId: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleProtobufEmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudAiplatformV1beta1ServingProfileHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> (
+                    GoogleCloudAiplatformV1beta1ListServingProfilesResponseHttpRequest
+                ): ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudAiplatformV1beta1ListServingProfilesResponseHttpRequest,
+                    previous_response: GoogleCloudAiplatformV1beta1ListServingProfilesResponse,
+                ) -> (
+                    GoogleCloudAiplatformV1beta1ListServingProfilesResponseHttpRequest
+                    | None
+                ): ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudAiplatformV1beta1ServingProfile,
+                    updateMask: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleCloudAiplatformV1beta1ServingProfileHttpRequest: ...
                 def operations(self) -> OperationsResource: ...
 
             @typing.type_check_only
@@ -9459,9 +9952,22 @@ class AiplatformResource(googleapiclient.discovery.Resource):
             class TuningJobsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class OperationsResource(googleapiclient.discovery.Resource):
+                    def cancel(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleProtobufEmptyHttpRequest: ...
                     def delete(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> GoogleProtobufEmptyHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
+                    def wait(
+                        self,
+                        *,
+                        name: str,
+                        timeout: str | None = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
 
                 def cancel(
                     self,
@@ -9699,6 +10205,7 @@ class AiplatformResource(googleapiclient.discovery.Resource):
             def indexEndpoints(self) -> IndexEndpointsResource: ...
             def indexes(self) -> IndexesResource: ...
             def interactions(self) -> InteractionsResource: ...
+            def memoryBanks(self) -> MemoryBanksResource: ...
             def metadataStores(self) -> MetadataStoresResource: ...
             def migratableResources(self) -> MigratableResourcesResource: ...
             def modelDeploymentMonitoringJobs(
@@ -9835,7 +10342,7 @@ class AiplatformResource(googleapiclient.discovery.Resource):
                 includeEquivalentModelGardenModelDeploymentConfigs: bool | None = ...,
                 isHuggingFaceModel: bool | None = ...,
                 languageCode: str | None = ...,
-                view: typing_extensions.Literal[
+                view: typing.Literal[
                     "PUBLISHER_MODEL_VIEW_UNSPECIFIED",
                     "PUBLISHER_MODEL_VIEW_BASIC",
                     "PUBLISHER_MODEL_VIEW_FULL",
@@ -9854,7 +10361,7 @@ class AiplatformResource(googleapiclient.discovery.Resource):
                 orderBy: str | None = ...,
                 pageSize: int | None = ...,
                 pageToken: str | None = ...,
-                view: typing_extensions.Literal[
+                view: typing.Literal[
                     "PUBLISHER_MODEL_VIEW_UNSPECIFIED",
                     "PUBLISHER_MODEL_VIEW_BASIC",
                     "PUBLISHER_MODEL_VIEW_FULL",
@@ -11444,9 +11951,18 @@ class AiplatformResource(googleapiclient.discovery.Resource):
     class TuningJobsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class OperationsResource(googleapiclient.discovery.Resource):
+            def cancel(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleProtobufEmptyHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
             ) -> GoogleProtobufEmptyHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleLongrunningOperationHttpRequest: ...
+            def wait(
+                self, *, name: str, timeout: str | None = ..., **kwargs: typing.Any
+            ) -> GoogleLongrunningOperationHttpRequest: ...
 
         def operations(self) -> OperationsResource: ...
 
@@ -11529,6 +12045,7 @@ class AiplatformResource(googleapiclient.discovery.Resource):
     def indexes(self) -> IndexesResource: ...
     def interactions(self) -> InteractionsResource: ...
     def media(self) -> MediaResource: ...
+    def memoryBanks(self) -> MemoryBanksResource: ...
     def metadataStores(self) -> MetadataStoresResource: ...
     def migratableResources(self) -> MigratableResourcesResource: ...
     def modelDeploymentMonitoringJobs(
@@ -12204,6 +12721,26 @@ class GoogleCloudAiplatformV1beta1FeaturestoreHttpRequest(
     ) -> GoogleCloudAiplatformV1beta1Featurestore: ...
 
 @typing.type_check_only
+class GoogleCloudAiplatformV1beta1FeedbackContextHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudAiplatformV1beta1FeedbackContext: ...
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1FeedbackEntryHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudAiplatformV1beta1FeedbackEntry: ...
+
+@typing.type_check_only
 class GoogleCloudAiplatformV1beta1FetchExamplesResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -12682,6 +13219,16 @@ class GoogleCloudAiplatformV1beta1ListFeaturestoresResponseHttpRequest(
     ) -> GoogleCloudAiplatformV1beta1ListFeaturestoresResponse: ...
 
 @typing.type_check_only
+class GoogleCloudAiplatformV1beta1ListFeedbackEntriesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudAiplatformV1beta1ListFeedbackEntriesResponse: ...
+
+@typing.type_check_only
 class GoogleCloudAiplatformV1beta1ListHyperparameterTuningJobsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -13060,6 +13607,16 @@ class GoogleCloudAiplatformV1beta1ListSemanticGovernancePoliciesResponseHttpRequ
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1ListSemanticGovernancePoliciesResponse: ...
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ListServingProfilesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudAiplatformV1beta1ListServingProfilesResponse: ...
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1ListSessionsResponseHttpRequest(
@@ -13820,6 +14377,16 @@ class GoogleCloudAiplatformV1beta1SemanticGovernancePolicyEngineHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1SemanticGovernancePolicyEngine: ...
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ServingProfileHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudAiplatformV1beta1ServingProfile: ...
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1SessionHttpRequest(googleapiclient.http.HttpRequest):

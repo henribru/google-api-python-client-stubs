@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -115,8 +114,7 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                view: typing_extensions.Literal["UNSPECIFIED", "BASIC", "FULL"]
-                | None = ...,
+                view: typing.Literal["UNSPECIFIED", "BASIC", "FULL"] | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudChannelV1ChannelPartnerLinkHttpRequest: ...
             def list(
@@ -125,8 +123,7 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                 parent: str,
                 pageSize: int | None = ...,
                 pageToken: str | None = ...,
-                view: typing_extensions.Literal["UNSPECIFIED", "BASIC", "FULL"]
-                | None = ...,
+                view: typing.Literal["UNSPECIFIED", "BASIC", "FULL"] | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudChannelV1ListChannelPartnerLinksResponseHttpRequest: ...
             def list_next(
@@ -345,7 +342,7 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customer: str,
-                changeOfferPurchase_changeType: typing_extensions.Literal[
+                changeOfferPurchase_changeType: typing.Literal[
                     "CHANGE_TYPE_UNSPECIFIED", "UPGRADE", "DOWNGRADE"
                 ]
                 | None = ...,

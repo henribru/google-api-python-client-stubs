@@ -1,29 +1,27 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class AccessUrls(typing_extensions.TypedDict, total=False):
+class AccessUrls(typing.TypedDict, total=False):
     caCertificateAccessUrl: str
     crlAccessUrls: _list[str]
 
 @typing.type_check_only
-class ActivateCertificateAuthorityRequest(typing_extensions.TypedDict, total=False):
+class ActivateCertificateAuthorityRequest(typing.TypedDict, total=False):
     pemCaCertificate: str
     requestId: str
     subordinateConfig: SubordinateConfig
 
 @typing.type_check_only
-class AllowedKeyType(typing_extensions.TypedDict, total=False):
+class AllowedKeyType(typing.TypedDict, total=False):
     ellipticCurve: EcKeyType
     rsa: RsaKeyType
 
 @typing.type_check_only
-class AttributeTypeAndValue(typing_extensions.TypedDict, total=False):
+class AttributeTypeAndValue(typing.TypedDict, total=False):
     objectId: ObjectId
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "ATTRIBUTE_TYPE_UNSPECIFIED",
         "COMMON_NAME",
         "COUNTRY_CODE",
@@ -37,46 +35,46 @@ class AttributeTypeAndValue(typing_extensions.TypedDict, total=False):
     value: str
 
 @typing.type_check_only
-class AuditConfig(typing_extensions.TypedDict, total=False):
+class AuditConfig(typing.TypedDict, total=False):
     auditLogConfigs: _list[AuditLogConfig]
     service: str
 
 @typing.type_check_only
-class AuditLogConfig(typing_extensions.TypedDict, total=False):
+class AuditLogConfig(typing.TypedDict, total=False):
     exemptedMembers: _list[str]
-    logType: typing_extensions.Literal[
+    logType: typing.Literal[
         "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
     ]
 
 @typing.type_check_only
-class Binding(typing_extensions.TypedDict, total=False):
+class Binding(typing.TypedDict, total=False):
     condition: Expr
     members: _list[str]
     role: str
 
 @typing.type_check_only
-class CaOptions(typing_extensions.TypedDict, total=False):
+class CaOptions(typing.TypedDict, total=False):
     isCa: bool
     maxIssuerPathLength: int
 
 @typing.type_check_only
-class CaPool(typing_extensions.TypedDict, total=False):
+class CaPool(typing.TypedDict, total=False):
     encryptionSpec: EncryptionSpec
     issuancePolicy: IssuancePolicy
     labels: dict[str, typing.Any]
     name: str
     publishingOptions: PublishingOptions
-    tier: typing_extensions.Literal["TIER_UNSPECIFIED", "ENTERPRISE", "DEVOPS"]
+    tier: typing.Literal["TIER_UNSPECIFIED", "ENTERPRISE", "DEVOPS"]
 
 @typing.type_check_only
-class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
+class CancelOperationRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class CertChain(typing_extensions.TypedDict, total=False):
+class CertChain(typing.TypedDict, total=False):
     certificates: _list[str]
 
 @typing.type_check_only
-class Certificate(typing_extensions.TypedDict, total=False):
+class Certificate(typing.TypedDict, total=False):
     certificateDescription: CertificateDescription
     certificateTemplate: str
     config: CertificateConfig
@@ -90,7 +88,7 @@ class Certificate(typing_extensions.TypedDict, total=False):
     pemCsr: str
     requestedNotBeforeTime: str
     revocationDetails: RevocationDetails
-    subjectMode: typing_extensions.Literal[
+    subjectMode: typing.Literal[
         "SUBJECT_REQUEST_MODE_UNSPECIFIED",
         "DEFAULT",
         "RDN_SEQUENCE",
@@ -99,7 +97,7 @@ class Certificate(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class CertificateAuthority(typing_extensions.TypedDict, total=False):
+class CertificateAuthority(typing.TypedDict, total=False):
     accessUrls: AccessUrls
     caCertificateDescriptions: _list[CertificateDescription]
     config: CertificateConfig
@@ -114,7 +112,7 @@ class CertificateAuthority(typing_extensions.TypedDict, total=False):
     pemCaCertificates: _list[str]
     satisfiesPzi: bool
     satisfiesPzs: bool
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "ENABLED",
         "DISABLED",
@@ -123,24 +121,24 @@ class CertificateAuthority(typing_extensions.TypedDict, total=False):
         "DELETED",
     ]
     subordinateConfig: SubordinateConfig
-    tier: typing_extensions.Literal["TIER_UNSPECIFIED", "ENTERPRISE", "DEVOPS"]
-    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "SELF_SIGNED", "SUBORDINATE"]
+    tier: typing.Literal["TIER_UNSPECIFIED", "ENTERPRISE", "DEVOPS"]
+    type: typing.Literal["TYPE_UNSPECIFIED", "SELF_SIGNED", "SUBORDINATE"]
     updateTime: str
     userDefinedAccessUrls: UserDefinedAccessUrls
 
 @typing.type_check_only
-class CertificateConfig(typing_extensions.TypedDict, total=False):
+class CertificateConfig(typing.TypedDict, total=False):
     publicKey: PublicKey
     subjectConfig: SubjectConfig
     subjectKeyId: CertificateConfigKeyId
     x509Config: X509Parameters
 
 @typing.type_check_only
-class CertificateConfigKeyId(typing_extensions.TypedDict, total=False):
+class CertificateConfigKeyId(typing.TypedDict, total=False):
     keyId: str
 
 @typing.type_check_only
-class CertificateDescription(typing_extensions.TypedDict, total=False):
+class CertificateDescription(typing.TypedDict, total=False):
     aiaIssuingCertificateUrls: _list[str]
     authorityKeyId: KeyId
     certFingerprint: CertificateFingerprint
@@ -152,10 +150,10 @@ class CertificateDescription(typing_extensions.TypedDict, total=False):
     x509Description: X509Parameters
 
 @typing.type_check_only
-class CertificateExtensionConstraints(typing_extensions.TypedDict, total=False):
+class CertificateExtensionConstraints(typing.TypedDict, total=False):
     additionalExtensions: _list[ObjectId]
     knownExtensions: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "KNOWN_CERTIFICATE_EXTENSION_UNSPECIFIED",
             "BASE_KEY_USAGE",
             "EXTENDED_KEY_USAGE",
@@ -167,17 +165,17 @@ class CertificateExtensionConstraints(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class CertificateFingerprint(typing_extensions.TypedDict, total=False):
+class CertificateFingerprint(typing.TypedDict, total=False):
     sha256Hash: str
 
 @typing.type_check_only
-class CertificateIdentityConstraints(typing_extensions.TypedDict, total=False):
+class CertificateIdentityConstraints(typing.TypedDict, total=False):
     allowSubjectAltNamesPassthrough: bool
     allowSubjectPassthrough: bool
     celExpression: Expr
 
 @typing.type_check_only
-class CertificateRevocationList(typing_extensions.TypedDict, total=False):
+class CertificateRevocationList(typing.TypedDict, total=False):
     accessUrl: str
     createTime: str
     labels: dict[str, typing.Any]
@@ -186,11 +184,11 @@ class CertificateRevocationList(typing_extensions.TypedDict, total=False):
     revisionId: str
     revokedCertificates: _list[RevokedCertificate]
     sequenceNumber: str
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "SUPERSEDED"]
+    state: typing.Literal["STATE_UNSPECIFIED", "ACTIVE", "SUPERSEDED"]
     updateTime: str
 
 @typing.type_check_only
-class CertificateTemplate(typing_extensions.TypedDict, total=False):
+class CertificateTemplate(typing.TypedDict, total=False):
     createTime: str
     description: str
     identityConstraints: CertificateIdentityConstraints
@@ -202,36 +200,36 @@ class CertificateTemplate(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class DisableCertificateAuthorityRequest(typing_extensions.TypedDict, total=False):
+class DisableCertificateAuthorityRequest(typing.TypedDict, total=False):
     ignoreDependentResources: bool
     requestId: str
 
 @typing.type_check_only
-class EcKeyType(typing_extensions.TypedDict, total=False):
-    signatureAlgorithm: typing_extensions.Literal[
+class EcKeyType(typing.TypedDict, total=False):
+    signatureAlgorithm: typing.Literal[
         "EC_SIGNATURE_ALGORITHM_UNSPECIFIED", "ECDSA_P256", "ECDSA_P384", "EDDSA_25519"
     ]
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class EnableCertificateAuthorityRequest(typing_extensions.TypedDict, total=False):
+class EnableCertificateAuthorityRequest(typing.TypedDict, total=False):
     requestId: str
 
 @typing.type_check_only
-class EncryptionSpec(typing_extensions.TypedDict, total=False):
+class EncryptionSpec(typing.TypedDict, total=False):
     cloudKmsKey: str
 
 @typing.type_check_only
-class Expr(typing_extensions.TypedDict, total=False):
+class Expr(typing.TypedDict, total=False):
     description: str
     expression: str
     location: str
     title: str
 
 @typing.type_check_only
-class ExtendedKeyUsageOptions(typing_extensions.TypedDict, total=False):
+class ExtendedKeyUsageOptions(typing.TypedDict, total=False):
     clientAuth: bool
     codeSigning: bool
     emailProtection: bool
@@ -240,24 +238,24 @@ class ExtendedKeyUsageOptions(typing_extensions.TypedDict, total=False):
     timeStamping: bool
 
 @typing.type_check_only
-class FetchCaCertsRequest(typing_extensions.TypedDict, total=False):
+class FetchCaCertsRequest(typing.TypedDict, total=False):
     requestId: str
 
 @typing.type_check_only
-class FetchCaCertsResponse(typing_extensions.TypedDict, total=False):
+class FetchCaCertsResponse(typing.TypedDict, total=False):
     caCerts: _list[CertChain]
 
 @typing.type_check_only
-class FetchCertificateAuthorityCsrResponse(typing_extensions.TypedDict, total=False):
+class FetchCertificateAuthorityCsrResponse(typing.TypedDict, total=False):
     pemCsr: str
 
 @typing.type_check_only
-class IssuanceModes(typing_extensions.TypedDict, total=False):
+class IssuanceModes(typing.TypedDict, total=False):
     allowConfigBasedIssuance: bool
     allowCsrBasedIssuance: bool
 
 @typing.type_check_only
-class IssuancePolicy(typing_extensions.TypedDict, total=False):
+class IssuancePolicy(typing.TypedDict, total=False):
     allowRequesterSpecifiedNotBeforeTime: bool
     allowedIssuanceModes: IssuanceModes
     allowedKeyTypes: _list[AllowedKeyType]
@@ -268,17 +266,17 @@ class IssuancePolicy(typing_extensions.TypedDict, total=False):
     passthroughExtensions: CertificateExtensionConstraints
 
 @typing.type_check_only
-class KeyId(typing_extensions.TypedDict, total=False):
+class KeyId(typing.TypedDict, total=False):
     keyId: str
 
 @typing.type_check_only
-class KeyUsage(typing_extensions.TypedDict, total=False):
+class KeyUsage(typing.TypedDict, total=False):
     baseKeyUsage: KeyUsageOptions
     extendedKeyUsage: ExtendedKeyUsageOptions
     unknownExtendedKeyUsages: _list[ObjectId]
 
 @typing.type_check_only
-class KeyUsageOptions(typing_extensions.TypedDict, total=False):
+class KeyUsageOptions(typing.TypedDict, total=False):
     certSign: bool
     contentCommitment: bool
     crlSign: bool
@@ -290,8 +288,8 @@ class KeyUsageOptions(typing_extensions.TypedDict, total=False):
     keyEncipherment: bool
 
 @typing.type_check_only
-class KeyVersionSpec(typing_extensions.TypedDict, total=False):
-    algorithm: typing_extensions.Literal[
+class KeyVersionSpec(typing.TypedDict, total=False):
+    algorithm: typing.Literal[
         "SIGN_HASH_ALGORITHM_UNSPECIFIED",
         "RSA_PSS_2048_SHA256",
         "RSA_PSS_3072_SHA256",
@@ -305,48 +303,48 @@ class KeyVersionSpec(typing_extensions.TypedDict, total=False):
     cloudKmsKeyVersion: str
 
 @typing.type_check_only
-class ListCaPoolsResponse(typing_extensions.TypedDict, total=False):
+class ListCaPoolsResponse(typing.TypedDict, total=False):
     caPools: _list[CaPool]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListCertificateAuthoritiesResponse(typing_extensions.TypedDict, total=False):
+class ListCertificateAuthoritiesResponse(typing.TypedDict, total=False):
     certificateAuthorities: _list[CertificateAuthority]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListCertificateRevocationListsResponse(typing_extensions.TypedDict, total=False):
+class ListCertificateRevocationListsResponse(typing.TypedDict, total=False):
     certificateRevocationLists: _list[CertificateRevocationList]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListCertificateTemplatesResponse(typing_extensions.TypedDict, total=False):
+class ListCertificateTemplatesResponse(typing.TypedDict, total=False):
     certificateTemplates: _list[CertificateTemplate]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListCertificatesResponse(typing_extensions.TypedDict, total=False):
+class ListCertificatesResponse(typing.TypedDict, total=False):
     certificates: _list[Certificate]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListLocationsResponse(typing_extensions.TypedDict, total=False):
+class ListLocationsResponse(typing.TypedDict, total=False):
     locations: _list[Location]
     nextPageToken: str
 
 @typing.type_check_only
-class ListOperationsResponse(typing_extensions.TypedDict, total=False):
+class ListOperationsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
     unreachable: _list[str]
 
 @typing.type_check_only
-class Location(typing_extensions.TypedDict, total=False):
+class Location(typing.TypedDict, total=False):
     displayName: str
     labels: dict[str, typing.Any]
     locationId: str
@@ -354,7 +352,7 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class NameConstraints(typing_extensions.TypedDict, total=False):
+class NameConstraints(typing.TypedDict, total=False):
     critical: bool
     excludedDnsNames: _list[str]
     excludedEmailAddresses: _list[str]
@@ -366,11 +364,11 @@ class NameConstraints(typing_extensions.TypedDict, total=False):
     permittedUris: _list[str]
 
 @typing.type_check_only
-class ObjectId(typing_extensions.TypedDict, total=False):
+class ObjectId(typing.TypedDict, total=False):
     objectIdPath: _list[int]
 
 @typing.type_check_only
-class Operation(typing_extensions.TypedDict, total=False):
+class Operation(typing.TypedDict, total=False):
     done: bool
     error: Status
     metadata: dict[str, typing.Any]
@@ -378,7 +376,7 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class OperationMetadata(typing_extensions.TypedDict, total=False):
+class OperationMetadata(typing.TypedDict, total=False):
     apiVersion: str
     createTime: str
     endTime: str
@@ -388,32 +386,30 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
-class Policy(typing_extensions.TypedDict, total=False):
+class Policy(typing.TypedDict, total=False):
     auditConfigs: _list[AuditConfig]
     bindings: _list[Binding]
     etag: str
     version: int
 
 @typing.type_check_only
-class PublicKey(typing_extensions.TypedDict, total=False):
-    format: typing_extensions.Literal["KEY_FORMAT_UNSPECIFIED", "PEM"]
+class PublicKey(typing.TypedDict, total=False):
+    format: typing.Literal["KEY_FORMAT_UNSPECIFIED", "PEM"]
     key: str
 
 @typing.type_check_only
-class PublishingOptions(typing_extensions.TypedDict, total=False):
-    encodingFormat: typing_extensions.Literal[
-        "ENCODING_FORMAT_UNSPECIFIED", "PEM", "DER"
-    ]
+class PublishingOptions(typing.TypedDict, total=False):
+    encodingFormat: typing.Literal["ENCODING_FORMAT_UNSPECIFIED", "PEM", "DER"]
     publishCaCert: bool
     publishCrl: bool
 
 @typing.type_check_only
-class RelativeDistinguishedName(typing_extensions.TypedDict, total=False):
+class RelativeDistinguishedName(typing.TypedDict, total=False):
     attributes: _list[AttributeTypeAndValue]
 
 @typing.type_check_only
-class RevocationDetails(typing_extensions.TypedDict, total=False):
-    revocationState: typing_extensions.Literal[
+class RevocationDetails(typing.TypedDict, total=False):
+    revocationState: typing.Literal[
         "REVOCATION_REASON_UNSPECIFIED",
         "KEY_COMPROMISE",
         "CERTIFICATE_AUTHORITY_COMPROMISE",
@@ -427,8 +423,8 @@ class RevocationDetails(typing_extensions.TypedDict, total=False):
     revocationTime: str
 
 @typing.type_check_only
-class RevokeCertificateRequest(typing_extensions.TypedDict, total=False):
-    reason: typing_extensions.Literal[
+class RevokeCertificateRequest(typing.TypedDict, total=False):
+    reason: typing.Literal[
         "REVOCATION_REASON_UNSPECIFIED",
         "KEY_COMPROMISE",
         "CERTIFICATE_AUTHORITY_COMPROMISE",
@@ -442,10 +438,10 @@ class RevokeCertificateRequest(typing_extensions.TypedDict, total=False):
     requestId: str
 
 @typing.type_check_only
-class RevokedCertificate(typing_extensions.TypedDict, total=False):
+class RevokedCertificate(typing.TypedDict, total=False):
     certificate: str
     hexSerialNumber: str
-    revocationReason: typing_extensions.Literal[
+    revocationReason: typing.Literal[
         "REVOCATION_REASON_UNSPECIFIED",
         "KEY_COMPROMISE",
         "CERTIFICATE_AUTHORITY_COMPROMISE",
@@ -458,23 +454,23 @@ class RevokedCertificate(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class RsaKeyType(typing_extensions.TypedDict, total=False):
+class RsaKeyType(typing.TypedDict, total=False):
     maxModulusSize: str
     minModulusSize: str
 
 @typing.type_check_only
-class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
+class SetIamPolicyRequest(typing.TypedDict, total=False):
     policy: Policy
     updateMask: str
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class Subject(typing_extensions.TypedDict, total=False):
+class Subject(typing.TypedDict, total=False):
     commonName: str
     countryCode: str
     locality: str
@@ -486,7 +482,7 @@ class Subject(typing_extensions.TypedDict, total=False):
     streetAddress: str
 
 @typing.type_check_only
-class SubjectAltNames(typing_extensions.TypedDict, total=False):
+class SubjectAltNames(typing.TypedDict, total=False):
     customSans: _list[X509Extension]
     dnsNames: _list[str]
     emailAddresses: _list[str]
@@ -494,12 +490,12 @@ class SubjectAltNames(typing_extensions.TypedDict, total=False):
     uris: _list[str]
 
 @typing.type_check_only
-class SubjectConfig(typing_extensions.TypedDict, total=False):
+class SubjectConfig(typing.TypedDict, total=False):
     subject: Subject
     subjectAltName: SubjectAltNames
 
 @typing.type_check_only
-class SubjectDescription(typing_extensions.TypedDict, total=False):
+class SubjectDescription(typing.TypedDict, total=False):
     hexSerialNumber: str
     lifetime: str
     notAfterTime: str
@@ -508,39 +504,39 @@ class SubjectDescription(typing_extensions.TypedDict, total=False):
     subjectAltName: SubjectAltNames
 
 @typing.type_check_only
-class SubordinateConfig(typing_extensions.TypedDict, total=False):
+class SubordinateConfig(typing.TypedDict, total=False):
     certificateAuthority: str
     pemIssuerChain: SubordinateConfigChain
 
 @typing.type_check_only
-class SubordinateConfigChain(typing_extensions.TypedDict, total=False):
+class SubordinateConfigChain(typing.TypedDict, total=False):
     pemCertificates: _list[str]
 
 @typing.type_check_only
-class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
+class TestIamPermissionsRequest(typing.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
-class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
+class TestIamPermissionsResponse(typing.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
-class UndeleteCertificateAuthorityRequest(typing_extensions.TypedDict, total=False):
+class UndeleteCertificateAuthorityRequest(typing.TypedDict, total=False):
     requestId: str
 
 @typing.type_check_only
-class UserDefinedAccessUrls(typing_extensions.TypedDict, total=False):
+class UserDefinedAccessUrls(typing.TypedDict, total=False):
     aiaIssuingCertificateUrls: _list[str]
     crlAccessUrls: _list[str]
 
 @typing.type_check_only
-class X509Extension(typing_extensions.TypedDict, total=False):
+class X509Extension(typing.TypedDict, total=False):
     critical: bool
     objectId: ObjectId
     value: str
 
 @typing.type_check_only
-class X509Parameters(typing_extensions.TypedDict, total=False):
+class X509Parameters(typing.TypedDict, total=False):
     additionalExtensions: _list[X509Extension]
     aiaOcspServers: _list[str]
     caOptions: CaOptions

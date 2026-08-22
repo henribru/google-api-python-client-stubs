@@ -1,27 +1,25 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class AcceptHubSpokeRequest(typing_extensions.TypedDict, total=False):
+class AcceptHubSpokeRequest(typing.TypedDict, total=False):
     requestId: str
     spokeUri: str
 
 @typing.type_check_only
-class AcceptHubSpokeResponse(typing_extensions.TypedDict, total=False):
+class AcceptHubSpokeResponse(typing.TypedDict, total=False):
     spoke: Spoke
 
 @typing.type_check_only
-class AcceptSpokeUpdateRequest(typing_extensions.TypedDict, total=False):
+class AcceptSpokeUpdateRequest(typing.TypedDict, total=False):
     requestId: str
     spokeEtag: str
     spokeUri: str
 
 @typing.type_check_only
-class AllocationOptions(typing_extensions.TypedDict, total=False):
-    allocationStrategy: typing_extensions.Literal[
+class AllocationOptions(typing.TypedDict, total=False):
+    allocationStrategy: typing.Literal[
         "ALLOCATION_STRATEGY_UNSPECIFIED",
         "RANDOM",
         "FIRST_AVAILABLE",
@@ -31,23 +29,23 @@ class AllocationOptions(typing_extensions.TypedDict, total=False):
     firstAvailableRangesLookupSize: int
 
 @typing.type_check_only
-class AuditConfig(typing_extensions.TypedDict, total=False):
+class AuditConfig(typing.TypedDict, total=False):
     auditLogConfigs: _list[AuditLogConfig]
     service: str
 
 @typing.type_check_only
-class AuditLogConfig(typing_extensions.TypedDict, total=False):
+class AuditLogConfig(typing.TypedDict, total=False):
     exemptedMembers: _list[str]
-    logType: typing_extensions.Literal[
+    logType: typing.Literal[
         "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
     ]
 
 @typing.type_check_only
-class AutoAccept(typing_extensions.TypedDict, total=False):
+class AutoAccept(typing.TypedDict, total=False):
     autoAcceptProjects: _list[str]
 
 @typing.type_check_only
-class AutoCreatedSubnetworkInfo(typing_extensions.TypedDict, total=False):
+class AutoCreatedSubnetworkInfo(typing.TypedDict, total=False):
     delinked: bool
     internalRange: str
     internalRangeRef: str
@@ -55,16 +53,16 @@ class AutoCreatedSubnetworkInfo(typing_extensions.TypedDict, total=False):
     subnetworkRef: str
 
 @typing.type_check_only
-class AutomatedDnsCreationSpec(typing_extensions.TypedDict, total=False):
+class AutomatedDnsCreationSpec(typing.TypedDict, total=False):
     dnsSuffix: str
     hostname: str
     ttl: str
 
 @typing.type_check_only
-class AutomatedDnsRecord(typing_extensions.TypedDict, total=False):
+class AutomatedDnsRecord(typing.TypedDict, total=False):
     consumerNetwork: str
     createTime: str
-    creationMode: typing_extensions.Literal[
+    creationMode: typing.Literal[
         "CREATION_MODE_UNSPECIFIED", "CONSUMER_API", "SERVICE_CONNECTION_MAP"
     ]
     currentConfig: Config
@@ -77,11 +75,9 @@ class AutomatedDnsRecord(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     name: str
     originalConfig: Config
-    recordType: typing_extensions.Literal[
-        "RECORD_TYPE_UNSPECIFIED", "A", "AAAA", "TXT", "CNAME"
-    ]
+    recordType: typing.Literal["RECORD_TYPE_UNSPECIFIED", "A", "AAAA", "TXT", "CNAME"]
     serviceClass: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "PROGRAMMED",
         "FAILED_DEPROGRAMMING",
@@ -92,24 +88,22 @@ class AutomatedDnsRecord(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class Binding(typing_extensions.TypedDict, total=False):
+class Binding(typing.TypedDict, total=False):
     condition: Expr
     members: _list[str]
     role: str
 
 @typing.type_check_only
-class CheckConsumerConfigRequest(typing_extensions.TypedDict, total=False):
+class CheckConsumerConfigRequest(typing.TypedDict, total=False):
     consumerNetwork: str
     endpointProject: str
-    requestedIpVersion: typing_extensions.Literal[
-        "IP_VERSION_UNSPECIFIED", "IPV4", "IPV6"
-    ]
+    requestedIpVersion: typing.Literal["IP_VERSION_UNSPECIFIED", "IPV4", "IPV6"]
     serviceClass: str
 
 @typing.type_check_only
-class CheckConsumerConfigResponse(typing_extensions.TypedDict, total=False):
+class CheckConsumerConfigResponse(typing.TypedDict, total=False):
     errors: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "ERROR_UNSPECIFIED",
             "NETWORK_PROJECT_INVALID",
             "NETWORK_PROJECT_APIS_NOT_ENABLED",
@@ -124,21 +118,21 @@ class CheckConsumerConfigResponse(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class Config(typing_extensions.TypedDict, total=False):
+class Config(typing.TypedDict, total=False):
     rrdatas: _list[str]
     ttl: str
 
 @typing.type_check_only
-class ConsumerPscConfig(typing_extensions.TypedDict, total=False):
+class ConsumerPscConfig(typing.TypedDict, total=False):
     consumerInstanceProject: str
     disableGlobalAccess: bool
-    ipVersion: typing_extensions.Literal["IP_VERSION_UNSPECIFIED", "IPV4", "IPV6"]
+    ipVersion: typing.Literal["IP_VERSION_UNSPECIFIED", "IPV4", "IPV6"]
     network: str
     producerInstanceId: str
     producerInstanceMetadata: dict[str, typing.Any]
     project: str
     serviceAttachmentIpAddressMap: dict[str, typing.Any]
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "VALID",
         "CONNECTION_POLICY_MISSING",
@@ -147,11 +141,11 @@ class ConsumerPscConfig(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class ConsumerPscConnection(typing_extensions.TypedDict, total=False):
+class ConsumerPscConnection(typing.TypedDict, total=False):
     dnsAutomationStatus: DnsAutomationStatus
     error: GoogleRpcStatus
     errorInfo: GoogleRpcErrorInfo
-    errorType: typing_extensions.Literal[
+    errorType: typing.Literal[
         "CONNECTION_ERROR_TYPE_UNSPECIFIED",
         "ERROR_INTERNAL",
         "ERROR_CONSUMER_SIDE",
@@ -160,7 +154,7 @@ class ConsumerPscConnection(typing_extensions.TypedDict, total=False):
     forwardingRule: str
     gceOperation: str
     ip: str
-    ipVersion: typing_extensions.Literal["IP_VERSION_UNSPECIFIED", "IPV4", "IPV6"]
+    ipVersion: typing.Literal["IP_VERSION_UNSPECIFIED", "IPV4", "IPV6"]
     network: str
     producerInstanceId: str
     producerInstanceMetadata: dict[str, typing.Any]
@@ -168,7 +162,7 @@ class ConsumerPscConnection(typing_extensions.TypedDict, total=False):
     pscConnectionId: str
     selectedSubnetwork: str
     serviceAttachmentUri: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "ACTIVE",
         "FAILED",
@@ -179,7 +173,7 @@ class ConsumerPscConnection(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class Destination(typing_extensions.TypedDict, total=False):
+class Destination(typing.TypedDict, total=False):
     createTime: str
     description: str
     endpoints: _list[DestinationEndpoint]
@@ -192,17 +186,17 @@ class Destination(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class DestinationEndpoint(typing_extensions.TypedDict, total=False):
+class DestinationEndpoint(typing.TypedDict, total=False):
     asn: str
     csp: str
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "VALID", "INVALID"]
+    state: typing.Literal["STATE_UNSPECIFIED", "VALID", "INVALID"]
     updateTime: str
 
 @typing.type_check_only
-class DnsAutomationStatus(typing_extensions.TypedDict, total=False):
+class DnsAutomationStatus(typing.TypedDict, total=False):
     error: GoogleRpcStatus
     fqdn: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "PENDING_CREATE",
         "ACTIVE",
@@ -212,27 +206,25 @@ class DnsAutomationStatus(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Expr(typing_extensions.TypedDict, total=False):
+class Expr(typing.TypedDict, total=False):
     description: str
     expression: str
     location: str
     title: str
 
 @typing.type_check_only
-class Filter(typing_extensions.TypedDict, total=False):
+class Filter(typing.TypedDict, total=False):
     destRange: str
     ipProtocol: str
-    protocolVersion: typing_extensions.Literal[
-        "PROTOCOL_VERSION_UNSPECIFIED", "IPV4", "IPV6"
-    ]
+    protocolVersion: typing.Literal["PROTOCOL_VERSION_UNSPECIFIED", "IPV4", "IPV6"]
     srcRange: str
 
 @typing.type_check_only
-class Gateway(typing_extensions.TypedDict, total=False):
-    capacity: typing_extensions.Literal[
+class Gateway(typing.TypedDict, total=False):
+    capacity: typing.Literal[
         "GATEWAY_CAPACITY_UNSPECIFIED", "CAPACITY_1_GBPS", "CAPACITY_10_GBPS"
     ]
     cloudRouters: _list[str]
@@ -240,15 +232,15 @@ class Gateway(typing_extensions.TypedDict, total=False):
     sacAttachment: str
 
 @typing.type_check_only
-class GatewayAdvertisedRoute(typing_extensions.TypedDict, total=False):
+class GatewayAdvertisedRoute(typing.TypedDict, total=False):
     createTime: str
     description: str
     ipRange: str
     labels: dict[str, typing.Any]
     name: str
     priority: int
-    recipient: typing_extensions.Literal["RECIPIENT_UNSPECIFIED", "ADVERTISE_TO_HUB"]
-    state: typing_extensions.Literal[
+    recipient: typing.Literal["RECIPIENT_UNSPECIFIED", "ADVERTISE_TO_HUB"]
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "CREATING",
         "ACTIVE",
@@ -264,18 +256,16 @@ class GatewayAdvertisedRoute(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class GoogleLongrunningCancelOperationRequest(
-    typing_extensions.TypedDict, total=False
-): ...
+class GoogleLongrunningCancelOperationRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class GoogleLongrunningListOperationsResponse(typing_extensions.TypedDict, total=False):
+class GoogleLongrunningListOperationsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     operations: _list[GoogleLongrunningOperation]
     unreachable: _list[str]
 
 @typing.type_check_only
-class GoogleLongrunningOperation(typing_extensions.TypedDict, total=False):
+class GoogleLongrunningOperation(typing.TypedDict, total=False):
     done: bool
     error: GoogleRpcStatus
     metadata: dict[str, typing.Any]
@@ -283,26 +273,26 @@ class GoogleLongrunningOperation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class GoogleRpcErrorInfo(typing_extensions.TypedDict, total=False):
+class GoogleRpcErrorInfo(typing.TypedDict, total=False):
     domain: str
     metadata: dict[str, typing.Any]
     reason: str
 
 @typing.type_check_only
-class GoogleRpcStatus(typing_extensions.TypedDict, total=False):
+class GoogleRpcStatus(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class Group(typing_extensions.TypedDict, total=False):
+class Group(typing.TypedDict, total=False):
     autoAccept: AutoAccept
     createTime: str
     description: str
     labels: dict[str, typing.Any]
     name: str
     routeTable: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "CREATING",
         "ACTIVE",
@@ -318,20 +308,20 @@ class Group(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class Hub(typing_extensions.TypedDict, total=False):
+class Hub(typing.TypedDict, total=False):
     createTime: str
     description: str
     exportPsc: bool
     labels: dict[str, typing.Any]
     name: str
-    policyMode: typing_extensions.Literal["POLICY_MODE_UNSPECIFIED", "PRESET"]
-    presetTopology: typing_extensions.Literal[
+    policyMode: typing.Literal["POLICY_MODE_UNSPECIFIED", "PRESET"]
+    presetTopology: typing.Literal[
         "PRESET_TOPOLOGY_UNSPECIFIED", "MESH", "STAR", "HYBRID_INSPECTION"
     ]
     routeTables: _list[str]
     routingVpcs: _list[RoutingVPC]
     spokeSummary: SpokeSummary
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "CREATING",
         "ACTIVE",
@@ -347,17 +337,17 @@ class Hub(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class HubStatusEntry(typing_extensions.TypedDict, total=False):
+class HubStatusEntry(typing.TypedDict, total=False):
     count: int
     groupBy: str
     pscPropagationStatus: PscPropagationStatus
 
 @typing.type_check_only
-class InterconnectAttachment(typing_extensions.TypedDict, total=False):
+class InterconnectAttachment(typing.TypedDict, total=False):
     region: str
 
 @typing.type_check_only
-class InternalRange(typing_extensions.TypedDict, total=False):
+class InternalRange(typing.TypedDict, total=False):
     allocationOptions: AllocationOptions
     createTime: str
     description: str
@@ -369,29 +359,27 @@ class InternalRange(typing_extensions.TypedDict, total=False):
     name: str
     network: str
     overlaps: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "OVERLAP_UNSPECIFIED",
             "OVERLAP_ROUTE_RANGE",
             "OVERLAP_EXISTING_SUBNET_RANGE",
         ]
     ]
-    peering: typing_extensions.Literal[
-        "PEERING_UNSPECIFIED", "FOR_SELF", "FOR_PEER", "NOT_SHARED"
-    ]
+    peering: typing.Literal["PEERING_UNSPECIFIED", "FOR_SELF", "FOR_PEER", "NOT_SHARED"]
     prefixLength: int
     targetCidrRange: _list[str]
     updateTime: str
-    usage: typing_extensions.Literal[
+    usage: typing.Literal[
         "USAGE_UNSPECIFIED", "FOR_VPC", "EXTERNAL_TO_VPC", "FOR_MIGRATION"
     ]
     users: _list[str]
 
 @typing.type_check_only
-class IpRangeReservation(typing_extensions.TypedDict, total=False):
+class IpRangeReservation(typing.TypedDict, total=False):
     ipRange: str
 
 @typing.type_check_only
-class LinkedInterconnectAttachments(typing_extensions.TypedDict, total=False):
+class LinkedInterconnectAttachments(typing.TypedDict, total=False):
     excludeExportRanges: _list[str]
     excludeImportRanges: _list[str]
     includeExportRanges: _list[str]
@@ -401,7 +389,7 @@ class LinkedInterconnectAttachments(typing_extensions.TypedDict, total=False):
     vpcNetwork: str
 
 @typing.type_check_only
-class LinkedProducerVpcNetwork(typing_extensions.TypedDict, total=False):
+class LinkedProducerVpcNetwork(typing.TypedDict, total=False):
     excludeExportRanges: _list[str]
     includeExportRanges: _list[str]
     network: str
@@ -412,7 +400,7 @@ class LinkedProducerVpcNetwork(typing_extensions.TypedDict, total=False):
     serviceConsumerVpcSpoke: str
 
 @typing.type_check_only
-class LinkedRouterApplianceInstances(typing_extensions.TypedDict, total=False):
+class LinkedRouterApplianceInstances(typing.TypedDict, total=False):
     excludeExportRanges: _list[str]
     excludeImportRanges: _list[str]
     includeExportRanges: _list[str]
@@ -422,7 +410,7 @@ class LinkedRouterApplianceInstances(typing_extensions.TypedDict, total=False):
     vpcNetwork: str
 
 @typing.type_check_only
-class LinkedVpcNetwork(typing_extensions.TypedDict, total=False):
+class LinkedVpcNetwork(typing.TypedDict, total=False):
     excludeExportRanges: _list[str]
     includeExportRanges: _list[str]
     producerVpcSpokes: _list[str]
@@ -431,7 +419,7 @@ class LinkedVpcNetwork(typing_extensions.TypedDict, total=False):
     uri: str
 
 @typing.type_check_only
-class LinkedVpnTunnels(typing_extensions.TypedDict, total=False):
+class LinkedVpnTunnels(typing.TypedDict, total=False):
     excludeExportRanges: _list[str]
     excludeImportRanges: _list[str]
     includeExportRanges: _list[str]
@@ -441,63 +429,61 @@ class LinkedVpnTunnels(typing_extensions.TypedDict, total=False):
     vpcNetwork: str
 
 @typing.type_check_only
-class ListAutomatedDnsRecordsResponse(typing_extensions.TypedDict, total=False):
+class ListAutomatedDnsRecordsResponse(typing.TypedDict, total=False):
     automatedDnsRecords: _list[AutomatedDnsRecord]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListDestinationsResponse(typing_extensions.TypedDict, total=False):
+class ListDestinationsResponse(typing.TypedDict, total=False):
     destinations: _list[Destination]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListGatewayAdvertisedRoutesResponse(typing_extensions.TypedDict, total=False):
+class ListGatewayAdvertisedRoutesResponse(typing.TypedDict, total=False):
     gatewayAdvertisedRoutes: _list[GatewayAdvertisedRoute]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListGroupsResponse(typing_extensions.TypedDict, total=False):
+class ListGroupsResponse(typing.TypedDict, total=False):
     groups: _list[Group]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListHubSpokesResponse(typing_extensions.TypedDict, total=False):
+class ListHubSpokesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     spokes: _list[Spoke]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListHubsResponse(typing_extensions.TypedDict, total=False):
+class ListHubsResponse(typing.TypedDict, total=False):
     hubs: _list[Hub]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListInternalRangesResponse(typing_extensions.TypedDict, total=False):
+class ListInternalRangesResponse(typing.TypedDict, total=False):
     internalRanges: _list[InternalRange]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListLocationsResponse(typing_extensions.TypedDict, total=False):
+class ListLocationsResponse(typing.TypedDict, total=False):
     locations: _list[Location]
     nextPageToken: str
 
 @typing.type_check_only
-class ListMulticloudDataTransferConfigsResponse(
-    typing_extensions.TypedDict, total=False
-):
+class ListMulticloudDataTransferConfigsResponse(typing.TypedDict, total=False):
     multicloudDataTransferConfigs: _list[MulticloudDataTransferConfig]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
 class ListMulticloudDataTransferSupportedServicesResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     multicloudDataTransferSupportedServices: _list[
         MulticloudDataTransferSupportedService
@@ -505,73 +491,79 @@ class ListMulticloudDataTransferSupportedServicesResponse(
     nextPageToken: str
 
 @typing.type_check_only
-class ListPolicyBasedRoutesResponse(typing_extensions.TypedDict, total=False):
+class ListPolicyBasedRoutesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     policyBasedRoutes: _list[PolicyBasedRoute]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListRegionalEndpointsResponse(typing_extensions.TypedDict, total=False):
+class ListPscAuthorizationPoliciesResponse(typing.TypedDict, total=False):
+    nextPageToken: str
+    pscAuthorizationPolicies: _list[PscAuthorizationPolicy]
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListRegionalEndpointsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     regionalEndpoints: _list[RegionalEndpoint]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListRemoteTransportProfilesResponse(typing_extensions.TypedDict, total=False):
+class ListRemoteTransportProfilesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     remoteTransportProfiles: _list[RemoteTransportProfile]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListRouteTablesResponse(typing_extensions.TypedDict, total=False):
+class ListRouteTablesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     routeTables: _list[RouteTable]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListRoutesResponse(typing_extensions.TypedDict, total=False):
+class ListRoutesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     routes: _list[Route]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListServiceClassesResponse(typing_extensions.TypedDict, total=False):
+class ListServiceClassesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     serviceClasses: _list[ServiceClass]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListServiceConnectionMapsResponse(typing_extensions.TypedDict, total=False):
+class ListServiceConnectionMapsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     serviceConnectionMaps: _list[ServiceConnectionMap]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListServiceConnectionPoliciesResponse(typing_extensions.TypedDict, total=False):
+class ListServiceConnectionPoliciesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     serviceConnectionPolicies: _list[ServiceConnectionPolicy]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListServiceConnectionTokensResponse(typing_extensions.TypedDict, total=False):
+class ListServiceConnectionTokensResponse(typing.TypedDict, total=False):
     nextPageToken: str
     serviceConnectionTokens: _list[ServiceConnectionToken]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListSpokesResponse(typing_extensions.TypedDict, total=False):
+class ListSpokesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     spokes: _list[Spoke]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListTransportsResponse(typing_extensions.TypedDict, total=False):
+class ListTransportsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     transports: _list[Transport]
     unreachable: _list[str]
 
 @typing.type_check_only
-class Location(typing_extensions.TypedDict, total=False):
+class Location(typing.TypedDict, total=False):
     displayName: str
     labels: dict[str, typing.Any]
     locationId: str
@@ -579,9 +571,9 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class LocationMetadata(typing_extensions.TypedDict, total=False):
+class LocationMetadata(typing.TypedDict, total=False):
     locationFeatures: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "LOCATION_FEATURE_UNSPECIFIED",
             "SITE_TO_CLOUD_SPOKES",
             "SITE_TO_SITE_SPOKES",
@@ -591,12 +583,12 @@ class LocationMetadata(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class Migration(typing_extensions.TypedDict, total=False):
+class Migration(typing.TypedDict, total=False):
     source: str
     target: str
 
 @typing.type_check_only
-class MulticloudDataTransferConfig(typing_extensions.TypedDict, total=False):
+class MulticloudDataTransferConfig(typing.TypedDict, total=False):
     createTime: str
     description: str
     destinationsActiveCount: int
@@ -609,39 +601,39 @@ class MulticloudDataTransferConfig(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class MulticloudDataTransferSupportedService(typing_extensions.TypedDict, total=False):
+class MulticloudDataTransferSupportedService(typing.TypedDict, total=False):
     name: str
     serviceConfigs: _list[ServiceConfig]
 
 @typing.type_check_only
-class NextHopInterconnectAttachment(typing_extensions.TypedDict, total=False):
+class NextHopInterconnectAttachment(typing.TypedDict, total=False):
     siteToSiteDataTransfer: bool
     uri: str
     vpcNetwork: str
 
 @typing.type_check_only
-class NextHopRouterApplianceInstance(typing_extensions.TypedDict, total=False):
+class NextHopRouterApplianceInstance(typing.TypedDict, total=False):
     siteToSiteDataTransfer: bool
     uri: str
     vpcNetwork: str
 
 @typing.type_check_only
-class NextHopSpoke(typing_extensions.TypedDict, total=False):
+class NextHopSpoke(typing.TypedDict, total=False):
     siteToSiteDataTransfer: bool
     uri: str
 
 @typing.type_check_only
-class NextHopVPNTunnel(typing_extensions.TypedDict, total=False):
+class NextHopVPNTunnel(typing.TypedDict, total=False):
     siteToSiteDataTransfer: bool
     uri: str
     vpcNetwork: str
 
 @typing.type_check_only
-class NextHopVpcNetwork(typing_extensions.TypedDict, total=False):
+class NextHopVpcNetwork(typing.TypedDict, total=False):
     uri: str
 
 @typing.type_check_only
-class OperationMetadata(typing_extensions.TypedDict, total=False):
+class OperationMetadata(typing.TypedDict, total=False):
     apiVersion: str
     createTime: str
     endTime: str
@@ -651,14 +643,14 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
-class Policy(typing_extensions.TypedDict, total=False):
+class Policy(typing.TypedDict, total=False):
     auditConfigs: _list[AuditConfig]
     bindings: _list[Binding]
     etag: str
     version: int
 
 @typing.type_check_only
-class PolicyBasedRoute(typing_extensions.TypedDict, total=False):
+class PolicyBasedRoute(typing.TypedDict, total=False):
     createTime: str
     description: str
     filter: Filter
@@ -668,9 +660,7 @@ class PolicyBasedRoute(typing_extensions.TypedDict, total=False):
     name: str
     network: str
     nextHopIlbIp: str
-    nextHopOtherRoutes: typing_extensions.Literal[
-        "OTHER_ROUTES_UNSPECIFIED", "DEFAULT_ROUTING"
-    ]
+    nextHopOtherRoutes: typing.Literal["OTHER_ROUTES_UNSPECIFIED", "DEFAULT_ROUTING"]
     priority: int
     selfLink: str
     updateTime: str
@@ -678,40 +668,56 @@ class PolicyBasedRoute(typing_extensions.TypedDict, total=False):
     warnings: _list[Warnings]
 
 @typing.type_check_only
-class ProducerPscConfig(typing_extensions.TypedDict, total=False):
+class ProducerPscConfig(typing.TypedDict, total=False):
     automatedDnsCreationSpec: AutomatedDnsCreationSpec
     serviceAttachmentUri: str
 
 @typing.type_check_only
-class PscConfig(typing_extensions.TypedDict, total=False):
+class PscAuthorizationPolicy(typing.TypedDict, total=False):
+    authorizationMode: typing.Literal[
+        "AUTHORIZATION_MODE_UNSPECIFIED",
+        "AUTHORIZATION_MODE_TRANSITIVE_TO_SERVICE_ATTACHMENT",
+    ]
+    authorizedClientResources: _list[str]
+    createTime: str
+    description: str
+    etag: str
+    labels: dict[str, typing.Any]
+    name: str
+    targetResourceUri: str
+    uid: str
+    updateTime: str
+
+@typing.type_check_only
+class PscConfig(typing.TypedDict, total=False):
     allowedGoogleProducersResourceHierarchyLevel: _list[str]
     limit: str
-    producerInstanceLocation: typing_extensions.Literal[
+    producerInstanceLocation: typing.Literal[
         "PRODUCER_INSTANCE_LOCATION_UNSPECIFIED", "CUSTOM_RESOURCE_HIERARCHY_LEVELS"
     ]
     subnetworks: _list[str]
 
 @typing.type_check_only
-class PscConnection(typing_extensions.TypedDict, total=False):
+class PscConnection(typing.TypedDict, total=False):
     consumerAddress: str
     consumerForwardingRule: str
     consumerTargetProject: str
     error: GoogleRpcStatus
     errorInfo: GoogleRpcErrorInfo
-    errorType: typing_extensions.Literal[
+    errorType: typing.Literal[
         "CONNECTION_ERROR_TYPE_UNSPECIFIED",
         "ERROR_INTERNAL",
         "ERROR_CONSUMER_SIDE",
         "ERROR_PRODUCER_SIDE",
     ]
     gceOperation: str
-    ipVersion: typing_extensions.Literal["IP_VERSION_UNSPECIFIED", "IPV4", "IPV6"]
+    ipVersion: typing.Literal["IP_VERSION_UNSPECIFIED", "IPV4", "IPV6"]
     producerInstanceId: str
     producerInstanceMetadata: dict[str, typing.Any]
     pscConnectionId: str
     selectedSubnetwork: str
     serviceClass: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "ACTIVE",
         "FAILED",
@@ -722,8 +728,8 @@ class PscConnection(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class PscPropagationStatus(typing_extensions.TypedDict, total=False):
-    code: typing_extensions.Literal[
+class PscPropagationStatus(typing.TypedDict, total=False):
+    code: typing.Literal[
         "CODE_UNSPECIFIED",
         "READY",
         "PROPAGATING",
@@ -740,15 +746,13 @@ class PscPropagationStatus(typing_extensions.TypedDict, total=False):
     targetSpoke: str
 
 @typing.type_check_only
-class QueryHubStatusResponse(typing_extensions.TypedDict, total=False):
+class QueryHubStatusResponse(typing.TypedDict, total=False):
     hubStatusEntries: _list[HubStatusEntry]
     nextPageToken: str
 
 @typing.type_check_only
-class RegionalEndpoint(typing_extensions.TypedDict, total=False):
-    accessType: typing_extensions.Literal[
-        "ACCESS_TYPE_UNSPECIFIED", "GLOBAL", "REGIONAL"
-    ]
+class RegionalEndpoint(typing.TypedDict, total=False):
+    accessType: typing.Literal["ACCESS_TYPE_UNSPECIFIED", "GLOBAL", "REGIONAL"]
     address: str
     createTime: str
     description: str
@@ -762,27 +766,27 @@ class RegionalEndpoint(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class RejectHubSpokeRequest(typing_extensions.TypedDict, total=False):
+class RejectHubSpokeRequest(typing.TypedDict, total=False):
     details: str
     requestId: str
     spokeUri: str
 
 @typing.type_check_only
-class RejectHubSpokeResponse(typing_extensions.TypedDict, total=False):
+class RejectHubSpokeResponse(typing.TypedDict, total=False):
     spoke: Spoke
 
 @typing.type_check_only
-class RejectSpokeUpdateRequest(typing_extensions.TypedDict, total=False):
+class RejectSpokeUpdateRequest(typing.TypedDict, total=False):
     details: str
     requestId: str
     spokeEtag: str
     spokeUri: str
 
 @typing.type_check_only
-class RemoteTransportProfile(typing_extensions.TypedDict, total=False):
+class RemoteTransportProfile(typing.TypedDict, total=False):
     description: str
     displayName: str
-    flow: typing_extensions.Literal[
+    flow: typing.Literal[
         "KEY_PROVISIONING_FLOW_UNSPECIFIED",
         "INPUT_ONLY",
         "OUTPUT_ONLY",
@@ -790,14 +794,12 @@ class RemoteTransportProfile(typing_extensions.TypedDict, total=False):
     ]
     labels: dict[str, typing.Any]
     name: str
-    orderState: typing_extensions.Literal["STATE_UNSPECIFIED", "CLOSED", "OPEN"]
+    orderState: typing.Literal["STATE_UNSPECIFIED", "CLOSED", "OPEN"]
     provider: str
     providerSite: str
-    sla: typing_extensions.Literal[
-        "SERVICE_LEVEL_AVAILABILITY_UNSPECIFIED", "HIGH", "MAXIMUM"
-    ]
+    sla: typing.Literal["SERVICE_LEVEL_AVAILABILITY_UNSPECIFIED", "HIGH", "MAXIMUM"]
     supportedBandwidths: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "BANDWIDTH_UNSPECIFIED",
             "BPS_50M",
             "BPS_100M",
@@ -816,7 +818,7 @@ class RemoteTransportProfile(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class Route(typing_extensions.TypedDict, total=False):
+class Route(typing.TypedDict, total=False):
     createTime: str
     description: str
     ipCidrRange: str
@@ -830,7 +832,7 @@ class Route(typing_extensions.TypedDict, total=False):
     nextHopVpnTunnel: NextHopVPNTunnel
     priority: str
     spoke: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "CREATING",
         "ACTIVE",
@@ -842,7 +844,7 @@ class Route(typing_extensions.TypedDict, total=False):
         "OBSOLETE",
         "FAILED",
     ]
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "ROUTE_TYPE_UNSPECIFIED",
         "VPC_PRIMARY_SUBNET",
         "VPC_SECONDARY_SUBNET",
@@ -852,12 +854,12 @@ class Route(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class RouteTable(typing_extensions.TypedDict, total=False):
+class RouteTable(typing.TypedDict, total=False):
     createTime: str
     description: str
     labels: dict[str, typing.Any]
     name: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "CREATING",
         "ACTIVE",
@@ -873,17 +875,17 @@ class RouteTable(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class RouterApplianceInstance(typing_extensions.TypedDict, total=False):
+class RouterApplianceInstance(typing.TypedDict, total=False):
     ipAddress: str
     virtualMachine: str
 
 @typing.type_check_only
-class RoutingVPC(typing_extensions.TypedDict, total=False):
+class RoutingVPC(typing.TypedDict, total=False):
     requiredForNewSiteToSiteDataTransferSpokes: bool
     uri: str
 
 @typing.type_check_only
-class ServiceClass(typing_extensions.TypedDict, total=False):
+class ServiceClass(typing.TypedDict, total=False):
     createTime: str
     description: str
     etag: str
@@ -893,8 +895,8 @@ class ServiceClass(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class ServiceConfig(typing_extensions.TypedDict, total=False):
-    eligibilityCriteria: typing_extensions.Literal[
+class ServiceConfig(typing.TypedDict, total=False):
+    eligibilityCriteria: typing.Literal[
         "ELIGIBILITY_CRITERIA_UNSPECIFIED",
         "NETWORK_SERVICE_TIER_PREMIUM_ONLY",
         "NETWORK_SERVICE_TIER_STANDARD_ONLY",
@@ -903,13 +905,13 @@ class ServiceConfig(typing_extensions.TypedDict, total=False):
     supportEndTime: str
 
 @typing.type_check_only
-class ServiceConnectionMap(typing_extensions.TypedDict, total=False):
+class ServiceConnectionMap(typing.TypedDict, total=False):
     consumerPscConfigs: _list[ConsumerPscConfig]
     consumerPscConnections: _list[ConsumerPscConnection]
     createTime: str
     description: str
     etag: str
-    infrastructure: typing_extensions.Literal["INFRASTRUCTURE_UNSPECIFIED", "PSC"]
+    infrastructure: typing.Literal["INFRASTRUCTURE_UNSPECIFIED", "PSC"]
     labels: dict[str, typing.Any]
     name: str
     producerPscConfigs: _list[ProducerPscConfig]
@@ -919,12 +921,12 @@ class ServiceConnectionMap(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class ServiceConnectionPolicy(typing_extensions.TypedDict, total=False):
+class ServiceConnectionPolicy(typing.TypedDict, total=False):
     autoCreatedSubnetInfo: AutoCreatedSubnetworkInfo
     createTime: str
     description: str
     etag: str
-    infrastructure: typing_extensions.Literal["INFRASTRUCTURE_UNSPECIFIED", "PSC"]
+    infrastructure: typing.Literal["INFRASTRUCTURE_UNSPECIFIED", "PSC"]
     labels: dict[str, typing.Any]
     name: str
     network: str
@@ -934,7 +936,7 @@ class ServiceConnectionPolicy(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class ServiceConnectionToken(typing_extensions.TypedDict, total=False):
+class ServiceConnectionToken(typing.TypedDict, total=False):
     createTime: str
     description: str
     etag: str
@@ -946,12 +948,12 @@ class ServiceConnectionToken(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
+class SetIamPolicyRequest(typing.TypedDict, total=False):
     policy: Policy
     updateMask: str
 
 @typing.type_check_only
-class Spoke(typing_extensions.TypedDict, total=False):
+class Spoke(typing.TypedDict, total=False):
     createTime: str
     description: str
     etag: str
@@ -967,7 +969,7 @@ class Spoke(typing_extensions.TypedDict, total=False):
     linkedVpnTunnels: LinkedVpnTunnels
     name: str
     reasons: _list[StateReason]
-    spokeType: typing_extensions.Literal[
+    spokeType: typing.Literal[
         "SPOKE_TYPE_UNSPECIFIED",
         "VPN_TUNNEL",
         "INTERCONNECT_ATTACHMENT",
@@ -976,7 +978,7 @@ class Spoke(typing_extensions.TypedDict, total=False):
         "GATEWAY",
         "PRODUCER_VPC_NETWORK",
     ]
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "CREATING",
         "ACTIVE",
@@ -992,9 +994,9 @@ class Spoke(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class SpokeStateCount(typing_extensions.TypedDict, total=False):
+class SpokeStateCount(typing.TypedDict, total=False):
     count: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "CREATING",
         "ACTIVE",
@@ -1008,9 +1010,9 @@ class SpokeStateCount(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class SpokeStateReasonCount(typing_extensions.TypedDict, total=False):
+class SpokeStateReasonCount(typing.TypedDict, total=False):
     count: str
-    stateReasonCode: typing_extensions.Literal[
+    stateReasonCode: typing.Literal[
         "CODE_UNSPECIFIED",
         "PENDING_REVIEW",
         "REJECTED",
@@ -1022,15 +1024,15 @@ class SpokeStateReasonCount(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class SpokeSummary(typing_extensions.TypedDict, total=False):
+class SpokeSummary(typing.TypedDict, total=False):
     spokeStateCounts: _list[SpokeStateCount]
     spokeStateReasonCounts: _list[SpokeStateReasonCount]
     spokeTypeCounts: _list[SpokeTypeCount]
 
 @typing.type_check_only
-class SpokeTypeCount(typing_extensions.TypedDict, total=False):
+class SpokeTypeCount(typing.TypedDict, total=False):
     count: str
-    spokeType: typing_extensions.Literal[
+    spokeType: typing.Literal[
         "SPOKE_TYPE_UNSPECIFIED",
         "VPN_TUNNEL",
         "INTERCONNECT_ATTACHMENT",
@@ -1041,15 +1043,15 @@ class SpokeTypeCount(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class StateMetadata(typing_extensions.TypedDict, total=False):
+class StateMetadata(typing.TypedDict, total=False):
     effectiveTime: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED", "ADDING", "ACTIVE", "DELETING", "SUSPENDING", "SUSPENDED"
     ]
 
 @typing.type_check_only
-class StateReason(typing_extensions.TypedDict, total=False):
-    code: typing_extensions.Literal[
+class StateReason(typing.TypedDict, total=False):
+    code: typing.Literal[
         "CODE_UNSPECIFIED",
         "PENDING_REVIEW",
         "REJECTED",
@@ -1063,21 +1065,21 @@ class StateReason(typing_extensions.TypedDict, total=False):
     userDetails: str
 
 @typing.type_check_only
-class StateTimeline(typing_extensions.TypedDict, total=False):
+class StateTimeline(typing.TypedDict, total=False):
     states: _list[StateMetadata]
 
 @typing.type_check_only
-class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
+class TestIamPermissionsRequest(typing.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
-class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
+class TestIamPermissionsResponse(typing.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
-class Transport(typing_extensions.TypedDict, total=False):
+class Transport(typing.TypedDict, total=False):
     advertisedRoutes: _list[str]
-    bandwidth: typing_extensions.Literal[
+    bandwidth: typing.Literal[
         "BANDWIDTH_UNSPECIFIED",
         "BPS_50M",
         "BPS_100M",
@@ -1104,10 +1106,8 @@ class Transport(typing_extensions.TypedDict, total=False):
     providedActivationKey: str
     remoteAccountId: str
     remoteProfile: str
-    stackType: typing_extensions.Literal[
-        "STACK_TYPE_UNSPECIFIED", "IPV4_ONLY", "IPV4_IPV6"
-    ]
-    state: typing_extensions.Literal[
+    stackType: typing.Literal["STACK_TYPE_UNSPECIFIED", "IPV4_ONLY", "IPV4_IPV6"]
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "CREATING",
         "PENDING_CONFIG",
@@ -1119,12 +1119,12 @@ class Transport(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class VirtualMachine(typing_extensions.TypedDict, total=False):
+class VirtualMachine(typing.TypedDict, total=False):
     tags: _list[str]
 
 @typing.type_check_only
-class Warnings(typing_extensions.TypedDict, total=False):
-    code: typing_extensions.Literal[
+class Warnings(typing.TypedDict, total=False):
+    code: typing.Literal[
         "WARNING_UNSPECIFIED", "RESOURCE_NOT_ACTIVE", "RESOURCE_BEING_MODIFIED"
     ]
     data: dict[str, typing.Any]

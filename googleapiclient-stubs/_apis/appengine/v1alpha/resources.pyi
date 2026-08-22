@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -32,7 +31,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 *,
                 appsId: str,
                 authorizedCertificatesId: str,
-                view: typing_extensions.Literal["BASIC_CERTIFICATE", "FULL_CERTIFICATE"]
+                view: typing.Literal["BASIC_CERTIFICATE", "FULL_CERTIFICATE"]
                 | None = ...,
                 **kwargs: typing.Any,
             ) -> AuthorizedCertificateHttpRequest: ...
@@ -42,7 +41,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 appsId: str,
                 pageSize: int | None = ...,
                 pageToken: str | None = ...,
-                view: typing_extensions.Literal["BASIC_CERTIFICATE", "FULL_CERTIFICATE"]
+                view: typing.Literal["BASIC_CERTIFICATE", "FULL_CERTIFICATE"]
                 | None = ...,
                 **kwargs: typing.Any,
             ) -> ListAuthorizedCertificatesResponseHttpRequest: ...
@@ -85,7 +84,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 appsId: str,
                 body: DomainMapping,
                 noManagedCertificate: bool | None = ...,
-                overrideStrategy: typing_extensions.Literal[
+                overrideStrategy: typing.Literal[
                     "UNSPECIFIED_DOMAIN_OVERRIDE_STRATEGY", "STRICT", "OVERRIDE"
                 ]
                 | None = ...,
@@ -204,9 +203,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                         locationsId: str,
                         applicationsId: str,
                         authorizedCertificatesId: str,
-                        view: typing_extensions.Literal[
-                            "BASIC_CERTIFICATE", "FULL_CERTIFICATE"
-                        ]
+                        view: typing.Literal["BASIC_CERTIFICATE", "FULL_CERTIFICATE"]
                         | None = ...,
                         **kwargs: typing.Any,
                     ) -> AuthorizedCertificateHttpRequest: ...
@@ -218,9 +215,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                         applicationsId: str,
                         pageSize: int | None = ...,
                         pageToken: str | None = ...,
-                        view: typing_extensions.Literal[
-                            "BASIC_CERTIFICATE", "FULL_CERTIFICATE"
-                        ]
+                        view: typing.Literal["BASIC_CERTIFICATE", "FULL_CERTIFICATE"]
                         | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListAuthorizedCertificatesResponseHttpRequest: ...
@@ -269,7 +264,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                         applicationsId: str,
                         body: DomainMapping,
                         noManagedCertificate: bool | None = ...,
-                        overrideStrategy: typing_extensions.Literal[
+                        overrideStrategy: typing.Literal[
                             "UNSPECIFIED_DOMAIN_OVERRIDE_STRATEGY", "STRICT", "OVERRIDE"
                         ]
                         | None = ...,

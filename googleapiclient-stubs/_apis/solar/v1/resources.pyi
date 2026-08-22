@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -18,26 +17,20 @@ class SolarResource(googleapiclient.discovery.Resource):
         def findClosest(
             self,
             *,
-            additionalInsights: typing_extensions.Literal[
+            additionalInsights: typing.Literal[
                 "ADDITIONAL_INSIGHTS_UNSPECIFIED", "DETECTED_ARRAYS"
             ]
             | _list[
-                typing_extensions.Literal[
-                    "ADDITIONAL_INSIGHTS_UNSPECIFIED", "DETECTED_ARRAYS"
-                ]
+                typing.Literal["ADDITIONAL_INSIGHTS_UNSPECIFIED", "DETECTED_ARRAYS"]
             ]
             | None = ...,
             exactQualityRequired: bool | None = ...,
-            experiments: typing_extensions.Literal[
-                "EXPERIMENT_UNSPECIFIED", "EXPANDED_COVERAGE"
-            ]
-            | _list[
-                typing_extensions.Literal["EXPERIMENT_UNSPECIFIED", "EXPANDED_COVERAGE"]
-            ]
+            experiments: typing.Literal["EXPERIMENT_UNSPECIFIED", "EXPANDED_COVERAGE"]
+            | _list[typing.Literal["EXPERIMENT_UNSPECIFIED", "EXPANDED_COVERAGE"]]
             | None = ...,
             location_latitude: float | None = ...,
             location_longitude: float | None = ...,
-            requiredQuality: typing_extensions.Literal[
+            requiredQuality: typing.Literal[
                 "IMAGERY_QUALITY_UNSPECIFIED", "HIGH", "MEDIUM", "LOW", "BASE"
             ]
             | None = ...,
@@ -50,22 +43,18 @@ class SolarResource(googleapiclient.discovery.Resource):
             self,
             *,
             exactQualityRequired: bool | None = ...,
-            experiments: typing_extensions.Literal[
-                "EXPERIMENT_UNSPECIFIED", "EXPANDED_COVERAGE"
-            ]
-            | _list[
-                typing_extensions.Literal["EXPERIMENT_UNSPECIFIED", "EXPANDED_COVERAGE"]
-            ]
+            experiments: typing.Literal["EXPERIMENT_UNSPECIFIED", "EXPANDED_COVERAGE"]
+            | _list[typing.Literal["EXPERIMENT_UNSPECIFIED", "EXPANDED_COVERAGE"]]
             | None = ...,
             location_latitude: float | None = ...,
             location_longitude: float | None = ...,
             pixelSizeMeters: float | None = ...,
             radiusMeters: float | None = ...,
-            requiredQuality: typing_extensions.Literal[
+            requiredQuality: typing.Literal[
                 "IMAGERY_QUALITY_UNSPECIFIED", "HIGH", "MEDIUM", "LOW", "BASE"
             ]
             | None = ...,
-            view: typing_extensions.Literal[
+            view: typing.Literal[
                 "DATA_LAYER_VIEW_UNSPECIFIED",
                 "DSM_LAYER",
                 "IMAGERY_LAYERS",

@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -47,7 +46,7 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        view: typing_extensions.Literal[
+                        view: typing.Literal[
                             "INVENTORY_VIEW_UNSPECIFIED", "BASIC", "FULL"
                         ]
                         | None = ...,
@@ -60,7 +59,7 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                         filter: str | None = ...,
                         pageSize: int | None = ...,
                         pageToken: str | None = ...,
-                        view: typing_extensions.Literal[
+                        view: typing.Literal[
                             "INVENTORY_VIEW_UNSPECIFIED", "BASIC", "FULL"
                         ]
                         | None = ...,

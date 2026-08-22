@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -198,18 +197,15 @@ class YouTubeResource(googleapiclient.discovery.Resource):
             channelId: str | None = ...,
             id: str | _list[str] | None = ...,
             maxResults: int | None = ...,
-            moderationStatus: typing_extensions.Literal[
+            moderationStatus: typing.Literal[
                 "published", "heldForReview", "likelySpam", "rejected"
             ]
             | None = ...,
-            order: typing_extensions.Literal["orderUnspecified", "time", "relevance"]
-            | None = ...,
+            order: typing.Literal["orderUnspecified", "time", "relevance"] | None = ...,
             pageToken: str | None = ...,
             postId: str | None = ...,
             searchTerms: str | None = ...,
-            textFormat: typing_extensions.Literal[
-                "textFormatUnspecified", "html", "plainText"
-            ]
+            textFormat: typing.Literal["textFormatUnspecified", "html", "plainText"]
             | None = ...,
             videoId: str | None = ...,
             **kwargs: typing.Any,
@@ -236,9 +232,7 @@ class YouTubeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             pageToken: str | None = ...,
             parentId: str | None = ...,
-            textFormat: typing_extensions.Literal[
-                "textFormatUnspecified", "html", "plainText"
-            ]
+            textFormat: typing.Literal["textFormatUnspecified", "html", "plainText"]
             | None = ...,
             **kwargs: typing.Any,
         ) -> CommentListResponseHttpRequest: ...
@@ -254,7 +248,7 @@ class YouTubeResource(googleapiclient.discovery.Resource):
             self,
             *,
             id: str | _list[str],
-            moderationStatus: typing_extensions.Literal[
+            moderationStatus: typing.Literal[
                 "published", "heldForReview", "likelySpam", "rejected"
             ],
             banAuthor: bool | None = ...,
@@ -319,7 +313,7 @@ class YouTubeResource(googleapiclient.discovery.Resource):
             self,
             *,
             part: str | _list[str],
-            broadcastStatus: typing_extensions.Literal[
+            broadcastStatus: typing.Literal[
                 "broadcastStatusFilterUnspecified",
                 "all",
                 "active",
@@ -327,7 +321,7 @@ class YouTubeResource(googleapiclient.discovery.Resource):
                 "completed",
             ]
             | None = ...,
-            broadcastType: typing_extensions.Literal[
+            broadcastType: typing.Literal[
                 "broadcastTypeFilterUnspecified", "all", "event", "persistent"
             ]
             | None = ...,
@@ -347,7 +341,7 @@ class YouTubeResource(googleapiclient.discovery.Resource):
         def transition(
             self,
             *,
-            broadcastStatus: typing_extensions.Literal[
+            broadcastStatus: typing.Literal[
                 "statusUnspecified", "testing", "live", "complete"
             ],
             id: str,
@@ -403,8 +397,7 @@ class YouTubeResource(googleapiclient.discovery.Resource):
             self,
             *,
             id: str | None = ...,
-            status: typing_extensions.Literal["statusUnspecified", "closed"]
-            | None = ...,
+            status: typing.Literal["statusUnspecified", "closed"] | None = ...,
             **kwargs: typing.Any,
         ) -> LiveChatMessageHttpRequest: ...
 
@@ -490,9 +483,7 @@ class YouTubeResource(googleapiclient.discovery.Resource):
             filterByMemberChannelId: str | None = ...,
             hasAccessToLevel: str | None = ...,
             maxResults: int | None = ...,
-            mode: typing_extensions.Literal[
-                "listMembersModeUnknown", "updates", "all_current"
-            ]
+            mode: typing.Literal["listMembersModeUnknown", "updates", "all_current"]
             | None = ...,
             pageToken: str | None = ...,
             **kwargs: typing.Any,
@@ -648,13 +639,9 @@ class YouTubeResource(googleapiclient.discovery.Resource):
             *,
             part: str | _list[str],
             channelId: str | None = ...,
-            channelType: typing_extensions.Literal[
-                "channelTypeUnspecified", "any", "show"
-            ]
+            channelType: typing.Literal["channelTypeUnspecified", "any", "show"]
             | None = ...,
-            eventType: typing_extensions.Literal[
-                "none", "upcoming", "live", "completed"
-            ]
+            eventType: typing.Literal["none", "upcoming", "live", "completed"]
             | None = ...,
             forContentOwner: bool | None = ...,
             forDeveloper: bool | None = ...,
@@ -663,7 +650,7 @@ class YouTubeResource(googleapiclient.discovery.Resource):
             locationRadius: str | None = ...,
             maxResults: int | None = ...,
             onBehalfOfContentOwner: str | None = ...,
-            order: typing_extensions.Literal[
+            order: typing.Literal[
                 "searchSortUnspecified",
                 "date",
                 "rating",
@@ -679,41 +666,34 @@ class YouTubeResource(googleapiclient.discovery.Resource):
             q: str | None = ...,
             regionCode: str | None = ...,
             relevanceLanguage: str | None = ...,
-            safeSearch: typing_extensions.Literal[
+            safeSearch: typing.Literal[
                 "safeSearchSettingUnspecified", "none", "moderate", "strict"
             ]
             | None = ...,
             topicId: str | None = ...,
             type: str | _list[str] | None = ...,
-            videoCaption: typing_extensions.Literal[
+            videoCaption: typing.Literal[
                 "videoCaptionUnspecified", "any", "closedCaption", "none"
             ]
             | None = ...,
             videoCategoryId: str | None = ...,
-            videoDefinition: typing_extensions.Literal["any", "standard", "high"]
-            | None = ...,
-            videoDimension: typing_extensions.Literal["any", "2d", "3d"] | None = ...,
-            videoDuration: typing_extensions.Literal[
+            videoDefinition: typing.Literal["any", "standard", "high"] | None = ...,
+            videoDimension: typing.Literal["any", "2d", "3d"] | None = ...,
+            videoDuration: typing.Literal[
                 "videoDurationUnspecified", "any", "short", "medium", "long"
             ]
             | None = ...,
-            videoEmbeddable: typing_extensions.Literal[
-                "videoEmbeddableUnspecified", "any", "true"
-            ]
+            videoEmbeddable: typing.Literal["videoEmbeddableUnspecified", "any", "true"]
             | None = ...,
-            videoLicense: typing_extensions.Literal["any", "youtube", "creativeCommon"]
+            videoLicense: typing.Literal["any", "youtube", "creativeCommon"]
             | None = ...,
-            videoPaidProductPlacement: typing_extensions.Literal[
+            videoPaidProductPlacement: typing.Literal[
                 "videoPaidProductPlacementUnspecified", "any", "true"
             ]
             | None = ...,
-            videoSyndicated: typing_extensions.Literal[
-                "videoSyndicatedUnspecified", "any", "true"
-            ]
+            videoSyndicated: typing.Literal["videoSyndicatedUnspecified", "any", "true"]
             | None = ...,
-            videoType: typing_extensions.Literal[
-                "videoTypeUnspecified", "any", "movie", "episode"
-            ]
+            videoType: typing.Literal["videoTypeUnspecified", "any", "movie", "episode"]
             | None = ...,
             **kwargs: typing.Any,
         ) -> SearchListResponseHttpRequest: ...
@@ -744,7 +724,7 @@ class YouTubeResource(googleapiclient.discovery.Resource):
             mySubscribers: bool | None = ...,
             onBehalfOfContentOwner: str | None = ...,
             onBehalfOfContentOwnerChannel: str | None = ...,
-            order: typing_extensions.Literal[
+            order: typing.Literal[
                 "subscriptionOrderUnspecified", "relevance", "unread", "alphabetical"
             ]
             | None = ...,
@@ -792,7 +772,7 @@ class YouTubeResource(googleapiclient.discovery.Resource):
             self,
             *,
             linkingToken: str,
-            type: typing_extensions.Literal[
+            type: typing.Literal[
                 "linkUnspecified", "channelToStoreLink", "channelToAffiliateProgramLink"
             ],
             externalChannelId: str | None = ...,
@@ -813,7 +793,7 @@ class YouTubeResource(googleapiclient.discovery.Resource):
             part: str | _list[str],
             externalChannelId: str | None = ...,
             linkingToken: str | None = ...,
-            type: typing_extensions.Literal[
+            type: typing.Literal[
                 "linkUnspecified", "channelToStoreLink", "channelToAffiliateProgramLink"
             ]
             | None = ...,
@@ -902,15 +882,14 @@ class YouTubeResource(googleapiclient.discovery.Resource):
             self,
             *,
             part: str | _list[str],
-            chart: typing_extensions.Literal["chartUnspecified", "mostPopular"]
-            | None = ...,
+            chart: typing.Literal["chartUnspecified", "mostPopular"] | None = ...,
             hl: str | None = ...,
             id: str | _list[str] | None = ...,
             locale: str | None = ...,
             maxHeight: int | None = ...,
             maxResults: int | None = ...,
             maxWidth: int | None = ...,
-            myRating: typing_extensions.Literal["none", "like", "dislike"] | None = ...,
+            myRating: typing.Literal["none", "like", "dislike"] | None = ...,
             onBehalfOfContentOwner: str | None = ...,
             pageToken: str | None = ...,
             regionCode: str | None = ...,
@@ -926,7 +905,7 @@ class YouTubeResource(googleapiclient.discovery.Resource):
             self,
             *,
             id: str,
-            rating: typing_extensions.Literal["none", "like", "dislike"],
+            rating: typing.Literal["none", "like", "dislike"],
             **kwargs: typing.Any,
         ) -> googleapiclient.http.HttpRequest: ...
         def reportAbuse(

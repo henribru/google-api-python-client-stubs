@@ -1,29 +1,25 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class ClickTag(typing_extensions.TypedDict, total=False):
+class ClickTag(typing.TypedDict, total=False):
     clickThroughUrl: CreativeClickThroughUrl
     eventName: str
     name: str
 
 @typing.type_check_only
-class CreativeAssetId(typing_extensions.TypedDict, total=False):
+class CreativeAssetId(typing.TypedDict, total=False):
     name: str
-    type: typing_extensions.Literal[
-        "IMAGE", "FLASH", "VIDEO", "HTML", "HTML_IMAGE", "AUDIO"
-    ]
+    type: typing.Literal["IMAGE", "FLASH", "VIDEO", "HTML", "HTML_IMAGE", "AUDIO"]
 
 @typing.type_check_only
-class CreativeAssetMetadata(typing_extensions.TypedDict, total=False):
+class CreativeAssetMetadata(typing.TypedDict, total=False):
     assetIdentifier: CreativeAssetId
     clickTags: _list[ClickTag]
     counterCustomEvents: _list[CreativeCustomEvent]
     detectedFeatures: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "CSS_FONT_FACE",
             "CSS_BACKGROUND_SIZE",
             "CSS_BORDER_IMAGE",
@@ -99,7 +95,7 @@ class CreativeAssetMetadata(typing_extensions.TypedDict, total=False):
     richMedia: bool
     timerCustomEvents: _list[CreativeCustomEvent]
     warnedValidationRules: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "CLICK_TAG_NON_TOP_LEVEL",
             "CLICK_TAG_MISSING",
             "CLICK_TAG_MORE_THAN_ONE",
@@ -130,20 +126,20 @@ class CreativeAssetMetadata(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class CreativeClickThroughUrl(typing_extensions.TypedDict, total=False):
+class CreativeClickThroughUrl(typing.TypedDict, total=False):
     computedClickThroughUrl: str
     customClickThroughUrl: str
     landingPageId: str
 
 @typing.type_check_only
-class CreativeCustomEvent(typing_extensions.TypedDict, total=False):
+class CreativeCustomEvent(typing.TypedDict, total=False):
     advertiserCustomEventId: str
     advertiserCustomEventName: str
-    advertiserCustomEventType: typing_extensions.Literal[
+    advertiserCustomEventType: typing.Literal[
         "ADVERTISER_EVENT_TIMER", "ADVERTISER_EVENT_EXIT", "ADVERTISER_EVENT_COUNTER"
     ]
     artworkLabel: str
-    artworkType: typing_extensions.Literal[
+    artworkType: typing.Literal[
         "ARTWORK_TYPE_FLASH",
         "ARTWORK_TYPE_HTML5",
         "ARTWORK_TYPE_MIXED",
@@ -152,32 +148,30 @@ class CreativeCustomEvent(typing_extensions.TypedDict, total=False):
     exitClickThroughUrl: CreativeClickThroughUrl
     id: str
     popupWindowProperties: PopupWindowProperties
-    targetType: typing_extensions.Literal[
+    targetType: typing.Literal[
         "TARGET_BLANK", "TARGET_TOP", "TARGET_SELF", "TARGET_PARENT", "TARGET_POPUP"
     ]
     videoReportingId: str
 
 @typing.type_check_only
-class DimensionValue(typing_extensions.TypedDict, total=False):
+class DimensionValue(typing.TypedDict, total=False):
     dimensionName: str
     etag: str
     id: str
     kind: str
-    matchType: typing_extensions.Literal[
-        "EXACT", "BEGINS_WITH", "CONTAINS", "WILDCARD_EXPRESSION"
-    ]
+    matchType: typing.Literal["EXACT", "BEGINS_WITH", "CONTAINS", "WILDCARD_EXPRESSION"]
     value: str
 
 @typing.type_check_only
-class OffsetPosition(typing_extensions.TypedDict, total=False):
+class OffsetPosition(typing.TypedDict, total=False):
     left: int
     top: int
 
 @typing.type_check_only
-class PopupWindowProperties(typing_extensions.TypedDict, total=False):
+class PopupWindowProperties(typing.TypedDict, total=False):
     dimension: Size
     offset: OffsetPosition
-    positionType: typing_extensions.Literal["CENTER", "COORDINATES"]
+    positionType: typing.Literal["CENTER", "COORDINATES"]
     showAddressBar: bool
     showMenuBar: bool
     showScrollBar: bool
@@ -186,7 +180,7 @@ class PopupWindowProperties(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
-class Size(typing_extensions.TypedDict, total=False):
+class Size(typing.TypedDict, total=False):
     height: int
     iab: bool
     id: str

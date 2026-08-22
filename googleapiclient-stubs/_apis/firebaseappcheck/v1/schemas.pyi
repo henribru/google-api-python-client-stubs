@@ -1,83 +1,73 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class GoogleFirebaseAppcheckV1AppAttestConfig(typing_extensions.TypedDict, total=False):
+class GoogleFirebaseAppcheckV1AppAttestConfig(typing.TypedDict, total=False):
     name: str
     tokenTtl: str
 
 @typing.type_check_only
-class GoogleFirebaseAppcheckV1AppCheckToken(typing_extensions.TypedDict, total=False):
+class GoogleFirebaseAppcheckV1AppCheckToken(typing.TypedDict, total=False):
     token: str
     ttl: str
 
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1BatchGetAppAttestConfigsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     configs: _list[GoogleFirebaseAppcheckV1AppAttestConfig]
 
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1BatchGetDeviceCheckConfigsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     configs: _list[GoogleFirebaseAppcheckV1DeviceCheckConfig]
 
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1BatchGetPlayIntegrityConfigsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     configs: _list[GoogleFirebaseAppcheckV1PlayIntegrityConfig]
 
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1BatchGetRecaptchaEnterpriseConfigsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     configs: _list[GoogleFirebaseAppcheckV1RecaptchaEnterpriseConfig]
 
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1BatchGetRecaptchaV3ConfigsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     configs: _list[GoogleFirebaseAppcheckV1RecaptchaV3Config]
 
 @typing.type_check_only
-class GoogleFirebaseAppcheckV1BatchGetSafetyNetConfigsResponse(
-    typing_extensions.TypedDict, total=False
-):
-    configs: _list[GoogleFirebaseAppcheckV1SafetyNetConfig]
-
-@typing.type_check_only
 class GoogleFirebaseAppcheckV1BatchUpdateResourcePoliciesRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     requests: _list[GoogleFirebaseAppcheckV1UpdateResourcePolicyRequest]
     updateMask: str
 
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1BatchUpdateResourcePoliciesResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     resourcePolicies: _list[GoogleFirebaseAppcheckV1ResourcePolicy]
 
 @typing.type_check_only
-class GoogleFirebaseAppcheckV1BatchUpdateServicesRequest(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleFirebaseAppcheckV1BatchUpdateServicesRequest(typing.TypedDict, total=False):
     requests: _list[GoogleFirebaseAppcheckV1UpdateServiceRequest]
     updateMask: str
 
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1BatchUpdateServicesResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     services: _list[GoogleFirebaseAppcheckV1Service]
 
 @typing.type_check_only
-class GoogleFirebaseAppcheckV1DebugToken(typing_extensions.TypedDict, total=False):
+class GoogleFirebaseAppcheckV1DebugToken(typing.TypedDict, total=False):
     displayName: str
     etag: str
     name: str
@@ -85,9 +75,7 @@ class GoogleFirebaseAppcheckV1DebugToken(typing_extensions.TypedDict, total=Fals
     updateTime: str
 
 @typing.type_check_only
-class GoogleFirebaseAppcheckV1DeviceCheckConfig(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleFirebaseAppcheckV1DeviceCheckConfig(typing.TypedDict, total=False):
     keyId: str
     name: str
     privateKey: str
@@ -96,7 +84,7 @@ class GoogleFirebaseAppcheckV1DeviceCheckConfig(
 
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1ExchangeAppAttestAssertionRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     artifact: str
     assertion: str
@@ -105,7 +93,7 @@ class GoogleFirebaseAppcheckV1ExchangeAppAttestAssertionRequest(
 
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1ExchangeAppAttestAttestationRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     attestationStatement: str
     challenge: str
@@ -114,108 +102,93 @@ class GoogleFirebaseAppcheckV1ExchangeAppAttestAttestationRequest(
 
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1ExchangeAppAttestAttestationResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     appCheckToken: GoogleFirebaseAppcheckV1AppCheckToken
     artifact: str
 
 @typing.type_check_only
-class GoogleFirebaseAppcheckV1ExchangeCustomTokenRequest(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleFirebaseAppcheckV1ExchangeCustomTokenRequest(typing.TypedDict, total=False):
     customToken: str
+    jti: str
     limitedUse: bool
 
 @typing.type_check_only
-class GoogleFirebaseAppcheckV1ExchangeDebugTokenRequest(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleFirebaseAppcheckV1ExchangeDebugTokenRequest(typing.TypedDict, total=False):
     debugToken: str
     limitedUse: bool
 
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1ExchangeDeviceCheckTokenRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     deviceToken: str
     limitedUse: bool
 
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1ExchangePlayIntegrityTokenRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     limitedUse: bool
     playIntegrityToken: str
 
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1ExchangeRecaptchaEnterpriseTokenRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     limitedUse: bool
     recaptchaEnterpriseToken: str
 
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1ExchangeRecaptchaV3TokenRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     limitedUse: bool
     recaptchaV3Token: str
 
 @typing.type_check_only
-class GoogleFirebaseAppcheckV1ExchangeSafetyNetTokenRequest(
-    typing_extensions.TypedDict, total=False
-):
-    safetyNetToken: str
-
-@typing.type_check_only
 class GoogleFirebaseAppcheckV1GenerateAppAttestChallengeRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1GenerateAppAttestChallengeResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     challenge: str
     ttl: str
 
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1GeneratePlayIntegrityChallengeRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1GeneratePlayIntegrityChallengeResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     challenge: str
     ttl: str
 
 @typing.type_check_only
-class GoogleFirebaseAppcheckV1ListDebugTokensResponse(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleFirebaseAppcheckV1ListDebugTokensResponse(typing.TypedDict, total=False):
     debugTokens: _list[GoogleFirebaseAppcheckV1DebugToken]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1ListResourcePoliciesResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     nextPageToken: str
     resourcePolicies: _list[GoogleFirebaseAppcheckV1ResourcePolicy]
 
 @typing.type_check_only
-class GoogleFirebaseAppcheckV1ListServicesResponse(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleFirebaseAppcheckV1ListServicesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     services: _list[GoogleFirebaseAppcheckV1Service]
 
 @typing.type_check_only
-class GoogleFirebaseAppcheckV1PlayIntegrityConfig(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleFirebaseAppcheckV1PlayIntegrityConfig(typing.TypedDict, total=False):
     accountDetails: GoogleFirebaseAppcheckV1PlayIntegrityConfigAccountDetails
     appIntegrity: GoogleFirebaseAppcheckV1PlayIntegrityConfigAppIntegrity
     deviceIntegrity: GoogleFirebaseAppcheckV1PlayIntegrityConfigDeviceIntegrity
@@ -224,21 +197,21 @@ class GoogleFirebaseAppcheckV1PlayIntegrityConfig(
 
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1PlayIntegrityConfigAccountDetails(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     requireLicensed: bool
 
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1PlayIntegrityConfigAppIntegrity(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     allowUnrecognizedVersion: bool
 
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1PlayIntegrityConfigDeviceIntegrity(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    minDeviceRecognitionLevel: typing_extensions.Literal[
+    minDeviceRecognitionLevel: typing.Literal[
         "DEVICE_RECOGNITION_LEVEL_UNSPECIFIED",
         "NO_INTEGRITY",
         "MEETS_BASIC_INTEGRITY",
@@ -247,7 +220,7 @@ class GoogleFirebaseAppcheckV1PlayIntegrityConfigDeviceIntegrity(
     ]
 
 @typing.type_check_only
-class GoogleFirebaseAppcheckV1PublicJwk(typing_extensions.TypedDict, total=False):
+class GoogleFirebaseAppcheckV1PublicJwk(typing.TypedDict, total=False):
     alg: str
     e: str
     kid: str
@@ -256,13 +229,11 @@ class GoogleFirebaseAppcheckV1PublicJwk(typing_extensions.TypedDict, total=False
     use: str
 
 @typing.type_check_only
-class GoogleFirebaseAppcheckV1PublicJwkSet(typing_extensions.TypedDict, total=False):
+class GoogleFirebaseAppcheckV1PublicJwkSet(typing.TypedDict, total=False):
     keys: _list[GoogleFirebaseAppcheckV1PublicJwk]
 
 @typing.type_check_only
-class GoogleFirebaseAppcheckV1RecaptchaEnterpriseConfig(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleFirebaseAppcheckV1RecaptchaEnterpriseConfig(typing.TypedDict, total=False):
     name: str
     riskAnalysis: GoogleFirebaseAppcheckV1RecaptchaEnterpriseConfigRiskAnalysis
     siteKey: str
@@ -270,14 +241,12 @@ class GoogleFirebaseAppcheckV1RecaptchaEnterpriseConfig(
 
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1RecaptchaEnterpriseConfigRiskAnalysis(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     minValidScore: float
 
 @typing.type_check_only
-class GoogleFirebaseAppcheckV1RecaptchaV3Config(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleFirebaseAppcheckV1RecaptchaV3Config(typing.TypedDict, total=False):
     minValidScore: float
     name: str
     siteSecret: str
@@ -285,39 +254,32 @@ class GoogleFirebaseAppcheckV1RecaptchaV3Config(
     tokenTtl: str
 
 @typing.type_check_only
-class GoogleFirebaseAppcheckV1ResourcePolicy(typing_extensions.TypedDict, total=False):
-    enforcementMode: typing_extensions.Literal["OFF", "UNENFORCED", "ENFORCED"]
+class GoogleFirebaseAppcheckV1ResourcePolicy(typing.TypedDict, total=False):
+    enforcementMode: typing.Literal["OFF", "UNENFORCED", "ENFORCED"]
     etag: str
     name: str
     targetResource: str
     updateTime: str
 
 @typing.type_check_only
-class GoogleFirebaseAppcheckV1SafetyNetConfig(typing_extensions.TypedDict, total=False):
-    name: str
-    tokenTtl: str
-
-@typing.type_check_only
-class GoogleFirebaseAppcheckV1Service(typing_extensions.TypedDict, total=False):
-    enforcementMode: typing_extensions.Literal["OFF", "UNENFORCED", "ENFORCED"]
+class GoogleFirebaseAppcheckV1Service(typing.TypedDict, total=False):
+    enforcementMode: typing.Literal["OFF", "UNENFORCED", "ENFORCED"]
     etag: str
     name: str
-    replayProtection: typing_extensions.Literal["OFF", "UNENFORCED", "ENFORCED"]
+    replayProtection: typing.Literal["OFF", "UNENFORCED", "ENFORCED"]
     updateTime: str
 
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1UpdateResourcePolicyRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     resourcePolicy: GoogleFirebaseAppcheckV1ResourcePolicy
     updateMask: str
 
 @typing.type_check_only
-class GoogleFirebaseAppcheckV1UpdateServiceRequest(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleFirebaseAppcheckV1UpdateServiceRequest(typing.TypedDict, total=False):
     service: GoogleFirebaseAppcheckV1Service
     updateMask: str
 
 @typing.type_check_only
-class GoogleProtobufEmpty(typing_extensions.TypedDict, total=False): ...
+class GoogleProtobufEmpty(typing.TypedDict, total=False): ...

@@ -1,13 +1,9 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class GoogleCloudPolicytroubleshooterIamV3AccessTuple(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudPolicytroubleshooterIamV3AccessTuple(typing.TypedDict, total=False):
     conditionContext: GoogleCloudPolicytroubleshooterIamV3ConditionContext
     fullResourceName: str
     permission: str
@@ -16,9 +12,9 @@ class GoogleCloudPolicytroubleshooterIamV3AccessTuple(
 
 @typing.type_check_only
 class GoogleCloudPolicytroubleshooterIamV3AllowBindingExplanation(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    allowAccessState: typing_extensions.Literal[
+    allowAccessState: typing.Literal[
         "ALLOW_ACCESS_STATE_UNSPECIFIED",
         "ALLOW_ACCESS_STATE_GRANTED",
         "ALLOW_ACCESS_STATE_NOT_GRANTED",
@@ -29,19 +25,19 @@ class GoogleCloudPolicytroubleshooterIamV3AllowBindingExplanation(
     condition: GoogleTypeExpr
     conditionExplanation: GoogleCloudPolicytroubleshooterIamV3ConditionExplanation
     memberships: dict[str, typing.Any]
-    relevance: typing_extensions.Literal[
+    relevance: typing.Literal[
         "HEURISTIC_RELEVANCE_UNSPECIFIED",
         "HEURISTIC_RELEVANCE_NORMAL",
         "HEURISTIC_RELEVANCE_HIGH",
     ]
     role: str
-    rolePermission: typing_extensions.Literal[
+    rolePermission: typing.Literal[
         "ROLE_PERMISSION_INCLUSION_STATE_UNSPECIFIED",
         "ROLE_PERMISSION_INCLUDED",
         "ROLE_PERMISSION_NOT_INCLUDED",
         "ROLE_PERMISSION_UNKNOWN_INFO",
     ]
-    rolePermissionRelevance: typing_extensions.Literal[
+    rolePermissionRelevance: typing.Literal[
         "HEURISTIC_RELEVANCE_UNSPECIFIED",
         "HEURISTIC_RELEVANCE_NORMAL",
         "HEURISTIC_RELEVANCE_HIGH",
@@ -49,16 +45,16 @@ class GoogleCloudPolicytroubleshooterIamV3AllowBindingExplanation(
 
 @typing.type_check_only
 class GoogleCloudPolicytroubleshooterIamV3AllowBindingExplanationAnnotatedAllowMembership(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    membership: typing_extensions.Literal[
+    membership: typing.Literal[
         "MEMBERSHIP_MATCHING_STATE_UNSPECIFIED",
         "MEMBERSHIP_MATCHED",
         "MEMBERSHIP_NOT_MATCHED",
         "MEMBERSHIP_UNKNOWN_INFO",
         "MEMBERSHIP_UNKNOWN_UNSUPPORTED",
     ]
-    relevance: typing_extensions.Literal[
+    relevance: typing.Literal[
         "HEURISTIC_RELEVANCE_UNSPECIFIED",
         "HEURISTIC_RELEVANCE_NORMAL",
         "HEURISTIC_RELEVANCE_HIGH",
@@ -66,9 +62,9 @@ class GoogleCloudPolicytroubleshooterIamV3AllowBindingExplanationAnnotatedAllowM
 
 @typing.type_check_only
 class GoogleCloudPolicytroubleshooterIamV3AllowPolicyExplanation(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    allowAccessState: typing_extensions.Literal[
+    allowAccessState: typing.Literal[
         "ALLOW_ACCESS_STATE_UNSPECIFIED",
         "ALLOW_ACCESS_STATE_GRANTED",
         "ALLOW_ACCESS_STATE_NOT_GRANTED",
@@ -76,7 +72,7 @@ class GoogleCloudPolicytroubleshooterIamV3AllowPolicyExplanation(
         "ALLOW_ACCESS_STATE_UNKNOWN_INFO",
     ]
     explainedPolicies: _list[GoogleCloudPolicytroubleshooterIamV3ExplainedAllowPolicy]
-    relevance: typing_extensions.Literal[
+    relevance: typing.Literal[
         "HEURISTIC_RELEVANCE_UNSPECIFIED",
         "HEURISTIC_RELEVANCE_NORMAL",
         "HEURISTIC_RELEVANCE_HIGH",
@@ -84,7 +80,7 @@ class GoogleCloudPolicytroubleshooterIamV3AllowPolicyExplanation(
 
 @typing.type_check_only
 class GoogleCloudPolicytroubleshooterIamV3ConditionContext(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     destination: GoogleCloudPolicytroubleshooterIamV3ConditionContextPeer
     effectiveTags: _list[
@@ -95,7 +91,7 @@ class GoogleCloudPolicytroubleshooterIamV3ConditionContext(
 
 @typing.type_check_only
 class GoogleCloudPolicytroubleshooterIamV3ConditionContextEffectiveTag(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     inherited: bool
     namespacedTagKey: str
@@ -106,20 +102,20 @@ class GoogleCloudPolicytroubleshooterIamV3ConditionContextEffectiveTag(
 
 @typing.type_check_only
 class GoogleCloudPolicytroubleshooterIamV3ConditionContextPeer(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     ip: str
     port: str
 
 @typing.type_check_only
 class GoogleCloudPolicytroubleshooterIamV3ConditionContextRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     receiveTime: str
 
 @typing.type_check_only
 class GoogleCloudPolicytroubleshooterIamV3ConditionContextResource(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     name: str
     service: str
@@ -127,7 +123,7 @@ class GoogleCloudPolicytroubleshooterIamV3ConditionContextResource(
 
 @typing.type_check_only
 class GoogleCloudPolicytroubleshooterIamV3ConditionExplanation(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     errors: _list[GoogleRpcStatus]
     evaluationStates: _list[
@@ -137,7 +133,7 @@ class GoogleCloudPolicytroubleshooterIamV3ConditionExplanation(
 
 @typing.type_check_only
 class GoogleCloudPolicytroubleshooterIamV3ConditionExplanationEvaluationState(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     end: int
     errors: _list[GoogleRpcStatus]
@@ -146,9 +142,9 @@ class GoogleCloudPolicytroubleshooterIamV3ConditionExplanationEvaluationState(
 
 @typing.type_check_only
 class GoogleCloudPolicytroubleshooterIamV3DenyPolicyExplanation(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    denyAccessState: typing_extensions.Literal[
+    denyAccessState: typing.Literal[
         "DENY_ACCESS_STATE_UNSPECIFIED",
         "DENY_ACCESS_STATE_DENIED",
         "DENY_ACCESS_STATE_NOT_DENIED",
@@ -157,7 +153,7 @@ class GoogleCloudPolicytroubleshooterIamV3DenyPolicyExplanation(
     ]
     explainedResources: _list[GoogleCloudPolicytroubleshooterIamV3ExplainedDenyResource]
     permissionDeniable: bool
-    relevance: typing_extensions.Literal[
+    relevance: typing.Literal[
         "HEURISTIC_RELEVANCE_UNSPECIFIED",
         "HEURISTIC_RELEVANCE_NORMAL",
         "HEURISTIC_RELEVANCE_HIGH",
@@ -165,7 +161,7 @@ class GoogleCloudPolicytroubleshooterIamV3DenyPolicyExplanation(
 
 @typing.type_check_only
 class GoogleCloudPolicytroubleshooterIamV3DenyRuleExplanation(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     combinedDeniedPermission: GoogleCloudPolicytroubleshooterIamV3DenyRuleExplanationAnnotatedPermissionMatching
     combinedDeniedPrincipal: GoogleCloudPolicytroubleshooterIamV3DenyRuleExplanationAnnotatedDenyPrincipalMatching
@@ -175,7 +171,7 @@ class GoogleCloudPolicytroubleshooterIamV3DenyRuleExplanation(
     conditionExplanation: GoogleCloudPolicytroubleshooterIamV3ConditionExplanation
     deniedPermissions: dict[str, typing.Any]
     deniedPrincipals: dict[str, typing.Any]
-    denyAccessState: typing_extensions.Literal[
+    denyAccessState: typing.Literal[
         "DENY_ACCESS_STATE_UNSPECIFIED",
         "DENY_ACCESS_STATE_DENIED",
         "DENY_ACCESS_STATE_NOT_DENIED",
@@ -184,7 +180,7 @@ class GoogleCloudPolicytroubleshooterIamV3DenyRuleExplanation(
     ]
     exceptionPermissions: dict[str, typing.Any]
     exceptionPrincipals: dict[str, typing.Any]
-    relevance: typing_extensions.Literal[
+    relevance: typing.Literal[
         "HEURISTIC_RELEVANCE_UNSPECIFIED",
         "HEURISTIC_RELEVANCE_NORMAL",
         "HEURISTIC_RELEVANCE_HIGH",
@@ -192,16 +188,16 @@ class GoogleCloudPolicytroubleshooterIamV3DenyRuleExplanation(
 
 @typing.type_check_only
 class GoogleCloudPolicytroubleshooterIamV3DenyRuleExplanationAnnotatedDenyPrincipalMatching(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    membership: typing_extensions.Literal[
+    membership: typing.Literal[
         "MEMBERSHIP_MATCHING_STATE_UNSPECIFIED",
         "MEMBERSHIP_MATCHED",
         "MEMBERSHIP_NOT_MATCHED",
         "MEMBERSHIP_UNKNOWN_INFO",
         "MEMBERSHIP_UNKNOWN_UNSUPPORTED",
     ]
-    relevance: typing_extensions.Literal[
+    relevance: typing.Literal[
         "HEURISTIC_RELEVANCE_UNSPECIFIED",
         "HEURISTIC_RELEVANCE_NORMAL",
         "HEURISTIC_RELEVANCE_HIGH",
@@ -209,14 +205,14 @@ class GoogleCloudPolicytroubleshooterIamV3DenyRuleExplanationAnnotatedDenyPrinci
 
 @typing.type_check_only
 class GoogleCloudPolicytroubleshooterIamV3DenyRuleExplanationAnnotatedPermissionMatching(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    permissionMatchingState: typing_extensions.Literal[
+    permissionMatchingState: typing.Literal[
         "PERMISSION_PATTERN_MATCHING_STATE_UNSPECIFIED",
         "PERMISSION_PATTERN_MATCHED",
         "PERMISSION_PATTERN_NOT_MATCHED",
     ]
-    relevance: typing_extensions.Literal[
+    relevance: typing.Literal[
         "HEURISTIC_RELEVANCE_UNSPECIFIED",
         "HEURISTIC_RELEVANCE_NORMAL",
         "HEURISTIC_RELEVANCE_HIGH",
@@ -224,9 +220,9 @@ class GoogleCloudPolicytroubleshooterIamV3DenyRuleExplanationAnnotatedPermission
 
 @typing.type_check_only
 class GoogleCloudPolicytroubleshooterIamV3ExplainedAllowPolicy(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    allowAccessState: typing_extensions.Literal[
+    allowAccessState: typing.Literal[
         "ALLOW_ACCESS_STATE_UNSPECIFIED",
         "ALLOW_ACCESS_STATE_GRANTED",
         "ALLOW_ACCESS_STATE_NOT_GRANTED",
@@ -238,7 +234,7 @@ class GoogleCloudPolicytroubleshooterIamV3ExplainedAllowPolicy(
     ]
     fullResourceName: str
     policy: GoogleIamV1Policy
-    relevance: typing_extensions.Literal[
+    relevance: typing.Literal[
         "HEURISTIC_RELEVANCE_UNSPECIFIED",
         "HEURISTIC_RELEVANCE_NORMAL",
         "HEURISTIC_RELEVANCE_HIGH",
@@ -246,9 +242,9 @@ class GoogleCloudPolicytroubleshooterIamV3ExplainedAllowPolicy(
 
 @typing.type_check_only
 class GoogleCloudPolicytroubleshooterIamV3ExplainedDenyPolicy(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    denyAccessState: typing_extensions.Literal[
+    denyAccessState: typing.Literal[
         "DENY_ACCESS_STATE_UNSPECIFIED",
         "DENY_ACCESS_STATE_DENIED",
         "DENY_ACCESS_STATE_NOT_DENIED",
@@ -256,7 +252,7 @@ class GoogleCloudPolicytroubleshooterIamV3ExplainedDenyPolicy(
         "DENY_ACCESS_STATE_UNKNOWN_INFO",
     ]
     policy: GoogleIamV2Policy
-    relevance: typing_extensions.Literal[
+    relevance: typing.Literal[
         "HEURISTIC_RELEVANCE_UNSPECIFIED",
         "HEURISTIC_RELEVANCE_NORMAL",
         "HEURISTIC_RELEVANCE_HIGH",
@@ -265,9 +261,9 @@ class GoogleCloudPolicytroubleshooterIamV3ExplainedDenyPolicy(
 
 @typing.type_check_only
 class GoogleCloudPolicytroubleshooterIamV3ExplainedDenyResource(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    denyAccessState: typing_extensions.Literal[
+    denyAccessState: typing.Literal[
         "DENY_ACCESS_STATE_UNSPECIFIED",
         "DENY_ACCESS_STATE_DENIED",
         "DENY_ACCESS_STATE_NOT_DENIED",
@@ -276,7 +272,7 @@ class GoogleCloudPolicytroubleshooterIamV3ExplainedDenyResource(
     ]
     explainedPolicies: _list[GoogleCloudPolicytroubleshooterIamV3ExplainedDenyPolicy]
     fullResourceName: str
-    relevance: typing_extensions.Literal[
+    relevance: typing.Literal[
         "HEURISTIC_RELEVANCE_UNSPECIFIED",
         "HEURISTIC_RELEVANCE_NORMAL",
         "HEURISTIC_RELEVANCE_HIGH",
@@ -284,18 +280,18 @@ class GoogleCloudPolicytroubleshooterIamV3ExplainedDenyResource(
 
 @typing.type_check_only
 class GoogleCloudPolicytroubleshooterIamV3TroubleshootIamPolicyRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     accessTuple: GoogleCloudPolicytroubleshooterIamV3AccessTuple
 
 @typing.type_check_only
 class GoogleCloudPolicytroubleshooterIamV3TroubleshootIamPolicyResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     accessTuple: GoogleCloudPolicytroubleshooterIamV3AccessTuple
     allowPolicyExplanation: GoogleCloudPolicytroubleshooterIamV3AllowPolicyExplanation
     denyPolicyExplanation: GoogleCloudPolicytroubleshooterIamV3DenyPolicyExplanation
-    overallAccessState: typing_extensions.Literal[
+    overallAccessState: typing.Literal[
         "OVERALL_ACCESS_STATE_UNSPECIFIED",
         "CAN_ACCESS",
         "CANNOT_ACCESS",
@@ -304,32 +300,32 @@ class GoogleCloudPolicytroubleshooterIamV3TroubleshootIamPolicyResponse(
     ]
 
 @typing.type_check_only
-class GoogleIamV1AuditConfig(typing_extensions.TypedDict, total=False):
+class GoogleIamV1AuditConfig(typing.TypedDict, total=False):
     auditLogConfigs: _list[GoogleIamV1AuditLogConfig]
     service: str
 
 @typing.type_check_only
-class GoogleIamV1AuditLogConfig(typing_extensions.TypedDict, total=False):
+class GoogleIamV1AuditLogConfig(typing.TypedDict, total=False):
     exemptedMembers: _list[str]
-    logType: typing_extensions.Literal[
+    logType: typing.Literal[
         "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
     ]
 
 @typing.type_check_only
-class GoogleIamV1Binding(typing_extensions.TypedDict, total=False):
+class GoogleIamV1Binding(typing.TypedDict, total=False):
     condition: GoogleTypeExpr
     members: _list[str]
     role: str
 
 @typing.type_check_only
-class GoogleIamV1Policy(typing_extensions.TypedDict, total=False):
+class GoogleIamV1Policy(typing.TypedDict, total=False):
     auditConfigs: _list[GoogleIamV1AuditConfig]
     bindings: _list[GoogleIamV1Binding]
     etag: str
     version: int
 
 @typing.type_check_only
-class GoogleIamV2DenyRule(typing_extensions.TypedDict, total=False):
+class GoogleIamV2DenyRule(typing.TypedDict, total=False):
     denialCondition: GoogleTypeExpr
     deniedPermissions: _list[str]
     deniedPrincipals: _list[str]
@@ -337,7 +333,7 @@ class GoogleIamV2DenyRule(typing_extensions.TypedDict, total=False):
     exceptionPrincipals: _list[str]
 
 @typing.type_check_only
-class GoogleIamV2Policy(typing_extensions.TypedDict, total=False):
+class GoogleIamV2Policy(typing.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     createTime: str
     deleteTime: str
@@ -350,18 +346,18 @@ class GoogleIamV2Policy(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class GoogleIamV2PolicyRule(typing_extensions.TypedDict, total=False):
+class GoogleIamV2PolicyRule(typing.TypedDict, total=False):
     denyRule: GoogleIamV2DenyRule
     description: str
 
 @typing.type_check_only
-class GoogleRpcStatus(typing_extensions.TypedDict, total=False):
+class GoogleRpcStatus(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class GoogleTypeExpr(typing_extensions.TypedDict, total=False):
+class GoogleTypeExpr(typing.TypedDict, total=False):
     description: str
     expression: str
     location: str

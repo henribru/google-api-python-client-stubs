@@ -1,91 +1,87 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class GoogleAppsDriveLabelsV2betaBadgeColors(typing_extensions.TypedDict, total=False):
+class GoogleAppsDriveLabelsV2betaBadgeColors(typing.TypedDict, total=False):
     backgroundColor: GoogleTypeColor
     foregroundColor: GoogleTypeColor
     soloColor: GoogleTypeColor
 
 @typing.type_check_only
-class GoogleAppsDriveLabelsV2betaBadgeConfig(typing_extensions.TypedDict, total=False):
+class GoogleAppsDriveLabelsV2betaBadgeConfig(typing.TypedDict, total=False):
     color: GoogleTypeColor
     priorityOverride: str
 
 @typing.type_check_only
 class GoogleAppsDriveLabelsV2betaBatchDeleteLabelPermissionsRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     requests: _list[GoogleAppsDriveLabelsV2betaDeleteLabelPermissionRequest]
     useAdminAccess: bool
 
 @typing.type_check_only
 class GoogleAppsDriveLabelsV2betaBatchUpdateLabelPermissionsRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     requests: _list[GoogleAppsDriveLabelsV2betaUpdateLabelPermissionRequest]
     useAdminAccess: bool
 
 @typing.type_check_only
 class GoogleAppsDriveLabelsV2betaBatchUpdateLabelPermissionsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     permissions: _list[GoogleAppsDriveLabelsV2betaLabelPermission]
 
 @typing.type_check_only
-class GoogleAppsDriveLabelsV2betaDateLimits(typing_extensions.TypedDict, total=False):
+class GoogleAppsDriveLabelsV2betaDateLimits(typing.TypedDict, total=False):
     maxValue: GoogleTypeDate
     minValue: GoogleTypeDate
 
 @typing.type_check_only
 class GoogleAppsDriveLabelsV2betaDeleteLabelPermissionRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     name: str
     useAdminAccess: bool
 
 @typing.type_check_only
-class GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequest(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequest(typing.TypedDict, total=False):
     languageCode: str
     requests: _list[GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestRequest]
     useAdminAccess: bool
-    view: typing_extensions.Literal["LABEL_VIEW_BASIC", "LABEL_VIEW_FULL"]
+    view: typing.Literal["LABEL_VIEW_BASIC", "LABEL_VIEW_FULL"]
     writeControl: GoogleAppsDriveLabelsV2betaWriteControl
 
 @typing.type_check_only
 class GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestCreateFieldRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     field: GoogleAppsDriveLabelsV2betaField
 
 @typing.type_check_only
 class GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestCreateSelectionChoiceRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     choice: GoogleAppsDriveLabelsV2betaFieldSelectionOptionsChoice
     fieldId: str
 
 @typing.type_check_only
 class GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestDeleteFieldRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     id: str
 
 @typing.type_check_only
 class GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestDeleteSelectionChoiceRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     fieldId: str
     id: str
 
 @typing.type_check_only
 class GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestDisableFieldRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     disabledPolicy: GoogleAppsDriveLabelsV2betaLifecycleDisabledPolicy
     id: str
@@ -93,7 +89,7 @@ class GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestDisableFieldRequest(
 
 @typing.type_check_only
 class GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestDisableSelectionChoiceRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     disabledPolicy: GoogleAppsDriveLabelsV2betaLifecycleDisabledPolicy
     fieldId: str
@@ -102,20 +98,20 @@ class GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestDisableSelectionChoiceRe
 
 @typing.type_check_only
 class GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestEnableFieldRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     id: str
 
 @typing.type_check_only
 class GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestEnableSelectionChoiceRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     fieldId: str
     id: str
 
 @typing.type_check_only
 class GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     createField: GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestCreateFieldRequest
     createSelectionChoice: (
@@ -146,7 +142,7 @@ class GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestRequest(
 
 @typing.type_check_only
 class GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestUpdateFieldPropertiesRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     id: str
     properties: GoogleAppsDriveLabelsV2betaFieldProperties
@@ -154,7 +150,7 @@ class GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestUpdateFieldPropertiesReq
 
 @typing.type_check_only
 class GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestUpdateFieldTypeRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     dateOptions: GoogleAppsDriveLabelsV2betaFieldDateOptions
     id: str
@@ -166,14 +162,14 @@ class GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestUpdateFieldTypeRequest(
 
 @typing.type_check_only
 class GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestUpdateLabelPropertiesRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     properties: GoogleAppsDriveLabelsV2betaLabelProperties
     updateMask: str
 
 @typing.type_check_only
 class GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestUpdateSelectionChoicePropertiesRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     fieldId: str
     id: str
@@ -182,58 +178,58 @@ class GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestUpdateSelectionChoicePro
 
 @typing.type_check_only
 class GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     responses: _list[GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseResponse]
     updatedLabel: GoogleAppsDriveLabelsV2betaLabel
 
 @typing.type_check_only
 class GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseCreateFieldResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     id: str
     priority: int
 
 @typing.type_check_only
 class GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseCreateSelectionChoiceResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     fieldId: str
     id: str
 
 @typing.type_check_only
 class GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseDeleteFieldResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
 class GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseDeleteSelectionChoiceResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
 class GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseDisableFieldResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
 class GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseDisableSelectionChoiceResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
 class GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseEnableFieldResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
 class GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseEnableSelectionChoiceResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
 class GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     createField: GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseCreateFieldResponse
     createSelectionChoice: (
@@ -264,30 +260,28 @@ class GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseResponse(
 
 @typing.type_check_only
 class GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseUpdateFieldPropertiesResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     priority: int
 
 @typing.type_check_only
 class GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseUpdateFieldTypeResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
 class GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseUpdateLabelPropertiesResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
 class GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseUpdateSelectionChoicePropertiesResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     priority: int
 
 @typing.type_check_only
-class GoogleAppsDriveLabelsV2betaDisableLabelRequest(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAppsDriveLabelsV2betaDisableLabelRequest(typing.TypedDict, total=False):
     disabledPolicy: GoogleAppsDriveLabelsV2betaLifecycleDisabledPolicy
     languageCode: str
     updateMask: str
@@ -295,15 +289,13 @@ class GoogleAppsDriveLabelsV2betaDisableLabelRequest(
     writeControl: GoogleAppsDriveLabelsV2betaWriteControl
 
 @typing.type_check_only
-class GoogleAppsDriveLabelsV2betaEnableLabelRequest(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAppsDriveLabelsV2betaEnableLabelRequest(typing.TypedDict, total=False):
     languageCode: str
     useAdminAccess: bool
     writeControl: GoogleAppsDriveLabelsV2betaWriteControl
 
 @typing.type_check_only
-class GoogleAppsDriveLabelsV2betaField(typing_extensions.TypedDict, total=False):
+class GoogleAppsDriveLabelsV2betaField(typing.TypedDict, total=False):
     appliedCapabilities: GoogleAppsDriveLabelsV2betaFieldAppliedCapabilities
     createTime: str
     creator: GoogleAppsDriveLabelsV2betaUserInfo
@@ -327,41 +319,33 @@ class GoogleAppsDriveLabelsV2betaField(typing_extensions.TypedDict, total=False)
 
 @typing.type_check_only
 class GoogleAppsDriveLabelsV2betaFieldAppliedCapabilities(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     canRead: bool
     canSearch: bool
     canWrite: bool
 
 @typing.type_check_only
-class GoogleAppsDriveLabelsV2betaFieldDateOptions(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAppsDriveLabelsV2betaFieldDateOptions(typing.TypedDict, total=False):
     dateFormat: str
-    dateFormatType: typing_extensions.Literal[
-        "DATE_FORMAT_UNSPECIFIED", "LONG_DATE", "SHORT_DATE"
-    ]
+    dateFormatType: typing.Literal["DATE_FORMAT_UNSPECIFIED", "LONG_DATE", "SHORT_DATE"]
     maxValue: GoogleTypeDate
     minValue: GoogleTypeDate
 
 @typing.type_check_only
-class GoogleAppsDriveLabelsV2betaFieldDisplayHints(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAppsDriveLabelsV2betaFieldDisplayHints(typing.TypedDict, total=False):
     disabled: bool
     hiddenInSearch: bool
     required: bool
     shownInApply: bool
 
 @typing.type_check_only
-class GoogleAppsDriveLabelsV2betaFieldIntegerOptions(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAppsDriveLabelsV2betaFieldIntegerOptions(typing.TypedDict, total=False):
     maxValue: str
     minValue: str
 
 @typing.type_check_only
-class GoogleAppsDriveLabelsV2betaFieldLimits(typing_extensions.TypedDict, total=False):
+class GoogleAppsDriveLabelsV2betaFieldLimits(typing.TypedDict, total=False):
     dateLimits: GoogleAppsDriveLabelsV2betaDateLimits
     integerLimits: GoogleAppsDriveLabelsV2betaIntegerLimits
     longTextLimits: GoogleAppsDriveLabelsV2betaLongTextLimits
@@ -373,38 +357,30 @@ class GoogleAppsDriveLabelsV2betaFieldLimits(typing_extensions.TypedDict, total=
     userLimits: GoogleAppsDriveLabelsV2betaUserLimits
 
 @typing.type_check_only
-class GoogleAppsDriveLabelsV2betaFieldListOptions(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAppsDriveLabelsV2betaFieldListOptions(typing.TypedDict, total=False):
     maxEntries: int
 
 @typing.type_check_only
-class GoogleAppsDriveLabelsV2betaFieldProperties(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAppsDriveLabelsV2betaFieldProperties(typing.TypedDict, total=False):
     displayName: str
     insertBeforeField: str
     required: bool
 
 @typing.type_check_only
-class GoogleAppsDriveLabelsV2betaFieldSchemaCapabilities(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAppsDriveLabelsV2betaFieldSchemaCapabilities(typing.TypedDict, total=False):
     canDelete: bool
     canDisable: bool
     canEnable: bool
     canUpdate: bool
 
 @typing.type_check_only
-class GoogleAppsDriveLabelsV2betaFieldSelectionOptions(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAppsDriveLabelsV2betaFieldSelectionOptions(typing.TypedDict, total=False):
     choices: _list[GoogleAppsDriveLabelsV2betaFieldSelectionOptionsChoice]
     listOptions: GoogleAppsDriveLabelsV2betaFieldListOptions
 
 @typing.type_check_only
 class GoogleAppsDriveLabelsV2betaFieldSelectionOptionsChoice(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     appliedCapabilities: (
         GoogleAppsDriveLabelsV2betaFieldSelectionOptionsChoiceAppliedCapabilities
@@ -428,7 +404,7 @@ class GoogleAppsDriveLabelsV2betaFieldSelectionOptionsChoice(
 
 @typing.type_check_only
 class GoogleAppsDriveLabelsV2betaFieldSelectionOptionsChoiceAppliedCapabilities(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     canRead: bool
     canSearch: bool
@@ -436,7 +412,7 @@ class GoogleAppsDriveLabelsV2betaFieldSelectionOptionsChoiceAppliedCapabilities(
 
 @typing.type_check_only
 class GoogleAppsDriveLabelsV2betaFieldSelectionOptionsChoiceDisplayHints(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     badgeColors: GoogleAppsDriveLabelsV2betaBadgeColors
     badgePriority: str
@@ -447,7 +423,7 @@ class GoogleAppsDriveLabelsV2betaFieldSelectionOptionsChoiceDisplayHints(
 
 @typing.type_check_only
 class GoogleAppsDriveLabelsV2betaFieldSelectionOptionsChoiceProperties(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     badgeConfig: GoogleAppsDriveLabelsV2betaBadgeConfig
     description: str
@@ -456,7 +432,7 @@ class GoogleAppsDriveLabelsV2betaFieldSelectionOptionsChoiceProperties(
 
 @typing.type_check_only
 class GoogleAppsDriveLabelsV2betaFieldSelectionOptionsChoiceSchemaCapabilities(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     canDelete: bool
     canDisable: bool
@@ -464,27 +440,21 @@ class GoogleAppsDriveLabelsV2betaFieldSelectionOptionsChoiceSchemaCapabilities(
     canUpdate: bool
 
 @typing.type_check_only
-class GoogleAppsDriveLabelsV2betaFieldTextOptions(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAppsDriveLabelsV2betaFieldTextOptions(typing.TypedDict, total=False):
     maxLength: int
     minLength: int
 
 @typing.type_check_only
-class GoogleAppsDriveLabelsV2betaFieldUserOptions(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAppsDriveLabelsV2betaFieldUserOptions(typing.TypedDict, total=False):
     listOptions: GoogleAppsDriveLabelsV2betaFieldListOptions
 
 @typing.type_check_only
-class GoogleAppsDriveLabelsV2betaIntegerLimits(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAppsDriveLabelsV2betaIntegerLimits(typing.TypedDict, total=False):
     maxValue: str
     minValue: str
 
 @typing.type_check_only
-class GoogleAppsDriveLabelsV2betaLabel(typing_extensions.TypedDict, total=False):
+class GoogleAppsDriveLabelsV2betaLabel(typing.TypedDict, total=False):
     appliedCapabilities: GoogleAppsDriveLabelsV2betaLabelAppliedCapabilities
     appliedLabelPolicy: GoogleAppsDriveLabelsV2betaLabelAppliedLabelPolicy
     createTime: str
@@ -496,9 +466,7 @@ class GoogleAppsDriveLabelsV2betaLabel(typing_extensions.TypedDict, total=False)
     enabledAppSettings: GoogleAppsDriveLabelsV2betaLabelEnabledAppSettings
     fields: _list[GoogleAppsDriveLabelsV2betaField]
     id: str
-    labelType: typing_extensions.Literal[
-        "LABEL_TYPE_UNSPECIFIED", "SHARED", "ADMIN", "GOOGLE_APP"
-    ]
+    labelType: typing.Literal["LABEL_TYPE_UNSPECIFIED", "SHARED", "ADMIN", "GOOGLE_APP"]
     learnMoreUri: str
     lifecycle: GoogleAppsDriveLabelsV2betaLifecycle
     lockStatus: GoogleAppsDriveLabelsV2betaLockStatus
@@ -513,43 +481,37 @@ class GoogleAppsDriveLabelsV2betaLabel(typing_extensions.TypedDict, total=False)
 
 @typing.type_check_only
 class GoogleAppsDriveLabelsV2betaLabelAppliedCapabilities(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     canApply: bool
     canRead: bool
     canRemove: bool
 
 @typing.type_check_only
-class GoogleAppsDriveLabelsV2betaLabelAppliedLabelPolicy(
-    typing_extensions.TypedDict, total=False
-):
-    copyMode: typing_extensions.Literal[
+class GoogleAppsDriveLabelsV2betaLabelAppliedLabelPolicy(typing.TypedDict, total=False):
+    copyMode: typing.Literal[
         "COPY_MODE_UNSPECIFIED", "DO_NOT_COPY", "ALWAYS_COPY", "COPY_APPLIABLE"
     ]
 
 @typing.type_check_only
-class GoogleAppsDriveLabelsV2betaLabelDisplayHints(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAppsDriveLabelsV2betaLabelDisplayHints(typing.TypedDict, total=False):
     disabled: bool
     hiddenInSearch: bool
     priority: str
     shownInApply: bool
 
 @typing.type_check_only
-class GoogleAppsDriveLabelsV2betaLabelEnabledAppSettings(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAppsDriveLabelsV2betaLabelEnabledAppSettings(typing.TypedDict, total=False):
     enabledApps: _list[GoogleAppsDriveLabelsV2betaLabelEnabledAppSettingsEnabledApp]
 
 @typing.type_check_only
 class GoogleAppsDriveLabelsV2betaLabelEnabledAppSettingsEnabledApp(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    app: typing_extensions.Literal["APP_UNSPECIFIED", "DRIVE", "GMAIL"]
+    app: typing.Literal["APP_UNSPECIFIED", "DRIVE", "GMAIL"]
 
 @typing.type_check_only
-class GoogleAppsDriveLabelsV2betaLabelLimits(typing_extensions.TypedDict, total=False):
+class GoogleAppsDriveLabelsV2betaLabelLimits(typing.TypedDict, total=False):
     fieldLimits: GoogleAppsDriveLabelsV2betaFieldLimits
     maxDeletedFields: int
     maxDescriptionLength: int
@@ -559,7 +521,7 @@ class GoogleAppsDriveLabelsV2betaLabelLimits(typing_extensions.TypedDict, total=
     name: str
 
 @typing.type_check_only
-class GoogleAppsDriveLabelsV2betaLabelLock(typing_extensions.TypedDict, total=False):
+class GoogleAppsDriveLabelsV2betaLabelLock(typing.TypedDict, total=False):
     capabilities: GoogleAppsDriveLabelsV2betaLabelLockCapabilities
     choiceId: str
     createTime: str
@@ -567,106 +529,86 @@ class GoogleAppsDriveLabelsV2betaLabelLock(typing_extensions.TypedDict, total=Fa
     deleteTime: str
     fieldId: str
     name: str
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "DELETING"]
+    state: typing.Literal["STATE_UNSPECIFIED", "ACTIVE", "DELETING"]
 
 @typing.type_check_only
-class GoogleAppsDriveLabelsV2betaLabelLockCapabilities(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAppsDriveLabelsV2betaLabelLockCapabilities(typing.TypedDict, total=False):
     canViewPolicy: bool
 
 @typing.type_check_only
-class GoogleAppsDriveLabelsV2betaLabelPermission(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAppsDriveLabelsV2betaLabelPermission(typing.TypedDict, total=False):
     audience: str
     email: str
     group: str
     name: str
     person: str
-    role: typing_extensions.Literal[
+    role: typing.Literal[
         "LABEL_ROLE_UNSPECIFIED", "READER", "APPLIER", "ORGANIZER", "EDITOR"
     ]
 
 @typing.type_check_only
-class GoogleAppsDriveLabelsV2betaLabelProperties(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAppsDriveLabelsV2betaLabelProperties(typing.TypedDict, total=False):
     description: str
     title: str
 
 @typing.type_check_only
-class GoogleAppsDriveLabelsV2betaLabelSchemaCapabilities(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAppsDriveLabelsV2betaLabelSchemaCapabilities(typing.TypedDict, total=False):
     canDelete: bool
     canDisable: bool
     canEnable: bool
     canUpdate: bool
 
 @typing.type_check_only
-class GoogleAppsDriveLabelsV2betaLifecycle(typing_extensions.TypedDict, total=False):
+class GoogleAppsDriveLabelsV2betaLifecycle(typing.TypedDict, total=False):
     disabledPolicy: GoogleAppsDriveLabelsV2betaLifecycleDisabledPolicy
     hasUnpublishedChanges: bool
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED", "UNPUBLISHED_DRAFT", "PUBLISHED", "DISABLED", "DELETED"
     ]
 
 @typing.type_check_only
-class GoogleAppsDriveLabelsV2betaLifecycleDisabledPolicy(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAppsDriveLabelsV2betaLifecycleDisabledPolicy(typing.TypedDict, total=False):
     hideInSearch: bool
     showInApply: bool
 
 @typing.type_check_only
-class GoogleAppsDriveLabelsV2betaListLabelLocksResponse(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAppsDriveLabelsV2betaListLabelLocksResponse(typing.TypedDict, total=False):
     labelLocks: _list[GoogleAppsDriveLabelsV2betaLabelLock]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleAppsDriveLabelsV2betaListLabelPermissionsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     labelPermissions: _list[GoogleAppsDriveLabelsV2betaLabelPermission]
     nextPageToken: str
 
 @typing.type_check_only
-class GoogleAppsDriveLabelsV2betaListLabelsResponse(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAppsDriveLabelsV2betaListLabelsResponse(typing.TypedDict, total=False):
     labels: _list[GoogleAppsDriveLabelsV2betaLabel]
     nextPageToken: str
 
 @typing.type_check_only
-class GoogleAppsDriveLabelsV2betaListLimits(typing_extensions.TypedDict, total=False):
+class GoogleAppsDriveLabelsV2betaListLimits(typing.TypedDict, total=False):
     maxEntries: int
 
 @typing.type_check_only
-class GoogleAppsDriveLabelsV2betaLockStatus(typing_extensions.TypedDict, total=False):
+class GoogleAppsDriveLabelsV2betaLockStatus(typing.TypedDict, total=False):
     locked: bool
 
 @typing.type_check_only
-class GoogleAppsDriveLabelsV2betaLongTextLimits(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAppsDriveLabelsV2betaLongTextLimits(typing.TypedDict, total=False):
     maxLength: int
     minLength: int
 
 @typing.type_check_only
-class GoogleAppsDriveLabelsV2betaPublishLabelRequest(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAppsDriveLabelsV2betaPublishLabelRequest(typing.TypedDict, total=False):
     languageCode: str
     useAdminAccess: bool
     writeControl: GoogleAppsDriveLabelsV2betaWriteControl
 
 @typing.type_check_only
-class GoogleAppsDriveLabelsV2betaSelectionLimits(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAppsDriveLabelsV2betaSelectionLimits(typing.TypedDict, total=False):
     listLimits: GoogleAppsDriveLabelsV2betaListLimits
     maxChoices: int
     maxDeletedChoices: int
@@ -674,42 +616,40 @@ class GoogleAppsDriveLabelsV2betaSelectionLimits(
     maxIdLength: int
 
 @typing.type_check_only
-class GoogleAppsDriveLabelsV2betaTextLimits(typing_extensions.TypedDict, total=False):
+class GoogleAppsDriveLabelsV2betaTextLimits(typing.TypedDict, total=False):
     maxLength: int
     minLength: int
 
 @typing.type_check_only
 class GoogleAppsDriveLabelsV2betaUpdateLabelCopyModeRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    copyMode: typing_extensions.Literal[
+    copyMode: typing.Literal[
         "COPY_MODE_UNSPECIFIED", "DO_NOT_COPY", "ALWAYS_COPY", "COPY_APPLIABLE"
     ]
     languageCode: str
     useAdminAccess: bool
-    view: typing_extensions.Literal["LABEL_VIEW_BASIC", "LABEL_VIEW_FULL"]
+    view: typing.Literal["LABEL_VIEW_BASIC", "LABEL_VIEW_FULL"]
 
 @typing.type_check_only
 class GoogleAppsDriveLabelsV2betaUpdateLabelEnabledAppSettingsRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     enabledAppSettings: GoogleAppsDriveLabelsV2betaLabelEnabledAppSettings
     languageCode: str
     useAdminAccess: bool
-    view: typing_extensions.Literal["LABEL_VIEW_BASIC", "LABEL_VIEW_FULL"]
+    view: typing.Literal["LABEL_VIEW_BASIC", "LABEL_VIEW_FULL"]
 
 @typing.type_check_only
 class GoogleAppsDriveLabelsV2betaUpdateLabelPermissionRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     labelPermission: GoogleAppsDriveLabelsV2betaLabelPermission
     parent: str
     useAdminAccess: bool
 
 @typing.type_check_only
-class GoogleAppsDriveLabelsV2betaUserCapabilities(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAppsDriveLabelsV2betaUserCapabilities(typing.TypedDict, total=False):
     canAccessLabelManager: bool
     canAdministrateLabels: bool
     canCreateAdminLabels: bool
@@ -717,29 +657,29 @@ class GoogleAppsDriveLabelsV2betaUserCapabilities(
     name: str
 
 @typing.type_check_only
-class GoogleAppsDriveLabelsV2betaUserInfo(typing_extensions.TypedDict, total=False):
+class GoogleAppsDriveLabelsV2betaUserInfo(typing.TypedDict, total=False):
     person: str
 
 @typing.type_check_only
-class GoogleAppsDriveLabelsV2betaUserLimits(typing_extensions.TypedDict, total=False):
+class GoogleAppsDriveLabelsV2betaUserLimits(typing.TypedDict, total=False):
     listLimits: GoogleAppsDriveLabelsV2betaListLimits
 
 @typing.type_check_only
-class GoogleAppsDriveLabelsV2betaWriteControl(typing_extensions.TypedDict, total=False):
+class GoogleAppsDriveLabelsV2betaWriteControl(typing.TypedDict, total=False):
     requiredRevisionId: str
 
 @typing.type_check_only
-class GoogleProtobufEmpty(typing_extensions.TypedDict, total=False): ...
+class GoogleProtobufEmpty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class GoogleTypeColor(typing_extensions.TypedDict, total=False):
+class GoogleTypeColor(typing.TypedDict, total=False):
     alpha: float
     blue: float
     green: float
     red: float
 
 @typing.type_check_only
-class GoogleTypeDate(typing_extensions.TypedDict, total=False):
+class GoogleTypeDate(typing.TypedDict, total=False):
     day: int
     month: int
     year: int

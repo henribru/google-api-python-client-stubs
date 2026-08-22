@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -44,8 +43,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                         filter: str | None = ...,
                         pageSize: int | None = ...,
                         pageToken: str | None = ...,
-                        view: typing_extensions.Literal["VIEW_UNSPECIFIED", "BASIC"]
-                        | None = ...,
+                        view: typing.Literal["VIEW_UNSPECIFIED", "BASIC"] | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListActionsResponseHttpRequest: ...
                     def listActions_next(
@@ -60,8 +58,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                         filter: str | None = ...,
                         pageSize: int | None = ...,
                         pageToken: str | None = ...,
-                        view: typing_extensions.Literal["VIEW_UNSPECIFIED", "BASIC"]
-                        | None = ...,
+                        view: typing.Literal["VIEW_UNSPECIFIED", "BASIC"] | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListEntityTypesResponseHttpRequest: ...
                     def listEntityTypes_next(
@@ -96,7 +93,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        view: typing_extensions.Literal[
+                        view: typing.Literal[
                             "END_USER_AUTHENTICATION_VIEW_UNSPECIFIED",
                             "BASIC_VIEW",
                             "FULL_VIEW",
@@ -239,9 +236,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    view: typing_extensions.Literal[
-                        "CONNECTION_VIEW_UNSPECIFIED", "BASIC", "FULL"
-                    ]
+                    view: typing.Literal["CONNECTION_VIEW_UNSPECIFIED", "BASIC", "FULL"]
                     | None = ...,
                     **kwargs: typing.Any,
                 ) -> ConnectionHttpRequest: ...
@@ -263,9 +258,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                     orderBy: str | None = ...,
                     pageSize: int | None = ...,
                     pageToken: str | None = ...,
-                    view: typing_extensions.Literal[
-                        "CONNECTION_VIEW_UNSPECIFIED", "BASIC", "FULL"
-                    ]
+                    view: typing.Literal["CONNECTION_VIEW_UNSPECIFIED", "BASIC", "FULL"]
                     | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListConnectionsResponseHttpRequest: ...
@@ -405,7 +398,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    view: typing_extensions.Literal[
+                    view: typing.Literal[
                         "ENDPOINT_ATTACHMENT_VIEW_UNSPECIFIED",
                         "ENDPOINT_ATTACHMENT_VIEW_BASIC",
                         "ENDPOINT_ATTACHMENT_VIEW_FULL",
@@ -421,7 +414,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                     orderBy: str | None = ...,
                     pageSize: int | None = ...,
                     pageToken: str | None = ...,
-                    view: typing_extensions.Literal[
+                    view: typing.Literal[
                         "ENDPOINT_ATTACHMENT_VIEW_UNSPECIFIED",
                         "ENDPOINT_ATTACHMENT_VIEW_BASIC",
                         "ENDPOINT_ATTACHMENT_VIEW_FULL",
@@ -635,7 +628,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             name: str,
-                            view: typing_extensions.Literal[
+                            view: typing.Literal[
                                 "AUTH_SCHEMA_VIEW_UNSPECIFIED",
                                 "BASIC",
                                 "JSON_SCHEMA",
@@ -648,7 +641,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             name: str,
-                            view: typing_extensions.Literal[
+                            view: typing.Literal[
                                 "CONNECTOR_VERSION_VIEW_UNSPECIFIED",
                                 "CONNECTOR_VERSION_VIEW_BASIC",
                                 "CONNECTOR_VERSION_VIEW_FULL",
@@ -662,7 +655,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                             parent: str,
                             pageSize: int | None = ...,
                             pageToken: str | None = ...,
-                            view: typing_extensions.Literal[
+                            view: typing.Literal[
                                 "CONNECTOR_VERSION_VIEW_UNSPECIFIED",
                                 "CONNECTOR_VERSION_VIEW_BASIC",
                                 "CONNECTOR_VERSION_VIEW_FULL",

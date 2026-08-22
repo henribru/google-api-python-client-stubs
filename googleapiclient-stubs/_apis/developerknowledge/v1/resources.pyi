@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -19,7 +18,7 @@ class DeveloperKnowledgeResource(googleapiclient.discovery.Resource):
             self,
             *,
             names: str | _list[str] | None = ...,
-            view: typing_extensions.Literal[
+            view: typing.Literal[
                 "DOCUMENT_VIEW_UNSPECIFIED",
                 "DOCUMENT_VIEW_BASIC",
                 "DOCUMENT_VIEW_FULL",
@@ -32,7 +31,7 @@ class DeveloperKnowledgeResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            view: typing_extensions.Literal[
+            view: typing.Literal[
                 "DOCUMENT_VIEW_UNSPECIFIED",
                 "DOCUMENT_VIEW_BASIC",
                 "DOCUMENT_VIEW_FULL",
@@ -56,6 +55,12 @@ class DeveloperKnowledgeResource(googleapiclient.discovery.Resource):
             previous_response: SearchDocumentChunksResponse,
         ) -> SearchDocumentChunksResponseHttpRequest | None: ...
 
+    @typing.type_check_only
+    class V1Resource(googleapiclient.discovery.Resource):
+        def answerQuery(
+            self, *, body: AnswerQueryRequest, **kwargs: typing.Any
+        ) -> AnswerQueryResponseHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[
@@ -69,6 +74,15 @@ class DeveloperKnowledgeResource(googleapiclient.discovery.Resource):
         | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def documents(self) -> DocumentsResource: ...
+    def v1(self) -> V1Resource: ...
+
+@typing.type_check_only
+class AnswerQueryResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> AnswerQueryResponse: ...
 
 @typing.type_check_only
 class BatchGetDocumentsResponseHttpRequest(googleapiclient.http.HttpRequest):

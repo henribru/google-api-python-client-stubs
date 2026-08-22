@@ -1,34 +1,32 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class AppDevExperienceFeatureSpec(typing_extensions.TypedDict, total=False): ...
+class AppDevExperienceFeatureSpec(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class AppDevExperienceFeatureState(typing_extensions.TypedDict, total=False):
+class AppDevExperienceFeatureState(typing.TypedDict, total=False):
     networkingInstallSucceeded: Status
 
 @typing.type_check_only
-class ApplianceCluster(typing_extensions.TypedDict, total=False):
+class ApplianceCluster(typing.TypedDict, total=False):
     resourceLink: str
 
 @typing.type_check_only
-class AuditConfig(typing_extensions.TypedDict, total=False):
+class AuditConfig(typing.TypedDict, total=False):
     auditLogConfigs: _list[AuditLogConfig]
     service: str
 
 @typing.type_check_only
-class AuditLogConfig(typing_extensions.TypedDict, total=False):
+class AuditLogConfig(typing.TypedDict, total=False):
     exemptedMembers: _list[str]
-    logType: typing_extensions.Literal[
+    logType: typing.Literal[
         "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
     ]
 
 @typing.type_check_only
-class Authority(typing_extensions.TypedDict, total=False):
+class Authority(typing.TypedDict, total=False):
     identityProvider: str
     issuer: str
     oidcJwks: str
@@ -37,97 +35,95 @@ class Authority(typing_extensions.TypedDict, total=False):
     workloadIdentityPool: str
 
 @typing.type_check_only
-class AutoUpgradeConfig(typing_extensions.TypedDict, total=False):
+class AutoUpgradeConfig(typing.TypedDict, total=False):
     enforcedRollouts: dict[str, typing.Any]
     rolloutCreationScope: RolloutCreationScope
 
 @typing.type_check_only
-class BinaryAuthorizationConfig(typing_extensions.TypedDict, total=False):
-    evaluationMode: typing_extensions.Literal[
+class BinaryAuthorizationConfig(typing.TypedDict, total=False):
+    evaluationMode: typing.Literal[
         "EVALUATION_MODE_UNSPECIFIED", "DISABLED", "POLICY_BINDINGS"
     ]
     policyBindings: _list[PolicyBinding]
 
 @typing.type_check_only
-class Binding(typing_extensions.TypedDict, total=False):
+class Binding(typing.TypedDict, total=False):
     condition: Expr
     members: _list[str]
     role: str
 
 @typing.type_check_only
-class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
+class CancelOperationRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class CancelRolloutRequest(typing_extensions.TypedDict, total=False): ...
+class CancelRolloutRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ClusterSelector(typing_extensions.TypedDict, total=False):
+class ClusterSelector(typing.TypedDict, total=False):
     labelSelector: str
 
 @typing.type_check_only
-class ClusterUpgradeFleetSpec(typing_extensions.TypedDict, total=False):
+class ClusterUpgradeFleetSpec(typing.TypedDict, total=False):
     gkeUpgradeOverrides: _list[ClusterUpgradeGKEUpgradeOverride]
     postConditions: ClusterUpgradePostConditions
     upstreamFleets: _list[str]
 
 @typing.type_check_only
-class ClusterUpgradeFleetState(typing_extensions.TypedDict, total=False):
+class ClusterUpgradeFleetState(typing.TypedDict, total=False):
     downstreamFleets: _list[str]
     gkeState: ClusterUpgradeGKEUpgradeFeatureState
     ignored: dict[str, typing.Any]
 
 @typing.type_check_only
-class ClusterUpgradeGKEUpgrade(typing_extensions.TypedDict, total=False):
+class ClusterUpgradeGKEUpgrade(typing.TypedDict, total=False):
     name: str
     version: str
 
 @typing.type_check_only
-class ClusterUpgradeGKEUpgradeFeatureCondition(
-    typing_extensions.TypedDict, total=False
-):
+class ClusterUpgradeGKEUpgradeFeatureCondition(typing.TypedDict, total=False):
     reason: str
     status: str
     type: str
     updateTime: str
 
 @typing.type_check_only
-class ClusterUpgradeGKEUpgradeFeatureState(typing_extensions.TypedDict, total=False):
+class ClusterUpgradeGKEUpgradeFeatureState(typing.TypedDict, total=False):
     conditions: _list[ClusterUpgradeGKEUpgradeFeatureCondition]
     upgradeState: _list[ClusterUpgradeGKEUpgradeState]
 
 @typing.type_check_only
-class ClusterUpgradeGKEUpgradeOverride(typing_extensions.TypedDict, total=False):
+class ClusterUpgradeGKEUpgradeOverride(typing.TypedDict, total=False):
     postConditions: ClusterUpgradePostConditions
     upgrade: ClusterUpgradeGKEUpgrade
 
 @typing.type_check_only
-class ClusterUpgradeGKEUpgradeState(typing_extensions.TypedDict, total=False):
+class ClusterUpgradeGKEUpgradeState(typing.TypedDict, total=False):
     stats: dict[str, typing.Any]
     status: ClusterUpgradeUpgradeStatus
     upgrade: ClusterUpgradeGKEUpgrade
 
 @typing.type_check_only
-class ClusterUpgradeIgnoredMembership(typing_extensions.TypedDict, total=False):
+class ClusterUpgradeIgnoredMembership(typing.TypedDict, total=False):
     ignoredTime: str
     reason: str
 
 @typing.type_check_only
-class ClusterUpgradeMembershipGKEUpgradeState(typing_extensions.TypedDict, total=False):
+class ClusterUpgradeMembershipGKEUpgradeState(typing.TypedDict, total=False):
     status: ClusterUpgradeUpgradeStatus
     upgrade: ClusterUpgradeGKEUpgrade
 
 @typing.type_check_only
-class ClusterUpgradeMembershipState(typing_extensions.TypedDict, total=False):
+class ClusterUpgradeMembershipState(typing.TypedDict, total=False):
     ignored: ClusterUpgradeIgnoredMembership
     upgrades: _list[ClusterUpgradeMembershipGKEUpgradeState]
 
 @typing.type_check_only
-class ClusterUpgradePostConditions(typing_extensions.TypedDict, total=False):
+class ClusterUpgradePostConditions(typing.TypedDict, total=False):
     soaking: str
 
 @typing.type_check_only
-class ClusterUpgradeUpgradeStatus(typing_extensions.TypedDict, total=False):
-    code: typing_extensions.Literal[
+class ClusterUpgradeUpgradeStatus(typing.TypedDict, total=False):
+    code: typing.Literal[
         "CODE_UNSPECIFIED",
         "INELIGIBLE",
         "PENDING",
@@ -140,7 +136,7 @@ class ClusterUpgradeUpgradeStatus(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class CommonFeatureSpec(typing_extensions.TypedDict, total=False):
+class CommonFeatureSpec(typing.TypedDict, total=False):
     appdevexperience: AppDevExperienceFeatureSpec
     clusterupgrade: ClusterUpgradeFleetSpec
     dataplanev2: DataplaneV2FeatureSpec
@@ -151,32 +147,33 @@ class CommonFeatureSpec(typing_extensions.TypedDict, total=False):
     workloadidentity: WorkloadIdentityFeatureSpec
 
 @typing.type_check_only
-class CommonFeatureState(typing_extensions.TypedDict, total=False):
+class CommonFeatureState(typing.TypedDict, total=False):
     appdevexperience: AppDevExperienceFeatureState
     clusterupgrade: ClusterUpgradeFleetState
     fleetobservability: FleetObservabilityFeatureState
     rbacrolebindingactuation: RBACRoleBindingActuationFeatureState
+    servicemesh: ServiceMeshFeatureState
     state: FeatureState
     workloadidentity: WorkloadIdentityFeatureState
 
 @typing.type_check_only
-class CommonFleetDefaultMemberConfigSpec(typing_extensions.TypedDict, total=False):
+class CommonFleetDefaultMemberConfigSpec(typing.TypedDict, total=False):
     configmanagement: ConfigManagementMembershipSpec
     identityservice: IdentityServiceMembershipSpec
     mesh: ServiceMeshMembershipSpec
     policycontroller: PolicyControllerMembershipSpec
 
 @typing.type_check_only
-class CompliancePostureConfig(typing_extensions.TypedDict, total=False):
+class CompliancePostureConfig(typing.TypedDict, total=False):
     complianceStandards: _list[ComplianceStandard]
-    mode: typing_extensions.Literal["MODE_UNSPECIFIED", "DISABLED", "ENABLED"]
+    mode: typing.Literal["MODE_UNSPECIFIED", "DISABLED", "ENABLED"]
 
 @typing.type_check_only
-class ComplianceStandard(typing_extensions.TypedDict, total=False):
+class ComplianceStandard(typing.TypedDict, total=False):
     standard: str
 
 @typing.type_check_only
-class ConfigManagementConfigSync(typing_extensions.TypedDict, total=False):
+class ConfigManagementConfigSync(typing.TypedDict, total=False):
     deploymentOverrides: _list[ConfigManagementDeploymentOverride]
     enabled: bool
     git: ConfigManagementGitConfig
@@ -187,64 +184,62 @@ class ConfigManagementConfigSync(typing_extensions.TypedDict, total=False):
     stopSyncing: bool
 
 @typing.type_check_only
-class ConfigManagementConfigSyncDeploymentState(
-    typing_extensions.TypedDict, total=False
-):
-    admissionWebhook: typing_extensions.Literal[
+class ConfigManagementConfigSyncDeploymentState(typing.TypedDict, total=False):
+    admissionWebhook: typing.Literal[
         "DEPLOYMENT_STATE_UNSPECIFIED", "NOT_INSTALLED", "INSTALLED", "ERROR", "PENDING"
     ]
-    gitSync: typing_extensions.Literal[
+    gitSync: typing.Literal[
         "DEPLOYMENT_STATE_UNSPECIFIED", "NOT_INSTALLED", "INSTALLED", "ERROR", "PENDING"
     ]
-    importer: typing_extensions.Literal[
+    importer: typing.Literal[
         "DEPLOYMENT_STATE_UNSPECIFIED", "NOT_INSTALLED", "INSTALLED", "ERROR", "PENDING"
     ]
-    monitor: typing_extensions.Literal[
+    monitor: typing.Literal[
         "DEPLOYMENT_STATE_UNSPECIFIED", "NOT_INSTALLED", "INSTALLED", "ERROR", "PENDING"
     ]
-    otelCollector: typing_extensions.Literal[
+    otelCollector: typing.Literal[
         "DEPLOYMENT_STATE_UNSPECIFIED", "NOT_INSTALLED", "INSTALLED", "ERROR", "PENDING"
     ]
-    reconcilerManager: typing_extensions.Literal[
+    reconcilerManager: typing.Literal[
         "DEPLOYMENT_STATE_UNSPECIFIED", "NOT_INSTALLED", "INSTALLED", "ERROR", "PENDING"
     ]
-    resourceGroupControllerManager: typing_extensions.Literal[
+    resourceGroupControllerManager: typing.Literal[
         "DEPLOYMENT_STATE_UNSPECIFIED", "NOT_INSTALLED", "INSTALLED", "ERROR", "PENDING"
     ]
-    rootReconciler: typing_extensions.Literal[
+    rootReconciler: typing.Literal[
         "DEPLOYMENT_STATE_UNSPECIFIED", "NOT_INSTALLED", "INSTALLED", "ERROR", "PENDING"
     ]
-    syncer: typing_extensions.Literal[
+    syncer: typing.Literal[
         "DEPLOYMENT_STATE_UNSPECIFIED", "NOT_INSTALLED", "INSTALLED", "ERROR", "PENDING"
     ]
 
 @typing.type_check_only
-class ConfigManagementConfigSyncError(typing_extensions.TypedDict, total=False):
+class ConfigManagementConfigSyncError(typing.TypedDict, total=False):
     errorMessage: str
 
 @typing.type_check_only
-class ConfigManagementConfigSyncState(typing_extensions.TypedDict, total=False):
-    clusterLevelStopSyncingState: typing_extensions.Literal[
+class ConfigManagementConfigSyncState(typing.TypedDict, total=False):
+    clusterLevelStopSyncingState: typing.Literal[
         "STOP_SYNCING_STATE_UNSPECIFIED", "NOT_STOPPED", "PENDING", "STOPPED"
     ]
     crCount: int
     deploymentState: ConfigManagementConfigSyncDeploymentState
     errors: _list[ConfigManagementConfigSyncError]
-    reposyncCrd: typing_extensions.Literal[
+    reposyncCrd: typing.Literal[
         "CRD_STATE_UNSPECIFIED",
         "NOT_INSTALLED",
         "INSTALLED",
         "TERMINATING",
         "INSTALLING",
     ]
-    rootsyncCrd: typing_extensions.Literal[
+    rootsyncCrd: typing.Literal[
         "CRD_STATE_UNSPECIFIED",
         "NOT_INSTALLED",
         "INSTALLED",
         "TERMINATING",
         "INSTALLING",
     ]
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "CONFIG_SYNC_NOT_INSTALLED",
         "CONFIG_SYNC_INSTALLED",
@@ -255,7 +250,7 @@ class ConfigManagementConfigSyncState(typing_extensions.TypedDict, total=False):
     version: ConfigManagementConfigSyncVersion
 
 @typing.type_check_only
-class ConfigManagementConfigSyncVersion(typing_extensions.TypedDict, total=False):
+class ConfigManagementConfigSyncVersion(typing.TypedDict, total=False):
     admissionWebhook: str
     gitSync: str
     importer: str
@@ -267,7 +262,7 @@ class ConfigManagementConfigSyncVersion(typing_extensions.TypedDict, total=False
     syncer: str
 
 @typing.type_check_only
-class ConfigManagementContainerOverride(typing_extensions.TypedDict, total=False):
+class ConfigManagementContainerOverride(typing.TypedDict, total=False):
     containerName: str
     cpuLimit: str
     cpuRequest: str
@@ -275,34 +270,32 @@ class ConfigManagementContainerOverride(typing_extensions.TypedDict, total=False
     memoryRequest: str
 
 @typing.type_check_only
-class ConfigManagementDeploymentOverride(typing_extensions.TypedDict, total=False):
+class ConfigManagementDeploymentOverride(typing.TypedDict, total=False):
     containers: _list[ConfigManagementContainerOverride]
     deploymentName: str
     deploymentNamespace: str
 
 @typing.type_check_only
-class ConfigManagementErrorResource(typing_extensions.TypedDict, total=False):
+class ConfigManagementErrorResource(typing.TypedDict, total=False):
     resourceGvk: ConfigManagementGroupVersionKind
     resourceName: str
     resourceNamespace: str
     sourcePath: str
 
 @typing.type_check_only
-class ConfigManagementGatekeeperDeploymentState(
-    typing_extensions.TypedDict, total=False
-):
-    gatekeeperAudit: typing_extensions.Literal[
+class ConfigManagementGatekeeperDeploymentState(typing.TypedDict, total=False):
+    gatekeeperAudit: typing.Literal[
         "DEPLOYMENT_STATE_UNSPECIFIED", "NOT_INSTALLED", "INSTALLED", "ERROR", "PENDING"
     ]
-    gatekeeperControllerManagerState: typing_extensions.Literal[
+    gatekeeperControllerManagerState: typing.Literal[
         "DEPLOYMENT_STATE_UNSPECIFIED", "NOT_INSTALLED", "INSTALLED", "ERROR", "PENDING"
     ]
-    gatekeeperMutation: typing_extensions.Literal[
+    gatekeeperMutation: typing.Literal[
         "DEPLOYMENT_STATE_UNSPECIFIED", "NOT_INSTALLED", "INSTALLED", "ERROR", "PENDING"
     ]
 
 @typing.type_check_only
-class ConfigManagementGitConfig(typing_extensions.TypedDict, total=False):
+class ConfigManagementGitConfig(typing.TypedDict, total=False):
     gcpServiceAccountEmail: str
     httpsProxy: str
     policyDir: str
@@ -313,61 +306,53 @@ class ConfigManagementGitConfig(typing_extensions.TypedDict, total=False):
     syncWaitSecs: str
 
 @typing.type_check_only
-class ConfigManagementGroupVersionKind(typing_extensions.TypedDict, total=False):
+class ConfigManagementGroupVersionKind(typing.TypedDict, total=False):
     group: str
     kind: str
     version: str
 
 @typing.type_check_only
-class ConfigManagementHierarchyControllerConfig(
-    typing_extensions.TypedDict, total=False
-):
+class ConfigManagementHierarchyControllerConfig(typing.TypedDict, total=False):
     enableHierarchicalResourceQuota: bool
     enablePodTreeLabels: bool
     enabled: bool
 
 @typing.type_check_only
-class ConfigManagementHierarchyControllerDeploymentState(
-    typing_extensions.TypedDict, total=False
-):
-    extension: typing_extensions.Literal[
+class ConfigManagementHierarchyControllerDeploymentState(typing.TypedDict, total=False):
+    extension: typing.Literal[
         "DEPLOYMENT_STATE_UNSPECIFIED", "NOT_INSTALLED", "INSTALLED", "ERROR", "PENDING"
     ]
-    hnc: typing_extensions.Literal[
+    hnc: typing.Literal[
         "DEPLOYMENT_STATE_UNSPECIFIED", "NOT_INSTALLED", "INSTALLED", "ERROR", "PENDING"
     ]
 
 @typing.type_check_only
-class ConfigManagementHierarchyControllerState(
-    typing_extensions.TypedDict, total=False
-):
+class ConfigManagementHierarchyControllerState(typing.TypedDict, total=False):
     state: ConfigManagementHierarchyControllerDeploymentState
     version: ConfigManagementHierarchyControllerVersion
 
 @typing.type_check_only
-class ConfigManagementHierarchyControllerVersion(
-    typing_extensions.TypedDict, total=False
-):
+class ConfigManagementHierarchyControllerVersion(typing.TypedDict, total=False):
     extension: str
     hnc: str
 
 @typing.type_check_only
-class ConfigManagementInstallError(typing_extensions.TypedDict, total=False):
+class ConfigManagementInstallError(typing.TypedDict, total=False):
     errorMessage: str
 
 @typing.type_check_only
-class ConfigManagementMembershipSpec(typing_extensions.TypedDict, total=False):
+class ConfigManagementMembershipSpec(typing.TypedDict, total=False):
     cluster: str
     configSync: ConfigManagementConfigSync
     hierarchyController: ConfigManagementHierarchyControllerConfig
-    management: typing_extensions.Literal[
+    management: typing.Literal[
         "MANAGEMENT_UNSPECIFIED", "MANAGEMENT_AUTOMATIC", "MANAGEMENT_MANUAL"
     ]
     policyController: ConfigManagementPolicyController
     version: str
 
 @typing.type_check_only
-class ConfigManagementMembershipState(typing_extensions.TypedDict, total=False):
+class ConfigManagementMembershipState(typing.TypedDict, total=False):
     clusterName: str
     configSyncState: ConfigManagementConfigSyncState
     hierarchyControllerState: ConfigManagementHierarchyControllerState
@@ -377,7 +362,7 @@ class ConfigManagementMembershipState(typing_extensions.TypedDict, total=False):
     policyControllerState: ConfigManagementPolicyControllerState
 
 @typing.type_check_only
-class ConfigManagementOciConfig(typing_extensions.TypedDict, total=False):
+class ConfigManagementOciConfig(typing.TypedDict, total=False):
     gcpServiceAccountEmail: str
     policyDir: str
     secretType: str
@@ -385,15 +370,15 @@ class ConfigManagementOciConfig(typing_extensions.TypedDict, total=False):
     syncWaitSecs: str
 
 @typing.type_check_only
-class ConfigManagementOperatorState(typing_extensions.TypedDict, total=False):
-    deploymentState: typing_extensions.Literal[
+class ConfigManagementOperatorState(typing.TypedDict, total=False):
+    deploymentState: typing.Literal[
         "DEPLOYMENT_STATE_UNSPECIFIED", "NOT_INSTALLED", "INSTALLED", "ERROR", "PENDING"
     ]
     errors: _list[ConfigManagementInstallError]
     version: str
 
 @typing.type_check_only
-class ConfigManagementPolicyController(typing_extensions.TypedDict, total=False):
+class ConfigManagementPolicyController(typing.TypedDict, total=False):
     auditIntervalSeconds: str
     enabled: bool
     exemptableNamespaces: _list[str]
@@ -405,41 +390,37 @@ class ConfigManagementPolicyController(typing_extensions.TypedDict, total=False)
     updateTime: str
 
 @typing.type_check_only
-class ConfigManagementPolicyControllerMigration(
-    typing_extensions.TypedDict, total=False
-):
+class ConfigManagementPolicyControllerMigration(typing.TypedDict, total=False):
     copyTime: str
-    stage: typing_extensions.Literal["STAGE_UNSPECIFIED", "ACM_MANAGED", "POCO_MANAGED"]
+    stage: typing.Literal["STAGE_UNSPECIFIED", "ACM_MANAGED", "POCO_MANAGED"]
 
 @typing.type_check_only
-class ConfigManagementPolicyControllerMonitoring(
-    typing_extensions.TypedDict, total=False
-):
+class ConfigManagementPolicyControllerMonitoring(typing.TypedDict, total=False):
     backends: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "MONITORING_BACKEND_UNSPECIFIED", "PROMETHEUS", "CLOUD_MONITORING"
         ]
     ]
 
 @typing.type_check_only
-class ConfigManagementPolicyControllerState(typing_extensions.TypedDict, total=False):
+class ConfigManagementPolicyControllerState(typing.TypedDict, total=False):
     deploymentState: ConfigManagementGatekeeperDeploymentState
     migration: ConfigManagementPolicyControllerMigration
     version: ConfigManagementPolicyControllerVersion
 
 @typing.type_check_only
-class ConfigManagementPolicyControllerVersion(typing_extensions.TypedDict, total=False):
+class ConfigManagementPolicyControllerVersion(typing.TypedDict, total=False):
     version: str
 
 @typing.type_check_only
-class ConfigManagementSyncError(typing_extensions.TypedDict, total=False):
+class ConfigManagementSyncError(typing.TypedDict, total=False):
     code: str
     errorMessage: str
     errorResources: _list[ConfigManagementErrorResource]
 
 @typing.type_check_only
-class ConfigManagementSyncState(typing_extensions.TypedDict, total=False):
-    code: typing_extensions.Literal[
+class ConfigManagementSyncState(typing.TypedDict, total=False):
+    code: typing.Literal[
         "SYNC_CODE_UNSPECIFIED",
         "SYNCED",
         "PENDING",
@@ -457,36 +438,36 @@ class ConfigManagementSyncState(typing_extensions.TypedDict, total=False):
     syncToken: str
 
 @typing.type_check_only
-class ConnectAgentResource(typing_extensions.TypedDict, total=False):
+class ConnectAgentResource(typing.TypedDict, total=False):
     manifest: str
     type: TypeMeta
 
 @typing.type_check_only
-class DataplaneV2FeatureSpec(typing_extensions.TypedDict, total=False):
+class DataplaneV2FeatureSpec(typing.TypedDict, total=False):
     enableEncryption: bool
 
 @typing.type_check_only
-class DefaultClusterConfig(typing_extensions.TypedDict, total=False):
+class DefaultClusterConfig(typing.TypedDict, total=False):
     binaryAuthorizationConfig: BinaryAuthorizationConfig
     compliancePostureConfig: CompliancePostureConfig
     securityPostureConfig: SecurityPostureConfig
 
 @typing.type_check_only
-class EdgeCluster(typing_extensions.TypedDict, total=False):
+class EdgeCluster(typing.TypedDict, total=False):
     resourceLink: str
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Expr(typing_extensions.TypedDict, total=False):
+class Expr(typing.TypedDict, total=False):
     description: str
     expression: str
     location: str
     title: str
 
 @typing.type_check_only
-class Feature(typing_extensions.TypedDict, total=False):
+class Feature(typing.TypedDict, total=False):
     createTime: str
     deleteTime: str
     fleetDefaultMemberConfig: CommonFleetDefaultMemberConfigSpec
@@ -503,8 +484,8 @@ class Feature(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class FeatureResourceState(typing_extensions.TypedDict, total=False):
-    state: typing_extensions.Literal[
+class FeatureResourceState(typing.TypedDict, total=False):
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "ENABLING",
         "ACTIVE",
@@ -514,13 +495,13 @@ class FeatureResourceState(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class FeatureState(typing_extensions.TypedDict, total=False):
-    code: typing_extensions.Literal["CODE_UNSPECIFIED", "OK", "WARNING", "ERROR"]
+class FeatureState(typing.TypedDict, total=False):
+    code: typing.Literal["CODE_UNSPECIFIED", "OK", "WARNING", "ERROR"]
     description: str
     updateTime: str
 
 @typing.type_check_only
-class Fleet(typing_extensions.TypedDict, total=False):
+class Fleet(typing.TypedDict, total=False):
     createTime: str
     defaultClusterConfig: DefaultClusterConfig
     deleteTime: str
@@ -532,87 +513,83 @@ class Fleet(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class FleetLifecycleState(typing_extensions.TypedDict, total=False):
-    code: typing_extensions.Literal[
+class FleetLifecycleState(typing.TypedDict, total=False):
+    code: typing.Literal[
         "CODE_UNSPECIFIED", "CREATING", "READY", "DELETING", "UPDATING"
     ]
 
 @typing.type_check_only
-class FleetObservabilityFeatureError(typing_extensions.TypedDict, total=False):
+class FleetObservabilityFeatureError(typing.TypedDict, total=False):
     code: str
     description: str
 
 @typing.type_check_only
-class FleetObservabilityFeatureSpec(typing_extensions.TypedDict, total=False):
+class FleetObservabilityFeatureSpec(typing.TypedDict, total=False):
     loggingConfig: FleetObservabilityLoggingConfig
 
 @typing.type_check_only
-class FleetObservabilityFeatureState(typing_extensions.TypedDict, total=False):
+class FleetObservabilityFeatureState(typing.TypedDict, total=False):
     logging: FleetObservabilityFleetObservabilityLoggingState
     monitoring: FleetObservabilityFleetObservabilityMonitoringState
 
 @typing.type_check_only
 class FleetObservabilityFleetObservabilityBaseFeatureState(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    code: typing_extensions.Literal["CODE_UNSPECIFIED", "OK", "ERROR"]
+    code: typing.Literal["CODE_UNSPECIFIED", "OK", "ERROR"]
     errors: _list[FleetObservabilityFeatureError]
 
 @typing.type_check_only
-class FleetObservabilityFleetObservabilityLoggingState(
-    typing_extensions.TypedDict, total=False
-):
+class FleetObservabilityFleetObservabilityLoggingState(typing.TypedDict, total=False):
     defaultLog: FleetObservabilityFleetObservabilityBaseFeatureState
     scopeLog: FleetObservabilityFleetObservabilityBaseFeatureState
 
 @typing.type_check_only
 class FleetObservabilityFleetObservabilityMonitoringState(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     state: FleetObservabilityFleetObservabilityBaseFeatureState
 
 @typing.type_check_only
-class FleetObservabilityLoggingConfig(typing_extensions.TypedDict, total=False):
+class FleetObservabilityLoggingConfig(typing.TypedDict, total=False):
     defaultConfig: FleetObservabilityRoutingConfig
     fleetScopeLogsConfig: FleetObservabilityRoutingConfig
 
 @typing.type_check_only
-class FleetObservabilityMembershipSpec(typing_extensions.TypedDict, total=False): ...
+class FleetObservabilityMembershipSpec(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class FleetObservabilityMembershipState(typing_extensions.TypedDict, total=False): ...
+class FleetObservabilityMembershipState(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class FleetObservabilityRoutingConfig(typing_extensions.TypedDict, total=False):
-    mode: typing_extensions.Literal["MODE_UNSPECIFIED", "COPY", "MOVE"]
+class FleetObservabilityRoutingConfig(typing.TypedDict, total=False):
+    mode: typing.Literal["MODE_UNSPECIFIED", "COPY", "MOVE"]
 
 @typing.type_check_only
-class ForceCompleteRolloutStageRequest(typing_extensions.TypedDict, total=False):
+class ForceCompleteRolloutStageRequest(typing.TypedDict, total=False):
     stageNumber: int
 
 @typing.type_check_only
-class GenerateConnectManifestResponse(typing_extensions.TypedDict, total=False):
+class GenerateConnectManifestResponse(typing.TypedDict, total=False):
     manifest: _list[ConnectAgentResource]
 
 @typing.type_check_only
-class GenerateMembershipRBACRoleBindingYAMLResponse(
-    typing_extensions.TypedDict, total=False
-):
+class GenerateMembershipRBACRoleBindingYAMLResponse(typing.TypedDict, total=False):
     roleBindingsYaml: str
 
 @typing.type_check_only
-class GkeCluster(typing_extensions.TypedDict, total=False):
+class GkeCluster(typing.TypedDict, total=False):
     clusterMissing: bool
     resourceLink: str
 
 @typing.type_check_only
-class GoogleRpcStatus(typing_extensions.TypedDict, total=False):
+class GoogleRpcStatus(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class IdentityServiceAuthMethod(typing_extensions.TypedDict, total=False):
+class IdentityServiceAuthMethod(typing.TypedDict, total=False):
     azureadConfig: IdentityServiceAzureADConfig
     googleConfig: IdentityServiceGoogleConfig
     ldapConfig: IdentityServiceLdapConfig
@@ -622,7 +599,7 @@ class IdentityServiceAuthMethod(typing_extensions.TypedDict, total=False):
     samlConfig: IdentityServiceSamlConfig
 
 @typing.type_check_only
-class IdentityServiceAzureADConfig(typing_extensions.TypedDict, total=False):
+class IdentityServiceAzureADConfig(typing.TypedDict, total=False):
     clientId: str
     clientSecret: str
     encryptedClientSecret: str
@@ -632,46 +609,46 @@ class IdentityServiceAzureADConfig(typing_extensions.TypedDict, total=False):
     userClaim: str
 
 @typing.type_check_only
-class IdentityServiceDiagnosticInterface(typing_extensions.TypedDict, total=False):
+class IdentityServiceDiagnosticInterface(typing.TypedDict, total=False):
     enabled: bool
     expirationTime: str
 
 @typing.type_check_only
-class IdentityServiceGoogleConfig(typing_extensions.TypedDict, total=False):
+class IdentityServiceGoogleConfig(typing.TypedDict, total=False):
     disable: bool
 
 @typing.type_check_only
-class IdentityServiceGroupConfig(typing_extensions.TypedDict, total=False):
+class IdentityServiceGroupConfig(typing.TypedDict, total=False):
     baseDn: str
     filter: str
     idAttribute: str
 
 @typing.type_check_only
-class IdentityServiceIdentityServiceOptions(typing_extensions.TypedDict, total=False):
+class IdentityServiceIdentityServiceOptions(typing.TypedDict, total=False):
     diagnosticInterface: IdentityServiceDiagnosticInterface
     sessionDuration: str
 
 @typing.type_check_only
-class IdentityServiceLdapConfig(typing_extensions.TypedDict, total=False):
+class IdentityServiceLdapConfig(typing.TypedDict, total=False):
     group: IdentityServiceGroupConfig
     server: IdentityServiceServerConfig
     serviceAccount: IdentityServiceServiceAccountConfig
     user: IdentityServiceUserConfig
 
 @typing.type_check_only
-class IdentityServiceMembershipSpec(typing_extensions.TypedDict, total=False):
+class IdentityServiceMembershipSpec(typing.TypedDict, total=False):
     authMethods: _list[IdentityServiceAuthMethod]
     identityServiceOptions: IdentityServiceIdentityServiceOptions
 
 @typing.type_check_only
-class IdentityServiceMembershipState(typing_extensions.TypedDict, total=False):
+class IdentityServiceMembershipState(typing.TypedDict, total=False):
     failureReason: str
     installedVersion: str
     memberConfig: IdentityServiceMembershipSpec
-    state: typing_extensions.Literal["DEPLOYMENT_STATE_UNSPECIFIED", "OK", "ERROR"]
+    state: typing.Literal["DEPLOYMENT_STATE_UNSPECIFIED", "OK", "ERROR"]
 
 @typing.type_check_only
-class IdentityServiceOidcConfig(typing_extensions.TypedDict, total=False):
+class IdentityServiceOidcConfig(typing.TypedDict, total=False):
     certificateAuthorityData: str
     clientId: str
     clientSecret: str
@@ -688,7 +665,7 @@ class IdentityServiceOidcConfig(typing_extensions.TypedDict, total=False):
     userPrefix: str
 
 @typing.type_check_only
-class IdentityServiceSamlConfig(typing_extensions.TypedDict, total=False):
+class IdentityServiceSamlConfig(typing.TypedDict, total=False):
     attributeMapping: dict[str, typing.Any]
     groupPrefix: str
     groupsAttribute: str
@@ -699,30 +676,30 @@ class IdentityServiceSamlConfig(typing_extensions.TypedDict, total=False):
     userPrefix: str
 
 @typing.type_check_only
-class IdentityServiceServerConfig(typing_extensions.TypedDict, total=False):
+class IdentityServiceServerConfig(typing.TypedDict, total=False):
     certificateAuthorityData: str
     connectionType: str
     host: str
 
 @typing.type_check_only
-class IdentityServiceServiceAccountConfig(typing_extensions.TypedDict, total=False):
+class IdentityServiceServiceAccountConfig(typing.TypedDict, total=False):
     simpleBindCredentials: IdentityServiceSimpleBindCredentials
 
 @typing.type_check_only
-class IdentityServiceSimpleBindCredentials(typing_extensions.TypedDict, total=False):
+class IdentityServiceSimpleBindCredentials(typing.TypedDict, total=False):
     dn: str
     encryptedPassword: str
     password: str
 
 @typing.type_check_only
-class IdentityServiceUserConfig(typing_extensions.TypedDict, total=False):
+class IdentityServiceUserConfig(typing.TypedDict, total=False):
     baseDn: str
     filter: str
     idAttribute: str
     loginAttribute: str
 
 @typing.type_check_only
-class KubernetesMetadata(typing_extensions.TypedDict, total=False):
+class KubernetesMetadata(typing.TypedDict, total=False):
     kubernetesApiServerVersion: str
     memoryMb: int
     nodeCount: int
@@ -731,89 +708,89 @@ class KubernetesMetadata(typing_extensions.TypedDict, total=False):
     vcpuCount: int
 
 @typing.type_check_only
-class KubernetesResource(typing_extensions.TypedDict, total=False):
+class KubernetesResource(typing.TypedDict, total=False):
     connectResources: _list[ResourceManifest]
     membershipCrManifest: str
     membershipResources: _list[ResourceManifest]
     resourceOptions: ResourceOptions
 
 @typing.type_check_only
-class ListBoundMembershipsResponse(typing_extensions.TypedDict, total=False):
+class ListBoundMembershipsResponse(typing.TypedDict, total=False):
     memberships: _list[Membership]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListFeaturesResponse(typing_extensions.TypedDict, total=False):
+class ListFeaturesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     resources: _list[Feature]
 
 @typing.type_check_only
-class ListFleetsResponse(typing_extensions.TypedDict, total=False):
+class ListFleetsResponse(typing.TypedDict, total=False):
     fleets: _list[Fleet]
     nextPageToken: str
 
 @typing.type_check_only
-class ListLocationsResponse(typing_extensions.TypedDict, total=False):
+class ListLocationsResponse(typing.TypedDict, total=False):
     locations: _list[Location]
     nextPageToken: str
 
 @typing.type_check_only
-class ListMembershipBindingsResponse(typing_extensions.TypedDict, total=False):
+class ListMembershipBindingsResponse(typing.TypedDict, total=False):
     membershipBindings: _list[MembershipBinding]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListMembershipRBACRoleBindingsResponse(typing_extensions.TypedDict, total=False):
+class ListMembershipRBACRoleBindingsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     rbacrolebindings: _list[RBACRoleBinding]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListMembershipsResponse(typing_extensions.TypedDict, total=False):
+class ListMembershipsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     resources: _list[Membership]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListOperationsResponse(typing_extensions.TypedDict, total=False):
+class ListOperationsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListPermittedScopesResponse(typing_extensions.TypedDict, total=False):
+class ListPermittedScopesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     scopes: _list[Scope]
 
 @typing.type_check_only
-class ListRolloutSequencesResponse(typing_extensions.TypedDict, total=False):
+class ListRolloutSequencesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     rolloutSequences: _list[RolloutSequence]
 
 @typing.type_check_only
-class ListRolloutsResponse(typing_extensions.TypedDict, total=False):
+class ListRolloutsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     rollouts: _list[Rollout]
 
 @typing.type_check_only
-class ListScopeNamespacesResponse(typing_extensions.TypedDict, total=False):
+class ListScopeNamespacesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     scopeNamespaces: _list[Namespace]
 
 @typing.type_check_only
-class ListScopeRBACRoleBindingsResponse(typing_extensions.TypedDict, total=False):
+class ListScopeRBACRoleBindingsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     rbacrolebindings: _list[RBACRoleBinding]
 
 @typing.type_check_only
-class ListScopesResponse(typing_extensions.TypedDict, total=False):
+class ListScopesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     scopes: _list[Scope]
 
 @typing.type_check_only
-class Location(typing_extensions.TypedDict, total=False):
+class Location(typing.TypedDict, total=False):
     displayName: str
     labels: dict[str, typing.Any]
     locationId: str
@@ -821,11 +798,9 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class Membership(typing_extensions.TypedDict, total=False):
+class Membership(typing.TypedDict, total=False):
     authority: Authority
-    clusterTier: typing_extensions.Literal[
-        "CLUSTER_TIER_UNSPECIFIED", "STANDARD", "ENTERPRISE"
-    ]
+    clusterTier: typing.Literal["CLUSTER_TIER_UNSPECIFIED", "STANDARD", "ENTERPRISE"]
     createTime: str
     deleteTime: str
     description: str
@@ -833,9 +808,7 @@ class Membership(typing_extensions.TypedDict, total=False):
     externalId: str
     labels: dict[str, typing.Any]
     lastConnectionTime: str
-    membershipType: typing_extensions.Literal[
-        "MEMBERSHIP_TYPE_UNSPECIFIED", "LIGHTWEIGHT"
-    ]
+    membershipType: typing.Literal["MEMBERSHIP_TYPE_UNSPECIFIED", "LIGHTWEIGHT"]
     monitoringConfig: MonitoringConfig
     name: str
     state: MembershipState
@@ -843,7 +816,7 @@ class Membership(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class MembershipBinding(typing_extensions.TypedDict, total=False):
+class MembershipBinding(typing.TypedDict, total=False):
     createTime: str
     deleteTime: str
     labels: dict[str, typing.Any]
@@ -854,13 +827,13 @@ class MembershipBinding(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class MembershipBindingLifecycleState(typing_extensions.TypedDict, total=False):
-    code: typing_extensions.Literal[
+class MembershipBindingLifecycleState(typing.TypedDict, total=False):
+    code: typing.Literal[
         "CODE_UNSPECIFIED", "CREATING", "READY", "DELETING", "UPDATING"
     ]
 
 @typing.type_check_only
-class MembershipEndpoint(typing_extensions.TypedDict, total=False):
+class MembershipEndpoint(typing.TypedDict, total=False):
     applianceCluster: ApplianceCluster
     edgeCluster: EdgeCluster
     gkeCluster: GkeCluster
@@ -871,7 +844,7 @@ class MembershipEndpoint(typing_extensions.TypedDict, total=False):
     onPremCluster: OnPremCluster
 
 @typing.type_check_only
-class MembershipFeatureSpec(typing_extensions.TypedDict, total=False):
+class MembershipFeatureSpec(typing.TypedDict, total=False):
     configmanagement: ConfigManagementMembershipSpec
     fleetobservability: FleetObservabilityMembershipSpec
     identityservice: IdentityServiceMembershipSpec
@@ -880,7 +853,7 @@ class MembershipFeatureSpec(typing_extensions.TypedDict, total=False):
     policycontroller: PolicyControllerMembershipSpec
 
 @typing.type_check_only
-class MembershipFeatureState(typing_extensions.TypedDict, total=False):
+class MembershipFeatureState(typing.TypedDict, total=False):
     appdevexperience: AppDevExperienceFeatureState
     clusterupgrade: ClusterUpgradeMembershipState
     configmanagement: ConfigManagementMembershipState
@@ -892,8 +865,8 @@ class MembershipFeatureState(typing_extensions.TypedDict, total=False):
     workloadidentity: WorkloadIdentityMembershipState
 
 @typing.type_check_only
-class MembershipState(typing_extensions.TypedDict, total=False):
-    code: typing_extensions.Literal[
+class MembershipState(typing.TypedDict, total=False):
+    code: typing.Literal[
         "CODE_UNSPECIFIED",
         "CREATING",
         "READY",
@@ -903,7 +876,7 @@ class MembershipState(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class MonitoringConfig(typing_extensions.TypedDict, total=False):
+class MonitoringConfig(typing.TypedDict, total=False):
     cluster: str
     clusterHash: str
     kubernetesMetricsPrefix: str
@@ -911,16 +884,16 @@ class MonitoringConfig(typing_extensions.TypedDict, total=False):
     projectId: str
 
 @typing.type_check_only
-class MultiCloudCluster(typing_extensions.TypedDict, total=False):
+class MultiCloudCluster(typing.TypedDict, total=False):
     clusterMissing: bool
     resourceLink: str
 
 @typing.type_check_only
-class MultiClusterIngressFeatureSpec(typing_extensions.TypedDict, total=False):
+class MultiClusterIngressFeatureSpec(typing.TypedDict, total=False):
     configMembership: str
 
 @typing.type_check_only
-class Namespace(typing_extensions.TypedDict, total=False):
+class Namespace(typing.TypedDict, total=False):
     createTime: str
     deleteTime: str
     labels: dict[str, typing.Any]
@@ -932,22 +905,22 @@ class Namespace(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class NamespaceLifecycleState(typing_extensions.TypedDict, total=False):
-    code: typing_extensions.Literal[
+class NamespaceLifecycleState(typing.TypedDict, total=False):
+    code: typing.Literal[
         "CODE_UNSPECIFIED", "CREATING", "READY", "DELETING", "UPDATING"
     ]
 
 @typing.type_check_only
-class OnPremCluster(typing_extensions.TypedDict, total=False):
+class OnPremCluster(typing.TypedDict, total=False):
     adminCluster: bool
     clusterMissing: bool
-    clusterType: typing_extensions.Literal[
+    clusterType: typing.Literal[
         "CLUSTERTYPE_UNSPECIFIED", "BOOTSTRAP", "HYBRID", "STANDALONE", "USER"
     ]
     resourceLink: str
 
 @typing.type_check_only
-class Operation(typing_extensions.TypedDict, total=False):
+class Operation(typing.TypedDict, total=False):
     done: bool
     error: GoogleRpcStatus
     metadata: dict[str, typing.Any]
@@ -955,7 +928,7 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class OperationMetadata(typing_extensions.TypedDict, total=False):
+class OperationMetadata(typing.TypedDict, total=False):
     apiVersion: str
     cancelRequested: bool
     createTime: str
@@ -965,9 +938,9 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
-class OperationalState(typing_extensions.TypedDict, total=False):
+class OperationalState(typing.TypedDict, total=False):
     reasons: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "REASON_UNSPECIFIED",
             "FLEET_FEATURE_DELETED_ERROR",
             "FLEET_DELETED_ERROR",
@@ -977,42 +950,40 @@ class OperationalState(typing_extensions.TypedDict, total=False):
             "NO_CLUSTERS_IN_SEQUENCE",
         ]
     ]
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_CODE_UNSPECIFIED", "ACTIVE", "WARNING", "ERROR", "INITIALIZING"
     ]
     stateChangeTime: str
 
 @typing.type_check_only
-class Origin(typing_extensions.TypedDict, total=False):
-    type: typing_extensions.Literal[
-        "TYPE_UNSPECIFIED", "FLEET", "FLEET_OUT_OF_SYNC", "USER"
-    ]
+class Origin(typing.TypedDict, total=False):
+    type: typing.Literal["TYPE_UNSPECIFIED", "FLEET", "FLEET_OUT_OF_SYNC", "USER"]
 
 @typing.type_check_only
-class PauseRolloutRequest(typing_extensions.TypedDict, total=False): ...
+class PauseRolloutRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Policy(typing_extensions.TypedDict, total=False):
+class Policy(typing.TypedDict, total=False):
     auditConfigs: _list[AuditConfig]
     bindings: _list[Binding]
     etag: str
     version: int
 
 @typing.type_check_only
-class PolicyBinding(typing_extensions.TypedDict, total=False):
+class PolicyBinding(typing.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class PolicyControllerBundleInstallSpec(typing_extensions.TypedDict, total=False):
+class PolicyControllerBundleInstallSpec(typing.TypedDict, total=False):
     exemptedNamespaces: _list[str]
 
 @typing.type_check_only
-class PolicyControllerHubConfig(typing_extensions.TypedDict, total=False):
+class PolicyControllerHubConfig(typing.TypedDict, total=False):
     auditIntervalSeconds: str
     constraintViolationLimit: str
     deploymentConfigs: dict[str, typing.Any]
     exemptableNamespaces: _list[str]
-    installSpec: typing_extensions.Literal[
+    installSpec: typing.Literal[
         "INSTALL_SPEC_UNSPECIFIED",
         "INSTALL_SPEC_NOT_INSTALLED",
         "INSTALL_SPEC_ENABLED",
@@ -1026,15 +997,15 @@ class PolicyControllerHubConfig(typing_extensions.TypedDict, total=False):
     referentialRulesEnabled: bool
 
 @typing.type_check_only
-class PolicyControllerMembershipSpec(typing_extensions.TypedDict, total=False):
+class PolicyControllerMembershipSpec(typing.TypedDict, total=False):
     policyControllerHubConfig: PolicyControllerHubConfig
     version: str
 
 @typing.type_check_only
-class PolicyControllerMembershipState(typing_extensions.TypedDict, total=False):
+class PolicyControllerMembershipState(typing.TypedDict, total=False):
     componentStates: dict[str, typing.Any]
     policyContentState: PolicyControllerPolicyContentState
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "LIFECYCLE_STATE_UNSPECIFIED",
         "NOT_INSTALLED",
         "INSTALLING",
@@ -1048,17 +1019,17 @@ class PolicyControllerMembershipState(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class PolicyControllerMonitoringConfig(typing_extensions.TypedDict, total=False):
+class PolicyControllerMonitoringConfig(typing.TypedDict, total=False):
     backends: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "MONITORING_BACKEND_UNSPECIFIED", "PROMETHEUS", "CLOUD_MONITORING"
         ]
     ]
 
 @typing.type_check_only
-class PolicyControllerOnClusterState(typing_extensions.TypedDict, total=False):
+class PolicyControllerOnClusterState(typing.TypedDict, total=False):
     details: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "LIFECYCLE_STATE_UNSPECIFIED",
         "NOT_INSTALLED",
         "INSTALLING",
@@ -1072,53 +1043,47 @@ class PolicyControllerOnClusterState(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class PolicyControllerPolicyContentSpec(typing_extensions.TypedDict, total=False):
+class PolicyControllerPolicyContentSpec(typing.TypedDict, total=False):
     bundles: dict[str, typing.Any]
     templateLibrary: PolicyControllerTemplateLibraryConfig
 
 @typing.type_check_only
-class PolicyControllerPolicyContentState(typing_extensions.TypedDict, total=False):
+class PolicyControllerPolicyContentState(typing.TypedDict, total=False):
     bundleStates: dict[str, typing.Any]
     referentialSyncConfigState: PolicyControllerOnClusterState
     templateLibraryState: PolicyControllerOnClusterState
 
 @typing.type_check_only
-class PolicyControllerPolicyControllerDeploymentConfig(
-    typing_extensions.TypedDict, total=False
-):
+class PolicyControllerPolicyControllerDeploymentConfig(typing.TypedDict, total=False):
     containerResources: PolicyControllerResourceRequirements
-    podAffinity: typing_extensions.Literal[
-        "AFFINITY_UNSPECIFIED", "NO_AFFINITY", "ANTI_AFFINITY"
-    ]
+    podAffinity: typing.Literal["AFFINITY_UNSPECIFIED", "NO_AFFINITY", "ANTI_AFFINITY"]
     podAntiAffinity: bool
     podTolerations: _list[PolicyControllerToleration]
     replicaCount: str
 
 @typing.type_check_only
-class PolicyControllerResourceList(typing_extensions.TypedDict, total=False):
+class PolicyControllerResourceList(typing.TypedDict, total=False):
     cpu: str
     memory: str
 
 @typing.type_check_only
-class PolicyControllerResourceRequirements(typing_extensions.TypedDict, total=False):
+class PolicyControllerResourceRequirements(typing.TypedDict, total=False):
     limits: PolicyControllerResourceList
     requests: PolicyControllerResourceList
 
 @typing.type_check_only
-class PolicyControllerTemplateLibraryConfig(typing_extensions.TypedDict, total=False):
-    installation: typing_extensions.Literal[
-        "INSTALLATION_UNSPECIFIED", "NOT_INSTALLED", "ALL"
-    ]
+class PolicyControllerTemplateLibraryConfig(typing.TypedDict, total=False):
+    installation: typing.Literal["INSTALLATION_UNSPECIFIED", "NOT_INSTALLED", "ALL"]
 
 @typing.type_check_only
-class PolicyControllerToleration(typing_extensions.TypedDict, total=False):
+class PolicyControllerToleration(typing.TypedDict, total=False):
     effect: str
     key: str
     operator: str
     value: str
 
 @typing.type_check_only
-class RBACRoleBinding(typing_extensions.TypedDict, total=False):
+class RBACRoleBinding(typing.TypedDict, total=False):
     createTime: str
     deleteTime: str
     group: str
@@ -1131,52 +1096,48 @@ class RBACRoleBinding(typing_extensions.TypedDict, total=False):
     user: str
 
 @typing.type_check_only
-class RBACRoleBindingActuationFeatureSpec(typing_extensions.TypedDict, total=False):
+class RBACRoleBindingActuationFeatureSpec(typing.TypedDict, total=False):
     allowedCustomRoles: _list[str]
 
 @typing.type_check_only
-class RBACRoleBindingActuationFeatureState(
-    typing_extensions.TypedDict, total=False
-): ...
+class RBACRoleBindingActuationFeatureState(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class RBACRoleBindingLifecycleState(typing_extensions.TypedDict, total=False):
-    code: typing_extensions.Literal[
+class RBACRoleBindingLifecycleState(typing.TypedDict, total=False):
+    code: typing.Literal[
         "CODE_UNSPECIFIED", "CREATING", "READY", "DELETING", "UPDATING"
     ]
 
 @typing.type_check_only
-class ResourceManifest(typing_extensions.TypedDict, total=False):
+class ResourceManifest(typing.TypedDict, total=False):
     clusterScoped: bool
     manifest: str
 
 @typing.type_check_only
-class ResourceOptions(typing_extensions.TypedDict, total=False):
+class ResourceOptions(typing.TypedDict, total=False):
     connectVersion: str
     k8sGitVersion: str
     k8sVersion: str
     v1beta1Crd: bool
 
 @typing.type_check_only
-class ResumeRolloutRequest(typing_extensions.TypedDict, total=False):
+class ResumeRolloutRequest(typing.TypedDict, total=False):
     scheduleOffset: str
     validateOnly: bool
 
 @typing.type_check_only
-class Role(typing_extensions.TypedDict, total=False):
+class Role(typing.TypedDict, total=False):
     customRole: str
-    predefinedRole: typing_extensions.Literal[
-        "UNKNOWN", "ADMIN", "EDIT", "VIEW", "ANTHOS_SUPPORT"
-    ]
+    predefinedRole: typing.Literal["UNKNOWN", "ADMIN", "EDIT", "VIEW", "ANTHOS_SUPPORT"]
 
 @typing.type_check_only
-class Rollout(typing_extensions.TypedDict, total=False):
+class Rollout(typing.TypedDict, total=False):
     completeTime: str
     createTime: str
     deleteTime: str
     displayName: str
     etag: str
-    intent: typing_extensions.Literal[
+    intent: typing.Literal[
         "ROLLOUT_INTENT_UNSPECIFIED",
         "REGULAR_UPGRADE",
         "CONTROL_PLANE_PATCH_ENFORCEMENT",
@@ -1187,11 +1148,11 @@ class Rollout(typing_extensions.TypedDict, total=False):
     name: str
     rolloutSequence: str
     stages: _list[RolloutStage]
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED", "RUNNING", "PAUSED", "CANCELLED", "COMPLETED"
     ]
     stateReason: str
-    stateReasonType: typing_extensions.Literal[
+    stateReasonType: typing.Literal[
         "STATE_REASON_TYPE_UNSPECIFIED",
         "PAUSED_BY_USER",
         "PAUSED_BY_SYSTEM_CONFIG",
@@ -1202,15 +1163,15 @@ class Rollout(typing_extensions.TypedDict, total=False):
         "CANCELLED_INCOMPATIBLE_ROLLOUT_SEQUENCE",
         "CANCELLED_SUPERSEDED_BY_USER_ROLLOUT",
     ]
-    trigger: typing_extensions.Literal["ROLLOUT_TRIGGER_UNSPECIFIED", "USER", "GKE"]
+    trigger: typing.Literal["ROLLOUT_TRIGGER_UNSPECIFIED", "USER", "GKE"]
     uid: str
     updateTime: str
     versionUpgrade: VersionUpgrade
 
 @typing.type_check_only
-class RolloutCreationScope(typing_extensions.TypedDict, total=False):
+class RolloutCreationScope(typing.TypedDict, total=False):
     upgradeTypes: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "UPGRADE_TYPE_UNSPECIFIED",
             "CONTROL_PLANE_MINOR",
             "CONTROL_PLANE_PATCH",
@@ -1220,15 +1181,15 @@ class RolloutCreationScope(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class RolloutMembershipState(typing_extensions.TypedDict, total=False):
+class RolloutMembershipState(typing.TypedDict, total=False):
     lastUpdateTime: str
     stageAssignment: int
     targets: _list[RolloutTarget]
 
 @typing.type_check_only
-class RolloutSequence(typing_extensions.TypedDict, total=False):
+class RolloutSequence(typing.TypedDict, total=False):
     autoUpgradeConfig: AutoUpgradeConfig
-    computedReleaseChannel: typing_extensions.Literal[
+    computedReleaseChannel: typing.Literal[
         "GKE_RELEASE_CHANNEL_UNSPECIFIED",
         "RAPID",
         "REGULAR",
@@ -1254,24 +1215,24 @@ class RolloutSequence(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class RolloutStage(typing_extensions.TypedDict, total=False):
+class RolloutStage(typing.TypedDict, total=False):
     clusterSelector: ClusterSelector
     endTime: str
     fleetProjects: _list[str]
     soakDuration: str
     stageNumber: int
     startTime: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED", "PENDING", "RUNNING", "SOAKING", "COMPLETED", "PAUSED"
     ]
 
 @typing.type_check_only
-class RolloutTarget(typing_extensions.TypedDict, total=False):
+class RolloutTarget(typing.TypedDict, total=False):
     cluster: str
     nodePool: str
     operation: str
     reason: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "PENDING",
         "RUNNING",
@@ -1284,7 +1245,7 @@ class RolloutTarget(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class Scope(typing_extensions.TypedDict, total=False):
+class Scope(typing.TypedDict, total=False):
     createTime: str
     deleteTime: str
     labels: dict[str, typing.Any]
@@ -1295,24 +1256,22 @@ class Scope(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class ScopeFeatureSpec(typing_extensions.TypedDict, total=False): ...
+class ScopeFeatureSpec(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ScopeFeatureState(typing_extensions.TypedDict, total=False):
+class ScopeFeatureState(typing.TypedDict, total=False):
     state: FeatureState
 
 @typing.type_check_only
-class ScopeLifecycleState(typing_extensions.TypedDict, total=False):
-    code: typing_extensions.Literal[
+class ScopeLifecycleState(typing.TypedDict, total=False):
+    code: typing.Literal[
         "CODE_UNSPECIFIED", "CREATING", "READY", "DELETING", "UPDATING"
     ]
 
 @typing.type_check_only
-class SecurityPostureConfig(typing_extensions.TypedDict, total=False):
-    mode: typing_extensions.Literal[
-        "MODE_UNSPECIFIED", "DISABLED", "BASIC", "ENTERPRISE"
-    ]
-    vulnerabilityMode: typing_extensions.Literal[
+class SecurityPostureConfig(typing.TypedDict, total=False):
+    mode: typing.Literal["MODE_UNSPECIFIED", "DISABLED", "BASIC", "ENTERPRISE"]
+    vulnerabilityMode: typing.Literal[
         "VULNERABILITY_MODE_UNSPECIFIED",
         "VULNERABILITY_DISABLED",
         "VULNERABILITY_BASIC",
@@ -1320,8 +1279,8 @@ class SecurityPostureConfig(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class ServiceMeshCondition(typing_extensions.TypedDict, total=False):
-    code: typing_extensions.Literal[
+class ServiceMeshCondition(typing.TypedDict, total=False):
+    code: typing.Literal[
         "CODE_UNSPECIFIED",
         "MESH_IAM_PERMISSION_DENIED",
         "MESH_IAM_CROSS_PROJECT_PERMISSION_DENIED",
@@ -1382,6 +1341,7 @@ class ServiceMeshCondition(typing_extensions.TypedDict, total=False):
         "MODERNIZATION_MODERNIZED_SOAKING",
         "MODERNIZATION_FINALIZED",
         "MODERNIZATION_ROLLING_BACK_FLEET",
+        "MODERNIZATION_MODERNIZED",
         "MODERNIZATION_COMPATIBLE",
         "MODERNIZATION_INCOMPATIBLE",
         "MODERNIZATION_INCOMPATIBLE_FLEET_SCALE",
@@ -1389,17 +1349,15 @@ class ServiceMeshCondition(typing_extensions.TypedDict, total=False):
     ]
     details: str
     documentationLink: str
-    severity: typing_extensions.Literal[
-        "SEVERITY_UNSPECIFIED", "ERROR", "WARNING", "INFO"
-    ]
+    severity: typing.Literal["SEVERITY_UNSPECIFIED", "ERROR", "WARNING", "INFO"]
 
 @typing.type_check_only
-class ServiceMeshControlPlaneManagement(typing_extensions.TypedDict, total=False):
+class ServiceMeshControlPlaneManagement(typing.TypedDict, total=False):
     details: _list[ServiceMeshStatusDetails]
-    implementation: typing_extensions.Literal[
+    implementation: typing.Literal[
         "IMPLEMENTATION_UNSPECIFIED", "ISTIOD", "TRAFFIC_DIRECTOR", "UPDATING"
     ]
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "LIFECYCLE_STATE_UNSPECIFIED",
         "DISABLED",
         "FAILED_PRECONDITION",
@@ -1412,9 +1370,9 @@ class ServiceMeshControlPlaneManagement(typing_extensions.TypedDict, total=False
     ]
 
 @typing.type_check_only
-class ServiceMeshDataPlaneManagement(typing_extensions.TypedDict, total=False):
+class ServiceMeshDataPlaneManagement(typing.TypedDict, total=False):
     details: _list[ServiceMeshStatusDetails]
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "LIFECYCLE_STATE_UNSPECIFIED",
         "DISABLED",
         "FAILED_PRECONDITION",
@@ -1427,22 +1385,102 @@ class ServiceMeshDataPlaneManagement(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class ServiceMeshFeatureSpec(typing_extensions.TypedDict, total=False):
-    modernizationCompatibility: typing_extensions.Literal[
+class ServiceMeshFeatureCondition(typing.TypedDict, total=False):
+    code: typing.Literal[
+        "CODE_UNSPECIFIED",
+        "MESH_IAM_PERMISSION_DENIED",
+        "MESH_IAM_CROSS_PROJECT_PERMISSION_DENIED",
+        "CNI_CONFIG_UNSUPPORTED",
+        "GKE_SANDBOX_UNSUPPORTED",
+        "NODEPOOL_WORKLOAD_IDENTITY_FEDERATION_REQUIRED",
+        "CNI_INSTALLATION_FAILED",
+        "CNI_POD_UNSCHEDULABLE",
+        "CLUSTER_HAS_ZERO_NODES",
+        "CANONICAL_SERVICE_ERROR",
+        "UNSUPPORTED_MULTIPLE_CONTROL_PLANES",
+        "VPCSC_GA_SUPPORTED",
+        "DEPRECATED_SPEC_CONTROL_PLANE_MANAGEMENT",
+        "DEPRECATED_SPEC_CONTROL_PLANE_MANAGEMENT_SAFE",
+        "CONFIG_APPLY_INTERNAL_ERROR",
+        "CONFIG_VALIDATION_ERROR",
+        "CONFIG_VALIDATION_WARNING",
+        "QUOTA_EXCEEDED_BACKEND_SERVICES",
+        "QUOTA_EXCEEDED_HEALTH_CHECKS",
+        "QUOTA_EXCEEDED_HTTP_ROUTES",
+        "QUOTA_EXCEEDED_TCP_ROUTES",
+        "QUOTA_EXCEEDED_TLS_ROUTES",
+        "QUOTA_EXCEEDED_TRAFFIC_POLICIES",
+        "QUOTA_EXCEEDED_ENDPOINT_POLICIES",
+        "QUOTA_EXCEEDED_GATEWAYS",
+        "QUOTA_EXCEEDED_MESHES",
+        "QUOTA_EXCEEDED_SERVER_TLS_POLICIES",
+        "QUOTA_EXCEEDED_CLIENT_TLS_POLICIES",
+        "QUOTA_EXCEEDED_SERVICE_LB_POLICIES",
+        "QUOTA_EXCEEDED_HTTP_FILTERS",
+        "QUOTA_EXCEEDED_TCP_FILTERS",
+        "QUOTA_EXCEEDED_NETWORK_ENDPOINT_GROUPS",
+        "CONFIG_APPLY_BLOCKED",
+        "LEGACY_MC_SECRETS",
+        "WORKLOAD_IDENTITY_REQUIRED",
+        "NON_STANDARD_BINARY_USAGE",
+        "UNSUPPORTED_GATEWAY_CLASS",
+        "MANAGED_CNI_NOT_ENABLED",
+        "MISSING_CONTROL_PLANE_CONFIG",
+        "SHARED_VPC_MISSING_PERMISSIONS",
+        "REQUIRED_ORG_POLICY_DISABLED",
+        "MODERNIZATION_INCOMPATIBLE_POD_ANNOTATION",
+        "MODERNIZATION_INCOMPATIBLE_CONFIG",
+        "MODERNIZATION_INCOMPATIBLE_GATEWAY_POD_SCALE",
+        "MODERNIZATION_SCHEDULED",
+        "MODERNIZATION_IN_PROGRESS",
+        "MODERNIZATION_COMPLETED",
+        "MODERNIZATION_ABORTED",
+        "MODERNIZATION_PREPARING",
+        "MODERNIZATION_STALLED",
+        "MODERNIZATION_PREPARED",
+        "MODERNIZATION_MIGRATING_WORKLOADS",
+        "MODERNIZATION_ROLLING_BACK_CLUSTER",
+        "MODERNIZATION_WILL_BE_SCHEDULED",
+        "MODERNIZATION_MANUAL",
+        "MODERNIZATION_ELIGIBLE",
+        "MODERNIZATION_MODERNIZING",
+        "MODERNIZATION_MODERNIZED_SOAKING",
+        "MODERNIZATION_FINALIZED",
+        "MODERNIZATION_ROLLING_BACK_FLEET",
+        "MODERNIZATION_MODERNIZED",
+        "MODERNIZATION_COMPATIBLE",
+        "MODERNIZATION_INCOMPATIBLE",
+        "MODERNIZATION_INCOMPATIBLE_FLEET_SCALE",
+        "MODERNIZATION_INCOMPATIBLE_FLEET_QUOTA",
+    ]
+    details: str
+    documentationLink: str
+    severity: typing.Literal["SEVERITY_UNSPECIFIED", "ERROR", "WARNING", "INFO"]
+
+@typing.type_check_only
+class ServiceMeshFeatureSpec(typing.TypedDict, total=False):
+    modernizationCompatibility: typing.Literal[
         "MODERNIZATION_COMPATIBILITY_UNSPECIFIED",
         "VALIDATION_ENABLED",
         "VALIDATION_DISABLED",
     ]
+    modernizationStrategy: typing.Literal[
+        "MODERNIZATION_STRATEGY_UNSPECIFIED", "AUTOMATIC", "DEFERRED"
+    ]
 
 @typing.type_check_only
-class ServiceMeshMembershipSpec(typing_extensions.TypedDict, total=False):
-    configApi: typing_extensions.Literal[
+class ServiceMeshFeatureState(typing.TypedDict, total=False):
+    conditions: _list[ServiceMeshFeatureCondition]
+
+@typing.type_check_only
+class ServiceMeshMembershipSpec(typing.TypedDict, total=False):
+    configApi: typing.Literal[
         "CONFIG_API_UNSPECIFIED", "CONFIG_API_ISTIO", "CONFIG_API_GATEWAY"
     ]
-    controlPlane: typing_extensions.Literal[
+    controlPlane: typing.Literal[
         "CONTROL_PLANE_MANAGEMENT_UNSPECIFIED", "AUTOMATIC", "MANUAL"
     ]
-    management: typing_extensions.Literal[
+    management: typing.Literal[
         "MANAGEMENT_UNSPECIFIED",
         "MANAGEMENT_AUTOMATIC",
         "MANAGEMENT_MANUAL",
@@ -1450,66 +1488,62 @@ class ServiceMeshMembershipSpec(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class ServiceMeshMembershipState(typing_extensions.TypedDict, total=False):
+class ServiceMeshMembershipState(typing.TypedDict, total=False):
     conditions: _list[ServiceMeshCondition]
     controlPlaneManagement: ServiceMeshControlPlaneManagement
     dataPlaneManagement: ServiceMeshDataPlaneManagement
 
 @typing.type_check_only
-class ServiceMeshStatusDetails(typing_extensions.TypedDict, total=False):
+class ServiceMeshStatusDetails(typing.TypedDict, total=False):
     code: str
     details: str
 
 @typing.type_check_only
-class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
+class SetIamPolicyRequest(typing.TypedDict, total=False):
     policy: Policy
     updateMask: str
 
 @typing.type_check_only
-class Stage(typing_extensions.TypedDict, total=False):
+class Stage(typing.TypedDict, total=False):
     clusterSelector: ClusterSelector
     fleetProjects: _list[str]
     soakDuration: str
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
-    code: typing_extensions.Literal["CODE_UNSPECIFIED", "OK", "FAILED", "UNKNOWN"]
+class Status(typing.TypedDict, total=False):
+    code: typing.Literal["CODE_UNSPECIFIED", "OK", "FAILED", "UNKNOWN"]
     description: str
 
 @typing.type_check_only
-class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
+class TestIamPermissionsRequest(typing.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
-class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
+class TestIamPermissionsResponse(typing.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
-class TypeMeta(typing_extensions.TypedDict, total=False):
+class TypeMeta(typing.TypedDict, total=False):
     apiVersion: str
     kind: str
 
 @typing.type_check_only
-class UpgradeRolloutSequenceRequest(typing_extensions.TypedDict, total=False):
+class UpgradeRolloutSequenceRequest(typing.TypedDict, total=False):
     force: bool
-    upgradeType: typing_extensions.Literal[
-        "UPGRADE_TYPE_UNSPECIFIED", "CONTROL_PLANE", "NODE"
-    ]
+    upgradeType: typing.Literal["UPGRADE_TYPE_UNSPECIFIED", "CONTROL_PLANE", "NODE"]
     version: str
 
 @typing.type_check_only
-class VersionUpgrade(typing_extensions.TypedDict, total=False):
+class VersionUpgrade(typing.TypedDict, total=False):
     desiredVersion: str
-    type: typing_extensions.Literal[
-        "TYPE_UNSPECIFIED", "TYPE_CONTROL_PLANE", "TYPE_NODE_POOL"
-    ]
+    type: typing.Literal["TYPE_UNSPECIFIED", "TYPE_CONTROL_PLANE", "TYPE_NODE_POOL"]
 
 @typing.type_check_only
-class WorkloadIdentityFeatureSpec(typing_extensions.TypedDict, total=False):
+class WorkloadIdentityFeatureSpec(typing.TypedDict, total=False):
     scopeTenancyPool: str
 
 @typing.type_check_only
-class WorkloadIdentityFeatureState(typing_extensions.TypedDict, total=False):
+class WorkloadIdentityFeatureState(typing.TypedDict, total=False):
     namespaceStateDetails: dict[str, typing.Any]
     namespaceStates: dict[str, typing.Any]
     scopeTenancyWorkloadIdentityPool: str
@@ -1517,10 +1551,8 @@ class WorkloadIdentityFeatureState(typing_extensions.TypedDict, total=False):
     workloadIdentityPoolStateDetails: dict[str, typing.Any]
 
 @typing.type_check_only
-class WorkloadIdentityIdentityProviderStateDetail(
-    typing_extensions.TypedDict, total=False
-):
-    code: typing_extensions.Literal[
+class WorkloadIdentityIdentityProviderStateDetail(typing.TypedDict, total=False):
+    code: typing.Literal[
         "IDENTITY_PROVIDER_STATE_UNSPECIFIED",
         "IDENTITY_PROVIDER_STATE_OK",
         "IDENTITY_PROVIDER_STATE_ERROR",
@@ -1528,22 +1560,20 @@ class WorkloadIdentityIdentityProviderStateDetail(
     description: str
 
 @typing.type_check_only
-class WorkloadIdentityMembershipState(typing_extensions.TypedDict, total=False):
+class WorkloadIdentityMembershipState(typing.TypedDict, total=False):
     description: str
     identityProviderStateDetails: dict[str, typing.Any]
 
 @typing.type_check_only
-class WorkloadIdentityNamespaceStateDetail(typing_extensions.TypedDict, total=False):
-    code: typing_extensions.Literal[
+class WorkloadIdentityNamespaceStateDetail(typing.TypedDict, total=False):
+    code: typing.Literal[
         "NAMESPACE_STATE_UNSPECIFIED", "NAMESPACE_STATE_OK", "NAMESPACE_STATE_ERROR"
     ]
     description: str
 
 @typing.type_check_only
-class WorkloadIdentityWorkloadIdentityPoolStateDetail(
-    typing_extensions.TypedDict, total=False
-):
-    code: typing_extensions.Literal[
+class WorkloadIdentityWorkloadIdentityPoolStateDetail(typing.TypedDict, total=False):
+    code: typing.Literal[
         "WORKLOAD_IDENTITY_POOL_STATE_UNSPECIFIED",
         "WORKLOAD_IDENTITY_POOL_STATE_OK",
         "WORKLOAD_IDENTITY_POOL_STATE_ERROR",

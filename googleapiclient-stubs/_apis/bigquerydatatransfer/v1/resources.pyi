@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -75,14 +74,14 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             parent: str,
-                            messageTypes: typing_extensions.Literal[
+                            messageTypes: typing.Literal[
                                 "MESSAGE_SEVERITY_UNSPECIFIED",
                                 "INFO",
                                 "WARNING",
                                 "ERROR",
                             ]
                             | _list[
-                                typing_extensions.Literal[
+                                typing.Literal[
                                     "MESSAGE_SEVERITY_UNSPECIFIED",
                                     "INFO",
                                     "WARNING",
@@ -112,11 +111,9 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                         parent: str,
                         pageSize: int | None = ...,
                         pageToken: str | None = ...,
-                        runAttempt: typing_extensions.Literal[
-                            "RUN_ATTEMPT_UNSPECIFIED", "LATEST"
-                        ]
+                        runAttempt: typing.Literal["RUN_ATTEMPT_UNSPECIFIED", "LATEST"]
                         | None = ...,
-                        states: typing_extensions.Literal[
+                        states: typing.Literal[
                             "TRANSFER_STATE_UNSPECIFIED",
                             "PENDING",
                             "RUNNING",
@@ -125,7 +122,7 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                             "CANCELLED",
                         ]
                         | _list[
-                            typing_extensions.Literal[
+                            typing.Literal[
                                 "TRANSFER_STATE_UNSPECIFIED",
                                 "PENDING",
                                 "RUNNING",
@@ -263,11 +260,11 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        messageTypes: typing_extensions.Literal[
+                        messageTypes: typing.Literal[
                             "MESSAGE_SEVERITY_UNSPECIFIED", "INFO", "WARNING", "ERROR"
                         ]
                         | _list[
-                            typing_extensions.Literal[
+                            typing.Literal[
                                 "MESSAGE_SEVERITY_UNSPECIFIED",
                                 "INFO",
                                 "WARNING",
@@ -297,11 +294,9 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int | None = ...,
                     pageToken: str | None = ...,
-                    runAttempt: typing_extensions.Literal[
-                        "RUN_ATTEMPT_UNSPECIFIED", "LATEST"
-                    ]
+                    runAttempt: typing.Literal["RUN_ATTEMPT_UNSPECIFIED", "LATEST"]
                     | None = ...,
-                    states: typing_extensions.Literal[
+                    states: typing.Literal[
                         "TRANSFER_STATE_UNSPECIFIED",
                         "PENDING",
                         "RUNNING",
@@ -310,7 +305,7 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                         "CANCELLED",
                     ]
                     | _list[
-                        typing_extensions.Literal[
+                        typing.Literal[
                             "TRANSFER_STATE_UNSPECIFIED",
                             "PENDING",
                             "RUNNING",

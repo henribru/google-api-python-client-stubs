@@ -1,24 +1,22 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class AdminUser(typing_extensions.TypedDict, total=False):
+class AdminUser(typing.TypedDict, total=False):
     familyName: str
     givenName: str
 
 @typing.type_check_only
-class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
+class CancelOperationRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Component(typing_extensions.TypedDict, total=False):
+class Component(typing.TypedDict, total=False):
     name: str
     serviceAttachmentNames: _list[str]
 
 @typing.type_check_only
-class ContactCenter(typing_extensions.TypedDict, total=False):
+class ContactCenter(typing.TypedDict, total=False):
     adminUser: AdminUser
     advancedReportingEnabled: bool
     ccaipManagedUsers: bool
@@ -40,7 +38,7 @@ class ContactCenter(typing_extensions.TypedDict, total=False):
     purgeTime: str
     releaseVersion: str
     samlParams: SAMLParams
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "STATE_DEPLOYING",
         "STATE_DEPLOYED",
@@ -59,27 +57,27 @@ class ContactCenter(typing_extensions.TypedDict, total=False):
     userEmail: str
 
 @typing.type_check_only
-class ContactCenterQuota(typing_extensions.TypedDict, total=False):
+class ContactCenterQuota(typing.TypedDict, total=False):
     contactCenterCountLimit: int
     contactCenterCountSum: int
     quotas: _list[Quota]
 
 @typing.type_check_only
-class Critical(typing_extensions.TypedDict, total=False):
+class Critical(typing.TypedDict, total=False):
     peakHours: _list[WeeklySchedule]
 
 @typing.type_check_only
-class Date(typing_extensions.TypedDict, total=False):
+class Date(typing.TypedDict, total=False):
     day: int
     month: int
     year: int
 
 @typing.type_check_only
-class DateList(typing_extensions.TypedDict, total=False):
+class DateList(typing.TypedDict, total=False):
     values: _list[Date]
 
 @typing.type_check_only
-class DateTime(typing_extensions.TypedDict, total=False):
+class DateTime(typing.TypedDict, total=False):
     day: int
     hours: int
     minutes: int
@@ -91,18 +89,18 @@ class DateTime(typing_extensions.TypedDict, total=False):
     year: int
 
 @typing.type_check_only
-class Early(typing_extensions.TypedDict, total=False): ...
+class Early(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class EmployeeInfo(typing_extensions.TypedDict, total=False):
+class EmployeeInfo(typing.TypedDict, total=False):
     id: str
     unwantedEventIntervals: _list[UnwantedEventInterval]
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class EventTemplate(typing_extensions.TypedDict, total=False):
+class EventTemplate(typing.TypedDict, total=False):
     durationMinutes: int
     id: str
     maximumMinutesAfterShiftStart: int
@@ -110,11 +108,11 @@ class EventTemplate(typing_extensions.TypedDict, total=False):
     startTimeIncrementMinutes: int
 
 @typing.type_check_only
-class FeatureConfig(typing_extensions.TypedDict, total=False):
+class FeatureConfig(typing.TypedDict, total=False):
     agentDesktopEnabled: bool
 
 @typing.type_check_only
-class GenerateShiftsRequest(typing_extensions.TypedDict, total=False):
+class GenerateShiftsRequest(typing.TypedDict, total=False):
     employeeInfo: _list[EmployeeInfo]
     planningHorizon: PlanningHorizon
     shiftTemplates: _list[ShiftTemplate]
@@ -122,7 +120,7 @@ class GenerateShiftsRequest(typing_extensions.TypedDict, total=False):
     workforceDemands: WorkforceDemandList
 
 @typing.type_check_only
-class GoogleCloudCommonOperationMetadata(typing_extensions.TypedDict, total=False):
+class GoogleCloudCommonOperationMetadata(typing.TypedDict, total=False):
     apiVersion: str
     cancelRequested: bool
     createTime: str
@@ -132,8 +130,8 @@ class GoogleCloudCommonOperationMetadata(typing_extensions.TypedDict, total=Fals
     verb: str
 
 @typing.type_check_only
-class InstanceConfig(typing_extensions.TypedDict, total=False):
-    instanceSize: typing_extensions.Literal[
+class InstanceConfig(typing.TypedDict, total=False):
+    instanceSize: typing.Literal[
         "INSTANCE_SIZE_UNSPECIFIED",
         "STANDARD_SMALL",
         "STANDARD_MEDIUM",
@@ -154,24 +152,24 @@ class InstanceConfig(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class ListContactCentersResponse(typing_extensions.TypedDict, total=False):
+class ListContactCentersResponse(typing.TypedDict, total=False):
     contactCenters: _list[ContactCenter]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListLocationsResponse(typing_extensions.TypedDict, total=False):
+class ListLocationsResponse(typing.TypedDict, total=False):
     locations: _list[Location]
     nextPageToken: str
 
 @typing.type_check_only
-class ListOperationsResponse(typing_extensions.TypedDict, total=False):
+class ListOperationsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
     unreachable: _list[str]
 
 @typing.type_check_only
-class Location(typing_extensions.TypedDict, total=False):
+class Location(typing.TypedDict, total=False):
     displayName: str
     labels: dict[str, typing.Any]
     locationId: str
@@ -179,10 +177,10 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class Normal(typing_extensions.TypedDict, total=False): ...
+class Normal(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Operation(typing_extensions.TypedDict, total=False):
+class Operation(typing.TypedDict, total=False):
     done: bool
     error: Status
     metadata: dict[str, typing.Any]
@@ -190,7 +188,7 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class OperationMetadata(typing_extensions.TypedDict, total=False):
+class OperationMetadata(typing.TypedDict, total=False):
     apiVersion: str
     contactCenter: ContactCenter
     createTime: str
@@ -201,26 +199,26 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
-class PlanningHorizon(typing_extensions.TypedDict, total=False):
+class PlanningHorizon(typing.TypedDict, total=False):
     endTime: DateTime
     startTime: DateTime
 
 @typing.type_check_only
-class PrivateAccess(typing_extensions.TypedDict, total=False):
+class PrivateAccess(typing.TypedDict, total=False):
     egressSettings: _list[Component]
     ingressSettings: _list[Component]
     pscSetting: PscSetting
 
 @typing.type_check_only
-class PscSetting(typing_extensions.TypedDict, total=False):
+class PscSetting(typing.TypedDict, total=False):
     allowedConsumerProjectIds: _list[str]
     producerProjectIds: _list[str]
 
 @typing.type_check_only
-class Quota(typing_extensions.TypedDict, total=False):
+class Quota(typing.TypedDict, total=False):
     contactCenterCountLimit: int
     contactCenterCountSum: int
-    contactCenterInstanceSize: typing_extensions.Literal[
+    contactCenterInstanceSize: typing.Literal[
         "INSTANCE_SIZE_UNSPECIFIED",
         "STANDARD_SMALL",
         "STANDARD_MEDIUM",
@@ -241,9 +239,9 @@ class Quota(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class SAMLParams(typing_extensions.TypedDict, total=False):
+class SAMLParams(typing.TypedDict, total=False):
     authenticationContexts: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "AUTHENTICATION_CONTEXT_UNSPECIFIED",
             "INTERNET_PROTOCOL",
             "INTERNET_PROTOCOL_PASSWORD",
@@ -278,7 +276,7 @@ class SAMLParams(typing_extensions.TypedDict, total=False):
     userEmail: str
 
 @typing.type_check_only
-class ShiftTemplate(typing_extensions.TypedDict, total=False):
+class ShiftTemplate(typing.TypedDict, total=False):
     assignableEmployeeIds: _list[str]
     daysOffCountPerWeek: int
     daysOffDates: DateList
@@ -293,9 +291,9 @@ class ShiftTemplate(typing_extensions.TypedDict, total=False):
     startTimeIncrementMinutes: int
 
 @typing.type_check_only
-class SolverConfig(typing_extensions.TypedDict, total=False):
+class SolverConfig(typing.TypedDict, total=False):
     maximumProcessingDuration: str
-    scheduleType: typing_extensions.Literal[
+    scheduleType: typing.Literal[
         "SCHEDULE_TYPE_UNSPECIFIED",
         "SINGLE_SHIFT",
         "WEEKLY_WITH_FIXED_EVENTS",
@@ -303,39 +301,39 @@ class SolverConfig(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class TimeOfDay(typing_extensions.TypedDict, total=False):
+class TimeOfDay(typing.TypedDict, total=False):
     hours: int
     minutes: int
     nanos: int
     seconds: int
 
 @typing.type_check_only
-class TimeZone(typing_extensions.TypedDict, total=False):
+class TimeZone(typing.TypedDict, total=False):
     id: str
     version: str
 
 @typing.type_check_only
-class URIs(typing_extensions.TypedDict, total=False):
+class URIs(typing.TypedDict, total=False):
     chatBotUri: str
     mediaUri: str
     rootUri: str
     virtualAgentStreamingServiceUri: str
 
 @typing.type_check_only
-class UnwantedEventInterval(typing_extensions.TypedDict, total=False):
+class UnwantedEventInterval(typing.TypedDict, total=False):
     durationMinutes: int
     startTime: DateTime
 
 @typing.type_check_only
-class WeeklySchedule(typing_extensions.TypedDict, total=False):
+class WeeklySchedule(typing.TypedDict, total=False):
     days: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "DAY_OF_WEEK_UNSPECIFIED",
             "MONDAY",
             "TUESDAY",
@@ -351,11 +349,11 @@ class WeeklySchedule(typing_extensions.TypedDict, total=False):
     startTime: TimeOfDay
 
 @typing.type_check_only
-class WorkforceDemand(typing_extensions.TypedDict, total=False):
+class WorkforceDemand(typing.TypedDict, total=False):
     employeeCount: int
     endTime: DateTime
     startTime: DateTime
 
 @typing.type_check_only
-class WorkforceDemandList(typing_extensions.TypedDict, total=False):
+class WorkforceDemandList(typing.TypedDict, total=False):
     values: _list[WorkforceDemand]

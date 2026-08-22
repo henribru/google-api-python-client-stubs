@@ -1,18 +1,16 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class Actor(typing_extensions.TypedDict, total=False):
+class Actor(typing.TypedDict, total=False):
     displayName: str
     email: str
     googleSupport: bool
     username: str
 
 @typing.type_check_only
-class Attachment(typing_extensions.TypedDict, total=False):
+class Attachment(typing.TypedDict, total=False):
     createTime: str
     creator: Actor
     filename: str
@@ -21,7 +19,7 @@ class Attachment(typing_extensions.TypedDict, total=False):
     sizeBytes: str
 
 @typing.type_check_only
-class Blobstore2Info(typing_extensions.TypedDict, total=False):
+class Blobstore2Info(typing.TypedDict, total=False):
     blobGeneration: str
     blobId: str
     downloadExternalReadToken: str
@@ -31,7 +29,7 @@ class Blobstore2Info(typing_extensions.TypedDict, total=False):
     uploadMetadataContainer: str
 
 @typing.type_check_only
-class Case(typing_extensions.TypedDict, total=False):
+class Case(typing.TypedDict, total=False):
     classification: CaseClassification
     contactEmail: str
     createTime: str
@@ -41,13 +39,9 @@ class Case(typing_extensions.TypedDict, total=False):
     escalated: bool
     languageCode: str
     name: str
-    priority: typing_extensions.Literal[
-        "PRIORITY_UNSPECIFIED", "P0", "P1", "P2", "P3", "P4"
-    ]
-    severity: typing_extensions.Literal[
-        "SEVERITY_UNSPECIFIED", "S0", "S1", "S2", "S3", "S4"
-    ]
-    state: typing_extensions.Literal[
+    priority: typing.Literal["PRIORITY_UNSPECIFIED", "P0", "P1", "P2", "P3", "P4"]
+    severity: typing.Literal["SEVERITY_UNSPECIFIED", "S0", "S1", "S2", "S3", "S4"]
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "NEW",
         "IN_PROGRESS_GOOGLE_SUPPORT",
@@ -61,16 +55,16 @@ class Case(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class CaseClassification(typing_extensions.TypedDict, total=False):
+class CaseClassification(typing.TypedDict, total=False):
     displayName: str
     id: str
     product: Product
 
 @typing.type_check_only
-class CloseCaseRequest(typing_extensions.TypedDict, total=False): ...
+class CloseCaseRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Comment(typing_extensions.TypedDict, total=False):
+class Comment(typing.TypedDict, total=False):
     body: str
     createTime: str
     creator: Actor
@@ -78,7 +72,7 @@ class Comment(typing_extensions.TypedDict, total=False):
     plainTextBody: str
 
 @typing.type_check_only
-class CompositeMedia(typing_extensions.TypedDict, total=False):
+class CompositeMedia(typing.TypedDict, total=False):
     blobRef: str
     blobstore2Info: Blobstore2Info
     cosmoBinaryReference: str
@@ -88,13 +82,13 @@ class CompositeMedia(typing_extensions.TypedDict, total=False):
     md5Hash: str
     objectId: ObjectId
     path: str
-    referenceType: typing_extensions.Literal[
+    referenceType: typing.Literal[
         "PATH", "BLOB_REF", "INLINE", "BIGSTORE_REF", "COSMO_BINARY_REFERENCE"
     ]
     sha1Hash: str
 
 @typing.type_check_only
-class ContentTypeInfo(typing_extensions.TypedDict, total=False):
+class ContentTypeInfo(typing.TypedDict, total=False):
     bestGuess: str
     fromBytes: str
     fromFileName: str
@@ -104,11 +98,11 @@ class ContentTypeInfo(typing_extensions.TypedDict, total=False):
     fusionIdDetectionMetadata: str
 
 @typing.type_check_only
-class CreateAttachmentRequest(typing_extensions.TypedDict, total=False):
+class CreateAttachmentRequest(typing.TypedDict, total=False):
     attachment: Attachment
 
 @typing.type_check_only
-class DiffChecksumsResponse(typing_extensions.TypedDict, total=False):
+class DiffChecksumsResponse(typing.TypedDict, total=False):
     checksumsLocation: CompositeMedia
     chunkSizeBytes: str
     objectLocation: CompositeMedia
@@ -116,32 +110,32 @@ class DiffChecksumsResponse(typing_extensions.TypedDict, total=False):
     objectVersion: str
 
 @typing.type_check_only
-class DiffDownloadResponse(typing_extensions.TypedDict, total=False):
+class DiffDownloadResponse(typing.TypedDict, total=False):
     objectLocation: CompositeMedia
 
 @typing.type_check_only
-class DiffUploadRequest(typing_extensions.TypedDict, total=False):
+class DiffUploadRequest(typing.TypedDict, total=False):
     checksumsInfo: CompositeMedia
     objectInfo: CompositeMedia
     objectVersion: str
 
 @typing.type_check_only
-class DiffUploadResponse(typing_extensions.TypedDict, total=False):
+class DiffUploadResponse(typing.TypedDict, total=False):
     objectVersion: str
     originalObject: CompositeMedia
 
 @typing.type_check_only
-class DiffVersionResponse(typing_extensions.TypedDict, total=False):
+class DiffVersionResponse(typing.TypedDict, total=False):
     objectSizeBytes: str
     objectVersion: str
 
 @typing.type_check_only
-class DownloadParameters(typing_extensions.TypedDict, total=False):
+class DownloadParameters(typing.TypedDict, total=False):
     allowGzipCompression: bool
     ignoreRange: bool
 
 @typing.type_check_only
-class EmailMessage(typing_extensions.TypedDict, total=False):
+class EmailMessage(typing.TypedDict, total=False):
     actor: Actor
     bodyContent: TextContent
     ccEmailAddresses: _list[str]
@@ -151,13 +145,16 @@ class EmailMessage(typing_extensions.TypedDict, total=False):
     subject: str
 
 @typing.type_check_only
-class EscalateCaseRequest(typing_extensions.TypedDict, total=False):
+class Empty(typing.TypedDict, total=False): ...
+
+@typing.type_check_only
+class EscalateCaseRequest(typing.TypedDict, total=False):
     escalation: Escalation
 
 @typing.type_check_only
-class Escalation(typing_extensions.TypedDict, total=False):
+class Escalation(typing.TypedDict, total=False):
     justification: str
-    reason: typing_extensions.Literal[
+    reason: typing.Literal[
         "REASON_UNSPECIFIED",
         "RESOLUTION_TIME",
         "TECHNICAL_EXPERTISE",
@@ -165,7 +162,10 @@ class Escalation(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class FeedItem(typing_extensions.TypedDict, total=False):
+class ExpungeSupportEventSubscriptionRequest(typing.TypedDict, total=False): ...
+
+@typing.type_check_only
+class FeedItem(typing.TypedDict, total=False):
     attachment: Attachment
     comment: Comment
     deletedAttachment: Attachment
@@ -173,27 +173,27 @@ class FeedItem(typing_extensions.TypedDict, total=False):
     eventTime: str
 
 @typing.type_check_only
-class ListAttachmentsResponse(typing_extensions.TypedDict, total=False):
+class ListAttachmentsResponse(typing.TypedDict, total=False):
     attachments: _list[Attachment]
     nextPageToken: str
 
 @typing.type_check_only
-class ListCasesResponse(typing_extensions.TypedDict, total=False):
+class ListCasesResponse(typing.TypedDict, total=False):
     cases: _list[Case]
     nextPageToken: str
 
 @typing.type_check_only
-class ListCommentsResponse(typing_extensions.TypedDict, total=False):
+class ListCommentsResponse(typing.TypedDict, total=False):
     comments: _list[Comment]
     nextPageToken: str
 
 @typing.type_check_only
-class ListSupportEventSubscriptionsResponse(typing_extensions.TypedDict, total=False):
+class ListSupportEventSubscriptionsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     supportEventSubscriptions: _list[SupportEventSubscription]
 
 @typing.type_check_only
-class Media(typing_extensions.TypedDict, total=False):
+class Media(typing.TypedDict, total=False):
     algorithm: str
     bigstoreObjectRef: str
     blobRef: str
@@ -219,7 +219,7 @@ class Media(typing_extensions.TypedDict, total=False):
     mediaId: str
     objectId: ObjectId
     path: str
-    referenceType: typing_extensions.Literal[
+    referenceType: typing.Literal[
         "PATH",
         "BLOB_REF",
         "INLINE",
@@ -241,52 +241,48 @@ class Media(typing_extensions.TypedDict, total=False):
     token: str
 
 @typing.type_check_only
-class ObjectId(typing_extensions.TypedDict, total=False):
+class ObjectId(typing.TypedDict, total=False):
     bucketName: str
     generation: str
     objectName: str
 
 @typing.type_check_only
-class Product(typing_extensions.TypedDict, total=False):
-    productLine: typing_extensions.Literal[
+class Product(typing.TypedDict, total=False):
+    productLine: typing.Literal[
         "PRODUCT_LINE_UNSPECIFIED", "GOOGLE_CLOUD", "GOOGLE_MAPS"
     ]
 
 @typing.type_check_only
-class SearchCaseClassificationsResponse(typing_extensions.TypedDict, total=False):
+class SearchCaseClassificationsResponse(typing.TypedDict, total=False):
     caseClassifications: _list[CaseClassification]
     nextPageToken: str
 
 @typing.type_check_only
-class SearchCasesResponse(typing_extensions.TypedDict, total=False):
+class SearchCasesResponse(typing.TypedDict, total=False):
     cases: _list[Case]
     nextPageToken: str
 
 @typing.type_check_only
-class ShowFeedResponse(typing_extensions.TypedDict, total=False):
+class ShowFeedResponse(typing.TypedDict, total=False):
     feedItems: _list[FeedItem]
     nextPageToken: str
 
 @typing.type_check_only
-class SupportEventSubscription(typing_extensions.TypedDict, total=False):
+class SupportEventSubscription(typing.TypedDict, total=False):
     createTime: str
     deleteTime: str
-    failureReason: typing_extensions.Literal[
+    failureReason: typing.Literal[
         "FAILURE_REASON_UNSPECIFIED", "PERMISSION_DENIED", "TOPIC_NOT_FOUND", "OTHER"
     ]
     name: str
     pubSubTopic: str
     purgeTime: str
-    state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "WORKING", "FAILING", "DELETED"
-    ]
+    state: typing.Literal["STATE_UNSPECIFIED", "WORKING", "FAILING", "DELETED"]
     updateTime: str
 
 @typing.type_check_only
-class TextContent(typing_extensions.TypedDict, total=False):
+class TextContent(typing.TypedDict, total=False):
     plainText: str
 
 @typing.type_check_only
-class UndeleteSupportEventSubscriptionRequest(
-    typing_extensions.TypedDict, total=False
-): ...
+class UndeleteSupportEventSubscriptionRequest(typing.TypedDict, total=False): ...

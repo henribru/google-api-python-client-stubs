@@ -1,46 +1,44 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class AddPublicKeyMetadata(typing_extensions.TypedDict, total=False): ...
+class AddPublicKeyMetadata(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class AddPublicKeyRequest(typing_extensions.TypedDict, total=False):
+class AddPublicKeyRequest(typing.TypedDict, total=False):
     key: str
 
 @typing.type_check_only
-class AddPublicKeyResponse(typing_extensions.TypedDict, total=False):
+class AddPublicKeyResponse(typing.TypedDict, total=False):
     key: str
 
 @typing.type_check_only
-class AuthorizeEnvironmentMetadata(typing_extensions.TypedDict, total=False): ...
+class AuthorizeEnvironmentMetadata(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class AuthorizeEnvironmentRequest(typing_extensions.TypedDict, total=False):
+class AuthorizeEnvironmentRequest(typing.TypedDict, total=False):
     accessToken: str
     expireTime: str
     idToken: str
 
 @typing.type_check_only
-class AuthorizeEnvironmentResponse(typing_extensions.TypedDict, total=False): ...
+class AuthorizeEnvironmentResponse(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
+class CancelOperationRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class CreateEnvironmentMetadata(typing_extensions.TypedDict, total=False): ...
+class CreateEnvironmentMetadata(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class DeleteEnvironmentMetadata(typing_extensions.TypedDict, total=False): ...
+class DeleteEnvironmentMetadata(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Environment(typing_extensions.TypedDict, total=False):
+class Environment(typing.TypedDict, total=False):
     dockerImage: str
     id: str
     name: str
@@ -48,23 +46,23 @@ class Environment(typing_extensions.TypedDict, total=False):
     sshHost: str
     sshPort: int
     sshUsername: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED", "SUSPENDED", "PENDING", "RUNNING", "DELETING"
     ]
     webHost: str
 
 @typing.type_check_only
-class GenerateAccessTokenResponse(typing_extensions.TypedDict, total=False):
+class GenerateAccessTokenResponse(typing.TypedDict, total=False):
     accessToken: str
 
 @typing.type_check_only
-class ListOperationsResponse(typing_extensions.TypedDict, total=False):
+class ListOperationsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
     unreachable: _list[str]
 
 @typing.type_check_only
-class Operation(typing_extensions.TypedDict, total=False):
+class Operation(typing.TypedDict, total=False):
     done: bool
     error: Status
     metadata: dict[str, typing.Any]
@@ -72,18 +70,18 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class RemovePublicKeyMetadata(typing_extensions.TypedDict, total=False): ...
+class RemovePublicKeyMetadata(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class RemovePublicKeyRequest(typing_extensions.TypedDict, total=False):
+class RemovePublicKeyRequest(typing.TypedDict, total=False):
     key: str
 
 @typing.type_check_only
-class RemovePublicKeyResponse(typing_extensions.TypedDict, total=False): ...
+class RemovePublicKeyResponse(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class StartEnvironmentMetadata(typing_extensions.TypedDict, total=False):
-    state: typing_extensions.Literal[
+class StartEnvironmentMetadata(typing.TypedDict, total=False):
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "STARTING",
         "UNARCHIVING_DISK",
@@ -92,16 +90,16 @@ class StartEnvironmentMetadata(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class StartEnvironmentRequest(typing_extensions.TypedDict, total=False):
+class StartEnvironmentRequest(typing.TypedDict, total=False):
     accessToken: str
     publicKeys: _list[str]
 
 @typing.type_check_only
-class StartEnvironmentResponse(typing_extensions.TypedDict, total=False):
+class StartEnvironmentResponse(typing.TypedDict, total=False):
     environment: Environment
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str

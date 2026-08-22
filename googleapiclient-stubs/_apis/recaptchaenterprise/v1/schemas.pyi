@@ -1,18 +1,16 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     accountTakeoverVerdict: (
         GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessmentAccountTakeoverVerdict
     )
     labels: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "ACCOUNT_DEFENDER_LABEL_UNSPECIFIED",
             "PROFILE_MATCH",
             "SUSPICIOUS_LOGIN_ACTIVITY",
@@ -23,9 +21,9 @@ class GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment(
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessmentAccountRiskReason(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    reason: typing_extensions.Literal[
+    reason: typing.Literal[
         "RISK_REASON_UNSPECIFIED",
         "CLIENT_HISTORICAL_BOT_ACTIVITY",
         "ACCOUNT_IN_LARGE_RELATED_GROUP",
@@ -35,7 +33,7 @@ class GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessmentAccountRiskReason
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessmentAccountTakeoverVerdict(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     risk: float
     riskReasons: _list[
@@ -47,19 +45,23 @@ class GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessmentAccountTakeoverVe
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessmentAccountTrustReason(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    reason: typing_extensions.Literal[
-        "TRUST_REASON_UNSPECIFIED", "PROFILE_MATCH", "ACCOUNT_HISTORY_REPUTABLE"
+    reason: typing.Literal[
+        "TRUST_REASON_UNSPECIFIED",
+        "PROFILE_MATCH",
+        "ACCOUNT_HISTORY_REPUTABLE",
+        "IDENTITY_GLOBAL_ACTIVITY_REPUTABLE",
+        "IDENTITY_HISTORY_REPUTABLE",
     ]
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1AccountVerificationInfo(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     endpoints: _list[GoogleCloudRecaptchaenterpriseV1EndpointVerificationInfo]
     languageCode: str
-    latestVerificationResult: typing_extensions.Literal[
+    latestVerificationResult: typing.Literal[
         "RESULT_UNSPECIFIED",
         "SUCCESS_USER_VERIFIED",
         "ERROR_USER_NOT_VERIFIED",
@@ -75,29 +77,27 @@ class GoogleCloudRecaptchaenterpriseV1AccountVerificationInfo(
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1AddIpOverrideRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     ipOverrideData: GoogleCloudRecaptchaenterpriseV1IpOverrideData
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1AddIpOverrideResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
-class GoogleCloudRecaptchaenterpriseV1AndroidKeySettings(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudRecaptchaenterpriseV1AndroidKeySettings(typing.TypedDict, total=False):
     allowAllPackageNames: bool
     allowedPackageNames: _list[str]
     supportNonGoogleAppStoreDistribution: bool
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1AnnotateAssessmentRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     accountId: str
-    annotation: typing_extensions.Literal[
+    annotation: typing.Literal[
         "ANNOTATION_UNSPECIFIED",
         "LEGITIMATE",
         "FRAUDULENT",
@@ -107,7 +107,7 @@ class GoogleCloudRecaptchaenterpriseV1AnnotateAssessmentRequest(
     hashedAccountId: str
     phoneAuthenticationEvent: GoogleCloudRecaptchaenterpriseV1PhoneAuthenticationEvent
     reasons: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "REASON_UNSPECIFIED",
             "CHARGEBACK",
             "CHARGEBACK_FRAUD",
@@ -129,21 +129,17 @@ class GoogleCloudRecaptchaenterpriseV1AnnotateAssessmentRequest(
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1AnnotateAssessmentResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
-class GoogleCloudRecaptchaenterpriseV1AppleDeveloperId(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudRecaptchaenterpriseV1AppleDeveloperId(typing.TypedDict, total=False):
     keyId: str
     privateKey: str
     teamId: str
 
 @typing.type_check_only
-class GoogleCloudRecaptchaenterpriseV1Assessment(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudRecaptchaenterpriseV1Assessment(typing.TypedDict, total=False):
     accountDefenderAssessment: GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment
     accountVerification: GoogleCloudRecaptchaenterpriseV1AccountVerificationInfo
     assessmentEnvironment: GoogleCloudRecaptchaenterpriseV1AssessmentEnvironment
@@ -153,6 +149,7 @@ class GoogleCloudRecaptchaenterpriseV1Assessment(
     fraudSignals: GoogleCloudRecaptchaenterpriseV1FraudSignals
     name: str
     phoneFraudAssessment: GoogleCloudRecaptchaenterpriseV1PhoneFraudAssessment
+    policyEvaluation: GoogleCloudRecaptchaenterpriseV1PolicyEvaluation
     privatePasswordLeakVerification: (
         GoogleCloudRecaptchaenterpriseV1PrivatePasswordLeakVerification
     )
@@ -161,30 +158,63 @@ class GoogleCloudRecaptchaenterpriseV1Assessment(
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1AssessmentEnvironment(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     client: str
     version: str
 
 @typing.type_check_only
-class GoogleCloudRecaptchaenterpriseV1Bot(typing_extensions.TypedDict, total=False):
-    botType: typing_extensions.Literal[
+class GoogleCloudRecaptchaenterpriseV1Bot(typing.TypedDict, total=False):
+    botType: typing.Literal[
         "BOT_TYPE_UNSPECIFIED", "AI_AGENT", "CONTENT_SCRAPER", "SEARCH_INDEXER"
     ]
     name: str
 
 @typing.type_check_only
-class GoogleCloudRecaptchaenterpriseV1ChallengeMetrics(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudRecaptchaenterpriseV1ChallengeMetrics(typing.TypedDict, total=False):
     failedCount: str
     nocaptchaCount: str
     pageloadCount: str
     passedCount: str
 
 @typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1ChallengeRule(typing.TypedDict, total=False):
+    challenge: GoogleCloudRecaptchaenterpriseV1ChallengeRuleChallengeOutcome
+    condition: str
+    noChallenge: GoogleCloudRecaptchaenterpriseV1ChallengeRuleNoChallengeOutcome
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1ChallengeRuleChallengeOutcome(
+    typing.TypedDict, total=False
+):
+    difficulty: typing.Literal[
+        "CHALLENGE_SECURITY_PREFERENCE_UNSPECIFIED", "USABILITY", "BALANCE", "SECURITY"
+    ]
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1ChallengeRuleEvaluation(
+    typing.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1ChallengeRuleGroup(typing.TypedDict, total=False):
+    actions: _list[str]
+    challengeRules: _list[GoogleCloudRecaptchaenterpriseV1ChallengeRule]
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1ChallengeRuleNoChallengeOutcome(
+    typing.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1ClientSettings(typing.TypedDict, total=False):
+    allowAllDomains: bool
+    allowedDomains: _list[str]
+    protectedEndpointGroup: GoogleCloudRecaptchaenterpriseV1ProtectedEndpointGroup
+
+@typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1EndpointVerificationInfo(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     emailAddress: str
     lastVerificationTime: str
@@ -192,11 +222,11 @@ class GoogleCloudRecaptchaenterpriseV1EndpointVerificationInfo(
     requestToken: str
 
 @typing.type_check_only
-class GoogleCloudRecaptchaenterpriseV1Event(typing_extensions.TypedDict, total=False):
+class GoogleCloudRecaptchaenterpriseV1Event(typing.TypedDict, total=False):
     expectedAction: str
     express: bool
     firewallPolicyEvaluation: bool
-    fraudPrevention: typing_extensions.Literal[
+    fraudPrevention: typing.Literal[
         "FRAUD_PREVENTION_UNSPECIFIED", "ENABLED", "DISABLED"
     ]
     hashedAccountId: str
@@ -214,13 +244,11 @@ class GoogleCloudRecaptchaenterpriseV1Event(typing_extensions.TypedDict, total=F
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1ExpressKeySettings(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
-class GoogleCloudRecaptchaenterpriseV1FirewallAction(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudRecaptchaenterpriseV1FirewallAction(typing.TypedDict, total=False):
     allow: GoogleCloudRecaptchaenterpriseV1FirewallActionAllowAction
     block: GoogleCloudRecaptchaenterpriseV1FirewallActionBlockAction
     includeRecaptchaScript: (
@@ -232,41 +260,39 @@ class GoogleCloudRecaptchaenterpriseV1FirewallAction(
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1FirewallActionAllowAction(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1FirewallActionBlockAction(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1FirewallActionIncludeRecaptchaScriptAction(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1FirewallActionRedirectAction(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1FirewallActionSetHeaderAction(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     key: str
     value: str
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1FirewallActionSubstituteAction(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     path: str
 
 @typing.type_check_only
-class GoogleCloudRecaptchaenterpriseV1FirewallPolicy(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudRecaptchaenterpriseV1FirewallPolicy(typing.TypedDict, total=False):
     actions: _list[GoogleCloudRecaptchaenterpriseV1FirewallAction]
     condition: str
     description: str
@@ -275,14 +301,14 @@ class GoogleCloudRecaptchaenterpriseV1FirewallPolicy(
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1FirewallPolicyAssessment(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     error: GoogleRpcStatus
     firewallPolicy: GoogleCloudRecaptchaenterpriseV1FirewallPolicy
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessment(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     behavioralTrustVerdict: (
         GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentBehavioralTrustVerdict
@@ -300,21 +326,21 @@ class GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessment(
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentBehavioralTrustVerdict(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     trust: float
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentCardTestingVerdict(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     risk: float
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentRiskReason(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    reason: typing_extensions.Literal[
+    reason: typing.Literal[
         "REASON_UNSPECIFIED",
         "HIGH_TRANSACTION_VELOCITY",
         "EXCESSIVE_ENUMERATION_PATTERN",
@@ -325,51 +351,45 @@ class GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentRiskReason(
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentStolenInstrumentVerdict(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     risk: float
 
 @typing.type_check_only
-class GoogleCloudRecaptchaenterpriseV1FraudSignals(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudRecaptchaenterpriseV1FraudSignals(typing.TypedDict, total=False):
     cardSignals: GoogleCloudRecaptchaenterpriseV1FraudSignalsCardSignals
     userSignals: GoogleCloudRecaptchaenterpriseV1FraudSignalsUserSignals
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1FraudSignalsCardSignals(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     cardLabels: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "CARD_LABEL_UNSPECIFIED", "PREPAID", "VIRTUAL", "UNEXPECTED_LOCATION"
         ]
     ]
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1FraudSignalsUserSignals(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     activeDaysLowerBound: int
     syntheticRisk: float
 
 @typing.type_check_only
-class GoogleCloudRecaptchaenterpriseV1IOSKeySettings(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudRecaptchaenterpriseV1IOSKeySettings(typing.TypedDict, total=False):
     allowAllBundleIds: bool
     allowedBundleIds: _list[str]
     appleDeveloperId: GoogleCloudRecaptchaenterpriseV1AppleDeveloperId
 
 @typing.type_check_only
-class GoogleCloudRecaptchaenterpriseV1IpOverrideData(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudRecaptchaenterpriseV1IpOverrideData(typing.TypedDict, total=False):
     ip: str
-    overrideType: typing_extensions.Literal["OVERRIDE_TYPE_UNSPECIFIED", "ALLOW"]
+    overrideType: typing.Literal["OVERRIDE_TYPE_UNSPECIFIED", "ALLOW"]
 
 @typing.type_check_only
-class GoogleCloudRecaptchaenterpriseV1Key(typing_extensions.TypedDict, total=False):
+class GoogleCloudRecaptchaenterpriseV1Key(typing.TypedDict, total=False):
     androidSettings: GoogleCloudRecaptchaenterpriseV1AndroidKeySettings
     createTime: str
     displayName: str
@@ -378,33 +398,32 @@ class GoogleCloudRecaptchaenterpriseV1Key(typing_extensions.TypedDict, total=Fal
     labels: dict[str, typing.Any]
     name: str
     testingOptions: GoogleCloudRecaptchaenterpriseV1TestingOptions
+    universalSettings: GoogleCloudRecaptchaenterpriseV1UniversalKeySettings
     wafSettings: GoogleCloudRecaptchaenterpriseV1WafSettings
     webSettings: GoogleCloudRecaptchaenterpriseV1WebKeySettings
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1ListFirewallPoliciesResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     firewallPolicies: _list[GoogleCloudRecaptchaenterpriseV1FirewallPolicy]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1ListIpOverridesResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     ipOverrides: _list[GoogleCloudRecaptchaenterpriseV1IpOverrideData]
     nextPageToken: str
 
 @typing.type_check_only
-class GoogleCloudRecaptchaenterpriseV1ListKeysResponse(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudRecaptchaenterpriseV1ListKeysResponse(typing.TypedDict, total=False):
     keys: _list[GoogleCloudRecaptchaenterpriseV1Key]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupMembershipsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     nextPageToken: str
     relatedAccountGroupMemberships: _list[
@@ -413,40 +432,48 @@ class GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupMembershipsResponse
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     nextPageToken: str
     relatedAccountGroups: _list[GoogleCloudRecaptchaenterpriseV1RelatedAccountGroup]
 
 @typing.type_check_only
-class GoogleCloudRecaptchaenterpriseV1Metrics(typing_extensions.TypedDict, total=False):
+class GoogleCloudRecaptchaenterpriseV1Metrics(typing.TypedDict, total=False):
     challengeMetrics: _list[GoogleCloudRecaptchaenterpriseV1ChallengeMetrics]
     name: str
     scoreMetrics: _list[GoogleCloudRecaptchaenterpriseV1ScoreMetrics]
     startTime: str
 
 @typing.type_check_only
-class GoogleCloudRecaptchaenterpriseV1MigrateKeyRequest(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudRecaptchaenterpriseV1MigrateKeyRequest(typing.TypedDict, total=False):
     skipBillingCheck: bool
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1PhoneAuthenticationEvent(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     eventTime: str
     phoneNumber: str
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1PhoneFraudAssessment(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     smsTollFraudVerdict: GoogleCloudRecaptchaenterpriseV1SmsTollFraudVerdict
 
 @typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1Policy(typing.TypedDict, total=False):
+    challengeRuleGroups: _list[GoogleCloudRecaptchaenterpriseV1ChallengeRuleGroup]
+    clientSettings: GoogleCloudRecaptchaenterpriseV1ClientSettings
+    name: str
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1PolicyEvaluation(typing.TypedDict, total=False):
+    challengeRuleEvaluation: GoogleCloudRecaptchaenterpriseV1ChallengeRuleEvaluation
+
+@typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1PrivatePasswordLeakVerification(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     encryptedLeakMatchPrefixes: _list[str]
     encryptedUserCredentialsHash: str
@@ -454,14 +481,25 @@ class GoogleCloudRecaptchaenterpriseV1PrivatePasswordLeakVerification(
     reencryptedUserCredentialsHash: str
 
 @typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1ProtectedEndpoint(typing.TypedDict, total=False):
+    action: str
+    path: str
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1ProtectedEndpointGroup(
+    typing.TypedDict, total=False
+):
+    protectedEndpoints: _list[GoogleCloudRecaptchaenterpriseV1ProtectedEndpoint]
+
+@typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1RelatedAccountGroup(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     name: str
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1RelatedAccountGroupMembership(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     accountId: str
     hashedAccountId: str
@@ -469,42 +507,41 @@ class GoogleCloudRecaptchaenterpriseV1RelatedAccountGroupMembership(
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1RemoveIpOverrideRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     ipOverrideData: GoogleCloudRecaptchaenterpriseV1IpOverrideData
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1RemoveIpOverrideResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1ReorderFirewallPoliciesRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     names: _list[str]
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1ReorderFirewallPoliciesResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1RetrieveLegacySecretKeyResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     legacySecretKey: str
 
 @typing.type_check_only
-class GoogleCloudRecaptchaenterpriseV1RiskAnalysis(
-    typing_extensions.TypedDict, total=False
-):
-    challenge: typing_extensions.Literal[
-        "CHALLENGE_UNSPECIFIED", "NOCAPTCHA", "PASSED", "FAILED"
-    ]
+class GoogleCloudRecaptchaenterpriseV1RiskAnalysis(typing.TypedDict, total=False):
+    challenge: typing.Literal["CHALLENGE_UNSPECIFIED", "NOCAPTCHA", "PASSED", "FAILED"]
     extendedVerdictReasons: _list[str]
+    lastChallengeType: typing.Literal[
+        "CHALLENGE_TYPE_UNSPECIFIED", "CHALLENGE_TYPE_VISUAL", "CHALLENGE_TYPE_AUDIO"
+    ]
     reasons: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "CLASSIFICATION_REASON_UNSPECIFIED",
             "AUTOMATION",
             "UNEXPECTED_ENVIRONMENT",
@@ -519,21 +556,17 @@ class GoogleCloudRecaptchaenterpriseV1RiskAnalysis(
     verifiedBots: _list[GoogleCloudRecaptchaenterpriseV1Bot]
 
 @typing.type_check_only
-class GoogleCloudRecaptchaenterpriseV1ScoreDistribution(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudRecaptchaenterpriseV1ScoreDistribution(typing.TypedDict, total=False):
     scoreBuckets: dict[str, typing.Any]
 
 @typing.type_check_only
-class GoogleCloudRecaptchaenterpriseV1ScoreMetrics(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudRecaptchaenterpriseV1ScoreMetrics(typing.TypedDict, total=False):
     actionMetrics: dict[str, typing.Any]
     overallMetrics: GoogleCloudRecaptchaenterpriseV1ScoreDistribution
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1SearchRelatedAccountGroupMembershipsRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     accountId: str
     hashedAccountId: str
@@ -542,7 +575,7 @@ class GoogleCloudRecaptchaenterpriseV1SearchRelatedAccountGroupMembershipsReques
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1SearchRelatedAccountGroupMembershipsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     nextPageToken: str
     relatedAccountGroupMemberships: _list[
@@ -551,33 +584,27 @@ class GoogleCloudRecaptchaenterpriseV1SearchRelatedAccountGroupMembershipsRespon
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1SmsTollFraudVerdict(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     reasons: _list[
-        typing_extensions.Literal[
-            "SMS_TOLL_FRAUD_REASON_UNSPECIFIED", "INVALID_PHONE_NUMBER"
-        ]
+        typing.Literal["SMS_TOLL_FRAUD_REASON_UNSPECIFIED", "INVALID_PHONE_NUMBER"]
     ]
     risk: float
 
 @typing.type_check_only
-class GoogleCloudRecaptchaenterpriseV1TestingOptions(
-    typing_extensions.TypedDict, total=False
-):
-    testingChallenge: typing_extensions.Literal[
+class GoogleCloudRecaptchaenterpriseV1TestingOptions(typing.TypedDict, total=False):
+    testingChallenge: typing.Literal[
         "TESTING_CHALLENGE_UNSPECIFIED", "NOCAPTCHA", "UNSOLVABLE_CHALLENGE"
     ]
     testingScore: float
 
 @typing.type_check_only
-class GoogleCloudRecaptchaenterpriseV1TokenProperties(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudRecaptchaenterpriseV1TokenProperties(typing.TypedDict, total=False):
     action: str
     androidPackageName: str
     createTime: str
     hostname: str
-    invalidReason: typing_extensions.Literal[
+    invalidReason: typing.Literal[
         "INVALID_REASON_UNSPECIFIED",
         "UNKNOWN_INVALID_REASON",
         "MALFORMED",
@@ -593,9 +620,7 @@ class GoogleCloudRecaptchaenterpriseV1TokenProperties(
     valid: bool
 
 @typing.type_check_only
-class GoogleCloudRecaptchaenterpriseV1TransactionData(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudRecaptchaenterpriseV1TransactionData(typing.TypedDict, total=False):
     billingAddress: GoogleCloudRecaptchaenterpriseV1TransactionDataAddress
     cardBin: str
     cardLastFour: str
@@ -612,7 +637,7 @@ class GoogleCloudRecaptchaenterpriseV1TransactionData(
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1TransactionDataAddress(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     address: _list[str]
     administrativeArea: str
@@ -623,7 +648,7 @@ class GoogleCloudRecaptchaenterpriseV1TransactionDataAddress(
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1TransactionDataGatewayInfo(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     avsResponseCode: str
     cvvResponseCode: str
@@ -632,7 +657,7 @@ class GoogleCloudRecaptchaenterpriseV1TransactionDataGatewayInfo(
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1TransactionDataItem(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     merchantAccountId: str
     name: str
@@ -641,7 +666,7 @@ class GoogleCloudRecaptchaenterpriseV1TransactionDataItem(
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1TransactionDataUser(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     accountId: str
     creationMs: str
@@ -651,11 +676,9 @@ class GoogleCloudRecaptchaenterpriseV1TransactionDataUser(
     phoneVerified: bool
 
 @typing.type_check_only
-class GoogleCloudRecaptchaenterpriseV1TransactionEvent(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudRecaptchaenterpriseV1TransactionEvent(typing.TypedDict, total=False):
     eventTime: str
-    eventType: typing_extensions.Literal[
+    eventType: typing.Literal[
         "TRANSACTION_EVENT_TYPE_UNSPECIFIED",
         "MERCHANT_APPROVE",
         "MERCHANT_DENY",
@@ -680,46 +703,45 @@ class GoogleCloudRecaptchaenterpriseV1TransactionEvent(
     value: float
 
 @typing.type_check_only
-class GoogleCloudRecaptchaenterpriseV1UserId(typing_extensions.TypedDict, total=False):
+class GoogleCloudRecaptchaenterpriseV1UniversalKeySettings(
+    typing.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1UserId(typing.TypedDict, total=False):
     email: str
     phoneNumber: str
     username: str
 
 @typing.type_check_only
-class GoogleCloudRecaptchaenterpriseV1UserInfo(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudRecaptchaenterpriseV1UserInfo(typing.TypedDict, total=False):
     accountId: str
     createAccountTime: str
     userIds: _list[GoogleCloudRecaptchaenterpriseV1UserId]
 
 @typing.type_check_only
-class GoogleCloudRecaptchaenterpriseV1WafSettings(
-    typing_extensions.TypedDict, total=False
-):
-    wafFeature: typing_extensions.Literal[
+class GoogleCloudRecaptchaenterpriseV1WafSettings(typing.TypedDict, total=False):
+    wafFeature: typing.Literal[
         "WAF_FEATURE_UNSPECIFIED",
         "CHALLENGE_PAGE",
         "SESSION_TOKEN",
         "ACTION_TOKEN",
         "EXPRESS",
     ]
-    wafService: typing_extensions.Literal[
+    wafService: typing.Literal[
         "WAF_SERVICE_UNSPECIFIED", "CA", "FASTLY", "CLOUDFLARE", "AKAMAI"
     ]
 
 @typing.type_check_only
-class GoogleCloudRecaptchaenterpriseV1WebKeySettings(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudRecaptchaenterpriseV1WebKeySettings(typing.TypedDict, total=False):
     allowAllDomains: bool
     allowAmpTraffic: bool
     allowedDomains: _list[str]
-    challengeSecurityPreference: typing_extensions.Literal[
+    challengeSecurityPreference: typing.Literal[
         "CHALLENGE_SECURITY_PREFERENCE_UNSPECIFIED", "USABILITY", "BALANCE", "SECURITY"
     ]
     challengeSettings: GoogleCloudRecaptchaenterpriseV1WebKeySettingsChallengeSettings
-    integrationType: typing_extensions.Literal[
+    integrationType: typing.Literal[
         "INTEGRATION_TYPE_UNSPECIFIED",
         "SCORE",
         "CHECKBOX",
@@ -729,22 +751,22 @@ class GoogleCloudRecaptchaenterpriseV1WebKeySettings(
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1WebKeySettingsActionSettings(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     scoreThreshold: float
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1WebKeySettingsChallengeSettings(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     actionSettings: dict[str, typing.Any]
     defaultSettings: GoogleCloudRecaptchaenterpriseV1WebKeySettingsActionSettings
 
 @typing.type_check_only
-class GoogleProtobufEmpty(typing_extensions.TypedDict, total=False): ...
+class GoogleProtobufEmpty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class GoogleRpcStatus(typing_extensions.TypedDict, total=False):
+class GoogleRpcStatus(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str

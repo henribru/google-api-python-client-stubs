@@ -1,51 +1,47 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class Advice(typing_extensions.TypedDict, total=False):
+class Advice(typing.TypedDict, total=False):
     description: str
 
 @typing.type_check_only
-class Api(typing_extensions.TypedDict, total=False):
+class Api(typing.TypedDict, total=False):
     edition: str
     methods: _list[Method]
     mixins: _list[Mixin]
     name: str
     options: _list[Option]
     sourceContext: SourceContext
-    syntax: typing_extensions.Literal[
-        "SYNTAX_PROTO2", "SYNTAX_PROTO3", "SYNTAX_EDITIONS"
-    ]
+    syntax: typing.Literal["SYNTAX_PROTO2", "SYNTAX_PROTO3", "SYNTAX_EDITIONS"]
     version: str
 
 @typing.type_check_only
-class Aspect(typing_extensions.TypedDict, total=False):
+class Aspect(typing.TypedDict, total=False):
     kind: str
     rules: _list[AspectRule]
     spec: dict[str, typing.Any]
 
 @typing.type_check_only
-class AspectRule(typing_extensions.TypedDict, total=False):
+class AspectRule(typing.TypedDict, total=False):
     config: dict[str, typing.Any]
     selector: str
 
 @typing.type_check_only
-class AuditConfig(typing_extensions.TypedDict, total=False):
+class AuditConfig(typing.TypedDict, total=False):
     auditLogConfigs: _list[AuditLogConfig]
     service: str
 
 @typing.type_check_only
-class AuditLogConfig(typing_extensions.TypedDict, total=False):
+class AuditLogConfig(typing.TypedDict, total=False):
     exemptedMembers: _list[str]
-    logType: typing_extensions.Literal[
+    logType: typing.Literal[
         "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
     ]
 
 @typing.type_check_only
-class AuthProvider(typing_extensions.TypedDict, total=False):
+class AuthProvider(typing.TypedDict, total=False):
     audiences: str
     authorizationUrl: str
     id: str
@@ -54,28 +50,28 @@ class AuthProvider(typing_extensions.TypedDict, total=False):
     jwtLocations: _list[JwtLocation]
 
 @typing.type_check_only
-class AuthRequirement(typing_extensions.TypedDict, total=False):
+class AuthRequirement(typing.TypedDict, total=False):
     audiences: str
     providerId: str
 
 @typing.type_check_only
-class Authentication(typing_extensions.TypedDict, total=False):
+class Authentication(typing.TypedDict, total=False):
     providers: _list[AuthProvider]
     rules: _list[AuthenticationRule]
 
 @typing.type_check_only
-class AuthenticationRule(typing_extensions.TypedDict, total=False):
+class AuthenticationRule(typing.TypedDict, total=False):
     allowWithoutCredential: bool
     oauth: OAuthRequirements
     requirements: _list[AuthRequirement]
     selector: str
 
 @typing.type_check_only
-class Backend(typing_extensions.TypedDict, total=False):
+class Backend(typing.TypedDict, total=False):
     rules: _list[BackendRule]
 
 @typing.type_check_only
-class BackendRule(typing_extensions.TypedDict, total=False):
+class BackendRule(typing.TypedDict, total=False):
     address: str
     deadline: float
     disableAuth: bool
@@ -84,62 +80,62 @@ class BackendRule(typing_extensions.TypedDict, total=False):
     minDeadline: float
     operationDeadline: float
     overridesByRequestProtocol: dict[str, typing.Any]
-    pathTranslation: typing_extensions.Literal[
+    pathTranslation: typing.Literal[
         "PATH_TRANSLATION_UNSPECIFIED", "CONSTANT_ADDRESS", "APPEND_PATH_TO_ADDRESS"
     ]
     protocol: str
     selector: str
 
 @typing.type_check_only
-class BatchingConfigProto(typing_extensions.TypedDict, total=False):
+class BatchingConfigProto(typing.TypedDict, total=False):
     batchDescriptor: BatchingDescriptorProto
     thresholds: BatchingSettingsProto
 
 @typing.type_check_only
-class BatchingDescriptorProto(typing_extensions.TypedDict, total=False):
+class BatchingDescriptorProto(typing.TypedDict, total=False):
     batchedField: str
     discriminatorFields: _list[str]
     subresponseField: str
 
 @typing.type_check_only
-class BatchingSettingsProto(typing_extensions.TypedDict, total=False):
+class BatchingSettingsProto(typing.TypedDict, total=False):
     delayThreshold: str
     elementCountLimit: int
     elementCountThreshold: int
     flowControlByteLimit: int
     flowControlElementLimit: int
-    flowControlLimitExceededBehavior: typing_extensions.Literal[
+    flowControlLimitExceededBehavior: typing.Literal[
         "UNSET_BEHAVIOR", "THROW_EXCEPTION", "BLOCK", "IGNORE"
     ]
     requestByteLimit: int
     requestByteThreshold: str
 
 @typing.type_check_only
-class Billing(typing_extensions.TypedDict, total=False):
+class Billing(typing.TypedDict, total=False):
     consumerDestinations: _list[BillingDestination]
 
 @typing.type_check_only
-class BillingDestination(typing_extensions.TypedDict, total=False):
+class BillingDestination(typing.TypedDict, total=False):
     metrics: _list[str]
     monitoredResource: str
 
 @typing.type_check_only
-class Binding(typing_extensions.TypedDict, total=False):
+class Binding(typing.TypedDict, total=False):
     condition: Expr
     members: _list[str]
     role: str
 
 @typing.type_check_only
-class ChangeReport(typing_extensions.TypedDict, total=False):
+class ChangeReport(typing.TypedDict, total=False):
     configChanges: _list[ConfigChange]
 
 @typing.type_check_only
-class ClientLibrarySettings(typing_extensions.TypedDict, total=False):
+class ClientLibrarySettings(typing.TypedDict, total=False):
     cppSettings: CppSettings
     dotnetSettings: DotnetSettings
     goSettings: GoSettings
     javaSettings: JavaSettings
-    launchStage: typing_extensions.Literal[
+    launchStage: typing.Literal[
         "LAUNCH_STAGE_UNSPECIFIED",
         "UNIMPLEMENTED",
         "PRELAUNCH",
@@ -157,9 +153,9 @@ class ClientLibrarySettings(typing_extensions.TypedDict, total=False):
     version: str
 
 @typing.type_check_only
-class CommonLanguageSettings(typing_extensions.TypedDict, total=False):
+class CommonLanguageSettings(typing.TypedDict, total=False):
     destinations: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "CLIENT_LIBRARY_DESTINATION_UNSPECIFIED", "GITHUB", "PACKAGE_MANAGER"
         ]
     ]
@@ -167,9 +163,9 @@ class CommonLanguageSettings(typing_extensions.TypedDict, total=False):
     selectiveGapicGeneration: SelectiveGapicGeneration
 
 @typing.type_check_only
-class ConfigChange(typing_extensions.TypedDict, total=False):
+class ConfigChange(typing.TypedDict, total=False):
     advices: _list[Advice]
-    changeType: typing_extensions.Literal[
+    changeType: typing.Literal[
         "CHANGE_TYPE_UNSPECIFIED", "ADDED", "REMOVED", "MODIFIED"
     ]
     element: str
@@ -177,10 +173,10 @@ class ConfigChange(typing_extensions.TypedDict, total=False):
     oldValue: str
 
 @typing.type_check_only
-class ConfigFile(typing_extensions.TypedDict, total=False):
+class ConfigFile(typing.TypedDict, total=False):
     fileContents: str
     filePath: str
-    fileType: typing_extensions.Literal[
+    fileType: typing.Literal[
         "FILE_TYPE_UNSPECIFIED",
         "SERVICE_CONFIG_YAML",
         "OPEN_API_JSON",
@@ -190,20 +186,20 @@ class ConfigFile(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class ConfigRef(typing_extensions.TypedDict, total=False):
+class ConfigRef(typing.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class ConfigSource(typing_extensions.TypedDict, total=False):
+class ConfigSource(typing.TypedDict, total=False):
     files: _list[ConfigFile]
     id: str
 
 @typing.type_check_only
-class Context(typing_extensions.TypedDict, total=False):
+class Context(typing.TypedDict, total=False):
     rules: _list[ContextRule]
 
 @typing.type_check_only
-class ContextRule(typing_extensions.TypedDict, total=False):
+class ContextRule(typing.TypedDict, total=False):
     allowedRequestExtensions: _list[str]
     allowedResponseExtensions: _list[str]
     provided: _list[str]
@@ -211,40 +207,40 @@ class ContextRule(typing_extensions.TypedDict, total=False):
     selector: str
 
 @typing.type_check_only
-class Control(typing_extensions.TypedDict, total=False):
+class Control(typing.TypedDict, total=False):
     environment: str
     methodPolicies: _list[MethodPolicy]
 
 @typing.type_check_only
-class CppSettings(typing_extensions.TypedDict, total=False):
+class CppSettings(typing.TypedDict, total=False):
     common: CommonLanguageSettings
 
 @typing.type_check_only
-class CustomError(typing_extensions.TypedDict, total=False):
+class CustomError(typing.TypedDict, total=False):
     rules: _list[CustomErrorRule]
     types: _list[str]
 
 @typing.type_check_only
-class CustomErrorRule(typing_extensions.TypedDict, total=False):
+class CustomErrorRule(typing.TypedDict, total=False):
     isErrorType: bool
     selector: str
 
 @typing.type_check_only
-class CustomHttpPattern(typing_extensions.TypedDict, total=False):
+class CustomHttpPattern(typing.TypedDict, total=False):
     kind: str
     path: str
 
 @typing.type_check_only
-class DeleteServiceStrategy(typing_extensions.TypedDict, total=False): ...
+class DeleteServiceStrategy(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Diagnostic(typing_extensions.TypedDict, total=False):
-    kind: typing_extensions.Literal["WARNING", "ERROR"]
+class Diagnostic(typing.TypedDict, total=False):
+    kind: typing.Literal["WARNING", "ERROR"]
     location: str
     message: str
 
 @typing.type_check_only
-class Documentation(typing_extensions.TypedDict, total=False):
+class Documentation(typing.TypedDict, total=False):
     additionalIamInfo: str
     documentationRootUrl: str
     overview: str
@@ -255,14 +251,14 @@ class Documentation(typing_extensions.TypedDict, total=False):
     summary: str
 
 @typing.type_check_only
-class DocumentationRule(typing_extensions.TypedDict, total=False):
+class DocumentationRule(typing.TypedDict, total=False):
     deprecationDescription: str
     description: str
     disableReplacementWords: str
     selector: str
 
 @typing.type_check_only
-class DotnetSettings(typing_extensions.TypedDict, total=False):
+class DotnetSettings(typing.TypedDict, total=False):
     common: CommonLanguageSettings
     forcedNamespaceAliases: _list[str]
     handwrittenSignatures: _list[str]
@@ -271,48 +267,46 @@ class DotnetSettings(typing_extensions.TypedDict, total=False):
     renamedServices: dict[str, typing.Any]
 
 @typing.type_check_only
-class EnableServiceResponse(typing_extensions.TypedDict, total=False): ...
+class EnableServiceResponse(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Endpoint(typing_extensions.TypedDict, total=False):
+class Endpoint(typing.TypedDict, total=False):
     aliases: _list[str]
     allowCors: bool
     name: str
     target: str
 
 @typing.type_check_only
-class Enum(typing_extensions.TypedDict, total=False):
+class Enum(typing.TypedDict, total=False):
     edition: str
     enumvalue: _list[EnumValue]
     name: str
     options: _list[Option]
     sourceContext: SourceContext
-    syntax: typing_extensions.Literal[
-        "SYNTAX_PROTO2", "SYNTAX_PROTO3", "SYNTAX_EDITIONS"
-    ]
+    syntax: typing.Literal["SYNTAX_PROTO2", "SYNTAX_PROTO3", "SYNTAX_EDITIONS"]
 
 @typing.type_check_only
-class EnumValue(typing_extensions.TypedDict, total=False):
+class EnumValue(typing.TypedDict, total=False):
     name: str
     number: int
     options: _list[Option]
 
 @typing.type_check_only
-class ExperimentalFeatures(typing_extensions.TypedDict, total=False):
+class ExperimentalFeatures(typing.TypedDict, total=False):
     protobufPythonicTypesEnabled: bool
     restAsyncIoEnabled: bool
     unversionedPackageDisabled: bool
 
 @typing.type_check_only
-class Expr(typing_extensions.TypedDict, total=False):
+class Expr(typing.TypedDict, total=False):
     description: str
     expression: str
     location: str
     title: str
 
 @typing.type_check_only
-class Field(typing_extensions.TypedDict, total=False):
-    cardinality: typing_extensions.Literal[
+class Field(typing.TypedDict, total=False):
+    cardinality: typing.Literal[
         "CARDINALITY_UNKNOWN",
         "CARDINALITY_OPTIONAL",
         "CARDINALITY_REQUIRED",
@@ -320,7 +314,7 @@ class Field(typing_extensions.TypedDict, total=False):
     ]
     defaultValue: str
     jsonName: str
-    kind: typing_extensions.Literal[
+    kind: typing.Literal[
         "TYPE_UNKNOWN",
         "TYPE_DOUBLE",
         "TYPE_FLOAT",
@@ -349,48 +343,48 @@ class Field(typing_extensions.TypedDict, total=False):
     typeUrl: str
 
 @typing.type_check_only
-class FieldPolicy(typing_extensions.TypedDict, total=False):
+class FieldPolicy(typing.TypedDict, total=False):
     resourcePermission: str
     resourceType: str
     selector: str
 
 @typing.type_check_only
-class FlowErrorDetails(typing_extensions.TypedDict, total=False):
+class FlowErrorDetails(typing.TypedDict, total=False):
     exceptionType: str
     flowStepId: str
 
 @typing.type_check_only
-class GenerateConfigReportRequest(typing_extensions.TypedDict, total=False):
+class GenerateConfigReportRequest(typing.TypedDict, total=False):
     newConfig: dict[str, typing.Any]
     oldConfig: dict[str, typing.Any]
 
 @typing.type_check_only
-class GenerateConfigReportResponse(typing_extensions.TypedDict, total=False):
+class GenerateConfigReportResponse(typing.TypedDict, total=False):
     changeReports: _list[ChangeReport]
     diagnostics: _list[Diagnostic]
     id: str
     serviceName: str
 
 @typing.type_check_only
-class GetIamPolicyRequest(typing_extensions.TypedDict, total=False):
+class GetIamPolicyRequest(typing.TypedDict, total=False):
     options: GetPolicyOptions
 
 @typing.type_check_only
-class GetPolicyOptions(typing_extensions.TypedDict, total=False):
+class GetPolicyOptions(typing.TypedDict, total=False):
     requestedPolicyVersion: int
 
 @typing.type_check_only
-class GoSettings(typing_extensions.TypedDict, total=False):
+class GoSettings(typing.TypedDict, total=False):
     common: CommonLanguageSettings
     renamedServices: dict[str, typing.Any]
 
 @typing.type_check_only
-class Http(typing_extensions.TypedDict, total=False):
+class Http(typing.TypedDict, total=False):
     fullyDecodeReservedExpansion: bool
     rules: _list[HttpRule]
 
 @typing.type_check_only
-class HttpRule(typing_extensions.TypedDict, total=False):
+class HttpRule(typing.TypedDict, total=False):
     additionalBindings: _list[HttpRule]
     body: str
     custom: CustomHttpPattern
@@ -403,76 +397,76 @@ class HttpRule(typing_extensions.TypedDict, total=False):
     selector: str
 
 @typing.type_check_only
-class JavaSettings(typing_extensions.TypedDict, total=False):
+class JavaSettings(typing.TypedDict, total=False):
     common: CommonLanguageSettings
     libraryPackage: str
     serviceClassNames: dict[str, typing.Any]
 
 @typing.type_check_only
-class JwtLocation(typing_extensions.TypedDict, total=False):
+class JwtLocation(typing.TypedDict, total=False):
     cookie: str
     header: str
     query: str
     valuePrefix: str
 
 @typing.type_check_only
-class LabelDescriptor(typing_extensions.TypedDict, total=False):
+class LabelDescriptor(typing.TypedDict, total=False):
     description: str
     key: str
-    valueType: typing_extensions.Literal["STRING", "BOOL", "INT64"]
+    valueType: typing.Literal["STRING", "BOOL", "INT64"]
 
 @typing.type_check_only
-class ListOperationsResponse(typing_extensions.TypedDict, total=False):
+class ListOperationsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListServiceConfigsResponse(typing_extensions.TypedDict, total=False):
+class ListServiceConfigsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     serviceConfigs: _list[Service]
 
 @typing.type_check_only
-class ListServiceRolloutsResponse(typing_extensions.TypedDict, total=False):
+class ListServiceRolloutsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     rollouts: _list[Rollout]
 
 @typing.type_check_only
-class ListServicesResponse(typing_extensions.TypedDict, total=False):
+class ListServicesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     services: _list[ManagedService]
 
 @typing.type_check_only
-class LogDescriptor(typing_extensions.TypedDict, total=False):
+class LogDescriptor(typing.TypedDict, total=False):
     description: str
     displayName: str
     labels: _list[LabelDescriptor]
     name: str
 
 @typing.type_check_only
-class Logging(typing_extensions.TypedDict, total=False):
+class Logging(typing.TypedDict, total=False):
     consumerDestinations: _list[LoggingDestination]
     producerDestinations: _list[LoggingDestination]
 
 @typing.type_check_only
-class LoggingDestination(typing_extensions.TypedDict, total=False):
+class LoggingDestination(typing.TypedDict, total=False):
     logs: _list[str]
     monitoredResource: str
 
 @typing.type_check_only
-class LongRunning(typing_extensions.TypedDict, total=False):
+class LongRunning(typing.TypedDict, total=False):
     initialPollDelay: str
     maxPollDelay: str
     pollDelayMultiplier: float
     totalPollTimeout: str
 
 @typing.type_check_only
-class ManagedService(typing_extensions.TypedDict, total=False):
+class ManagedService(typing.TypedDict, total=False):
     producerProjectId: str
     serviceName: str
 
 @typing.type_check_only
-class Method(typing_extensions.TypedDict, total=False):
+class Method(typing.TypedDict, total=False):
     edition: str
     name: str
     options: _list[Option]
@@ -480,28 +474,26 @@ class Method(typing_extensions.TypedDict, total=False):
     requestTypeUrl: str
     responseStreaming: bool
     responseTypeUrl: str
-    syntax: typing_extensions.Literal[
-        "SYNTAX_PROTO2", "SYNTAX_PROTO3", "SYNTAX_EDITIONS"
-    ]
+    syntax: typing.Literal["SYNTAX_PROTO2", "SYNTAX_PROTO3", "SYNTAX_EDITIONS"]
 
 @typing.type_check_only
-class MethodPolicy(typing_extensions.TypedDict, total=False):
+class MethodPolicy(typing.TypedDict, total=False):
     requestPolicies: _list[FieldPolicy]
     selector: str
 
 @typing.type_check_only
-class MethodSettings(typing_extensions.TypedDict, total=False):
+class MethodSettings(typing.TypedDict, total=False):
     autoPopulatedFields: _list[str]
     batching: BatchingConfigProto
     longRunning: LongRunning
     selector: str
 
 @typing.type_check_only
-class MetricDescriptor(typing_extensions.TypedDict, total=False):
+class MetricDescriptor(typing.TypedDict, total=False):
     description: str
     displayName: str
     labels: _list[LabelDescriptor]
-    launchStage: typing_extensions.Literal[
+    launchStage: typing.Literal[
         "LAUNCH_STAGE_UNSPECIFIED",
         "UNIMPLEMENTED",
         "PRELAUNCH",
@@ -512,14 +504,14 @@ class MetricDescriptor(typing_extensions.TypedDict, total=False):
         "DEPRECATED",
     ]
     metadata: MetricDescriptorMetadata
-    metricKind: typing_extensions.Literal[
+    metricKind: typing.Literal[
         "METRIC_KIND_UNSPECIFIED", "GAUGE", "DELTA", "CUMULATIVE"
     ]
     monitoredResourceTypes: _list[str]
     name: str
     type: str
     unit: str
-    valueType: typing_extensions.Literal[
+    valueType: typing.Literal[
         "VALUE_TYPE_UNSPECIFIED",
         "BOOL",
         "INT64",
@@ -530,9 +522,9 @@ class MetricDescriptor(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class MetricDescriptorMetadata(typing_extensions.TypedDict, total=False):
+class MetricDescriptorMetadata(typing.TypedDict, total=False):
     ingestDelay: str
-    launchStage: typing_extensions.Literal[
+    launchStage: typing.Literal[
         "LAUNCH_STAGE_UNSPECIFIED",
         "UNIMPLEMENTED",
         "PRELAUNCH",
@@ -544,7 +536,7 @@ class MetricDescriptorMetadata(typing_extensions.TypedDict, total=False):
     ]
     samplePeriod: str
     timeSeriesResourceHierarchyLevel: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "TIME_SERIES_RESOURCE_HIERARCHY_LEVEL_UNSPECIFIED",
             "PROJECT",
             "ORGANIZATION",
@@ -553,21 +545,23 @@ class MetricDescriptorMetadata(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class MetricRule(typing_extensions.TypedDict, total=False):
+class MetricRule(typing.TypedDict, total=False):
+    agenticMetricCosts: dict[str, typing.Any]
     metricCosts: dict[str, typing.Any]
+    nonagenticMetricCosts: dict[str, typing.Any]
     selector: str
 
 @typing.type_check_only
-class Mixin(typing_extensions.TypedDict, total=False):
+class Mixin(typing.TypedDict, total=False):
     name: str
     root: str
 
 @typing.type_check_only
-class MonitoredResourceDescriptor(typing_extensions.TypedDict, total=False):
+class MonitoredResourceDescriptor(typing.TypedDict, total=False):
     description: str
     displayName: str
     labels: _list[LabelDescriptor]
-    launchStage: typing_extensions.Literal[
+    launchStage: typing.Literal[
         "LAUNCH_STAGE_UNSPECIFIED",
         "UNIMPLEMENTED",
         "PRELAUNCH",
@@ -581,25 +575,25 @@ class MonitoredResourceDescriptor(typing_extensions.TypedDict, total=False):
     type: str
 
 @typing.type_check_only
-class Monitoring(typing_extensions.TypedDict, total=False):
+class Monitoring(typing.TypedDict, total=False):
     consumerDestinations: _list[MonitoringDestination]
     producerDestinations: _list[MonitoringDestination]
 
 @typing.type_check_only
-class MonitoringDestination(typing_extensions.TypedDict, total=False):
+class MonitoringDestination(typing.TypedDict, total=False):
     metrics: _list[str]
     monitoredResource: str
 
 @typing.type_check_only
-class NodeSettings(typing_extensions.TypedDict, total=False):
+class NodeSettings(typing.TypedDict, total=False):
     common: CommonLanguageSettings
 
 @typing.type_check_only
-class OAuthRequirements(typing_extensions.TypedDict, total=False):
+class OAuthRequirements(typing.TypedDict, total=False):
     canonicalScopes: str
 
 @typing.type_check_only
-class Operation(typing_extensions.TypedDict, total=False):
+class Operation(typing.TypedDict, total=False):
     done: bool
     error: Status
     metadata: dict[str, typing.Any]
@@ -607,42 +601,42 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class OperationInfo(typing_extensions.TypedDict, total=False):
+class OperationInfo(typing.TypedDict, total=False):
     metadataType: str
     responseType: str
 
 @typing.type_check_only
-class OperationMetadata(typing_extensions.TypedDict, total=False):
+class OperationMetadata(typing.TypedDict, total=False):
     progressPercentage: int
     resourceNames: _list[str]
     startTime: str
     steps: _list[Step]
 
 @typing.type_check_only
-class Option(typing_extensions.TypedDict, total=False):
+class Option(typing.TypedDict, total=False):
     name: str
     value: dict[str, typing.Any]
 
 @typing.type_check_only
-class Page(typing_extensions.TypedDict, total=False):
+class Page(typing.TypedDict, total=False):
     content: str
     name: str
     subpages: _list[Page]
 
 @typing.type_check_only
-class PhpSettings(typing_extensions.TypedDict, total=False):
+class PhpSettings(typing.TypedDict, total=False):
     common: CommonLanguageSettings
     libraryPackage: str
 
 @typing.type_check_only
-class Policy(typing_extensions.TypedDict, total=False):
+class Policy(typing.TypedDict, total=False):
     auditConfigs: _list[AuditConfig]
     bindings: _list[Binding]
     etag: str
     version: int
 
 @typing.type_check_only
-class Publishing(typing_extensions.TypedDict, total=False):
+class Publishing(typing.TypedDict, total=False):
     apiShortName: str
     codeownerGithubTeams: _list[str]
     docTagPrefix: str
@@ -651,7 +645,7 @@ class Publishing(typing_extensions.TypedDict, total=False):
     librarySettings: _list[ClientLibrarySettings]
     methodSettings: _list[MethodSettings]
     newIssueUri: str
-    organization: typing_extensions.Literal[
+    organization: typing.Literal[
         "CLIENT_LIBRARY_ORGANIZATION_UNSPECIFIED",
         "CLOUD",
         "ADS",
@@ -666,17 +660,17 @@ class Publishing(typing_extensions.TypedDict, total=False):
     restReferenceDocumentationUri: str
 
 @typing.type_check_only
-class PythonSettings(typing_extensions.TypedDict, total=False):
+class PythonSettings(typing.TypedDict, total=False):
     common: CommonLanguageSettings
     experimentalFeatures: ExperimentalFeatures
 
 @typing.type_check_only
-class Quota(typing_extensions.TypedDict, total=False):
+class Quota(typing.TypedDict, total=False):
     limits: _list[QuotaLimit]
     metricRules: _list[MetricRule]
 
 @typing.type_check_only
-class QuotaLimit(typing_extensions.TypedDict, total=False):
+class QuotaLimit(typing.TypedDict, total=False):
     defaultLimit: str
     description: str
     displayName: str
@@ -685,22 +679,27 @@ class QuotaLimit(typing_extensions.TypedDict, total=False):
     maxLimit: str
     metric: str
     name: str
+    trafficSource: typing.Literal[
+        "TRAFFIC_SOURCE_UNSPECIFIED",
+        "TRAFFIC_SOURCE_NONAGENTIC",
+        "TRAFFIC_SOURCE_AGENTIC",
+    ]
     unit: str
     values: dict[str, typing.Any]
 
 @typing.type_check_only
-class ResourceReference(typing_extensions.TypedDict, total=False):
+class ResourceReference(typing.TypedDict, total=False):
     childType: str
     type: str
 
 @typing.type_check_only
-class Rollout(typing_extensions.TypedDict, total=False):
+class Rollout(typing.TypedDict, total=False):
     createTime: str
     createdBy: str
     deleteServiceStrategy: DeleteServiceStrategy
     rolloutId: str
     serviceName: str
-    status: typing_extensions.Literal[
+    status: typing.Literal[
         "ROLLOUT_STATUS_UNSPECIFIED",
         "IN_PROGRESS",
         "SUCCESS",
@@ -712,16 +711,16 @@ class Rollout(typing_extensions.TypedDict, total=False):
     trafficPercentStrategy: TrafficPercentStrategy
 
 @typing.type_check_only
-class RubySettings(typing_extensions.TypedDict, total=False):
+class RubySettings(typing.TypedDict, total=False):
     common: CommonLanguageSettings
 
 @typing.type_check_only
-class SelectiveGapicGeneration(typing_extensions.TypedDict, total=False):
+class SelectiveGapicGeneration(typing.TypedDict, total=False):
     generateOmittedAsInternal: bool
     methods: _list[str]
 
 @typing.type_check_only
-class Service(typing_extensions.TypedDict, total=False):
+class Service(typing.TypedDict, total=False):
     apis: _list[Api]
     aspects: _list[Aspect]
     authentication: Authentication
@@ -753,28 +752,28 @@ class Service(typing_extensions.TypedDict, total=False):
     usage: Usage
 
 @typing.type_check_only
-class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
+class SetIamPolicyRequest(typing.TypedDict, total=False):
     policy: Policy
     updateMask: str
 
 @typing.type_check_only
-class SourceContext(typing_extensions.TypedDict, total=False):
+class SourceContext(typing.TypedDict, total=False):
     fileName: str
 
 @typing.type_check_only
-class SourceInfo(typing_extensions.TypedDict, total=False):
+class SourceInfo(typing.TypedDict, total=False):
     sourceFiles: _list[dict[str, typing.Any]]
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class Step(typing_extensions.TypedDict, total=False):
+class Step(typing.TypedDict, total=False):
     description: str
-    status: typing_extensions.Literal[
+    status: typing.Literal[
         "STATUS_UNSPECIFIED",
         "DONE",
         "NOT_STARTED",
@@ -784,65 +783,63 @@ class Step(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class SubmitConfigSourceRequest(typing_extensions.TypedDict, total=False):
+class SubmitConfigSourceRequest(typing.TypedDict, total=False):
     configSource: ConfigSource
     validateOnly: bool
 
 @typing.type_check_only
-class SubmitConfigSourceResponse(typing_extensions.TypedDict, total=False):
+class SubmitConfigSourceResponse(typing.TypedDict, total=False):
     serviceConfig: Service
 
 @typing.type_check_only
-class SystemParameter(typing_extensions.TypedDict, total=False):
+class SystemParameter(typing.TypedDict, total=False):
     httpHeader: str
     name: str
     urlQueryParameter: str
 
 @typing.type_check_only
-class SystemParameterRule(typing_extensions.TypedDict, total=False):
+class SystemParameterRule(typing.TypedDict, total=False):
     parameters: _list[SystemParameter]
     selector: str
 
 @typing.type_check_only
-class SystemParameters(typing_extensions.TypedDict, total=False):
+class SystemParameters(typing.TypedDict, total=False):
     rules: _list[SystemParameterRule]
 
 @typing.type_check_only
-class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
+class TestIamPermissionsRequest(typing.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
-class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
+class TestIamPermissionsResponse(typing.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
-class TrafficPercentStrategy(typing_extensions.TypedDict, total=False):
+class TrafficPercentStrategy(typing.TypedDict, total=False):
     percentages: dict[str, typing.Any]
 
 @typing.type_check_only
-class Type(typing_extensions.TypedDict, total=False):
+class Type(typing.TypedDict, total=False):
     edition: str
     fields: _list[Field]
     name: str
     oneofs: _list[str]
     options: _list[Option]
     sourceContext: SourceContext
-    syntax: typing_extensions.Literal[
-        "SYNTAX_PROTO2", "SYNTAX_PROTO3", "SYNTAX_EDITIONS"
-    ]
+    syntax: typing.Literal["SYNTAX_PROTO2", "SYNTAX_PROTO3", "SYNTAX_EDITIONS"]
 
 @typing.type_check_only
-class UndeleteServiceResponse(typing_extensions.TypedDict, total=False):
+class UndeleteServiceResponse(typing.TypedDict, total=False):
     service: ManagedService
 
 @typing.type_check_only
-class Usage(typing_extensions.TypedDict, total=False):
+class Usage(typing.TypedDict, total=False):
     producerNotificationChannel: str
     requirements: _list[str]
     rules: _list[UsageRule]
 
 @typing.type_check_only
-class UsageRule(typing_extensions.TypedDict, total=False):
+class UsageRule(typing.TypedDict, total=False):
     allowUnregisteredCalls: bool
     selector: str
     skipServiceControl: bool

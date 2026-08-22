@@ -1,29 +1,27 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class Aggregation(typing_extensions.TypedDict, total=False):
+class Aggregation(typing.TypedDict, total=False):
     alias: str
     avg: Avg
     count: Count
     sum: Sum
 
 @typing.type_check_only
-class AggregationQuery(typing_extensions.TypedDict, total=False):
+class AggregationQuery(typing.TypedDict, total=False):
     aggregations: _list[Aggregation]
     nestedQuery: Query
 
 @typing.type_check_only
-class AggregationResult(typing_extensions.TypedDict, total=False):
+class AggregationResult(typing.TypedDict, total=False):
     aggregateProperties: dict[str, typing.Any]
 
 @typing.type_check_only
-class AggregationResultBatch(typing_extensions.TypedDict, total=False):
+class AggregationResultBatch(typing.TypedDict, total=False):
     aggregationResults: _list[AggregationResult]
-    moreResults: typing_extensions.Literal[
+    moreResults: typing.Literal[
         "MORE_RESULTS_TYPE_UNSPECIFIED",
         "NOT_FINISHED",
         "MORE_RESULTS_AFTER_LIMIT",
@@ -33,66 +31,67 @@ class AggregationResultBatch(typing_extensions.TypedDict, total=False):
     readTime: str
 
 @typing.type_check_only
-class AllocateIdsRequest(typing_extensions.TypedDict, total=False):
+class AllocateIdsRequest(typing.TypedDict, total=False):
     databaseId: str
     keys: _list[Key]
+    requestOptions: RequestOptions
 
 @typing.type_check_only
-class AllocateIdsResponse(typing_extensions.TypedDict, total=False):
+class AllocateIdsResponse(typing.TypedDict, total=False):
     keys: _list[Key]
 
 @typing.type_check_only
-class ArrayValue(typing_extensions.TypedDict, total=False):
+class ArrayValue(typing.TypedDict, total=False):
     values: _list[Value]
 
 @typing.type_check_only
-class Avg(typing_extensions.TypedDict, total=False):
+class Avg(typing.TypedDict, total=False):
     property: PropertyReference
 
 @typing.type_check_only
-class BeginTransactionRequest(typing_extensions.TypedDict, total=False):
+class BeginTransactionRequest(typing.TypedDict, total=False):
     databaseId: str
+    requestOptions: RequestOptions
     transactionOptions: TransactionOptions
 
 @typing.type_check_only
-class BeginTransactionResponse(typing_extensions.TypedDict, total=False):
+class BeginTransactionResponse(typing.TypedDict, total=False):
     transaction: str
 
 @typing.type_check_only
-class CommitRequest(typing_extensions.TypedDict, total=False):
+class CommitRequest(typing.TypedDict, total=False):
     databaseId: str
-    mode: typing_extensions.Literal[
-        "MODE_UNSPECIFIED", "TRANSACTIONAL", "NON_TRANSACTIONAL"
-    ]
+    mode: typing.Literal["MODE_UNSPECIFIED", "TRANSACTIONAL", "NON_TRANSACTIONAL"]
     mutations: _list[Mutation]
+    requestOptions: RequestOptions
     singleUseTransaction: TransactionOptions
     transaction: str
 
 @typing.type_check_only
-class CommitResponse(typing_extensions.TypedDict, total=False):
+class CommitResponse(typing.TypedDict, total=False):
     commitTime: str
     indexUpdates: int
     mutationResults: _list[MutationResult]
 
 @typing.type_check_only
-class CompositeFilter(typing_extensions.TypedDict, total=False):
+class CompositeFilter(typing.TypedDict, total=False):
     filters: _list[Filter]
-    op: typing_extensions.Literal["OPERATOR_UNSPECIFIED", "AND", "OR"]
+    op: typing.Literal["OPERATOR_UNSPECIFIED", "AND", "OR"]
 
 @typing.type_check_only
-class Count(typing_extensions.TypedDict, total=False):
+class Count(typing.TypedDict, total=False):
     upTo: str
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Entity(typing_extensions.TypedDict, total=False):
+class Entity(typing.TypedDict, total=False):
     key: Key
     properties: dict[str, typing.Any]
 
 @typing.type_check_only
-class EntityResult(typing_extensions.TypedDict, total=False):
+class EntityResult(typing.TypedDict, total=False):
     createTime: str
     cursor: str
     entity: Entity
@@ -100,29 +99,29 @@ class EntityResult(typing_extensions.TypedDict, total=False):
     version: str
 
 @typing.type_check_only
-class ExecutionStats(typing_extensions.TypedDict, total=False):
+class ExecutionStats(typing.TypedDict, total=False):
     debugStats: dict[str, typing.Any]
     executionDuration: str
     readOperations: str
     resultsReturned: str
 
 @typing.type_check_only
-class ExplainMetrics(typing_extensions.TypedDict, total=False):
+class ExplainMetrics(typing.TypedDict, total=False):
     executionStats: ExecutionStats
     planSummary: PlanSummary
 
 @typing.type_check_only
-class ExplainOptions(typing_extensions.TypedDict, total=False):
+class ExplainOptions(typing.TypedDict, total=False):
     analyze: bool
 
 @typing.type_check_only
-class Filter(typing_extensions.TypedDict, total=False):
+class Filter(typing.TypedDict, total=False):
     compositeFilter: CompositeFilter
     propertyFilter: PropertyFilter
 
 @typing.type_check_only
-class FindNearest(typing_extensions.TypedDict, total=False):
-    distanceMeasure: typing_extensions.Literal[
+class FindNearest(typing.TypedDict, total=False):
+    distanceMeasure: typing.Literal[
         "DISTANCE_MEASURE_UNSPECIFIED", "EUCLIDEAN", "COSINE", "DOT_PRODUCT"
     ]
     distanceResultProperty: str
@@ -132,10 +131,10 @@ class FindNearest(typing_extensions.TypedDict, total=False):
     vectorProperty: PropertyReference
 
 @typing.type_check_only
-class GoogleDatastoreAdminV1CommonMetadata(typing_extensions.TypedDict, total=False):
+class GoogleDatastoreAdminV1CommonMetadata(typing.TypedDict, total=False):
     endTime: str
     labels: dict[str, typing.Any]
-    operationType: typing_extensions.Literal[
+    operationType: typing.Literal[
         "OPERATION_TYPE_UNSPECIFIED",
         "EXPORT_ENTITIES",
         "IMPORT_ENTITIES",
@@ -143,7 +142,7 @@ class GoogleDatastoreAdminV1CommonMetadata(typing_extensions.TypedDict, total=Fa
         "DELETE_INDEX",
     ]
     startTime: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "INITIALIZING",
         "PROCESSING",
@@ -156,12 +155,12 @@ class GoogleDatastoreAdminV1CommonMetadata(typing_extensions.TypedDict, total=Fa
 
 @typing.type_check_only
 class GoogleDatastoreAdminV1DatastoreFirestoreMigrationMetadata(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    migrationState: typing_extensions.Literal[
+    migrationState: typing.Literal[
         "MIGRATION_STATE_UNSPECIFIED", "RUNNING", "PAUSED", "COMPLETE"
     ]
-    migrationStep: typing_extensions.Literal[
+    migrationStep: typing.Literal[
         "MIGRATION_STEP_UNSPECIFIED",
         "PREPARE",
         "START",
@@ -173,14 +172,12 @@ class GoogleDatastoreAdminV1DatastoreFirestoreMigrationMetadata(
     ]
 
 @typing.type_check_only
-class GoogleDatastoreAdminV1EntityFilter(typing_extensions.TypedDict, total=False):
+class GoogleDatastoreAdminV1EntityFilter(typing.TypedDict, total=False):
     kinds: _list[str]
     namespaceIds: _list[str]
 
 @typing.type_check_only
-class GoogleDatastoreAdminV1ExportEntitiesMetadata(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleDatastoreAdminV1ExportEntitiesMetadata(typing.TypedDict, total=False):
     common: GoogleDatastoreAdminV1CommonMetadata
     entityFilter: GoogleDatastoreAdminV1EntityFilter
     outputUrlPrefix: str
@@ -188,23 +185,17 @@ class GoogleDatastoreAdminV1ExportEntitiesMetadata(
     progressEntities: GoogleDatastoreAdminV1Progress
 
 @typing.type_check_only
-class GoogleDatastoreAdminV1ExportEntitiesRequest(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleDatastoreAdminV1ExportEntitiesRequest(typing.TypedDict, total=False):
     entityFilter: GoogleDatastoreAdminV1EntityFilter
     labels: dict[str, typing.Any]
     outputUrlPrefix: str
 
 @typing.type_check_only
-class GoogleDatastoreAdminV1ExportEntitiesResponse(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleDatastoreAdminV1ExportEntitiesResponse(typing.TypedDict, total=False):
     outputUrl: str
 
 @typing.type_check_only
-class GoogleDatastoreAdminV1ImportEntitiesMetadata(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleDatastoreAdminV1ImportEntitiesMetadata(typing.TypedDict, total=False):
     common: GoogleDatastoreAdminV1CommonMetadata
     entityFilter: GoogleDatastoreAdminV1EntityFilter
     inputUrl: str
@@ -212,55 +203,41 @@ class GoogleDatastoreAdminV1ImportEntitiesMetadata(
     progressEntities: GoogleDatastoreAdminV1Progress
 
 @typing.type_check_only
-class GoogleDatastoreAdminV1ImportEntitiesRequest(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleDatastoreAdminV1ImportEntitiesRequest(typing.TypedDict, total=False):
     entityFilter: GoogleDatastoreAdminV1EntityFilter
     inputUrl: str
     labels: dict[str, typing.Any]
 
 @typing.type_check_only
-class GoogleDatastoreAdminV1Index(typing_extensions.TypedDict, total=False):
-    ancestor: typing_extensions.Literal[
-        "ANCESTOR_MODE_UNSPECIFIED", "NONE", "ALL_ANCESTORS"
-    ]
+class GoogleDatastoreAdminV1Index(typing.TypedDict, total=False):
+    ancestor: typing.Literal["ANCESTOR_MODE_UNSPECIFIED", "NONE", "ALL_ANCESTORS"]
     indexId: str
     kind: str
     projectId: str
     properties: _list[GoogleDatastoreAdminV1IndexedProperty]
-    state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "CREATING", "READY", "DELETING", "ERROR"
-    ]
+    state: typing.Literal["STATE_UNSPECIFIED", "CREATING", "READY", "DELETING", "ERROR"]
 
 @typing.type_check_only
-class GoogleDatastoreAdminV1IndexOperationMetadata(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleDatastoreAdminV1IndexOperationMetadata(typing.TypedDict, total=False):
     common: GoogleDatastoreAdminV1CommonMetadata
     indexId: str
     progressEntities: GoogleDatastoreAdminV1Progress
 
 @typing.type_check_only
-class GoogleDatastoreAdminV1IndexedProperty(typing_extensions.TypedDict, total=False):
-    direction: typing_extensions.Literal[
-        "DIRECTION_UNSPECIFIED", "ASCENDING", "DESCENDING"
-    ]
+class GoogleDatastoreAdminV1IndexedProperty(typing.TypedDict, total=False):
+    direction: typing.Literal["DIRECTION_UNSPECIFIED", "ASCENDING", "DESCENDING"]
     name: str
 
 @typing.type_check_only
-class GoogleDatastoreAdminV1ListIndexesResponse(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleDatastoreAdminV1ListIndexesResponse(typing.TypedDict, total=False):
     indexes: _list[GoogleDatastoreAdminV1Index]
     nextPageToken: str
 
 @typing.type_check_only
-class GoogleDatastoreAdminV1MigrationProgressEvent(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleDatastoreAdminV1MigrationProgressEvent(typing.TypedDict, total=False):
     prepareStepDetails: GoogleDatastoreAdminV1PrepareStepDetails
     redirectWritesStepDetails: GoogleDatastoreAdminV1RedirectWritesStepDetails
-    step: typing_extensions.Literal[
+    step: typing.Literal[
         "MIGRATION_STEP_UNSPECIFIED",
         "PREPARE",
         "START",
@@ -272,18 +249,14 @@ class GoogleDatastoreAdminV1MigrationProgressEvent(
     ]
 
 @typing.type_check_only
-class GoogleDatastoreAdminV1MigrationStateEvent(
-    typing_extensions.TypedDict, total=False
-):
-    state: typing_extensions.Literal[
+class GoogleDatastoreAdminV1MigrationStateEvent(typing.TypedDict, total=False):
+    state: typing.Literal[
         "MIGRATION_STATE_UNSPECIFIED", "RUNNING", "PAUSED", "COMPLETE"
     ]
 
 @typing.type_check_only
-class GoogleDatastoreAdminV1PrepareStepDetails(
-    typing_extensions.TypedDict, total=False
-):
-    concurrencyMode: typing_extensions.Literal[
+class GoogleDatastoreAdminV1PrepareStepDetails(typing.TypedDict, total=False):
+    concurrencyMode: typing.Literal[
         "CONCURRENCY_MODE_UNSPECIFIED",
         "PESSIMISTIC",
         "OPTIMISTIC",
@@ -291,15 +264,13 @@ class GoogleDatastoreAdminV1PrepareStepDetails(
     ]
 
 @typing.type_check_only
-class GoogleDatastoreAdminV1Progress(typing_extensions.TypedDict, total=False):
+class GoogleDatastoreAdminV1Progress(typing.TypedDict, total=False):
     workCompleted: str
     workEstimated: str
 
 @typing.type_check_only
-class GoogleDatastoreAdminV1RedirectWritesStepDetails(
-    typing_extensions.TypedDict, total=False
-):
-    concurrencyMode: typing_extensions.Literal[
+class GoogleDatastoreAdminV1RedirectWritesStepDetails(typing.TypedDict, total=False):
+    concurrencyMode: typing.Literal[
         "CONCURRENCY_MODE_UNSPECIFIED",
         "PESSIMISTIC",
         "OPTIMISTIC",
@@ -307,16 +278,14 @@ class GoogleDatastoreAdminV1RedirectWritesStepDetails(
     ]
 
 @typing.type_check_only
-class GoogleDatastoreAdminV1beta1CommonMetadata(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleDatastoreAdminV1beta1CommonMetadata(typing.TypedDict, total=False):
     endTime: str
     labels: dict[str, typing.Any]
-    operationType: typing_extensions.Literal[
+    operationType: typing.Literal[
         "OPERATION_TYPE_UNSPECIFIED", "EXPORT_ENTITIES", "IMPORT_ENTITIES"
     ]
     startTime: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "INITIALIZING",
         "PROCESSING",
@@ -328,14 +297,12 @@ class GoogleDatastoreAdminV1beta1CommonMetadata(
     ]
 
 @typing.type_check_only
-class GoogleDatastoreAdminV1beta1EntityFilter(typing_extensions.TypedDict, total=False):
+class GoogleDatastoreAdminV1beta1EntityFilter(typing.TypedDict, total=False):
     kinds: _list[str]
     namespaceIds: _list[str]
 
 @typing.type_check_only
-class GoogleDatastoreAdminV1beta1ExportEntitiesMetadata(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleDatastoreAdminV1beta1ExportEntitiesMetadata(typing.TypedDict, total=False):
     common: GoogleDatastoreAdminV1beta1CommonMetadata
     entityFilter: GoogleDatastoreAdminV1beta1EntityFilter
     outputUrlPrefix: str
@@ -343,15 +310,11 @@ class GoogleDatastoreAdminV1beta1ExportEntitiesMetadata(
     progressEntities: GoogleDatastoreAdminV1beta1Progress
 
 @typing.type_check_only
-class GoogleDatastoreAdminV1beta1ExportEntitiesResponse(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleDatastoreAdminV1beta1ExportEntitiesResponse(typing.TypedDict, total=False):
     outputUrl: str
 
 @typing.type_check_only
-class GoogleDatastoreAdminV1beta1ImportEntitiesMetadata(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleDatastoreAdminV1beta1ImportEntitiesMetadata(typing.TypedDict, total=False):
     common: GoogleDatastoreAdminV1beta1CommonMetadata
     entityFilter: GoogleDatastoreAdminV1beta1EntityFilter
     inputUrl: str
@@ -359,18 +322,18 @@ class GoogleDatastoreAdminV1beta1ImportEntitiesMetadata(
     progressEntities: GoogleDatastoreAdminV1beta1Progress
 
 @typing.type_check_only
-class GoogleDatastoreAdminV1beta1Progress(typing_extensions.TypedDict, total=False):
+class GoogleDatastoreAdminV1beta1Progress(typing.TypedDict, total=False):
     workCompleted: str
     workEstimated: str
 
 @typing.type_check_only
-class GoogleLongrunningListOperationsResponse(typing_extensions.TypedDict, total=False):
+class GoogleLongrunningListOperationsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     operations: _list[GoogleLongrunningOperation]
     unreachable: _list[str]
 
 @typing.type_check_only
-class GoogleLongrunningOperation(typing_extensions.TypedDict, total=False):
+class GoogleLongrunningOperation(typing.TypedDict, total=False):
     done: bool
     error: Status
     metadata: dict[str, typing.Any]
@@ -378,40 +341,41 @@ class GoogleLongrunningOperation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class GqlQuery(typing_extensions.TypedDict, total=False):
+class GqlQuery(typing.TypedDict, total=False):
     allowLiterals: bool
     namedBindings: dict[str, typing.Any]
     positionalBindings: _list[GqlQueryParameter]
     queryString: str
 
 @typing.type_check_only
-class GqlQueryParameter(typing_extensions.TypedDict, total=False):
+class GqlQueryParameter(typing.TypedDict, total=False):
     cursor: str
     value: Value
 
 @typing.type_check_only
-class Key(typing_extensions.TypedDict, total=False):
+class Key(typing.TypedDict, total=False):
     partitionId: PartitionId
     path: _list[PathElement]
 
 @typing.type_check_only
-class KindExpression(typing_extensions.TypedDict, total=False):
+class KindExpression(typing.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class LatLng(typing_extensions.TypedDict, total=False):
+class LatLng(typing.TypedDict, total=False):
     latitude: float
     longitude: float
 
 @typing.type_check_only
-class LookupRequest(typing_extensions.TypedDict, total=False):
+class LookupRequest(typing.TypedDict, total=False):
     databaseId: str
     keys: _list[Key]
     propertyMask: PropertyMask
     readOptions: ReadOptions
+    requestOptions: RequestOptions
 
 @typing.type_check_only
-class LookupResponse(typing_extensions.TypedDict, total=False):
+class LookupResponse(typing.TypedDict, total=False):
     deferred: _list[Key]
     found: _list[EntityResult]
     missing: _list[EntityResult]
@@ -419,9 +383,9 @@ class LookupResponse(typing_extensions.TypedDict, total=False):
     transaction: str
 
 @typing.type_check_only
-class Mutation(typing_extensions.TypedDict, total=False):
+class Mutation(typing.TypedDict, total=False):
     baseVersion: str
-    conflictResolutionStrategy: typing_extensions.Literal[
+    conflictResolutionStrategy: typing.Literal[
         "STRATEGY_UNSPECIFIED", "SERVER_VALUE", "FAIL"
     ]
     delete: Key
@@ -433,7 +397,7 @@ class Mutation(typing_extensions.TypedDict, total=False):
     upsert: Entity
 
 @typing.type_check_only
-class MutationResult(typing_extensions.TypedDict, total=False):
+class MutationResult(typing.TypedDict, total=False):
     conflictDetected: bool
     createTime: str
     key: Key
@@ -442,28 +406,28 @@ class MutationResult(typing_extensions.TypedDict, total=False):
     version: str
 
 @typing.type_check_only
-class PartitionId(typing_extensions.TypedDict, total=False):
+class PartitionId(typing.TypedDict, total=False):
     databaseId: str
     namespaceId: str
     projectId: str
 
 @typing.type_check_only
-class PathElement(typing_extensions.TypedDict, total=False):
+class PathElement(typing.TypedDict, total=False):
     id: str
     kind: str
     name: str
 
 @typing.type_check_only
-class PlanSummary(typing_extensions.TypedDict, total=False):
+class PlanSummary(typing.TypedDict, total=False):
     indexesUsed: _list[dict[str, typing.Any]]
 
 @typing.type_check_only
-class Projection(typing_extensions.TypedDict, total=False):
+class Projection(typing.TypedDict, total=False):
     property: PropertyReference
 
 @typing.type_check_only
-class PropertyFilter(typing_extensions.TypedDict, total=False):
-    op: typing_extensions.Literal[
+class PropertyFilter(typing.TypedDict, total=False):
+    op: typing.Literal[
         "OPERATOR_UNSPECIFIED",
         "LESS_THAN",
         "LESS_THAN_OR_EQUAL",
@@ -479,34 +443,30 @@ class PropertyFilter(typing_extensions.TypedDict, total=False):
     value: Value
 
 @typing.type_check_only
-class PropertyMask(typing_extensions.TypedDict, total=False):
+class PropertyMask(typing.TypedDict, total=False):
     paths: _list[str]
 
 @typing.type_check_only
-class PropertyOrder(typing_extensions.TypedDict, total=False):
-    direction: typing_extensions.Literal[
-        "DIRECTION_UNSPECIFIED", "ASCENDING", "DESCENDING"
-    ]
+class PropertyOrder(typing.TypedDict, total=False):
+    direction: typing.Literal["DIRECTION_UNSPECIFIED", "ASCENDING", "DESCENDING"]
     property: PropertyReference
 
 @typing.type_check_only
-class PropertyReference(typing_extensions.TypedDict, total=False):
+class PropertyReference(typing.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class PropertyTransform(typing_extensions.TypedDict, total=False):
+class PropertyTransform(typing.TypedDict, total=False):
     appendMissingElements: ArrayValue
     increment: Value
     maximum: Value
     minimum: Value
     property: str
     removeAllFromArray: ArrayValue
-    setToServerValue: typing_extensions.Literal[
-        "SERVER_VALUE_UNSPECIFIED", "REQUEST_TIME"
-    ]
+    setToServerValue: typing.Literal["SERVER_VALUE_UNSPECIFIED", "REQUEST_TIME"]
 
 @typing.type_check_only
-class Query(typing_extensions.TypedDict, total=False):
+class Query(typing.TypedDict, total=False):
     distinctOn: _list[PropertyReference]
     endCursor: str
     filter: Filter
@@ -519,13 +479,13 @@ class Query(typing_extensions.TypedDict, total=False):
     startCursor: str
 
 @typing.type_check_only
-class QueryResultBatch(typing_extensions.TypedDict, total=False):
+class QueryResultBatch(typing.TypedDict, total=False):
     endCursor: str
-    entityResultType: typing_extensions.Literal[
+    entityResultType: typing.Literal[
         "RESULT_TYPE_UNSPECIFIED", "FULL", "PROJECTION", "KEY_ONLY"
     ]
     entityResults: _list[EntityResult]
-    moreResults: typing_extensions.Literal[
+    moreResults: typing.Literal[
         "MORE_RESULTS_TYPE_UNSPECIFIED",
         "NOT_FINISHED",
         "MORE_RESULTS_AFTER_LIMIT",
@@ -538,56 +498,63 @@ class QueryResultBatch(typing_extensions.TypedDict, total=False):
     snapshotVersion: str
 
 @typing.type_check_only
-class ReadOnly(typing_extensions.TypedDict, total=False):
+class ReadOnly(typing.TypedDict, total=False):
     readTime: str
 
 @typing.type_check_only
-class ReadOptions(typing_extensions.TypedDict, total=False):
+class ReadOptions(typing.TypedDict, total=False):
     newTransaction: TransactionOptions
-    readConsistency: typing_extensions.Literal[
+    readConsistency: typing.Literal[
         "READ_CONSISTENCY_UNSPECIFIED", "STRONG", "EVENTUAL"
     ]
     readTime: str
     transaction: str
 
 @typing.type_check_only
-class ReadWrite(typing_extensions.TypedDict, total=False):
+class ReadWrite(typing.TypedDict, total=False):
     previousTransaction: str
 
 @typing.type_check_only
-class ReserveIdsRequest(typing_extensions.TypedDict, total=False):
+class RequestOptions(typing.TypedDict, total=False):
+    requestTags: _list[str]
+
+@typing.type_check_only
+class ReserveIdsRequest(typing.TypedDict, total=False):
     databaseId: str
     keys: _list[Key]
+    requestOptions: RequestOptions
 
 @typing.type_check_only
-class ReserveIdsResponse(typing_extensions.TypedDict, total=False): ...
+class ReserveIdsResponse(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class RollbackRequest(typing_extensions.TypedDict, total=False):
+class RollbackRequest(typing.TypedDict, total=False):
     databaseId: str
+    requestOptions: RequestOptions
     transaction: str
 
 @typing.type_check_only
-class RollbackResponse(typing_extensions.TypedDict, total=False): ...
+class RollbackResponse(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class RunAggregationQueryRequest(typing_extensions.TypedDict, total=False):
+class RunAggregationQueryRequest(typing.TypedDict, total=False):
     aggregationQuery: AggregationQuery
     databaseId: str
     explainOptions: ExplainOptions
     gqlQuery: GqlQuery
     partitionId: PartitionId
     readOptions: ReadOptions
+    requestOptions: RequestOptions
 
 @typing.type_check_only
-class RunAggregationQueryResponse(typing_extensions.TypedDict, total=False):
+class RunAggregationQueryResponse(typing.TypedDict, total=False):
     batch: AggregationResultBatch
     explainMetrics: ExplainMetrics
     query: AggregationQuery
     transaction: str
 
 @typing.type_check_only
-class RunQueryRequest(typing_extensions.TypedDict, total=False):
+class RunQueryRequest(typing.TypedDict, total=False):
     databaseId: str
     explainOptions: ExplainOptions
     gqlQuery: GqlQuery
@@ -595,31 +562,32 @@ class RunQueryRequest(typing_extensions.TypedDict, total=False):
     propertyMask: PropertyMask
     query: Query
     readOptions: ReadOptions
+    requestOptions: RequestOptions
 
 @typing.type_check_only
-class RunQueryResponse(typing_extensions.TypedDict, total=False):
+class RunQueryResponse(typing.TypedDict, total=False):
     batch: QueryResultBatch
     explainMetrics: ExplainMetrics
     query: Query
     transaction: str
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class Sum(typing_extensions.TypedDict, total=False):
+class Sum(typing.TypedDict, total=False):
     property: PropertyReference
 
 @typing.type_check_only
-class TransactionOptions(typing_extensions.TypedDict, total=False):
+class TransactionOptions(typing.TypedDict, total=False):
     readOnly: ReadOnly
     readWrite: ReadWrite
 
 @typing.type_check_only
-class Value(typing_extensions.TypedDict, total=False):
+class Value(typing.TypedDict, total=False):
     arrayValue: ArrayValue
     blobValue: str
     booleanValue: bool
@@ -630,6 +598,6 @@ class Value(typing_extensions.TypedDict, total=False):
     integerValue: str
     keyValue: Key
     meaning: int
-    nullValue: typing_extensions.Literal["NULL_VALUE"]
+    nullValue: typing.Literal["NULL_VALUE"]
     stringValue: str
     timestampValue: str

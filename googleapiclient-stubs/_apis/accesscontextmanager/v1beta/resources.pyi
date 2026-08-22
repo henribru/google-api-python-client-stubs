@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -27,7 +26,7 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                accessLevelFormat: typing_extensions.Literal[
+                accessLevelFormat: typing.Literal[
                     "LEVEL_FORMAT_UNSPECIFIED", "AS_DEFINED", "CEL"
                 ]
                 | None = ...,
@@ -37,7 +36,7 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                accessLevelFormat: typing_extensions.Literal[
+                accessLevelFormat: typing.Literal[
                     "LEVEL_FORMAT_UNSPECIFIED", "AS_DEFINED", "CEL"
                 ]
                 | None = ...,

@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -232,6 +231,14 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
                 def update(
                     self, *, name: str, body: Cluster, **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+                def updateMemoryLayer(
+                    self,
+                    *,
+                    name: str,
+                    body: MemoryLayer,
+                    updateMask: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
                 def backups(self) -> BackupsResource: ...
                 def hotTablets(self) -> HotTabletsResource: ...
                 def memoryLayers(self) -> MemoryLayersResource: ...
@@ -302,6 +309,7 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: MaterializedView,
+                    ignoreWarnings: bool | None = ...,
                     materializedViewId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -312,7 +320,7 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    view: typing_extensions.Literal[
+                    view: typing.Literal[
                         "VIEW_UNSPECIFIED", "SCHEMA_VIEW", "REPLICATION_VIEW", "FULL"
                     ]
                     | None = ...,
@@ -331,7 +339,7 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int | None = ...,
                     pageToken: str | None = ...,
-                    view: typing_extensions.Literal[
+                    view: typing.Literal[
                         "VIEW_UNSPECIFIED", "SCHEMA_VIEW", "REPLICATION_VIEW", "FULL"
                     ]
                     | None = ...,
@@ -384,7 +392,7 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        view: typing_extensions.Literal[
+                        view: typing.Literal[
                             "RESPONSE_VIEW_UNSPECIFIED", "NAME_ONLY", "BASIC", "FULL"
                         ]
                         | None = ...,
@@ -403,7 +411,7 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
                         parent: str,
                         pageSize: int | None = ...,
                         pageToken: str | None = ...,
-                        view: typing_extensions.Literal[
+                        view: typing.Literal[
                             "RESPONSE_VIEW_UNSPECIFIED", "NAME_ONLY", "BASIC", "FULL"
                         ]
                         | None = ...,
@@ -467,7 +475,7 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
                         parent: str,
                         pageSize: int | None = ...,
                         pageToken: str | None = ...,
-                        view: typing_extensions.Literal[
+                        view: typing.Literal[
                             "SCHEMA_BUNDLE_VIEW_UNSPECIFIED",
                             "NAME_ONLY",
                             "BASIC",
@@ -532,7 +540,7 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    view: typing_extensions.Literal[
+                    view: typing.Literal[
                         "VIEW_UNSPECIFIED",
                         "NAME_ONLY",
                         "SCHEMA_VIEW",
@@ -557,7 +565,7 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int | None = ...,
                     pageToken: str | None = ...,
-                    view: typing_extensions.Literal[
+                    view: typing.Literal[
                         "VIEW_UNSPECIFIED",
                         "NAME_ONLY",
                         "SCHEMA_VIEW",

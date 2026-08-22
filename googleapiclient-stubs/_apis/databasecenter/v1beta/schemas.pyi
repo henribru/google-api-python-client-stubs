@@ -1,11 +1,9 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class AdditionalDetail(typing_extensions.TypedDict, total=False):
+class AdditionalDetail(typing.TypedDict, total=False):
     automatedBackupPolicyInfo: AutomatedBackupPolicyInfo
     backupRunInfo: BackupRunInfo
     deletionProtectionInfo: DeletionProtectionInfo
@@ -17,14 +15,14 @@ class AdditionalDetail(typing_extensions.TypedDict, total=False):
     sccInfo: SCCInfo
     shortBackupRetentionInfo: RetentionSettingsInfo
     signalEventTime: str
-    signalSource: typing_extensions.Literal[
+    signalSource: typing.Literal[
         "SIGNAL_SOURCE_UNSPECIFIED",
         "SIGNAL_SOURCE_RESOURCE_METADATA",
         "SIGNAL_SOURCE_SECURITY_FINDINGS",
         "SIGNAL_SOURCE_RECOMMENDER",
         "SIGNAL_SOURCE_MODERN_OBSERVABILITY",
     ]
-    signalType: typing_extensions.Literal[
+    signalType: typing.Literal[
         "SIGNAL_TYPE_UNSPECIFIED",
         "SIGNAL_TYPE_RESOURCE_FAILOVER_PROTECTED",
         "SIGNAL_TYPE_GROUP_MULTIREGIONAL",
@@ -127,16 +125,17 @@ class AdditionalDetail(typing_extensions.TypedDict, total=False):
         "SIGNAL_TYPE_VERSION_NEARING_END_OF_LIFE",
         "SIGNAL_TYPE_HIGH_MAINTENANCE_DOWNTIME_RISK",
         "SIGNAL_TYPE_LOW_CACHE_HIT_AND_MAINTENANCE_DOWNTIME",
+        "SIGNAL_TYPE_MISSING_ENHANCED_PROTECTION",
     ]
 
 @typing.type_check_only
-class Affiliation(typing_extensions.TypedDict, total=False):
+class Affiliation(typing.TypedDict, total=False):
     fullResourceName: str
     lineages: _list[Lineage]
     resourceId: str
 
 @typing.type_check_only
-class AggregateFleetResponse(typing_extensions.TypedDict, total=False):
+class AggregateFleetResponse(typing.TypedDict, total=False):
     nextPageToken: str
     resourceGroupsTotalCount: int
     resourceTotalCount: int
@@ -145,53 +144,53 @@ class AggregateFleetResponse(typing_extensions.TypedDict, total=False):
     unreachable: _list[str]
 
 @typing.type_check_only
-class AggregateFleetRow(typing_extensions.TypedDict, total=False):
+class AggregateFleetRow(typing.TypedDict, total=False):
     deltaDetails: DeltaDetails
     dimension: _list[Dimension]
     resourceGroupsCount: int
     resourcesCount: int
 
 @typing.type_check_only
-class AggregateIssueStatsRequest(typing_extensions.TypedDict, total=False):
+class AggregateIssueStatsRequest(typing.TypedDict, total=False):
     baselineDate: Date
     filter: str
     parent: str
     signalTypeGroups: _list[SignalTypeGroup]
 
 @typing.type_check_only
-class AggregateIssueStatsResponse(typing_extensions.TypedDict, total=False):
+class AggregateIssueStatsResponse(typing.TypedDict, total=False):
     issueGroupStats: _list[IssueGroupStats]
     totalResourceGroupsCount: int
     totalResourcesCount: int
     unreachable: _list[str]
 
 @typing.type_check_only
-class AggregateQueryStatsRequest(typing_extensions.TypedDict, total=False):
+class AggregateQueryStatsRequest(typing.TypedDict, total=False):
     filter: str
     orderBy: str
     pageSize: int
     pageToken: str
 
 @typing.type_check_only
-class AggregateQueryStatsResponse(typing_extensions.TypedDict, total=False):
+class AggregateQueryStatsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     queryStats: _list[QueryStatsInfo]
     unreachable: _list[str]
 
 @typing.type_check_only
-class AutomatedBackupPolicyInfo(typing_extensions.TypedDict, total=False):
+class AutomatedBackupPolicyInfo(typing.TypedDict, total=False):
     isEnabled: bool
     subResource: SubResource
 
 @typing.type_check_only
-class BackupDRConfig(typing_extensions.TypedDict, total=False):
+class BackupDRConfig(typing.TypedDict, total=False):
     backupdrManaged: bool
 
 @typing.type_check_only
-class BackupRunInfo(typing_extensions.TypedDict, total=False):
+class BackupRunInfo(typing.TypedDict, total=False):
     endTime: str
     errorMessage: str
-    operationErrorType: typing_extensions.Literal[
+    operationErrorType: typing.Literal[
         "OPERATION_ERROR_TYPE_UNSPECIFIED",
         "KMS_KEY_ERROR",
         "DATABASE_ERROR",
@@ -201,16 +200,16 @@ class BackupRunInfo(typing_extensions.TypedDict, total=False):
         "INTERNAL_ERROR",
     ]
     startTime: str
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "SUCCEEDED", "FAILED"]
+    state: typing.Literal["STATE_UNSPECIFIED", "SUCCEEDED", "FAILED"]
     subResource: SubResource
 
 @typing.type_check_only
-class DatabaseResource(typing_extensions.TypedDict, total=False):
+class DatabaseResource(typing.TypedDict, total=False):
     affiliations: _list[Affiliation]
     backupdrConfig: BackupDRConfig
     childResources: _list[DatabaseResource]
     container: str
-    edition: typing_extensions.Literal[
+    edition: typing.Literal[
         "EDITION_UNSPECIFIED",
         "EDITION_ENTERPRISE",
         "EDITION_ENTERPRISE_PLUS",
@@ -223,7 +222,7 @@ class DatabaseResource(typing_extensions.TypedDict, total=False):
     maintenanceInfo: MaintenanceInfo
     metrics: Metrics
     product: Product
-    resourceCategory: typing_extensions.Literal[
+    resourceCategory: typing.Literal[
         "RESOURCE_CATEGORY_UNSPECIFIED",
         "INSTANCE",
         "CLUSTER",
@@ -234,7 +233,7 @@ class DatabaseResource(typing_extensions.TypedDict, total=False):
     resourceName: str
     resourceType: str
     signalGroups: _list[SignalGroup]
-    subResourceType: typing_extensions.Literal[
+    subResourceType: typing.Literal[
         "SUB_RESOURCE_TYPE_UNSPECIFIED",
         "SUB_RESOURCE_TYPE_PRIMARY",
         "SUB_RESOURCE_TYPE_SECONDARY",
@@ -248,35 +247,35 @@ class DatabaseResource(typing_extensions.TypedDict, total=False):
     tags: _list[Tag]
 
 @typing.type_check_only
-class DatabaseResourceGroup(typing_extensions.TypedDict, total=False):
+class DatabaseResourceGroup(typing.TypedDict, total=False):
     rootResources: _list[DatabaseResource]
     signalGroups: _list[IssueCount]
 
 @typing.type_check_only
-class DatabaseResourceIssue(typing_extensions.TypedDict, total=False):
+class DatabaseResourceIssue(typing.TypedDict, total=False):
     resource: DatabaseResource
     signal: Signal
 
 @typing.type_check_only
-class Date(typing_extensions.TypedDict, total=False):
+class Date(typing.TypedDict, total=False):
     day: int
     month: int
     year: int
 
 @typing.type_check_only
-class DeletionProtectionInfo(typing_extensions.TypedDict, total=False):
+class DeletionProtectionInfo(typing.TypedDict, total=False):
     deletionProtectionEnabled: bool
     subResource: SubResource
 
 @typing.type_check_only
-class DeltaDetails(typing_extensions.TypedDict, total=False):
+class DeltaDetails(typing.TypedDict, total=False):
     decreasedResources: _list[ResourceDetails]
     increasedResources: _list[ResourceDetails]
 
 @typing.type_check_only
-class Dimension(typing_extensions.TypedDict, total=False):
+class Dimension(typing.TypedDict, total=False):
     container: str
-    edition: typing_extensions.Literal[
+    edition: typing.Literal[
         "EDITION_UNSPECIFIED",
         "EDITION_ENTERPRISE",
         "EDITION_ENTERPRISE_PLUS",
@@ -288,12 +287,12 @@ class Dimension(typing_extensions.TypedDict, total=False):
     labelSource: str
     labelValue: str
     location: str
-    managementType: typing_extensions.Literal[
+    managementType: typing.Literal[
         "MANAGEMENT_TYPE_UNSPECIFIED",
         "MANAGEMENT_TYPE_GCP_MANAGED",
         "MANAGEMENT_TYPE_SELF_MANAGED",
     ]
-    productEngine: typing_extensions.Literal[
+    productEngine: typing.Literal[
         "ENGINE_UNSPECIFIED",
         "ENGINE_MYSQL",
         "ENGINE_POSTGRES",
@@ -310,7 +309,7 @@ class Dimension(typing_extensions.TypedDict, total=False):
         "ENGINE_FIRESTORE_WITH_MONGODB_COMPATIBILITY_MODE",
         "ENGINE_OTHER",
     ]
-    productType: typing_extensions.Literal[
+    productType: typing.Literal[
         "PRODUCT_TYPE_UNSPECIFIED",
         "PRODUCT_TYPE_CLOUD_SQL",
         "PRODUCT_TYPE_ALLOYDB",
@@ -324,7 +323,7 @@ class Dimension(typing_extensions.TypedDict, total=False):
         "PRODUCT_TYPE_OTHER",
     ]
     productVersion: str
-    resourceCategory: typing_extensions.Literal[
+    resourceCategory: typing.Literal[
         "RESOURCE_CATEGORY_UNSPECIFIED",
         "INSTANCE",
         "CLUSTER",
@@ -333,7 +332,7 @@ class Dimension(typing_extensions.TypedDict, total=False):
         "RESERVATION",
     ]
     resourceType: str
-    subResourceType: typing_extensions.Literal[
+    subResourceType: typing.Literal[
         "SUB_RESOURCE_TYPE_UNSPECIFIED",
         "SUB_RESOURCE_TYPE_PRIMARY",
         "SUB_RESOURCE_TYPE_SECONDARY",
@@ -350,7 +349,7 @@ class Dimension(typing_extensions.TypedDict, total=False):
     tagValue: str
 
 @typing.type_check_only
-class InefficientQueryInfo(typing_extensions.TypedDict, total=False):
+class InefficientQueryInfo(typing.TypedDict, total=False):
     database: str
     impactedQueriesCount: str
     sqlIndexStatement: str
@@ -358,12 +357,12 @@ class InefficientQueryInfo(typing_extensions.TypedDict, total=False):
     table: str
 
 @typing.type_check_only
-class IssueCount(typing_extensions.TypedDict, total=False):
+class IssueCount(typing.TypedDict, total=False):
     displayName: str
     issueCount: int
 
 @typing.type_check_only
-class IssueGroupStats(typing_extensions.TypedDict, total=False):
+class IssueGroupStats(typing.TypedDict, total=False):
     displayName: str
     healthyResourceGroupsCount: int
     healthyResourcesCount: int
@@ -372,9 +371,9 @@ class IssueGroupStats(typing_extensions.TypedDict, total=False):
     resourcesCount: int
 
 @typing.type_check_only
-class IssueStats(typing_extensions.TypedDict, total=False):
+class IssueStats(typing.TypedDict, total=False):
     deltaDetails: DeltaDetails
-    issueSeverity: typing_extensions.Literal[
+    issueSeverity: typing.Literal[
         "ISSUE_SEVERITY_UNSPECIFIED",
         "ISSUE_SEVERITY_LOW",
         "ISSUE_SEVERITY_MEDIUM",
@@ -383,7 +382,7 @@ class IssueStats(typing_extensions.TypedDict, total=False):
         "ISSUE_SEVERITY_IRRELEVANT",
     ]
     resourceCount: int
-    signalType: typing_extensions.Literal[
+    signalType: typing.Literal[
         "SIGNAL_TYPE_UNSPECIFIED",
         "SIGNAL_TYPE_RESOURCE_FAILOVER_PROTECTED",
         "SIGNAL_TYPE_GROUP_MULTIREGIONAL",
@@ -486,18 +485,19 @@ class IssueStats(typing_extensions.TypedDict, total=False):
         "SIGNAL_TYPE_VERSION_NEARING_END_OF_LIFE",
         "SIGNAL_TYPE_HIGH_MAINTENANCE_DOWNTIME_RISK",
         "SIGNAL_TYPE_LOW_CACHE_HIT_AND_MAINTENANCE_DOWNTIME",
+        "SIGNAL_TYPE_MISSING_ENHANCED_PROTECTION",
     ]
 
 @typing.type_check_only
-class Label(typing_extensions.TypedDict, total=False):
+class Label(typing.TypedDict, total=False):
     key: str
     source: str
     value: str
 
 @typing.type_check_only
-class Lineage(typing_extensions.TypedDict, total=False):
+class Lineage(typing.TypedDict, total=False):
     processFqn: str
-    processType: typing_extensions.Literal[
+    processType: typing.Literal[
         "PROCESS_TYPE_UNSPECIFIED",
         "COMPOSER",
         "DATASTREAM",
@@ -510,7 +510,7 @@ class Lineage(typing_extensions.TypedDict, total=False):
     targetFqn: str
 
 @typing.type_check_only
-class MachineConfig(typing_extensions.TypedDict, total=False):
+class MachineConfig(typing.TypedDict, total=False):
     baselineSlotCount: str
     maxReservationSlotCount: str
     memorySizeBytes: str
@@ -518,20 +518,20 @@ class MachineConfig(typing_extensions.TypedDict, total=False):
     vcpuCount: float
 
 @typing.type_check_only
-class MaintenanceInfo(typing_extensions.TypedDict, total=False):
+class MaintenanceInfo(typing.TypedDict, total=False):
     currentVersionReleaseDate: Date
     denyMaintenanceSchedules: _list[ResourceMaintenanceDenySchedule]
     maintenanceSchedule: ResourceMaintenanceSchedule
     maintenanceVersion: str
     possibleFailureReasons: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "POSSIBLE_FAILURE_REASON_UNSPECIFIED",
             "POSSIBLE_FAILURE_REASON_DENY_POLICY_CONFLICT",
             "POSSIBLE_FAILURE_REASON_INSTANCE_IN_STOPPED_STATE",
         ]
     ]
     previousMaintenanceVersion: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "MAINTENANCE_STATE_UNSPECIFIED",
         "MAINTENANCE_STATE_SCHEDULED",
         "MAINTENANCE_STATE_IN_PROGRESS",
@@ -541,16 +541,16 @@ class MaintenanceInfo(typing_extensions.TypedDict, total=False):
     upcomingMaintenance: UpcomingMaintenance
 
 @typing.type_check_only
-class MaintenanceRecommendationInfo(typing_extensions.TypedDict, total=False):
+class MaintenanceRecommendationInfo(typing.TypedDict, total=False):
     resourceMaintenanceSchedules: _list[ResourceMaintenanceSchedule]
 
 @typing.type_check_only
-class MetricData(typing_extensions.TypedDict, total=False):
+class MetricData(typing.TypedDict, total=False):
     observationTime: str
     value: TypedValue
 
 @typing.type_check_only
-class Metrics(typing_extensions.TypedDict, total=False):
+class Metrics(typing.TypedDict, total=False):
     currentMemoryUsedBytes: MetricData
     currentStorageUsedBytes: MetricData
     nodeCount: MetricData
@@ -562,12 +562,12 @@ class Metrics(typing_extensions.TypedDict, total=False):
     processingUnitCount: MetricData
 
 @typing.type_check_only
-class OutdatedMinorVersionInfo(typing_extensions.TypedDict, total=False):
+class OutdatedMinorVersionInfo(typing.TypedDict, total=False):
     recommendedMinorVersion: str
 
 @typing.type_check_only
-class Product(typing_extensions.TypedDict, total=False):
-    engine: typing_extensions.Literal[
+class Product(typing.TypedDict, total=False):
+    engine: typing.Literal[
         "ENGINE_UNSPECIFIED",
         "ENGINE_MYSQL",
         "ENGINE_POSTGRES",
@@ -585,7 +585,7 @@ class Product(typing_extensions.TypedDict, total=False):
         "ENGINE_OTHER",
     ]
     minorVersion: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "PRODUCT_TYPE_UNSPECIFIED",
         "PRODUCT_TYPE_CLOUD_SQL",
         "PRODUCT_TYPE_ALLOYDB",
@@ -601,24 +601,25 @@ class Product(typing_extensions.TypedDict, total=False):
     version: str
 
 @typing.type_check_only
-class QueryDatabaseResourceGroupsRequest(typing_extensions.TypedDict, total=False):
+class QueryDatabaseResourceGroupsRequest(typing.TypedDict, total=False):
     filter: str
     orderBy: str
     pageSize: int
     pageToken: str
     parent: str
     signalFilters: _list[SignalFilter]
+    signalProductsFilters: _list[SignalProductsFilters]
     signalTypeGroups: _list[SignalTypeGroup]
 
 @typing.type_check_only
-class QueryDatabaseResourceGroupsResponse(typing_extensions.TypedDict, total=False):
+class QueryDatabaseResourceGroupsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     resourceGroups: _list[DatabaseResourceGroup]
     totalSize: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class QueryIssuesRequest(typing_extensions.TypedDict, total=False):
+class QueryIssuesRequest(typing.TypedDict, total=False):
     filter: str
     orderBy: str
     pageSize: int
@@ -627,29 +628,29 @@ class QueryIssuesRequest(typing_extensions.TypedDict, total=False):
     signalProductsFilters: _list[SignalProductsFilters]
 
 @typing.type_check_only
-class QueryIssuesResponse(typing_extensions.TypedDict, total=False):
+class QueryIssuesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     resourceIssues: _list[DatabaseResourceIssue]
     unreachable: _list[str]
 
 @typing.type_check_only
-class QueryMetrics(typing_extensions.TypedDict, total=False):
+class QueryMetrics(typing.TypedDict, total=False):
     avgCpuTime: str
     executionCount: str
-    metricsWindow: typing_extensions.Literal[
+    metricsWindow: typing.Literal[
         "METRICS_WINDOW_UNSPECIFIED", "LAST_ONE_DAY", "LAST_ONE_WEEK", "LAST_TWO_WEEKS"
     ]
     rowsProcessed: str
     totalCpuTime: str
 
 @typing.type_check_only
-class QueryProductsResponse(typing_extensions.TypedDict, total=False):
+class QueryProductsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     products: _list[Product]
     unreachable: _list[str]
 
 @typing.type_check_only
-class QueryStats(typing_extensions.TypedDict, total=False):
+class QueryStats(typing.TypedDict, total=False):
     inefficientQueryInfo: InefficientQueryInfo
     normalizedQuery: str
     queryHash: str
@@ -658,43 +659,43 @@ class QueryStats(typing_extensions.TypedDict, total=False):
     resourceType: str
 
 @typing.type_check_only
-class QueryStatsInfo(typing_extensions.TypedDict, total=False):
+class QueryStatsInfo(typing.TypedDict, total=False):
     aggregatedQueryStats: QueryStats
     queryStats: _list[QueryStats]
 
 @typing.type_check_only
-class RecommendationInfo(typing_extensions.TypedDict, total=False):
+class RecommendationInfo(typing.TypedDict, total=False):
     recommender: str
     recommenderId: str
     recommenderSubtype: str
 
 @typing.type_check_only
-class RegulatoryStandard(typing_extensions.TypedDict, total=False):
+class RegulatoryStandard(typing.TypedDict, total=False):
     standard: str
     version: str
 
 @typing.type_check_only
-class ResourceDetails(typing_extensions.TypedDict, total=False):
+class ResourceDetails(typing.TypedDict, total=False):
     container: str
     fullResourceName: str
     location: str
     product: Product
 
 @typing.type_check_only
-class ResourceId(typing_extensions.TypedDict, total=False):
+class ResourceId(typing.TypedDict, total=False):
     fullResourceName: str
     product: Product
     resourceType: str
 
 @typing.type_check_only
-class ResourceMaintenanceDenySchedule(typing_extensions.TypedDict, total=False):
+class ResourceMaintenanceDenySchedule(typing.TypedDict, total=False):
     endDate: Date
     startDate: Date
     time: TimeOfDay
 
 @typing.type_check_only
-class ResourceMaintenanceSchedule(typing_extensions.TypedDict, total=False):
-    day: typing_extensions.Literal[
+class ResourceMaintenanceSchedule(typing.TypedDict, total=False):
+    day: typing.Literal[
         "DAY_OF_WEEK_UNSPECIFIED",
         "MONDAY",
         "TUESDAY",
@@ -704,15 +705,15 @@ class ResourceMaintenanceSchedule(typing_extensions.TypedDict, total=False):
         "SATURDAY",
         "SUNDAY",
     ]
-    phase: typing_extensions.Literal[
+    phase: typing.Literal[
         "PHASE_UNSPECIFIED", "PHASE_WEEK1", "PHASE_WEEK2", "PHASE_WEEK5", "PHASE_ANY"
     ]
     startTime: TimeOfDay
 
 @typing.type_check_only
-class ResourceSuspensionInfo(typing_extensions.TypedDict, total=False):
+class ResourceSuspensionInfo(typing.TypedDict, total=False):
     resourceSuspended: bool
-    suspensionReason: typing_extensions.Literal[
+    suspensionReason: typing.Literal[
         "SUSPENSION_REASON_UNSPECIFIED",
         "WIPEOUT_HIDE_EVENT",
         "WIPEOUT_PURGE_EVENT",
@@ -723,24 +724,24 @@ class ResourceSuspensionInfo(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class RetentionSettingsInfo(typing_extensions.TypedDict, total=False):
+class RetentionSettingsInfo(typing.TypedDict, total=False):
     durationBasedRetention: str
     quantityBasedRetention: int
     subResource: SubResource
     timestampBasedRetentionTime: str
 
 @typing.type_check_only
-class SCCInfo(typing_extensions.TypedDict, total=False):
+class SCCInfo(typing.TypedDict, total=False):
     category: str
     externalUri: str
     regulatoryStandards: _list[RegulatoryStandard]
     signal: str
 
 @typing.type_check_only
-class Signal(typing_extensions.TypedDict, total=False):
+class Signal(typing.TypedDict, total=False):
     additionalDetails: _list[AdditionalDetail]
     issueCreateTime: str
-    issueSeverity: typing_extensions.Literal[
+    issueSeverity: typing.Literal[
         "ISSUE_SEVERITY_UNSPECIFIED",
         "ISSUE_SEVERITY_LOW",
         "ISSUE_SEVERITY_MEDIUM",
@@ -748,14 +749,14 @@ class Signal(typing_extensions.TypedDict, total=False):
         "ISSUE_SEVERITY_CRITICAL",
         "ISSUE_SEVERITY_IRRELEVANT",
     ]
-    signalStatus: typing_extensions.Literal[
+    signalStatus: typing.Literal[
         "SIGNAL_STATUS_UNSPECIFIED",
         "SIGNAL_STATUS_NOT_APPLICABLE",
         "SIGNAL_STATUS_OK",
         "SIGNAL_STATUS_ISSUE",
         "SIGNAL_STATUS_NOT_ENABLED",
     ]
-    signalType: typing_extensions.Literal[
+    signalType: typing.Literal[
         "SIGNAL_TYPE_UNSPECIFIED",
         "SIGNAL_TYPE_RESOURCE_FAILOVER_PROTECTED",
         "SIGNAL_TYPE_GROUP_MULTIREGIONAL",
@@ -858,18 +859,19 @@ class Signal(typing_extensions.TypedDict, total=False):
         "SIGNAL_TYPE_VERSION_NEARING_END_OF_LIFE",
         "SIGNAL_TYPE_HIGH_MAINTENANCE_DOWNTIME_RISK",
         "SIGNAL_TYPE_LOW_CACHE_HIT_AND_MAINTENANCE_DOWNTIME",
+        "SIGNAL_TYPE_MISSING_ENHANCED_PROTECTION",
     ]
 
 @typing.type_check_only
-class SignalFilter(typing_extensions.TypedDict, total=False):
-    signalStatus: typing_extensions.Literal[
+class SignalFilter(typing.TypedDict, total=False):
+    signalStatus: typing.Literal[
         "SIGNAL_STATUS_UNSPECIFIED",
         "SIGNAL_STATUS_NOT_APPLICABLE",
         "SIGNAL_STATUS_OK",
         "SIGNAL_STATUS_ISSUE",
         "SIGNAL_STATUS_NOT_ENABLED",
     ]
-    signalType: typing_extensions.Literal[
+    signalType: typing.Literal[
         "SIGNAL_TYPE_UNSPECIFIED",
         "SIGNAL_TYPE_RESOURCE_FAILOVER_PROTECTED",
         "SIGNAL_TYPE_GROUP_MULTIREGIONAL",
@@ -972,18 +974,19 @@ class SignalFilter(typing_extensions.TypedDict, total=False):
         "SIGNAL_TYPE_VERSION_NEARING_END_OF_LIFE",
         "SIGNAL_TYPE_HIGH_MAINTENANCE_DOWNTIME_RISK",
         "SIGNAL_TYPE_LOW_CACHE_HIT_AND_MAINTENANCE_DOWNTIME",
+        "SIGNAL_TYPE_MISSING_ENHANCED_PROTECTION",
     ]
 
 @typing.type_check_only
-class SignalGroup(typing_extensions.TypedDict, total=False):
+class SignalGroup(typing.TypedDict, total=False):
     displayName: str
     issueCount: int
     signals: _list[Signal]
 
 @typing.type_check_only
-class SignalProductsFilters(typing_extensions.TypedDict, total=False):
+class SignalProductsFilters(typing.TypedDict, total=False):
     products: _list[Product]
-    signalType: typing_extensions.Literal[
+    signalType: typing.Literal[
         "SIGNAL_TYPE_UNSPECIFIED",
         "SIGNAL_TYPE_RESOURCE_FAILOVER_PROTECTED",
         "SIGNAL_TYPE_GROUP_MULTIREGIONAL",
@@ -1086,13 +1089,14 @@ class SignalProductsFilters(typing_extensions.TypedDict, total=False):
         "SIGNAL_TYPE_VERSION_NEARING_END_OF_LIFE",
         "SIGNAL_TYPE_HIGH_MAINTENANCE_DOWNTIME_RISK",
         "SIGNAL_TYPE_LOW_CACHE_HIT_AND_MAINTENANCE_DOWNTIME",
+        "SIGNAL_TYPE_MISSING_ENHANCED_PROTECTION",
     ]
 
 @typing.type_check_only
-class SignalTypeGroup(typing_extensions.TypedDict, total=False):
+class SignalTypeGroup(typing.TypedDict, total=False):
     displayName: str
     signalTypes: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "SIGNAL_TYPE_UNSPECIFIED",
             "SIGNAL_TYPE_RESOURCE_FAILOVER_PROTECTED",
             "SIGNAL_TYPE_GROUP_MULTIREGIONAL",
@@ -1195,36 +1199,37 @@ class SignalTypeGroup(typing_extensions.TypedDict, total=False):
             "SIGNAL_TYPE_VERSION_NEARING_END_OF_LIFE",
             "SIGNAL_TYPE_HIGH_MAINTENANCE_DOWNTIME_RISK",
             "SIGNAL_TYPE_LOW_CACHE_HIT_AND_MAINTENANCE_DOWNTIME",
+            "SIGNAL_TYPE_MISSING_ENHANCED_PROTECTION",
         ]
     ]
 
 @typing.type_check_only
-class SubResource(typing_extensions.TypedDict, total=False):
+class SubResource(typing.TypedDict, total=False):
     container: str
     fullResourceName: str
     product: Product
     resourceType: str
 
 @typing.type_check_only
-class Tag(typing_extensions.TypedDict, total=False):
+class Tag(typing.TypedDict, total=False):
     inherited: bool
     key: str
     source: str
     value: str
 
 @typing.type_check_only
-class TimeOfDay(typing_extensions.TypedDict, total=False):
+class TimeOfDay(typing.TypedDict, total=False):
     hours: int
     minutes: int
     nanos: int
     seconds: int
 
 @typing.type_check_only
-class TypedValue(typing_extensions.TypedDict, total=False):
+class TypedValue(typing.TypedDict, total=False):
     doubleValue: float
     int64Value: str
 
 @typing.type_check_only
-class UpcomingMaintenance(typing_extensions.TypedDict, total=False):
+class UpcomingMaintenance(typing.TypedDict, total=False):
     endTime: str
     startTime: str

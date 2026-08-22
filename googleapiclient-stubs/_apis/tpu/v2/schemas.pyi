@@ -1,135 +1,133 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class AcceleratorConfig(typing_extensions.TypedDict, total=False):
+class AcceleratorConfig(typing.TypedDict, total=False):
     topology: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "TYPE_UNSPECIFIED", "V2", "V3", "V4", "V5LITE_POD", "V5P", "V6E"
     ]
 
 @typing.type_check_only
-class AcceleratorType(typing_extensions.TypedDict, total=False):
+class AcceleratorType(typing.TypedDict, total=False):
     acceleratorConfigs: _list[AcceleratorConfig]
     name: str
     type: str
 
 @typing.type_check_only
-class AcceptedData(typing_extensions.TypedDict, total=False): ...
+class AcceptedData(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class AccessConfig(typing_extensions.TypedDict, total=False):
+class AccessConfig(typing.TypedDict, total=False):
     externalIp: str
 
 @typing.type_check_only
-class ActiveData(typing_extensions.TypedDict, total=False): ...
+class ActiveData(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class AttachedDisk(typing_extensions.TypedDict, total=False):
-    mode: typing_extensions.Literal["DISK_MODE_UNSPECIFIED", "READ_WRITE", "READ_ONLY"]
+class AttachedDisk(typing.TypedDict, total=False):
+    mode: typing.Literal["DISK_MODE_UNSPECIFIED", "READ_WRITE", "READ_ONLY"]
     sourceDisk: str
 
 @typing.type_check_only
-class BootDiskConfig(typing_extensions.TypedDict, total=False):
+class BootDiskConfig(typing.TypedDict, total=False):
     customerEncryptionKey: CustomerEncryptionKey
 
 @typing.type_check_only
-class CreatingData(typing_extensions.TypedDict, total=False): ...
+class CreatingData(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class CustomerEncryptionKey(typing_extensions.TypedDict, total=False):
+class CustomerEncryptionKey(typing.TypedDict, total=False):
     kmsKeyName: str
 
 @typing.type_check_only
-class DeletingData(typing_extensions.TypedDict, total=False): ...
+class DeletingData(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class FailedData(typing_extensions.TypedDict, total=False):
+class FailedData(typing.TypedDict, total=False):
     error: Status
 
 @typing.type_check_only
-class GenerateServiceIdentityRequest(typing_extensions.TypedDict, total=False): ...
+class GenerateServiceIdentityRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class GenerateServiceIdentityResponse(typing_extensions.TypedDict, total=False):
+class GenerateServiceIdentityResponse(typing.TypedDict, total=False):
     identity: ServiceIdentity
 
 @typing.type_check_only
-class GetGuestAttributesRequest(typing_extensions.TypedDict, total=False):
+class GetGuestAttributesRequest(typing.TypedDict, total=False):
     queryPath: str
     workerIds: _list[str]
 
 @typing.type_check_only
-class GetGuestAttributesResponse(typing_extensions.TypedDict, total=False):
+class GetGuestAttributesResponse(typing.TypedDict, total=False):
     guestAttributes: _list[GuestAttributes]
 
 @typing.type_check_only
-class Guaranteed(typing_extensions.TypedDict, total=False):
+class Guaranteed(typing.TypedDict, total=False):
     minDuration: str
 
 @typing.type_check_only
-class GuestAttributes(typing_extensions.TypedDict, total=False):
+class GuestAttributes(typing.TypedDict, total=False):
     queryPath: str
     queryValue: GuestAttributesValue
 
 @typing.type_check_only
-class GuestAttributesEntry(typing_extensions.TypedDict, total=False):
+class GuestAttributesEntry(typing.TypedDict, total=False):
     key: str
     namespace: str
     value: str
 
 @typing.type_check_only
-class GuestAttributesValue(typing_extensions.TypedDict, total=False):
+class GuestAttributesValue(typing.TypedDict, total=False):
     items: _list[GuestAttributesEntry]
 
 @typing.type_check_only
-class Interval(typing_extensions.TypedDict, total=False):
+class Interval(typing.TypedDict, total=False):
     endTime: str
     startTime: str
 
 @typing.type_check_only
-class ListAcceleratorTypesResponse(typing_extensions.TypedDict, total=False):
+class ListAcceleratorTypesResponse(typing.TypedDict, total=False):
     acceleratorTypes: _list[AcceleratorType]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListLocationsResponse(typing_extensions.TypedDict, total=False):
+class ListLocationsResponse(typing.TypedDict, total=False):
     locations: _list[Location]
     nextPageToken: str
 
 @typing.type_check_only
-class ListNodesResponse(typing_extensions.TypedDict, total=False):
+class ListNodesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     nodes: _list[Node]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListOperationsResponse(typing_extensions.TypedDict, total=False):
+class ListOperationsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListQueuedResourcesResponse(typing_extensions.TypedDict, total=False):
+class ListQueuedResourcesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     queuedResources: _list[QueuedResource]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListRuntimeVersionsResponse(typing_extensions.TypedDict, total=False):
+class ListRuntimeVersionsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     runtimeVersions: _list[RuntimeVersion]
     unreachable: _list[str]
 
 @typing.type_check_only
-class Location(typing_extensions.TypedDict, total=False):
+class Location(typing.TypedDict, total=False):
     displayName: str
     labels: dict[str, typing.Any]
     locationId: str
@@ -137,12 +135,12 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class MultisliceParams(typing_extensions.TypedDict, total=False):
+class MultisliceParams(typing.TypedDict, total=False):
     nodeCount: int
     nodeIdPrefix: str
 
 @typing.type_check_only
-class NetworkConfig(typing_extensions.TypedDict, total=False):
+class NetworkConfig(typing.TypedDict, total=False):
     canIpForward: bool
     enableExternalIps: bool
     network: str
@@ -150,16 +148,16 @@ class NetworkConfig(typing_extensions.TypedDict, total=False):
     subnetwork: str
 
 @typing.type_check_only
-class NetworkEndpoint(typing_extensions.TypedDict, total=False):
+class NetworkEndpoint(typing.TypedDict, total=False):
     accessConfig: AccessConfig
     ipAddress: str
     port: int
 
 @typing.type_check_only
-class Node(typing_extensions.TypedDict, total=False):
+class Node(typing.TypedDict, total=False):
     acceleratorConfig: AcceleratorConfig
     acceleratorType: str
-    apiVersion: typing_extensions.Literal[
+    apiVersion: typing.Literal[
         "API_VERSION_UNSPECIFIED", "V1_ALPHA1", "V1", "V2_ALPHA1", "V2"
     ]
     bootDiskConfig: BootDiskConfig
@@ -167,7 +165,7 @@ class Node(typing_extensions.TypedDict, total=False):
     createTime: str
     dataDisks: _list[AttachedDisk]
     description: str
-    health: typing_extensions.Literal[
+    health: typing.Literal[
         "HEALTH_UNSPECIFIED",
         "HEALTHY",
         "TIMEOUT",
@@ -188,7 +186,7 @@ class Node(typing_extensions.TypedDict, total=False):
     schedulingConfig: SchedulingConfig
     serviceAccount: ServiceAccount
     shieldedInstanceConfig: ShieldedInstanceConfig
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "CREATING",
         "READY",
@@ -211,14 +209,14 @@ class Node(typing_extensions.TypedDict, total=False):
     upcomingMaintenance: UpcomingMaintenance
 
 @typing.type_check_only
-class NodeSpec(typing_extensions.TypedDict, total=False):
+class NodeSpec(typing.TypedDict, total=False):
     multisliceParams: MultisliceParams
     node: Node
     nodeId: str
     parent: str
 
 @typing.type_check_only
-class Operation(typing_extensions.TypedDict, total=False):
+class Operation(typing.TypedDict, total=False):
     done: bool
     error: Status
     metadata: dict[str, typing.Any]
@@ -226,7 +224,7 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class OperationMetadata(typing_extensions.TypedDict, total=False):
+class OperationMetadata(typing.TypedDict, total=False):
     apiVersion: str
     cancelRequested: bool
     createTime: str
@@ -236,10 +234,10 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
-class ProvisioningData(typing_extensions.TypedDict, total=False): ...
+class ProvisioningData(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class QueuedResource(typing_extensions.TypedDict, total=False):
+class QueuedResource(typing.TypedDict, total=False):
     createTime: str
     guaranteed: Guaranteed
     name: str
@@ -250,14 +248,14 @@ class QueuedResource(typing_extensions.TypedDict, total=False):
     tpu: Tpu
 
 @typing.type_check_only
-class QueuedResourceState(typing_extensions.TypedDict, total=False):
+class QueuedResourceState(typing.TypedDict, total=False):
     acceptedData: AcceptedData
     activeData: ActiveData
     creatingData: CreatingData
     deletingData: DeletingData
     failedData: FailedData
     provisioningData: ProvisioningData
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "CREATING",
         "ACCEPTED",
@@ -269,14 +267,12 @@ class QueuedResourceState(typing_extensions.TypedDict, total=False):
         "SUSPENDED",
         "WAITING_FOR_RESOURCES",
     ]
-    stateInitiator: typing_extensions.Literal[
-        "STATE_INITIATOR_UNSPECIFIED", "USER", "SERVICE"
-    ]
+    stateInitiator: typing.Literal["STATE_INITIATOR_UNSPECIFIED", "USER", "SERVICE"]
     suspendedData: SuspendedData
     suspendingData: SuspendingData
 
 @typing.type_check_only
-class QueueingPolicy(typing_extensions.TypedDict, total=False):
+class QueueingPolicy(typing.TypedDict, total=False):
     validAfterDuration: str
     validAfterTime: str
     validInterval: Interval
@@ -284,58 +280,58 @@ class QueueingPolicy(typing_extensions.TypedDict, total=False):
     validUntilTime: str
 
 @typing.type_check_only
-class ResetQueuedResourceRequest(typing_extensions.TypedDict, total=False): ...
+class ResetQueuedResourceRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class RuntimeVersion(typing_extensions.TypedDict, total=False):
+class RuntimeVersion(typing.TypedDict, total=False):
     name: str
     version: str
 
 @typing.type_check_only
-class SchedulingConfig(typing_extensions.TypedDict, total=False):
+class SchedulingConfig(typing.TypedDict, total=False):
     preemptible: bool
     reserved: bool
     spot: bool
 
 @typing.type_check_only
-class ServiceAccount(typing_extensions.TypedDict, total=False):
+class ServiceAccount(typing.TypedDict, total=False):
     email: str
     scope: _list[str]
 
 @typing.type_check_only
-class ServiceIdentity(typing_extensions.TypedDict, total=False):
+class ServiceIdentity(typing.TypedDict, total=False):
     email: str
 
 @typing.type_check_only
-class ShieldedInstanceConfig(typing_extensions.TypedDict, total=False):
+class ShieldedInstanceConfig(typing.TypedDict, total=False):
     enableSecureBoot: bool
 
 @typing.type_check_only
-class Spot(typing_extensions.TypedDict, total=False): ...
+class Spot(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class StartNodeRequest(typing_extensions.TypedDict, total=False): ...
+class StartNodeRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class StopNodeRequest(typing_extensions.TypedDict, total=False): ...
+class StopNodeRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class SuspendedData(typing_extensions.TypedDict, total=False): ...
+class SuspendedData(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class SuspendingData(typing_extensions.TypedDict, total=False): ...
+class SuspendingData(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Symptom(typing_extensions.TypedDict, total=False):
+class Symptom(typing.TypedDict, total=False):
     createTime: str
     details: str
-    symptomType: typing_extensions.Literal[
+    symptomType: typing.Literal[
         "SYMPTOM_TYPE_UNSPECIFIED",
         "LOW_MEMORY",
         "OUT_OF_MEMORY",
@@ -347,14 +343,14 @@ class Symptom(typing_extensions.TypedDict, total=False):
     workerId: str
 
 @typing.type_check_only
-class Tpu(typing_extensions.TypedDict, total=False):
+class Tpu(typing.TypedDict, total=False):
     nodeSpec: _list[NodeSpec]
 
 @typing.type_check_only
-class UpcomingMaintenance(typing_extensions.TypedDict, total=False):
+class UpcomingMaintenance(typing.TypedDict, total=False):
     canReschedule: bool
     latestWindowStartTime: str
-    maintenanceStatus: typing_extensions.Literal["UNKNOWN", "PENDING", "ONGOING"]
-    type: typing_extensions.Literal["UNKNOWN_TYPE", "SCHEDULED", "UNSCHEDULED"]
+    maintenanceStatus: typing.Literal["UNKNOWN", "PENDING", "ONGOING"]
+    type: typing.Literal["UNKNOWN_TYPE", "SCHEDULED", "UNSCHEDULED"]
     windowEndTime: str
     windowStartTime: str

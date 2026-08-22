@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -231,7 +230,7 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                         parent: str,
                         pageSize: int | None = ...,
                         pageToken: str | None = ...,
-                        status: typing_extensions.Literal[
+                        status: typing.Literal[
                             "STATUS_UNSPECIFIED", "EXPECTED", "ACTIVE"
                         ]
                         | None = ...,
@@ -477,9 +476,7 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int | None = ...,
                     pageToken: str | None = ...,
-                    status: typing_extensions.Literal[
-                        "STATUS_UNSPECIFIED", "EXPECTED", "ACTIVE"
-                    ]
+                    status: typing.Literal["STATUS_UNSPECIFIED", "EXPECTED", "ACTIVE"]
                     | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListVersionFilesResponseHttpRequest: ...

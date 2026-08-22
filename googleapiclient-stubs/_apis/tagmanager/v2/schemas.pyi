@@ -1,11 +1,9 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class Account(typing_extensions.TypedDict, total=False):
+class Account(typing.TypedDict, total=False):
     accountId: str
     features: AccountFeatures
     fingerprint: str
@@ -15,23 +13,23 @@ class Account(typing_extensions.TypedDict, total=False):
     tagManagerUrl: str
 
 @typing.type_check_only
-class AccountAccess(typing_extensions.TypedDict, total=False):
-    permission: typing_extensions.Literal[
+class AccountAccess(typing.TypedDict, total=False):
+    permission: typing.Literal[
         "accountPermissionUnspecified", "noAccess", "user", "admin"
     ]
 
 @typing.type_check_only
-class AccountFeatures(typing_extensions.TypedDict, total=False):
+class AccountFeatures(typing.TypedDict, total=False):
     supportMultipleContainers: bool
     supportUserPermissions: bool
 
 @typing.type_check_only
-class BuiltInVariable(typing_extensions.TypedDict, total=False):
+class BuiltInVariable(typing.TypedDict, total=False):
     accountId: str
     containerId: str
     name: str
     path: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "builtInVariableTypeUnspecified",
         "pageUrl",
         "pageHostname",
@@ -153,11 +151,11 @@ class BuiltInVariable(typing_extensions.TypedDict, total=False):
     workspaceId: str
 
 @typing.type_check_only
-class BulkUpdateWorkspaceResponse(typing_extensions.TypedDict, total=False):
+class BulkUpdateWorkspaceResponse(typing.TypedDict, total=False):
     changes: _list[Entity]
 
 @typing.type_check_only
-class Client(typing_extensions.TypedDict, total=False):
+class Client(typing.TypedDict, total=False):
     accountId: str
     clientId: str
     containerId: str
@@ -173,62 +171,9 @@ class Client(typing_extensions.TypedDict, total=False):
     workspaceId: str
 
 @typing.type_check_only
-class CompilerErrorLite(typing_extensions.TypedDict, total=False):
-    errorMessage: str
-    errorType: typing_extensions.Literal[
-        "unknownErrorType",
-        "duplicateAutoEventName",
-        "duplicateConditionId",
-        "duplicateDefaultMacro",
-        "duplicateTagName",
-        "internalCompilerError",
-        "invalidMacroKey",
-        "invalidNumberPredicateArgs",
-        "invalidMacroFormat",
-        "invalidMacroNameReference",
-        "invalidMacroParameter",
-        "invalidUsageContext",
-        "invalidRegex",
-        "macroCycle",
-        "unknownConditionId",
-        "unknownMacroInstance",
-        "invalidManualEscaping",
-        "invalidHtmlCssJs",
-        "macroInCommentsError",
-        "jsCompilerError",
-        "jsonError",
-        "invalidTagParameter",
-        "javascriptTooLong",
-        "unknownTagInstance",
-        "invalidTagReference",
-        "unknownTriggerId",
-        "customTriggerMissingEventFilter",
-        "duplicateTriggerId",
-        "unsupportedTriggerType",
-        "invalidTriggerParameter",
-        "duplicateExperimentId",
-        "pixieCompilerError",
-        "macroNotServerSideResolvable",
-        "invalidBlockingTrigger",
-        "lineTooLong",
-        "invalidTypeInSelect",
-        "gaExperimentMacroIsDeprecated",
-        "unsafeHtmlContent",
-        "unsafeHtmlAttributeValue",
-        "unsafeCssContent",
-        "parameterReferenceNotFound",
-        "invalidCustomTemplateRuntimeCode",
-        "conflictingDestinationRouting",
-        "missingRequiredActivity",
-        "unresolvableDestinationTag",
-        "invalidDestinationTag",
-        "tosRequiredForThirdPartyTags",
-    ]
-
-@typing.type_check_only
-class Condition(typing_extensions.TypedDict, total=False):
+class Condition(typing.TypedDict, total=False):
     parameter: _list[Parameter]
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "conditionTypeUnspecified",
         "equals",
         "contains",
@@ -244,7 +189,7 @@ class Condition(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class Container(typing_extensions.TypedDict, total=False):
+class Container(typing.TypedDict, total=False):
     accountId: str
     containerId: str
     domainName: _list[str]
@@ -258,7 +203,7 @@ class Container(typing_extensions.TypedDict, total=False):
     tagManagerUrl: str
     taggingServerUrls: _list[str]
     usageContext: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "usageContextUnspecified",
             "web",
             "android",
@@ -271,9 +216,9 @@ class Container(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class ContainerAccess(typing_extensions.TypedDict, total=False):
+class ContainerAccess(typing.TypedDict, total=False):
     containerId: str
-    permission: typing_extensions.Literal[
+    permission: typing.Literal[
         "containerPermissionUnspecified",
         "noAccess",
         "read",
@@ -283,7 +228,7 @@ class ContainerAccess(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class ContainerFeatures(typing_extensions.TypedDict, total=False):
+class ContainerFeatures(typing.TypedDict, total=False):
     supportBuiltInVariables: bool
     supportClients: bool
     supportEnvironments: bool
@@ -300,7 +245,7 @@ class ContainerFeatures(typing_extensions.TypedDict, total=False):
     supportZones: bool
 
 @typing.type_check_only
-class ContainerVersion(typing_extensions.TypedDict, total=False):
+class ContainerVersion(typing.TypedDict, total=False):
     accountId: str
     builtInVariable: _list[BuiltInVariable]
     client: _list[Client]
@@ -323,7 +268,7 @@ class ContainerVersion(typing_extensions.TypedDict, total=False):
     zone: _list[Zone]
 
 @typing.type_check_only
-class ContainerVersionHeader(typing_extensions.TypedDict, total=False):
+class ContainerVersionHeader(typing.TypedDict, total=False):
     accountId: str
     containerId: str
     containerVersionId: str
@@ -340,26 +285,23 @@ class ContainerVersionHeader(typing_extensions.TypedDict, total=False):
     path: str
 
 @typing.type_check_only
-class CreateBuiltInVariableResponse(typing_extensions.TypedDict, total=False):
+class CreateBuiltInVariableResponse(typing.TypedDict, total=False):
     builtInVariable: _list[BuiltInVariable]
 
 @typing.type_check_only
-class CreateContainerVersionRequestVersionOptions(
-    typing_extensions.TypedDict, total=False
-):
+class CreateContainerVersionRequestVersionOptions(typing.TypedDict, total=False):
     name: str
     notes: str
 
 @typing.type_check_only
-class CreateContainerVersionResponse(typing_extensions.TypedDict, total=False):
+class CreateContainerVersionResponse(typing.TypedDict, total=False):
     compilerError: bool
-    compilerErrors: _list[CompilerErrorLite]
     containerVersion: ContainerVersion
     newWorkspacePath: str
     syncStatus: SyncStatus
 
 @typing.type_check_only
-class CustomTemplate(typing_extensions.TypedDict, total=False):
+class CustomTemplate(typing.TypedDict, total=False):
     accountId: str
     containerId: str
     fingerprint: str
@@ -372,7 +314,7 @@ class CustomTemplate(typing_extensions.TypedDict, total=False):
     workspaceId: str
 
 @typing.type_check_only
-class Destination(typing_extensions.TypedDict, total=False):
+class Destination(typing.TypedDict, total=False):
     accountId: str
     containerId: str
     destinationId: str
@@ -383,9 +325,9 @@ class Destination(typing_extensions.TypedDict, total=False):
     tagManagerUrl: str
 
 @typing.type_check_only
-class Entity(typing_extensions.TypedDict, total=False):
+class Entity(typing.TypedDict, total=False):
     builtInVariable: BuiltInVariable
-    changeStatus: typing_extensions.Literal[
+    changeStatus: typing.Literal[
         "changeStatusUnspecified", "none", "added", "deleted", "updated"
     ]
     client: Client
@@ -399,7 +341,7 @@ class Entity(typing_extensions.TypedDict, total=False):
     zone: Zone
 
 @typing.type_check_only
-class Environment(typing_extensions.TypedDict, total=False):
+class Environment(typing.TypedDict, total=False):
     accountId: str
     authorizationCode: str
     authorizationTimestamp: str
@@ -412,12 +354,12 @@ class Environment(typing_extensions.TypedDict, total=False):
     name: str
     path: str
     tagManagerUrl: str
-    type: typing_extensions.Literal["user", "live", "latest", "workspace"]
+    type: typing.Literal["user", "live", "latest", "workspace"]
     url: str
     workspaceId: str
 
 @typing.type_check_only
-class Folder(typing_extensions.TypedDict, total=False):
+class Folder(typing.TypedDict, total=False):
     accountId: str
     containerId: str
     fingerprint: str
@@ -429,14 +371,14 @@ class Folder(typing_extensions.TypedDict, total=False):
     workspaceId: str
 
 @typing.type_check_only
-class FolderEntities(typing_extensions.TypedDict, total=False):
+class FolderEntities(typing.TypedDict, total=False):
     nextPageToken: str
     tag: _list[Tag]
     trigger: _list[Trigger]
     variable: _list[Variable]
 
 @typing.type_check_only
-class GalleryReference(typing_extensions.TypedDict, total=False):
+class GalleryReference(typing.TypedDict, total=False):
     galleryTemplateId: str
     host: str
     isModified: bool
@@ -447,17 +389,17 @@ class GalleryReference(typing_extensions.TypedDict, total=False):
     version: str
 
 @typing.type_check_only
-class GetContainerSnippetResponse(typing_extensions.TypedDict, total=False):
+class GetContainerSnippetResponse(typing.TypedDict, total=False):
     containerConfig: str
     snippet: str
 
 @typing.type_check_only
-class GetWorkspaceStatusResponse(typing_extensions.TypedDict, total=False):
+class GetWorkspaceStatusResponse(typing.TypedDict, total=False):
     mergeConflict: _list[MergeConflict]
     workspaceChange: _list[Entity]
 
 @typing.type_check_only
-class GtagConfig(typing_extensions.TypedDict, total=False):
+class GtagConfig(typing.TypedDict, total=False):
     accountId: str
     containerId: str
     fingerprint: str
@@ -469,102 +411,102 @@ class GtagConfig(typing_extensions.TypedDict, total=False):
     workspaceId: str
 
 @typing.type_check_only
-class ListAccountsResponse(typing_extensions.TypedDict, total=False):
+class ListAccountsResponse(typing.TypedDict, total=False):
     account: _list[Account]
     nextPageToken: str
 
 @typing.type_check_only
-class ListClientsResponse(typing_extensions.TypedDict, total=False):
+class ListClientsResponse(typing.TypedDict, total=False):
     client: _list[Client]
     nextPageToken: str
 
 @typing.type_check_only
-class ListContainerVersionsResponse(typing_extensions.TypedDict, total=False):
+class ListContainerVersionsResponse(typing.TypedDict, total=False):
     containerVersionHeader: _list[ContainerVersionHeader]
     nextPageToken: str
 
 @typing.type_check_only
-class ListContainersResponse(typing_extensions.TypedDict, total=False):
+class ListContainersResponse(typing.TypedDict, total=False):
     container: _list[Container]
     nextPageToken: str
 
 @typing.type_check_only
-class ListDestinationsResponse(typing_extensions.TypedDict, total=False):
+class ListDestinationsResponse(typing.TypedDict, total=False):
     destination: _list[Destination]
     nextPageToken: str
 
 @typing.type_check_only
-class ListEnabledBuiltInVariablesResponse(typing_extensions.TypedDict, total=False):
+class ListEnabledBuiltInVariablesResponse(typing.TypedDict, total=False):
     builtInVariable: _list[BuiltInVariable]
     nextPageToken: str
 
 @typing.type_check_only
-class ListEnvironmentsResponse(typing_extensions.TypedDict, total=False):
+class ListEnvironmentsResponse(typing.TypedDict, total=False):
     environment: _list[Environment]
     nextPageToken: str
 
 @typing.type_check_only
-class ListFoldersResponse(typing_extensions.TypedDict, total=False):
+class ListFoldersResponse(typing.TypedDict, total=False):
     folder: _list[Folder]
     nextPageToken: str
 
 @typing.type_check_only
-class ListGtagConfigResponse(typing_extensions.TypedDict, total=False):
+class ListGtagConfigResponse(typing.TypedDict, total=False):
     gtagConfig: _list[GtagConfig]
     nextPageToken: str
 
 @typing.type_check_only
-class ListTagsResponse(typing_extensions.TypedDict, total=False):
+class ListTagsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     tag: _list[Tag]
 
 @typing.type_check_only
-class ListTemplatesResponse(typing_extensions.TypedDict, total=False):
+class ListTemplatesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     template: _list[CustomTemplate]
 
 @typing.type_check_only
-class ListTransformationsResponse(typing_extensions.TypedDict, total=False):
+class ListTransformationsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     transformation: _list[Transformation]
 
 @typing.type_check_only
-class ListTriggersResponse(typing_extensions.TypedDict, total=False):
+class ListTriggersResponse(typing.TypedDict, total=False):
     nextPageToken: str
     trigger: _list[Trigger]
 
 @typing.type_check_only
-class ListUserPermissionsResponse(typing_extensions.TypedDict, total=False):
+class ListUserPermissionsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     userPermission: _list[UserPermission]
 
 @typing.type_check_only
-class ListVariablesResponse(typing_extensions.TypedDict, total=False):
+class ListVariablesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     variable: _list[Variable]
 
 @typing.type_check_only
-class ListWorkspacesResponse(typing_extensions.TypedDict, total=False):
+class ListWorkspacesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     workspace: _list[Workspace]
 
 @typing.type_check_only
-class ListZonesResponse(typing_extensions.TypedDict, total=False):
+class ListZonesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     zone: _list[Zone]
 
 @typing.type_check_only
-class MergeConflict(typing_extensions.TypedDict, total=False):
+class MergeConflict(typing.TypedDict, total=False):
     entityInBaseVersion: Entity
     entityInWorkspace: Entity
 
 @typing.type_check_only
-class Parameter(typing_extensions.TypedDict, total=False):
+class Parameter(typing.TypedDict, total=False):
     isWeakReference: bool
     key: str
     list: _list[Parameter]
     map: _list[Parameter]
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "typeUnspecified",
         "template",
         "integer",
@@ -577,75 +519,73 @@ class Parameter(typing_extensions.TypedDict, total=False):
     value: str
 
 @typing.type_check_only
-class ProposedChange(typing_extensions.TypedDict, total=False):
+class ProposedChange(typing.TypedDict, total=False):
     changes: _list[Entity]
 
 @typing.type_check_only
-class PublishContainerVersionResponse(typing_extensions.TypedDict, total=False):
+class PublishContainerVersionResponse(typing.TypedDict, total=False):
     compilerError: bool
-    compilerErrors: _list[CompilerErrorLite]
     containerVersion: ContainerVersion
 
 @typing.type_check_only
-class QuickPreviewResponse(typing_extensions.TypedDict, total=False):
+class QuickPreviewResponse(typing.TypedDict, total=False):
     compilerError: bool
-    compilerErrors: _list[CompilerErrorLite]
     containerVersion: ContainerVersion
     syncStatus: SyncStatus
 
 @typing.type_check_only
-class RevertBuiltInVariableResponse(typing_extensions.TypedDict, total=False):
+class RevertBuiltInVariableResponse(typing.TypedDict, total=False):
     enabled: bool
 
 @typing.type_check_only
-class RevertClientResponse(typing_extensions.TypedDict, total=False):
+class RevertClientResponse(typing.TypedDict, total=False):
     client: Client
 
 @typing.type_check_only
-class RevertFolderResponse(typing_extensions.TypedDict, total=False):
+class RevertFolderResponse(typing.TypedDict, total=False):
     folder: Folder
 
 @typing.type_check_only
-class RevertTagResponse(typing_extensions.TypedDict, total=False):
+class RevertTagResponse(typing.TypedDict, total=False):
     tag: Tag
 
 @typing.type_check_only
-class RevertTemplateResponse(typing_extensions.TypedDict, total=False):
+class RevertTemplateResponse(typing.TypedDict, total=False):
     template: CustomTemplate
 
 @typing.type_check_only
-class RevertTransformationResponse(typing_extensions.TypedDict, total=False):
+class RevertTransformationResponse(typing.TypedDict, total=False):
     transformation: Transformation
 
 @typing.type_check_only
-class RevertTriggerResponse(typing_extensions.TypedDict, total=False):
+class RevertTriggerResponse(typing.TypedDict, total=False):
     trigger: Trigger
 
 @typing.type_check_only
-class RevertVariableResponse(typing_extensions.TypedDict, total=False):
+class RevertVariableResponse(typing.TypedDict, total=False):
     variable: Variable
 
 @typing.type_check_only
-class RevertZoneResponse(typing_extensions.TypedDict, total=False):
+class RevertZoneResponse(typing.TypedDict, total=False):
     zone: Zone
 
 @typing.type_check_only
-class SetupTag(typing_extensions.TypedDict, total=False):
+class SetupTag(typing.TypedDict, total=False):
     stopOnSetupFailure: bool
     tagName: str
 
 @typing.type_check_only
-class SyncStatus(typing_extensions.TypedDict, total=False):
+class SyncStatus(typing.TypedDict, total=False):
     mergeConflict: bool
     syncError: bool
 
 @typing.type_check_only
-class SyncWorkspaceResponse(typing_extensions.TypedDict, total=False):
+class SyncWorkspaceResponse(typing.TypedDict, total=False):
     mergeConflict: _list[MergeConflict]
     syncStatus: SyncStatus
 
 @typing.type_check_only
-class Tag(typing_extensions.TypedDict, total=False):
+class Tag(typing.TypedDict, total=False):
     accountId: str
     blockingTriggerId: _list[str]
     consentSettings: TagConsentSetting
@@ -665,7 +605,7 @@ class Tag(typing_extensions.TypedDict, total=False):
     scheduleEndMs: str
     scheduleStartMs: str
     setupTag: _list[SetupTag]
-    tagFiringOption: typing_extensions.Literal[
+    tagFiringOption: typing.Literal[
         "tagFiringOptionUnspecified", "unlimited", "oncePerEvent", "oncePerLoad"
     ]
     tagId: str
@@ -675,17 +615,17 @@ class Tag(typing_extensions.TypedDict, total=False):
     workspaceId: str
 
 @typing.type_check_only
-class TagConsentSetting(typing_extensions.TypedDict, total=False):
-    consentStatus: typing_extensions.Literal["notSet", "notNeeded", "needed"]
+class TagConsentSetting(typing.TypedDict, total=False):
+    consentStatus: typing.Literal["notSet", "notNeeded", "needed"]
     consentType: Parameter
 
 @typing.type_check_only
-class TeardownTag(typing_extensions.TypedDict, total=False):
+class TeardownTag(typing.TypedDict, total=False):
     stopTeardownOnFailure: bool
     tagName: str
 
 @typing.type_check_only
-class Transformation(typing_extensions.TypedDict, total=False):
+class Transformation(typing.TypedDict, total=False):
     accountId: str
     containerId: str
     fingerprint: str
@@ -700,7 +640,7 @@ class Transformation(typing_extensions.TypedDict, total=False):
     workspaceId: str
 
 @typing.type_check_only
-class Trigger(typing_extensions.TypedDict, total=False):
+class Trigger(typing.TypedDict, total=False):
     accountId: str
     autoEventFilter: _list[Condition]
     checkValidation: Parameter
@@ -724,7 +664,7 @@ class Trigger(typing_extensions.TypedDict, total=False):
     tagManagerUrl: str
     totalTimeMinMilliseconds: Parameter
     triggerId: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "eventTypeUnspecified",
         "pageview",
         "domReady",
@@ -771,7 +711,7 @@ class Trigger(typing_extensions.TypedDict, total=False):
     workspaceId: str
 
 @typing.type_check_only
-class UserPermission(typing_extensions.TypedDict, total=False):
+class UserPermission(typing.TypedDict, total=False):
     accountAccess: AccountAccess
     accountId: str
     containerAccess: _list[ContainerAccess]
@@ -779,7 +719,7 @@ class UserPermission(typing_extensions.TypedDict, total=False):
     path: str
 
 @typing.type_check_only
-class Variable(typing_extensions.TypedDict, total=False):
+class Variable(typing.TypedDict, total=False):
     accountId: str
     containerId: str
     disablingTriggerId: _list[str]
@@ -799,19 +739,19 @@ class Variable(typing_extensions.TypedDict, total=False):
     workspaceId: str
 
 @typing.type_check_only
-class VariableFormatValue(typing_extensions.TypedDict, total=False):
-    caseConversionType: typing_extensions.Literal["none", "lowercase", "uppercase"]
+class VariableFormatValue(typing.TypedDict, total=False):
+    caseConversionType: typing.Literal["none", "lowercase", "uppercase"]
     convertFalseToValue: Parameter
     convertNullToValue: Parameter
     convertToBoolean: bool
-    convertToNumber: typing_extensions.Literal[
-        "decimalSeparatorTypeUnspecified", "period", "comma"
+    convertToNumber: typing.Literal[
+        "decimalSeparatorTypeUnspecified", "period", "comma", "automatic"
     ]
     convertTrueToValue: Parameter
     convertUndefinedToValue: Parameter
 
 @typing.type_check_only
-class Workspace(typing_extensions.TypedDict, total=False):
+class Workspace(typing.TypedDict, total=False):
     accountId: str
     containerId: str
     description: str
@@ -822,7 +762,7 @@ class Workspace(typing_extensions.TypedDict, total=False):
     workspaceId: str
 
 @typing.type_check_only
-class Zone(typing_extensions.TypedDict, total=False):
+class Zone(typing.TypedDict, total=False):
     accountId: str
     boundary: ZoneBoundary
     childContainer: _list[ZoneChildContainer]
@@ -837,16 +777,16 @@ class Zone(typing_extensions.TypedDict, total=False):
     zoneId: str
 
 @typing.type_check_only
-class ZoneBoundary(typing_extensions.TypedDict, total=False):
+class ZoneBoundary(typing.TypedDict, total=False):
     condition: _list[Condition]
     customEvaluationTriggerId: _list[str]
 
 @typing.type_check_only
-class ZoneChildContainer(typing_extensions.TypedDict, total=False):
+class ZoneChildContainer(typing.TypedDict, total=False):
     nickname: str
     publicId: str
 
 @typing.type_check_only
-class ZoneTypeRestriction(typing_extensions.TypedDict, total=False):
+class ZoneTypeRestriction(typing.TypedDict, total=False):
     enable: bool
     whitelistedTypeId: _list[str]

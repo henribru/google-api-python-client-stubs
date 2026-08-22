@@ -1,17 +1,15 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class AccessCredentials(typing_extensions.TypedDict, total=False):
+class AccessCredentials(typing.TypedDict, total=False):
     accessToken: str
     expiresIn: str
     refreshToken: str
 
 @typing.type_check_only
-class Action(typing_extensions.TypedDict, total=False):
+class Action(typing.TypedDict, total=False):
     description: str
     displayName: str
     inputJsonSchema: JsonSchema
@@ -22,88 +20,86 @@ class Action(typing_extensions.TypedDict, total=False):
     resultMetadata: _list[ResultMetadata]
 
 @typing.type_check_only
-class AuthCodeData(typing_extensions.TypedDict, total=False):
+class AuthCodeData(typing.TypedDict, total=False):
     authCode: str
     pkceVerifier: str
     redirectUri: str
     scopes: _list[str]
 
 @typing.type_check_only
-class CheckReadinessResponse(typing_extensions.TypedDict, total=False):
+class CheckReadinessResponse(typing.TypedDict, total=False):
     status: str
 
 @typing.type_check_only
-class CheckStatusResponse(typing_extensions.TypedDict, total=False):
+class CheckStatusResponse(typing.TypedDict, total=False):
     description: str
     metadata: dict[str, typing.Any]
-    state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "ACTIVE", "ERROR", "AUTH_ERROR"
-    ]
+    state: typing.Literal["STATE_UNSPECIFIED", "ACTIVE", "ERROR", "AUTH_ERROR"]
 
 @typing.type_check_only
-class DailyCycle(typing_extensions.TypedDict, total=False):
+class DailyCycle(typing.TypedDict, total=False):
     duration: str
     startTime: TimeOfDay
 
 @typing.type_check_only
-class Date(typing_extensions.TypedDict, total=False):
+class Date(typing.TypedDict, total=False):
     day: int
     month: int
     year: int
 
 @typing.type_check_only
-class DenyMaintenancePeriod(typing_extensions.TypedDict, total=False):
+class DenyMaintenancePeriod(typing.TypedDict, total=False):
     endDate: Date
     startDate: Date
     time: TimeOfDay
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Entity(typing_extensions.TypedDict, total=False):
+class Entity(typing.TypedDict, total=False):
     fields: dict[str, typing.Any]
     metadata: dict[str, typing.Any]
     name: str
 
 @typing.type_check_only
-class EntityType(typing_extensions.TypedDict, total=False):
+class EntityType(typing.TypedDict, total=False):
     defaultSortBy: str
     fields: _list[Field]
     jsonSchema: JsonSchema
     metadata: dict[str, typing.Any]
     name: str
     operations: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "OPERATION_UNSPECIFIED", "LIST", "GET", "CREATE", "UPDATE", "DELETE"
         ]
     ]
 
 @typing.type_check_only
-class ExchangeAuthCodeRequest(typing_extensions.TypedDict, total=False):
+class ExchangeAuthCodeRequest(typing.TypedDict, total=False):
     authCodeData: AuthCodeData
     executionConfig: ExecutionConfig
     oauth2Config: OAuth2Config
 
 @typing.type_check_only
-class ExchangeAuthCodeResponse(typing_extensions.TypedDict, total=False):
+class ExchangeAuthCodeResponse(typing.TypedDict, total=False):
     accessCredentials: AccessCredentials
     metadata: dict[str, typing.Any]
 
 @typing.type_check_only
-class ExecuteActionRequest(typing_extensions.TypedDict, total=False):
+class ExecuteActionRequest(typing.TypedDict, total=False):
     executionConfig: ExecutionConfig
     parameters: dict[str, typing.Any]
 
 @typing.type_check_only
-class ExecuteActionResponse(typing_extensions.TypedDict, total=False):
+class ExecuteActionResponse(typing.TypedDict, total=False):
     metadata: dict[str, typing.Any]
     results: _list[dict[str, typing.Any]]
 
 @typing.type_check_only
-class ExecuteHttpRequestRequest(typing_extensions.TypedDict, total=False):
+class ExecuteHttpRequestRequest(typing.TypedDict, total=False):
     headers: _list[HttpHeader]
-    httpMethod: typing_extensions.Literal[
+    httpMethod: typing.Literal[
         "HTTP_METHOD_UNSPECIFIED",
         "HTTP_METHOD_GET",
         "HTTP_METHOD_POST",
@@ -117,40 +113,40 @@ class ExecuteHttpRequestRequest(typing_extensions.TypedDict, total=False):
     url: str
 
 @typing.type_check_only
-class ExecuteHttpRequestResponse(typing_extensions.TypedDict, total=False):
+class ExecuteHttpRequestResponse(typing.TypedDict, total=False):
     body: str
     headers: _list[HttpHeader]
     reason: str
     statusCode: int
 
 @typing.type_check_only
-class ExecuteSqlQueryRequest(typing_extensions.TypedDict, total=False):
+class ExecuteSqlQueryRequest(typing.TypedDict, total=False):
     query: Query
 
 @typing.type_check_only
-class ExecuteSqlQueryResponse(typing_extensions.TypedDict, total=False):
+class ExecuteSqlQueryResponse(typing.TypedDict, total=False):
     results: _list[dict[str, typing.Any]]
 
 @typing.type_check_only
-class ExecuteToolRequest(typing_extensions.TypedDict, total=False):
+class ExecuteToolRequest(typing.TypedDict, total=False):
     executionConfig: ExecutionConfig
     parameters: dict[str, typing.Any]
     toolDefinition: dict[str, typing.Any]
 
 @typing.type_check_only
-class ExecuteToolResponse(typing_extensions.TypedDict, total=False):
+class ExecuteToolResponse(typing.TypedDict, total=False):
     _meta: dict[str, typing.Any]
     metadata: dict[str, typing.Any]
     result: dict[str, typing.Any]
 
 @typing.type_check_only
-class ExecutionConfig(typing_extensions.TypedDict, total=False):
+class ExecutionConfig(typing.TypedDict, total=False):
     headers: str
 
 @typing.type_check_only
-class Field(typing_extensions.TypedDict, total=False):
+class Field(typing.TypedDict, total=False):
     additionalDetails: dict[str, typing.Any]
-    dataType: typing_extensions.Literal[
+    dataType: typing.Literal[
         "DATA_TYPE_UNSPECIFIED",
         "INT",
         "SMALLINT",
@@ -206,34 +202,34 @@ class Field(typing_extensions.TypedDict, total=False):
     reference: Reference
 
 @typing.type_check_only
-class GenerateCustomToolspecRequest(typing_extensions.TypedDict, total=False):
+class GenerateCustomToolspecRequest(typing.TypedDict, total=False):
     toolNames: _list[ToolName]
 
 @typing.type_check_only
-class GenerateCustomToolspecResponse(typing_extensions.TypedDict, total=False):
+class GenerateCustomToolspecResponse(typing.TypedDict, total=False):
     toolSpec: ToolSpec
 
 @typing.type_check_only
-class GetResourcePostRequest(typing_extensions.TypedDict, total=False):
+class GetResourcePostRequest(typing.TypedDict, total=False):
     executionConfig: ExecutionConfig
     toolSpec: ToolSpec
 
 @typing.type_check_only
-class GetResourceResponse(typing_extensions.TypedDict, total=False):
+class GetResourceResponse(typing.TypedDict, total=False):
     _meta: dict[str, typing.Any]
     data: str
     metadata: dict[str, typing.Any]
     mimeType: str
 
 @typing.type_check_only
-class HttpHeader(typing_extensions.TypedDict, total=False):
+class HttpHeader(typing.TypedDict, total=False):
     key: str
     value: str
 
 @typing.type_check_only
-class InputParameter(typing_extensions.TypedDict, total=False):
+class InputParameter(typing.TypedDict, total=False):
     additionalDetails: dict[str, typing.Any]
-    dataType: typing_extensions.Literal[
+    dataType: typing.Literal[
         "DATA_TYPE_UNSPECIFIED",
         "INT",
         "SMALLINT",
@@ -287,7 +283,7 @@ class InputParameter(typing_extensions.TypedDict, total=False):
     nullable: bool
 
 @typing.type_check_only
-class Instance(typing_extensions.TypedDict, total=False):
+class Instance(typing.TypedDict, total=False):
     consumerDefinedName: str
     consumerProjectNumber: str
     createTime: str
@@ -303,7 +299,7 @@ class Instance(typing_extensions.TypedDict, total=False):
     slmInstanceTemplate: str
     sloMetadata: SloMetadata
     softwareVersions: dict[str, typing.Any]
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "CREATING",
         "READY",
@@ -315,7 +311,7 @@ class Instance(typing_extensions.TypedDict, total=False):
     tenantProjectId: str
     updateTime: str
 
-AlternativeJsonSchema = typing_extensions.TypedDict(
+AlternativeJsonSchema = typing.TypedDict(
     "AlternativeJsonSchema",
     {
         "$comment": str,
@@ -344,7 +340,7 @@ AlternativeJsonSchema = typing_extensions.TypedDict(
         "format": str,
         "if": JsonSchema,
         "items": JsonSchema,
-        "jdbcType": typing_extensions.Literal[
+        "jdbcType": typing.Literal[
             "DATA_TYPE_UNSPECIFIED",
             "INT",
             "SMALLINT",
@@ -421,37 +417,37 @@ AlternativeJsonSchema = typing_extensions.TypedDict(
 class JsonSchema(AlternativeJsonSchema): ...
 
 @typing.type_check_only
-class ListActionsResponse(typing_extensions.TypedDict, total=False):
+class ListActionsResponse(typing.TypedDict, total=False):
     actions: _list[Action]
     metadata: dict[str, typing.Any]
     nextPageToken: str
     unsupportedActionNames: _list[str]
 
 @typing.type_check_only
-class ListCustomToolNamesResponse(typing_extensions.TypedDict, total=False):
+class ListCustomToolNamesResponse(typing.TypedDict, total=False):
     toolNames: _list[ToolName]
 
 @typing.type_check_only
-class ListEntitiesResponse(typing_extensions.TypedDict, total=False):
+class ListEntitiesResponse(typing.TypedDict, total=False):
     entities: _list[Entity]
     metadata: dict[str, typing.Any]
     nextPageToken: str
 
 @typing.type_check_only
-class ListEntityTypesResponse(typing_extensions.TypedDict, total=False):
+class ListEntityTypesResponse(typing.TypedDict, total=False):
     metadata: dict[str, typing.Any]
     nextPageToken: str
     types: _list[EntityType]
     unsupportedTypeNames: _list[str]
 
 @typing.type_check_only
-class ListResourcesResponse(typing_extensions.TypedDict, total=False):
+class ListResourcesResponse(typing.TypedDict, total=False):
     metadata: dict[str, typing.Any]
     nextPageToken: str
     resources: _list[Resource]
 
 @typing.type_check_only
-class ListToolsPostRequest(typing_extensions.TypedDict, total=False):
+class ListToolsPostRequest(typing.TypedDict, total=False):
     executionConfig: ExecutionConfig
     pageSize: int
     pageToken: str
@@ -459,23 +455,23 @@ class ListToolsPostRequest(typing_extensions.TypedDict, total=False):
     toolSpec: ToolSpec
 
 @typing.type_check_only
-class ListToolsResponse(typing_extensions.TypedDict, total=False):
+class ListToolsResponse(typing.TypedDict, total=False):
     metadata: dict[str, typing.Any]
     nextPageToken: str
     tools: _list[Tool]
 
 @typing.type_check_only
-class MaintenancePolicy(typing_extensions.TypedDict, total=False):
+class MaintenancePolicy(typing.TypedDict, total=False):
     createTime: str
     description: str
     labels: dict[str, typing.Any]
     name: str
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "READY", "DELETING"]
+    state: typing.Literal["STATE_UNSPECIFIED", "READY", "DELETING"]
     updatePolicy: UpdatePolicy
     updateTime: str
 
 @typing.type_check_only
-class MaintenanceSchedule(typing_extensions.TypedDict, total=False):
+class MaintenanceSchedule(typing.TypedDict, total=False):
     canReschedule: bool
     endTime: str
     rolloutManagementPolicy: str
@@ -483,51 +479,51 @@ class MaintenanceSchedule(typing_extensions.TypedDict, total=False):
     startTime: str
 
 @typing.type_check_only
-class MaintenanceSettings(typing_extensions.TypedDict, total=False):
+class MaintenanceSettings(typing.TypedDict, total=False):
     exclude: bool
     isRollback: bool
     maintenancePolicies: dict[str, typing.Any]
 
 @typing.type_check_only
-class MaintenanceWindow(typing_extensions.TypedDict, total=False):
+class MaintenanceWindow(typing.TypedDict, total=False):
     dailyCycle: DailyCycle
     weeklyCycle: WeeklyCycle
 
 @typing.type_check_only
-class NodeSloMetadata(typing_extensions.TypedDict, total=False):
+class NodeSloMetadata(typing.TypedDict, total=False):
     location: str
     nodeId: str
     perSliEligibility: PerSliSloEligibility
 
 @typing.type_check_only
-class NotificationParameter(typing_extensions.TypedDict, total=False):
+class NotificationParameter(typing.TypedDict, total=False):
     values: _list[str]
 
 @typing.type_check_only
-class OAuth2Config(typing_extensions.TypedDict, total=False):
+class OAuth2Config(typing.TypedDict, total=False):
     authUri: str
     clientId: str
     clientSecret: str
 
 @typing.type_check_only
-class PerSliSloEligibility(typing_extensions.TypedDict, total=False):
+class PerSliSloEligibility(typing.TypedDict, total=False):
     eligibilities: dict[str, typing.Any]
 
 @typing.type_check_only
-class ProvisionedResource(typing_extensions.TypedDict, total=False):
+class ProvisionedResource(typing.TypedDict, total=False):
     resourceType: str
     resourceUrl: str
 
 @typing.type_check_only
-class Query(typing_extensions.TypedDict, total=False):
+class Query(typing.TypedDict, total=False):
     maxRows: str
     query: str
     queryParameters: _list[QueryParameter]
     timeout: str
 
 @typing.type_check_only
-class QueryParameter(typing_extensions.TypedDict, total=False):
-    dataType: typing_extensions.Literal[
+class QueryParameter(typing.TypedDict, total=False):
+    dataType: typing.Literal[
         "DATA_TYPE_UNSPECIFIED",
         "INT",
         "SMALLINT",
@@ -577,23 +573,23 @@ class QueryParameter(typing_extensions.TypedDict, total=False):
     value: typing.Any
 
 @typing.type_check_only
-class Reference(typing_extensions.TypedDict, total=False):
+class Reference(typing.TypedDict, total=False):
     name: str
     type: str
 
 @typing.type_check_only
-class RefreshAccessTokenRequest(typing_extensions.TypedDict, total=False):
+class RefreshAccessTokenRequest(typing.TypedDict, total=False):
     executionConfig: ExecutionConfig
     oauth2Config: OAuth2Config
     refreshToken: str
 
 @typing.type_check_only
-class RefreshAccessTokenResponse(typing_extensions.TypedDict, total=False):
+class RefreshAccessTokenResponse(typing.TypedDict, total=False):
     accessCredentials: AccessCredentials
     metadata: dict[str, typing.Any]
 
 @typing.type_check_only
-class Resource(typing_extensions.TypedDict, total=False):
+class Resource(typing.TypedDict, total=False):
     _meta: dict[str, typing.Any]
     description: str
     mimeType: str
@@ -602,8 +598,8 @@ class Resource(typing_extensions.TypedDict, total=False):
     uri: str
 
 @typing.type_check_only
-class ResultMetadata(typing_extensions.TypedDict, total=False):
-    dataType: typing_extensions.Literal[
+class ResultMetadata(typing.TypedDict, total=False):
+    dataType: typing.Literal[
         "DATA_TYPE_UNSPECIFIED",
         "INT",
         "SMALLINT",
@@ -657,8 +653,8 @@ class ResultMetadata(typing_extensions.TypedDict, total=False):
     nullable: bool
 
 @typing.type_check_only
-class Schedule(typing_extensions.TypedDict, total=False):
-    day: typing_extensions.Literal[
+class Schedule(typing.TypedDict, total=False):
+    day: typing.Literal[
         "DAY_OF_WEEK_UNSPECIFIED",
         "MONDAY",
         "TUESDAY",
@@ -672,25 +668,25 @@ class Schedule(typing_extensions.TypedDict, total=False):
     startTime: TimeOfDay
 
 @typing.type_check_only
-class SloEligibility(typing_extensions.TypedDict, total=False):
+class SloEligibility(typing.TypedDict, total=False):
     eligible: bool
     reason: str
 
 @typing.type_check_only
-class SloMetadata(typing_extensions.TypedDict, total=False):
+class SloMetadata(typing.TypedDict, total=False):
     nodes: _list[NodeSloMetadata]
     perSliEligibility: PerSliSloEligibility
     tier: str
 
 @typing.type_check_only
-class TimeOfDay(typing_extensions.TypedDict, total=False):
+class TimeOfDay(typing.TypedDict, total=False):
     hours: int
     minutes: int
     nanos: int
     seconds: int
 
 @typing.type_check_only
-class Tool(typing_extensions.TypedDict, total=False):
+class Tool(typing.TypedDict, total=False):
     _meta: dict[str, typing.Any]
     annotations: ToolAnnotations
     dependsOn: _list[str]
@@ -700,7 +696,7 @@ class Tool(typing_extensions.TypedDict, total=False):
     outputSchema: JsonSchema
 
 @typing.type_check_only
-class ToolAnnotations(typing_extensions.TypedDict, total=False):
+class ToolAnnotations(typing.TypedDict, total=False):
     destructiveHint: bool
     idempotentHint: bool
     openWorldHint: bool
@@ -708,31 +704,31 @@ class ToolAnnotations(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
-class ToolName(typing_extensions.TypedDict, total=False):
+class ToolName(typing.TypedDict, total=False):
     entityName: str
     name: str
-    operation: typing_extensions.Literal[
+    operation: typing.Literal[
         "OPERATION_UNSPECIFIED", "LIST", "GET", "CREATE", "UPDATE", "DELETE"
     ]
 
 @typing.type_check_only
-class ToolSpec(typing_extensions.TypedDict, total=False):
+class ToolSpec(typing.TypedDict, total=False):
     toolDefinitions: _list[dict[str, typing.Any]]
     toolSpecVersion: str
 
 @typing.type_check_only
-class UpdateEntitiesWithConditionsResponse(typing_extensions.TypedDict, total=False):
+class UpdateEntitiesWithConditionsResponse(typing.TypedDict, total=False):
     metadata: dict[str, typing.Any]
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class UpdatePolicy(typing_extensions.TypedDict, total=False):
-    channel: typing_extensions.Literal[
+class UpdatePolicy(typing.TypedDict, total=False):
+    channel: typing.Literal[
         "UPDATE_CHANNEL_UNSPECIFIED", "EARLIER", "LATER", "WEEK1", "WEEK2", "WEEK5"
     ]
     denyMaintenancePeriods: _list[DenyMaintenancePeriod]
     window: MaintenanceWindow
 
 @typing.type_check_only
-class WeeklyCycle(typing_extensions.TypedDict, total=False):
+class WeeklyCycle(typing.TypedDict, total=False):
     schedule: _list[Schedule]

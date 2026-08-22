@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -20,7 +19,7 @@ class CloudSupportResource(googleapiclient.discovery.Resource):
             *,
             pageSize: int | None = ...,
             pageToken: str | None = ...,
-            product_productLine: typing_extensions.Literal[
+            product_productLine: typing.Literal[
                 "PRODUCT_LINE_UNSPECIFIED", "GOOGLE_CLOUD", "GOOGLE_MAPS"
             ]
             | None = ...,
@@ -91,7 +90,7 @@ class CloudSupportResource(googleapiclient.discovery.Resource):
             filter: str | None = ...,
             pageSize: int | None = ...,
             pageToken: str | None = ...,
-            productLine: typing_extensions.Literal[
+            productLine: typing.Literal[
                 "PRODUCT_LINE_UNSPECIFIED", "GOOGLE_CLOUD", "GOOGLE_MAPS"
             ]
             | None = ...,
@@ -152,46 +151,61 @@ class CloudSupportResource(googleapiclient.discovery.Resource):
         ) -> AttachmentHttpRequest: ...
 
     @typing.type_check_only
-    class SupportEventSubscriptionsResource(googleapiclient.discovery.Resource):
-        def create(
-            self, *, parent: str, body: SupportEventSubscription, **kwargs: typing.Any
-        ) -> SupportEventSubscriptionHttpRequest: ...
-        def delete(
-            self, *, name: str, **kwargs: typing.Any
-        ) -> SupportEventSubscriptionHttpRequest: ...
-        def get(
-            self, *, name: str, **kwargs: typing.Any
-        ) -> SupportEventSubscriptionHttpRequest: ...
-        def list(
-            self,
-            *,
-            parent: str,
-            filter: str | None = ...,
-            pageSize: int | None = ...,
-            pageToken: str | None = ...,
-            showDeleted: bool | None = ...,
-            **kwargs: typing.Any,
-        ) -> ListSupportEventSubscriptionsResponseHttpRequest: ...
-        def list_next(
-            self,
-            previous_request: ListSupportEventSubscriptionsResponseHttpRequest,
-            previous_response: ListSupportEventSubscriptionsResponse,
-        ) -> ListSupportEventSubscriptionsResponseHttpRequest | None: ...
-        def patch(
-            self,
-            *,
-            name: str,
-            body: SupportEventSubscription,
-            updateMask: str | None = ...,
-            **kwargs: typing.Any,
-        ) -> SupportEventSubscriptionHttpRequest: ...
-        def undelete(
-            self,
-            *,
-            name: str,
-            body: UndeleteSupportEventSubscriptionRequest,
-            **kwargs: typing.Any,
-        ) -> SupportEventSubscriptionHttpRequest: ...
+    class OrganizationsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class SupportEventSubscriptionsResource(googleapiclient.discovery.Resource):
+            def create(
+                self,
+                *,
+                parent: str,
+                body: SupportEventSubscription,
+                **kwargs: typing.Any,
+            ) -> SupportEventSubscriptionHttpRequest: ...
+            def delete(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> SupportEventSubscriptionHttpRequest: ...
+            def expunge(
+                self,
+                *,
+                name: str,
+                body: ExpungeSupportEventSubscriptionRequest,
+                **kwargs: typing.Any,
+            ) -> EmptyHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> SupportEventSubscriptionHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
+                showDeleted: bool | None = ...,
+                **kwargs: typing.Any,
+            ) -> ListSupportEventSubscriptionsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListSupportEventSubscriptionsResponseHttpRequest,
+                previous_response: ListSupportEventSubscriptionsResponse,
+            ) -> ListSupportEventSubscriptionsResponseHttpRequest | None: ...
+            def patch(
+                self,
+                *,
+                name: str,
+                body: SupportEventSubscription,
+                updateMask: str | None = ...,
+                **kwargs: typing.Any,
+            ) -> SupportEventSubscriptionHttpRequest: ...
+            def undelete(
+                self,
+                *,
+                name: str,
+                body: UndeleteSupportEventSubscriptionRequest,
+                **kwargs: typing.Any,
+            ) -> SupportEventSubscriptionHttpRequest: ...
+
+        def supportEventSubscriptions(self) -> SupportEventSubscriptionsResource: ...
 
     def new_batch_http_request(
         self,
@@ -208,7 +222,7 @@ class CloudSupportResource(googleapiclient.discovery.Resource):
     def caseClassifications(self) -> CaseClassificationsResource: ...
     def cases(self) -> CasesResource: ...
     def media(self) -> MediaResource: ...
-    def supportEventSubscriptions(self) -> SupportEventSubscriptionsResource: ...
+    def organizations(self) -> OrganizationsResource: ...
 
 @typing.type_check_only
 class AttachmentHttpRequest(googleapiclient.http.HttpRequest):
@@ -233,6 +247,14 @@ class CommentHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Comment: ...
+
+@typing.type_check_only
+class EmptyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> Empty: ...
 
 @typing.type_check_only
 class ListAttachmentsResponseHttpRequest(googleapiclient.http.HttpRequest):

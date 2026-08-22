@@ -1,27 +1,25 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class AggregateBucket(typing_extensions.TypedDict, total=False):
+class AggregateBucket(typing.TypedDict, total=False):
     activity: int
     dataset: _list[Dataset]
     endTimeMillis: str
     session: Session
     startTimeMillis: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "unknown", "time", "session", "activityType", "activitySegment"
     ]
 
 @typing.type_check_only
-class AggregateBy(typing_extensions.TypedDict, total=False):
+class AggregateBy(typing.TypedDict, total=False):
     dataSourceId: str
     dataTypeName: str
 
 @typing.type_check_only
-class AggregateRequest(typing_extensions.TypedDict, total=False):
+class AggregateRequest(typing.TypedDict, total=False):
     aggregateBy: _list[AggregateBy]
     bucketByActivitySegment: BucketByActivity
     bucketByActivityType: BucketByActivity
@@ -29,7 +27,7 @@ class AggregateRequest(typing_extensions.TypedDict, total=False):
     bucketByTime: BucketByTime
     endTimeMillis: str
     filteredDataQualityStandard: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "dataQualityUnknown",
             "dataQualityBloodPressureEsh2002",
             "dataQualityBloodPressureEsh2010",
@@ -45,38 +43,38 @@ class AggregateRequest(typing_extensions.TypedDict, total=False):
     startTimeMillis: str
 
 @typing.type_check_only
-class AggregateResponse(typing_extensions.TypedDict, total=False):
+class AggregateResponse(typing.TypedDict, total=False):
     bucket: _list[AggregateBucket]
 
 @typing.type_check_only
-class Application(typing_extensions.TypedDict, total=False):
+class Application(typing.TypedDict, total=False):
     detailsUrl: str
     name: str
     packageName: str
     version: str
 
 @typing.type_check_only
-class BucketByActivity(typing_extensions.TypedDict, total=False):
+class BucketByActivity(typing.TypedDict, total=False):
     activityDataSourceId: str
     minDurationMillis: str
 
 @typing.type_check_only
-class BucketBySession(typing_extensions.TypedDict, total=False):
+class BucketBySession(typing.TypedDict, total=False):
     minDurationMillis: str
 
 @typing.type_check_only
-class BucketByTime(typing_extensions.TypedDict, total=False):
+class BucketByTime(typing.TypedDict, total=False):
     durationMillis: str
     period: BucketByTimePeriod
 
 @typing.type_check_only
-class BucketByTimePeriod(typing_extensions.TypedDict, total=False):
+class BucketByTimePeriod(typing.TypedDict, total=False):
     timeZoneId: str
-    type: typing_extensions.Literal["day", "week", "month"]
+    type: typing.Literal["day", "week", "month"]
     value: int
 
 @typing.type_check_only
-class DataPoint(typing_extensions.TypedDict, total=False):
+class DataPoint(typing.TypedDict, total=False):
     computationTimeMillis: str
     dataTypeName: str
     endTimeNanos: str
@@ -87,10 +85,10 @@ class DataPoint(typing_extensions.TypedDict, total=False):
     value: _list[Value]
 
 @typing.type_check_only
-class DataSource(typing_extensions.TypedDict, total=False):
+class DataSource(typing.TypedDict, total=False):
     application: Application
     dataQualityStandard: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "dataQualityUnknown",
             "dataQualityBloodPressureEsh2002",
             "dataQualityBloodPressureEsh2010",
@@ -108,23 +106,23 @@ class DataSource(typing_extensions.TypedDict, total=False):
     dataType: DataType
     device: Device
     name: str
-    type: typing_extensions.Literal["raw", "derived"]
+    type: typing.Literal["raw", "derived"]
 
 @typing.type_check_only
-class DataType(typing_extensions.TypedDict, total=False):
+class DataType(typing.TypedDict, total=False):
     field: _list[DataTypeField]
     name: str
 
 @typing.type_check_only
-class DataTypeField(typing_extensions.TypedDict, total=False):
-    format: typing_extensions.Literal[
+class DataTypeField(typing.TypedDict, total=False):
+    format: typing.Literal[
         "integer", "floatPoint", "string", "map", "integerList", "floatList", "blob"
     ]
     name: str
     optional: bool
 
 @typing.type_check_only
-class Dataset(typing_extensions.TypedDict, total=False):
+class Dataset(typing.TypedDict, total=False):
     dataSourceId: str
     maxEndTimeNs: str
     minStartTimeNs: str
@@ -132,10 +130,10 @@ class Dataset(typing_extensions.TypedDict, total=False):
     point: _list[DataPoint]
 
 @typing.type_check_only
-class Device(typing_extensions.TypedDict, total=False):
+class Device(typing.TypedDict, total=False):
     manufacturer: str
     model: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "unknown",
         "phone",
         "tablet",
@@ -149,29 +147,29 @@ class Device(typing_extensions.TypedDict, total=False):
     version: str
 
 @typing.type_check_only
-class ListDataPointChangesResponse(typing_extensions.TypedDict, total=False):
+class ListDataPointChangesResponse(typing.TypedDict, total=False):
     dataSourceId: str
     deletedDataPoint: _list[DataPoint]
     insertedDataPoint: _list[DataPoint]
     nextPageToken: str
 
 @typing.type_check_only
-class ListDataSourcesResponse(typing_extensions.TypedDict, total=False):
+class ListDataSourcesResponse(typing.TypedDict, total=False):
     dataSource: _list[DataSource]
 
 @typing.type_check_only
-class ListSessionsResponse(typing_extensions.TypedDict, total=False):
+class ListSessionsResponse(typing.TypedDict, total=False):
     deletedSession: _list[Session]
     hasMoreData: bool
     nextPageToken: str
     session: _list[Session]
 
 @typing.type_check_only
-class MapValue(typing_extensions.TypedDict, total=False):
+class MapValue(typing.TypedDict, total=False):
     fpVal: float
 
 @typing.type_check_only
-class Session(typing_extensions.TypedDict, total=False):
+class Session(typing.TypedDict, total=False):
     activeTimeMillis: str
     activityType: int
     application: Application
@@ -183,13 +181,13 @@ class Session(typing_extensions.TypedDict, total=False):
     startTimeMillis: str
 
 @typing.type_check_only
-class Value(typing_extensions.TypedDict, total=False):
+class Value(typing.TypedDict, total=False):
     fpVal: float
     intVal: int
     mapVal: _list[ValueMapValEntry]
     stringVal: str
 
 @typing.type_check_only
-class ValueMapValEntry(typing_extensions.TypedDict, total=False):
+class ValueMapValEntry(typing.TypedDict, total=False):
     key: str
     value: MapValue

@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -218,7 +217,7 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     customer: str,
-                    breakdown: typing_extensions.Literal[
+                    breakdown: typing.Literal[
                         "CONTENT_TRANSFERS_BREAKDOWN_DIMENSION_UNSPECIFIED",
                         "USER",
                         "EVENT_DOMAIN",
@@ -226,7 +225,7 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
                     ]
                     | None = ...,
                     filter: str | None = ...,
-                    fixedTimeRange: typing_extensions.Literal[
+                    fixedTimeRange: typing.Literal[
                         "FIXED_TIME_RANGE_UNSPECIFIED",
                         "FIXED_TIME_RANGE_FOUR_HOURS",
                         "FIXED_TIME_RANGE_ONE_DAY",
@@ -234,7 +233,7 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
                         "FIXED_TIME_RANGE_FOUR_WEEKS",
                     ]
                     | None = ...,
-                    metric: typing_extensions.Literal[
+                    metric: typing.Literal[
                         "CONTENT_TRANSFERS_METRIC_UNSPECIFIED",
                         "CONTENT_TRANSFERS_METRIC_TOTAL_TRANSFERS",
                         "CONTENT_TRANSFERS_METRIC_TOTAL_UPLOADS",
@@ -271,14 +270,14 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     customer: str,
-                    breakdown: typing_extensions.Literal[
+                    breakdown: typing.Literal[
                         "URL_VISITS_BREAKDOWN_DIMENSION_UNSPECIFIED",
                         "USER",
                         "EVENT_DOMAIN",
                     ]
                     | None = ...,
                     filter: str | None = ...,
-                    fixedTimeRange: typing_extensions.Literal[
+                    fixedTimeRange: typing.Literal[
                         "FIXED_TIME_RANGE_UNSPECIFIED",
                         "FIXED_TIME_RANGE_FOUR_HOURS",
                         "FIXED_TIME_RANGE_ONE_DAY",
@@ -286,7 +285,7 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
                         "FIXED_TIME_RANGE_FOUR_WEEKS",
                     ]
                     | None = ...,
-                    metric: typing_extensions.Literal[
+                    metric: typing.Literal[
                         "URL_VISITS_METRIC_UNSPECIFIED",
                         "URL_VISITS_METRIC_TOTAL_SUSPICIOUS_URL_VISITS",
                         "URL_VISITS_METRIC_HIGH_RISK_URL_VISITS",
@@ -553,7 +552,7 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
                 *,
                 customer: str,
                 appId: str | None = ...,
-                appType: typing_extensions.Literal[
+                appType: typing.Literal[
                     "APP_TYPE_UNSPECIFIED",
                     "EXTENSION",
                     "APP",
@@ -582,7 +581,7 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
                 *,
                 customer: str,
                 appId: str | None = ...,
-                appType: typing_extensions.Literal[
+                appType: typing.Literal[
                     "APP_TYPE_UNSPECIFIED",
                     "EXTENSION",
                     "APP",

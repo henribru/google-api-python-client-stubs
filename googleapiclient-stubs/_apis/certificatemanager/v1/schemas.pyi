@@ -1,37 +1,33 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class AllowlistedCertificate(typing_extensions.TypedDict, total=False):
+class AllowlistedCertificate(typing.TypedDict, total=False):
     pemCertificate: str
 
 @typing.type_check_only
-class AuthorizationAttemptInfo(typing_extensions.TypedDict, total=False):
+class AuthorizationAttemptInfo(typing.TypedDict, total=False):
     attemptTime: str
     details: str
     domain: str
-    failureReason: typing_extensions.Literal[
+    failureReason: typing.Literal[
         "FAILURE_REASON_UNSPECIFIED", "CONFIG", "CAA", "RATE_LIMITED"
     ]
-    state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "AUTHORIZING", "AUTHORIZED", "FAILED"
-    ]
+    state: typing.Literal["STATE_UNSPECIFIED", "AUTHORIZING", "AUTHORIZED", "FAILED"]
     troubleshooting: Troubleshooting
 
 @typing.type_check_only
-class CNAME(typing_extensions.TypedDict, total=False):
+class CNAME(typing.TypedDict, total=False):
     expectedData: str
     name: str
     resolvedData: _list[str]
 
 @typing.type_check_only
-class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
+class CancelOperationRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Certificate(typing_extensions.TypedDict, total=False):
+class Certificate(typing.TypedDict, total=False):
     createTime: str
     description: str
     expireTime: str
@@ -41,148 +37,146 @@ class Certificate(typing_extensions.TypedDict, total=False):
     name: str
     pemCertificate: str
     sanDnsnames: _list[str]
-    scope: typing_extensions.Literal[
-        "DEFAULT", "EDGE_CACHE", "ALL_REGIONS", "CLIENT_AUTH"
-    ]
+    scope: typing.Literal["DEFAULT", "EDGE_CACHE", "ALL_REGIONS", "CLIENT_AUTH"]
     selfManaged: SelfManagedCertificate
+    tags: dict[str, typing.Any]
     updateTime: str
     usedBy: _list[UsedBy]
 
 @typing.type_check_only
-class CertificateAuthorityConfig(typing_extensions.TypedDict, total=False):
+class CertificateAuthorityConfig(typing.TypedDict, total=False):
     certificateAuthorityServiceConfig: CertificateAuthorityServiceConfig
 
 @typing.type_check_only
-class CertificateAuthorityServiceConfig(typing_extensions.TypedDict, total=False):
+class CertificateAuthorityServiceConfig(typing.TypedDict, total=False):
     caPool: str
 
 @typing.type_check_only
-class CertificateIssuanceConfig(typing_extensions.TypedDict, total=False):
+class CertificateIssuanceConfig(typing.TypedDict, total=False):
     certificateAuthorityConfig: CertificateAuthorityConfig
     createTime: str
     description: str
-    keyAlgorithm: typing_extensions.Literal[
-        "KEY_ALGORITHM_UNSPECIFIED", "RSA_2048", "ECDSA_P256"
-    ]
+    keyAlgorithm: typing.Literal["KEY_ALGORITHM_UNSPECIFIED", "RSA_2048", "ECDSA_P256"]
     labels: dict[str, typing.Any]
     lifetime: str
     name: str
     rotationWindowPercentage: int
+    tags: dict[str, typing.Any]
     updateTime: str
 
 @typing.type_check_only
-class CertificateMap(typing_extensions.TypedDict, total=False):
+class CertificateMap(typing.TypedDict, total=False):
     createTime: str
     description: str
     gclbTargets: _list[GclbTarget]
     labels: dict[str, typing.Any]
     name: str
+    tags: dict[str, typing.Any]
     updateTime: str
 
 @typing.type_check_only
-class CertificateMapEntry(typing_extensions.TypedDict, total=False):
+class CertificateMapEntry(typing.TypedDict, total=False):
     certificates: _list[str]
     createTime: str
     description: str
     hostname: str
     labels: dict[str, typing.Any]
-    matcher: typing_extensions.Literal["MATCHER_UNSPECIFIED", "PRIMARY"]
+    matcher: typing.Literal["MATCHER_UNSPECIFIED", "PRIMARY"]
     name: str
-    state: typing_extensions.Literal["SERVING_STATE_UNSPECIFIED", "ACTIVE", "PENDING"]
+    state: typing.Literal["SERVING_STATE_UNSPECIFIED", "ACTIVE", "PENDING"]
     updateTime: str
 
 @typing.type_check_only
-class DnsAuthorization(typing_extensions.TypedDict, total=False):
+class DnsAuthorization(typing.TypedDict, total=False):
     createTime: str
     description: str
     dnsResourceRecord: DnsResourceRecord
     domain: str
     labels: dict[str, typing.Any]
     name: str
-    type: typing_extensions.Literal[
-        "TYPE_UNSPECIFIED", "FIXED_RECORD", "PER_PROJECT_RECORD"
-    ]
+    tags: dict[str, typing.Any]
+    type: typing.Literal["TYPE_UNSPECIFIED", "FIXED_RECORD", "PER_PROJECT_RECORD"]
     updateTime: str
 
 @typing.type_check_only
-class DnsResourceRecord(typing_extensions.TypedDict, total=False):
+class DnsResourceRecord(typing.TypedDict, total=False):
     data: str
     name: str
     type: str
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class GclbTarget(typing_extensions.TypedDict, total=False):
+class GclbTarget(typing.TypedDict, total=False):
     ipConfigs: _list[IpConfig]
     targetHttpsProxy: str
     targetSslProxy: str
 
 @typing.type_check_only
-class IPs(typing_extensions.TypedDict, total=False):
+class IPs(typing.TypedDict, total=False):
     resolved: _list[str]
     serving: _list[str]
     servingOnAltPorts: _list[str]
 
 @typing.type_check_only
-class IntermediateCA(typing_extensions.TypedDict, total=False):
+class IntermediateCA(typing.TypedDict, total=False):
     pemCertificate: str
 
 @typing.type_check_only
-class IpConfig(typing_extensions.TypedDict, total=False):
+class IpConfig(typing.TypedDict, total=False):
     ipAddress: str
     ports: _list[int]
 
 @typing.type_check_only
-class ListCertificateIssuanceConfigsResponse(typing_extensions.TypedDict, total=False):
+class ListCertificateIssuanceConfigsResponse(typing.TypedDict, total=False):
     certificateIssuanceConfigs: _list[CertificateIssuanceConfig]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListCertificateMapEntriesResponse(typing_extensions.TypedDict, total=False):
+class ListCertificateMapEntriesResponse(typing.TypedDict, total=False):
     certificateMapEntries: _list[CertificateMapEntry]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListCertificateMapsResponse(typing_extensions.TypedDict, total=False):
+class ListCertificateMapsResponse(typing.TypedDict, total=False):
     certificateMaps: _list[CertificateMap]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListCertificatesResponse(typing_extensions.TypedDict, total=False):
+class ListCertificatesResponse(typing.TypedDict, total=False):
     certificates: _list[Certificate]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListDnsAuthorizationsResponse(typing_extensions.TypedDict, total=False):
+class ListDnsAuthorizationsResponse(typing.TypedDict, total=False):
     dnsAuthorizations: _list[DnsAuthorization]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListLocationsResponse(typing_extensions.TypedDict, total=False):
+class ListLocationsResponse(typing.TypedDict, total=False):
     locations: _list[Location]
     nextPageToken: str
 
 @typing.type_check_only
-class ListOperationsResponse(typing_extensions.TypedDict, total=False):
+class ListOperationsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListTrustConfigsResponse(typing_extensions.TypedDict, total=False):
+class ListTrustConfigsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     trustConfigs: _list[TrustConfig]
     unreachable: _list[str]
 
 @typing.type_check_only
-class Location(typing_extensions.TypedDict, total=False):
+class Location(typing.TypedDict, total=False):
     displayName: str
     labels: dict[str, typing.Any]
     locationId: str
@@ -190,26 +184,22 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class ManagedCertificate(typing_extensions.TypedDict, total=False):
+class ManagedCertificate(typing.TypedDict, total=False):
     authorizationAttemptInfo: _list[AuthorizationAttemptInfo]
     dnsAuthorizations: _list[str]
     domains: _list[str]
     issuanceConfig: str
     provisioningIssue: ProvisioningIssue
-    state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "PROVISIONING", "FAILED", "ACTIVE"
-    ]
+    state: typing.Literal["STATE_UNSPECIFIED", "PROVISIONING", "FAILED", "ACTIVE"]
 
 @typing.type_check_only
-class ManagedIdentityCertificate(typing_extensions.TypedDict, total=False):
+class ManagedIdentityCertificate(typing.TypedDict, total=False):
     identity: str
     provisioningIssue: ProvisioningIssue
-    state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "PROVISIONING", "FAILED", "ACTIVE"
-    ]
+    state: typing.Literal["STATE_UNSPECIFIED", "PROVISIONING", "FAILED", "ACTIVE"]
 
 @typing.type_check_only
-class Operation(typing_extensions.TypedDict, total=False):
+class Operation(typing.TypedDict, total=False):
     done: bool
     error: Status
     metadata: dict[str, typing.Any]
@@ -217,7 +207,7 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class OperationMetadata(typing_extensions.TypedDict, total=False):
+class OperationMetadata(typing.TypedDict, total=False):
     apiVersion: str
     createTime: str
     endTime: str
@@ -227,29 +217,27 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
-class ProvisioningIssue(typing_extensions.TypedDict, total=False):
+class ProvisioningIssue(typing.TypedDict, total=False):
     details: str
-    reason: typing_extensions.Literal[
-        "REASON_UNSPECIFIED", "AUTHORIZATION_ISSUE", "RATE_LIMITED"
-    ]
+    reason: typing.Literal["REASON_UNSPECIFIED", "AUTHORIZATION_ISSUE", "RATE_LIMITED"]
 
 @typing.type_check_only
-class SelfManagedCertificate(typing_extensions.TypedDict, total=False):
+class SelfManagedCertificate(typing.TypedDict, total=False):
     pemCertificate: str
     pemPrivateKey: str
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class Troubleshooting(typing_extensions.TypedDict, total=False):
+class Troubleshooting(typing.TypedDict, total=False):
     cname: CNAME
     ips: IPs
     issues: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "ISSUE_UNSPECIFIED",
             "CNAME_MISMATCH",
             "RESOLVED_TO_NOT_SERVING",
@@ -260,11 +248,11 @@ class Troubleshooting(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class TrustAnchor(typing_extensions.TypedDict, total=False):
+class TrustAnchor(typing.TypedDict, total=False):
     pemCertificate: str
 
 @typing.type_check_only
-class TrustConfig(typing_extensions.TypedDict, total=False):
+class TrustConfig(typing.TypedDict, total=False):
     allowlistedCertificates: _list[AllowlistedCertificate]
     createTime: str
     description: str
@@ -272,14 +260,15 @@ class TrustConfig(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     name: str
     spiffeTrustStores: dict[str, typing.Any]
+    tags: dict[str, typing.Any]
     trustStores: _list[TrustStore]
     updateTime: str
 
 @typing.type_check_only
-class TrustStore(typing_extensions.TypedDict, total=False):
+class TrustStore(typing.TypedDict, total=False):
     intermediateCas: _list[IntermediateCA]
     trustAnchors: _list[TrustAnchor]
 
 @typing.type_check_only
-class UsedBy(typing_extensions.TypedDict, total=False):
+class UsedBy(typing.TypedDict, total=False):
     name: str

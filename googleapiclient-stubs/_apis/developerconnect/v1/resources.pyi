@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -167,9 +166,7 @@ class DeveloperConnectResource(googleapiclient.discovery.Resource):
                         gitRepositoryLink: str,
                         pageSize: int | None = ...,
                         pageToken: str | None = ...,
-                        refType: typing_extensions.Literal[
-                            "REF_TYPE_UNSPECIFIED", "TAG", "BRANCH"
-                        ]
+                        refType: typing.Literal["REF_TYPE_UNSPECIFIED", "TAG", "BRANCH"]
                         | None = ...,
                         **kwargs: typing.Any,
                     ) -> FetchGitRefsResponseHttpRequest: ...

@@ -1,14 +1,12 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class LicenseAssignment(typing_extensions.TypedDict, total=False):
+class LicenseAssignment(typing.TypedDict, total=False):
     etags: str
     kind: str
     productId: str
@@ -19,11 +17,11 @@ class LicenseAssignment(typing_extensions.TypedDict, total=False):
     userId: str
 
 @typing.type_check_only
-class LicenseAssignmentInsert(typing_extensions.TypedDict, total=False):
+class LicenseAssignmentInsert(typing.TypedDict, total=False):
     userId: str
 
 @typing.type_check_only
-class LicenseAssignmentList(typing_extensions.TypedDict, total=False):
+class LicenseAssignmentList(typing.TypedDict, total=False):
     etag: str
     items: _list[LicenseAssignment]
     kind: str

@@ -1,23 +1,21 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class AnalyticsInfo(typing_extensions.TypedDict, total=False):
+class AnalyticsInfo(typing.TypedDict, total=False):
     googlePlayAnalytics: GooglePlayAnalytics
     itunesConnectAnalytics: ITunesConnectAnalytics
 
 @typing.type_check_only
-class AndroidInfo(typing_extensions.TypedDict, total=False):
+class AndroidInfo(typing.TypedDict, total=False):
     androidFallbackLink: str
     androidLink: str
     androidMinPackageVersionCode: str
     androidPackageName: str
 
 @typing.type_check_only
-class CreateManagedShortLinkRequest(typing_extensions.TypedDict, total=False):
+class CreateManagedShortLinkRequest(typing.TypedDict, total=False):
     dynamicLinkInfo: DynamicLinkInfo
     longDynamicLink: str
     name: str
@@ -25,30 +23,30 @@ class CreateManagedShortLinkRequest(typing_extensions.TypedDict, total=False):
     suffix: Suffix
 
 @typing.type_check_only
-class CreateManagedShortLinkResponse(typing_extensions.TypedDict, total=False):
+class CreateManagedShortLinkResponse(typing.TypedDict, total=False):
     managedShortLink: ManagedShortLink
     previewLink: str
     warning: _list[DynamicLinkWarning]
 
 @typing.type_check_only
-class CreateShortDynamicLinkRequest(typing_extensions.TypedDict, total=False):
+class CreateShortDynamicLinkRequest(typing.TypedDict, total=False):
     dynamicLinkInfo: DynamicLinkInfo
     longDynamicLink: str
     sdkVersion: str
     suffix: Suffix
 
 @typing.type_check_only
-class CreateShortDynamicLinkResponse(typing_extensions.TypedDict, total=False):
+class CreateShortDynamicLinkResponse(typing.TypedDict, total=False):
     previewLink: str
     shortLink: str
     warning: _list[DynamicLinkWarning]
 
 @typing.type_check_only
-class DesktopInfo(typing_extensions.TypedDict, total=False):
+class DesktopInfo(typing.TypedDict, total=False):
     desktopFallbackLink: str
 
 @typing.type_check_only
-class DeviceInfo(typing_extensions.TypedDict, total=False):
+class DeviceInfo(typing.TypedDict, total=False):
     deviceModelName: str
     languageCode: str
     languageCodeFromWebview: str
@@ -58,9 +56,9 @@ class DeviceInfo(typing_extensions.TypedDict, total=False):
     timezone: str
 
 @typing.type_check_only
-class DynamicLinkEventStat(typing_extensions.TypedDict, total=False):
+class DynamicLinkEventStat(typing.TypedDict, total=False):
     count: str
-    event: typing_extensions.Literal[
+    event: typing.Literal[
         "DYNAMIC_LINK_EVENT_UNSPECIFIED",
         "CLICK",
         "REDIRECT",
@@ -68,12 +66,12 @@ class DynamicLinkEventStat(typing_extensions.TypedDict, total=False):
         "APP_FIRST_OPEN",
         "APP_RE_OPEN",
     ]
-    platform: typing_extensions.Literal[
+    platform: typing.Literal[
         "DYNAMIC_LINK_PLATFORM_UNSPECIFIED", "ANDROID", "IOS", "DESKTOP", "OTHER"
     ]
 
 @typing.type_check_only
-class DynamicLinkInfo(typing_extensions.TypedDict, total=False):
+class DynamicLinkInfo(typing.TypedDict, total=False):
     analyticsInfo: AnalyticsInfo
     androidInfo: AndroidInfo
     desktopInfo: DesktopInfo
@@ -85,13 +83,13 @@ class DynamicLinkInfo(typing_extensions.TypedDict, total=False):
     socialMetaTagInfo: SocialMetaTagInfo
 
 @typing.type_check_only
-class DynamicLinkStats(typing_extensions.TypedDict, total=False):
+class DynamicLinkStats(typing.TypedDict, total=False):
     linkEventStats: _list[DynamicLinkEventStat]
     warnings: _list[DynamicLinkWarning]
 
 @typing.type_check_only
-class DynamicLinkWarning(typing_extensions.TypedDict, total=False):
-    warningCode: typing_extensions.Literal[
+class DynamicLinkWarning(typing.TypedDict, total=False):
+    warningCode: typing.Literal[
         "CODE_UNSPECIFIED",
         "NOT_IN_PROJECT_ANDROID_PACKAGE_NAME",
         "NOT_INTEGER_ANDROID_PACKAGE_MIN_VERSION",
@@ -127,12 +125,12 @@ class DynamicLinkWarning(typing_extensions.TypedDict, total=False):
     warningMessage: str
 
 @typing.type_check_only
-class GetIosPostInstallAttributionRequest(typing_extensions.TypedDict, total=False):
+class GetIosPostInstallAttributionRequest(typing.TypedDict, total=False):
     appInstallationTime: str
     bundleId: str
     device: DeviceInfo
     iosVersion: str
-    retrievalMethod: typing_extensions.Literal[
+    retrievalMethod: typing.Literal[
         "UNKNOWN_PAYLOAD_RETRIEVAL_METHOD",
         "IMPLICIT_WEAK_MATCH",
         "EXPLICIT_WEAK_MATCH",
@@ -140,14 +138,12 @@ class GetIosPostInstallAttributionRequest(typing_extensions.TypedDict, total=Fal
     ]
     sdkVersion: str
     uniqueMatchLinkToCheck: str
-    visualStyle: typing_extensions.Literal[
-        "UNKNOWN_VISUAL_STYLE", "DEFAULT_STYLE", "CUSTOM_STYLE"
-    ]
+    visualStyle: typing.Literal["UNKNOWN_VISUAL_STYLE", "DEFAULT_STYLE", "CUSTOM_STYLE"]
 
 @typing.type_check_only
-class GetIosPostInstallAttributionResponse(typing_extensions.TypedDict, total=False):
+class GetIosPostInstallAttributionResponse(typing.TypedDict, total=False):
     appMinimumVersion: str
-    attributionConfidence: typing_extensions.Literal[
+    attributionConfidence: typing.Literal[
         "UNKNOWN_ATTRIBUTION_CONFIDENCE", "WEAK", "DEFAULT", "UNIQUE"
     ]
     deepLink: str
@@ -156,7 +152,7 @@ class GetIosPostInstallAttributionResponse(typing_extensions.TypedDict, total=Fa
     invitationId: str
     isStrongMatchExecutable: bool
     matchMessage: str
-    requestIpVersion: typing_extensions.Literal["UNKNOWN_IP_VERSION", "IP_V4", "IP_V6"]
+    requestIpVersion: typing.Literal["UNKNOWN_IP_VERSION", "IP_V4", "IP_V6"]
     requestedLink: str
     resolvedLink: str
     utmCampaign: str
@@ -166,13 +162,13 @@ class GetIosPostInstallAttributionResponse(typing_extensions.TypedDict, total=Fa
     utmTerm: str
 
 @typing.type_check_only
-class GetIosReopenAttributionRequest(typing_extensions.TypedDict, total=False):
+class GetIosReopenAttributionRequest(typing.TypedDict, total=False):
     bundleId: str
     requestedLink: str
     sdkVersion: str
 
 @typing.type_check_only
-class GetIosReopenAttributionResponse(typing_extensions.TypedDict, total=False):
+class GetIosReopenAttributionResponse(typing.TypedDict, total=False):
     deepLink: str
     invitationId: str
     iosMinAppVersion: str
@@ -185,7 +181,7 @@ class GetIosReopenAttributionResponse(typing_extensions.TypedDict, total=False):
     warning: _list[DynamicLinkWarning]
 
 @typing.type_check_only
-class GooglePlayAnalytics(typing_extensions.TypedDict, total=False):
+class GooglePlayAnalytics(typing.TypedDict, total=False):
     gclid: str
     utmCampaign: str
     utmContent: str
@@ -194,14 +190,14 @@ class GooglePlayAnalytics(typing_extensions.TypedDict, total=False):
     utmTerm: str
 
 @typing.type_check_only
-class ITunesConnectAnalytics(typing_extensions.TypedDict, total=False):
+class ITunesConnectAnalytics(typing.TypedDict, total=False):
     at: str
     ct: str
     mt: str
     pt: str
 
 @typing.type_check_only
-class IosInfo(typing_extensions.TypedDict, total=False):
+class IosInfo(typing.TypedDict, total=False):
     iosAppStoreId: str
     iosBundleId: str
     iosCustomScheme: str
@@ -211,29 +207,27 @@ class IosInfo(typing_extensions.TypedDict, total=False):
     iosMinimumVersion: str
 
 @typing.type_check_only
-class ManagedShortLink(typing_extensions.TypedDict, total=False):
+class ManagedShortLink(typing.TypedDict, total=False):
     creationTime: str
-    flaggedAttribute: _list[typing_extensions.Literal["UNSPECIFIED_ATTRIBUTE", "SPAM"]]
+    flaggedAttribute: _list[typing.Literal["UNSPECIFIED_ATTRIBUTE", "SPAM"]]
     info: DynamicLinkInfo
     link: str
     linkName: str
-    visibility: typing_extensions.Literal[
+    visibility: typing.Literal[
         "UNSPECIFIED_VISIBILITY", "UNARCHIVED", "ARCHIVED", "NEVER_SHOWN"
     ]
 
 @typing.type_check_only
-class NavigationInfo(typing_extensions.TypedDict, total=False):
+class NavigationInfo(typing.TypedDict, total=False):
     enableForcedRedirect: bool
 
 @typing.type_check_only
-class SocialMetaTagInfo(typing_extensions.TypedDict, total=False):
+class SocialMetaTagInfo(typing.TypedDict, total=False):
     socialDescription: str
     socialImageLink: str
     socialTitle: str
 
 @typing.type_check_only
-class Suffix(typing_extensions.TypedDict, total=False):
+class Suffix(typing.TypedDict, total=False):
     customSuffix: str
-    option: typing_extensions.Literal[
-        "OPTION_UNSPECIFIED", "UNGUESSABLE", "SHORT", "CUSTOM"
-    ]
+    option: typing.Literal["OPTION_UNSPECIFIED", "UNGUESSABLE", "SHORT", "CUSTOM"]

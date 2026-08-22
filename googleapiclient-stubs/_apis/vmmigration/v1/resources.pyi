@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -403,7 +402,7 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        view: typing_extensions.Literal[
+                        view: typing.Literal[
                             "MIGRATING_VM_VIEW_UNSPECIFIED",
                             "MIGRATING_VM_VIEW_BASIC",
                             "MIGRATING_VM_VIEW_FULL",
@@ -419,7 +418,7 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                         orderBy: str | None = ...,
                         pageSize: int | None = ...,
                         pageToken: str | None = ...,
-                        view: typing_extensions.Literal[
+                        view: typing.Literal[
                             "MIGRATING_VM_VIEW_UNSPECIFIED",
                             "MIGRATING_VM_VIEW_BASIC",
                             "MIGRATING_VM_VIEW_FULL",
@@ -488,7 +487,7 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        view: typing_extensions.Literal[
+                        view: typing.Literal[
                             "UTILIZATION_REPORT_VIEW_UNSPECIFIED", "BASIC", "FULL"
                         ]
                         | None = ...,
@@ -502,7 +501,7 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                         orderBy: str | None = ...,
                         pageSize: int | None = ...,
                         pageToken: str | None = ...,
-                        view: typing_extensions.Literal[
+                        view: typing.Literal[
                             "UTILIZATION_REPORT_VIEW_UNSPECIFIED", "BASIC", "FULL"
                         ]
                         | None = ...,
@@ -551,7 +550,7 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                     forceRefresh: bool | None = ...,
                     pageSize: int | None = ...,
                     pageToken: str | None = ...,
-                    type: typing_extensions.Literal[
+                    type: typing.Literal[
                         "STORAGE_TYPE_UNSPECIFIED", "DISKS", "SNAPSHOTS"
                     ]
                     | None = ...,

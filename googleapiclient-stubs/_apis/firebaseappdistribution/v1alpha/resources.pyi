@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -70,7 +69,7 @@ class FirebaseAppDistributionResource(googleapiclient.discovery.Resource):
             self,
             *,
             mobilesdkAppId: str,
-            appView: typing_extensions.Literal["APP_VIEW_UNSPECIFIED", "BASIC", "FULL"]
+            appView: typing.Literal["APP_VIEW_UNSPECIFIED", "BASIC", "FULL"]
             | None = ...,
             **kwargs: typing.Any,
         ) -> GoogleFirebaseAppdistroV1alphaAppHttpRequest: ...
@@ -110,7 +109,7 @@ class FirebaseAppDistributionResource(googleapiclient.discovery.Resource):
                         parent: str,
                         pageSize: int | None = ...,
                         pageToken: str | None = ...,
-                        view: typing_extensions.Literal[
+                        view: typing.Literal[
                             "RELEASE_TEST_VIEW_UNSPECIFIED",
                             "RELEASE_TEST_VIEW_BASIC",
                             "RELEASE_TEST_VIEW_FULL",

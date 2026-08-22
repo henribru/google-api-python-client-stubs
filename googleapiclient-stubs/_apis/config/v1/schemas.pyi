@@ -1,55 +1,53 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class ApplyResults(typing_extensions.TypedDict, total=False):
+class ApplyResults(typing.TypedDict, total=False):
     artifacts: str
     content: str
     outputs: dict[str, typing.Any]
 
 @typing.type_check_only
-class AuditConfig(typing_extensions.TypedDict, total=False):
+class AuditConfig(typing.TypedDict, total=False):
     auditLogConfigs: _list[AuditLogConfig]
     service: str
 
 @typing.type_check_only
-class AuditLogConfig(typing_extensions.TypedDict, total=False):
+class AuditLogConfig(typing.TypedDict, total=False):
     exemptedMembers: _list[str]
-    logType: typing_extensions.Literal[
+    logType: typing.Literal[
         "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
     ]
 
 @typing.type_check_only
-class AutoMigrationConfig(typing_extensions.TypedDict, total=False):
+class AutoMigrationConfig(typing.TypedDict, total=False):
     autoMigrationEnabled: bool
     name: str
     updateTime: str
 
 @typing.type_check_only
-class Binding(typing_extensions.TypedDict, total=False):
+class Binding(typing.TypedDict, total=False):
     condition: Expr
     members: _list[str]
     role: str
 
 @typing.type_check_only
-class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
+class CancelOperationRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class DeleteStatefileRequest(typing_extensions.TypedDict, total=False):
+class DeleteStatefileRequest(typing.TypedDict, total=False):
     lockId: str
 
 @typing.type_check_only
-class Deployment(typing_extensions.TypedDict, total=False):
+class Deployment(typing.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     artifactsGcsBucket: str
     createTime: str
     deleteBuild: str
     deleteLogs: str
     deleteResults: ApplyResults
-    errorCode: typing_extensions.Literal[
+    errorCode: typing.Literal[
         "ERROR_CODE_UNSPECIFIED",
         "REVISION_FAILED",
         "CLOUD_BUILD_PERMISSION_DENIED",
@@ -63,7 +61,7 @@ class Deployment(typing_extensions.TypedDict, total=False):
     importExistingResources: bool
     labels: dict[str, typing.Any]
     latestRevision: str
-    lockState: typing_extensions.Literal[
+    lockState: typing.Literal[
         "LOCK_STATE_UNSPECIFIED",
         "LOCKED",
         "UNLOCKED",
@@ -74,11 +72,11 @@ class Deployment(typing_extensions.TypedDict, total=False):
     ]
     name: str
     providerConfig: ProviderConfig
-    quotaValidation: typing_extensions.Literal[
+    quotaValidation: typing.Literal[
         "QUOTA_VALIDATION_UNSPECIFIED", "ENABLED", "ENFORCED"
     ]
     serviceAccount: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "CREATING",
         "ACTIVE",
@@ -97,14 +95,14 @@ class Deployment(typing_extensions.TypedDict, total=False):
     workerPool: str
 
 @typing.type_check_only
-class DeploymentGroup(typing_extensions.TypedDict, total=False):
+class DeploymentGroup(typing.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     createTime: str
     deploymentUnits: _list[DeploymentUnit]
     labels: dict[str, typing.Any]
     name: str
     provisioningError: Status
-    provisioningState: typing_extensions.Literal[
+    provisioningState: typing.Literal[
         "PROVISIONING_STATE_UNSPECIFIED",
         "PROVISIONING",
         "PROVISIONED",
@@ -114,7 +112,7 @@ class DeploymentGroup(typing_extensions.TypedDict, total=False):
         "FAILED_TO_DEPROVISION",
     ]
     provisioningStateDescription: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "CREATING",
         "ACTIVE",
@@ -128,18 +126,19 @@ class DeploymentGroup(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class DeploymentGroupRevision(typing_extensions.TypedDict, total=False):
+class DeploymentGroupRevision(typing.TypedDict, total=False):
     alternativeIds: _list[str]
     createTime: str
     name: str
     snapshot: DeploymentGroup
 
 @typing.type_check_only
-class DeploymentOperationMetadata(typing_extensions.TypedDict, total=False):
+class DeploymentOperationMetadata(typing.TypedDict, total=False):
     applyResults: ApplyResults
+    applyResultsAvailable: bool
     build: str
     logs: str
-    step: typing_extensions.Literal[
+    step: typing.Literal[
         "DEPLOYMENT_STEP_UNSPECIFIED",
         "PREPARING_STORAGE_BUCKET",
         "DOWNLOADING_BLUEPRINT",
@@ -156,11 +155,11 @@ class DeploymentOperationMetadata(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class DeploymentOperationSummary(typing_extensions.TypedDict, total=False):
+class DeploymentOperationSummary(typing.TypedDict, total=False):
     artifacts: str
     build: str
     content: str
-    deploymentStep: typing_extensions.Literal[
+    deploymentStep: typing.Literal[
         "DEPLOYMENT_STEP_UNSPECIFIED",
         "PREPARING_STORAGE_BUCKET",
         "DOWNLOADING_BLUEPRINT",
@@ -178,27 +177,27 @@ class DeploymentOperationSummary(typing_extensions.TypedDict, total=False):
     logs: str
 
 @typing.type_check_only
-class DeploymentSource(typing_extensions.TypedDict, total=False):
+class DeploymentSource(typing.TypedDict, total=False):
     deployment: str
     outputName: str
 
 @typing.type_check_only
-class DeploymentSpec(typing_extensions.TypedDict, total=False):
+class DeploymentSpec(typing.TypedDict, total=False):
     deployment: Deployment
     deploymentId: str
 
 @typing.type_check_only
-class DeploymentUnit(typing_extensions.TypedDict, total=False):
+class DeploymentUnit(typing.TypedDict, total=False):
     dependencies: _list[str]
     deployment: str
     id: str
 
 @typing.type_check_only
-class DeploymentUnitProgress(typing_extensions.TypedDict, total=False):
+class DeploymentUnitProgress(typing.TypedDict, total=False):
     deployment: str
     deploymentOperationSummary: DeploymentOperationSummary
     error: Status
-    intent: typing_extensions.Literal[
+    intent: typing.Literal[
         "INTENT_UNSPECIFIED",
         "CREATE_DEPLOYMENT",
         "UPDATE_DEPLOYMENT",
@@ -207,7 +206,7 @@ class DeploymentUnitProgress(typing_extensions.TypedDict, total=False):
         "CLEAN_UP",
         "UNCHANGED",
     ]
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "QUEUED",
         "APPLYING_DEPLOYMENT",
@@ -222,117 +221,115 @@ class DeploymentUnitProgress(typing_extensions.TypedDict, total=False):
     unitId: str
 
 @typing.type_check_only
-class DeprovisionDeploymentGroupRequest(typing_extensions.TypedDict, total=False):
-    deletePolicy: typing_extensions.Literal[
-        "DELETE_POLICY_UNSPECIFIED", "DELETE", "ABANDON"
-    ]
+class DeprovisionDeploymentGroupRequest(typing.TypedDict, total=False):
+    deletePolicy: typing.Literal["DELETE_POLICY_UNSPECIFIED", "DELETE", "ABANDON"]
     force: bool
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ExportDeploymentStatefileRequest(typing_extensions.TypedDict, total=False):
+class ExportDeploymentStatefileRequest(typing.TypedDict, total=False):
     draft: bool
 
 @typing.type_check_only
-class ExportPreviewResultRequest(typing_extensions.TypedDict, total=False): ...
+class ExportPreviewResultRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ExportPreviewResultResponse(typing_extensions.TypedDict, total=False):
+class ExportPreviewResultResponse(typing.TypedDict, total=False):
     result: PreviewResult
 
 @typing.type_check_only
-class ExportRevisionStatefileRequest(typing_extensions.TypedDict, total=False): ...
+class ExportRevisionStatefileRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Expr(typing_extensions.TypedDict, total=False):
+class Expr(typing.TypedDict, total=False):
     description: str
     expression: str
     location: str
     title: str
 
 @typing.type_check_only
-class ExternalValueSource(typing_extensions.TypedDict, total=False):
+class ExternalValueSource(typing.TypedDict, total=False):
     deploymentSource: DeploymentSource
 
 @typing.type_check_only
-class GitSource(typing_extensions.TypedDict, total=False):
+class GitSource(typing.TypedDict, total=False):
     directory: str
     ref: str
     repo: str
 
 @typing.type_check_only
-class ImportStatefileRequest(typing_extensions.TypedDict, total=False):
+class ImportStatefileRequest(typing.TypedDict, total=False):
     lockId: str
 
 @typing.type_check_only
-class ListDeploymentGroupRevisionsResponse(typing_extensions.TypedDict, total=False):
+class ListDeploymentGroupRevisionsResponse(typing.TypedDict, total=False):
     deploymentGroupRevisions: _list[DeploymentGroupRevision]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListDeploymentGroupsResponse(typing_extensions.TypedDict, total=False):
+class ListDeploymentGroupsResponse(typing.TypedDict, total=False):
     deploymentGroups: _list[DeploymentGroup]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListDeploymentsResponse(typing_extensions.TypedDict, total=False):
+class ListDeploymentsResponse(typing.TypedDict, total=False):
     deployments: _list[Deployment]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListLocationsResponse(typing_extensions.TypedDict, total=False):
+class ListLocationsResponse(typing.TypedDict, total=False):
     locations: _list[Location]
     nextPageToken: str
 
 @typing.type_check_only
-class ListOperationsResponse(typing_extensions.TypedDict, total=False):
+class ListOperationsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListPreviewsResponse(typing_extensions.TypedDict, total=False):
+class ListPreviewsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     previews: _list[Preview]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListResourceChangesResponse(typing_extensions.TypedDict, total=False):
+class ListResourceChangesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     resourceChanges: _list[ResourceChange]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListResourceDriftsResponse(typing_extensions.TypedDict, total=False):
+class ListResourceDriftsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     resourceDrifts: _list[ResourceDrift]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListResourcesResponse(typing_extensions.TypedDict, total=False):
+class ListResourcesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     resources: _list[Resource]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListRevisionsResponse(typing_extensions.TypedDict, total=False):
+class ListRevisionsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     revisions: _list[Revision]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListTerraformVersionsResponse(typing_extensions.TypedDict, total=False):
+class ListTerraformVersionsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     terraformVersions: _list[TerraformVersion]
     unreachable: _list[str]
 
 @typing.type_check_only
-class Location(typing_extensions.TypedDict, total=False):
+class Location(typing.TypedDict, total=False):
     displayName: str
     labels: dict[str, typing.Any]
     locationId: str
@@ -340,10 +337,10 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class LockDeploymentRequest(typing_extensions.TypedDict, total=False): ...
+class LockDeploymentRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class LockInfo(typing_extensions.TypedDict, total=False):
+class LockInfo(typing.TypedDict, total=False):
     createTime: str
     info: str
     lockId: str
@@ -352,7 +349,7 @@ class LockInfo(typing_extensions.TypedDict, total=False):
     who: str
 
 @typing.type_check_only
-class Operation(typing_extensions.TypedDict, total=False):
+class Operation(typing.TypedDict, total=False):
     done: bool
     error: Status
     metadata: dict[str, typing.Any]
@@ -360,7 +357,7 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class OperationMetadata(typing_extensions.TypedDict, total=False):
+class OperationMetadata(typing.TypedDict, total=False):
     apiVersion: str
     createTime: str
     deploymentMetadata: DeploymentOperationMetadata
@@ -373,20 +370,20 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
-class Policy(typing_extensions.TypedDict, total=False):
+class Policy(typing.TypedDict, total=False):
     auditConfigs: _list[AuditConfig]
     bindings: _list[Binding]
     etag: str
     version: int
 
 @typing.type_check_only
-class Preview(typing_extensions.TypedDict, total=False):
+class Preview(typing.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     artifactsGcsBucket: str
     build: str
     createTime: str
     deployment: str
-    errorCode: typing_extensions.Literal[
+    errorCode: typing.Literal[
         "ERROR_CODE_UNSPECIFIED",
         "CLOUD_BUILD_PERMISSION_DENIED",
         "BUCKET_CREATION_PERMISSION_DENIED",
@@ -402,12 +399,10 @@ class Preview(typing_extensions.TypedDict, total=False):
     logs: str
     name: str
     previewArtifacts: PreviewArtifacts
-    previewMode: typing_extensions.Literal[
-        "PREVIEW_MODE_UNSPECIFIED", "DEFAULT", "DELETE"
-    ]
+    previewMode: typing.Literal["PREVIEW_MODE_UNSPECIFIED", "DEFAULT", "DELETE"]
     providerConfig: ProviderConfig
     serviceAccount: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "CREATING",
         "SUCCEEDED",
@@ -424,16 +419,16 @@ class Preview(typing_extensions.TypedDict, total=False):
     workerPool: str
 
 @typing.type_check_only
-class PreviewArtifacts(typing_extensions.TypedDict, total=False):
+class PreviewArtifacts(typing.TypedDict, total=False):
     artifacts: str
     content: str
 
 @typing.type_check_only
-class PreviewOperationMetadata(typing_extensions.TypedDict, total=False):
+class PreviewOperationMetadata(typing.TypedDict, total=False):
     build: str
     logs: str
     previewArtifacts: PreviewArtifacts
-    step: typing_extensions.Literal[
+    step: typing.Literal[
         "PREVIEW_STEP_UNSPECIFIED",
         "PREPARING_STORAGE_BUCKET",
         "DOWNLOADING_BLUEPRINT",
@@ -448,12 +443,12 @@ class PreviewOperationMetadata(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class PreviewResult(typing_extensions.TypedDict, total=False):
+class PreviewResult(typing.TypedDict, total=False):
     binarySignedUri: str
     jsonSignedUri: str
 
 @typing.type_check_only
-class PropertyChange(typing_extensions.TypedDict, total=False):
+class PropertyChange(typing.TypedDict, total=False):
     after: typing.Any
     afterSensitivePaths: _list[str]
     before: typing.Any
@@ -461,7 +456,7 @@ class PropertyChange(typing_extensions.TypedDict, total=False):
     path: str
 
 @typing.type_check_only
-class PropertyDrift(typing_extensions.TypedDict, total=False):
+class PropertyDrift(typing.TypedDict, total=False):
     after: typing.Any
     afterSensitivePaths: _list[str]
     before: typing.Any
@@ -469,17 +464,13 @@ class PropertyDrift(typing_extensions.TypedDict, total=False):
     path: str
 
 @typing.type_check_only
-class ProviderConfig(typing_extensions.TypedDict, total=False):
-    sourceType: typing_extensions.Literal[
-        "PROVIDER_SOURCE_UNSPECIFIED", "SERVICE_MAINTAINED"
-    ]
+class ProviderConfig(typing.TypedDict, total=False):
+    sourceType: typing.Literal["PROVIDER_SOURCE_UNSPECIFIED", "SERVICE_MAINTAINED"]
 
 @typing.type_check_only
-class ProvisionDeploymentGroupOperationMetadata(
-    typing_extensions.TypedDict, total=False
-):
+class ProvisionDeploymentGroupOperationMetadata(typing.TypedDict, total=False):
     deploymentUnitProgresses: _list[DeploymentUnitProgress]
-    step: typing_extensions.Literal[
+    step: typing.Literal[
         "PROVISION_DEPLOYMENT_GROUP_STEP_UNSPECIFIED",
         "VALIDATING_DEPLOYMENT_GROUP",
         "ASSOCIATING_DEPLOYMENTS_TO_DEPLOYMENT_GROUP",
@@ -491,28 +482,28 @@ class ProvisionDeploymentGroupOperationMetadata(
     ]
 
 @typing.type_check_only
-class ProvisionDeploymentGroupRequest(typing_extensions.TypedDict, total=False):
+class ProvisionDeploymentGroupRequest(typing.TypedDict, total=False):
     deploymentSpecs: dict[str, typing.Any]
 
 @typing.type_check_only
-class Resource(typing_extensions.TypedDict, total=False):
+class Resource(typing.TypedDict, total=False):
     caiAssets: dict[str, typing.Any]
-    intent: typing_extensions.Literal[
+    intent: typing.Literal[
         "INTENT_UNSPECIFIED", "CREATE", "UPDATE", "DELETE", "RECREATE", "UNCHANGED"
     ]
     name: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED", "PLANNED", "IN_PROGRESS", "RECONCILED", "FAILED"
     ]
     terraformInfo: ResourceTerraformInfo
 
 @typing.type_check_only
-class ResourceCAIInfo(typing_extensions.TypedDict, total=False):
+class ResourceCAIInfo(typing.TypedDict, total=False):
     fullResourceName: str
 
 @typing.type_check_only
-class ResourceChange(typing_extensions.TypedDict, total=False):
-    intent: typing_extensions.Literal[
+class ResourceChange(typing.TypedDict, total=False):
+    intent: typing.Literal[
         "INTENT_UNSPECIFIED", "CREATE", "UPDATE", "DELETE", "RECREATE", "UNCHANGED"
     ]
     name: str
@@ -520,7 +511,7 @@ class ResourceChange(typing_extensions.TypedDict, total=False):
     terraformInfo: ResourceChangeTerraformInfo
 
 @typing.type_check_only
-class ResourceChangeTerraformInfo(typing_extensions.TypedDict, total=False):
+class ResourceChangeTerraformInfo(typing.TypedDict, total=False):
     actions: _list[str]
     address: str
     provider: str
@@ -528,33 +519,31 @@ class ResourceChangeTerraformInfo(typing_extensions.TypedDict, total=False):
     type: str
 
 @typing.type_check_only
-class ResourceDrift(typing_extensions.TypedDict, total=False):
+class ResourceDrift(typing.TypedDict, total=False):
     name: str
     propertyDrifts: _list[PropertyDrift]
     terraformInfo: ResourceDriftTerraformInfo
 
 @typing.type_check_only
-class ResourceDriftTerraformInfo(typing_extensions.TypedDict, total=False):
+class ResourceDriftTerraformInfo(typing.TypedDict, total=False):
     address: str
     provider: str
     resourceName: str
     type: str
 
 @typing.type_check_only
-class ResourceTerraformInfo(typing_extensions.TypedDict, total=False):
+class ResourceTerraformInfo(typing.TypedDict, total=False):
     address: str
     id: str
     type: str
 
 @typing.type_check_only
-class Revision(typing_extensions.TypedDict, total=False):
-    action: typing_extensions.Literal[
-        "ACTION_UNSPECIFIED", "CREATE", "UPDATE", "DELETE"
-    ]
+class Revision(typing.TypedDict, total=False):
+    action: typing.Literal["ACTION_UNSPECIFIED", "CREATE", "UPDATE", "DELETE"]
     applyResults: ApplyResults
     build: str
     createTime: str
-    errorCode: typing_extensions.Literal[
+    errorCode: typing.Literal[
         "ERROR_CODE_UNSPECIFIED",
         "CLOUD_BUILD_PERMISSION_DENIED",
         "APPLY_BUILD_API_FAILED",
@@ -567,14 +556,12 @@ class Revision(typing_extensions.TypedDict, total=False):
     logs: str
     name: str
     providerConfig: ProviderConfig
-    quotaValidation: typing_extensions.Literal[
+    quotaValidation: typing.Literal[
         "QUOTA_VALIDATION_UNSPECIFIED", "ENABLED", "ENFORCED"
     ]
     quotaValidationResults: str
     serviceAccount: str
-    state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "APPLYING", "APPLIED", "FAILED"
-    ]
+    state: typing.Literal["STATE_UNSPECIFIED", "APPLYING", "APPLIED", "FAILED"]
     stateDetail: str
     terraformBlueprint: TerraformBlueprint
     tfErrors: _list[TerraformError]
@@ -584,61 +571,59 @@ class Revision(typing_extensions.TypedDict, total=False):
     workerPool: str
 
 @typing.type_check_only
-class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
+class SetIamPolicyRequest(typing.TypedDict, total=False):
     policy: Policy
     updateMask: str
 
 @typing.type_check_only
-class Statefile(typing_extensions.TypedDict, total=False):
+class Statefile(typing.TypedDict, total=False):
     signedUri: str
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class TerraformBlueprint(typing_extensions.TypedDict, total=False):
+class TerraformBlueprint(typing.TypedDict, total=False):
     externalValues: dict[str, typing.Any]
     gcsSource: str
     gitSource: GitSource
     inputValues: dict[str, typing.Any]
 
 @typing.type_check_only
-class TerraformError(typing_extensions.TypedDict, total=False):
+class TerraformError(typing.TypedDict, total=False):
     error: Status
     errorDescription: str
     httpResponseCode: int
     resourceAddress: str
 
 @typing.type_check_only
-class TerraformOutput(typing_extensions.TypedDict, total=False):
+class TerraformOutput(typing.TypedDict, total=False):
     sensitive: bool
     value: typing.Any
 
 @typing.type_check_only
-class TerraformVariable(typing_extensions.TypedDict, total=False):
+class TerraformVariable(typing.TypedDict, total=False):
     inputValue: typing.Any
 
 @typing.type_check_only
-class TerraformVersion(typing_extensions.TypedDict, total=False):
+class TerraformVersion(typing.TypedDict, total=False):
     deprecateTime: str
     name: str
     obsoleteTime: str
-    state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "ACTIVE", "DEPRECATED", "OBSOLETE"
-    ]
+    state: typing.Literal["STATE_UNSPECIFIED", "ACTIVE", "DEPRECATED", "OBSOLETE"]
     supportTime: str
 
 @typing.type_check_only
-class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
+class TestIamPermissionsRequest(typing.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
-class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
+class TestIamPermissionsResponse(typing.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
-class UnlockDeploymentRequest(typing_extensions.TypedDict, total=False):
+class UnlockDeploymentRequest(typing.TypedDict, total=False):
     lockId: str

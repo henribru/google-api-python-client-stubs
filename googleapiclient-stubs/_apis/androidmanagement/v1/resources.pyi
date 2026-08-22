@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -51,14 +50,14 @@ class AndroidManagementResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                wipeDataFlags: typing_extensions.Literal[
+                wipeDataFlags: typing.Literal[
                     "WIPE_DATA_FLAG_UNSPECIFIED",
                     "PRESERVE_RESET_PROTECTION_DATA",
                     "WIPE_EXTERNAL_STORAGE",
                     "WIPE_ESIMS",
                 ]
                 | _list[
-                    typing_extensions.Literal[
+                    typing.Literal[
                         "WIPE_DATA_FLAG_UNSPECIFIED",
                         "PRESERVE_RESET_PROTECTION_DATA",
                         "WIPE_EXTERNAL_STORAGE",
@@ -247,8 +246,7 @@ class AndroidManagementResource(googleapiclient.discovery.Resource):
             pageSize: int | None = ...,
             pageToken: str | None = ...,
             projectId: str | None = ...,
-            view: typing_extensions.Literal["ENTERPRISE_VIEW_UNSPECIFIED", "BASIC"]
-            | None = ...,
+            view: typing.Literal["ENTERPRISE_VIEW_UNSPECIFIED", "BASIC"] | None = ...,
             **kwargs: typing.Any,
         ) -> ListEnterprisesResponseHttpRequest: ...
         def list_next(

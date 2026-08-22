@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -43,7 +42,7 @@ class WorkflowExecutionsResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             name: str,
-                            view: typing_extensions.Literal[
+                            view: typing.Literal[
                                 "EXECUTION_ENTRY_VIEW_UNSPECIFIED",
                                 "EXECUTION_ENTRY_VIEW_BASIC",
                                 "EXECUTION_ENTRY_VIEW_DETAILED",
@@ -60,7 +59,7 @@ class WorkflowExecutionsResource(googleapiclient.discovery.Resource):
                             pageSize: int | None = ...,
                             pageToken: str | None = ...,
                             skip: int | None = ...,
-                            view: typing_extensions.Literal[
+                            view: typing.Literal[
                                 "EXECUTION_ENTRY_VIEW_UNSPECIFIED",
                                 "EXECUTION_ENTRY_VIEW_BASIC",
                                 "EXECUTION_ENTRY_VIEW_DETAILED",
@@ -98,7 +97,7 @@ class WorkflowExecutionsResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        view: typing_extensions.Literal[
+                        view: typing.Literal[
                             "EXECUTION_VIEW_UNSPECIFIED", "BASIC", "FULL"
                         ]
                         | None = ...,
@@ -112,7 +111,7 @@ class WorkflowExecutionsResource(googleapiclient.discovery.Resource):
                         orderBy: str | None = ...,
                         pageSize: int | None = ...,
                         pageToken: str | None = ...,
-                        view: typing_extensions.Literal[
+                        view: typing.Literal[
                             "EXECUTION_VIEW_UNSPECIFIED", "BASIC", "FULL"
                         ]
                         | None = ...,

@@ -1,33 +1,33 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ListNotificationSubscriptionsResponse(typing_extensions.TypedDict, total=False):
+class ListNotificationSubscriptionsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     notificationSubscriptions: _list[NotificationSubscription]
 
 @typing.type_check_only
-class NotificationSubscription(typing_extensions.TypedDict, total=False):
+class NotificationSubscription(typing.TypedDict, total=False):
     allManagedAccounts: bool
     callBackUri: str
     name: str
-    registeredEvent: typing_extensions.Literal[
-        "NOTIFICATION_EVENT_TYPE_UNSPECIFIED", "PRODUCT_STATUS_CHANGE"
+    registeredEvent: typing.Literal[
+        "NOTIFICATION_EVENT_TYPE_UNSPECIFIED",
+        "PRODUCT_STATUS_CHANGE",
+        "ACCOUNT_SERVICE_CHANGE",
     ]
     targetAccount: str
 
 @typing.type_check_only
-class ProductChange(typing_extensions.TypedDict, total=False):
+class ProductChange(typing.TypedDict, total=False):
     newValue: str
     oldValue: str
     regionCode: str
-    reportingContext: typing_extensions.Literal[
+    reportingContext: typing.Literal[
         "REPORTING_CONTEXT_ENUM_UNSPECIFIED",
         "SHOPPING_ADS",
         "DISCOVERY_ADS",
@@ -51,15 +51,13 @@ class ProductChange(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class ProductStatusChangeMessage(typing_extensions.TypedDict, total=False):
+class ProductStatusChangeMessage(typing.TypedDict, total=False):
     account: str
-    attribute: typing_extensions.Literal["ATTRIBUTE_UNSPECIFIED", "STATUS"]
+    attribute: typing.Literal["ATTRIBUTE_UNSPECIFIED", "STATUS"]
     changes: _list[ProductChange]
     eventTime: str
     expirationTime: str
     managingAccount: str
     resource: str
     resourceId: str
-    resourceType: typing_extensions.Literal[
-        "RESOURCE_UNSPECIFIED", "PRODUCT", "ACCOUNT_SERVICE"
-    ]
+    resourceType: typing.Literal["RESOURCE_UNSPECIFIED", "PRODUCT", "ACCOUNT_SERVICE"]

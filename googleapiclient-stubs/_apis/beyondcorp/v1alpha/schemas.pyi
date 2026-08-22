@@ -1,34 +1,32 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class AllocatedConnection(typing_extensions.TypedDict, total=False):
+class AllocatedConnection(typing.TypedDict, total=False):
     ingressPort: int
     pscUri: str
 
 @typing.type_check_only
-class AppGateway(typing_extensions.TypedDict, total=False):
+class AppGateway(typing.TypedDict, total=False):
     allocatedConnections: _list[AllocatedConnection]
     createTime: str
     displayName: str
-    hostType: typing_extensions.Literal["HOST_TYPE_UNSPECIFIED", "GCP_REGIONAL_MIG"]
+    hostType: typing.Literal["HOST_TYPE_UNSPECIFIED", "GCP_REGIONAL_MIG"]
     labels: dict[str, typing.Any]
     name: str
     satisfiesPzi: bool
     satisfiesPzs: bool
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED", "CREATING", "CREATED", "UPDATING", "DELETING", "DOWN"
     ]
-    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "TCP_PROXY"]
+    type: typing.Literal["TYPE_UNSPECIFIED", "TCP_PROXY"]
     uid: str
     updateTime: str
     uri: str
 
 @typing.type_check_only
-class AppGatewayOperationMetadata(typing_extensions.TypedDict, total=False):
+class AppGatewayOperationMetadata(typing.TypedDict, total=False):
     apiVersion: str
     createTime: str
     endTime: str
@@ -38,17 +36,17 @@ class AppGatewayOperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
-class ApplicationEndpoint(typing_extensions.TypedDict, total=False):
+class ApplicationEndpoint(typing.TypedDict, total=False):
     host: str
     port: int
 
 @typing.type_check_only
-class CloudPubSubNotificationConfig(typing_extensions.TypedDict, total=False):
+class CloudPubSubNotificationConfig(typing.TypedDict, total=False):
     pubsubSubscription: str
 
 @typing.type_check_only
 class CloudSecurityZerotrustApplinkAppConnectorProtoConnectionConfig(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     applicationEndpoint: str
     applicationName: str
@@ -60,12 +58,12 @@ class CloudSecurityZerotrustApplinkAppConnectorProtoConnectionConfig(
 
 @typing.type_check_only
 class CloudSecurityZerotrustApplinkAppConnectorProtoConnectorDetails(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
 class CloudSecurityZerotrustApplinkAppConnectorProtoGateway(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     interface: str
     name: str
@@ -76,11 +74,11 @@ class CloudSecurityZerotrustApplinkAppConnectorProtoGateway(
 
 @typing.type_check_only
 class CloudSecurityZerotrustApplinkLogagentProtoLogAgentDetails(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
-class Connection(typing_extensions.TypedDict, total=False):
+class Connection(typing.TypedDict, total=False):
     applicationEndpoint: ApplicationEndpoint
     connectors: _list[str]
     createTime: str
@@ -88,20 +86,20 @@ class Connection(typing_extensions.TypedDict, total=False):
     gateway: Gateway
     labels: dict[str, typing.Any]
     name: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED", "CREATING", "CREATED", "UPDATING", "DELETING", "DOWN"
     ]
-    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "TCP_PROXY"]
+    type: typing.Literal["TYPE_UNSPECIFIED", "TCP_PROXY"]
     uid: str
     updateTime: str
 
 @typing.type_check_only
-class ConnectionDetails(typing_extensions.TypedDict, total=False):
+class ConnectionDetails(typing.TypedDict, total=False):
     connection: Connection
     recentMigVms: _list[str]
 
 @typing.type_check_only
-class ConnectionOperationMetadata(typing_extensions.TypedDict, total=False):
+class ConnectionOperationMetadata(typing.TypedDict, total=False):
     apiVersion: str
     createTime: str
     endTime: str
@@ -111,28 +109,28 @@ class ConnectionOperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
-class Connector(typing_extensions.TypedDict, total=False):
+class Connector(typing.TypedDict, total=False):
     createTime: str
     displayName: str
     labels: dict[str, typing.Any]
     name: str
     principalInfo: PrincipalInfo
     resourceInfo: ResourceInfo
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED", "CREATING", "CREATED", "UPDATING", "DELETING", "DOWN"
     ]
     uid: str
     updateTime: str
 
 @typing.type_check_only
-class ConnectorInstanceConfig(typing_extensions.TypedDict, total=False):
+class ConnectorInstanceConfig(typing.TypedDict, total=False):
     imageConfig: ImageConfig
     instanceConfig: dict[str, typing.Any]
     notificationConfig: NotificationConfig
     sequenceNumber: str
 
 @typing.type_check_only
-class ConnectorOperationMetadata(typing_extensions.TypedDict, total=False):
+class ConnectorOperationMetadata(typing.TypedDict, total=False):
     apiVersion: str
     createTime: str
     endTime: str
@@ -142,24 +140,24 @@ class ConnectorOperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
-class ContainerHealthDetails(typing_extensions.TypedDict, total=False):
+class ContainerHealthDetails(typing.TypedDict, total=False):
     currentConfigVersion: str
     errorMsg: str
     expectedConfigVersion: str
     extendedStatus: dict[str, typing.Any]
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Gateway(typing_extensions.TypedDict, total=False):
-    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "GCP_REGIONAL_MIG"]
+class Gateway(typing.TypedDict, total=False):
+    type: typing.Literal["TYPE_UNSPECIFIED", "GCP_REGIONAL_MIG"]
     uri: str
     userPort: int
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpAppconnectionsV1AppConnectionOperationMetadata(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     apiVersion: str
     createTime: str
@@ -171,7 +169,7 @@ class GoogleCloudBeyondcorpAppconnectionsV1AppConnectionOperationMetadata(
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpAppconnectionsV1alphaAppConnection(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     applicationEndpoint: (
         GoogleCloudBeyondcorpAppconnectionsV1alphaAppConnectionApplicationEndpoint
@@ -184,33 +182,33 @@ class GoogleCloudBeyondcorpAppconnectionsV1alphaAppConnection(
     name: str
     satisfiesPzi: bool
     satisfiesPzs: bool
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED", "CREATING", "CREATED", "UPDATING", "DELETING", "DOWN"
     ]
-    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "TCP_PROXY"]
+    type: typing.Literal["TYPE_UNSPECIFIED", "TCP_PROXY"]
     uid: str
     updateTime: str
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpAppconnectionsV1alphaAppConnectionApplicationEndpoint(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     host: str
     port: int
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpAppconnectionsV1alphaAppConnectionGateway(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     appGateway: str
     ingressPort: int
     l7psc: str
-    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "GCP_REGIONAL_MIG"]
+    type: typing.Literal["TYPE_UNSPECIFIED", "GCP_REGIONAL_MIG"]
     uri: str
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpAppconnectionsV1alphaAppConnectionOperationMetadata(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     apiVersion: str
     createTime: str
@@ -222,7 +220,7 @@ class GoogleCloudBeyondcorpAppconnectionsV1alphaAppConnectionOperationMetadata(
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpAppconnectionsV1alphaListAppConnectionsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     appConnections: _list[GoogleCloudBeyondcorpAppconnectionsV1alphaAppConnection]
     nextPageToken: str
@@ -230,7 +228,7 @@ class GoogleCloudBeyondcorpAppconnectionsV1alphaListAppConnectionsResponse(
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpAppconnectionsV1alphaResolveAppConnectionsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     appConnectionDetails: _list[
         GoogleCloudBeyondcorpAppconnectionsV1alphaResolveAppConnectionsResponseAppConnectionDetails
@@ -240,14 +238,14 @@ class GoogleCloudBeyondcorpAppconnectionsV1alphaResolveAppConnectionsResponse(
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpAppconnectionsV1alphaResolveAppConnectionsResponseAppConnectionDetails(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     appConnection: GoogleCloudBeyondcorpAppconnectionsV1alphaAppConnection
     recentMigVms: _list[str]
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpAppconnectorsV1AppConnectorOperationMetadata(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     apiVersion: str
     createTime: str
@@ -259,7 +257,7 @@ class GoogleCloudBeyondcorpAppconnectorsV1AppConnectorOperationMetadata(
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpAppconnectorsV1ContainerHealthDetails(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     currentConfigVersion: str
     errorMsg: str
@@ -268,12 +266,12 @@ class GoogleCloudBeyondcorpAppconnectorsV1ContainerHealthDetails(
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpAppconnectorsV1RemoteAgentDetails(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpAppconnectorsV1alphaAppConnector(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     createTime: str
     displayName: str
@@ -281,7 +279,7 @@ class GoogleCloudBeyondcorpAppconnectorsV1alphaAppConnector(
     name: str
     principalInfo: GoogleCloudBeyondcorpAppconnectorsV1alphaAppConnectorPrincipalInfo
     resourceInfo: GoogleCloudBeyondcorpAppconnectorsV1alphaResourceInfo
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED", "CREATING", "CREATED", "UPDATING", "DELETING", "DOWN"
     ]
     uid: str
@@ -289,7 +287,7 @@ class GoogleCloudBeyondcorpAppconnectorsV1alphaAppConnector(
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpAppconnectorsV1alphaAppConnectorInstanceConfig(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     imageConfig: GoogleCloudBeyondcorpAppconnectorsV1alphaImageConfig
     instanceConfig: dict[str, typing.Any]
@@ -298,7 +296,7 @@ class GoogleCloudBeyondcorpAppconnectorsV1alphaAppConnectorInstanceConfig(
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpAppconnectorsV1alphaAppConnectorOperationMetadata(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     apiVersion: str
     createTime: str
@@ -310,7 +308,7 @@ class GoogleCloudBeyondcorpAppconnectorsV1alphaAppConnectorOperationMetadata(
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpAppconnectorsV1alphaAppConnectorPrincipalInfo(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     serviceAccount: (
         GoogleCloudBeyondcorpAppconnectorsV1alphaAppConnectorPrincipalInfoServiceAccount
@@ -318,13 +316,13 @@ class GoogleCloudBeyondcorpAppconnectorsV1alphaAppConnectorPrincipalInfo(
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpAppconnectorsV1alphaAppConnectorPrincipalInfoServiceAccount(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     email: str
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpAppconnectorsV1alphaContainerHealthDetails(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     currentConfigVersion: str
     errorMsg: str
@@ -333,14 +331,14 @@ class GoogleCloudBeyondcorpAppconnectorsV1alphaContainerHealthDetails(
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpAppconnectorsV1alphaImageConfig(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     stableImage: str
     targetImage: str
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpAppconnectorsV1alphaListAppConnectorsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     appConnectors: _list[GoogleCloudBeyondcorpAppconnectorsV1alphaAppConnector]
     nextPageToken: str
@@ -348,24 +346,24 @@ class GoogleCloudBeyondcorpAppconnectorsV1alphaListAppConnectorsResponse(
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpAppconnectorsV1alphaNotificationConfig(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     pubsubNotification: GoogleCloudBeyondcorpAppconnectorsV1alphaNotificationConfigCloudPubSubNotificationConfig
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpAppconnectorsV1alphaNotificationConfigCloudPubSubNotificationConfig(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     pubsubSubscription: str
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpAppconnectorsV1alphaRemoteAgentDetails(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpAppconnectorsV1alphaReportStatusRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     requestId: str
     resourceInfo: GoogleCloudBeyondcorpAppconnectorsV1alphaResourceInfo
@@ -373,17 +371,17 @@ class GoogleCloudBeyondcorpAppconnectorsV1alphaReportStatusRequest(
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpAppconnectorsV1alphaResolveInstanceConfigResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     instanceConfig: GoogleCloudBeyondcorpAppconnectorsV1alphaAppConnectorInstanceConfig
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpAppconnectorsV1alphaResourceInfo(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     id: str
     resource: dict[str, typing.Any]
-    status: typing_extensions.Literal[
+    status: typing.Literal[
         "HEALTH_STATUS_UNSPECIFIED", "HEALTHY", "UNHEALTHY", "UNRESPONSIVE", "DEGRADED"
     ]
     sub: _list[GoogleCloudBeyondcorpAppconnectorsV1alphaResourceInfo]
@@ -391,7 +389,7 @@ class GoogleCloudBeyondcorpAppconnectorsV1alphaResourceInfo(
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpAppgatewaysV1AppGatewayOperationMetadata(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     apiVersion: str
     createTime: str
@@ -403,7 +401,7 @@ class GoogleCloudBeyondcorpAppgatewaysV1AppGatewayOperationMetadata(
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpPartnerservicesV1alphaPartnerServiceOperationMetadata(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     apiVersion: str
     createTime: str
@@ -415,7 +413,7 @@ class GoogleCloudBeyondcorpPartnerservicesV1alphaPartnerServiceOperationMetadata
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpPartnerservicesV1mainPartnerServiceOperationMetadata(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     apiVersion: str
     createTime: str
@@ -427,9 +425,9 @@ class GoogleCloudBeyondcorpPartnerservicesV1mainPartnerServiceOperationMetadata(
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpSaasplatformInsightsV1alphaAppliedConfig(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    aggregation: typing_extensions.Literal[
+    aggregation: typing.Literal[
         "AGGREGATION_UNSPECIFIED",
         "HOURLY",
         "DAILY",
@@ -445,7 +443,7 @@ class GoogleCloudBeyondcorpSaasplatformInsightsV1alphaAppliedConfig(
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpSaasplatformInsightsV1alphaConfiguredInsightResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     appliedConfig: GoogleCloudBeyondcorpSaasplatformInsightsV1alphaAppliedConfig
     nextPageToken: str
@@ -453,14 +451,14 @@ class GoogleCloudBeyondcorpSaasplatformInsightsV1alphaConfiguredInsightResponse(
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpSaasplatformInsightsV1alphaCustomGrouping(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     fieldFilter: str
     groupFields: _list[str]
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpSaasplatformInsightsV1alphaInsight(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     appliedConfig: GoogleCloudBeyondcorpSaasplatformInsightsV1alphaAppliedConfig
     metadata: GoogleCloudBeyondcorpSaasplatformInsightsV1alphaInsightMetadata
@@ -469,10 +467,10 @@ class GoogleCloudBeyondcorpSaasplatformInsightsV1alphaInsight(
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpSaasplatformInsightsV1alphaInsightMetadata(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     aggregations: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "AGGREGATION_UNSPECIFIED",
             "HOURLY",
             "DAILY",
@@ -490,7 +488,7 @@ class GoogleCloudBeyondcorpSaasplatformInsightsV1alphaInsightMetadata(
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpSaasplatformInsightsV1alphaInsightMetadataField(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     description: str
     displayName: str
@@ -501,20 +499,20 @@ class GoogleCloudBeyondcorpSaasplatformInsightsV1alphaInsightMetadataField(
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpSaasplatformInsightsV1alphaListInsightsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     insights: _list[GoogleCloudBeyondcorpSaasplatformInsightsV1alphaInsight]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpSaasplatformInsightsV1alphaRow(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     fieldValues: _list[GoogleCloudBeyondcorpSaasplatformInsightsV1alphaRowFieldVal]
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpSaasplatformInsightsV1alphaRowFieldVal(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     displayName: str
     filterAlias: str
@@ -523,13 +521,13 @@ class GoogleCloudBeyondcorpSaasplatformInsightsV1alphaRowFieldVal(
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaCancelSubscriptionResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     effectiveCancellationTime: str
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaListSubscriptionsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     nextPageToken: str
     subscriptions: _list[
@@ -538,12 +536,12 @@ class GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaListSubscriptionsResp
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaRestartSubscriptionResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaSubscription(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     autoRenewEnabled: bool
     billingAccount: str
@@ -552,19 +550,18 @@ class GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaSubscription(
     endTime: str
     name: str
     seatCount: str
-    sku: typing_extensions.Literal["SKU_UNSPECIFIED", "BCE_STANDARD_SKU"]
+    signupSource: str
+    sku: typing.Literal["SKU_UNSPECIFIED", "BCE_STANDARD_SKU"]
     startTime: str
-    state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "ACTIVE", "INACTIVE", "COMPLETED"
-    ]
-    subscriberType: typing_extensions.Literal[
+    state: typing.Literal["STATE_UNSPECIFIED", "ACTIVE", "INACTIVE", "COMPLETED"]
+    subscriberType: typing.Literal[
         "SUBSCRIBER_TYPE_UNSPECIFIED", "ONLINE", "OFFLINE", "CEP_TRIAL"
     ]
-    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "TRIAL", "PAID", "ALLOWLIST"]
+    type: typing.Literal["TYPE_UNSPECIFIED", "TRIAL", "PAID", "ALLOWLIST"]
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpSecuritygatewaysV1SecurityGatewayOperationMetadata(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     apiVersion: str
     createTime: str
@@ -576,21 +573,19 @@ class GoogleCloudBeyondcorpSecuritygatewaysV1SecurityGatewayOperationMetadata(
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpSecuritygatewaysV1alphaApplication(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     createTime: str
     displayName: str
     endpointMatchers: _list[GoogleCloudBeyondcorpSecuritygatewaysV1alphaEndpointMatcher]
     name: str
-    schema: typing_extensions.Literal[
-        "SCHEMA_UNSPECIFIED", "PROXY_GATEWAY", "API_GATEWAY"
-    ]
+    schema: typing.Literal["SCHEMA_UNSPECIFIED", "PROXY_GATEWAY", "API_GATEWAY"]
     updateTime: str
     upstreams: _list[GoogleCloudBeyondcorpSecuritygatewaysV1alphaApplicationUpstream]
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpSecuritygatewaysV1alphaApplicationUpstream(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     egressPolicy: GoogleCloudBeyondcorpSecuritygatewaysV1alphaEgressPolicy
     external: GoogleCloudBeyondcorpSecuritygatewaysV1alphaApplicationUpstreamExternal
@@ -599,92 +594,89 @@ class GoogleCloudBeyondcorpSecuritygatewaysV1alphaApplicationUpstream(
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpSecuritygatewaysV1alphaApplicationUpstreamExternal(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     endpoints: _list[GoogleCloudBeyondcorpSecuritygatewaysV1alphaEndpoint]
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpSecuritygatewaysV1alphaApplicationUpstreamNetwork(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     name: str
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpSecuritygatewaysV1alphaContextualHeaders(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     deviceInfo: (
         GoogleCloudBeyondcorpSecuritygatewaysV1alphaContextualHeadersDelegatedDeviceInfo
     )
+    dispatchInfo: GoogleCloudBeyondcorpSecuritygatewaysV1alphaContextualHeadersDelegatedDispatchInfo
     groupInfo: (
         GoogleCloudBeyondcorpSecuritygatewaysV1alphaContextualHeadersDelegatedGroupInfo
     )
-    outputType: typing_extensions.Literal[
-        "OUTPUT_TYPE_UNSPECIFIED", "PROTOBUF", "JSON", "NONE"
-    ]
+    outputType: typing.Literal["OUTPUT_TYPE_UNSPECIFIED", "PROTOBUF", "JSON", "NONE"]
     userInfo: (
         GoogleCloudBeyondcorpSecuritygatewaysV1alphaContextualHeadersDelegatedUserInfo
     )
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpSecuritygatewaysV1alphaContextualHeadersDelegatedDeviceInfo(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    outputType: typing_extensions.Literal[
-        "OUTPUT_TYPE_UNSPECIFIED", "PROTOBUF", "JSON", "NONE"
-    ]
+    outputType: typing.Literal["OUTPUT_TYPE_UNSPECIFIED", "PROTOBUF", "JSON", "NONE"]
+
+@typing.type_check_only
+class GoogleCloudBeyondcorpSecuritygatewaysV1alphaContextualHeadersDelegatedDispatchInfo(
+    typing.TypedDict, total=False
+):
+    outputType: typing.Literal["OUTPUT_TYPE_UNSPECIFIED", "PROTOBUF", "JSON", "NONE"]
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpSecuritygatewaysV1alphaContextualHeadersDelegatedGroupInfo(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    outputType: typing_extensions.Literal[
-        "OUTPUT_TYPE_UNSPECIFIED", "PROTOBUF", "JSON", "NONE"
-    ]
+    outputType: typing.Literal["OUTPUT_TYPE_UNSPECIFIED", "PROTOBUF", "JSON", "NONE"]
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpSecuritygatewaysV1alphaContextualHeadersDelegatedUserInfo(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    outputType: typing_extensions.Literal[
-        "OUTPUT_TYPE_UNSPECIFIED", "PROTOBUF", "JSON", "NONE"
-    ]
+    outputType: typing.Literal["OUTPUT_TYPE_UNSPECIFIED", "PROTOBUF", "JSON", "NONE"]
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpSecuritygatewaysV1alphaEgressPolicy(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     regions: _list[str]
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpSecuritygatewaysV1alphaEndpoint(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     hostname: str
     port: int
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpSecuritygatewaysV1alphaEndpointMatcher(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     hostname: str
     ports: _list[int]
 
 @typing.type_check_only
-class GoogleCloudBeyondcorpSecuritygatewaysV1alphaHub(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudBeyondcorpSecuritygatewaysV1alphaHub(typing.TypedDict, total=False):
     internetGateway: GoogleCloudBeyondcorpSecuritygatewaysV1alphaInternetGateway
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpSecuritygatewaysV1alphaInternetGateway(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     assignedIps: _list[str]
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpSecuritygatewaysV1alphaListApplicationsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     applications: _list[GoogleCloudBeyondcorpSecuritygatewaysV1alphaApplication]
     nextPageToken: str
@@ -692,7 +684,7 @@ class GoogleCloudBeyondcorpSecuritygatewaysV1alphaListApplicationsResponse(
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpSecuritygatewaysV1alphaListSecurityGatewaysResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     nextPageToken: str
     securityGateways: _list[GoogleCloudBeyondcorpSecuritygatewaysV1alphaSecurityGateway]
@@ -700,24 +692,22 @@ class GoogleCloudBeyondcorpSecuritygatewaysV1alphaListSecurityGatewaysResponse(
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpSecuritygatewaysV1alphaLoggingConfig(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpSecuritygatewaysV1alphaProxyProtocolConfig(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     allowedClientHeaders: _list[str]
     clientIp: bool
     contextualHeaders: GoogleCloudBeyondcorpSecuritygatewaysV1alphaContextualHeaders
-    gatewayIdentity: typing_extensions.Literal[
-        "GATEWAY_IDENTITY_UNSPECIFIED", "RESOURCE_NAME"
-    ]
+    gatewayIdentity: typing.Literal["GATEWAY_IDENTITY_UNSPECIFIED", "RESOURCE_NAME"]
     metadataHeaders: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpSecuritygatewaysV1alphaSecurityGateway(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     createTime: str
     delegatingServiceAccount: str
@@ -728,7 +718,7 @@ class GoogleCloudBeyondcorpSecuritygatewaysV1alphaSecurityGateway(
     name: str
     proxyProtocolConfig: GoogleCloudBeyondcorpSecuritygatewaysV1alphaProxyProtocolConfig
     serviceDiscovery: GoogleCloudBeyondcorpSecuritygatewaysV1alphaServiceDiscovery
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "CREATING",
         "UPDATING",
@@ -741,7 +731,7 @@ class GoogleCloudBeyondcorpSecuritygatewaysV1alphaSecurityGateway(
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpSecuritygatewaysV1alphaSecurityGatewayOperationMetadata(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     apiVersion: str
     createTime: str
@@ -753,31 +743,29 @@ class GoogleCloudBeyondcorpSecuritygatewaysV1alphaSecurityGatewayOperationMetada
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpSecuritygatewaysV1alphaServiceDiscovery(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     apiGateway: GoogleCloudBeyondcorpSecuritygatewaysV1alphaServiceDiscoveryApiGateway
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpSecuritygatewaysV1alphaServiceDiscoveryApiGateway(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     resourceOverride: GoogleCloudBeyondcorpSecuritygatewaysV1alphaServiceDiscoveryApiGatewayOperationDescriptor
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpSecuritygatewaysV1alphaServiceDiscoveryApiGatewayOperationDescriptor(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     path: str
 
 @typing.type_check_only
-class GoogleCloudLocationListLocationsResponse(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudLocationListLocationsResponse(typing.TypedDict, total=False):
     locations: _list[GoogleCloudLocationLocation]
     nextPageToken: str
 
 @typing.type_check_only
-class GoogleCloudLocationLocation(typing_extensions.TypedDict, total=False):
+class GoogleCloudLocationLocation(typing.TypedDict, total=False):
     displayName: str
     labels: dict[str, typing.Any]
     locationId: str
@@ -785,56 +773,54 @@ class GoogleCloudLocationLocation(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class GoogleIamV1AuditConfig(typing_extensions.TypedDict, total=False):
+class GoogleIamV1AuditConfig(typing.TypedDict, total=False):
     auditLogConfigs: _list[GoogleIamV1AuditLogConfig]
     service: str
 
 @typing.type_check_only
-class GoogleIamV1AuditLogConfig(typing_extensions.TypedDict, total=False):
+class GoogleIamV1AuditLogConfig(typing.TypedDict, total=False):
     exemptedMembers: _list[str]
-    logType: typing_extensions.Literal[
+    logType: typing.Literal[
         "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
     ]
 
 @typing.type_check_only
-class GoogleIamV1Binding(typing_extensions.TypedDict, total=False):
+class GoogleIamV1Binding(typing.TypedDict, total=False):
     condition: GoogleTypeExpr
     members: _list[str]
     role: str
 
 @typing.type_check_only
-class GoogleIamV1Policy(typing_extensions.TypedDict, total=False):
+class GoogleIamV1Policy(typing.TypedDict, total=False):
     auditConfigs: _list[GoogleIamV1AuditConfig]
     bindings: _list[GoogleIamV1Binding]
     etag: str
     version: int
 
 @typing.type_check_only
-class GoogleIamV1SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
+class GoogleIamV1SetIamPolicyRequest(typing.TypedDict, total=False):
     policy: GoogleIamV1Policy
     updateMask: str
 
 @typing.type_check_only
-class GoogleIamV1TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
+class GoogleIamV1TestIamPermissionsRequest(typing.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
-class GoogleIamV1TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
+class GoogleIamV1TestIamPermissionsResponse(typing.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
-class GoogleLongrunningCancelOperationRequest(
-    typing_extensions.TypedDict, total=False
-): ...
+class GoogleLongrunningCancelOperationRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class GoogleLongrunningListOperationsResponse(typing_extensions.TypedDict, total=False):
+class GoogleLongrunningListOperationsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     operations: _list[GoogleLongrunningOperation]
     unreachable: _list[str]
 
 @typing.type_check_only
-class GoogleLongrunningOperation(typing_extensions.TypedDict, total=False):
+class GoogleLongrunningOperation(typing.TypedDict, total=False):
     done: bool
     error: GoogleRpcStatus
     metadata: dict[str, typing.Any]
@@ -842,89 +828,89 @@ class GoogleLongrunningOperation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class GoogleRpcStatus(typing_extensions.TypedDict, total=False):
+class GoogleRpcStatus(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class GoogleTypeExpr(typing_extensions.TypedDict, total=False):
+class GoogleTypeExpr(typing.TypedDict, total=False):
     description: str
     expression: str
     location: str
     title: str
 
 @typing.type_check_only
-class ImageConfig(typing_extensions.TypedDict, total=False):
+class ImageConfig(typing.TypedDict, total=False):
     stableImage: str
     targetImage: str
 
 @typing.type_check_only
-class ListAppGatewaysResponse(typing_extensions.TypedDict, total=False):
+class ListAppGatewaysResponse(typing.TypedDict, total=False):
     appGateways: _list[AppGateway]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListConnectionsResponse(typing_extensions.TypedDict, total=False):
+class ListConnectionsResponse(typing.TypedDict, total=False):
     connections: _list[Connection]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListConnectorsResponse(typing_extensions.TypedDict, total=False):
+class ListConnectorsResponse(typing.TypedDict, total=False):
     connectors: _list[Connector]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class NotificationConfig(typing_extensions.TypedDict, total=False):
+class NotificationConfig(typing.TypedDict, total=False):
     pubsubNotification: CloudPubSubNotificationConfig
 
 @typing.type_check_only
-class PrincipalInfo(typing_extensions.TypedDict, total=False):
+class PrincipalInfo(typing.TypedDict, total=False):
     serviceAccount: ServiceAccount
 
 @typing.type_check_only
-class RemoteAgentDetails(typing_extensions.TypedDict, total=False): ...
+class RemoteAgentDetails(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ReportStatusRequest(typing_extensions.TypedDict, total=False):
+class ReportStatusRequest(typing.TypedDict, total=False):
     requestId: str
     resourceInfo: ResourceInfo
     validateOnly: bool
 
 @typing.type_check_only
-class ResolveConnectionsResponse(typing_extensions.TypedDict, total=False):
+class ResolveConnectionsResponse(typing.TypedDict, total=False):
     connectionDetails: _list[ConnectionDetails]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ResolveInstanceConfigResponse(typing_extensions.TypedDict, total=False):
+class ResolveInstanceConfigResponse(typing.TypedDict, total=False):
     instanceConfig: ConnectorInstanceConfig
 
 @typing.type_check_only
-class ResourceInfo(typing_extensions.TypedDict, total=False):
+class ResourceInfo(typing.TypedDict, total=False):
     id: str
     resource: dict[str, typing.Any]
-    status: typing_extensions.Literal[
+    status: typing.Literal[
         "HEALTH_STATUS_UNSPECIFIED", "HEALTHY", "UNHEALTHY", "UNRESPONSIVE", "DEGRADED"
     ]
     sub: _list[ResourceInfo]
     time: str
 
 @typing.type_check_only
-class ServiceAccount(typing_extensions.TypedDict, total=False):
+class ServiceAccount(typing.TypedDict, total=False):
     email: str
 
 @typing.type_check_only
-class Tunnelv1ProtoTunnelerError(typing_extensions.TypedDict, total=False):
+class Tunnelv1ProtoTunnelerError(typing.TypedDict, total=False):
     err: str
     retryable: bool
 
 @typing.type_check_only
-class Tunnelv1ProtoTunnelerInfo(typing_extensions.TypedDict, total=False):
+class Tunnelv1ProtoTunnelerInfo(typing.TypedDict, total=False):
     backoffRetryCount: int
     id: str
     latestErr: Tunnelv1ProtoTunnelerError

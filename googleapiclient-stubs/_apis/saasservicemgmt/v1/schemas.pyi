@@ -1,51 +1,49 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class Aggregate(typing_extensions.TypedDict, total=False):
+class Aggregate(typing.TypedDict, total=False):
     count: int
     group: str
 
 @typing.type_check_only
-class Blueprint(typing_extensions.TypedDict, total=False):
+class Blueprint(typing.TypedDict, total=False):
     engine: str
     package: str
     version: str
 
 @typing.type_check_only
-class Decimal(typing_extensions.TypedDict, total=False):
+class Decimal(typing.TypedDict, total=False):
     value: str
 
 @typing.type_check_only
-class Dependency(typing_extensions.TypedDict, total=False):
+class Dependency(typing.TypedDict, total=False):
     alias: str
     unitKind: str
 
 @typing.type_check_only
-class Deprovision(typing_extensions.TypedDict, total=False): ...
+class Deprovision(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ErrorBudget(typing_extensions.TypedDict, total=False):
+class ErrorBudget(typing.TypedDict, total=False):
     allowedCount: int
     allowedPercentage: int
 
 @typing.type_check_only
-class FlagUpdate(typing_extensions.TypedDict, total=False):
+class FlagUpdate(typing.TypedDict, total=False):
     flagRelease: str
 
 @typing.type_check_only
-class FromMapping(typing_extensions.TypedDict, total=False):
+class FromMapping(typing.TypedDict, total=False):
     dependency: str
     outputVariable: str
 
 @typing.type_check_only
-class GoogleCloudLocationLocation(typing_extensions.TypedDict, total=False):
+class GoogleCloudLocationLocation(typing.TypedDict, total=False):
     displayName: str
     labels: dict[str, typing.Any]
     locationId: str
@@ -53,73 +51,73 @@ class GoogleCloudLocationLocation(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class ListLocationsResponse(typing_extensions.TypedDict, total=False):
+class ListLocationsResponse(typing.TypedDict, total=False):
     locations: _list[GoogleCloudLocationLocation]
     nextPageToken: str
 
 @typing.type_check_only
-class ListReleasesResponse(typing_extensions.TypedDict, total=False):
+class ListReleasesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     releases: _list[Release]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListRolloutKindsResponse(typing_extensions.TypedDict, total=False):
+class ListRolloutKindsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     rolloutKinds: _list[RolloutKind]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListRolloutsResponse(typing_extensions.TypedDict, total=False):
+class ListRolloutsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     rollouts: _list[Rollout]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListSaasResponse(typing_extensions.TypedDict, total=False):
+class ListSaasResponse(typing.TypedDict, total=False):
     nextPageToken: str
     saas: _list[Saas]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListTenantsResponse(typing_extensions.TypedDict, total=False):
+class ListTenantsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     tenants: _list[Tenant]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListUnitKindsResponse(typing_extensions.TypedDict, total=False):
+class ListUnitKindsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     unitKinds: _list[UnitKind]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListUnitOperationsResponse(typing_extensions.TypedDict, total=False):
+class ListUnitOperationsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     unitOperations: _list[UnitOperation]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListUnitsResponse(typing_extensions.TypedDict, total=False):
+class ListUnitsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     units: _list[Unit]
     unreachable: _list[str]
 
 @typing.type_check_only
-class Location(typing_extensions.TypedDict, total=False):
+class Location(typing.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class MaintenanceSettings(typing_extensions.TypedDict, total=False):
+class MaintenanceSettings(typing.TypedDict, total=False):
     pinnedUntilTime: str
 
 @typing.type_check_only
-class Provision(typing_extensions.TypedDict, total=False):
+class Provision(typing.TypedDict, total=False):
     inputVariables: _list[UnitVariable]
     release: str
 
 @typing.type_check_only
-class Release(typing_extensions.TypedDict, total=False):
+class Release(typing.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     blueprint: Blueprint
     createTime: str
@@ -135,11 +133,11 @@ class Release(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class ReleaseRequirements(typing_extensions.TypedDict, total=False):
+class ReleaseRequirements(typing.TypedDict, total=False):
     upgradeableFromReleases: _list[str]
 
 @typing.type_check_only
-class Rollout(typing_extensions.TypedDict, total=False):
+class Rollout(typing.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     control: RolloutControl
     createTime: str
@@ -156,7 +154,7 @@ class Rollout(typing_extensions.TypedDict, total=False):
     rolloutOrchestrationStrategy: str
     rootRollout: str
     startTime: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "ROLLOUT_STATE_UNSPECIFIED",
         "ROLLOUT_STATE_RUNNING",
         "ROLLOUT_STATE_PAUSED",
@@ -176,8 +174,8 @@ class Rollout(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class RolloutControl(typing_extensions.TypedDict, total=False):
-    action: typing_extensions.Literal[
+class RolloutControl(typing.TypedDict, total=False):
+    action: typing.Literal[
         "ROLLOUT_ACTION_UNSPECIFIED",
         "ROLLOUT_ACTION_RUN",
         "ROLLOUT_ACTION_PAUSE",
@@ -186,7 +184,7 @@ class RolloutControl(typing_extensions.TypedDict, total=False):
     runParams: RunRolloutActionParams
 
 @typing.type_check_only
-class RolloutKind(typing_extensions.TypedDict, total=False):
+class RolloutKind(typing.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     createTime: str
     errorBudget: ErrorBudget
@@ -199,23 +197,23 @@ class RolloutKind(typing_extensions.TypedDict, total=False):
     unitKind: str
     unitUpdatePacing: UnitUpdatePacing
     updateTime: str
-    updateUnitKindStrategy: typing_extensions.Literal[
+    updateUnitKindStrategy: typing.Literal[
         "UPDATE_UNIT_KIND_STRATEGY_UNSPECIFIED",
         "UPDATE_UNIT_KIND_STRATEGY_ON_START",
         "UPDATE_UNIT_KIND_STRATEGY_NEVER",
     ]
 
 @typing.type_check_only
-class RolloutStats(typing_extensions.TypedDict, total=False):
+class RolloutStats(typing.TypedDict, total=False):
     estimatedTotalUnitCount: str
     operationsByState: _list[Aggregate]
 
 @typing.type_check_only
-class RunRolloutActionParams(typing_extensions.TypedDict, total=False):
+class RunRolloutActionParams(typing.TypedDict, total=False):
     retryFailedOperations: bool
 
 @typing.type_check_only
-class Saas(typing_extensions.TypedDict, total=False):
+class Saas(typing.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     conditions: _list[SaasCondition]
     createTime: str
@@ -224,36 +222,34 @@ class Saas(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     locations: _list[Location]
     name: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_TYPE_UNSPECIFIED", "STATE_ACTIVE", "STATE_RUNNING", "STATE_FAILED"
     ]
     uid: str
     updateTime: str
 
 @typing.type_check_only
-class SaasCondition(typing_extensions.TypedDict, total=False):
+class SaasCondition(typing.TypedDict, total=False):
     lastTransitionTime: str
     message: str
     reason: str
-    status: typing_extensions.Literal[
+    status: typing.Literal[
         "STATUS_UNSPECIFIED", "STATUS_UNKNOWN", "STATUS_TRUE", "STATUS_FALSE"
     ]
-    type: typing_extensions.Literal[
-        "TYPE_UNSPECIFIED", "TYPE_READY", "TYPE_SYNCHRONIZED"
-    ]
+    type: typing.Literal["TYPE_UNSPECIFIED", "TYPE_READY", "TYPE_SYNCHRONIZED"]
 
 @typing.type_check_only
-class Schedule(typing_extensions.TypedDict, total=False):
+class Schedule(typing.TypedDict, total=False):
     startTime: str
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class Tenant(typing_extensions.TypedDict, total=False):
+class Tenant(typing.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     consumerResource: str
     createTime: str
@@ -265,13 +261,13 @@ class Tenant(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class ToMapping(typing_extensions.TypedDict, total=False):
+class ToMapping(typing.TypedDict, total=False):
     dependency: str
     ignoreForLookup: bool
     inputVariable: str
 
 @typing.type_check_only
-class Unit(typing_extensions.TypedDict, total=False):
+class Unit(typing.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     conditions: _list[UnitCondition]
     createTime: str
@@ -282,7 +278,7 @@ class Unit(typing_extensions.TypedDict, total=False):
     inputVariables: _list[UnitVariable]
     labels: dict[str, typing.Any]
     maintenance: MaintenanceSettings
-    managementMode: typing_extensions.Literal[
+    managementMode: typing.Literal[
         "MANAGEMENT_MODE_UNSPECIFIED", "MANAGEMENT_MODE_USER", "MANAGEMENT_MODE_SYSTEM"
     ]
     name: str
@@ -293,7 +289,7 @@ class Unit(typing_extensions.TypedDict, total=False):
     satisfiesPzi: bool
     satisfiesPzs: bool
     scheduledOperations: _list[str]
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "UNIT_STATE_UNSPECIFIED",
         "UNIT_STATE_NOT_PROVISIONED",
         "UNIT_STATE_PROVISIONING",
@@ -303,7 +299,7 @@ class Unit(typing_extensions.TypedDict, total=False):
         "UNIT_STATE_ERROR",
     ]
     systemCleanupAt: str
-    systemManagedState: typing_extensions.Literal[
+    systemManagedState: typing.Literal[
         "SYSTEM_MANAGED_STATE_UNSPECIFIED",
         "SYSTEM_MANAGED_STATE_ACTIVE",
         "SYSTEM_MANAGED_STATE_INACTIVE",
@@ -315,14 +311,14 @@ class Unit(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class UnitCondition(typing_extensions.TypedDict, total=False):
+class UnitCondition(typing.TypedDict, total=False):
     lastTransitionTime: str
     message: str
     reason: str
-    status: typing_extensions.Literal[
+    status: typing.Literal[
         "STATUS_UNSPECIFIED", "STATUS_UNKNOWN", "STATUS_TRUE", "STATUS_FALSE"
     ]
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "TYPE_UNSPECIFIED",
         "TYPE_READY",
         "TYPE_UPDATING",
@@ -334,14 +330,14 @@ class UnitCondition(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class UnitDependency(typing_extensions.TypedDict, total=False):
+class UnitDependency(typing.TypedDict, total=False):
     alias: str
     unit: str
 
 @typing.type_check_only
-class UnitKind(typing_extensions.TypedDict, total=False):
+class UnitKind(typing.TypedDict, total=False):
     annotations: dict[str, typing.Any]
-    boundaryType: typing_extensions.Literal[
+    boundaryType: typing.Literal[
         "BOUNDARY_TYPE_UNSPECIFIED",
         "BOUNDARY_TYPE_TENANT_PROJECT",
         "BOUNDARY_TYPE_MANAGED_PROJECT",
@@ -360,7 +356,7 @@ class UnitKind(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class UnitOperation(typing_extensions.TypedDict, total=False):
+class UnitOperation(typing.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     cancel: bool
     conditions: _list[UnitOperationCondition]
@@ -368,7 +364,7 @@ class UnitOperation(typing_extensions.TypedDict, total=False):
     deleteTime: str
     deprovision: Deprovision
     engineState: str
-    errorCategory: typing_extensions.Literal[
+    errorCategory: typing.Literal[
         "UNIT_OPERATION_ERROR_CATEGORY_UNSPECIFIED",
         "NOT_APPLICABLE",
         "FATAL",
@@ -384,7 +380,7 @@ class UnitOperation(typing_extensions.TypedDict, total=False):
     provision: Provision
     rollout: str
     schedule: Schedule
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "UNIT_OPERATION_STATE_UNKNOWN",
         "UNIT_OPERATION_STATE_PENDING",
         "UNIT_OPERATION_STATE_SCHEDULED",
@@ -399,14 +395,14 @@ class UnitOperation(typing_extensions.TypedDict, total=False):
     upgrade: Upgrade
 
 @typing.type_check_only
-class UnitOperationCondition(typing_extensions.TypedDict, total=False):
+class UnitOperationCondition(typing.TypedDict, total=False):
     lastTransitionTime: str
     message: str
     reason: str
-    status: typing_extensions.Literal[
+    status: typing.Literal[
         "STATUS_UNSPECIFIED", "STATUS_UNKNOWN", "STATUS_TRUE", "STATUS_FALSE"
     ]
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "TYPE_UNSPECIFIED",
         "TYPE_SCHEDULED",
         "TYPE_RUNNING",
@@ -418,24 +414,22 @@ class UnitOperationCondition(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class UnitUpdatePacing(typing_extensions.TypedDict, total=False):
+class UnitUpdatePacing(typing.TypedDict, total=False):
     maxConcurrentOperationsCount: int
     maxConcurrentOperationsPercent: Decimal
 
 @typing.type_check_only
-class UnitVariable(typing_extensions.TypedDict, total=False):
-    type: typing_extensions.Literal[
-        "TYPE_UNSPECIFIED", "STRING", "INT", "BOOL", "STRUCT", "LIST"
-    ]
+class UnitVariable(typing.TypedDict, total=False):
+    type: typing.Literal["TYPE_UNSPECIFIED", "STRING", "INT", "BOOL", "STRUCT", "LIST"]
     value: str
     variable: str
 
 @typing.type_check_only
-class Upgrade(typing_extensions.TypedDict, total=False):
+class Upgrade(typing.TypedDict, total=False):
     inputVariables: _list[UnitVariable]
     release: str
 
-AlternativeVariableMapping = typing_extensions.TypedDict(
+AlternativeVariableMapping = typing.TypedDict(
     "AlternativeVariableMapping",
     {
         "from": FromMapping,

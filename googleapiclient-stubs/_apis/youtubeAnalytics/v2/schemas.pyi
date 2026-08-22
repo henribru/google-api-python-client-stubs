@@ -1,26 +1,24 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class EmptyResponse(typing_extensions.TypedDict, total=False):
+class EmptyResponse(typing.TypedDict, total=False):
     errors: Errors
 
 @typing.type_check_only
-class ErrorProto(typing_extensions.TypedDict, total=False):
+class ErrorProto(typing.TypedDict, total=False):
     argument: _list[str]
     code: str
     debugInfo: str
     domain: str
     externalErrorMessage: str
     location: str
-    locationType: typing_extensions.Literal["PATH", "OTHER", "PARAMETER"]
+    locationType: typing.Literal["PATH", "OTHER", "PARAMETER"]
 
 @typing.type_check_only
-class Errors(typing_extensions.TypedDict, total=False):
-    code: typing_extensions.Literal[
+class Errors(typing.TypedDict, total=False):
+    code: typing.Literal[
         "BAD_REQUEST",
         "FORBIDDEN",
         "NOT_FOUND",
@@ -34,7 +32,7 @@ class Errors(typing_extensions.TypedDict, total=False):
     requestId: str
 
 @typing.type_check_only
-class Group(typing_extensions.TypedDict, total=False):
+class Group(typing.TypedDict, total=False):
     contentDetails: GroupContentDetails
     errors: Errors
     etag: str
@@ -43,12 +41,12 @@ class Group(typing_extensions.TypedDict, total=False):
     snippet: GroupSnippet
 
 @typing.type_check_only
-class GroupContentDetails(typing_extensions.TypedDict, total=False):
+class GroupContentDetails(typing.TypedDict, total=False):
     itemCount: str
     itemType: str
 
 @typing.type_check_only
-class GroupItem(typing_extensions.TypedDict, total=False):
+class GroupItem(typing.TypedDict, total=False):
     errors: Errors
     etag: str
     groupId: str
@@ -57,24 +55,24 @@ class GroupItem(typing_extensions.TypedDict, total=False):
     resource: GroupItemResource
 
 @typing.type_check_only
-class GroupItemResource(typing_extensions.TypedDict, total=False):
+class GroupItemResource(typing.TypedDict, total=False):
     id: str
     kind: str
 
 @typing.type_check_only
-class GroupSnippet(typing_extensions.TypedDict, total=False):
+class GroupSnippet(typing.TypedDict, total=False):
     publishedAt: str
     title: str
 
 @typing.type_check_only
-class ListGroupItemsResponse(typing_extensions.TypedDict, total=False):
+class ListGroupItemsResponse(typing.TypedDict, total=False):
     errors: Errors
     etag: str
     items: _list[GroupItem]
     kind: str
 
 @typing.type_check_only
-class ListGroupsResponse(typing_extensions.TypedDict, total=False):
+class ListGroupsResponse(typing.TypedDict, total=False):
     errors: Errors
     etag: str
     items: _list[Group]
@@ -82,14 +80,14 @@ class ListGroupsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
-class QueryResponse(typing_extensions.TypedDict, total=False):
+class QueryResponse(typing.TypedDict, total=False):
     columnHeaders: _list[ResultTableColumnHeader]
     errors: Errors
     kind: str
     rows: _list[_list[typing.Any]]
 
 @typing.type_check_only
-class ResultTableColumnHeader(typing_extensions.TypedDict, total=False):
+class ResultTableColumnHeader(typing.TypedDict, total=False):
     columnType: str
     dataType: str
     name: str

@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -20,7 +19,7 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             *,
             parent: str,
             assetTypes: str | _list[str] | None = ...,
-            contentType: typing_extensions.Literal[
+            contentType: typing.Literal[
                 "CONTENT_TYPE_UNSPECIFIED",
                 "RESOURCE",
                 "IAM_POLICY",
@@ -138,9 +137,7 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             *,
             resource: str,
             destinationParent: str | None = ...,
-            view: typing_extensions.Literal[
-                "ANALYSIS_VIEW_UNSPECIFIED", "FULL", "BASIC"
-            ]
+            view: typing.Literal["ANALYSIS_VIEW_UNSPECIFIED", "FULL", "BASIC"]
             | None = ...,
             **kwargs: typing.Any,
         ) -> AnalyzeMoveResponseHttpRequest: ...
@@ -194,7 +191,7 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             *,
             parent: str,
             assetNames: str | _list[str] | None = ...,
-            contentType: typing_extensions.Literal[
+            contentType: typing.Literal[
                 "CONTENT_TYPE_UNSPECIFIED",
                 "RESOURCE",
                 "IAM_POLICY",

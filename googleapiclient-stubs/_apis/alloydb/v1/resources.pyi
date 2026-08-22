@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -42,7 +41,7 @@ class CloudAlloyDBAdminResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    view: typing_extensions.Literal[
+                    view: typing.Literal[
                         "BACKUP_VIEW_UNSPECIFIED",
                         "BACKUP_VIEW_BASIC",
                         "BACKUP_VIEW_CLUSTER_DELETED",
@@ -58,7 +57,7 @@ class CloudAlloyDBAdminResource(googleapiclient.discovery.Resource):
                     orderBy: str | None = ...,
                     pageSize: int | None = ...,
                     pageToken: str | None = ...,
-                    view: typing_extensions.Literal[
+                    view: typing.Literal[
                         "BACKUP_VIEW_UNSPECIFIED",
                         "BACKUP_VIEW_BASIC",
                         "BACKUP_VIEW_CLUSTER_DELETED",
@@ -127,7 +126,7 @@ class CloudAlloyDBAdminResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        view: typing_extensions.Literal[
+                        view: typing.Literal[
                             "INSTANCE_VIEW_UNSPECIFIED",
                             "INSTANCE_VIEW_BASIC",
                             "INSTANCE_VIEW_FULL",
@@ -270,7 +269,7 @@ class CloudAlloyDBAdminResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    view: typing_extensions.Literal[
+                    view: typing.Literal[
                         "CLUSTER_VIEW_UNSPECIFIED",
                         "CLUSTER_VIEW_BASIC",
                         "CLUSTER_VIEW_CONTINUOUS_BACKUP",
@@ -384,7 +383,7 @@ class CloudAlloyDBAdminResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int | None = ...,
                     pageToken: str | None = ...,
-                    scope: typing_extensions.Literal[
+                    scope: typing.Literal[
                         "SCOPE_UNSPECIFIED", "DATABASE", "CONNECTION_POOL"
                     ]
                     | None = ...,

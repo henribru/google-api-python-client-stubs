@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -133,7 +132,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        type: typing_extensions.Literal[
+                        type: typing.Literal[
                             "builtInVariableTypeUnspecified",
                             "pageUrl",
                             "pageHostname",
@@ -253,7 +252,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                             "analyticsSessionNumber",
                         ]
                         | _list[
-                            typing_extensions.Literal[
+                            typing.Literal[
                                 "builtInVariableTypeUnspecified",
                                 "pageUrl",
                                 "pageHostname",
@@ -380,7 +379,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         path: str,
-                        type: typing_extensions.Literal[
+                        type: typing.Literal[
                             "builtInVariableTypeUnspecified",
                             "pageUrl",
                             "pageHostname",
@@ -500,7 +499,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                             "analyticsSessionNumber",
                         ]
                         | _list[
-                            typing_extensions.Literal[
+                            typing.Literal[
                                 "builtInVariableTypeUnspecified",
                                 "pageUrl",
                                 "pageHostname",
@@ -639,7 +638,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         path: str,
-                        type: typing_extensions.Literal[
+                        type: typing.Literal[
                             "builtInVariableTypeUnspecified",
                             "pageUrl",
                             "pageHostname",
@@ -1211,7 +1210,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                 path: str,
                 allowUserPermissionFeatureUpdate: bool | None = ...,
                 containerId: str | None = ...,
-                settingSource: typing_extensions.Literal[
+                settingSource: typing.Literal[
                     "settingSourceUnspecified", "current", "other"
                 ]
                 | None = ...,

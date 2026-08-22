@@ -1,26 +1,22 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class AchievementConfiguration(typing_extensions.TypedDict, total=False):
-    achievementType: typing_extensions.Literal[
+class AchievementConfiguration(typing.TypedDict, total=False):
+    achievementType: typing.Literal[
         "ACHIEVEMENT_TYPE_UNSPECIFIED", "STANDARD", "INCREMENTAL"
     ]
     draft: AchievementConfigurationDetail
     id: str
-    initialState: typing_extensions.Literal[
-        "INITIAL_STATE_UNSPECIFIED", "HIDDEN", "REVEALED"
-    ]
+    initialState: typing.Literal["INITIAL_STATE_UNSPECIFIED", "HIDDEN", "REVEALED"]
     kind: str
     published: AchievementConfigurationDetail
     stepsToUnlock: int
     token: str
 
 @typing.type_check_only
-class AchievementConfigurationDetail(typing_extensions.TypedDict, total=False):
+class AchievementConfigurationDetail(typing.TypedDict, total=False):
     description: LocalizedStringBundle
     iconUrl: str
     kind: str
@@ -29,13 +25,13 @@ class AchievementConfigurationDetail(typing_extensions.TypedDict, total=False):
     sortRank: int
 
 @typing.type_check_only
-class AchievementConfigurationListResponse(typing_extensions.TypedDict, total=False):
+class AchievementConfigurationListResponse(typing.TypedDict, total=False):
     items: _list[AchievementConfiguration]
     kind: str
     nextPageToken: str
 
 @typing.type_check_only
-class GamesNumberAffixConfiguration(typing_extensions.TypedDict, total=False):
+class GamesNumberAffixConfiguration(typing.TypedDict, total=False):
     few: LocalizedStringBundle
     many: LocalizedStringBundle
     one: LocalizedStringBundle
@@ -44,29 +40,29 @@ class GamesNumberAffixConfiguration(typing_extensions.TypedDict, total=False):
     zero: LocalizedStringBundle
 
 @typing.type_check_only
-class GamesNumberFormatConfiguration(typing_extensions.TypedDict, total=False):
+class GamesNumberFormatConfiguration(typing.TypedDict, total=False):
     currencyCode: str
     numDecimalPlaces: int
-    numberFormatType: typing_extensions.Literal[
+    numberFormatType: typing.Literal[
         "NUMBER_FORMAT_TYPE_UNSPECIFIED", "NUMERIC", "TIME_DURATION", "CURRENCY"
     ]
     suffix: GamesNumberAffixConfiguration
 
 @typing.type_check_only
-class LeaderboardConfiguration(typing_extensions.TypedDict, total=False):
+class LeaderboardConfiguration(typing.TypedDict, total=False):
     draft: LeaderboardConfigurationDetail
     id: str
     kind: str
     published: LeaderboardConfigurationDetail
     scoreMax: str
     scoreMin: str
-    scoreOrder: typing_extensions.Literal[
+    scoreOrder: typing.Literal[
         "SCORE_ORDER_UNSPECIFIED", "LARGER_IS_BETTER", "SMALLER_IS_BETTER"
     ]
     token: str
 
 @typing.type_check_only
-class LeaderboardConfigurationDetail(typing_extensions.TypedDict, total=False):
+class LeaderboardConfigurationDetail(typing.TypedDict, total=False):
     iconUrl: str
     kind: str
     name: LocalizedStringBundle
@@ -74,18 +70,18 @@ class LeaderboardConfigurationDetail(typing_extensions.TypedDict, total=False):
     sortRank: int
 
 @typing.type_check_only
-class LeaderboardConfigurationListResponse(typing_extensions.TypedDict, total=False):
+class LeaderboardConfigurationListResponse(typing.TypedDict, total=False):
     items: _list[LeaderboardConfiguration]
     kind: str
     nextPageToken: str
 
 @typing.type_check_only
-class LocalizedString(typing_extensions.TypedDict, total=False):
+class LocalizedString(typing.TypedDict, total=False):
     kind: str
     locale: str
     value: str
 
 @typing.type_check_only
-class LocalizedStringBundle(typing_extensions.TypedDict, total=False):
+class LocalizedStringBundle(typing.TypedDict, total=False):
     kind: str
     translations: _list[LocalizedString]

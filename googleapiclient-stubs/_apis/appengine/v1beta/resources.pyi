@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -32,7 +31,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 *,
                 appsId: str,
                 authorizedCertificatesId: str,
-                view: typing_extensions.Literal["BASIC_CERTIFICATE", "FULL_CERTIFICATE"]
+                view: typing.Literal["BASIC_CERTIFICATE", "FULL_CERTIFICATE"]
                 | None = ...,
                 **kwargs: typing.Any,
             ) -> AuthorizedCertificateHttpRequest: ...
@@ -42,7 +41,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 appsId: str,
                 pageSize: int | None = ...,
                 pageToken: str | None = ...,
-                view: typing_extensions.Literal["BASIC_CERTIFICATE", "FULL_CERTIFICATE"]
+                view: typing.Literal["BASIC_CERTIFICATE", "FULL_CERTIFICATE"]
                 | None = ...,
                 **kwargs: typing.Any,
             ) -> ListAuthorizedCertificatesResponseHttpRequest: ...
@@ -84,7 +83,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 *,
                 appsId: str,
                 body: DomainMapping,
-                overrideStrategy: typing_extensions.Literal[
+                overrideStrategy: typing.Literal[
                     "UNSPECIFIED_DOMAIN_OVERRIDE_STRATEGY", "STRICT", "OVERRIDE"
                 ]
                 | None = ...,
@@ -288,13 +287,13 @@ class AppengineResource(googleapiclient.discovery.Resource):
                     appsId: str,
                     servicesId: str,
                     versionsId: str,
-                    includeExtraData: typing_extensions.Literal[
+                    includeExtraData: typing.Literal[
                         "INCLUDE_EXTRA_DATA_UNSPECIFIED",
                         "INCLUDE_EXTRA_DATA_NONE",
                         "INCLUDE_GOOGLE_GENERATED_METADATA",
                     ]
                     | None = ...,
-                    view: typing_extensions.Literal["BASIC", "FULL"] | None = ...,
+                    view: typing.Literal["BASIC", "FULL"] | None = ...,
                     **kwargs: typing.Any,
                 ) -> VersionHttpRequest: ...
                 def list(
@@ -304,7 +303,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                     servicesId: str,
                     pageSize: int | None = ...,
                     pageToken: str | None = ...,
-                    view: typing_extensions.Literal["BASIC", "FULL"] | None = ...,
+                    view: typing.Literal["BASIC", "FULL"] | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListVersionsResponseHttpRequest: ...
                 def list_next(
@@ -332,7 +331,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 *,
                 appsId: str,
                 servicesId: str,
-                includeExtraData: typing_extensions.Literal[
+                includeExtraData: typing.Literal[
                     "INCLUDE_EXTRA_DATA_UNSPECIFIED",
                     "INCLUDE_EXTRA_DATA_NONE",
                     "INCLUDE_GOOGLE_GENERATED_METADATA",
@@ -372,7 +371,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
             self,
             *,
             appsId: str,
-            includeExtraData: typing_extensions.Literal[
+            includeExtraData: typing.Literal[
                 "INCLUDE_EXTRA_DATA_UNSPECIFIED",
                 "INCLUDE_EXTRA_DATA_NONE",
                 "INCLUDE_GOOGLE_GENERATED_METADATA",
@@ -384,7 +383,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
             self,
             *,
             appsId: str,
-            environment: typing_extensions.Literal[
+            environment: typing.Literal[
                 "ENVIRONMENT_UNSPECIFIED", "STANDARD", "FLEXIBLE"
             ]
             | None = ...,
@@ -444,9 +443,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                         locationsId: str,
                         applicationsId: str,
                         authorizedCertificatesId: str,
-                        view: typing_extensions.Literal[
-                            "BASIC_CERTIFICATE", "FULL_CERTIFICATE"
-                        ]
+                        view: typing.Literal["BASIC_CERTIFICATE", "FULL_CERTIFICATE"]
                         | None = ...,
                         **kwargs: typing.Any,
                     ) -> AuthorizedCertificateHttpRequest: ...
@@ -458,9 +455,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                         applicationsId: str,
                         pageSize: int | None = ...,
                         pageToken: str | None = ...,
-                        view: typing_extensions.Literal[
-                            "BASIC_CERTIFICATE", "FULL_CERTIFICATE"
-                        ]
+                        view: typing.Literal["BASIC_CERTIFICATE", "FULL_CERTIFICATE"]
                         | None = ...,
                         **kwargs: typing.Any,
                     ) -> ListAuthorizedCertificatesResponseHttpRequest: ...
@@ -508,7 +503,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                         locationsId: str,
                         applicationsId: str,
                         body: DomainMapping,
-                        overrideStrategy: typing_extensions.Literal[
+                        overrideStrategy: typing.Literal[
                             "UNSPECIFIED_DOMAIN_OVERRIDE_STRATEGY", "STRICT", "OVERRIDE"
                         ]
                         | None = ...,

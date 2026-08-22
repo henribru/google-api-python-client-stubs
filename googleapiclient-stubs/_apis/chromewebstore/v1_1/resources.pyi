@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -19,7 +18,7 @@ class ChromewebstoreResource(googleapiclient.discovery.Resource):
             self,
             *,
             itemId: str,
-            projection: typing_extensions.Literal["DRAFT", "PUBLISHED"] | None = ...,
+            projection: typing.Literal["DRAFT", "PUBLISHED"] | None = ...,
             **kwargs: typing.Any,
         ) -> ItemHttpRequest: ...
         def insert(

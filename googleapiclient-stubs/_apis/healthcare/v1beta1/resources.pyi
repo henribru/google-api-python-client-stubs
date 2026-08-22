@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -997,7 +996,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                             *,
                             parent: str,
                             ids: str | _list[str] | None = ...,
-                            view: typing_extensions.Literal[
+                            view: typing.Literal[
                                 "MESSAGE_VIEW_UNSPECIFIED",
                                 "RAW_ONLY",
                                 "PARSED_ONLY",
@@ -1022,7 +1021,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             name: str,
-                            view: typing_extensions.Literal[
+                            view: typing.Literal[
                                 "MESSAGE_VIEW_UNSPECIFIED",
                                 "RAW_ONLY",
                                 "PARSED_ONLY",
@@ -1048,7 +1047,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                             orderBy: str | None = ...,
                             pageSize: int | None = ...,
                             pageToken: str | None = ...,
-                            view: typing_extensions.Literal[
+                            view: typing.Literal[
                                 "MESSAGE_VIEW_UNSPECIFIED",
                                 "RAW_ONLY",
                                 "PARSED_ONLY",

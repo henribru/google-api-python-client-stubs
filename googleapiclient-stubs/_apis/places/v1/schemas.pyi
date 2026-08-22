@@ -1,22 +1,20 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class GoogleGeoTypeViewport(typing_extensions.TypedDict, total=False):
+class GoogleGeoTypeViewport(typing.TypedDict, total=False):
     high: GoogleTypeLatLng
     low: GoogleTypeLatLng
 
 @typing.type_check_only
-class GoogleMapsPlacesV1AddressDescriptor(typing_extensions.TypedDict, total=False):
+class GoogleMapsPlacesV1AddressDescriptor(typing.TypedDict, total=False):
     areas: _list[GoogleMapsPlacesV1AddressDescriptorArea]
     landmarks: _list[GoogleMapsPlacesV1AddressDescriptorLandmark]
 
 @typing.type_check_only
-class GoogleMapsPlacesV1AddressDescriptorArea(typing_extensions.TypedDict, total=False):
-    containment: typing_extensions.Literal[
+class GoogleMapsPlacesV1AddressDescriptorArea(typing.TypedDict, total=False):
+    containment: typing.Literal[
         "CONTAINMENT_UNSPECIFIED", "WITHIN", "OUTSKIRTS", "NEAR"
     ]
     displayName: GoogleTypeLocalizedText
@@ -24,13 +22,11 @@ class GoogleMapsPlacesV1AddressDescriptorArea(typing_extensions.TypedDict, total
     placeId: str
 
 @typing.type_check_only
-class GoogleMapsPlacesV1AddressDescriptorLandmark(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleMapsPlacesV1AddressDescriptorLandmark(typing.TypedDict, total=False):
     displayName: GoogleTypeLocalizedText
     name: str
     placeId: str
-    spatialRelationship: typing_extensions.Literal[
+    spatialRelationship: typing.Literal[
         "NEAR",
         "WITHIN",
         "BESIDE",
@@ -44,15 +40,13 @@ class GoogleMapsPlacesV1AddressDescriptorLandmark(
     types: _list[str]
 
 @typing.type_check_only
-class GoogleMapsPlacesV1AuthorAttribution(typing_extensions.TypedDict, total=False):
+class GoogleMapsPlacesV1AuthorAttribution(typing.TypedDict, total=False):
     displayName: str
     photoUri: str
     uri: str
 
 @typing.type_check_only
-class GoogleMapsPlacesV1AutocompletePlacesRequest(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleMapsPlacesV1AutocompletePlacesRequest(typing.TypedDict, total=False):
     includeFutureOpeningBusinesses: bool
     includePureServiceAreaBusinesses: bool
     includeQueryPredictions: bool
@@ -69,27 +63,25 @@ class GoogleMapsPlacesV1AutocompletePlacesRequest(
 
 @typing.type_check_only
 class GoogleMapsPlacesV1AutocompletePlacesRequestLocationBias(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     circle: GoogleMapsPlacesV1Circle
     rectangle: GoogleGeoTypeViewport
 
 @typing.type_check_only
 class GoogleMapsPlacesV1AutocompletePlacesRequestLocationRestriction(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     circle: GoogleMapsPlacesV1Circle
     rectangle: GoogleGeoTypeViewport
 
 @typing.type_check_only
-class GoogleMapsPlacesV1AutocompletePlacesResponse(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleMapsPlacesV1AutocompletePlacesResponse(typing.TypedDict, total=False):
     suggestions: _list[GoogleMapsPlacesV1AutocompletePlacesResponseSuggestion]
 
 @typing.type_check_only
 class GoogleMapsPlacesV1AutocompletePlacesResponseSuggestion(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     placePrediction: (
         GoogleMapsPlacesV1AutocompletePlacesResponseSuggestionPlacePrediction
@@ -100,14 +92,14 @@ class GoogleMapsPlacesV1AutocompletePlacesResponseSuggestion(
 
 @typing.type_check_only
 class GoogleMapsPlacesV1AutocompletePlacesResponseSuggestionFormattableText(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     matches: _list[GoogleMapsPlacesV1AutocompletePlacesResponseSuggestionStringRange]
     text: str
 
 @typing.type_check_only
 class GoogleMapsPlacesV1AutocompletePlacesResponseSuggestionPlacePrediction(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     distanceMeters: int
     place: str
@@ -120,7 +112,7 @@ class GoogleMapsPlacesV1AutocompletePlacesResponseSuggestionPlacePrediction(
 
 @typing.type_check_only
 class GoogleMapsPlacesV1AutocompletePlacesResponseSuggestionQueryPrediction(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     structuredFormat: (
         GoogleMapsPlacesV1AutocompletePlacesResponseSuggestionStructuredFormat
@@ -129,38 +121,36 @@ class GoogleMapsPlacesV1AutocompletePlacesResponseSuggestionQueryPrediction(
 
 @typing.type_check_only
 class GoogleMapsPlacesV1AutocompletePlacesResponseSuggestionStringRange(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     endOffset: int
     startOffset: int
 
 @typing.type_check_only
 class GoogleMapsPlacesV1AutocompletePlacesResponseSuggestionStructuredFormat(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     mainText: GoogleMapsPlacesV1AutocompletePlacesResponseSuggestionFormattableText
     secondaryText: GoogleMapsPlacesV1AutocompletePlacesResponseSuggestionFormattableText
 
 @typing.type_check_only
-class GoogleMapsPlacesV1Circle(typing_extensions.TypedDict, total=False):
+class GoogleMapsPlacesV1Circle(typing.TypedDict, total=False):
     center: GoogleTypeLatLng
     radius: float
 
 @typing.type_check_only
-class GoogleMapsPlacesV1ContentBlock(typing_extensions.TypedDict, total=False):
+class GoogleMapsPlacesV1ContentBlock(typing.TypedDict, total=False):
     content: GoogleTypeLocalizedText
     referencedPlaces: _list[str]
 
 @typing.type_check_only
-class GoogleMapsPlacesV1ContextualContent(typing_extensions.TypedDict, total=False):
+class GoogleMapsPlacesV1ContextualContent(typing.TypedDict, total=False):
     justifications: _list[GoogleMapsPlacesV1ContextualContentJustification]
     photos: _list[GoogleMapsPlacesV1Photo]
     reviews: _list[GoogleMapsPlacesV1Review]
 
 @typing.type_check_only
-class GoogleMapsPlacesV1ContextualContentJustification(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleMapsPlacesV1ContextualContentJustification(typing.TypedDict, total=False):
     businessAvailabilityAttributesJustification: GoogleMapsPlacesV1ContextualContentJustificationBusinessAvailabilityAttributesJustification
     reviewJustification: (
         GoogleMapsPlacesV1ContextualContentJustificationReviewJustification
@@ -168,7 +158,7 @@ class GoogleMapsPlacesV1ContextualContentJustification(
 
 @typing.type_check_only
 class GoogleMapsPlacesV1ContextualContentJustificationBusinessAvailabilityAttributesJustification(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     delivery: bool
     dineIn: bool
@@ -176,14 +166,14 @@ class GoogleMapsPlacesV1ContextualContentJustificationBusinessAvailabilityAttrib
 
 @typing.type_check_only
 class GoogleMapsPlacesV1ContextualContentJustificationReviewJustification(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     highlightedText: GoogleMapsPlacesV1ContextualContentJustificationReviewJustificationHighlightedText
     review: GoogleMapsPlacesV1Review
 
 @typing.type_check_only
 class GoogleMapsPlacesV1ContextualContentJustificationReviewJustificationHighlightedText(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     highlightedTextRanges: _list[
         GoogleMapsPlacesV1ContextualContentJustificationReviewJustificationHighlightedTextHighlightedTextRange
@@ -192,26 +182,26 @@ class GoogleMapsPlacesV1ContextualContentJustificationReviewJustificationHighlig
 
 @typing.type_check_only
 class GoogleMapsPlacesV1ContextualContentJustificationReviewJustificationHighlightedTextHighlightedTextRange(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     endIndex: int
     startIndex: int
 
 @typing.type_check_only
-class GoogleMapsPlacesV1EVChargeOptions(typing_extensions.TypedDict, total=False):
+class GoogleMapsPlacesV1EVChargeOptions(typing.TypedDict, total=False):
     connectorAggregation: _list[GoogleMapsPlacesV1EVChargeOptionsConnectorAggregation]
     connectorCount: int
 
 @typing.type_check_only
 class GoogleMapsPlacesV1EVChargeOptionsConnectorAggregation(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     availabilityLastUpdateTime: str
     availableCount: int
     count: int
     maxChargeRateKw: float
     outOfServiceCount: int
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "EV_CONNECTOR_TYPE_UNSPECIFIED",
         "EV_CONNECTOR_TYPE_OTHER",
         "EV_CONNECTOR_TYPE_J1772",
@@ -226,13 +216,13 @@ class GoogleMapsPlacesV1EVChargeOptionsConnectorAggregation(
     ]
 
 @typing.type_check_only
-class GoogleMapsPlacesV1FuelOptions(typing_extensions.TypedDict, total=False):
+class GoogleMapsPlacesV1FuelOptions(typing.TypedDict, total=False):
     fuelPrices: _list[GoogleMapsPlacesV1FuelOptionsFuelPrice]
 
 @typing.type_check_only
-class GoogleMapsPlacesV1FuelOptionsFuelPrice(typing_extensions.TypedDict, total=False):
+class GoogleMapsPlacesV1FuelOptionsFuelPrice(typing.TypedDict, total=False):
     price: GoogleTypeMoney
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "FUEL_TYPE_UNSPECIFIED",
         "DIESEL",
         "DIESEL_PLUS",
@@ -258,7 +248,7 @@ class GoogleMapsPlacesV1FuelOptionsFuelPrice(typing_extensions.TypedDict, total=
     updateTime: str
 
 @typing.type_check_only
-class GoogleMapsPlacesV1Photo(typing_extensions.TypedDict, total=False):
+class GoogleMapsPlacesV1Photo(typing.TypedDict, total=False):
     authorAttributions: _list[GoogleMapsPlacesV1AuthorAttribution]
     flagContentUri: str
     googleMapsUri: str
@@ -267,19 +257,19 @@ class GoogleMapsPlacesV1Photo(typing_extensions.TypedDict, total=False):
     widthPx: int
 
 @typing.type_check_only
-class GoogleMapsPlacesV1PhotoMedia(typing_extensions.TypedDict, total=False):
+class GoogleMapsPlacesV1PhotoMedia(typing.TypedDict, total=False):
     name: str
     photoUri: str
 
 @typing.type_check_only
-class GoogleMapsPlacesV1Place(typing_extensions.TypedDict, total=False):
+class GoogleMapsPlacesV1Place(typing.TypedDict, total=False):
     accessibilityOptions: GoogleMapsPlacesV1PlaceAccessibilityOptions
     addressComponents: _list[GoogleMapsPlacesV1PlaceAddressComponent]
     addressDescriptor: GoogleMapsPlacesV1AddressDescriptor
     adrFormatAddress: str
     allowsDogs: bool
     attributions: _list[GoogleMapsPlacesV1PlaceAttribution]
-    businessStatus: typing_extensions.Literal[
+    businessStatus: typing.Literal[
         "BUSINESS_STATUS_UNSPECIFIED",
         "OPERATIONAL",
         "CLOSED_TEMPORARILY",
@@ -295,6 +285,7 @@ class GoogleMapsPlacesV1Place(typing_extensions.TypedDict, total=False):
     dineIn: bool
     displayName: GoogleTypeLocalizedText
     editorialSummary: GoogleTypeLocalizedText
+    entrances: _list[GoogleMapsPlacesV1PlaceEntrance]
     evChargeAmenitySummary: GoogleMapsPlacesV1PlaceEvChargeAmenitySummary
     evChargeOptions: GoogleMapsPlacesV1EVChargeOptions
     formattedAddress: str
@@ -317,6 +308,7 @@ class GoogleMapsPlacesV1Place(typing_extensions.TypedDict, total=False):
     movedPlaceId: str
     name: str
     nationalPhoneNumber: str
+    navigationPoints: _list[GoogleMapsPlacesV1PlaceNavigationPoint]
     neighborhoodSummary: GoogleMapsPlacesV1PlaceNeighborhoodSummary
     openingDate: GoogleTypeDate
     outdoorSeating: bool
@@ -325,7 +317,7 @@ class GoogleMapsPlacesV1Place(typing_extensions.TypedDict, total=False):
     photos: _list[GoogleMapsPlacesV1Photo]
     plusCode: GoogleMapsPlacesV1PlacePlusCode
     postalAddress: GoogleTypePostalAddress
-    priceLevel: typing_extensions.Literal[
+    priceLevel: typing.Literal[
         "PRICE_LEVEL_UNSPECIFIED",
         "PRICE_LEVEL_FREE",
         "PRICE_LEVEL_INEXPENSIVE",
@@ -366,56 +358,53 @@ class GoogleMapsPlacesV1Place(typing_extensions.TypedDict, total=False):
     websiteUri: str
 
 @typing.type_check_only
-class GoogleMapsPlacesV1PlaceAccessibilityOptions(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleMapsPlacesV1PlaceAccessibilityOptions(typing.TypedDict, total=False):
     wheelchairAccessibleEntrance: bool
     wheelchairAccessibleParking: bool
     wheelchairAccessibleRestroom: bool
     wheelchairAccessibleSeating: bool
 
 @typing.type_check_only
-class GoogleMapsPlacesV1PlaceAddressComponent(typing_extensions.TypedDict, total=False):
+class GoogleMapsPlacesV1PlaceAddressComponent(typing.TypedDict, total=False):
     languageCode: str
     longText: str
     shortText: str
     types: _list[str]
 
 @typing.type_check_only
-class GoogleMapsPlacesV1PlaceAttribution(typing_extensions.TypedDict, total=False):
+class GoogleMapsPlacesV1PlaceAttribution(typing.TypedDict, total=False):
     provider: str
     providerUri: str
 
 @typing.type_check_only
-class GoogleMapsPlacesV1PlaceConsumerAlert(typing_extensions.TypedDict, total=False):
+class GoogleMapsPlacesV1PlaceConsumerAlert(typing.TypedDict, total=False):
     details: GoogleMapsPlacesV1PlaceConsumerAlertDetails
     languageCode: str
     overview: str
 
 @typing.type_check_only
-class GoogleMapsPlacesV1PlaceConsumerAlertDetails(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleMapsPlacesV1PlaceConsumerAlertDetails(typing.TypedDict, total=False):
     aboutLink: GoogleMapsPlacesV1PlaceConsumerAlertDetailsLink
     description: str
     title: str
 
 @typing.type_check_only
-class GoogleMapsPlacesV1PlaceConsumerAlertDetailsLink(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleMapsPlacesV1PlaceConsumerAlertDetailsLink(typing.TypedDict, total=False):
     title: str
     uri: str
 
 @typing.type_check_only
-class GoogleMapsPlacesV1PlaceContainingPlace(typing_extensions.TypedDict, total=False):
+class GoogleMapsPlacesV1PlaceContainingPlace(typing.TypedDict, total=False):
     id: str
     name: str
 
 @typing.type_check_only
-class GoogleMapsPlacesV1PlaceEvChargeAmenitySummary(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleMapsPlacesV1PlaceEntrance(typing.TypedDict, total=False):
+    location: GoogleTypeLatLng
+    tags: _list[typing.Literal["TAG_UNSPECIFIED", "PREFERRED"]]
+
+@typing.type_check_only
+class GoogleMapsPlacesV1PlaceEvChargeAmenitySummary(typing.TypedDict, total=False):
     coffee: GoogleMapsPlacesV1ContentBlock
     disclosureText: GoogleTypeLocalizedText
     flagContentUri: str
@@ -424,15 +413,13 @@ class GoogleMapsPlacesV1PlaceEvChargeAmenitySummary(
     store: GoogleMapsPlacesV1ContentBlock
 
 @typing.type_check_only
-class GoogleMapsPlacesV1PlaceGenerativeSummary(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleMapsPlacesV1PlaceGenerativeSummary(typing.TypedDict, total=False):
     disclosureText: GoogleTypeLocalizedText
     overview: GoogleTypeLocalizedText
     overviewFlagContentUri: str
 
 @typing.type_check_only
-class GoogleMapsPlacesV1PlaceGoogleMapsLinks(typing_extensions.TypedDict, total=False):
+class GoogleMapsPlacesV1PlaceGoogleMapsLinks(typing.TypedDict, total=False):
     directionsUri: str
     photosUri: str
     placeUri: str
@@ -440,21 +427,27 @@ class GoogleMapsPlacesV1PlaceGoogleMapsLinks(typing_extensions.TypedDict, total=
     writeAReviewUri: str
 
 @typing.type_check_only
-class GoogleMapsPlacesV1PlaceNeighborhoodSummary(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleMapsPlacesV1PlaceNavigationPoint(typing.TypedDict, total=False):
+    displayName: GoogleTypeLocalizedText
+    location: GoogleTypeLatLng
+    navigationPointToken: str
+    travelModes: _list[typing.Literal["TRAVEL_MODE_UNSPECIFIED", "DRIVE", "WALK"]]
+    usages: _list[typing.Literal["USAGE_UNSPECIFIED", "DROPOFF", "PICKUP", "PARKING"]]
+
+@typing.type_check_only
+class GoogleMapsPlacesV1PlaceNeighborhoodSummary(typing.TypedDict, total=False):
     description: GoogleMapsPlacesV1ContentBlock
     disclosureText: GoogleTypeLocalizedText
     flagContentUri: str
     overview: GoogleMapsPlacesV1ContentBlock
 
 @typing.type_check_only
-class GoogleMapsPlacesV1PlaceOpeningHours(typing_extensions.TypedDict, total=False):
+class GoogleMapsPlacesV1PlaceOpeningHours(typing.TypedDict, total=False):
     nextCloseTime: str
     nextOpenTime: str
     openNow: bool
     periods: _list[GoogleMapsPlacesV1PlaceOpeningHoursPeriod]
-    secondaryHoursType: typing_extensions.Literal[
+    secondaryHoursType: typing.Literal[
         "SECONDARY_HOURS_TYPE_UNSPECIFIED",
         "DRIVE_THROUGH",
         "HAPPY_HOUR",
@@ -474,16 +467,12 @@ class GoogleMapsPlacesV1PlaceOpeningHours(typing_extensions.TypedDict, total=Fal
     weekdayDescriptions: _list[str]
 
 @typing.type_check_only
-class GoogleMapsPlacesV1PlaceOpeningHoursPeriod(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleMapsPlacesV1PlaceOpeningHoursPeriod(typing.TypedDict, total=False):
     close: GoogleMapsPlacesV1PlaceOpeningHoursPeriodPoint
     open: GoogleMapsPlacesV1PlaceOpeningHoursPeriodPoint
 
 @typing.type_check_only
-class GoogleMapsPlacesV1PlaceOpeningHoursPeriodPoint(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleMapsPlacesV1PlaceOpeningHoursPeriodPoint(typing.TypedDict, total=False):
     date: GoogleTypeDate
     day: int
     hour: int
@@ -491,13 +480,11 @@ class GoogleMapsPlacesV1PlaceOpeningHoursPeriodPoint(
     truncated: bool
 
 @typing.type_check_only
-class GoogleMapsPlacesV1PlaceOpeningHoursSpecialDay(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleMapsPlacesV1PlaceOpeningHoursSpecialDay(typing.TypedDict, total=False):
     date: GoogleTypeDate
 
 @typing.type_check_only
-class GoogleMapsPlacesV1PlaceParkingOptions(typing_extensions.TypedDict, total=False):
+class GoogleMapsPlacesV1PlaceParkingOptions(typing.TypedDict, total=False):
     freeGarageParking: bool
     freeParkingLot: bool
     freeStreetParking: bool
@@ -507,40 +494,40 @@ class GoogleMapsPlacesV1PlaceParkingOptions(typing_extensions.TypedDict, total=F
     valetParking: bool
 
 @typing.type_check_only
-class GoogleMapsPlacesV1PlacePaymentOptions(typing_extensions.TypedDict, total=False):
+class GoogleMapsPlacesV1PlacePaymentOptions(typing.TypedDict, total=False):
     acceptsCashOnly: bool
     acceptsCreditCards: bool
     acceptsDebitCards: bool
     acceptsNfc: bool
 
 @typing.type_check_only
-class GoogleMapsPlacesV1PlacePlusCode(typing_extensions.TypedDict, total=False):
+class GoogleMapsPlacesV1PlacePlusCode(typing.TypedDict, total=False):
     compoundCode: str
     globalCode: str
 
 @typing.type_check_only
-class GoogleMapsPlacesV1PlaceReviewSummary(typing_extensions.TypedDict, total=False):
+class GoogleMapsPlacesV1PlaceReviewSummary(typing.TypedDict, total=False):
     disclosureText: GoogleTypeLocalizedText
     flagContentUri: str
     reviewsUri: str
     text: GoogleTypeLocalizedText
 
 @typing.type_check_only
-class GoogleMapsPlacesV1PlaceSubDestination(typing_extensions.TypedDict, total=False):
+class GoogleMapsPlacesV1PlaceSubDestination(typing.TypedDict, total=False):
     id: str
     name: str
 
 @typing.type_check_only
-class GoogleMapsPlacesV1Polyline(typing_extensions.TypedDict, total=False):
+class GoogleMapsPlacesV1Polyline(typing.TypedDict, total=False):
     encodedPolyline: str
 
 @typing.type_check_only
-class GoogleMapsPlacesV1PriceRange(typing_extensions.TypedDict, total=False):
+class GoogleMapsPlacesV1PriceRange(typing.TypedDict, total=False):
     endPrice: GoogleTypeMoney
     startPrice: GoogleTypeMoney
 
 @typing.type_check_only
-class GoogleMapsPlacesV1Review(typing_extensions.TypedDict, total=False):
+class GoogleMapsPlacesV1Review(typing.TypedDict, total=False):
     authorAttribution: GoogleMapsPlacesV1AuthorAttribution
     flagContentUri: str
     googleMapsUri: str
@@ -553,38 +540,38 @@ class GoogleMapsPlacesV1Review(typing_extensions.TypedDict, total=False):
     visitDate: GoogleTypeDate
 
 @typing.type_check_only
-class GoogleMapsPlacesV1RouteModifiers(typing_extensions.TypedDict, total=False):
+class GoogleMapsPlacesV1RouteModifiers(typing.TypedDict, total=False):
     avoidFerries: bool
     avoidHighways: bool
     avoidIndoor: bool
     avoidTolls: bool
 
 @typing.type_check_only
-class GoogleMapsPlacesV1RoutingParameters(typing_extensions.TypedDict, total=False):
+class GoogleMapsPlacesV1RoutingParameters(typing.TypedDict, total=False):
     origin: GoogleTypeLatLng
     routeModifiers: GoogleMapsPlacesV1RouteModifiers
-    routingPreference: typing_extensions.Literal[
+    routingPreference: typing.Literal[
         "ROUTING_PREFERENCE_UNSPECIFIED",
         "TRAFFIC_UNAWARE",
         "TRAFFIC_AWARE",
         "TRAFFIC_AWARE_OPTIMAL",
     ]
-    travelMode: typing_extensions.Literal[
+    travelMode: typing.Literal[
         "TRAVEL_MODE_UNSPECIFIED", "DRIVE", "BICYCLE", "WALK", "TWO_WHEELER"
     ]
 
 @typing.type_check_only
-class GoogleMapsPlacesV1RoutingSummary(typing_extensions.TypedDict, total=False):
+class GoogleMapsPlacesV1RoutingSummary(typing.TypedDict, total=False):
     directionsUri: str
     legs: _list[GoogleMapsPlacesV1RoutingSummaryLeg]
 
 @typing.type_check_only
-class GoogleMapsPlacesV1RoutingSummaryLeg(typing_extensions.TypedDict, total=False):
+class GoogleMapsPlacesV1RoutingSummaryLeg(typing.TypedDict, total=False):
     distanceMeters: int
     duration: str
 
 @typing.type_check_only
-class GoogleMapsPlacesV1SearchNearbyRequest(typing_extensions.TypedDict, total=False):
+class GoogleMapsPlacesV1SearchNearbyRequest(typing.TypedDict, total=False):
     excludedPrimaryTypes: _list[str]
     excludedTypes: _list[str]
     includeFutureOpeningBusinesses: bool
@@ -593,7 +580,7 @@ class GoogleMapsPlacesV1SearchNearbyRequest(typing_extensions.TypedDict, total=F
     languageCode: str
     locationRestriction: GoogleMapsPlacesV1SearchNearbyRequestLocationRestriction
     maxResultCount: int
-    rankPreference: typing_extensions.Literal[
+    rankPreference: typing.Literal[
         "RANK_PREFERENCE_UNSPECIFIED", "DISTANCE", "POPULARITY"
     ]
     regionCode: str
@@ -601,17 +588,17 @@ class GoogleMapsPlacesV1SearchNearbyRequest(typing_extensions.TypedDict, total=F
 
 @typing.type_check_only
 class GoogleMapsPlacesV1SearchNearbyRequestLocationRestriction(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     circle: GoogleMapsPlacesV1Circle
 
 @typing.type_check_only
-class GoogleMapsPlacesV1SearchNearbyResponse(typing_extensions.TypedDict, total=False):
+class GoogleMapsPlacesV1SearchNearbyResponse(typing.TypedDict, total=False):
     places: _list[GoogleMapsPlacesV1Place]
     routingSummaries: _list[GoogleMapsPlacesV1RoutingSummary]
 
 @typing.type_check_only
-class GoogleMapsPlacesV1SearchTextRequest(typing_extensions.TypedDict, total=False):
+class GoogleMapsPlacesV1SearchTextRequest(typing.TypedDict, total=False):
     evOptions: GoogleMapsPlacesV1SearchTextRequestEVOptions
     includeFutureOpeningBusinesses: bool
     includePureServiceAreaBusinesses: bool
@@ -625,7 +612,7 @@ class GoogleMapsPlacesV1SearchTextRequest(typing_extensions.TypedDict, total=Fal
     pageSize: int
     pageToken: str
     priceLevels: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "PRICE_LEVEL_UNSPECIFIED",
             "PRICE_LEVEL_FREE",
             "PRICE_LEVEL_INEXPENSIVE",
@@ -634,7 +621,7 @@ class GoogleMapsPlacesV1SearchTextRequest(typing_extensions.TypedDict, total=Fal
             "PRICE_LEVEL_VERY_EXPENSIVE",
         ]
     ]
-    rankPreference: typing_extensions.Literal[
+    rankPreference: typing.Literal[
         "RANK_PREFERENCE_UNSPECIFIED", "DISTANCE", "RELEVANCE"
     ]
     regionCode: str
@@ -646,11 +633,9 @@ class GoogleMapsPlacesV1SearchTextRequest(typing_extensions.TypedDict, total=Fal
     textQuery: str
 
 @typing.type_check_only
-class GoogleMapsPlacesV1SearchTextRequestEVOptions(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleMapsPlacesV1SearchTextRequestEVOptions(typing.TypedDict, total=False):
     connectorTypes: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "EV_CONNECTOR_TYPE_UNSPECIFIED",
             "EV_CONNECTOR_TYPE_OTHER",
             "EV_CONNECTOR_TYPE_J1772",
@@ -667,26 +652,24 @@ class GoogleMapsPlacesV1SearchTextRequestEVOptions(
     minimumChargingRateKw: float
 
 @typing.type_check_only
-class GoogleMapsPlacesV1SearchTextRequestLocationBias(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleMapsPlacesV1SearchTextRequestLocationBias(typing.TypedDict, total=False):
     circle: GoogleMapsPlacesV1Circle
     rectangle: GoogleGeoTypeViewport
 
 @typing.type_check_only
 class GoogleMapsPlacesV1SearchTextRequestLocationRestriction(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     rectangle: GoogleGeoTypeViewport
 
 @typing.type_check_only
 class GoogleMapsPlacesV1SearchTextRequestSearchAlongRouteParameters(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     polyline: GoogleMapsPlacesV1Polyline
 
 @typing.type_check_only
-class GoogleMapsPlacesV1SearchTextResponse(typing_extensions.TypedDict, total=False):
+class GoogleMapsPlacesV1SearchTextResponse(typing.TypedDict, total=False):
     contextualContents: _list[GoogleMapsPlacesV1ContextualContent]
     nextPageToken: str
     places: _list[GoogleMapsPlacesV1Place]
@@ -694,7 +677,7 @@ class GoogleMapsPlacesV1SearchTextResponse(typing_extensions.TypedDict, total=Fa
     searchUri: str
 
 @typing.type_check_only
-class GoogleMapsPlacesV1TransitAgency(typing_extensions.TypedDict, total=False):
+class GoogleMapsPlacesV1TransitAgency(typing.TypedDict, total=False):
     displayName: GoogleTypeLocalizedText
     fareUrl: str
     icon: GoogleMapsPlacesV1TransitIcon
@@ -702,12 +685,12 @@ class GoogleMapsPlacesV1TransitAgency(typing_extensions.TypedDict, total=False):
     url: str
 
 @typing.type_check_only
-class GoogleMapsPlacesV1TransitIcon(typing_extensions.TypedDict, total=False):
+class GoogleMapsPlacesV1TransitIcon(typing.TypedDict, total=False):
     nameIncluded: bool
     url: str
 
 @typing.type_check_only
-class GoogleMapsPlacesV1TransitLine(typing_extensions.TypedDict, total=False):
+class GoogleMapsPlacesV1TransitLine(typing.TypedDict, total=False):
     backgroundColor: str
     displayName: GoogleTypeLocalizedText
     icon: GoogleMapsPlacesV1TransitIcon
@@ -716,7 +699,7 @@ class GoogleMapsPlacesV1TransitLine(typing_extensions.TypedDict, total=False):
     textColor: str
     url: str
     vehicleIcon: GoogleMapsPlacesV1TransitIcon
-    vehicleType: typing_extensions.Literal[
+    vehicleType: typing.Literal[
         "VEHICLE_TYPE_UNSPECIFIED",
         "RAIL",
         "METRO_RAIL",
@@ -742,13 +725,13 @@ class GoogleMapsPlacesV1TransitLine(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class GoogleMapsPlacesV1TransitStation(typing_extensions.TypedDict, total=False):
+class GoogleMapsPlacesV1TransitStation(typing.TypedDict, total=False):
     agencies: _list[GoogleMapsPlacesV1TransitAgency]
     displayName: GoogleTypeLocalizedText
     stops: _list[GoogleMapsPlacesV1TransitStop]
 
 @typing.type_check_only
-class GoogleMapsPlacesV1TransitStop(typing_extensions.TypedDict, total=False):
+class GoogleMapsPlacesV1TransitStop(typing.TypedDict, total=False):
     displayName: GoogleTypeLocalizedText
     id: str
     location: GoogleTypeLatLng
@@ -758,29 +741,29 @@ class GoogleMapsPlacesV1TransitStop(typing_extensions.TypedDict, total=False):
     wheelchairAccessibleEntrance: bool
 
 @typing.type_check_only
-class GoogleTypeDate(typing_extensions.TypedDict, total=False):
+class GoogleTypeDate(typing.TypedDict, total=False):
     day: int
     month: int
     year: int
 
 @typing.type_check_only
-class GoogleTypeLatLng(typing_extensions.TypedDict, total=False):
+class GoogleTypeLatLng(typing.TypedDict, total=False):
     latitude: float
     longitude: float
 
 @typing.type_check_only
-class GoogleTypeLocalizedText(typing_extensions.TypedDict, total=False):
+class GoogleTypeLocalizedText(typing.TypedDict, total=False):
     languageCode: str
     text: str
 
 @typing.type_check_only
-class GoogleTypeMoney(typing_extensions.TypedDict, total=False):
+class GoogleTypeMoney(typing.TypedDict, total=False):
     currencyCode: str
     nanos: int
     units: str
 
 @typing.type_check_only
-class GoogleTypePostalAddress(typing_extensions.TypedDict, total=False):
+class GoogleTypePostalAddress(typing.TypedDict, total=False):
     addressLines: _list[str]
     administrativeArea: str
     languageCode: str
@@ -794,6 +777,6 @@ class GoogleTypePostalAddress(typing_extensions.TypedDict, total=False):
     sublocality: str
 
 @typing.type_check_only
-class GoogleTypeTimeZone(typing_extensions.TypedDict, total=False):
+class GoogleTypeTimeZone(typing.TypedDict, total=False):
     id: str
     version: str

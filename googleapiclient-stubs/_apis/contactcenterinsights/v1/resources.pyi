@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -97,6 +96,46 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudContactcenterinsightsV1AssessmentRuleHttpRequest: ...
+
+            @typing.type_check_only
+            class AssistantSessionsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleCloudContactcenterinsightsV1AssistantSession,
+                    assistantSessionId: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleCloudContactcenterinsightsV1AssistantSessionHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudContactcenterinsightsV1AssistantSessionHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleCloudContactcenterinsightsV1ListAssistantSessionsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudContactcenterinsightsV1ListAssistantSessionsResponseHttpRequest,
+                    previous_response: GoogleCloudContactcenterinsightsV1ListAssistantSessionsResponse,
+                ) -> (
+                    GoogleCloudContactcenterinsightsV1ListAssistantSessionsResponseHttpRequest
+                    | None
+                ): ...
+                def streamChat(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudContactcenterinsightsV1StreamChatRequest,
+                    **kwargs: typing.Any,
+                ) -> (
+                    GoogleCloudContactcenterinsightsV1StreamChatResponseHttpRequest
+                ): ...
 
             @typing.type_check_only
             class AuthorizedViewSetsResource(googleapiclient.discovery.Resource):
@@ -279,7 +318,7 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             name: str,
-                            view: typing_extensions.Literal[
+                            view: typing.Literal[
                                 "CONVERSATION_VIEW_UNSPECIFIED", "FULL", "BASIC"
                             ]
                             | None = ...,
@@ -295,7 +334,7 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                             orderBy: str | None = ...,
                             pageSize: int | None = ...,
                             pageToken: str | None = ...,
-                            view: typing_extensions.Literal[
+                            view: typing.Literal[
                                 "CONVERSATION_VIEW_UNSPECIFIED", "FULL", "BASIC"
                             ]
                             | None = ...,
@@ -761,7 +800,7 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    view: typing_extensions.Literal[
+                    view: typing.Literal[
                         "CONVERSATION_VIEW_UNSPECIFIED", "FULL", "BASIC"
                     ]
                     | None = ...,
@@ -782,7 +821,7 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                     orderBy: str | None = ...,
                     pageSize: int | None = ...,
                     pageToken: str | None = ...,
-                    view: typing_extensions.Literal[
+                    view: typing.Literal[
                         "CONVERSATION_VIEW_UNSPECIFIED", "FULL", "BASIC"
                     ]
                     | None = ...,
@@ -982,7 +1021,7 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        view: typing_extensions.Literal[
+                        view: typing.Literal[
                             "CONVERSATION_VIEW_UNSPECIFIED", "FULL", "BASIC"
                         ]
                         | None = ...,
@@ -1003,7 +1042,7 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                         orderBy: str | None = ...,
                         pageSize: int | None = ...,
                         pageToken: str | None = ...,
-                        view: typing_extensions.Literal[
+                        view: typing.Literal[
                             "CONVERSATION_VIEW_UNSPECIFIED", "FULL", "BASIC"
                         ]
                         | None = ...,
@@ -1410,16 +1449,18 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                         filter: str | None = ...,
                         pageSize: int | None = ...,
                         pageToken: str | None = ...,
-                        qaScorecardSources: typing_extensions.Literal[
+                        qaScorecardSources: typing.Literal[
                             "QA_SCORECARD_SOURCE_UNSPECIFIED",
                             "QA_SCORECARD_SOURCE_CUSTOMER_DEFINED",
                             "QA_SCORECARD_SOURCE_DISCOVERY_ENGINE",
+                            "QA_SCORECARD_SOURCE_INTENT_TAXONOMY",
                         ]
                         | _list[
-                            typing_extensions.Literal[
+                            typing.Literal[
                                 "QA_SCORECARD_SOURCE_UNSPECIFIED",
                                 "QA_SCORECARD_SOURCE_CUSTOMER_DEFINED",
                                 "QA_SCORECARD_SOURCE_DISCOVERY_ENGINE",
+                                "QA_SCORECARD_SOURCE_INTENT_TAXONOMY",
                             ]
                         ]
                         | None = ...,
@@ -1471,16 +1512,18 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int | None = ...,
                     pageToken: str | None = ...,
-                    qaScorecardSources: typing_extensions.Literal[
+                    qaScorecardSources: typing.Literal[
                         "QA_SCORECARD_SOURCE_UNSPECIFIED",
                         "QA_SCORECARD_SOURCE_CUSTOMER_DEFINED",
                         "QA_SCORECARD_SOURCE_DISCOVERY_ENGINE",
+                        "QA_SCORECARD_SOURCE_INTENT_TAXONOMY",
                     ]
                     | _list[
-                        typing_extensions.Literal[
+                        typing.Literal[
                             "QA_SCORECARD_SOURCE_UNSPECIFIED",
                             "QA_SCORECARD_SOURCE_CUSTOMER_DEFINED",
                             "QA_SCORECARD_SOURCE_DISCOVERY_ENGINE",
+                            "QA_SCORECARD_SOURCE_INTENT_TAXONOMY",
                         ]
                     ]
                     | None = ...,
@@ -1637,6 +1680,7 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
             ) -> GoogleCloudContactcenterinsightsV1SettingsHttpRequest: ...
             def analysisRules(self) -> AnalysisRulesResource: ...
             def assessmentRules(self) -> AssessmentRulesResource: ...
+            def assistantSessions(self) -> AssistantSessionsResource: ...
             def authorizedViewSets(self) -> AuthorizedViewSetsResource: ...
             def autoLabelingRules(self) -> AutoLabelingRulesResource: ...
             def conversations(self) -> ConversationsResource: ...
@@ -1706,6 +1750,16 @@ class GoogleCloudContactcenterinsightsV1AssessmentRuleHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudContactcenterinsightsV1AssessmentRule: ...
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1AssistantSessionHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudContactcenterinsightsV1AssistantSession: ...
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1AuthorizedViewHttpRequest(
@@ -1906,6 +1960,16 @@ class GoogleCloudContactcenterinsightsV1ListAssessmentsResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudContactcenterinsightsV1ListAssessmentsResponse: ...
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1ListAssistantSessionsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudContactcenterinsightsV1ListAssistantSessionsResponse: ...
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1ListAuthorizedViewSetsResponseHttpRequest(
@@ -2156,6 +2220,16 @@ class GoogleCloudContactcenterinsightsV1SettingsHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudContactcenterinsightsV1Settings: ...
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1StreamChatResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudContactcenterinsightsV1StreamChatResponse: ...
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1TestAutoLabelingRuleResponseHttpRequest(

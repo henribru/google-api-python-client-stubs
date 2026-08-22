@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -49,6 +48,15 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                 previous_request: ListAdAssetsResponseHttpRequest,
                 previous_response: ListAdAssetsResponse,
             ) -> ListAdAssetsResponseHttpRequest | None: ...
+            def patch(
+                self,
+                *,
+                advertiserId: str,
+                adAssetId: str,
+                body: AdAsset,
+                updateMask: str | None = ...,
+                **kwargs: typing.Any,
+            ) -> AdAssetHttpRequest: ...
             def upload(
                 self,
                 *,
@@ -106,7 +114,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                         *,
                         advertiserId: str,
                         adGroupId: str,
-                        targetingType: typing_extensions.Literal[
+                        targetingType: typing.Literal[
                             "TARGETING_TYPE_UNSPECIFIED",
                             "TARGETING_TYPE_CHANNEL",
                             "TARGETING_TYPE_APP_CATEGORY",
@@ -167,7 +175,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                         *,
                         advertiserId: str,
                         adGroupId: str,
-                        targetingType: typing_extensions.Literal[
+                        targetingType: typing.Literal[
                             "TARGETING_TYPE_UNSPECIFIED",
                             "TARGETING_TYPE_CHANNEL",
                             "TARGETING_TYPE_APP_CATEGORY",
@@ -228,7 +236,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                         *,
                         advertiserId: str,
                         adGroupId: str,
-                        targetingType: typing_extensions.Literal[
+                        targetingType: typing.Literal[
                             "TARGETING_TYPE_UNSPECIFIED",
                             "TARGETING_TYPE_CHANNEL",
                             "TARGETING_TYPE_APP_CATEGORY",
@@ -289,7 +297,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                         *,
                         advertiserId: str,
                         adGroupId: str,
-                        targetingType: typing_extensions.Literal[
+                        targetingType: typing.Literal[
                             "TARGETING_TYPE_UNSPECIFIED",
                             "TARGETING_TYPE_CHANNEL",
                             "TARGETING_TYPE_APP_CATEGORY",
@@ -371,7 +379,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                         *,
                         advertiserId: str,
                         adGroupId: str,
-                        youtubeAssetType: typing_extensions.Literal[
+                        youtubeAssetType: typing.Literal[
                             "YOUTUBE_ASSET_TYPE_UNSPECIFIED",
                             "YOUTUBE_ASSET_TYPE_LOCATION",
                             "YOUTUBE_ASSET_TYPE_AFFILIATE_LOCATION",
@@ -386,7 +394,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                         *,
                         advertiserId: str,
                         adGroupId: str,
-                        youtubeAssetType: typing_extensions.Literal[
+                        youtubeAssetType: typing.Literal[
                             "YOUTUBE_ASSET_TYPE_UNSPECIFIED",
                             "YOUTUBE_ASSET_TYPE_LOCATION",
                             "YOUTUBE_ASSET_TYPE_AFFILIATE_LOCATION",
@@ -401,7 +409,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                         *,
                         advertiserId: str,
                         adGroupId: str,
-                        youtubeAssetType: typing_extensions.Literal[
+                        youtubeAssetType: typing.Literal[
                             "YOUTUBE_ASSET_TYPE_UNSPECIFIED",
                             "YOUTUBE_ASSET_TYPE_LOCATION",
                             "YOUTUBE_ASSET_TYPE_AFFILIATE_LOCATION",
@@ -707,7 +715,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                 *,
                 advertiserId: str,
                 issueMonth: str | None = ...,
-                loiSapinInvoiceType: typing_extensions.Literal[
+                loiSapinInvoiceType: typing.Literal[
                     "LOI_SAPIN_INVOICE_TYPE_UNSPECIFIED",
                     "LOI_SAPIN_INVOICE_TYPE_MEDIA",
                     "LOI_SAPIN_INVOICE_TYPE_PLATFORM",
@@ -743,7 +751,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                         *,
                         advertiserId: str,
                         lineItemId: str,
-                        targetingType: typing_extensions.Literal[
+                        targetingType: typing.Literal[
                             "TARGETING_TYPE_UNSPECIFIED",
                             "TARGETING_TYPE_CHANNEL",
                             "TARGETING_TYPE_APP_CATEGORY",
@@ -804,7 +812,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                         *,
                         advertiserId: str,
                         lineItemId: str,
-                        targetingType: typing_extensions.Literal[
+                        targetingType: typing.Literal[
                             "TARGETING_TYPE_UNSPECIFIED",
                             "TARGETING_TYPE_CHANNEL",
                             "TARGETING_TYPE_APP_CATEGORY",
@@ -865,7 +873,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                         *,
                         advertiserId: str,
                         lineItemId: str,
-                        targetingType: typing_extensions.Literal[
+                        targetingType: typing.Literal[
                             "TARGETING_TYPE_UNSPECIFIED",
                             "TARGETING_TYPE_CHANNEL",
                             "TARGETING_TYPE_APP_CATEGORY",
@@ -926,7 +934,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                         *,
                         advertiserId: str,
                         lineItemId: str,
-                        targetingType: typing_extensions.Literal[
+                        targetingType: typing.Literal[
                             "TARGETING_TYPE_UNSPECIFIED",
                             "TARGETING_TYPE_CHANNEL",
                             "TARGETING_TYPE_APP_CATEGORY",
@@ -1008,7 +1016,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                         *,
                         advertiserId: str,
                         lineItemId: str,
-                        youtubeAssetType: typing_extensions.Literal[
+                        youtubeAssetType: typing.Literal[
                             "YOUTUBE_ASSET_TYPE_UNSPECIFIED",
                             "YOUTUBE_ASSET_TYPE_LOCATION",
                             "YOUTUBE_ASSET_TYPE_AFFILIATE_LOCATION",
@@ -1023,7 +1031,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                         *,
                         advertiserId: str,
                         lineItemId: str,
-                        youtubeAssetType: typing_extensions.Literal[
+                        youtubeAssetType: typing.Literal[
                             "YOUTUBE_ASSET_TYPE_UNSPECIFIED",
                             "YOUTUBE_ASSET_TYPE_LOCATION",
                             "YOUTUBE_ASSET_TYPE_AFFILIATE_LOCATION",
@@ -1038,7 +1046,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                         *,
                         advertiserId: str,
                         lineItemId: str,
-                        youtubeAssetType: typing_extensions.Literal[
+                        youtubeAssetType: typing.Literal[
                             "YOUTUBE_ASSET_TYPE_UNSPECIFIED",
                             "YOUTUBE_ASSET_TYPE_LOCATION",
                             "YOUTUBE_ASSET_TYPE_AFFILIATE_LOCATION",
@@ -1332,7 +1340,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 advertiserId: str,
-                productCategory: typing_extensions.Literal[
+                productCategory: typing.Literal[
                     "PLANNABLE_PRODUCT_CATEGORY_UNSPECIFIED", "YOUTUBE", "OPEN_AUCTION"
                 ]
                 | None = ...,
@@ -1361,7 +1369,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     advertiserId: str,
-                    targetingType: typing_extensions.Literal[
+                    targetingType: typing.Literal[
                         "TARGETING_TYPE_UNSPECIFIED",
                         "TARGETING_TYPE_CHANNEL",
                         "TARGETING_TYPE_APP_CATEGORY",
@@ -1421,7 +1429,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     advertiserId: str,
-                    targetingType: typing_extensions.Literal[
+                    targetingType: typing.Literal[
                         "TARGETING_TYPE_UNSPECIFIED",
                         "TARGETING_TYPE_CHANNEL",
                         "TARGETING_TYPE_APP_CATEGORY",
@@ -1481,7 +1489,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     advertiserId: str,
-                    targetingType: typing_extensions.Literal[
+                    targetingType: typing.Literal[
                         "TARGETING_TYPE_UNSPECIFIED",
                         "TARGETING_TYPE_CHANNEL",
                         "TARGETING_TYPE_APP_CATEGORY",
@@ -1541,7 +1549,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     advertiserId: str,
-                    targetingType: typing_extensions.Literal[
+                    targetingType: typing.Literal[
                         "TARGETING_TYPE_UNSPECIFIED",
                         "TARGETING_TYPE_CHANNEL",
                         "TARGETING_TYPE_APP_CATEGORY",
@@ -2316,7 +2324,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     partnerId: str,
-                    targetingType: typing_extensions.Literal[
+                    targetingType: typing.Literal[
                         "TARGETING_TYPE_UNSPECIFIED",
                         "TARGETING_TYPE_CHANNEL",
                         "TARGETING_TYPE_APP_CATEGORY",
@@ -2376,7 +2384,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     partnerId: str,
-                    targetingType: typing_extensions.Literal[
+                    targetingType: typing.Literal[
                         "TARGETING_TYPE_UNSPECIFIED",
                         "TARGETING_TYPE_CHANNEL",
                         "TARGETING_TYPE_APP_CATEGORY",
@@ -2436,7 +2444,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     partnerId: str,
-                    targetingType: typing_extensions.Literal[
+                    targetingType: typing.Literal[
                         "TARGETING_TYPE_UNSPECIFIED",
                         "TARGETING_TYPE_CHANNEL",
                         "TARGETING_TYPE_APP_CATEGORY",
@@ -2496,7 +2504,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     partnerId: str,
-                    targetingType: typing_extensions.Literal[
+                    targetingType: typing.Literal[
                         "TARGETING_TYPE_UNSPECIFIED",
                         "TARGETING_TYPE_CHANNEL",
                         "TARGETING_TYPE_APP_CATEGORY",
@@ -2620,7 +2628,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
             def get(
                 self,
                 *,
-                targetingType: typing_extensions.Literal[
+                targetingType: typing.Literal[
                     "TARGETING_TYPE_UNSPECIFIED",
                     "TARGETING_TYPE_CHANNEL",
                     "TARGETING_TYPE_APP_CATEGORY",
@@ -2680,7 +2688,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
             def list(
                 self,
                 *,
-                targetingType: typing_extensions.Literal[
+                targetingType: typing.Literal[
                     "TARGETING_TYPE_UNSPECIFIED",
                     "TARGETING_TYPE_CHANNEL",
                     "TARGETING_TYPE_APP_CATEGORY",
@@ -2748,7 +2756,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
             def search(
                 self,
                 *,
-                targetingType: typing_extensions.Literal[
+                targetingType: typing.Literal[
                     "TARGETING_TYPE_UNSPECIFIED",
                     "TARGETING_TYPE_CHANNEL",
                     "TARGETING_TYPE_APP_CATEGORY",

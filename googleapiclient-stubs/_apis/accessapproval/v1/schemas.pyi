@@ -1,16 +1,14 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class AccessApprovalServiceAccount(typing_extensions.TypedDict, total=False):
+class AccessApprovalServiceAccount(typing.TypedDict, total=False):
     accountEmail: str
     name: str
 
 @typing.type_check_only
-class AccessApprovalSettings(typing_extensions.TypedDict, total=False):
+class AccessApprovalSettings(typing.TypedDict, total=False):
     activeKeyVersion: str
     ancestorHasActiveKeyVersion: bool
     ancestorsEnrolledServices: _list[EnrolledService]
@@ -24,7 +22,7 @@ class AccessApprovalSettings(typing_extensions.TypedDict, total=False):
     notificationPubsubTopic: str
     preferNoBroadApprovalRequests: bool
     preferredRequestExpirationDays: int
-    requestScopeMaxWidthPreference: typing_extensions.Literal[
+    requestScopeMaxWidthPreference: typing.Literal[
         "REQUEST_SCOPE_MAX_WIDTH_PREFERENCE_UNSPECIFIED",
         "ORGANIZATION",
         "FOLDER",
@@ -33,14 +31,14 @@ class AccessApprovalSettings(typing_extensions.TypedDict, total=False):
     requireCustomerVisibleJustification: bool
 
 @typing.type_check_only
-class AccessLocations(typing_extensions.TypedDict, total=False):
+class AccessLocations(typing.TypedDict, total=False):
     principalOfficeCountry: str
     principalPhysicalLocationCountry: str
 
 @typing.type_check_only
-class AccessReason(typing_extensions.TypedDict, total=False):
+class AccessReason(typing.TypedDict, total=False):
     detail: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "TYPE_UNSPECIFIED",
         "CUSTOMER_INITIATED_SUPPORT",
         "GOOGLE_INITIATED_SERVICE",
@@ -51,7 +49,7 @@ class AccessReason(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class ApprovalRequest(typing_extensions.TypedDict, total=False):
+class ApprovalRequest(typing.TypedDict, total=False):
     approve: ApproveDecision
     dismiss: DismissDecision
     name: str
@@ -65,11 +63,11 @@ class ApprovalRequest(typing_extensions.TypedDict, total=False):
     requestedResourceProperties: ResourceProperties
 
 @typing.type_check_only
-class ApproveApprovalRequestMessage(typing_extensions.TypedDict, total=False):
+class ApproveApprovalRequestMessage(typing.TypedDict, total=False):
     expireTime: str
 
 @typing.type_check_only
-class ApproveDecision(typing_extensions.TypedDict, total=False):
+class ApproveDecision(typing.TypedDict, total=False):
     approveTime: str
     autoApproved: bool
     expireTime: str
@@ -78,12 +76,12 @@ class ApproveDecision(typing_extensions.TypedDict, total=False):
     signatureInfo: SignatureInfo
 
 @typing.type_check_only
-class AugmentedInfo(typing_extensions.TypedDict, total=False):
+class AugmentedInfo(typing.TypedDict, total=False):
     command: str
 
 @typing.type_check_only
-class CustomerApprovalApprovalPolicy(typing_extensions.TypedDict, total=False):
-    justificationBasedApprovalPolicy: typing_extensions.Literal[
+class CustomerApprovalApprovalPolicy(typing.TypedDict, total=False):
+    justificationBasedApprovalPolicy: typing.Literal[
         "JUSTIFICATION_BASED_APPROVAL_POLICY_UNSPECIFIED",
         "JUSTIFICATION_BASED_APPROVAL_ENABLED_ALL",
         "JUSTIFICATION_BASED_APPROVAL_ENABLED_EXTERNAL_JUSTIFICATIONS",
@@ -92,39 +90,37 @@ class CustomerApprovalApprovalPolicy(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class DismissApprovalRequestMessage(typing_extensions.TypedDict, total=False): ...
+class DismissApprovalRequestMessage(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class DismissDecision(typing_extensions.TypedDict, total=False):
+class DismissDecision(typing.TypedDict, total=False):
     dismissTime: str
     implicit: bool
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class EnrolledService(typing_extensions.TypedDict, total=False):
+class EnrolledService(typing.TypedDict, total=False):
     cloudProduct: str
-    enrollmentLevel: typing_extensions.Literal[
-        "ENROLLMENT_LEVEL_UNSPECIFIED", "BLOCK_ALL"
-    ]
+    enrollmentLevel: typing.Literal["ENROLLMENT_LEVEL_UNSPECIFIED", "BLOCK_ALL"]
 
 @typing.type_check_only
-class InvalidateApprovalRequestMessage(typing_extensions.TypedDict, total=False): ...
+class InvalidateApprovalRequestMessage(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ListApprovalRequestsResponse(typing_extensions.TypedDict, total=False):
+class ListApprovalRequestsResponse(typing.TypedDict, total=False):
     approvalRequests: _list[ApprovalRequest]
     nextPageToken: str
 
 @typing.type_check_only
-class ResourceProperties(typing_extensions.TypedDict, total=False):
+class ResourceProperties(typing.TypedDict, total=False):
     excludesDescendants: bool
 
 @typing.type_check_only
-class SignatureInfo(typing_extensions.TypedDict, total=False):
+class SignatureInfo(typing.TypedDict, total=False):
     customerKmsKeyVersion: str
-    googleKeyAlgorithm: typing_extensions.Literal[
+    googleKeyAlgorithm: typing.Literal[
         "CRYPTO_KEY_VERSION_ALGORITHM_UNSPECIFIED",
         "GOOGLE_SYMMETRIC_ENCRYPTION",
         "AES_128_GCM",
@@ -172,6 +168,9 @@ class SignatureInfo(typing_extensions.TypedDict, total=False):
         "PQ_SIGN_ML_DSA_44_EXTERNAL_MU",
         "PQ_SIGN_ML_DSA_65_EXTERNAL_MU",
         "PQ_SIGN_ML_DSA_87_EXTERNAL_MU",
+        "KEM_ECDH_P256",
+        "KEM_ECDH_P384",
+        "AES_256_KWP",
     ]
     googlePublicKeyPem: str
     serializedApprovalRequest: str

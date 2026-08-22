@@ -1,13 +1,11 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class Aggregation(typing_extensions.TypedDict, total=False):
+class Aggregation(typing.TypedDict, total=False):
     alignmentPeriod: str
-    crossSeriesReducer: typing_extensions.Literal[
+    crossSeriesReducer: typing.Literal[
         "REDUCE_NONE",
         "REDUCE_MEAN",
         "REDUCE_MIN",
@@ -24,7 +22,7 @@ class Aggregation(typing_extensions.TypedDict, total=False):
         "REDUCE_PERCENTILE_05",
     ]
     groupByFields: _list[str]
-    perSeriesAligner: typing_extensions.Literal[
+    perSeriesAligner: typing.Literal[
         "ALIGN_NONE",
         "ALIGN_DELTA",
         "ALIGN_RATE",
@@ -47,25 +45,25 @@ class Aggregation(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class AggregationFunction(typing_extensions.TypedDict, total=False):
+class AggregationFunction(typing.TypedDict, total=False):
     parameters: _list[Parameter]
     type: str
 
 @typing.type_check_only
-class AlertChart(typing_extensions.TypedDict, total=False):
+class AlertChart(typing.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class Axis(typing_extensions.TypedDict, total=False):
+class Axis(typing.TypedDict, total=False):
     label: str
-    scale: typing_extensions.Literal["SCALE_UNSPECIFIED", "LINEAR", "LOG10"]
+    scale: typing.Literal["SCALE_UNSPECIFIED", "LINEAR", "LOG10"]
 
 @typing.type_check_only
-class Breakdown(typing_extensions.TypedDict, total=False):
+class Breakdown(typing.TypedDict, total=False):
     aggregationFunction: AggregationFunction
     column: str
     limit: int
-    sortOrder: typing_extensions.Literal[
+    sortOrder: typing.Literal[
         "SORT_ORDER_UNSPECIFIED",
         "SORT_ORDER_NONE",
         "SORT_ORDER_ASCENDING",
@@ -73,37 +71,35 @@ class Breakdown(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class ChartOptions(typing_extensions.TypedDict, total=False):
+class ChartOptions(typing.TypedDict, total=False):
     displayHorizontal: bool
-    mode: typing_extensions.Literal["MODE_UNSPECIFIED", "COLOR", "X_RAY", "STATS"]
+    mode: typing.Literal["MODE_UNSPECIFIED", "COLOR", "X_RAY", "STATS"]
 
 @typing.type_check_only
-class CollapsibleGroup(typing_extensions.TypedDict, total=False):
+class CollapsibleGroup(typing.TypedDict, total=False):
     collapsed: bool
 
 @typing.type_check_only
-class Column(typing_extensions.TypedDict, total=False):
+class Column(typing.TypedDict, total=False):
     weight: str
     widgets: _list[Widget]
 
 @typing.type_check_only
-class ColumnLayout(typing_extensions.TypedDict, total=False):
+class ColumnLayout(typing.TypedDict, total=False):
     columns: _list[Column]
 
 @typing.type_check_only
-class ColumnSettings(typing_extensions.TypedDict, total=False):
-    alignment: typing_extensions.Literal[
-        "CELL_ALIGNMENT_UNSPECIFIED", "LEFT", "CENTER", "RIGHT"
-    ]
+class ColumnSettings(typing.TypedDict, total=False):
+    alignment: typing.Literal["CELL_ALIGNMENT_UNSPECIFIED", "LEFT", "CENTER", "RIGHT"]
     column: str
     displayName: str
     thresholds: _list[Threshold]
     visible: bool
 
 @typing.type_check_only
-class ColumnSortingOptions(typing_extensions.TypedDict, total=False):
+class ColumnSortingOptions(typing.TypedDict, total=False):
     column: str
-    direction: typing_extensions.Literal[
+    direction: typing.Literal[
         "SORT_ORDER_UNSPECIFIED",
         "SORT_ORDER_NONE",
         "SORT_ORDER_ASCENDING",
@@ -111,7 +107,7 @@ class ColumnSortingOptions(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class Dashboard(typing_extensions.TypedDict, total=False):
+class Dashboard(typing.TypedDict, total=False):
     annotations: DashboardAnnotations
     columnLayout: ColumnLayout
     dashboardFilters: _list[DashboardFilter]
@@ -124,13 +120,13 @@ class Dashboard(typing_extensions.TypedDict, total=False):
     rowLayout: RowLayout
 
 @typing.type_check_only
-class DashboardAnnotations(typing_extensions.TypedDict, total=False):
+class DashboardAnnotations(typing.TypedDict, total=False):
     defaultResourceNames: _list[str]
     eventAnnotations: _list[EventAnnotation]
 
 @typing.type_check_only
-class DashboardFilter(typing_extensions.TypedDict, total=False):
-    filterType: typing_extensions.Literal[
+class DashboardFilter(typing.TypedDict, total=False):
+    filterType: typing.Literal[
         "FILTER_TYPE_UNSPECIFIED",
         "RESOURCE_LABEL",
         "METRIC_LABEL",
@@ -145,33 +141,31 @@ class DashboardFilter(typing_extensions.TypedDict, total=False):
     stringValue: str
     templateVariable: str
     timeSeriesQuery: TimeSeriesQuery
-    valueType: typing_extensions.Literal[
-        "VALUE_TYPE_UNSPECIFIED", "STRING", "STRING_ARRAY"
-    ]
+    valueType: typing.Literal["VALUE_TYPE_UNSPECIFIED", "STRING", "STRING_ARRAY"]
 
 @typing.type_check_only
-class DataSet(typing_extensions.TypedDict, total=False):
+class DataSet(typing.TypedDict, total=False):
     breakdowns: _list[Breakdown]
     dimensions: _list[Dimension]
     legendTemplate: str
     measures: _list[Measure]
     minAlignmentPeriod: str
-    plotType: typing_extensions.Literal[
+    plotType: typing.Literal[
         "PLOT_TYPE_UNSPECIFIED", "LINE", "STACKED_AREA", "STACKED_BAR", "HEATMAP"
     ]
     sort: _list[ColumnSortingOptions]
-    targetAxis: typing_extensions.Literal["TARGET_AXIS_UNSPECIFIED", "Y1", "Y2"]
+    targetAxis: typing.Literal["TARGET_AXIS_UNSPECIFIED", "Y1", "Y2"]
     timeSeriesQuery: TimeSeriesQuery
 
 @typing.type_check_only
-class Dimension(typing_extensions.TypedDict, total=False):
+class Dimension(typing.TypedDict, total=False):
     column: str
     columnType: str
     floatBinSize: float
     maxBinCount: int
     numericBinSize: int
     sortColumn: str
-    sortOrder: typing_extensions.Literal[
+    sortOrder: typing.Literal[
         "SORT_ORDER_UNSPECIFIED",
         "SORT_ORDER_NONE",
         "SORT_ORDER_ASCENDING",
@@ -182,23 +176,23 @@ class Dimension(typing_extensions.TypedDict, total=False):
     xMin: float
 
 @typing.type_check_only
-class DroppedLabels(typing_extensions.TypedDict, total=False):
+class DroppedLabels(typing.TypedDict, total=False):
     label: dict[str, typing.Any]
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ErrorReportingPanel(typing_extensions.TypedDict, total=False):
+class ErrorReportingPanel(typing.TypedDict, total=False):
     projectNames: _list[str]
     services: _list[str]
     versions: _list[str]
 
 @typing.type_check_only
-class EventAnnotation(typing_extensions.TypedDict, total=False):
+class EventAnnotation(typing.TypedDict, total=False):
     displayName: str
     enabled: bool
-    eventType: typing_extensions.Literal[
+    eventType: typing.Literal[
         "EVENT_TYPE_UNSPECIFIED",
         "GKE_WORKLOAD_DEPLOYMENT",
         "GKE_POD_CRASH",
@@ -226,13 +220,15 @@ class EventAnnotation(typing_extensions.TypedDict, total=False):
         "SAP_OPERATIONS",
         "INTERCONNECT_MAINTENANCE_STARTED",
         "INTERCONNECT_MAINTENANCE_COMPLETED",
+        "VPN_TRAFFIC_SELECTOR_NARROWING",
+        "VPN_MAINTENANCE",
     ]
     filter: str
     resourceNames: _list[str]
 
 @typing.type_check_only
-class Field(typing_extensions.TypedDict, total=False):
-    cardinality: typing_extensions.Literal[
+class Field(typing.TypedDict, total=False):
+    cardinality: typing.Literal[
         "CARDINALITY_UNKNOWN",
         "CARDINALITY_OPTIONAL",
         "CARDINALITY_REQUIRED",
@@ -240,7 +236,7 @@ class Field(typing_extensions.TypedDict, total=False):
     ]
     defaultValue: str
     jsonName: str
-    kind: typing_extensions.Literal[
+    kind: typing.Literal[
         "TYPE_UNKNOWN",
         "TYPE_DOUBLE",
         "TYPE_FLOAT",
@@ -269,81 +265,79 @@ class Field(typing_extensions.TypedDict, total=False):
     typeUrl: str
 
 @typing.type_check_only
-class FilterControl(typing_extensions.TypedDict, total=False):
+class FilterControl(typing.TypedDict, total=False):
     templateVariable: str
 
 @typing.type_check_only
-class GaugeView(typing_extensions.TypedDict, total=False):
+class GaugeView(typing.TypedDict, total=False):
     lowerBound: float
     upperBound: float
 
 @typing.type_check_only
-class GridLayout(typing_extensions.TypedDict, total=False):
+class GridLayout(typing.TypedDict, total=False):
     columns: str
     widgets: _list[Widget]
 
 @typing.type_check_only
-class HttpBody(typing_extensions.TypedDict, total=False):
+class HttpBody(typing.TypedDict, total=False):
     contentType: str
     data: str
     extensions: _list[dict[str, typing.Any]]
 
 @typing.type_check_only
-class IncidentList(typing_extensions.TypedDict, total=False):
+class IncidentList(typing.TypedDict, total=False):
     monitoredResources: _list[MonitoredResource]
     policyNames: _list[str]
 
 @typing.type_check_only
-class Interval(typing_extensions.TypedDict, total=False):
+class Interval(typing.TypedDict, total=False):
     endTime: str
     startTime: str
 
 @typing.type_check_only
-class ListDashboardsResponse(typing_extensions.TypedDict, total=False):
+class ListDashboardsResponse(typing.TypedDict, total=False):
     dashboards: _list[Dashboard]
     nextPageToken: str
 
 @typing.type_check_only
-class ListMetricsScopesByMonitoredProjectResponse(
-    typing_extensions.TypedDict, total=False
-):
+class ListMetricsScopesByMonitoredProjectResponse(typing.TypedDict, total=False):
     metricsScopes: _list[MetricsScope]
 
 @typing.type_check_only
-class LogsPanel(typing_extensions.TypedDict, total=False):
+class LogsPanel(typing.TypedDict, total=False):
     filter: str
     resourceNames: _list[str]
 
 @typing.type_check_only
-class Measure(typing_extensions.TypedDict, total=False):
+class Measure(typing.TypedDict, total=False):
     aggregationFunction: AggregationFunction
     column: str
 
 @typing.type_check_only
-class MetricsScope(typing_extensions.TypedDict, total=False):
+class MetricsScope(typing.TypedDict, total=False):
     createTime: str
     monitoredProjects: _list[MonitoredProject]
     name: str
     updateTime: str
 
 @typing.type_check_only
-class MonitoredProject(typing_extensions.TypedDict, total=False):
+class MonitoredProject(typing.TypedDict, total=False):
     createTime: str
     isTombstoned: bool
     name: str
 
 @typing.type_check_only
-class MonitoredResource(typing_extensions.TypedDict, total=False):
+class MonitoredResource(typing.TypedDict, total=False):
     labels: dict[str, typing.Any]
     type: str
 
 @typing.type_check_only
-class MosaicLayout(typing_extensions.TypedDict, total=False):
+class MosaicLayout(typing.TypedDict, total=False):
     columns: int
     tiles: _list[Tile]
 
 @typing.type_check_only
-class Operation(typing_extensions.TypedDict, total=False):
+class Operation(typing.TypedDict, total=False):
     done: bool
     error: Status
     metadata: dict[str, typing.Any]
@@ -351,33 +345,33 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class OperationMetadata(typing_extensions.TypedDict, total=False):
+class OperationMetadata(typing.TypedDict, total=False):
     createTime: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED", "CREATED", "RUNNING", "DONE", "CANCELLED"
     ]
     updateTime: str
 
 @typing.type_check_only
-class OpsAnalyticsQuery(typing_extensions.TypedDict, total=False):
+class OpsAnalyticsQuery(typing.TypedDict, total=False):
     sql: str
 
 @typing.type_check_only
-class Option(typing_extensions.TypedDict, total=False):
+class Option(typing.TypedDict, total=False):
     name: str
     value: dict[str, typing.Any]
 
 @typing.type_check_only
-class Parameter(typing_extensions.TypedDict, total=False):
+class Parameter(typing.TypedDict, total=False):
     doubleValue: float
     intValue: str
 
 @typing.type_check_only
-class PickTimeSeriesFilter(typing_extensions.TypedDict, total=False):
-    direction: typing_extensions.Literal["DIRECTION_UNSPECIFIED", "TOP", "BOTTOM"]
+class PickTimeSeriesFilter(typing.TypedDict, total=False):
+    direction: typing.Literal["DIRECTION_UNSPECIFIED", "TOP", "BOTTOM"]
     interval: Interval
     numTimeSeries: int
-    rankingMethod: typing_extensions.Literal[
+    rankingMethod: typing.Literal[
         "METHOD_UNSPECIFIED",
         "METHOD_MEAN",
         "METHOD_MAX",
@@ -387,13 +381,13 @@ class PickTimeSeriesFilter(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class PieChart(typing_extensions.TypedDict, total=False):
-    chartType: typing_extensions.Literal["PIE_CHART_TYPE_UNSPECIFIED", "PIE", "DONUT"]
+class PieChart(typing.TypedDict, total=False):
+    chartType: typing.Literal["PIE_CHART_TYPE_UNSPECIFIED", "PIE", "DONUT"]
     dataSets: _list[PieChartDataSet]
     showLabels: bool
 
 @typing.type_check_only
-class PieChartDataSet(typing_extensions.TypedDict, total=False):
+class PieChartDataSet(typing.TypedDict, total=False):
     dimensions: _list[Dimension]
     measures: _list[Measure]
     minAlignmentPeriod: str
@@ -401,25 +395,25 @@ class PieChartDataSet(typing_extensions.TypedDict, total=False):
     timeSeriesQuery: TimeSeriesQuery
 
 @typing.type_check_only
-class QueryExemplarsRequest(typing_extensions.TypedDict, total=False):
+class QueryExemplarsRequest(typing.TypedDict, total=False):
     end: str
     query: str
     start: str
 
 @typing.type_check_only
-class QueryInstantRequest(typing_extensions.TypedDict, total=False):
+class QueryInstantRequest(typing.TypedDict, total=False):
     query: str
     time: str
     timeout: str
 
 @typing.type_check_only
-class QueryLabelsRequest(typing_extensions.TypedDict, total=False):
+class QueryLabelsRequest(typing.TypedDict, total=False):
     end: str
     match: str
     start: str
 
 @typing.type_check_only
-class QueryRangeRequest(typing_extensions.TypedDict, total=False):
+class QueryRangeRequest(typing.TypedDict, total=False):
     end: str
     query: str
     start: str
@@ -427,26 +421,26 @@ class QueryRangeRequest(typing_extensions.TypedDict, total=False):
     timeout: str
 
 @typing.type_check_only
-class QuerySeriesRequest(typing_extensions.TypedDict, total=False):
+class QuerySeriesRequest(typing.TypedDict, total=False):
     end: str
     start: str
 
 @typing.type_check_only
-class RatioPart(typing_extensions.TypedDict, total=False):
+class RatioPart(typing.TypedDict, total=False):
     aggregation: Aggregation
     filter: str
 
 @typing.type_check_only
-class Row(typing_extensions.TypedDict, total=False):
+class Row(typing.TypedDict, total=False):
     weight: str
     widgets: _list[Widget]
 
 @typing.type_check_only
-class RowLayout(typing_extensions.TypedDict, total=False):
+class RowLayout(typing.TypedDict, total=False):
     rows: _list[Row]
 
 @typing.type_check_only
-class Scorecard(typing_extensions.TypedDict, total=False):
+class Scorecard(typing.TypedDict, total=False):
     blankView: Empty
     breakdowns: _list[Breakdown]
     dimensions: _list[Dimension]
@@ -457,31 +451,29 @@ class Scorecard(typing_extensions.TypedDict, total=False):
     timeSeriesQuery: TimeSeriesQuery
 
 @typing.type_check_only
-class SectionHeader(typing_extensions.TypedDict, total=False):
+class SectionHeader(typing.TypedDict, total=False):
     dividerBelow: bool
     subtitle: str
 
 @typing.type_check_only
-class SingleViewGroup(typing_extensions.TypedDict, total=False):
-    displayType: typing_extensions.Literal[
-        "DISPLAY_TYPE_UNSPECIFIED", "DROPDOWN", "TAB"
-    ]
+class SingleViewGroup(typing.TypedDict, total=False):
+    displayType: typing.Literal["DISPLAY_TYPE_UNSPECIFIED", "DROPDOWN", "TAB"]
 
 @typing.type_check_only
-class SourceContext(typing_extensions.TypedDict, total=False):
+class SourceContext(typing.TypedDict, total=False):
     fileName: str
 
 @typing.type_check_only
-class SpanAttributeFilter(typing_extensions.TypedDict, total=False):
+class SpanAttributeFilter(typing.TypedDict, total=False):
     key: str
     value: _list[str]
 
 @typing.type_check_only
-class SpanContext(typing_extensions.TypedDict, total=False):
+class SpanContext(typing.TypedDict, total=False):
     spanName: str
 
 @typing.type_check_only
-class SpanFilters(typing_extensions.TypedDict, total=False):
+class SpanFilters(typing.TypedDict, total=False):
     apphubServices: _list[str]
     apphubWorkloads: _list[str]
     applicationIds: _list[str]
@@ -495,56 +487,54 @@ class SpanFilters(typing_extensions.TypedDict, total=False):
     status: _list[str]
 
 @typing.type_check_only
-class SparkChartView(typing_extensions.TypedDict, total=False):
+class SparkChartView(typing.TypedDict, total=False):
     minAlignmentPeriod: str
-    sparkChartType: typing_extensions.Literal[
+    sparkChartType: typing.Literal[
         "SPARK_CHART_TYPE_UNSPECIFIED", "SPARK_LINE", "SPARK_BAR"
     ]
 
 @typing.type_check_only
-class StatisticalTimeSeriesFilter(typing_extensions.TypedDict, total=False):
+class StatisticalTimeSeriesFilter(typing.TypedDict, total=False):
     numTimeSeries: int
-    rankingMethod: typing_extensions.Literal[
-        "METHOD_UNSPECIFIED", "METHOD_CLUSTER_OUTLIER"
-    ]
+    rankingMethod: typing.Literal["METHOD_UNSPECIFIED", "METHOD_CLUSTER_OUTLIER"]
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class StringArray(typing_extensions.TypedDict, total=False):
+class StringArray(typing.TypedDict, total=False):
     values: _list[str]
 
 @typing.type_check_only
-class TableDataSet(typing_extensions.TypedDict, total=False):
+class TableDataSet(typing.TypedDict, total=False):
     minAlignmentPeriod: str
     tableDisplayOptions: TableDisplayOptions
     tableTemplate: str
     timeSeriesQuery: TimeSeriesQuery
 
 @typing.type_check_only
-class TableDisplayOptions(typing_extensions.TypedDict, total=False):
+class TableDisplayOptions(typing.TypedDict, total=False):
     shownColumns: _list[str]
 
 @typing.type_check_only
-class TemplateVariableCondition(typing_extensions.TypedDict, total=False):
-    comparator: typing_extensions.Literal["COMPARATOR_UNSPECIFIED", "REGEX_FULL_MATCH"]
+class TemplateVariableCondition(typing.TypedDict, total=False):
+    comparator: typing.Literal["COMPARATOR_UNSPECIFIED", "REGEX_FULL_MATCH"]
     templateVariable: str
     templateVariableValue: str
 
 @typing.type_check_only
-class Text(typing_extensions.TypedDict, total=False):
+class Text(typing.TypedDict, total=False):
     content: str
-    format: typing_extensions.Literal["FORMAT_UNSPECIFIED", "MARKDOWN", "RAW"]
+    format: typing.Literal["FORMAT_UNSPECIFIED", "MARKDOWN", "RAW"]
     style: TextStyle
 
 @typing.type_check_only
-class TextStyle(typing_extensions.TypedDict, total=False):
+class TextStyle(typing.TypedDict, total=False):
     backgroundColor: str
-    fontSize: typing_extensions.Literal[
+    fontSize: typing.Literal[
         "FONT_SIZE_UNSPECIFIED",
         "FS_EXTRA_SMALL",
         "FS_SMALL",
@@ -552,10 +542,10 @@ class TextStyle(typing_extensions.TypedDict, total=False):
         "FS_LARGE",
         "FS_EXTRA_LARGE",
     ]
-    horizontalAlignment: typing_extensions.Literal[
+    horizontalAlignment: typing.Literal[
         "HORIZONTAL_ALIGNMENT_UNSPECIFIED", "H_LEFT", "H_CENTER", "H_RIGHT"
     ]
-    padding: typing_extensions.Literal[
+    padding: typing.Literal[
         "PADDING_SIZE_UNSPECIFIED",
         "P_EXTRA_SMALL",
         "P_SMALL",
@@ -563,7 +553,7 @@ class TextStyle(typing_extensions.TypedDict, total=False):
         "P_LARGE",
         "P_EXTRA_LARGE",
     ]
-    pointerLocation: typing_extensions.Literal[
+    pointerLocation: typing.Literal[
         "POINTER_LOCATION_UNSPECIFIED",
         "PL_TOP",
         "PL_RIGHT",
@@ -579,20 +569,20 @@ class TextStyle(typing_extensions.TypedDict, total=False):
         "PL_LEFT_TOP",
     ]
     textColor: str
-    verticalAlignment: typing_extensions.Literal[
+    verticalAlignment: typing.Literal[
         "VERTICAL_ALIGNMENT_UNSPECIFIED", "V_TOP", "V_CENTER", "V_BOTTOM"
     ]
 
 @typing.type_check_only
-class Threshold(typing_extensions.TypedDict, total=False):
-    color: typing_extensions.Literal["COLOR_UNSPECIFIED", "YELLOW", "RED"]
-    direction: typing_extensions.Literal["DIRECTION_UNSPECIFIED", "ABOVE", "BELOW"]
+class Threshold(typing.TypedDict, total=False):
+    color: typing.Literal["COLOR_UNSPECIFIED", "YELLOW", "RED"]
+    direction: typing.Literal["DIRECTION_UNSPECIFIED", "ABOVE", "BELOW"]
     label: str
-    targetAxis: typing_extensions.Literal["TARGET_AXIS_UNSPECIFIED", "Y1", "Y2"]
+    targetAxis: typing.Literal["TARGET_AXIS_UNSPECIFIED", "Y1", "Y2"]
     value: float
 
 @typing.type_check_only
-class Tile(typing_extensions.TypedDict, total=False):
+class Tile(typing.TypedDict, total=False):
     height: int
     widget: Widget
     width: int
@@ -600,7 +590,7 @@ class Tile(typing_extensions.TypedDict, total=False):
     yPos: int
 
 @typing.type_check_only
-class TimeSeriesFilter(typing_extensions.TypedDict, total=False):
+class TimeSeriesFilter(typing.TypedDict, total=False):
     aggregation: Aggregation
     filter: str
     pickTimeSeriesFilter: PickTimeSeriesFilter
@@ -608,7 +598,7 @@ class TimeSeriesFilter(typing_extensions.TypedDict, total=False):
     statisticalTimeSeriesFilter: StatisticalTimeSeriesFilter
 
 @typing.type_check_only
-class TimeSeriesFilterRatio(typing_extensions.TypedDict, total=False):
+class TimeSeriesFilterRatio(typing.TypedDict, total=False):
     denominator: RatioPart
     numerator: RatioPart
     pickTimeSeriesFilter: PickTimeSeriesFilter
@@ -616,7 +606,7 @@ class TimeSeriesFilterRatio(typing_extensions.TypedDict, total=False):
     statisticalTimeSeriesFilter: StatisticalTimeSeriesFilter
 
 @typing.type_check_only
-class TimeSeriesQuery(typing_extensions.TypedDict, total=False):
+class TimeSeriesQuery(typing.TypedDict, total=False):
     opsAnalyticsQuery: OpsAnalyticsQuery
     outputFullDuration: bool
     prometheusQuery: str
@@ -627,17 +617,17 @@ class TimeSeriesQuery(typing_extensions.TypedDict, total=False):
     unitOverride: str
 
 @typing.type_check_only
-class TimeSeriesTable(typing_extensions.TypedDict, total=False):
+class TimeSeriesTable(typing.TypedDict, total=False):
     columnSettings: _list[ColumnSettings]
     dataSets: _list[TableDataSet]
-    metricVisualization: typing_extensions.Literal[
+    metricVisualization: typing.Literal[
         "METRIC_VISUALIZATION_UNSPECIFIED", "NUMBER", "BAR"
     ]
 
 @typing.type_check_only
-class TraceQuery(typing_extensions.TypedDict, total=False):
+class TraceQuery(typing.TypedDict, total=False):
     resourceContainer: str
-    spanDataValue: typing_extensions.Literal[
+    spanDataValue: typing.Literal[
         "SPAN_DATA_VALUE_UNSPECIFIED",
         "SPAN_COUNT",
         "SPAN_DURATION",
@@ -646,34 +636,32 @@ class TraceQuery(typing_extensions.TypedDict, total=False):
     spanFilters: SpanFilters
 
 @typing.type_check_only
-class Treemap(typing_extensions.TypedDict, total=False):
+class Treemap(typing.TypedDict, total=False):
     dataSets: _list[TreemapDataSet]
     treemapHierarchy: _list[str]
 
 @typing.type_check_only
-class TreemapDataSet(typing_extensions.TypedDict, total=False):
+class TreemapDataSet(typing.TypedDict, total=False):
     breakdowns: _list[Breakdown]
     measures: _list[Measure]
     timeSeriesQuery: TimeSeriesQuery
 
 @typing.type_check_only
-class Type(typing_extensions.TypedDict, total=False):
+class Type(typing.TypedDict, total=False):
     edition: str
     fields: _list[Field]
     name: str
     oneofs: _list[str]
     options: _list[Option]
     sourceContext: SourceContext
-    syntax: typing_extensions.Literal[
-        "SYNTAX_PROTO2", "SYNTAX_PROTO3", "SYNTAX_EDITIONS"
-    ]
+    syntax: typing.Literal["SYNTAX_PROTO2", "SYNTAX_PROTO3", "SYNTAX_EDITIONS"]
 
 @typing.type_check_only
-class VisibilityCondition(typing_extensions.TypedDict, total=False):
+class VisibilityCondition(typing.TypedDict, total=False):
     templateVariableCondition: TemplateVariableCondition
 
 @typing.type_check_only
-class Widget(typing_extensions.TypedDict, total=False):
+class Widget(typing.TypedDict, total=False):
     alertChart: AlertChart
     blank: Empty
     collapsibleGroup: CollapsibleGroup
@@ -694,7 +682,7 @@ class Widget(typing_extensions.TypedDict, total=False):
     xyChart: XyChart
 
 @typing.type_check_only
-class XyChart(typing_extensions.TypedDict, total=False):
+class XyChart(typing.TypedDict, total=False):
     chartOptions: ChartOptions
     dataSets: _list[DataSet]
     thresholds: _list[Threshold]

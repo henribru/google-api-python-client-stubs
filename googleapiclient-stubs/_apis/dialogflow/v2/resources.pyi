@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -110,7 +109,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        intentView: typing_extensions.Literal[
+                        intentView: typing.Literal[
                             "INTENT_VIEW_UNSPECIFIED", "INTENT_VIEW_FULL"
                         ]
                         | None = ...,
@@ -309,7 +308,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: GoogleCloudDialogflowV2Intent,
-                    intentView: typing_extensions.Literal[
+                    intentView: typing.Literal[
                         "INTENT_VIEW_UNSPECIFIED", "INTENT_VIEW_FULL"
                     ]
                     | None = ...,
@@ -323,7 +322,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    intentView: typing_extensions.Literal[
+                    intentView: typing.Literal[
                         "INTENT_VIEW_UNSPECIFIED", "INTENT_VIEW_FULL"
                     ]
                     | None = ...,
@@ -334,7 +333,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    intentView: typing_extensions.Literal[
+                    intentView: typing.Literal[
                         "INTENT_VIEW_UNSPECIFIED", "INTENT_VIEW_FULL"
                     ]
                     | None = ...,
@@ -353,7 +352,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: GoogleCloudDialogflowV2Intent,
-                    intentView: typing_extensions.Literal[
+                    intentView: typing.Literal[
                         "INTENT_VIEW_UNSPECIFIED", "INTENT_VIEW_FULL"
                     ]
                     | None = ...,
@@ -1208,7 +1207,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             parent: str,
-                            intentView: typing_extensions.Literal[
+                            intentView: typing.Literal[
                                 "INTENT_VIEW_UNSPECIFIED", "INTENT_VIEW_FULL"
                             ]
                             | None = ...,
@@ -1412,7 +1411,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: GoogleCloudDialogflowV2Intent,
-                        intentView: typing_extensions.Literal[
+                        intentView: typing.Literal[
                             "INTENT_VIEW_UNSPECIFIED", "INTENT_VIEW_FULL"
                         ]
                         | None = ...,
@@ -1426,7 +1425,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        intentView: typing_extensions.Literal[
+                        intentView: typing.Literal[
                             "INTENT_VIEW_UNSPECIFIED", "INTENT_VIEW_FULL"
                         ]
                         | None = ...,
@@ -1437,7 +1436,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        intentView: typing_extensions.Literal[
+                        intentView: typing.Literal[
                             "INTENT_VIEW_UNSPECIFIED", "INTENT_VIEW_FULL"
                         ]
                         | None = ...,
@@ -1458,7 +1457,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: GoogleCloudDialogflowV2Intent,
-                        intentView: typing_extensions.Literal[
+                        intentView: typing.Literal[
                             "INTENT_VIEW_UNSPECIFIED", "INTENT_VIEW_FULL"
                         ]
                         | None = ...,

@@ -1,23 +1,21 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class AutoForwarding(typing_extensions.TypedDict, total=False):
-    disposition: typing_extensions.Literal[
+class AutoForwarding(typing.TypedDict, total=False):
+    disposition: typing.Literal[
         "dispositionUnspecified", "leaveInInbox", "archive", "trash", "markRead"
     ]
     emailAddress: str
     enabled: bool
 
 @typing.type_check_only
-class BatchDeleteMessagesRequest(typing_extensions.TypedDict, total=False):
+class BatchDeleteMessagesRequest(typing.TypedDict, total=False):
     ids: _list[str]
 
 @typing.type_check_only
-class BatchModifyMessagesRequest(typing_extensions.TypedDict, total=False):
+class BatchModifyMessagesRequest(typing.TypedDict, total=False):
     addClassificationLabels: _list[ClassificationLabelValue]
     addLabelIds: _list[str]
     ids: _list[str]
@@ -25,27 +23,25 @@ class BatchModifyMessagesRequest(typing_extensions.TypedDict, total=False):
     removeLabelIds: _list[str]
 
 @typing.type_check_only
-class ClassificationLabelFieldValue(typing_extensions.TypedDict, total=False):
+class ClassificationLabelFieldValue(typing.TypedDict, total=False):
     fieldId: str
     selection: str
 
 @typing.type_check_only
-class ClassificationLabelValue(typing_extensions.TypedDict, total=False):
+class ClassificationLabelValue(typing.TypedDict, total=False):
     fields: _list[ClassificationLabelFieldValue]
     labelId: str
 
 @typing.type_check_only
-class CseIdentity(typing_extensions.TypedDict, total=False):
+class CseIdentity(typing.TypedDict, total=False):
     emailAddress: str
     primaryKeyPairId: str
     signAndEncryptKeyPairs: SignAndEncryptKeyPairs
 
 @typing.type_check_only
-class CseKeyPair(typing_extensions.TypedDict, total=False):
+class CseKeyPair(typing.TypedDict, total=False):
     disableTime: str
-    enablementState: typing_extensions.Literal[
-        "stateUnspecified", "enabled", "disabled"
-    ]
+    enablementState: typing.Literal["stateUnspecified", "enabled", "disabled"]
     keyPairId: str
     pem: str
     pkcs7: str
@@ -53,42 +49,42 @@ class CseKeyPair(typing_extensions.TypedDict, total=False):
     subjectEmailAddresses: _list[str]
 
 @typing.type_check_only
-class CsePrivateKeyMetadata(typing_extensions.TypedDict, total=False):
+class CsePrivateKeyMetadata(typing.TypedDict, total=False):
     hardwareKeyMetadata: HardwareKeyMetadata
     kaclsKeyMetadata: KaclsKeyMetadata
     privateKeyMetadataId: str
 
 @typing.type_check_only
-class Delegate(typing_extensions.TypedDict, total=False):
+class Delegate(typing.TypedDict, total=False):
     delegateEmail: str
-    verificationStatus: typing_extensions.Literal[
+    verificationStatus: typing.Literal[
         "verificationStatusUnspecified", "accepted", "pending", "rejected", "expired"
     ]
 
 @typing.type_check_only
-class DisableCseKeyPairRequest(typing_extensions.TypedDict, total=False): ...
+class DisableCseKeyPairRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Draft(typing_extensions.TypedDict, total=False):
+class Draft(typing.TypedDict, total=False):
     id: str
     message: Message
 
 @typing.type_check_only
-class EnableCseKeyPairRequest(typing_extensions.TypedDict, total=False): ...
+class EnableCseKeyPairRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Filter(typing_extensions.TypedDict, total=False):
+class Filter(typing.TypedDict, total=False):
     action: FilterAction
     criteria: FilterCriteria
     id: str
 
 @typing.type_check_only
-class FilterAction(typing_extensions.TypedDict, total=False):
+class FilterAction(typing.TypedDict, total=False):
     addLabelIds: _list[str]
     forward: str
     removeLabelIds: _list[str]
 
-AlternativeFilterCriteria = typing_extensions.TypedDict(
+AlternativeFilterCriteria = typing.TypedDict(
     "AlternativeFilterCriteria",
     {
         "excludeChats": bool,
@@ -97,7 +93,7 @@ AlternativeFilterCriteria = typing_extensions.TypedDict(
         "negatedQuery": str,
         "query": str,
         "size": int,
-        "sizeComparison": typing_extensions.Literal["unspecified", "smaller", "larger"],
+        "sizeComparison": typing.Literal["unspecified", "smaller", "larger"],
         "subject": str,
         "to": str,
     },
@@ -108,18 +104,18 @@ AlternativeFilterCriteria = typing_extensions.TypedDict(
 class FilterCriteria(AlternativeFilterCriteria): ...
 
 @typing.type_check_only
-class ForwardingAddress(typing_extensions.TypedDict, total=False):
+class ForwardingAddress(typing.TypedDict, total=False):
     forwardingEmail: str
-    verificationStatus: typing_extensions.Literal[
+    verificationStatus: typing.Literal[
         "verificationStatusUnspecified", "accepted", "pending"
     ]
 
 @typing.type_check_only
-class HardwareKeyMetadata(typing_extensions.TypedDict, total=False):
+class HardwareKeyMetadata(typing.TypedDict, total=False):
     description: str
 
 @typing.type_check_only
-class History(typing_extensions.TypedDict, total=False):
+class History(typing.TypedDict, total=False):
     id: str
     labelsAdded: _list[HistoryLabelAdded]
     labelsRemoved: _list[HistoryLabelRemoved]
@@ -128,121 +124,119 @@ class History(typing_extensions.TypedDict, total=False):
     messagesDeleted: _list[HistoryMessageDeleted]
 
 @typing.type_check_only
-class HistoryLabelAdded(typing_extensions.TypedDict, total=False):
+class HistoryLabelAdded(typing.TypedDict, total=False):
     labelIds: _list[str]
     message: Message
 
 @typing.type_check_only
-class HistoryLabelRemoved(typing_extensions.TypedDict, total=False):
+class HistoryLabelRemoved(typing.TypedDict, total=False):
     labelIds: _list[str]
     message: Message
 
 @typing.type_check_only
-class HistoryMessageAdded(typing_extensions.TypedDict, total=False):
+class HistoryMessageAdded(typing.TypedDict, total=False):
     message: Message
 
 @typing.type_check_only
-class HistoryMessageDeleted(typing_extensions.TypedDict, total=False):
+class HistoryMessageDeleted(typing.TypedDict, total=False):
     message: Message
 
 @typing.type_check_only
-class ImapSettings(typing_extensions.TypedDict, total=False):
+class ImapSettings(typing.TypedDict, total=False):
     autoExpunge: bool
     enabled: bool
-    expungeBehavior: typing_extensions.Literal[
+    expungeBehavior: typing.Literal[
         "expungeBehaviorUnspecified", "archive", "trash", "deleteForever"
     ]
     maxFolderSize: int
 
 @typing.type_check_only
-class KaclsKeyMetadata(typing_extensions.TypedDict, total=False):
+class KaclsKeyMetadata(typing.TypedDict, total=False):
     kaclsData: str
     kaclsUri: str
 
 @typing.type_check_only
-class Label(typing_extensions.TypedDict, total=False):
+class Label(typing.TypedDict, total=False):
     color: LabelColor
     id: str
-    labelListVisibility: typing_extensions.Literal[
-        "labelShow", "labelShowIfUnread", "labelHide"
-    ]
-    messageListVisibility: typing_extensions.Literal["show", "hide"]
+    labelListVisibility: typing.Literal["labelShow", "labelShowIfUnread", "labelHide"]
+    messageListVisibility: typing.Literal["show", "hide"]
     messagesTotal: int
     messagesUnread: int
     name: str
     threadsTotal: int
     threadsUnread: int
-    type: typing_extensions.Literal["system", "user"]
+    type: typing.Literal["system", "user"]
 
 @typing.type_check_only
-class LabelColor(typing_extensions.TypedDict, total=False):
+class LabelColor(typing.TypedDict, total=False):
     backgroundColor: str
     textColor: str
 
 @typing.type_check_only
-class LanguageSettings(typing_extensions.TypedDict, total=False):
+class LanguageSettings(typing.TypedDict, total=False):
     displayLanguage: str
 
 @typing.type_check_only
-class ListCseIdentitiesResponse(typing_extensions.TypedDict, total=False):
+class ListCseIdentitiesResponse(typing.TypedDict, total=False):
     cseIdentities: _list[CseIdentity]
     nextPageToken: str
 
 @typing.type_check_only
-class ListCseKeyPairsResponse(typing_extensions.TypedDict, total=False):
+class ListCseKeyPairsResponse(typing.TypedDict, total=False):
     cseKeyPairs: _list[CseKeyPair]
     nextPageToken: str
 
 @typing.type_check_only
-class ListDelegatesResponse(typing_extensions.TypedDict, total=False):
+class ListDelegatesResponse(typing.TypedDict, total=False):
     delegates: _list[Delegate]
 
 @typing.type_check_only
-class ListDraftsResponse(typing_extensions.TypedDict, total=False):
+class ListDraftsResponse(typing.TypedDict, total=False):
     drafts: _list[Draft]
     nextPageToken: str
     resultSizeEstimate: int
 
 @typing.type_check_only
-class ListFiltersResponse(typing_extensions.TypedDict, total=False):
+class ListFiltersResponse(typing.TypedDict, total=False):
     filter: _list[Filter]
 
 @typing.type_check_only
-class ListForwardingAddressesResponse(typing_extensions.TypedDict, total=False):
+class ListForwardingAddressesResponse(typing.TypedDict, total=False):
     forwardingAddresses: _list[ForwardingAddress]
 
 @typing.type_check_only
-class ListHistoryResponse(typing_extensions.TypedDict, total=False):
+class ListHistoryResponse(typing.TypedDict, total=False):
     history: _list[History]
     historyId: str
     nextPageToken: str
 
 @typing.type_check_only
-class ListLabelsResponse(typing_extensions.TypedDict, total=False):
+class ListLabelsResponse(typing.TypedDict, total=False):
     labels: _list[Label]
 
 @typing.type_check_only
-class ListMessagesResponse(typing_extensions.TypedDict, total=False):
+class ListMessagesResponse(typing.TypedDict, total=False):
     messages: _list[Message]
     nextPageToken: str
     resultSizeEstimate: int
 
 @typing.type_check_only
-class ListSendAsResponse(typing_extensions.TypedDict, total=False):
+class ListSendAsResponse(typing.TypedDict, total=False):
     sendAs: _list[SendAs]
 
 @typing.type_check_only
-class ListSmimeInfoResponse(typing_extensions.TypedDict, total=False):
+class ListSmimeInfoResponse(typing.TypedDict, total=False):
     smimeInfo: _list[SmimeInfo]
 
 @typing.type_check_only
-class ListThreadsResponse(typing_extensions.TypedDict, total=False):
+class ListThreadsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     resultSizeEstimate: int
     threads: _list[Thread]
 
 @typing.type_check_only
-class Message(typing_extensions.TypedDict, total=False):
+class Message(typing.TypedDict, total=False):
     classificationLabelValues: _list[ClassificationLabelValue]
     historyId: str
     id: str
@@ -255,7 +249,7 @@ class Message(typing_extensions.TypedDict, total=False):
     threadId: str
 
 @typing.type_check_only
-class MessagePart(typing_extensions.TypedDict, total=False):
+class MessagePart(typing.TypedDict, total=False):
     body: MessagePartBody
     filename: str
     headers: _list[MessagePartHeader]
@@ -264,49 +258,49 @@ class MessagePart(typing_extensions.TypedDict, total=False):
     parts: _list[MessagePart]
 
 @typing.type_check_only
-class MessagePartBody(typing_extensions.TypedDict, total=False):
+class MessagePartBody(typing.TypedDict, total=False):
     attachmentId: str
     data: str
     size: int
 
 @typing.type_check_only
-class MessagePartHeader(typing_extensions.TypedDict, total=False):
+class MessagePartHeader(typing.TypedDict, total=False):
     name: str
     value: str
 
 @typing.type_check_only
-class ModifyMessageRequest(typing_extensions.TypedDict, total=False):
+class ModifyMessageRequest(typing.TypedDict, total=False):
     addClassificationLabels: _list[ClassificationLabelValue]
     addLabelIds: _list[str]
     removeClassificationLabelIds: _list[str]
     removeLabelIds: _list[str]
 
 @typing.type_check_only
-class ModifyThreadRequest(typing_extensions.TypedDict, total=False):
+class ModifyThreadRequest(typing.TypedDict, total=False):
     addLabelIds: _list[str]
     removeLabelIds: _list[str]
 
 @typing.type_check_only
-class ObliterateCseKeyPairRequest(typing_extensions.TypedDict, total=False): ...
+class ObliterateCseKeyPairRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class PopSettings(typing_extensions.TypedDict, total=False):
-    accessWindow: typing_extensions.Literal[
+class PopSettings(typing.TypedDict, total=False):
+    accessWindow: typing.Literal[
         "accessWindowUnspecified", "disabled", "fromNowOn", "allMail"
     ]
-    disposition: typing_extensions.Literal[
+    disposition: typing.Literal[
         "dispositionUnspecified", "leaveInInbox", "archive", "trash", "markRead"
     ]
 
 @typing.type_check_only
-class Profile(typing_extensions.TypedDict, total=False):
+class Profile(typing.TypedDict, total=False):
     emailAddress: str
     historyId: str
     messagesTotal: int
     threadsTotal: int
 
 @typing.type_check_only
-class SendAs(typing_extensions.TypedDict, total=False):
+class SendAs(typing.TypedDict, total=False):
     displayName: str
     isDefault: bool
     isPrimary: bool
@@ -315,17 +309,17 @@ class SendAs(typing_extensions.TypedDict, total=False):
     signature: str
     smtpMsa: SmtpMsa
     treatAsAlias: bool
-    verificationStatus: typing_extensions.Literal[
+    verificationStatus: typing.Literal[
         "verificationStatusUnspecified", "accepted", "pending"
     ]
 
 @typing.type_check_only
-class SignAndEncryptKeyPairs(typing_extensions.TypedDict, total=False):
+class SignAndEncryptKeyPairs(typing.TypedDict, total=False):
     encryptionKeyPairId: str
     signingKeyPairId: str
 
 @typing.type_check_only
-class SmimeInfo(typing_extensions.TypedDict, total=False):
+class SmimeInfo(typing.TypedDict, total=False):
     encryptedKeyPassword: str
     expiration: str
     id: str
@@ -335,24 +329,22 @@ class SmimeInfo(typing_extensions.TypedDict, total=False):
     pkcs12: str
 
 @typing.type_check_only
-class SmtpMsa(typing_extensions.TypedDict, total=False):
+class SmtpMsa(typing.TypedDict, total=False):
     host: str
     password: str
     port: int
-    securityMode: typing_extensions.Literal[
-        "securityModeUnspecified", "none", "ssl", "starttls"
-    ]
+    securityMode: typing.Literal["securityModeUnspecified", "none", "ssl", "starttls"]
     username: str
 
 @typing.type_check_only
-class Thread(typing_extensions.TypedDict, total=False):
+class Thread(typing.TypedDict, total=False):
     historyId: str
     id: str
     messages: _list[Message]
     snippet: str
 
 @typing.type_check_only
-class VacationSettings(typing_extensions.TypedDict, total=False):
+class VacationSettings(typing.TypedDict, total=False):
     enableAutoReply: bool
     endTime: str
     responseBodyHtml: str
@@ -363,13 +355,13 @@ class VacationSettings(typing_extensions.TypedDict, total=False):
     startTime: str
 
 @typing.type_check_only
-class WatchRequest(typing_extensions.TypedDict, total=False):
-    labelFilterAction: typing_extensions.Literal["include", "exclude"]
-    labelFilterBehavior: typing_extensions.Literal["include", "exclude"]
+class WatchRequest(typing.TypedDict, total=False):
+    labelFilterAction: typing.Literal["include", "exclude"]
+    labelFilterBehavior: typing.Literal["include", "exclude"]
     labelIds: _list[str]
     topicName: str
 
 @typing.type_check_only
-class WatchResponse(typing_extensions.TypedDict, total=False):
+class WatchResponse(typing.TypedDict, total=False):
     expiration: str
     historyId: str

@@ -1,11 +1,9 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class Account(typing_extensions.TypedDict, total=False):
+class Account(typing.TypedDict, total=False):
     bidderLocation: _list[dict[str, typing.Any]]
     cookieMatchingNid: str
     cookieMatchingUrl: str
@@ -16,24 +14,24 @@ class Account(typing_extensions.TypedDict, total=False):
     numberActiveCreatives: int
 
 @typing.type_check_only
-class AccountsList(typing_extensions.TypedDict, total=False):
+class AccountsList(typing.TypedDict, total=False):
     items: _list[Account]
     kind: str
 
 @typing.type_check_only
-class BillingInfo(typing_extensions.TypedDict, total=False):
+class BillingInfo(typing.TypedDict, total=False):
     accountId: int
     accountName: str
     billingId: _list[str]
     kind: str
 
 @typing.type_check_only
-class BillingInfoList(typing_extensions.TypedDict, total=False):
+class BillingInfoList(typing.TypedDict, total=False):
     items: _list[BillingInfo]
     kind: str
 
 @typing.type_check_only
-class Budget(typing_extensions.TypedDict, total=False):
+class Budget(typing.TypedDict, total=False):
     accountId: str
     billingId: str
     budgetAmount: str
@@ -42,7 +40,7 @@ class Budget(typing_extensions.TypedDict, total=False):
     kind: str
 
 @typing.type_check_only
-class Creative(typing_extensions.TypedDict, total=False):
+class Creative(typing.TypedDict, total=False):
     HTMLSnippet: str
     accountId: int
     adTechnologyProviders: dict[str, typing.Any]
@@ -70,13 +68,13 @@ class Creative(typing_extensions.TypedDict, total=False):
     width: int
 
 @typing.type_check_only
-class CreativesList(typing_extensions.TypedDict, total=False):
+class CreativesList(typing.TypedDict, total=False):
     items: _list[Creative]
     kind: str
     nextPageToken: str
 
 @typing.type_check_only
-class DirectDeal(typing_extensions.TypedDict, total=False):
+class DirectDeal(typing.TypedDict, total=False):
     accountId: int
     advertiser: str
     allowsAlcohol: bool
@@ -94,12 +92,12 @@ class DirectDeal(typing_extensions.TypedDict, total=False):
     startTime: str
 
 @typing.type_check_only
-class DirectDealsList(typing_extensions.TypedDict, total=False):
+class DirectDealsList(typing.TypedDict, total=False):
     directDeals: _list[DirectDeal]
     kind: str
 
 @typing.type_check_only
-class PerformanceReport(typing_extensions.TypedDict, total=False):
+class PerformanceReport(typing.TypedDict, total=False):
     bidRate: float
     bidRequestRate: float
     calloutStatusRate: _list[typing.Any]
@@ -124,12 +122,12 @@ class PerformanceReport(typing_extensions.TypedDict, total=False):
     unsuccessfulRequestRate: float
 
 @typing.type_check_only
-class PerformanceReportList(typing_extensions.TypedDict, total=False):
+class PerformanceReportList(typing.TypedDict, total=False):
     kind: str
     performanceReport: _list[PerformanceReport]
 
 @typing.type_check_only
-class PretargetingConfig(typing_extensions.TypedDict, total=False):
+class PretargetingConfig(typing.TypedDict, total=False):
     billingId: str
     configId: str
     configName: str
@@ -156,6 +154,6 @@ class PretargetingConfig(typing_extensions.TypedDict, total=False):
     verticals: _list[str]
 
 @typing.type_check_only
-class PretargetingConfigList(typing_extensions.TypedDict, total=False):
+class PretargetingConfigList(typing.TypedDict, total=False):
     items: _list[PretargetingConfig]
     kind: str

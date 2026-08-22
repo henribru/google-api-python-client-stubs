@@ -1,37 +1,35 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class AIInference(typing_extensions.TypedDict, total=False):
+class AIInference(typing.TypedDict, total=False):
     endpoint: str
     serviceAccountEmail: str
     unstructuredInference: UnstructuredInference
 
 @typing.type_check_only
-class ApproveQueryTemplateRequest(typing_extensions.TypedDict, total=False): ...
+class ApproveQueryTemplateRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class AuditConfig(typing_extensions.TypedDict, total=False):
+class AuditConfig(typing.TypedDict, total=False):
     auditLogConfigs: _list[AuditLogConfig]
     service: str
 
 @typing.type_check_only
-class AuditLogConfig(typing_extensions.TypedDict, total=False):
+class AuditLogConfig(typing.TypedDict, total=False):
     exemptedMembers: _list[str]
-    logType: typing_extensions.Literal[
+    logType: typing.Literal[
         "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
     ]
 
 @typing.type_check_only
-class AvroConfig(typing_extensions.TypedDict, total=False):
+class AvroConfig(typing.TypedDict, total=False):
     useTopicSchema: bool
     writeMetadata: bool
 
 @typing.type_check_only
-class BigQueryConfig(typing_extensions.TypedDict, total=False):
+class BigQueryConfig(typing.TypedDict, total=False):
     dropUnknownFields: bool
     serviceAccountEmail: str
     table: str
@@ -40,7 +38,7 @@ class BigQueryConfig(typing_extensions.TypedDict, total=False):
     writeMetadata: bool
 
 @typing.type_check_only
-class BigQueryDatasetSource(typing_extensions.TypedDict, total=False):
+class BigQueryDatasetSource(typing.TypedDict, total=False):
     dataset: str
     effectiveReplicas: _list[Replica]
     replicaLocations: _list[str]
@@ -48,20 +46,20 @@ class BigQueryDatasetSource(typing_extensions.TypedDict, total=False):
     selectedResources: _list[SelectedResource]
 
 @typing.type_check_only
-class BigtableConfig(typing_extensions.TypedDict, total=False):
+class BigtableConfig(typing.TypedDict, total=False):
     appProfileId: str
     serviceAccountEmail: str
     table: str
     writeMetadata: bool
 
 @typing.type_check_only
-class Binding(typing_extensions.TypedDict, total=False):
+class Binding(typing.TypedDict, total=False):
     condition: Expr
     members: _list[str]
     role: str
 
 @typing.type_check_only
-class CloudStorageConfig(typing_extensions.TypedDict, total=False):
+class CloudStorageConfig(typing.TypedDict, total=False):
     avroConfig: AvroConfig
     bucket: str
     filenameDatetimeFormat: str
@@ -74,18 +72,16 @@ class CloudStorageConfig(typing_extensions.TypedDict, total=False):
     textConfig: TextConfig
 
 @typing.type_check_only
-class Compression(typing_extensions.TypedDict, total=False):
-    compressionAlgorithm: typing_extensions.Literal[
-        "COMPRESSION_ALGORITHM_UNSPECIFIED", "ZLIB"
-    ]
-    compressionMode: typing_extensions.Literal[
+class Compression(typing.TypedDict, total=False):
+    compressionAlgorithm: typing.Literal["COMPRESSION_ALGORITHM_UNSPECIFIED", "ZLIB"]
+    compressionMode: typing.Literal[
         "COMPRESSION_MODE_UNSPECIFIED", "COMPRESS", "DECOMPRESS"
     ]
 
 @typing.type_check_only
-class DataExchange(typing_extensions.TypedDict, total=False):
+class DataExchange(typing.TypedDict, total=False):
     description: str
-    discoveryType: typing_extensions.Literal[
+    discoveryType: typing.Literal[
         "DISCOVERY_TYPE_UNSPECIFIED", "DISCOVERY_TYPE_PRIVATE", "DISCOVERY_TYPE_PUBLIC"
     ]
     displayName: str
@@ -98,25 +94,25 @@ class DataExchange(typing_extensions.TypedDict, total=False):
     sharingEnvironmentConfig: SharingEnvironmentConfig
 
 @typing.type_check_only
-class DataProvider(typing_extensions.TypedDict, total=False):
+class DataProvider(typing.TypedDict, total=False):
     name: str
     primaryContact: str
 
 @typing.type_check_only
-class DcrExchangeConfig(typing_extensions.TypedDict, total=False):
+class DcrExchangeConfig(typing.TypedDict, total=False):
     singleLinkedDatasetPerCleanroom: bool
     singleSelectedResourceSharingRestriction: bool
 
 @typing.type_check_only
-class DeadLetterPolicy(typing_extensions.TypedDict, total=False):
+class DeadLetterPolicy(typing.TypedDict, total=False):
     deadLetterTopic: str
     maxDeliveryAttempts: int
 
 @typing.type_check_only
-class DefaultExchangeConfig(typing_extensions.TypedDict, total=False): ...
+class DefaultExchangeConfig(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class DestinationDataset(typing_extensions.TypedDict, total=False):
+class DestinationDataset(typing.TypedDict, total=False):
     datasetReference: DestinationDatasetReference
     description: str
     friendlyName: str
@@ -125,39 +121,39 @@ class DestinationDataset(typing_extensions.TypedDict, total=False):
     replicaLocations: _list[str]
 
 @typing.type_check_only
-class DestinationDatasetReference(typing_extensions.TypedDict, total=False):
+class DestinationDatasetReference(typing.TypedDict, total=False):
     datasetId: str
     projectId: str
 
 @typing.type_check_only
-class DestinationPubSubSubscription(typing_extensions.TypedDict, total=False):
+class DestinationPubSubSubscription(typing.TypedDict, total=False):
     pubsubSubscription: GooglePubsubV1Subscription
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ExpirationPolicy(typing_extensions.TypedDict, total=False):
+class ExpirationPolicy(typing.TypedDict, total=False):
     ttl: str
 
 @typing.type_check_only
-class Expr(typing_extensions.TypedDict, total=False):
+class Expr(typing.TypedDict, total=False):
     description: str
     expression: str
     location: str
     title: str
 
 @typing.type_check_only
-class GetIamPolicyRequest(typing_extensions.TypedDict, total=False):
+class GetIamPolicyRequest(typing.TypedDict, total=False):
     options: GetPolicyOptions
 
 @typing.type_check_only
-class GetPolicyOptions(typing_extensions.TypedDict, total=False):
+class GetPolicyOptions(typing.TypedDict, total=False):
     requestedPolicyVersion: int
 
 @typing.type_check_only
 class GoogleCloudBigqueryAnalyticshubV1ListingCommercialInfo(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     cloudMarketplace: (
         GoogleCloudBigqueryAnalyticshubV1ListingCommercialInfoGoogleCloudMarketplaceInfo
@@ -165,27 +161,27 @@ class GoogleCloudBigqueryAnalyticshubV1ListingCommercialInfo(
 
 @typing.type_check_only
 class GoogleCloudBigqueryAnalyticshubV1ListingCommercialInfoGoogleCloudMarketplaceInfo(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    commercialState: typing_extensions.Literal[
+    commercialState: typing.Literal[
         "COMMERCIAL_STATE_UNSPECIFIED", "ONBOARDING", "ACTIVE"
     ]
     service: str
 
 @typing.type_check_only
 class GoogleCloudBigqueryAnalyticshubV1SubscriptionCommercialInfo(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     cloudMarketplace: GoogleCloudBigqueryAnalyticshubV1SubscriptionCommercialInfoGoogleCloudMarketplaceInfo
 
 @typing.type_check_only
 class GoogleCloudBigqueryAnalyticshubV1SubscriptionCommercialInfoGoogleCloudMarketplaceInfo(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     order: str
 
 @typing.type_check_only
-class GooglePubsubV1Subscription(typing_extensions.TypedDict, total=False):
+class GooglePubsubV1Subscription(typing.TypedDict, total=False):
     ackDeadlineSeconds: int
     bigqueryConfig: BigQueryConfig
     bigtableConfig: BigtableConfig
@@ -206,52 +202,52 @@ class GooglePubsubV1Subscription(typing_extensions.TypedDict, total=False):
     tags: dict[str, typing.Any]
 
 @typing.type_check_only
-class JavaScriptUDF(typing_extensions.TypedDict, total=False):
+class JavaScriptUDF(typing.TypedDict, total=False):
     code: str
     functionName: str
 
 @typing.type_check_only
-class LinkedResource(typing_extensions.TypedDict, total=False):
+class LinkedResource(typing.TypedDict, total=False):
     linkedDataset: str
     linkedPubsubSubscription: str
     listing: str
 
 @typing.type_check_only
-class ListDataExchangesResponse(typing_extensions.TypedDict, total=False):
+class ListDataExchangesResponse(typing.TypedDict, total=False):
     dataExchanges: _list[DataExchange]
     nextPageToken: str
 
 @typing.type_check_only
-class ListListingsResponse(typing_extensions.TypedDict, total=False):
+class ListListingsResponse(typing.TypedDict, total=False):
     listings: _list[Listing]
     nextPageToken: str
 
 @typing.type_check_only
-class ListOrgDataExchangesResponse(typing_extensions.TypedDict, total=False):
+class ListOrgDataExchangesResponse(typing.TypedDict, total=False):
     dataExchanges: _list[DataExchange]
     nextPageToken: str
 
 @typing.type_check_only
-class ListQueryTemplatesResponse(typing_extensions.TypedDict, total=False):
+class ListQueryTemplatesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     queryTemplates: _list[QueryTemplate]
 
 @typing.type_check_only
-class ListSharedResourceSubscriptionsResponse(typing_extensions.TypedDict, total=False):
+class ListSharedResourceSubscriptionsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     sharedResourceSubscriptions: _list[Subscription]
 
 @typing.type_check_only
-class ListSubscriptionsResponse(typing_extensions.TypedDict, total=False):
+class ListSubscriptionsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     subscriptions: _list[Subscription]
 
 @typing.type_check_only
-class Listing(typing_extensions.TypedDict, total=False):
+class Listing(typing.TypedDict, total=False):
     allowOnlyMetadataSharing: bool
     bigqueryDataset: BigQueryDatasetSource
     categories: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "CATEGORY_UNSPECIFIED",
             "CATEGORY_OTHERS",
             "CATEGORY_ADVERTISING_AND_MARKETING",
@@ -278,7 +274,7 @@ class Listing(typing_extensions.TypedDict, total=False):
     commercialInfo: GoogleCloudBigqueryAnalyticshubV1ListingCommercialInfo
     dataProvider: DataProvider
     description: str
-    discoveryType: typing_extensions.Literal[
+    discoveryType: typing.Literal[
         "DISCOVERY_TYPE_UNSPECIFIED", "DISCOVERY_TYPE_PRIVATE", "DISCOVERY_TYPE_PUBLIC"
     ]
     displayName: str
@@ -290,15 +286,15 @@ class Listing(typing_extensions.TypedDict, total=False):
     publisher: Publisher
     pubsubTopic: PubSubTopicSource
     requestAccess: str
-    resourceType: typing_extensions.Literal[
+    resourceType: typing.Literal[
         "SHARED_RESOURCE_TYPE_UNSPECIFIED", "BIGQUERY_DATASET", "PUBSUB_TOPIC"
     ]
     restrictedExportConfig: RestrictedExportConfig
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE"]
+    state: typing.Literal["STATE_UNSPECIFIED", "ACTIVE"]
     storedProcedureConfig: StoredProcedureConfig
 
 @typing.type_check_only
-class MessageTransform(typing_extensions.TypedDict, total=False):
+class MessageTransform(typing.TypedDict, total=False):
     aiInference: AIInference
     compression: Compression
     disabled: bool
@@ -306,16 +302,16 @@ class MessageTransform(typing_extensions.TypedDict, total=False):
     javascriptUdf: JavaScriptUDF
 
 @typing.type_check_only
-class NoWrapper(typing_extensions.TypedDict, total=False):
+class NoWrapper(typing.TypedDict, total=False):
     writeMetadata: bool
 
 @typing.type_check_only
-class OidcToken(typing_extensions.TypedDict, total=False):
+class OidcToken(typing.TypedDict, total=False):
     audience: str
     serviceAccountEmail: str
 
 @typing.type_check_only
-class Operation(typing_extensions.TypedDict, total=False):
+class Operation(typing.TypedDict, total=False):
     done: bool
     error: Status
     metadata: dict[str, typing.Any]
@@ -323,7 +319,7 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class OperationMetadata(typing_extensions.TypedDict, total=False):
+class OperationMetadata(typing.TypedDict, total=False):
     apiVersion: str
     createTime: str
     endTime: str
@@ -333,27 +329,27 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
-class Policy(typing_extensions.TypedDict, total=False):
+class Policy(typing.TypedDict, total=False):
     auditConfigs: _list[AuditConfig]
     bindings: _list[Binding]
     etag: str
     version: int
 
 @typing.type_check_only
-class PubSubTopicSource(typing_extensions.TypedDict, total=False):
+class PubSubTopicSource(typing.TypedDict, total=False):
     dataAffinityRegions: _list[str]
     topic: str
 
 @typing.type_check_only
-class Publisher(typing_extensions.TypedDict, total=False):
+class Publisher(typing.TypedDict, total=False):
     name: str
     primaryContact: str
 
 @typing.type_check_only
-class PubsubWrapper(typing_extensions.TypedDict, total=False): ...
+class PubsubWrapper(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class PushConfig(typing_extensions.TypedDict, total=False):
+class PushConfig(typing.TypedDict, total=False):
     attributes: dict[str, typing.Any]
     noWrapper: NoWrapper
     oidcToken: OidcToken
@@ -361,7 +357,7 @@ class PushConfig(typing_extensions.TypedDict, total=False):
     pushEndpoint: str
 
 @typing.type_check_only
-class QueryTemplate(typing_extensions.TypedDict, total=False):
+class QueryTemplate(typing.TypedDict, total=False):
     createTime: str
     description: str
     displayName: str
@@ -370,112 +366,108 @@ class QueryTemplate(typing_extensions.TypedDict, total=False):
     primaryContact: str
     proposer: str
     routine: Routine
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED", "DRAFTED", "PENDING", "DELETED", "APPROVED"
     ]
     updateTime: str
 
 @typing.type_check_only
-class RefreshSubscriptionRequest(typing_extensions.TypedDict, total=False): ...
+class RefreshSubscriptionRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class RefreshSubscriptionResponse(typing_extensions.TypedDict, total=False):
+class RefreshSubscriptionResponse(typing.TypedDict, total=False):
     subscription: Subscription
 
 @typing.type_check_only
-class Replica(typing_extensions.TypedDict, total=False):
+class Replica(typing.TypedDict, total=False):
     location: str
-    primaryState: typing_extensions.Literal[
-        "PRIMARY_STATE_UNSPECIFIED", "PRIMARY_REPLICA"
-    ]
-    replicaState: typing_extensions.Literal[
+    primaryState: typing.Literal["PRIMARY_STATE_UNSPECIFIED", "PRIMARY_REPLICA"]
+    replicaState: typing.Literal[
         "REPLICA_STATE_UNSPECIFIED", "READY_TO_USE", "UNAVAILABLE"
     ]
 
 @typing.type_check_only
-class RestrictedExportConfig(typing_extensions.TypedDict, total=False):
+class RestrictedExportConfig(typing.TypedDict, total=False):
     enabled: bool
     restrictDirectTableAccess: bool
     restrictQueryResult: bool
 
 @typing.type_check_only
-class RestrictedExportPolicy(typing_extensions.TypedDict, total=False):
+class RestrictedExportPolicy(typing.TypedDict, total=False):
     enabled: bool
     restrictDirectTableAccess: bool
     restrictQueryResult: bool
 
 @typing.type_check_only
-class RetryPolicy(typing_extensions.TypedDict, total=False):
+class RetryPolicy(typing.TypedDict, total=False):
     maximumBackoff: str
     minimumBackoff: str
 
 @typing.type_check_only
-class RevokeSubscriptionRequest(typing_extensions.TypedDict, total=False):
+class RevokeSubscriptionRequest(typing.TypedDict, total=False):
     revokeCommercial: bool
 
 @typing.type_check_only
-class RevokeSubscriptionResponse(typing_extensions.TypedDict, total=False): ...
+class RevokeSubscriptionResponse(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Routine(typing_extensions.TypedDict, total=False):
+class Routine(typing.TypedDict, total=False):
     definitionBody: str
-    routineType: typing_extensions.Literal[
-        "ROUTINE_TYPE_UNSPECIFIED", "TABLE_VALUED_FUNCTION"
-    ]
+    routineType: typing.Literal["ROUTINE_TYPE_UNSPECIFIED", "TABLE_VALUED_FUNCTION"]
 
 @typing.type_check_only
-class SelectedResource(typing_extensions.TypedDict, total=False):
+class SelectedResource(typing.TypedDict, total=False):
     routine: str
     table: str
 
 @typing.type_check_only
-class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
+class SetIamPolicyRequest(typing.TypedDict, total=False):
     policy: Policy
     updateMask: str
 
 @typing.type_check_only
-class SharingEnvironmentConfig(typing_extensions.TypedDict, total=False):
+class SharingEnvironmentConfig(typing.TypedDict, total=False):
     dcrExchangeConfig: DcrExchangeConfig
     defaultExchangeConfig: DefaultExchangeConfig
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class StoredProcedureConfig(typing_extensions.TypedDict, total=False):
+class StoredProcedureConfig(typing.TypedDict, total=False):
     allowedStoredProcedureTypes: _list[
-        typing_extensions.Literal["STORED_PROCEDURE_TYPE_UNSPECIFIED", "SQL_PROCEDURE"]
+        typing.Literal["STORED_PROCEDURE_TYPE_UNSPECIFIED", "SQL_PROCEDURE"]
     ]
     enabled: bool
 
 @typing.type_check_only
-class SubmitQueryTemplateRequest(typing_extensions.TypedDict, total=False): ...
+class SubmitQueryTemplateRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class SubscribeDataExchangeRequest(typing_extensions.TypedDict, total=False):
+class SubscribeDataExchangeRequest(typing.TypedDict, total=False):
     destination: str
     destinationDataset: DestinationDataset
     subscriberContact: str
     subscription: str
 
 @typing.type_check_only
-class SubscribeDataExchangeResponse(typing_extensions.TypedDict, total=False):
+class SubscribeDataExchangeResponse(typing.TypedDict, total=False):
     subscription: Subscription
 
 @typing.type_check_only
-class SubscribeListingRequest(typing_extensions.TypedDict, total=False):
+class SubscribeListingRequest(typing.TypedDict, total=False):
     destinationDataset: DestinationDataset
     destinationPubsubSubscription: DestinationPubSubSubscription
 
 @typing.type_check_only
-class SubscribeListingResponse(typing_extensions.TypedDict, total=False):
+class SubscribeListingResponse(typing.TypedDict, total=False):
     subscription: Subscription
 
 @typing.type_check_only
-class Subscription(typing_extensions.TypedDict, total=False):
+class Subscription(typing.TypedDict, total=False):
     commercialInfo: GoogleCloudBigqueryAnalyticshubV1SubscriptionCommercialInfo
     creationTime: str
     dataExchange: str
@@ -488,25 +480,25 @@ class Subscription(typing_extensions.TypedDict, total=False):
     name: str
     organizationDisplayName: str
     organizationId: str
-    resourceType: typing_extensions.Literal[
+    resourceType: typing.Literal[
         "SHARED_RESOURCE_TYPE_UNSPECIFIED", "BIGQUERY_DATASET", "PUBSUB_TOPIC"
     ]
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED", "STATE_ACTIVE", "STATE_STALE", "STATE_INACTIVE"
     ]
     subscriberContact: str
 
 @typing.type_check_only
-class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
+class TestIamPermissionsRequest(typing.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
-class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
+class TestIamPermissionsResponse(typing.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
-class TextConfig(typing_extensions.TypedDict, total=False): ...
+class TextConfig(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class UnstructuredInference(typing_extensions.TypedDict, total=False):
+class UnstructuredInference(typing.TypedDict, total=False):
     parameters: dict[str, typing.Any]

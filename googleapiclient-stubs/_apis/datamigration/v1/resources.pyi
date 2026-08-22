@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -186,7 +185,7 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
                     filter: str | None = ...,
                     pageSize: int | None = ...,
                     pageToken: str | None = ...,
-                    tree: typing_extensions.Literal[
+                    tree: typing.Literal[
                         "DB_TREE_TYPE_UNSPECIFIED",
                         "SOURCE_TREE",
                         "DRAFT_TREE",
@@ -194,7 +193,7 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
                     ]
                     | None = ...,
                     uncommitted: bool | None = ...,
-                    view: typing_extensions.Literal[
+                    view: typing.Literal[
                         "DATABASE_ENTITY_VIEW_UNSPECIFIED",
                         "DATABASE_ENTITY_VIEW_BASIC",
                         "DATABASE_ENTITY_VIEW_FULL",
@@ -558,6 +557,7 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
+                fetchReservedPublicIps: bool | None = ...,
                 pageSize: int | None = ...,
                 pageToken: str | None = ...,
                 **kwargs: typing.Any,

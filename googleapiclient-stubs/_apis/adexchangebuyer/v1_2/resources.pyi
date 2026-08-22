@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -37,9 +36,7 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
             *,
             maxResults: int | None = ...,
             pageToken: str | None = ...,
-            statusFilter: typing_extensions.Literal[
-                "approved", "disapproved", "not_checked"
-            ]
+            statusFilter: typing.Literal["approved", "disapproved", "not_checked"]
             | None = ...,
             **kwargs: typing.Any,
         ) -> CreativesListHttpRequest: ...

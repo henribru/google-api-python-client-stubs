@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -40,7 +39,7 @@ class PollenResource(googleapiclient.discovery.Resource):
             def lookupHeatmapTile(
                 self,
                 *,
-                mapType: typing_extensions.Literal[
+                mapType: typing.Literal[
                     "MAP_TYPE_UNSPECIFIED", "TREE_UPI", "GRASS_UPI", "WEED_UPI"
                 ],
                 zoom: int,

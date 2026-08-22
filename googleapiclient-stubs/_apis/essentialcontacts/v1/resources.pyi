@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -21,7 +20,7 @@ class EssentialcontactsResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                notificationCategories: typing_extensions.Literal[
+                notificationCategories: typing.Literal[
                     "NOTIFICATION_CATEGORY_UNSPECIFIED",
                     "ALL",
                     "SUSPENSION",
@@ -33,7 +32,7 @@ class EssentialcontactsResource(googleapiclient.discovery.Resource):
                     "TECHNICAL_INCIDENTS",
                 ]
                 | _list[
-                    typing_extensions.Literal[
+                    typing.Literal[
                         "NOTIFICATION_CATEGORY_UNSPECIFIED",
                         "ALL",
                         "SUSPENSION",
@@ -111,7 +110,7 @@ class EssentialcontactsResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                notificationCategories: typing_extensions.Literal[
+                notificationCategories: typing.Literal[
                     "NOTIFICATION_CATEGORY_UNSPECIFIED",
                     "ALL",
                     "SUSPENSION",
@@ -123,7 +122,7 @@ class EssentialcontactsResource(googleapiclient.discovery.Resource):
                     "TECHNICAL_INCIDENTS",
                 ]
                 | _list[
-                    typing_extensions.Literal[
+                    typing.Literal[
                         "NOTIFICATION_CATEGORY_UNSPECIFIED",
                         "ALL",
                         "SUSPENSION",
@@ -201,7 +200,7 @@ class EssentialcontactsResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                notificationCategories: typing_extensions.Literal[
+                notificationCategories: typing.Literal[
                     "NOTIFICATION_CATEGORY_UNSPECIFIED",
                     "ALL",
                     "SUSPENSION",
@@ -213,7 +212,7 @@ class EssentialcontactsResource(googleapiclient.discovery.Resource):
                     "TECHNICAL_INCIDENTS",
                 ]
                 | _list[
-                    typing_extensions.Literal[
+                    typing.Literal[
                         "NOTIFICATION_CATEGORY_UNSPECIFIED",
                         "ALL",
                         "SUSPENSION",

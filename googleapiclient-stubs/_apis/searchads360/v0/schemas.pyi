@@ -1,14 +1,10 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Common__AdScheduleInfo(
-    typing_extensions.TypedDict, total=False
-):
-    dayOfWeek: typing_extensions.Literal[
+class GoogleAdsSearchads360V0Common__AdScheduleInfo(typing.TypedDict, total=False):
+    dayOfWeek: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "MONDAY",
@@ -20,25 +16,21 @@ class GoogleAdsSearchads360V0Common__AdScheduleInfo(
         "SUNDAY",
     ]
     endHour: int
-    endMinute: typing_extensions.Literal[
+    endMinute: typing.Literal[
         "UNSPECIFIED", "UNKNOWN", "ZERO", "FIFTEEN", "THIRTY", "FORTY_FIVE"
     ]
     startHour: int
-    startMinute: typing_extensions.Literal[
+    startMinute: typing.Literal[
         "UNSPECIFIED", "UNKNOWN", "ZERO", "FIFTEEN", "THIRTY", "FORTY_FIVE"
     ]
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Common__AdTextAsset(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsSearchads360V0Common__AdTextAsset(typing.TypedDict, total=False):
     text: str
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Common__AgeRangeInfo(
-    typing_extensions.TypedDict, total=False
-):
-    type: typing_extensions.Literal[
+class GoogleAdsSearchads360V0Common__AgeRangeInfo(typing.TypedDict, total=False):
+    type: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "AGE_RANGE_18_24",
@@ -52,17 +44,15 @@ class GoogleAdsSearchads360V0Common__AgeRangeInfo(
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Common__AssetInteractionTarget(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     asset: str
     interactionOnThisAsset: bool
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Common__AssetUsage(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsSearchads360V0Common__AssetUsage(typing.TypedDict, total=False):
     asset: str
-    servedAssetFieldType: typing_extensions.Literal[
+    servedAssetFieldType: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "HEADLINE_1",
@@ -103,24 +93,20 @@ class GoogleAdsSearchads360V0Common__AssetUsage(
     ]
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Common__AudienceInfo(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsSearchads360V0Common__AudienceInfo(typing.TypedDict, total=False):
     audience: str
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Common__BusinessProfileLocation(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     labels: _list[str]
     listingId: str
     storeCode: str
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Common__CallToActionAsset(
-    typing_extensions.TypedDict, total=False
-):
-    callToAction: typing_extensions.Literal[
+class GoogleAdsSearchads360V0Common__CallToActionAsset(typing.TypedDict, total=False):
+    callToAction: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "LEARN_MORE",
@@ -143,52 +129,38 @@ class GoogleAdsSearchads360V0Common__CallToActionAsset(
     ]
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Common__CustomParameter(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsSearchads360V0Common__CustomParameter(typing.TypedDict, total=False):
     key: str
     value: str
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Common__DeviceInfo(
-    typing_extensions.TypedDict, total=False
-):
-    type: typing_extensions.Literal[
+class GoogleAdsSearchads360V0Common__DeviceInfo(typing.TypedDict, total=False):
+    type: typing.Literal[
         "UNSPECIFIED", "UNKNOWN", "MOBILE", "TABLET", "DESKTOP", "CONNECTED_TV", "OTHER"
     ]
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Common__EnhancedCpc(
-    typing_extensions.TypedDict, total=False
-): ...
+class GoogleAdsSearchads360V0Common__EnhancedCpc(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Common__FinalAppUrl(
-    typing_extensions.TypedDict, total=False
-):
-    osType: typing_extensions.Literal["UNSPECIFIED", "UNKNOWN", "IOS", "ANDROID"]
+class GoogleAdsSearchads360V0Common__FinalAppUrl(typing.TypedDict, total=False):
+    osType: typing.Literal["UNSPECIFIED", "UNKNOWN", "IOS", "ANDROID"]
     url: str
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Common__FrequencyCapEntry(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Common__GenderInfo(
-    typing_extensions.TypedDict, total=False
-):
-    type: typing_extensions.Literal[
-        "UNSPECIFIED", "UNKNOWN", "MALE", "FEMALE", "UNDETERMINED"
-    ]
+class GoogleAdsSearchads360V0Common__GenderInfo(typing.TypedDict, total=False):
+    type: typing.Literal["UNSPECIFIED", "UNKNOWN", "MALE", "FEMALE", "UNDETERMINED"]
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Common__ImageAsset(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsSearchads360V0Common__ImageAsset(typing.TypedDict, total=False):
     fileSize: str
     fullSize: GoogleAdsSearchads360V0Common__ImageDimension
-    mimeType: typing_extensions.Literal[
+    mimeType: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "IMAGE_JPEG",
@@ -206,90 +178,68 @@ class GoogleAdsSearchads360V0Common__ImageAsset(
     ]
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Common__ImageDimension(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsSearchads360V0Common__ImageDimension(typing.TypedDict, total=False):
     heightPixels: str
     url: str
     widthPixels: str
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Common__Keyword(typing_extensions.TypedDict, total=False):
+class GoogleAdsSearchads360V0Common__Keyword(typing.TypedDict, total=False):
     adGroupCriterion: str
     info: GoogleAdsSearchads360V0Common__KeywordInfo
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Common__KeywordInfo(
-    typing_extensions.TypedDict, total=False
-):
-    matchType: typing_extensions.Literal[
-        "UNSPECIFIED", "UNKNOWN", "EXACT", "PHRASE", "BROAD"
-    ]
+class GoogleAdsSearchads360V0Common__KeywordInfo(typing.TypedDict, total=False):
+    matchType: typing.Literal["UNSPECIFIED", "UNKNOWN", "EXACT", "PHRASE", "BROAD"]
     text: str
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Common__LanguageInfo(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsSearchads360V0Common__LanguageInfo(typing.TypedDict, total=False):
     languageConstant: str
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Common__ListingGroupInfo(
-    typing_extensions.TypedDict, total=False
-):
-    type: typing_extensions.Literal["UNSPECIFIED", "UNKNOWN", "SUBDIVISION", "UNIT"]
+class GoogleAdsSearchads360V0Common__ListingGroupInfo(typing.TypedDict, total=False):
+    type: typing.Literal["UNSPECIFIED", "UNKNOWN", "SUBDIVISION", "UNIT"]
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Common__LocationGroupInfo(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsSearchads360V0Common__LocationGroupInfo(typing.TypedDict, total=False):
     feedItemSets: _list[str]
     geoTargetConstants: _list[str]
     radius: str
-    radiusUnits: typing_extensions.Literal[
+    radiusUnits: typing.Literal[
         "UNSPECIFIED", "UNKNOWN", "METERS", "MILES", "MILLI_MILES"
     ]
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Common__LocationInfo(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsSearchads360V0Common__LocationInfo(typing.TypedDict, total=False):
     geoTargetConstant: str
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Common__ManualCpa(
-    typing_extensions.TypedDict, total=False
-): ...
+class GoogleAdsSearchads360V0Common__ManualCpa(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Common__ManualCpc(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsSearchads360V0Common__ManualCpc(typing.TypedDict, total=False):
     enhancedCpcEnabled: bool
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Common__ManualCpm(
-    typing_extensions.TypedDict, total=False
-): ...
+class GoogleAdsSearchads360V0Common__ManualCpm(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Common__MaximizeConversionValue(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     cpcBidCeilingMicros: str
     cpcBidFloorMicros: str
     targetRoas: float
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Common__MaximizeConversions(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsSearchads360V0Common__MaximizeConversions(typing.TypedDict, total=False):
     cpcBidCeilingMicros: str
     cpcBidFloorMicros: str
     targetCpaMicros: str
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Common__Metrics(typing_extensions.TypedDict, total=False):
+class GoogleAdsSearchads360V0Common__Metrics(typing.TypedDict, total=False):
     absoluteTopImpressionPercentage: float
     allConversions: float
     allConversionsByConversionDate: float
@@ -353,19 +303,19 @@ class GoogleAdsSearchads360V0Common__Metrics(typing_extensions.TypedDict, total=
     generalInvalidClicks: str
     grossProfitMargin: float
     grossProfitMicros: str
-    historicalCreativeQualityScore: typing_extensions.Literal[
+    historicalCreativeQualityScore: typing.Literal[
         "UNSPECIFIED", "UNKNOWN", "BELOW_AVERAGE", "AVERAGE", "ABOVE_AVERAGE"
     ]
-    historicalLandingPageQualityScore: typing_extensions.Literal[
+    historicalLandingPageQualityScore: typing.Literal[
         "UNSPECIFIED", "UNKNOWN", "BELOW_AVERAGE", "AVERAGE", "ABOVE_AVERAGE"
     ]
     historicalQualityScore: str
-    historicalSearchPredictedCtr: typing_extensions.Literal[
+    historicalSearchPredictedCtr: typing.Literal[
         "UNSPECIFIED", "UNKNOWN", "BELOW_AVERAGE", "AVERAGE", "ABOVE_AVERAGE"
     ]
     impressions: str
     interactionEventTypes: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "UNSPECIFIED", "UNKNOWN", "CLICK", "ENGAGEMENT", "VIDEO_VIEW", "NONE"
         ]
     ]
@@ -402,30 +352,26 @@ class GoogleAdsSearchads360V0Common__Metrics(typing_extensions.TypedDict, total=
     visits: float
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Common__MobileAppAsset(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsSearchads360V0Common__MobileAppAsset(typing.TypedDict, total=False):
     appId: str
-    appStore: typing_extensions.Literal[
+    appStore: typing.Literal[
         "UNSPECIFIED", "UNKNOWN", "APPLE_APP_STORE", "GOOGLE_APP_STORE"
     ]
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Common__PercentCpc(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsSearchads360V0Common__PercentCpc(typing.TypedDict, total=False):
     cpcBidCeilingMicros: str
     enhancedCpcEnabled: bool
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Common__RealTimeBiddingSetting(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     optIn: bool
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Common__SearchAds360ExpandedDynamicSearchAdInfo(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     adTrackingId: str
     description1: str
@@ -433,7 +379,7 @@ class GoogleAdsSearchads360V0Common__SearchAds360ExpandedDynamicSearchAdInfo(
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Common__SearchAds360ExpandedTextAdInfo(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     adTrackingId: str
     description1: str
@@ -446,12 +392,12 @@ class GoogleAdsSearchads360V0Common__SearchAds360ExpandedTextAdInfo(
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Common__SearchAds360ProductAdInfo(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Common__SearchAds360ResponsiveSearchAdInfo(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     adTrackingId: str
     descriptions: _list[GoogleAdsSearchads360V0Common__AdTextAsset]
@@ -461,7 +407,7 @@ class GoogleAdsSearchads360V0Common__SearchAds360ResponsiveSearchAdInfo(
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Common__SearchAds360TextAdInfo(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     adTrackingId: str
     description1: str
@@ -471,15 +417,15 @@ class GoogleAdsSearchads360V0Common__SearchAds360TextAdInfo(
     headline: str
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Common__Segments(typing_extensions.TypedDict, total=False):
-    adFormatType: typing_extensions.Literal[
+class GoogleAdsSearchads360V0Common__Segments(typing.TypedDict, total=False):
+    adFormatType: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "VERTICAL_ADS_PROMOTION",
         "VERTICAL_ADS_BOOKING_LINK",
         "TEXT",
     ]
-    adNetworkType: typing_extensions.Literal[
+    adNetworkType: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "SEARCH",
@@ -491,7 +437,7 @@ class GoogleAdsSearchads360V0Common__Segments(typing_extensions.TypedDict, total
     ]
     assetInteractionTarget: GoogleAdsSearchads360V0Common__AssetInteractionTarget
     conversionAction: str
-    conversionActionCategory: typing_extensions.Literal[
+    conversionActionCategory: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "DEFAULT",
@@ -520,7 +466,7 @@ class GoogleAdsSearchads360V0Common__Segments(typing_extensions.TypedDict, total
     conversionActionName: str
     conversionCustomDimensions: _list[GoogleAdsSearchads360V0Common__Value]
     date: str
-    dayOfWeek: typing_extensions.Literal[
+    dayOfWeek: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "MONDAY",
@@ -531,7 +477,7 @@ class GoogleAdsSearchads360V0Common__Segments(typing_extensions.TypedDict, total
         "SATURDAY",
         "SUNDAY",
     ]
-    device: typing_extensions.Literal[
+    device: typing.Literal[
         "UNSPECIFIED", "UNKNOWN", "MOBILE", "TABLET", "DESKTOP", "CONNECTED_TV", "OTHER"
     ]
     geoTargetCity: str
@@ -548,13 +494,11 @@ class GoogleAdsSearchads360V0Common__Segments(typing_extensions.TypedDict, total
     productBiddingCategoryLevel4: str
     productBiddingCategoryLevel5: str
     productBrand: str
-    productChannel: typing_extensions.Literal[
-        "UNSPECIFIED", "UNKNOWN", "ONLINE", "LOCAL"
-    ]
-    productChannelExclusivity: typing_extensions.Literal[
+    productChannel: typing.Literal["UNSPECIFIED", "UNKNOWN", "ONLINE", "LOCAL"]
+    productChannelExclusivity: typing.Literal[
         "UNSPECIFIED", "UNKNOWN", "SINGLE_CHANNEL", "MULTI_CHANNEL"
     ]
-    productCondition: typing_extensions.Literal[
+    productCondition: typing.Literal[
         "UNSPECIFIED", "UNKNOWN", "OLD", "NEW", "REFURBISHED", "USED"
     ]
     productCountry: str
@@ -571,7 +515,7 @@ class GoogleAdsSearchads360V0Common__Segments(typing_extensions.TypedDict, total
     productSoldBiddingCategoryLevel4: str
     productSoldBiddingCategoryLevel5: str
     productSoldBrand: str
-    productSoldCondition: typing_extensions.Literal[
+    productSoldCondition: typing.Literal[
         "UNSPECIFIED", "UNKNOWN", "OLD", "NEW", "REFURBISHED", "USED"
     ]
     productSoldCustomAttribute0: str
@@ -603,7 +547,7 @@ class GoogleAdsSearchads360V0Common__Segments(typing_extensions.TypedDict, total
     verticalAdsListingCountry: str
     verticalAdsListingRegion: str
     verticalAdsPartnerAccount: str
-    verticalAdsVertical: typing_extensions.Literal[
+    verticalAdsVertical: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "HOTELS",
@@ -617,24 +561,40 @@ class GoogleAdsSearchads360V0Common__Segments(typing_extensions.TypedDict, total
     year: int
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Common__TargetCpa(
-    typing_extensions.TypedDict, total=False
+class GoogleAdsSearchads360V0Common__SyntheticContentAttestation(
+    typing.TypedDict, total=False
 ):
+    source: typing.Literal[
+        "UNSPECIFIED",
+        "UNKNOWN",
+        "ADVERTISER_ATTESTED",
+        "GOOGLE_GENERATED_ADVERTISER_REVIEWED",
+        "GOOGLE_GENERATED_FULLY_AUTOMATED",
+    ]
+    status: typing.Literal["UNSPECIFIED", "UNKNOWN", "NOT_SYNTHETIC", "IS_SYNTHETIC"]
+
+@typing.type_check_only
+class GoogleAdsSearchads360V0Common__SyntheticContentInfo(
+    typing.TypedDict, total=False
+):
+    advertiserAttestation: GoogleAdsSearchads360V0Common__SyntheticContentAttestation
+    systemAttestation: GoogleAdsSearchads360V0Common__SyntheticContentAttestation
+
+@typing.type_check_only
+class GoogleAdsSearchads360V0Common__TargetCpa(typing.TypedDict, total=False):
     cpcBidCeilingMicros: str
     cpcBidFloorMicros: str
     targetCpaMicros: str
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Common__TargetCpm(
-    typing_extensions.TypedDict, total=False
-): ...
+class GoogleAdsSearchads360V0Common__TargetCpm(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Common__TargetImpressionShare(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     cpcBidCeilingMicros: str
-    location: typing_extensions.Literal[
+    location: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "ANYWHERE_ON_PAGE",
@@ -644,17 +604,13 @@ class GoogleAdsSearchads360V0Common__TargetImpressionShare(
     locationFractionMicros: str
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Common__TargetOutrankShare(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsSearchads360V0Common__TargetOutrankShare(typing.TypedDict, total=False):
     cpcBidCeilingMicros: str
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Common__TargetRestriction(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsSearchads360V0Common__TargetRestriction(typing.TypedDict, total=False):
     bidOnly: bool
-    targetingDimension: typing_extensions.Literal[
+    targetingDimension: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "KEYWORD",
@@ -668,46 +624,34 @@ class GoogleAdsSearchads360V0Common__TargetRestriction(
     ]
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Common__TargetRoas(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsSearchads360V0Common__TargetRoas(typing.TypedDict, total=False):
     cpcBidCeilingMicros: str
     cpcBidFloorMicros: str
     targetRoas: float
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Common__TargetSpend(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsSearchads360V0Common__TargetSpend(typing.TypedDict, total=False):
     cpcBidCeilingMicros: str
     targetSpendMicros: str
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Common__TargetingSetting(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsSearchads360V0Common__TargetingSetting(typing.TypedDict, total=False):
     targetRestrictions: _list[GoogleAdsSearchads360V0Common__TargetRestriction]
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Common__TextAsset(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsSearchads360V0Common__TextAsset(typing.TypedDict, total=False):
     text: str
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Common__TextLabel(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsSearchads360V0Common__TextLabel(typing.TypedDict, total=False):
     backgroundColor: str
     description: str
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Common__UnifiedCallAsset(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsSearchads360V0Common__UnifiedCallAsset(typing.TypedDict, total=False):
     adScheduleTargets: _list[GoogleAdsSearchads360V0Common__AdScheduleInfo]
     callConversionAction: str
-    callConversionReportingState: typing_extensions.Literal[
+    callConversionReportingState: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "DISABLED",
@@ -723,9 +667,7 @@ class GoogleAdsSearchads360V0Common__UnifiedCallAsset(
     useSearcherTimeZone: bool
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Common__UnifiedCalloutAsset(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsSearchads360V0Common__UnifiedCalloutAsset(typing.TypedDict, total=False):
     adScheduleTargets: _list[GoogleAdsSearchads360V0Common__AdScheduleInfo]
     calloutText: str
     endDate: str
@@ -734,26 +676,26 @@ class GoogleAdsSearchads360V0Common__UnifiedCalloutAsset(
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Common__UnifiedLocationAsset(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     businessProfileLocations: _list[
         GoogleAdsSearchads360V0Common__BusinessProfileLocation
     ]
-    locationOwnershipType: typing_extensions.Literal[
+    locationOwnershipType: typing.Literal[
         "UNSPECIFIED", "UNKNOWN", "BUSINESS_OWNER", "AFFILIATE"
     ]
     placeId: str
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Common__UnifiedPageFeedAsset(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     labels: _list[str]
     pageUrl: str
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Common__UnifiedSitelinkAsset(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     adScheduleTargets: _list[GoogleAdsSearchads360V0Common__AdScheduleInfo]
     description1: str
@@ -766,13 +708,11 @@ class GoogleAdsSearchads360V0Common__UnifiedSitelinkAsset(
     useSearcherTimeZone: bool
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Common__UserListInfo(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsSearchads360V0Common__UserListInfo(typing.TypedDict, total=False):
     userList: str
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Common__Value(typing_extensions.TypedDict, total=False):
+class GoogleAdsSearchads360V0Common__Value(typing.TypedDict, total=False):
     booleanValue: bool
     doubleValue: float
     floatValue: float
@@ -781,10 +721,10 @@ class GoogleAdsSearchads360V0Common__Value(typing_extensions.TypedDict, total=Fa
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Common__WebpageConditionInfo(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     argument: str
-    operand: typing_extensions.Literal[
+    operand: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "URL",
@@ -793,35 +733,29 @@ class GoogleAdsSearchads360V0Common__WebpageConditionInfo(
         "PAGE_CONTENT",
         "CUSTOM_LABEL",
     ]
-    operator: typing_extensions.Literal["UNSPECIFIED", "UNKNOWN", "EQUALS", "CONTAINS"]
+    operator: typing.Literal["UNSPECIFIED", "UNKNOWN", "EQUALS", "CONTAINS"]
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Common__WebpageInfo(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsSearchads360V0Common__WebpageInfo(typing.TypedDict, total=False):
     conditions: _list[GoogleAdsSearchads360V0Common__WebpageConditionInfo]
     coveragePercentage: float
     criterionName: str
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Common__YoutubeVideoAsset(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsSearchads360V0Common__YoutubeVideoAsset(typing.TypedDict, total=False):
     youtubeVideoId: str
     youtubeVideoTitle: str
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Errors_ErrorLocation_FieldPathElement(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     fieldName: str
     index: int
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Errors__ErrorCode(
-    typing_extensions.TypedDict, total=False
-):
-    authenticationError: typing_extensions.Literal[
+class GoogleAdsSearchads360V0Errors__ErrorCode(typing.TypedDict, total=False):
+    authenticationError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "AUTHENTICATION_ERROR",
@@ -843,7 +777,7 @@ class GoogleAdsSearchads360V0Errors__ErrorCode(
         "TWO_STEP_VERIFICATION_NOT_ENROLLED",
         "ADVANCED_PROTECTION_NOT_ENROLLED",
     ]
-    authorizationError: typing_extensions.Literal[
+    authorizationError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "USER_PERMISSION_DENIED",
@@ -858,7 +792,7 @@ class GoogleAdsSearchads360V0Errors__ErrorCode(
         "ACCESS_DENIED_FOR_ACCOUNT_TYPE",
         "METRIC_ACCESS_DENIED",
     ]
-    conversionCustomVariableError: typing_extensions.Literal[
+    conversionCustomVariableError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "DUPLICATE_NAME",
@@ -872,13 +806,13 @@ class GoogleAdsSearchads360V0Errors__ErrorCode(
         "INVALID_DIMENSION",
         "INCOMPATIBLE_WITH_SELECTED_RESOURCE",
     ]
-    customColumnError: typing_extensions.Literal[
+    customColumnError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "CUSTOM_COLUMN_NOT_FOUND",
         "CUSTOM_COLUMN_NOT_AVAILABLE",
     ]
-    dateError: typing_extensions.Literal[
+    dateError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "INVALID_FIELD_VALUES_IN_DATE",
@@ -892,7 +826,7 @@ class GoogleAdsSearchads360V0Errors__ErrorCode(
         "DATE_RANGE_MINIMUM_DATE_LATER_THAN_MAXIMUM_DATE",
         "DATE_RANGE_MINIMUM_AND_MAXIMUM_DATES_BOTH_NULL",
     ]
-    dateRangeError: typing_extensions.Literal[
+    dateRangeError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "INVALID_DATE",
@@ -900,17 +834,18 @@ class GoogleAdsSearchads360V0Errors__ErrorCode(
         "CANNOT_SET_DATE_TO_PAST",
         "AFTER_MAXIMUM_ALLOWABLE_DATE",
         "CANNOT_MODIFY_START_DATE_IF_ALREADY_STARTED",
+        "REQUESTED_DATE_GRANULARITY_NOT_SUPPORTED",
     ]
-    distinctError: typing_extensions.Literal[
+    distinctError: typing.Literal[
         "UNSPECIFIED", "UNKNOWN", "DUPLICATE_ELEMENT", "DUPLICATE_TYPE"
     ]
-    headerError: typing_extensions.Literal[
+    headerError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "INVALID_USER_SELECTED_CUSTOMER_ID",
         "INVALID_LOGIN_CUSTOMER_ID",
     ]
-    internalError: typing_extensions.Literal[
+    internalError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "INTERNAL_ERROR",
@@ -918,10 +853,10 @@ class GoogleAdsSearchads360V0Errors__ErrorCode(
         "TRANSIENT_ERROR",
         "DEADLINE_EXCEEDED",
     ]
-    invalidParameterError: typing_extensions.Literal[
+    invalidParameterError: typing.Literal[
         "UNSPECIFIED", "UNKNOWN", "INVALID_CURRENCY_CODE"
     ]
-    queryError: typing_extensions.Literal[
+    queryError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "QUERY_ERROR",
@@ -981,10 +916,10 @@ class GoogleAdsSearchads360V0Errors__ErrorCode(
         "FILTER_HAS_TOO_MANY_VALUES",
         "REQUIRED_SEGMENT_FIELD_MISSING",
     ]
-    quotaError: typing_extensions.Literal[
+    quotaError: typing.Literal[
         "UNSPECIFIED", "UNKNOWN", "RESOURCE_EXHAUSTED", "RESOURCE_TEMPORARILY_EXHAUSTED"
     ]
-    requestError: typing_extensions.Literal[
+    requestError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "RESOURCE_NAME_MISSING",
@@ -1013,7 +948,7 @@ class GoogleAdsSearchads360V0Errors__ErrorCode(
         "RPC_DEADLINE_TOO_SHORT",
         "PRODUCT_NOT_SUPPORTED",
     ]
-    sizeLimitError: typing_extensions.Literal[
+    sizeLimitError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "REQUEST_SIZE_LIMIT_EXCEEDED",
@@ -1021,34 +956,24 @@ class GoogleAdsSearchads360V0Errors__ErrorCode(
     ]
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Errors__ErrorDetails(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsSearchads360V0Errors__ErrorDetails(typing.TypedDict, total=False):
     quotaErrorDetails: GoogleAdsSearchads360V0Errors__QuotaErrorDetails
     unpublishedErrorCode: str
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Errors__ErrorLocation(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsSearchads360V0Errors__ErrorLocation(typing.TypedDict, total=False):
     fieldPathElements: _list[
         GoogleAdsSearchads360V0Errors_ErrorLocation_FieldPathElement
     ]
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Errors__QuotaErrorDetails(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsSearchads360V0Errors__QuotaErrorDetails(typing.TypedDict, total=False):
     rateName: str
-    rateScope: typing_extensions.Literal[
-        "UNSPECIFIED", "UNKNOWN", "ACCOUNT", "DEVELOPER"
-    ]
+    rateScope: typing.Literal["UNSPECIFIED", "UNKNOWN", "ACCOUNT", "DEVELOPER"]
     retryDelay: str
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Errors__SearchAds360Error(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsSearchads360V0Errors__SearchAds360Error(typing.TypedDict, total=False):
     details: GoogleAdsSearchads360V0Errors__ErrorDetails
     errorCode: GoogleAdsSearchads360V0Errors__ErrorCode
     location: GoogleAdsSearchads360V0Errors__ErrorLocation
@@ -1056,37 +981,35 @@ class GoogleAdsSearchads360V0Errors__SearchAds360Error(
     trigger: GoogleAdsSearchads360V0Common__Value
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Errors__SearchAds360Failure(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsSearchads360V0Errors__SearchAds360Failure(typing.TypedDict, total=False):
     errors: _list[GoogleAdsSearchads360V0Errors__SearchAds360Error]
     requestId: str
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Resources_AccessibleBiddingStrategy_MaximizeConversionValue(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     targetRoas: float
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Resources_AccessibleBiddingStrategy_MaximizeConversions(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     targetCpa: str
     targetCpaMicros: str
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Resources_AccessibleBiddingStrategy_TargetCpa(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     targetCpaMicros: str
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Resources_AccessibleBiddingStrategy_TargetImpressionShare(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     cpcBidCeilingMicros: str
-    location: typing_extensions.Literal[
+    location: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "ANYWHERE_ON_PAGE",
@@ -1097,32 +1020,32 @@ class GoogleAdsSearchads360V0Resources_AccessibleBiddingStrategy_TargetImpressio
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Resources_AccessibleBiddingStrategy_TargetRoas(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     targetRoas: float
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Resources_AccessibleBiddingStrategy_TargetSpend(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     cpcBidCeilingMicros: str
     targetSpendMicros: str
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Resources_AdGroupCriterion_PositionEstimates(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     topOfPageCpcMicros: str
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Resources_AdGroupCriterion_QualityInfo(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     qualityScore: int
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Resources_Campaign_DynamicSearchAdsSetting(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     domainName: str
     languageCode: str
@@ -1130,18 +1053,18 @@ class GoogleAdsSearchads360V0Resources_Campaign_DynamicSearchAdsSetting(
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Resources_Campaign_GeoTargetTypeSetting(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    negativeGeoTargetType: typing_extensions.Literal[
+    negativeGeoTargetType: typing.Literal[
         "UNSPECIFIED", "UNKNOWN", "PRESENCE_OR_INTEREST", "PRESENCE"
     ]
-    positiveGeoTargetType: typing_extensions.Literal[
+    positiveGeoTargetType: typing.Literal[
         "UNSPECIFIED", "UNKNOWN", "PRESENCE_OR_INTEREST", "SEARCH_INTEREST", "PRESENCE"
     ]
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Resources_Campaign_NetworkSettings(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     targetContentNetwork: bool
     targetGoogleSearch: bool
@@ -1150,10 +1073,10 @@ class GoogleAdsSearchads360V0Resources_Campaign_NetworkSettings(
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Resources_Campaign_OptimizationGoalSetting(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     optimizationGoalTypes: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "UNSPECIFIED",
             "UNKNOWN",
             "CALL_CLICKS",
@@ -1164,13 +1087,13 @@ class GoogleAdsSearchads360V0Resources_Campaign_OptimizationGoalSetting(
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Resources_Campaign_SelectiveOptimization(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     conversionActions: _list[str]
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Resources_Campaign_ShoppingSetting(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     campaignPriority: int
     enableLocal: bool
@@ -1181,15 +1104,15 @@ class GoogleAdsSearchads360V0Resources_Campaign_ShoppingSetting(
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Resources_Campaign_TrackingSetting(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     trackingUrl: str
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Resources_ConversionAction_AttributionModelSettings(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    attributionModel: typing_extensions.Literal[
+    attributionModel: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "EXTERNAL",
@@ -1200,13 +1123,13 @@ class GoogleAdsSearchads360V0Resources_ConversionAction_AttributionModelSettings
         "GOOGLE_SEARCH_ATTRIBUTION_POSITION_BASED",
         "GOOGLE_SEARCH_ATTRIBUTION_DATA_DRIVEN",
     ]
-    dataDrivenModelStatus: typing_extensions.Literal[
+    dataDrivenModelStatus: typing.Literal[
         "UNSPECIFIED", "UNKNOWN", "AVAILABLE", "STALE", "EXPIRED", "NEVER_GENERATED"
     ]
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Resources_ConversionAction_FloodlightSettings(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     activityGroupTag: str
     activityId: str
@@ -1214,7 +1137,7 @@ class GoogleAdsSearchads360V0Resources_ConversionAction_FloodlightSettings(
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Resources_ConversionAction_ValueSettings(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     alwaysUseDefaultValue: bool
     defaultCurrencyCode: str
@@ -1222,71 +1145,69 @@ class GoogleAdsSearchads360V0Resources_ConversionAction_ValueSettings(
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Resources_ConversionCustomVariable_FloodlightConversionCustomVariableInfo(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    floodlightVariableDataType: typing_extensions.Literal[
+    floodlightVariableDataType: typing.Literal[
         "UNSPECIFIED", "UNKNOWN", "NUMBER", "STRING"
     ]
-    floodlightVariableType: typing_extensions.Literal[
+    floodlightVariableType: typing.Literal[
         "UNSPECIFIED", "UNKNOWN", "DIMENSION", "METRIC", "UNSET"
     ]
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_ProductBiddingCategory(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     id: str
-    level: typing_extensions.Literal[
+    level: typing.Literal[
         "UNSPECIFIED", "UNKNOWN", "LEVEL1", "LEVEL2", "LEVEL3", "LEVEL4", "LEVEL5"
     ]
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_ProductBrand(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     value: str
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_ProductChannel(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    channel: typing_extensions.Literal["UNSPECIFIED", "UNKNOWN", "ONLINE", "LOCAL"]
+    channel: typing.Literal["UNSPECIFIED", "UNKNOWN", "ONLINE", "LOCAL"]
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_ProductCondition(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    condition: typing_extensions.Literal[
-        "UNSPECIFIED", "UNKNOWN", "NEW", "REFURBISHED", "USED"
-    ]
+    condition: typing.Literal["UNSPECIFIED", "UNKNOWN", "NEW", "REFURBISHED", "USED"]
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_ProductCustomAttribute(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    index: typing_extensions.Literal[
+    index: typing.Literal[
         "UNSPECIFIED", "UNKNOWN", "INDEX0", "INDEX1", "INDEX2", "INDEX3", "INDEX4"
     ]
     value: str
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_ProductItemId(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     value: str
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_ProductType(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    level: typing_extensions.Literal[
+    level: typing.Literal[
         "UNSPECIFIED", "UNKNOWN", "LEVEL1", "LEVEL2", "LEVEL3", "LEVEL4", "LEVEL5"
     ]
     value: str
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Resources__AccessibleBiddingStrategy(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     id: str
     maximizeConversionValue: GoogleAdsSearchads360V0Resources_AccessibleBiddingStrategy_MaximizeConversionValue
@@ -1303,7 +1224,7 @@ class GoogleAdsSearchads360V0Resources__AccessibleBiddingStrategy(
     )
     targetRoas: GoogleAdsSearchads360V0Resources_AccessibleBiddingStrategy_TargetRoas
     targetSpend: GoogleAdsSearchads360V0Resources_AccessibleBiddingStrategy_TargetSpend
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "COMMISSION",
@@ -1326,7 +1247,7 @@ class GoogleAdsSearchads360V0Resources__AccessibleBiddingStrategy(
     ]
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Resources__Ad(typing_extensions.TypedDict, total=False):
+class GoogleAdsSearchads360V0Resources__Ad(typing.TypedDict, total=False):
     displayUrl: str
     expandedDynamicSearchAd: (
         GoogleAdsSearchads360V0Common__SearchAds360ExpandedDynamicSearchAdInfo
@@ -1343,9 +1264,10 @@ class GoogleAdsSearchads360V0Resources__Ad(typing_extensions.TypedDict, total=Fa
     responsiveSearchAd: (
         GoogleAdsSearchads360V0Common__SearchAds360ResponsiveSearchAdInfo
     )
+    syntheticContentInfo: GoogleAdsSearchads360V0Common__SyntheticContentInfo
     textAd: GoogleAdsSearchads360V0Common__SearchAds360TextAdInfo
     trackingUrlTemplate: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "TEXT_AD",
@@ -1381,10 +1303,8 @@ class GoogleAdsSearchads360V0Resources__Ad(typing_extensions.TypedDict, total=Fa
     ]
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Resources__AdGroup(
-    typing_extensions.TypedDict, total=False
-):
-    adRotationMode: typing_extensions.Literal[
+class GoogleAdsSearchads360V0Resources__AdGroup(typing.TypedDict, total=False):
+    adRotationMode: typing.Literal[
         "UNSPECIFIED", "UNKNOWN", "OPTIMIZE", "ROTATE_FOREVER"
     ]
     cpcBidMicros: str
@@ -1392,7 +1312,7 @@ class GoogleAdsSearchads360V0Resources__AdGroup(
     effectiveLabels: _list[str]
     endDate: str
     engineId: str
-    engineStatus: typing_extensions.Literal[
+    engineStatus: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "AD_GROUP_ELIGIBLE",
@@ -1413,12 +1333,10 @@ class GoogleAdsSearchads360V0Resources__AdGroup(
     name: str
     resourceName: str
     startDate: str
-    status: typing_extensions.Literal[
-        "UNSPECIFIED", "UNKNOWN", "ENABLED", "PAUSED", "REMOVED"
-    ]
+    status: typing.Literal["UNSPECIFIED", "UNKNOWN", "ENABLED", "PAUSED", "REMOVED"]
     targetingSetting: GoogleAdsSearchads360V0Common__TargetingSetting
     trackingUrlTemplate: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "SEARCH_STANDARD",
@@ -1441,14 +1359,12 @@ class GoogleAdsSearchads360V0Resources__AdGroup(
     ]
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Resources__AdGroupAd(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsSearchads360V0Resources__AdGroupAd(typing.TypedDict, total=False):
     ad: GoogleAdsSearchads360V0Resources__Ad
     creationTime: str
     effectiveLabels: _list[str]
     engineId: str
-    engineStatus: typing_extensions.Literal[
+    engineStatus: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "AD_GROUP_AD_ELIGIBLE",
@@ -1472,13 +1388,11 @@ class GoogleAdsSearchads360V0Resources__AdGroupAd(
     labels: _list[str]
     lastModifiedTime: str
     resourceName: str
-    status: typing_extensions.Literal[
-        "UNSPECIFIED", "UNKNOWN", "ENABLED", "PAUSED", "REMOVED"
-    ]
+    status: typing.Literal["UNSPECIFIED", "UNKNOWN", "ENABLED", "PAUSED", "REMOVED"]
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Resources__AdGroupAdEffectiveLabel(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     adGroupAd: str
     label: str
@@ -1486,52 +1400,42 @@ class GoogleAdsSearchads360V0Resources__AdGroupAdEffectiveLabel(
     resourceName: str
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Resources__AdGroupAdLabel(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsSearchads360V0Resources__AdGroupAdLabel(typing.TypedDict, total=False):
     adGroupAd: str
     label: str
     ownerCustomerId: str
     resourceName: str
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Resources__AdGroupAsset(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsSearchads360V0Resources__AdGroupAsset(typing.TypedDict, total=False):
     adGroup: str
     asset: str
     resourceName: str
-    status: typing_extensions.Literal[
-        "UNSPECIFIED", "UNKNOWN", "ENABLED", "REMOVED", "PAUSED"
-    ]
+    status: typing.Literal["UNSPECIFIED", "UNKNOWN", "ENABLED", "REMOVED", "PAUSED"]
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Resources__AdGroupAssetSet(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsSearchads360V0Resources__AdGroupAssetSet(typing.TypedDict, total=False):
     adGroup: str
     assetSet: str
     resourceName: str
-    status: typing_extensions.Literal["UNSPECIFIED", "UNKNOWN", "ENABLED", "REMOVED"]
+    status: typing.Literal["UNSPECIFIED", "UNKNOWN", "ENABLED", "REMOVED"]
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Resources__AdGroupAudienceView(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     resourceName: str
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Resources__AdGroupBidModifier(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     bidModifier: float
     device: GoogleAdsSearchads360V0Common__DeviceInfo
     resourceName: str
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Resources__AdGroupCriterion(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsSearchads360V0Resources__AdGroupCriterion(typing.TypedDict, total=False):
     adGroup: str
     ageRange: GoogleAdsSearchads360V0Common__AgeRangeInfo
     bidModifier: float
@@ -1541,7 +1445,7 @@ class GoogleAdsSearchads360V0Resources__AdGroupCriterion(
     effectiveCpcBidMicros: str
     effectiveLabels: _list[str]
     engineId: str
-    engineStatus: typing_extensions.Literal[
+    engineStatus: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "AD_GROUP_CRITERION_ELIGIBLE",
@@ -1579,11 +1483,9 @@ class GoogleAdsSearchads360V0Resources__AdGroupCriterion(
     )
     qualityInfo: GoogleAdsSearchads360V0Resources_AdGroupCriterion_QualityInfo
     resourceName: str
-    status: typing_extensions.Literal[
-        "UNSPECIFIED", "UNKNOWN", "ENABLED", "PAUSED", "REMOVED"
-    ]
+    status: typing.Literal["UNSPECIFIED", "UNKNOWN", "ENABLED", "PAUSED", "REMOVED"]
     trackingUrlTemplate: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "KEYWORD",
@@ -1631,7 +1533,7 @@ class GoogleAdsSearchads360V0Resources__AdGroupCriterion(
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Resources__AdGroupCriterionEffectiveLabel(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     adGroupCriterion: str
     label: str
@@ -1640,7 +1542,7 @@ class GoogleAdsSearchads360V0Resources__AdGroupCriterionEffectiveLabel(
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Resources__AdGroupCriterionLabel(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     adGroupCriterion: str
     label: str
@@ -1649,7 +1551,7 @@ class GoogleAdsSearchads360V0Resources__AdGroupCriterionLabel(
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Resources__AdGroupEffectiveLabel(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     adGroup: str
     label: str
@@ -1657,27 +1559,23 @@ class GoogleAdsSearchads360V0Resources__AdGroupEffectiveLabel(
     resourceName: str
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Resources__AdGroupLabel(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsSearchads360V0Resources__AdGroupLabel(typing.TypedDict, total=False):
     adGroup: str
     label: str
     ownerCustomerId: str
     resourceName: str
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Resources__AgeRangeView(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsSearchads360V0Resources__AgeRangeView(typing.TypedDict, total=False):
     resourceName: str
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Resources__Asset(typing_extensions.TypedDict, total=False):
+class GoogleAdsSearchads360V0Resources__Asset(typing.TypedDict, total=False):
     callAsset: GoogleAdsSearchads360V0Common__UnifiedCallAsset
     callToActionAsset: GoogleAdsSearchads360V0Common__CallToActionAsset
     calloutAsset: GoogleAdsSearchads360V0Common__UnifiedCalloutAsset
     creationTime: str
-    engineStatus: typing_extensions.Literal[
+    engineStatus: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "SERVING",
@@ -1698,7 +1596,7 @@ class GoogleAdsSearchads360V0Resources__Asset(typing_extensions.TypedDict, total
     pageFeedAsset: GoogleAdsSearchads360V0Common__UnifiedPageFeedAsset
     resourceName: str
     sitelinkAsset: GoogleAdsSearchads360V0Common__UnifiedSitelinkAsset
-    status: typing_extensions.Literal[
+    status: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "ENABLED",
@@ -1706,9 +1604,10 @@ class GoogleAdsSearchads360V0Resources__Asset(typing_extensions.TypedDict, total
         "ARCHIVED",
         "PENDING_SYSTEM_GENERATED",
     ]
+    syntheticContentInfo: GoogleAdsSearchads360V0Common__SyntheticContentInfo
     textAsset: GoogleAdsSearchads360V0Common__TextAsset
     trackingUrlTemplate: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "YOUTUBE_VIDEO",
@@ -1743,10 +1642,8 @@ class GoogleAdsSearchads360V0Resources__Asset(typing_extensions.TypedDict, total
     youtubeVideoAsset: GoogleAdsSearchads360V0Common__YoutubeVideoAsset
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Resources__AssetGroup(
-    typing_extensions.TypedDict, total=False
-):
-    adStrength: typing_extensions.Literal[
+class GoogleAdsSearchads360V0Resources__AssetGroup(typing.TypedDict, total=False):
+    adStrength: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "PENDING",
@@ -1764,17 +1661,13 @@ class GoogleAdsSearchads360V0Resources__AssetGroup(
     path1: str
     path2: str
     resourceName: str
-    status: typing_extensions.Literal[
-        "UNSPECIFIED", "UNKNOWN", "ENABLED", "PAUSED", "REMOVED"
-    ]
+    status: typing.Literal["UNSPECIFIED", "UNKNOWN", "ENABLED", "PAUSED", "REMOVED"]
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Resources__AssetGroupAsset(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsSearchads360V0Resources__AssetGroupAsset(typing.TypedDict, total=False):
     asset: str
     assetGroup: str
-    fieldType: typing_extensions.Literal[
+    fieldType: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "HEADLINE",
@@ -1809,19 +1702,17 @@ class GoogleAdsSearchads360V0Resources__AssetGroupAsset(
         "CALL_TO_ACTION",
     ]
     resourceName: str
-    status: typing_extensions.Literal[
-        "UNSPECIFIED", "UNKNOWN", "ENABLED", "REMOVED", "PAUSED"
-    ]
+    status: typing.Literal["UNSPECIFIED", "UNKNOWN", "ENABLED", "REMOVED", "PAUSED"]
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Resources__AssetGroupAssetCombinationData(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     assetCombinationServedAssets: _list[GoogleAdsSearchads360V0Common__AssetUsage]
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Resources__AssetGroupListingGroupFilter(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     assetGroup: str
     caseValue: GoogleAdsSearchads360V0Resources__ListingGroupFilterDimension
@@ -1829,22 +1720,20 @@ class GoogleAdsSearchads360V0Resources__AssetGroupListingGroupFilter(
     parentListingGroupFilter: str
     path: GoogleAdsSearchads360V0Resources__ListingGroupFilterDimensionPath
     resourceName: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "UNSPECIFIED", "UNKNOWN", "SUBDIVISION", "UNIT_INCLUDED", "UNIT_EXCLUDED"
     ]
-    vertical: typing_extensions.Literal["UNSPECIFIED", "UNKNOWN", "SHOPPING"]
+    vertical: typing.Literal["UNSPECIFIED", "UNKNOWN", "SHOPPING"]
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Resources__AssetGroupSignal(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsSearchads360V0Resources__AssetGroupSignal(typing.TypedDict, total=False):
     assetGroup: str
     audience: GoogleAdsSearchads360V0Common__AudienceInfo
     resourceName: str
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Resources__AssetGroupTopCombinationView(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     assetGroupTopCombinations: _list[
         GoogleAdsSearchads360V0Resources__AssetGroupAssetCombinationData
@@ -1852,34 +1741,26 @@ class GoogleAdsSearchads360V0Resources__AssetGroupTopCombinationView(
     resourceName: str
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Resources__AssetSet(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsSearchads360V0Resources__AssetSet(typing.TypedDict, total=False):
     id: str
     resourceName: str
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Resources__AssetSetAsset(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsSearchads360V0Resources__AssetSetAsset(typing.TypedDict, total=False):
     asset: str
     assetSet: str
     resourceName: str
-    status: typing_extensions.Literal["UNSPECIFIED", "UNKNOWN", "ENABLED", "REMOVED"]
+    status: typing.Literal["UNSPECIFIED", "UNKNOWN", "ENABLED", "REMOVED"]
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Resources__Audience(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsSearchads360V0Resources__Audience(typing.TypedDict, total=False):
     description: str
     id: str
     name: str
     resourceName: str
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Resources__BiddingStrategy(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsSearchads360V0Resources__BiddingStrategy(typing.TypedDict, total=False):
     campaignCount: str
     currencyCode: str
     effectiveCurrencyCode: str
@@ -1890,13 +1771,13 @@ class GoogleAdsSearchads360V0Resources__BiddingStrategy(
     name: str
     nonRemovedCampaignCount: str
     resourceName: str
-    status: typing_extensions.Literal["UNSPECIFIED", "UNKNOWN", "ENABLED", "REMOVED"]
+    status: typing.Literal["UNSPECIFIED", "UNKNOWN", "ENABLED", "REMOVED"]
     targetCpa: GoogleAdsSearchads360V0Common__TargetCpa
     targetImpressionShare: GoogleAdsSearchads360V0Common__TargetImpressionShare
     targetOutrankShare: GoogleAdsSearchads360V0Common__TargetOutrankShare
     targetRoas: GoogleAdsSearchads360V0Common__TargetRoas
     targetSpend: GoogleAdsSearchads360V0Common__TargetSpend
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "COMMISSION",
@@ -1919,11 +1800,9 @@ class GoogleAdsSearchads360V0Resources__BiddingStrategy(
     ]
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Resources__Campaign(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsSearchads360V0Resources__Campaign(typing.TypedDict, total=False):
     accessibleBiddingStrategy: str
-    adServingOptimizationStatus: typing_extensions.Literal[
+    adServingOptimizationStatus: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "OPTIMIZE",
@@ -1932,7 +1811,7 @@ class GoogleAdsSearchads360V0Resources__Campaign(
         "ROTATE_INDEFINITELY",
         "UNAVAILABLE",
     ]
-    advertisingChannelSubType: typing_extensions.Literal[
+    advertisingChannelSubType: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "SEARCH_MOBILE_APP",
@@ -1956,7 +1835,7 @@ class GoogleAdsSearchads360V0Resources__Campaign(
         "TRAVEL_ACTIVITIES",
         "SOCIAL_FACEBOOK_TRACKING_ONLY",
     ]
-    advertisingChannelType: typing_extensions.Literal[
+    advertisingChannelType: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "SEARCH",
@@ -1974,7 +1853,7 @@ class GoogleAdsSearchads360V0Resources__Campaign(
         "SOCIAL",
     ]
     biddingStrategy: str
-    biddingStrategySystemStatus: typing_extensions.Literal[
+    biddingStrategySystemStatus: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "ENABLED",
@@ -2003,7 +1882,7 @@ class GoogleAdsSearchads360V0Resources__Campaign(
         "MULTIPLE_MISCONFIGURED",
         "MULTIPLE",
     ]
-    biddingStrategyType: typing_extensions.Literal[
+    biddingStrategyType: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "COMMISSION",
@@ -2034,7 +1913,7 @@ class GoogleAdsSearchads360V0Resources__Campaign(
     endDate: str
     engineId: str
     excludedParentAssetFieldTypes: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "UNSPECIFIED",
             "UNKNOWN",
             "HEADLINE",
@@ -2070,7 +1949,7 @@ class GoogleAdsSearchads360V0Resources__Campaign(
         ]
     ]
     feedTypes: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "UNSPECIFIED",
             "UNKNOWN",
             "PAGE_FEED",
@@ -2113,14 +1992,12 @@ class GoogleAdsSearchads360V0Resources__Campaign(
     selectiveOptimization: (
         GoogleAdsSearchads360V0Resources_Campaign_SelectiveOptimization
     )
-    servingStatus: typing_extensions.Literal[
+    servingStatus: typing.Literal[
         "UNSPECIFIED", "UNKNOWN", "SERVING", "NONE", "ENDED", "PENDING", "SUSPENDED"
     ]
     shoppingSetting: GoogleAdsSearchads360V0Resources_Campaign_ShoppingSetting
     startDate: str
-    status: typing_extensions.Literal[
-        "UNSPECIFIED", "UNKNOWN", "ENABLED", "PAUSED", "REMOVED"
-    ]
+    status: typing.Literal["UNSPECIFIED", "UNKNOWN", "ENABLED", "PAUSED", "REMOVED"]
     targetCpa: GoogleAdsSearchads360V0Common__TargetCpa
     targetCpm: GoogleAdsSearchads360V0Common__TargetCpm
     targetImpressionShare: GoogleAdsSearchads360V0Common__TargetImpressionShare
@@ -2132,47 +2009,37 @@ class GoogleAdsSearchads360V0Resources__Campaign(
     urlExpansionOptOut: bool
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Resources__CampaignAsset(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsSearchads360V0Resources__CampaignAsset(typing.TypedDict, total=False):
     asset: str
     campaign: str
     resourceName: str
-    status: typing_extensions.Literal[
-        "UNSPECIFIED", "UNKNOWN", "ENABLED", "REMOVED", "PAUSED"
-    ]
+    status: typing.Literal["UNSPECIFIED", "UNKNOWN", "ENABLED", "REMOVED", "PAUSED"]
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Resources__CampaignAssetSet(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsSearchads360V0Resources__CampaignAssetSet(typing.TypedDict, total=False):
     assetSet: str
     campaign: str
     resourceName: str
-    status: typing_extensions.Literal["UNSPECIFIED", "UNKNOWN", "ENABLED", "REMOVED"]
+    status: typing.Literal["UNSPECIFIED", "UNKNOWN", "ENABLED", "REMOVED"]
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Resources__CampaignAudienceView(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     resourceName: str
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Resources__CampaignBudget(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsSearchads360V0Resources__CampaignBudget(typing.TypedDict, total=False):
     amountMicros: str
-    deliveryMethod: typing_extensions.Literal[
-        "UNSPECIFIED", "UNKNOWN", "STANDARD", "ACCELERATED"
-    ]
-    period: typing_extensions.Literal[
+    deliveryMethod: typing.Literal["UNSPECIFIED", "UNKNOWN", "STANDARD", "ACCELERATED"]
+    period: typing.Literal[
         "UNSPECIFIED", "UNKNOWN", "DAILY", "FIXED_DAILY", "CUSTOM_PERIOD"
     ]
     resourceName: str
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Resources__CampaignCriterion(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     ageRange: GoogleAdsSearchads360V0Common__AgeRangeInfo
     bidModifier: float
@@ -2187,10 +2054,8 @@ class GoogleAdsSearchads360V0Resources__CampaignCriterion(
     locationGroup: GoogleAdsSearchads360V0Common__LocationGroupInfo
     negative: bool
     resourceName: str
-    status: typing_extensions.Literal[
-        "UNSPECIFIED", "UNKNOWN", "ENABLED", "PAUSED", "REMOVED"
-    ]
-    type: typing_extensions.Literal[
+    status: typing.Literal["UNSPECIFIED", "UNKNOWN", "ENABLED", "PAUSED", "REMOVED"]
+    type: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "KEYWORD",
@@ -2237,7 +2102,7 @@ class GoogleAdsSearchads360V0Resources__CampaignCriterion(
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Resources__CampaignEffectiveLabel(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     campaign: str
     label: str
@@ -2245,9 +2110,7 @@ class GoogleAdsSearchads360V0Resources__CampaignEffectiveLabel(
     resourceName: str
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Resources__CampaignLabel(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsSearchads360V0Resources__CampaignLabel(typing.TypedDict, total=False):
     campaign: str
     label: str
     ownerCustomerId: str
@@ -2255,17 +2118,15 @@ class GoogleAdsSearchads360V0Resources__CampaignLabel(
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Resources__CartDataSalesView(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     resourceName: str
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Resources__Conversion(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsSearchads360V0Resources__Conversion(typing.TypedDict, total=False):
     adId: str
     advertiserConversionId: str
-    assetFieldType: typing_extensions.Literal[
+    assetFieldType: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "HEADLINE",
@@ -2300,9 +2161,7 @@ class GoogleAdsSearchads360V0Resources__Conversion(
         "CALL_TO_ACTION",
     ]
     assetId: str
-    attributionType: typing_extensions.Literal[
-        "UNSPECIFIED", "UNKNOWN", "VISIT", "CRITERION_AD"
-    ]
+    attributionType: typing.Literal["UNSPECIFIED", "UNKNOWN", "VISIT", "CRITERION_AD"]
     clickId: str
     conversionDateTime: str
     conversionLastModifiedDateTime: str
@@ -2314,26 +2173,22 @@ class GoogleAdsSearchads360V0Resources__Conversion(
     floodlightOriginalRevenue: str
     id: str
     merchantId: str
-    productChannel: typing_extensions.Literal[
-        "UNSPECIFIED", "UNKNOWN", "ONLINE", "LOCAL"
-    ]
+    productChannel: typing.Literal["UNSPECIFIED", "UNKNOWN", "ONLINE", "LOCAL"]
     productCountryCode: str
     productId: str
     productLanguageCode: str
     productStoreId: str
     resourceName: str
-    status: typing_extensions.Literal["UNSPECIFIED", "UNKNOWN", "ENABLED", "REMOVED"]
+    status: typing.Literal["UNSPECIFIED", "UNKNOWN", "ENABLED", "REMOVED"]
     visitId: str
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Resources__ConversionAction(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsSearchads360V0Resources__ConversionAction(typing.TypedDict, total=False):
     appId: str
     attributionModelSettings: (
         GoogleAdsSearchads360V0Resources_ConversionAction_AttributionModelSettings
     )
-    category: typing_extensions.Literal[
+    category: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "DEFAULT",
@@ -2371,10 +2226,8 @@ class GoogleAdsSearchads360V0Resources__ConversionAction(
     ownerCustomer: str
     primaryForGoal: bool
     resourceName: str
-    status: typing_extensions.Literal[
-        "UNSPECIFIED", "UNKNOWN", "ENABLED", "REMOVED", "HIDDEN"
-    ]
-    type: typing_extensions.Literal[
+    status: typing.Literal["UNSPECIFIED", "UNKNOWN", "ENABLED", "REMOVED", "HIDDEN"]
+    type: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "AD_CALL",
@@ -2422,9 +2275,9 @@ class GoogleAdsSearchads360V0Resources__ConversionAction(
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Resources__ConversionCustomVariable(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    cardinality: typing_extensions.Literal[
+    cardinality: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "BELOW_ALL_LIMITS",
@@ -2433,26 +2286,24 @@ class GoogleAdsSearchads360V0Resources__ConversionCustomVariable(
         "EXCEEDS_STATS_LIMIT",
     ]
     customColumnIds: _list[str]
-    family: typing_extensions.Literal[
-        "UNSPECIFIED", "UNKNOWN", "STANDARD", "FLOODLIGHT"
-    ]
+    family: typing.Literal["UNSPECIFIED", "UNKNOWN", "STANDARD", "FLOODLIGHT"]
     floodlightConversionCustomVariableInfo: GoogleAdsSearchads360V0Resources_ConversionCustomVariable_FloodlightConversionCustomVariableInfo
     id: str
     name: str
     ownerCustomer: str
     resourceName: str
-    status: typing_extensions.Literal[
+    status: typing.Literal[
         "UNSPECIFIED", "UNKNOWN", "ACTIVATION_NEEDED", "ENABLED", "PAUSED"
     ]
     tag: str
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Resources__ConversionTrackingSetting(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     acceptedCustomerDataTerms: bool
     conversionTrackingId: str
-    conversionTrackingStatus: typing_extensions.Literal[
+    conversionTrackingStatus: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "NOT_CONVERSION_TRACKED",
@@ -2466,9 +2317,7 @@ class GoogleAdsSearchads360V0Resources__ConversionTrackingSetting(
     googleAdsCrossAccountConversionTrackingId: str
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Resources__CustomColumn(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsSearchads360V0Resources__CustomColumn(typing.TypedDict, total=False):
     description: str
     id: str
     name: str
@@ -2476,7 +2325,7 @@ class GoogleAdsSearchads360V0Resources__CustomColumn(
     referencedSystemColumns: _list[str]
     referencesAttributes: bool
     referencesMetrics: bool
-    renderType: typing_extensions.Literal[
+    renderType: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "NUMBER",
@@ -2487,15 +2336,13 @@ class GoogleAdsSearchads360V0Resources__CustomColumn(
         "DATE",
     ]
     resourceName: str
-    valueType: typing_extensions.Literal[
+    valueType: typing.Literal[
         "UNSPECIFIED", "UNKNOWN", "STRING", "INT64", "DOUBLE", "BOOLEAN", "DATE"
     ]
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Resources__Customer(
-    typing_extensions.TypedDict, total=False
-):
-    accountLevel: typing_extensions.Literal[
+class GoogleAdsSearchads360V0Resources__Customer(typing.TypedDict, total=False):
+    accountLevel: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "CLIENT_ACCOUNT_FACEBOOK",
@@ -2507,10 +2354,10 @@ class GoogleAdsSearchads360V0Resources__Customer(
         "SUB_MANAGER",
         "ASSOCIATE_MANAGER",
     ]
-    accountStatus: typing_extensions.Literal[
+    accountStatus: typing.Literal[
         "UNSPECIFIED", "UNKNOWN", "ENABLED", "PAUSED", "SUSPENDED", "REMOVED", "DRAFT"
     ]
-    accountType: typing_extensions.Literal[
+    accountType: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "BAIDU",
@@ -2542,7 +2389,7 @@ class GoogleAdsSearchads360V0Resources__Customer(
     managerDescriptiveName: str
     managerId: str
     resourceName: str
-    status: typing_extensions.Literal[
+    status: typing.Literal[
         "UNSPECIFIED", "UNKNOWN", "ENABLED", "CANCELED", "SUSPENDED", "CLOSED"
     ]
     subManagerDescriptiveName: str
@@ -2551,28 +2398,20 @@ class GoogleAdsSearchads360V0Resources__Customer(
     trackingUrlTemplate: str
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Resources__CustomerAsset(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsSearchads360V0Resources__CustomerAsset(typing.TypedDict, total=False):
     asset: str
     resourceName: str
-    status: typing_extensions.Literal[
-        "UNSPECIFIED", "UNKNOWN", "ENABLED", "REMOVED", "PAUSED"
-    ]
+    status: typing.Literal["UNSPECIFIED", "UNKNOWN", "ENABLED", "REMOVED", "PAUSED"]
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Resources__CustomerAssetSet(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsSearchads360V0Resources__CustomerAssetSet(typing.TypedDict, total=False):
     assetSet: str
     customer: str
     resourceName: str
-    status: typing_extensions.Literal["UNSPECIFIED", "UNKNOWN", "ENABLED", "REMOVED"]
+    status: typing.Literal["UNSPECIFIED", "UNKNOWN", "ENABLED", "REMOVED"]
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Resources__CustomerClient(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsSearchads360V0Resources__CustomerClient(typing.TypedDict, total=False):
     appliedLabels: _list[str]
     clientCustomer: str
     currencyCode: str
@@ -2582,7 +2421,7 @@ class GoogleAdsSearchads360V0Resources__CustomerClient(
     level: str
     manager: bool
     resourceName: str
-    status: typing_extensions.Literal[
+    status: typing.Literal[
         "UNSPECIFIED", "UNKNOWN", "ENABLED", "CANCELED", "SUSPENDED", "CLOSED"
     ]
     testAccount: bool
@@ -2590,19 +2429,19 @@ class GoogleAdsSearchads360V0Resources__CustomerClient(
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Resources__CustomerManagerLink(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     managerCustomer: str
     managerLinkId: str
     resourceName: str
     startTime: str
-    status: typing_extensions.Literal[
+    status: typing.Literal[
         "UNSPECIFIED", "UNKNOWN", "ACTIVE", "INACTIVE", "PENDING", "REFUSED", "CANCELED"
     ]
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Resources__DoubleClickCampaignManagerSetting(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     advertiserId: str
     networkId: str
@@ -2610,20 +2449,18 @@ class GoogleAdsSearchads360V0Resources__DoubleClickCampaignManagerSetting(
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Resources__DynamicSearchAdsSearchTermView(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     landingPage: str
     resourceName: str
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Resources__GenderView(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsSearchads360V0Resources__GenderView(typing.TypedDict, total=False):
     resourceName: str
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Resources__GeoTargetConstant(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     canonicalName: str
     countryCode: str
@@ -2631,29 +2468,23 @@ class GoogleAdsSearchads360V0Resources__GeoTargetConstant(
     name: str
     parentGeoTarget: str
     resourceName: str
-    status: typing_extensions.Literal[
-        "UNSPECIFIED", "UNKNOWN", "ENABLED", "REMOVAL_PLANNED"
-    ]
+    status: typing.Literal["UNSPECIFIED", "UNKNOWN", "ENABLED", "REMOVAL_PLANNED"]
     targetType: str
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Resources__KeywordView(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsSearchads360V0Resources__KeywordView(typing.TypedDict, total=False):
     resourceName: str
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Resources__Label(typing_extensions.TypedDict, total=False):
+class GoogleAdsSearchads360V0Resources__Label(typing.TypedDict, total=False):
     id: str
     name: str
     resourceName: str
-    status: typing_extensions.Literal["UNSPECIFIED", "UNKNOWN", "ENABLED", "REMOVED"]
+    status: typing.Literal["UNSPECIFIED", "UNKNOWN", "ENABLED", "REMOVED"]
     textLabel: GoogleAdsSearchads360V0Common__TextLabel
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Resources__LanguageConstant(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsSearchads360V0Resources__LanguageConstant(typing.TypedDict, total=False):
     code: str
     id: str
     name: str
@@ -2662,7 +2493,7 @@ class GoogleAdsSearchads360V0Resources__LanguageConstant(
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Resources__ListingGroupFilterDimension(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     productBiddingCategory: GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_ProductBiddingCategory
     productBrand: (
@@ -2684,46 +2515,42 @@ class GoogleAdsSearchads360V0Resources__ListingGroupFilterDimension(
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Resources__ListingGroupFilterDimensionPath(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     dimensions: _list[GoogleAdsSearchads360V0Resources__ListingGroupFilterDimension]
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Resources__LocationView(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsSearchads360V0Resources__LocationView(typing.TypedDict, total=False):
     resourceName: str
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Resources__ProductBiddingCategoryConstant(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     countryCode: str
     id: str
     languageCode: str
-    level: typing_extensions.Literal[
+    level: typing.Literal[
         "UNSPECIFIED", "UNKNOWN", "LEVEL1", "LEVEL2", "LEVEL3", "LEVEL4", "LEVEL5"
     ]
     localizedName: str
     productBiddingCategoryConstantParent: str
     resourceName: str
-    status: typing_extensions.Literal["UNSPECIFIED", "UNKNOWN", "ACTIVE", "OBSOLETE"]
+    status: typing.Literal["UNSPECIFIED", "UNKNOWN", "ACTIVE", "OBSOLETE"]
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Resources__ProductGroupView(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsSearchads360V0Resources__ProductGroupView(typing.TypedDict, total=False):
     resourceName: str
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Resources__SearchAds360Field(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     attributeResources: _list[str]
-    category: typing_extensions.Literal[
+    category: typing.Literal[
         "UNSPECIFIED", "UNKNOWN", "RESOURCE", "ATTRIBUTE", "SEGMENT", "METRIC"
     ]
-    dataType: typing_extensions.Literal[
+    dataType: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "BOOLEAN",
@@ -2752,18 +2579,16 @@ class GoogleAdsSearchads360V0Resources__SearchAds360Field(
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Resources__ShoppingPerformanceView(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     resourceName: str
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Resources__UserList(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsSearchads360V0Resources__UserList(typing.TypedDict, total=False):
     id: str
     name: str
     resourceName: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "REMARKETING",
@@ -2775,17 +2600,15 @@ class GoogleAdsSearchads360V0Resources__UserList(
     ]
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Resources__UserLocationView(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsSearchads360V0Resources__UserLocationView(typing.TypedDict, total=False):
     countryCriterionId: str
     resourceName: str
     targetingLocation: bool
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Resources__Visit(typing_extensions.TypedDict, total=False):
+class GoogleAdsSearchads360V0Resources__Visit(typing.TypedDict, total=False):
     adId: str
-    assetFieldType: typing_extensions.Literal[
+    assetFieldType: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "HEADLINE",
@@ -2824,9 +2647,7 @@ class GoogleAdsSearchads360V0Resources__Visit(typing_extensions.TypedDict, total
     criterionId: str
     id: str
     merchantId: str
-    productChannel: typing_extensions.Literal[
-        "UNSPECIFIED", "UNKNOWN", "ONLINE", "LOCAL"
-    ]
+    productChannel: typing.Literal["UNSPECIFIED", "UNKNOWN", "ONLINE", "LOCAL"]
     productCountryCode: str
     productId: str
     productLanguageCode: str
@@ -2835,28 +2656,26 @@ class GoogleAdsSearchads360V0Resources__Visit(typing_extensions.TypedDict, total
     visitDateTime: str
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Resources__WebpageView(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsSearchads360V0Resources__WebpageView(typing.TypedDict, total=False):
     resourceName: str
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Services__ConversionCustomDimensionHeader(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     id: str
     name: str
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Services__ConversionCustomMetricHeader(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     id: str
     name: str
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Services__CustomColumnHeader(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     id: str
     name: str
@@ -2864,34 +2683,32 @@ class GoogleAdsSearchads360V0Services__CustomColumnHeader(
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Services__ListAccessibleCustomersResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     resourceNames: _list[str]
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Services__ListCustomColumnsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     customColumns: _list[GoogleAdsSearchads360V0Resources__CustomColumn]
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Services__RawEventConversionDimensionHeader(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     id: str
     name: str
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Services__RawEventConversionMetricHeader(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     id: str
     name: str
 
 @typing.type_check_only
-class GoogleAdsSearchads360V0Services__SearchAds360Row(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsSearchads360V0Services__SearchAds360Row(typing.TypedDict, total=False):
     accessibleBiddingStrategy: (
         GoogleAdsSearchads360V0Resources__AccessibleBiddingStrategy
     )
@@ -2966,7 +2783,7 @@ class GoogleAdsSearchads360V0Services__SearchAds360Row(
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Services__SearchSearchAds360FieldsRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     pageSize: int
     pageToken: str
@@ -2974,7 +2791,7 @@ class GoogleAdsSearchads360V0Services__SearchSearchAds360FieldsRequest(
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Services__SearchSearchAds360FieldsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     nextPageToken: str
     results: _list[GoogleAdsSearchads360V0Resources__SearchAds360Field]
@@ -2982,13 +2799,13 @@ class GoogleAdsSearchads360V0Services__SearchSearchAds360FieldsResponse(
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Services__SearchSearchAds360Request(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     pageSize: int
     pageToken: str
     query: str
     returnTotalResultsCount: bool
-    summaryRowSetting: typing_extensions.Literal[
+    summaryRowSetting: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "NO_SUMMARY_ROW",
@@ -2999,7 +2816,7 @@ class GoogleAdsSearchads360V0Services__SearchSearchAds360Request(
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Services__SearchSearchAds360Response(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     conversionCustomDimensionHeaders: _list[
         GoogleAdsSearchads360V0Services__ConversionCustomDimensionHeader
@@ -3022,13 +2839,13 @@ class GoogleAdsSearchads360V0Services__SearchSearchAds360Response(
 
 @typing.type_check_only
 class GoogleAdsSearchads360V23Common_PolicyTopicConstraint_CountryConstraint(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     countryCriterion: str
 
 @typing.type_check_only
 class GoogleAdsSearchads360V23Common_PolicyTopicConstraint_CountryConstraintList(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     countries: _list[
         GoogleAdsSearchads360V23Common_PolicyTopicConstraint_CountryConstraint
@@ -3037,15 +2854,15 @@ class GoogleAdsSearchads360V23Common_PolicyTopicConstraint_CountryConstraintList
 
 @typing.type_check_only
 class GoogleAdsSearchads360V23Common_PolicyTopicConstraint_ResellerConstraint(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
 class GoogleAdsSearchads360V23Common_PolicyTopicEvidence_DestinationMismatch(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     urlTypes: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "UNSPECIFIED",
             "UNKNOWN",
             "DISPLAY_URL",
@@ -3058,12 +2875,10 @@ class GoogleAdsSearchads360V23Common_PolicyTopicEvidence_DestinationMismatch(
 
 @typing.type_check_only
 class GoogleAdsSearchads360V23Common_PolicyTopicEvidence_DestinationNotWorking(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    device: typing_extensions.Literal[
-        "UNSPECIFIED", "UNKNOWN", "DESKTOP", "ANDROID", "IOS"
-    ]
-    dnsErrorType: typing_extensions.Literal[
+    device: typing.Literal["UNSPECIFIED", "UNKNOWN", "DESKTOP", "ANDROID", "IOS"]
+    dnsErrorType: typing.Literal[
         "UNSPECIFIED", "UNKNOWN", "HOSTNAME_NOT_FOUND", "GOOGLE_CRAWLER_DNS_ISSUE"
     ]
     expandedUrl: str
@@ -3072,25 +2887,25 @@ class GoogleAdsSearchads360V23Common_PolicyTopicEvidence_DestinationNotWorking(
 
 @typing.type_check_only
 class GoogleAdsSearchads360V23Common_PolicyTopicEvidence_DestinationTextList(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     destinationTexts: _list[str]
 
 @typing.type_check_only
 class GoogleAdsSearchads360V23Common_PolicyTopicEvidence_TextList(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     texts: _list[str]
 
 @typing.type_check_only
 class GoogleAdsSearchads360V23Common_PolicyTopicEvidence_WebsiteList(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     websites: _list[str]
 
 @typing.type_check_only
 class GoogleAdsSearchads360V23Common__PolicyTopicConstraint(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     certificateDomainMismatchInCountryList: (
         GoogleAdsSearchads360V23Common_PolicyTopicConstraint_CountryConstraintList
@@ -3106,13 +2921,11 @@ class GoogleAdsSearchads360V23Common__PolicyTopicConstraint(
     )
 
 @typing.type_check_only
-class GoogleAdsSearchads360V23Common__PolicyTopicEntry(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsSearchads360V23Common__PolicyTopicEntry(typing.TypedDict, total=False):
     constraints: _list[GoogleAdsSearchads360V23Common__PolicyTopicConstraint]
     evidences: _list[GoogleAdsSearchads360V23Common__PolicyTopicEvidence]
     topic: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "PROHIBITED",
@@ -3125,7 +2938,7 @@ class GoogleAdsSearchads360V23Common__PolicyTopicEntry(
 
 @typing.type_check_only
 class GoogleAdsSearchads360V23Common__PolicyTopicEvidence(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     destinationMismatch: (
         GoogleAdsSearchads360V23Common_PolicyTopicEvidence_DestinationMismatch
@@ -3141,14 +2954,12 @@ class GoogleAdsSearchads360V23Common__PolicyTopicEvidence(
     websiteList: GoogleAdsSearchads360V23Common_PolicyTopicEvidence_WebsiteList
 
 @typing.type_check_only
-class GoogleAdsSearchads360V23Common__PolicyViolationKey(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsSearchads360V23Common__PolicyViolationKey(typing.TypedDict, total=False):
     policyName: str
     violatingText: str
 
 @typing.type_check_only
-class GoogleAdsSearchads360V23Common__Value(typing_extensions.TypedDict, total=False):
+class GoogleAdsSearchads360V23Common__Value(typing.TypedDict, total=False):
     booleanValue: bool
     doubleValue: float
     floatValue: float
@@ -3157,14 +2968,14 @@ class GoogleAdsSearchads360V23Common__Value(typing_extensions.TypedDict, total=F
 
 @typing.type_check_only
 class GoogleAdsSearchads360V23Errors_ErrorLocation_FieldPathElement(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     fieldName: str
     index: int
 
 @typing.type_check_only
 class GoogleAdsSearchads360V23Errors__BudgetPerDayMinimumErrorDetails(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     budgetPerDayMinimumMicros: str
     currencyCode: str
@@ -3174,10 +2985,8 @@ class GoogleAdsSearchads360V23Errors__BudgetPerDayMinimumErrorDetails(
     minimumBudgetTotalAmountMicros: str
 
 @typing.type_check_only
-class GoogleAdsSearchads360V23Errors__ErrorCode(
-    typing_extensions.TypedDict, total=False
-):
-    accessInvitationError: typing_extensions.Literal[
+class GoogleAdsSearchads360V23Errors__ErrorCode(typing.TypedDict, total=False):
+    accessInvitationError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "INVALID_EMAIL_ADDRESS",
@@ -3189,7 +2998,7 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "PENDING_INVITATIONS_LIMIT_EXCEEDED",
         "EMAIL_DOMAIN_POLICY_VIOLATED",
     ]
-    accountBudgetProposalError: typing_extensions.Literal[
+    accountBudgetProposalError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "FIELD_MASK_NOT_ALLOWED",
@@ -3219,10 +3028,10 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "INVALID_MASTER_SERVICE_AGREEMENT",
         "CANCELED_BILLING_SETUP",
     ]
-    accountLinkError: typing_extensions.Literal[
+    accountLinkError: typing.Literal[
         "UNSPECIFIED", "UNKNOWN", "INVALID_STATUS", "PERMISSION_DENIED"
     ]
-    adCustomizerError: typing_extensions.Literal[
+    adCustomizerError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "COUNTDOWN_INVALID_DATE_FORMAT",
@@ -3231,7 +3040,7 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "COUNTDOWN_INVALID_START_DAYS_BEFORE",
         "UNKNOWN_USER_LIST",
     ]
-    adError: typing_extensions.Literal[
+    adError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "AD_CUSTOMIZERS_NOT_SUPPORTED_FOR_AD_TYPE",
@@ -3388,7 +3197,7 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "DUPLICATE_IMAGE_ACROSS_CAROUSEL_CARDS",
         "INVALID_YOUTUBE_VIDEO_ASSET_ID_FOR_VIDEO_ADS_SEQUENCING",
     ]
-    adGroupAdError: typing_extensions.Literal[
+    adGroupAdError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "AD_GROUP_AD_LABEL_DOES_NOT_EXIST",
@@ -3404,16 +3213,16 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "CANNOT_UPDATE_DEPRECATED_ADS",
         "AD_SHARING_NOT_ALLOWED",
     ]
-    adGroupBidModifierError: typing_extensions.Literal[
+    adGroupBidModifierError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "CRITERION_ID_NOT_SUPPORTED",
         "CANNOT_OVERRIDE_OPTED_OUT_CAMPAIGN_CRITERION_BID_MODIFIER",
     ]
-    adGroupCriterionCustomizerError: typing_extensions.Literal[
+    adGroupCriterionCustomizerError: typing.Literal[
         "UNSPECIFIED", "UNKNOWN", "CRITERION_IS_NOT_KEYWORD"
     ]
-    adGroupCriterionError: typing_extensions.Literal[
+    adGroupCriterionError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "AD_GROUP_CRITERION_LABEL_DOES_NOT_EXIST",
@@ -3445,8 +3254,8 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "FINAL_URLS_NOT_SUPPORTED_FOR_CRITERION_TYPE",
         "FINAL_MOBILE_URLS_NOT_SUPPORTED_FOR_CRITERION_TYPE",
     ]
-    adGroupCustomizerError: typing_extensions.Literal["UNSPECIFIED", "UNKNOWN"]
-    adGroupError: typing_extensions.Literal[
+    adGroupCustomizerError: typing.Literal["UNSPECIFIED", "UNKNOWN"]
+    adGroupError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "DUPLICATE_ADGROUP_NAME",
@@ -3473,7 +3282,7 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "VERTICAL_ADS_FORMAT_SETTING_NOT_SUPPORTED_FOR_CAMPAIGNS_WITHOUT_AI_MAX",
         "VERTICAL_ADS_FORMAT_SETTING_NOT_SUPPORTED_FOR_CAMPAIGNS_WITHOUT_ENABLED_TRAVEL_FEED",
     ]
-    adGroupFeedError: typing_extensions.Literal[
+    adGroupFeedError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "FEED_ALREADY_EXISTS_FOR_PLACEHOLDER_TYPE",
@@ -3484,21 +3293,21 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "MISSING_FEEDMAPPING_FOR_PLACEHOLDER_TYPE",
         "NO_EXISTING_LOCATION_CUSTOMER_FEED",
     ]
-    adParameterError: typing_extensions.Literal[
+    adParameterError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "AD_GROUP_CRITERION_MUST_BE_KEYWORD",
         "INVALID_INSERTION_TEXT_FORMAT",
     ]
-    adSharingError: typing_extensions.Literal[
+    adSharingError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "AD_GROUP_ALREADY_CONTAINS_AD",
         "INCOMPATIBLE_AD_UNDER_AD_GROUP",
         "CANNOT_SHARE_INACTIVE_AD",
     ]
-    adxError: typing_extensions.Literal["UNSPECIFIED", "UNKNOWN", "UNSUPPORTED_FEATURE"]
-    assetError: typing_extensions.Literal[
+    adxError: typing.Literal["UNSPECIFIED", "UNKNOWN", "UNSUPPORTED_FEATURE"]
+    assetError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "CUSTOMER_NOT_ON_ALLOWLIST_FOR_ASSET_TYPE",
@@ -3546,7 +3355,7 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "PROMOTION_QR_CODE_INVALID_FORMAT",
         "CUSTOMER_NOT_ON_ALLOWLIST_FOR_MESSAGE_ASSETS",
     ]
-    assetGenerationError: typing_extensions.Literal[
+    assetGenerationError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "NO_ASSETS_GENERATED",
@@ -3585,7 +3394,7 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "CONTEXT_AD_GROUP_AD_NOT_FOUND",
         "CONTEXT_CAMPAIGN_NOT_FOUND",
     ]
-    assetGroupAssetError: typing_extensions.Literal[
+    assetGroupAssetError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "DUPLICATE_RESOURCE",
@@ -3593,7 +3402,7 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "AD_CUSTOMIZER_NOT_SUPPORTED",
         "HOTEL_PROPERTY_ASSET_NOT_LINKED_TO_CAMPAIGN",
     ]
-    assetGroupError: typing_extensions.Literal[
+    assetGroupError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "DUPLICATE_NAME",
@@ -3613,7 +3422,7 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "AD_CUSTOMIZER_NOT_SUPPORTED",
         "CANNOT_MUTATE_ASSET_GROUP_FOR_REMOVED_CAMPAIGN",
     ]
-    assetGroupListingGroupFilterError: typing_extensions.Literal[
+    assetGroupListingGroupFilterError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "TREE_TOO_DEEP",
@@ -3640,14 +3449,14 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "MULTIPLE_OPERATIONS_ON_ONE_NODE",
         "TREE_WAS_INVALID_BEFORE_MUTATION",
     ]
-    assetGroupSignalError: typing_extensions.Literal[
+    assetGroupSignalError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "TOO_MANY_WORDS",
         "SEARCH_THEME_POLICY_VIOLATION",
         "AUDIENCE_WITH_WRONG_ASSET_GROUP_ID",
     ]
-    assetLinkError: typing_extensions.Literal[
+    assetLinkError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "PINNING_UNSUPPORTED",
@@ -3676,7 +3485,7 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "BRAND_ASSETS_NOT_LINKED_AT_ASSET_GROUP_LEVEL",
         "BRAND_ASSETS_NOT_LINKED_AT_CAMPAIGN_LEVEL",
     ]
-    assetSetAssetError: typing_extensions.Literal[
+    assetSetAssetError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "INVALID_ASSET_TYPE",
@@ -3684,7 +3493,7 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "DUPLICATE_EXTERNAL_KEY",
         "PARENT_LINKAGE_DOES_NOT_EXIST",
     ]
-    assetSetError: typing_extensions.Literal[
+    assetSetError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "DUPLICATE_ASSET_SET_NAME",
@@ -3699,7 +3508,7 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "OAUTH_INFO_MISSING",
         "CANNOT_DELETE_AS_ENABLED_LINKAGES_EXIST",
     ]
-    assetSetLinkError: typing_extensions.Literal[
+    assetSetLinkError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "INCOMPATIBLE_ADVERTISING_CHANNEL_TYPE",
@@ -3708,7 +3517,7 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "DUPLICATE_ASSET_SET_LINK",
         "ASSET_SET_LINK_CANNOT_BE_REMOVED",
     ]
-    audienceError: typing_extensions.Literal[
+    audienceError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "NAME_ALREADY_IN_USE",
@@ -3722,12 +3531,12 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "MISSING_ASSET_GROUP_ID",
         "CANNOT_CHANGE_FROM_CUSTOMER_TO_ASSET_GROUP_SCOPE",
     ]
-    audienceInsightsError: typing_extensions.Literal[
+    audienceInsightsError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "DIMENSION_INCOMPATIBLE_WITH_TOPIC_AUDIENCE_COMBINATIONS",
     ]
-    authenticationError: typing_extensions.Literal[
+    authenticationError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "AUTHENTICATION_ERROR",
@@ -3754,7 +3563,7 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "ORGANIZATION_NOT_ASSOCIATED_WITH_DEVELOPER_TOKEN",
         "DEVELOPER_TOKEN_INVALID",
     ]
-    authorizationError: typing_extensions.Literal[
+    authorizationError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "USER_PERMISSION_DENIED",
@@ -3773,8 +3582,11 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "METRIC_ACCESS_DENIED",
         "CLOUD_PROJECT_NOT_UNDER_ORGANIZATION",
         "ACTION_NOT_PERMITTED_FOR_SUSPENDED_ACCOUNT",
+        "SEARCH_ADS360_OTHER_ENGINE_MUTATE_DENIED",
+        "SEARCH_ADS360_MUTATE_ALLOWLIST_DENIED",
+        "SEARCH_ADS360_MUTATE_FIELD_DENIED",
     ]
-    automaticallyCreatedAssetRemovalError: typing_extensions.Literal[
+    automaticallyCreatedAssetRemovalError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "AD_DOES_NOT_EXIST",
@@ -3783,7 +3595,7 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "ASSET_FIELD_TYPE_DOES_NOT_MATCH",
         "NOT_AN_AUTOMATICALLY_CREATED_ASSET",
     ]
-    batchJobError: typing_extensions.Literal[
+    batchJobError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "CANNOT_MODIFY_JOB_AFTER_JOB_STARTS_RUNNING",
@@ -3798,10 +3610,10 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "REQUEST_TOO_LARGE",
         "CAMPAIGN_AND_CAMPAIGN_ASSET_TRANSACTION_FAILURE",
     ]
-    benchmarksError: typing_extensions.Literal[
+    benchmarksError: typing.Literal[
         "UNSPECIFIED", "UNKNOWN", "MAX_QUERY_COMPLEXITY_EXCEEDED"
     ]
-    biddingError: typing_extensions.Literal[
+    biddingError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "BIDDING_STRATEGY_TRANSITION_NOT_ALLOWED",
@@ -3830,7 +3642,7 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "CPC_BID_FLOOR_MICROS_GREATER_THAN_CPC_BID_CEILING_MICROS",
         "TARGET_ROAS_TOLERANCE_PERCENT_MILLIS_MUST_BE_INTEGER",
     ]
-    biddingStrategyError: typing_extensions.Literal[
+    biddingStrategyError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "DUPLICATE_NAME",
@@ -3839,7 +3651,7 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "BIDDING_STRATEGY_NOT_SUPPORTED",
         "INCOMPATIBLE_BIDDING_STRATEGY_AND_BIDDING_STRATEGY_GOAL_TYPE",
     ]
-    billingSetupError: typing_extensions.Literal[
+    billingSetupError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "CANNOT_USE_EXISTING_AND_NEW_ACCOUNT",
@@ -3863,7 +3675,7 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "FUTURE_START_TIME_PROHIBITED",
         "TOO_MANY_BILLING_SETUPS_FOR_PAYMENTS_ACCOUNT",
     ]
-    brandGuidelinesMigrationError: typing_extensions.Literal[
+    brandGuidelinesMigrationError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "BRAND_GUIDELINES_ALREADY_ENABLED",
@@ -3873,7 +3685,7 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "AUTO_POPULATE_BRAND_ASSETS_REQUIRED_WHEN_BRAND_ASSETS_OMITTED",
         "TOO_MANY_ENABLE_OPERATIONS",
     ]
-    campaignBudgetError: typing_extensions.Literal[
+    campaignBudgetError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "CAMPAIGN_BUDGET_CANNOT_BE_SHARED",
@@ -3897,13 +3709,13 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "BUDGET_AMOUNT_MUST_BE_UNSET_FOR_CUSTOM_BUDGET_PERIOD",
         "BUDGET_BELOW_PER_DAY_MINIMUM",
     ]
-    campaignConversionGoalError: typing_extensions.Literal[
+    campaignConversionGoalError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "CANNOT_USE_CAMPAIGN_GOAL_FOR_SEARCH_ADS_360_MANAGED_CAMPAIGN",
         "CANNOT_USE_STORE_SALE_GOAL_FOR_PERFORMANCE_MAX_CAMPAIGN",
     ]
-    campaignCriterionError: typing_extensions.Literal[
+    campaignCriterionError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "CONCRETE_TYPE_REQUIRED",
@@ -3934,8 +3746,8 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "CANNOT_REMOVE_ALL_LOCATIONS_DUE_TO_TOO_MANY_COUNTRY_EXCLUSIONS",
         "INVALID_VIDEO_LINEUP_ID",
     ]
-    campaignCustomizerError: typing_extensions.Literal["UNSPECIFIED", "UNKNOWN"]
-    campaignDraftError: typing_extensions.Literal[
+    campaignCustomizerError: typing.Literal["UNSPECIFIED", "UNKNOWN"]
+    campaignDraftError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "DUPLICATE_DRAFT_NAME",
@@ -3949,7 +3761,7 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "MAX_NUMBER_OF_DRAFTS_PER_CAMPAIGN_REACHED",
         "LIST_ERRORS_FOR_PROMOTED_DRAFT_ONLY",
     ]
-    campaignError: typing_extensions.Literal[
+    campaignError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "CANNOT_TARGET_CONTENT_NETWORK",
@@ -4053,7 +3865,7 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "DURATION_TOO_LONG_FOR_TOTAL_BUDGET",
         "END_DATE_TIME_REQUIRED_FOR_TOTAL_BUDGET",
     ]
-    campaignExperimentError: typing_extensions.Literal[
+    campaignExperimentError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "DUPLICATE_NAME",
@@ -4067,7 +3879,7 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "EXPERIMENT_DURATION_MUST_BE_WITHIN_CAMPAIGN_DURATION",
         "CANNOT_MUTATE_EXPERIMENT_DUE_TO_STATUS",
     ]
-    campaignFeedError: typing_extensions.Literal[
+    campaignFeedError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "FEED_ALREADY_EXISTS_FOR_PLACEHOLDER_TYPE",
@@ -4079,7 +3891,7 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "NO_EXISTING_LOCATION_CUSTOMER_FEED",
         "LEGACY_FEED_TYPE_READ_ONLY",
     ]
-    campaignGoalConfigError: typing_extensions.Literal[
+    campaignGoalConfigError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "GOAL_NOT_FOUND",
@@ -4088,8 +3900,12 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "HIGH_LIFETIME_VALUE_LESS_THAN_OR_EQUAL_TO_VALUE",
         "CUSTOMER_LIFECYCLE_OPTIMIZATION_CAMPAIGN_TYPE_NOT_SUPPORTED",
         "CUSTOMER_NOT_ALLOWLISTED_FOR_RETENTION_ONLY",
+        "CAMPAIGN_OVERRIDE_VALUES_SET_FOR_NEW_CUSTOMER_ACQUISITION_TARGET_SPECIFIC_OPTION",
+        "CAMPAIGN_OVERRIDE_HIGH_LIFETIME_VALUE_NOT_SUPPORTED_FOR_CAMPAIGN_TYPE",
+        "CANNOT_USE_INCOMPATIBLE_CLO_GOALS",
+        "LOYALTY_RETENTION_GOAL_INVALID_MODE",
     ]
-    campaignLifecycleGoalError: typing_extensions.Literal[
+    campaignLifecycleGoalError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "CAMPAIGN_MISSING",
@@ -4104,10 +3920,10 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "CUSTOMER_ACQUISITION_MISSING_EXISTING_CUSTOMER_DEFINITION",
         "CUSTOMER_ACQUISITION_MISSING_HIGH_VALUE_CUSTOMER_DEFINITION",
     ]
-    campaignSharedSetError: typing_extensions.Literal[
+    campaignSharedSetError: typing.Literal[
         "UNSPECIFIED", "UNKNOWN", "SHARED_SET_ACCESS_DENIED"
     ]
-    changeEventError: typing_extensions.Literal[
+    changeEventError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "START_DATE_TOO_OLD",
@@ -4116,7 +3932,7 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "LIMIT_NOT_SPECIFIED",
         "INVALID_LIMIT_CLAUSE",
     ]
-    changeStatusError: typing_extensions.Literal[
+    changeStatusError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "START_DATE_TOO_OLD",
@@ -4125,19 +3941,17 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "LIMIT_NOT_SPECIFIED",
         "INVALID_LIMIT_CLAUSE",
     ]
-    clickViewError: typing_extensions.Literal[
+    clickViewError: typing.Literal[
         "UNSPECIFIED", "UNKNOWN", "EXPECTED_FILTER_ON_A_SINGLE_DAY", "DATE_TOO_OLD"
     ]
-    collectionSizeError: typing_extensions.Literal[
-        "UNSPECIFIED", "UNKNOWN", "TOO_FEW", "TOO_MANY"
-    ]
-    contextError: typing_extensions.Literal[
+    collectionSizeError: typing.Literal["UNSPECIFIED", "UNKNOWN", "TOO_FEW", "TOO_MANY"]
+    contextError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "OPERATION_NOT_PERMITTED_FOR_CONTEXT",
         "OPERATION_NOT_PERMITTED_FOR_REMOVED_RESOURCE",
     ]
-    conversionActionError: typing_extensions.Literal[
+    conversionActionError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "DUPLICATE_NAME",
@@ -4152,7 +3966,7 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "UPDATE_NOT_SUPPORTED",
         "CANNOT_SET_RULE_BASED_ATTRIBUTION_MODELS",
     ]
-    conversionAdjustmentUploadError: typing_extensions.Literal[
+    conversionAdjustmentUploadError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "TOO_RECENT_CONVERSION_ACTION",
@@ -4181,10 +3995,10 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "NO_CONVERSION_ACTION_FOUND",
         "INVALID_CONVERSION_ACTION_TYPE",
     ]
-    conversionCustomVariableError: typing_extensions.Literal[
+    conversionCustomVariableError: typing.Literal[
         "UNSPECIFIED", "UNKNOWN", "DUPLICATE_NAME", "DUPLICATE_TAG", "RESERVED_TAG"
     ]
-    conversionGoalCampaignConfigError: typing_extensions.Literal[
+    conversionGoalCampaignConfigError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "CANNOT_USE_CAMPAIGN_GOAL_FOR_SEARCH_ADS_360_MANAGED_CAMPAIGN",
@@ -4194,7 +4008,7 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "STORE_SALE_STORE_VISIT_CANNOT_BE_BOTH_INCLUDED",
         "PERFORMANCE_MAX_CAMPAIGN_CANNOT_USE_CUSTOM_GOAL_WITH_STORE_SALES",
     ]
-    conversionUploadError: typing_extensions.Literal[
+    conversionUploadError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "TOO_MANY_CONVERSIONS_IN_REQUEST",
@@ -4242,7 +4056,7 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "NO_CONVERSION_ACTION_FOUND",
         "INVALID_CONVERSION_ACTION_TYPE",
     ]
-    conversionValueRuleError: typing_extensions.Literal[
+    conversionValueRuleError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "INVALID_GEO_TARGET_CONSTANT",
@@ -4259,7 +4073,7 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "CANNOT_ADD_RULE_WITH_STATUS_REMOVED",
         "NO_DAY_OF_WEEK_SELECTED",
     ]
-    conversionValueRuleSetError: typing_extensions.Literal[
+    conversionValueRuleSetError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "CONFLICTING_VALUE_RULE_CONDITIONS",
@@ -4277,10 +4091,8 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "UNSUPPORTED_CONVERSION_ACTION_CATEGORIES",
         "DIMENSION_NOT_SUPPORTED_FOR_CAMPAIGN_TYPE",
     ]
-    countryCodeError: typing_extensions.Literal[
-        "UNSPECIFIED", "UNKNOWN", "INVALID_COUNTRY_CODE"
-    ]
-    criterionError: typing_extensions.Literal[
+    countryCodeError: typing.Literal["UNSPECIFIED", "UNKNOWN", "INVALID_COUNTRY_CODE"]
+    criterionError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "CONCRETE_TYPE_REQUIRED",
@@ -4448,13 +4260,11 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "VERTICAL_ADS_ITEM_GROUP_RULE_LIST_NOT_SUPPORTED_FOR_CAMPAIGNS_WITHOUT_AI_MAX",
         "VERTICAL_ADS_ITEM_GROUP_RULE_NOT_SUPPORTED_FOR_THE_VERTICAL_TYPE",
     ]
-    currencyCodeError: typing_extensions.Literal[
-        "UNSPECIFIED", "UNKNOWN", "UNSUPPORTED"
-    ]
-    currencyError: typing_extensions.Literal[
+    currencyCodeError: typing.Literal["UNSPECIFIED", "UNKNOWN", "UNSUPPORTED"]
+    currencyError: typing.Literal[
         "UNSPECIFIED", "UNKNOWN", "VALUE_NOT_MULTIPLE_OF_BILLABLE_UNIT"
     ]
-    customAudienceError: typing_extensions.Literal[
+    customAudienceError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "NAME_ALREADY_USED",
@@ -4466,13 +4276,13 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "POLICY_VIOLATION",
         "INVALID_TYPE_CHANGE",
     ]
-    customColumnError: typing_extensions.Literal[
+    customColumnError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "CUSTOM_COLUMN_NOT_FOUND",
         "CUSTOM_COLUMN_NOT_AVAILABLE",
     ]
-    customConversionGoalError: typing_extensions.Literal[
+    customConversionGoalError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "INVALID_CONVERSION_ACTION",
@@ -4482,7 +4292,7 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "DUPLICATE_CONVERSION_ACTION_LIST",
         "NON_BIDDABLE_CONVERSION_ACTION_NOT_ELIGIBLE_FOR_CUSTOM_GOAL",
     ]
-    customInterestError: typing_extensions.Literal[
+    customInterestError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "NAME_ALREADY_USED",
@@ -4493,7 +4303,7 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "CANNOT_REMOVE_WHILE_IN_USE",
         "CANNOT_CHANGE_TYPE",
     ]
-    customerClientLinkError: typing_extensions.Literal[
+    customerClientLinkError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "CLIENT_ALREADY_INVITED_BY_THIS_MANAGER",
@@ -4505,8 +4315,8 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "CUSTOMER_HAS_TOO_MANY_ACCOUNTS_AT_MANAGER",
         "CLIENT_HAS_TOO_MANY_MANAGERS",
     ]
-    customerCustomizerError: typing_extensions.Literal["UNSPECIFIED", "UNKNOWN"]
-    customerError: typing_extensions.Literal[
+    customerCustomizerError: typing.Literal["UNSPECIFIED", "UNKNOWN"]
+    customerError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "STATUS_CHANGE_DISALLOWED",
@@ -4514,7 +4324,7 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "CREATION_DENIED_FOR_POLICY_VIOLATION",
         "CREATION_DENIED_INELIGIBLE_MCC",
     ]
-    customerFeedError: typing_extensions.Literal[
+    customerFeedError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "FEED_ALREADY_EXISTS_FOR_PLACEHOLDER_TYPE",
@@ -4525,7 +4335,7 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "MISSING_FEEDMAPPING_FOR_PLACEHOLDER_TYPE",
         "PLACEHOLDER_TYPE_NOT_ALLOWED_ON_CUSTOMER_FEED",
     ]
-    customerLifecycleGoalError: typing_extensions.Literal[
+    customerLifecycleGoalError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "CUSTOMER_ACQUISITION_VALUE_MISSING",
@@ -4536,7 +4346,7 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "INVALID_EXISTING_USER_LIST",
         "INVALID_HIGH_LIFETIME_VALUE_USER_LIST",
     ]
-    customerManagerLinkError: typing_extensions.Literal[
+    customerManagerLinkError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "NO_PENDING_INVITE",
@@ -4549,7 +4359,7 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "DUPLICATE_CHILD_FOUND",
         "TEST_ACCOUNT_LINKS_TOO_MANY_CHILD_ACCOUNTS",
     ]
-    customerSkAdNetworkConversionValueSchemaError: typing_extensions.Literal[
+    customerSkAdNetworkConversionValueSchemaError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "INVALID_LINK_ID",
@@ -4559,7 +4369,7 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "INVALID_EVENT_COUNTER",
         "INVALID_EVENT_NAME",
     ]
-    customerUserAccessError: typing_extensions.Literal[
+    customerUserAccessError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "INVALID_USER_ID",
@@ -4568,10 +4378,10 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "LAST_ADMIN_USER_OF_SERVING_CUSTOMER",
         "LAST_ADMIN_USER_OF_MANAGER",
     ]
-    customizerAttributeError: typing_extensions.Literal[
+    customizerAttributeError: typing.Literal[
         "UNSPECIFIED", "UNKNOWN", "DUPLICATE_CUSTOMIZER_ATTRIBUTE_NAME"
     ]
-    dataLinkError: typing_extensions.Literal[
+    dataLinkError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "YOUTUBE_CHANNEL_ID_INVALID",
@@ -4582,14 +4392,14 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "INVALID_UPDATE_STATUS",
         "INVALID_RESOURCE_NAME",
     ]
-    databaseError: typing_extensions.Literal[
+    databaseError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "CONCURRENT_MODIFICATION",
         "DATA_CONSTRAINT_VIOLATION",
         "REQUEST_TOO_LARGE",
     ]
-    dateError: typing_extensions.Literal[
+    dateError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "INVALID_FIELD_VALUES_IN_DATE",
@@ -4605,7 +4415,7 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "DATE_RANGE_ERROR_START_TIME_MUST_BE_THE_START_OF_A_DAY",
         "DATE_RANGE_ERROR_END_TIME_MUST_BE_THE_END_OF_A_DAY",
     ]
-    dateRangeError: typing_extensions.Literal[
+    dateRangeError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "INVALID_DATE",
@@ -4613,14 +4423,13 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "CANNOT_SET_DATE_TO_PAST",
         "AFTER_MAXIMUM_ALLOWABLE_DATE",
         "CANNOT_MODIFY_START_DATE_IF_ALREADY_STARTED",
+        "REQUESTED_DATE_GRANULARITY_NOT_SUPPORTED",
     ]
-    distinctError: typing_extensions.Literal[
+    distinctError: typing.Literal[
         "UNSPECIFIED", "UNKNOWN", "DUPLICATE_ELEMENT", "DUPLICATE_TYPE"
     ]
-    enumError: typing_extensions.Literal[
-        "UNSPECIFIED", "UNKNOWN", "ENUM_VALUE_NOT_PERMITTED"
-    ]
-    experimentArmError: typing_extensions.Literal[
+    enumError: typing.Literal["UNSPECIFIED", "UNKNOWN", "ENUM_VALUE_NOT_PERMITTED"]
+    experimentArmError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "EXPERIMENT_ARM_COUNT_LIMIT_EXCEEDED",
@@ -4638,7 +4447,7 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "BIDDING_STRATEGY_NOT_SUPPORTED_IN_EXPERIMENTS",
         "TRAFFIC_SPLIT_NOT_SUPPORTED_FOR_CHANNEL_TYPE",
     ]
-    experimentError: typing_extensions.Literal[
+    experimentError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "CANNOT_SET_START_DATE_IN_PAST",
@@ -4672,7 +4481,7 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "INVALID_DURATION_FOR_AN_EXPERIMENT",
         "MISSING_EU_POLITICAL_ADVERTISING_SELF_DECLARATION",
     ]
-    extensionFeedItemError: typing_extensions.Literal[
+    extensionFeedItemError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "VALUE_OUT_OF_RANGE",
@@ -4721,7 +4530,7 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "CONCRETE_EXTENSION_TYPE_REQUIRED",
         "SCHEDULE_END_NOT_AFTER_START",
     ]
-    extensionSettingError: typing_extensions.Literal[
+    extensionSettingError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "EXTENSIONS_REQUIRED",
@@ -4790,14 +4599,14 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "EXTENSION_SETTING_UPDATE_IS_A_NOOP",
         "DISALLOWED_TEXT",
     ]
-    feedAttributeReferenceError: typing_extensions.Literal[
+    feedAttributeReferenceError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "CANNOT_REFERENCE_REMOVED_FEED",
         "INVALID_FEED_NAME",
         "INVALID_FEED_ATTRIBUTE_NAME",
     ]
-    feedError: typing_extensions.Literal[
+    feedError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "ATTRIBUTE_NAMES_NOT_UNIQUE",
@@ -4824,7 +4633,7 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "CANNOT_HAVE_LOCATION_AND_AFFILIATE_LOCATION_FEEDS",
         "LEGACY_EXTENSION_TYPE_READ_ONLY",
     ]
-    feedItemError: typing_extensions.Literal[
+    feedItemError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "CANNOT_CONVERT_ATTRIBUTE_VALUE_FROM_STRING",
@@ -4838,7 +4647,7 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "SIZE_TOO_LARGE_FOR_MULTI_VALUE_ATTRIBUTE",
         "LEGACY_FEED_TYPE_READ_ONLY",
     ]
-    feedItemSetError: typing_extensions.Literal[
+    feedItemSetError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "FEED_ITEM_SET_REMOVED",
@@ -4849,13 +4658,13 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "WRONG_DYNAMIC_FILTER_FOR_FEED_TYPE",
         "DYNAMIC_FILTER_INVALID_CHAIN_IDS",
     ]
-    feedItemSetLinkError: typing_extensions.Literal[
+    feedItemSetLinkError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "FEED_ID_MISMATCH",
         "NO_MUTATE_ALLOWED_FOR_DYNAMIC_SET",
     ]
-    feedItemTargetError: typing_extensions.Literal[
+    feedItemTargetError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "MUST_SET_TARGET_ONEOF_ON_CREATE",
@@ -4867,7 +4676,7 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "DUPLICATE_AD_SCHEDULE",
         "DUPLICATE_KEYWORD",
     ]
-    feedItemValidationError: typing_extensions.Literal[
+    feedItemValidationError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "STRING_TOO_SHORT",
@@ -4976,7 +4785,7 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "IMAGE_ERROR_CONSTRAINTS_VIOLATED",
         "IMAGE_ERROR_SERVER_ERROR",
     ]
-    feedMappingError: typing_extensions.Literal[
+    feedMappingError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "INVALID_PLACEHOLDER_FIELD",
@@ -4998,7 +4807,7 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "ATTRIBUTE_FIELD_MAPPING_MISSING_FIELD",
         "LEGACY_FEED_TYPE_READ_ONLY",
     ]
-    fieldError: typing_extensions.Literal[
+    fieldError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "REQUIRED",
@@ -5010,7 +4819,7 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "BLOCKED_VALUE",
         "FIELD_CAN_ONLY_BE_CLEARED",
     ]
-    fieldMaskError: typing_extensions.Literal[
+    fieldMaskError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "FIELD_MASK_MISSING",
@@ -5018,7 +4827,7 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "FIELD_NOT_FOUND",
         "FIELD_HAS_SUBFIELDS",
     ]
-    finalUrlExpansionAssetViewError: typing_extensions.Literal[
+    finalUrlExpansionAssetViewError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "MISSING_REQUIRED_FILTER",
@@ -5030,7 +4839,7 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "CANNOT_SELECT_BOTH_AD_GROUP_AND_ASSET_GROUP",
         "CANNOT_FILTER_BY_BOTH_AD_GROUP_AND_ASSET_GROUP",
     ]
-    functionError: typing_extensions.Literal[
+    functionError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "INVALID_FUNCTION_FORMAT",
@@ -5050,7 +4859,7 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "INVALID_FUNCTION_FOR_FEED_WITH_FIXED_SCHEMA",
         "INVALID_ATTRIBUTE_NAME",
     ]
-    functionParsingError: typing_extensions.Literal[
+    functionParsingError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "NO_MORE_INPUT",
@@ -5065,7 +4874,7 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "NO_OPERANDS",
         "TOO_MANY_OPERANDS",
     ]
-    geoTargetConstantSuggestionError: typing_extensions.Literal[
+    geoTargetConstantSuggestionError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "LOCATION_NAME_SIZE_LIMIT",
@@ -5073,7 +4882,7 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "INVALID_COUNTRY_CODE",
         "REQUEST_PARAMETERS_UNSET",
     ]
-    goalError: typing_extensions.Literal[
+    goalError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "RETENTION_GOAL_ALREADY_EXISTS",
@@ -5081,21 +4890,21 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "HIGH_LIFETIME_VALUE_LESS_THAN_OR_EQUAL_TO_VALUE",
         "CUSTOMER_LIFECYCLE_OPTIMIZATION_ACCOUNT_TYPE_NOT_ALLOWED",
     ]
-    headerError: typing_extensions.Literal[
+    headerError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "INVALID_LOGIN_CUSTOMER_ID",
         "INVALID_LINKED_CUSTOMER_ID",
     ]
-    idError: typing_extensions.Literal["UNSPECIFIED", "UNKNOWN", "NOT_FOUND"]
-    identityVerificationError: typing_extensions.Literal[
+    idError: typing.Literal["UNSPECIFIED", "UNKNOWN", "NOT_FOUND"]
+    identityVerificationError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "NO_EFFECTIVE_BILLING",
         "BILLING_NOT_ON_MONTHLY_INVOICING",
         "VERIFICATION_ALREADY_STARTED",
     ]
-    imageError: typing_extensions.Literal[
+    imageError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "INVALID_IMAGE",
@@ -5138,10 +4947,8 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "IMAGE_CONSTRAINTS_VIOLATED",
         "FORMAT_NOT_ALLOWED",
     ]
-    incentiveError: typing_extensions.Literal[
-        "UNSPECIFIED", "UNKNOWN", "INVALID_INCENTIVE_ID"
-    ]
-    internalError: typing_extensions.Literal[
+    incentiveError: typing.Literal["UNSPECIFIED", "UNKNOWN", "INVALID_INCENTIVE_ID"]
+    internalError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "INTERNAL_ERROR",
@@ -5149,10 +4956,10 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "TRANSIENT_ERROR",
         "DEADLINE_EXCEEDED",
     ]
-    invalidParameterError: typing_extensions.Literal[
+    invalidParameterError: typing.Literal[
         "UNSPECIFIED", "UNKNOWN", "INVALID_CURRENCY_CODE"
     ]
-    invoiceError: typing_extensions.Literal[
+    invoiceError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "YEAR_MONTH_TOO_OLD",
@@ -5161,10 +4968,10 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "BILLING_SETUP_NOT_ON_MONTHLY_INVOICING",
         "NON_SERVING_CUSTOMER",
     ]
-    keywordPlanAdGroupError: typing_extensions.Literal[
+    keywordPlanAdGroupError: typing.Literal[
         "UNSPECIFIED", "UNKNOWN", "INVALID_NAME", "DUPLICATE_NAME"
     ]
-    keywordPlanAdGroupKeywordError: typing_extensions.Literal[
+    keywordPlanAdGroupKeywordError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "INVALID_KEYWORD_MATCH_TYPE",
@@ -5176,7 +4983,7 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "NEGATIVE_KEYWORD_HAS_CPC_BID",
         "NEW_BMM_KEYWORDS_NOT_ALLOWED",
     ]
-    keywordPlanCampaignError: typing_extensions.Literal[
+    keywordPlanCampaignError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "INVALID_NAME",
@@ -5186,10 +4993,10 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "MAX_GEOS_EXCEEDED",
         "MAX_LANGUAGES_EXCEEDED",
     ]
-    keywordPlanCampaignKeywordError: typing_extensions.Literal[
+    keywordPlanCampaignKeywordError: typing.Literal[
         "UNSPECIFIED", "UNKNOWN", "CAMPAIGN_KEYWORD_IS_POSITIVE"
     ]
-    keywordPlanError: typing_extensions.Literal[
+    keywordPlanError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "BID_MULTIPLIER_OUT_OF_RANGE",
@@ -5207,10 +5014,10 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "INVALID_FORECAST_DATE_RANGE",
         "INVALID_NAME",
     ]
-    keywordPlanIdeaError: typing_extensions.Literal[
+    keywordPlanIdeaError: typing.Literal[
         "UNSPECIFIED", "UNKNOWN", "URL_CRAWL_ERROR", "INVALID_VALUE"
     ]
-    labelError: typing_extensions.Literal[
+    labelError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "CANNOT_APPLY_INACTIVE_LABEL",
@@ -5223,13 +5030,13 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "CANNOT_ATTACH_LABEL_TO_DRAFT",
         "CANNOT_ATTACH_NON_MANAGER_LABEL_TO_CUSTOMER",
     ]
-    languageCodeError: typing_extensions.Literal[
+    languageCodeError: typing.Literal[
         "UNSPECIFIED", "UNKNOWN", "LANGUAGE_CODE_NOT_FOUND", "INVALID_LANGUAGE_CODE"
     ]
-    listOperationError: typing_extensions.Literal[
+    listOperationError: typing.Literal[
         "UNSPECIFIED", "UNKNOWN", "REQUIRED_FIELD_MISSING", "DUPLICATE_VALUES"
     ]
-    managerLinkError: typing_extensions.Literal[
+    managerLinkError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "ACCOUNTS_NOT_COMPATIBLE_FOR_LINKING",
@@ -5252,7 +5059,7 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "CUSTOMER_CANNOT_MANAGE_SELF",
         "CREATING_ENABLED_LINK_NOT_ALLOWED",
     ]
-    mediaBundleError: typing_extensions.Literal[
+    mediaBundleError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "BAD_REQUEST",
@@ -5278,7 +5085,7 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "URL_IN_MEDIA_BUNDLE_NOT_SSL_COMPLIANT",
         "CUSTOM_EXIT_NOT_ALLOWED",
     ]
-    mediaFileError: typing_extensions.Literal[
+    mediaFileError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "CANNOT_CREATE_STANDARD_ICON",
@@ -5305,7 +5112,7 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "YOU_TUBE_VIDEO_HAS_NON_POSITIVE_DURATION",
         "YOU_TUBE_VIDEO_NOT_FOUND",
     ]
-    mediaUploadError: typing_extensions.Literal[
+    mediaUploadError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "FILE_TOO_BIG",
@@ -5343,13 +5150,13 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "CANNOT_UPLOAD_MEDIA_TYPE_THROUGH_API",
         "DIMENSIONS_NOT_ALLOWED",
     ]
-    merchantCenterError: typing_extensions.Literal[
+    merchantCenterError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "MERCHANT_ID_CANNOT_BE_ACCESSED",
         "CUSTOMER_NOT_ALLOWED_FOR_SHOPPING_PERFORMANCE_MAX",
     ]
-    multiplierError: typing_extensions.Literal[
+    multiplierError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "MULTIPLIER_TOO_HIGH",
@@ -5365,7 +5172,7 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "BID_LESS_THAN_MIN_ALLOWED_BID_WITH_MULTIPLIER",
         "MULTIPLIER_AND_BIDDING_STRATEGY_TYPE_MISMATCH",
     ]
-    mutateError: typing_extensions.Literal[
+    mutateError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "RESOURCE_NOT_FOUND",
@@ -5379,19 +5186,19 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "RESOURCE_READ_ONLY",
         "EU_POLITICAL_ADVERTISING_DECLARATION_REQUIRED",
     ]
-    newResourceCreationError: typing_extensions.Literal[
+    newResourceCreationError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "CANNOT_SET_ID_FOR_CREATE",
         "DUPLICATE_TEMP_IDS",
         "TEMP_ID_RESOURCE_HAD_ERRORS",
     ]
-    notAllowlistedError: typing_extensions.Literal[
+    notAllowlistedError: typing.Literal[
         "UNSPECIFIED", "UNKNOWN", "CUSTOMER_NOT_ALLOWLISTED_FOR_THIS_FEATURE"
     ]
-    notEmptyError: typing_extensions.Literal["UNSPECIFIED", "UNKNOWN", "EMPTY_LIST"]
-    nullError: typing_extensions.Literal["UNSPECIFIED", "UNKNOWN", "NULL_CONTENT"]
-    offlineUserDataJobError: typing_extensions.Literal[
+    notEmptyError: typing.Literal["UNSPECIFIED", "UNKNOWN", "EMPTY_LIST"]
+    nullError: typing.Literal["UNSPECIFIED", "UNKNOWN", "NULL_CONTENT"]
+    offlineUserDataJobError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "INVALID_USER_LIST_ID",
@@ -5434,7 +5241,7 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "EVENT_ATTRIBUTE_ALL_FIELDS_ARE_REQUIRED",
         "OPERATION_LEVEL_CONSENT_PROVIDED",
     ]
-    operationAccessDeniedError: typing_extensions.Literal[
+    operationAccessDeniedError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "ACTION_NOT_PERMITTED",
@@ -5448,29 +5255,25 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "OPERATION_NOT_PERMITTED_FOR_AD_GROUP_TYPE",
         "MUTATE_NOT_PERMITTED_FOR_CUSTOMER",
     ]
-    operatorError: typing_extensions.Literal[
-        "UNSPECIFIED", "UNKNOWN", "OPERATOR_NOT_SUPPORTED"
-    ]
-    partialFailureError: typing_extensions.Literal[
+    operatorError: typing.Literal["UNSPECIFIED", "UNKNOWN", "OPERATOR_NOT_SUPPORTED"]
+    partialFailureError: typing.Literal[
         "UNSPECIFIED", "UNKNOWN", "PARTIAL_FAILURE_MODE_REQUIRED"
     ]
-    paymentsAccountError: typing_extensions.Literal[
+    paymentsAccountError: typing.Literal[
         "UNSPECIFIED", "UNKNOWN", "NOT_SUPPORTED_FOR_MANAGER_CUSTOMER"
     ]
-    policyFindingError: typing_extensions.Literal[
+    policyFindingError: typing.Literal[
         "UNSPECIFIED", "UNKNOWN", "POLICY_FINDING", "POLICY_TOPIC_NOT_FOUND"
     ]
-    policyValidationParameterError: typing_extensions.Literal[
+    policyValidationParameterError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "UNSUPPORTED_AD_TYPE_FOR_IGNORABLE_POLICY_TOPICS",
         "UNSUPPORTED_AD_TYPE_FOR_EXEMPT_POLICY_VIOLATION_KEYS",
         "CANNOT_SET_BOTH_IGNORABLE_POLICY_TOPICS_AND_EXEMPT_POLICY_VIOLATION_KEYS",
     ]
-    policyViolationError: typing_extensions.Literal[
-        "UNSPECIFIED", "UNKNOWN", "POLICY_ERROR"
-    ]
-    productLinkError: typing_extensions.Literal[
+    policyViolationError: typing.Literal["UNSPECIFIED", "UNKNOWN", "POLICY_ERROR"]
+    productLinkError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "INVALID_OPERATION",
@@ -5478,7 +5281,7 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "INVITATION_EXISTS",
         "LINK_EXISTS",
     ]
-    productLinkInvitationError: typing_extensions.Literal[
+    productLinkInvitationError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "INVALID_STATUS",
@@ -5486,7 +5289,7 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "NO_INVITATION_REQUIRED",
         "CUSTOMER_NOT_PERMITTED_TO_CREATE_INVITATION",
     ]
-    queryError: typing_extensions.Literal[
+    queryError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "QUERY_ERROR",
@@ -5547,7 +5350,7 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "FILTER_HAS_TOO_MANY_VALUES",
         "REQUIRED_SEGMENT_FIELD_MISSING",
     ]
-    quotaError: typing_extensions.Literal[
+    quotaError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "RESOURCE_EXHAUSTED",
@@ -5557,17 +5360,15 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "EXCESSIVE_LONG_TERM_QUERY_RESOURCE_CONSUMPTION",
         "PAYMENTS_PROFILE_ACTIVATION_RATE_LIMIT_EXCEEDED",
     ]
-    rangeError: typing_extensions.Literal[
-        "UNSPECIFIED", "UNKNOWN", "TOO_LOW", "TOO_HIGH"
-    ]
-    reachPlanError: typing_extensions.Literal[
+    rangeError: typing.Literal["UNSPECIFIED", "UNKNOWN", "TOO_LOW", "TOO_HIGH"]
+    reachPlanError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "NOT_FORECASTABLE_MISSING_RATE",
         "NOT_FORECASTABLE_NOT_ENOUGH_INVENTORY",
         "NOT_FORECASTABLE_ACCOUNT_NOT_ENABLED",
     ]
-    recommendationError: typing_extensions.Literal[
+    recommendationError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "BUDGET_AMOUNT_TOO_SMALL",
@@ -5605,11 +5406,9 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "CAMPAIGN_BUDGET_RECOMMENDATION_TYPE_WITH_CHANNEL_TYPE_SEARCH_AND_BIDDING_STRATEGY_TYPE_TARGET_IMPRESSION_SHARE_REQUIRES_TARGET_IMPRESSION_SHARE_INFO",
         "MERCHANT_CENTER_ACCOUNT_ID_NOT_SUPPORTED_ADVERTISING_CHANNEL_TYPE",
     ]
-    recommendationSubscriptionError: typing_extensions.Literal["UNSPECIFIED", "UNKNOWN"]
-    regionCodeError: typing_extensions.Literal[
-        "UNSPECIFIED", "UNKNOWN", "INVALID_REGION_CODE"
-    ]
-    requestError: typing_extensions.Literal[
+    recommendationSubscriptionError: typing.Literal["UNSPECIFIED", "UNKNOWN"]
+    regionCodeError: typing.Literal["UNSPECIFIED", "UNKNOWN", "INVALID_REGION_CODE"]
+    requestError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "RESOURCE_NAME_MISSING",
@@ -5639,10 +5438,10 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "UNSUPPORTED_VERSION",
         "CLOUD_PROJECT_NOT_FOUND",
     ]
-    resourceAccessDeniedError: typing_extensions.Literal[
+    resourceAccessDeniedError: typing.Literal[
         "UNSPECIFIED", "UNKNOWN", "WRITE_ACCESS_DENIED"
     ]
-    resourceCountLimitExceededError: typing_extensions.Literal[
+    resourceCountLimitExceededError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "ACCOUNT_LIMIT",
@@ -5655,7 +5454,7 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "RESPONSE_ROW_LIMIT_EXCEEDED",
         "RESOURCE_LIMIT",
     ]
-    searchTermInsightError: typing_extensions.Literal[
+    searchTermInsightError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "FILTERING_NOT_ALLOWED_WITH_SEGMENTS",
@@ -5665,7 +5464,7 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "SORTING_NOT_ALLOWED_WITH_SEGMENTS",
         "SUMMARY_ROW_NOT_ALLOWED_WITH_SEGMENTS",
     ]
-    settingError: typing_extensions.Literal[
+    settingError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "SETTING_TYPE_IS_NOT_AVAILABLE",
@@ -5681,16 +5480,16 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "SETTING_VALUE_NOT_COMPATIBLE_WITH_CAMPAIGN",
         "BID_ONLY_IS_NOT_ALLOWED_TO_BE_MODIFIED_WITH_CUSTOMER_MATCH_TARGETING",
     ]
-    shareablePreviewError: typing_extensions.Literal[
+    shareablePreviewError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "TOO_MANY_ASSET_GROUPS_IN_REQUEST",
         "ASSET_GROUP_DOES_NOT_EXIST_UNDER_THIS_CUSTOMER",
     ]
-    sharedCriterionError: typing_extensions.Literal[
+    sharedCriterionError: typing.Literal[
         "UNSPECIFIED", "UNKNOWN", "CRITERION_TYPE_NOT_ALLOWED_FOR_SHARED_SET_TYPE"
     ]
-    sharedSetError: typing_extensions.Literal[
+    sharedSetError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "CUSTOMER_CANNOT_CREATE_SHARED_SET_OF_THIS_TYPE",
@@ -5698,20 +5497,20 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "SHARED_SET_REMOVED",
         "SHARED_SET_IN_USE",
     ]
-    shoppingProductError: typing_extensions.Literal[
+    shoppingProductError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "MISSING_CAMPAIGN_FILTER",
         "MISSING_AD_GROUP_FILTER",
         "UNSUPPORTED_DATE_SEGMENTATION",
     ]
-    sizeLimitError: typing_extensions.Literal[
+    sizeLimitError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "REQUEST_SIZE_LIMIT_EXCEEDED",
         "RESPONSE_SIZE_LIMIT_EXCEEDED",
     ]
-    smartCampaignError: typing_extensions.Literal[
+    smartCampaignError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "INVALID_BUSINESS_LOCATION_ID",
@@ -5722,13 +5521,13 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "CANNOT_DETERMINE_SUGGESTION_LOCALE",
         "FINAL_URL_NOT_CRAWLABLE",
     ]
-    stringFormatError: typing_extensions.Literal[
+    stringFormatError: typing.Literal[
         "UNSPECIFIED", "UNKNOWN", "ILLEGAL_CHARS", "INVALID_FORMAT"
     ]
-    stringLengthError: typing_extensions.Literal[
+    stringLengthError: typing.Literal[
         "UNSPECIFIED", "UNKNOWN", "EMPTY", "TOO_SHORT", "TOO_LONG"
     ]
-    thirdPartyAppAnalyticsLinkError: typing_extensions.Literal[
+    thirdPartyAppAnalyticsLinkError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "INVALID_ANALYTICS_PROVIDER_ID",
@@ -5736,10 +5535,8 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "MOBILE_APP_IS_NOT_ENABLED",
         "CANNOT_REGENERATE_SHAREABLE_LINK_ID_FOR_REMOVED_LINK",
     ]
-    timeZoneError: typing_extensions.Literal[
-        "UNSPECIFIED", "UNKNOWN", "INVALID_TIME_ZONE"
-    ]
-    urlFieldError: typing_extensions.Literal[
+    timeZoneError: typing.Literal["UNSPECIFIED", "UNKNOWN", "INVALID_TIME_ZONE"]
+    urlFieldError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "INVALID_TRACKING_URL_TEMPLATE",
@@ -5797,14 +5594,14 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "VALUE_TRACK_PARAMETER_NOT_SUPPORTED",
         "UNSUPPORTED_APP_STORE",
     ]
-    userDataError: typing_extensions.Literal[
+    userDataError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "OPERATIONS_FOR_CUSTOMER_MATCH_NOT_ALLOWED",
         "TOO_MANY_USER_IDENTIFIERS",
         "USER_LIST_NOT_APPLICABLE",
     ]
-    userListCustomerTypeError: typing_extensions.Literal[
+    userListCustomerTypeError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "CONFLICTING_CUSTOMER_TYPES",
@@ -5813,7 +5610,7 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "CONVERSION_TRACKING_NOT_ENABLED_OR_NOT_MCC_MANAGER_ACCOUNT",
         "TOO_MANY_USER_LISTS_FOR_THE_CUSTOMER_TYPE",
     ]
-    userListError: typing_extensions.Literal[
+    userListError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "EXTERNAL_REMARKETING_USER_LIST_MUTATE_NOT_SUPPORTED",
@@ -5859,10 +5656,10 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "ADVERTISER_NOT_ALLOWLISTED_FOR_THIRD_PARTY_PARTNER_DATA",
         "ACCOUNT_SETTING_TYPE_NOT_ALLOWED",
     ]
-    videoCampaignError: typing_extensions.Literal[
+    videoCampaignError: typing.Literal[
         "UNSPECIFIED", "UNKNOWN", "MUTATE_REQUIRES_RESERVATION"
     ]
-    youtubeVideoRegistrationError: typing_extensions.Literal[
+    youtubeVideoRegistrationError: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "VIDEO_NOT_FOUND",
@@ -5871,9 +5668,7 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
     ]
 
 @typing.type_check_only
-class GoogleAdsSearchads360V23Errors__ErrorDetails(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsSearchads360V23Errors__ErrorDetails(typing.TypedDict, total=False):
     budgetPerDayMinimumErrorDetails: (
         GoogleAdsSearchads360V23Errors__BudgetPerDayMinimumErrorDetails
     )
@@ -5884,22 +5679,20 @@ class GoogleAdsSearchads360V23Errors__ErrorDetails(
     unpublishedErrorCode: str
 
 @typing.type_check_only
-class GoogleAdsSearchads360V23Errors__ErrorLocation(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsSearchads360V23Errors__ErrorLocation(typing.TypedDict, total=False):
     fieldPathElements: _list[
         GoogleAdsSearchads360V23Errors_ErrorLocation_FieldPathElement
     ]
 
 @typing.type_check_only
 class GoogleAdsSearchads360V23Errors__PolicyFindingDetails(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     policyTopicEntries: _list[GoogleAdsSearchads360V23Common__PolicyTopicEntry]
 
 @typing.type_check_only
 class GoogleAdsSearchads360V23Errors__PolicyViolationDetails(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     externalPolicyDescription: str
     externalPolicyName: str
@@ -5907,24 +5700,20 @@ class GoogleAdsSearchads360V23Errors__PolicyViolationDetails(
     key: GoogleAdsSearchads360V23Common__PolicyViolationKey
 
 @typing.type_check_only
-class GoogleAdsSearchads360V23Errors__QuotaErrorDetails(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsSearchads360V23Errors__QuotaErrorDetails(typing.TypedDict, total=False):
     rateName: str
-    rateScope: typing_extensions.Literal[
-        "UNSPECIFIED", "UNKNOWN", "ACCOUNT", "DEVELOPER"
-    ]
+    rateScope: typing.Literal["UNSPECIFIED", "UNKNOWN", "ACCOUNT", "DEVELOPER"]
     retryDelay: str
 
 @typing.type_check_only
 class GoogleAdsSearchads360V23Errors__ResourceCountDetails(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     enclosingId: str
     enclosingResource: str
     existingCount: int
     limit: int
-    limitType: typing_extensions.Literal[
+    limitType: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "CAMPAIGNS_PER_CUSTOMER",
@@ -6077,9 +5866,7 @@ class GoogleAdsSearchads360V23Errors__ResourceCountDetails(
     ]
 
 @typing.type_check_only
-class GoogleAdsSearchads360V23Errors__SearchAds360Error(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAdsSearchads360V23Errors__SearchAds360Error(typing.TypedDict, total=False):
     details: GoogleAdsSearchads360V23Errors__ErrorDetails
     errorCode: GoogleAdsSearchads360V23Errors__ErrorCode
     location: GoogleAdsSearchads360V23Errors__ErrorLocation
@@ -6088,14 +5875,14 @@ class GoogleAdsSearchads360V23Errors__SearchAds360Error(
 
 @typing.type_check_only
 class GoogleAdsSearchads360V23Errors__SearchAds360Failure(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     errors: _list[GoogleAdsSearchads360V23Errors__SearchAds360Error]
     requestId: str
 
 @typing.type_check_only
 class GoogleAdsSearchads360V23Resources_BatchJob_BatchJobMetadata(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     completionDateTime: str
     creationDateTime: str
@@ -6107,9 +5894,9 @@ class GoogleAdsSearchads360V23Resources_BatchJob_BatchJobMetadata(
 
 @typing.type_check_only
 class GoogleAdsSearchads360V23Resources__OfflineUserDataJobMetadata(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    matchRateRange: typing_extensions.Literal[
+    matchRateRange: typing.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
         "MATCH_RANGE_LESS_THAN_20",
@@ -6125,12 +5912,12 @@ class GoogleAdsSearchads360V23Resources__OfflineUserDataJobMetadata(
 
 @typing.type_check_only
 class GoogleAdsSearchads360V23Services__PromoteExperimentMetadata(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     experiment: str
 
 @typing.type_check_only
 class GoogleAdsSearchads360V23Services__ScheduleExperimentMetadata(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     experiment: str

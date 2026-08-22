@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -28,7 +27,7 @@ class FirebaseRulesResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                executableVersion: typing_extensions.Literal[
+                executableVersion: typing.Literal[
                     "RELEASE_EXECUTABLE_VERSION_UNSPECIFIED",
                     "FIREBASE_RULES_EXECUTABLE_V1",
                     "FIREBASE_RULES_EXECUTABLE_V2",

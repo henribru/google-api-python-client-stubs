@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -43,7 +42,7 @@ class DnsResource(googleapiclient.discovery.Resource):
             managedZone: str,
             maxResults: int | None = ...,
             pageToken: str | None = ...,
-            sortBy: typing_extensions.Literal["CHANGE_SEQUENCE"] | None = ...,
+            sortBy: typing.Literal["CHANGE_SEQUENCE"] | None = ...,
             sortOrder: str | None = ...,
             **kwargs: typing.Any,
         ) -> ChangesListResponseHttpRequest: ...
@@ -103,7 +102,7 @@ class DnsResource(googleapiclient.discovery.Resource):
             managedZone: str,
             maxResults: int | None = ...,
             pageToken: str | None = ...,
-            sortBy: typing_extensions.Literal["START_TIME", "ID"] | None = ...,
+            sortBy: typing.Literal["START_TIME", "ID"] | None = ...,
             **kwargs: typing.Any,
         ) -> ManagedZoneOperationsListResponseHttpRequest: ...
         def list_next(

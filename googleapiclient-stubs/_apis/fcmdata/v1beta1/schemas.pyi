@@ -1,20 +1,16 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class GoogleFirebaseFcmDataV1beta1AndroidDeliveryData(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleFirebaseFcmDataV1beta1AndroidDeliveryData(typing.TypedDict, total=False):
     analyticsLabel: str
     appId: str
     data: GoogleFirebaseFcmDataV1beta1Data
     date: GoogleTypeDate
 
 @typing.type_check_only
-class GoogleFirebaseFcmDataV1beta1Data(typing_extensions.TypedDict, total=False):
+class GoogleFirebaseFcmDataV1beta1Data(typing.TypedDict, total=False):
     countMessagesAccepted: str
     countNotificationsAccepted: str
     deliveryPerformancePercents: GoogleFirebaseFcmDataV1beta1DeliveryPerformancePercents
@@ -26,7 +22,7 @@ class GoogleFirebaseFcmDataV1beta1Data(typing_extensions.TypedDict, total=False)
 
 @typing.type_check_only
 class GoogleFirebaseFcmDataV1beta1DeliveryPerformancePercents(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     delayedDeviceDoze: float
     delayedDeviceOffline: float
@@ -36,21 +32,17 @@ class GoogleFirebaseFcmDataV1beta1DeliveryPerformancePercents(
 
 @typing.type_check_only
 class GoogleFirebaseFcmDataV1beta1ListAndroidDeliveryDataResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     androidDeliveryData: _list[GoogleFirebaseFcmDataV1beta1AndroidDeliveryData]
     nextPageToken: str
 
 @typing.type_check_only
-class GoogleFirebaseFcmDataV1beta1MessageInsightPercents(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleFirebaseFcmDataV1beta1MessageInsightPercents(typing.TypedDict, total=False):
     priorityLowered: float
 
 @typing.type_check_only
-class GoogleFirebaseFcmDataV1beta1MessageOutcomePercents(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleFirebaseFcmDataV1beta1MessageOutcomePercents(typing.TypedDict, total=False):
     collapsed: float
     delivered: float
     droppedAppForceStopped: float
@@ -61,7 +53,7 @@ class GoogleFirebaseFcmDataV1beta1MessageOutcomePercents(
 
 @typing.type_check_only
 class GoogleFirebaseFcmDataV1beta1ProxyNotificationInsightPercents(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     failed: float
     proxied: float
@@ -71,7 +63,7 @@ class GoogleFirebaseFcmDataV1beta1ProxyNotificationInsightPercents(
     skippedUnsupported: float
 
 @typing.type_check_only
-class GoogleTypeDate(typing_extensions.TypedDict, total=False):
+class GoogleTypeDate(typing.TypedDict, total=False):
     day: int
     month: int
     year: int

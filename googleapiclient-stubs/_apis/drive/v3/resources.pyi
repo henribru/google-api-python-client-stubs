@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -359,7 +358,7 @@ class DriveResource(googleapiclient.discovery.Resource):
             self,
             *,
             corpora: str | None = ...,
-            corpus: typing_extensions.Literal["domain", "user"] | None = ...,
+            corpus: typing.Literal["domain", "user"] | None = ...,
             driveId: str | None = ...,
             includeItemsFromAllDrives: bool | None = ...,
             includeLabels: str | None = ...,

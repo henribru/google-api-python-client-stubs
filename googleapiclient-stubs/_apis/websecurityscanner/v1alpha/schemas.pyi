@@ -1,35 +1,33 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class Authentication(typing_extensions.TypedDict, total=False):
+class Authentication(typing.TypedDict, total=False):
     customAccount: CustomAccount
     googleAccount: GoogleAccount
 
 @typing.type_check_only
-class CrawledUrl(typing_extensions.TypedDict, total=False):
+class CrawledUrl(typing.TypedDict, total=False):
     body: str
     httpMethod: str
     url: str
 
 @typing.type_check_only
-class CustomAccount(typing_extensions.TypedDict, total=False):
+class CustomAccount(typing.TypedDict, total=False):
     loginUrl: str
     password: str
     username: str
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Finding(typing_extensions.TypedDict, total=False):
+class Finding(typing.TypedDict, total=False):
     body: str
     description: str
     finalUrl: str
-    findingType: typing_extensions.Literal[
+    findingType: typing.Literal[
         "FINDING_TYPE_UNSPECIFIED",
         "MIXED_CONTENT",
         "OUTDATED_LIBRARY",
@@ -59,9 +57,9 @@ class Finding(typing_extensions.TypedDict, total=False):
     xss: Xss
 
 @typing.type_check_only
-class FindingTypeStats(typing_extensions.TypedDict, total=False):
+class FindingTypeStats(typing.TypedDict, total=False):
     findingCount: int
-    findingType: typing_extensions.Literal[
+    findingType: typing.Literal[
         "FINDING_TYPE_UNSPECIFIED",
         "MIXED_CONTENT",
         "OUTDATED_LIBRARY",
@@ -80,47 +78,47 @@ class FindingTypeStats(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class GoogleAccount(typing_extensions.TypedDict, total=False):
+class GoogleAccount(typing.TypedDict, total=False):
     password: str
     username: str
 
 @typing.type_check_only
-class Header(typing_extensions.TypedDict, total=False):
+class Header(typing.TypedDict, total=False):
     name: str
     value: str
 
 @typing.type_check_only
-class ListCrawledUrlsResponse(typing_extensions.TypedDict, total=False):
+class ListCrawledUrlsResponse(typing.TypedDict, total=False):
     crawledUrls: _list[CrawledUrl]
     nextPageToken: str
 
 @typing.type_check_only
-class ListFindingTypeStatsResponse(typing_extensions.TypedDict, total=False):
+class ListFindingTypeStatsResponse(typing.TypedDict, total=False):
     findingTypeStats: _list[FindingTypeStats]
 
 @typing.type_check_only
-class ListFindingsResponse(typing_extensions.TypedDict, total=False):
+class ListFindingsResponse(typing.TypedDict, total=False):
     findings: _list[Finding]
     nextPageToken: str
 
 @typing.type_check_only
-class ListScanConfigsResponse(typing_extensions.TypedDict, total=False):
+class ListScanConfigsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     scanConfigs: _list[ScanConfig]
 
 @typing.type_check_only
-class ListScanRunsResponse(typing_extensions.TypedDict, total=False):
+class ListScanRunsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     scanRuns: _list[ScanRun]
 
 @typing.type_check_only
-class OutdatedLibrary(typing_extensions.TypedDict, total=False):
+class OutdatedLibrary(typing.TypedDict, total=False):
     learnMoreUrls: _list[str]
     libraryName: str
     version: str
 
 @typing.type_check_only
-class ScanConfig(typing_extensions.TypedDict, total=False):
+class ScanConfig(typing.TypedDict, total=False):
     authentication: Authentication
     blacklistPatterns: _list[str]
     displayName: str
@@ -130,7 +128,7 @@ class ScanConfig(typing_extensions.TypedDict, total=False):
     schedule: Schedule
     startingUrls: _list[str]
     targetPlatforms: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "TARGET_PLATFORM_UNSPECIFIED",
             "APP_ENGINE",
             "COMPUTE",
@@ -138,20 +136,20 @@ class ScanConfig(typing_extensions.TypedDict, total=False):
             "CLOUD_FUNCTIONS",
         ]
     ]
-    userAgent: typing_extensions.Literal[
+    userAgent: typing.Literal[
         "USER_AGENT_UNSPECIFIED", "CHROME_LINUX", "CHROME_ANDROID", "SAFARI_IPHONE"
     ]
 
 @typing.type_check_only
-class ScanRun(typing_extensions.TypedDict, total=False):
+class ScanRun(typing.TypedDict, total=False):
     endTime: str
-    executionState: typing_extensions.Literal[
+    executionState: typing.Literal[
         "EXECUTION_STATE_UNSPECIFIED", "QUEUED", "SCANNING", "FINISHED"
     ]
     hasVulnerabilities: bool
     name: str
     progressPercent: int
-    resultState: typing_extensions.Literal[
+    resultState: typing.Literal[
         "RESULT_STATE_UNSPECIFIED", "SUCCESS", "ERROR", "KILLED"
     ]
     startTime: str
@@ -159,31 +157,31 @@ class ScanRun(typing_extensions.TypedDict, total=False):
     urlsTestedCount: str
 
 @typing.type_check_only
-class Schedule(typing_extensions.TypedDict, total=False):
+class Schedule(typing.TypedDict, total=False):
     intervalDurationDays: int
     scheduleTime: str
 
 @typing.type_check_only
-class StartScanRunRequest(typing_extensions.TypedDict, total=False): ...
+class StartScanRunRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class StopScanRunRequest(typing_extensions.TypedDict, total=False): ...
+class StopScanRunRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ViolatingResource(typing_extensions.TypedDict, total=False):
+class ViolatingResource(typing.TypedDict, total=False):
     contentType: str
     resourceUrl: str
 
 @typing.type_check_only
-class VulnerableHeaders(typing_extensions.TypedDict, total=False):
+class VulnerableHeaders(typing.TypedDict, total=False):
     headers: _list[Header]
     missingHeaders: _list[Header]
 
 @typing.type_check_only
-class VulnerableParameters(typing_extensions.TypedDict, total=False):
+class VulnerableParameters(typing.TypedDict, total=False):
     parameterNames: _list[str]
 
 @typing.type_check_only
-class Xss(typing_extensions.TypedDict, total=False):
+class Xss(typing.TypedDict, total=False):
     errorMessage: str
     stackTraces: _list[str]

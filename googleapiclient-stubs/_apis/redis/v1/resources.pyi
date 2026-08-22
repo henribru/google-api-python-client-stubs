@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -19,6 +18,25 @@ class CloudRedisResource(googleapiclient.discovery.Resource):
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class AclPoliciesResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class RevisionsResource(googleapiclient.discovery.Resource):
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> AclPolicyRevisionHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
+                        **kwargs: typing.Any,
+                    ) -> ListAclPolicyRevisionsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListAclPolicyRevisionsResponseHttpRequest,
+                        previous_response: ListAclPolicyRevisionsResponse,
+                    ) -> ListAclPolicyRevisionsResponseHttpRequest | None: ...
+
                 def create(
                     self,
                     *,
@@ -61,6 +79,7 @@ class CloudRedisResource(googleapiclient.discovery.Resource):
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
+                def revisions(self) -> RevisionsResource: ...
 
             @typing.type_check_only
             class BackupCollectionsResource(googleapiclient.discovery.Resource):
@@ -396,6 +415,14 @@ class AclPolicyHttpRequest(googleapiclient.http.HttpRequest):
     ) -> AclPolicy: ...
 
 @typing.type_check_only
+class AclPolicyRevisionHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> AclPolicyRevision: ...
+
+@typing.type_check_only
 class AuthTokenHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -466,6 +493,14 @@ class ListAclPoliciesResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListAclPoliciesResponse: ...
+
+@typing.type_check_only
+class ListAclPolicyRevisionsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListAclPolicyRevisionsResponse: ...
 
 @typing.type_check_only
 class ListAuthTokensResponseHttpRequest(googleapiclient.http.HttpRequest):

@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -107,7 +106,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                     appsId: str,
                     modulesId: str,
                     versionsId: str,
-                    view: typing_extensions.Literal["BASIC", "FULL"] | None = ...,
+                    view: typing.Literal["BASIC", "FULL"] | None = ...,
                     **kwargs: typing.Any,
                 ) -> VersionHttpRequest: ...
                 def list(
@@ -117,7 +116,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                     modulesId: str,
                     pageSize: int | None = ...,
                     pageToken: str | None = ...,
-                    view: typing_extensions.Literal["BASIC", "FULL"] | None = ...,
+                    view: typing.Literal["BASIC", "FULL"] | None = ...,
                     **kwargs: typing.Any,
                 ) -> ListVersionsResponseHttpRequest: ...
                 def list_next(

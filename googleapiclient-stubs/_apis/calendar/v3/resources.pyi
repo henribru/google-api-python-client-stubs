@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -91,7 +90,7 @@ class CalendarResource(googleapiclient.discovery.Resource):
             self,
             *,
             maxResults: int | None = ...,
-            minAccessRole: typing_extensions.Literal[
+            minAccessRole: typing.Literal[
                 "freeBusyReader",
                 "owner",
                 "reader",
@@ -102,6 +101,7 @@ class CalendarResource(googleapiclient.discovery.Resource):
             pageToken: str | None = ...,
             showDeleted: bool | None = ...,
             showHidden: bool | None = ...,
+            showOwnOrganizationOnly: bool | None = ...,
             syncToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> CalendarListHttpRequest: ...
@@ -131,7 +131,7 @@ class CalendarResource(googleapiclient.discovery.Resource):
             *,
             body: Channel,
             maxResults: int | None = ...,
-            minAccessRole: typing_extensions.Literal[
+            minAccessRole: typing.Literal[
                 "freeBusyReader",
                 "owner",
                 "reader",
@@ -142,6 +142,7 @@ class CalendarResource(googleapiclient.discovery.Resource):
             pageToken: str | None = ...,
             showDeleted: bool | None = ...,
             showHidden: bool | None = ...,
+            showOwnOrganizationOnly: bool | None = ...,
             syncToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> ChannelHttpRequest: ...
@@ -163,6 +164,14 @@ class CalendarResource(googleapiclient.discovery.Resource):
         def patch(
             self, *, calendarId: str, body: Calendar, **kwargs: typing.Any
         ) -> CalendarHttpRequest: ...
+        def transferOwnership(
+            self,
+            *,
+            calendarId: str,
+            newDataOwner: str,
+            useAdminAccess: bool,
+            **kwargs: typing.Any,
+        ) -> googleapiclient.http.HttpRequest: ...
         def update(
             self, *, calendarId: str, body: Calendar, **kwargs: typing.Any
         ) -> CalendarHttpRequest: ...
@@ -185,8 +194,7 @@ class CalendarResource(googleapiclient.discovery.Resource):
             calendarId: str,
             eventId: str,
             sendNotifications: bool | None = ...,
-            sendUpdates: typing_extensions.Literal["all", "externalOnly", "none"]
-            | None = ...,
+            sendUpdates: typing.Literal["all", "externalOnly", "none"] | None = ...,
             **kwargs: typing.Any,
         ) -> googleapiclient.http.HttpRequest: ...
         def get(
@@ -205,6 +213,7 @@ class CalendarResource(googleapiclient.discovery.Resource):
             calendarId: str,
             body: Event,
             conferenceDataVersion: int | None = ...,
+            eventLabelVersion: int | None = ...,
             supportsAttachments: bool | None = ...,
             **kwargs: typing.Any,
         ) -> EventHttpRequest: ...
@@ -214,10 +223,10 @@ class CalendarResource(googleapiclient.discovery.Resource):
             calendarId: str,
             body: Event,
             conferenceDataVersion: int | None = ...,
+            eventLabelVersion: int | None = ...,
             maxAttendees: int | None = ...,
             sendNotifications: bool | None = ...,
-            sendUpdates: typing_extensions.Literal["all", "externalOnly", "none"]
-            | None = ...,
+            sendUpdates: typing.Literal["all", "externalOnly", "none"] | None = ...,
             supportsAttachments: bool | None = ...,
             **kwargs: typing.Any,
         ) -> EventHttpRequest: ...
@@ -245,7 +254,7 @@ class CalendarResource(googleapiclient.discovery.Resource):
             *,
             calendarId: str,
             alwaysIncludeEmail: bool | None = ...,
-            eventTypes: typing_extensions.Literal[
+            eventTypes: typing.Literal[
                 "birthday",
                 "default",
                 "focusTime",
@@ -254,7 +263,7 @@ class CalendarResource(googleapiclient.discovery.Resource):
                 "workingLocation",
             ]
             | _list[
-                typing_extensions.Literal[
+                typing.Literal[
                     "birthday",
                     "default",
                     "focusTime",
@@ -267,7 +276,7 @@ class CalendarResource(googleapiclient.discovery.Resource):
             iCalUID: str | None = ...,
             maxAttendees: int | None = ...,
             maxResults: int | None = ...,
-            orderBy: typing_extensions.Literal["startTime", "updated"] | None = ...,
+            orderBy: typing.Literal["startTime", "updated"] | None = ...,
             pageToken: str | None = ...,
             privateExtendedProperty: str | _list[str] | None = ...,
             q: str | None = ...,
@@ -292,8 +301,7 @@ class CalendarResource(googleapiclient.discovery.Resource):
             eventId: str,
             destination: str,
             sendNotifications: bool | None = ...,
-            sendUpdates: typing_extensions.Literal["all", "externalOnly", "none"]
-            | None = ...,
+            sendUpdates: typing.Literal["all", "externalOnly", "none"] | None = ...,
             **kwargs: typing.Any,
         ) -> EventHttpRequest: ...
         def patch(
@@ -304,10 +312,10 @@ class CalendarResource(googleapiclient.discovery.Resource):
             body: Event,
             alwaysIncludeEmail: bool | None = ...,
             conferenceDataVersion: int | None = ...,
+            eventLabelVersion: int | None = ...,
             maxAttendees: int | None = ...,
             sendNotifications: bool | None = ...,
-            sendUpdates: typing_extensions.Literal["all", "externalOnly", "none"]
-            | None = ...,
+            sendUpdates: typing.Literal["all", "externalOnly", "none"] | None = ...,
             supportsAttachments: bool | None = ...,
             **kwargs: typing.Any,
         ) -> EventHttpRequest: ...
@@ -317,8 +325,7 @@ class CalendarResource(googleapiclient.discovery.Resource):
             calendarId: str,
             text: str,
             sendNotifications: bool | None = ...,
-            sendUpdates: typing_extensions.Literal["all", "externalOnly", "none"]
-            | None = ...,
+            sendUpdates: typing.Literal["all", "externalOnly", "none"] | None = ...,
             **kwargs: typing.Any,
         ) -> EventHttpRequest: ...
         def update(
@@ -329,10 +336,10 @@ class CalendarResource(googleapiclient.discovery.Resource):
             body: Event,
             alwaysIncludeEmail: bool | None = ...,
             conferenceDataVersion: int | None = ...,
+            eventLabelVersion: int | None = ...,
             maxAttendees: int | None = ...,
             sendNotifications: bool | None = ...,
-            sendUpdates: typing_extensions.Literal["all", "externalOnly", "none"]
-            | None = ...,
+            sendUpdates: typing.Literal["all", "externalOnly", "none"] | None = ...,
             supportsAttachments: bool | None = ...,
             **kwargs: typing.Any,
         ) -> EventHttpRequest: ...
@@ -342,7 +349,7 @@ class CalendarResource(googleapiclient.discovery.Resource):
             calendarId: str,
             body: Channel,
             alwaysIncludeEmail: bool | None = ...,
-            eventTypes: typing_extensions.Literal[
+            eventTypes: typing.Literal[
                 "birthday",
                 "default",
                 "focusTime",
@@ -351,7 +358,7 @@ class CalendarResource(googleapiclient.discovery.Resource):
                 "workingLocation",
             ]
             | _list[
-                typing_extensions.Literal[
+                typing.Literal[
                     "birthday",
                     "default",
                     "focusTime",
@@ -364,7 +371,7 @@ class CalendarResource(googleapiclient.discovery.Resource):
             iCalUID: str | None = ...,
             maxAttendees: int | None = ...,
             maxResults: int | None = ...,
-            orderBy: typing_extensions.Literal["startTime", "updated"] | None = ...,
+            orderBy: typing.Literal["startTime", "updated"] | None = ...,
             pageToken: str | None = ...,
             privateExtendedProperty: str | _list[str] | None = ...,
             q: str | None = ...,

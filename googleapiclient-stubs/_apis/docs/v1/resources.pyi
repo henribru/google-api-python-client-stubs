@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -30,7 +29,7 @@ class DocsResource(googleapiclient.discovery.Resource):
             *,
             documentId: str,
             includeTabsContent: bool | None = ...,
-            suggestionsViewMode: typing_extensions.Literal[
+            suggestionsViewMode: typing.Literal[
                 "DEFAULT_FOR_CURRENT_ACCESS",
                 "SUGGESTIONS_INLINE",
                 "PREVIEW_SUGGESTIONS_ACCEPTED",

@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -31,8 +30,7 @@ class Area120TablesResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: Row,
-                view: typing_extensions.Literal["VIEW_UNSPECIFIED", "COLUMN_ID_VIEW"]
-                | None = ...,
+                view: typing.Literal["VIEW_UNSPECIFIED", "COLUMN_ID_VIEW"] | None = ...,
                 **kwargs: typing.Any,
             ) -> RowHttpRequest: ...
             def delete(
@@ -42,8 +40,7 @@ class Area120TablesResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                view: typing_extensions.Literal["VIEW_UNSPECIFIED", "COLUMN_ID_VIEW"]
-                | None = ...,
+                view: typing.Literal["VIEW_UNSPECIFIED", "COLUMN_ID_VIEW"] | None = ...,
                 **kwargs: typing.Any,
             ) -> RowHttpRequest: ...
             def list(
@@ -54,8 +51,7 @@ class Area120TablesResource(googleapiclient.discovery.Resource):
                 orderBy: str | None = ...,
                 pageSize: int | None = ...,
                 pageToken: str | None = ...,
-                view: typing_extensions.Literal["VIEW_UNSPECIFIED", "COLUMN_ID_VIEW"]
-                | None = ...,
+                view: typing.Literal["VIEW_UNSPECIFIED", "COLUMN_ID_VIEW"] | None = ...,
                 **kwargs: typing.Any,
             ) -> ListRowsResponseHttpRequest: ...
             def list_next(
@@ -69,8 +65,7 @@ class Area120TablesResource(googleapiclient.discovery.Resource):
                 name: str,
                 body: Row,
                 updateMask: str | None = ...,
-                view: typing_extensions.Literal["VIEW_UNSPECIFIED", "COLUMN_ID_VIEW"]
-                | None = ...,
+                view: typing.Literal["VIEW_UNSPECIFIED", "COLUMN_ID_VIEW"] | None = ...,
                 **kwargs: typing.Any,
             ) -> RowHttpRequest: ...
 

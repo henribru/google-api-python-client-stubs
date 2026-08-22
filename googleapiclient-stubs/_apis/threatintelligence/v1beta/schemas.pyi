@@ -1,11 +1,9 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class Alert(typing_extensions.TypedDict, total=False):
+class Alert(typing.TypedDict, total=False):
     aiSummary: str
     audit: Audit
     configurations: _list[str]
@@ -21,7 +19,7 @@ class Alert(typing_extensions.TypedDict, total=False):
     priorityAnalysis: PriorityAnalysis
     relevanceAnalysis: RelevanceAnalysis
     severityAnalysis: SeverityAnalysis
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "NEW",
         "READ",
@@ -36,7 +34,7 @@ class Alert(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class AlertDetail(typing_extensions.TypedDict, total=False):
+class AlertDetail(typing.TypedDict, total=False):
     dataLeak: DataLeakAlertDetail
     detailType: str
     initialAccessBroker: InitialAccessBrokerAlertDetail
@@ -44,7 +42,7 @@ class AlertDetail(typing_extensions.TypedDict, total=False):
     targetTechnology: TargetTechnologyAlertDetail
 
 @typing.type_check_only
-class AlertDocument(typing_extensions.TypedDict, total=False):
+class AlertDocument(typing.TypedDict, total=False):
     aiSummary: str
     author: str
     collectionTime: str
@@ -60,14 +58,14 @@ class AlertDocument(typing_extensions.TypedDict, total=False):
     translation: AlertDocumentTranslation
 
 @typing.type_check_only
-class AlertDocumentTranslation(typing_extensions.TypedDict, total=False):
+class AlertDocumentTranslation(typing.TypedDict, total=False):
     translatedContent: str
     translatedTitle: str
 
 @typing.type_check_only
-class Association(typing_extensions.TypedDict, total=False):
+class Association(typing.TypedDict, total=False):
     id: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "THREAT_INTEL_OBJECT_TYPE_UNSPECIFIED",
         "THREAT_INTEL_OBJECT_TYPE_THREAT_ACTOR",
         "THREAT_INTEL_OBJECT_TYPE_MALWARE",
@@ -79,14 +77,14 @@ class Association(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class Audit(typing_extensions.TypedDict, total=False):
+class Audit(typing.TypedDict, total=False):
     createTime: str
     creator: str
     updateTime: str
     updater: str
 
 @typing.type_check_only
-class Configuration(typing_extensions.TypedDict, total=False):
+class Configuration(typing.TypedDict, total=False):
     audit: Audit
     description: str
     detail: ConfigurationDetail
@@ -94,25 +92,28 @@ class Configuration(typing_extensions.TypedDict, total=False):
     etag: str
     name: str
     provider: str
-    state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "ENABLED", "DISABLED", "DEPRECATED"
-    ]
+    state: typing.Literal["STATE_UNSPECIFIED", "ENABLED", "DISABLED", "DEPRECATED"]
     version: str
 
 @typing.type_check_only
-class ConfigurationDetail(typing_extensions.TypedDict, total=False):
+class ConfigurationDetail(typing.TypedDict, total=False):
+    customThreatScenario: CustomThreatScenarioConfig
     customerProfile: CustomerProfileConfig
     detailType: str
     technologyWatchlist: TechnologyWatchListConfig
 
 @typing.type_check_only
-class ConfigurationRevision(typing_extensions.TypedDict, total=False):
+class ConfigurationRevision(typing.TypedDict, total=False):
     createTime: str
     name: str
     snapshot: Configuration
 
 @typing.type_check_only
-class CustomerProfileCitation(typing_extensions.TypedDict, total=False):
+class CustomThreatScenarioConfig(typing.TypedDict, total=False):
+    documentCondition: str
+
+@typing.type_check_only
+class CustomerProfileCitation(typing.TypedDict, total=False):
     citationId: str
     document: str
     retrievalTime: str
@@ -120,17 +121,17 @@ class CustomerProfileCitation(typing_extensions.TypedDict, total=False):
     uri: str
 
 @typing.type_check_only
-class CustomerProfileCitedString(typing_extensions.TypedDict, total=False):
+class CustomerProfileCitedString(typing.TypedDict, total=False):
     citationIds: _list[str]
     value: str
 
 @typing.type_check_only
-class CustomerProfileCompany(typing_extensions.TypedDict, total=False):
+class CustomerProfileCompany(typing.TypedDict, total=False):
     citationIds: _list[str]
     company: str
 
 @typing.type_check_only
-class CustomerProfileConfig(typing_extensions.TypedDict, total=False):
+class CustomerProfileConfig(typing.TypedDict, total=False):
     citations: _list[CustomerProfileCitation]
     contactInfo: _list[CustomerProfileContactInfo]
     executives: _list[CustomerProfilePerson]
@@ -146,7 +147,7 @@ class CustomerProfileConfig(typing_extensions.TypedDict, total=False):
     webPresences: _list[CustomerProfileWebPresence]
 
 @typing.type_check_only
-class CustomerProfileContactInfo(typing_extensions.TypedDict, total=False):
+class CustomerProfileContactInfo(typing.TypedDict, total=False):
     address: str
     citationIds: _list[str]
     email: str
@@ -155,36 +156,36 @@ class CustomerProfileContactInfo(typing_extensions.TypedDict, total=False):
     phone: str
 
 @typing.type_check_only
-class CustomerProfileIndustry(typing_extensions.TypedDict, total=False):
+class CustomerProfileIndustry(typing.TypedDict, total=False):
     citationIds: _list[str]
     industry: str
 
 @typing.type_check_only
-class CustomerProfileLocation(typing_extensions.TypedDict, total=False):
+class CustomerProfileLocation(typing.TypedDict, total=False):
     address: str
     brand: str
     citationIds: _list[str]
     facilityType: str
 
 @typing.type_check_only
-class CustomerProfilePerson(typing_extensions.TypedDict, total=False):
+class CustomerProfilePerson(typing.TypedDict, total=False):
     citationIds: _list[str]
     name: str
     title: str
 
 @typing.type_check_only
-class CustomerProfileProduct(typing_extensions.TypedDict, total=False):
+class CustomerProfileProduct(typing.TypedDict, total=False):
     brand: str
     citationIds: _list[str]
     product: str
 
 @typing.type_check_only
-class CustomerProfileSecurityConsiderations(typing_extensions.TypedDict, total=False):
+class CustomerProfileSecurityConsiderations(typing.TypedDict, total=False):
     considerations: _list[str]
     note: str
 
 @typing.type_check_only
-class CustomerProfileSummary(typing_extensions.TypedDict, total=False):
+class CustomerProfileSummary(typing.TypedDict, total=False):
     areaServed: CustomerProfileCitedString
     brands: CustomerProfileCitedString
     entityType: CustomerProfileCitedString
@@ -199,34 +200,34 @@ class CustomerProfileSummary(typing_extensions.TypedDict, total=False):
     title: CustomerProfileCitedString
 
 @typing.type_check_only
-class CustomerProfileWebPresence(typing_extensions.TypedDict, total=False):
+class CustomerProfileWebPresence(typing.TypedDict, total=False):
     citationIds: _list[str]
     domain: str
 
 @typing.type_check_only
-class DataLeakAlertDetail(typing_extensions.TypedDict, total=False):
+class DataLeakAlertDetail(typing.TypedDict, total=False):
     discoveryDocumentIds: _list[str]
     severity: str
 
 @typing.type_check_only
-class DataLeakFindingDetail(typing_extensions.TypedDict, total=False):
+class DataLeakFindingDetail(typing.TypedDict, total=False):
     documentId: str
     matchScore: float
-    severity: typing_extensions.Literal[
+    severity: typing.Literal[
         "SEVERITY_UNSPECIFIED", "LOW", "MEDIUM", "HIGH", "CRITICAL"
     ]
 
 @typing.type_check_only
-class EnumerateAlertFacetsResponse(typing_extensions.TypedDict, total=False):
+class EnumerateAlertFacetsResponse(typing.TypedDict, total=False):
     facets: _list[Facet]
 
 @typing.type_check_only
-class Evidence(typing_extensions.TypedDict, total=False):
+class Evidence(typing.TypedDict, total=False):
     commonThemes: _list[str]
     distinctThemes: _list[str]
 
 @typing.type_check_only
-class Facet(typing_extensions.TypedDict, total=False):
+class Facet(typing.TypedDict, total=False):
     facet: str
     facetCounts: _list[FacetCount]
     facetType: str
@@ -235,12 +236,12 @@ class Facet(typing_extensions.TypedDict, total=False):
     totalCount: str
 
 @typing.type_check_only
-class FacetCount(typing_extensions.TypedDict, total=False):
+class FacetCount(typing.TypedDict, total=False):
     count: int
     value: str
 
 @typing.type_check_only
-class Finding(typing_extensions.TypedDict, total=False):
+class Finding(typing.TypedDict, total=False):
     aiSummary: str
     alert: str
     audit: Audit
@@ -255,7 +256,7 @@ class Finding(typing_extensions.TypedDict, total=False):
     severityAnalysis: SeverityAnalysis
 
 @typing.type_check_only
-class FindingDetail(typing_extensions.TypedDict, total=False):
+class FindingDetail(typing.TypedDict, total=False):
     dataLeak: DataLeakFindingDetail
     detailType: str
     initialAccessBroker: InitialAccessBrokerFindingDetail
@@ -263,86 +264,90 @@ class FindingDetail(typing_extensions.TypedDict, total=False):
     targetTechnology: TargetTechnologyFindingDetail
 
 @typing.type_check_only
-class GenerateOrgProfileConfigurationRequest(typing_extensions.TypedDict, total=False):
+class GenerateOrgProfileConfigurationRequest(typing.TypedDict, total=False):
     displayName: str
     domain: str
 
 @typing.type_check_only
-class InitialAccessBrokerAlertDetail(typing_extensions.TypedDict, total=False):
+class GetPasswordResponse(typing.TypedDict, total=False):
+    password: str
+
+@typing.type_check_only
+class InitialAccessBrokerAlertDetail(typing.TypedDict, total=False):
     discoveryDocumentIds: _list[str]
     severity: str
 
 @typing.type_check_only
-class InitialAccessBrokerFindingDetail(typing_extensions.TypedDict, total=False):
+class InitialAccessBrokerFindingDetail(typing.TypedDict, total=False):
     documentId: str
     matchScore: float
-    severity: typing_extensions.Literal[
+    severity: typing.Literal[
         "SEVERITY_UNSPECIFIED", "LOW", "MEDIUM", "HIGH", "CRITICAL"
     ]
 
 @typing.type_check_only
-class InsiderThreatAlertDetail(typing_extensions.TypedDict, total=False):
+class InsiderThreatAlertDetail(typing.TypedDict, total=False):
     discoveryDocumentIds: _list[str]
     severity: str
 
 @typing.type_check_only
-class InsiderThreatFindingDetail(typing_extensions.TypedDict, total=False):
+class InsiderThreatFindingDetail(typing.TypedDict, total=False):
     documentId: str
     matchScore: float
-    severity: typing_extensions.Literal[
+    severity: typing.Literal[
         "SEVERITY_UNSPECIFIED", "LOW", "MEDIUM", "HIGH", "CRITICAL"
     ]
 
 @typing.type_check_only
-class ListAlertsResponse(typing_extensions.TypedDict, total=False):
+class ListAlertsResponse(typing.TypedDict, total=False):
     alerts: _list[Alert]
     nextPageToken: str
 
 @typing.type_check_only
-class ListConfigurationRevisionsResponse(typing_extensions.TypedDict, total=False):
+class ListConfigurationRevisionsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     revisions: _list[ConfigurationRevision]
 
 @typing.type_check_only
-class ListConfigurationsResponse(typing_extensions.TypedDict, total=False):
+class ListConfigurationsResponse(typing.TypedDict, total=False):
     configurations: _list[Configuration]
     nextPageToken: str
 
 @typing.type_check_only
-class ListFindingsResponse(typing_extensions.TypedDict, total=False):
+class ListFindingsResponse(typing.TypedDict, total=False):
     findings: _list[Finding]
     nextPageToken: str
 
 @typing.type_check_only
-class MarkAlertAsBenignRequest(typing_extensions.TypedDict, total=False): ...
+class MarkAlertAsBenignRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class MarkAlertAsDuplicateRequest(typing_extensions.TypedDict, total=False):
+class MarkAlertAsDuplicateRequest(typing.TypedDict, total=False):
     duplicateOf: str
 
 @typing.type_check_only
-class MarkAlertAsEscalatedRequest(typing_extensions.TypedDict, total=False): ...
+class MarkAlertAsEscalatedRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class MarkAlertAsFalsePositiveRequest(typing_extensions.TypedDict, total=False): ...
+class MarkAlertAsFalsePositiveRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class MarkAlertAsNotActionableRequest(typing_extensions.TypedDict, total=False): ...
+class MarkAlertAsNotActionableRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class MarkAlertAsReadRequest(typing_extensions.TypedDict, total=False): ...
+class MarkAlertAsReadRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class MarkAlertAsResolvedRequest(typing_extensions.TypedDict, total=False): ...
+class MarkAlertAsResolvedRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class MarkAlertAsTrackedExternallyRequest(typing_extensions.TypedDict, total=False): ...
+class MarkAlertAsTrackedExternallyRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class MarkAlertAsTriagedRequest(typing_extensions.TypedDict, total=False): ...
+class MarkAlertAsTriagedRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Operation(typing_extensions.TypedDict, total=False):
+class Operation(typing.TypedDict, total=False):
     done: bool
     error: Status
     metadata: dict[str, typing.Any]
@@ -350,14 +355,14 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class PriorityAnalysis(typing_extensions.TypedDict, total=False):
-    confidence: typing_extensions.Literal[
+class PriorityAnalysis(typing.TypedDict, total=False):
+    confidence: typing.Literal[
         "CONFIDENCE_LEVEL_UNSPECIFIED",
         "CONFIDENCE_LEVEL_LOW",
         "CONFIDENCE_LEVEL_MEDIUM",
         "CONFIDENCE_LEVEL_HIGH",
     ]
-    priorityLevel: typing_extensions.Literal[
+    priorityLevel: typing.Literal[
         "PRIORITY_LEVEL_UNSPECIFIED",
         "PRIORITY_LEVEL_LOW",
         "PRIORITY_LEVEL_MEDIUM",
@@ -367,15 +372,15 @@ class PriorityAnalysis(typing_extensions.TypedDict, total=False):
     reasoning: str
 
 @typing.type_check_only
-class ProductFix(typing_extensions.TypedDict, total=False):
+class ProductFix(typing.TypedDict, total=False):
     displayName: str
     publishTime: str
     sourceId: str
     uri: str
 
 @typing.type_check_only
-class PublicExploit(typing_extensions.TypedDict, total=False):
-    exploitGrade: typing_extensions.Literal[
+class PublicExploit(typing.TypedDict, total=False):
+    exploitGrade: typing.Literal[
         "EXPLOIT_GRADE_UNSPECIFIED",
         "UNEVALUATED",
         "PROOF_OF_CONCEPT",
@@ -385,7 +390,7 @@ class PublicExploit(typing_extensions.TypedDict, total=False):
         "FAKE",
     ]
     exploitName: str
-    exploitReliability: typing_extensions.Literal[
+    exploitReliability: typing.Literal[
         "EXPLOIT_RELIABILITY_UNSPECIFIED", "UNREVIEWED", "REVIEWED", "TESTED"
     ]
     releaseTime: str
@@ -393,8 +398,8 @@ class PublicExploit(typing_extensions.TypedDict, total=False):
     uri: str
 
 @typing.type_check_only
-class RelevanceAnalysis(typing_extensions.TypedDict, total=False):
-    confidence: typing_extensions.Literal[
+class RelevanceAnalysis(typing.TypedDict, total=False):
+    confidence: typing.Literal[
         "CONFIDENCE_LEVEL_UNSPECIFIED",
         "CONFIDENCE_LEVEL_LOW",
         "CONFIDENCE_LEVEL_MEDIUM",
@@ -402,7 +407,7 @@ class RelevanceAnalysis(typing_extensions.TypedDict, total=False):
     ]
     evidence: Evidence
     reasoning: str
-    relevanceLevel: typing_extensions.Literal[
+    relevanceLevel: typing.Literal[
         "RELEVANCE_LEVEL_UNSPECIFIED",
         "RELEVANCE_LEVEL_LOW",
         "RELEVANCE_LEVEL_MEDIUM",
@@ -411,20 +416,20 @@ class RelevanceAnalysis(typing_extensions.TypedDict, total=False):
     relevant: bool
 
 @typing.type_check_only
-class SearchFindingsResponse(typing_extensions.TypedDict, total=False):
+class SearchFindingsResponse(typing.TypedDict, total=False):
     findings: _list[Finding]
     nextPageToken: str
 
 @typing.type_check_only
-class SeverityAnalysis(typing_extensions.TypedDict, total=False):
-    confidence: typing_extensions.Literal[
+class SeverityAnalysis(typing.TypedDict, total=False):
+    confidence: typing.Literal[
         "CONFIDENCE_LEVEL_UNSPECIFIED",
         "CONFIDENCE_LEVEL_LOW",
         "CONFIDENCE_LEVEL_MEDIUM",
         "CONFIDENCE_LEVEL_HIGH",
     ]
     reasoning: str
-    severityLevel: typing_extensions.Literal[
+    severityLevel: typing.Literal[
         "SEVERITY_LEVEL_UNSPECIFIED",
         "SEVERITY_LEVEL_LOW",
         "SEVERITY_LEVEL_MEDIUM",
@@ -432,25 +437,25 @@ class SeverityAnalysis(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class TargetTechnologyAlertDetail(typing_extensions.TypedDict, total=False):
+class TargetTechnologyAlertDetail(typing.TypedDict, total=False):
     vulnerabilityMatch: VulnerabilityMatch
 
 @typing.type_check_only
-class TargetTechnologyFindingDetail(typing_extensions.TypedDict, total=False):
+class TargetTechnologyFindingDetail(typing.TypedDict, total=False):
     vulnerabilityMatch: VulnerabilityMatch
 
 @typing.type_check_only
-class TechnologyWatchListAlertThreshold(typing_extensions.TypedDict, total=False):
+class TechnologyWatchListAlertThreshold(typing.TypedDict, total=False):
     cvssScoreMinimum: float
     epssScoreMinimum: float
     exploitationStates: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "EXPLOITATION_STATE_UNSPECIFIED",
             "EXPLOITATION_STATE_NO_KNOWN",
             "EXPLOITATION_STATE_REPORTED",
@@ -459,24 +464,24 @@ class TechnologyWatchListAlertThreshold(typing_extensions.TypedDict, total=False
             "EXPLOITATION_STATE_WIDESPREAD",
         ]
     ]
-    priorityMinimum: typing_extensions.Literal[
+    priorityMinimum: typing.Literal[
         "PRIORITY_UNSPECIFIED", "P0", "P1", "P2", "P3", "P4"
     ]
-    riskRatingMinimum: typing_extensions.Literal[
+    riskRatingMinimum: typing.Literal[
         "RISK_RATING_UNSPECIFIED", "LOW", "MEDIUM", "HIGH", "CRITICAL", "UNRATED"
     ]
 
 @typing.type_check_only
-class TechnologyWatchListConfig(typing_extensions.TypedDict, total=False):
+class TechnologyWatchListConfig(typing.TypedDict, total=False):
     alertThreshold: TechnologyWatchListAlertThreshold
     technologies: _list[str]
 
 @typing.type_check_only
-class UpsertConfigurationResponse(typing_extensions.TypedDict, total=False):
+class UpsertConfigurationResponse(typing.TypedDict, total=False):
     configuration: str
 
 @typing.type_check_only
-class VulnerabilityMatch(typing_extensions.TypedDict, total=False):
+class VulnerabilityMatch(typing.TypedDict, total=False):
     associations: _list[Association]
     collectionId: str
     cveId: str
@@ -485,7 +490,7 @@ class VulnerabilityMatch(typing_extensions.TypedDict, total=False):
     disclosureTime: str
     epssScore: float
     exploitationConsequences: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "EXPLOITATION_CONSEQUENCE_UNSPECIFIED",
             "CODE_EXECUTION",
             "COMMAND_EXECUTION",
@@ -501,7 +506,7 @@ class VulnerabilityMatch(typing_extensions.TypedDict, total=False):
             "SPOOFING",
         ]
     ]
-    exploitationState: typing_extensions.Literal[
+    exploitationState: typing.Literal[
         "EXPLOITATION_STATE_UNSPECIFIED",
         "EXPLOITATION_STATE_NO_KNOWN",
         "EXPLOITATION_STATE_REPORTED",
@@ -510,7 +515,7 @@ class VulnerabilityMatch(typing_extensions.TypedDict, total=False):
         "EXPLOITATION_STATE_WIDESPREAD",
     ]
     exploitationVectors: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "EXPLOITATION_VECTOR_UNSPECIFIED",
             "ADMINISTRATIVE_INTERFACE",
             "BLUETOOTH_ACCESS",
@@ -532,13 +537,11 @@ class VulnerabilityMatch(typing_extensions.TypedDict, total=False):
         ]
     ]
     matchedTechnologies: _list[str]
-    priority: typing_extensions.Literal[
-        "PRIORITY_UNSPECIFIED", "P0", "P1", "P2", "P3", "P4"
-    ]
+    priority: typing.Literal["PRIORITY_UNSPECIFIED", "P0", "P1", "P2", "P3", "P4"]
     productFixes: _list[ProductFix]
     publicExploits: _list[PublicExploit]
     publiclyAvailableExploit: bool
-    riskRating: typing_extensions.Literal[
+    riskRating: typing.Literal[
         "RISK_RATING_UNSPECIFIED", "LOW", "MEDIUM", "HIGH", "CRITICAL", "UNRATED"
     ]
     technologies: _list[str]

@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -30,7 +29,7 @@ class CloudTraceResource(googleapiclient.discovery.Resource):
                 pageSize: int | None = ...,
                 pageToken: str | None = ...,
                 startTime: str | None = ...,
-                view: typing_extensions.Literal[
+                view: typing.Literal[
                     "VIEW_TYPE_UNSPECIFIED", "MINIMAL", "ROOTSPAN", "COMPLETE"
                 ]
                 | None = ...,

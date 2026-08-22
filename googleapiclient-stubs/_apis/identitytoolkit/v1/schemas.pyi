@@ -1,34 +1,26 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class GoogleCloudIdentitytoolkitV1Argon2Parameters(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudIdentitytoolkitV1Argon2Parameters(typing.TypedDict, total=False):
     associatedData: str
     hashLengthBytes: int
-    hashType: typing_extensions.Literal[
+    hashType: typing.Literal[
         "HASH_TYPE_UNSPECIFIED", "ARGON2_D", "ARGON2_ID", "ARGON2_I"
     ]
     iterations: int
     memoryCostKib: int
     parallelism: int
-    version: typing_extensions.Literal[
-        "VERSION_UNSPECIFIED", "VERSION_10", "VERSION_13"
-    ]
+    version: typing.Literal["VERSION_UNSPECIFIED", "VERSION_10", "VERSION_13"]
 
 @typing.type_check_only
-class GoogleCloudIdentitytoolkitV1AutoRetrievalInfo(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudIdentitytoolkitV1AutoRetrievalInfo(typing.TypedDict, total=False):
     appSignatureHash: str
 
 @typing.type_check_only
 class GoogleCloudIdentitytoolkitV1BatchDeleteAccountsRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     force: bool
     localIds: _list[str]
@@ -36,22 +28,18 @@ class GoogleCloudIdentitytoolkitV1BatchDeleteAccountsRequest(
 
 @typing.type_check_only
 class GoogleCloudIdentitytoolkitV1BatchDeleteAccountsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     errors: _list[GoogleCloudIdentitytoolkitV1BatchDeleteErrorInfo]
 
 @typing.type_check_only
-class GoogleCloudIdentitytoolkitV1BatchDeleteErrorInfo(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudIdentitytoolkitV1BatchDeleteErrorInfo(typing.TypedDict, total=False):
     index: int
     localId: str
     message: str
 
 @typing.type_check_only
-class GoogleCloudIdentitytoolkitV1CreateAuthUriRequest(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudIdentitytoolkitV1CreateAuthUriRequest(typing.TypedDict, total=False):
     appId: str
     authFlowType: str
     context: str
@@ -68,9 +56,7 @@ class GoogleCloudIdentitytoolkitV1CreateAuthUriRequest(
     tenantId: str
 
 @typing.type_check_only
-class GoogleCloudIdentitytoolkitV1CreateAuthUriResponse(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudIdentitytoolkitV1CreateAuthUriResponse(typing.TypedDict, total=False):
     allProviders: _list[str]
     authUri: str
     captchaRequired: bool
@@ -83,7 +69,7 @@ class GoogleCloudIdentitytoolkitV1CreateAuthUriResponse(
 
 @typing.type_check_only
 class GoogleCloudIdentitytoolkitV1CreateSessionCookieRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     idToken: str
     tenantId: str
@@ -91,14 +77,12 @@ class GoogleCloudIdentitytoolkitV1CreateSessionCookieRequest(
 
 @typing.type_check_only
 class GoogleCloudIdentitytoolkitV1CreateSessionCookieResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     sessionCookie: str
 
 @typing.type_check_only
-class GoogleCloudIdentitytoolkitV1DeleteAccountRequest(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudIdentitytoolkitV1DeleteAccountRequest(typing.TypedDict, total=False):
     delegatedProjectNumber: str
     idToken: str
     localId: str
@@ -106,32 +90,28 @@ class GoogleCloudIdentitytoolkitV1DeleteAccountRequest(
     tenantId: str
 
 @typing.type_check_only
-class GoogleCloudIdentitytoolkitV1DeleteAccountResponse(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudIdentitytoolkitV1DeleteAccountResponse(typing.TypedDict, total=False):
     kind: str
 
 @typing.type_check_only
 class GoogleCloudIdentitytoolkitV1DownloadAccountResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     kind: str
     nextPageToken: str
     users: _list[GoogleCloudIdentitytoolkitV1UserInfo]
 
 @typing.type_check_only
-class GoogleCloudIdentitytoolkitV1EmailInfo(typing_extensions.TypedDict, total=False):
+class GoogleCloudIdentitytoolkitV1EmailInfo(typing.TypedDict, total=False):
     emailAddress: str
 
-AlternativeGoogleCloudIdentitytoolkitV1EmailTemplate = typing_extensions.TypedDict(
+AlternativeGoogleCloudIdentitytoolkitV1EmailTemplate = typing.TypedDict(
     "AlternativeGoogleCloudIdentitytoolkitV1EmailTemplate",
     {
         "body": str,
         "customized": bool,
         "disabled": bool,
-        "format": typing_extensions.Literal[
-            "EMAIL_BODY_FORMAT_UNSPECIFIED", "PLAINTEXT", "HTML"
-        ],
+        "format": typing.Literal["EMAIL_BODY_FORMAT_UNSPECIFIED", "PLAINTEXT", "HTML"],
         "from": str,
         "fromDisplayName": str,
         "fromLocalPart": str,
@@ -148,21 +128,19 @@ class GoogleCloudIdentitytoolkitV1EmailTemplate(
 ): ...
 
 @typing.type_check_only
-class GoogleCloudIdentitytoolkitV1ErrorInfo(typing_extensions.TypedDict, total=False):
+class GoogleCloudIdentitytoolkitV1ErrorInfo(typing.TypedDict, total=False):
     index: int
     message: str
 
 @typing.type_check_only
 class GoogleCloudIdentitytoolkitV1FederatedUserIdentifier(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     providerId: str
     rawId: str
 
 @typing.type_check_only
-class GoogleCloudIdentitytoolkitV1GetAccountInfoRequest(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudIdentitytoolkitV1GetAccountInfoRequest(typing.TypedDict, total=False):
     delegatedProjectNumber: str
     email: _list[str]
     federatedUserId: _list[GoogleCloudIdentitytoolkitV1FederatedUserIdentifier]
@@ -174,23 +152,19 @@ class GoogleCloudIdentitytoolkitV1GetAccountInfoRequest(
     tenantId: str
 
 @typing.type_check_only
-class GoogleCloudIdentitytoolkitV1GetAccountInfoResponse(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudIdentitytoolkitV1GetAccountInfoResponse(typing.TypedDict, total=False):
     kind: str
     users: _list[GoogleCloudIdentitytoolkitV1UserInfo]
 
 @typing.type_check_only
-class GoogleCloudIdentitytoolkitV1GetOobCodeRequest(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudIdentitytoolkitV1GetOobCodeRequest(typing.TypedDict, total=False):
     androidInstallApp: bool
     androidMinimumVersion: str
     androidPackageName: str
     canHandleCodeInApp: bool
     captchaResp: str
     challenge: str
-    clientType: typing_extensions.Literal[
+    clientType: typing.Literal[
         "CLIENT_TYPE_UNSPECIFIED",
         "CLIENT_TYPE_WEB",
         "CLIENT_TYPE_ANDROID",
@@ -204,10 +178,10 @@ class GoogleCloudIdentitytoolkitV1GetOobCodeRequest(
     idToken: str
     linkDomain: str
     newEmail: str
-    recaptchaVersion: typing_extensions.Literal[
+    recaptchaVersion: typing.Literal[
         "RECAPTCHA_VERSION_UNSPECIFIED", "RECAPTCHA_ENTERPRISE"
     ]
-    requestType: typing_extensions.Literal[
+    requestType: typing.Literal[
         "OOB_REQ_TYPE_UNSPECIFIED",
         "PASSWORD_RESET",
         "OLD_EMAIL_AGREE",
@@ -224,9 +198,7 @@ class GoogleCloudIdentitytoolkitV1GetOobCodeRequest(
     userIp: str
 
 @typing.type_check_only
-class GoogleCloudIdentitytoolkitV1GetOobCodeResponse(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudIdentitytoolkitV1GetOobCodeResponse(typing.TypedDict, total=False):
     email: str
     kind: str
     oobCode: str
@@ -234,7 +206,7 @@ class GoogleCloudIdentitytoolkitV1GetOobCodeResponse(
 
 @typing.type_check_only
 class GoogleCloudIdentitytoolkitV1GetProjectConfigResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     allowPasswordUser: bool
     apiKey: str
@@ -252,7 +224,7 @@ class GoogleCloudIdentitytoolkitV1GetProjectConfigResponse(
 
 @typing.type_check_only
 class GoogleCloudIdentitytoolkitV1GetRecaptchaParamResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     kind: str
     producerProjectNumber: str
@@ -261,16 +233,16 @@ class GoogleCloudIdentitytoolkitV1GetRecaptchaParamResponse(
 
 @typing.type_check_only
 class GoogleCloudIdentitytoolkitV1GetSessionCookiePublicKeysResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     keys: _list[GoogleCloudIdentitytoolkitV1OpenIdConnectKey]
 
 @typing.type_check_only
-class GoogleCloudIdentitytoolkitV1IdpConfig(typing_extensions.TypedDict, total=False):
+class GoogleCloudIdentitytoolkitV1IdpConfig(typing.TypedDict, total=False):
     clientId: str
     enabled: bool
     experimentPercent: int
-    provider: typing_extensions.Literal[
+    provider: typing.Literal[
         "PROVIDER_UNSPECIFIED",
         "MSLIVE",
         "GOOGLE",
@@ -289,7 +261,7 @@ class GoogleCloudIdentitytoolkitV1IdpConfig(typing_extensions.TypedDict, total=F
 
 @typing.type_check_only
 class GoogleCloudIdentitytoolkitV1IssueSamlResponseRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     idToken: str
     rpId: str
@@ -297,7 +269,7 @@ class GoogleCloudIdentitytoolkitV1IssueSamlResponseRequest(
 
 @typing.type_check_only
 class GoogleCloudIdentitytoolkitV1IssueSamlResponseResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     acsEndpoint: str
     email: str
@@ -308,9 +280,7 @@ class GoogleCloudIdentitytoolkitV1IssueSamlResponseResponse(
     samlResponse: str
 
 @typing.type_check_only
-class GoogleCloudIdentitytoolkitV1MfaEnrollment(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudIdentitytoolkitV1MfaEnrollment(typing.TypedDict, total=False):
     displayName: str
     emailInfo: GoogleCloudIdentitytoolkitV1EmailInfo
     enrolledAt: str
@@ -320,18 +290,16 @@ class GoogleCloudIdentitytoolkitV1MfaEnrollment(
     unobfuscatedPhoneInfo: str
 
 @typing.type_check_only
-class GoogleCloudIdentitytoolkitV1MfaFactor(typing_extensions.TypedDict, total=False):
+class GoogleCloudIdentitytoolkitV1MfaFactor(typing.TypedDict, total=False):
     displayName: str
     phoneInfo: str
 
 @typing.type_check_only
-class GoogleCloudIdentitytoolkitV1MfaInfo(typing_extensions.TypedDict, total=False):
+class GoogleCloudIdentitytoolkitV1MfaInfo(typing.TypedDict, total=False):
     enrollments: _list[GoogleCloudIdentitytoolkitV1MfaEnrollment]
 
 @typing.type_check_only
-class GoogleCloudIdentitytoolkitV1OpenIdConnectKey(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudIdentitytoolkitV1OpenIdConnectKey(typing.TypedDict, total=False):
     alg: str
     e: str
     kid: str
@@ -340,9 +308,7 @@ class GoogleCloudIdentitytoolkitV1OpenIdConnectKey(
     use: str
 
 @typing.type_check_only
-class GoogleCloudIdentitytoolkitV1ProviderUserInfo(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudIdentitytoolkitV1ProviderUserInfo(typing.TypedDict, total=False):
     displayName: str
     email: str
     federatedId: str
@@ -353,15 +319,13 @@ class GoogleCloudIdentitytoolkitV1ProviderUserInfo(
     screenName: str
 
 @typing.type_check_only
-class GoogleCloudIdentitytoolkitV1QueryUserInfoRequest(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudIdentitytoolkitV1QueryUserInfoRequest(typing.TypedDict, total=False):
     expression: _list[GoogleCloudIdentitytoolkitV1SqlExpression]
     limit: str
     offset: str
-    order: typing_extensions.Literal["ORDER_UNSPECIFIED", "ASC", "DESC"]
+    order: typing.Literal["ORDER_UNSPECIFIED", "ASC", "DESC"]
     returnUserInfo: bool
-    sortBy: typing_extensions.Literal[
+    sortBy: typing.Literal[
         "SORT_BY_FIELD_UNSPECIFIED",
         "USER_ID",
         "NAME",
@@ -372,16 +336,12 @@ class GoogleCloudIdentitytoolkitV1QueryUserInfoRequest(
     tenantId: str
 
 @typing.type_check_only
-class GoogleCloudIdentitytoolkitV1QueryUserInfoResponse(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudIdentitytoolkitV1QueryUserInfoResponse(typing.TypedDict, total=False):
     recordsCount: str
     userInfo: _list[GoogleCloudIdentitytoolkitV1UserInfo]
 
 @typing.type_check_only
-class GoogleCloudIdentitytoolkitV1ResetPasswordRequest(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudIdentitytoolkitV1ResetPasswordRequest(typing.TypedDict, total=False):
     email: str
     newPassword: str
     oldPassword: str
@@ -389,14 +349,12 @@ class GoogleCloudIdentitytoolkitV1ResetPasswordRequest(
     tenantId: str
 
 @typing.type_check_only
-class GoogleCloudIdentitytoolkitV1ResetPasswordResponse(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudIdentitytoolkitV1ResetPasswordResponse(typing.TypedDict, total=False):
     email: str
     kind: str
     mfaInfo: GoogleCloudIdentitytoolkitV1MfaEnrollment
     newEmail: str
-    requestType: typing_extensions.Literal[
+    requestType: typing.Literal[
         "OOB_REQ_TYPE_UNSPECIFIED",
         "PASSWORD_RESET",
         "OLD_EMAIL_AGREE",
@@ -410,11 +368,11 @@ class GoogleCloudIdentitytoolkitV1ResetPasswordResponse(
 
 @typing.type_check_only
 class GoogleCloudIdentitytoolkitV1SendVerificationCodeRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     autoRetrievalInfo: GoogleCloudIdentitytoolkitV1AutoRetrievalInfo
     captchaResponse: str
-    clientType: typing_extensions.Literal[
+    clientType: typing.Literal[
         "CLIENT_TYPE_UNSPECIFIED",
         "CLIENT_TYPE_WEB",
         "CLIENT_TYPE_ANDROID",
@@ -425,7 +383,7 @@ class GoogleCloudIdentitytoolkitV1SendVerificationCodeRequest(
     phoneNumber: str
     playIntegrityToken: str
     recaptchaToken: str
-    recaptchaVersion: typing_extensions.Literal[
+    recaptchaVersion: typing.Literal[
         "RECAPTCHA_VERSION_UNSPECIFIED", "RECAPTCHA_ENTERPRISE"
     ]
     safetyNetToken: str
@@ -433,21 +391,19 @@ class GoogleCloudIdentitytoolkitV1SendVerificationCodeRequest(
 
 @typing.type_check_only
 class GoogleCloudIdentitytoolkitV1SendVerificationCodeResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     sessionInfo: str
 
 @typing.type_check_only
-class GoogleCloudIdentitytoolkitV1SetAccountInfoRequest(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudIdentitytoolkitV1SetAccountInfoRequest(typing.TypedDict, total=False):
     captchaChallenge: str
     captchaResponse: str
     createdAt: str
     customAttributes: str
     delegatedProjectNumber: str
     deleteAttribute: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "USER_ATTRIBUTE_NAME_UNSPECIFIED",
             "EMAIL",
             "DISPLAY_NAME",
@@ -480,9 +436,7 @@ class GoogleCloudIdentitytoolkitV1SetAccountInfoRequest(
     validSince: str
 
 @typing.type_check_only
-class GoogleCloudIdentitytoolkitV1SetAccountInfoResponse(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudIdentitytoolkitV1SetAccountInfoResponse(typing.TypedDict, total=False):
     displayName: str
     email: str
     emailVerified: bool
@@ -498,7 +452,7 @@ class GoogleCloudIdentitytoolkitV1SetAccountInfoResponse(
 
 @typing.type_check_only
 class GoogleCloudIdentitytoolkitV1SignInWithCustomTokenRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     delegatedProjectNumber: str
     instanceId: str
@@ -508,7 +462,7 @@ class GoogleCloudIdentitytoolkitV1SignInWithCustomTokenRequest(
 
 @typing.type_check_only
 class GoogleCloudIdentitytoolkitV1SignInWithCustomTokenResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     expiresIn: str
     idToken: str
@@ -518,7 +472,7 @@ class GoogleCloudIdentitytoolkitV1SignInWithCustomTokenResponse(
 
 @typing.type_check_only
 class GoogleCloudIdentitytoolkitV1SignInWithEmailLinkRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     email: str
     idToken: str
@@ -527,7 +481,7 @@ class GoogleCloudIdentitytoolkitV1SignInWithEmailLinkRequest(
 
 @typing.type_check_only
 class GoogleCloudIdentitytoolkitV1SignInWithEmailLinkResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     email: str
     expiresIn: str
@@ -541,7 +495,7 @@ class GoogleCloudIdentitytoolkitV1SignInWithEmailLinkResponse(
 
 @typing.type_check_only
 class GoogleCloudIdentitytoolkitV1SignInWithGameCenterRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     displayName: str
     gamePlayerId: str
@@ -556,7 +510,7 @@ class GoogleCloudIdentitytoolkitV1SignInWithGameCenterRequest(
 
 @typing.type_check_only
 class GoogleCloudIdentitytoolkitV1SignInWithGameCenterResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     displayName: str
     expiresIn: str
@@ -569,9 +523,7 @@ class GoogleCloudIdentitytoolkitV1SignInWithGameCenterResponse(
     teamPlayerId: str
 
 @typing.type_check_only
-class GoogleCloudIdentitytoolkitV1SignInWithIdpRequest(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudIdentitytoolkitV1SignInWithIdpRequest(typing.TypedDict, total=False):
     autoCreate: bool
     delegatedProjectNumber: str
     idToken: str
@@ -586,9 +538,7 @@ class GoogleCloudIdentitytoolkitV1SignInWithIdpRequest(
     tenantId: str
 
 @typing.type_check_only
-class GoogleCloudIdentitytoolkitV1SignInWithIdpResponse(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudIdentitytoolkitV1SignInWithIdpResponse(typing.TypedDict, total=False):
     context: str
     dateOfBirth: str
     displayName: str
@@ -631,11 +581,11 @@ class GoogleCloudIdentitytoolkitV1SignInWithIdpResponse(
 
 @typing.type_check_only
 class GoogleCloudIdentitytoolkitV1SignInWithPasswordRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     captchaChallenge: str
     captchaResponse: str
-    clientType: typing_extensions.Literal[
+    clientType: typing.Literal[
         "CLIENT_TYPE_UNSPECIFIED",
         "CLIENT_TYPE_WEB",
         "CLIENT_TYPE_ANDROID",
@@ -647,7 +597,7 @@ class GoogleCloudIdentitytoolkitV1SignInWithPasswordRequest(
     instanceId: str
     password: str
     pendingIdToken: str
-    recaptchaVersion: typing_extensions.Literal[
+    recaptchaVersion: typing.Literal[
         "RECAPTCHA_VERSION_UNSPECIFIED", "RECAPTCHA_ENTERPRISE"
     ]
     returnSecureToken: bool
@@ -655,7 +605,7 @@ class GoogleCloudIdentitytoolkitV1SignInWithPasswordRequest(
 
 @typing.type_check_only
 class GoogleCloudIdentitytoolkitV1SignInWithPasswordResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     displayName: str
     email: str
@@ -675,11 +625,11 @@ class GoogleCloudIdentitytoolkitV1SignInWithPasswordResponse(
 
 @typing.type_check_only
 class GoogleCloudIdentitytoolkitV1SignInWithPhoneNumberRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     code: str
     idToken: str
-    operation: typing_extensions.Literal[
+    operation: typing.Literal[
         "VERIFY_OP_UNSPECIFIED", "SIGN_UP_OR_IN", "REAUTH", "UPDATE", "LINK"
     ]
     phoneNumber: str
@@ -690,7 +640,7 @@ class GoogleCloudIdentitytoolkitV1SignInWithPhoneNumberRequest(
 
 @typing.type_check_only
 class GoogleCloudIdentitytoolkitV1SignInWithPhoneNumberResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     expiresIn: str
     idToken: str
@@ -704,12 +654,10 @@ class GoogleCloudIdentitytoolkitV1SignInWithPhoneNumberResponse(
     verificationProofExpiresIn: str
 
 @typing.type_check_only
-class GoogleCloudIdentitytoolkitV1SignUpRequest(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudIdentitytoolkitV1SignUpRequest(typing.TypedDict, total=False):
     captchaChallenge: str
     captchaResponse: str
-    clientType: typing_extensions.Literal[
+    clientType: typing.Literal[
         "CLIENT_TYPE_UNSPECIFIED",
         "CLIENT_TYPE_WEB",
         "CLIENT_TYPE_ANDROID",
@@ -726,16 +674,14 @@ class GoogleCloudIdentitytoolkitV1SignUpRequest(
     password: str
     phoneNumber: str
     photoUrl: str
-    recaptchaVersion: typing_extensions.Literal[
+    recaptchaVersion: typing.Literal[
         "RECAPTCHA_VERSION_UNSPECIFIED", "RECAPTCHA_ENTERPRISE"
     ]
     targetProjectId: str
     tenantId: str
 
 @typing.type_check_only
-class GoogleCloudIdentitytoolkitV1SignUpResponse(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudIdentitytoolkitV1SignUpResponse(typing.TypedDict, total=False):
     displayName: str
     email: str
     expiresIn: str
@@ -745,22 +691,16 @@ class GoogleCloudIdentitytoolkitV1SignUpResponse(
     refreshToken: str
 
 @typing.type_check_only
-class GoogleCloudIdentitytoolkitV1SqlExpression(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudIdentitytoolkitV1SqlExpression(typing.TypedDict, total=False):
     email: str
     phoneNumber: str
     userId: str
 
 @typing.type_check_only
-class GoogleCloudIdentitytoolkitV1TotpInfo(
-    typing_extensions.TypedDict, total=False
-): ...
+class GoogleCloudIdentitytoolkitV1TotpInfo(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class GoogleCloudIdentitytoolkitV1UploadAccountRequest(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudIdentitytoolkitV1UploadAccountRequest(typing.TypedDict, total=False):
     allowOverwrite: bool
     argon2Parameters: GoogleCloudIdentitytoolkitV1Argon2Parameters
     blockSize: int
@@ -770,7 +710,7 @@ class GoogleCloudIdentitytoolkitV1UploadAccountRequest(
     hashAlgorithm: str
     memoryCost: int
     parallelization: int
-    passwordHashOrder: typing_extensions.Literal[
+    passwordHashOrder: typing.Literal[
         "UNSPECIFIED_ORDER", "SALT_AND_PASSWORD", "PASSWORD_AND_SALT"
     ]
     rounds: int
@@ -781,14 +721,12 @@ class GoogleCloudIdentitytoolkitV1UploadAccountRequest(
     users: _list[GoogleCloudIdentitytoolkitV1UserInfo]
 
 @typing.type_check_only
-class GoogleCloudIdentitytoolkitV1UploadAccountResponse(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudIdentitytoolkitV1UploadAccountResponse(typing.TypedDict, total=False):
     error: _list[GoogleCloudIdentitytoolkitV1ErrorInfo]
     kind: str
 
 @typing.type_check_only
-class GoogleCloudIdentitytoolkitV1UserInfo(typing_extensions.TypedDict, total=False):
+class GoogleCloudIdentitytoolkitV1UserInfo(typing.TypedDict, total=False):
     createdAt: str
     customAttributes: str
     customAuth: bool
@@ -818,10 +756,8 @@ class GoogleCloudIdentitytoolkitV1UserInfo(typing_extensions.TypedDict, total=Fa
     version: int
 
 @typing.type_check_only
-class GoogleCloudIdentitytoolkitV1UserNotification(
-    typing_extensions.TypedDict, total=False
-):
-    notificationCode: typing_extensions.Literal[
+class GoogleCloudIdentitytoolkitV1UserNotification(typing.TypedDict, total=False):
+    notificationCode: typing.Literal[
         "NOTIFICATION_CODE_UNSPECIFIED",
         "MISSING_LOWERCASE_CHARACTER",
         "MISSING_UPPERCASE_CHARACTER",
@@ -833,15 +769,13 @@ class GoogleCloudIdentitytoolkitV1UserNotification(
     notificationMessage: str
 
 @typing.type_check_only
-class GoogleCloudIdentitytoolkitV1VerifyIosClientRequest(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudIdentitytoolkitV1VerifyIosClientRequest(typing.TypedDict, total=False):
     appToken: str
     isSandbox: bool
 
 @typing.type_check_only
 class GoogleCloudIdentitytoolkitV1VerifyIosClientResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     receipt: str
     suggestedTimeout: str

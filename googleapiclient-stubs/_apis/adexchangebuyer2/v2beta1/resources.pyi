@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -156,7 +155,7 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                 *,
                 accountId: str,
                 body: Creative,
-                duplicateIdMode: typing_extensions.Literal[
+                duplicateIdMode: typing.Literal[
                     "NO_DUPLICATES", "FORCE_ENABLE_DUPLICATE_IDS"
                 ]
                 | None = ...,
@@ -212,7 +211,7 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                 *,
                 accountId: str,
                 filter: str | None = ...,
-                filterSyntax: typing_extensions.Literal[
+                filterSyntax: typing.Literal[
                     "FILTER_SYNTAX_UNSPECIFIED", "PQL", "LIST_FILTER"
                 ]
                 | None = ...,
@@ -307,7 +306,7 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                 *,
                 accountId: str,
                 filter: str | None = ...,
-                filterSyntax: typing_extensions.Literal[
+                filterSyntax: typing.Literal[
                     "FILTER_SYNTAX_UNSPECIFIED", "PQL", "LIST_FILTER"
                 ]
                 | None = ...,

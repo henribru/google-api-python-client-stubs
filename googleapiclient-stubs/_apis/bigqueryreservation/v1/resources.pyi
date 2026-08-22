@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -99,6 +98,14 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
                     previous_request: ListReservationGroupsResponseHttpRequest,
                     previous_response: ListReservationGroupsResponse,
                 ) -> ListReservationGroupsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: ReservationGroup,
+                    updateMask: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> ReservationGroupHttpRequest: ...
 
             @typing.type_check_only
             class ReservationsResource(googleapiclient.discovery.Resource):

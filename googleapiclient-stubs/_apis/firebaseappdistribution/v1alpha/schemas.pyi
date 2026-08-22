@@ -1,49 +1,62 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class AndroidxCrawlerOutputPoint(typing_extensions.TypedDict, total=False):
+class AndroidxCrawlerOutputPoint(typing.TypedDict, total=False):
     xCoordinate: int
     yCoordinate: int
 
 @typing.type_check_only
-class AndroidxCrawlerOutputRectangle(typing_extensions.TypedDict, total=False):
+class AndroidxCrawlerOutputRectangle(typing.TypedDict, total=False):
     bottom: int
     left: int
     right: int
     top: int
 
 @typing.type_check_only
-class GoogleFirebaseAppdistroV1Release(typing_extensions.TypedDict, total=False):
+class GoogleFirebaseAppdistroV1Release(typing.TypedDict, total=False):
+    acceptedInvitationCount: int
+    androidPackageRegistrationState: typing.Literal[
+        "ANDROID_PACKAGE_REGISTRATION_STATE_UNSPECIFIED",
+        "REGISTERED",
+        "NOT_REGISTERED",
+        "REGISTERED_WITH_ANOTHER_CERTIFICATE_FINGERPRINT",
+    ]
     binaryDownloadUri: str
+    binaryType: typing.Literal["BINARY_TYPE_UNSPECIFIED", "IPA", "APK", "AAB"]
     buildVersion: str
     createTime: str
     displayVersion: str
     expireTime: str
+    feedbackCount: int
     firebaseConsoleUri: str
+    installationCount: int
     name: str
+    openInvitationCount: int
     releaseNotes: GoogleFirebaseAppdistroV1ReleaseNotes
+    testState: typing.Literal[
+        "TEST_STATE_UNSPECIFIED",
+        "NO_TESTS_REQUESTED",
+        "IN_PROGRESS",
+        "PASSED",
+        "FAILED",
+        "INCONCLUSIVE",
+    ]
     testingUri: str
     updateTime: str
 
 @typing.type_check_only
-class GoogleFirebaseAppdistroV1ReleaseNotes(typing_extensions.TypedDict, total=False):
+class GoogleFirebaseAppdistroV1ReleaseNotes(typing.TypedDict, total=False):
     text: str
 
 @typing.type_check_only
-class GoogleFirebaseAppdistroV1UploadReleaseMetadata(
-    typing_extensions.TypedDict, total=False
-): ...
+class GoogleFirebaseAppdistroV1UploadReleaseMetadata(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class GoogleFirebaseAppdistroV1UploadReleaseResponse(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleFirebaseAppdistroV1UploadReleaseResponse(typing.TypedDict, total=False):
     release: GoogleFirebaseAppdistroV1Release
-    result: typing_extensions.Literal[
+    result: typing.Literal[
         "UPLOAD_RELEASE_RESULT_UNSPECIFIED",
         "RELEASE_CREATED",
         "RELEASE_UPDATED",
@@ -51,21 +64,17 @@ class GoogleFirebaseAppdistroV1UploadReleaseResponse(
     ]
 
 @typing.type_check_only
-class GoogleFirebaseAppdistroV1alphaAabCertificate(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleFirebaseAppdistroV1alphaAabCertificate(typing.TypedDict, total=False):
     certificateHashMd5: str
     certificateHashSha1: str
     certificateHashSha256: str
 
 @typing.type_check_only
-class GoogleFirebaseAppdistroV1alphaAiInstructions(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleFirebaseAppdistroV1alphaAiInstructions(typing.TypedDict, total=False):
     steps: _list[GoogleFirebaseAppdistroV1alphaAiStep]
 
 @typing.type_check_only
-class GoogleFirebaseAppdistroV1alphaAiStep(typing_extensions.TypedDict, total=False):
+class GoogleFirebaseAppdistroV1alphaAiStep(typing.TypedDict, total=False):
     assertion: str
     goal: str
     hint: str
@@ -73,12 +82,10 @@ class GoogleFirebaseAppdistroV1alphaAiStep(typing_extensions.TypedDict, total=Fa
     testCase: str
 
 @typing.type_check_only
-class GoogleFirebaseAppdistroV1alphaAiStepResult(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleFirebaseAppdistroV1alphaAiStepResult(typing.TypedDict, total=False):
     assertionDetails: GoogleFirebaseAppdistroV1alphaAssertionDetails
     goalDetails: GoogleFirebaseAppdistroV1alphaGoalDetails
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STEP_STATE_UNSPECIFIED",
         "IN_PROGRESS",
         "PASSED",
@@ -89,9 +96,9 @@ class GoogleFirebaseAppdistroV1alphaAiStepResult(
     step: GoogleFirebaseAppdistroV1alphaAiStep
 
 @typing.type_check_only
-class GoogleFirebaseAppdistroV1alphaApp(typing_extensions.TypedDict, total=False):
+class GoogleFirebaseAppdistroV1alphaApp(typing.TypedDict, total=False):
     aabCertificate: GoogleFirebaseAppdistroV1alphaAabCertificate
-    aabState: typing_extensions.Literal[
+    aabState: typing.Literal[
         "AAB_STATE_UNSPECIFIED",
         "ACTIVE",
         "PLAY_ACCOUNT_NOT_LINKED",
@@ -107,86 +114,80 @@ class GoogleFirebaseAppdistroV1alphaApp(typing_extensions.TypedDict, total=False
     projectNumber: str
 
 @typing.type_check_only
-class GoogleFirebaseAppdistroV1alphaAppCrash(typing_extensions.TypedDict, total=False):
+class GoogleFirebaseAppdistroV1alphaAppCrash(typing.TypedDict, total=False):
     message: str
     stackTrace: str
 
 @typing.type_check_only
-class GoogleFirebaseAppdistroV1alphaAssertionDetails(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleFirebaseAppdistroV1alphaAssertionDetails(typing.TypedDict, total=False):
     explanation: str
     result: bool
     screenshot: GoogleFirebaseAppdistroV1alphaScreenshot
 
 @typing.type_check_only
 class GoogleFirebaseAppdistroV1alphaBatchDeleteTestCasesRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     names: _list[str]
 
 @typing.type_check_only
 class GoogleFirebaseAppdistroV1alphaBatchUpdateTestCasesRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     requests: _list[GoogleFirebaseAppdistroV1alphaUpdateTestCaseRequest]
 
 @typing.type_check_only
 class GoogleFirebaseAppdistroV1alphaBatchUpdateTestCasesResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     testCases: _list[GoogleFirebaseAppdistroV1alphaTestCase]
 
 @typing.type_check_only
 class GoogleFirebaseAppdistroV1alphaCancelReleaseTestResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
 class GoogleFirebaseAppdistroV1alphaClearTestCaseCacheRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     testDevices: _list[GoogleFirebaseAppdistroV1alphaTestDevice]
 
 @typing.type_check_only
 class GoogleFirebaseAppdistroV1alphaClearTestCaseCacheResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
 class GoogleFirebaseAppdistroV1alphaCreateReleaseNotesRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     releaseNotes: GoogleFirebaseAppdistroV1alphaReleaseNotes
 
 @typing.type_check_only
 class GoogleFirebaseAppdistroV1alphaCreateReleaseNotesResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
-class GoogleFirebaseAppdistroV1alphaDeviceAction(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleFirebaseAppdistroV1alphaDeviceAction(typing.TypedDict, total=False):
     description: str
     deviceInteractions: _list[GoogleFirebaseAppdistroV1alphaDeviceInteraction]
 
 @typing.type_check_only
-class GoogleFirebaseAppdistroV1alphaDeviceExecution(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleFirebaseAppdistroV1alphaDeviceExecution(typing.TypedDict, total=False):
     aiStepResults: _list[GoogleFirebaseAppdistroV1alphaAiStepResult]
     appCrash: GoogleFirebaseAppdistroV1alphaAppCrash
     crawlGraphUri: str
     device: GoogleFirebaseAppdistroV1alphaTestDevice
-    executionType: typing_extensions.Literal[
+    executionType: typing.Literal[
         "EXECUTION_TYPE_UNSPECIFIED",
         "AI",
         "ACTION_BASED_REPLAY",
         "AI_REPLAY",
         "RANDOM_CRAWL",
     ]
-    failedReason: typing_extensions.Literal[
+    failedReason: typing.Literal[
         "FAILED_REASON_UNSPECIFIED",
         "CRASHED",
         "NOT_INSTALLED",
@@ -196,7 +197,7 @@ class GoogleFirebaseAppdistroV1alphaDeviceExecution(
         "TIMED_OUT",
     ]
     finalAiAssertionMissing: bool
-    inconclusiveReason: typing_extensions.Literal[
+    inconclusiveReason: typing.Literal[
         "INCONCLUSIVE_REASON_UNSPECIFIED",
         "QUOTA_EXCEEDED",
         "INFRASTRUCTURE_FAILURE",
@@ -213,16 +214,14 @@ class GoogleFirebaseAppdistroV1alphaDeviceExecution(
     resultsStoragePath: str
     roboStats: GoogleFirebaseAppdistroV1alphaRoboStats
     screenshotUris: _list[str]
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "TEST_STATE_UNSPECIFIED", "IN_PROGRESS", "PASSED", "FAILED", "INCONCLUSIVE"
     ]
     videoStartTime: str
     videoUri: str
 
 @typing.type_check_only
-class GoogleFirebaseAppdistroV1alphaDeviceInteraction(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleFirebaseAppdistroV1alphaDeviceInteraction(typing.TypedDict, total=False):
     backAction: GoogleFirebaseAppdistroV1alphaDeviceInteractionBack
     dragAndDrop: GoogleFirebaseAppdistroV1alphaDeviceInteractionDragAndDrop
     enterText: GoogleFirebaseAppdistroV1alphaDeviceInteractionEnterText
@@ -232,7 +231,7 @@ class GoogleFirebaseAppdistroV1alphaDeviceInteraction(
     swipe: GoogleFirebaseAppdistroV1alphaDeviceInteractionSwipe
     tap: AndroidxCrawlerOutputPoint
     targetFoldedState: str
-    targetOrientation: typing_extensions.Literal[
+    targetOrientation: typing.Literal[
         "ORIENTATION_UNSPECIFIED", "PORTRAIT", "LANDSCAPE"
     ]
     textInput: str
@@ -240,39 +239,39 @@ class GoogleFirebaseAppdistroV1alphaDeviceInteraction(
 
 @typing.type_check_only
 class GoogleFirebaseAppdistroV1alphaDeviceInteractionBack(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
 class GoogleFirebaseAppdistroV1alphaDeviceInteractionDragAndDrop(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     end: AndroidxCrawlerOutputPoint
     start: AndroidxCrawlerOutputPoint
 
 @typing.type_check_only
 class GoogleFirebaseAppdistroV1alphaDeviceInteractionEnterText(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     elementBounds: AndroidxCrawlerOutputRectangle
     text: str
 
 @typing.type_check_only
 class GoogleFirebaseAppdistroV1alphaDeviceInteractionSwipe(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     end: AndroidxCrawlerOutputPoint
     start: AndroidxCrawlerOutputPoint
 
 @typing.type_check_only
 class GoogleFirebaseAppdistroV1alphaDeviceInteractionWait(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     duration: str
 
 @typing.type_check_only
 class GoogleFirebaseAppdistroV1alphaEnableAccessOnReleaseRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     buildVersion: str
     displayVersion: str
@@ -281,26 +280,26 @@ class GoogleFirebaseAppdistroV1alphaEnableAccessOnReleaseRequest(
 
 @typing.type_check_only
 class GoogleFirebaseAppdistroV1alphaEnableAccessOnReleaseResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
 class GoogleFirebaseAppdistroV1alphaGetReleaseByUploadHashResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     release: GoogleFirebaseAppdistroV1alphaRelease
 
 @typing.type_check_only
 class GoogleFirebaseAppdistroV1alphaGetTesterUdidsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     testerUdids: _list[GoogleFirebaseAppdistroV1alphaTesterUdid]
 
 @typing.type_check_only
 class GoogleFirebaseAppdistroV1alphaGetUploadStatusResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    errorCode: typing_extensions.Literal[
+    errorCode: typing.Literal[
         "ERROR_UNSPECIFIED",
         "INVALID_ZIP",
         "MISSING_PLIST",
@@ -326,18 +325,17 @@ class GoogleFirebaseAppdistroV1alphaGetUploadStatusResponse(
         "APP_NOT_FOUND",
         "AAB_ADHOC_SHARING_KEY_NOT_REGISTERED",
         "AAB_ANDROID_DEVELOPER_CONSOLE_ACCOUNT_NOT_FOUND",
+        "AAB_ANDROID_DEVELOPER_CONSOLE_PACKAGE_NOT_FOUND",
     ]
     message: str
     release: GoogleFirebaseAppdistroV1alphaRelease
-    status: typing_extensions.Literal[
+    status: typing.Literal[
         "STATUS_UNSPECIFIED", "IN_PROGRESS", "ALREADY_UPLOADED", "SUCCESS", "ERROR"
     ]
 
 @typing.type_check_only
-class GoogleFirebaseAppdistroV1alphaGoalAction(
-    typing_extensions.TypedDict, total=False
-):
-    cachingType: typing_extensions.Literal[
+class GoogleFirebaseAppdistroV1alphaGoalAction(typing.TypedDict, total=False):
+    cachingType: typing.Literal[
         "CACHING_TYPE_UNSPECIFIED", "NO_CACHING", "CACHE_AND_MODEL", "CACHE_ONLY"
     ]
     debugInfo: GoogleFirebaseAppdistroV1alphaGoalActionDebugInfo
@@ -347,40 +345,34 @@ class GoogleFirebaseAppdistroV1alphaGoalAction(
     terminalAction: GoogleFirebaseAppdistroV1alphaTerminalAction
 
 @typing.type_check_only
-class GoogleFirebaseAppdistroV1alphaGoalActionDebugInfo(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleFirebaseAppdistroV1alphaGoalActionDebugInfo(typing.TypedDict, total=False):
     annotatedScreenshotUri: str
     jsonUri: str
 
 @typing.type_check_only
-class GoogleFirebaseAppdistroV1alphaGoalDetails(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleFirebaseAppdistroV1alphaGoalDetails(typing.TypedDict, total=False):
     goalActions: _list[GoogleFirebaseAppdistroV1alphaGoalAction]
 
 @typing.type_check_only
-class GoogleFirebaseAppdistroV1alphaJwt(typing_extensions.TypedDict, total=False):
+class GoogleFirebaseAppdistroV1alphaJwt(typing.TypedDict, total=False):
     token: str
 
 @typing.type_check_only
 class GoogleFirebaseAppdistroV1alphaListReleaseTestsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     nextPageToken: str
     releaseTests: _list[GoogleFirebaseAppdistroV1alphaReleaseTest]
 
 @typing.type_check_only
 class GoogleFirebaseAppdistroV1alphaListTestCasesResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     nextPageToken: str
     testCases: _list[GoogleFirebaseAppdistroV1alphaTestCase]
 
 @typing.type_check_only
-class GoogleFirebaseAppdistroV1alphaLoginCredential(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleFirebaseAppdistroV1alphaLoginCredential(typing.TypedDict, total=False):
     fieldHints: GoogleFirebaseAppdistroV1alphaLoginCredentialFieldHints
     google: bool
     password: str
@@ -388,13 +380,13 @@ class GoogleFirebaseAppdistroV1alphaLoginCredential(
 
 @typing.type_check_only
 class GoogleFirebaseAppdistroV1alphaLoginCredentialFieldHints(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     passwordResourceName: str
     usernameResourceName: str
 
 @typing.type_check_only
-class GoogleFirebaseAppdistroV1alphaRelease(typing_extensions.TypedDict, total=False):
+class GoogleFirebaseAppdistroV1alphaRelease(typing.TypedDict, total=False):
     buildVersion: str
     displayVersion: str
     distributedAt: str
@@ -408,15 +400,11 @@ class GoogleFirebaseAppdistroV1alphaRelease(typing_extensions.TypedDict, total=F
     testerWithInstallCount: int
 
 @typing.type_check_only
-class GoogleFirebaseAppdistroV1alphaReleaseNotes(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleFirebaseAppdistroV1alphaReleaseNotes(typing.TypedDict, total=False):
     releaseNotes: str
 
 @typing.type_check_only
-class GoogleFirebaseAppdistroV1alphaReleaseTest(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleFirebaseAppdistroV1alphaReleaseTest(typing.TypedDict, total=False):
     aiInstructions: GoogleFirebaseAppdistroV1alphaAiInstructions
     createTime: str
     deviceExecutions: _list[GoogleFirebaseAppdistroV1alphaDeviceExecution]
@@ -425,43 +413,35 @@ class GoogleFirebaseAppdistroV1alphaReleaseTest(
     name: str
     resultsBucket: str
     testCase: str
-    testState: typing_extensions.Literal[
+    testState: typing.Literal[
         "TEST_STATE_UNSPECIFIED", "IN_PROGRESS", "PASSED", "FAILED", "INCONCLUSIVE"
     ]
 
 @typing.type_check_only
-class GoogleFirebaseAppdistroV1alphaRoboCrawler(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleFirebaseAppdistroV1alphaRoboCrawler(typing.TypedDict, total=False):
     aiInstructions: GoogleFirebaseAppdistroV1alphaAiInstructions
     loginCredential: GoogleFirebaseAppdistroV1alphaLoginCredential
 
 @typing.type_check_only
-class GoogleFirebaseAppdistroV1alphaRoboStats(typing_extensions.TypedDict, total=False):
+class GoogleFirebaseAppdistroV1alphaRoboStats(typing.TypedDict, total=False):
     actionsPerformed: int
     crawlDuration: str
     distinctVisitedScreens: int
     mainActivityCrawlTimedOut: bool
 
 @typing.type_check_only
-class GoogleFirebaseAppdistroV1alphaScreenshot(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleFirebaseAppdistroV1alphaScreenshot(typing.TypedDict, total=False):
     height: int
     uri: str
     width: int
 
 @typing.type_check_only
-class GoogleFirebaseAppdistroV1alphaTerminalAction(
-    typing_extensions.TypedDict, total=False
-):
-    reason: typing_extensions.Literal[
-        "REASON_UNSPECIFIED", "GOAL_IMPOSSIBLE", "GOAL_COMPLETE"
-    ]
+class GoogleFirebaseAppdistroV1alphaTerminalAction(typing.TypedDict, total=False):
+    reason: typing.Literal["REASON_UNSPECIFIED", "GOAL_IMPOSSIBLE", "GOAL_COMPLETE"]
     screenshot: GoogleFirebaseAppdistroV1alphaScreenshot
 
 @typing.type_check_only
-class GoogleFirebaseAppdistroV1alphaTestCase(typing_extensions.TypedDict, total=False):
+class GoogleFirebaseAppdistroV1alphaTestCase(typing.TypedDict, total=False):
     aiInstructions: GoogleFirebaseAppdistroV1alphaAiInstructions
     createTime: str
     dependentTestCases: _list[str]
@@ -470,9 +450,7 @@ class GoogleFirebaseAppdistroV1alphaTestCase(typing_extensions.TypedDict, total=
     prerequisiteTestCase: str
 
 @typing.type_check_only
-class GoogleFirebaseAppdistroV1alphaTestConfig(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleFirebaseAppdistroV1alphaTestConfig(typing.TypedDict, total=False):
     displayName: str
     name: str
     resultsBucket: str
@@ -480,34 +458,30 @@ class GoogleFirebaseAppdistroV1alphaTestConfig(
     testDevices: _list[GoogleFirebaseAppdistroV1alphaTestDevice]
 
 @typing.type_check_only
-class GoogleFirebaseAppdistroV1alphaTestDevice(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleFirebaseAppdistroV1alphaTestDevice(typing.TypedDict, total=False):
     locale: str
     model: str
     orientation: str
     version: str
 
 @typing.type_check_only
-class GoogleFirebaseAppdistroV1alphaTestQuota(typing_extensions.TypedDict, total=False):
+class GoogleFirebaseAppdistroV1alphaTestQuota(typing.TypedDict, total=False):
     limit: str
     name: str
     usage: str
 
 @typing.type_check_only
-class GoogleFirebaseAppdistroV1alphaTesterUdid(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleFirebaseAppdistroV1alphaTesterUdid(typing.TypedDict, total=False):
     name: str
     platform: str
     udid: str
 
 @typing.type_check_only
 class GoogleFirebaseAppdistroV1alphaUpdateTestCaseRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     allowMissing: bool
     testCase: GoogleFirebaseAppdistroV1alphaTestCase
 
 @typing.type_check_only
-class GoogleProtobufEmpty(typing_extensions.TypedDict, total=False): ...
+class GoogleProtobufEmpty(typing.TypedDict, total=False): ...

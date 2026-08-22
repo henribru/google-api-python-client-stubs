@@ -1,20 +1,18 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
+class CancelOperationRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class CertVerification(typing_extensions.TypedDict, total=False):
+class CertVerification(typing.TypedDict, total=False):
     dns: DnsUpdates
     http: HttpUpdate
 
 @typing.type_check_only
-class CustomDomainMetadata(typing_extensions.TypedDict, total=False):
-    certState: typing_extensions.Literal[
+class CustomDomainMetadata(typing.TypedDict, total=False):
+    certState: typing.Literal[
         "CERT_STATE_UNSPECIFIED",
         "CERT_PREPARING",
         "CERT_VALIDATING",
@@ -23,7 +21,7 @@ class CustomDomainMetadata(typing_extensions.TypedDict, total=False):
         "CERT_EXPIRING_SOON",
         "CERT_EXPIRED",
     ]
-    hostState: typing_extensions.Literal[
+    hostState: typing.Literal[
         "HOST_STATE_UNSPECIFIED",
         "HOST_UNHOSTED",
         "HOST_UNREACHABLE",
@@ -33,7 +31,7 @@ class CustomDomainMetadata(typing_extensions.TypedDict, total=False):
     ]
     issues: _list[Status]
     liveMigrationSteps: _list[LiveMigrationStep]
-    ownershipState: typing_extensions.Literal[
+    ownershipState: typing.Literal[
         "OWNERSHIP_STATE_UNSPECIFIED",
         "OWNERSHIP_MISSING",
         "OWNERSHIP_UNREACHABLE",
@@ -45,31 +43,29 @@ class CustomDomainMetadata(typing_extensions.TypedDict, total=False):
     quickSetupUpdates: DnsUpdates
 
 @typing.type_check_only
-class DnsRecord(typing_extensions.TypedDict, total=False):
+class DnsRecord(typing.TypedDict, total=False):
     domainName: str
     rdata: str
-    requiredAction: typing_extensions.Literal["NONE", "ADD", "REMOVE"]
-    type: typing_extensions.Literal[
-        "TYPE_UNSPECIFIED", "A", "CNAME", "TXT", "AAAA", "CAA"
-    ]
+    requiredAction: typing.Literal["NONE", "ADD", "REMOVE"]
+    type: typing.Literal["TYPE_UNSPECIFIED", "A", "CNAME", "TXT", "AAAA", "CAA"]
 
 @typing.type_check_only
-class DnsRecordSet(typing_extensions.TypedDict, total=False):
+class DnsRecordSet(typing.TypedDict, total=False):
     checkError: Status
     domainName: str
     records: _list[DnsRecord]
 
 @typing.type_check_only
-class DnsUpdates(typing_extensions.TypedDict, total=False):
+class DnsUpdates(typing.TypedDict, total=False):
     checkTime: str
     desired: _list[DnsRecordSet]
     discovered: _list[DnsRecordSet]
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class HttpUpdate(typing_extensions.TypedDict, total=False):
+class HttpUpdate(typing.TypedDict, total=False):
     checkError: Status
     desired: str
     discovered: str
@@ -77,17 +73,17 @@ class HttpUpdate(typing_extensions.TypedDict, total=False):
     path: str
 
 @typing.type_check_only
-class ListOperationsResponse(typing_extensions.TypedDict, total=False):
+class ListOperationsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
     unreachable: _list[str]
 
 @typing.type_check_only
-class LiveMigrationStep(typing_extensions.TypedDict, total=False):
+class LiveMigrationStep(typing.TypedDict, total=False):
     certVerification: CertVerification
     dnsUpdates: DnsUpdates
     issues: _list[Status]
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "PREPARING",
         "PENDING",
@@ -97,7 +93,7 @@ class LiveMigrationStep(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class Operation(typing_extensions.TypedDict, total=False):
+class Operation(typing.TypedDict, total=False):
     done: bool
     error: Status
     metadata: dict[str, typing.Any]
@@ -105,7 +101,7 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str

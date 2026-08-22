@@ -1,12 +1,10 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
 class CloudAiPlatformTenantresourceCloudSqlInstanceConfig(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     cloudSqlInstanceConnectionName: str
     cloudSqlInstanceName: str
@@ -17,9 +15,7 @@ class CloudAiPlatformTenantresourceCloudSqlInstanceConfig(
     slmInstanceType: str
 
 @typing.type_check_only
-class CloudAiPlatformTenantresourceGcsBucketConfig(
-    typing_extensions.TypedDict, total=False
-):
+class CloudAiPlatformTenantresourceGcsBucketConfig(typing.TypedDict, total=False):
     admins: _list[str]
     bucketName: str
     entityName: str
@@ -28,12 +24,10 @@ class CloudAiPlatformTenantresourceGcsBucketConfig(
     viewers: _list[str]
 
 @typing.type_check_only
-class CloudAiPlatformTenantresourceIamPolicyBinding(
-    typing_extensions.TypedDict, total=False
-):
+class CloudAiPlatformTenantresourceIamPolicyBinding(typing.TypedDict, total=False):
     members: _list[str]
     resource: str
-    resourceType: typing_extensions.Literal[
+    resourceType: typing.Literal[
         "RESOURCE_TYPE_UNSPECIFIED",
         "PROJECT",
         "SERVICE_ACCOUNT",
@@ -44,9 +38,7 @@ class CloudAiPlatformTenantresourceIamPolicyBinding(
     role: str
 
 @typing.type_check_only
-class CloudAiPlatformTenantresourceInfraSpannerConfig(
-    typing_extensions.TypedDict, total=False
-):
+class CloudAiPlatformTenantresourceInfraSpannerConfig(typing.TypedDict, total=False):
     createDatabaseOptions: (
         CloudAiPlatformTenantresourceInfraSpannerConfigCreateDatabaseOptions
     )
@@ -59,7 +51,7 @@ class CloudAiPlatformTenantresourceInfraSpannerConfig(
 
 @typing.type_check_only
 class CloudAiPlatformTenantresourceInfraSpannerConfigCreateDatabaseOptions(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     cmekCloudResourceName: str
     cmekCloudResourceType: str
@@ -67,24 +59,20 @@ class CloudAiPlatformTenantresourceInfraSpannerConfigCreateDatabaseOptions(
 
 @typing.type_check_only
 class CloudAiPlatformTenantresourceServiceAccountIdentity(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     serviceAccountEmail: str
     tag: str
 
 @typing.type_check_only
-class CloudAiPlatformTenantresourceTenantProjectConfig(
-    typing_extensions.TypedDict, total=False
-):
+class CloudAiPlatformTenantresourceTenantProjectConfig(typing.TypedDict, total=False):
     billingConfig: GoogleApiServiceconsumermanagementV1BillingConfig
     folder: str
     policyBindings: _list[GoogleApiServiceconsumermanagementV1PolicyBinding]
     services: _list[str]
 
 @typing.type_check_only
-class CloudAiPlatformTenantresourceTenantProjectResource(
-    typing_extensions.TypedDict, total=False
-):
+class CloudAiPlatformTenantresourceTenantProjectResource(typing.TypedDict, total=False):
     cloudSqlInstances: _list[CloudAiPlatformTenantresourceCloudSqlInstanceConfig]
     gcsBuckets: _list[CloudAiPlatformTenantresourceGcsBucketConfig]
     iamPolicyBindings: _list[CloudAiPlatformTenantresourceIamPolicyBinding]
@@ -98,37 +86,29 @@ class CloudAiPlatformTenantresourceTenantProjectResource(
     ]
 
 @typing.type_check_only
-class CloudAiPlatformTenantresourceTenantResource(
-    typing_extensions.TypedDict, total=False
-):
+class CloudAiPlatformTenantresourceTenantResource(typing.TypedDict, total=False):
     p4ServiceAccounts: _list[CloudAiPlatformTenantresourceServiceAccountIdentity]
     tenantProjectResources: _list[CloudAiPlatformTenantresourceTenantProjectResource]
 
 @typing.type_check_only
 class CloudAiPlatformTenantresourceTenantServiceAccountIdentity(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     serviceAccountEmail: str
     serviceName: str
 
 @typing.type_check_only
-class GoogleApiServiceconsumermanagementV1BillingConfig(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleApiServiceconsumermanagementV1BillingConfig(typing.TypedDict, total=False):
     billingAccount: str
 
 @typing.type_check_only
-class GoogleApiServiceconsumermanagementV1PolicyBinding(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleApiServiceconsumermanagementV1PolicyBinding(typing.TypedDict, total=False):
     members: _list[str]
     role: str
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1AccessControlAction(
-    typing_extensions.TypedDict, total=False
-):
-    operationType: typing_extensions.Literal[
+class GoogleCloudContentwarehouseV1AccessControlAction(typing.TypedDict, total=False):
+    operationType: typing.Literal[
         "UNKNOWN",
         "ADD_POLICY_BINDING",
         "REMOVE_POLICY_BINDING",
@@ -137,7 +117,7 @@ class GoogleCloudContentwarehouseV1AccessControlAction(
     policy: GoogleIamV1Policy
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1Action(typing_extensions.TypedDict, total=False):
+class GoogleCloudContentwarehouseV1Action(typing.TypedDict, total=False):
     accessControl: GoogleCloudContentwarehouseV1AccessControlAction
     actionId: str
     addToFolder: GoogleCloudContentwarehouseV1AddToFolderAction
@@ -148,17 +128,13 @@ class GoogleCloudContentwarehouseV1Action(typing_extensions.TypedDict, total=Fal
     removeFromFolderAction: GoogleCloudContentwarehouseV1RemoveFromFolderAction
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1ActionExecutorOutput(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudContentwarehouseV1ActionExecutorOutput(typing.TypedDict, total=False):
     ruleActionsPairs: _list[GoogleCloudContentwarehouseV1RuleActionsPair]
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1ActionOutput(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudContentwarehouseV1ActionOutput(typing.TypedDict, total=False):
     actionId: str
-    actionState: typing_extensions.Literal[
+    actionState: typing.Literal[
         "UNKNOWN",
         "ACTION_SUCCEEDED",
         "ACTION_FAILED",
@@ -168,34 +144,28 @@ class GoogleCloudContentwarehouseV1ActionOutput(
     outputMessage: str
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1AddToFolderAction(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudContentwarehouseV1AddToFolderAction(typing.TypedDict, total=False):
     folders: _list[str]
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1CloudAIDocumentOption(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudContentwarehouseV1CloudAIDocumentOption(typing.TypedDict, total=False):
     customizedEntitiesPropertiesConversions: dict[str, typing.Any]
     enableEntitiesConversions: bool
 
 @typing.type_check_only
 class GoogleCloudContentwarehouseV1CreateDocumentLinkRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     documentLink: GoogleCloudContentwarehouseV1DocumentLink
     requestMetadata: GoogleCloudContentwarehouseV1RequestMetadata
 
 @typing.type_check_only
 class GoogleCloudContentwarehouseV1CreateDocumentMetadata(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1CreateDocumentRequest(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudContentwarehouseV1CreateDocumentRequest(typing.TypedDict, total=False):
     cloudAiDocumentOption: GoogleCloudContentwarehouseV1CloudAIDocumentOption
     createMask: str
     document: GoogleCloudContentwarehouseV1Document
@@ -204,7 +174,7 @@ class GoogleCloudContentwarehouseV1CreateDocumentRequest(
 
 @typing.type_check_only
 class GoogleCloudContentwarehouseV1CreateDocumentResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     document: GoogleCloudContentwarehouseV1Document
     longRunningOperations: _list[GoogleLongrunningOperation]
@@ -212,56 +182,44 @@ class GoogleCloudContentwarehouseV1CreateDocumentResponse(
     ruleEngineOutput: GoogleCloudContentwarehouseV1RuleEngineOutput
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1CustomWeightsMetadata(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudContentwarehouseV1CustomWeightsMetadata(typing.TypedDict, total=False):
     weightedSchemaProperties: _list[GoogleCloudContentwarehouseV1WeightedSchemaProperty]
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1DataUpdateAction(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudContentwarehouseV1DataUpdateAction(typing.TypedDict, total=False):
     entries: dict[str, typing.Any]
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1DataValidationAction(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudContentwarehouseV1DataValidationAction(typing.TypedDict, total=False):
     conditions: dict[str, typing.Any]
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1DateTimeArray(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudContentwarehouseV1DateTimeArray(typing.TypedDict, total=False):
     values: _list[GoogleTypeDateTime]
 
 @typing.type_check_only
 class GoogleCloudContentwarehouseV1DateTimeTypeOptions(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1DeleteDocumentAction(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudContentwarehouseV1DeleteDocumentAction(typing.TypedDict, total=False):
     enableHardDelete: bool
 
 @typing.type_check_only
 class GoogleCloudContentwarehouseV1DeleteDocumentLinkRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     requestMetadata: GoogleCloudContentwarehouseV1RequestMetadata
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1DeleteDocumentRequest(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudContentwarehouseV1DeleteDocumentRequest(typing.TypedDict, total=False):
     requestMetadata: GoogleCloudContentwarehouseV1RequestMetadata
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1Document(typing_extensions.TypedDict, total=False):
+class GoogleCloudContentwarehouseV1Document(typing.TypedDict, total=False):
     cloudAiDocument: GoogleCloudDocumentaiV1Document
-    contentCategory: typing_extensions.Literal[
+    contentCategory: typing.Literal[
         "CONTENT_CATEGORY_UNSPECIFIED",
         "CONTENT_CATEGORY_IMAGE",
         "CONTENT_CATEGORY_AUDIO",
@@ -278,7 +236,7 @@ class GoogleCloudContentwarehouseV1Document(typing_extensions.TypedDict, total=F
     name: str
     plainText: str
     properties: _list[GoogleCloudContentwarehouseV1Property]
-    rawDocumentFileType: typing_extensions.Literal[
+    rawDocumentFileType: typing.Literal[
         "RAW_DOCUMENT_FILE_TYPE_UNSPECIFIED",
         "RAW_DOCUMENT_FILE_TYPE_PDF",
         "RAW_DOCUMENT_FILE_TYPE_DOCX",
@@ -296,21 +254,17 @@ class GoogleCloudContentwarehouseV1Document(typing_extensions.TypedDict, total=F
     updater: str
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1DocumentLink(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudContentwarehouseV1DocumentLink(typing.TypedDict, total=False):
     createTime: str
     description: str
     name: str
     sourceDocumentReference: GoogleCloudContentwarehouseV1DocumentReference
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "SOFT_DELETED"]
+    state: typing.Literal["STATE_UNSPECIFIED", "ACTIVE", "SOFT_DELETED"]
     targetDocumentReference: GoogleCloudContentwarehouseV1DocumentReference
     updateTime: str
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1DocumentQuery(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudContentwarehouseV1DocumentQuery(typing.TypedDict, total=False):
     customPropertyFilter: str
     customWeightsMetadata: GoogleCloudContentwarehouseV1CustomWeightsMetadata
     documentCreatorFilter: _list[str]
@@ -325,9 +279,7 @@ class GoogleCloudContentwarehouseV1DocumentQuery(
     timeFilters: _list[GoogleCloudContentwarehouseV1TimeFilter]
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1DocumentReference(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudContentwarehouseV1DocumentReference(typing.TypedDict, total=False):
     createTime: str
     deleteTime: str
     displayName: str
@@ -339,9 +291,7 @@ class GoogleCloudContentwarehouseV1DocumentReference(
     updateTime: str
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1DocumentSchema(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudContentwarehouseV1DocumentSchema(typing.TypedDict, total=False):
     createTime: str
     description: str
     displayName: str
@@ -351,64 +301,50 @@ class GoogleCloudContentwarehouseV1DocumentSchema(
     updateTime: str
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1EnumArray(typing_extensions.TypedDict, total=False):
+class GoogleCloudContentwarehouseV1EnumArray(typing.TypedDict, total=False):
     values: _list[str]
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1EnumTypeOptions(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudContentwarehouseV1EnumTypeOptions(typing.TypedDict, total=False):
     possibleValues: _list[str]
     validationCheckDisabled: bool
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1EnumValue(typing_extensions.TypedDict, total=False):
+class GoogleCloudContentwarehouseV1EnumValue(typing.TypedDict, total=False):
     value: str
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1ExportToCdwPipeline(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudContentwarehouseV1ExportToCdwPipeline(typing.TypedDict, total=False):
     docAiDataset: str
     documents: _list[str]
     exportFolderPath: str
     trainingSplitRatio: float
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1FetchAclRequest(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudContentwarehouseV1FetchAclRequest(typing.TypedDict, total=False):
     projectOwner: bool
     requestMetadata: GoogleCloudContentwarehouseV1RequestMetadata
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1FetchAclResponse(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudContentwarehouseV1FetchAclResponse(typing.TypedDict, total=False):
     metadata: GoogleCloudContentwarehouseV1ResponseMetadata
     policy: GoogleIamV1Policy
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1FileTypeFilter(
-    typing_extensions.TypedDict, total=False
-):
-    fileType: typing_extensions.Literal[
+class GoogleCloudContentwarehouseV1FileTypeFilter(typing.TypedDict, total=False):
+    fileType: typing.Literal[
         "FILE_TYPE_UNSPECIFIED", "ALL", "FOLDER", "DOCUMENT", "ROOT_FOLDER"
     ]
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1FloatArray(typing_extensions.TypedDict, total=False):
+class GoogleCloudContentwarehouseV1FloatArray(typing.TypedDict, total=False):
     values: _list[float]
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1FloatTypeOptions(
-    typing_extensions.TypedDict, total=False
-): ...
+class GoogleCloudContentwarehouseV1FloatTypeOptions(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1GcsIngestPipeline(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudContentwarehouseV1GcsIngestPipeline(typing.TypedDict, total=False):
     inputPath: str
     pipelineConfig: GoogleCloudContentwarehouseV1IngestPipelineConfig
     processorType: str
@@ -417,7 +353,7 @@ class GoogleCloudContentwarehouseV1GcsIngestPipeline(
 
 @typing.type_check_only
 class GoogleCloudContentwarehouseV1GcsIngestWithDocAiProcessorsPipeline(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     extractProcessorInfos: _list[GoogleCloudContentwarehouseV1ProcessorInfo]
     inputPath: str
@@ -427,40 +363,30 @@ class GoogleCloudContentwarehouseV1GcsIngestWithDocAiProcessorsPipeline(
     splitClassifyProcessorInfo: GoogleCloudContentwarehouseV1ProcessorInfo
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1GetDocumentRequest(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudContentwarehouseV1GetDocumentRequest(typing.TypedDict, total=False):
     requestMetadata: GoogleCloudContentwarehouseV1RequestMetadata
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1HistogramQuery(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudContentwarehouseV1HistogramQuery(typing.TypedDict, total=False):
     filters: GoogleCloudContentwarehouseV1HistogramQueryPropertyNameFilter
     histogramQuery: str
     requirePreciseResultSize: bool
 
 @typing.type_check_only
 class GoogleCloudContentwarehouseV1HistogramQueryPropertyNameFilter(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     documentSchemas: _list[str]
     propertyNames: _list[str]
-    yAxis: typing_extensions.Literal[
-        "HISTOGRAM_YAXIS_DOCUMENT", "HISTOGRAM_YAXIS_PROPERTY"
-    ]
+    yAxis: typing.Literal["HISTOGRAM_YAXIS_DOCUMENT", "HISTOGRAM_YAXIS_PROPERTY"]
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1HistogramQueryResult(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudContentwarehouseV1HistogramQueryResult(typing.TypedDict, total=False):
     histogram: dict[str, typing.Any]
     histogramQuery: str
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1IngestPipelineConfig(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudContentwarehouseV1IngestPipelineConfig(typing.TypedDict, total=False):
     cloudFunction: str
     documentAclPolicy: GoogleIamV1Policy
     enableDocumentTextExtraction: bool
@@ -468,18 +394,18 @@ class GoogleCloudContentwarehouseV1IngestPipelineConfig(
 
 @typing.type_check_only
 class GoogleCloudContentwarehouseV1InitializeProjectRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    accessControlMode: typing_extensions.Literal[
+    accessControlMode: typing.Literal[
         "ACL_MODE_UNKNOWN",
         "ACL_MODE_UNIVERSAL_ACCESS",
         "ACL_MODE_DOCUMENT_LEVEL_ACCESS_CONTROL_BYOID",
         "ACL_MODE_DOCUMENT_LEVEL_ACCESS_CONTROL_GCI",
     ]
-    databaseType: typing_extensions.Literal[
+    databaseType: typing.Literal[
         "DB_UNKNOWN", "DB_INFRA_SPANNER", "DB_CLOUD_SQL_POSTGRES"
     ]
-    documentCreatorDefaultRole: typing_extensions.Literal[
+    documentCreatorDefaultRole: typing.Literal[
         "DOCUMENT_CREATOR_DEFAULT_ROLE_UNSPECIFIED",
         "DOCUMENT_ADMIN",
         "DOCUMENT_EDITOR",
@@ -490,41 +416,37 @@ class GoogleCloudContentwarehouseV1InitializeProjectRequest(
 
 @typing.type_check_only
 class GoogleCloudContentwarehouseV1InitializeProjectResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     message: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED", "SUCCEEDED", "FAILED", "CANCELLED", "RUNNING"
     ]
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1IntegerArray(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudContentwarehouseV1IntegerArray(typing.TypedDict, total=False):
     values: _list[int]
 
 @typing.type_check_only
 class GoogleCloudContentwarehouseV1IntegerTypeOptions(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1InvalidRule(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudContentwarehouseV1InvalidRule(typing.TypedDict, total=False):
     error: str
     rule: GoogleCloudContentwarehouseV1Rule
 
 @typing.type_check_only
 class GoogleCloudContentwarehouseV1ListDocumentSchemasResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     documentSchemas: _list[GoogleCloudContentwarehouseV1DocumentSchema]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleCloudContentwarehouseV1ListLinkedSourcesRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     pageSize: int
     pageToken: str
@@ -532,66 +454,56 @@ class GoogleCloudContentwarehouseV1ListLinkedSourcesRequest(
 
 @typing.type_check_only
 class GoogleCloudContentwarehouseV1ListLinkedSourcesResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     documentLinks: _list[GoogleCloudContentwarehouseV1DocumentLink]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleCloudContentwarehouseV1ListLinkedTargetsRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     requestMetadata: GoogleCloudContentwarehouseV1RequestMetadata
 
 @typing.type_check_only
 class GoogleCloudContentwarehouseV1ListLinkedTargetsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     documentLinks: _list[GoogleCloudContentwarehouseV1DocumentLink]
     nextPageToken: str
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1ListRuleSetsResponse(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudContentwarehouseV1ListRuleSetsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     ruleSets: _list[GoogleCloudContentwarehouseV1RuleSet]
 
 @typing.type_check_only
 class GoogleCloudContentwarehouseV1ListSynonymSetsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     nextPageToken: str
     synonymSets: _list[GoogleCloudContentwarehouseV1SynonymSet]
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1LockDocumentRequest(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudContentwarehouseV1LockDocumentRequest(typing.TypedDict, total=False):
     collectionId: str
     lockingUser: GoogleCloudContentwarehouseV1UserInfo
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1MapProperty(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudContentwarehouseV1MapProperty(typing.TypedDict, total=False):
     fields: dict[str, typing.Any]
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1MapTypeOptions(
-    typing_extensions.TypedDict, total=False
-): ...
+class GoogleCloudContentwarehouseV1MapTypeOptions(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1MergeFieldsOptions(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudContentwarehouseV1MergeFieldsOptions(typing.TypedDict, total=False):
     replaceMessageFields: bool
     replaceRepeatedFields: bool
 
 @typing.type_check_only
 class GoogleCloudContentwarehouseV1ProcessWithDocAiPipeline(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     documents: _list[str]
     exportFolderPath: str
@@ -599,30 +511,26 @@ class GoogleCloudContentwarehouseV1ProcessWithDocAiPipeline(
     processorResultsFolderPath: str
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1ProcessorInfo(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudContentwarehouseV1ProcessorInfo(typing.TypedDict, total=False):
     documentType: str
     processorName: str
     schemaName: str
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1ProjectStatus(
-    typing_extensions.TypedDict, total=False
-):
-    accessControlMode: typing_extensions.Literal[
+class GoogleCloudContentwarehouseV1ProjectStatus(typing.TypedDict, total=False):
+    accessControlMode: typing.Literal[
         "ACL_MODE_UNKNOWN",
         "ACL_MODE_UNIVERSAL_ACCESS",
         "ACL_MODE_DOCUMENT_LEVEL_ACCESS_CONTROL_BYOID",
         "ACL_MODE_DOCUMENT_LEVEL_ACCESS_CONTROL_GCI",
     ]
-    databaseType: typing_extensions.Literal[
+    databaseType: typing.Literal[
         "DB_UNKNOWN", "DB_INFRA_SPANNER", "DB_CLOUD_SQL_POSTGRES"
     ]
     documentCreatorDefaultRole: str
     location: str
     qaEnabled: bool
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "PROJECT_STATE_UNSPECIFIED",
         "PROJECT_STATE_PENDING",
         "PROJECT_STATE_COMPLETED",
@@ -634,7 +542,7 @@ class GoogleCloudContentwarehouseV1ProjectStatus(
     ]
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1Property(typing_extensions.TypedDict, total=False):
+class GoogleCloudContentwarehouseV1Property(typing.TypedDict, total=False):
     dateTimeValues: GoogleCloudContentwarehouseV1DateTimeArray
     enumValues: GoogleCloudContentwarehouseV1EnumArray
     floatValues: GoogleCloudContentwarehouseV1FloatArray
@@ -646,15 +554,11 @@ class GoogleCloudContentwarehouseV1Property(typing_extensions.TypedDict, total=F
     timestampValues: GoogleCloudContentwarehouseV1TimestampArray
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1PropertyArray(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudContentwarehouseV1PropertyArray(typing.TypedDict, total=False):
     properties: _list[GoogleCloudContentwarehouseV1Property]
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1PropertyDefinition(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudContentwarehouseV1PropertyDefinition(typing.TypedDict, total=False):
     dateTimeTypeOptions: GoogleCloudContentwarehouseV1DateTimeTypeOptions
     displayName: str
     enumTypeOptions: GoogleCloudContentwarehouseV1EnumTypeOptions
@@ -668,7 +572,7 @@ class GoogleCloudContentwarehouseV1PropertyDefinition(
     mapTypeOptions: GoogleCloudContentwarehouseV1MapTypeOptions
     name: str
     propertyTypeOptions: GoogleCloudContentwarehouseV1PropertyTypeOptions
-    retrievalImportance: typing_extensions.Literal[
+    retrievalImportance: typing.Literal[
         "RETRIEVAL_IMPORTANCE_UNSPECIFIED",
         "HIGHEST",
         "HIGHER",
@@ -683,106 +587,86 @@ class GoogleCloudContentwarehouseV1PropertyDefinition(
 
 @typing.type_check_only
 class GoogleCloudContentwarehouseV1PropertyDefinitionSchemaSource(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     name: str
     processorType: str
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1PropertyFilter(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudContentwarehouseV1PropertyFilter(typing.TypedDict, total=False):
     condition: str
     documentSchemaName: str
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1PropertyTypeOptions(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudContentwarehouseV1PropertyTypeOptions(typing.TypedDict, total=False):
     propertyDefinitions: _list[GoogleCloudContentwarehouseV1PropertyDefinition]
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1PublishAction(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudContentwarehouseV1PublishAction(typing.TypedDict, total=False):
     messages: _list[str]
     topicId: str
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1QAResult(typing_extensions.TypedDict, total=False):
+class GoogleCloudContentwarehouseV1QAResult(typing.TypedDict, total=False):
     confidenceScore: float
     highlights: _list[GoogleCloudContentwarehouseV1QAResultHighlight]
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1QAResultHighlight(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudContentwarehouseV1QAResultHighlight(typing.TypedDict, total=False):
     endIndex: int
     startIndex: int
 
 @typing.type_check_only
 class GoogleCloudContentwarehouseV1RemoveFromFolderAction(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     condition: str
     folder: str
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1RequestMetadata(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudContentwarehouseV1RequestMetadata(typing.TypedDict, total=False):
     userInfo: GoogleCloudContentwarehouseV1UserInfo
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1ResponseMetadata(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudContentwarehouseV1ResponseMetadata(typing.TypedDict, total=False):
     requestId: str
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1Rule(typing_extensions.TypedDict, total=False):
+class GoogleCloudContentwarehouseV1Rule(typing.TypedDict, total=False):
     actions: _list[GoogleCloudContentwarehouseV1Action]
     condition: str
     description: str
     ruleId: str
-    triggerType: typing_extensions.Literal[
+    triggerType: typing.Literal[
         "UNKNOWN", "ON_CREATE", "ON_UPDATE", "ON_CREATE_LINK", "ON_DELETE_LINK"
     ]
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1RuleActionsPair(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudContentwarehouseV1RuleActionsPair(typing.TypedDict, total=False):
     actionOutputs: _list[GoogleCloudContentwarehouseV1ActionOutput]
     rule: GoogleCloudContentwarehouseV1Rule
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1RuleEngineOutput(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudContentwarehouseV1RuleEngineOutput(typing.TypedDict, total=False):
     actionExecutorOutput: GoogleCloudContentwarehouseV1ActionExecutorOutput
     documentName: str
     ruleEvaluatorOutput: GoogleCloudContentwarehouseV1RuleEvaluatorOutput
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1RuleEvaluatorOutput(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudContentwarehouseV1RuleEvaluatorOutput(typing.TypedDict, total=False):
     invalidRules: _list[GoogleCloudContentwarehouseV1InvalidRule]
     matchedRules: _list[GoogleCloudContentwarehouseV1Rule]
     triggeredRules: _list[GoogleCloudContentwarehouseV1Rule]
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1RuleSet(typing_extensions.TypedDict, total=False):
+class GoogleCloudContentwarehouseV1RuleSet(typing.TypedDict, total=False):
     description: str
     name: str
     rules: _list[GoogleCloudContentwarehouseV1Rule]
     source: str
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1RunPipelineMetadata(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudContentwarehouseV1RunPipelineMetadata(typing.TypedDict, total=False):
     exportToCdwPipelineMetadata: (
         GoogleCloudContentwarehouseV1RunPipelineMetadataExportToCdwPipelineMetadata
     )
@@ -801,7 +685,7 @@ class GoogleCloudContentwarehouseV1RunPipelineMetadata(
 
 @typing.type_check_only
 class GoogleCloudContentwarehouseV1RunPipelineMetadataExportToCdwPipelineMetadata(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     docAiDataset: str
     documents: _list[str]
@@ -809,28 +693,26 @@ class GoogleCloudContentwarehouseV1RunPipelineMetadataExportToCdwPipelineMetadat
 
 @typing.type_check_only
 class GoogleCloudContentwarehouseV1RunPipelineMetadataGcsIngestPipelineMetadata(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     inputPath: str
 
 @typing.type_check_only
 class GoogleCloudContentwarehouseV1RunPipelineMetadataIndividualDocumentStatus(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     documentId: str
     status: GoogleRpcStatus
 
 @typing.type_check_only
 class GoogleCloudContentwarehouseV1RunPipelineMetadataProcessWithDocAiPipelineMetadata(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     documents: _list[str]
     processorInfo: GoogleCloudContentwarehouseV1ProcessorInfo
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1RunPipelineRequest(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudContentwarehouseV1RunPipelineRequest(typing.TypedDict, total=False):
     exportCdwPipeline: GoogleCloudContentwarehouseV1ExportToCdwPipeline
     gcsIngestPipeline: GoogleCloudContentwarehouseV1GcsIngestPipeline
     gcsIngestWithDocAiProcessorsPipeline: (
@@ -841,7 +723,7 @@ class GoogleCloudContentwarehouseV1RunPipelineRequest(
 
 @typing.type_check_only
 class GoogleCloudContentwarehouseV1SearchDocumentsRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     documentQuery: GoogleCloudContentwarehouseV1DocumentQuery
     histogramQueries: _list[GoogleCloudContentwarehouseV1HistogramQuery]
@@ -852,13 +734,13 @@ class GoogleCloudContentwarehouseV1SearchDocumentsRequest(
     qaSizeLimit: int
     requestMetadata: GoogleCloudContentwarehouseV1RequestMetadata
     requireTotalSize: bool
-    totalResultSize: typing_extensions.Literal[
+    totalResultSize: typing.Literal[
         "TOTAL_RESULT_SIZE_UNSPECIFIED", "ESTIMATED_SIZE", "ACTUAL_SIZE"
     ]
 
 @typing.type_check_only
 class GoogleCloudContentwarehouseV1SearchDocumentsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     histogramQueryResults: _list[GoogleCloudContentwarehouseV1HistogramQueryResult]
     matchingDocuments: _list[
@@ -871,7 +753,7 @@ class GoogleCloudContentwarehouseV1SearchDocumentsResponse(
 
 @typing.type_check_only
 class GoogleCloudContentwarehouseV1SearchDocumentsResponseMatchingDocument(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     document: GoogleCloudContentwarehouseV1Document
     matchedTokenPageIndices: _list[str]
@@ -879,75 +761,61 @@ class GoogleCloudContentwarehouseV1SearchDocumentsResponseMatchingDocument(
     searchTextSnippet: str
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1SetAclRequest(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudContentwarehouseV1SetAclRequest(typing.TypedDict, total=False):
     policy: GoogleIamV1Policy
     projectOwner: bool
     requestMetadata: GoogleCloudContentwarehouseV1RequestMetadata
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1SetAclResponse(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudContentwarehouseV1SetAclResponse(typing.TypedDict, total=False):
     metadata: GoogleCloudContentwarehouseV1ResponseMetadata
     policy: GoogleIamV1Policy
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1SynonymSet(typing_extensions.TypedDict, total=False):
+class GoogleCloudContentwarehouseV1SynonymSet(typing.TypedDict, total=False):
     context: str
     name: str
     synonyms: _list[GoogleCloudContentwarehouseV1SynonymSetSynonym]
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1SynonymSetSynonym(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudContentwarehouseV1SynonymSetSynonym(typing.TypedDict, total=False):
     words: _list[str]
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1TextArray(typing_extensions.TypedDict, total=False):
+class GoogleCloudContentwarehouseV1TextArray(typing.TypedDict, total=False):
     values: _list[str]
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1TextTypeOptions(
-    typing_extensions.TypedDict, total=False
-): ...
+class GoogleCloudContentwarehouseV1TextTypeOptions(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1TimeFilter(typing_extensions.TypedDict, total=False):
-    timeField: typing_extensions.Literal[
+class GoogleCloudContentwarehouseV1TimeFilter(typing.TypedDict, total=False):
+    timeField: typing.Literal[
         "TIME_FIELD_UNSPECIFIED", "CREATE_TIME", "UPDATE_TIME", "DISPOSITION_TIME"
     ]
     timeRange: GoogleTypeInterval
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1TimestampArray(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudContentwarehouseV1TimestampArray(typing.TypedDict, total=False):
     values: _list[GoogleCloudContentwarehouseV1TimestampValue]
 
 @typing.type_check_only
 class GoogleCloudContentwarehouseV1TimestampTypeOptions(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1TimestampValue(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudContentwarehouseV1TimestampValue(typing.TypedDict, total=False):
     textValue: str
     timestampValue: str
 
 @typing.type_check_only
 class GoogleCloudContentwarehouseV1UpdateDocumentMetadata(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1UpdateDocumentRequest(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudContentwarehouseV1UpdateDocumentRequest(typing.TypedDict, total=False):
     cloudAiDocumentOption: GoogleCloudContentwarehouseV1CloudAIDocumentOption
     document: GoogleCloudContentwarehouseV1Document
     requestMetadata: GoogleCloudContentwarehouseV1RequestMetadata
@@ -955,7 +823,7 @@ class GoogleCloudContentwarehouseV1UpdateDocumentRequest(
 
 @typing.type_check_only
 class GoogleCloudContentwarehouseV1UpdateDocumentResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     document: GoogleCloudContentwarehouseV1Document
     metadata: GoogleCloudContentwarehouseV1ResponseMetadata
@@ -963,17 +831,15 @@ class GoogleCloudContentwarehouseV1UpdateDocumentResponse(
 
 @typing.type_check_only
 class GoogleCloudContentwarehouseV1UpdateDocumentSchemaRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     documentSchema: GoogleCloudContentwarehouseV1DocumentSchema
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1UpdateOptions(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudContentwarehouseV1UpdateOptions(typing.TypedDict, total=False):
     mergeFieldsOptions: GoogleCloudContentwarehouseV1MergeFieldsOptions
     updateMask: str
-    updateType: typing_extensions.Literal[
+    updateType: typing.Literal[
         "UPDATE_TYPE_UNSPECIFIED",
         "UPDATE_TYPE_REPLACE",
         "UPDATE_TYPE_MERGE",
@@ -984,18 +850,16 @@ class GoogleCloudContentwarehouseV1UpdateOptions(
     ]
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1UpdateRuleSetRequest(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudContentwarehouseV1UpdateRuleSetRequest(typing.TypedDict, total=False):
     ruleSet: GoogleCloudContentwarehouseV1RuleSet
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1UserInfo(typing_extensions.TypedDict, total=False):
+class GoogleCloudContentwarehouseV1UserInfo(typing.TypedDict, total=False):
     groupIds: _list[str]
     id: str
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1Value(typing_extensions.TypedDict, total=False):
+class GoogleCloudContentwarehouseV1Value(typing.TypedDict, total=False):
     booleanValue: bool
     datetimeValue: GoogleTypeDateTime
     enumValue: GoogleCloudContentwarehouseV1EnumValue
@@ -1006,43 +870,43 @@ class GoogleCloudContentwarehouseV1Value(typing_extensions.TypedDict, total=Fals
 
 @typing.type_check_only
 class GoogleCloudContentwarehouseV1WeightedSchemaProperty(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     documentSchemaName: str
     propertyNames: _list[str]
 
 @typing.type_check_only
 class GoogleCloudContentwarehouseV1beta1CreateDocumentMetadata(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
 class GoogleCloudContentwarehouseV1beta1InitializeProjectResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     message: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED", "SUCCEEDED", "FAILED", "CANCELLED", "RUNNING"
     ]
 
 @typing.type_check_only
 class GoogleCloudContentwarehouseV1beta1UpdateDocumentMetadata(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
-class GoogleCloudDocumentaiV1Barcode(typing_extensions.TypedDict, total=False):
+class GoogleCloudDocumentaiV1Barcode(typing.TypedDict, total=False):
     format: str
     rawValue: str
     valueFormat: str
 
 @typing.type_check_only
-class GoogleCloudDocumentaiV1BoundingPoly(typing_extensions.TypedDict, total=False):
+class GoogleCloudDocumentaiV1BoundingPoly(typing.TypedDict, total=False):
     normalizedVertices: _list[GoogleCloudDocumentaiV1NormalizedVertex]
     vertices: _list[GoogleCloudDocumentaiV1Vertex]
 
 @typing.type_check_only
-class GoogleCloudDocumentaiV1Document(typing_extensions.TypedDict, total=False):
+class GoogleCloudDocumentaiV1Document(typing.TypedDict, total=False):
     chunkedDocument: GoogleCloudDocumentaiV1DocumentChunkedDocument
     content: str
     documentLayout: GoogleCloudDocumentaiV1DocumentDocumentLayout
@@ -1059,14 +923,12 @@ class GoogleCloudDocumentaiV1Document(typing_extensions.TypedDict, total=False):
     uri: str
 
 @typing.type_check_only
-class GoogleCloudDocumentaiV1DocumentChunkedDocument(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudDocumentaiV1DocumentChunkedDocument(typing.TypedDict, total=False):
     chunks: _list[GoogleCloudDocumentaiV1DocumentChunkedDocumentChunk]
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1DocumentChunkedDocumentChunk(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     chunkId: str
     content: str
@@ -1081,34 +943,32 @@ class GoogleCloudDocumentaiV1DocumentChunkedDocumentChunk(
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1DocumentChunkedDocumentChunkChunkPageFooter(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     pageSpan: GoogleCloudDocumentaiV1DocumentChunkedDocumentChunkChunkPageSpan
     text: str
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1DocumentChunkedDocumentChunkChunkPageHeader(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     pageSpan: GoogleCloudDocumentaiV1DocumentChunkedDocumentChunkChunkPageSpan
     text: str
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1DocumentChunkedDocumentChunkChunkPageSpan(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     pageEnd: int
     pageStart: int
 
 @typing.type_check_only
-class GoogleCloudDocumentaiV1DocumentDocumentLayout(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudDocumentaiV1DocumentDocumentLayout(typing.TypedDict, total=False):
     blocks: _list[GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlock]
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlock(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     blockId: str
     listBlock: (
@@ -1126,7 +986,7 @@ class GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlock(
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlockLayoutListBlock(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     listEntries: _list[
         GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlockLayoutListEntry
@@ -1135,20 +995,20 @@ class GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlockLayoutList
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlockLayoutListEntry(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     blocks: _list[GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlock]
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlockLayoutPageSpan(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     pageEnd: int
     pageStart: int
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlockLayoutTableBlock(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     bodyRows: _list[
         GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlockLayoutTableRow
@@ -1160,7 +1020,7 @@ class GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlockLayoutTabl
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlockLayoutTableCell(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     blocks: _list[GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlock]
     colSpan: int
@@ -1168,7 +1028,7 @@ class GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlockLayoutTabl
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlockLayoutTableRow(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     cells: _list[
         GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlockLayoutTableCell
@@ -1176,14 +1036,14 @@ class GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlockLayoutTabl
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlockLayoutTextBlock(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     blocks: _list[GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlock]
     text: str
     type: str
 
 @typing.type_check_only
-class GoogleCloudDocumentaiV1DocumentEntity(typing_extensions.TypedDict, total=False):
+class GoogleCloudDocumentaiV1DocumentEntity(typing.TypedDict, total=False):
     confidence: float
     id: str
     mentionId: str
@@ -1198,7 +1058,7 @@ class GoogleCloudDocumentaiV1DocumentEntity(typing_extensions.TypedDict, total=F
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1DocumentEntityNormalizedValue(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     addressValue: GoogleTypePostalAddress
     booleanValue: bool
@@ -1210,15 +1070,13 @@ class GoogleCloudDocumentaiV1DocumentEntityNormalizedValue(
     text: str
 
 @typing.type_check_only
-class GoogleCloudDocumentaiV1DocumentEntityRelation(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudDocumentaiV1DocumentEntityRelation(typing.TypedDict, total=False):
     objectId: str
     relation: str
     subjectId: str
 
 @typing.type_check_only
-class GoogleCloudDocumentaiV1DocumentPage(typing_extensions.TypedDict, total=False):
+class GoogleCloudDocumentaiV1DocumentPage(typing.TypedDict, total=False):
     blocks: _list[GoogleCloudDocumentaiV1DocumentPageBlock]
     detectedBarcodes: _list[GoogleCloudDocumentaiV1DocumentPageDetectedBarcode]
     detectedLanguages: _list[GoogleCloudDocumentaiV1DocumentPageDetectedLanguage]
@@ -1238,19 +1096,15 @@ class GoogleCloudDocumentaiV1DocumentPage(typing_extensions.TypedDict, total=Fal
     visualElements: _list[GoogleCloudDocumentaiV1DocumentPageVisualElement]
 
 @typing.type_check_only
-class GoogleCloudDocumentaiV1DocumentPageAnchor(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudDocumentaiV1DocumentPageAnchor(typing.TypedDict, total=False):
     pageRefs: _list[GoogleCloudDocumentaiV1DocumentPageAnchorPageRef]
 
 @typing.type_check_only
-class GoogleCloudDocumentaiV1DocumentPageAnchorPageRef(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudDocumentaiV1DocumentPageAnchorPageRef(typing.TypedDict, total=False):
     boundingPoly: GoogleCloudDocumentaiV1BoundingPoly
     confidence: float
     layoutId: str
-    layoutType: typing_extensions.Literal[
+    layoutType: typing.Literal[
         "LAYOUT_TYPE_UNSPECIFIED",
         "BLOCK",
         "PARAGRAPH",
@@ -1263,39 +1117,31 @@ class GoogleCloudDocumentaiV1DocumentPageAnchorPageRef(
     page: str
 
 @typing.type_check_only
-class GoogleCloudDocumentaiV1DocumentPageBlock(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudDocumentaiV1DocumentPageBlock(typing.TypedDict, total=False):
     detectedLanguages: _list[GoogleCloudDocumentaiV1DocumentPageDetectedLanguage]
     layout: GoogleCloudDocumentaiV1DocumentPageLayout
     provenance: GoogleCloudDocumentaiV1DocumentProvenance
 
 @typing.type_check_only
-class GoogleCloudDocumentaiV1DocumentPageDetectedBarcode(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudDocumentaiV1DocumentPageDetectedBarcode(typing.TypedDict, total=False):
     barcode: GoogleCloudDocumentaiV1Barcode
     layout: GoogleCloudDocumentaiV1DocumentPageLayout
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1DocumentPageDetectedLanguage(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     confidence: float
     languageCode: str
 
 @typing.type_check_only
-class GoogleCloudDocumentaiV1DocumentPageDimension(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudDocumentaiV1DocumentPageDimension(typing.TypedDict, total=False):
     height: float
     unit: str
     width: float
 
 @typing.type_check_only
-class GoogleCloudDocumentaiV1DocumentPageFormField(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudDocumentaiV1DocumentPageFormField(typing.TypedDict, total=False):
     correctedKeyText: str
     correctedValueText: str
     fieldName: GoogleCloudDocumentaiV1DocumentPageLayout
@@ -1306,9 +1152,7 @@ class GoogleCloudDocumentaiV1DocumentPageFormField(
     valueType: str
 
 @typing.type_check_only
-class GoogleCloudDocumentaiV1DocumentPageImage(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudDocumentaiV1DocumentPageImage(typing.TypedDict, total=False):
     content: str
     height: int
     mimeType: str
@@ -1316,7 +1160,7 @@ class GoogleCloudDocumentaiV1DocumentPageImage(
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1DocumentPageImageQualityScores(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     detectedDefects: _list[
         GoogleCloudDocumentaiV1DocumentPageImageQualityScoresDetectedDefect
@@ -1325,56 +1169,46 @@ class GoogleCloudDocumentaiV1DocumentPageImageQualityScores(
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1DocumentPageImageQualityScoresDetectedDefect(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     confidence: float
     type: str
 
 @typing.type_check_only
-class GoogleCloudDocumentaiV1DocumentPageLayout(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudDocumentaiV1DocumentPageLayout(typing.TypedDict, total=False):
     boundingPoly: GoogleCloudDocumentaiV1BoundingPoly
     confidence: float
-    orientation: typing_extensions.Literal[
+    orientation: typing.Literal[
         "ORIENTATION_UNSPECIFIED", "PAGE_UP", "PAGE_RIGHT", "PAGE_DOWN", "PAGE_LEFT"
     ]
     textAnchor: GoogleCloudDocumentaiV1DocumentTextAnchor
 
 @typing.type_check_only
-class GoogleCloudDocumentaiV1DocumentPageLine(typing_extensions.TypedDict, total=False):
+class GoogleCloudDocumentaiV1DocumentPageLine(typing.TypedDict, total=False):
     detectedLanguages: _list[GoogleCloudDocumentaiV1DocumentPageDetectedLanguage]
     layout: GoogleCloudDocumentaiV1DocumentPageLayout
     provenance: GoogleCloudDocumentaiV1DocumentProvenance
 
 @typing.type_check_only
-class GoogleCloudDocumentaiV1DocumentPageMatrix(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudDocumentaiV1DocumentPageMatrix(typing.TypedDict, total=False):
     cols: int
     data: str
     rows: int
     type: int
 
 @typing.type_check_only
-class GoogleCloudDocumentaiV1DocumentPageParagraph(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudDocumentaiV1DocumentPageParagraph(typing.TypedDict, total=False):
     detectedLanguages: _list[GoogleCloudDocumentaiV1DocumentPageDetectedLanguage]
     layout: GoogleCloudDocumentaiV1DocumentPageLayout
     provenance: GoogleCloudDocumentaiV1DocumentProvenance
 
 @typing.type_check_only
-class GoogleCloudDocumentaiV1DocumentPageSymbol(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudDocumentaiV1DocumentPageSymbol(typing.TypedDict, total=False):
     detectedLanguages: _list[GoogleCloudDocumentaiV1DocumentPageDetectedLanguage]
     layout: GoogleCloudDocumentaiV1DocumentPageLayout
 
 @typing.type_check_only
-class GoogleCloudDocumentaiV1DocumentPageTable(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudDocumentaiV1DocumentPageTable(typing.TypedDict, total=False):
     bodyRows: _list[GoogleCloudDocumentaiV1DocumentPageTableTableRow]
     detectedLanguages: _list[GoogleCloudDocumentaiV1DocumentPageDetectedLanguage]
     headerRows: _list[GoogleCloudDocumentaiV1DocumentPageTableTableRow]
@@ -1382,24 +1216,18 @@ class GoogleCloudDocumentaiV1DocumentPageTable(
     provenance: GoogleCloudDocumentaiV1DocumentProvenance
 
 @typing.type_check_only
-class GoogleCloudDocumentaiV1DocumentPageTableTableCell(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudDocumentaiV1DocumentPageTableTableCell(typing.TypedDict, total=False):
     colSpan: int
     detectedLanguages: _list[GoogleCloudDocumentaiV1DocumentPageDetectedLanguage]
     layout: GoogleCloudDocumentaiV1DocumentPageLayout
     rowSpan: int
 
 @typing.type_check_only
-class GoogleCloudDocumentaiV1DocumentPageTableTableRow(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudDocumentaiV1DocumentPageTableTableRow(typing.TypedDict, total=False):
     cells: _list[GoogleCloudDocumentaiV1DocumentPageTableTableCell]
 
 @typing.type_check_only
-class GoogleCloudDocumentaiV1DocumentPageToken(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudDocumentaiV1DocumentPageToken(typing.TypedDict, total=False):
     detectedBreak: GoogleCloudDocumentaiV1DocumentPageTokenDetectedBreak
     detectedLanguages: _list[GoogleCloudDocumentaiV1DocumentPageDetectedLanguage]
     layout: GoogleCloudDocumentaiV1DocumentPageLayout
@@ -1408,14 +1236,12 @@ class GoogleCloudDocumentaiV1DocumentPageToken(
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1DocumentPageTokenDetectedBreak(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "SPACE", "WIDE_SPACE", "HYPHEN"]
+    type: typing.Literal["TYPE_UNSPECIFIED", "SPACE", "WIDE_SPACE", "HYPHEN"]
 
 @typing.type_check_only
-class GoogleCloudDocumentaiV1DocumentPageTokenStyleInfo(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudDocumentaiV1DocumentPageTokenStyleInfo(typing.TypedDict, total=False):
     backgroundColor: GoogleTypeColor
     bold: bool
     fontSize: int
@@ -1433,21 +1259,17 @@ class GoogleCloudDocumentaiV1DocumentPageTokenStyleInfo(
     underlined: bool
 
 @typing.type_check_only
-class GoogleCloudDocumentaiV1DocumentPageVisualElement(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudDocumentaiV1DocumentPageVisualElement(typing.TypedDict, total=False):
     detectedLanguages: _list[GoogleCloudDocumentaiV1DocumentPageDetectedLanguage]
     layout: GoogleCloudDocumentaiV1DocumentPageLayout
     type: str
 
 @typing.type_check_only
-class GoogleCloudDocumentaiV1DocumentProvenance(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudDocumentaiV1DocumentProvenance(typing.TypedDict, total=False):
     id: int
     parents: _list[GoogleCloudDocumentaiV1DocumentProvenanceParent]
     revision: int
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "OPERATION_TYPE_UNSPECIFIED",
         "ADD",
         "REMOVE",
@@ -1459,15 +1281,13 @@ class GoogleCloudDocumentaiV1DocumentProvenance(
     ]
 
 @typing.type_check_only
-class GoogleCloudDocumentaiV1DocumentProvenanceParent(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudDocumentaiV1DocumentProvenanceParent(typing.TypedDict, total=False):
     id: int
     index: int
     revision: int
 
 @typing.type_check_only
-class GoogleCloudDocumentaiV1DocumentRevision(typing_extensions.TypedDict, total=False):
+class GoogleCloudDocumentaiV1DocumentRevision(typing.TypedDict, total=False):
     agent: str
     createTime: str
     humanReview: GoogleCloudDocumentaiV1DocumentRevisionHumanReview
@@ -1477,22 +1297,18 @@ class GoogleCloudDocumentaiV1DocumentRevision(typing_extensions.TypedDict, total
     processor: str
 
 @typing.type_check_only
-class GoogleCloudDocumentaiV1DocumentRevisionHumanReview(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudDocumentaiV1DocumentRevisionHumanReview(typing.TypedDict, total=False):
     state: str
     stateMessage: str
 
 @typing.type_check_only
-class GoogleCloudDocumentaiV1DocumentShardInfo(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudDocumentaiV1DocumentShardInfo(typing.TypedDict, total=False):
     shardCount: str
     shardIndex: str
     textOffset: str
 
 @typing.type_check_only
-class GoogleCloudDocumentaiV1DocumentStyle(typing_extensions.TypedDict, total=False):
+class GoogleCloudDocumentaiV1DocumentStyle(typing.TypedDict, total=False):
     backgroundColor: GoogleTypeColor
     color: GoogleTypeColor
     fontFamily: str
@@ -1503,71 +1319,65 @@ class GoogleCloudDocumentaiV1DocumentStyle(typing_extensions.TypedDict, total=Fa
     textStyle: str
 
 @typing.type_check_only
-class GoogleCloudDocumentaiV1DocumentStyleFontSize(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudDocumentaiV1DocumentStyleFontSize(typing.TypedDict, total=False):
     size: float
     unit: str
 
 @typing.type_check_only
-class GoogleCloudDocumentaiV1DocumentTextAnchor(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudDocumentaiV1DocumentTextAnchor(typing.TypedDict, total=False):
     content: str
     textSegments: _list[GoogleCloudDocumentaiV1DocumentTextAnchorTextSegment]
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1DocumentTextAnchorTextSegment(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     endIndex: str
     startIndex: str
 
 @typing.type_check_only
-class GoogleCloudDocumentaiV1DocumentTextChange(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudDocumentaiV1DocumentTextChange(typing.TypedDict, total=False):
     changedText: str
     provenance: _list[GoogleCloudDocumentaiV1DocumentProvenance]
     textAnchor: GoogleCloudDocumentaiV1DocumentTextAnchor
 
 @typing.type_check_only
-class GoogleCloudDocumentaiV1NormalizedVertex(typing_extensions.TypedDict, total=False):
+class GoogleCloudDocumentaiV1NormalizedVertex(typing.TypedDict, total=False):
     x: float
     y: float
 
 @typing.type_check_only
-class GoogleCloudDocumentaiV1Vertex(typing_extensions.TypedDict, total=False):
+class GoogleCloudDocumentaiV1Vertex(typing.TypedDict, total=False):
     x: int
     y: int
 
 @typing.type_check_only
-class GoogleIamV1AuditConfig(typing_extensions.TypedDict, total=False):
+class GoogleIamV1AuditConfig(typing.TypedDict, total=False):
     auditLogConfigs: _list[GoogleIamV1AuditLogConfig]
     service: str
 
 @typing.type_check_only
-class GoogleIamV1AuditLogConfig(typing_extensions.TypedDict, total=False):
+class GoogleIamV1AuditLogConfig(typing.TypedDict, total=False):
     exemptedMembers: _list[str]
-    logType: typing_extensions.Literal[
+    logType: typing.Literal[
         "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
     ]
 
 @typing.type_check_only
-class GoogleIamV1Binding(typing_extensions.TypedDict, total=False):
+class GoogleIamV1Binding(typing.TypedDict, total=False):
     condition: GoogleTypeExpr
     members: _list[str]
     role: str
 
 @typing.type_check_only
-class GoogleIamV1Policy(typing_extensions.TypedDict, total=False):
+class GoogleIamV1Policy(typing.TypedDict, total=False):
     auditConfigs: _list[GoogleIamV1AuditConfig]
     bindings: _list[GoogleIamV1Binding]
     etag: str
     version: int
 
 @typing.type_check_only
-class GoogleLongrunningOperation(typing_extensions.TypedDict, total=False):
+class GoogleLongrunningOperation(typing.TypedDict, total=False):
     done: bool
     error: GoogleRpcStatus
     metadata: dict[str, typing.Any]
@@ -1575,29 +1385,29 @@ class GoogleLongrunningOperation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class GoogleProtobufEmpty(typing_extensions.TypedDict, total=False): ...
+class GoogleProtobufEmpty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class GoogleRpcStatus(typing_extensions.TypedDict, total=False):
+class GoogleRpcStatus(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class GoogleTypeColor(typing_extensions.TypedDict, total=False):
+class GoogleTypeColor(typing.TypedDict, total=False):
     alpha: float
     blue: float
     green: float
     red: float
 
 @typing.type_check_only
-class GoogleTypeDate(typing_extensions.TypedDict, total=False):
+class GoogleTypeDate(typing.TypedDict, total=False):
     day: int
     month: int
     year: int
 
 @typing.type_check_only
-class GoogleTypeDateTime(typing_extensions.TypedDict, total=False):
+class GoogleTypeDateTime(typing.TypedDict, total=False):
     day: int
     hours: int
     minutes: int
@@ -1609,25 +1419,25 @@ class GoogleTypeDateTime(typing_extensions.TypedDict, total=False):
     year: int
 
 @typing.type_check_only
-class GoogleTypeExpr(typing_extensions.TypedDict, total=False):
+class GoogleTypeExpr(typing.TypedDict, total=False):
     description: str
     expression: str
     location: str
     title: str
 
 @typing.type_check_only
-class GoogleTypeInterval(typing_extensions.TypedDict, total=False):
+class GoogleTypeInterval(typing.TypedDict, total=False):
     endTime: str
     startTime: str
 
 @typing.type_check_only
-class GoogleTypeMoney(typing_extensions.TypedDict, total=False):
+class GoogleTypeMoney(typing.TypedDict, total=False):
     currencyCode: str
     nanos: int
     units: str
 
 @typing.type_check_only
-class GoogleTypePostalAddress(typing_extensions.TypedDict, total=False):
+class GoogleTypePostalAddress(typing.TypedDict, total=False):
     addressLines: _list[str]
     administrativeArea: str
     languageCode: str
@@ -1641,6 +1451,6 @@ class GoogleTypePostalAddress(typing_extensions.TypedDict, total=False):
     sublocality: str
 
 @typing.type_check_only
-class GoogleTypeTimeZone(typing_extensions.TypedDict, total=False):
+class GoogleTypeTimeZone(typing.TypedDict, total=False):
     id: str
     version: str

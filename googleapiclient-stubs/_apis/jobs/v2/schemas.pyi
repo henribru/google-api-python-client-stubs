@@ -1,14 +1,12 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class BatchDeleteJobsRequest(typing_extensions.TypedDict, total=False):
+class BatchDeleteJobsRequest(typing.TypedDict, total=False):
     filter: str
 
-AlternativeBucketRange = typing_extensions.TypedDict(
+AlternativeBucketRange = typing.TypedDict(
     "AlternativeBucketRange",
     {
         "from": float,
@@ -21,33 +19,29 @@ AlternativeBucketRange = typing_extensions.TypedDict(
 class BucketRange(AlternativeBucketRange): ...
 
 @typing.type_check_only
-class BucketizedCount(typing_extensions.TypedDict, total=False):
+class BucketizedCount(typing.TypedDict, total=False):
     count: int
     range: BucketRange
 
 @typing.type_check_only
-class CommuteInfo(typing_extensions.TypedDict, total=False):
+class CommuteInfo(typing.TypedDict, total=False):
     jobLocation: JobLocation
     travelDuration: str
 
 @typing.type_check_only
-class CommutePreference(typing_extensions.TypedDict, total=False):
+class CommutePreference(typing.TypedDict, total=False):
     allowNonStreetLevelAddress: bool
     departureHourLocal: int
-    method: typing_extensions.Literal[
-        "COMMUTE_METHOD_UNSPECIFIED", "DRIVING", "TRANSIT"
-    ]
-    roadTraffic: typing_extensions.Literal[
-        "ROAD_TRAFFIC_UNSPECIFIED", "TRAFFIC_FREE", "BUSY_HOUR"
-    ]
+    method: typing.Literal["COMMUTE_METHOD_UNSPECIFIED", "DRIVING", "TRANSIT"]
+    roadTraffic: typing.Literal["ROAD_TRAFFIC_UNSPECIFIED", "TRAFFIC_FREE", "BUSY_HOUR"]
     startLocation: LatLng
     travelTime: str
 
 @typing.type_check_only
-class Company(typing_extensions.TypedDict, total=False):
+class Company(typing.TypedDict, total=False):
     careerPageLink: str
     companyInfoSources: _list[CompanyInfoSource]
-    companySize: typing_extensions.Literal[
+    companySize: typing.Literal[
         "COMPANY_SIZE_UNSPECIFIED",
         "MINI",
         "SMALL",
@@ -74,19 +68,19 @@ class Company(typing_extensions.TypedDict, total=False):
     website: str
 
 @typing.type_check_only
-class CompanyInfoSource(typing_extensions.TypedDict, total=False):
+class CompanyInfoSource(typing.TypedDict, total=False):
     freebaseMid: str
     gplusId: str
     mapsCid: str
     unknownTypeId: str
 
 @typing.type_check_only
-class CompensationEntry(typing_extensions.TypedDict, total=False):
+class CompensationEntry(typing.TypedDict, total=False):
     amount: Money
     description: str
     expectedUnitsPerYear: float
     range: CompensationRange
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "COMPENSATION_TYPE_UNSPECIFIED",
         "BASE",
         "BONUS",
@@ -97,7 +91,7 @@ class CompensationEntry(typing_extensions.TypedDict, total=False):
         "TIPS",
         "OTHER_COMPENSATION_TYPE",
     ]
-    unit: typing_extensions.Literal[
+    unit: typing.Literal[
         "COMPENSATION_UNIT_UNSPECIFIED",
         "HOURLY",
         "DAILY",
@@ -109,10 +103,10 @@ class CompensationEntry(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class CompensationFilter(typing_extensions.TypedDict, total=False):
+class CompensationFilter(typing.TypedDict, total=False):
     includeJobsWithUnspecifiedCompensationRange: bool
     range: CompensationRange
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "FILTER_TYPE_UNSPECIFIED",
         "UNIT_ONLY",
         "UNIT_AND_AMOUNT",
@@ -120,7 +114,7 @@ class CompensationFilter(typing_extensions.TypedDict, total=False):
         "ANNUALIZED_TOTAL_AMOUNT",
     ]
     units: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "COMPENSATION_UNIT_UNSPECIFIED",
             "HOURLY",
             "DAILY",
@@ -133,9 +127,9 @@ class CompensationFilter(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class CompensationHistogramRequest(typing_extensions.TypedDict, total=False):
+class CompensationHistogramRequest(typing.TypedDict, total=False):
     bucketingOption: NumericBucketingOption
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "COMPENSATION_HISTOGRAM_REQUEST_TYPE_UNSPECIFIED",
         "BASE",
         "ANNUALIZED_BASE",
@@ -143,9 +137,9 @@ class CompensationHistogramRequest(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class CompensationHistogramResult(typing_extensions.TypedDict, total=False):
+class CompensationHistogramResult(typing.TypedDict, total=False):
     result: NumericBucketingResult
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "COMPENSATION_HISTOGRAM_REQUEST_TYPE_UNSPECIFIED",
         "BASE",
         "ANNUALIZED_BASE",
@@ -153,14 +147,14 @@ class CompensationHistogramResult(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class CompensationInfo(typing_extensions.TypedDict, total=False):
+class CompensationInfo(typing.TypedDict, total=False):
     amount: Money
     annualizedBaseCompensationRange: CompensationRange
     annualizedTotalCompensationRange: CompensationRange
     entries: _list[CompensationEntry]
     max: Money
     min: Money
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "JOB_COMPENSATION_TYPE_UNSPECIFIED",
         "HOURLY",
         "SALARY",
@@ -170,82 +164,82 @@ class CompensationInfo(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class CompensationRange(typing_extensions.TypedDict, total=False):
+class CompensationRange(typing.TypedDict, total=False):
     max: Money
     min: Money
 
 @typing.type_check_only
-class CompleteQueryResponse(typing_extensions.TypedDict, total=False):
+class CompleteQueryResponse(typing.TypedDict, total=False):
     completionResults: _list[CompletionResult]
     metadata: ResponseMetadata
 
 @typing.type_check_only
-class CompletionResult(typing_extensions.TypedDict, total=False):
+class CompletionResult(typing.TypedDict, total=False):
     imageUrl: str
     suggestion: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "COMPLETION_TYPE_UNSPECIFIED", "JOB_TITLE", "COMPANY_NAME", "COMBINED"
     ]
 
 @typing.type_check_only
-class CreateJobRequest(typing_extensions.TypedDict, total=False):
+class CreateJobRequest(typing.TypedDict, total=False):
     disableStreetAddressResolution: bool
     job: Job
     processingOptions: JobProcessingOptions
 
 @typing.type_check_only
-class CustomAttribute(typing_extensions.TypedDict, total=False):
+class CustomAttribute(typing.TypedDict, total=False):
     filterable: bool
     longValue: str
     stringValues: StringValues
 
 @typing.type_check_only
-class CustomAttributeHistogramRequest(typing_extensions.TypedDict, total=False):
+class CustomAttributeHistogramRequest(typing.TypedDict, total=False):
     key: str
     longValueHistogramBucketingOption: NumericBucketingOption
     stringValueHistogram: bool
 
 @typing.type_check_only
-class CustomAttributeHistogramResult(typing_extensions.TypedDict, total=False):
+class CustomAttributeHistogramResult(typing.TypedDict, total=False):
     key: str
     longValueHistogramResult: NumericBucketingResult
     stringValueHistogramResult: dict[str, typing.Any]
 
 @typing.type_check_only
-class CustomField(typing_extensions.TypedDict, total=False):
+class CustomField(typing.TypedDict, total=False):
     values: _list[str]
 
 @typing.type_check_only
-class CustomFieldFilter(typing_extensions.TypedDict, total=False):
+class CustomFieldFilter(typing.TypedDict, total=False):
     queries: _list[str]
-    type: typing_extensions.Literal["FILTER_TYPE_UNSPECIFIED", "OR", "AND", "NOT"]
+    type: typing.Literal["FILTER_TYPE_UNSPECIFIED", "OR", "AND", "NOT"]
 
 @typing.type_check_only
-class Date(typing_extensions.TypedDict, total=False):
+class Date(typing.TypedDict, total=False):
     day: int
     month: int
     year: int
 
 @typing.type_check_only
-class DeleteJobsByFilterRequest(typing_extensions.TypedDict, total=False):
+class DeleteJobsByFilterRequest(typing.TypedDict, total=False):
     disableFastProcess: bool
     filter: Filter
 
 @typing.type_check_only
-class DeviceInfo(typing_extensions.TypedDict, total=False):
-    deviceType: typing_extensions.Literal[
+class DeviceInfo(typing.TypedDict, total=False):
+    deviceType: typing.Literal[
         "DEVICE_TYPE_UNSPECIFIED", "WEB", "MOBILE_WEB", "ANDROID", "IOS", "BOT", "OTHER"
     ]
     id: str
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ExtendedCompensationFilter(typing_extensions.TypedDict, total=False):
+class ExtendedCompensationFilter(typing.TypedDict, total=False):
     compensationRange: ExtendedCompensationInfoCompensationRange
     compensationUnits: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "EXTENDED_COMPENSATION_UNIT_UNSPECIFIED",
             "HOURLY",
             "DAILY",
@@ -258,7 +252,7 @@ class ExtendedCompensationFilter(typing_extensions.TypedDict, total=False):
     ]
     currency: str
     includeJobWithUnspecifiedCompensationRange: bool
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "FILTER_TYPE_UNSPECIFIED",
         "UNIT_ONLY",
         "UNIT_AND_AMOUNT",
@@ -267,7 +261,7 @@ class ExtendedCompensationFilter(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class ExtendedCompensationInfo(typing_extensions.TypedDict, total=False):
+class ExtendedCompensationInfo(typing.TypedDict, total=False):
     annualizedBaseCompensationRange: ExtendedCompensationInfoCompensationRange
     annualizedBaseCompensationUnspecified: bool
     annualizedTotalCompensationRange: ExtendedCompensationInfoCompensationRange
@@ -276,14 +270,12 @@ class ExtendedCompensationInfo(typing_extensions.TypedDict, total=False):
     entries: _list[ExtendedCompensationInfoCompensationEntry]
 
 @typing.type_check_only
-class ExtendedCompensationInfoCompensationEntry(
-    typing_extensions.TypedDict, total=False
-):
+class ExtendedCompensationInfoCompensationEntry(typing.TypedDict, total=False):
     amount: ExtendedCompensationInfoDecimal
     description: str
     expectedUnitsPerYear: ExtendedCompensationInfoDecimal
     range: ExtendedCompensationInfoCompensationRange
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "EXTENDED_COMPENSATION_TYPE_UNSPECIFIED",
         "BASE",
         "BONUS",
@@ -294,7 +286,7 @@ class ExtendedCompensationInfoCompensationEntry(
         "TIPS",
         "OTHER_COMPENSATION_TYPE",
     ]
-    unit: typing_extensions.Literal[
+    unit: typing.Literal[
         "EXTENDED_COMPENSATION_UNIT_UNSPECIFIED",
         "HOURLY",
         "DAILY",
@@ -307,29 +299,27 @@ class ExtendedCompensationInfoCompensationEntry(
     unspecified: bool
 
 @typing.type_check_only
-class ExtendedCompensationInfoCompensationRange(
-    typing_extensions.TypedDict, total=False
-):
+class ExtendedCompensationInfoCompensationRange(typing.TypedDict, total=False):
     max: ExtendedCompensationInfoDecimal
     min: ExtendedCompensationInfoDecimal
 
 @typing.type_check_only
-class ExtendedCompensationInfoDecimal(typing_extensions.TypedDict, total=False):
+class ExtendedCompensationInfoDecimal(typing.TypedDict, total=False):
     micros: int
     units: str
 
 @typing.type_check_only
-class Filter(typing_extensions.TypedDict, total=False):
+class Filter(typing.TypedDict, total=False):
     requisitionId: str
 
 @typing.type_check_only
-class GetHistogramRequest(typing_extensions.TypedDict, total=False):
+class GetHistogramRequest(typing.TypedDict, total=False):
     allowBroadening: bool
     filters: JobFilters
     query: JobQuery
     requestMetadata: RequestMetadata
     searchTypes: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "JOB_FIELD_UNSPECIFIED",
             "COMPANY_ID",
             "EMPLOYMENT_TYPE",
@@ -372,30 +362,24 @@ class GetHistogramRequest(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class GetHistogramResponse(typing_extensions.TypedDict, total=False):
+class GetHistogramResponse(typing.TypedDict, total=False):
     metadata: ResponseMetadata
     results: _list[HistogramResult]
 
 @typing.type_check_only
-class GoogleCloudTalentV4BatchCreateJobsResponse(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudTalentV4BatchCreateJobsResponse(typing.TypedDict, total=False):
     jobResults: _list[GoogleCloudTalentV4JobResult]
 
 @typing.type_check_only
-class GoogleCloudTalentV4BatchDeleteJobsResponse(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudTalentV4BatchDeleteJobsResponse(typing.TypedDict, total=False):
     jobResults: _list[GoogleCloudTalentV4JobResult]
 
 @typing.type_check_only
-class GoogleCloudTalentV4BatchOperationMetadata(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudTalentV4BatchOperationMetadata(typing.TypedDict, total=False):
     createTime: str
     endTime: str
     failureCount: int
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "INITIALIZING",
         "PROCESSING",
@@ -410,13 +394,11 @@ class GoogleCloudTalentV4BatchOperationMetadata(
     updateTime: str
 
 @typing.type_check_only
-class GoogleCloudTalentV4BatchUpdateJobsResponse(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudTalentV4BatchUpdateJobsResponse(typing.TypedDict, total=False):
     jobResults: _list[GoogleCloudTalentV4JobResult]
 
 @typing.type_check_only
-class GoogleCloudTalentV4CompensationInfo(typing_extensions.TypedDict, total=False):
+class GoogleCloudTalentV4CompensationInfo(typing.TypedDict, total=False):
     annualizedBaseCompensationRange: (
         GoogleCloudTalentV4CompensationInfoCompensationRange
     )
@@ -427,13 +409,13 @@ class GoogleCloudTalentV4CompensationInfo(typing_extensions.TypedDict, total=Fal
 
 @typing.type_check_only
 class GoogleCloudTalentV4CompensationInfoCompensationEntry(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     amount: Money
     description: str
     expectedUnitsPerYear: float
     range: GoogleCloudTalentV4CompensationInfoCompensationRange
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "COMPENSATION_TYPE_UNSPECIFIED",
         "BASE",
         "BONUS",
@@ -444,7 +426,7 @@ class GoogleCloudTalentV4CompensationInfoCompensationEntry(
         "TIPS",
         "OTHER_COMPENSATION_TYPE",
     ]
-    unit: typing_extensions.Literal[
+    unit: typing.Literal[
         "COMPENSATION_UNIT_UNSPECIFIED",
         "HOURLY",
         "DAILY",
@@ -457,20 +439,20 @@ class GoogleCloudTalentV4CompensationInfoCompensationEntry(
 
 @typing.type_check_only
 class GoogleCloudTalentV4CompensationInfoCompensationRange(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     maxCompensation: Money
     minCompensation: Money
 
 @typing.type_check_only
-class GoogleCloudTalentV4CustomAttribute(typing_extensions.TypedDict, total=False):
+class GoogleCloudTalentV4CustomAttribute(typing.TypedDict, total=False):
     filterable: bool
     keywordSearchable: bool
     longValues: _list[str]
     stringValues: _list[str]
 
 @typing.type_check_only
-class GoogleCloudTalentV4Job(typing_extensions.TypedDict, total=False):
+class GoogleCloudTalentV4Job(typing.TypedDict, total=False):
     addresses: _list[str]
     applicationInfo: GoogleCloudTalentV4JobApplicationInfo
     company: str
@@ -478,7 +460,7 @@ class GoogleCloudTalentV4Job(typing_extensions.TypedDict, total=False):
     compensationInfo: GoogleCloudTalentV4CompensationInfo
     customAttributes: dict[str, typing.Any]
     degreeTypes: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "DEGREE_TYPE_UNSPECIFIED",
             "PRIMARY_EDUCATION",
             "LOWER_SECONDARY_EDUCATION",
@@ -494,7 +476,7 @@ class GoogleCloudTalentV4Job(typing_extensions.TypedDict, total=False):
     derivedInfo: GoogleCloudTalentV4JobDerivedInfo
     description: str
     employmentTypes: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "EMPLOYMENT_TYPE_UNSPECIFIED",
             "FULL_TIME",
             "PART_TIME",
@@ -510,7 +492,7 @@ class GoogleCloudTalentV4Job(typing_extensions.TypedDict, total=False):
     ]
     incentives: str
     jobBenefits: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "JOB_BENEFIT_UNSPECIFIED",
             "CHILD_CARE",
             "DENTAL",
@@ -526,7 +508,7 @@ class GoogleCloudTalentV4Job(typing_extensions.TypedDict, total=False):
         ]
     ]
     jobEndTime: str
-    jobLevel: typing_extensions.Literal[
+    jobLevel: typing.Literal[
         "JOB_LEVEL_UNSPECIFIED",
         "ENTRY_LEVEL",
         "EXPERIENCED",
@@ -540,7 +522,7 @@ class GoogleCloudTalentV4Job(typing_extensions.TypedDict, total=False):
     postingCreateTime: str
     postingExpireTime: str
     postingPublishTime: str
-    postingRegion: typing_extensions.Literal[
+    postingRegion: typing.Literal[
         "POSTING_REGION_UNSPECIFIED", "ADMINISTRATIVE_AREA", "NATION", "TELECOMMUTE"
     ]
     postingUpdateTime: str
@@ -550,7 +532,7 @@ class GoogleCloudTalentV4Job(typing_extensions.TypedDict, total=False):
     requisitionId: str
     responsibilities: str
     title: str
-    visibility: typing_extensions.Literal[
+    visibility: typing.Literal[
         "VISIBILITY_UNSPECIFIED",
         "ACCOUNT_ONLY",
         "SHARED_WITH_GOOGLE",
@@ -558,15 +540,15 @@ class GoogleCloudTalentV4Job(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class GoogleCloudTalentV4JobApplicationInfo(typing_extensions.TypedDict, total=False):
+class GoogleCloudTalentV4JobApplicationInfo(typing.TypedDict, total=False):
     emails: _list[str]
     instruction: str
     uris: _list[str]
 
 @typing.type_check_only
-class GoogleCloudTalentV4JobDerivedInfo(typing_extensions.TypedDict, total=False):
+class GoogleCloudTalentV4JobDerivedInfo(typing.TypedDict, total=False):
     jobCategories: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "JOB_CATEGORY_UNSPECIFIED",
             "ACCOUNTING_AND_FINANCE",
             "ADMINISTRATIVE_AND_OFFICE",
@@ -603,23 +585,23 @@ class GoogleCloudTalentV4JobDerivedInfo(typing_extensions.TypedDict, total=False
     locations: _list[GoogleCloudTalentV4Location]
 
 @typing.type_check_only
-class GoogleCloudTalentV4JobProcessingOptions(typing_extensions.TypedDict, total=False):
+class GoogleCloudTalentV4JobProcessingOptions(typing.TypedDict, total=False):
     disableStreetAddressResolution: bool
-    htmlSanitization: typing_extensions.Literal[
+    htmlSanitization: typing.Literal[
         "HTML_SANITIZATION_UNSPECIFIED",
         "HTML_SANITIZATION_DISABLED",
         "SIMPLE_FORMATTING_ONLY",
     ]
 
 @typing.type_check_only
-class GoogleCloudTalentV4JobResult(typing_extensions.TypedDict, total=False):
+class GoogleCloudTalentV4JobResult(typing.TypedDict, total=False):
     job: GoogleCloudTalentV4Job
     status: Status
 
 @typing.type_check_only
-class GoogleCloudTalentV4Location(typing_extensions.TypedDict, total=False):
+class GoogleCloudTalentV4Location(typing.TypedDict, total=False):
     latLng: LatLng
-    locationType: typing_extensions.Literal[
+    locationType: typing.Literal[
         "LOCATION_TYPE_UNSPECIFIED",
         "COUNTRY",
         "ADMINISTRATIVE_AREA",
@@ -636,11 +618,11 @@ class GoogleCloudTalentV4Location(typing_extensions.TypedDict, total=False):
     radiusMiles: float
 
 @typing.type_check_only
-class HistogramFacets(typing_extensions.TypedDict, total=False):
+class HistogramFacets(typing.TypedDict, total=False):
     compensationHistogramFacets: _list[CompensationHistogramRequest]
     customAttributeHistogramFacets: _list[CustomAttributeHistogramRequest]
     simpleHistogramFacets: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "JOB_FIELD_UNSPECIFIED",
             "COMPANY_ID",
             "EMPLOYMENT_TYPE",
@@ -683,8 +665,8 @@ class HistogramFacets(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class HistogramResult(typing_extensions.TypedDict, total=False):
-    searchType: typing_extensions.Literal[
+class HistogramResult(typing.TypedDict, total=False):
+    searchType: typing.Literal[
         "JOB_FIELD_UNSPECIFIED",
         "COMPANY_ID",
         "EMPLOYMENT_TYPE",
@@ -727,18 +709,18 @@ class HistogramResult(typing_extensions.TypedDict, total=False):
     values: dict[str, typing.Any]
 
 @typing.type_check_only
-class HistogramResults(typing_extensions.TypedDict, total=False):
+class HistogramResults(typing.TypedDict, total=False):
     compensationHistogramResults: _list[CompensationHistogramResult]
     customAttributeHistogramResults: _list[CustomAttributeHistogramResult]
     simpleHistogramResults: _list[HistogramResult]
 
 @typing.type_check_only
-class Job(typing_extensions.TypedDict, total=False):
+class Job(typing.TypedDict, total=False):
     applicationEmailList: _list[str]
     applicationInstruction: str
     applicationUrls: _list[str]
     benefits: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "JOB_BENEFIT_TYPE_UNSPECIFIED",
             "CHILD_CARE",
             "DENTAL",
@@ -764,7 +746,7 @@ class Job(typing_extensions.TypedDict, total=False):
     description: str
     distributorCompanyId: str
     educationLevels: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "EDUCATION_LEVEL_UNSPECIFIED",
             "HIGH_SCHOOL",
             "ASSOCIATE",
@@ -775,7 +757,7 @@ class Job(typing_extensions.TypedDict, total=False):
         ]
     ]
     employmentTypes: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "EMPLOYMENT_TYPE_UNSPECIFIED",
             "FULL_TIME",
             "PART_TIME",
@@ -798,7 +780,7 @@ class Job(typing_extensions.TypedDict, total=False):
     jobLocations: _list[JobLocation]
     jobTitle: str
     languageCode: str
-    level: typing_extensions.Literal[
+    level: typing.Literal[
         "JOB_LEVEL_UNSPECIFIED",
         "ENTRY_LEVEL",
         "EXPERIENCED",
@@ -812,7 +794,7 @@ class Job(typing_extensions.TypedDict, total=False):
     publishDate: Date
     qualifications: str
     referenceUrl: str
-    region: typing_extensions.Literal[
+    region: typing.Literal[
         "REGION_UNSPECIFIED", "STATE_WIDE", "NATION_WIDE", "TELECOMMUTE"
     ]
     requisitionId: str
@@ -820,14 +802,14 @@ class Job(typing_extensions.TypedDict, total=False):
     startDate: Date
     unindexedCustomFields: dict[str, typing.Any]
     updateTime: str
-    visibility: typing_extensions.Literal[
+    visibility: typing.Literal[
         "JOB_VISIBILITY_UNSPECIFIED", "PRIVATE", "GOOGLE", "PUBLIC"
     ]
 
 @typing.type_check_only
-class JobFilters(typing_extensions.TypedDict, total=False):
+class JobFilters(typing.TypedDict, total=False):
     categories: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "JOB_CATEGORY_UNSPECIFIED",
             "ACCOUNTING_AND_FINANCE",
             "ADMINISTRATIVE_AND_OFFICE",
@@ -869,7 +851,7 @@ class JobFilters(typing_extensions.TypedDict, total=False):
     customFieldFilters: dict[str, typing.Any]
     disableSpellCheck: bool
     employmentTypes: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "EMPLOYMENT_TYPE_UNSPECIFIED",
             "FULL_TIME",
             "PART_TIME",
@@ -886,7 +868,7 @@ class JobFilters(typing_extensions.TypedDict, total=False):
     extendedCompensationFilter: ExtendedCompensationFilter
     languageCodes: _list[str]
     locationFilters: _list[LocationFilter]
-    publishDateRange: typing_extensions.Literal[
+    publishDateRange: typing.Literal[
         "DATE_RANGE_UNSPECIFIED",
         "PAST_24_HOURS",
         "PAST_WEEK",
@@ -898,9 +880,9 @@ class JobFilters(typing_extensions.TypedDict, total=False):
     tenantJobOnly: bool
 
 @typing.type_check_only
-class JobLocation(typing_extensions.TypedDict, total=False):
+class JobLocation(typing.TypedDict, total=False):
     latLng: LatLng
-    locationType: typing_extensions.Literal[
+    locationType: typing.Literal[
         "LOCATION_TYPE_UNSPECIFIED",
         "COUNTRY",
         "ADMINISTRATIVE_AREA",
@@ -917,18 +899,18 @@ class JobLocation(typing_extensions.TypedDict, total=False):
     radiusMeters: float
 
 @typing.type_check_only
-class JobProcessingOptions(typing_extensions.TypedDict, total=False):
+class JobProcessingOptions(typing.TypedDict, total=False):
     disableStreetAddressResolution: bool
-    htmlSanitization: typing_extensions.Literal[
+    htmlSanitization: typing.Literal[
         "HTML_SANITIZATION_UNSPECIFIED",
         "HTML_SANITIZATION_DISABLED",
         "SIMPLE_FORMATTING_ONLY",
     ]
 
 @typing.type_check_only
-class JobQuery(typing_extensions.TypedDict, total=False):
+class JobQuery(typing.TypedDict, total=False):
     categories: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "JOB_CATEGORY_UNSPECIFIED",
             "ACCOUNTING_AND_FINANCE",
             "ADMINISTRATIVE_AND_OFFICE",
@@ -969,7 +951,7 @@ class JobQuery(typing_extensions.TypedDict, total=False):
     customAttributeFilter: str
     disableSpellCheck: bool
     employmentTypes: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "EMPLOYMENT_TYPE_UNSPECIFIED",
             "FULL_TIME",
             "PART_TIME",
@@ -985,7 +967,7 @@ class JobQuery(typing_extensions.TypedDict, total=False):
     ]
     languageCodes: _list[str]
     locationFilters: _list[LocationFilter]
-    publishDateRange: typing_extensions.Literal[
+    publishDateRange: typing.Literal[
         "DATE_RANGE_UNSPECIFIED",
         "PAST_24_HOURS",
         "PAST_WEEK",
@@ -996,31 +978,31 @@ class JobQuery(typing_extensions.TypedDict, total=False):
     query: str
 
 @typing.type_check_only
-class LatLng(typing_extensions.TypedDict, total=False):
+class LatLng(typing.TypedDict, total=False):
     latitude: float
     longitude: float
 
 @typing.type_check_only
-class ListCompaniesResponse(typing_extensions.TypedDict, total=False):
+class ListCompaniesResponse(typing.TypedDict, total=False):
     companies: _list[Company]
     metadata: ResponseMetadata
     nextPageToken: str
 
 @typing.type_check_only
-class ListCompanyJobsResponse(typing_extensions.TypedDict, total=False):
+class ListCompanyJobsResponse(typing.TypedDict, total=False):
     jobs: _list[Job]
     metadata: ResponseMetadata
     nextPageToken: str
     totalSize: str
 
 @typing.type_check_only
-class ListJobsResponse(typing_extensions.TypedDict, total=False):
+class ListJobsResponse(typing.TypedDict, total=False):
     jobs: _list[Job]
     metadata: ResponseMetadata
     nextPageToken: str
 
 @typing.type_check_only
-class LocationFilter(typing_extensions.TypedDict, total=False):
+class LocationFilter(typing.TypedDict, total=False):
     distanceInMiles: float
     isTelecommute: bool
     latLng: LatLng
@@ -1028,7 +1010,7 @@ class LocationFilter(typing_extensions.TypedDict, total=False):
     regionCode: str
 
 @typing.type_check_only
-class MatchingJob(typing_extensions.TypedDict, total=False):
+class MatchingJob(typing.TypedDict, total=False):
     commuteInfo: CommuteInfo
     job: Job
     jobSummary: str
@@ -1036,17 +1018,17 @@ class MatchingJob(typing_extensions.TypedDict, total=False):
     searchTextSnippet: str
 
 @typing.type_check_only
-class MendelDebugInput(typing_extensions.TypedDict, total=False):
+class MendelDebugInput(typing.TypedDict, total=False):
     namespacedDebugInput: dict[str, typing.Any]
 
 @typing.type_check_only
-class Money(typing_extensions.TypedDict, total=False):
+class Money(typing.TypedDict, total=False):
     currencyCode: str
     nanos: int
     units: str
 
 @typing.type_check_only
-class NamespacedDebugInput(typing_extensions.TypedDict, total=False):
+class NamespacedDebugInput(typing.TypedDict, total=False):
     absolutelyForcedExpNames: _list[str]
     absolutelyForcedExpTags: _list[str]
     absolutelyForcedExps: _list[int]
@@ -1063,18 +1045,18 @@ class NamespacedDebugInput(typing_extensions.TypedDict, total=False):
     forcedRollouts: dict[str, typing.Any]
 
 @typing.type_check_only
-class NumericBucketingOption(typing_extensions.TypedDict, total=False):
+class NumericBucketingOption(typing.TypedDict, total=False):
     bucketBounds: _list[float]
     requiresMinMax: bool
 
 @typing.type_check_only
-class NumericBucketingResult(typing_extensions.TypedDict, total=False):
+class NumericBucketingResult(typing.TypedDict, total=False):
     counts: _list[BucketizedCount]
     maxValue: float
     minValue: float
 
 @typing.type_check_only
-class PostalAddress(typing_extensions.TypedDict, total=False):
+class PostalAddress(typing.TypedDict, total=False):
     addressLines: _list[str]
     administrativeArea: str
     languageCode: str
@@ -1088,16 +1070,16 @@ class PostalAddress(typing_extensions.TypedDict, total=False):
     sublocality: str
 
 @typing.type_check_only
-class RequestMetadata(typing_extensions.TypedDict, total=False):
+class RequestMetadata(typing.TypedDict, total=False):
     deviceInfo: DeviceInfo
     domain: str
     sessionId: str
     userId: str
 
 @typing.type_check_only
-class ResponseMetadata(typing_extensions.TypedDict, total=False):
+class ResponseMetadata(typing.TypedDict, total=False):
     experimentIdList: _list[int]
-    mode: typing_extensions.Literal[
+    mode: typing.Literal[
         "SEARCH_MODE_UNSPECIFIED",
         "JOB_SEARCH",
         "FEATURED_JOB_SEARCH",
@@ -1106,23 +1088,21 @@ class ResponseMetadata(typing_extensions.TypedDict, total=False):
     requestId: str
 
 @typing.type_check_only
-class SearchJobsRequest(typing_extensions.TypedDict, total=False):
+class SearchJobsRequest(typing.TypedDict, total=False):
     disableRelevanceThresholding: bool
     enableBroadening: bool
     enablePreciseResultSize: bool
     filters: JobFilters
     histogramFacets: HistogramFacets
-    jobView: typing_extensions.Literal[
-        "JOB_VIEW_UNSPECIFIED", "SMALL", "MINIMAL", "FULL"
-    ]
-    mode: typing_extensions.Literal[
+    jobView: typing.Literal["JOB_VIEW_UNSPECIFIED", "SMALL", "MINIMAL", "FULL"]
+    mode: typing.Literal[
         "SEARCH_MODE_UNSPECIFIED",
         "JOB_SEARCH",
         "FEATURED_JOB_SEARCH",
         "EMAIL_ALERT_SEARCH",
     ]
     offset: int
-    orderBy: typing_extensions.Literal[
+    orderBy: typing.Literal[
         "SORT_BY_UNSPECIFIED",
         "RELEVANCE_DESC",
         "PUBLISHED_DATE_DESC",
@@ -1138,7 +1118,7 @@ class SearchJobsRequest(typing_extensions.TypedDict, total=False):
     pageToken: str
     query: JobQuery
     requestMetadata: RequestMetadata
-    sortBy: typing_extensions.Literal[
+    sortBy: typing.Literal[
         "SORT_BY_UNSPECIFIED",
         "RELEVANCE_DESC",
         "PUBLISHED_DATE_DESC",
@@ -1152,14 +1132,12 @@ class SearchJobsRequest(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class SearchJobsResponse(typing_extensions.TypedDict, total=False):
+class SearchJobsResponse(typing.TypedDict, total=False):
     appliedCommuteFilter: CommutePreference
     appliedJobLocationFilters: _list[JobLocation]
     estimatedTotalSize: str
     histogramResults: HistogramResults
-    jobView: typing_extensions.Literal[
-        "JOB_VIEW_UNSPECIFIED", "SMALL", "MINIMAL", "FULL"
-    ]
+    jobView: typing.Literal["JOB_VIEW_UNSPECIFIED", "SMALL", "MINIMAL", "FULL"]
     matchingJobs: _list[MatchingJob]
     metadata: ResponseMetadata
     nextPageToken: str
@@ -1168,22 +1146,22 @@ class SearchJobsResponse(typing_extensions.TypedDict, total=False):
     totalSize: str
 
 @typing.type_check_only
-class SpellingCorrection(typing_extensions.TypedDict, total=False):
+class SpellingCorrection(typing.TypedDict, total=False):
     corrected: bool
     correctedText: str
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class StringValues(typing_extensions.TypedDict, total=False):
+class StringValues(typing.TypedDict, total=False):
     values: _list[str]
 
 @typing.type_check_only
-class UpdateJobRequest(typing_extensions.TypedDict, total=False):
+class UpdateJobRequest(typing.TypedDict, total=False):
     disableStreetAddressResolution: bool
     job: Job
     processingOptions: JobProcessingOptions

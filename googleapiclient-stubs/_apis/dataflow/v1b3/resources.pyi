@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -45,7 +44,7 @@ class DataflowResource(googleapiclient.discovery.Resource):
                     jobId: str,
                     endTime: str | None = ...,
                     location: str | None = ...,
-                    minimumImportance: typing_extensions.Literal[
+                    minimumImportance: typing.Literal[
                         "JOB_MESSAGE_IMPORTANCE_UNKNOWN",
                         "JOB_MESSAGE_DEBUG",
                         "JOB_MESSAGE_DETAILED",
@@ -88,15 +87,13 @@ class DataflowResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 projectId: str,
-                filter: typing_extensions.Literal[
-                    "UNKNOWN", "ALL", "TERMINATED", "ACTIVE"
-                ]
+                filter: typing.Literal["UNKNOWN", "ALL", "TERMINATED", "ACTIVE"]
                 | None = ...,
                 location: str | None = ...,
                 name: str | None = ...,
                 pageSize: int | None = ...,
                 pageToken: str | None = ...,
-                view: typing_extensions.Literal[
+                view: typing.Literal[
                     "JOB_VIEW_UNKNOWN",
                     "JOB_VIEW_SUMMARY",
                     "JOB_VIEW_ALL",
@@ -117,7 +114,7 @@ class DataflowResource(googleapiclient.discovery.Resource):
                 body: Job,
                 location: str | None = ...,
                 replaceJobId: str | None = ...,
-                view: typing_extensions.Literal[
+                view: typing.Literal[
                     "JOB_VIEW_UNKNOWN",
                     "JOB_VIEW_SUMMARY",
                     "JOB_VIEW_ALL",
@@ -132,7 +129,7 @@ class DataflowResource(googleapiclient.discovery.Resource):
                 projectId: str,
                 jobId: str,
                 location: str | None = ...,
-                view: typing_extensions.Literal[
+                view: typing.Literal[
                     "JOB_VIEW_UNKNOWN",
                     "JOB_VIEW_SUMMARY",
                     "JOB_VIEW_ALL",
@@ -154,15 +151,13 @@ class DataflowResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 projectId: str,
-                filter: typing_extensions.Literal[
-                    "UNKNOWN", "ALL", "TERMINATED", "ACTIVE"
-                ]
+                filter: typing.Literal["UNKNOWN", "ALL", "TERMINATED", "ACTIVE"]
                 | None = ...,
                 location: str | None = ...,
                 name: str | None = ...,
                 pageSize: int | None = ...,
                 pageToken: str | None = ...,
-                view: typing_extensions.Literal[
+                view: typing.Literal[
                     "JOB_VIEW_UNKNOWN",
                     "JOB_VIEW_SUMMARY",
                     "JOB_VIEW_ALL",
@@ -252,7 +247,7 @@ class DataflowResource(googleapiclient.discovery.Resource):
                         location: str,
                         jobId: str,
                         endTime: str | None = ...,
-                        minimumImportance: typing_extensions.Literal[
+                        minimumImportance: typing.Literal[
                             "JOB_MESSAGE_IMPORTANCE_UNKNOWN",
                             "JOB_MESSAGE_DEBUG",
                             "JOB_MESSAGE_DETAILED",
@@ -332,7 +327,7 @@ class DataflowResource(googleapiclient.discovery.Resource):
                     location: str,
                     body: Job,
                     replaceJobId: str | None = ...,
-                    view: typing_extensions.Literal[
+                    view: typing.Literal[
                         "JOB_VIEW_UNKNOWN",
                         "JOB_VIEW_SUMMARY",
                         "JOB_VIEW_ALL",
@@ -347,7 +342,7 @@ class DataflowResource(googleapiclient.discovery.Resource):
                     projectId: str,
                     location: str,
                     jobId: str,
-                    view: typing_extensions.Literal[
+                    view: typing.Literal[
                         "JOB_VIEW_UNKNOWN",
                         "JOB_VIEW_SUMMARY",
                         "JOB_VIEW_ALL",
@@ -385,14 +380,12 @@ class DataflowResource(googleapiclient.discovery.Resource):
                     *,
                     projectId: str,
                     location: str,
-                    filter: typing_extensions.Literal[
-                        "UNKNOWN", "ALL", "TERMINATED", "ACTIVE"
-                    ]
+                    filter: typing.Literal["UNKNOWN", "ALL", "TERMINATED", "ACTIVE"]
                     | None = ...,
                     name: str | None = ...,
                     pageSize: int | None = ...,
                     pageToken: str | None = ...,
-                    view: typing_extensions.Literal[
+                    view: typing.Literal[
                         "JOB_VIEW_UNKNOWN",
                         "JOB_VIEW_SUMMARY",
                         "JOB_VIEW_ALL",
@@ -474,7 +467,7 @@ class DataflowResource(googleapiclient.discovery.Resource):
                     projectId: str,
                     location: str,
                     gcsPath: str | None = ...,
-                    view: typing_extensions.Literal["METADATA_ONLY"] | None = ...,
+                    view: typing.Literal["METADATA_ONLY"] | None = ...,
                     **kwargs: typing.Any,
                 ) -> GetTemplateResponseHttpRequest: ...
                 def launch(
@@ -537,7 +530,7 @@ class DataflowResource(googleapiclient.discovery.Resource):
                 projectId: str,
                 gcsPath: str | None = ...,
                 location: str | None = ...,
-                view: typing_extensions.Literal["METADATA_ONLY"] | None = ...,
+                view: typing.Literal["METADATA_ONLY"] | None = ...,
                 **kwargs: typing.Any,
             ) -> GetTemplateResponseHttpRequest: ...
             def launch(

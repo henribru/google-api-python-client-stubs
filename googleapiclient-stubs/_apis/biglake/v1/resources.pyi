@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -113,7 +112,7 @@ class BigLakeServiceResource(googleapiclient.discovery.Resource):
                             parent: str,
                             pageSize: int | None = ...,
                             pageToken: str | None = ...,
-                            view: typing_extensions.Literal[
+                            view: typing.Literal[
                                 "TABLE_VIEW_UNSPECIFIED", "BASIC", "FULL"
                             ]
                             | None = ...,

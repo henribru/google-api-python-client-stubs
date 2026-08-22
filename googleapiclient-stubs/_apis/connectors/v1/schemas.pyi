@@ -1,36 +1,32 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class AdminFilters(typing_extensions.TypedDict, total=False):
+class AdminFilters(typing.TypedDict, total=False):
     filterKey: str
-    filterType: typing_extensions.Literal[
-        "FILTER_TYPE_UNSPECIFIED", "INCLUSION", "EXCLUSION"
-    ]
+    filterType: typing.Literal["FILTER_TYPE_UNSPECIFIED", "INCLUSION", "EXCLUSION"]
     intValue: str
     stringListValues: StringListValues
     stringValue: str
 
 @typing.type_check_only
-class AuditConfig(typing_extensions.TypedDict, total=False):
+class AuditConfig(typing.TypedDict, total=False):
     auditLogConfigs: _list[AuditLogConfig]
     service: str
 
 @typing.type_check_only
-class AuditLogConfig(typing_extensions.TypedDict, total=False):
+class AuditLogConfig(typing.TypedDict, total=False):
     exemptedMembers: _list[str]
-    logType: typing_extensions.Literal[
+    logType: typing.Literal[
         "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
     ]
 
 @typing.type_check_only
-class AuthConfig(typing_extensions.TypedDict, total=False):
+class AuthConfig(typing.TypedDict, total=False):
     additionalVariables: _list[ConfigVariable]
     authKey: str
-    authType: typing_extensions.Literal[
+    authType: typing.Literal[
         "AUTH_TYPE_UNSPECIFIED",
         "USER_PASSWORD",
         "OAUTH2_JWT_BEARER",
@@ -48,9 +44,9 @@ class AuthConfig(typing_extensions.TypedDict, total=False):
     userPassword: UserPassword
 
 @typing.type_check_only
-class AuthConfigTemplate(typing_extensions.TypedDict, total=False):
+class AuthConfigTemplate(typing.TypedDict, total=False):
     authKey: str
-    authType: typing_extensions.Literal[
+    authType: typing.Literal[
         "AUTH_TYPE_UNSPECIFIED",
         "USER_PASSWORD",
         "OAUTH2_JWT_BEARER",
@@ -66,13 +62,13 @@ class AuthConfigTemplate(typing_extensions.TypedDict, total=False):
     isDefault: bool
 
 @typing.type_check_only
-class AuthField(typing_extensions.TypedDict, total=False):
+class AuthField(typing.TypedDict, total=False):
     dataType: str
     description: str
     key: str
 
 @typing.type_check_only
-class AuthObject(typing_extensions.TypedDict, total=False):
+class AuthObject(typing.TypedDict, total=False):
     additionalProperties: bool
     authKey: str
     authType: str
@@ -82,15 +78,15 @@ class AuthObject(typing_extensions.TypedDict, total=False):
     type: str
 
 @typing.type_check_only
-class AuthProperty(typing_extensions.TypedDict, total=False):
+class AuthProperty(typing.TypedDict, total=False):
     description: str
     type: str
 
 @typing.type_check_only
-class AuthSchema(typing_extensions.TypedDict, total=False):
+class AuthSchema(typing.TypedDict, total=False):
     authFields: _list[AuthField]
     authKey: str
-    authType: typing_extensions.Literal[
+    authType: typing.Literal[
         "AUTH_TYPE_UNSPECIFIED",
         "USER_PASSWORD",
         "OAUTH2_JWT_BEARER",
@@ -105,7 +101,7 @@ class AuthSchema(typing_extensions.TypedDict, total=False):
     isDefault: bool
 
 @typing.type_check_only
-class AuthorizationCodeLink(typing_extensions.TypedDict, total=False):
+class AuthorizationCodeLink(typing.TypedDict, total=False):
     clientId: str
     clientSecret: Secret
     enablePkce: bool
@@ -114,24 +110,24 @@ class AuthorizationCodeLink(typing_extensions.TypedDict, total=False):
     uri: str
 
 @typing.type_check_only
-class BillingConfig(typing_extensions.TypedDict, total=False):
-    billingCategory: typing_extensions.Literal[
+class BillingConfig(typing.TypedDict, total=False):
+    billingCategory: typing.Literal[
         "BILLING_CATEGORY_UNSPECIFIED",
         "GCP_AND_TECHNICAL_CONNECTOR",
         "NON_GCP_CONNECTOR",
     ]
 
 @typing.type_check_only
-class Binding(typing_extensions.TypedDict, total=False):
+class Binding(typing.TypedDict, total=False):
     condition: Expr
     members: _list[str]
     role: str
 
 @typing.type_check_only
-class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
+class CancelOperationRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ConfigVariable(typing_extensions.TypedDict, total=False):
+class ConfigVariable(typing.TypedDict, total=False):
     boolValue: bool
     encryptionKeyValue: EncryptionKey
     intValue: str
@@ -140,24 +136,24 @@ class ConfigVariable(typing_extensions.TypedDict, total=False):
     stringValue: str
 
 @typing.type_check_only
-class ConfigVariableTemplate(typing_extensions.TypedDict, total=False):
+class ConfigVariableTemplate(typing.TypedDict, total=False):
     authorizationCodeLink: AuthorizationCodeLink
     description: str
     displayName: str
     enumOptions: _list[EnumOption]
-    enumSource: typing_extensions.Literal["ENUM_SOURCE_UNSPECIFIED", "EVENT_TYPES_API"]
+    enumSource: typing.Literal["ENUM_SOURCE_UNSPECIFIED", "EVENT_TYPES_API"]
     isAdvanced: bool
     key: str
-    locationType: typing_extensions.Literal[
+    locationType: typing.Literal[
         "LOCATION_TYPE_UNSPECIFIED", "HEADER", "PAYLOAD", "QUERY_PARAM", "PATH_PARAM"
     ]
     multipleSelectConfig: MultipleSelectConfig
     required: bool
     requiredCondition: LogicalExpression
     roleGrant: RoleGrant
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "DEPRECATED"]
+    state: typing.Literal["STATE_UNSPECIFIED", "ACTIVE", "DEPRECATED"]
     validationRegex: str
-    valueType: typing_extensions.Literal[
+    valueType: typing.Literal[
         "VALUE_TYPE_UNSPECIFIED",
         "STRING",
         "INT",
@@ -170,7 +166,7 @@ class ConfigVariableTemplate(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class Connection(typing_extensions.TypedDict, total=False):
+class Connection(typing.TypedDict, total=False):
     adminFilters: _list[AdminFilters]
     asyncOperationsEnabled: bool
     authConfig: AuthConfig
@@ -180,7 +176,7 @@ class Connection(typing_extensions.TypedDict, total=False):
     connectionRevision: str
     connectorVersion: str
     connectorVersionInfraConfig: ConnectorVersionInfraConfig
-    connectorVersionLaunchStage: typing_extensions.Literal[
+    connectorVersionLaunchStage: typing.Literal[
         "LAUNCH_STAGE_UNSPECIFIED",
         "PREVIEW",
         "GA",
@@ -194,7 +190,7 @@ class Connection(typing_extensions.TypedDict, total=False):
     envoyImageLocation: str
     euaOauthAuthConfig: AuthConfig
     eventingConfig: EventingConfig
-    eventingEnablementType: typing_extensions.Literal[
+    eventingEnablementType: typing.Literal[
         "EVENTING_ENABLEMENT_TYPE_UNSPECIFIED",
         "EVENTING_AND_CONNECTION",
         "ONLY_EVENTING",
@@ -213,22 +209,20 @@ class Connection(typing_extensions.TypedDict, total=False):
     serviceDirectory: str
     sslConfig: SslConfig
     status: ConnectionStatus
-    subscriptionType: typing_extensions.Literal[
-        "SUBSCRIPTION_TYPE_UNSPECIFIED", "PAY_G", "PAID"
-    ]
+    subscriptionType: typing.Literal["SUBSCRIPTION_TYPE_UNSPECIFIED", "PAY_G", "PAID"]
     suspended: bool
     tlsServiceDirectory: str
     trafficShapingConfigs: _list[TrafficShapingConfig]
     updateTime: str
 
 @typing.type_check_only
-class ConnectionSchemaMetadata(typing_extensions.TypedDict, total=False):
+class ConnectionSchemaMetadata(typing.TypedDict, total=False):
     actions: _list[str]
     entities: _list[str]
     errorMessage: str
     name: str
     refreshTime: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "REFRESHING",
         "UPDATED",
@@ -241,9 +235,9 @@ class ConnectionSchemaMetadata(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class ConnectionStatus(typing_extensions.TypedDict, total=False):
+class ConnectionStatus(typing.TypedDict, total=False):
     description: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "CREATING",
         "ACTIVE",
@@ -256,9 +250,9 @@ class ConnectionStatus(typing_extensions.TypedDict, total=False):
     status: str
 
 @typing.type_check_only
-class Connector(typing_extensions.TypedDict, total=False):
+class Connector(typing.TypedDict, total=False):
     category: str
-    connectorType: typing_extensions.Literal[
+    connectorType: typing.Literal[
         "CONNECTOR_TYPE_UNSPECIFIED",
         "CONNECTOR_TYPE_GOOGLE",
         "CONNECTOR_TYPE_TECHNICAL",
@@ -271,7 +265,7 @@ class Connector(typing_extensions.TypedDict, total=False):
     eventingDetails: EventingDetails
     externalUri: str
     labels: dict[str, typing.Any]
-    launchStage: typing_extensions.Literal[
+    launchStage: typing.Literal[
         "LAUNCH_STAGE_UNSPECIFIED",
         "PREVIEW",
         "GA",
@@ -286,12 +280,12 @@ class Connector(typing_extensions.TypedDict, total=False):
     webAssetsLocation: str
 
 @typing.type_check_only
-class ConnectorInfraConfig(typing_extensions.TypedDict, total=False):
+class ConnectorInfraConfig(typing.TypedDict, total=False):
     alwaysAllocateCpu: bool
     connectionRatelimitWindowSeconds: str
     connectionServiceAccountEnabled: bool
     connectorVersioningEnabled: bool
-    deploymentModel: typing_extensions.Literal[
+    deploymentModel: typing.Literal[
         "DEPLOYMENT_MODEL_UNSPECIFIED", "GKE_MST", "CLOUD_RUN_MST"
     ]
     hpaConfig: HPAConfig
@@ -309,7 +303,7 @@ class ConnectorInfraConfig(typing_extensions.TypedDict, total=False):
     sharedDeployment: str
 
 @typing.type_check_only
-class ConnectorVersion(typing_extensions.TypedDict, total=False):
+class ConnectorVersion(typing.TypedDict, total=False):
     authConfigTemplates: _list[AuthConfigTemplate]
     authOverrideEnabled: bool
     configVariableTemplates: _list[ConfigVariableTemplate]
@@ -322,7 +316,7 @@ class ConnectorVersion(typing_extensions.TypedDict, total=False):
     isCustomActionsSupported: bool
     isCustomEntitiesSupported: bool
     labels: dict[str, typing.Any]
-    launchStage: typing_extensions.Literal[
+    launchStage: typing.Literal[
         "LAUNCH_STAGE_UNSPECIFIED",
         "PREVIEW",
         "GA",
@@ -340,7 +334,7 @@ class ConnectorVersion(typing_extensions.TypedDict, total=False):
     supportedStandardActions: _list[StandardAction]
     supportedStandardEntities: _list[StandardEntity]
     unsupportedConnectionTypes: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "CONNECTION_TYPE_UNSPECIFIED",
             "CONNECTION_WITH_EVENTING",
             "ONLY_CONNECTION",
@@ -351,12 +345,12 @@ class ConnectorVersion(typing_extensions.TypedDict, total=False):
     vpcscConfig: VpcscConfig
 
 @typing.type_check_only
-class ConnectorVersionInfraConfig(typing_extensions.TypedDict, total=False):
+class ConnectorVersionInfraConfig(typing.TypedDict, total=False):
     connectionRatelimitWindowSeconds: str
-    deploymentModel: typing_extensions.Literal[
+    deploymentModel: typing.Literal[
         "DEPLOYMENT_MODEL_UNSPECIFIED", "GKE_MST", "CLOUD_RUN_MST"
     ]
-    deploymentModelMigrationState: typing_extensions.Literal[
+    deploymentModelMigrationState: typing.Literal[
         "DEPLOYMENT_MODEL_MIGRATION_STATE_UNSPECIFIED",
         "IN_PROGRESS",
         "COMPLETED",
@@ -370,24 +364,24 @@ class ConnectorVersionInfraConfig(typing_extensions.TypedDict, total=False):
     resourceLimits: ResourceLimits
     resourceRequests: ResourceRequests
     sharedDeployment: str
-    tlsMigrationState: typing_extensions.Literal[
+    tlsMigrationState: typing.Literal[
         "TLS_MIGRATION_STATE_UNSPECIFIED",
         "TLS_MIGRATION_NOT_STARTED",
         "TLS_MIGRATION_COMPLETED",
     ]
 
 @typing.type_check_only
-class ConnectorsLogConfig(typing_extensions.TypedDict, total=False):
+class ConnectorsLogConfig(typing.TypedDict, total=False):
     enabled: bool
-    level: typing_extensions.Literal["LOG_LEVEL_UNSPECIFIED", "ERROR", "INFO", "DEBUG"]
+    level: typing.Literal["LOG_LEVEL_UNSPECIFIED", "ERROR", "INFO", "DEBUG"]
 
 @typing.type_check_only
-class CustomConnector(typing_extensions.TypedDict, total=False):
+class CustomConnector(typing.TypedDict, total=False):
     activeConnectorVersions: _list[str]
     allConnectorVersions: _list[str]
     allMarketplaceVersions: _list[str]
     createTime: str
-    customConnectorType: typing_extensions.Literal[
+    customConnectorType: typing.Literal[
         "CUSTOM_CONNECTOR_TYPE_UNSPECIFIED", "OPEN_API", "PROTO", "SDK"
     ]
     description: str
@@ -399,7 +393,7 @@ class CustomConnector(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class CustomConnectorVersion(typing_extensions.TypedDict, total=False):
+class CustomConnectorVersion(typing.TypedDict, total=False):
     asyncOperationsSupport: bool
     authConfig: AuthConfig
     authConfigTemplates: _list[AuthConfigTemplate]
@@ -415,49 +409,47 @@ class CustomConnectorVersion(typing_extensions.TypedDict, total=False):
     serviceAccount: str
     specLocation: str
     specServerUrls: _list[str]
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "DEPRECATED"]
+    state: typing.Literal["STATE_UNSPECIFIED", "ACTIVE", "DEPRECATED"]
     updateTime: str
 
 @typing.type_check_only
-class DailyCycle(typing_extensions.TypedDict, total=False):
+class DailyCycle(typing.TypedDict, total=False):
     duration: str
     startTime: TimeOfDay
 
 @typing.type_check_only
-class Date(typing_extensions.TypedDict, total=False):
+class Date(typing.TypedDict, total=False):
     day: int
     month: int
     year: int
 
 @typing.type_check_only
-class DeadLetterConfig(typing_extensions.TypedDict, total=False):
+class DeadLetterConfig(typing.TypedDict, total=False):
     projectId: str
     topic: str
 
 @typing.type_check_only
-class DenyMaintenancePeriod(typing_extensions.TypedDict, total=False):
+class DenyMaintenancePeriod(typing.TypedDict, total=False):
     endDate: Date
     startDate: Date
     time: TimeOfDay
 
 @typing.type_check_only
-class DeprecateCustomConnectorVersionRequest(
-    typing_extensions.TypedDict, total=False
-): ...
+class DeprecateCustomConnectorVersionRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Destination(typing_extensions.TypedDict, total=False):
+class Destination(typing.TypedDict, total=False):
     host: str
     port: int
     serviceAttachment: str
 
 @typing.type_check_only
-class DestinationConfig(typing_extensions.TypedDict, total=False):
+class DestinationConfig(typing.TypedDict, total=False):
     destinations: _list[Destination]
     key: str
 
 @typing.type_check_only
-class DestinationConfigTemplate(typing_extensions.TypedDict, total=False):
+class DestinationConfigTemplate(typing.TypedDict, total=False):
     autocompleteSuggestions: _list[str]
     defaultPort: int
     description: str
@@ -466,53 +458,47 @@ class DestinationConfigTemplate(typing_extensions.TypedDict, total=False):
     key: str
     max: int
     min: int
-    portFieldType: typing_extensions.Literal[
+    portFieldType: typing.Literal[
         "FIELD_TYPE_UNSPECIFIED", "REQUIRED", "OPTIONAL", "NOT_USED"
     ]
     regexPattern: str
 
 @typing.type_check_only
-class EUASecret(typing_extensions.TypedDict, total=False):
+class EUASecret(typing.TypedDict, total=False):
     secretValue: str
     secretVersion: str
 
 @typing.type_check_only
-class EgressControlConfig(typing_extensions.TypedDict, total=False):
-    accessMode: typing_extensions.Literal[
-        "ACCESS_MODE_UNSPECIFIED", "RESTRICTED", "ALLOW_ALL"
-    ]
+class EgressControlConfig(typing.TypedDict, total=False):
+    accessMode: typing.Literal["ACCESS_MODE_UNSPECIFIED", "RESTRICTED", "ALLOW_ALL"]
     additionalExtractionRules: ExtractionRules
     allowlistedProjectNumbers: _list[str]
     backends: str
     extractionRules: ExtractionRules
-    launchEnvironment: typing_extensions.Literal[
+    launchEnvironment: typing.Literal[
         "LAUNCH_ENVIRONMENT_UNSPECIFIED", "AUTOPUSH", "STAGING", "PROD"
     ]
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class EncryptionConfig(typing_extensions.TypedDict, total=False):
-    encryptionType: typing_extensions.Literal[
-        "ENCRYPTION_TYPE_UNSPECIFIED", "GMEK", "CMEK"
-    ]
+class EncryptionConfig(typing.TypedDict, total=False):
+    encryptionType: typing.Literal["ENCRYPTION_TYPE_UNSPECIFIED", "GMEK", "CMEK"]
     kmsKeyName: str
 
 @typing.type_check_only
-class EncryptionKey(typing_extensions.TypedDict, total=False):
+class EncryptionKey(typing.TypedDict, total=False):
     kmsKeyName: str
-    type: typing_extensions.Literal[
-        "TYPE_UNSPECIFIED", "GOOGLE_MANAGED", "CUSTOMER_MANAGED"
-    ]
+    type: typing.Literal["TYPE_UNSPECIFIED", "GOOGLE_MANAGED", "CUSTOMER_MANAGED"]
 
 @typing.type_check_only
-class EndPoint(typing_extensions.TypedDict, total=False):
+class EndPoint(typing.TypedDict, total=False):
     endpointUri: str
     headers: _list[Header]
 
 @typing.type_check_only
-class EndUserAuthentication(typing_extensions.TypedDict, total=False):
+class EndUserAuthentication(typing.TypedDict, total=False):
     configVariables: _list[EndUserAuthenticationConfigVariable]
     createTime: str
     destinationConfigs: _list[DestinationConfig]
@@ -521,19 +507,17 @@ class EndUserAuthentication(typing_extensions.TypedDict, total=False):
     name: str
     notifyEndpointDestination: EndUserAuthenticationNotifyEndpointDestination
     roles: _list[
-        typing_extensions.Literal[
-            "ROLE_UNSPECIFIED", "READER", "READER_DOMAIN_WIDE_ACCESSIBLE"
-        ]
+        typing.Literal["ROLE_UNSPECIFIED", "READER", "READER_DOMAIN_WIDE_ACCESSIBLE"]
     ]
     status: EndUserAuthenticationEndUserAuthenticationStatus
     updateTime: str
     userId: str
 
 @typing.type_check_only
-class EndUserAuthenticationConfig(typing_extensions.TypedDict, total=False):
+class EndUserAuthenticationConfig(typing.TypedDict, total=False):
     additionalVariables: _list[EndUserAuthenticationConfigVariable]
     authKey: str
-    authType: typing_extensions.Literal[
+    authType: typing.Literal[
         "AUTH_TYPE_UNSPECIFIED",
         "USER_PASSWORD",
         "OAUTH2_JWT_BEARER",
@@ -553,9 +537,7 @@ class EndUserAuthenticationConfig(typing_extensions.TypedDict, total=False):
     userPassword: EndUserAuthenticationConfigUserPassword
 
 @typing.type_check_only
-class EndUserAuthenticationConfigOauth2AuthCodeFlow(
-    typing_extensions.TypedDict, total=False
-):
+class EndUserAuthenticationConfigOauth2AuthCodeFlow(typing.TypedDict, total=False):
     authCode: str
     authUri: str
     clientId: str
@@ -568,7 +550,7 @@ class EndUserAuthenticationConfigOauth2AuthCodeFlow(
 
 @typing.type_check_only
 class EndUserAuthenticationConfigOauth2AuthCodeFlowGoogleManaged(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     authCode: str
     oauthTokenData: OAuthTokenData
@@ -576,41 +558,37 @@ class EndUserAuthenticationConfigOauth2AuthCodeFlowGoogleManaged(
     scopes: _list[str]
 
 @typing.type_check_only
-class EndUserAuthenticationConfigOauth2ClientCredentials(
-    typing_extensions.TypedDict, total=False
-):
+class EndUserAuthenticationConfigOauth2ClientCredentials(typing.TypedDict, total=False):
     clientId: str
     clientSecret: EUASecret
 
 @typing.type_check_only
-class EndUserAuthenticationConfigOauth2JwtBearer(
-    typing_extensions.TypedDict, total=False
-):
+class EndUserAuthenticationConfigOauth2JwtBearer(typing.TypedDict, total=False):
     clientKey: EUASecret
     jwtClaims: EndUserAuthenticationConfigOauth2JwtBearerJwtClaims
 
 @typing.type_check_only
 class EndUserAuthenticationConfigOauth2JwtBearerJwtClaims(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     audience: str
     issuer: str
     subject: str
 
 @typing.type_check_only
-class EndUserAuthenticationConfigSshPublicKey(typing_extensions.TypedDict, total=False):
+class EndUserAuthenticationConfigSshPublicKey(typing.TypedDict, total=False):
     certType: str
     sshClientCert: EUASecret
     sshClientCertPass: EUASecret
     username: str
 
 @typing.type_check_only
-class EndUserAuthenticationConfigUserPassword(typing_extensions.TypedDict, total=False):
+class EndUserAuthenticationConfigUserPassword(typing.TypedDict, total=False):
     password: EUASecret
     username: str
 
 @typing.type_check_only
-class EndUserAuthenticationConfigVariable(typing_extensions.TypedDict, total=False):
+class EndUserAuthenticationConfigVariable(typing.TypedDict, total=False):
     boolValue: bool
     intValue: str
     key: str
@@ -618,36 +596,32 @@ class EndUserAuthenticationConfigVariable(typing_extensions.TypedDict, total=Fal
     stringValue: str
 
 @typing.type_check_only
-class EndUserAuthenticationEndUserAuthenticationStatus(
-    typing_extensions.TypedDict, total=False
-):
+class EndUserAuthenticationEndUserAuthenticationStatus(typing.TypedDict, total=False):
     description: str
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "ERROR"]
+    state: typing.Literal["STATE_UNSPECIFIED", "ACTIVE", "ERROR"]
 
 @typing.type_check_only
-class EndUserAuthenticationNotifyEndpointDestination(
-    typing_extensions.TypedDict, total=False
-):
+class EndUserAuthenticationNotifyEndpointDestination(typing.TypedDict, total=False):
     endpoint: EndUserAuthenticationNotifyEndpointDestinationEndPoint
     serviceAccount: str
-    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "ENDPOINT"]
+    type: typing.Literal["TYPE_UNSPECIFIED", "ENDPOINT"]
 
 @typing.type_check_only
 class EndUserAuthenticationNotifyEndpointDestinationEndPoint(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     endpointUri: str
     headers: _list[EndUserAuthenticationNotifyEndpointDestinationEndPointHeader]
 
 @typing.type_check_only
 class EndUserAuthenticationNotifyEndpointDestinationEndPointHeader(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     key: str
     value: str
 
 @typing.type_check_only
-class EndpointAttachment(typing_extensions.TypedDict, total=False):
+class EndpointAttachment(typing.TypedDict, total=False):
     createTime: str
     description: str
     endpointGlobalAccess: bool
@@ -655,7 +629,7 @@ class EndpointAttachment(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     name: str
     serviceAttachment: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "PENDING",
         "ACCEPTED",
@@ -668,16 +642,16 @@ class EndpointAttachment(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class EnrichmentConfig(typing_extensions.TypedDict, total=False):
+class EnrichmentConfig(typing.TypedDict, total=False):
     appendAcl: bool
 
 @typing.type_check_only
-class EnumOption(typing_extensions.TypedDict, total=False):
+class EnumOption(typing.TypedDict, total=False):
     displayName: str
     id: str
 
 @typing.type_check_only
-class EventSubscription(typing_extensions.TypedDict, total=False):
+class EventSubscription(typing.TypedDict, total=False):
     createTime: str
     destinations: EventSubscriptionDestination
     eventTypeId: str
@@ -691,21 +665,21 @@ class EventSubscription(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class EventSubscriptionDestination(typing_extensions.TypedDict, total=False):
+class EventSubscriptionDestination(typing.TypedDict, total=False):
     endpoint: EndPoint
     pubsub: PubSub
     serviceAccount: str
-    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "ENDPOINT", "GCS", "PUBSUB"]
+    type: typing.Literal["TYPE_UNSPECIFIED", "ENDPOINT", "GCS", "PUBSUB"]
 
 @typing.type_check_only
-class EventSubscriptionStatus(typing_extensions.TypedDict, total=False):
+class EventSubscriptionStatus(typing.TypedDict, total=False):
     description: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED", "CREATING", "UPDATING", "ACTIVE", "SUSPENDED", "ERROR"
     ]
 
 @typing.type_check_only
-class EventType(typing_extensions.TypedDict, total=False):
+class EventType(typing.TypedDict, total=False):
     createTime: str
     enrichedEventPayloadSchema: str
     entityType: str
@@ -716,7 +690,7 @@ class EventType(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class EventingConfig(typing_extensions.TypedDict, total=False):
+class EventingConfig(typing.TypedDict, total=False):
     additionalVariables: _list[ConfigVariable]
     allowedEventTypes: _list[str]
     authConfig: AuthConfig
@@ -733,14 +707,14 @@ class EventingConfig(typing_extensions.TypedDict, total=False):
     sslConfig: SslConfig
 
 @typing.type_check_only
-class EventingConfigTemplate(typing_extensions.TypedDict, total=False):
+class EventingConfigTemplate(typing.TypedDict, total=False):
     additionalVariables: _list[ConfigVariableTemplate]
     authConfigTemplates: _list[AuthConfigTemplate]
     autoRefresh: bool
     autoRegistrationSupported: bool
     encryptionKeyTemplate: ConfigVariableTemplate
     enrichmentSupported: bool
-    eventListenerType: typing_extensions.Literal[
+    eventListenerType: typing.Literal[
         "EVENT_LISTENER_TYPE_UNSPECIFIED", "WEBHOOK_LISTENER", "JMS_LISTENER"
     ]
     isEventingSupported: bool
@@ -751,12 +725,12 @@ class EventingConfigTemplate(typing_extensions.TypedDict, total=False):
     triggerConfigVariables: _list[ConfigVariableTemplate]
 
 @typing.type_check_only
-class EventingDetails(typing_extensions.TypedDict, total=False):
+class EventingDetails(typing.TypedDict, total=False):
     customEventTypes: bool
     description: str
     documentationLink: str
     iconLocation: str
-    launchStage: typing_extensions.Literal[
+    launchStage: typing.Literal[
         "LAUNCH_STAGE_UNSPECIFIED",
         "PREVIEW",
         "GA",
@@ -766,13 +740,13 @@ class EventingDetails(typing_extensions.TypedDict, total=False):
     ]
     name: str
     searchTags: _list[str]
-    subscriptionType: typing_extensions.Literal[
+    subscriptionType: typing.Literal[
         "SUBSCRIPTION_TYPE_UNSPECIFIED", "SHARED", "USER_SPECIFIC"
     ]
-    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "WEBHOOK", "JMS"]
+    type: typing.Literal["TYPE_UNSPECIFIED", "WEBHOOK", "JMS"]
 
 @typing.type_check_only
-class EventingRuntimeData(typing_extensions.TypedDict, total=False):
+class EventingRuntimeData(typing.TypedDict, total=False):
     eventsListenerEndpoint: str
     eventsListenerPscSa: str
     status: EventingStatus
@@ -780,46 +754,46 @@ class EventingRuntimeData(typing_extensions.TypedDict, total=False):
     webhookSubscriptions: WebhookSubscriptions
 
 @typing.type_check_only
-class EventingStatus(typing_extensions.TypedDict, total=False):
+class EventingStatus(typing.TypedDict, total=False):
     description: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED", "ACTIVE", "ERROR", "INGRESS_ENDPOINT_REQUIRED"
     ]
 
 @typing.type_check_only
-class Expr(typing_extensions.TypedDict, total=False):
+class Expr(typing.TypedDict, total=False):
     description: str
     expression: str
     location: str
     title: str
 
 @typing.type_check_only
-class ExtractionRule(typing_extensions.TypedDict, total=False):
+class ExtractionRule(typing.TypedDict, total=False):
     extractionRegex: str
     formatString: str
     source: Source
 
 @typing.type_check_only
-class ExtractionRules(typing_extensions.TypedDict, total=False):
+class ExtractionRules(typing.TypedDict, total=False):
     extractionRule: _list[ExtractionRule]
 
 @typing.type_check_only
-class FetchAuthSchemaResponse(typing_extensions.TypedDict, total=False):
+class FetchAuthSchemaResponse(typing.TypedDict, total=False):
     authSchemas: _list[AuthSchema]
     jsonSchema: JsonAuthSchema
 
 @typing.type_check_only
-class FetchConnectionToolspecOverrideRequest(typing_extensions.TypedDict, total=False):
+class FetchConnectionToolspecOverrideRequest(typing.TypedDict, total=False):
     toolNames: _list[ToolName]
 
 @typing.type_check_only
-class FetchConnectionToolspecOverrideResponse(typing_extensions.TypedDict, total=False):
+class FetchConnectionToolspecOverrideResponse(typing.TypedDict, total=False):
     toolspecOverride: ToolspecOverride
 
 @typing.type_check_only
-class Field(typing_extensions.TypedDict, total=False):
+class Field(typing.TypedDict, total=False):
     additionalDetails: dict[str, typing.Any]
-    dataType: typing_extensions.Literal[
+    dataType: typing.Literal[
         "DATA_TYPE_UNSPECIFIED",
         "DATA_TYPE_INT",
         "DATA_TYPE_SMALLINT",
@@ -875,40 +849,34 @@ class Field(typing_extensions.TypedDict, total=False):
     readonly: bool
 
 @typing.type_check_only
-class FieldComparison(typing_extensions.TypedDict, total=False):
+class FieldComparison(typing.TypedDict, total=False):
     boolValue: bool
-    comparator: typing_extensions.Literal[
-        "COMPARATOR_UNSPECIFIED", "EQUALS", "NOT_EQUALS"
-    ]
+    comparator: typing.Literal["COMPARATOR_UNSPECIFIED", "EQUALS", "NOT_EQUALS"]
     intValue: str
     key: str
     stringValue: str
 
 @typing.type_check_only
-class GenerateConnectionToolspecOverrideRequest(
-    typing_extensions.TypedDict, total=False
-):
+class GenerateConnectionToolspecOverrideRequest(typing.TypedDict, total=False):
     toolNames: _list[ToolName]
 
 @typing.type_check_only
-class GenerateConnectionToolspecOverrideResponse(
-    typing_extensions.TypedDict, total=False
-):
+class GenerateConnectionToolspecOverrideResponse(typing.TypedDict, total=False):
     toolspecOverride: ToolspecOverride
 
 @typing.type_check_only
-class HPAConfig(typing_extensions.TypedDict, total=False):
+class HPAConfig(typing.TypedDict, total=False):
     cpuUtilizationThreshold: str
     memoryUtilizationThreshold: str
 
 @typing.type_check_only
-class Header(typing_extensions.TypedDict, total=False):
+class Header(typing.TypedDict, total=False):
     key: str
     value: str
 
 @typing.type_check_only
-class InputParameter(typing_extensions.TypedDict, total=False):
-    dataType: typing_extensions.Literal[
+class InputParameter(typing.TypedDict, total=False):
+    dataType: typing.Literal[
         "DATA_TYPE_UNSPECIFIED",
         "DATA_TYPE_INT",
         "DATA_TYPE_SMALLINT",
@@ -962,7 +930,7 @@ class InputParameter(typing_extensions.TypedDict, total=False):
     parameter: str
 
 @typing.type_check_only
-class Instance(typing_extensions.TypedDict, total=False):
+class Instance(typing.TypedDict, total=False):
     consumerDefinedName: str
     consumerProjectNumber: str
     createTime: str
@@ -978,7 +946,7 @@ class Instance(typing_extensions.TypedDict, total=False):
     slmInstanceTemplate: str
     sloMetadata: SloMetadata
     softwareVersions: dict[str, typing.Any]
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "CREATING",
         "READY",
@@ -991,11 +959,11 @@ class Instance(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class JMS(typing_extensions.TypedDict, total=False):
+class JMS(typing.TypedDict, total=False):
     name: str
-    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "QUEUE", "TOPIC"]
+    type: typing.Literal["TYPE_UNSPECIFIED", "QUEUE", "TOPIC"]
 
-AlternativeJsonAuthSchema = typing_extensions.TypedDict(
+AlternativeJsonAuthSchema = typing.TypedDict(
     "AlternativeJsonAuthSchema",
     {
         "$schema": str,
@@ -1007,7 +975,7 @@ AlternativeJsonAuthSchema = typing_extensions.TypedDict(
 @typing.type_check_only
 class JsonAuthSchema(AlternativeJsonAuthSchema): ...
 
-AlternativeJsonSchema = typing_extensions.TypedDict(
+AlternativeJsonSchema = typing.TypedDict(
     "AlternativeJsonSchema",
     {
         "$comment": str,
@@ -1036,7 +1004,7 @@ AlternativeJsonSchema = typing_extensions.TypedDict(
         "format": str,
         "if": JsonSchema,
         "items": JsonSchema,
-        "jdbcType": typing_extensions.Literal[
+        "jdbcType": typing.Literal[
             "DATA_TYPE_UNSPECIFIED",
             "DATA_TYPE_INT",
             "DATA_TYPE_SMALLINT",
@@ -1113,116 +1081,116 @@ AlternativeJsonSchema = typing_extensions.TypedDict(
 class JsonSchema(AlternativeJsonSchema): ...
 
 @typing.type_check_only
-class JwtClaims(typing_extensions.TypedDict, total=False):
+class JwtClaims(typing.TypedDict, total=False):
     audience: str
     issuer: str
     subject: str
 
 @typing.type_check_only
-class ListActionsResponse(typing_extensions.TypedDict, total=False):
+class ListActionsResponse(typing.TypedDict, total=False):
     actions: _list[RuntimeActionSchema]
     nextPageToken: str
 
 @typing.type_check_only
-class ListConnectionsResponse(typing_extensions.TypedDict, total=False):
+class ListConnectionsResponse(typing.TypedDict, total=False):
     connections: _list[Connection]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListConnectorVersionsResponse(typing_extensions.TypedDict, total=False):
+class ListConnectorVersionsResponse(typing.TypedDict, total=False):
     connectorVersions: _list[ConnectorVersion]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListConnectorsResponse(typing_extensions.TypedDict, total=False):
+class ListConnectorsResponse(typing.TypedDict, total=False):
     connectors: _list[Connector]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListCustomConnectorVersionsResponse(typing_extensions.TypedDict, total=False):
+class ListCustomConnectorVersionsResponse(typing.TypedDict, total=False):
     customConnectorVersions: _list[CustomConnectorVersion]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListCustomConnectorsResponse(typing_extensions.TypedDict, total=False):
+class ListCustomConnectorsResponse(typing.TypedDict, total=False):
     customConnectors: _list[CustomConnector]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListEndUserAuthenticationsResponse(typing_extensions.TypedDict, total=False):
+class ListEndUserAuthenticationsResponse(typing.TypedDict, total=False):
     endUserAuthentications: _list[EndUserAuthentication]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListEndpointAttachmentsResponse(typing_extensions.TypedDict, total=False):
+class ListEndpointAttachmentsResponse(typing.TypedDict, total=False):
     endpointAttachments: _list[EndpointAttachment]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListEntityTypesResponse(typing_extensions.TypedDict, total=False):
+class ListEntityTypesResponse(typing.TypedDict, total=False):
     entityTypes: _list[RuntimeEntitySchema]
     nextPageToken: str
 
 @typing.type_check_only
-class ListEventSubscriptionsResponse(typing_extensions.TypedDict, total=False):
+class ListEventSubscriptionsResponse(typing.TypedDict, total=False):
     eventSubscriptions: _list[EventSubscription]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListEventTypesResponse(typing_extensions.TypedDict, total=False):
+class ListEventTypesResponse(typing.TypedDict, total=False):
     eventTypes: _list[EventType]
     nextPageToken: str
 
 @typing.type_check_only
-class ListLocationsResponse(typing_extensions.TypedDict, total=False):
+class ListLocationsResponse(typing.TypedDict, total=False):
     locations: _list[Location]
     nextPageToken: str
 
 @typing.type_check_only
-class ListManagedZonesResponse(typing_extensions.TypedDict, total=False):
+class ListManagedZonesResponse(typing.TypedDict, total=False):
     managedZones: _list[ManagedZone]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListOperationsResponse(typing_extensions.TypedDict, total=False):
+class ListOperationsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListProvidersResponse(typing_extensions.TypedDict, total=False):
+class ListProvidersResponse(typing.TypedDict, total=False):
     nextPageToken: str
     providers: _list[Provider]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListRuntimeActionSchemasResponse(typing_extensions.TypedDict, total=False):
+class ListRuntimeActionSchemasResponse(typing.TypedDict, total=False):
     nextPageToken: str
     runtimeActionSchemas: _list[RuntimeActionSchema]
 
 @typing.type_check_only
-class ListRuntimeEntitySchemasResponse(typing_extensions.TypedDict, total=False):
+class ListRuntimeEntitySchemasResponse(typing.TypedDict, total=False):
     nextPageToken: str
     runtimeEntitySchemas: _list[RuntimeEntitySchema]
 
 @typing.type_check_only
-class ListenEventRequest(typing_extensions.TypedDict, total=False):
+class ListenEventRequest(typing.TypedDict, total=False):
     payload: dict[str, typing.Any]
 
 @typing.type_check_only
-class ListenEventResponse(typing_extensions.TypedDict, total=False): ...
+class ListenEventResponse(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Location(typing_extensions.TypedDict, total=False):
+class Location(typing.TypedDict, total=False):
     displayName: str
     labels: dict[str, typing.Any]
     locationId: str
@@ -1230,28 +1198,28 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class LockConfig(typing_extensions.TypedDict, total=False):
+class LockConfig(typing.TypedDict, total=False):
     locked: bool
     reason: str
 
 @typing.type_check_only
-class LogicalExpression(typing_extensions.TypedDict, total=False):
+class LogicalExpression(typing.TypedDict, total=False):
     fieldComparisons: _list[FieldComparison]
     logicalExpressions: _list[LogicalExpression]
-    logicalOperator: typing_extensions.Literal["OPERATOR_UNSPECIFIED", "AND", "OR"]
+    logicalOperator: typing.Literal["OPERATOR_UNSPECIFIED", "AND", "OR"]
 
 @typing.type_check_only
-class MaintenancePolicy(typing_extensions.TypedDict, total=False):
+class MaintenancePolicy(typing.TypedDict, total=False):
     createTime: str
     description: str
     labels: dict[str, typing.Any]
     name: str
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "READY", "DELETING"]
+    state: typing.Literal["STATE_UNSPECIFIED", "READY", "DELETING"]
     updatePolicy: UpdatePolicy
     updateTime: str
 
 @typing.type_check_only
-class MaintenanceSchedule(typing_extensions.TypedDict, total=False):
+class MaintenanceSchedule(typing.TypedDict, total=False):
     canReschedule: bool
     endTime: str
     rolloutManagementPolicy: str
@@ -1259,18 +1227,18 @@ class MaintenanceSchedule(typing_extensions.TypedDict, total=False):
     startTime: str
 
 @typing.type_check_only
-class MaintenanceSettings(typing_extensions.TypedDict, total=False):
+class MaintenanceSettings(typing.TypedDict, total=False):
     exclude: bool
     isRollback: bool
     maintenancePolicies: dict[str, typing.Any]
 
 @typing.type_check_only
-class MaintenanceWindow(typing_extensions.TypedDict, total=False):
+class MaintenanceWindow(typing.TypedDict, total=False):
     dailyCycle: DailyCycle
     weeklyCycle: WeeklyCycle
 
 @typing.type_check_only
-class ManagedZone(typing_extensions.TypedDict, total=False):
+class ManagedZone(typing.TypedDict, total=False):
     createTime: str
     description: str
     dns: str
@@ -1281,76 +1249,74 @@ class ManagedZone(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class MarketplaceConnectorDetails(typing_extensions.TypedDict, total=False):
+class MarketplaceConnectorDetails(typing.TypedDict, total=False):
     marketplaceProduct: str
     marketplaceProductId: str
     marketplaceProductUri: str
     partner: str
 
 @typing.type_check_only
-class ModifyConnectionToolspecOverrideRequest(typing_extensions.TypedDict, total=False):
+class ModifyConnectionToolspecOverrideRequest(typing.TypedDict, total=False):
     toolspecOverride: ToolspecOverride
 
 @typing.type_check_only
-class ModifyConnectionToolspecOverrideResponse(
-    typing_extensions.TypedDict, total=False
-):
+class ModifyConnectionToolspecOverrideResponse(typing.TypedDict, total=False):
     toolspecOverrides: ToolspecOverride
 
 @typing.type_check_only
-class MultipleSelectConfig(typing_extensions.TypedDict, total=False):
+class MultipleSelectConfig(typing.TypedDict, total=False):
     allowCustomValues: bool
     multipleSelectOptions: _list[MultipleSelectOption]
     valueSeparator: str
 
 @typing.type_check_only
-class MultipleSelectOption(typing_extensions.TypedDict, total=False):
+class MultipleSelectOption(typing.TypedDict, total=False):
     description: str
     displayName: str
     key: str
     preselected: bool
 
 @typing.type_check_only
-class NetworkConfig(typing_extensions.TypedDict, total=False):
+class NetworkConfig(typing.TypedDict, total=False):
     egressIps: _list[str]
-    egressMode: typing_extensions.Literal[
+    egressMode: typing.Literal[
         "NETWORK_EGRESS_MODE_UNSPECIFIED", "AUTO_IP", "STATIC_IP"
     ]
 
 @typing.type_check_only
-class NetworkEgressModeOverride(typing_extensions.TypedDict, total=False):
+class NetworkEgressModeOverride(typing.TypedDict, total=False):
     isEventingOverrideEnabled: bool
     isJobsOverrideEnabled: bool
-    networkEgressMode: typing_extensions.Literal[
+    networkEgressMode: typing.Literal[
         "NETWORK_EGRESS_MODE_UNSPECIFIED",
         "SERVERLESS_VPC_ACCESS_CONNECTOR",
         "DIRECT_VPC_EGRESS",
     ]
 
 @typing.type_check_only
-class NodeConfig(typing_extensions.TypedDict, total=False):
+class NodeConfig(typing.TypedDict, total=False):
     maxNodeCount: int
     minNodeCount: int
 
 @typing.type_check_only
-class NodeSloMetadata(typing_extensions.TypedDict, total=False):
+class NodeSloMetadata(typing.TypedDict, total=False):
     location: str
     nodeId: str
     perSliEligibility: PerSliSloEligibility
 
 @typing.type_check_only
-class NotificationParameter(typing_extensions.TypedDict, total=False):
+class NotificationParameter(typing.TypedDict, total=False):
     values: _list[str]
 
 @typing.type_check_only
-class OAuthTokenData(typing_extensions.TypedDict, total=False):
+class OAuthTokenData(typing.TypedDict, total=False):
     accessToken: EUASecret
     createTime: str
     expiry: str
     refreshToken: EUASecret
 
 @typing.type_check_only
-class Oauth2AuthCodeFlow(typing_extensions.TypedDict, total=False):
+class Oauth2AuthCodeFlow(typing.TypedDict, total=False):
     authCode: str
     authUri: str
     clientId: str
@@ -1361,23 +1327,23 @@ class Oauth2AuthCodeFlow(typing_extensions.TypedDict, total=False):
     scopes: _list[str]
 
 @typing.type_check_only
-class Oauth2AuthCodeFlowGoogleManaged(typing_extensions.TypedDict, total=False):
+class Oauth2AuthCodeFlowGoogleManaged(typing.TypedDict, total=False):
     authCode: str
     redirectUri: str
     scopes: _list[str]
 
 @typing.type_check_only
-class Oauth2ClientCredentials(typing_extensions.TypedDict, total=False):
+class Oauth2ClientCredentials(typing.TypedDict, total=False):
     clientId: str
     clientSecret: Secret
 
 @typing.type_check_only
-class Oauth2JwtBearer(typing_extensions.TypedDict, total=False):
+class Oauth2JwtBearer(typing.TypedDict, total=False):
     clientKey: Secret
     jwtClaims: JwtClaims
 
 @typing.type_check_only
-class Operation(typing_extensions.TypedDict, total=False):
+class Operation(typing.TypedDict, total=False):
     done: bool
     error: Status
     metadata: dict[str, typing.Any]
@@ -1385,7 +1351,7 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class OperationMetadata(typing_extensions.TypedDict, total=False):
+class OperationMetadata(typing.TypedDict, total=False):
     apiVersion: str
     createTime: str
     endTime: str
@@ -1395,7 +1361,7 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
-class PartnerMetadata(typing_extensions.TypedDict, total=False):
+class PartnerMetadata(typing.TypedDict, total=False):
     acceptGcpTos: bool
     additionalComments: str
     confirmPartnerRequirements: bool
@@ -1415,25 +1381,25 @@ class PartnerMetadata(typing_extensions.TypedDict, total=False):
     useCases: str
 
 @typing.type_check_only
-class PerSliSloEligibility(typing_extensions.TypedDict, total=False):
+class PerSliSloEligibility(typing.TypedDict, total=False):
     eligibilities: dict[str, typing.Any]
 
 @typing.type_check_only
-class Policy(typing_extensions.TypedDict, total=False):
+class Policy(typing.TypedDict, total=False):
     auditConfigs: _list[AuditConfig]
     bindings: _list[Binding]
     etag: str
     version: int
 
 @typing.type_check_only
-class Provider(typing_extensions.TypedDict, total=False):
+class Provider(typing.TypedDict, total=False):
     createTime: str
     description: str
     displayName: str
     documentationUri: str
     externalUri: str
     labels: dict[str, typing.Any]
-    launchStage: typing_extensions.Literal[
+    launchStage: typing.Literal[
         "LAUNCH_STAGE_UNSPECIFIED",
         "PREVIEW",
         "GA",
@@ -1446,24 +1412,24 @@ class Provider(typing_extensions.TypedDict, total=False):
     webAssetsLocation: str
 
 @typing.type_check_only
-class ProvisionedResource(typing_extensions.TypedDict, total=False):
+class ProvisionedResource(typing.TypedDict, total=False):
     resourceType: str
     resourceUrl: str
 
 @typing.type_check_only
-class PubSub(typing_extensions.TypedDict, total=False):
+class PubSub(typing.TypedDict, total=False):
     attributes: dict[str, typing.Any]
     configVariables: _list[ConfigVariable]
     projectId: str
     topicId: str
 
 @typing.type_check_only
-class PublishCustomConnectorVersionRequest(typing_extensions.TypedDict, total=False):
+class PublishCustomConnectorVersionRequest(typing.TypedDict, total=False):
     partnerMetadata: PartnerMetadata
 
 @typing.type_check_only
-class PublishStatus(typing_extensions.TypedDict, total=False):
-    publishState: typing_extensions.Literal[
+class PublishStatus(typing.TypedDict, total=False):
+    publishState: typing.Literal[
         "PUBLISH_STATE_UNSPECIFIED", "PUBLISHED", "PUBLISH_IN_PROGRESS", "UNPUBLISHED"
     ]
     publishTime: str
@@ -1471,12 +1437,10 @@ class PublishStatus(typing_extensions.TypedDict, total=False):
     publishedSource: str
 
 @typing.type_check_only
-class RefreshConnectionSchemaMetadataRequest(
-    typing_extensions.TypedDict, total=False
-): ...
+class RefreshConnectionSchemaMetadataRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class RegionalSettings(typing_extensions.TypedDict, total=False):
+class RegionalSettings(typing.TypedDict, total=False):
     client: str
     encryptionConfig: EncryptionConfig
     name: str
@@ -1484,17 +1448,15 @@ class RegionalSettings(typing_extensions.TypedDict, total=False):
     provisioned: bool
 
 @typing.type_check_only
-class RemoveConnectionToolspecOverrideRequest(
-    typing_extensions.TypedDict, total=False
-): ...
+class RemoveConnectionToolspecOverrideRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class RepairEventingRequest(typing_extensions.TypedDict, total=False): ...
+class RepairEventingRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Resource(typing_extensions.TypedDict, total=False):
+class Resource(typing.TypedDict, total=False):
     pathTemplate: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "TYPE_UNSPECIFIED",
         "GCP_PROJECT",
         "GCP_RESOURCE",
@@ -1503,18 +1465,18 @@ class Resource(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class ResourceLimits(typing_extensions.TypedDict, total=False):
+class ResourceLimits(typing.TypedDict, total=False):
     cpu: str
     memory: str
 
 @typing.type_check_only
-class ResourceRequests(typing_extensions.TypedDict, total=False):
+class ResourceRequests(typing.TypedDict, total=False):
     cpu: str
     memory: str
 
 @typing.type_check_only
-class ResultMetadata(typing_extensions.TypedDict, total=False):
-    dataType: typing_extensions.Literal[
+class ResultMetadata(typing.TypedDict, total=False):
+    dataType: typing.Literal[
         "DATA_TYPE_UNSPECIFIED",
         "DATA_TYPE_INT",
         "DATA_TYPE_SMALLINT",
@@ -1568,17 +1530,17 @@ class ResultMetadata(typing_extensions.TypedDict, total=False):
     nullable: bool
 
 @typing.type_check_only
-class RetryEventSubscriptionRequest(typing_extensions.TypedDict, total=False): ...
+class RetryEventSubscriptionRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class RoleGrant(typing_extensions.TypedDict, total=False):
+class RoleGrant(typing.TypedDict, total=False):
     helperTextTemplate: str
-    principal: typing_extensions.Literal["PRINCIPAL_UNSPECIFIED", "CONNECTOR_SA"]
+    principal: typing.Literal["PRINCIPAL_UNSPECIFIED", "CONNECTOR_SA"]
     resource: Resource
     roles: _list[str]
 
 @typing.type_check_only
-class RuntimeActionSchema(typing_extensions.TypedDict, total=False):
+class RuntimeActionSchema(typing.TypedDict, total=False):
     action: str
     description: str
     displayName: str
@@ -1590,7 +1552,7 @@ class RuntimeActionSchema(typing_extensions.TypedDict, total=False):
     resultSchemaAsString: str
 
 @typing.type_check_only
-class RuntimeConfig(typing_extensions.TypedDict, total=False):
+class RuntimeConfig(typing.TypedDict, total=False):
     conndSubscription: str
     conndTopic: str
     controlPlaneSubscription: str
@@ -1600,7 +1562,7 @@ class RuntimeConfig(typing_extensions.TypedDict, total=False):
     runtimeEndpoint: str
     schemaGcsBucket: str
     serviceDirectory: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "INACTIVE",
         "ACTIVATING",
@@ -1611,19 +1573,19 @@ class RuntimeConfig(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class RuntimeEntitySchema(typing_extensions.TypedDict, total=False):
+class RuntimeEntitySchema(typing.TypedDict, total=False):
     entity: str
     fields: _list[Field]
     jsonSchema: JsonSchema
     operations: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "OPERATION_UNSPECIFIED", "LIST", "GET", "CREATE", "UPDATE", "DELETE"
         ]
     ]
 
 @typing.type_check_only
-class Schedule(typing_extensions.TypedDict, total=False):
-    day: typing_extensions.Literal[
+class Schedule(typing.TypedDict, total=False):
+    day: typing.Literal[
         "DAY_OF_WEEK_UNSPECIFIED",
         "MONDAY",
         "TUESDAY",
@@ -1637,176 +1599,176 @@ class Schedule(typing_extensions.TypedDict, total=False):
     startTime: TimeOfDay
 
 @typing.type_check_only
-class SchemaRefreshConfig(typing_extensions.TypedDict, total=False):
+class SchemaRefreshConfig(typing.TypedDict, total=False):
     useActionDisplayNames: bool
     useSynchronousSchemaRefresh: bool
 
 @typing.type_check_only
-class SearchConnectionInstance(typing_extensions.TypedDict, total=False):
+class SearchConnectionInstance(typing.TypedDict, total=False):
     actionSchema: RuntimeActionSchema
     connection: Connection
     entitySchema: RuntimeEntitySchema
 
 @typing.type_check_only
-class SearchConnectionsResponse(typing_extensions.TypedDict, total=False):
+class SearchConnectionsResponse(typing.TypedDict, total=False):
     connections: _list[SearchConnectionInstance]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class Secret(typing_extensions.TypedDict, total=False):
+class Secret(typing.TypedDict, total=False):
     secretVersion: str
 
 @typing.type_check_only
-class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
+class SetIamPolicyRequest(typing.TypedDict, total=False):
     policy: Policy
     updateMask: str
 
 @typing.type_check_only
-class Settings(typing_extensions.TypedDict, total=False):
+class Settings(typing.TypedDict, total=False):
     name: str
     payg: bool
     tenantProjectId: str
     vpcsc: bool
 
 @typing.type_check_only
-class SloEligibility(typing_extensions.TypedDict, total=False):
+class SloEligibility(typing.TypedDict, total=False):
     eligible: bool
     reason: str
 
 @typing.type_check_only
-class SloMetadata(typing_extensions.TypedDict, total=False):
+class SloMetadata(typing.TypedDict, total=False):
     nodes: _list[NodeSloMetadata]
     perSliEligibility: PerSliSloEligibility
     tier: str
 
 @typing.type_check_only
-class Source(typing_extensions.TypedDict, total=False):
+class Source(typing.TypedDict, total=False):
     fieldId: str
-    sourceType: typing_extensions.Literal[
+    sourceType: typing.Literal[
         "SOURCE_TYPE_UNSPECIFIED", "CONFIG_VARIABLE", "AUTH_CONFIG_VARIABLE"
     ]
 
 @typing.type_check_only
-class SshPublicKey(typing_extensions.TypedDict, total=False):
+class SshPublicKey(typing.TypedDict, total=False):
     certType: str
     sshClientCert: Secret
     sshClientCertPass: Secret
     username: str
 
 @typing.type_check_only
-class SslConfig(typing_extensions.TypedDict, total=False):
+class SslConfig(typing.TypedDict, total=False):
     additionalVariables: _list[ConfigVariable]
-    clientCertType: typing_extensions.Literal["CERT_TYPE_UNSPECIFIED", "PEM"]
+    clientCertType: typing.Literal["CERT_TYPE_UNSPECIFIED", "PEM"]
     clientCertificate: Secret
     clientPrivateKey: Secret
     clientPrivateKeyPass: Secret
     privateServerCertificate: Secret
-    serverCertType: typing_extensions.Literal["CERT_TYPE_UNSPECIFIED", "PEM"]
-    trustModel: typing_extensions.Literal["PUBLIC", "PRIVATE", "INSECURE"]
-    type: typing_extensions.Literal["SSL_TYPE_UNSPECIFIED", "TLS", "MTLS"]
+    serverCertType: typing.Literal["CERT_TYPE_UNSPECIFIED", "PEM"]
+    trustModel: typing.Literal["PUBLIC", "PRIVATE", "INSECURE"]
+    type: typing.Literal["SSL_TYPE_UNSPECIFIED", "TLS", "MTLS"]
     useSsl: bool
 
 @typing.type_check_only
-class SslConfigTemplate(typing_extensions.TypedDict, total=False):
+class SslConfigTemplate(typing.TypedDict, total=False):
     additionalVariables: _list[ConfigVariableTemplate]
-    clientCertType: _list[typing_extensions.Literal["CERT_TYPE_UNSPECIFIED", "PEM"]]
+    clientCertType: _list[typing.Literal["CERT_TYPE_UNSPECIFIED", "PEM"]]
     isTlsMandatory: bool
-    serverCertType: _list[typing_extensions.Literal["CERT_TYPE_UNSPECIFIED", "PEM"]]
-    sslType: typing_extensions.Literal["SSL_TYPE_UNSPECIFIED", "TLS", "MTLS"]
+    serverCertType: _list[typing.Literal["CERT_TYPE_UNSPECIFIED", "PEM"]]
+    sslType: typing.Literal["SSL_TYPE_UNSPECIFIED", "TLS", "MTLS"]
 
 @typing.type_check_only
-class StandardAction(typing_extensions.TypedDict, total=False):
+class StandardAction(typing.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class StandardEntity(typing_extensions.TypedDict, total=False):
+class StandardEntity(typing.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class StringListValues(typing_extensions.TypedDict, total=False):
+class StringListValues(typing.TypedDict, total=False):
     listValues: _list[str]
 
 @typing.type_check_only
-class SupportedRuntimeFeatures(typing_extensions.TypedDict, total=False):
+class SupportedRuntimeFeatures(typing.TypedDict, total=False):
     actionApis: bool
     asyncOperations: bool
     entityApis: bool
     sqlQuery: bool
 
 @typing.type_check_only
-class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
+class TestIamPermissionsRequest(typing.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
-class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
+class TestIamPermissionsResponse(typing.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
-class TimeOfDay(typing_extensions.TypedDict, total=False):
+class TimeOfDay(typing.TypedDict, total=False):
     hours: int
     minutes: int
     nanos: int
     seconds: int
 
 @typing.type_check_only
-class ToolName(typing_extensions.TypedDict, total=False):
+class ToolName(typing.TypedDict, total=False):
     entityType: str
     name: str
-    operation: typing_extensions.Literal[
+    operation: typing.Literal[
         "OPERATION_UNSPECIFIED", "LIST", "GET", "CREATE", "UPDATE", "DELETE"
     ]
 
 @typing.type_check_only
-class ToolspecOverride(typing_extensions.TypedDict, total=False):
+class ToolspecOverride(typing.TypedDict, total=False):
     baseVersion: str
     createTime: str
     tools: _list[dict[str, typing.Any]]
     updateTime: str
 
 @typing.type_check_only
-class TrafficShapingConfig(typing_extensions.TypedDict, total=False):
+class TrafficShapingConfig(typing.TypedDict, total=False):
     duration: str
     quotaLimit: str
 
 @typing.type_check_only
-class UpdatePolicy(typing_extensions.TypedDict, total=False):
-    channel: typing_extensions.Literal[
+class UpdatePolicy(typing.TypedDict, total=False):
+    channel: typing.Literal[
         "UPDATE_CHANNEL_UNSPECIFIED", "EARLIER", "LATER", "WEEK1", "WEEK2", "WEEK5"
     ]
     denyMaintenancePeriods: _list[DenyMaintenancePeriod]
     window: MaintenanceWindow
 
 @typing.type_check_only
-class UserPassword(typing_extensions.TypedDict, total=False):
+class UserPassword(typing.TypedDict, total=False):
     password: Secret
     username: str
 
 @typing.type_check_only
-class ValidateCustomConnectorSpecRequest(typing_extensions.TypedDict, total=False):
+class ValidateCustomConnectorSpecRequest(typing.TypedDict, total=False):
     serviceAccount: str
     specLocation: str
-    specType: typing_extensions.Literal[
+    specType: typing.Literal[
         "CUSTOM_CONNECTOR_TYPE_UNSPECIFIED", "OPEN_API", "PROTO", "SDK"
     ]
 
 @typing.type_check_only
-class ValidateCustomConnectorSpecResponse(typing_extensions.TypedDict, total=False):
+class ValidateCustomConnectorSpecResponse(typing.TypedDict, total=False):
     errorMessage: str
 
 @typing.type_check_only
-class VpcscConfig(typing_extensions.TypedDict, total=False):
+class VpcscConfig(typing.TypedDict, total=False):
     defaultAllowlistedHost: _list[str]
     disableFirewallVpcscFlow: bool
 
 @typing.type_check_only
-class WebhookData(typing_extensions.TypedDict, total=False):
+class WebhookData(typing.TypedDict, total=False):
     additionalVariables: _list[ConfigVariable]
     createTime: str
     eventSubscriptions: _list[str]
@@ -1817,14 +1779,12 @@ class WebhookData(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class WebhookSubscriptions(typing_extensions.TypedDict, total=False):
+class WebhookSubscriptions(typing.TypedDict, total=False):
     webhookData: _list[WebhookData]
 
 @typing.type_check_only
-class WeeklyCycle(typing_extensions.TypedDict, total=False):
+class WeeklyCycle(typing.TypedDict, total=False):
     schedule: _list[Schedule]
 
 @typing.type_check_only
-class WithdrawCustomConnectorVersionRequest(
-    typing_extensions.TypedDict, total=False
-): ...
+class WithdrawCustomConnectorVersionRequest(typing.TypedDict, total=False): ...

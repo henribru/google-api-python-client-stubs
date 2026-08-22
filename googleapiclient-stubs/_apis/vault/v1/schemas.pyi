@@ -1,18 +1,16 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class AccountCount(typing_extensions.TypedDict, total=False):
+class AccountCount(typing.TypedDict, total=False):
     account: UserInfo
     count: str
 
 @typing.type_check_only
-class AccountCountError(typing_extensions.TypedDict, total=False):
+class AccountCountError(typing.TypedDict, total=False):
     account: UserInfo
-    errorType: typing_extensions.Literal[
+    errorType: typing.Literal[
         "ERROR_TYPE_UNSPECIFIED",
         "WILDCARD_TOO_BROAD",
         "TOO_MANY_TERMS",
@@ -22,42 +20,42 @@ class AccountCountError(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class AccountInfo(typing_extensions.TypedDict, total=False):
+class AccountInfo(typing.TypedDict, total=False):
     emails: _list[str]
 
 @typing.type_check_only
-class AddHeldAccountResult(typing_extensions.TypedDict, total=False):
+class AddHeldAccountResult(typing.TypedDict, total=False):
     account: HeldAccount
     status: Status
 
 @typing.type_check_only
-class AddHeldAccountsRequest(typing_extensions.TypedDict, total=False):
+class AddHeldAccountsRequest(typing.TypedDict, total=False):
     accountIds: _list[str]
     emails: _list[str]
 
 @typing.type_check_only
-class AddHeldAccountsResponse(typing_extensions.TypedDict, total=False):
+class AddHeldAccountsResponse(typing.TypedDict, total=False):
     responses: _list[AddHeldAccountResult]
 
 @typing.type_check_only
-class AddMatterPermissionsRequest(typing_extensions.TypedDict, total=False):
+class AddMatterPermissionsRequest(typing.TypedDict, total=False):
     ccMe: bool
     matterPermission: MatterPermission
     sendEmails: bool
 
 @typing.type_check_only
-class CalendarExportOptions(typing_extensions.TypedDict, total=False):
-    exportFormat: typing_extensions.Literal[
+class CalendarExportOptions(typing.TypedDict, total=False):
+    exportFormat: typing.Literal[
         "EXPORT_FORMAT_UNSPECIFIED", "MBOX", "PST", "ICS", "XML", "JSON"
     ]
 
 @typing.type_check_only
-class CalendarOptions(typing_extensions.TypedDict, total=False):
+class CalendarOptions(typing.TypedDict, total=False):
     locationQuery: _list[str]
     minusWords: _list[str]
     peopleQuery: _list[str]
     responseStatuses: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "ATTENDEE_RESPONSE_UNSPECIFIED",
             "ATTENDEE_RESPONSE_NEEDS_ACTION",
             "ATTENDEE_RESPONSE_ACCEPTED",
@@ -68,28 +66,28 @@ class CalendarOptions(typing_extensions.TypedDict, total=False):
     versionDate: str
 
 @typing.type_check_only
-class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
+class CancelOperationRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class CloseMatterRequest(typing_extensions.TypedDict, total=False): ...
+class CloseMatterRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class CloseMatterResponse(typing_extensions.TypedDict, total=False):
+class CloseMatterResponse(typing.TypedDict, total=False):
     matter: Matter
 
 @typing.type_check_only
-class CloudStorageFile(typing_extensions.TypedDict, total=False):
+class CloudStorageFile(typing.TypedDict, total=False):
     bucketName: str
     md5Hash: str
     objectName: str
     size: str
 
 @typing.type_check_only
-class CloudStorageSink(typing_extensions.TypedDict, total=False):
+class CloudStorageSink(typing.TypedDict, total=False):
     files: _list[CloudStorageFile]
 
 @typing.type_check_only
-class CorpusQuery(typing_extensions.TypedDict, total=False):
+class CorpusQuery(typing.TypedDict, total=False):
     calendarQuery: HeldCalendarQuery
     driveQuery: HeldDriveQuery
     geminiQuery: HeldGeminiQuery
@@ -99,40 +97,38 @@ class CorpusQuery(typing_extensions.TypedDict, total=False):
     voiceQuery: HeldVoiceQuery
 
 @typing.type_check_only
-class CountArtifactsMetadata(typing_extensions.TypedDict, total=False):
+class CountArtifactsMetadata(typing.TypedDict, total=False):
     endTime: str
     matterId: str
     query: Query
     startTime: str
 
 @typing.type_check_only
-class CountArtifactsRequest(typing_extensions.TypedDict, total=False):
+class CountArtifactsRequest(typing.TypedDict, total=False):
     query: Query
-    view: typing_extensions.Literal[
-        "COUNT_RESULT_VIEW_UNSPECIFIED", "TOTAL_COUNT", "ALL"
-    ]
+    view: typing.Literal["COUNT_RESULT_VIEW_UNSPECIFIED", "TOTAL_COUNT", "ALL"]
 
 @typing.type_check_only
-class CountArtifactsResponse(typing_extensions.TypedDict, total=False):
+class CountArtifactsResponse(typing.TypedDict, total=False):
     groupsCountResult: GroupsCountResult
     mailCountResult: MailCountResult
     totalCount: str
 
 @typing.type_check_only
-class DriveDocumentIds(typing_extensions.TypedDict, total=False):
+class DriveDocumentIds(typing.TypedDict, total=False):
     ids: _list[str]
 
 @typing.type_check_only
-class DriveDocumentInfo(typing_extensions.TypedDict, total=False):
+class DriveDocumentInfo(typing.TypedDict, total=False):
     documentIds: DriveDocumentIds
 
 @typing.type_check_only
-class DriveExportOptions(typing_extensions.TypedDict, total=False):
+class DriveExportOptions(typing.TypedDict, total=False):
     includeAccessInfo: bool
 
 @typing.type_check_only
-class DriveOptions(typing_extensions.TypedDict, total=False):
-    clientSideEncryptedOption: typing_extensions.Literal[
+class DriveOptions(typing.TypedDict, total=False):
+    clientSideEncryptedOption: typing.Literal[
         "CLIENT_SIDE_ENCRYPTED_OPTION_UNSPECIFIED",
         "CLIENT_SIDE_ENCRYPTED_OPTION_ANY",
         "CLIENT_SIDE_ENCRYPTED_OPTION_ENCRYPTED",
@@ -140,7 +136,7 @@ class DriveOptions(typing_extensions.TypedDict, total=False):
     ]
     includeSharedDrives: bool
     includeTeamDrives: bool
-    sharedDrivesOption: typing_extensions.Literal[
+    sharedDrivesOption: typing.Literal[
         "SHARED_DRIVES_OPTION_UNSPECIFIED",
         "NOT_INCLUDED",
         "INCLUDED_IF_ACCOUNT_IS_NOT_A_MEMBER",
@@ -149,10 +145,10 @@ class DriveOptions(typing_extensions.TypedDict, total=False):
     versionDate: str
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Export(typing_extensions.TypedDict, total=False):
+class Export(typing.TypedDict, total=False):
     cloudStorageSink: CloudStorageSink
     createTime: str
     exportOptions: ExportOptions
@@ -163,40 +159,38 @@ class Export(typing_extensions.TypedDict, total=False):
     query: Query
     requester: UserInfo
     stats: ExportStats
-    status: typing_extensions.Literal[
+    status: typing.Literal[
         "EXPORT_STATUS_UNSPECIFIED", "COMPLETED", "FAILED", "IN_PROGRESS"
     ]
 
 @typing.type_check_only
-class ExportOptions(typing_extensions.TypedDict, total=False):
+class ExportOptions(typing.TypedDict, total=False):
     calendarOptions: CalendarExportOptions
     driveOptions: DriveExportOptions
     geminiOptions: GeminiExportOptions
     groupsOptions: GroupsExportOptions
     hangoutsChatOptions: HangoutsChatExportOptions
     mailOptions: MailExportOptions
-    region: typing_extensions.Literal[
-        "EXPORT_REGION_UNSPECIFIED", "ANY", "US", "EUROPE"
-    ]
+    region: typing.Literal["EXPORT_REGION_UNSPECIFIED", "ANY", "US", "EUROPE"]
     voiceOptions: VoiceExportOptions
 
 @typing.type_check_only
-class ExportStats(typing_extensions.TypedDict, total=False):
+class ExportStats(typing.TypedDict, total=False):
     exportedArtifactCount: str
     sizeInBytes: str
     totalArtifactCount: str
 
 @typing.type_check_only
-class GeminiExportOptions(typing_extensions.TypedDict, total=False):
-    exportFormat: typing_extensions.Literal[
+class GeminiExportOptions(typing.TypedDict, total=False):
+    exportFormat: typing.Literal[
         "EXPORT_FORMAT_UNSPECIFIED", "MBOX", "PST", "ICS", "XML", "JSON"
     ]
 
 @typing.type_check_only
-class GeminiOptions(typing_extensions.TypedDict, total=False): ...
+class GeminiOptions(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class GroupsCountResult(typing_extensions.TypedDict, total=False):
+class GroupsCountResult(typing.TypedDict, total=False):
     accountCountErrors: _list[AccountCountError]
     accountCounts: _list[AccountCount]
     matchingAccountsCount: str
@@ -204,27 +198,27 @@ class GroupsCountResult(typing_extensions.TypedDict, total=False):
     queriedAccountsCount: str
 
 @typing.type_check_only
-class GroupsExportOptions(typing_extensions.TypedDict, total=False):
-    exportFormat: typing_extensions.Literal[
+class GroupsExportOptions(typing.TypedDict, total=False):
+    exportFormat: typing.Literal[
         "EXPORT_FORMAT_UNSPECIFIED", "MBOX", "PST", "ICS", "XML", "JSON"
     ]
 
 @typing.type_check_only
-class HangoutsChatExportOptions(typing_extensions.TypedDict, total=False):
-    exportFormat: typing_extensions.Literal[
+class HangoutsChatExportOptions(typing.TypedDict, total=False):
+    exportFormat: typing.Literal[
         "EXPORT_FORMAT_UNSPECIFIED", "MBOX", "PST", "ICS", "XML", "JSON"
     ]
 
 @typing.type_check_only
-class HangoutsChatInfo(typing_extensions.TypedDict, total=False):
+class HangoutsChatInfo(typing.TypedDict, total=False):
     roomId: _list[str]
 
 @typing.type_check_only
-class HangoutsChatOptions(typing_extensions.TypedDict, total=False):
+class HangoutsChatOptions(typing.TypedDict, total=False):
     includeRooms: bool
 
 @typing.type_check_only
-class HeldAccount(typing_extensions.TypedDict, total=False):
+class HeldAccount(typing.TypedDict, total=False):
     accountId: str
     email: str
     firstName: str
@@ -232,49 +226,49 @@ class HeldAccount(typing_extensions.TypedDict, total=False):
     lastName: str
 
 @typing.type_check_only
-class HeldCalendarQuery(typing_extensions.TypedDict, total=False): ...
+class HeldCalendarQuery(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class HeldDriveQuery(typing_extensions.TypedDict, total=False):
+class HeldDriveQuery(typing.TypedDict, total=False):
     includeSharedDriveFiles: bool
     includeTeamDriveFiles: bool
 
 @typing.type_check_only
-class HeldGeminiQuery(typing_extensions.TypedDict, total=False): ...
+class HeldGeminiQuery(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class HeldGroupsQuery(typing_extensions.TypedDict, total=False):
+class HeldGroupsQuery(typing.TypedDict, total=False):
     endTime: str
     startTime: str
     terms: str
 
 @typing.type_check_only
-class HeldHangoutsChatQuery(typing_extensions.TypedDict, total=False):
+class HeldHangoutsChatQuery(typing.TypedDict, total=False):
     includeRooms: bool
 
 @typing.type_check_only
-class HeldMailQuery(typing_extensions.TypedDict, total=False):
+class HeldMailQuery(typing.TypedDict, total=False):
     endTime: str
     startTime: str
     terms: str
 
 @typing.type_check_only
-class HeldOrgUnit(typing_extensions.TypedDict, total=False):
+class HeldOrgUnit(typing.TypedDict, total=False):
     holdTime: str
     orgUnitId: str
 
 @typing.type_check_only
-class HeldVoiceQuery(typing_extensions.TypedDict, total=False):
+class HeldVoiceQuery(typing.TypedDict, total=False):
     coveredData: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "COVERED_DATA_UNSPECIFIED", "TEXT_MESSAGES", "VOICEMAILS", "CALL_LOGS"
         ]
     ]
 
 @typing.type_check_only
-class Hold(typing_extensions.TypedDict, total=False):
+class Hold(typing.TypedDict, total=False):
     accounts: _list[HeldAccount]
-    corpus: typing_extensions.Literal[
+    corpus: typing.Literal[
         "CORPUS_TYPE_UNSPECIFIED",
         "DRIVE",
         "MAIL",
@@ -291,37 +285,37 @@ class Hold(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class ListExportsResponse(typing_extensions.TypedDict, total=False):
+class ListExportsResponse(typing.TypedDict, total=False):
     exports: _list[Export]
     nextPageToken: str
 
 @typing.type_check_only
-class ListHeldAccountsResponse(typing_extensions.TypedDict, total=False):
+class ListHeldAccountsResponse(typing.TypedDict, total=False):
     accounts: _list[HeldAccount]
 
 @typing.type_check_only
-class ListHoldsResponse(typing_extensions.TypedDict, total=False):
+class ListHoldsResponse(typing.TypedDict, total=False):
     holds: _list[Hold]
     nextPageToken: str
 
 @typing.type_check_only
-class ListMattersResponse(typing_extensions.TypedDict, total=False):
+class ListMattersResponse(typing.TypedDict, total=False):
     matters: _list[Matter]
     nextPageToken: str
 
 @typing.type_check_only
-class ListOperationsResponse(typing_extensions.TypedDict, total=False):
+class ListOperationsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListSavedQueriesResponse(typing_extensions.TypedDict, total=False):
+class ListSavedQueriesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     savedQueries: _list[SavedQuery]
 
 @typing.type_check_only
-class MailCountResult(typing_extensions.TypedDict, total=False):
+class MailCountResult(typing.TypedDict, total=False):
     accountCountErrors: _list[AccountCountError]
     accountCounts: _list[AccountCount]
     matchingAccountsCount: str
@@ -329,8 +323,8 @@ class MailCountResult(typing_extensions.TypedDict, total=False):
     queriedAccountsCount: str
 
 @typing.type_check_only
-class MailExportOptions(typing_extensions.TypedDict, total=False):
-    exportFormat: typing_extensions.Literal[
+class MailExportOptions(typing.TypedDict, total=False):
+    exportFormat: typing.Literal[
         "EXPORT_FORMAT_UNSPECIFIED", "MBOX", "PST", "ICS", "XML", "JSON"
     ]
     exportLinkedDriveFiles: bool
@@ -338,8 +332,8 @@ class MailExportOptions(typing_extensions.TypedDict, total=False):
     useNewExport: bool
 
 @typing.type_check_only
-class MailOptions(typing_extensions.TypedDict, total=False):
-    clientSideEncryptedOption: typing_extensions.Literal[
+class MailOptions(typing.TypedDict, total=False):
+    clientSideEncryptedOption: typing.Literal[
         "CLIENT_SIDE_ENCRYPTED_OPTION_UNSPECIFIED",
         "CLIENT_SIDE_ENCRYPTED_OPTION_ANY",
         "CLIENT_SIDE_ENCRYPTED_OPTION_ENCRYPTED",
@@ -348,23 +342,21 @@ class MailOptions(typing_extensions.TypedDict, total=False):
     excludeDrafts: bool
 
 @typing.type_check_only
-class Matter(typing_extensions.TypedDict, total=False):
+class Matter(typing.TypedDict, total=False):
     description: str
     matterId: str
     matterPermissions: _list[MatterPermission]
-    matterRegion: typing_extensions.Literal[
-        "MATTER_REGION_UNSPECIFIED", "ANY", "US", "EUROPE"
-    ]
+    matterRegion: typing.Literal["MATTER_REGION_UNSPECIFIED", "ANY", "US", "EUROPE"]
     name: str
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "OPEN", "CLOSED", "DELETED"]
+    state: typing.Literal["STATE_UNSPECIFIED", "OPEN", "CLOSED", "DELETED"]
 
 @typing.type_check_only
-class MatterPermission(typing_extensions.TypedDict, total=False):
+class MatterPermission(typing.TypedDict, total=False):
     accountId: str
-    role: typing_extensions.Literal["ROLE_UNSPECIFIED", "COLLABORATOR", "OWNER"]
+    role: typing.Literal["ROLE_UNSPECIFIED", "COLLABORATOR", "OWNER"]
 
 @typing.type_check_only
-class Operation(typing_extensions.TypedDict, total=False):
+class Operation(typing.TypedDict, total=False):
     done: bool
     error: Status
     metadata: dict[str, typing.Any]
@@ -372,14 +364,14 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class OrgUnitInfo(typing_extensions.TypedDict, total=False):
+class OrgUnitInfo(typing.TypedDict, total=False):
     orgUnitId: str
 
 @typing.type_check_only
-class Query(typing_extensions.TypedDict, total=False):
+class Query(typing.TypedDict, total=False):
     accountInfo: AccountInfo
     calendarOptions: CalendarOptions
-    corpus: typing_extensions.Literal[
+    corpus: typing.Literal[
         "CORPUS_TYPE_UNSPECIFIED",
         "DRIVE",
         "MAIL",
@@ -389,7 +381,7 @@ class Query(typing_extensions.TypedDict, total=False):
         "CALENDAR",
         "GEMINI",
     ]
-    dataScope: typing_extensions.Literal[
+    dataScope: typing.Literal[
         "DATA_SCOPE_UNSPECIFIED", "ALL_DATA", "HELD_DATA", "UNPROCESSED_DATA"
     ]
     driveDocumentInfo: DriveDocumentInfo
@@ -399,7 +391,7 @@ class Query(typing_extensions.TypedDict, total=False):
     hangoutsChatInfo: HangoutsChatInfo
     hangoutsChatOptions: HangoutsChatOptions
     mailOptions: MailOptions
-    method: typing_extensions.Literal[
+    method: typing.Literal[
         "SEARCH_METHOD_UNSPECIFIED",
         "ACCOUNT",
         "ORG_UNIT",
@@ -411,7 +403,7 @@ class Query(typing_extensions.TypedDict, total=False):
         "DRIVE_DOCUMENT",
     ]
     orgUnitInfo: OrgUnitInfo
-    searchMethod: typing_extensions.Literal[
+    searchMethod: typing.Literal[
         "SEARCH_METHOD_UNSPECIFIED",
         "ACCOUNT",
         "ORG_UNIT",
@@ -431,26 +423,26 @@ class Query(typing_extensions.TypedDict, total=False):
     voiceOptions: VoiceOptions
 
 @typing.type_check_only
-class RemoveHeldAccountsRequest(typing_extensions.TypedDict, total=False):
+class RemoveHeldAccountsRequest(typing.TypedDict, total=False):
     accountIds: _list[str]
 
 @typing.type_check_only
-class RemoveHeldAccountsResponse(typing_extensions.TypedDict, total=False):
+class RemoveHeldAccountsResponse(typing.TypedDict, total=False):
     statuses: _list[Status]
 
 @typing.type_check_only
-class RemoveMatterPermissionsRequest(typing_extensions.TypedDict, total=False):
+class RemoveMatterPermissionsRequest(typing.TypedDict, total=False):
     accountId: str
 
 @typing.type_check_only
-class ReopenMatterRequest(typing_extensions.TypedDict, total=False): ...
+class ReopenMatterRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ReopenMatterResponse(typing_extensions.TypedDict, total=False):
+class ReopenMatterResponse(typing.TypedDict, total=False):
     matter: Matter
 
 @typing.type_check_only
-class SavedQuery(typing_extensions.TypedDict, total=False):
+class SavedQuery(typing.TypedDict, total=False):
     createTime: str
     displayName: str
     matterId: str
@@ -458,41 +450,41 @@ class SavedQuery(typing_extensions.TypedDict, total=False):
     savedQueryId: str
 
 @typing.type_check_only
-class SharedDriveInfo(typing_extensions.TypedDict, total=False):
+class SharedDriveInfo(typing.TypedDict, total=False):
     sharedDriveIds: _list[str]
 
 @typing.type_check_only
-class SitesUrlInfo(typing_extensions.TypedDict, total=False):
+class SitesUrlInfo(typing.TypedDict, total=False):
     urls: _list[str]
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class TeamDriveInfo(typing_extensions.TypedDict, total=False):
+class TeamDriveInfo(typing.TypedDict, total=False):
     teamDriveIds: _list[str]
 
 @typing.type_check_only
-class UndeleteMatterRequest(typing_extensions.TypedDict, total=False): ...
+class UndeleteMatterRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class UserInfo(typing_extensions.TypedDict, total=False):
+class UserInfo(typing.TypedDict, total=False):
     displayName: str
     email: str
 
 @typing.type_check_only
-class VoiceExportOptions(typing_extensions.TypedDict, total=False):
-    exportFormat: typing_extensions.Literal[
+class VoiceExportOptions(typing.TypedDict, total=False):
+    exportFormat: typing.Literal[
         "EXPORT_FORMAT_UNSPECIFIED", "MBOX", "PST", "ICS", "XML", "JSON"
     ]
 
 @typing.type_check_only
-class VoiceOptions(typing_extensions.TypedDict, total=False):
+class VoiceOptions(typing.TypedDict, total=False):
     coveredData: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "COVERED_DATA_UNSPECIFIED", "TEXT_MESSAGES", "VOICEMAILS", "CALL_LOGS"
         ]
     ]

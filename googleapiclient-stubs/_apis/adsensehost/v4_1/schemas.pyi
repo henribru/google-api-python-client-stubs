@@ -1,24 +1,22 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class Account(typing_extensions.TypedDict, total=False):
+class Account(typing.TypedDict, total=False):
     id: str
     kind: str
     name: str
     status: str
 
 @typing.type_check_only
-class Accounts(typing_extensions.TypedDict, total=False):
+class Accounts(typing.TypedDict, total=False):
     etag: str
     items: _list[Account]
     kind: str
 
 @typing.type_check_only
-class AdClient(typing_extensions.TypedDict, total=False):
+class AdClient(typing.TypedDict, total=False):
     arcOptIn: bool
     id: str
     kind: str
@@ -26,26 +24,26 @@ class AdClient(typing_extensions.TypedDict, total=False):
     supportsReporting: bool
 
 @typing.type_check_only
-class AdClients(typing_extensions.TypedDict, total=False):
+class AdClients(typing.TypedDict, total=False):
     etag: str
     items: _list[AdClient]
     kind: str
     nextPageToken: str
 
 @typing.type_check_only
-class AdCode(typing_extensions.TypedDict, total=False):
+class AdCode(typing.TypedDict, total=False):
     adCode: str
     kind: str
 
 @typing.type_check_only
-class AdStyle(typing_extensions.TypedDict, total=False):
+class AdStyle(typing.TypedDict, total=False):
     colors: dict[str, typing.Any]
     corners: str
     font: dict[str, typing.Any]
     kind: str
 
 @typing.type_check_only
-class AdUnit(typing_extensions.TypedDict, total=False):
+class AdUnit(typing.TypedDict, total=False):
     code: str
     contentAdsSettings: dict[str, typing.Any]
     customStyle: AdStyle
@@ -56,14 +54,14 @@ class AdUnit(typing_extensions.TypedDict, total=False):
     status: str
 
 @typing.type_check_only
-class AdUnits(typing_extensions.TypedDict, total=False):
+class AdUnits(typing.TypedDict, total=False):
     etag: str
     items: _list[AdUnit]
     kind: str
     nextPageToken: str
 
 @typing.type_check_only
-class AssociationSession(typing_extensions.TypedDict, total=False):
+class AssociationSession(typing.TypedDict, total=False):
     accountId: str
     id: str
     kind: str
@@ -75,21 +73,21 @@ class AssociationSession(typing_extensions.TypedDict, total=False):
     websiteUrl: str
 
 @typing.type_check_only
-class CustomChannel(typing_extensions.TypedDict, total=False):
+class CustomChannel(typing.TypedDict, total=False):
     code: str
     id: str
     kind: str
     name: str
 
 @typing.type_check_only
-class CustomChannels(typing_extensions.TypedDict, total=False):
+class CustomChannels(typing.TypedDict, total=False):
     etag: str
     items: _list[CustomChannel]
     kind: str
     nextPageToken: str
 
 @typing.type_check_only
-class Report(typing_extensions.TypedDict, total=False):
+class Report(typing.TypedDict, total=False):
     averages: _list[str]
     headers: _list[dict[str, typing.Any]]
     kind: str
@@ -99,13 +97,13 @@ class Report(typing_extensions.TypedDict, total=False):
     warnings: _list[str]
 
 @typing.type_check_only
-class UrlChannel(typing_extensions.TypedDict, total=False):
+class UrlChannel(typing.TypedDict, total=False):
     id: str
     kind: str
     urlPattern: str
 
 @typing.type_check_only
-class UrlChannels(typing_extensions.TypedDict, total=False):
+class UrlChannels(typing.TypedDict, total=False):
     etag: str
     items: _list[UrlChannel]
     kind: str

@@ -1,25 +1,21 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class AgentPool(typing_extensions.TypedDict, total=False):
+class AgentPool(typing.TypedDict, total=False):
     bandwidthLimit: BandwidthLimit
     displayName: str
     name: str
-    state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "CREATING", "CREATED", "DELETING"
-    ]
+    state: typing.Literal["STATE_UNSPECIFIED", "CREATING", "CREATED", "DELETING"]
 
 @typing.type_check_only
-class AwsAccessKey(typing_extensions.TypedDict, total=False):
+class AwsAccessKey(typing.TypedDict, total=False):
     accessKeyId: str
     secretAccessKey: str
 
 @typing.type_check_only
-class AwsS3CompatibleData(typing_extensions.TypedDict, total=False):
+class AwsS3CompatibleData(typing.TypedDict, total=False):
     bucketName: str
     endpoint: str
     path: str
@@ -27,7 +23,7 @@ class AwsS3CompatibleData(typing_extensions.TypedDict, total=False):
     s3Metadata: S3CompatibleMetadata
 
 @typing.type_check_only
-class AwsS3Data(typing_extensions.TypedDict, total=False):
+class AwsS3Data(typing.TypedDict, total=False):
     awsAccessKey: AwsAccessKey
     bucketName: str
     cloudfrontDomain: str
@@ -38,7 +34,7 @@ class AwsS3Data(typing_extensions.TypedDict, total=False):
     roleArn: str
 
 @typing.type_check_only
-class AzureBlobStorageData(typing_extensions.TypedDict, total=False):
+class AzureBlobStorageData(typing.TypedDict, total=False):
     azureCredentials: AzureCredentials
     container: str
     credentialsSecret: str
@@ -48,33 +44,33 @@ class AzureBlobStorageData(typing_extensions.TypedDict, total=False):
     storageAccount: str
 
 @typing.type_check_only
-class AzureCredentials(typing_extensions.TypedDict, total=False):
+class AzureCredentials(typing.TypedDict, total=False):
     sasToken: str
 
 @typing.type_check_only
-class BandwidthLimit(typing_extensions.TypedDict, total=False):
+class BandwidthLimit(typing.TypedDict, total=False):
     limitMbps: str
 
 @typing.type_check_only
-class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
+class CancelOperationRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Date(typing_extensions.TypedDict, total=False):
+class Date(typing.TypedDict, total=False):
     day: int
     month: int
     year: int
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ErrorLogEntry(typing_extensions.TypedDict, total=False):
+class ErrorLogEntry(typing.TypedDict, total=False):
     errorDetails: _list[str]
     url: str
 
 @typing.type_check_only
-class ErrorSummary(typing_extensions.TypedDict, total=False):
-    errorCode: typing_extensions.Literal[
+class ErrorSummary(typing.TypedDict, total=False):
+    errorCode: typing.Literal[
         "OK",
         "CANCELLED",
         "UNKNOWN",
@@ -97,76 +93,74 @@ class ErrorSummary(typing_extensions.TypedDict, total=False):
     errorLogEntries: _list[ErrorLogEntry]
 
 @typing.type_check_only
-class EventStream(typing_extensions.TypedDict, total=False):
+class EventStream(typing.TypedDict, total=False):
     eventStreamExpirationTime: str
     eventStreamStartTime: str
     name: str
 
 @typing.type_check_only
-class FederatedIdentityConfig(typing_extensions.TypedDict, total=False):
+class FederatedIdentityConfig(typing.TypedDict, total=False):
     clientId: str
     tenantId: str
 
 @typing.type_check_only
-class GcsData(typing_extensions.TypedDict, total=False):
+class GcsData(typing.TypedDict, total=False):
     bucketName: str
     managedFolderTransferEnabled: bool
     path: str
 
 @typing.type_check_only
-class GoogleServiceAccount(typing_extensions.TypedDict, total=False):
+class GoogleServiceAccount(typing.TypedDict, total=False):
     accountEmail: str
     subjectId: str
 
 @typing.type_check_only
-class HdfsData(typing_extensions.TypedDict, total=False):
+class HdfsData(typing.TypedDict, total=False):
     path: str
 
 @typing.type_check_only
-class HttpData(typing_extensions.TypedDict, total=False):
+class HttpData(typing.TypedDict, total=False):
     listUrl: str
 
 @typing.type_check_only
-class ListAgentPoolsResponse(typing_extensions.TypedDict, total=False):
+class ListAgentPoolsResponse(typing.TypedDict, total=False):
     agentPools: _list[AgentPool]
     nextPageToken: str
 
 @typing.type_check_only
-class ListOperationsResponse(typing_extensions.TypedDict, total=False):
+class ListOperationsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListTransferJobsResponse(typing_extensions.TypedDict, total=False):
+class ListTransferJobsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     transferJobs: _list[TransferJob]
 
 @typing.type_check_only
-class LoggingConfig(typing_extensions.TypedDict, total=False):
+class LoggingConfig(typing.TypedDict, total=False):
     enableOnpremGcsTransferLogs: bool
     logActionStates: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "LOGGABLE_ACTION_STATE_UNSPECIFIED", "SUCCEEDED", "FAILED", "SKIPPED"
         ]
     ]
     logActions: _list[
-        typing_extensions.Literal[
-            "LOGGABLE_ACTION_UNSPECIFIED", "FIND", "DELETE", "COPY"
-        ]
+        typing.Literal["LOGGABLE_ACTION_UNSPECIFIED", "FIND", "DELETE", "COPY"]
     ]
 
 @typing.type_check_only
-class MetadataOptions(typing_extensions.TypedDict, total=False):
-    acl: typing_extensions.Literal[
+class MetadataOptions(typing.TypedDict, total=False):
+    acl: typing.Literal[
         "ACL_UNSPECIFIED", "ACL_DESTINATION_BUCKET_DEFAULT", "ACL_PRESERVE"
     ]
-    gid: typing_extensions.Literal["GID_UNSPECIFIED", "GID_SKIP", "GID_NUMBER"]
-    kmsKey: typing_extensions.Literal[
+    gid: typing.Literal["GID_UNSPECIFIED", "GID_SKIP", "GID_NUMBER"]
+    kmsKey: typing.Literal[
         "KMS_KEY_UNSPECIFIED", "KMS_KEY_DESTINATION_BUCKET_DEFAULT", "KMS_KEY_PRESERVE"
     ]
-    mode: typing_extensions.Literal["MODE_UNSPECIFIED", "MODE_SKIP", "MODE_PRESERVE"]
-    storageClass: typing_extensions.Literal[
+    mode: typing.Literal["MODE_UNSPECIFIED", "MODE_SKIP", "MODE_PRESERVE"]
+    storageClass: typing.Literal[
         "STORAGE_CLASS_UNSPECIFIED",
         "STORAGE_CLASS_DESTINATION_BUCKET_DEFAULT",
         "STORAGE_CLASS_PRESERVE",
@@ -175,36 +169,32 @@ class MetadataOptions(typing_extensions.TypedDict, total=False):
         "STORAGE_CLASS_COLDLINE",
         "STORAGE_CLASS_ARCHIVE",
     ]
-    symlink: typing_extensions.Literal[
-        "SYMLINK_UNSPECIFIED", "SYMLINK_SKIP", "SYMLINK_PRESERVE"
-    ]
-    temporaryHold: typing_extensions.Literal[
+    symlink: typing.Literal["SYMLINK_UNSPECIFIED", "SYMLINK_SKIP", "SYMLINK_PRESERVE"]
+    temporaryHold: typing.Literal[
         "TEMPORARY_HOLD_UNSPECIFIED", "TEMPORARY_HOLD_SKIP", "TEMPORARY_HOLD_PRESERVE"
     ]
-    timeCreated: typing_extensions.Literal[
+    timeCreated: typing.Literal[
         "TIME_CREATED_UNSPECIFIED",
         "TIME_CREATED_SKIP",
         "TIME_CREATED_PRESERVE_AS_CUSTOM_TIME",
     ]
-    uid: typing_extensions.Literal["UID_UNSPECIFIED", "UID_SKIP", "UID_NUMBER"]
+    uid: typing.Literal["UID_UNSPECIFIED", "UID_SKIP", "UID_NUMBER"]
 
 @typing.type_check_only
-class NotificationConfig(typing_extensions.TypedDict, total=False):
+class NotificationConfig(typing.TypedDict, total=False):
     eventTypes: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "EVENT_TYPE_UNSPECIFIED",
             "TRANSFER_OPERATION_SUCCESS",
             "TRANSFER_OPERATION_FAILED",
             "TRANSFER_OPERATION_ABORTED",
         ]
     ]
-    payloadFormat: typing_extensions.Literal[
-        "PAYLOAD_FORMAT_UNSPECIFIED", "NONE", "JSON"
-    ]
+    payloadFormat: typing.Literal["PAYLOAD_FORMAT_UNSPECIFIED", "NONE", "JSON"]
     pubsubTopic: str
 
 @typing.type_check_only
-class ObjectConditions(typing_extensions.TypedDict, total=False):
+class ObjectConditions(typing.TypedDict, total=False):
     excludePrefixes: _list[str]
     includePrefixes: _list[str]
     includeStorageClasses: _list[str]
@@ -215,7 +205,7 @@ class ObjectConditions(typing_extensions.TypedDict, total=False):
     minTimeElapsedSinceLastModification: str
 
 @typing.type_check_only
-class Operation(typing_extensions.TypedDict, total=False):
+class Operation(typing.TypedDict, total=False):
     done: bool
     error: Status
     metadata: dict[str, typing.Any]
@@ -223,49 +213,47 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class PauseTransferOperationRequest(typing_extensions.TypedDict, total=False): ...
+class PauseTransferOperationRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class PosixFilesystem(typing_extensions.TypedDict, total=False):
+class PosixFilesystem(typing.TypedDict, total=False):
     rootDirectory: str
 
 @typing.type_check_only
-class ReplicationSpec(typing_extensions.TypedDict, total=False):
+class ReplicationSpec(typing.TypedDict, total=False):
     gcsDataSink: GcsData
     gcsDataSource: GcsData
     objectConditions: ObjectConditions
     transferOptions: TransferOptions
 
 @typing.type_check_only
-class ResumeTransferOperationRequest(typing_extensions.TypedDict, total=False): ...
+class ResumeTransferOperationRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class RunTransferJobRequest(typing_extensions.TypedDict, total=False):
+class RunTransferJobRequest(typing.TypedDict, total=False):
     projectId: str
 
 @typing.type_check_only
-class S3CompatibleMetadata(typing_extensions.TypedDict, total=False):
-    authMethod: typing_extensions.Literal[
+class S3CompatibleMetadata(typing.TypedDict, total=False):
+    authMethod: typing.Literal[
         "AUTH_METHOD_UNSPECIFIED",
         "AUTH_METHOD_AWS_SIGNATURE_V4",
         "AUTH_METHOD_AWS_SIGNATURE_V2",
     ]
-    listApi: typing_extensions.Literal[
-        "LIST_API_UNSPECIFIED", "LIST_OBJECTS_V2", "LIST_OBJECTS"
-    ]
-    protocol: typing_extensions.Literal[
+    listApi: typing.Literal["LIST_API_UNSPECIFIED", "LIST_OBJECTS_V2", "LIST_OBJECTS"]
+    protocol: typing.Literal[
         "NETWORK_PROTOCOL_UNSPECIFIED",
         "NETWORK_PROTOCOL_HTTPS",
         "NETWORK_PROTOCOL_HTTP",
     ]
-    requestModel: typing_extensions.Literal[
+    requestModel: typing.Literal[
         "REQUEST_MODEL_UNSPECIFIED",
         "REQUEST_MODEL_VIRTUAL_HOSTED_STYLE",
         "REQUEST_MODEL_PATH_STYLE",
     ]
 
 @typing.type_check_only
-class Schedule(typing_extensions.TypedDict, total=False):
+class Schedule(typing.TypedDict, total=False):
     endTimeOfDay: TimeOfDay
     repeatInterval: str
     scheduleEndDate: Date
@@ -273,20 +261,20 @@ class Schedule(typing_extensions.TypedDict, total=False):
     startTimeOfDay: TimeOfDay
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class TimeOfDay(typing_extensions.TypedDict, total=False):
+class TimeOfDay(typing.TypedDict, total=False):
     hours: int
     minutes: int
     nanos: int
     seconds: int
 
 @typing.type_check_only
-class TransferCounters(typing_extensions.TypedDict, total=False):
+class TransferCounters(typing.TypedDict, total=False):
     bytesCopiedToSink: str
     bytesDeletedFromSink: str
     bytesDeletedFromSource: str
@@ -312,7 +300,7 @@ class TransferCounters(typing_extensions.TypedDict, total=False):
     unsupportedS3GlacierObjectsSkippedCount: str
 
 @typing.type_check_only
-class TransferJob(typing_extensions.TypedDict, total=False):
+class TransferJob(typing.TypedDict, total=False):
     creationTime: str
     deletionTime: str
     description: str
@@ -326,17 +314,15 @@ class TransferJob(typing_extensions.TypedDict, total=False):
     replicationSpec: ReplicationSpec
     schedule: Schedule
     serviceAccount: str
-    status: typing_extensions.Literal[
-        "STATUS_UNSPECIFIED", "ENABLED", "DISABLED", "DELETED"
-    ]
+    status: typing.Literal["STATUS_UNSPECIFIED", "ENABLED", "DISABLED", "DELETED"]
     transferSpec: TransferSpec
 
 @typing.type_check_only
-class TransferManifest(typing_extensions.TypedDict, total=False):
+class TransferManifest(typing.TypedDict, total=False):
     location: str
 
 @typing.type_check_only
-class TransferOperation(typing_extensions.TypedDict, total=False):
+class TransferOperation(typing.TypedDict, total=False):
     counters: TransferCounters
     endTime: str
     errorBreakdowns: _list[ErrorSummary]
@@ -345,7 +331,7 @@ class TransferOperation(typing_extensions.TypedDict, total=False):
     notificationConfig: NotificationConfig
     projectId: str
     startTime: str
-    status: typing_extensions.Literal[
+    status: typing.Literal[
         "STATUS_UNSPECIFIED",
         "IN_PROGRESS",
         "PAUSED",
@@ -359,17 +345,17 @@ class TransferOperation(typing_extensions.TypedDict, total=False):
     transferSpec: TransferSpec
 
 @typing.type_check_only
-class TransferOptions(typing_extensions.TypedDict, total=False):
+class TransferOptions(typing.TypedDict, total=False):
     deleteObjectsFromSourceAfterTransfer: bool
     deleteObjectsUniqueInSink: bool
     metadataOptions: MetadataOptions
     overwriteObjectsAlreadyExistingInSink: bool
-    overwriteWhen: typing_extensions.Literal[
+    overwriteWhen: typing.Literal[
         "OVERWRITE_WHEN_UNSPECIFIED", "DIFFERENT", "NEVER", "ALWAYS"
     ]
 
 @typing.type_check_only
-class TransferSpec(typing_extensions.TypedDict, total=False):
+class TransferSpec(typing.TypedDict, total=False):
     awsS3CompatibleDataSource: AwsS3CompatibleData
     awsS3DataSource: AwsS3Data
     azureBlobStorageDataSource: AzureBlobStorageData
@@ -387,7 +373,7 @@ class TransferSpec(typing_extensions.TypedDict, total=False):
     transferOptions: TransferOptions
 
 @typing.type_check_only
-class UpdateTransferJobRequest(typing_extensions.TypedDict, total=False):
+class UpdateTransferJobRequest(typing.TypedDict, total=False):
     projectId: str
     transferJob: TransferJob
     updateTransferJobFieldMask: str

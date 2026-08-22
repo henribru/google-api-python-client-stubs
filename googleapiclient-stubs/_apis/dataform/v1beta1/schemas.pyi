@@ -1,36 +1,34 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class ActionErrorTable(typing_extensions.TypedDict, total=False):
+class ActionErrorTable(typing.TypedDict, total=False):
     retentionDays: int
     target: Target
 
 @typing.type_check_only
-class ActionIncrementalLoadMode(typing_extensions.TypedDict, total=False):
+class ActionIncrementalLoadMode(typing.TypedDict, total=False):
     column: str
 
 @typing.type_check_only
-class ActionLoadConfig(typing_extensions.TypedDict, total=False):
+class ActionLoadConfig(typing.TypedDict, total=False):
     append: ActionSimpleLoadMode
     maximum: ActionIncrementalLoadMode
     replace: ActionSimpleLoadMode
     unique: ActionIncrementalLoadMode
 
 @typing.type_check_only
-class ActionSimpleLoadMode(typing_extensions.TypedDict, total=False): ...
+class ActionSimpleLoadMode(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ActionSqlDefinition(typing_extensions.TypedDict, total=False):
+class ActionSqlDefinition(typing.TypedDict, total=False):
     errorTable: ActionErrorTable
     loadConfig: ActionLoadConfig
     query: str
 
 @typing.type_check_only
-class Assertion(typing_extensions.TypedDict, total=False):
+class Assertion(typing.TypedDict, total=False):
     dependencyTargets: _list[Target]
     disabled: bool
     parentAction: Target
@@ -39,27 +37,27 @@ class Assertion(typing_extensions.TypedDict, total=False):
     tags: _list[str]
 
 @typing.type_check_only
-class BigQueryAction(typing_extensions.TypedDict, total=False):
+class BigQueryAction(typing.TypedDict, total=False):
     jobId: str
     sqlScript: str
 
 @typing.type_check_only
-class Binding(typing_extensions.TypedDict, total=False):
+class Binding(typing.TypedDict, total=False):
     condition: Expr
     members: _list[str]
     role: str
 
 @typing.type_check_only
-class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
+class CancelOperationRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class CancelWorkflowInvocationRequest(typing_extensions.TypedDict, total=False): ...
+class CancelWorkflowInvocationRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class CancelWorkflowInvocationResponse(typing_extensions.TypedDict, total=False): ...
+class CancelWorkflowInvocationResponse(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class CodeCompilationConfig(typing_extensions.TypedDict, total=False):
+class CodeCompilationConfig(typing.TypedDict, total=False):
     assertionSchema: str
     builtinAssertionNamePrefix: str
     databaseSuffix: str
@@ -67,66 +65,68 @@ class CodeCompilationConfig(typing_extensions.TypedDict, total=False):
     defaultLocation: str
     defaultNotebookRuntimeOptions: NotebookRuntimeOptions
     defaultSchema: str
+    pipelineConfig: PipelineConfig
     schemaSuffix: str
     tablePrefix: str
     vars: dict[str, typing.Any]
 
 @typing.type_check_only
-class ColumnDescriptor(typing_extensions.TypedDict, total=False):
+class ColumnDescriptor(typing.TypedDict, total=False):
     bigqueryPolicyTags: _list[str]
     description: str
     path: _list[str]
 
 @typing.type_check_only
-class CommitAuthor(typing_extensions.TypedDict, total=False):
+class CommitAuthor(typing.TypedDict, total=False):
     emailAddress: str
     name: str
 
 @typing.type_check_only
-class CommitLogEntry(typing_extensions.TypedDict, total=False):
+class CommitLogEntry(typing.TypedDict, total=False):
     author: CommitAuthor
     commitMessage: str
     commitSha: str
     commitTime: str
 
 @typing.type_check_only
-class CommitMetadata(typing_extensions.TypedDict, total=False):
+class CommitMetadata(typing.TypedDict, total=False):
     author: CommitAuthor
     commitMessage: str
 
 @typing.type_check_only
-class CommitRepositoryChangesRequest(typing_extensions.TypedDict, total=False):
+class CommitRepositoryChangesRequest(typing.TypedDict, total=False):
     commitMetadata: CommitMetadata
     fileOperations: dict[str, typing.Any]
     requiredHeadCommitSha: str
 
 @typing.type_check_only
-class CommitRepositoryChangesResponse(typing_extensions.TypedDict, total=False):
+class CommitRepositoryChangesResponse(typing.TypedDict, total=False):
     commitSha: str
 
 @typing.type_check_only
-class CommitWorkspaceChangesRequest(typing_extensions.TypedDict, total=False):
+class CommitWorkspaceChangesRequest(typing.TypedDict, total=False):
     author: CommitAuthor
     commitMessage: str
     paths: _list[str]
 
 @typing.type_check_only
-class CommitWorkspaceChangesResponse(typing_extensions.TypedDict, total=False): ...
+class CommitWorkspaceChangesResponse(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class CompilationError(typing_extensions.TypedDict, total=False):
+class CompilationError(typing.TypedDict, total=False):
     actionTarget: Target
     message: str
     path: str
     stack: str
 
 @typing.type_check_only
-class CompilationResult(typing_extensions.TypedDict, total=False):
+class CompilationResult(typing.TypedDict, total=False):
     codeCompilationConfig: CodeCompilationConfig
     compilationErrors: _list[CompilationError]
     createTime: str
     dataEncryptionState: DataEncryptionState
     dataformCoreVersion: str
+    gcsRepositorySnapshotMetadata: GcsRepositorySnapshotMetadata
     gitCommitish: str
     internalMetadata: str
     name: str
@@ -136,7 +136,7 @@ class CompilationResult(typing_extensions.TypedDict, total=False):
     workspace: str
 
 @typing.type_check_only
-class CompilationResultAction(typing_extensions.TypedDict, total=False):
+class CompilationResultAction(typing.TypedDict, total=False):
     assertion: Assertion
     canonicalTarget: Target
     dataPreparation: DataPreparation
@@ -149,25 +149,23 @@ class CompilationResultAction(typing_extensions.TypedDict, total=False):
     target: Target
 
 @typing.type_check_only
-class ComputeRepositoryAccessTokenStatusResponse(
-    typing_extensions.TypedDict, total=False
-):
-    tokenStatus: typing_extensions.Literal[
+class ComputeRepositoryAccessTokenStatusResponse(typing.TypedDict, total=False):
+    tokenStatus: typing.Literal[
         "TOKEN_STATUS_UNSPECIFIED", "NOT_FOUND", "INVALID", "VALID", "PERMISSION_DENIED"
     ]
 
 @typing.type_check_only
-class Config(typing_extensions.TypedDict, total=False):
+class Config(typing.TypedDict, total=False):
     defaultKmsKeyName: str
     internalMetadata: str
     name: str
 
 @typing.type_check_only
-class DataEncryptionState(typing_extensions.TypedDict, total=False):
+class DataEncryptionState(typing.TypedDict, total=False):
     kmsKeyVersionName: str
 
 @typing.type_check_only
-class DataPreparation(typing_extensions.TypedDict, total=False):
+class DataPreparation(typing.TypedDict, total=False):
     contentsSql: SqlDefinition
     contentsYaml: str
     dependencyTargets: _list[Target]
@@ -175,94 +173,94 @@ class DataPreparation(typing_extensions.TypedDict, total=False):
     tags: _list[str]
 
 @typing.type_check_only
-class DataPreparationAction(typing_extensions.TypedDict, total=False):
+class DataPreparationAction(typing.TypedDict, total=False):
     contentsSql: ActionSqlDefinition
     contentsYaml: str
     generatedSql: str
     jobId: str
 
 @typing.type_check_only
-class Declaration(typing_extensions.TypedDict, total=False):
+class Declaration(typing.TypedDict, total=False):
     relationDescriptor: RelationDescriptor
 
 @typing.type_check_only
-class DeleteFile(typing_extensions.TypedDict, total=False): ...
+class DeleteFile(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class DeleteFolderTreeRequest(typing_extensions.TypedDict, total=False):
+class DeleteFolderTreeRequest(typing.TypedDict, total=False):
     force: bool
 
 @typing.type_check_only
-class DeleteRepositoryLongRunningRequest(typing_extensions.TypedDict, total=False):
+class DeleteRepositoryLongRunningRequest(typing.TypedDict, total=False):
     force: bool
 
 @typing.type_check_only
-class DeleteTeamFolderTreeRequest(typing_extensions.TypedDict, total=False):
+class DeleteTeamFolderTreeRequest(typing.TypedDict, total=False):
     force: bool
 
 @typing.type_check_only
-class DirectoryEntry(typing_extensions.TypedDict, total=False):
+class DirectoryEntry(typing.TypedDict, total=False):
     directory: str
     file: str
     metadata: FilesystemEntryMetadata
 
 @typing.type_check_only
-class DirectorySearchResult(typing_extensions.TypedDict, total=False):
+class DirectorySearchResult(typing.TypedDict, total=False):
     path: str
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ErrorTable(typing_extensions.TypedDict, total=False):
+class ErrorTable(typing.TypedDict, total=False):
     retentionDays: int
     target: Target
 
 @typing.type_check_only
-class Expr(typing_extensions.TypedDict, total=False):
+class Expr(typing.TypedDict, total=False):
     description: str
     expression: str
     location: str
     title: str
 
 @typing.type_check_only
-class FetchFileDiffResponse(typing_extensions.TypedDict, total=False):
+class FetchFileDiffResponse(typing.TypedDict, total=False):
     formattedDiff: str
 
 @typing.type_check_only
-class FetchFileGitStatusesResponse(typing_extensions.TypedDict, total=False):
+class FetchFileGitStatusesResponse(typing.TypedDict, total=False):
     uncommittedFileChanges: _list[UncommittedFileChange]
 
 @typing.type_check_only
-class FetchGitAheadBehindResponse(typing_extensions.TypedDict, total=False):
+class FetchGitAheadBehindResponse(typing.TypedDict, total=False):
     commitsAhead: int
     commitsBehind: int
 
 @typing.type_check_only
-class FetchRemoteBranchesResponse(typing_extensions.TypedDict, total=False):
+class FetchRemoteBranchesResponse(typing.TypedDict, total=False):
     branches: _list[str]
 
 @typing.type_check_only
-class FetchRepositoryHistoryResponse(typing_extensions.TypedDict, total=False):
+class FetchRepositoryHistoryResponse(typing.TypedDict, total=False):
     commits: _list[CommitLogEntry]
     nextPageToken: str
 
 @typing.type_check_only
-class FileOperation(typing_extensions.TypedDict, total=False):
+class FileOperation(typing.TypedDict, total=False):
     deleteFile: DeleteFile
     writeFile: WriteFile
 
 @typing.type_check_only
-class FileSearchResult(typing_extensions.TypedDict, total=False):
+class FileSearchResult(typing.TypedDict, total=False):
     path: str
 
 @typing.type_check_only
-class FilesystemEntryMetadata(typing_extensions.TypedDict, total=False):
+class FilesystemEntryMetadata(typing.TypedDict, total=False):
     sizeBytes: str
     updateTime: str
 
 @typing.type_check_only
-class Folder(typing_extensions.TypedDict, total=False):
+class Folder(typing.TypedDict, total=False):
     containingFolder: str
     createTime: str
     creatorIamPrincipal: str
@@ -273,33 +271,43 @@ class Folder(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class FolderContentsEntry(typing_extensions.TypedDict, total=False):
+class FolderContentsEntry(typing.TypedDict, total=False):
     folder: Folder
     repository: Repository
 
 @typing.type_check_only
-class GitRemoteSettings(typing_extensions.TypedDict, total=False):
+class GcsRepositorySnapshotDestination(typing.TypedDict, total=False):
+    repositorySnapshotUri: str
+
+@typing.type_check_only
+class GcsRepositorySnapshotMetadata(typing.TypedDict, total=False):
+    crc32cChecksum: str
+    generation: str
+    repositorySnapshotUri: str
+
+@typing.type_check_only
+class GitRemoteSettings(typing.TypedDict, total=False):
     authenticationTokenSecretVersion: str
     defaultBranch: str
     effectiveDefaultBranch: str
     gitRepositoryLink: str
     sshAuthenticationConfig: SshAuthenticationConfig
-    tokenStatus: typing_extensions.Literal[
+    tokenStatus: typing.Literal[
         "TOKEN_STATUS_UNSPECIFIED", "NOT_FOUND", "INVALID", "VALID"
     ]
     url: str
 
 @typing.type_check_only
-class IamPolicyOverrideView(typing_extensions.TypedDict, total=False):
+class IamPolicyOverrideView(typing.TypedDict, total=False):
     iamPolicyName: PolicyName
     isActive: bool
 
 @typing.type_check_only
-class IncrementalLoadMode(typing_extensions.TypedDict, total=False):
+class IncrementalLoadMode(typing.TypedDict, total=False):
     column: str
 
 @typing.type_check_only
-class IncrementalTableConfig(typing_extensions.TypedDict, total=False):
+class IncrementalTableConfig(typing.TypedDict, total=False):
     incrementalPostOperations: _list[str]
     incrementalPreOperations: _list[str]
     incrementalSelectQuery: str
@@ -308,84 +316,83 @@ class IncrementalTableConfig(typing_extensions.TypedDict, total=False):
     updatePartitionFilter: str
 
 @typing.type_check_only
-class InstallNpmPackagesRequest(typing_extensions.TypedDict, total=False): ...
+class InstallNpmPackagesRequest(typing.TypedDict, total=False):
+    pipelineConfig: PipelineConfig
 
 @typing.type_check_only
-class InstallNpmPackagesResponse(typing_extensions.TypedDict, total=False): ...
+class InstallNpmPackagesResponse(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Interval(typing_extensions.TypedDict, total=False):
+class Interval(typing.TypedDict, total=False):
     endTime: str
     startTime: str
 
 @typing.type_check_only
-class InvocationConfig(typing_extensions.TypedDict, total=False):
+class InvocationConfig(typing.TypedDict, total=False):
     fullyRefreshIncrementalTablesEnabled: bool
     includedTags: _list[str]
     includedTargets: _list[Target]
-    queryPriority: typing_extensions.Literal[
-        "QUERY_PRIORITY_UNSPECIFIED", "INTERACTIVE", "BATCH"
-    ]
+    queryPriority: typing.Literal["QUERY_PRIORITY_UNSPECIFIED", "INTERACTIVE", "BATCH"]
     serviceAccount: str
     transitiveDependenciesIncluded: bool
     transitiveDependentsIncluded: bool
 
 @typing.type_check_only
-class ListCompilationResultsResponse(typing_extensions.TypedDict, total=False):
+class ListCompilationResultsResponse(typing.TypedDict, total=False):
     compilationResults: _list[CompilationResult]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListLocationsResponse(typing_extensions.TypedDict, total=False):
+class ListLocationsResponse(typing.TypedDict, total=False):
     locations: _list[Location]
     nextPageToken: str
 
 @typing.type_check_only
-class ListOperationsResponse(typing_extensions.TypedDict, total=False):
+class ListOperationsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListReleaseConfigsResponse(typing_extensions.TypedDict, total=False):
+class ListReleaseConfigsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     releaseConfigs: _list[ReleaseConfig]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListRepositoriesResponse(typing_extensions.TypedDict, total=False):
+class ListRepositoriesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     repositories: _list[Repository]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListWorkflowConfigsResponse(typing_extensions.TypedDict, total=False):
+class ListWorkflowConfigsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     unreachable: _list[str]
     workflowConfigs: _list[WorkflowConfig]
 
 @typing.type_check_only
-class ListWorkflowInvocationsResponse(typing_extensions.TypedDict, total=False):
+class ListWorkflowInvocationsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     unreachable: _list[str]
     workflowInvocations: _list[WorkflowInvocation]
 
 @typing.type_check_only
-class ListWorkspacesResponse(typing_extensions.TypedDict, total=False):
+class ListWorkspacesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     unreachable: _list[str]
     workspaces: _list[Workspace]
 
 @typing.type_check_only
-class LoadConfig(typing_extensions.TypedDict, total=False):
+class LoadConfig(typing.TypedDict, total=False):
     append: SimpleLoadMode
     maximum: IncrementalLoadMode
     replace: SimpleLoadMode
     unique: IncrementalLoadMode
 
 @typing.type_check_only
-class Location(typing_extensions.TypedDict, total=False):
+class Location(typing.TypedDict, total=False):
     displayName: str
     labels: dict[str, typing.Any]
     locationId: str
@@ -393,55 +400,57 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class MakeDirectoryRequest(typing_extensions.TypedDict, total=False):
+class MakeDirectoryRequest(typing.TypedDict, total=False):
     path: str
 
 @typing.type_check_only
-class MakeDirectoryResponse(typing_extensions.TypedDict, total=False): ...
+class MakeDirectoryResponse(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class MoveDirectoryRequest(typing_extensions.TypedDict, total=False):
+class MoveDirectoryRequest(typing.TypedDict, total=False):
     newPath: str
     path: str
 
 @typing.type_check_only
-class MoveDirectoryResponse(typing_extensions.TypedDict, total=False): ...
+class MoveDirectoryResponse(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class MoveFileRequest(typing_extensions.TypedDict, total=False):
+class MoveFileRequest(typing.TypedDict, total=False):
     newPath: str
     path: str
 
 @typing.type_check_only
-class MoveFileResponse(typing_extensions.TypedDict, total=False): ...
+class MoveFileResponse(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class MoveFolderRequest(typing_extensions.TypedDict, total=False):
+class MoveFolderRequest(typing.TypedDict, total=False):
     destinationContainingFolder: str
 
 @typing.type_check_only
-class MoveRepositoryRequest(typing_extensions.TypedDict, total=False):
+class MoveRepositoryRequest(typing.TypedDict, total=False):
     destinationContainingFolder: str
 
 @typing.type_check_only
-class Notebook(typing_extensions.TypedDict, total=False):
+class Notebook(typing.TypedDict, total=False):
     contents: str
     dependencyTargets: _list[Target]
     disabled: bool
     tags: _list[str]
 
 @typing.type_check_only
-class NotebookAction(typing_extensions.TypedDict, total=False):
+class NotebookAction(typing.TypedDict, total=False):
     contents: str
+    filePath: str
     jobId: str
 
 @typing.type_check_only
-class NotebookRuntimeOptions(typing_extensions.TypedDict, total=False):
+class NotebookRuntimeOptions(typing.TypedDict, total=False):
     aiPlatformNotebookRuntimeTemplate: str
     gcsOutputBucket: str
+    gcsRepositorySnapshotDestination: GcsRepositorySnapshotDestination
 
 @typing.type_check_only
-class Operation(typing_extensions.TypedDict, total=False):
+class Operation(typing.TypedDict, total=False):
     done: bool
     error: Status
     metadata: dict[str, typing.Any]
@@ -449,7 +458,7 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class OperationMetadata(typing_extensions.TypedDict, total=False):
+class OperationMetadata(typing.TypedDict, total=False):
     apiVersion: str
     cancelRequested: bool
     createTime: str
@@ -459,7 +468,7 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
-class Operations(typing_extensions.TypedDict, total=False):
+class Operations(typing.TypedDict, total=False):
     dependencyTargets: _list[Target]
     disabled: bool
     hasOutput: bool
@@ -468,96 +477,101 @@ class Operations(typing_extensions.TypedDict, total=False):
     tags: _list[str]
 
 @typing.type_check_only
-class Policy(typing_extensions.TypedDict, total=False):
+class PipelineConfig(typing.TypedDict, total=False):
+    path: str
+    pipelineType: typing.Literal[
+        "PIPELINE_TYPE_UNSPECIFIED", "DATAFORM", "SQL", "NOTEBOOK"
+    ]
+
+@typing.type_check_only
+class Policy(typing.TypedDict, total=False):
     bindings: _list[Binding]
     etag: str
     version: int
 
 @typing.type_check_only
-class PolicyName(typing_extensions.TypedDict, total=False):
+class PolicyName(typing.TypedDict, total=False):
     id: str
     region: str
     type: str
 
 @typing.type_check_only
-class PrivateResourceMetadata(typing_extensions.TypedDict, total=False):
+class PrivateResourceMetadata(typing.TypedDict, total=False):
     userScoped: bool
 
 @typing.type_check_only
-class PullGitCommitsRequest(typing_extensions.TypedDict, total=False):
+class PullGitCommitsRequest(typing.TypedDict, total=False):
     author: CommitAuthor
     remoteBranch: str
 
 @typing.type_check_only
-class PullGitCommitsResponse(typing_extensions.TypedDict, total=False): ...
+class PullGitCommitsResponse(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class PushGitCommitsRequest(typing_extensions.TypedDict, total=False):
+class PushGitCommitsRequest(typing.TypedDict, total=False):
     remoteBranch: str
 
 @typing.type_check_only
-class PushGitCommitsResponse(typing_extensions.TypedDict, total=False): ...
+class PushGitCommitsResponse(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class QueryCompilationResultActionsResponse(typing_extensions.TypedDict, total=False):
+class QueryCompilationResultActionsResponse(typing.TypedDict, total=False):
     compilationResultActions: _list[CompilationResultAction]
     nextPageToken: str
 
 @typing.type_check_only
-class QueryDirectoryContentsResponse(typing_extensions.TypedDict, total=False):
+class QueryDirectoryContentsResponse(typing.TypedDict, total=False):
     directoryEntries: _list[DirectoryEntry]
     nextPageToken: str
 
 @typing.type_check_only
-class QueryFolderContentsResponse(typing_extensions.TypedDict, total=False):
+class QueryFolderContentsResponse(typing.TypedDict, total=False):
     entries: _list[FolderContentsEntry]
     nextPageToken: str
 
 @typing.type_check_only
-class QueryRepositoryDirectoryContentsResponse(
-    typing_extensions.TypedDict, total=False
-):
+class QueryRepositoryDirectoryContentsResponse(typing.TypedDict, total=False):
     directoryEntries: _list[DirectoryEntry]
     nextPageToken: str
 
 @typing.type_check_only
-class QueryTeamFolderContentsResponse(typing_extensions.TypedDict, total=False):
+class QueryTeamFolderContentsResponse(typing.TypedDict, total=False):
     entries: _list[TeamFolderContentsEntry]
     nextPageToken: str
 
 @typing.type_check_only
-class QueryUserRootContentsResponse(typing_extensions.TypedDict, total=False):
+class QueryUserRootContentsResponse(typing.TypedDict, total=False):
     entries: _list[RootContentsEntry]
     nextPageToken: str
 
 @typing.type_check_only
-class QueryWorkflowInvocationActionsResponse(typing_extensions.TypedDict, total=False):
+class QueryWorkflowInvocationActionsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     workflowInvocationActions: _list[WorkflowInvocationAction]
 
 @typing.type_check_only
-class ReadFileResponse(typing_extensions.TypedDict, total=False):
+class ReadFileResponse(typing.TypedDict, total=False):
     fileContents: str
 
 @typing.type_check_only
-class ReadRepositoryFileResponse(typing_extensions.TypedDict, total=False):
+class ReadRepositoryFileResponse(typing.TypedDict, total=False):
     contents: str
 
 @typing.type_check_only
-class Relation(typing_extensions.TypedDict, total=False):
+class Relation(typing.TypedDict, total=False):
     additionalOptions: dict[str, typing.Any]
     clusterExpressions: _list[str]
     connection: str
     dependencyTargets: _list[Target]
     disabled: bool
-    fileFormat: typing_extensions.Literal["FILE_FORMAT_UNSPECIFIED", "PARQUET"]
+    fileFormat: typing.Literal["FILE_FORMAT_UNSPECIFIED", "PARQUET"]
     incrementalTableConfig: IncrementalTableConfig
     partitionExpirationDays: int
     partitionExpression: str
     postOperations: _list[str]
     preOperations: _list[str]
     relationDescriptor: RelationDescriptor
-    relationType: typing_extensions.Literal[
+    relationType: typing.Literal[
         "RELATION_TYPE_UNSPECIFIED",
         "TABLE",
         "VIEW",
@@ -567,17 +581,17 @@ class Relation(typing_extensions.TypedDict, total=False):
     requirePartitionFilter: bool
     selectQuery: str
     storageUri: str
-    tableFormat: typing_extensions.Literal["TABLE_FORMAT_UNSPECIFIED", "ICEBERG"]
+    tableFormat: typing.Literal["TABLE_FORMAT_UNSPECIFIED", "ICEBERG"]
     tags: _list[str]
 
 @typing.type_check_only
-class RelationDescriptor(typing_extensions.TypedDict, total=False):
+class RelationDescriptor(typing.TypedDict, total=False):
     bigqueryLabels: dict[str, typing.Any]
     columns: _list[ColumnDescriptor]
     description: str
 
 @typing.type_check_only
-class ReleaseConfig(typing_extensions.TypedDict, total=False):
+class ReleaseConfig(typing.TypedDict, total=False):
     codeCompilationConfig: CodeCompilationConfig
     cronSchedule: str
     disabled: bool
@@ -589,21 +603,21 @@ class ReleaseConfig(typing_extensions.TypedDict, total=False):
     timeZone: str
 
 @typing.type_check_only
-class RemoveDirectoryRequest(typing_extensions.TypedDict, total=False):
+class RemoveDirectoryRequest(typing.TypedDict, total=False):
     path: str
 
 @typing.type_check_only
-class RemoveDirectoryResponse(typing_extensions.TypedDict, total=False): ...
+class RemoveDirectoryResponse(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class RemoveFileRequest(typing_extensions.TypedDict, total=False):
+class RemoveFileRequest(typing.TypedDict, total=False):
     path: str
 
 @typing.type_check_only
-class RemoveFileResponse(typing_extensions.TypedDict, total=False): ...
+class RemoveFileResponse(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Repository(typing_extensions.TypedDict, total=False):
+class Repository(typing.TypedDict, total=False):
     containingFolder: str
     createTime: str
     dataEncryptionState: DataEncryptionState
@@ -620,82 +634,82 @@ class Repository(typing_extensions.TypedDict, total=False):
     workspaceCompilationOverrides: WorkspaceCompilationOverrides
 
 @typing.type_check_only
-class ResetWorkspaceChangesRequest(typing_extensions.TypedDict, total=False):
+class ResetWorkspaceChangesRequest(typing.TypedDict, total=False):
     clean: bool
     paths: _list[str]
 
 @typing.type_check_only
-class ResetWorkspaceChangesResponse(typing_extensions.TypedDict, total=False): ...
+class ResetWorkspaceChangesResponse(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class RootContentsEntry(typing_extensions.TypedDict, total=False):
+class RootContentsEntry(typing.TypedDict, total=False):
     folder: Folder
     repository: Repository
 
 @typing.type_check_only
-class ScheduledExecutionRecord(typing_extensions.TypedDict, total=False):
+class ScheduledExecutionRecord(typing.TypedDict, total=False):
     errorStatus: Status
     executionTime: str
     workflowInvocation: str
 
 @typing.type_check_only
-class ScheduledReleaseRecord(typing_extensions.TypedDict, total=False):
+class ScheduledReleaseRecord(typing.TypedDict, total=False):
     compilationResult: str
     errorStatus: Status
     releaseTime: str
 
 @typing.type_check_only
-class SearchFilesResponse(typing_extensions.TypedDict, total=False):
+class SearchFilesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     searchResults: _list[SearchResult]
 
 @typing.type_check_only
-class SearchResult(typing_extensions.TypedDict, total=False):
+class SearchResult(typing.TypedDict, total=False):
     directory: DirectorySearchResult
     file: FileSearchResult
 
 @typing.type_check_only
-class SearchTeamFoldersResponse(typing_extensions.TypedDict, total=False):
+class SearchTeamFoldersResponse(typing.TypedDict, total=False):
     nextPageToken: str
     results: _list[TeamFolderSearchResult]
 
 @typing.type_check_only
-class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
+class SetIamPolicyRequest(typing.TypedDict, total=False):
     policy: Policy
 
 @typing.type_check_only
-class SimpleLoadMode(typing_extensions.TypedDict, total=False): ...
+class SimpleLoadMode(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class SqlDefinition(typing_extensions.TypedDict, total=False):
+class SqlDefinition(typing.TypedDict, total=False):
     errorTable: ErrorTable
     load: LoadConfig
     query: str
 
 @typing.type_check_only
-class SshAuthenticationConfig(typing_extensions.TypedDict, total=False):
+class SshAuthenticationConfig(typing.TypedDict, total=False):
     hostPublicKey: str
     userPrivateKeySecretVersion: str
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class TableUpdateTrigger(typing_extensions.TypedDict, total=False):
+class TableUpdateTrigger(typing.TypedDict, total=False):
     table: Target
     triggerUpdateTime: str
 
 @typing.type_check_only
-class Target(typing_extensions.TypedDict, total=False):
+class Target(typing.TypedDict, total=False):
     database: str
     name: str
     schema: str
 
 @typing.type_check_only
-class TeamFolder(typing_extensions.TypedDict, total=False):
+class TeamFolder(typing.TypedDict, total=False):
     createTime: str
     creatorIamPrincipal: str
     displayName: str
@@ -704,36 +718,36 @@ class TeamFolder(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class TeamFolderContentsEntry(typing_extensions.TypedDict, total=False):
+class TeamFolderContentsEntry(typing.TypedDict, total=False):
     folder: Folder
     repository: Repository
 
 @typing.type_check_only
-class TeamFolderSearchResult(typing_extensions.TypedDict, total=False):
+class TeamFolderSearchResult(typing.TypedDict, total=False):
     teamFolder: TeamFolder
 
 @typing.type_check_only
-class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
+class TestIamPermissionsRequest(typing.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
-class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
+class TestIamPermissionsResponse(typing.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
-class TriggerEvaluationRecord(typing_extensions.TypedDict, total=False):
+class TriggerEvaluationRecord(typing.TypedDict, total=False):
     evaluationTime: str
     status: Status
 
 @typing.type_check_only
-class UncommittedFileChange(typing_extensions.TypedDict, total=False):
+class UncommittedFileChange(typing.TypedDict, total=False):
     path: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED", "ADDED", "DELETED", "MODIFIED", "HAS_CONFLICTS"
     ]
 
 @typing.type_check_only
-class WorkflowConfig(typing_extensions.TypedDict, total=False):
+class WorkflowConfig(typing.TypedDict, total=False):
     createTime: str
     cronSchedule: str
     disabled: bool
@@ -747,22 +761,23 @@ class WorkflowConfig(typing_extensions.TypedDict, total=False):
     workflowTriggerConfig: WorkflowTriggerConfig
 
 @typing.type_check_only
-class WorkflowInvocation(typing_extensions.TypedDict, total=False):
+class WorkflowInvocation(typing.TypedDict, total=False):
     compilationResult: str
     dataEncryptionState: DataEncryptionState
     internalMetadata: str
     invocationConfig: InvocationConfig
     invocationTiming: Interval
     name: str
+    pipelineConfig: PipelineConfig
     privateResourceMetadata: PrivateResourceMetadata
     resolvedCompilationResult: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED", "RUNNING", "SUCCEEDED", "CANCELLED", "FAILED", "CANCELING"
     ]
     workflowConfig: str
 
 @typing.type_check_only
-class WorkflowInvocationAction(typing_extensions.TypedDict, total=False):
+class WorkflowInvocationAction(typing.TypedDict, total=False):
     bigqueryAction: BigQueryAction
     canonicalTarget: Target
     dataPreparationAction: DataPreparationAction
@@ -770,18 +785,18 @@ class WorkflowInvocationAction(typing_extensions.TypedDict, total=False):
     internalMetadata: str
     invocationTiming: Interval
     notebookAction: NotebookAction
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "PENDING", "RUNNING", "SKIPPED", "DISABLED", "SUCCEEDED", "CANCELLED", "FAILED"
     ]
     target: Target
 
 @typing.type_check_only
-class WorkflowTrigger(typing_extensions.TypedDict, total=False):
+class WorkflowTrigger(typing.TypedDict, total=False):
     tableUpdateTrigger: TableUpdateTrigger
 
 @typing.type_check_only
-class WorkflowTriggerConfig(typing_extensions.TypedDict, total=False):
-    condition: typing_extensions.Literal["CONDITION_UNSPECIFIED", "ALL", "ANY"]
+class WorkflowTriggerConfig(typing.TypedDict, total=False):
+    condition: typing.Literal["CONDITION_UNSPECIFIED", "ALL", "ANY"]
     lastSuccessfulEvaluationTime: str
     maxWaitDuration: str
     minExecutionDuration: str
@@ -789,7 +804,7 @@ class WorkflowTriggerConfig(typing_extensions.TypedDict, total=False):
     workflowTriggers: _list[WorkflowTrigger]
 
 @typing.type_check_only
-class Workspace(typing_extensions.TypedDict, total=False):
+class Workspace(typing.TypedDict, total=False):
     createTime: str
     dataEncryptionState: DataEncryptionState
     disableMoves: bool
@@ -798,19 +813,19 @@ class Workspace(typing_extensions.TypedDict, total=False):
     privateResourceMetadata: PrivateResourceMetadata
 
 @typing.type_check_only
-class WorkspaceCompilationOverrides(typing_extensions.TypedDict, total=False):
+class WorkspaceCompilationOverrides(typing.TypedDict, total=False):
     defaultDatabase: str
     schemaSuffix: str
     tablePrefix: str
 
 @typing.type_check_only
-class WriteFile(typing_extensions.TypedDict, total=False):
+class WriteFile(typing.TypedDict, total=False):
     contents: str
 
 @typing.type_check_only
-class WriteFileRequest(typing_extensions.TypedDict, total=False):
+class WriteFileRequest(typing.TypedDict, total=False):
     contents: str
     path: str
 
 @typing.type_check_only
-class WriteFileResponse(typing_extensions.TypedDict, total=False): ...
+class WriteFileResponse(typing.TypedDict, total=False): ...

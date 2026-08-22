@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -73,9 +72,7 @@ class MyBusinessBusinessInformationResource(googleapiclient.discovery.Resource):
             languageCode: str | None = ...,
             names: str | _list[str] | None = ...,
             regionCode: str | None = ...,
-            view: typing_extensions.Literal[
-                "CATEGORY_VIEW_UNSPECIFIED", "BASIC", "FULL"
-            ]
+            view: typing.Literal["CATEGORY_VIEW_UNSPECIFIED", "BASIC", "FULL"]
             | None = ...,
             **kwargs: typing.Any,
         ) -> BatchGetCategoriesResponseHttpRequest: ...
@@ -87,9 +84,7 @@ class MyBusinessBusinessInformationResource(googleapiclient.discovery.Resource):
             pageSize: int | None = ...,
             pageToken: str | None = ...,
             regionCode: str | None = ...,
-            view: typing_extensions.Literal[
-                "CATEGORY_VIEW_UNSPECIFIED", "BASIC", "FULL"
-            ]
+            view: typing.Literal["CATEGORY_VIEW_UNSPECIFIED", "BASIC", "FULL"]
             | None = ...,
             **kwargs: typing.Any,
         ) -> ListCategoriesResponseHttpRequest: ...

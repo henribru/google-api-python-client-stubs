@@ -1,51 +1,49 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class Binding(typing_extensions.TypedDict, total=False):
+class Binding(typing.TypedDict, total=False):
     condition: Expr
     members: _list[str]
     role: str
 
 @typing.type_check_only
-class Cardinality(typing_extensions.TypedDict, total=False):
+class Cardinality(typing.TypedDict, total=False):
     number: int
     path: str
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class EndCondition(typing_extensions.TypedDict, total=False):
+class EndCondition(typing.TypedDict, total=False):
     cardinality: Cardinality
 
 @typing.type_check_only
-class Expr(typing_extensions.TypedDict, total=False):
+class Expr(typing.TypedDict, total=False):
     description: str
     expression: str
     location: str
     title: str
 
 @typing.type_check_only
-class ListConfigsResponse(typing_extensions.TypedDict, total=False):
+class ListConfigsResponse(typing.TypedDict, total=False):
     configs: _list[RuntimeConfig]
     nextPageToken: str
 
 @typing.type_check_only
-class ListVariablesResponse(typing_extensions.TypedDict, total=False):
+class ListVariablesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     variables: _list[Variable]
 
 @typing.type_check_only
-class ListWaitersResponse(typing_extensions.TypedDict, total=False):
+class ListWaitersResponse(typing.TypedDict, total=False):
     nextPageToken: str
     waiters: _list[Waiter]
 
 @typing.type_check_only
-class Operation(typing_extensions.TypedDict, total=False):
+class Operation(typing.TypedDict, total=False):
     done: bool
     error: Status
     metadata: dict[str, typing.Any]
@@ -53,44 +51,44 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class Policy(typing_extensions.TypedDict, total=False):
+class Policy(typing.TypedDict, total=False):
     bindings: _list[Binding]
     etag: str
     version: int
 
 @typing.type_check_only
-class RuntimeConfig(typing_extensions.TypedDict, total=False):
+class RuntimeConfig(typing.TypedDict, total=False):
     description: str
     name: str
 
 @typing.type_check_only
-class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
+class SetIamPolicyRequest(typing.TypedDict, total=False):
     policy: Policy
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
+class TestIamPermissionsRequest(typing.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
-class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
+class TestIamPermissionsResponse(typing.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
-class Variable(typing_extensions.TypedDict, total=False):
+class Variable(typing.TypedDict, total=False):
     name: str
-    state: typing_extensions.Literal["VARIABLE_STATE_UNSPECIFIED", "UPDATED", "DELETED"]
+    state: typing.Literal["VARIABLE_STATE_UNSPECIFIED", "UPDATED", "DELETED"]
     text: str
     updateTime: str
     value: str
 
 @typing.type_check_only
-class Waiter(typing_extensions.TypedDict, total=False):
+class Waiter(typing.TypedDict, total=False):
     createTime: str
     done: bool
     error: Status
@@ -100,5 +98,5 @@ class Waiter(typing_extensions.TypedDict, total=False):
     timeout: str
 
 @typing.type_check_only
-class WatchVariableRequest(typing_extensions.TypedDict, total=False):
+class WatchVariableRequest(typing.TypedDict, total=False):
     newerThan: str

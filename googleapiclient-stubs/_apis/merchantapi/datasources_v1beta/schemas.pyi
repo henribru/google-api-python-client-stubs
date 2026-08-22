@@ -1,17 +1,13 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class DataSource(typing_extensions.TypedDict, total=False):
+class DataSource(typing.TypedDict, total=False):
     dataSourceId: str
     displayName: str
     fileInput: FileInput
-    input: typing_extensions.Literal[
-        "INPUT_UNSPECIFIED", "API", "FILE", "UI", "AUTOFEED"
-    ]
+    input: typing.Literal["INPUT_UNSPECIFIED", "API", "FILE", "UI", "AUTOFEED"]
     localInventoryDataSource: LocalInventoryDataSource
     merchantReviewDataSource: MerchantReviewDataSource
     name: str
@@ -22,18 +18,18 @@ class DataSource(typing_extensions.TypedDict, total=False):
     supplementalProductDataSource: SupplementalProductDataSource
 
 @typing.type_check_only
-class DataSourceReference(typing_extensions.TypedDict, total=False):
+class DataSourceReference(typing.TypedDict, total=False):
     primaryDataSourceName: str
     self: bool
     supplementalDataSourceName: str
 
 @typing.type_check_only
-class DefaultRule(typing_extensions.TypedDict, total=False):
+class DefaultRule(typing.TypedDict, total=False):
     takeFromDataSources: _list[DataSourceReference]
 
 @typing.type_check_only
-class Destination(typing_extensions.TypedDict, total=False):
-    destination: typing_extensions.Literal[
+class Destination(typing.TypedDict, total=False):
+    destination: typing.Literal[
         "DESTINATION_ENUM_UNSPECIFIED",
         "SHOPPING_ADS",
         "DISPLAY_ADS",
@@ -48,18 +44,18 @@ class Destination(typing_extensions.TypedDict, total=False):
         "CLOUD_RETAIL",
         "LOCAL_CLOUD_RETAIL",
     ]
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ENABLED", "DISABLED"]
+    state: typing.Literal["STATE_UNSPECIFIED", "ENABLED", "DISABLED"]
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class FetchDataSourceRequest(typing_extensions.TypedDict, total=False): ...
+class FetchDataSourceRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class FetchSettings(typing_extensions.TypedDict, total=False):
+class FetchSettings(typing.TypedDict, total=False):
     dayOfMonth: int
-    dayOfWeek: typing_extensions.Literal[
+    dayOfWeek: typing.Literal[
         "DAY_OF_WEEK_UNSPECIFIED",
         "MONDAY",
         "TUESDAY",
@@ -71,7 +67,7 @@ class FetchSettings(typing_extensions.TypedDict, total=False):
     ]
     enabled: bool
     fetchUri: str
-    frequency: typing_extensions.Literal[
+    frequency: typing.Literal[
         "FREQUENCY_UNSPECIFIED",
         "FREQUENCY_DAILY",
         "FREQUENCY_WEEKLY",
@@ -83,51 +79,51 @@ class FetchSettings(typing_extensions.TypedDict, total=False):
     username: str
 
 @typing.type_check_only
-class FileInput(typing_extensions.TypedDict, total=False):
+class FileInput(typing.TypedDict, total=False):
     fetchSettings: FetchSettings
-    fileInputType: typing_extensions.Literal[
+    fileInputType: typing.Literal[
         "FILE_INPUT_TYPE_UNSPECIFIED", "UPLOAD", "FETCH", "GOOGLE_SHEETS"
     ]
     fileName: str
 
 @typing.type_check_only
-class FileUpload(typing_extensions.TypedDict, total=False):
+class FileUpload(typing.TypedDict, total=False):
     dataSourceId: str
     issues: _list[Issue]
     itemsCreated: str
     itemsTotal: str
     itemsUpdated: str
     name: str
-    processingState: typing_extensions.Literal[
+    processingState: typing.Literal[
         "PROCESSING_STATE_UNSPECIFIED", "FAILED", "IN_PROGRESS", "SUCCEEDED"
     ]
     uploadTime: str
 
 @typing.type_check_only
-class Issue(typing_extensions.TypedDict, total=False):
+class Issue(typing.TypedDict, total=False):
     code: str
     count: str
     description: str
     documentationUri: str
-    severity: typing_extensions.Literal["SEVERITY_UNSPECIFIED", "WARNING", "ERROR"]
+    severity: typing.Literal["SEVERITY_UNSPECIFIED", "WARNING", "ERROR"]
     title: str
 
 @typing.type_check_only
-class ListDataSourcesResponse(typing_extensions.TypedDict, total=False):
+class ListDataSourcesResponse(typing.TypedDict, total=False):
     dataSources: _list[DataSource]
     nextPageToken: str
 
 @typing.type_check_only
-class LocalInventoryDataSource(typing_extensions.TypedDict, total=False):
+class LocalInventoryDataSource(typing.TypedDict, total=False):
     contentLanguage: str
     feedLabel: str
 
 @typing.type_check_only
-class MerchantReviewDataSource(typing_extensions.TypedDict, total=False): ...
+class MerchantReviewDataSource(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class PrimaryProductDataSource(typing_extensions.TypedDict, total=False):
-    channel: typing_extensions.Literal[
+class PrimaryProductDataSource(typing.TypedDict, total=False):
+    channel: typing.Literal[
         "CHANNEL_UNSPECIFIED", "ONLINE_PRODUCTS", "LOCAL_PRODUCTS", "PRODUCTS"
     ]
     contentLanguage: str
@@ -137,11 +133,11 @@ class PrimaryProductDataSource(typing_extensions.TypedDict, total=False):
     feedLabel: str
 
 @typing.type_check_only
-class ProductChange(typing_extensions.TypedDict, total=False):
+class ProductChange(typing.TypedDict, total=False):
     newValue: str
     oldValue: str
     regionCode: str
-    reportingContext: typing_extensions.Literal[
+    reportingContext: typing.Literal[
         "REPORTING_CONTEXT_ENUM_UNSPECIFIED",
         "SHOPPING_ADS",
         "DISCOVERY_ADS",
@@ -165,40 +161,38 @@ class ProductChange(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class ProductReviewDataSource(typing_extensions.TypedDict, total=False): ...
+class ProductReviewDataSource(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ProductStatusChangeMessage(typing_extensions.TypedDict, total=False):
+class ProductStatusChangeMessage(typing.TypedDict, total=False):
     account: str
-    attribute: typing_extensions.Literal["ATTRIBUTE_UNSPECIFIED", "STATUS"]
+    attribute: typing.Literal["ATTRIBUTE_UNSPECIFIED", "STATUS"]
     changes: _list[ProductChange]
     eventTime: str
     expirationTime: str
     managingAccount: str
     resource: str
     resourceId: str
-    resourceType: typing_extensions.Literal[
-        "RESOURCE_UNSPECIFIED", "PRODUCT", "ACCOUNT_SERVICE"
-    ]
+    resourceType: typing.Literal["RESOURCE_UNSPECIFIED", "PRODUCT", "ACCOUNT_SERVICE"]
 
 @typing.type_check_only
-class PromotionDataSource(typing_extensions.TypedDict, total=False):
+class PromotionDataSource(typing.TypedDict, total=False):
     contentLanguage: str
     targetCountry: str
 
 @typing.type_check_only
-class RegionalInventoryDataSource(typing_extensions.TypedDict, total=False):
+class RegionalInventoryDataSource(typing.TypedDict, total=False):
     contentLanguage: str
     feedLabel: str
 
 @typing.type_check_only
-class SupplementalProductDataSource(typing_extensions.TypedDict, total=False):
+class SupplementalProductDataSource(typing.TypedDict, total=False):
     contentLanguage: str
     feedLabel: str
     referencingPrimaryDataSources: _list[DataSourceReference]
 
 @typing.type_check_only
-class TimeOfDay(typing_extensions.TypedDict, total=False):
+class TimeOfDay(typing.TypedDict, total=False):
     hours: int
     minutes: int
     nanos: int

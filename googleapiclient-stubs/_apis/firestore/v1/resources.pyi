@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -179,6 +178,7 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                     pageSize: int | None = ...,
                     pageToken: str | None = ...,
                     readTime: str | None = ...,
+                    recursive: bool | None = ...,
                     showMissing: bool | None = ...,
                     transaction: str | None = ...,
                     **kwargs: typing.Any,
@@ -210,6 +210,7 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                     pageSize: int | None = ...,
                     pageToken: str | None = ...,
                     readTime: str | None = ...,
+                    recursive: bool | None = ...,
                     showMissing: bool | None = ...,
                     transaction: str | None = ...,
                     **kwargs: typing.Any,

@@ -1,13 +1,11 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class Aggregation(typing_extensions.TypedDict, total=False):
+class Aggregation(typing.TypedDict, total=False):
     alignmentPeriod: str
-    crossSeriesReducer: typing_extensions.Literal[
+    crossSeriesReducer: typing.Literal[
         "REDUCE_NONE",
         "REDUCE_MEAN",
         "REDUCE_MIN",
@@ -24,7 +22,7 @@ class Aggregation(typing_extensions.TypedDict, total=False):
         "REDUCE_PERCENTILE_05",
     ]
     groupByFields: _list[str]
-    perSeriesAligner: typing_extensions.Literal[
+    perSeriesAligner: typing.Literal[
         "ALIGN_NONE",
         "ALIGN_DELTA",
         "ALIGN_RATE",
@@ -47,7 +45,7 @@ class Aggregation(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class Alert(typing_extensions.TypedDict, total=False):
+class Alert(typing.TypedDict, total=False):
     closeTime: str
     log: LogMetadata
     metadata: MonitoredResourceMetadata
@@ -56,12 +54,12 @@ class Alert(typing_extensions.TypedDict, total=False):
     openTime: str
     policy: PolicySnapshot
     resource: MonitoredResource
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "OPEN", "CLOSED"]
+    state: typing.Literal["STATE_UNSPECIFIED", "OPEN", "CLOSED"]
 
 @typing.type_check_only
-class AlertPolicy(typing_extensions.TypedDict, total=False):
+class AlertPolicy(typing.TypedDict, total=False):
     alertStrategy: AlertStrategy
-    combiner: typing_extensions.Literal[
+    combiner: typing.Literal[
         "COMBINE_UNSPECIFIED", "AND", "OR", "AND_WITH_MATCHING_RESOURCE"
     ]
     conditions: _list[Condition]
@@ -72,40 +70,38 @@ class AlertPolicy(typing_extensions.TypedDict, total=False):
     mutationRecord: MutationRecord
     name: str
     notificationChannels: _list[str]
-    severity: typing_extensions.Literal[
-        "SEVERITY_UNSPECIFIED", "CRITICAL", "ERROR", "WARNING"
-    ]
+    severity: typing.Literal["SEVERITY_UNSPECIFIED", "CRITICAL", "ERROR", "WARNING"]
     userLabels: dict[str, typing.Any]
     validity: Status
 
 @typing.type_check_only
-class AlertStrategy(typing_extensions.TypedDict, total=False):
+class AlertStrategy(typing.TypedDict, total=False):
     autoClose: str
     notificationChannelStrategy: _list[NotificationChannelStrategy]
     notificationPrompts: _list[
-        typing_extensions.Literal["NOTIFICATION_PROMPT_UNSPECIFIED", "OPENED", "CLOSED"]
+        typing.Literal["NOTIFICATION_PROMPT_UNSPECIFIED", "OPENED", "CLOSED"]
     ]
     notificationRateLimit: NotificationRateLimit
 
 @typing.type_check_only
-class AppEngine(typing_extensions.TypedDict, total=False):
+class AppEngine(typing.TypedDict, total=False):
     moduleId: str
 
 @typing.type_check_only
-class AvailabilityCriteria(typing_extensions.TypedDict, total=False): ...
+class AvailabilityCriteria(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class BasicAuthentication(typing_extensions.TypedDict, total=False):
+class BasicAuthentication(typing.TypedDict, total=False):
     password: str
     username: str
 
 @typing.type_check_only
-class BasicService(typing_extensions.TypedDict, total=False):
+class BasicService(typing.TypedDict, total=False):
     serviceLabels: dict[str, typing.Any]
     serviceType: str
 
 @typing.type_check_only
-class BasicSli(typing_extensions.TypedDict, total=False):
+class BasicSli(typing.TypedDict, total=False):
     availability: AvailabilityCriteria
     latency: LatencyCriteria
     location: _list[str]
@@ -113,38 +109,38 @@ class BasicSli(typing_extensions.TypedDict, total=False):
     version: _list[str]
 
 @typing.type_check_only
-class BooleanTest(typing_extensions.TypedDict, total=False):
+class BooleanTest(typing.TypedDict, total=False):
     column: str
 
 @typing.type_check_only
-class BucketOptions(typing_extensions.TypedDict, total=False):
+class BucketOptions(typing.TypedDict, total=False):
     explicitBuckets: Explicit
     exponentialBuckets: Exponential
     linearBuckets: Linear
 
 @typing.type_check_only
-class CloudEndpoints(typing_extensions.TypedDict, total=False):
+class CloudEndpoints(typing.TypedDict, total=False):
     service: str
 
 @typing.type_check_only
-class CloudFunctionV2Target(typing_extensions.TypedDict, total=False):
+class CloudFunctionV2Target(typing.TypedDict, total=False):
     cloudRunRevision: MonitoredResource
     name: str
 
 @typing.type_check_only
-class CloudRun(typing_extensions.TypedDict, total=False):
+class CloudRun(typing.TypedDict, total=False):
     location: str
     serviceName: str
 
 @typing.type_check_only
-class ClusterIstio(typing_extensions.TypedDict, total=False):
+class ClusterIstio(typing.TypedDict, total=False):
     clusterName: str
     location: str
     serviceName: str
     serviceNamespace: str
 
 @typing.type_check_only
-class CollectdPayload(typing_extensions.TypedDict, total=False):
+class CollectdPayload(typing.TypedDict, total=False):
     endTime: str
     metadata: dict[str, typing.Any]
     plugin: str
@@ -155,26 +151,26 @@ class CollectdPayload(typing_extensions.TypedDict, total=False):
     values: _list[CollectdValue]
 
 @typing.type_check_only
-class CollectdPayloadError(typing_extensions.TypedDict, total=False):
+class CollectdPayloadError(typing.TypedDict, total=False):
     error: Status
     index: int
     valueErrors: _list[CollectdValueError]
 
 @typing.type_check_only
-class CollectdValue(typing_extensions.TypedDict, total=False):
+class CollectdValue(typing.TypedDict, total=False):
     dataSourceName: str
-    dataSourceType: typing_extensions.Literal[
+    dataSourceType: typing.Literal[
         "UNSPECIFIED_DATA_SOURCE_TYPE", "GAUGE", "COUNTER", "DERIVE", "ABSOLUTE"
     ]
     value: TypedValue
 
 @typing.type_check_only
-class CollectdValueError(typing_extensions.TypedDict, total=False):
+class CollectdValueError(typing.TypedDict, total=False):
     error: Status
     index: int
 
 @typing.type_check_only
-class Condition(typing_extensions.TypedDict, total=False):
+class Condition(typing.TypedDict, total=False):
     conditionAbsent: MetricAbsence
     conditionMatchedLog: LogMatch
     conditionMonitoringQueryLanguage: MonitoringQueryLanguageCondition
@@ -185,10 +181,10 @@ class Condition(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class ContentMatcher(typing_extensions.TypedDict, total=False):
+class ContentMatcher(typing.TypedDict, total=False):
     content: str
     jsonPathMatcher: JsonPathMatcher
-    matcher: typing_extensions.Literal[
+    matcher: typing.Literal[
         "CONTENT_MATCHER_OPTION_UNSPECIFIED",
         "CONTAINS_STRING",
         "NOT_CONTAINS_STRING",
@@ -199,41 +195,41 @@ class ContentMatcher(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class CreateCollectdTimeSeriesRequest(typing_extensions.TypedDict, total=False):
+class CreateCollectdTimeSeriesRequest(typing.TypedDict, total=False):
     collectdPayloads: _list[CollectdPayload]
     collectdVersion: str
     resource: MonitoredResource
 
 @typing.type_check_only
-class CreateCollectdTimeSeriesResponse(typing_extensions.TypedDict, total=False):
+class CreateCollectdTimeSeriesResponse(typing.TypedDict, total=False):
     payloadErrors: _list[CollectdPayloadError]
     summary: CreateTimeSeriesSummary
 
 @typing.type_check_only
-class CreateTimeSeriesRequest(typing_extensions.TypedDict, total=False):
+class CreateTimeSeriesRequest(typing.TypedDict, total=False):
     timeSeries: _list[TimeSeries]
 
 @typing.type_check_only
-class CreateTimeSeriesSummary(typing_extensions.TypedDict, total=False):
+class CreateTimeSeriesSummary(typing.TypedDict, total=False):
     errors: _list[Error]
     successPointCount: int
     totalPointCount: int
 
 @typing.type_check_only
-class Criteria(typing_extensions.TypedDict, total=False):
+class Criteria(typing.TypedDict, total=False):
     filter: str
     policies: _list[str]
 
 @typing.type_check_only
-class Custom(typing_extensions.TypedDict, total=False): ...
+class Custom(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Daily(typing_extensions.TypedDict, total=False):
+class Daily(typing.TypedDict, total=False):
     executionTime: TimeOfDay
     periodicity: int
 
 @typing.type_check_only
-class Distribution(typing_extensions.TypedDict, total=False):
+class Distribution(typing.TypedDict, total=False):
     bucketCounts: _list[str]
     bucketOptions: BucketOptions
     count: str
@@ -243,48 +239,48 @@ class Distribution(typing_extensions.TypedDict, total=False):
     sumOfSquaredDeviation: float
 
 @typing.type_check_only
-class DistributionCut(typing_extensions.TypedDict, total=False):
+class DistributionCut(typing.TypedDict, total=False):
     distributionFilter: str
     range: GoogleMonitoringV3Range
 
 @typing.type_check_only
-class Documentation(typing_extensions.TypedDict, total=False):
+class Documentation(typing.TypedDict, total=False):
     content: str
     links: _list[Link]
     mimeType: str
     subject: str
 
 @typing.type_check_only
-class DroppedLabels(typing_extensions.TypedDict, total=False):
+class DroppedLabels(typing.TypedDict, total=False):
     label: dict[str, typing.Any]
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Error(typing_extensions.TypedDict, total=False):
+class Error(typing.TypedDict, total=False):
     pointCount: int
     status: Status
 
 @typing.type_check_only
-class Exemplar(typing_extensions.TypedDict, total=False):
+class Exemplar(typing.TypedDict, total=False):
     attachments: _list[dict[str, typing.Any]]
     timestamp: str
     value: float
 
 @typing.type_check_only
-class Explicit(typing_extensions.TypedDict, total=False):
+class Explicit(typing.TypedDict, total=False):
     bounds: _list[float]
 
 @typing.type_check_only
-class Exponential(typing_extensions.TypedDict, total=False):
+class Exponential(typing.TypedDict, total=False):
     growthFactor: float
     numFiniteBuckets: int
     scale: float
 
 @typing.type_check_only
-class Field(typing_extensions.TypedDict, total=False):
-    cardinality: typing_extensions.Literal[
+class Field(typing.TypedDict, total=False):
+    cardinality: typing.Literal[
         "CARDINALITY_UNKNOWN",
         "CARDINALITY_OPTIONAL",
         "CARDINALITY_REQUIRED",
@@ -292,7 +288,7 @@ class Field(typing_extensions.TypedDict, total=False):
     ]
     defaultValue: str
     jsonName: str
-    kind: typing_extensions.Literal[
+    kind: typing.Literal[
         "TYPE_UNKNOWN",
         "TYPE_DOUBLE",
         "TYPE_FLOAT",
@@ -321,31 +317,27 @@ class Field(typing_extensions.TypedDict, total=False):
     typeUrl: str
 
 @typing.type_check_only
-class ForecastOptions(typing_extensions.TypedDict, total=False):
+class ForecastOptions(typing.TypedDict, total=False):
     forecastHorizon: str
 
 @typing.type_check_only
-class GetNotificationChannelVerificationCodeRequest(
-    typing_extensions.TypedDict, total=False
-):
+class GetNotificationChannelVerificationCodeRequest(typing.TypedDict, total=False):
     expireTime: str
 
 @typing.type_check_only
-class GetNotificationChannelVerificationCodeResponse(
-    typing_extensions.TypedDict, total=False
-):
+class GetNotificationChannelVerificationCodeResponse(typing.TypedDict, total=False):
     code: str
     expireTime: str
 
 @typing.type_check_only
-class GkeNamespace(typing_extensions.TypedDict, total=False):
+class GkeNamespace(typing.TypedDict, total=False):
     clusterName: str
     location: str
     namespaceName: str
     projectId: str
 
 @typing.type_check_only
-class GkeService(typing_extensions.TypedDict, total=False):
+class GkeService(typing.TypedDict, total=False):
     clusterName: str
     location: str
     namespaceName: str
@@ -353,7 +345,7 @@ class GkeService(typing_extensions.TypedDict, total=False):
     serviceName: str
 
 @typing.type_check_only
-class GkeWorkload(typing_extensions.TypedDict, total=False):
+class GkeWorkload(typing.TypedDict, total=False):
     clusterName: str
     location: str
     namespaceName: str
@@ -362,12 +354,12 @@ class GkeWorkload(typing_extensions.TypedDict, total=False):
     topLevelControllerType: str
 
 @typing.type_check_only
-class GoogleMonitoringV3Range(typing_extensions.TypedDict, total=False):
+class GoogleMonitoringV3Range(typing.TypedDict, total=False):
     max: float
     min: float
 
 @typing.type_check_only
-class Group(typing_extensions.TypedDict, total=False):
+class Group(typing.TypedDict, total=False):
     displayName: str
     filter: str
     isCluster: bool
@@ -375,143 +367,137 @@ class Group(typing_extensions.TypedDict, total=False):
     parentName: str
 
 @typing.type_check_only
-class Hourly(typing_extensions.TypedDict, total=False):
+class Hourly(typing.TypedDict, total=False):
     minuteOffset: int
     periodicity: int
 
 @typing.type_check_only
-class HttpCheck(typing_extensions.TypedDict, total=False):
+class HttpCheck(typing.TypedDict, total=False):
     acceptedResponseStatusCodes: _list[ResponseStatusCode]
     authInfo: BasicAuthentication
     body: str
-    contentType: typing_extensions.Literal[
-        "TYPE_UNSPECIFIED", "URL_ENCODED", "USER_PROVIDED"
-    ]
+    contentType: typing.Literal["TYPE_UNSPECIFIED", "URL_ENCODED", "USER_PROVIDED"]
     customContentType: str
     headers: dict[str, typing.Any]
     maskHeaders: bool
     path: str
     pingConfig: PingConfig
     port: int
-    requestMethod: typing_extensions.Literal["METHOD_UNSPECIFIED", "GET", "POST"]
+    requestMethod: typing.Literal["METHOD_UNSPECIFIED", "GET", "POST"]
     serviceAgentAuthentication: ServiceAgentAuthentication
     useSsl: bool
     validateSsl: bool
 
 @typing.type_check_only
-class InternalChecker(typing_extensions.TypedDict, total=False):
+class InternalChecker(typing.TypedDict, total=False):
     displayName: str
     gcpZone: str
     name: str
     network: str
     peerProjectId: str
-    state: typing_extensions.Literal["UNSPECIFIED", "CREATING", "RUNNING"]
+    state: typing.Literal["UNSPECIFIED", "CREATING", "RUNNING"]
 
 @typing.type_check_only
-class IstioCanonicalService(typing_extensions.TypedDict, total=False):
+class IstioCanonicalService(typing.TypedDict, total=False):
     canonicalService: str
     canonicalServiceNamespace: str
     meshUid: str
 
 @typing.type_check_only
-class JsonPathMatcher(typing_extensions.TypedDict, total=False):
-    jsonMatcher: typing_extensions.Literal[
+class JsonPathMatcher(typing.TypedDict, total=False):
+    jsonMatcher: typing.Literal[
         "JSON_PATH_MATCHER_OPTION_UNSPECIFIED", "EXACT_MATCH", "REGEX_MATCH"
     ]
     jsonPath: str
 
 @typing.type_check_only
-class LabelDescriptor(typing_extensions.TypedDict, total=False):
+class LabelDescriptor(typing.TypedDict, total=False):
     description: str
     key: str
-    valueType: typing_extensions.Literal["STRING", "BOOL", "INT64"]
+    valueType: typing.Literal["STRING", "BOOL", "INT64"]
 
 @typing.type_check_only
-class LabelValue(typing_extensions.TypedDict, total=False):
+class LabelValue(typing.TypedDict, total=False):
     boolValue: bool
     int64Value: str
     stringValue: str
 
 @typing.type_check_only
-class LatencyCriteria(typing_extensions.TypedDict, total=False):
+class LatencyCriteria(typing.TypedDict, total=False):
     threshold: str
 
 @typing.type_check_only
-class Linear(typing_extensions.TypedDict, total=False):
+class Linear(typing.TypedDict, total=False):
     numFiniteBuckets: int
     offset: float
     width: float
 
 @typing.type_check_only
-class Link(typing_extensions.TypedDict, total=False):
+class Link(typing.TypedDict, total=False):
     displayName: str
     url: str
 
 @typing.type_check_only
-class ListAlertPoliciesResponse(typing_extensions.TypedDict, total=False):
+class ListAlertPoliciesResponse(typing.TypedDict, total=False):
     alertPolicies: _list[AlertPolicy]
     nextPageToken: str
     totalSize: int
 
 @typing.type_check_only
-class ListAlertsResponse(typing_extensions.TypedDict, total=False):
+class ListAlertsResponse(typing.TypedDict, total=False):
     alerts: _list[Alert]
     nextPageToken: str
     totalSize: int
 
 @typing.type_check_only
-class ListGroupMembersResponse(typing_extensions.TypedDict, total=False):
+class ListGroupMembersResponse(typing.TypedDict, total=False):
     members: _list[MonitoredResource]
     nextPageToken: str
     totalSize: int
 
 @typing.type_check_only
-class ListGroupsResponse(typing_extensions.TypedDict, total=False):
+class ListGroupsResponse(typing.TypedDict, total=False):
     group: _list[Group]
     nextPageToken: str
 
 @typing.type_check_only
-class ListMetricDescriptorsResponse(typing_extensions.TypedDict, total=False):
+class ListMetricDescriptorsResponse(typing.TypedDict, total=False):
     metricDescriptors: _list[MetricDescriptor]
     nextPageToken: str
 
 @typing.type_check_only
-class ListMonitoredResourceDescriptorsResponse(
-    typing_extensions.TypedDict, total=False
-):
+class ListMonitoredResourceDescriptorsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     resourceDescriptors: _list[MonitoredResourceDescriptor]
 
 @typing.type_check_only
-class ListNotificationChannelDescriptorsResponse(
-    typing_extensions.TypedDict, total=False
-):
+class ListNotificationChannelDescriptorsResponse(typing.TypedDict, total=False):
     channelDescriptors: _list[NotificationChannelDescriptor]
     nextPageToken: str
 
 @typing.type_check_only
-class ListNotificationChannelsResponse(typing_extensions.TypedDict, total=False):
+class ListNotificationChannelsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     notificationChannels: _list[NotificationChannel]
     totalSize: int
 
 @typing.type_check_only
-class ListServiceLevelObjectivesResponse(typing_extensions.TypedDict, total=False):
+class ListServiceLevelObjectivesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     serviceLevelObjectives: _list[ServiceLevelObjective]
 
 @typing.type_check_only
-class ListServicesResponse(typing_extensions.TypedDict, total=False):
+class ListServicesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     services: _list[Service]
 
 @typing.type_check_only
-class ListSnoozesResponse(typing_extensions.TypedDict, total=False):
+class ListSnoozesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     snoozes: _list[Snooze]
 
 @typing.type_check_only
-class ListTimeSeriesResponse(typing_extensions.TypedDict, total=False):
+class ListTimeSeriesResponse(typing.TypedDict, total=False):
     executionErrors: _list[Status]
     nextPageToken: str
     timeSeries: _list[TimeSeries]
@@ -519,49 +505,49 @@ class ListTimeSeriesResponse(typing_extensions.TypedDict, total=False):
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListUptimeCheckConfigsResponse(typing_extensions.TypedDict, total=False):
+class ListUptimeCheckConfigsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     totalSize: int
     uptimeCheckConfigs: _list[UptimeCheckConfig]
 
 @typing.type_check_only
-class ListUptimeCheckIpsResponse(typing_extensions.TypedDict, total=False):
+class ListUptimeCheckIpsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     uptimeCheckIps: _list[UptimeCheckIp]
 
 @typing.type_check_only
-class LogMatch(typing_extensions.TypedDict, total=False):
+class LogMatch(typing.TypedDict, total=False):
     filter: str
     labelExtractors: dict[str, typing.Any]
 
 @typing.type_check_only
-class LogMetadata(typing_extensions.TypedDict, total=False):
+class LogMetadata(typing.TypedDict, total=False):
     extractedLabels: dict[str, typing.Any]
 
 @typing.type_check_only
-class MeshIstio(typing_extensions.TypedDict, total=False):
+class MeshIstio(typing.TypedDict, total=False):
     meshUid: str
     serviceName: str
     serviceNamespace: str
 
 @typing.type_check_only
-class Metric(typing_extensions.TypedDict, total=False):
+class Metric(typing.TypedDict, total=False):
     labels: dict[str, typing.Any]
     type: str
 
 @typing.type_check_only
-class MetricAbsence(typing_extensions.TypedDict, total=False):
+class MetricAbsence(typing.TypedDict, total=False):
     aggregations: _list[Aggregation]
     duration: str
     filter: str
     trigger: Trigger
 
 @typing.type_check_only
-class MetricDescriptor(typing_extensions.TypedDict, total=False):
+class MetricDescriptor(typing.TypedDict, total=False):
     description: str
     displayName: str
     labels: _list[LabelDescriptor]
-    launchStage: typing_extensions.Literal[
+    launchStage: typing.Literal[
         "LAUNCH_STAGE_UNSPECIFIED",
         "UNIMPLEMENTED",
         "PRELAUNCH",
@@ -572,14 +558,14 @@ class MetricDescriptor(typing_extensions.TypedDict, total=False):
         "DEPRECATED",
     ]
     metadata: MetricDescriptorMetadata
-    metricKind: typing_extensions.Literal[
+    metricKind: typing.Literal[
         "METRIC_KIND_UNSPECIFIED", "GAUGE", "DELTA", "CUMULATIVE"
     ]
     monitoredResourceTypes: _list[str]
     name: str
     type: str
     unit: str
-    valueType: typing_extensions.Literal[
+    valueType: typing.Literal[
         "VALUE_TYPE_UNSPECIFIED",
         "BOOL",
         "INT64",
@@ -590,9 +576,9 @@ class MetricDescriptor(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class MetricDescriptorMetadata(typing_extensions.TypedDict, total=False):
+class MetricDescriptorMetadata(typing.TypedDict, total=False):
     ingestDelay: str
-    launchStage: typing_extensions.Literal[
+    launchStage: typing.Literal[
         "LAUNCH_STAGE_UNSPECIFIED",
         "UNIMPLEMENTED",
         "PRELAUNCH",
@@ -604,7 +590,7 @@ class MetricDescriptorMetadata(typing_extensions.TypedDict, total=False):
     ]
     samplePeriod: str
     timeSeriesResourceHierarchyLevel: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "TIME_SERIES_RESOURCE_HIERARCHY_LEVEL_UNSPECIFIED",
             "PROJECT",
             "ORGANIZATION",
@@ -613,14 +599,14 @@ class MetricDescriptorMetadata(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class MetricRange(typing_extensions.TypedDict, total=False):
+class MetricRange(typing.TypedDict, total=False):
     range: GoogleMonitoringV3Range
     timeSeries: str
 
 @typing.type_check_only
-class MetricThreshold(typing_extensions.TypedDict, total=False):
+class MetricThreshold(typing.TypedDict, total=False):
     aggregations: _list[Aggregation]
-    comparison: typing_extensions.Literal[
+    comparison: typing.Literal[
         "COMPARISON_UNSPECIFIED",
         "COMPARISON_GT",
         "COMPARISON_GE",
@@ -632,7 +618,7 @@ class MetricThreshold(typing_extensions.TypedDict, total=False):
     denominatorAggregations: _list[Aggregation]
     denominatorFilter: str
     duration: str
-    evaluationMissingData: typing_extensions.Literal[
+    evaluationMissingData: typing.Literal[
         "EVALUATION_MISSING_DATA_UNSPECIFIED",
         "EVALUATION_MISSING_DATA_INACTIVE",
         "EVALUATION_MISSING_DATA_ACTIVE",
@@ -644,20 +630,20 @@ class MetricThreshold(typing_extensions.TypedDict, total=False):
     trigger: Trigger
 
 @typing.type_check_only
-class Minutes(typing_extensions.TypedDict, total=False):
+class Minutes(typing.TypedDict, total=False):
     periodicity: int
 
 @typing.type_check_only
-class MonitoredResource(typing_extensions.TypedDict, total=False):
+class MonitoredResource(typing.TypedDict, total=False):
     labels: dict[str, typing.Any]
     type: str
 
 @typing.type_check_only
-class MonitoredResourceDescriptor(typing_extensions.TypedDict, total=False):
+class MonitoredResourceDescriptor(typing.TypedDict, total=False):
     description: str
     displayName: str
     labels: _list[LabelDescriptor]
-    launchStage: typing_extensions.Literal[
+    launchStage: typing.Literal[
         "LAUNCH_STAGE_UNSPECIFIED",
         "UNIMPLEMENTED",
         "PRELAUNCH",
@@ -671,14 +657,14 @@ class MonitoredResourceDescriptor(typing_extensions.TypedDict, total=False):
     type: str
 
 @typing.type_check_only
-class MonitoredResourceMetadata(typing_extensions.TypedDict, total=False):
+class MonitoredResourceMetadata(typing.TypedDict, total=False):
     systemLabels: dict[str, typing.Any]
     userLabels: dict[str, typing.Any]
 
 @typing.type_check_only
-class MonitoringQueryLanguageCondition(typing_extensions.TypedDict, total=False):
+class MonitoringQueryLanguageCondition(typing.TypedDict, total=False):
     duration: str
-    evaluationMissingData: typing_extensions.Literal[
+    evaluationMissingData: typing.Literal[
         "EVALUATION_MISSING_DATA_UNSPECIFIED",
         "EVALUATION_MISSING_DATA_INACTIVE",
         "EVALUATION_MISSING_DATA_ACTIVE",
@@ -688,12 +674,12 @@ class MonitoringQueryLanguageCondition(typing_extensions.TypedDict, total=False)
     trigger: Trigger
 
 @typing.type_check_only
-class MutationRecord(typing_extensions.TypedDict, total=False):
+class MutationRecord(typing.TypedDict, total=False):
     mutateTime: str
     mutatedBy: str
 
 @typing.type_check_only
-class NotificationChannel(typing_extensions.TypedDict, total=False):
+class NotificationChannel(typing.TypedDict, total=False):
     creationRecord: MutationRecord
     description: str
     displayName: str
@@ -703,16 +689,16 @@ class NotificationChannel(typing_extensions.TypedDict, total=False):
     name: str
     type: str
     userLabels: dict[str, typing.Any]
-    verificationStatus: typing_extensions.Literal[
+    verificationStatus: typing.Literal[
         "VERIFICATION_STATUS_UNSPECIFIED", "UNVERIFIED", "VERIFIED"
     ]
 
 @typing.type_check_only
-class NotificationChannelDescriptor(typing_extensions.TypedDict, total=False):
+class NotificationChannelDescriptor(typing.TypedDict, total=False):
     description: str
     displayName: str
     labels: _list[LabelDescriptor]
-    launchStage: typing_extensions.Literal[
+    launchStage: typing.Literal[
         "LAUNCH_STAGE_UNSPECIFIED",
         "UNIMPLEMENTED",
         "PRELAUNCH",
@@ -724,65 +710,63 @@ class NotificationChannelDescriptor(typing_extensions.TypedDict, total=False):
     ]
     name: str
     supportedTiers: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "SERVICE_TIER_UNSPECIFIED", "SERVICE_TIER_BASIC", "SERVICE_TIER_PREMIUM"
         ]
     ]
     type: str
 
 @typing.type_check_only
-class NotificationChannelStrategy(typing_extensions.TypedDict, total=False):
+class NotificationChannelStrategy(typing.TypedDict, total=False):
     notificationChannelNames: _list[str]
     renotifyInterval: str
 
 @typing.type_check_only
-class NotificationRateLimit(typing_extensions.TypedDict, total=False):
+class NotificationRateLimit(typing.TypedDict, total=False):
     period: str
 
 @typing.type_check_only
-class OperationMetadata(typing_extensions.TypedDict, total=False):
+class OperationMetadata(typing.TypedDict, total=False):
     createTime: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED", "CREATED", "RUNNING", "DONE", "CANCELLED"
     ]
     updateTime: str
 
 @typing.type_check_only
-class Option(typing_extensions.TypedDict, total=False):
+class Option(typing.TypedDict, total=False):
     name: str
     value: dict[str, typing.Any]
 
 @typing.type_check_only
-class PerformanceThreshold(typing_extensions.TypedDict, total=False):
+class PerformanceThreshold(typing.TypedDict, total=False):
     basicSliPerformance: BasicSli
     performance: RequestBasedSli
     threshold: float
 
 @typing.type_check_only
-class PingConfig(typing_extensions.TypedDict, total=False):
+class PingConfig(typing.TypedDict, total=False):
     pingsCount: int
 
 @typing.type_check_only
-class Point(typing_extensions.TypedDict, total=False):
+class Point(typing.TypedDict, total=False):
     interval: TimeInterval
     value: TypedValue
 
 @typing.type_check_only
-class PointData(typing_extensions.TypedDict, total=False):
+class PointData(typing.TypedDict, total=False):
     timeInterval: TimeInterval
     values: _list[TypedValue]
 
 @typing.type_check_only
-class PolicySnapshot(typing_extensions.TypedDict, total=False):
+class PolicySnapshot(typing.TypedDict, total=False):
     displayName: str
     name: str
-    severity: typing_extensions.Literal[
-        "SEVERITY_UNSPECIFIED", "CRITICAL", "ERROR", "WARNING"
-    ]
+    severity: typing.Literal["SEVERITY_UNSPECIFIED", "CRITICAL", "ERROR", "WARNING"]
     userLabels: dict[str, typing.Any]
 
 @typing.type_check_only
-class PrometheusQueryLanguageCondition(typing_extensions.TypedDict, total=False):
+class PrometheusQueryLanguageCondition(typing.TypedDict, total=False):
     alertRule: str
     disableMetricValidation: bool
     duration: str
@@ -792,38 +776,38 @@ class PrometheusQueryLanguageCondition(typing_extensions.TypedDict, total=False)
     ruleGroup: str
 
 @typing.type_check_only
-class QueryTimeSeriesRequest(typing_extensions.TypedDict, total=False):
+class QueryTimeSeriesRequest(typing.TypedDict, total=False):
     pageSize: int
     pageToken: str
     query: str
 
 @typing.type_check_only
-class QueryTimeSeriesResponse(typing_extensions.TypedDict, total=False):
+class QueryTimeSeriesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     partialErrors: _list[Status]
     timeSeriesData: _list[TimeSeriesData]
     timeSeriesDescriptor: TimeSeriesDescriptor
 
 @typing.type_check_only
-class Range(typing_extensions.TypedDict, total=False):
+class Range(typing.TypedDict, total=False):
     max: float
     min: float
 
 @typing.type_check_only
-class RequestBasedSli(typing_extensions.TypedDict, total=False):
+class RequestBasedSli(typing.TypedDict, total=False):
     distributionCut: DistributionCut
     goodTotalRatio: TimeSeriesRatio
 
 @typing.type_check_only
-class ResourceGroup(typing_extensions.TypedDict, total=False):
+class ResourceGroup(typing.TypedDict, total=False):
     groupId: str
-    resourceType: typing_extensions.Literal[
+    resourceType: typing.Literal[
         "RESOURCE_TYPE_UNSPECIFIED", "INSTANCE", "AWS_ELB_LOAD_BALANCER"
     ]
 
 @typing.type_check_only
-class ResponseStatusCode(typing_extensions.TypedDict, total=False):
-    statusClass: typing_extensions.Literal[
+class ResponseStatusCode(typing.TypedDict, total=False):
+    statusClass: typing.Literal[
         "STATUS_CLASS_UNSPECIFIED",
         "STATUS_CLASS_1XX",
         "STATUS_CLASS_2XX",
@@ -835,8 +819,8 @@ class ResponseStatusCode(typing_extensions.TypedDict, total=False):
     statusValue: int
 
 @typing.type_check_only
-class RowCountTest(typing_extensions.TypedDict, total=False):
-    comparison: typing_extensions.Literal[
+class RowCountTest(typing.TypedDict, total=False):
+    comparison: typing.Literal[
         "COMPARISON_UNSPECIFIED",
         "COMPARISON_GT",
         "COMPARISON_GE",
@@ -848,12 +832,10 @@ class RowCountTest(typing_extensions.TypedDict, total=False):
     threshold: str
 
 @typing.type_check_only
-class SendNotificationChannelVerificationCodeRequest(
-    typing_extensions.TypedDict, total=False
-): ...
+class SendNotificationChannelVerificationCodeRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Service(typing_extensions.TypedDict, total=False):
+class Service(typing.TypedDict, total=False):
     appEngine: AppEngine
     basicService: BasicService
     cloudEndpoints: CloudEndpoints
@@ -871,20 +853,18 @@ class Service(typing_extensions.TypedDict, total=False):
     userLabels: dict[str, typing.Any]
 
 @typing.type_check_only
-class ServiceAgentAuthentication(typing_extensions.TypedDict, total=False):
-    type: typing_extensions.Literal[
-        "SERVICE_AGENT_AUTHENTICATION_TYPE_UNSPECIFIED", "OIDC_TOKEN"
-    ]
+class ServiceAgentAuthentication(typing.TypedDict, total=False):
+    type: typing.Literal["SERVICE_AGENT_AUTHENTICATION_TYPE_UNSPECIFIED", "OIDC_TOKEN"]
 
 @typing.type_check_only
-class ServiceLevelIndicator(typing_extensions.TypedDict, total=False):
+class ServiceLevelIndicator(typing.TypedDict, total=False):
     basicSli: BasicSli
     requestBased: RequestBasedSli
     windowsBased: WindowsBasedSli
 
 @typing.type_check_only
-class ServiceLevelObjective(typing_extensions.TypedDict, total=False):
-    calendarPeriod: typing_extensions.Literal[
+class ServiceLevelObjective(typing.TypedDict, total=False):
+    calendarPeriod: typing.Literal[
         "CALENDAR_PERIOD_UNSPECIFIED",
         "DAY",
         "WEEK",
@@ -902,22 +882,22 @@ class ServiceLevelObjective(typing_extensions.TypedDict, total=False):
     userLabels: dict[str, typing.Any]
 
 @typing.type_check_only
-class Snooze(typing_extensions.TypedDict, total=False):
+class Snooze(typing.TypedDict, total=False):
     criteria: Criteria
     displayName: str
     interval: TimeInterval
     name: str
 
 @typing.type_check_only
-class SourceContext(typing_extensions.TypedDict, total=False):
+class SourceContext(typing.TypedDict, total=False):
     fileName: str
 
 @typing.type_check_only
-class SpanContext(typing_extensions.TypedDict, total=False):
+class SpanContext(typing.TypedDict, total=False):
     spanName: str
 
 @typing.type_check_only
-class SqlCondition(typing_extensions.TypedDict, total=False):
+class SqlCondition(typing.TypedDict, total=False):
     booleanTest: BooleanTest
     daily: Daily
     hourly: Hourly
@@ -926,48 +906,48 @@ class SqlCondition(typing_extensions.TypedDict, total=False):
     rowCountTest: RowCountTest
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class SyntheticMonitorTarget(typing_extensions.TypedDict, total=False):
+class SyntheticMonitorTarget(typing.TypedDict, total=False):
     cloudFunctionV2: CloudFunctionV2Target
 
 @typing.type_check_only
-class TcpCheck(typing_extensions.TypedDict, total=False):
+class TcpCheck(typing.TypedDict, total=False):
     pingConfig: PingConfig
     port: int
 
 @typing.type_check_only
-class Telemetry(typing_extensions.TypedDict, total=False):
+class Telemetry(typing.TypedDict, total=False):
     resourceName: str
 
 @typing.type_check_only
-class TimeInterval(typing_extensions.TypedDict, total=False):
+class TimeInterval(typing.TypedDict, total=False):
     endTime: str
     startTime: str
 
 @typing.type_check_only
-class TimeOfDay(typing_extensions.TypedDict, total=False):
+class TimeOfDay(typing.TypedDict, total=False):
     hours: int
     minutes: int
     nanos: int
     seconds: int
 
 @typing.type_check_only
-class TimeSeries(typing_extensions.TypedDict, total=False):
+class TimeSeries(typing.TypedDict, total=False):
     description: str
     metadata: MonitoredResourceMetadata
     metric: Metric
-    metricKind: typing_extensions.Literal[
+    metricKind: typing.Literal[
         "METRIC_KIND_UNSPECIFIED", "GAUGE", "DELTA", "CUMULATIVE"
     ]
     points: _list[Point]
     resource: MonitoredResource
     unit: str
-    valueType: typing_extensions.Literal[
+    valueType: typing.Literal[
         "VALUE_TYPE_UNSPECIFIED",
         "BOOL",
         "INT64",
@@ -978,40 +958,38 @@ class TimeSeries(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class TimeSeriesData(typing_extensions.TypedDict, total=False):
+class TimeSeriesData(typing.TypedDict, total=False):
     labelValues: _list[LabelValue]
     pointData: _list[PointData]
 
 @typing.type_check_only
-class TimeSeriesDescriptor(typing_extensions.TypedDict, total=False):
+class TimeSeriesDescriptor(typing.TypedDict, total=False):
     labelDescriptors: _list[LabelDescriptor]
     pointDescriptors: _list[ValueDescriptor]
 
 @typing.type_check_only
-class TimeSeriesRatio(typing_extensions.TypedDict, total=False):
+class TimeSeriesRatio(typing.TypedDict, total=False):
     badServiceFilter: str
     goodServiceFilter: str
     totalServiceFilter: str
 
 @typing.type_check_only
-class Trigger(typing_extensions.TypedDict, total=False):
+class Trigger(typing.TypedDict, total=False):
     count: int
     percent: float
 
 @typing.type_check_only
-class Type(typing_extensions.TypedDict, total=False):
+class Type(typing.TypedDict, total=False):
     edition: str
     fields: _list[Field]
     name: str
     oneofs: _list[str]
     options: _list[Option]
     sourceContext: SourceContext
-    syntax: typing_extensions.Literal[
-        "SYNTAX_PROTO2", "SYNTAX_PROTO3", "SYNTAX_EDITIONS"
-    ]
+    syntax: typing.Literal["SYNTAX_PROTO2", "SYNTAX_PROTO3", "SYNTAX_EDITIONS"]
 
 @typing.type_check_only
-class TypedValue(typing_extensions.TypedDict, total=False):
+class TypedValue(typing.TypedDict, total=False):
     boolValue: bool
     distributionValue: Distribution
     doubleValue: float
@@ -1019,8 +997,8 @@ class TypedValue(typing_extensions.TypedDict, total=False):
     stringValue: str
 
 @typing.type_check_only
-class UptimeCheckConfig(typing_extensions.TypedDict, total=False):
-    checkerType: typing_extensions.Literal[
+class UptimeCheckConfig(typing.TypedDict, total=False):
+    checkerType: typing.Literal[
         "CHECKER_TYPE_UNSPECIFIED", "STATIC_IP_CHECKERS", "VPC_CHECKERS"
     ]
     contentMatchers: _list[ContentMatcher]
@@ -1035,7 +1013,7 @@ class UptimeCheckConfig(typing_extensions.TypedDict, total=False):
     period: str
     resourceGroup: ResourceGroup
     selectedRegions: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "REGION_UNSPECIFIED",
             "USA",
             "EUROPE",
@@ -1052,10 +1030,10 @@ class UptimeCheckConfig(typing_extensions.TypedDict, total=False):
     userLabels: dict[str, typing.Any]
 
 @typing.type_check_only
-class UptimeCheckIp(typing_extensions.TypedDict, total=False):
+class UptimeCheckIp(typing.TypedDict, total=False):
     ipAddress: str
     location: str
-    region: typing_extensions.Literal[
+    region: typing.Literal[
         "REGION_UNSPECIFIED",
         "USA",
         "EUROPE",
@@ -1067,13 +1045,13 @@ class UptimeCheckIp(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class ValueDescriptor(typing_extensions.TypedDict, total=False):
+class ValueDescriptor(typing.TypedDict, total=False):
     key: str
-    metricKind: typing_extensions.Literal[
+    metricKind: typing.Literal[
         "METRIC_KIND_UNSPECIFIED", "GAUGE", "DELTA", "CUMULATIVE"
     ]
     unit: str
-    valueType: typing_extensions.Literal[
+    valueType: typing.Literal[
         "VALUE_TYPE_UNSPECIFIED",
         "BOOL",
         "INT64",
@@ -1084,11 +1062,11 @@ class ValueDescriptor(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class VerifyNotificationChannelRequest(typing_extensions.TypedDict, total=False):
+class VerifyNotificationChannelRequest(typing.TypedDict, total=False):
     code: str
 
 @typing.type_check_only
-class WindowsBasedSli(typing_extensions.TypedDict, total=False):
+class WindowsBasedSli(typing.TypedDict, total=False):
     goodBadMetricFilter: str
     goodTotalRatioThreshold: PerformanceThreshold
     metricMeanInRange: MetricRange

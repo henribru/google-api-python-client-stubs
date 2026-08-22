@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -196,6 +195,25 @@ class AgentRegistryResource(googleapiclient.discovery.Resource):
                 ) -> ListOperationsResponseHttpRequest | None: ...
 
             @typing.type_check_only
+            class PublishersResource(googleapiclient.discovery.Resource):
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> PublisherHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> ListPublishersResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListPublishersResponseHttpRequest,
+                    previous_response: ListPublishersResponse,
+                ) -> ListPublishersResponseHttpRequest | None: ...
+
+            @typing.type_check_only
             class ServicesResource(googleapiclient.discovery.Resource):
                 def create(
                     self,
@@ -240,6 +258,111 @@ class AgentRegistryResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
 
+            @typing.type_check_only
+            class SkillsResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class RevisionsResource(googleapiclient.discovery.Resource):
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: SkillRevision,
+                        requestId: str | None = ...,
+                        skillRevisionId: str | None = ...,
+                        **kwargs: typing.Any,
+                    ) -> OperationHttpRequest: ...
+                    def delete(
+                        self,
+                        *,
+                        name: str,
+                        requestId: str | None = ...,
+                        **kwargs: typing.Any,
+                    ) -> OperationHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> SkillRevisionHttpRequest: ...
+                    def get_media(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> BytesHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
+                        **kwargs: typing.Any,
+                    ) -> ListSkillRevisionsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListSkillRevisionsResponseHttpRequest,
+                        previous_response: ListSkillRevisionsResponse,
+                    ) -> ListSkillRevisionsResponseHttpRequest | None: ...
+
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: Skill,
+                    requestId: str | None = ...,
+                    skillId: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self,
+                    *,
+                    name: str,
+                    force: bool | None = ...,
+                    requestId: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> SkillHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str | None = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> ListSkillsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListSkillsResponseHttpRequest,
+                    previous_response: ListSkillsResponse,
+                ) -> ListSkillsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: Skill,
+                    requestId: str | None = ...,
+                    updateMask: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def search(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    searchString: str | None = ...,
+                    searchType: typing.Literal[
+                        "SEARCH_TYPE_UNSPECIFIED", "KEYWORD", "SEMANTIC"
+                    ]
+                    | None = ...,
+                    **kwargs: typing.Any,
+                ) -> SearchSkillsResponseHttpRequest: ...
+                def search_next(
+                    self,
+                    previous_request: SearchSkillsResponseHttpRequest,
+                    previous_response: SearchSkillsResponse,
+                ) -> SearchSkillsResponseHttpRequest | None: ...
+                def revisions(self) -> RevisionsResource: ...
+
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
@@ -263,7 +386,9 @@ class AgentRegistryResource(googleapiclient.discovery.Resource):
             def endpoints(self) -> EndpointsResource: ...
             def mcpServers(self) -> McpServersResource: ...
             def operations(self) -> OperationsResource: ...
+            def publishers(self) -> PublishersResource: ...
             def services(self) -> ServicesResource: ...
+            def skills(self) -> SkillsResource: ...
 
         def locations(self) -> LocationsResource: ...
 
@@ -370,12 +495,36 @@ class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListOperationsResponse: ...
 
 @typing.type_check_only
+class ListPublishersResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListPublishersResponse: ...
+
+@typing.type_check_only
 class ListServicesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListServicesResponse: ...
+
+@typing.type_check_only
+class ListSkillRevisionsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListSkillRevisionsResponse: ...
+
+@typing.type_check_only
+class ListSkillsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListSkillsResponse: ...
 
 @typing.type_check_only
 class LocationHttpRequest(googleapiclient.http.HttpRequest):
@@ -402,6 +551,14 @@ class OperationHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Operation: ...
 
 @typing.type_check_only
+class PublisherHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> Publisher: ...
+
+@typing.type_check_only
 class SearchAgentsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -418,9 +575,41 @@ class SearchMcpServersResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> SearchMcpServersResponse: ...
 
 @typing.type_check_only
+class SearchSkillsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> SearchSkillsResponse: ...
+
+@typing.type_check_only
 class ServiceHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Service: ...
+
+@typing.type_check_only
+class SkillHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> Skill: ...
+
+@typing.type_check_only
+class SkillRevisionHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> SkillRevision: ...
+
+@typing.type_check_only
+class BytesHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> bytes: ...

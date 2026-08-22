@@ -1,11 +1,9 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class Answer(typing_extensions.TypedDict, total=False):
+class Answer(typing.TypedDict, total=False):
     author: Author
     createTime: str
     name: str
@@ -14,30 +12,30 @@ class Answer(typing_extensions.TypedDict, total=False):
     upvoteCount: int
 
 @typing.type_check_only
-class Author(typing_extensions.TypedDict, total=False):
+class Author(typing.TypedDict, total=False):
     displayName: str
     profilePhotoUri: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "AUTHOR_TYPE_UNSPECIFIED", "REGULAR_USER", "LOCAL_GUIDE", "MERCHANT"
     ]
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ListAnswersResponse(typing_extensions.TypedDict, total=False):
+class ListAnswersResponse(typing.TypedDict, total=False):
     answers: _list[Answer]
     nextPageToken: str
     totalSize: int
 
 @typing.type_check_only
-class ListQuestionsResponse(typing_extensions.TypedDict, total=False):
+class ListQuestionsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     questions: _list[Question]
     totalSize: int
 
 @typing.type_check_only
-class Question(typing_extensions.TypedDict, total=False):
+class Question(typing.TypedDict, total=False):
     author: Author
     createTime: str
     name: str
@@ -48,5 +46,5 @@ class Question(typing_extensions.TypedDict, total=False):
     upvoteCount: int
 
 @typing.type_check_only
-class UpsertAnswerRequest(typing_extensions.TypedDict, total=False):
+class UpsertAnswerRequest(typing.TypedDict, total=False):
     answer: Answer

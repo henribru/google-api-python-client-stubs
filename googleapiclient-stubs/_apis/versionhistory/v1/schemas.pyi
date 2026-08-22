@@ -1,12 +1,10 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class Channel(typing_extensions.TypedDict, total=False):
-    channelType: typing_extensions.Literal[
+class Channel(typing.TypedDict, total=False):
+    channelType: typing.Literal[
         "CHANNEL_TYPE_UNSPECIFIED",
         "STABLE",
         "BETA",
@@ -21,34 +19,34 @@ class Channel(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class Interval(typing_extensions.TypedDict, total=False):
+class Interval(typing.TypedDict, total=False):
     endTime: str
     startTime: str
 
 @typing.type_check_only
-class ListChannelsResponse(typing_extensions.TypedDict, total=False):
+class ListChannelsResponse(typing.TypedDict, total=False):
     channels: _list[Channel]
     nextPageToken: str
 
 @typing.type_check_only
-class ListPlatformsResponse(typing_extensions.TypedDict, total=False):
+class ListPlatformsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     platforms: _list[Platform]
 
 @typing.type_check_only
-class ListReleasesResponse(typing_extensions.TypedDict, total=False):
+class ListReleasesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     releases: _list[Release]
 
 @typing.type_check_only
-class ListVersionsResponse(typing_extensions.TypedDict, total=False):
+class ListVersionsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     versions: _list[Version]
 
 @typing.type_check_only
-class Platform(typing_extensions.TypedDict, total=False):
+class Platform(typing.TypedDict, total=False):
     name: str
-    platformType: typing_extensions.Literal[
+    platformType: typing.Literal[
         "PLATFORM_TYPE_UNSPECIFIED",
         "WIN",
         "WIN64",
@@ -68,7 +66,7 @@ class Platform(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class Release(typing_extensions.TypedDict, total=False):
+class Release(typing.TypedDict, total=False):
     fraction: float
     fractionGroup: str
     name: str
@@ -78,11 +76,11 @@ class Release(typing_extensions.TypedDict, total=False):
     version: str
 
 @typing.type_check_only
-class RolloutData(typing_extensions.TypedDict, total=False):
+class RolloutData(typing.TypedDict, total=False):
     rolloutName: str
     tag: _list[str]
 
 @typing.type_check_only
-class Version(typing_extensions.TypedDict, total=False):
+class Version(typing.TypedDict, total=False):
     name: str
     version: str

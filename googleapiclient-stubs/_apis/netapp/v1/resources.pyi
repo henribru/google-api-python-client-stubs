@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -588,6 +587,9 @@ class NetAppFilesResource(googleapiclient.discovery.Resource):
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> VolumeHttpRequest: ...
+                def getSplitStatus(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> SplitStatusHttpRequest: ...
                 def list(
                     self,
                     *,
@@ -620,6 +622,9 @@ class NetAppFilesResource(googleapiclient.discovery.Resource):
                 ) -> OperationHttpRequest: ...
                 def revert(
                     self, *, name: str, body: RevertVolumeRequest, **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def startSplit(
+                    self, *, name: str, body: StartSplitRequest, **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def quotaRules(self) -> QuotaRulesResource: ...
                 def replications(self) -> ReplicationsResource: ...
@@ -907,6 +912,14 @@ class SnapshotHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Snapshot: ...
+
+@typing.type_check_only
+class SplitStatusHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> SplitStatus: ...
 
 @typing.type_check_only
 class StoragePoolHttpRequest(googleapiclient.http.HttpRequest):

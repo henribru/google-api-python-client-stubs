@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -34,11 +33,11 @@ class CustomSearchAPIResource(googleapiclient.discovery.Resource):
                 highRange: str | None = ...,
                 hl: str | None = ...,
                 hq: str | None = ...,
-                imgColorType: typing_extensions.Literal[
+                imgColorType: typing.Literal[
                     "imgColorTypeUndefined", "mono", "gray", "color", "trans"
                 ]
                 | None = ...,
-                imgDominantColor: typing_extensions.Literal[
+                imgDominantColor: typing.Literal[
                     "imgDominantColorUndefined",
                     "black",
                     "blue",
@@ -54,7 +53,7 @@ class CustomSearchAPIResource(googleapiclient.discovery.Resource):
                     "yellow",
                 ]
                 | None = ...,
-                imgSize: typing_extensions.Literal[
+                imgSize: typing.Literal[
                     "imgSizeUndefined",
                     "HUGE",
                     "ICON",
@@ -65,7 +64,7 @@ class CustomSearchAPIResource(googleapiclient.discovery.Resource):
                     "XXLARGE",
                 ]
                 | None = ...,
-                imgType: typing_extensions.Literal[
+                imgType: typing.Literal[
                     "imgTypeUndefined",
                     "clipart",
                     "face",
@@ -83,16 +82,11 @@ class CustomSearchAPIResource(googleapiclient.discovery.Resource):
                 q: str | None = ...,
                 relatedSite: str | None = ...,
                 rights: str | None = ...,
-                safe: typing_extensions.Literal[
-                    "safeUndefined", "active", "high", "medium", "off"
-                ]
+                safe: typing.Literal["safeUndefined", "active", "high", "medium", "off"]
                 | None = ...,
-                searchType: typing_extensions.Literal["searchTypeUndefined", "image"]
-                | None = ...,
+                searchType: typing.Literal["searchTypeUndefined", "image"] | None = ...,
                 siteSearch: str | None = ...,
-                siteSearchFilter: typing_extensions.Literal[
-                    "siteSearchFilterUndefined", "e", "i"
-                ]
+                siteSearchFilter: typing.Literal["siteSearchFilterUndefined", "e", "i"]
                 | None = ...,
                 snippetLength: int | None = ...,
                 sort: str | None = ...,
@@ -117,11 +111,11 @@ class CustomSearchAPIResource(googleapiclient.discovery.Resource):
             highRange: str | None = ...,
             hl: str | None = ...,
             hq: str | None = ...,
-            imgColorType: typing_extensions.Literal[
+            imgColorType: typing.Literal[
                 "imgColorTypeUndefined", "mono", "gray", "color", "trans"
             ]
             | None = ...,
-            imgDominantColor: typing_extensions.Literal[
+            imgDominantColor: typing.Literal[
                 "imgDominantColorUndefined",
                 "black",
                 "blue",
@@ -137,7 +131,7 @@ class CustomSearchAPIResource(googleapiclient.discovery.Resource):
                 "yellow",
             ]
             | None = ...,
-            imgSize: typing_extensions.Literal[
+            imgSize: typing.Literal[
                 "imgSizeUndefined",
                 "HUGE",
                 "ICON",
@@ -148,7 +142,7 @@ class CustomSearchAPIResource(googleapiclient.discovery.Resource):
                 "XXLARGE",
             ]
             | None = ...,
-            imgType: typing_extensions.Literal[
+            imgType: typing.Literal[
                 "imgTypeUndefined",
                 "clipart",
                 "face",
@@ -166,16 +160,11 @@ class CustomSearchAPIResource(googleapiclient.discovery.Resource):
             q: str | None = ...,
             relatedSite: str | None = ...,
             rights: str | None = ...,
-            safe: typing_extensions.Literal[
-                "safeUndefined", "active", "high", "medium", "off"
-            ]
+            safe: typing.Literal["safeUndefined", "active", "high", "medium", "off"]
             | None = ...,
-            searchType: typing_extensions.Literal["searchTypeUndefined", "image"]
-            | None = ...,
+            searchType: typing.Literal["searchTypeUndefined", "image"] | None = ...,
             siteSearch: str | None = ...,
-            siteSearchFilter: typing_extensions.Literal[
-                "siteSearchFilterUndefined", "e", "i"
-            ]
+            siteSearchFilter: typing.Literal["siteSearchFilterUndefined", "e", "i"]
             | None = ...,
             snippetLength: int | None = ...,
             sort: str | None = ...,

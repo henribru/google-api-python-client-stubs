@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -64,8 +63,7 @@ class GamesResource(googleapiclient.discovery.Resource):
             language: str | None = ...,
             maxResults: int | None = ...,
             pageToken: str | None = ...,
-            state: typing_extensions.Literal["ALL", "HIDDEN", "REVEALED", "UNLOCKED"]
-            | None = ...,
+            state: typing.Literal["ALL", "HIDDEN", "REVEALED", "UNLOCKED"] | None = ...,
             **kwargs: typing.Any,
         ) -> PlayerAchievementListResponseHttpRequest: ...
         def list_next(
@@ -93,17 +91,14 @@ class GamesResource(googleapiclient.discovery.Resource):
             *,
             applicationId: str,
             language: str | None = ...,
-            platformType: typing_extensions.Literal["ANDROID", "IOS", "WEB_APP"]
-            | None = ...,
+            platformType: typing.Literal["ANDROID", "IOS", "WEB_APP"] | None = ...,
             **kwargs: typing.Any,
         ) -> ApplicationHttpRequest: ...
         def getEndPoint(
             self,
             *,
             applicationId: str | None = ...,
-            endPointType: typing_extensions.Literal[
-                "PROFILE_CREATION", "PROFILE_SETTINGS"
-            ]
+            endPointType: typing.Literal["PROFILE_CREATION", "PROFILE_SETTINGS"]
             | None = ...,
             **kwargs: typing.Any,
         ) -> EndPointHttpRequest: ...
@@ -180,7 +175,7 @@ class GamesResource(googleapiclient.discovery.Resource):
             self,
             *,
             playerId: str,
-            collection: typing_extensions.Literal["ALL"],
+            collection: typing.Literal["ALL"],
             language: str | None = ...,
             maxResults: int | None = ...,
             pageToken: str | None = ...,
@@ -191,6 +186,12 @@ class GamesResource(googleapiclient.discovery.Resource):
             previous_request: CategoryListResponseHttpRequest,
             previous_response: CategoryListResponse,
         ) -> CategoryListResponseHttpRequest | None: ...
+
+    @typing.type_check_only
+    class PlayerGameEventsResource(googleapiclient.discovery.Resource):
+        def batchRecordEvents(
+            self, *, playerId: str, body: BatchRecordEventsRequest, **kwargs: typing.Any
+        ) -> BatchRecordEventsResponseHttpRequest: ...
 
     @typing.type_check_only
     class PlayersResource(googleapiclient.discovery.Resource):
@@ -211,9 +212,7 @@ class GamesResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            collection: typing_extensions.Literal[
-                "CONNECTED", "VISIBLE", "FRIENDS_ALL"
-            ],
+            collection: typing.Literal["CONNECTED", "VISIBLE", "FRIENDS_ALL"],
             language: str | None = ...,
             maxResults: int | None = ...,
             pageToken: str | None = ...,
@@ -263,10 +262,8 @@ class GamesResource(googleapiclient.discovery.Resource):
             *,
             playerId: str,
             leaderboardId: str,
-            timeSpan: typing_extensions.Literal["ALL", "ALL_TIME", "WEEKLY", "DAILY"],
-            includeRankType: typing_extensions.Literal[
-                "ALL", "PUBLIC", "SOCIAL", "FRIENDS"
-            ]
+            timeSpan: typing.Literal["ALL", "ALL_TIME", "WEEKLY", "DAILY"],
+            includeRankType: typing.Literal["ALL", "PUBLIC", "SOCIAL", "FRIENDS"]
             | None = ...,
             language: str | None = ...,
             maxResults: int | None = ...,
@@ -282,8 +279,8 @@ class GamesResource(googleapiclient.discovery.Resource):
             self,
             *,
             leaderboardId: str,
-            collection: typing_extensions.Literal["PUBLIC", "SOCIAL", "FRIENDS"],
-            timeSpan: typing_extensions.Literal["ALL_TIME", "WEEKLY", "DAILY"],
+            collection: typing.Literal["PUBLIC", "SOCIAL", "FRIENDS"],
+            timeSpan: typing.Literal["ALL_TIME", "WEEKLY", "DAILY"],
             language: str | None = ...,
             maxResults: int | None = ...,
             pageToken: str | None = ...,
@@ -298,8 +295,8 @@ class GamesResource(googleapiclient.discovery.Resource):
             self,
             *,
             leaderboardId: str,
-            collection: typing_extensions.Literal["PUBLIC", "SOCIAL", "FRIENDS"],
-            timeSpan: typing_extensions.Literal["ALL_TIME", "WEEKLY", "DAILY"],
+            collection: typing.Literal["PUBLIC", "SOCIAL", "FRIENDS"],
+            timeSpan: typing.Literal["ALL_TIME", "WEEKLY", "DAILY"],
             language: str | None = ...,
             maxResults: int | None = ...,
             pageToken: str | None = ...,
@@ -372,6 +369,7 @@ class GamesResource(googleapiclient.discovery.Resource):
     def events(self) -> EventsResource: ...
     def leaderboards(self) -> LeaderboardsResource: ...
     def metagame(self) -> MetagameResource: ...
+    def playerGameEvents(self) -> PlayerGameEventsResource: ...
     def players(self) -> PlayersResource: ...
     def recall(self) -> RecallResource: ...
     def revisions(self) -> RevisionsResource: ...
@@ -442,6 +440,14 @@ class ApplicationVerifyResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ApplicationVerifyResponse: ...
+
+@typing.type_check_only
+class BatchRecordEventsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> BatchRecordEventsResponse: ...
 
 @typing.type_check_only
 class CategoryListResponseHttpRequest(googleapiclient.http.HttpRequest):

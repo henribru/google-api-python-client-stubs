@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -553,9 +552,7 @@ class MerchantResource(googleapiclient.discovery.Resource):
         def retrieveLatest(
             self,
             *,
-            kind: typing_extensions.Literal[
-                "TERMS_OF_SERVICE_KIND_UNSPECIFIED", "MERCHANT_CENTER"
-            ]
+            kind: typing.Literal["TERMS_OF_SERVICE_KIND_UNSPECIFIED", "MERCHANT_CENTER"]
             | None = ...,
             regionCode: str | None = ...,
             **kwargs: typing.Any,

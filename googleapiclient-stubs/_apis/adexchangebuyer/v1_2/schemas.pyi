@@ -1,11 +1,9 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class Account(typing_extensions.TypedDict, total=False):
+class Account(typing.TypedDict, total=False):
     bidderLocation: _list[dict[str, typing.Any]]
     cookieMatchingNid: str
     cookieMatchingUrl: str
@@ -16,12 +14,12 @@ class Account(typing_extensions.TypedDict, total=False):
     numberActiveCreatives: int
 
 @typing.type_check_only
-class AccountsList(typing_extensions.TypedDict, total=False):
+class AccountsList(typing.TypedDict, total=False):
     items: _list[Account]
     kind: str
 
 @typing.type_check_only
-class Creative(typing_extensions.TypedDict, total=False):
+class Creative(typing.TypedDict, total=False):
     HTMLSnippet: str
     accountId: int
     advertiserId: _list[str]
@@ -47,7 +45,7 @@ class Creative(typing_extensions.TypedDict, total=False):
     width: int
 
 @typing.type_check_only
-class CreativesList(typing_extensions.TypedDict, total=False):
+class CreativesList(typing.TypedDict, total=False):
     items: _list[Creative]
     kind: str
     nextPageToken: str

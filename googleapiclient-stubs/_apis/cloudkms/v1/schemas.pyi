@@ -1,35 +1,29 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class AddQuorumMember(typing_extensions.TypedDict, total=False):
+class AddQuorumMember(typing.TypedDict, total=False):
     twoFactorPublicKeyPem: str
 
 @typing.type_check_only
-class ApproveSingleTenantHsmInstanceProposalRequest(
-    typing_extensions.TypedDict, total=False
-):
+class ApproveSingleTenantHsmInstanceProposalRequest(typing.TypedDict, total=False):
     quorumReply: QuorumReply
     requiredActionQuorumReply: RequiredActionQuorumReply
 
 @typing.type_check_only
-class ApproveSingleTenantHsmInstanceProposalResponse(
-    typing_extensions.TypedDict, total=False
-): ...
+class ApproveSingleTenantHsmInstanceProposalResponse(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class AsymmetricDecryptRequest(typing_extensions.TypedDict, total=False):
+class AsymmetricDecryptRequest(typing.TypedDict, total=False):
     ciphertext: str
     ciphertextCrc32c: str
 
 @typing.type_check_only
-class AsymmetricDecryptResponse(typing_extensions.TypedDict, total=False):
+class AsymmetricDecryptResponse(typing.TypedDict, total=False):
     plaintext: str
     plaintextCrc32c: str
-    protectionLevel: typing_extensions.Literal[
+    protectionLevel: typing.Literal[
         "PROTECTION_LEVEL_UNSPECIFIED",
         "SOFTWARE",
         "HSM",
@@ -40,16 +34,16 @@ class AsymmetricDecryptResponse(typing_extensions.TypedDict, total=False):
     verifiedCiphertextCrc32c: bool
 
 @typing.type_check_only
-class AsymmetricSignRequest(typing_extensions.TypedDict, total=False):
+class AsymmetricSignRequest(typing.TypedDict, total=False):
     data: str
     dataCrc32c: str
     digest: Digest
     digestCrc32c: str
 
 @typing.type_check_only
-class AsymmetricSignResponse(typing_extensions.TypedDict, total=False):
+class AsymmetricSignResponse(typing.TypedDict, total=False):
     name: str
-    protectionLevel: typing_extensions.Literal[
+    protectionLevel: typing.Literal[
         "PROTECTION_LEVEL_UNSPECIFIED",
         "SOFTWARE",
         "HSM",
@@ -63,29 +57,29 @@ class AsymmetricSignResponse(typing_extensions.TypedDict, total=False):
     verifiedDigestCrc32c: bool
 
 @typing.type_check_only
-class AuditConfig(typing_extensions.TypedDict, total=False):
+class AuditConfig(typing.TypedDict, total=False):
     auditLogConfigs: _list[AuditLogConfig]
     service: str
 
 @typing.type_check_only
-class AuditLogConfig(typing_extensions.TypedDict, total=False):
+class AuditLogConfig(typing.TypedDict, total=False):
     exemptedMembers: _list[str]
-    logType: typing_extensions.Literal[
+    logType: typing.Literal[
         "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
     ]
 
 @typing.type_check_only
-class AutokeyConfig(typing_extensions.TypedDict, total=False):
+class AutokeyConfig(typing.TypedDict, total=False):
     etag: str
     keyProject: str
-    keyProjectResolutionMode: typing_extensions.Literal[
+    keyProjectResolutionMode: typing.Literal[
         "KEY_PROJECT_RESOLUTION_MODE_UNSPECIFIED",
         "DEDICATED_KEY_PROJECT",
         "RESOURCE_PROJECT",
         "DISABLED",
     ]
     name: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "ACTIVE",
         "KEY_PROJECT_DELETED",
@@ -94,13 +88,13 @@ class AutokeyConfig(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class Binding(typing_extensions.TypedDict, total=False):
+class Binding(typing.TypedDict, total=False):
     condition: Expr
     members: _list[str]
     role: str
 
 @typing.type_check_only
-class Certificate(typing_extensions.TypedDict, total=False):
+class Certificate(typing.TypedDict, total=False):
     issuer: str
     notAfterTime: str
     notBeforeTime: str
@@ -112,28 +106,28 @@ class Certificate(typing_extensions.TypedDict, total=False):
     subjectAlternativeDnsNames: _list[str]
 
 @typing.type_check_only
-class CertificateChains(typing_extensions.TypedDict, total=False):
+class CertificateChains(typing.TypedDict, total=False):
     caviumCerts: _list[str]
     googleCardCerts: _list[str]
     googlePartitionCerts: _list[str]
 
 @typing.type_check_only
-class Challenge(typing_extensions.TypedDict, total=False):
+class Challenge(typing.TypedDict, total=False):
     challenge: str
     publicKeyPem: str
 
 @typing.type_check_only
-class ChallengeReply(typing_extensions.TypedDict, total=False):
+class ChallengeReply(typing.TypedDict, total=False):
     publicKeyPem: str
     signedChallenge: str
 
 @typing.type_check_only
-class ChecksummedData(typing_extensions.TypedDict, total=False):
+class ChecksummedData(typing.TypedDict, total=False):
     crc32cChecksum: str
     data: str
 
 @typing.type_check_only
-class CryptoKey(typing_extensions.TypedDict, total=False):
+class CryptoKey(typing.TypedDict, total=False):
     createTime: str
     cryptoKeyBackend: str
     destroyScheduledDuration: str
@@ -143,7 +137,7 @@ class CryptoKey(typing_extensions.TypedDict, total=False):
     name: str
     nextRotationTime: str
     primary: CryptoKeyVersion
-    purpose: typing_extensions.Literal[
+    purpose: typing.Literal[
         "CRYPTO_KEY_PURPOSE_UNSPECIFIED",
         "ENCRYPT_DECRYPT",
         "ASYMMETRIC_SIGN",
@@ -151,13 +145,14 @@ class CryptoKey(typing_extensions.TypedDict, total=False):
         "RAW_ENCRYPT_DECRYPT",
         "MAC",
         "KEY_ENCAPSULATION",
+        "AES_WRAPPING",
     ]
     rotationPeriod: str
     versionTemplate: CryptoKeyVersionTemplate
 
 @typing.type_check_only
-class CryptoKeyVersion(typing_extensions.TypedDict, total=False):
-    algorithm: typing_extensions.Literal[
+class CryptoKeyVersion(typing.TypedDict, total=False):
+    algorithm: typing.Literal[
         "CRYPTO_KEY_VERSION_ALGORITHM_UNSPECIFIED",
         "GOOGLE_SYMMETRIC_ENCRYPTION",
         "AES_128_GCM",
@@ -205,6 +200,9 @@ class CryptoKeyVersion(typing_extensions.TypedDict, total=False):
         "PQ_SIGN_ML_DSA_44_EXTERNAL_MU",
         "PQ_SIGN_ML_DSA_65_EXTERNAL_MU",
         "PQ_SIGN_ML_DSA_87_EXTERNAL_MU",
+        "KEM_ECDH_P256",
+        "KEM_ECDH_P384",
+        "AES_256_KWP",
     ]
     attestation: KeyOperationAttestation
     createTime: str
@@ -214,11 +212,12 @@ class CryptoKeyVersion(typing_extensions.TypedDict, total=False):
     externalProtectionLevelOptions: ExternalProtectionLevelOptions
     generateTime: str
     generationFailureReason: str
+    hsmTrusted: bool
     importFailureReason: str
     importJob: str
     importTime: str
     name: str
-    protectionLevel: typing_extensions.Literal[
+    protectionLevel: typing.Literal[
         "PROTECTION_LEVEL_UNSPECIFIED",
         "SOFTWARE",
         "HSM",
@@ -227,7 +226,7 @@ class CryptoKeyVersion(typing_extensions.TypedDict, total=False):
         "HSM_SINGLE_TENANT",
     ]
     reimportEligible: bool
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "CRYPTO_KEY_VERSION_STATE_UNSPECIFIED",
         "PENDING_GENERATION",
         "ENABLED",
@@ -240,10 +239,11 @@ class CryptoKeyVersion(typing_extensions.TypedDict, total=False):
         "PENDING_EXTERNAL_DESTRUCTION",
         "EXTERNAL_DESTRUCTION_FAILED",
     ]
+    trustedWrappingEnabled: bool
 
 @typing.type_check_only
-class CryptoKeyVersionTemplate(typing_extensions.TypedDict, total=False):
-    algorithm: typing_extensions.Literal[
+class CryptoKeyVersionTemplate(typing.TypedDict, total=False):
+    algorithm: typing.Literal[
         "CRYPTO_KEY_VERSION_ALGORITHM_UNSPECIFIED",
         "GOOGLE_SYMMETRIC_ENCRYPTION",
         "AES_128_GCM",
@@ -291,8 +291,11 @@ class CryptoKeyVersionTemplate(typing_extensions.TypedDict, total=False):
         "PQ_SIGN_ML_DSA_44_EXTERNAL_MU",
         "PQ_SIGN_ML_DSA_65_EXTERNAL_MU",
         "PQ_SIGN_ML_DSA_87_EXTERNAL_MU",
+        "KEM_ECDH_P256",
+        "KEM_ECDH_P384",
+        "AES_256_KWP",
     ]
-    protectionLevel: typing_extensions.Literal[
+    protectionLevel: typing.Literal[
         "PROTECTION_LEVEL_UNSPECIFIED",
         "SOFTWARE",
         "HSM",
@@ -302,14 +305,14 @@ class CryptoKeyVersionTemplate(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class DecapsulateRequest(typing_extensions.TypedDict, total=False):
+class DecapsulateRequest(typing.TypedDict, total=False):
     ciphertext: str
     ciphertextCrc32c: str
 
 @typing.type_check_only
-class DecapsulateResponse(typing_extensions.TypedDict, total=False):
+class DecapsulateResponse(typing.TypedDict, total=False):
     name: str
-    protectionLevel: typing_extensions.Literal[
+    protectionLevel: typing.Literal[
         "PROTECTION_LEVEL_UNSPECIFIED",
         "SOFTWARE",
         "HSM",
@@ -322,17 +325,17 @@ class DecapsulateResponse(typing_extensions.TypedDict, total=False):
     verifiedCiphertextCrc32c: bool
 
 @typing.type_check_only
-class DecryptRequest(typing_extensions.TypedDict, total=False):
+class DecryptRequest(typing.TypedDict, total=False):
     additionalAuthenticatedData: str
     additionalAuthenticatedDataCrc32c: str
     ciphertext: str
     ciphertextCrc32c: str
 
 @typing.type_check_only
-class DecryptResponse(typing_extensions.TypedDict, total=False):
+class DecryptResponse(typing.TypedDict, total=False):
     plaintext: str
     plaintextCrc32c: str
-    protectionLevel: typing_extensions.Literal[
+    protectionLevel: typing.Literal[
         "PROTECTION_LEVEL_UNSPECIFIED",
         "SOFTWARE",
         "HSM",
@@ -343,56 +346,56 @@ class DecryptResponse(typing_extensions.TypedDict, total=False):
     usedPrimary: bool
 
 @typing.type_check_only
-class DeleteSingleTenantHsmInstance(typing_extensions.TypedDict, total=False): ...
+class DeleteSingleTenantHsmInstance(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class DestroyCryptoKeyVersionRequest(typing_extensions.TypedDict, total=False): ...
+class DestroyCryptoKeyVersionRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Digest(typing_extensions.TypedDict, total=False):
+class Digest(typing.TypedDict, total=False):
     externalMu: str
     sha256: str
     sha384: str
     sha512: str
 
 @typing.type_check_only
-class DisableSingleTenantHsmInstance(typing_extensions.TypedDict, total=False): ...
+class DisableSingleTenantHsmInstance(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class EkmConfig(typing_extensions.TypedDict, total=False):
+class EkmConfig(typing.TypedDict, total=False):
     defaultEkmConnection: str
     name: str
 
 @typing.type_check_only
-class EkmConnection(typing_extensions.TypedDict, total=False):
+class EkmConnection(typing.TypedDict, total=False):
     createTime: str
     cryptoSpacePath: str
     etag: str
-    keyManagementMode: typing_extensions.Literal[
+    keyManagementMode: typing.Literal[
         "KEY_MANAGEMENT_MODE_UNSPECIFIED", "MANUAL", "CLOUD_KMS"
     ]
     name: str
     serviceResolvers: _list[ServiceResolver]
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class EnableSingleTenantHsmInstance(typing_extensions.TypedDict, total=False): ...
+class EnableSingleTenantHsmInstance(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class EncryptRequest(typing_extensions.TypedDict, total=False):
+class EncryptRequest(typing.TypedDict, total=False):
     additionalAuthenticatedData: str
     additionalAuthenticatedDataCrc32c: str
     plaintext: str
     plaintextCrc32c: str
 
 @typing.type_check_only
-class EncryptResponse(typing_extensions.TypedDict, total=False):
+class EncryptResponse(typing.TypedDict, total=False):
     ciphertext: str
     ciphertextCrc32c: str
     name: str
-    protectionLevel: typing_extensions.Literal[
+    protectionLevel: typing.Literal[
         "PROTECTION_LEVEL_UNSPECIFIED",
         "SOFTWARE",
         "HSM",
@@ -404,26 +407,30 @@ class EncryptResponse(typing_extensions.TypedDict, total=False):
     verifiedPlaintextCrc32c: bool
 
 @typing.type_check_only
-class ExecuteSingleTenantHsmInstanceProposalRequest(
-    typing_extensions.TypedDict, total=False
-): ...
+class ExecuteSingleTenantHsmInstanceProposalRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Expr(typing_extensions.TypedDict, total=False):
+class ExportTrustedKeyWrappedCryptoKeyVersionResponse(typing.TypedDict, total=False):
+    wrappedKey: str
+    wrappedKeyCrc32c: str
+
+@typing.type_check_only
+class Expr(typing.TypedDict, total=False):
     description: str
     expression: str
     location: str
     title: str
 
 @typing.type_check_only
-class ExternalProtectionLevelOptions(typing_extensions.TypedDict, total=False):
+class ExternalProtectionLevelOptions(typing.TypedDict, total=False):
+    ekmConnectionBackendOverride: str
     ekmConnectionKeyPath: str
     externalKeyUri: str
 
 @typing.type_check_only
-class GenerateRandomBytesRequest(typing_extensions.TypedDict, total=False):
+class GenerateRandomBytesRequest(typing.TypedDict, total=False):
     lengthBytes: int
-    protectionLevel: typing_extensions.Literal[
+    protectionLevel: typing.Literal[
         "PROTECTION_LEVEL_UNSPECIFIED",
         "SOFTWARE",
         "HSM",
@@ -433,13 +440,13 @@ class GenerateRandomBytesRequest(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class GenerateRandomBytesResponse(typing_extensions.TypedDict, total=False):
+class GenerateRandomBytesResponse(typing.TypedDict, total=False):
     data: str
     dataCrc32c: str
 
 @typing.type_check_only
-class ImportCryptoKeyVersionRequest(typing_extensions.TypedDict, total=False):
-    algorithm: typing_extensions.Literal[
+class ImportCryptoKeyVersionRequest(typing.TypedDict, total=False):
+    algorithm: typing.Literal[
         "CRYPTO_KEY_VERSION_ALGORITHM_UNSPECIFIED",
         "GOOGLE_SYMMETRIC_ENCRYPTION",
         "AES_128_GCM",
@@ -487,21 +494,25 @@ class ImportCryptoKeyVersionRequest(typing_extensions.TypedDict, total=False):
         "PQ_SIGN_ML_DSA_44_EXTERNAL_MU",
         "PQ_SIGN_ML_DSA_65_EXTERNAL_MU",
         "PQ_SIGN_ML_DSA_87_EXTERNAL_MU",
+        "KEM_ECDH_P256",
+        "KEM_ECDH_P384",
+        "AES_256_KWP",
     ]
     cryptoKeyVersion: str
     importJob: str
     rsaAesWrappedKey: str
+    trustedWrappingEnabled: bool
     wrappedKey: str
 
 @typing.type_check_only
-class ImportJob(typing_extensions.TypedDict, total=False):
+class ImportJob(typing.TypedDict, total=False):
     attestation: KeyOperationAttestation
     createTime: str
     cryptoKeyBackend: str
     expireEventTime: str
     expireTime: str
     generateTime: str
-    importMethod: typing_extensions.Literal[
+    importMethod: typing.Literal[
         "IMPORT_METHOD_UNSPECIFIED",
         "RSA_OAEP_3072_SHA1_AES_256",
         "RSA_OAEP_4096_SHA1_AES_256",
@@ -514,7 +525,7 @@ class ImportJob(typing_extensions.TypedDict, total=False):
         "HPKE_KEM_XWING_HKDF_SHA256_AES_256_GCM",
     ]
     name: str
-    protectionLevel: typing_extensions.Literal[
+    protectionLevel: typing.Literal[
         "PROTECTION_LEVEL_UNSPECIFIED",
         "SOFTWARE",
         "HSM",
@@ -523,22 +534,80 @@ class ImportJob(typing_extensions.TypedDict, total=False):
         "HSM_SINGLE_TENANT",
     ]
     publicKey: WrappingPublicKey
-    publicKeyFormat: typing_extensions.Literal[
+    publicKeyFormat: typing.Literal[
         "PUBLIC_KEY_FORMAT_UNSPECIFIED", "PEM", "DER", "NIST_PQC", "XWING_RAW_BYTES"
     ]
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "IMPORT_JOB_STATE_UNSPECIFIED", "PENDING_GENERATION", "ACTIVE", "EXPIRED"
     ]
 
 @typing.type_check_only
-class KeyAccessJustificationsEnrollmentConfig(typing_extensions.TypedDict, total=False):
+class ImportTrustedKeyWrappedCryptoKeyVersionRequest(typing.TypedDict, total=False):
+    algorithm: typing.Literal[
+        "CRYPTO_KEY_VERSION_ALGORITHM_UNSPECIFIED",
+        "GOOGLE_SYMMETRIC_ENCRYPTION",
+        "AES_128_GCM",
+        "AES_256_GCM",
+        "AES_128_CBC",
+        "AES_256_CBC",
+        "AES_128_CTR",
+        "AES_256_CTR",
+        "RSA_SIGN_PSS_2048_SHA256",
+        "RSA_SIGN_PSS_3072_SHA256",
+        "RSA_SIGN_PSS_4096_SHA256",
+        "RSA_SIGN_PSS_4096_SHA512",
+        "RSA_SIGN_PKCS1_2048_SHA256",
+        "RSA_SIGN_PKCS1_3072_SHA256",
+        "RSA_SIGN_PKCS1_4096_SHA256",
+        "RSA_SIGN_PKCS1_4096_SHA512",
+        "RSA_SIGN_RAW_PKCS1_2048",
+        "RSA_SIGN_RAW_PKCS1_3072",
+        "RSA_SIGN_RAW_PKCS1_4096",
+        "RSA_DECRYPT_OAEP_2048_SHA256",
+        "RSA_DECRYPT_OAEP_3072_SHA256",
+        "RSA_DECRYPT_OAEP_4096_SHA256",
+        "RSA_DECRYPT_OAEP_4096_SHA512",
+        "RSA_DECRYPT_OAEP_2048_SHA1",
+        "RSA_DECRYPT_OAEP_3072_SHA1",
+        "RSA_DECRYPT_OAEP_4096_SHA1",
+        "EC_SIGN_P256_SHA256",
+        "EC_SIGN_P384_SHA384",
+        "EC_SIGN_SECP256K1_SHA256",
+        "EC_SIGN_ED25519",
+        "HMAC_SHA256",
+        "HMAC_SHA1",
+        "HMAC_SHA384",
+        "HMAC_SHA512",
+        "HMAC_SHA224",
+        "EXTERNAL_SYMMETRIC_ENCRYPTION",
+        "ML_KEM_768",
+        "ML_KEM_1024",
+        "KEM_XWING",
+        "PQ_SIGN_ML_DSA_44",
+        "PQ_SIGN_ML_DSA_65",
+        "PQ_SIGN_ML_DSA_87",
+        "PQ_SIGN_SLH_DSA_SHA2_128S",
+        "PQ_SIGN_HASH_SLH_DSA_SHA2_128S_SHA256",
+        "PQ_SIGN_ML_DSA_44_EXTERNAL_MU",
+        "PQ_SIGN_ML_DSA_65_EXTERNAL_MU",
+        "PQ_SIGN_ML_DSA_87_EXTERNAL_MU",
+        "KEM_ECDH_P256",
+        "KEM_ECDH_P384",
+        "AES_256_KWP",
+    ]
+    cryptoKeyVersion: str
+    importingKey: str
+    wrappedKey: str
+
+@typing.type_check_only
+class KeyAccessJustificationsEnrollmentConfig(typing.TypedDict, total=False):
     auditLogging: bool
     policyEnforcement: bool
 
 @typing.type_check_only
-class KeyAccessJustificationsPolicy(typing_extensions.TypedDict, total=False):
+class KeyAccessJustificationsPolicy(typing.TypedDict, total=False):
     allowedAccessReasons: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "REASON_UNSPECIFIED",
             "CUSTOMER_INITIATED_SUPPORT",
             "GOOGLE_INITIATED_SERVICE",
@@ -555,92 +624,90 @@ class KeyAccessJustificationsPolicy(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class KeyAccessJustificationsPolicyConfig(typing_extensions.TypedDict, total=False):
+class KeyAccessJustificationsPolicyConfig(typing.TypedDict, total=False):
     defaultKeyAccessJustificationPolicy: KeyAccessJustificationsPolicy
     defaultPolicyAvailable: bool
     name: str
 
 @typing.type_check_only
-class KeyHandle(typing_extensions.TypedDict, total=False):
+class KeyHandle(typing.TypedDict, total=False):
     kmsKey: str
     name: str
     resourceTypeSelector: str
 
 @typing.type_check_only
-class KeyOperationAttestation(typing_extensions.TypedDict, total=False):
+class KeyOperationAttestation(typing.TypedDict, total=False):
     certChains: CertificateChains
     content: str
-    format: typing_extensions.Literal[
+    format: typing.Literal[
         "ATTESTATION_FORMAT_UNSPECIFIED", "CAVIUM_V1_COMPRESSED", "CAVIUM_V2_COMPRESSED"
     ]
 
 @typing.type_check_only
-class KeyRing(typing_extensions.TypedDict, total=False):
+class KeyRing(typing.TypedDict, total=False):
     createTime: str
     name: str
 
 @typing.type_check_only
-class ListCryptoKeyVersionsResponse(typing_extensions.TypedDict, total=False):
+class ListCryptoKeyVersionsResponse(typing.TypedDict, total=False):
     cryptoKeyVersions: _list[CryptoKeyVersion]
     nextPageToken: str
     totalSize: int
 
 @typing.type_check_only
-class ListCryptoKeysResponse(typing_extensions.TypedDict, total=False):
+class ListCryptoKeysResponse(typing.TypedDict, total=False):
     cryptoKeys: _list[CryptoKey]
     nextPageToken: str
     totalSize: int
 
 @typing.type_check_only
-class ListEkmConnectionsResponse(typing_extensions.TypedDict, total=False):
+class ListEkmConnectionsResponse(typing.TypedDict, total=False):
     ekmConnections: _list[EkmConnection]
     nextPageToken: str
     totalSize: int
 
 @typing.type_check_only
-class ListImportJobsResponse(typing_extensions.TypedDict, total=False):
+class ListImportJobsResponse(typing.TypedDict, total=False):
     importJobs: _list[ImportJob]
     nextPageToken: str
     totalSize: int
 
 @typing.type_check_only
-class ListKeyHandlesResponse(typing_extensions.TypedDict, total=False):
+class ListKeyHandlesResponse(typing.TypedDict, total=False):
     keyHandles: _list[KeyHandle]
     nextPageToken: str
 
 @typing.type_check_only
-class ListKeyRingsResponse(typing_extensions.TypedDict, total=False):
+class ListKeyRingsResponse(typing.TypedDict, total=False):
     keyRings: _list[KeyRing]
     nextPageToken: str
     totalSize: int
 
 @typing.type_check_only
-class ListLocationsResponse(typing_extensions.TypedDict, total=False):
+class ListLocationsResponse(typing.TypedDict, total=False):
     locations: _list[Location]
     nextPageToken: str
 
 @typing.type_check_only
-class ListRetiredResourcesResponse(typing_extensions.TypedDict, total=False):
+class ListRetiredResourcesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     retiredResources: _list[RetiredResource]
     totalSize: str
 
 @typing.type_check_only
-class ListSingleTenantHsmInstanceProposalsResponse(
-    typing_extensions.TypedDict, total=False
-):
+class ListSingleTenantHsmInstanceProposalsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     singleTenantHsmInstanceProposals: _list[SingleTenantHsmInstanceProposal]
     totalSize: int
 
 @typing.type_check_only
-class ListSingleTenantHsmInstancesResponse(typing_extensions.TypedDict, total=False):
+class ListSingleTenantHsmInstancesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     singleTenantHsmInstances: _list[SingleTenantHsmInstance]
     totalSize: int
 
 @typing.type_check_only
-class Location(typing_extensions.TypedDict, total=False):
+class Location(typing.TypedDict, total=False):
     displayName: str
     labels: dict[str, typing.Any]
     locationId: str
@@ -648,22 +715,22 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class LocationMetadata(typing_extensions.TypedDict, total=False):
+class LocationMetadata(typing.TypedDict, total=False):
     ekmAvailable: bool
     hsmAvailable: bool
     hsmSingleTenantAvailable: bool
 
 @typing.type_check_only
-class MacSignRequest(typing_extensions.TypedDict, total=False):
+class MacSignRequest(typing.TypedDict, total=False):
     data: str
     dataCrc32c: str
 
 @typing.type_check_only
-class MacSignResponse(typing_extensions.TypedDict, total=False):
+class MacSignResponse(typing.TypedDict, total=False):
     mac: str
     macCrc32c: str
     name: str
-    protectionLevel: typing_extensions.Literal[
+    protectionLevel: typing.Literal[
         "PROTECTION_LEVEL_UNSPECIFIED",
         "SOFTWARE",
         "HSM",
@@ -674,16 +741,16 @@ class MacSignResponse(typing_extensions.TypedDict, total=False):
     verifiedDataCrc32c: bool
 
 @typing.type_check_only
-class MacVerifyRequest(typing_extensions.TypedDict, total=False):
+class MacVerifyRequest(typing.TypedDict, total=False):
     data: str
     dataCrc32c: str
     mac: str
     macCrc32c: str
 
 @typing.type_check_only
-class MacVerifyResponse(typing_extensions.TypedDict, total=False):
+class MacVerifyResponse(typing.TypedDict, total=False):
     name: str
-    protectionLevel: typing_extensions.Literal[
+    protectionLevel: typing.Literal[
         "PROTECTION_LEVEL_UNSPECIFIED",
         "SOFTWARE",
         "HSM",
@@ -697,7 +764,7 @@ class MacVerifyResponse(typing_extensions.TypedDict, total=False):
     verifiedSuccessIntegrity: bool
 
 @typing.type_check_only
-class Operation(typing_extensions.TypedDict, total=False):
+class Operation(typing.TypedDict, total=False):
     done: bool
     error: Status
     metadata: dict[str, typing.Any]
@@ -705,15 +772,15 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class Policy(typing_extensions.TypedDict, total=False):
+class Policy(typing.TypedDict, total=False):
     auditConfigs: _list[AuditConfig]
     bindings: _list[Binding]
     etag: str
     version: int
 
 @typing.type_check_only
-class PublicKey(typing_extensions.TypedDict, total=False):
-    algorithm: typing_extensions.Literal[
+class PublicKey(typing.TypedDict, total=False):
+    algorithm: typing.Literal[
         "CRYPTO_KEY_VERSION_ALGORITHM_UNSPECIFIED",
         "GOOGLE_SYMMETRIC_ENCRYPTION",
         "AES_128_GCM",
@@ -761,11 +828,14 @@ class PublicKey(typing_extensions.TypedDict, total=False):
         "PQ_SIGN_ML_DSA_44_EXTERNAL_MU",
         "PQ_SIGN_ML_DSA_65_EXTERNAL_MU",
         "PQ_SIGN_ML_DSA_87_EXTERNAL_MU",
+        "KEM_ECDH_P256",
+        "KEM_ECDH_P384",
+        "AES_256_KWP",
     ]
     name: str
     pem: str
     pemCrc32c: str
-    protectionLevel: typing_extensions.Literal[
+    protectionLevel: typing.Literal[
         "PROTECTION_LEVEL_UNSPECIFIED",
         "SOFTWARE",
         "HSM",
@@ -774,28 +844,28 @@ class PublicKey(typing_extensions.TypedDict, total=False):
         "HSM_SINGLE_TENANT",
     ]
     publicKey: ChecksummedData
-    publicKeyFormat: typing_extensions.Literal[
+    publicKeyFormat: typing.Literal[
         "PUBLIC_KEY_FORMAT_UNSPECIFIED", "PEM", "DER", "NIST_PQC", "XWING_RAW_BYTES"
     ]
 
 @typing.type_check_only
-class QuorumAuth(typing_extensions.TypedDict, total=False):
+class QuorumAuth(typing.TypedDict, total=False):
     requiredApproverCount: int
     totalApproverCount: int
     twoFactorPublicKeyPems: _list[str]
 
 @typing.type_check_only
-class QuorumParameters(typing_extensions.TypedDict, total=False):
+class QuorumParameters(typing.TypedDict, total=False):
     approvedTwoFactorPublicKeyPems: _list[str]
     challenges: _list[Challenge]
     requiredApproverCount: int
 
 @typing.type_check_only
-class QuorumReply(typing_extensions.TypedDict, total=False):
+class QuorumReply(typing.TypedDict, total=False):
     challengeReplies: _list[ChallengeReply]
 
 @typing.type_check_only
-class RawDecryptRequest(typing_extensions.TypedDict, total=False):
+class RawDecryptRequest(typing.TypedDict, total=False):
     additionalAuthenticatedData: str
     additionalAuthenticatedDataCrc32c: str
     ciphertext: str
@@ -805,10 +875,10 @@ class RawDecryptRequest(typing_extensions.TypedDict, total=False):
     tagLength: int
 
 @typing.type_check_only
-class RawDecryptResponse(typing_extensions.TypedDict, total=False):
+class RawDecryptResponse(typing.TypedDict, total=False):
     plaintext: str
     plaintextCrc32c: str
-    protectionLevel: typing_extensions.Literal[
+    protectionLevel: typing.Literal[
         "PROTECTION_LEVEL_UNSPECIFIED",
         "SOFTWARE",
         "HSM",
@@ -821,7 +891,7 @@ class RawDecryptResponse(typing_extensions.TypedDict, total=False):
     verifiedInitializationVectorCrc32c: bool
 
 @typing.type_check_only
-class RawEncryptRequest(typing_extensions.TypedDict, total=False):
+class RawEncryptRequest(typing.TypedDict, total=False):
     additionalAuthenticatedData: str
     additionalAuthenticatedDataCrc32c: str
     initializationVector: str
@@ -830,13 +900,13 @@ class RawEncryptRequest(typing_extensions.TypedDict, total=False):
     plaintextCrc32c: str
 
 @typing.type_check_only
-class RawEncryptResponse(typing_extensions.TypedDict, total=False):
+class RawEncryptResponse(typing.TypedDict, total=False):
     ciphertext: str
     ciphertextCrc32c: str
     initializationVector: str
     initializationVectorCrc32c: str
     name: str
-    protectionLevel: typing_extensions.Literal[
+    protectionLevel: typing.Literal[
         "PROTECTION_LEVEL_UNSPECIFIED",
         "SOFTWARE",
         "HSM",
@@ -850,58 +920,65 @@ class RawEncryptResponse(typing_extensions.TypedDict, total=False):
     verifiedPlaintextCrc32c: bool
 
 @typing.type_check_only
-class RefreshSingleTenantHsmInstance(typing_extensions.TypedDict, total=False): ...
+class RefreshSingleTenantHsmInstance(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class RegisterTwoFactorAuthKeys(typing_extensions.TypedDict, total=False):
+class RegisterTwoFactorAuthKeys(typing.TypedDict, total=False):
     requiredApproverCount: int
     twoFactorPublicKeyPems: _list[str]
 
 @typing.type_check_only
-class RemoveQuorumMember(typing_extensions.TypedDict, total=False):
+class RemoveQuorumMember(typing.TypedDict, total=False):
     twoFactorPublicKeyPem: str
 
 @typing.type_check_only
-class RequiredActionQuorumParameters(typing_extensions.TypedDict, total=False):
+class RequiredActionQuorumParameters(typing.TypedDict, total=False):
     approvedTwoFactorPublicKeyPems: _list[str]
     quorumChallenges: _list[Challenge]
     requiredApproverCount: int
     requiredChallenges: _list[Challenge]
 
 @typing.type_check_only
-class RequiredActionQuorumReply(typing_extensions.TypedDict, total=False):
+class RequiredActionQuorumReply(typing.TypedDict, total=False):
     quorumChallengeReplies: _list[ChallengeReply]
     requiredChallengeReplies: _list[ChallengeReply]
 
 @typing.type_check_only
-class RestoreCryptoKeyVersionRequest(typing_extensions.TypedDict, total=False): ...
+class RestoreCryptoKeyVersionRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class RetiredResource(typing_extensions.TypedDict, total=False):
+class RetiredResource(typing.TypedDict, total=False):
     deleteTime: str
     name: str
     originalResource: str
     resourceType: str
 
 @typing.type_check_only
-class ServiceResolver(typing_extensions.TypedDict, total=False):
+class ServiceResolver(typing.TypedDict, total=False):
     endpointFilter: str
     hostname: str
     serverCertificates: _list[Certificate]
     serviceDirectoryService: str
 
 @typing.type_check_only
-class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
+class SetIamPolicyRequest(typing.TypedDict, total=False):
     policy: Policy
     updateMask: str
 
 @typing.type_check_only
-class ShowEffectiveAutokeyConfigResponse(typing_extensions.TypedDict, total=False):
+class ShowEffectiveAutokeyConfigResponse(typing.TypedDict, total=False):
     keyProject: str
+    keyProjectResolutionMode: typing.Literal[
+        "KEY_PROJECT_RESOLUTION_MODE_UNSPECIFIED",
+        "DEDICATED_KEY_PROJECT",
+        "RESOURCE_PROJECT",
+        "DISABLED",
+    ]
+    source: Source
 
 @typing.type_check_only
 class ShowEffectiveKeyAccessJustificationsEnrollmentConfigResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     externalConfig: KeyAccessJustificationsEnrollmentConfig
     hardwareConfig: KeyAccessJustificationsEnrollmentConfig
@@ -909,19 +986,19 @@ class ShowEffectiveKeyAccessJustificationsEnrollmentConfigResponse(
 
 @typing.type_check_only
 class ShowEffectiveKeyAccessJustificationsPolicyConfigResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     effectiveKajPolicy: KeyAccessJustificationsPolicyConfig
 
 @typing.type_check_only
-class SingleTenantHsmInstance(typing_extensions.TypedDict, total=False):
+class SingleTenantHsmInstance(typing.TypedDict, total=False):
     createTime: str
     deleteTime: str
     disableTime: str
     keyPortabilityEnabled: bool
     name: str
     quorumAuth: QuorumAuth
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "CREATING",
         "PENDING_TWO_FACTOR_AUTH_REGISTRATION",
@@ -935,7 +1012,7 @@ class SingleTenantHsmInstance(typing_extensions.TypedDict, total=False):
     unrefreshedDurationUntilDisable: str
 
 @typing.type_check_only
-class SingleTenantHsmInstanceProposal(typing_extensions.TypedDict, total=False):
+class SingleTenantHsmInstanceProposal(typing.TypedDict, total=False):
     addQuorumMember: AddQuorumMember
     createTime: str
     deleteSingleTenantHsmInstance: DeleteSingleTenantHsmInstance
@@ -951,7 +1028,7 @@ class SingleTenantHsmInstanceProposal(typing_extensions.TypedDict, total=False):
     registerTwoFactorAuthKeys: RegisterTwoFactorAuthKeys
     removeQuorumMember: RemoveQuorumMember
     requiredActionQuorumParameters: RequiredActionQuorumParameters
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "CREATING",
         "PENDING",
@@ -962,29 +1039,39 @@ class SingleTenantHsmInstanceProposal(typing_extensions.TypedDict, total=False):
         "DELETED",
     ]
     ttl: str
+    upgradeKeyTrust: UpgradeKeyTrust
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Source(typing.TypedDict, total=False):
+    name: str
+
+@typing.type_check_only
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
+class TestIamPermissionsRequest(typing.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
-class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
+class TestIamPermissionsResponse(typing.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
-class UpdateCryptoKeyPrimaryVersionRequest(typing_extensions.TypedDict, total=False):
+class UpdateCryptoKeyPrimaryVersionRequest(typing.TypedDict, total=False):
     cryptoKeyVersionId: str
 
 @typing.type_check_only
-class VerifyConnectivityResponse(typing_extensions.TypedDict, total=False): ...
+class UpgradeKeyTrust(typing.TypedDict, total=False):
+    name: str
+    twoFactorPublicKeyPem: str
 
 @typing.type_check_only
-class WrappingPublicKey(typing_extensions.TypedDict, total=False):
+class VerifyConnectivityResponse(typing.TypedDict, total=False): ...
+
+@typing.type_check_only
+class WrappingPublicKey(typing.TypedDict, total=False):
     data: str
     pem: str

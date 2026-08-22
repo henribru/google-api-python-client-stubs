@@ -1,12 +1,10 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class CrmlogErrorCode(typing_extensions.TypedDict, total=False):
-    commonErrorCode: typing_extensions.Literal[
+class CrmlogErrorCode(typing.TypedDict, total=False):
+    commonErrorCode: typing.Literal[
         "COMMON_ERROR_CODE_UNSPECIFIED",
         "INVALID_CREDENTIALS",
         "REQUIRED_FIELDS_MISSING",
@@ -72,11 +70,9 @@ class CrmlogErrorCode(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class EnterpriseCrmEventbusAuthconfigAuthConfigTaskParam(
-    typing_extensions.TypedDict, total=False
-):
+class EnterpriseCrmEventbusAuthconfigAuthConfigTaskParam(typing.TypedDict, total=False):
     allowedCredentialTypes: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "CREDENTIAL_TYPE_UNSPECIFIED",
             "USERNAME_AND_PASSWORD",
             "API_KEY",
@@ -97,14 +93,14 @@ class EnterpriseCrmEventbusAuthconfigAuthConfigTaskParam(
     useServiceAccountInContext: bool
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoAddress(typing_extensions.TypedDict, total=False):
+class EnterpriseCrmEventbusProtoAddress(typing.TypedDict, total=False):
     email: str
     name: str
     tokens: _list[EnterpriseCrmEventbusProtoToken]
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoAttributes(typing_extensions.TypedDict, total=False):
-    dataType: typing_extensions.Literal[
+class EnterpriseCrmEventbusProtoAttributes(typing.TypedDict, total=False):
+    dataType: typing.Literal[
         "DATA_TYPE_UNSPECIFIED", "EMAIL", "URL", "CURRENCY", "TIMESTAMP", "DOMAIN_NAME"
     ]
     defaultValue: EnterpriseCrmEventbusProtoValueType
@@ -113,26 +109,26 @@ class EnterpriseCrmEventbusProtoAttributes(typing_extensions.TypedDict, total=Fa
     logSettings: EnterpriseCrmEventbusProtoLogSettings
     masked: bool
     readOnly: bool
-    searchable: typing_extensions.Literal["UNSPECIFIED", "YES", "NO"]
+    searchable: typing.Literal["UNSPECIFIED", "YES", "NO"]
     taskVisibility: _list[str]
 
 @typing.type_check_only
 class EnterpriseCrmEventbusProtoBaseAlertConfigErrorEnumList(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     enumStrings: _list[str]
-    filterType: typing_extensions.Literal["DEFAULT_INCLUSIVE", "EXCLUSIVE"]
+    filterType: typing.Literal["DEFAULT_INCLUSIVE", "EXCLUSIVE"]
 
 @typing.type_check_only
 class EnterpriseCrmEventbusProtoBaseAlertConfigThresholdValue(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     absolute: str
     percentage: int
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoBaseFunction(typing_extensions.TypedDict, total=False):
-    functionName: typing_extensions.Literal[
+class EnterpriseCrmEventbusProtoBaseFunction(typing.TypedDict, total=False):
+    functionName: typing.Literal[
         "UNSPECIFIED",
         "NOW_IN_MILLIS",
         "INT_LIST",
@@ -145,16 +141,14 @@ class EnterpriseCrmEventbusProtoBaseFunction(typing_extensions.TypedDict, total=
     ]
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoBaseValue(typing_extensions.TypedDict, total=False):
+class EnterpriseCrmEventbusProtoBaseValue(typing.TypedDict, total=False):
     baseFunction: EnterpriseCrmEventbusProtoFunction
     literalValue: EnterpriseCrmEventbusProtoParameterValueType
     referenceValue: str
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoBooleanArrayFunction(
-    typing_extensions.TypedDict, total=False
-):
-    functionName: typing_extensions.Literal[
+class EnterpriseCrmEventbusProtoBooleanArrayFunction(typing.TypedDict, total=False):
+    functionName: typing.Literal[
         "UNSPECIFIED",
         "GET",
         "APPEND",
@@ -171,10 +165,8 @@ class EnterpriseCrmEventbusProtoBooleanArrayFunction(
     ]
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoBooleanFunction(
-    typing_extensions.TypedDict, total=False
-):
-    functionName: typing_extensions.Literal[
+class EnterpriseCrmEventbusProtoBooleanFunction(typing.TypedDict, total=False):
+    functionName: typing.Literal[
         "UNSPECIFIED",
         "TO_JSON",
         "NOT",
@@ -189,24 +181,18 @@ class EnterpriseCrmEventbusProtoBooleanFunction(
     ]
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoBooleanParameterArray(
-    typing_extensions.TypedDict, total=False
-):
+class EnterpriseCrmEventbusProtoBooleanParameterArray(typing.TypedDict, total=False):
     booleanValues: _list[bool]
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoBuganizerNotification(
-    typing_extensions.TypedDict, total=False
-):
+class EnterpriseCrmEventbusProtoBuganizerNotification(typing.TypedDict, total=False):
     assigneeEmailAddress: str
     componentId: str
     templateId: str
     title: str
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoCloudKmsConfig(
-    typing_extensions.TypedDict, total=False
-):
+class EnterpriseCrmEventbusProtoCloudKmsConfig(typing.TypedDict, total=False):
     gcpProjectId: str
     keyName: str
     keyRingName: str
@@ -215,24 +201,20 @@ class EnterpriseCrmEventbusProtoCloudKmsConfig(
     serviceAccount: str
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoCloudSchedulerConfig(
-    typing_extensions.TypedDict, total=False
-):
+class EnterpriseCrmEventbusProtoCloudSchedulerConfig(typing.TypedDict, total=False):
     cronTab: str
     errorMessage: str
     location: str
     serviceAccountEmail: str
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoCombinedCondition(
-    typing_extensions.TypedDict, total=False
-):
+class EnterpriseCrmEventbusProtoCombinedCondition(typing.TypedDict, total=False):
     conditions: _list[EnterpriseCrmEventbusProtoCondition]
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoCondition(typing_extensions.TypedDict, total=False):
+class EnterpriseCrmEventbusProtoCondition(typing.TypedDict, total=False):
     eventPropertyKey: str
-    operator: typing_extensions.Literal[
+    operator: typing.Literal[
         "UNSET",
         "EQUALS",
         "CONTAINS",
@@ -246,27 +228,23 @@ class EnterpriseCrmEventbusProtoCondition(typing_extensions.TypedDict, total=Fal
     value: EnterpriseCrmEventbusProtoValueType
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoConditionResult(
-    typing_extensions.TypedDict, total=False
-):
+class EnterpriseCrmEventbusProtoConditionResult(typing.TypedDict, total=False):
     currentTaskNumber: str
     nextTaskNumber: str
     result: bool
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoConnectorsConnection(
-    typing_extensions.TypedDict, total=False
-):
+class EnterpriseCrmEventbusProtoConnectorsConnection(typing.TypedDict, total=False):
     connectionName: str
     connectorVersion: str
     serviceName: str
 
 @typing.type_check_only
 class EnterpriseCrmEventbusProtoConnectorsGenericConnectorTaskConfig(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     connection: EnterpriseCrmEventbusProtoConnectorsConnection
-    operation: typing_extensions.Literal[
+    operation: typing.Literal[
         "OPERATION_UNSPECIFIED",
         "EXECUTE_ACTION",
         "LIST_ENTITIES",
@@ -278,28 +256,24 @@ class EnterpriseCrmEventbusProtoConnectorsGenericConnectorTaskConfig(
     ]
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoCoordinate(typing_extensions.TypedDict, total=False):
+class EnterpriseCrmEventbusProtoCoordinate(typing.TypedDict, total=False):
     x: int
     y: int
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoCustomSuspensionRequest(
-    typing_extensions.TypedDict, total=False
-):
+class EnterpriseCrmEventbusProtoCustomSuspensionRequest(typing.TypedDict, total=False):
     postToQueueWithTriggerIdRequest: (
         GoogleInternalCloudCrmEventbusV3PostToQueueWithTriggerIdRequest
     )
     suspensionInfoEventParameterKey: str
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoDoubleArray(typing_extensions.TypedDict, total=False):
+class EnterpriseCrmEventbusProtoDoubleArray(typing.TypedDict, total=False):
     values: _list[float]
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoDoubleArrayFunction(
-    typing_extensions.TypedDict, total=False
-):
-    functionName: typing_extensions.Literal[
+class EnterpriseCrmEventbusProtoDoubleArrayFunction(typing.TypedDict, total=False):
+    functionName: typing.Literal[
         "UNSPECIFIED",
         "GET",
         "APPEND",
@@ -320,10 +294,8 @@ class EnterpriseCrmEventbusProtoDoubleArrayFunction(
     ]
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoDoubleFunction(
-    typing_extensions.TypedDict, total=False
-):
-    functionName: typing_extensions.Literal[
+class EnterpriseCrmEventbusProtoDoubleFunction(typing.TypedDict, total=False):
+    functionName: typing.Literal[
         "UNSPECIFIED",
         "TO_JSON",
         "TO_STRING",
@@ -344,34 +316,28 @@ class EnterpriseCrmEventbusProtoDoubleFunction(
     ]
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoDoubleParameterArray(
-    typing_extensions.TypedDict, total=False
-):
+class EnterpriseCrmEventbusProtoDoubleParameterArray(typing.TypedDict, total=False):
     doubleValues: _list[float]
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoErrorDetail(typing_extensions.TypedDict, total=False):
+class EnterpriseCrmEventbusProtoErrorDetail(typing.TypedDict, total=False):
     errorCode: CrmlogErrorCode
     errorMessage: str
-    severity: typing_extensions.Literal["SEVERITY_UNSPECIFIED", "ERROR", "WARN", "INFO"]
+    severity: typing.Literal["SEVERITY_UNSPECIFIED", "ERROR", "WARN", "INFO"]
     taskNumber: int
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoEventBusProperties(
-    typing_extensions.TypedDict, total=False
-):
+class EnterpriseCrmEventbusProtoEventBusProperties(typing.TypedDict, total=False):
     properties: _list[EnterpriseCrmEventbusProtoPropertyEntry]
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoEventExecutionDetails(
-    typing_extensions.TypedDict, total=False
-):
+class EnterpriseCrmEventbusProtoEventExecutionDetails(typing.TypedDict, total=False):
     eventAttemptStats: _list[
         EnterpriseCrmEventbusProtoEventExecutionDetailsEventAttemptStats
     ]
     eventExecutionSnapshot: _list[EnterpriseCrmEventbusProtoEventExecutionSnapshot]
     eventExecutionSnapshotsSize: str
-    eventExecutionState: typing_extensions.Literal[
+    eventExecutionState: typing.Literal[
         "UNSPECIFIED",
         "ON_HOLD",
         "IN_PROCESS",
@@ -389,15 +355,13 @@ class EnterpriseCrmEventbusProtoEventExecutionDetails(
 
 @typing.type_check_only
 class EnterpriseCrmEventbusProtoEventExecutionDetailsEventAttemptStats(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     endTime: str
     startTime: str
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoEventExecutionSnapshot(
-    typing_extensions.TypedDict, total=False
-):
+class EnterpriseCrmEventbusProtoEventExecutionSnapshot(typing.TypedDict, total=False):
     checkpointTaskNumber: str
     conditionResults: _list[EnterpriseCrmEventbusProtoConditionResult]
     diffParams: EnterpriseCrmEventbusProtoEventParameters
@@ -414,7 +378,7 @@ class EnterpriseCrmEventbusProtoEventExecutionSnapshot(
 
 @typing.type_check_only
 class EnterpriseCrmEventbusProtoEventExecutionSnapshotEventExecutionSnapshotMetadata(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     ancestorIterationNumbers: _list[str]
     ancestorTaskNumbers: _list[str]
@@ -426,32 +390,26 @@ class EnterpriseCrmEventbusProtoEventExecutionSnapshotEventExecutionSnapshotMeta
     taskNumber: str
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoEventParameters(
-    typing_extensions.TypedDict, total=False
-):
+class EnterpriseCrmEventbusProtoEventParameters(typing.TypedDict, total=False):
     parameters: _list[EnterpriseCrmEventbusProtoParameterEntry]
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoExecutionTraceInfo(
-    typing_extensions.TypedDict, total=False
-):
+class EnterpriseCrmEventbusProtoExecutionTraceInfo(typing.TypedDict, total=False):
     parentEventExecutionInfoId: str
     traceId: str
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoExternalTraffic(
-    typing_extensions.TypedDict, total=False
-):
+class EnterpriseCrmEventbusProtoExternalTraffic(typing.TypedDict, total=False):
     gcpProjectId: str
     gcpProjectNumber: str
     location: str
-    source: typing_extensions.Literal["SOURCE_UNSPECIFIED", "APIGEE", "SECURITY"]
+    source: typing.Literal["SOURCE_UNSPECIFIED", "APIGEE", "SECURITY"]
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoFailurePolicy(typing_extensions.TypedDict, total=False):
+class EnterpriseCrmEventbusProtoFailurePolicy(typing.TypedDict, total=False):
     intervalInSeconds: str
     maxNumRetries: int
-    retryStrategy: typing_extensions.Literal[
+    retryStrategy: typing.Literal[
         "UNSPECIFIED",
         "IGNORE",
         "NONE",
@@ -463,10 +421,10 @@ class EnterpriseCrmEventbusProtoFailurePolicy(typing_extensions.TypedDict, total
     ]
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoField(typing_extensions.TypedDict, total=False):
-    cardinality: typing_extensions.Literal["UNSPECIFIED", "OPTIONAL"]
+class EnterpriseCrmEventbusProtoField(typing.TypedDict, total=False):
+    cardinality: typing.Literal["UNSPECIFIED", "OPTIONAL"]
     defaultValue: EnterpriseCrmEventbusProtoParameterValueType
-    fieldType: typing_extensions.Literal[
+    fieldType: typing.Literal[
         "DATA_TYPE_UNSPECIFIED",
         "STRING_VALUE",
         "INT_VALUE",
@@ -491,18 +449,16 @@ class EnterpriseCrmEventbusProtoField(typing_extensions.TypedDict, total=False):
     transformExpression: EnterpriseCrmEventbusProtoTransformExpression
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoFieldMappingConfig(
-    typing_extensions.TypedDict, total=False
-):
+class EnterpriseCrmEventbusProtoFieldMappingConfig(typing.TypedDict, total=False):
     mappedFields: _list[EnterpriseCrmEventbusProtoMappedField]
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoFunction(typing_extensions.TypedDict, total=False):
+class EnterpriseCrmEventbusProtoFunction(typing.TypedDict, total=False):
     functionType: EnterpriseCrmEventbusProtoFunctionType
     parameters: _list[EnterpriseCrmEventbusProtoTransformExpression]
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoFunctionType(typing_extensions.TypedDict, total=False):
+class EnterpriseCrmEventbusProtoFunctionType(typing.TypedDict, total=False):
     baseFunction: EnterpriseCrmEventbusProtoBaseFunction
     booleanArrayFunction: EnterpriseCrmEventbusProtoBooleanArrayFunction
     booleanFunction: EnterpriseCrmEventbusProtoBooleanFunction
@@ -517,14 +473,12 @@ class EnterpriseCrmEventbusProtoFunctionType(typing_extensions.TypedDict, total=
     stringFunction: EnterpriseCrmEventbusProtoStringFunction
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoIntArray(typing_extensions.TypedDict, total=False):
+class EnterpriseCrmEventbusProtoIntArray(typing.TypedDict, total=False):
     values: _list[str]
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoIntArrayFunction(
-    typing_extensions.TypedDict, total=False
-):
-    functionName: typing_extensions.Literal[
+class EnterpriseCrmEventbusProtoIntArrayFunction(typing.TypedDict, total=False):
+    functionName: typing.Literal[
         "UNSPECIFIED",
         "GET",
         "APPEND",
@@ -545,8 +499,8 @@ class EnterpriseCrmEventbusProtoIntArrayFunction(
     ]
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoIntFunction(typing_extensions.TypedDict, total=False):
-    functionName: typing_extensions.Literal[
+class EnterpriseCrmEventbusProtoIntFunction(typing.TypedDict, total=False):
+    functionName: typing.Literal[
         "UNSPECIFIED",
         "ADD",
         "SUBTRACT",
@@ -566,14 +520,12 @@ class EnterpriseCrmEventbusProtoIntFunction(typing_extensions.TypedDict, total=F
     ]
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoIntParameterArray(
-    typing_extensions.TypedDict, total=False
-):
+class EnterpriseCrmEventbusProtoIntParameterArray(typing.TypedDict, total=False):
     intValues: _list[str]
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoJsonFunction(typing_extensions.TypedDict, total=False):
-    functionName: typing_extensions.Literal[
+class EnterpriseCrmEventbusProtoJsonFunction(typing.TypedDict, total=False):
+    functionName: typing.Literal[
         "UNSPECIFIED",
         "GET_PROPERTY",
         "GET_ELEMENT",
@@ -601,23 +553,21 @@ class EnterpriseCrmEventbusProtoJsonFunction(typing_extensions.TypedDict, total=
     ]
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoLogSettings(typing_extensions.TypedDict, total=False):
+class EnterpriseCrmEventbusProtoLogSettings(typing.TypedDict, total=False):
     logFieldName: str
     sanitizeOptions: EnterpriseCrmLoggingGwsSanitizeOptions
-    seedPeriod: typing_extensions.Literal[
-        "SEED_PERIOD_UNSPECIFIED", "DAY", "WEEK", "MONTH"
-    ]
-    seedScope: typing_extensions.Literal[
+    seedPeriod: typing.Literal["SEED_PERIOD_UNSPECIFIED", "DAY", "WEEK", "MONTH"]
+    seedScope: typing.Literal[
         "SEED_SCOPE_UNSPECIFIED", "EVENT_NAME", "TIME_PERIOD", "PARAM_NAME"
     ]
     shorteningLimits: EnterpriseCrmLoggingGwsFieldLimits
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoLoopMetadata(typing_extensions.TypedDict, total=False):
+class EnterpriseCrmEventbusProtoLoopMetadata(typing.TypedDict, total=False):
     currentIterationCount: str
     currentIterationDetail: str
     errorMsg: str
-    failureLocation: typing_extensions.Literal[
+    failureLocation: typing.Literal[
         "UNKNOWN",
         "SUBWORKFLOW",
         "PARAM_OVERRIDING",
@@ -629,12 +579,12 @@ class EnterpriseCrmEventbusProtoLoopMetadata(typing_extensions.TypedDict, total=
     ]
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoMappedField(typing_extensions.TypedDict, total=False):
+class EnterpriseCrmEventbusProtoMappedField(typing.TypedDict, total=False):
     inputField: EnterpriseCrmEventbusProtoField
     outputField: EnterpriseCrmEventbusProtoField
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoNextTask(typing_extensions.TypedDict, total=False):
+class EnterpriseCrmEventbusProtoNextTask(typing.TypedDict, total=False):
     combinedConditions: _list[EnterpriseCrmEventbusProtoCombinedCondition]
     condition: str
     description: str
@@ -643,22 +593,16 @@ class EnterpriseCrmEventbusProtoNextTask(typing_extensions.TypedDict, total=Fals
     taskNumber: str
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoNextTeardownTask(
-    typing_extensions.TypedDict, total=False
-):
+class EnterpriseCrmEventbusProtoNextTeardownTask(typing.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoNodeIdentifier(
-    typing_extensions.TypedDict, total=False
-):
+class EnterpriseCrmEventbusProtoNodeIdentifier(typing.TypedDict, total=False):
     elementIdentifier: str
-    elementType: typing_extensions.Literal[
-        "UNKNOWN_TYPE", "TASK_CONFIG", "TRIGGER_CONFIG"
-    ]
+    elementType: typing.Literal["UNKNOWN_TYPE", "TASK_CONFIG", "TRIGGER_CONFIG"]
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoNotification(typing_extensions.TypedDict, total=False):
+class EnterpriseCrmEventbusProtoNotification(typing.TypedDict, total=False):
     buganizerNotification: EnterpriseCrmEventbusProtoBuganizerNotification
     emailAddress: EnterpriseCrmEventbusProtoAddress
     escalatorQueue: str
@@ -666,18 +610,16 @@ class EnterpriseCrmEventbusProtoNotification(typing_extensions.TypedDict, total=
     request: EnterpriseCrmEventbusProtoCustomSuspensionRequest
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoParamSpecEntryConfig(
-    typing_extensions.TypedDict, total=False
-):
+class EnterpriseCrmEventbusProtoParamSpecEntryConfig(typing.TypedDict, total=False):
     descriptivePhrase: str
     helpText: str
     hideDefaultValue: bool
-    inputDisplayOption: typing_extensions.Literal[
+    inputDisplayOption: typing.Literal[
         "DEFAULT", "STRING_MULTI_LINE", "NUMBER_SLIDER", "BOOLEAN_TOGGLE"
     ]
     isHidden: bool
     label: str
-    parameterNameOption: typing_extensions.Literal[
+    parameterNameOption: typing.Literal[
         "DEFAULT_NOT_PARAMETER_NAME",
         "IS_PARAMETER_NAME",
         "KEY_IS_PARAMETER_NAME",
@@ -688,14 +630,14 @@ class EnterpriseCrmEventbusProtoParamSpecEntryConfig(
 
 @typing.type_check_only
 class EnterpriseCrmEventbusProtoParamSpecEntryProtoDefinition(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     fullName: str
     path: str
 
 @typing.type_check_only
 class EnterpriseCrmEventbusProtoParamSpecEntryValidationRule(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     doubleRange: EnterpriseCrmEventbusProtoParamSpecEntryValidationRuleDoubleRange
     intRange: EnterpriseCrmEventbusProtoParamSpecEntryValidationRuleIntRange
@@ -703,37 +645,35 @@ class EnterpriseCrmEventbusProtoParamSpecEntryValidationRule(
 
 @typing.type_check_only
 class EnterpriseCrmEventbusProtoParamSpecEntryValidationRuleDoubleRange(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     max: float
     min: float
 
 @typing.type_check_only
 class EnterpriseCrmEventbusProtoParamSpecEntryValidationRuleIntRange(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     max: str
     min: str
 
 @typing.type_check_only
 class EnterpriseCrmEventbusProtoParamSpecEntryValidationRuleStringRegex(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     exclusive: bool
     regex: str
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoParameterEntry(
-    typing_extensions.TypedDict, total=False
-):
+class EnterpriseCrmEventbusProtoParameterEntry(typing.TypedDict, total=False):
     key: str
     masked: bool
     value: EnterpriseCrmEventbusProtoParameterValueType
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoParameterMap(typing_extensions.TypedDict, total=False):
+class EnterpriseCrmEventbusProtoParameterMap(typing.TypedDict, total=False):
     entries: _list[EnterpriseCrmEventbusProtoParameterMapEntry]
-    keyType: typing_extensions.Literal[
+    keyType: typing.Literal[
         "DATA_TYPE_UNSPECIFIED",
         "STRING_VALUE",
         "INT_VALUE",
@@ -753,7 +693,7 @@ class EnterpriseCrmEventbusProtoParameterMap(typing_extensions.TypedDict, total=
         "NON_SERIALIZABLE_OBJECT",
         "JSON_VALUE",
     ]
-    valueType: typing_extensions.Literal[
+    valueType: typing.Literal[
         "DATA_TYPE_UNSPECIFIED",
         "STRING_VALUE",
         "INT_VALUE",
@@ -775,23 +715,17 @@ class EnterpriseCrmEventbusProtoParameterMap(typing_extensions.TypedDict, total=
     ]
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoParameterMapEntry(
-    typing_extensions.TypedDict, total=False
-):
+class EnterpriseCrmEventbusProtoParameterMapEntry(typing.TypedDict, total=False):
     key: EnterpriseCrmEventbusProtoParameterMapField
     value: EnterpriseCrmEventbusProtoParameterMapField
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoParameterMapField(
-    typing_extensions.TypedDict, total=False
-):
+class EnterpriseCrmEventbusProtoParameterMapField(typing.TypedDict, total=False):
     literalValue: EnterpriseCrmEventbusProtoParameterValueType
     referenceKey: str
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoParameterValueType(
-    typing_extensions.TypedDict, total=False
-):
+class EnterpriseCrmEventbusProtoParameterValueType(typing.TypedDict, total=False):
     booleanArray: EnterpriseCrmEventbusProtoBooleanParameterArray
     booleanValue: bool
     doubleArray: EnterpriseCrmEventbusProtoDoubleParameterArray
@@ -805,15 +739,13 @@ class EnterpriseCrmEventbusProtoParameterValueType(
     stringValue: str
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoPropertyEntry(typing_extensions.TypedDict, total=False):
+class EnterpriseCrmEventbusProtoPropertyEntry(typing.TypedDict, total=False):
     key: str
     value: EnterpriseCrmEventbusProtoValueType
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoProtoArrayFunction(
-    typing_extensions.TypedDict, total=False
-):
-    functionName: typing_extensions.Literal[
+class EnterpriseCrmEventbusProtoProtoArrayFunction(typing.TypedDict, total=False):
+    functionName: typing.Literal[
         "UNSPECIFIED",
         "GET",
         "APPEND",
@@ -830,8 +762,8 @@ class EnterpriseCrmEventbusProtoProtoArrayFunction(
     ]
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoProtoFunction(typing_extensions.TypedDict, total=False):
-    functionName: typing_extensions.Literal[
+class EnterpriseCrmEventbusProtoProtoFunction(typing.TypedDict, total=False):
+    functionName: typing.Literal[
         "UNSPECIFIED",
         "GET_STRING_SUBFIELD",
         "GET_INT_SUBFIELD",
@@ -850,15 +782,11 @@ class EnterpriseCrmEventbusProtoProtoFunction(typing_extensions.TypedDict, total
     ]
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoProtoParameterArray(
-    typing_extensions.TypedDict, total=False
-):
+class EnterpriseCrmEventbusProtoProtoParameterArray(typing.TypedDict, total=False):
     protoValues: _list[dict[str, typing.Any]]
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoScatterResponse(
-    typing_extensions.TypedDict, total=False
-):
+class EnterpriseCrmEventbusProtoScatterResponse(typing.TypedDict, total=False):
     errorMsg: str
     executionIds: _list[str]
     isSuccessful: bool
@@ -867,19 +795,17 @@ class EnterpriseCrmEventbusProtoScatterResponse(
 
 @typing.type_check_only
 class EnterpriseCrmEventbusProtoSerializedObjectParameter(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     objectValue: str
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoStringArray(typing_extensions.TypedDict, total=False):
+class EnterpriseCrmEventbusProtoStringArray(typing.TypedDict, total=False):
     values: _list[str]
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoStringArrayFunction(
-    typing_extensions.TypedDict, total=False
-):
-    functionName: typing_extensions.Literal[
+class EnterpriseCrmEventbusProtoStringArrayFunction(typing.TypedDict, total=False):
+    functionName: typing.Literal[
         "UNSPECIFIED",
         "GET",
         "APPEND",
@@ -896,10 +822,8 @@ class EnterpriseCrmEventbusProtoStringArrayFunction(
     ]
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoStringFunction(
-    typing_extensions.TypedDict, total=False
-):
-    functionName: typing_extensions.Literal[
+class EnterpriseCrmEventbusProtoStringFunction(typing.TypedDict, total=False):
+    functionName: typing.Literal[
         "UNSPECIFIED",
         "CONCAT",
         "TO_UPPERCASE",
@@ -921,18 +845,16 @@ class EnterpriseCrmEventbusProtoStringFunction(
     ]
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoStringParameterArray(
-    typing_extensions.TypedDict, total=False
-):
+class EnterpriseCrmEventbusProtoStringParameterArray(typing.TypedDict, total=False):
     stringValues: _list[str]
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoSuccessPolicy(typing_extensions.TypedDict, total=False):
-    finalState: typing_extensions.Literal["UNSPECIFIED", "SUCCEEDED", "SUSPENDED"]
+class EnterpriseCrmEventbusProtoSuccessPolicy(typing.TypedDict, total=False):
+    finalState: typing.Literal["UNSPECIFIED", "SUCCEEDED", "SUSPENDED"]
 
 @typing.type_check_only
 class EnterpriseCrmEventbusProtoSuspensionAuthPermissions(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     gaiaIdentity: EnterpriseCrmEventbusProtoSuspensionAuthPermissionsGaiaIdentity
     googleGroup: EnterpriseCrmEventbusProtoSuspensionAuthPermissionsGaiaIdentity
@@ -941,32 +863,26 @@ class EnterpriseCrmEventbusProtoSuspensionAuthPermissions(
 
 @typing.type_check_only
 class EnterpriseCrmEventbusProtoSuspensionAuthPermissionsGaiaIdentity(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     emailAddress: str
     gaiaId: str
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoSuspensionConfig(
-    typing_extensions.TypedDict, total=False
-):
+class EnterpriseCrmEventbusProtoSuspensionConfig(typing.TypedDict, total=False):
     customMessage: str
     notifications: _list[EnterpriseCrmEventbusProtoNotification]
     suspensionExpiration: EnterpriseCrmEventbusProtoSuspensionExpiration
     whoMayResolve: _list[EnterpriseCrmEventbusProtoSuspensionAuthPermissions]
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoSuspensionExpiration(
-    typing_extensions.TypedDict, total=False
-):
+class EnterpriseCrmEventbusProtoSuspensionExpiration(typing.TypedDict, total=False):
     expireAfterMs: int
     liftWhenExpired: bool
     remindAfterMs: int
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoSuspensionResolutionInfo(
-    typing_extensions.TypedDict, total=False
-):
+class EnterpriseCrmEventbusProtoSuspensionResolutionInfo(typing.TypedDict, total=False):
     audit: EnterpriseCrmEventbusProtoSuspensionResolutionInfoAudit
     clientId: str
     cloudKmsConfig: EnterpriseCrmEventbusProtoCloudKmsConfig
@@ -975,12 +891,8 @@ class EnterpriseCrmEventbusProtoSuspensionResolutionInfo(
     eventExecutionInfoId: str
     externalTraffic: EnterpriseCrmEventbusProtoExternalTraffic
     lastModifiedTimestamp: str
-    product: typing_extensions.Literal[
-        "UNSPECIFIED_PRODUCT", "IP", "APIGEE", "SECURITY"
-    ]
-    status: typing_extensions.Literal[
-        "PENDING_UNSPECIFIED", "REJECTED", "LIFTED", "CANCELED"
-    ]
+    product: typing.Literal["UNSPECIFIED_PRODUCT", "IP", "APIGEE", "SECURITY"]
+    status: typing.Literal["PENDING_UNSPECIFIED", "REJECTED", "LIFTED", "CANCELED"]
     suspensionConfig: EnterpriseCrmEventbusProtoSuspensionConfig
     suspensionId: str
     taskNumber: str
@@ -989,23 +901,21 @@ class EnterpriseCrmEventbusProtoSuspensionResolutionInfo(
 
 @typing.type_check_only
 class EnterpriseCrmEventbusProtoSuspensionResolutionInfoAudit(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     resolvedBy: str
     resolvedByCpi: str
     timestamp: str
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoTaskAlertConfig(
-    typing_extensions.TypedDict, total=False
-):
+class EnterpriseCrmEventbusProtoTaskAlertConfig(typing.TypedDict, total=False):
     aggregationPeriod: str
     alertDisabled: bool
     alertName: str
     clientId: str
     durationThresholdMs: str
     errorEnumList: EnterpriseCrmEventbusProtoBaseAlertConfigErrorEnumList
-    metricType: typing_extensions.Literal[
+    metricType: typing.Literal[
         "METRIC_TYPE_UNSPECIFIED",
         "TASK_ERROR_RATE",
         "TASK_WARNING_RATE",
@@ -1016,20 +926,18 @@ class EnterpriseCrmEventbusProtoTaskAlertConfig(
     numAggregationPeriods: int
     onlyFinalAttempt: bool
     playbookUrl: str
-    thresholdType: typing_extensions.Literal[
+    thresholdType: typing.Literal[
         "UNSPECIFIED_THRESHOLD_TYPE", "EXPECTED_MIN", "EXPECTED_MAX"
     ]
     thresholdValue: EnterpriseCrmEventbusProtoBaseAlertConfigThresholdValue
     warningEnumList: EnterpriseCrmEventbusProtoBaseAlertConfigErrorEnumList
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoTaskExecutionDetails(
-    typing_extensions.TypedDict, total=False
-):
+class EnterpriseCrmEventbusProtoTaskExecutionDetails(typing.TypedDict, total=False):
     taskAttemptStats: _list[
         EnterpriseCrmEventbusProtoTaskExecutionDetailsTaskAttemptStats
     ]
-    taskExecutionState: typing_extensions.Literal[
+    taskExecutionState: typing.Literal[
         "UNSPECIFIED",
         "PENDING_EXECUTION",
         "IN_PROCESS",
@@ -1048,16 +956,16 @@ class EnterpriseCrmEventbusProtoTaskExecutionDetails(
 
 @typing.type_check_only
 class EnterpriseCrmEventbusProtoTaskExecutionDetailsTaskAttemptStats(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     endTime: str
     startTime: str
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoTaskMetadata(typing_extensions.TypedDict, total=False):
+class EnterpriseCrmEventbusProtoTaskMetadata(typing.TypedDict, total=False):
     activeTaskName: str
     admins: _list[EnterpriseCrmEventbusProtoTaskMetadataAdmin]
-    category: typing_extensions.Literal[
+    category: typing.Literal[
         "UNSPECIFIED_CATEGORY",
         "CUSTOM",
         "FLOW_CONTROL",
@@ -1070,7 +978,7 @@ class EnterpriseCrmEventbusProtoTaskMetadata(typing_extensions.TypedDict, total=
         "TASK_RECOMMENDATIONS",
     ]
     codeSearchLink: str
-    defaultJsonValidationOption: typing_extensions.Literal[
+    defaultJsonValidationOption: typing.Literal[
         "UNSPECIFIED_JSON_VALIDATION_OPTION",
         "SKIP",
         "PRE_EXECUTION",
@@ -1081,7 +989,7 @@ class EnterpriseCrmEventbusProtoTaskMetadata(typing_extensions.TypedDict, total=
     description: str
     descriptiveName: str
     docMarkdown: str
-    externalCategory: typing_extensions.Literal[
+    externalCategory: typing.Literal[
         "UNSPECIFIED_EXTERNAL_CATEGORY",
         "CORE",
         "CONNECTORS",
@@ -1107,10 +1015,8 @@ class EnterpriseCrmEventbusProtoTaskMetadata(typing_extensions.TypedDict, total=
     isDeprecated: bool
     name: str
     standaloneExternalDocHtml: str
-    status: typing_extensions.Literal[
-        "UNSPECIFIED_STATUS", "DEFAULT_INACTIVE", "ACTIVE"
-    ]
-    system: typing_extensions.Literal[
+    status: typing.Literal["UNSPECIFIED_STATUS", "DEFAULT_INACTIVE", "ACTIVE"]
+    system: typing.Literal[
         "UNSPECIFIED_SYSTEM",
         "GENERIC",
         "BUGANIZER",
@@ -1126,21 +1032,17 @@ class EnterpriseCrmEventbusProtoTaskMetadata(typing_extensions.TypedDict, total=
     tags: _list[str]
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoTaskMetadataAdmin(
-    typing_extensions.TypedDict, total=False
-):
+class EnterpriseCrmEventbusProtoTaskMetadataAdmin(typing.TypedDict, total=False):
     googleGroupEmail: str
     userEmail: str
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoTaskUiConfig(typing_extensions.TypedDict, total=False):
+class EnterpriseCrmEventbusProtoTaskUiConfig(typing.TypedDict, total=False):
     taskUiModuleConfigs: _list[EnterpriseCrmEventbusProtoTaskUiModuleConfig]
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoTaskUiModuleConfig(
-    typing_extensions.TypedDict, total=False
-):
-    moduleId: typing_extensions.Literal[
+class EnterpriseCrmEventbusProtoTaskUiModuleConfig(typing.TypedDict, total=False):
+    moduleId: typing.Literal[
         "UNSPECIFIED_TASK_MODULE",
         "LABEL",
         "ERROR_HANDLING",
@@ -1164,13 +1066,11 @@ class EnterpriseCrmEventbusProtoTaskUiModuleConfig(
     ]
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoTeardown(typing_extensions.TypedDict, total=False):
+class EnterpriseCrmEventbusProtoTeardown(typing.TypedDict, total=False):
     teardownTaskConfigs: _list[EnterpriseCrmEventbusProtoTeardownTaskConfig]
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoTeardownTaskConfig(
-    typing_extensions.TypedDict, total=False
-):
+class EnterpriseCrmEventbusProtoTeardownTaskConfig(typing.TypedDict, total=False):
     creatorEmail: str
     name: str
     nextTeardownTask: EnterpriseCrmEventbusProtoNextTeardownTask
@@ -1179,27 +1079,23 @@ class EnterpriseCrmEventbusProtoTeardownTaskConfig(
     teardownTaskImplementationClassName: str
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoToken(typing_extensions.TypedDict, total=False):
+class EnterpriseCrmEventbusProtoToken(typing.TypedDict, total=False):
     name: str
     value: str
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoTransformExpression(
-    typing_extensions.TypedDict, total=False
-):
+class EnterpriseCrmEventbusProtoTransformExpression(typing.TypedDict, total=False):
     initialValue: EnterpriseCrmEventbusProtoBaseValue
     transformationFunctions: _list[EnterpriseCrmEventbusProtoFunction]
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoTriggerCriteria(
-    typing_extensions.TypedDict, total=False
-):
+class EnterpriseCrmEventbusProtoTriggerCriteria(typing.TypedDict, total=False):
     condition: str
     parameters: EnterpriseCrmEventbusProtoEventParameters
     triggerCriteriaTaskImplementationClassName: str
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoValueType(typing_extensions.TypedDict, total=False):
+class EnterpriseCrmEventbusProtoValueType(typing.TypedDict, total=False):
     booleanValue: bool
     doubleArray: EnterpriseCrmEventbusProtoDoubleArray
     doubleValue: float
@@ -1210,16 +1106,14 @@ class EnterpriseCrmEventbusProtoValueType(typing_extensions.TypedDict, total=Fal
     stringValue: str
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoWorkflowAlertConfig(
-    typing_extensions.TypedDict, total=False
-):
+class EnterpriseCrmEventbusProtoWorkflowAlertConfig(typing.TypedDict, total=False):
     aggregationPeriod: str
     alertDisabled: bool
     alertName: str
     clientId: str
     durationThresholdMs: str
     errorEnumList: EnterpriseCrmEventbusProtoBaseAlertConfigErrorEnumList
-    metricType: typing_extensions.Literal[
+    metricType: typing.Literal[
         "METRIC_TYPE_UNSPECIFIED",
         "EVENT_ERROR_RATE",
         "EVENT_WARNING_RATE",
@@ -1235,14 +1129,14 @@ class EnterpriseCrmEventbusProtoWorkflowAlertConfig(
     numAggregationPeriods: int
     onlyFinalAttempt: bool
     playbookUrl: str
-    thresholdType: typing_extensions.Literal[
+    thresholdType: typing.Literal[
         "UNSPECIFIED_THRESHOLD_TYPE", "EXPECTED_MIN", "EXPECTED_MAX"
     ]
     thresholdValue: EnterpriseCrmEventbusProtoBaseAlertConfigThresholdValue
     warningEnumList: EnterpriseCrmEventbusProtoBaseAlertConfigErrorEnumList
 
 @typing.type_check_only
-class EnterpriseCrmEventbusStats(typing_extensions.TypedDict, total=False):
+class EnterpriseCrmEventbusStats(typing.TypedDict, total=False):
     dimensions: EnterpriseCrmEventbusStatsDimensions
     durationInSeconds: float
     errorRate: float
@@ -1250,13 +1144,11 @@ class EnterpriseCrmEventbusStats(typing_extensions.TypedDict, total=False):
     warningRate: float
 
 @typing.type_check_only
-class EnterpriseCrmEventbusStatsDimensions(typing_extensions.TypedDict, total=False):
+class EnterpriseCrmEventbusStatsDimensions(typing.TypedDict, total=False):
     clientId: str
-    enumFilterType: typing_extensions.Literal["DEFAULT_INCLUSIVE", "EXCLUSIVE"]
+    enumFilterType: typing.Literal["DEFAULT_INCLUSIVE", "EXCLUSIVE"]
     errorEnumString: str
-    retryAttempt: typing_extensions.Literal[
-        "UNSPECIFIED", "FINAL", "RETRYABLE", "CANCELED"
-    ]
+    retryAttempt: typing.Literal["UNSPECIFIED", "FINAL", "RETRYABLE", "CANCELED"]
     taskName: str
     taskNumber: str
     triggerId: str
@@ -1266,19 +1158,19 @@ class EnterpriseCrmEventbusStatsDimensions(typing_extensions.TypedDict, total=Fa
 
 @typing.type_check_only
 class EnterpriseCrmFrontendsEventbusProtoBooleanParameterArray(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     booleanValues: _list[bool]
 
 @typing.type_check_only
 class EnterpriseCrmFrontendsEventbusProtoDoubleParameterArray(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     doubleValues: _list[float]
 
 @typing.type_check_only
 class EnterpriseCrmFrontendsEventbusProtoEventExecutionDetails(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     eventAttemptStats: _list[
         EnterpriseCrmEventbusProtoEventExecutionDetailsEventAttemptStats
@@ -1287,7 +1179,7 @@ class EnterpriseCrmFrontendsEventbusProtoEventExecutionDetails(
         EnterpriseCrmFrontendsEventbusProtoEventExecutionSnapshot
     ]
     eventExecutionSnapshotsSize: str
-    eventExecutionState: typing_extensions.Literal[
+    eventExecutionState: typing.Literal[
         "UNSPECIFIED",
         "ON_HOLD",
         "IN_PROCESS",
@@ -1305,7 +1197,7 @@ class EnterpriseCrmFrontendsEventbusProtoEventExecutionDetails(
 
 @typing.type_check_only
 class EnterpriseCrmFrontendsEventbusProtoEventExecutionInfo(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     clientId: str
     createTime: str
@@ -1315,7 +1207,7 @@ class EnterpriseCrmFrontendsEventbusProtoEventExecutionInfo(
     eventExecutionInfoId: str
     executionTraceInfo: EnterpriseCrmEventbusProtoExecutionTraceInfo
     lastModifiedTime: str
-    postMethod: typing_extensions.Literal[
+    postMethod: typing.Literal[
         "UNSPECIFIED",
         "POST",
         "POST_TO_QUEUE",
@@ -1323,9 +1215,7 @@ class EnterpriseCrmFrontendsEventbusProtoEventExecutionInfo(
         "POST_BY_EVENT_CONFIG_ID",
         "POST_WITH_EVENT_DETAILS",
     ]
-    product: typing_extensions.Literal[
-        "UNSPECIFIED_PRODUCT", "IP", "APIGEE", "SECURITY"
-    ]
+    product: typing.Literal["UNSPECIFIED_PRODUCT", "IP", "APIGEE", "SECURITY"]
     requestId: str
     requestParams: EnterpriseCrmFrontendsEventbusProtoEventParameters
     responseParams: EnterpriseCrmFrontendsEventbusProtoEventParameters
@@ -1338,7 +1228,7 @@ class EnterpriseCrmFrontendsEventbusProtoEventExecutionInfo(
 
 @typing.type_check_only
 class EnterpriseCrmFrontendsEventbusProtoEventExecutionSnapshot(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     checkpointTaskNumber: str
     conditionResults: _list[EnterpriseCrmEventbusProtoConditionResult]
@@ -1354,25 +1244,21 @@ class EnterpriseCrmFrontendsEventbusProtoEventExecutionSnapshot(
     taskName: str
 
 @typing.type_check_only
-class EnterpriseCrmFrontendsEventbusProtoEventParameters(
-    typing_extensions.TypedDict, total=False
-):
+class EnterpriseCrmFrontendsEventbusProtoEventParameters(typing.TypedDict, total=False):
     parameters: _list[EnterpriseCrmFrontendsEventbusProtoParameterEntry]
 
 @typing.type_check_only
 class EnterpriseCrmFrontendsEventbusProtoIntParameterArray(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     intValues: _list[str]
 
 @typing.type_check_only
-class EnterpriseCrmFrontendsEventbusProtoParamSpecEntry(
-    typing_extensions.TypedDict, total=False
-):
+class EnterpriseCrmFrontendsEventbusProtoParamSpecEntry(typing.TypedDict, total=False):
     className: str
     collectionElementClassName: str
     config: EnterpriseCrmEventbusProtoParamSpecEntryConfig
-    dataType: typing_extensions.Literal[
+    dataType: typing.Literal[
         "DATA_TYPE_UNSPECIFIED",
         "STRING_VALUE",
         "INT_VALUE",
@@ -1403,15 +1289,13 @@ class EnterpriseCrmFrontendsEventbusProtoParamSpecEntry(
 
 @typing.type_check_only
 class EnterpriseCrmFrontendsEventbusProtoParamSpecsMessage(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     parameters: _list[EnterpriseCrmFrontendsEventbusProtoParamSpecEntry]
 
 @typing.type_check_only
-class EnterpriseCrmFrontendsEventbusProtoParameterEntry(
-    typing_extensions.TypedDict, total=False
-):
-    dataType: typing_extensions.Literal[
+class EnterpriseCrmFrontendsEventbusProtoParameterEntry(typing.TypedDict, total=False):
+    dataType: typing.Literal[
         "DATA_TYPE_UNSPECIFIED",
         "STRING_VALUE",
         "INT_VALUE",
@@ -1436,11 +1320,9 @@ class EnterpriseCrmFrontendsEventbusProtoParameterEntry(
     value: EnterpriseCrmFrontendsEventbusProtoParameterValueType
 
 @typing.type_check_only
-class EnterpriseCrmFrontendsEventbusProtoParameterMap(
-    typing_extensions.TypedDict, total=False
-):
+class EnterpriseCrmFrontendsEventbusProtoParameterMap(typing.TypedDict, total=False):
     entries: _list[EnterpriseCrmFrontendsEventbusProtoParameterMapEntry]
-    keyType: typing_extensions.Literal[
+    keyType: typing.Literal[
         "DATA_TYPE_UNSPECIFIED",
         "STRING_VALUE",
         "INT_VALUE",
@@ -1460,7 +1342,7 @@ class EnterpriseCrmFrontendsEventbusProtoParameterMap(
         "NON_SERIALIZABLE_OBJECT",
         "JSON_VALUE",
     ]
-    valueType: typing_extensions.Literal[
+    valueType: typing.Literal[
         "DATA_TYPE_UNSPECIFIED",
         "STRING_VALUE",
         "INT_VALUE",
@@ -1483,21 +1365,21 @@ class EnterpriseCrmFrontendsEventbusProtoParameterMap(
 
 @typing.type_check_only
 class EnterpriseCrmFrontendsEventbusProtoParameterMapEntry(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     key: EnterpriseCrmFrontendsEventbusProtoParameterMapField
     value: EnterpriseCrmFrontendsEventbusProtoParameterMapField
 
 @typing.type_check_only
 class EnterpriseCrmFrontendsEventbusProtoParameterMapField(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     literalValue: EnterpriseCrmFrontendsEventbusProtoParameterValueType
     referenceKey: str
 
 @typing.type_check_only
 class EnterpriseCrmFrontendsEventbusProtoParameterValueType(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     booleanArray: EnterpriseCrmFrontendsEventbusProtoBooleanParameterArray
     booleanValue: bool
@@ -1514,13 +1396,13 @@ class EnterpriseCrmFrontendsEventbusProtoParameterValueType(
 
 @typing.type_check_only
 class EnterpriseCrmFrontendsEventbusProtoProtoParameterArray(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     protoValues: _list[dict[str, typing.Any]]
 
 @typing.type_check_only
 class EnterpriseCrmFrontendsEventbusProtoRollbackStrategy(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     parameters: EnterpriseCrmFrontendsEventbusProtoEventParameters
     rollbackTaskImplementationClassName: str
@@ -1528,32 +1410,30 @@ class EnterpriseCrmFrontendsEventbusProtoRollbackStrategy(
 
 @typing.type_check_only
 class EnterpriseCrmFrontendsEventbusProtoSerializedObjectParameter(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     objectValue: str
 
 @typing.type_check_only
 class EnterpriseCrmFrontendsEventbusProtoStringParameterArray(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     stringValues: _list[str]
 
 @typing.type_check_only
-class EnterpriseCrmFrontendsEventbusProtoTaskConfig(
-    typing_extensions.TypedDict, total=False
-):
+class EnterpriseCrmFrontendsEventbusProtoTaskConfig(typing.TypedDict, total=False):
     alertConfigs: _list[EnterpriseCrmEventbusProtoTaskAlertConfig]
     createTime: str
     creatorEmail: str
     description: str
     disableStrictTypeValidation: bool
     errorCatcherId: str
-    externalTaskType: typing_extensions.Literal[
+    externalTaskType: typing.Literal[
         "EXTERNAL_TASK_TYPE_UNSPECIFIED", "NORMAL_TASK", "ERROR_TASK"
     ]
     failurePolicy: EnterpriseCrmEventbusProtoFailurePolicy
     incomingEdgeCount: int
-    jsonValidationOption: typing_extensions.Literal[
+    jsonValidationOption: typing.Literal[
         "UNSPECIFIED_JSON_VALIDATION_OPTION",
         "SKIP",
         "PRE_EXECUTION",
@@ -1563,7 +1443,7 @@ class EnterpriseCrmFrontendsEventbusProtoTaskConfig(
     label: str
     lastModifiedTime: str
     nextTasks: _list[EnterpriseCrmEventbusProtoNextTask]
-    nextTasksExecutionPolicy: typing_extensions.Literal[
+    nextTasksExecutionPolicy: typing.Literal[
         "UNSPECIFIED", "RUN_ALL_MATCH", "RUN_FIRST_MATCH"
     ]
     parameters: dict[str, typing.Any]
@@ -1574,37 +1454,33 @@ class EnterpriseCrmFrontendsEventbusProtoTaskConfig(
     successPolicy: EnterpriseCrmEventbusProtoSuccessPolicy
     synchronousCallFailurePolicy: EnterpriseCrmEventbusProtoFailurePolicy
     taskEntity: EnterpriseCrmFrontendsEventbusProtoTaskEntity
-    taskExecutionStrategy: typing_extensions.Literal[
+    taskExecutionStrategy: typing.Literal[
         "WHEN_ALL_SUCCEED", "WHEN_ANY_SUCCEED", "WHEN_ALL_TASKS_AND_CONDITIONS_SUCCEED"
     ]
     taskName: str
     taskNumber: str
     taskSpec: str
     taskTemplateName: str
-    taskType: typing_extensions.Literal["TASK", "ASIS_TEMPLATE", "IO_TEMPLATE"]
+    taskType: typing.Literal["TASK", "ASIS_TEMPLATE", "IO_TEMPLATE"]
 
 @typing.type_check_only
-class EnterpriseCrmFrontendsEventbusProtoTaskEntity(
-    typing_extensions.TypedDict, total=False
-):
+class EnterpriseCrmFrontendsEventbusProtoTaskEntity(typing.TypedDict, total=False):
     disabledForVpcSc: bool
     metadata: EnterpriseCrmEventbusProtoTaskMetadata
     paramSpecs: EnterpriseCrmFrontendsEventbusProtoParamSpecsMessage
     stats: EnterpriseCrmEventbusStats
-    taskType: typing_extensions.Literal["TASK", "ASIS_TEMPLATE", "IO_TEMPLATE"]
+    taskType: typing.Literal["TASK", "ASIS_TEMPLATE", "IO_TEMPLATE"]
     uiConfig: EnterpriseCrmEventbusProtoTaskUiConfig
 
 @typing.type_check_only
-class EnterpriseCrmFrontendsEventbusProtoTriggerConfig(
-    typing_extensions.TypedDict, total=False
-):
+class EnterpriseCrmFrontendsEventbusProtoTriggerConfig(typing.TypedDict, total=False):
     alertConfig: _list[EnterpriseCrmEventbusProtoWorkflowAlertConfig]
     cloudSchedulerConfig: EnterpriseCrmEventbusProtoCloudSchedulerConfig
     description: str
     enabledClients: _list[str]
     errorCatcherId: str
     label: str
-    nextTasksExecutionPolicy: typing_extensions.Literal[
+    nextTasksExecutionPolicy: typing.Literal[
         "UNSPECIFIED", "RUN_ALL_MATCH", "RUN_FIRST_MATCH"
     ]
     pauseWorkflowExecutions: bool
@@ -1615,7 +1491,7 @@ class EnterpriseCrmFrontendsEventbusProtoTriggerConfig(
     triggerId: str
     triggerName: str
     triggerNumber: str
-    triggerType: typing_extensions.Literal[
+    triggerType: typing.Literal[
         "UNKNOWN",
         "CLOUD_PUBSUB",
         "GOOPS",
@@ -1635,12 +1511,12 @@ class EnterpriseCrmFrontendsEventbusProtoTriggerConfig(
 
 @typing.type_check_only
 class EnterpriseCrmFrontendsEventbusProtoWorkflowParameterEntry(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     attributes: EnterpriseCrmEventbusProtoAttributes
     children: _list[EnterpriseCrmFrontendsEventbusProtoWorkflowParameterEntry]
     containsLargeData: bool
-    dataType: typing_extensions.Literal[
+    dataType: typing.Literal[
         "DATA_TYPE_UNSPECIFIED",
         "STRING_VALUE",
         "INT_VALUE",
@@ -1662,9 +1538,7 @@ class EnterpriseCrmFrontendsEventbusProtoWorkflowParameterEntry(
     ]
     defaultValue: EnterpriseCrmFrontendsEventbusProtoParameterValueType
     description: str
-    inOutType: typing_extensions.Literal[
-        "IN_OUT_TYPE_UNSPECIFIED", "IN", "OUT", "IN_OUT"
-    ]
+    inOutType: typing.Literal["IN_OUT_TYPE_UNSPECIFIED", "IN", "OUT", "IN_OUT"]
     isTransient: bool
     jsonSchema: str
     key: str
@@ -1677,19 +1551,17 @@ class EnterpriseCrmFrontendsEventbusProtoWorkflowParameterEntry(
 
 @typing.type_check_only
 class EnterpriseCrmFrontendsEventbusProtoWorkflowParameters(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     parameters: _list[EnterpriseCrmFrontendsEventbusProtoWorkflowParameterEntry]
 
 @typing.type_check_only
-class EnterpriseCrmLoggingGwsFieldLimits(typing_extensions.TypedDict, total=False):
-    logAction: typing_extensions.Literal["LOG_ACTION_UNSPECIFIED", "DONT_LOG", "LOG"]
-    logType: _list[
-        typing_extensions.Literal["LOG_TYPE_UNSPECIFIED", "GWS", "GTS", "ALL"]
-    ]
+class EnterpriseCrmLoggingGwsFieldLimits(typing.TypedDict, total=False):
+    logAction: typing.Literal["LOG_ACTION_UNSPECIFIED", "DONT_LOG", "LOG"]
+    logType: _list[typing.Literal["LOG_TYPE_UNSPECIFIED", "GWS", "GTS", "ALL"]]
     maxArraySize: int
     maxStringLength: int
-    shortenerType: typing_extensions.Literal[
+    shortenerType: typing.Literal[
         "SHORTENER_TYPE_UNSPECIFIED",
         "SHORTEN",
         "HASH",
@@ -1700,15 +1572,13 @@ class EnterpriseCrmLoggingGwsFieldLimits(typing_extensions.TypedDict, total=Fals
     ]
 
 @typing.type_check_only
-class EnterpriseCrmLoggingGwsSanitizeOptions(typing_extensions.TypedDict, total=False):
+class EnterpriseCrmLoggingGwsSanitizeOptions(typing.TypedDict, total=False):
     isAlreadySanitized: bool
-    logType: _list[
-        typing_extensions.Literal["LOG_TYPE_UNSPECIFIED", "GWS", "GTS", "ALL"]
-    ]
-    privacy: typing_extensions.Literal[
+    logType: _list[typing.Literal["LOG_TYPE_UNSPECIFIED", "GWS", "GTS", "ALL"]]
+    privacy: typing.Literal[
         "PRIVACY_TYPE_UNSPECIFIED", "NOT_PII", "PII", "SPII", "UNSURE"
     ]
-    sanitizeType: typing_extensions.Literal[
+    sanitizeType: typing.Literal[
         "SANITIZE_TYPE_UNSPECIFIED",
         "SCRUB",
         "ANONYMIZE",
@@ -1719,10 +1589,10 @@ class EnterpriseCrmLoggingGwsSanitizeOptions(typing_extensions.TypedDict, total=
     ]
 
 @typing.type_check_only
-class GoogleCloudConnectorsV1AuthConfig(typing_extensions.TypedDict, total=False):
+class GoogleCloudConnectorsV1AuthConfig(typing.TypedDict, total=False):
     additionalVariables: _list[GoogleCloudConnectorsV1ConfigVariable]
     authKey: str
-    authType: typing_extensions.Literal[
+    authType: typing.Literal[
         "AUTH_TYPE_UNSPECIFIED",
         "USER_PASSWORD",
         "OAUTH2_JWT_BEARER",
@@ -1739,7 +1609,7 @@ class GoogleCloudConnectorsV1AuthConfig(typing_extensions.TypedDict, total=False
 
 @typing.type_check_only
 class GoogleCloudConnectorsV1AuthConfigOauth2AuthCodeFlow(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     authCode: str
     authUri: str
@@ -1752,52 +1622,46 @@ class GoogleCloudConnectorsV1AuthConfigOauth2AuthCodeFlow(
 
 @typing.type_check_only
 class GoogleCloudConnectorsV1AuthConfigOauth2ClientCredentials(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     clientId: str
     clientSecret: GoogleCloudConnectorsV1Secret
 
 @typing.type_check_only
-class GoogleCloudConnectorsV1AuthConfigOauth2JwtBearer(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudConnectorsV1AuthConfigOauth2JwtBearer(typing.TypedDict, total=False):
     clientKey: GoogleCloudConnectorsV1Secret
     jwtClaims: GoogleCloudConnectorsV1AuthConfigOauth2JwtBearerJwtClaims
 
 @typing.type_check_only
 class GoogleCloudConnectorsV1AuthConfigOauth2JwtBearerJwtClaims(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     audience: str
     issuer: str
     subject: str
 
 @typing.type_check_only
-class GoogleCloudConnectorsV1AuthConfigSshPublicKey(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudConnectorsV1AuthConfigSshPublicKey(typing.TypedDict, total=False):
     certType: str
     sshClientCert: GoogleCloudConnectorsV1Secret
     sshClientCertPass: GoogleCloudConnectorsV1Secret
     username: str
 
 @typing.type_check_only
-class GoogleCloudConnectorsV1AuthConfigUserPassword(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudConnectorsV1AuthConfigUserPassword(typing.TypedDict, total=False):
     password: GoogleCloudConnectorsV1Secret
     username: str
 
 @typing.type_check_only
-class GoogleCloudConnectorsV1BillingConfig(typing_extensions.TypedDict, total=False):
-    billingCategory: typing_extensions.Literal[
+class GoogleCloudConnectorsV1BillingConfig(typing.TypedDict, total=False):
+    billingCategory: typing.Literal[
         "BILLING_CATEGORY_UNSPECIFIED",
         "GCP_AND_TECHNICAL_CONNECTOR",
         "NON_GCP_CONNECTOR",
     ]
 
 @typing.type_check_only
-class GoogleCloudConnectorsV1ConfigVariable(typing_extensions.TypedDict, total=False):
+class GoogleCloudConnectorsV1ConfigVariable(typing.TypedDict, total=False):
     boolValue: bool
     encryptionKeyValue: GoogleCloudConnectorsV1EncryptionKey
     intValue: str
@@ -1806,14 +1670,14 @@ class GoogleCloudConnectorsV1ConfigVariable(typing_extensions.TypedDict, total=F
     stringValue: str
 
 @typing.type_check_only
-class GoogleCloudConnectorsV1Connection(typing_extensions.TypedDict, total=False):
+class GoogleCloudConnectorsV1Connection(typing.TypedDict, total=False):
     authConfig: GoogleCloudConnectorsV1AuthConfig
     billingConfig: GoogleCloudConnectorsV1BillingConfig
     configVariables: _list[GoogleCloudConnectorsV1ConfigVariable]
     connectionRevision: str
     connectorVersion: str
     connectorVersionInfraConfig: GoogleCloudConnectorsV1ConnectorVersionInfraConfig
-    connectorVersionLaunchStage: typing_extensions.Literal[
+    connectorVersionLaunchStage: typing.Literal[
         "LAUNCH_STAGE_UNSPECIFIED", "PREVIEW", "GA", "DEPRECATED", "PRIVATE_PREVIEW"
     ]
     createTime: str
@@ -1821,7 +1685,7 @@ class GoogleCloudConnectorsV1Connection(typing_extensions.TypedDict, total=False
     destinationConfigs: _list[GoogleCloudConnectorsV1DestinationConfig]
     envoyImageLocation: str
     eventingConfig: GoogleCloudConnectorsV1EventingConfig
-    eventingEnablementType: typing_extensions.Literal[
+    eventingEnablementType: typing.Literal[
         "EVENTING_ENABLEMENT_TYPE_UNSPECIFIED",
         "EVENTING_AND_CONNECTION",
         "ONLY_EVENTING",
@@ -1838,16 +1702,14 @@ class GoogleCloudConnectorsV1Connection(typing_extensions.TypedDict, total=False
     serviceDirectory: str
     sslConfig: GoogleCloudConnectorsV1SslConfig
     status: GoogleCloudConnectorsV1ConnectionStatus
-    subscriptionType: typing_extensions.Literal[
-        "SUBSCRIPTION_TYPE_UNSPECIFIED", "PAY_G", "PAID"
-    ]
+    subscriptionType: typing.Literal["SUBSCRIPTION_TYPE_UNSPECIFIED", "PAY_G", "PAID"]
     suspended: bool
     updateTime: str
 
 @typing.type_check_only
-class GoogleCloudConnectorsV1ConnectionStatus(typing_extensions.TypedDict, total=False):
+class GoogleCloudConnectorsV1ConnectionStatus(typing.TypedDict, total=False):
     description: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "CREATING",
         "ACTIVE",
@@ -1860,11 +1722,9 @@ class GoogleCloudConnectorsV1ConnectionStatus(typing_extensions.TypedDict, total
     status: str
 
 @typing.type_check_only
-class GoogleCloudConnectorsV1ConnectorVersionInfraConfig(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudConnectorsV1ConnectorVersionInfraConfig(typing.TypedDict, total=False):
     connectionRatelimitWindowSeconds: str
-    deploymentModel: typing_extensions.Literal[
+    deploymentModel: typing.Literal[
         "DEPLOYMENT_MODEL_UNSPECIFIED", "GKE_MST", "CLOUD_RUN_MST"
     ]
     hpaConfig: GoogleCloudConnectorsV1HPAConfig
@@ -1875,27 +1735,23 @@ class GoogleCloudConnectorsV1ConnectorVersionInfraConfig(
     sharedDeployment: str
 
 @typing.type_check_only
-class GoogleCloudConnectorsV1Destination(typing_extensions.TypedDict, total=False):
+class GoogleCloudConnectorsV1Destination(typing.TypedDict, total=False):
     host: str
     port: int
     serviceAttachment: str
 
 @typing.type_check_only
-class GoogleCloudConnectorsV1DestinationConfig(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudConnectorsV1DestinationConfig(typing.TypedDict, total=False):
     destinations: _list[GoogleCloudConnectorsV1Destination]
     key: str
 
 @typing.type_check_only
-class GoogleCloudConnectorsV1EncryptionKey(typing_extensions.TypedDict, total=False):
+class GoogleCloudConnectorsV1EncryptionKey(typing.TypedDict, total=False):
     kmsKeyName: str
-    type: typing_extensions.Literal[
-        "TYPE_UNSPECIFIED", "GOOGLE_MANAGED", "CUSTOMER_MANAGED"
-    ]
+    type: typing.Literal["TYPE_UNSPECIFIED", "GOOGLE_MANAGED", "CUSTOMER_MANAGED"]
 
 @typing.type_check_only
-class GoogleCloudConnectorsV1EventingConfig(typing_extensions.TypedDict, total=False):
+class GoogleCloudConnectorsV1EventingConfig(typing.TypedDict, total=False):
     additionalVariables: _list[GoogleCloudConnectorsV1ConfigVariable]
     authConfig: GoogleCloudConnectorsV1AuthConfig
     deadLetterConfig: GoogleCloudConnectorsV1EventingConfigDeadLetterConfig
@@ -1908,15 +1764,13 @@ class GoogleCloudConnectorsV1EventingConfig(typing_extensions.TypedDict, total=F
 
 @typing.type_check_only
 class GoogleCloudConnectorsV1EventingConfigDeadLetterConfig(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     projectId: str
     topic: str
 
 @typing.type_check_only
-class GoogleCloudConnectorsV1EventingRuntimeData(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudConnectorsV1EventingRuntimeData(typing.TypedDict, total=False):
     eventsListenerEndpoint: str
     eventsListenerPscSa: str
     status: GoogleCloudConnectorsV1EventingStatus
@@ -1924,7 +1778,7 @@ class GoogleCloudConnectorsV1EventingRuntimeData(
 
 @typing.type_check_only
 class GoogleCloudConnectorsV1EventingRuntimeDataWebhookData(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     additionalVariables: _list[GoogleCloudConnectorsV1ConfigVariable]
     createTime: str
@@ -1934,62 +1788,60 @@ class GoogleCloudConnectorsV1EventingRuntimeDataWebhookData(
     updateTime: str
 
 @typing.type_check_only
-class GoogleCloudConnectorsV1EventingStatus(typing_extensions.TypedDict, total=False):
+class GoogleCloudConnectorsV1EventingStatus(typing.TypedDict, total=False):
     description: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED", "ACTIVE", "ERROR", "INGRESS_ENDPOINT_REQUIRED"
     ]
 
 @typing.type_check_only
-class GoogleCloudConnectorsV1HPAConfig(typing_extensions.TypedDict, total=False):
+class GoogleCloudConnectorsV1HPAConfig(typing.TypedDict, total=False):
     cpuUtilizationThreshold: str
     memoryUtilizationThreshold: str
 
 @typing.type_check_only
-class GoogleCloudConnectorsV1LockConfig(typing_extensions.TypedDict, total=False):
+class GoogleCloudConnectorsV1LockConfig(typing.TypedDict, total=False):
     locked: bool
     reason: str
 
 @typing.type_check_only
-class GoogleCloudConnectorsV1LogConfig(typing_extensions.TypedDict, total=False):
+class GoogleCloudConnectorsV1LogConfig(typing.TypedDict, total=False):
     enabled: bool
 
 @typing.type_check_only
-class GoogleCloudConnectorsV1NodeConfig(typing_extensions.TypedDict, total=False):
+class GoogleCloudConnectorsV1NodeConfig(typing.TypedDict, total=False):
     maxNodeCount: int
     minNodeCount: int
 
 @typing.type_check_only
-class GoogleCloudConnectorsV1ResourceLimits(typing_extensions.TypedDict, total=False):
+class GoogleCloudConnectorsV1ResourceLimits(typing.TypedDict, total=False):
     cpu: str
     memory: str
 
 @typing.type_check_only
-class GoogleCloudConnectorsV1ResourceRequests(typing_extensions.TypedDict, total=False):
+class GoogleCloudConnectorsV1ResourceRequests(typing.TypedDict, total=False):
     cpu: str
     memory: str
 
 @typing.type_check_only
-class GoogleCloudConnectorsV1Secret(typing_extensions.TypedDict, total=False):
+class GoogleCloudConnectorsV1Secret(typing.TypedDict, total=False):
     secretVersion: str
 
 @typing.type_check_only
-class GoogleCloudConnectorsV1SslConfig(typing_extensions.TypedDict, total=False):
+class GoogleCloudConnectorsV1SslConfig(typing.TypedDict, total=False):
     additionalVariables: _list[GoogleCloudConnectorsV1ConfigVariable]
-    clientCertType: typing_extensions.Literal["CERT_TYPE_UNSPECIFIED", "PEM"]
+    clientCertType: typing.Literal["CERT_TYPE_UNSPECIFIED", "PEM"]
     clientCertificate: GoogleCloudConnectorsV1Secret
     clientPrivateKey: GoogleCloudConnectorsV1Secret
     clientPrivateKeyPass: GoogleCloudConnectorsV1Secret
     privateServerCertificate: GoogleCloudConnectorsV1Secret
-    serverCertType: typing_extensions.Literal["CERT_TYPE_UNSPECIFIED", "PEM"]
-    trustModel: typing_extensions.Literal["PUBLIC", "PRIVATE", "INSECURE"]
-    type: typing_extensions.Literal["SSL_TYPE_UNSPECIFIED", "TLS", "MTLS"]
+    serverCertType: typing.Literal["CERT_TYPE_UNSPECIFIED", "PEM"]
+    trustModel: typing.Literal["PUBLIC", "PRIVATE", "INSECURE"]
+    type: typing.Literal["SSL_TYPE_UNSPECIFIED", "TLS", "MTLS"]
     useSsl: bool
 
 @typing.type_check_only
-class GoogleCloudIntegrationsV1alphaAccessToken(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudIntegrationsV1alphaAccessToken(typing.TypedDict, total=False):
     accessToken: str
     accessTokenExpireTime: str
     refreshToken: str
@@ -1997,20 +1849,16 @@ class GoogleCloudIntegrationsV1alphaAccessToken(
     tokenType: str
 
 @typing.type_check_only
-class GoogleCloudIntegrationsV1alphaAttemptStats(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudIntegrationsV1alphaAttemptStats(typing.TypedDict, total=False):
     endTime: str
     startTime: str
 
 @typing.type_check_only
-class GoogleCloudIntegrationsV1alphaAuthConfig(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudIntegrationsV1alphaAuthConfig(typing.TypedDict, total=False):
     certificateId: str
     createTime: str
     creatorEmail: str
-    credentialType: typing_extensions.Literal[
+    credentialType: typing.Literal[
         "CREDENTIAL_TYPE_UNSPECIFIED",
         "USERNAME_AND_PASSWORD",
         "API_KEY",
@@ -2033,7 +1881,7 @@ class GoogleCloudIntegrationsV1alphaAuthConfig(
     name: str
     overrideValidTime: str
     reason: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "VALID",
         "INVALID",
@@ -2044,39 +1892,35 @@ class GoogleCloudIntegrationsV1alphaAuthConfig(
     ]
     updateTime: str
     validTime: str
-    visibility: typing_extensions.Literal[
+    visibility: typing.Literal[
         "AUTH_CONFIG_VISIBILITY_UNSPECIFIED", "PRIVATE", "CLIENT_VISIBLE"
     ]
 
 @typing.type_check_only
-class GoogleCloudIntegrationsV1alphaAuthToken(typing_extensions.TypedDict, total=False):
+class GoogleCloudIntegrationsV1alphaAuthToken(typing.TypedDict, total=False):
     token: str
     type: str
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaBooleanParameterArray(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     booleanValues: _list[bool]
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaCancelExecutionRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaCancelExecutionResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     isCanceled: bool
 
 @typing.type_check_only
-class GoogleCloudIntegrationsV1alphaCertificate(
-    typing_extensions.TypedDict, total=False
-):
-    certificateStatus: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "ACTIVE", "EXPIRED"
-    ]
+class GoogleCloudIntegrationsV1alphaCertificate(typing.TypedDict, total=False):
+    certificateStatus: typing.Literal["STATE_UNSPECIFIED", "ACTIVE", "EXPIRED"]
     credentialId: str
     description: str
     displayName: str
@@ -2087,26 +1931,20 @@ class GoogleCloudIntegrationsV1alphaCertificate(
     validStartTime: str
 
 @typing.type_check_only
-class GoogleCloudIntegrationsV1alphaClientCertificate(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudIntegrationsV1alphaClientCertificate(typing.TypedDict, total=False):
     encryptedPrivateKey: str
     passphrase: str
     sslCertificate: str
 
 @typing.type_check_only
-class GoogleCloudIntegrationsV1alphaCloudLoggingDetails(
-    typing_extensions.TypedDict, total=False
-):
-    cloudLoggingSeverity: typing_extensions.Literal[
+class GoogleCloudIntegrationsV1alphaCloudLoggingDetails(typing.TypedDict, total=False):
+    cloudLoggingSeverity: typing.Literal[
         "CLOUD_LOGGING_SEVERITY_UNSPECIFIED", "INFO", "ERROR", "WARNING"
     ]
     enableCloudLogging: bool
 
 @typing.type_check_only
-class GoogleCloudIntegrationsV1alphaCloudSchedulerConfig(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudIntegrationsV1alphaCloudSchedulerConfig(typing.TypedDict, total=False):
     cronTab: str
     errorMessage: str
     location: str
@@ -2114,37 +1952,33 @@ class GoogleCloudIntegrationsV1alphaCloudSchedulerConfig(
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaConnectionSchemaMetadata(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     actions: _list[str]
     entities: _list[str]
 
 @typing.type_check_only
-class GoogleCloudIntegrationsV1alphaCoordinate(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudIntegrationsV1alphaCoordinate(typing.TypedDict, total=False):
     x: int
     y: int
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaCreateAppsScriptProjectRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     appsScriptProject: str
     authConfigId: str
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaCreateAppsScriptProjectResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     projectId: str
 
 @typing.type_check_only
-class GoogleCloudIntegrationsV1alphaCredential(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudIntegrationsV1alphaCredential(typing.TypedDict, total=False):
     authToken: GoogleCloudIntegrationsV1alphaAuthToken
-    credentialType: typing_extensions.Literal[
+    credentialType: typing.Literal[
         "CREDENTIAL_TYPE_UNSPECIFIED",
         "USERNAME_AND_PASSWORD",
         "API_KEY",
@@ -2169,28 +2003,24 @@ class GoogleCloudIntegrationsV1alphaCredential(
     usernameAndPassword: GoogleCloudIntegrationsV1alphaUsernameAndPassword
 
 @typing.type_check_only
-class GoogleCloudIntegrationsV1alphaDoubleParameterArray(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudIntegrationsV1alphaDoubleParameterArray(typing.TypedDict, total=False):
     doubleValues: _list[float]
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaDownloadIntegrationVersionResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     content: str
     files: _list[GoogleCloudIntegrationsV1alphaSerializedFile]
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaEnumerateConnectorPlatformRegionsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     regions: _list[str]
 
 @typing.type_check_only
-class GoogleCloudIntegrationsV1alphaErrorCatcherConfig(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudIntegrationsV1alphaErrorCatcherConfig(typing.TypedDict, total=False):
     description: str
     errorCatcherId: str
     errorCatcherNumber: str
@@ -2199,22 +2029,18 @@ class GoogleCloudIntegrationsV1alphaErrorCatcherConfig(
     startErrorTasks: _list[GoogleCloudIntegrationsV1alphaNextTask]
 
 @typing.type_check_only
-class GoogleCloudIntegrationsV1alphaEventParameter(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudIntegrationsV1alphaEventParameter(typing.TypedDict, total=False):
     key: str
     masked: bool
     value: GoogleCloudIntegrationsV1alphaValueType
 
 @typing.type_check_only
-class GoogleCloudIntegrationsV1alphaExecuteEventResponse(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudIntegrationsV1alphaExecuteEventResponse(typing.TypedDict, total=False):
     executionId: str
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaExecuteIntegrationsRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     doNotPropagateError: bool
     executionId: str
@@ -2226,7 +2052,7 @@ class GoogleCloudIntegrationsV1alphaExecuteIntegrationsRequest(
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaExecuteIntegrationsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     eventParameters: EnterpriseCrmFrontendsEventbusProtoEventParameters
     executionFailed: bool
@@ -2235,16 +2061,16 @@ class GoogleCloudIntegrationsV1alphaExecuteIntegrationsResponse(
     parameterEntries: _list[EnterpriseCrmFrontendsEventbusProtoParameterEntry]
 
 @typing.type_check_only
-class GoogleCloudIntegrationsV1alphaExecution(typing_extensions.TypedDict, total=False):
+class GoogleCloudIntegrationsV1alphaExecution(typing.TypedDict, total=False):
     cloudLoggingDetails: GoogleCloudIntegrationsV1alphaCloudLoggingDetails
     createTime: str
     directSubExecutions: _list[GoogleCloudIntegrationsV1alphaExecution]
     eventExecutionDetails: EnterpriseCrmEventbusProtoEventExecutionDetails
     executionDetails: GoogleCloudIntegrationsV1alphaExecutionDetails
-    executionMethod: typing_extensions.Literal[
+    executionMethod: typing.Literal[
         "EXECUTION_METHOD_UNSPECIFIED", "POST", "POST_TO_QUEUE", "SCHEDULE"
     ]
-    integrationVersionState: typing_extensions.Literal[
+    integrationVersionState: typing.Literal[
         "INTEGRATION_STATE_UNSPECIFIED", "DRAFT", "ACTIVE", "ARCHIVED", "SNAPSHOT"
     ]
     name: str
@@ -2257,13 +2083,11 @@ class GoogleCloudIntegrationsV1alphaExecution(typing_extensions.TypedDict, total
     updateTime: str
 
 @typing.type_check_only
-class GoogleCloudIntegrationsV1alphaExecutionDetails(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudIntegrationsV1alphaExecutionDetails(typing.TypedDict, total=False):
     attemptStats: _list[GoogleCloudIntegrationsV1alphaAttemptStats]
     eventExecutionSnapshotsSize: str
     executionSnapshots: _list[GoogleCloudIntegrationsV1alphaExecutionSnapshot]
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "PENDING",
         "PROCESSING",
@@ -2275,9 +2099,7 @@ class GoogleCloudIntegrationsV1alphaExecutionDetails(
     ]
 
 @typing.type_check_only
-class GoogleCloudIntegrationsV1alphaExecutionSnapshot(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudIntegrationsV1alphaExecutionSnapshot(typing.TypedDict, total=False):
     checkpointTaskNumber: str
     executionSnapshotMetadata: (
         GoogleCloudIntegrationsV1alphaExecutionSnapshotExecutionSnapshotMetadata
@@ -2287,7 +2109,7 @@ class GoogleCloudIntegrationsV1alphaExecutionSnapshot(
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaExecutionSnapshotExecutionSnapshotMetadata(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     ancestorIterationNumbers: _list[str]
     ancestorTaskNumbers: _list[str]
@@ -2299,12 +2121,10 @@ class GoogleCloudIntegrationsV1alphaExecutionSnapshotExecutionSnapshotMetadata(
     taskNumber: str
 
 @typing.type_check_only
-class GoogleCloudIntegrationsV1alphaFailurePolicy(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudIntegrationsV1alphaFailurePolicy(typing.TypedDict, total=False):
     intervalTime: str
     maxRetries: int
-    retryStrategy: typing_extensions.Literal[
+    retryStrategy: typing.Literal[
         "RETRY_STRATEGY_UNSPECIFIED",
         "IGNORE",
         "NONE",
@@ -2317,20 +2137,16 @@ class GoogleCloudIntegrationsV1alphaFailurePolicy(
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaGenerateTokenResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     message: str
 
 @typing.type_check_only
-class GoogleCloudIntegrationsV1alphaIntParameterArray(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudIntegrationsV1alphaIntParameterArray(typing.TypedDict, total=False):
     intValues: _list[str]
 
 @typing.type_check_only
-class GoogleCloudIntegrationsV1alphaIntegration(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudIntegrationsV1alphaIntegration(typing.TypedDict, total=False):
     active: bool
     creatorEmail: str
     description: str
@@ -2340,14 +2156,14 @@ class GoogleCloudIntegrationsV1alphaIntegration(
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaIntegrationAlertConfig(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     aggregationPeriod: str
     alertThreshold: int
     disableAlert: bool
     displayName: str
     durationThreshold: str
-    metricType: typing_extensions.Literal[
+    metricType: typing.Literal[
         "METRIC_TYPE_UNSPECIFIED",
         "EVENT_ERROR_RATE",
         "EVENT_WARNING_RATE",
@@ -2361,31 +2177,29 @@ class GoogleCloudIntegrationsV1alphaIntegrationAlertConfig(
         "TASK_PERCENTILE_DURATION",
     ]
     onlyFinalAttempt: bool
-    thresholdType: typing_extensions.Literal[
+    thresholdType: typing.Literal[
         "THRESHOLD_TYPE_UNSPECIFIED", "EXPECTED_MIN", "EXPECTED_MAX"
     ]
     thresholdValue: GoogleCloudIntegrationsV1alphaIntegrationAlertConfigThresholdValue
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaIntegrationAlertConfigThresholdValue(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     absolute: str
     percentage: int
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaIntegrationConfigParameter(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     parameter: GoogleCloudIntegrationsV1alphaIntegrationParameter
     value: GoogleCloudIntegrationsV1alphaValueType
 
 @typing.type_check_only
-class GoogleCloudIntegrationsV1alphaIntegrationParameter(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudIntegrationsV1alphaIntegrationParameter(typing.TypedDict, total=False):
     containsLargeData: bool
-    dataType: typing_extensions.Literal[
+    dataType: typing.Literal[
         "INTEGRATION_PARAMETER_DATA_TYPE_UNSPECIFIED",
         "STRING_VALUE",
         "INT_VALUE",
@@ -2401,9 +2215,7 @@ class GoogleCloudIntegrationsV1alphaIntegrationParameter(
     ]
     defaultValue: GoogleCloudIntegrationsV1alphaValueType
     displayName: str
-    inputOutputType: typing_extensions.Literal[
-        "IN_OUT_TYPE_UNSPECIFIED", "IN", "OUT", "IN_OUT"
-    ]
+    inputOutputType: typing.Literal["IN_OUT_TYPE_UNSPECIFIED", "IN", "OUT", "IN_OUT"]
     isTransient: bool
     jsonSchema: str
     key: str
@@ -2413,10 +2225,10 @@ class GoogleCloudIntegrationsV1alphaIntegrationParameter(
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaIntegrationTemplateVersion(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     createTime: str
-    databasePersistencePolicy: typing_extensions.Literal[
+    databasePersistencePolicy: typing.Literal[
         "DATABASE_PERSISTENCE_POLICY_UNSPECIFIED",
         "DATABASE_PERSISTENCE_DISABLED",
         "DATABASE_PERSISTENCE_ASYNC",
@@ -2428,9 +2240,7 @@ class GoogleCloudIntegrationsV1alphaIntegrationTemplateVersion(
     name: str
     parentIntegrationVersionId: str
     snapshotNumber: str
-    status: typing_extensions.Literal[
-        "UNKNOWN", "DRAFT", "ACTIVE", "ARCHIVED", "SNAPSHOT"
-    ]
+    status: typing.Literal["UNKNOWN", "DRAFT", "ACTIVE", "ARCHIVED", "SNAPSHOT"]
     taskConfigs: _list[EnterpriseCrmFrontendsEventbusProtoTaskConfig]
     teardown: EnterpriseCrmEventbusProtoTeardown
     templateParameters: EnterpriseCrmFrontendsEventbusProtoWorkflowParameters
@@ -2439,13 +2249,11 @@ class GoogleCloudIntegrationsV1alphaIntegrationTemplateVersion(
     userLabel: str
 
 @typing.type_check_only
-class GoogleCloudIntegrationsV1alphaIntegrationVersion(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudIntegrationsV1alphaIntegrationVersion(typing.TypedDict, total=False):
     cloudLoggingDetails: GoogleCloudIntegrationsV1alphaCloudLoggingDetails
     createTime: str
     createdFromTemplate: str
-    databasePersistencePolicy: typing_extensions.Literal[
+    databasePersistencePolicy: typing.Literal[
         "DATABASE_PERSISTENCE_POLICY_UNSPECIFIED",
         "DATABASE_PERSISTENCE_DISABLED",
         "DATABASE_PERSISTENCE_ASYNC",
@@ -2461,7 +2269,7 @@ class GoogleCloudIntegrationsV1alphaIntegrationVersion(
     lastModifierEmail: str
     lockHolder: str
     name: str
-    origin: typing_extensions.Literal[
+    origin: typing.Literal[
         "UNSPECIFIED",
         "UI",
         "PIPER_V2",
@@ -2472,12 +2280,10 @@ class GoogleCloudIntegrationsV1alphaIntegrationVersion(
     parentTemplateId: str
     runAsServiceAccount: str
     snapshotNumber: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "INTEGRATION_STATE_UNSPECIFIED", "DRAFT", "ACTIVE", "ARCHIVED", "SNAPSHOT"
     ]
-    status: typing_extensions.Literal[
-        "UNKNOWN", "DRAFT", "ACTIVE", "ARCHIVED", "SNAPSHOT"
-    ]
+    status: typing.Literal["UNKNOWN", "DRAFT", "ACTIVE", "ARCHIVED", "SNAPSHOT"]
     taskConfigs: _list[GoogleCloudIntegrationsV1alphaTaskConfig]
     taskConfigsInternal: _list[EnterpriseCrmFrontendsEventbusProtoTaskConfig]
     teardown: EnterpriseCrmEventbusProtoTeardown
@@ -2487,7 +2293,7 @@ class GoogleCloudIntegrationsV1alphaIntegrationVersion(
     userLabel: str
 
 @typing.type_check_only
-class GoogleCloudIntegrationsV1alphaJwt(typing_extensions.TypedDict, total=False):
+class GoogleCloudIntegrationsV1alphaJwt(typing.TypedDict, total=False):
     jwt: str
     jwtHeader: str
     jwtPayload: str
@@ -2495,52 +2301,52 @@ class GoogleCloudIntegrationsV1alphaJwt(typing_extensions.TypedDict, total=False
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaLiftSuspensionRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     suspensionResult: str
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaLiftSuspensionResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     eventExecutionInfoId: str
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaLinkAppsScriptProjectRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     scriptId: str
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaLinkAppsScriptProjectResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     scriptId: str
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaListAuthConfigsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     authConfigs: _list[GoogleCloudIntegrationsV1alphaAuthConfig]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaListCertificatesResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     certificates: _list[GoogleCloudIntegrationsV1alphaCertificate]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaListConnectionsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     connections: _list[GoogleCloudConnectorsV1Connection]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaListExecutionsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     executionInfos: _list[EnterpriseCrmFrontendsEventbusProtoEventExecutionInfo]
     executions: _list[GoogleCloudIntegrationsV1alphaExecution]
@@ -2548,7 +2354,7 @@ class GoogleCloudIntegrationsV1alphaListExecutionsResponse(
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaListIntegrationTemplateVersionsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     integrationTemplateVersions: _list[
         GoogleCloudIntegrationsV1alphaIntegrationTemplateVersion
@@ -2557,7 +2363,7 @@ class GoogleCloudIntegrationsV1alphaListIntegrationTemplateVersionsResponse(
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaListIntegrationVersionsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     integrationVersions: _list[GoogleCloudIntegrationsV1alphaIntegrationVersion]
     nextPageToken: str
@@ -2565,48 +2371,48 @@ class GoogleCloudIntegrationsV1alphaListIntegrationVersionsResponse(
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaListIntegrationsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     integrations: _list[GoogleCloudIntegrationsV1alphaIntegration]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaListRuntimeActionSchemasResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     nextPageToken: str
     runtimeActionSchemas: _list[GoogleCloudIntegrationsV1alphaRuntimeActionSchema]
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaListRuntimeEntitySchemasResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     nextPageToken: str
     runtimeEntitySchemas: _list[GoogleCloudIntegrationsV1alphaRuntimeEntitySchema]
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaListSfdcChannelsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     nextPageToken: str
     sfdcChannels: _list[GoogleCloudIntegrationsV1alphaSfdcChannel]
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaListSfdcInstancesResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     nextPageToken: str
     sfdcInstances: _list[GoogleCloudIntegrationsV1alphaSfdcInstance]
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaListSuspensionsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     nextPageToken: str
     suspensions: _list[GoogleCloudIntegrationsV1alphaSuspension]
 
 @typing.type_check_only
-class GoogleCloudIntegrationsV1alphaNextTask(typing_extensions.TypedDict, total=False):
+class GoogleCloudIntegrationsV1alphaNextTask(typing.TypedDict, total=False):
     condition: str
     description: str
     displayName: str
@@ -2615,7 +2421,7 @@ class GoogleCloudIntegrationsV1alphaNextTask(typing_extensions.TypedDict, total=
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaOAuth2AuthorizationCode(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     accessToken: GoogleCloudIntegrationsV1alphaAccessToken
     applyReauthPolicy: bool
@@ -2624,7 +2430,7 @@ class GoogleCloudIntegrationsV1alphaOAuth2AuthorizationCode(
     authParams: GoogleCloudIntegrationsV1alphaParameterMap
     clientId: str
     clientSecret: str
-    requestType: typing_extensions.Literal[
+    requestType: typing.Literal[
         "REQUEST_TYPE_UNSPECIFIED", "REQUEST_BODY", "QUERY_PARAMETERS", "ENCODED_HEADER"
     ]
     scope: str
@@ -2633,12 +2439,12 @@ class GoogleCloudIntegrationsV1alphaOAuth2AuthorizationCode(
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaOAuth2ClientCredentials(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     accessToken: GoogleCloudIntegrationsV1alphaAccessToken
     clientId: str
     clientSecret: str
-    requestType: typing_extensions.Literal[
+    requestType: typing.Literal[
         "REQUEST_TYPE_UNSPECIFIED", "REQUEST_BODY", "QUERY_PARAMETERS", "ENCODED_HEADER"
     ]
     scope: str
@@ -2647,13 +2453,13 @@ class GoogleCloudIntegrationsV1alphaOAuth2ClientCredentials(
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaOAuth2ResourceOwnerCredentials(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     accessToken: GoogleCloudIntegrationsV1alphaAccessToken
     clientId: str
     clientSecret: str
     password: str
-    requestType: typing_extensions.Literal[
+    requestType: typing.Literal[
         "REQUEST_TYPE_UNSPECIFIED", "REQUEST_BODY", "QUERY_PARAMETERS", "ENCODED_HEADER"
     ]
     scope: str
@@ -2662,18 +2468,16 @@ class GoogleCloudIntegrationsV1alphaOAuth2ResourceOwnerCredentials(
     username: str
 
 @typing.type_check_only
-class GoogleCloudIntegrationsV1alphaOidcToken(typing_extensions.TypedDict, total=False):
+class GoogleCloudIntegrationsV1alphaOidcToken(typing.TypedDict, total=False):
     audience: str
     serviceAccountEmail: str
     token: str
     tokenExpireTime: str
 
 @typing.type_check_only
-class GoogleCloudIntegrationsV1alphaParameterMap(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudIntegrationsV1alphaParameterMap(typing.TypedDict, total=False):
     entries: _list[GoogleCloudIntegrationsV1alphaParameterMapEntry]
-    keyType: typing_extensions.Literal[
+    keyType: typing.Literal[
         "INTEGRATION_PARAMETER_DATA_TYPE_UNSPECIFIED",
         "STRING_VALUE",
         "INT_VALUE",
@@ -2687,7 +2491,7 @@ class GoogleCloudIntegrationsV1alphaParameterMap(
         "PROTO_VALUE",
         "PROTO_ARRAY",
     ]
-    valueType: typing_extensions.Literal[
+    valueType: typing.Literal[
         "INTEGRATION_PARAMETER_DATA_TYPE_UNSPECIFIED",
         "STRING_VALUE",
         "INT_VALUE",
@@ -2703,60 +2507,52 @@ class GoogleCloudIntegrationsV1alphaParameterMap(
     ]
 
 @typing.type_check_only
-class GoogleCloudIntegrationsV1alphaParameterMapEntry(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudIntegrationsV1alphaParameterMapEntry(typing.TypedDict, total=False):
     key: GoogleCloudIntegrationsV1alphaParameterMapField
     value: GoogleCloudIntegrationsV1alphaParameterMapField
 
 @typing.type_check_only
-class GoogleCloudIntegrationsV1alphaParameterMapField(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudIntegrationsV1alphaParameterMapField(typing.TypedDict, total=False):
     literalValue: GoogleCloudIntegrationsV1alphaValueType
     referenceKey: str
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaPublishIntegrationVersionRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     configParameters: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaPublishIntegrationVersionResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaResolveSuspensionRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     suspension: GoogleCloudIntegrationsV1alphaSuspension
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaResolveSuspensionResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
-class GoogleCloudIntegrationsV1alphaRuntimeActionSchema(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudIntegrationsV1alphaRuntimeActionSchema(typing.TypedDict, total=False):
     action: str
     inputSchema: str
     outputSchema: str
 
 @typing.type_check_only
-class GoogleCloudIntegrationsV1alphaRuntimeEntitySchema(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudIntegrationsV1alphaRuntimeEntitySchema(typing.TypedDict, total=False):
     arrayFieldSchema: str
     entity: str
     fieldSchema: str
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaScheduleIntegrationsRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     inputParameters: dict[str, typing.Any]
     parameterEntries: _list[EnterpriseCrmFrontendsEventbusProtoParameterEntry]
@@ -2768,30 +2564,26 @@ class GoogleCloudIntegrationsV1alphaScheduleIntegrationsRequest(
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaScheduleIntegrationsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     executionInfoIds: _list[str]
 
 @typing.type_check_only
-class GoogleCloudIntegrationsV1alphaSerializedFile(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudIntegrationsV1alphaSerializedFile(typing.TypedDict, total=False):
     content: str
-    file: typing_extensions.Literal[
+    file: typing.Literal[
         "INTEGRATION_FILE_UNSPECIFIED", "INTEGRATION", "INTEGRATION_CONFIG_VARIABLES"
     ]
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaServiceAccountCredentials(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     scope: str
     serviceAccount: str
 
 @typing.type_check_only
-class GoogleCloudIntegrationsV1alphaSfdcChannel(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudIntegrationsV1alphaSfdcChannel(typing.TypedDict, total=False):
     channelTopic: str
     createTime: str
     deleteTime: str
@@ -2803,9 +2595,7 @@ class GoogleCloudIntegrationsV1alphaSfdcChannel(
     updateTime: str
 
 @typing.type_check_only
-class GoogleCloudIntegrationsV1alphaSfdcInstance(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudIntegrationsV1alphaSfdcInstance(typing.TypedDict, total=False):
     authConfigId: _list[str]
     createTime: str
     deleteTime: str
@@ -2817,23 +2607,15 @@ class GoogleCloudIntegrationsV1alphaSfdcInstance(
     updateTime: str
 
 @typing.type_check_only
-class GoogleCloudIntegrationsV1alphaStringParameterArray(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudIntegrationsV1alphaStringParameterArray(typing.TypedDict, total=False):
     stringValues: _list[str]
 
 @typing.type_check_only
-class GoogleCloudIntegrationsV1alphaSuccessPolicy(
-    typing_extensions.TypedDict, total=False
-):
-    finalState: typing_extensions.Literal[
-        "FINAL_STATE_UNSPECIFIED", "SUCCEEDED", "SUSPENDED"
-    ]
+class GoogleCloudIntegrationsV1alphaSuccessPolicy(typing.TypedDict, total=False):
+    finalState: typing.Literal["FINAL_STATE_UNSPECIFIED", "SUCCEEDED", "SUSPENDED"]
 
 @typing.type_check_only
-class GoogleCloudIntegrationsV1alphaSuspension(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudIntegrationsV1alphaSuspension(typing.TypedDict, total=False):
     approvalConfig: GoogleCloudIntegrationsV1alphaSuspensionApprovalConfig
     audit: GoogleCloudIntegrationsV1alphaSuspensionAudit
     createTime: str
@@ -2841,7 +2623,7 @@ class GoogleCloudIntegrationsV1alphaSuspension(
     integration: str
     lastModifyTime: str
     name: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "RESOLUTION_STATE_UNSPECIFIED", "PENDING", "REJECTED", "LIFTED"
     ]
     suspensionConfig: EnterpriseCrmEventbusProtoSuspensionConfig
@@ -2849,7 +2631,7 @@ class GoogleCloudIntegrationsV1alphaSuspension(
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaSuspensionApprovalConfig(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     customMessage: str
     emailAddresses: _list[str]
@@ -2857,42 +2639,38 @@ class GoogleCloudIntegrationsV1alphaSuspensionApprovalConfig(
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaSuspensionApprovalExpiration(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     expireTime: str
     liftWhenExpired: bool
     remindTime: str
 
 @typing.type_check_only
-class GoogleCloudIntegrationsV1alphaSuspensionAudit(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudIntegrationsV1alphaSuspensionAudit(typing.TypedDict, total=False):
     resolveTime: str
     resolver: str
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaTakeoverEditLockRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaTakeoverEditLockResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     integrationVersion: GoogleCloudIntegrationsV1alphaIntegrationVersion
 
 @typing.type_check_only
-class GoogleCloudIntegrationsV1alphaTaskConfig(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudIntegrationsV1alphaTaskConfig(typing.TypedDict, total=False):
     description: str
     displayName: str
     errorCatcherId: str
-    externalTaskType: typing_extensions.Literal[
+    externalTaskType: typing.Literal[
         "EXTERNAL_TASK_TYPE_UNSPECIFIED", "NORMAL_TASK", "ERROR_TASK"
     ]
     failurePolicy: GoogleCloudIntegrationsV1alphaFailurePolicy
-    jsonValidationOption: typing_extensions.Literal[
+    jsonValidationOption: typing.Literal[
         "JSON_VALIDATION_OPTION_UNSPECIFIED",
         "SKIP",
         "PRE_EXECUTION",
@@ -2900,7 +2678,7 @@ class GoogleCloudIntegrationsV1alphaTaskConfig(
         "PRE_POST_EXECUTION",
     ]
     nextTasks: _list[GoogleCloudIntegrationsV1alphaNextTask]
-    nextTasksExecutionPolicy: typing_extensions.Literal[
+    nextTasksExecutionPolicy: typing.Literal[
         "NEXT_TASKS_EXECUTION_POLICY_UNSPECIFIED", "RUN_ALL_MATCH", "RUN_FIRST_MATCH"
     ]
     parameters: dict[str, typing.Any]
@@ -2908,7 +2686,7 @@ class GoogleCloudIntegrationsV1alphaTaskConfig(
     successPolicy: GoogleCloudIntegrationsV1alphaSuccessPolicy
     synchronousCallFailurePolicy: GoogleCloudIntegrationsV1alphaFailurePolicy
     task: str
-    taskExecutionStrategy: typing_extensions.Literal[
+    taskExecutionStrategy: typing.Literal[
         "TASK_EXECUTION_STRATEGY_UNSPECIFIED",
         "WHEN_ALL_SUCCEED",
         "WHEN_ANY_SUCCEED",
@@ -2918,11 +2696,9 @@ class GoogleCloudIntegrationsV1alphaTaskConfig(
     taskTemplate: str
 
 @typing.type_check_only
-class GoogleCloudIntegrationsV1alphaTaskExecutionDetails(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudIntegrationsV1alphaTaskExecutionDetails(typing.TypedDict, total=False):
     taskAttemptStats: _list[GoogleCloudIntegrationsV1alphaAttemptStats]
-    taskExecutionState: typing_extensions.Literal[
+    taskExecutionState: typing.Literal[
         "TASK_EXECUTION_STATE_UNSPECIFIED",
         "PENDING_EXECUTION",
         "IN_PROCESS",
@@ -2940,15 +2716,13 @@ class GoogleCloudIntegrationsV1alphaTaskExecutionDetails(
     taskNumber: str
 
 @typing.type_check_only
-class GoogleCloudIntegrationsV1alphaTriggerConfig(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudIntegrationsV1alphaTriggerConfig(typing.TypedDict, total=False):
     alertConfig: _list[GoogleCloudIntegrationsV1alphaIntegrationAlertConfig]
     cloudSchedulerConfig: GoogleCloudIntegrationsV1alphaCloudSchedulerConfig
     description: str
     errorCatcherId: str
     label: str
-    nextTasksExecutionPolicy: typing_extensions.Literal[
+    nextTasksExecutionPolicy: typing.Literal[
         "NEXT_TASKS_EXECUTION_POLICY_UNSPECIFIED", "RUN_ALL_MATCH", "RUN_FIRST_MATCH"
     ]
     position: GoogleCloudIntegrationsV1alphaCoordinate
@@ -2957,7 +2731,7 @@ class GoogleCloudIntegrationsV1alphaTriggerConfig(
     trigger: str
     triggerId: str
     triggerNumber: str
-    triggerType: typing_extensions.Literal[
+    triggerType: typing.Literal[
         "TRIGGER_TYPE_UNSPECIFIED",
         "CRON",
         "API",
@@ -2971,31 +2745,29 @@ class GoogleCloudIntegrationsV1alphaTriggerConfig(
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaUnpublishIntegrationVersionRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaUploadIntegrationVersionRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     content: str
-    fileFormat: typing_extensions.Literal["FILE_FORMAT_UNSPECIFIED", "JSON", "YAML"]
+    fileFormat: typing.Literal["FILE_FORMAT_UNSPECIFIED", "JSON", "YAML"]
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaUploadIntegrationVersionResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     integrationVersion: GoogleCloudIntegrationsV1alphaIntegrationVersion
 
 @typing.type_check_only
-class GoogleCloudIntegrationsV1alphaUsernameAndPassword(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudIntegrationsV1alphaUsernameAndPassword(typing.TypedDict, total=False):
     password: str
     username: str
 
 @typing.type_check_only
-class GoogleCloudIntegrationsV1alphaValueType(typing_extensions.TypedDict, total=False):
+class GoogleCloudIntegrationsV1alphaValueType(typing.TypedDict, total=False):
     booleanArray: GoogleCloudIntegrationsV1alphaBooleanParameterArray
     booleanValue: bool
     doubleArray: GoogleCloudIntegrationsV1alphaDoubleParameterArray
@@ -3008,12 +2780,12 @@ class GoogleCloudIntegrationsV1alphaValueType(typing_extensions.TypedDict, total
 
 @typing.type_check_only
 class GoogleInternalCloudCrmEventbusV3PostToQueueWithTriggerIdRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     clientId: str
     ignoreErrorIfNoActiveWorkflow: bool
     parameters: EnterpriseCrmEventbusProtoEventParameters
-    priority: typing_extensions.Literal[
+    priority: typing.Literal[
         "UNSPCIFIED", "SHEDDABLE", "SHEDDABLE_PLUS", "CRITICAL", "CRITICAL_PLUS"
     ]
     quotaRetryCount: int
@@ -3026,4 +2798,4 @@ class GoogleInternalCloudCrmEventbusV3PostToQueueWithTriggerIdRequest(
     workflowName: str
 
 @typing.type_check_only
-class GoogleProtobufEmpty(typing_extensions.TypedDict, total=False): ...
+class GoogleProtobufEmpty(typing.TypedDict, total=False): ...

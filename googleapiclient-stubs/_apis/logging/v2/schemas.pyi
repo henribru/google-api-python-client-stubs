@@ -1,54 +1,52 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class AppHub(typing_extensions.TypedDict, total=False):
+class AppHub(typing.TypedDict, total=False):
     application: AppHubApplication
     service: AppHubService
     workload: AppHubWorkload
 
 @typing.type_check_only
-class AppHubApplication(typing_extensions.TypedDict, total=False):
+class AppHubApplication(typing.TypedDict, total=False):
     container: str
     id: str
     location: str
 
 @typing.type_check_only
-class AppHubService(typing_extensions.TypedDict, total=False):
+class AppHubService(typing.TypedDict, total=False):
     criticalityType: str
     environmentType: str
     id: str
 
 @typing.type_check_only
-class AppHubWorkload(typing_extensions.TypedDict, total=False):
+class AppHubWorkload(typing.TypedDict, total=False):
     criticalityType: str
     environmentType: str
     id: str
 
 @typing.type_check_only
-class BigQueryDataset(typing_extensions.TypedDict, total=False):
+class BigQueryDataset(typing.TypedDict, total=False):
     datasetId: str
 
 @typing.type_check_only
-class BigQueryOptions(typing_extensions.TypedDict, total=False):
+class BigQueryOptions(typing.TypedDict, total=False):
     usePartitionedTables: bool
     usesTimestampColumnPartitioning: bool
 
 @typing.type_check_only
-class Binding(typing_extensions.TypedDict, total=False):
+class Binding(typing.TypedDict, total=False):
     condition: Expr
     members: _list[str]
     role: str
 
 @typing.type_check_only
-class BucketMetadata(typing_extensions.TypedDict, total=False):
+class BucketMetadata(typing.TypedDict, total=False):
     createBucketRequest: CreateBucketRequest
     endTime: str
     startTime: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "OPERATION_STATE_UNSPECIFIED",
         "OPERATION_STATE_SCHEDULED",
         "OPERATION_STATE_WAITING_FOR_PERMISSIONS",
@@ -61,23 +59,23 @@ class BucketMetadata(typing_extensions.TypedDict, total=False):
     updateBucketRequest: UpdateBucketRequest
 
 @typing.type_check_only
-class BucketOptions(typing_extensions.TypedDict, total=False):
+class BucketOptions(typing.TypedDict, total=False):
     explicitBuckets: Explicit
     exponentialBuckets: Exponential
     linearBuckets: Linear
 
 @typing.type_check_only
-class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
+class CancelOperationRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class CmekSettings(typing_extensions.TypedDict, total=False):
+class CmekSettings(typing.TypedDict, total=False):
     kmsKeyName: str
     kmsKeyVersionName: str
     name: str
     serviceAccountId: str
 
 @typing.type_check_only
-class CopyLogEntriesMetadata(typing_extensions.TypedDict, total=False):
+class CopyLogEntriesMetadata(typing.TypedDict, total=False):
     cancellationRequested: bool
     destination: str
     endTime: str
@@ -85,7 +83,7 @@ class CopyLogEntriesMetadata(typing_extensions.TypedDict, total=False):
     request: CopyLogEntriesRequest
     source: str
     startTime: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "OPERATION_STATE_UNSPECIFIED",
         "OPERATION_STATE_SCHEDULED",
         "OPERATION_STATE_WAITING_FOR_PERMISSIONS",
@@ -99,61 +97,59 @@ class CopyLogEntriesMetadata(typing_extensions.TypedDict, total=False):
     writerIdentity: str
 
 @typing.type_check_only
-class CopyLogEntriesRequest(typing_extensions.TypedDict, total=False):
+class CopyLogEntriesRequest(typing.TypedDict, total=False):
     destination: str
     filter: str
     name: str
 
 @typing.type_check_only
-class CopyLogEntriesResponse(typing_extensions.TypedDict, total=False):
+class CopyLogEntriesResponse(typing.TypedDict, total=False):
     logEntriesCopiedCount: str
 
 @typing.type_check_only
-class CreateBucketRequest(typing_extensions.TypedDict, total=False):
+class CreateBucketRequest(typing.TypedDict, total=False):
     bucket: LogBucket
     bucketId: str
     parent: str
 
 @typing.type_check_only
-class CreateLinkRequest(typing_extensions.TypedDict, total=False):
+class CreateLinkRequest(typing.TypedDict, total=False):
     link: Link
     linkId: str
     parent: str
 
 @typing.type_check_only
-class DefaultSinkConfig(typing_extensions.TypedDict, total=False):
+class DefaultSinkConfig(typing.TypedDict, total=False):
     exclusions: _list[LogExclusion]
     filter: str
-    mode: typing_extensions.Literal[
-        "FILTER_WRITE_MODE_UNSPECIFIED", "APPEND", "OVERWRITE"
-    ]
+    mode: typing.Literal["FILTER_WRITE_MODE_UNSPECIFIED", "APPEND", "OVERWRITE"]
 
 @typing.type_check_only
-class DeleteLinkRequest(typing_extensions.TypedDict, total=False):
+class DeleteLinkRequest(typing.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Explicit(typing_extensions.TypedDict, total=False):
+class Explicit(typing.TypedDict, total=False):
     bounds: _list[float]
 
 @typing.type_check_only
-class Exponential(typing_extensions.TypedDict, total=False):
+class Exponential(typing.TypedDict, total=False):
     growthFactor: float
     numFiniteBuckets: int
     scale: float
 
 @typing.type_check_only
-class Expr(typing_extensions.TypedDict, total=False):
+class Expr(typing.TypedDict, total=False):
     description: str
     expression: str
     location: str
     title: str
 
 @typing.type_check_only
-class FieldSource(typing_extensions.TypedDict, total=False):
+class FieldSource(typing.TypedDict, total=False):
     aliasRef: str
     columnType: str
     field: str
@@ -162,8 +158,8 @@ class FieldSource(typing_extensions.TypedDict, total=False):
     projectedField: ProjectedField
 
 @typing.type_check_only
-class FilterExpression(typing_extensions.TypedDict, total=False):
-    comparator: typing_extensions.Literal[
+class FilterExpression(typing.TypedDict, total=False):
+    comparator: typing.Literal[
         "COMPARATOR_UNSPECIFIED",
         "EQUALS",
         "MATCHES_REGEXP",
@@ -181,28 +177,26 @@ class FilterExpression(typing_extensions.TypedDict, total=False):
     literalValue: typing.Any
 
 @typing.type_check_only
-class FilterPredicate(typing_extensions.TypedDict, total=False):
+class FilterPredicate(typing.TypedDict, total=False):
     childPredicates: _list[FilterPredicate]
     leafPredicate: FilterExpression
-    operatorType: typing_extensions.Literal[
-        "OPERATOR_TYPE_UNSPECIFIED", "AND", "OR", "LEAF"
-    ]
+    operatorType: typing.Literal["OPERATOR_TYPE_UNSPECIFIED", "AND", "OR", "LEAF"]
 
 @typing.type_check_only
-class FunctionApplication(typing_extensions.TypedDict, total=False):
+class FunctionApplication(typing.TypedDict, total=False):
     parameters: _list[typing.Any]
     type: str
 
 @typing.type_check_only
-class GetIamPolicyRequest(typing_extensions.TypedDict, total=False):
+class GetIamPolicyRequest(typing.TypedDict, total=False):
     options: GetPolicyOptions
 
 @typing.type_check_only
-class GetPolicyOptions(typing_extensions.TypedDict, total=False):
+class GetPolicyOptions(typing.TypedDict, total=False):
     requestedPolicyVersion: int
 
 @typing.type_check_only
-class HttpRequest(typing_extensions.TypedDict, total=False):
+class HttpRequest(typing.TypedDict, total=False):
     cacheFillBytes: str
     cacheHit: bool
     cacheLookup: bool
@@ -220,31 +214,31 @@ class HttpRequest(typing_extensions.TypedDict, total=False):
     userAgent: str
 
 @typing.type_check_only
-class IndexConfig(typing_extensions.TypedDict, total=False):
+class IndexConfig(typing.TypedDict, total=False):
     createTime: str
     fieldPath: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "INDEX_TYPE_UNSPECIFIED", "INDEX_TYPE_STRING", "INDEX_TYPE_INTEGER"
     ]
 
 @typing.type_check_only
-class LabelDescriptor(typing_extensions.TypedDict, total=False):
+class LabelDescriptor(typing.TypedDict, total=False):
     description: str
     key: str
-    valueType: typing_extensions.Literal["STRING", "BOOL", "INT64"]
+    valueType: typing.Literal["STRING", "BOOL", "INT64"]
 
 @typing.type_check_only
-class Linear(typing_extensions.TypedDict, total=False):
+class Linear(typing.TypedDict, total=False):
     numFiniteBuckets: int
     offset: float
     width: float
 
 @typing.type_check_only
-class Link(typing_extensions.TypedDict, total=False):
+class Link(typing.TypedDict, total=False):
     bigqueryDataset: BigQueryDataset
     createTime: str
     description: str
-    lifecycleState: typing_extensions.Literal[
+    lifecycleState: typing.Literal[
         "LIFECYCLE_STATE_UNSPECIFIED",
         "ACTIVE",
         "DELETE_REQUESTED",
@@ -255,12 +249,12 @@ class Link(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class LinkMetadata(typing_extensions.TypedDict, total=False):
+class LinkMetadata(typing.TypedDict, total=False):
     createLinkRequest: CreateLinkRequest
     deleteLinkRequest: DeleteLinkRequest
     endTime: str
     startTime: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "OPERATION_STATE_UNSPECIFIED",
         "OPERATION_STATE_SCHEDULED",
         "OPERATION_STATE_WAITING_FOR_PERMISSIONS",
@@ -272,27 +266,27 @@ class LinkMetadata(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class ListBucketsResponse(typing_extensions.TypedDict, total=False):
+class ListBucketsResponse(typing.TypedDict, total=False):
     buckets: _list[LogBucket]
     nextPageToken: str
 
 @typing.type_check_only
-class ListExclusionsResponse(typing_extensions.TypedDict, total=False):
+class ListExclusionsResponse(typing.TypedDict, total=False):
     exclusions: _list[LogExclusion]
     nextPageToken: str
 
 @typing.type_check_only
-class ListLinksResponse(typing_extensions.TypedDict, total=False):
+class ListLinksResponse(typing.TypedDict, total=False):
     links: _list[Link]
     nextPageToken: str
 
 @typing.type_check_only
-class ListLocationsResponse(typing_extensions.TypedDict, total=False):
+class ListLocationsResponse(typing.TypedDict, total=False):
     locations: _list[Location]
     nextPageToken: str
 
 @typing.type_check_only
-class ListLogEntriesRequest(typing_extensions.TypedDict, total=False):
+class ListLogEntriesRequest(typing.TypedDict, total=False):
     filter: str
     orderBy: str
     pageSize: int
@@ -301,62 +295,60 @@ class ListLogEntriesRequest(typing_extensions.TypedDict, total=False):
     resourceNames: _list[str]
 
 @typing.type_check_only
-class ListLogEntriesResponse(typing_extensions.TypedDict, total=False):
+class ListLogEntriesResponse(typing.TypedDict, total=False):
     entries: _list[LogEntry]
     nextPageToken: str
 
 @typing.type_check_only
-class ListLogMetricsResponse(typing_extensions.TypedDict, total=False):
+class ListLogMetricsResponse(typing.TypedDict, total=False):
     metrics: _list[LogMetric]
     nextPageToken: str
 
 @typing.type_check_only
-class ListLogScopesResponse(typing_extensions.TypedDict, total=False):
+class ListLogScopesResponse(typing.TypedDict, total=False):
     logScopes: _list[LogScope]
     nextPageToken: str
 
 @typing.type_check_only
-class ListLogsResponse(typing_extensions.TypedDict, total=False):
+class ListLogsResponse(typing.TypedDict, total=False):
     logNames: _list[str]
     nextPageToken: str
 
 @typing.type_check_only
-class ListMonitoredResourceDescriptorsResponse(
-    typing_extensions.TypedDict, total=False
-):
+class ListMonitoredResourceDescriptorsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     resourceDescriptors: _list[MonitoredResourceDescriptor]
 
 @typing.type_check_only
-class ListOperationsResponse(typing_extensions.TypedDict, total=False):
+class ListOperationsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListRecentQueriesResponse(typing_extensions.TypedDict, total=False):
+class ListRecentQueriesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     recentQueries: _list[RecentQuery]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListSavedQueriesResponse(typing_extensions.TypedDict, total=False):
+class ListSavedQueriesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     savedQueries: _list[SavedQuery]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListSinksResponse(typing_extensions.TypedDict, total=False):
+class ListSinksResponse(typing.TypedDict, total=False):
     nextPageToken: str
     sinks: _list[LogSink]
 
 @typing.type_check_only
-class ListViewsResponse(typing_extensions.TypedDict, total=False):
+class ListViewsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     views: _list[LogView]
 
 @typing.type_check_only
-class Location(typing_extensions.TypedDict, total=False):
+class Location(typing.TypedDict, total=False):
     displayName: str
     labels: dict[str, typing.Any]
     locationId: str
@@ -364,17 +356,17 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class LocationMetadata(typing_extensions.TypedDict, total=False):
+class LocationMetadata(typing.TypedDict, total=False):
     logAnalyticsEnabled: bool
 
 @typing.type_check_only
-class LogBucket(typing_extensions.TypedDict, total=False):
+class LogBucket(typing.TypedDict, total=False):
     analyticsEnabled: bool
     cmekSettings: CmekSettings
     createTime: str
     description: str
     indexConfigs: _list[IndexConfig]
-    lifecycleState: typing_extensions.Literal[
+    lifecycleState: typing.Literal[
         "LIFECYCLE_STATE_UNSPECIFIED",
         "ACTIVE",
         "DELETE_REQUESTED",
@@ -389,7 +381,7 @@ class LogBucket(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class LogEntry(typing_extensions.TypedDict, total=False):
+class LogEntry(typing.TypedDict, total=False):
     apphub: AppHub
     apphubDestination: AppHub
     apphubSource: AppHub
@@ -405,7 +397,7 @@ class LogEntry(typing_extensions.TypedDict, total=False):
     protoPayload: dict[str, typing.Any]
     receiveTimestamp: str
     resource: MonitoredResource
-    severity: typing_extensions.Literal[
+    severity: typing.Literal[
         "DEFAULT",
         "DEBUG",
         "INFO",
@@ -425,24 +417,24 @@ class LogEntry(typing_extensions.TypedDict, total=False):
     traceSampled: bool
 
 @typing.type_check_only
-class LogEntryOperation(typing_extensions.TypedDict, total=False):
+class LogEntryOperation(typing.TypedDict, total=False):
     first: bool
     id: str
     last: bool
     producer: str
 
 @typing.type_check_only
-class LogEntrySourceLocation(typing_extensions.TypedDict, total=False):
+class LogEntrySourceLocation(typing.TypedDict, total=False):
     file: str
     function: str
     line: str
 
 @typing.type_check_only
-class LogErrorGroup(typing_extensions.TypedDict, total=False):
+class LogErrorGroup(typing.TypedDict, total=False):
     id: str
 
 @typing.type_check_only
-class LogExclusion(typing_extensions.TypedDict, total=False):
+class LogExclusion(typing.TypedDict, total=False):
     createTime: str
     description: str
     disabled: bool
@@ -451,9 +443,9 @@ class LogExclusion(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class LogLine(typing_extensions.TypedDict, total=False):
+class LogLine(typing.TypedDict, total=False):
     logMessage: str
-    severity: typing_extensions.Literal[
+    severity: typing.Literal[
         "DEFAULT",
         "DEBUG",
         "INFO",
@@ -468,7 +460,7 @@ class LogLine(typing_extensions.TypedDict, total=False):
     time: str
 
 @typing.type_check_only
-class LogMetric(typing_extensions.TypedDict, total=False):
+class LogMetric(typing.TypedDict, total=False):
     bucketName: str
     bucketOptions: BucketOptions
     createTime: str
@@ -481,10 +473,10 @@ class LogMetric(typing_extensions.TypedDict, total=False):
     resourceName: str
     updateTime: str
     valueExtractor: str
-    version: typing_extensions.Literal["V2", "V1"]
+    version: typing.Literal["V2", "V1"]
 
 @typing.type_check_only
-class LogScope(typing_extensions.TypedDict, total=False):
+class LogScope(typing.TypedDict, total=False):
     createTime: str
     description: str
     name: str
@@ -492,7 +484,7 @@ class LogScope(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class LogSink(typing_extensions.TypedDict, total=False):
+class LogSink(typing.TypedDict, total=False):
     bigqueryOptions: BigQueryOptions
     createTime: str
     description: str
@@ -503,21 +495,19 @@ class LogSink(typing_extensions.TypedDict, total=False):
     includeChildren: bool
     interceptChildren: bool
     name: str
-    outputVersionFormat: typing_extensions.Literal[
-        "VERSION_FORMAT_UNSPECIFIED", "V2", "V1"
-    ]
+    outputVersionFormat: typing.Literal["VERSION_FORMAT_UNSPECIFIED", "V2", "V1"]
     resourceName: str
     updateTime: str
     writerIdentity: str
 
 @typing.type_check_only
-class LogSplit(typing_extensions.TypedDict, total=False):
+class LogSplit(typing.TypedDict, total=False):
     index: int
     totalSplits: int
     uid: str
 
 @typing.type_check_only
-class LogView(typing_extensions.TypedDict, total=False):
+class LogView(typing.TypedDict, total=False):
     createTime: str
     description: str
     filter: str
@@ -525,18 +515,18 @@ class LogView(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class LoggingQuery(typing_extensions.TypedDict, total=False):
+class LoggingQuery(typing.TypedDict, total=False):
     filter: str
     summaryFieldEnd: int
     summaryFieldStart: int
     summaryFields: _list[SummaryField]
 
 @typing.type_check_only
-class MetricDescriptor(typing_extensions.TypedDict, total=False):
+class MetricDescriptor(typing.TypedDict, total=False):
     description: str
     displayName: str
     labels: _list[LabelDescriptor]
-    launchStage: typing_extensions.Literal[
+    launchStage: typing.Literal[
         "LAUNCH_STAGE_UNSPECIFIED",
         "UNIMPLEMENTED",
         "PRELAUNCH",
@@ -547,14 +537,14 @@ class MetricDescriptor(typing_extensions.TypedDict, total=False):
         "DEPRECATED",
     ]
     metadata: MetricDescriptorMetadata
-    metricKind: typing_extensions.Literal[
+    metricKind: typing.Literal[
         "METRIC_KIND_UNSPECIFIED", "GAUGE", "DELTA", "CUMULATIVE"
     ]
     monitoredResourceTypes: _list[str]
     name: str
     type: str
     unit: str
-    valueType: typing_extensions.Literal[
+    valueType: typing.Literal[
         "VALUE_TYPE_UNSPECIFIED",
         "BOOL",
         "INT64",
@@ -565,9 +555,9 @@ class MetricDescriptor(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class MetricDescriptorMetadata(typing_extensions.TypedDict, total=False):
+class MetricDescriptorMetadata(typing.TypedDict, total=False):
     ingestDelay: str
-    launchStage: typing_extensions.Literal[
+    launchStage: typing.Literal[
         "LAUNCH_STAGE_UNSPECIFIED",
         "UNIMPLEMENTED",
         "PRELAUNCH",
@@ -579,7 +569,7 @@ class MetricDescriptorMetadata(typing_extensions.TypedDict, total=False):
     ]
     samplePeriod: str
     timeSeriesResourceHierarchyLevel: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "TIME_SERIES_RESOURCE_HIERARCHY_LEVEL_UNSPECIFIED",
             "PROJECT",
             "ORGANIZATION",
@@ -588,16 +578,16 @@ class MetricDescriptorMetadata(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class MonitoredResource(typing_extensions.TypedDict, total=False):
+class MonitoredResource(typing.TypedDict, total=False):
     labels: dict[str, typing.Any]
     type: str
 
 @typing.type_check_only
-class MonitoredResourceDescriptor(typing_extensions.TypedDict, total=False):
+class MonitoredResourceDescriptor(typing.TypedDict, total=False):
     description: str
     displayName: str
     labels: _list[LabelDescriptor]
-    launchStage: typing_extensions.Literal[
+    launchStage: typing.Literal[
         "LAUNCH_STAGE_UNSPECIFIED",
         "UNIMPLEMENTED",
         "PRELAUNCH",
@@ -611,12 +601,12 @@ class MonitoredResourceDescriptor(typing_extensions.TypedDict, total=False):
     type: str
 
 @typing.type_check_only
-class MonitoredResourceMetadata(typing_extensions.TypedDict, total=False):
+class MonitoredResourceMetadata(typing.TypedDict, total=False):
     systemLabels: dict[str, typing.Any]
     userLabels: dict[str, typing.Any]
 
 @typing.type_check_only
-class Operation(typing_extensions.TypedDict, total=False):
+class Operation(typing.TypedDict, total=False):
     done: bool
     error: Status
     metadata: dict[str, typing.Any]
@@ -624,22 +614,22 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class OpsAnalyticsQuery(typing_extensions.TypedDict, total=False):
+class OpsAnalyticsQuery(typing.TypedDict, total=False):
     queryBuilder: QueryBuilderConfig
     sqlQueryText: str
 
 @typing.type_check_only
-class Policy(typing_extensions.TypedDict, total=False):
+class Policy(typing.TypedDict, total=False):
     bindings: _list[Binding]
     etag: str
     version: int
 
 @typing.type_check_only
-class ProjectedField(typing_extensions.TypedDict, total=False):
+class ProjectedField(typing.TypedDict, total=False):
     alias: str
     cast: str
     field: str
-    operation: typing_extensions.Literal[
+    operation: typing.Literal[
         "FIELD_OPERATION_UNSPECIFIED", "NO_SETTING", "GROUP_BY", "AGGREGATE"
     ]
     regexExtraction: str
@@ -648,7 +638,7 @@ class ProjectedField(typing_extensions.TypedDict, total=False):
     virtualField: VirtualField
 
 @typing.type_check_only
-class QueryBuilderConfig(typing_extensions.TypedDict, total=False):
+class QueryBuilderConfig(typing.TypedDict, total=False):
     fieldSources: _list[FieldSource]
     filter: FilterPredicate
     limit: str
@@ -657,14 +647,14 @@ class QueryBuilderConfig(typing_extensions.TypedDict, total=False):
     searchTerm: str
 
 @typing.type_check_only
-class RecentQuery(typing_extensions.TypedDict, total=False):
+class RecentQuery(typing.TypedDict, total=False):
     lastRunTime: str
     loggingQuery: LoggingQuery
     name: str
     opsAnalyticsQuery: OpsAnalyticsQuery
 
 @typing.type_check_only
-class RequestLog(typing_extensions.TypedDict, total=False):
+class RequestLog(typing.TypedDict, total=False):
     appEngineRelease: str
     appId: str
     cost: float
@@ -701,7 +691,7 @@ class RequestLog(typing_extensions.TypedDict, total=False):
     wasLoadingRequest: bool
 
 @typing.type_check_only
-class SavedQuery(typing_extensions.TypedDict, total=False):
+class SavedQuery(typing.TypedDict, total=False):
     createTime: str
     description: str
     displayName: str
@@ -709,15 +699,15 @@ class SavedQuery(typing_extensions.TypedDict, total=False):
     name: str
     opsAnalyticsQuery: OpsAnalyticsQuery
     updateTime: str
-    visibility: typing_extensions.Literal["VISIBILITY_UNSPECIFIED", "PRIVATE", "SHARED"]
+    visibility: typing.Literal["VISIBILITY_UNSPECIFIED", "PRIVATE", "SHARED"]
 
 @typing.type_check_only
-class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
+class SetIamPolicyRequest(typing.TypedDict, total=False):
     policy: Policy
     updateMask: str
 
 @typing.type_check_only
-class Settings(typing_extensions.TypedDict, total=False):
+class Settings(typing.TypedDict, total=False):
     defaultSinkConfig: DefaultSinkConfig
     disableDefaultSink: bool
     kmsKeyName: str
@@ -727,9 +717,9 @@ class Settings(typing_extensions.TypedDict, total=False):
     storageLocation: str
 
 @typing.type_check_only
-class SortOrderParameter(typing_extensions.TypedDict, total=False):
+class SortOrderParameter(typing.TypedDict, total=False):
     fieldSource: FieldSource
-    sortOrderDirection: typing_extensions.Literal[
+    sortOrderDirection: typing.Literal[
         "SORT_ORDER_UNSPECIFIED",
         "SORT_ORDER_NONE",
         "SORT_ORDER_ASCENDING",
@@ -737,70 +727,66 @@ class SortOrderParameter(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class SourceLocation(typing_extensions.TypedDict, total=False):
+class SourceLocation(typing.TypedDict, total=False):
     file: str
     functionName: str
     line: str
 
 @typing.type_check_only
-class SourceReference(typing_extensions.TypedDict, total=False):
+class SourceReference(typing.TypedDict, total=False):
     repository: str
     revisionId: str
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class SummaryField(typing_extensions.TypedDict, total=False):
+class SummaryField(typing.TypedDict, total=False):
     field: str
 
 @typing.type_check_only
-class SuppressionInfo(typing_extensions.TypedDict, total=False):
-    reason: typing_extensions.Literal[
-        "REASON_UNSPECIFIED", "RATE_LIMIT", "NOT_CONSUMED"
-    ]
+class SuppressionInfo(typing.TypedDict, total=False):
+    reason: typing.Literal["REASON_UNSPECIFIED", "RATE_LIMIT", "NOT_CONSUMED"]
     suppressedCount: int
 
 @typing.type_check_only
-class TailLogEntriesRequest(typing_extensions.TypedDict, total=False):
+class TailLogEntriesRequest(typing.TypedDict, total=False):
     bufferWindow: str
     filter: str
     resourceNames: _list[str]
 
 @typing.type_check_only
-class TailLogEntriesResponse(typing_extensions.TypedDict, total=False):
+class TailLogEntriesResponse(typing.TypedDict, total=False):
     entries: _list[LogEntry]
     suppressionInfo: _list[SuppressionInfo]
 
 @typing.type_check_only
-class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
+class TestIamPermissionsRequest(typing.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
-class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
+class TestIamPermissionsResponse(typing.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
-class UndeleteBucketRequest(typing_extensions.TypedDict, total=False): ...
+class UndeleteBucketRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class UpdateBucketRequest(typing_extensions.TypedDict, total=False):
+class UpdateBucketRequest(typing.TypedDict, total=False):
     bucket: LogBucket
     name: str
     updateMask: str
 
 @typing.type_check_only
-class VirtualField(typing_extensions.TypedDict, total=False):
+class VirtualField(typing.TypedDict, total=False):
     underlyingFieldSources: _list[FieldSource]
-    virtualFieldType: typing_extensions.Literal[
-        "VIRTUAL_FIELD_TYPE_UNSPECIFIED", "COALESCE"
-    ]
+    virtualFieldType: typing.Literal["VIRTUAL_FIELD_TYPE_UNSPECIFIED", "COALESCE"]
 
 @typing.type_check_only
-class WriteLogEntriesRequest(typing_extensions.TypedDict, total=False):
+class WriteLogEntriesRequest(typing.TypedDict, total=False):
     dryRun: bool
     entries: _list[LogEntry]
     labels: dict[str, typing.Any]
@@ -809,4 +795,4 @@ class WriteLogEntriesRequest(typing_extensions.TypedDict, total=False):
     resource: MonitoredResource
 
 @typing.type_check_only
-class WriteLogEntriesResponse(typing_extensions.TypedDict, total=False): ...
+class WriteLogEntriesResponse(typing.TypedDict, total=False): ...

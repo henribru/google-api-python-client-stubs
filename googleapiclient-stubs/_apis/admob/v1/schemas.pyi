@@ -1,11 +1,9 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class AdUnit(typing_extensions.TypedDict, total=False):
+class AdUnit(typing.TypedDict, total=False):
     adFormat: str
     adTypes: _list[str]
     adUnitId: str
@@ -14,8 +12,8 @@ class AdUnit(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class App(typing_extensions.TypedDict, total=False):
-    appApprovalState: typing_extensions.Literal[
+class App(typing.TypedDict, total=False):
+    appApprovalState: typing.Literal[
         "APP_APPROVAL_STATE_UNSPECIFIED", "ACTION_REQUIRED", "IN_REVIEW", "APPROVED"
     ]
     appId: str
@@ -25,71 +23,71 @@ class App(typing_extensions.TypedDict, total=False):
     platform: str
 
 @typing.type_check_only
-class AppLinkedAppInfo(typing_extensions.TypedDict, total=False):
+class AppLinkedAppInfo(typing.TypedDict, total=False):
     appStoreId: str
     displayName: str
 
 @typing.type_check_only
-class AppManualAppInfo(typing_extensions.TypedDict, total=False):
+class AppManualAppInfo(typing.TypedDict, total=False):
     displayName: str
 
 @typing.type_check_only
-class Date(typing_extensions.TypedDict, total=False):
+class Date(typing.TypedDict, total=False):
     day: int
     month: int
     year: int
 
 @typing.type_check_only
-class DateRange(typing_extensions.TypedDict, total=False):
+class DateRange(typing.TypedDict, total=False):
     endDate: Date
     startDate: Date
 
 @typing.type_check_only
-class GenerateMediationReportRequest(typing_extensions.TypedDict, total=False):
+class GenerateMediationReportRequest(typing.TypedDict, total=False):
     reportSpec: MediationReportSpec
 
 @typing.type_check_only
-class GenerateMediationReportResponse(typing_extensions.TypedDict, total=False):
+class GenerateMediationReportResponse(typing.TypedDict, total=False):
     footer: ReportFooter
     header: ReportHeader
     row: ReportRow
 
 @typing.type_check_only
-class GenerateNetworkReportRequest(typing_extensions.TypedDict, total=False):
+class GenerateNetworkReportRequest(typing.TypedDict, total=False):
     reportSpec: NetworkReportSpec
 
 @typing.type_check_only
-class GenerateNetworkReportResponse(typing_extensions.TypedDict, total=False):
+class GenerateNetworkReportResponse(typing.TypedDict, total=False):
     footer: ReportFooter
     header: ReportHeader
     row: ReportRow
 
 @typing.type_check_only
-class ListAdUnitsResponse(typing_extensions.TypedDict, total=False):
+class ListAdUnitsResponse(typing.TypedDict, total=False):
     adUnits: _list[AdUnit]
     nextPageToken: str
 
 @typing.type_check_only
-class ListAppsResponse(typing_extensions.TypedDict, total=False):
+class ListAppsResponse(typing.TypedDict, total=False):
     apps: _list[App]
     nextPageToken: str
 
 @typing.type_check_only
-class ListPublisherAccountsResponse(typing_extensions.TypedDict, total=False):
+class ListPublisherAccountsResponse(typing.TypedDict, total=False):
     account: _list[PublisherAccount]
     nextPageToken: str
 
 @typing.type_check_only
-class LocalizationSettings(typing_extensions.TypedDict, total=False):
+class LocalizationSettings(typing.TypedDict, total=False):
     currencyCode: str
     languageCode: str
 
 @typing.type_check_only
-class MediationReportSpec(typing_extensions.TypedDict, total=False):
+class MediationReportSpec(typing.TypedDict, total=False):
     dateRange: DateRange
     dimensionFilters: _list[MediationReportSpecDimensionFilter]
     dimensions: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "DIMENSION_UNSPECIFIED",
             "DATE",
             "MONTH",
@@ -111,7 +109,7 @@ class MediationReportSpec(typing_extensions.TypedDict, total=False):
     localizationSettings: LocalizationSettings
     maxReportRows: int
     metrics: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "METRIC_UNSPECIFIED",
             "AD_REQUESTS",
             "CLICKS",
@@ -127,8 +125,8 @@ class MediationReportSpec(typing_extensions.TypedDict, total=False):
     timeZone: str
 
 @typing.type_check_only
-class MediationReportSpecDimensionFilter(typing_extensions.TypedDict, total=False):
-    dimension: typing_extensions.Literal[
+class MediationReportSpecDimensionFilter(typing.TypedDict, total=False):
+    dimension: typing.Literal[
         "DIMENSION_UNSPECIFIED",
         "DATE",
         "MONTH",
@@ -149,8 +147,8 @@ class MediationReportSpecDimensionFilter(typing_extensions.TypedDict, total=Fals
     matchesAny: StringList
 
 @typing.type_check_only
-class MediationReportSpecSortCondition(typing_extensions.TypedDict, total=False):
-    dimension: typing_extensions.Literal[
+class MediationReportSpecSortCondition(typing.TypedDict, total=False):
+    dimension: typing.Literal[
         "DIMENSION_UNSPECIFIED",
         "DATE",
         "MONTH",
@@ -168,7 +166,7 @@ class MediationReportSpecSortCondition(typing_extensions.TypedDict, total=False)
         "APP_VERSION_NAME",
         "SERVING_RESTRICTION",
     ]
-    metric: typing_extensions.Literal[
+    metric: typing.Literal[
         "METRIC_UNSPECIFIED",
         "AD_REQUESTS",
         "CLICKS",
@@ -179,16 +177,14 @@ class MediationReportSpecSortCondition(typing_extensions.TypedDict, total=False)
         "MATCH_RATE",
         "OBSERVED_ECPM",
     ]
-    order: typing_extensions.Literal[
-        "SORT_ORDER_UNSPECIFIED", "ASCENDING", "DESCENDING"
-    ]
+    order: typing.Literal["SORT_ORDER_UNSPECIFIED", "ASCENDING", "DESCENDING"]
 
 @typing.type_check_only
-class NetworkReportSpec(typing_extensions.TypedDict, total=False):
+class NetworkReportSpec(typing.TypedDict, total=False):
     dateRange: DateRange
     dimensionFilters: _list[NetworkReportSpecDimensionFilter]
     dimensions: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "DIMENSION_UNSPECIFIED",
             "DATE",
             "MONTH",
@@ -208,7 +204,7 @@ class NetworkReportSpec(typing_extensions.TypedDict, total=False):
     localizationSettings: LocalizationSettings
     maxReportRows: int
     metrics: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "METRIC_UNSPECIFIED",
             "AD_REQUESTS",
             "CLICKS",
@@ -225,8 +221,8 @@ class NetworkReportSpec(typing_extensions.TypedDict, total=False):
     timeZone: str
 
 @typing.type_check_only
-class NetworkReportSpecDimensionFilter(typing_extensions.TypedDict, total=False):
-    dimension: typing_extensions.Literal[
+class NetworkReportSpecDimensionFilter(typing.TypedDict, total=False):
+    dimension: typing.Literal[
         "DIMENSION_UNSPECIFIED",
         "DATE",
         "MONTH",
@@ -245,8 +241,8 @@ class NetworkReportSpecDimensionFilter(typing_extensions.TypedDict, total=False)
     matchesAny: StringList
 
 @typing.type_check_only
-class NetworkReportSpecSortCondition(typing_extensions.TypedDict, total=False):
-    dimension: typing_extensions.Literal[
+class NetworkReportSpecSortCondition(typing.TypedDict, total=False):
+    dimension: typing.Literal[
         "DIMENSION_UNSPECIFIED",
         "DATE",
         "MONTH",
@@ -262,7 +258,7 @@ class NetworkReportSpecSortCondition(typing_extensions.TypedDict, total=False):
         "APP_VERSION_NAME",
         "SERVING_RESTRICTION",
     ]
-    metric: typing_extensions.Literal[
+    metric: typing.Literal[
         "METRIC_UNSPECIFIED",
         "AD_REQUESTS",
         "CLICKS",
@@ -274,48 +270,46 @@ class NetworkReportSpecSortCondition(typing_extensions.TypedDict, total=False):
         "MATCH_RATE",
         "SHOW_RATE",
     ]
-    order: typing_extensions.Literal[
-        "SORT_ORDER_UNSPECIFIED", "ASCENDING", "DESCENDING"
-    ]
+    order: typing.Literal["SORT_ORDER_UNSPECIFIED", "ASCENDING", "DESCENDING"]
 
 @typing.type_check_only
-class PublisherAccount(typing_extensions.TypedDict, total=False):
+class PublisherAccount(typing.TypedDict, total=False):
     currencyCode: str
     name: str
     publisherId: str
     reportingTimeZone: str
 
 @typing.type_check_only
-class ReportFooter(typing_extensions.TypedDict, total=False):
+class ReportFooter(typing.TypedDict, total=False):
     matchingRowCount: str
     warnings: _list[ReportWarning]
 
 @typing.type_check_only
-class ReportHeader(typing_extensions.TypedDict, total=False):
+class ReportHeader(typing.TypedDict, total=False):
     dateRange: DateRange
     localizationSettings: LocalizationSettings
     reportingTimeZone: str
 
 @typing.type_check_only
-class ReportRow(typing_extensions.TypedDict, total=False):
+class ReportRow(typing.TypedDict, total=False):
     dimensionValues: dict[str, typing.Any]
     metricValues: dict[str, typing.Any]
 
 @typing.type_check_only
-class ReportRowDimensionValue(typing_extensions.TypedDict, total=False):
+class ReportRowDimensionValue(typing.TypedDict, total=False):
     displayLabel: str
     value: str
 
 @typing.type_check_only
-class ReportRowMetricValue(typing_extensions.TypedDict, total=False):
+class ReportRowMetricValue(typing.TypedDict, total=False):
     doubleValue: float
     integerValue: str
     microsValue: str
 
 @typing.type_check_only
-class ReportWarning(typing_extensions.TypedDict, total=False):
+class ReportWarning(typing.TypedDict, total=False):
     description: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "TYPE_UNSPECIFIED",
         "DATA_BEFORE_ACCOUNT_TIMEZONE_CHANGE",
         "DATA_DELAYED",
@@ -324,5 +318,5 @@ class ReportWarning(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class StringList(typing_extensions.TypedDict, total=False):
+class StringList(typing.TypedDict, total=False):
     values: _list[str]

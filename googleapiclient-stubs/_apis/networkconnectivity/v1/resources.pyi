@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -25,7 +24,7 @@ class NetworkconnectivityResource(googleapiclient.discovery.Resource):
                     parent: str,
                     body: AutomatedDnsRecord,
                     automatedDnsRecordId: str | None = ...,
-                    insertMode: typing_extensions.Literal[
+                    insertMode: typing.Literal[
                         "INSERT_MODE_UNSPECIFIED", "FAIL_IF_EXISTS", "OVERWRITE"
                     ]
                     | None = ...,
@@ -36,7 +35,7 @@ class NetworkconnectivityResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    deleteMode: typing_extensions.Literal[
+                    deleteMode: typing.Literal[
                         "DELETE_MODE_UNSPECIFIED", "DEPROGRAM", "SKIP_DEPROGRAMMING"
                     ]
                     | None = ...,
@@ -225,7 +224,7 @@ class NetworkconnectivityResource(googleapiclient.discovery.Resource):
                         pageSize: int | None = ...,
                         pageToken: str | None = ...,
                         spokeLocations: str | _list[str] | None = ...,
-                        view: typing_extensions.Literal[
+                        view: typing.Literal[
                             "SPOKE_VIEW_UNSPECIFIED", "BASIC", "DETAILED"
                         ]
                         | None = ...,
@@ -575,6 +574,44 @@ class NetworkconnectivityResource(googleapiclient.discovery.Resource):
                 ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
 
             @typing.type_check_only
+            class PscAuthorizationPoliciesResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: PscAuthorizationPolicy,
+                    pscAuthorizationPolicyId: str | None = ...,
+                    requestId: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+                def delete(
+                    self,
+                    *,
+                    name: str,
+                    etag: str | None = ...,
+                    requestId: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> PscAuthorizationPolicyHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str | None = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> ListPscAuthorizationPoliciesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListPscAuthorizationPoliciesResponseHttpRequest,
+                    previous_response: ListPscAuthorizationPoliciesResponse,
+                ) -> ListPscAuthorizationPoliciesResponseHttpRequest | None: ...
+
+            @typing.type_check_only
             class RegionalEndpointsResource(googleapiclient.discovery.Resource):
                 def create(
                     self,
@@ -725,7 +762,7 @@ class NetworkconnectivityResource(googleapiclient.discovery.Resource):
                     parent: str,
                     body: ServiceConnectionPolicy,
                     autoSubnetworkConfig_allocRangeSpace: str | _list[str] | None = ...,
-                    autoSubnetworkConfig_ipStack: typing_extensions.Literal[
+                    autoSubnetworkConfig_ipStack: typing.Literal[
                         "SUBNET_IP_STACK_UNSPECIFIED",
                         "IPV4_ONLY",
                         "IPV6_ONLY",
@@ -735,7 +772,7 @@ class NetworkconnectivityResource(googleapiclient.discovery.Resource):
                     autoSubnetworkConfig_prefixLength: int | None = ...,
                     requestId: str | None = ...,
                     serviceConnectionPolicyId: str | None = ...,
-                    subnetworkMode: typing_extensions.Literal[
+                    subnetworkMode: typing.Literal[
                         "SUBNETWORK_MODE_UNSPECIFIED", "USER_PROVIDED", "AUTO_CREATED"
                     ]
                     | None = ...,
@@ -1014,6 +1051,7 @@ class NetworkconnectivityResource(googleapiclient.discovery.Resource):
                 self,
             ) -> MulticloudDataTransferSupportedServicesResource: ...
             def operations(self) -> OperationsResource: ...
+            def pscAuthorizationPolicies(self) -> PscAuthorizationPoliciesResource: ...
             def regionalEndpoints(self) -> RegionalEndpointsResource: ...
             def remoteTransportProfiles(self) -> RemoteTransportProfilesResource: ...
             def serviceClasses(self) -> ServiceClassesResource: ...
@@ -1216,6 +1254,14 @@ class ListPolicyBasedRoutesResponseHttpRequest(googleapiclient.http.HttpRequest)
     ) -> ListPolicyBasedRoutesResponse: ...
 
 @typing.type_check_only
+class ListPscAuthorizationPoliciesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListPscAuthorizationPoliciesResponse: ...
+
+@typing.type_check_only
 class ListRegionalEndpointsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -1338,6 +1384,14 @@ class PolicyBasedRouteHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> PolicyBasedRoute: ...
+
+@typing.type_check_only
+class PscAuthorizationPolicyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> PscAuthorizationPolicy: ...
 
 @typing.type_check_only
 class QueryHubStatusResponseHttpRequest(googleapiclient.http.HttpRequest):

@@ -1,11 +1,9 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class Address(typing_extensions.TypedDict, total=False):
+class Address(typing.TypedDict, total=False):
     addressLine1: str
     addressLine2: str
     addressLine3: str
@@ -18,7 +16,7 @@ class Address(typing_extensions.TypedDict, total=False):
     region: str
 
 @typing.type_check_only
-class ChangePlanRequest(typing_extensions.TypedDict, total=False):
+class ChangePlanRequest(typing.TypedDict, total=False):
     dealCode: str
     kind: str
     planName: str
@@ -26,12 +24,12 @@ class ChangePlanRequest(typing_extensions.TypedDict, total=False):
     seats: Seats
 
 @typing.type_check_only
-class Customer(typing_extensions.TypedDict, total=False):
+class Customer(typing.TypedDict, total=False):
     alternateEmail: str
     customerDomain: str
     customerDomainVerified: bool
     customerId: str
-    customerType: typing_extensions.Literal["customerTypeUnspecified", "domain", "team"]
+    customerType: typing.Literal["customerTypeUnspecified", "domain", "team"]
     kind: str
     phoneNumber: str
     postalAddress: Address
@@ -39,32 +37,32 @@ class Customer(typing_extensions.TypedDict, total=False):
     resourceUiUrl: str
 
 @typing.type_check_only
-class PrimaryAdmin(typing_extensions.TypedDict, total=False):
+class PrimaryAdmin(typing.TypedDict, total=False):
     primaryEmail: str
 
 @typing.type_check_only
-class RenewalSettings(typing_extensions.TypedDict, total=False):
+class RenewalSettings(typing.TypedDict, total=False):
     kind: str
     renewalType: str
 
 @typing.type_check_only
-class ResellernotifyGetwatchdetailsResponse(typing_extensions.TypedDict, total=False):
+class ResellernotifyGetwatchdetailsResponse(typing.TypedDict, total=False):
     serviceAccountEmailAddresses: _list[str]
     topicName: str
 
 @typing.type_check_only
-class ResellernotifyResource(typing_extensions.TypedDict, total=False):
+class ResellernotifyResource(typing.TypedDict, total=False):
     topicName: str
 
 @typing.type_check_only
-class Seats(typing_extensions.TypedDict, total=False):
+class Seats(typing.TypedDict, total=False):
     kind: str
     licensedNumberOfSeats: int
     maximumNumberOfSeats: int
     numberOfSeats: int
 
 @typing.type_check_only
-class Subscription(typing_extensions.TypedDict, total=False):
+class Subscription(typing.TypedDict, total=False):
     billingMethod: str
     creationTime: str
     customerDomain: str
@@ -85,7 +83,7 @@ class Subscription(typing_extensions.TypedDict, total=False):
     trialSettings: dict[str, typing.Any]
 
 @typing.type_check_only
-class Subscriptions(typing_extensions.TypedDict, total=False):
+class Subscriptions(typing.TypedDict, total=False):
     kind: str
     nextPageToken: str
     subscriptions: _list[Subscription]

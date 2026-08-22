@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -151,6 +150,13 @@ class CloudWorkstationsResource(googleapiclient.discovery.Resource):
                             *,
                             name: str,
                             body: StopWorkstationRequest,
+                            **kwargs: typing.Any,
+                        ) -> OperationHttpRequest: ...
+                        def suspend(
+                            self,
+                            *,
+                            name: str,
+                            body: SuspendWorkstationRequest,
                             **kwargs: typing.Any,
                         ) -> OperationHttpRequest: ...
                         def testIamPermissions(

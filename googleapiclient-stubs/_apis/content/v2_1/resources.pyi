@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -102,7 +101,7 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             *,
             merchantId: str,
             accountId: str,
-            view: typing_extensions.Literal["MERCHANT", "CSS"] | None = ...,
+            view: typing.Literal["MERCHANT", "CSS"] | None = ...,
             **kwargs: typing.Any,
         ) -> AccountHttpRequest: ...
         def insert(
@@ -124,7 +123,7 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             name: str | None = ...,
             pageToken: str | None = ...,
-            view: typing_extensions.Literal["MERCHANT", "CSS"] | None = ...,
+            view: typing.Literal["MERCHANT", "CSS"] | None = ...,
             **kwargs: typing.Any,
         ) -> AccountsListResponseHttpRequest: ...
         def list_next(

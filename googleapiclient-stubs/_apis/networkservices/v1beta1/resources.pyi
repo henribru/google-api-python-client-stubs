@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -17,6 +16,47 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class AgentConnectivityTemplatesResource(
+                googleapiclient.discovery.Resource
+            ):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: AgentConnectivityTemplate,
+                    agentConnectivityTemplateId: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, etag: str | None = ..., **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> AgentConnectivityTemplateHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    returnPartialSuccess: bool | None = ...,
+                    **kwargs: typing.Any,
+                ) -> ListAgentConnectivityTemplatesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListAgentConnectivityTemplatesResponseHttpRequest,
+                    previous_response: ListAgentConnectivityTemplatesResponse,
+                ) -> ListAgentConnectivityTemplatesResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: AgentConnectivityTemplate,
+                    updateMask: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+
             @typing.type_check_only
             class AgentGatewaysResource(googleapiclient.discovery.Resource):
                 def create(
@@ -137,6 +177,44 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: EndpointPolicy,
+                    updateMask: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+
+            @typing.type_check_only
+            class ExtensionBindingsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: ExtensionBinding,
+                    extensionBindingId: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, etag: str | None = ..., **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> ExtensionBindingHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> ListExtensionBindingsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListExtensionBindingsResponseHttpRequest,
+                    previous_response: ListExtensionBindingsResponse,
+                ) -> ListExtensionBindingsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: ExtensionBinding,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -554,6 +632,36 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                 ) -> ListOperationsResponseHttpRequest | None: ...
 
             @typing.type_check_only
+            class ProducerExtensionsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: ProducerExtension,
+                    producerExtensionId: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, etag: str | None = ..., **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> ProducerExtensionHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> ListProducerExtensionsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListProducerExtensionsResponseHttpRequest,
+                    previous_response: ListProducerExtensionsResponse,
+                ) -> ListProducerExtensionsResponseHttpRequest | None: ...
+
+            @typing.type_check_only
             class ServiceBindingsResource(googleapiclient.discovery.Resource):
                 def create(
                     self,
@@ -754,7 +862,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    view: typing_extensions.Literal[
+                    view: typing.Literal[
                         "WASM_PLUGIN_VIEW_UNSPECIFIED",
                         "WASM_PLUGIN_VIEW_BASIC",
                         "WASM_PLUGIN_VIEW_FULL",
@@ -803,9 +911,13 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                 previous_request: ListLocationsResponseHttpRequest,
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
+            def agentConnectivityTemplates(
+                self,
+            ) -> AgentConnectivityTemplatesResource: ...
             def agentGateways(self) -> AgentGatewaysResource: ...
             def authzExtensions(self) -> AuthzExtensionsResource: ...
             def endpointPolicies(self) -> EndpointPoliciesResource: ...
+            def extensionBindings(self) -> ExtensionBindingsResource: ...
             def gateways(self) -> GatewaysResource: ...
             def grpcRoutes(self) -> GrpcRoutesResource: ...
             def httpRoutes(self) -> HttpRoutesResource: ...
@@ -815,6 +927,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
             def lbTrafficExtensions(self) -> LbTrafficExtensionsResource: ...
             def meshes(self) -> MeshesResource: ...
             def operations(self) -> OperationsResource: ...
+            def producerExtensions(self) -> ProducerExtensionsResource: ...
             def serviceBindings(self) -> ServiceBindingsResource: ...
             def serviceLbPolicies(self) -> ServiceLbPoliciesResource: ...
             def tcpRoutes(self) -> TcpRoutesResource: ...
@@ -836,6 +949,14 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
         | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def projects(self) -> ProjectsResource: ...
+
+@typing.type_check_only
+class AgentConnectivityTemplateHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> AgentConnectivityTemplate: ...
 
 @typing.type_check_only
 class AgentGatewayHttpRequest(googleapiclient.http.HttpRequest):
@@ -868,6 +989,14 @@ class EndpointPolicyHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> EndpointPolicy: ...
+
+@typing.type_check_only
+class ExtensionBindingHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ExtensionBinding: ...
 
 @typing.type_check_only
 class GatewayHttpRequest(googleapiclient.http.HttpRequest):
@@ -934,6 +1063,16 @@ class LbTrafficExtensionHttpRequest(googleapiclient.http.HttpRequest):
     ) -> LbTrafficExtension: ...
 
 @typing.type_check_only
+class ListAgentConnectivityTemplatesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListAgentConnectivityTemplatesResponse: ...
+
+@typing.type_check_only
 class ListAgentGatewaysResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -956,6 +1095,14 @@ class ListEndpointPoliciesResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListEndpointPoliciesResponse: ...
+
+@typing.type_check_only
+class ListExtensionBindingsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListExtensionBindingsResponse: ...
 
 @typing.type_check_only
 class ListGatewayRouteViewsResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -1054,6 +1201,14 @@ class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListOperationsResponse: ...
 
 @typing.type_check_only
+class ListProducerExtensionsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListProducerExtensionsResponse: ...
+
+@typing.type_check_only
 class ListServiceBindingsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -1132,6 +1287,14 @@ class OperationHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Operation: ...
+
+@typing.type_check_only
+class ProducerExtensionHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ProducerExtension: ...
 
 @typing.type_check_only
 class ServiceBindingHttpRequest(googleapiclient.http.HttpRequest):

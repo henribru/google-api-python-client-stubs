@@ -1,41 +1,37 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class AddAddressGroupItemsRequest(typing_extensions.TypedDict, total=False):
+class AddAddressGroupItemsRequest(typing.TypedDict, total=False):
     items: _list[str]
     requestId: str
 
 @typing.type_check_only
-class AddressGroup(typing_extensions.TypedDict, total=False):
+class AddressGroup(typing.TypedDict, total=False):
     capacity: int
     createTime: str
     description: str
     items: _list[str]
     labels: dict[str, typing.Any]
     name: str
-    purpose: _list[
-        typing_extensions.Literal["PURPOSE_UNSPECIFIED", "DEFAULT", "CLOUD_ARMOR"]
-    ]
+    purpose: _list[typing.Literal["PURPOSE_UNSPECIFIED", "DEFAULT", "CLOUD_ARMOR"]]
     selfLink: str
-    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "IPV4", "IPV6"]
+    type: typing.Literal["TYPE_UNSPECIFIED", "IPV4", "IPV6"]
     updateTime: str
 
 @typing.type_check_only
-class AntivirusOverride(typing_extensions.TypedDict, total=False):
-    action: typing_extensions.Literal[
+class AntivirusOverride(typing.TypedDict, total=False):
+    action: typing.Literal[
         "THREAT_ACTION_UNSPECIFIED", "DEFAULT_ACTION", "ALLOW", "ALERT", "DENY"
     ]
-    protocol: typing_extensions.Literal[
+    protocol: typing.Literal[
         "PROTOCOL_UNSPECIFIED", "SMTP", "SMB", "POP3", "IMAP", "HTTP2", "HTTP", "FTP"
     ]
 
 @typing.type_check_only
-class AuthorizationPolicy(typing_extensions.TypedDict, total=False):
-    action: typing_extensions.Literal["ACTION_UNSPECIFIED", "ALLOW", "DENY"]
+class AuthorizationPolicy(typing.TypedDict, total=False):
+    action: typing.Literal["ACTION_UNSPECIFIED", "ALLOW", "DENY"]
     createTime: str
     description: str
     labels: dict[str, typing.Any]
@@ -44,10 +40,8 @@ class AuthorizationPolicy(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class AuthzPolicy(typing_extensions.TypedDict, total=False):
-    action: typing_extensions.Literal[
-        "AUTHZ_ACTION_UNSPECIFIED", "ALLOW", "DENY", "CUSTOM"
-    ]
+class AuthzPolicy(typing.TypedDict, total=False):
+    action: typing.Literal["AUTHZ_ACTION_UNSPECIFIED", "ALLOW", "DENY", "CUSTOM"]
     createTime: str
     customProvider: AuthzPolicyCustomProvider
     description: str
@@ -55,13 +49,13 @@ class AuthzPolicy(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     name: str
     networkRules: _list[AuthzPolicyAuthzRule]
-    policyProfile: typing_extensions.Literal[
+    policyProfile: typing.Literal[
         "POLICY_PROFILE_UNSPECIFIED", "REQUEST_AUTHZ", "CONTENT_AUTHZ"
     ]
     target: AuthzPolicyTarget
     updateTime: str
 
-AlternativeAuthzPolicyAuthzRule = typing_extensions.TypedDict(
+AlternativeAuthzPolicyAuthzRule = typing.TypedDict(
     "AlternativeAuthzPolicyAuthzRule",
     {
         "from": AuthzPolicyAuthzRuleFrom,
@@ -75,30 +69,30 @@ AlternativeAuthzPolicyAuthzRule = typing_extensions.TypedDict(
 class AuthzPolicyAuthzRule(AlternativeAuthzPolicyAuthzRule): ...
 
 @typing.type_check_only
-class AuthzPolicyAuthzRuleFrom(typing_extensions.TypedDict, total=False):
+class AuthzPolicyAuthzRuleFrom(typing.TypedDict, total=False):
     notSources: _list[AuthzPolicyAuthzRuleFromRequestSource]
     sources: _list[AuthzPolicyAuthzRuleFromRequestSource]
 
 @typing.type_check_only
-class AuthzPolicyAuthzRuleFromRequestSource(typing_extensions.TypedDict, total=False):
+class AuthzPolicyAuthzRuleFromRequestSource(typing.TypedDict, total=False):
     ipBlocks: _list[AuthzPolicyAuthzRuleIpBlock]
     principals: _list[AuthzPolicyAuthzRulePrincipal]
     resources: _list[AuthzPolicyAuthzRuleRequestResource]
 
 @typing.type_check_only
-class AuthzPolicyAuthzRuleHeaderMatch(typing_extensions.TypedDict, total=False):
+class AuthzPolicyAuthzRuleHeaderMatch(typing.TypedDict, total=False):
     name: str
     value: AuthzPolicyAuthzRuleStringMatch
 
 @typing.type_check_only
-class AuthzPolicyAuthzRuleIpBlock(typing_extensions.TypedDict, total=False):
+class AuthzPolicyAuthzRuleIpBlock(typing.TypedDict, total=False):
     length: int
     prefix: str
 
 @typing.type_check_only
-class AuthzPolicyAuthzRulePrincipal(typing_extensions.TypedDict, total=False):
+class AuthzPolicyAuthzRulePrincipal(typing.TypedDict, total=False):
     principal: AuthzPolicyAuthzRuleStringMatch
-    principalSelector: typing_extensions.Literal[
+    principalSelector: typing.Literal[
         "PRINCIPAL_SELECTOR_UNSPECIFIED",
         "CLIENT_CERT_URI_SAN",
         "CLIENT_CERT_DNS_NAME_SAN",
@@ -106,18 +100,16 @@ class AuthzPolicyAuthzRulePrincipal(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class AuthzPolicyAuthzRuleRequestResource(typing_extensions.TypedDict, total=False):
+class AuthzPolicyAuthzRuleRequestResource(typing.TypedDict, total=False):
     iamServiceAccount: AuthzPolicyAuthzRuleStringMatch
     tagValueIdSet: AuthzPolicyAuthzRuleRequestResourceTagValueIdSet
 
 @typing.type_check_only
-class AuthzPolicyAuthzRuleRequestResourceTagValueIdSet(
-    typing_extensions.TypedDict, total=False
-):
+class AuthzPolicyAuthzRuleRequestResourceTagValueIdSet(typing.TypedDict, total=False):
     ids: _list[str]
 
 @typing.type_check_only
-class AuthzPolicyAuthzRuleStringMatch(typing_extensions.TypedDict, total=False):
+class AuthzPolicyAuthzRuleStringMatch(typing.TypedDict, total=False):
     contains: str
     exact: str
     ignoreCase: bool
@@ -125,12 +117,12 @@ class AuthzPolicyAuthzRuleStringMatch(typing_extensions.TypedDict, total=False):
     suffix: str
 
 @typing.type_check_only
-class AuthzPolicyAuthzRuleTo(typing_extensions.TypedDict, total=False):
+class AuthzPolicyAuthzRuleTo(typing.TypedDict, total=False):
     notOperations: _list[AuthzPolicyAuthzRuleToRequestOperation]
     operations: _list[AuthzPolicyAuthzRuleToRequestOperation]
 
 @typing.type_check_only
-class AuthzPolicyAuthzRuleToRequestOperation(typing_extensions.TypedDict, total=False):
+class AuthzPolicyAuthzRuleToRequestOperation(typing.TypedDict, total=False):
     headerSet: AuthzPolicyAuthzRuleToRequestOperationHeaderSet
     hosts: _list[AuthzPolicyAuthzRuleStringMatch]
     mcp: AuthzPolicyAuthzRuleToRequestOperationMCP
@@ -139,16 +131,12 @@ class AuthzPolicyAuthzRuleToRequestOperation(typing_extensions.TypedDict, total=
     snis: _list[AuthzPolicyAuthzRuleStringMatch]
 
 @typing.type_check_only
-class AuthzPolicyAuthzRuleToRequestOperationHeaderSet(
-    typing_extensions.TypedDict, total=False
-):
+class AuthzPolicyAuthzRuleToRequestOperationHeaderSet(typing.TypedDict, total=False):
     headers: _list[AuthzPolicyAuthzRuleHeaderMatch]
 
 @typing.type_check_only
-class AuthzPolicyAuthzRuleToRequestOperationMCP(
-    typing_extensions.TypedDict, total=False
-):
-    baseProtocolMethodsOption: typing_extensions.Literal[
+class AuthzPolicyAuthzRuleToRequestOperationMCP(typing.TypedDict, total=False):
+    baseProtocolMethodsOption: typing.Literal[
         "BASE_PROTOCOL_METHODS_OPTION_UNSPECIFIED",
         "SKIP_BASE_PROTOCOL_METHODS",
         "MATCH_BASE_PROTOCOL_METHODS",
@@ -156,27 +144,25 @@ class AuthzPolicyAuthzRuleToRequestOperationMCP(
     methods: _list[AuthzPolicyAuthzRuleToRequestOperationMCPMethod]
 
 @typing.type_check_only
-class AuthzPolicyAuthzRuleToRequestOperationMCPMethod(
-    typing_extensions.TypedDict, total=False
-):
+class AuthzPolicyAuthzRuleToRequestOperationMCPMethod(typing.TypedDict, total=False):
     name: str
     params: _list[AuthzPolicyAuthzRuleStringMatch]
 
 @typing.type_check_only
-class AuthzPolicyCustomProvider(typing_extensions.TypedDict, total=False):
+class AuthzPolicyCustomProvider(typing.TypedDict, total=False):
     authzExtension: AuthzPolicyCustomProviderAuthzExtension
     cloudIap: AuthzPolicyCustomProviderCloudIap
 
 @typing.type_check_only
-class AuthzPolicyCustomProviderAuthzExtension(typing_extensions.TypedDict, total=False):
+class AuthzPolicyCustomProviderAuthzExtension(typing.TypedDict, total=False):
     resources: _list[str]
 
 @typing.type_check_only
-class AuthzPolicyCustomProviderCloudIap(typing_extensions.TypedDict, total=False): ...
+class AuthzPolicyCustomProviderCloudIap(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class AuthzPolicyTarget(typing_extensions.TypedDict, total=False):
-    loadBalancingScheme: typing_extensions.Literal[
+class AuthzPolicyTarget(typing.TypedDict, total=False):
+    loadBalancingScheme: typing.Literal[
         "LOAD_BALANCING_SCHEME_UNSPECIFIED",
         "INTERNAL_MANAGED",
         "EXTERNAL_MANAGED",
@@ -185,7 +171,7 @@ class AuthzPolicyTarget(typing_extensions.TypedDict, total=False):
     resources: _list[str]
 
 @typing.type_check_only
-class BackendAuthenticationConfig(typing_extensions.TypedDict, total=False):
+class BackendAuthenticationConfig(typing.TypedDict, total=False):
     clientCertificate: str
     createTime: str
     description: str
@@ -194,19 +180,19 @@ class BackendAuthenticationConfig(typing_extensions.TypedDict, total=False):
     name: str
     trustConfig: str
     updateTime: str
-    wellKnownRoots: typing_extensions.Literal[
+    wellKnownRoots: typing.Literal[
         "WELL_KNOWN_ROOTS_UNSPECIFIED", "NONE", "PUBLIC_ROOTS"
     ]
 
 @typing.type_check_only
-class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
+class CancelOperationRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class CertificateProviderInstance(typing_extensions.TypedDict, total=False):
+class CertificateProviderInstance(typing.TypedDict, total=False):
     pluginInstance: str
 
 @typing.type_check_only
-class ClientTlsPolicy(typing_extensions.TypedDict, total=False):
+class ClientTlsPolicy(typing.TypedDict, total=False):
     clientCertificate: GoogleCloudNetworksecurityV1CertificateProvider
     createTime: str
     description: str
@@ -217,46 +203,46 @@ class ClientTlsPolicy(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class CloneAddressGroupItemsRequest(typing_extensions.TypedDict, total=False):
+class CloneAddressGroupItemsRequest(typing.TypedDict, total=False):
     requestId: str
     sourceAddressGroup: str
 
 @typing.type_check_only
-class CustomInterceptProfile(typing_extensions.TypedDict, total=False):
+class CustomInterceptProfile(typing.TypedDict, total=False):
     interceptEndpointGroup: str
 
 @typing.type_check_only
-class CustomMirroringProfile(typing_extensions.TypedDict, total=False):
+class CustomMirroringProfile(typing.TypedDict, total=False):
     mirroringEndpointGroup: str
 
 @typing.type_check_only
-class Destination(typing_extensions.TypedDict, total=False):
+class Destination(typing.TypedDict, total=False):
     hosts: _list[str]
     httpHeaderMatch: HttpHeaderMatch
     methods: _list[str]
     ports: _list[int]
 
 @typing.type_check_only
-class DnsThreatDetector(typing_extensions.TypedDict, total=False):
+class DnsThreatDetector(typing.TypedDict, total=False):
     createTime: str
     excludedNetworks: _list[str]
     labels: dict[str, typing.Any]
     name: str
-    provider: typing_extensions.Literal["PROVIDER_UNSPECIFIED", "INFOBLOX"]
+    provider: typing.Literal["PROVIDER_UNSPECIFIED", "INFOBLOX"]
     updateTime: str
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Expr(typing_extensions.TypedDict, total=False):
+class Expr(typing.TypedDict, total=False):
     description: str
     expression: str
     location: str
     title: str
 
 @typing.type_check_only
-class FirewallEndpoint(typing_extensions.TypedDict, total=False):
+class FirewallEndpoint(typing.TypedDict, total=False):
     associatedNetworks: _list[str]
     associations: _list[FirewallEndpointAssociationReference]
     billingProjectId: str
@@ -268,13 +254,13 @@ class FirewallEndpoint(typing_extensions.TypedDict, total=False):
     reconciling: bool
     satisfiesPzi: bool
     satisfiesPzs: bool
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "DELETING", "INACTIVE"
     ]
     updateTime: str
 
 @typing.type_check_only
-class FirewallEndpointAssociation(typing_extensions.TypedDict, total=False):
+class FirewallEndpointAssociation(typing.TypedDict, total=False):
     createTime: str
     disabled: bool
     firewallEndpoint: str
@@ -282,23 +268,23 @@ class FirewallEndpointAssociation(typing_extensions.TypedDict, total=False):
     name: str
     network: str
     reconciling: bool
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "DELETING", "INACTIVE", "ORPHAN"
     ]
     tlsInspectionPolicy: str
     updateTime: str
 
 @typing.type_check_only
-class FirewallEndpointAssociationReference(typing_extensions.TypedDict, total=False):
+class FirewallEndpointAssociationReference(typing.TypedDict, total=False):
     name: str
     network: str
 
 @typing.type_check_only
-class FirewallEndpointEndpointSettings(typing_extensions.TypedDict, total=False):
+class FirewallEndpointEndpointSettings(typing.TypedDict, total=False):
     jumboFramesEnabled: bool
 
 @typing.type_check_only
-class GatewaySecurityPolicy(typing_extensions.TypedDict, total=False):
+class GatewaySecurityPolicy(typing.TypedDict, total=False):
     createTime: str
     description: str
     name: str
@@ -306,11 +292,9 @@ class GatewaySecurityPolicy(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class GatewaySecurityPolicyRule(typing_extensions.TypedDict, total=False):
+class GatewaySecurityPolicyRule(typing.TypedDict, total=False):
     applicationMatcher: str
-    basicProfile: typing_extensions.Literal[
-        "BASIC_PROFILE_UNSPECIFIED", "ALLOW", "DENY"
-    ]
+    basicProfile: typing.Literal["BASIC_PROFILE_UNSPECIFIED", "ALLOW", "DENY"]
     createTime: str
     description: str
     enabled: bool
@@ -321,63 +305,59 @@ class GatewaySecurityPolicyRule(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class GoogleCloudNetworksecurityV1CertificateProvider(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudNetworksecurityV1CertificateProvider(typing.TypedDict, total=False):
     certificateProviderInstance: CertificateProviderInstance
     grpcEndpoint: GoogleCloudNetworksecurityV1GrpcEndpoint
 
 @typing.type_check_only
-class GoogleCloudNetworksecurityV1GrpcEndpoint(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudNetworksecurityV1GrpcEndpoint(typing.TypedDict, total=False):
     targetUri: str
 
 @typing.type_check_only
-class GoogleIamV1AuditConfig(typing_extensions.TypedDict, total=False):
+class GoogleIamV1AuditConfig(typing.TypedDict, total=False):
     auditLogConfigs: _list[GoogleIamV1AuditLogConfig]
     service: str
 
 @typing.type_check_only
-class GoogleIamV1AuditLogConfig(typing_extensions.TypedDict, total=False):
+class GoogleIamV1AuditLogConfig(typing.TypedDict, total=False):
     exemptedMembers: _list[str]
-    logType: typing_extensions.Literal[
+    logType: typing.Literal[
         "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
     ]
 
 @typing.type_check_only
-class GoogleIamV1Binding(typing_extensions.TypedDict, total=False):
+class GoogleIamV1Binding(typing.TypedDict, total=False):
     condition: Expr
     members: _list[str]
     role: str
 
 @typing.type_check_only
-class GoogleIamV1Policy(typing_extensions.TypedDict, total=False):
+class GoogleIamV1Policy(typing.TypedDict, total=False):
     auditConfigs: _list[GoogleIamV1AuditConfig]
     bindings: _list[GoogleIamV1Binding]
     etag: str
     version: int
 
 @typing.type_check_only
-class GoogleIamV1SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
+class GoogleIamV1SetIamPolicyRequest(typing.TypedDict, total=False):
     policy: GoogleIamV1Policy
     updateMask: str
 
 @typing.type_check_only
-class GoogleIamV1TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
+class GoogleIamV1TestIamPermissionsRequest(typing.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
-class GoogleIamV1TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
+class GoogleIamV1TestIamPermissionsResponse(typing.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
-class HttpHeaderMatch(typing_extensions.TypedDict, total=False):
+class HttpHeaderMatch(typing.TypedDict, total=False):
     headerName: str
     regexMatch: str
 
 @typing.type_check_only
-class InterceptDeployment(typing_extensions.TypedDict, total=False):
+class InterceptDeployment(typing.TypedDict, total=False):
     createTime: str
     description: str
     forwardingRule: str
@@ -385,7 +365,7 @@ class InterceptDeployment(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     name: str
     reconciling: bool
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "ACTIVE",
         "CREATING",
@@ -396,7 +376,7 @@ class InterceptDeployment(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class InterceptDeploymentGroup(typing_extensions.TypedDict, total=False):
+class InterceptDeploymentGroup(typing.TypedDict, total=False):
     connectedEndpointGroups: _list[InterceptDeploymentGroupConnectedEndpointGroup]
     createTime: str
     description: str
@@ -406,21 +386,17 @@ class InterceptDeploymentGroup(typing_extensions.TypedDict, total=False):
     nestedDeployments: _list[InterceptDeploymentGroupDeployment]
     network: str
     reconciling: bool
-    state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "ACTIVE", "CREATING", "DELETING"
-    ]
+    state: typing.Literal["STATE_UNSPECIFIED", "ACTIVE", "CREATING", "DELETING"]
     updateTime: str
 
 @typing.type_check_only
-class InterceptDeploymentGroupConnectedEndpointGroup(
-    typing_extensions.TypedDict, total=False
-):
+class InterceptDeploymentGroupConnectedEndpointGroup(typing.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class InterceptDeploymentGroupDeployment(typing_extensions.TypedDict, total=False):
+class InterceptDeploymentGroupDeployment(typing.TypedDict, total=False):
     name: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "ACTIVE",
         "CREATING",
@@ -430,7 +406,7 @@ class InterceptDeploymentGroupDeployment(typing_extensions.TypedDict, total=Fals
     ]
 
 @typing.type_check_only
-class InterceptEndpointGroup(typing_extensions.TypedDict, total=False):
+class InterceptEndpointGroup(typing.TypedDict, total=False):
     associations: _list[InterceptEndpointGroupAssociationDetails]
     connectedDeploymentGroup: InterceptEndpointGroupConnectedDeploymentGroup
     createTime: str
@@ -439,7 +415,7 @@ class InterceptEndpointGroup(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     name: str
     reconciling: bool
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "ACTIVE",
         "CLOSED",
@@ -451,7 +427,7 @@ class InterceptEndpointGroup(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class InterceptEndpointGroupAssociation(typing_extensions.TypedDict, total=False):
+class InterceptEndpointGroupAssociation(typing.TypedDict, total=False):
     createTime: str
     interceptEndpointGroup: str
     labels: dict[str, typing.Any]
@@ -461,7 +437,7 @@ class InterceptEndpointGroupAssociation(typing_extensions.TypedDict, total=False
     network: str
     networkCookie: int
     reconciling: bool
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "ACTIVE",
         "CREATING",
@@ -473,12 +449,10 @@ class InterceptEndpointGroupAssociation(typing_extensions.TypedDict, total=False
     updateTime: str
 
 @typing.type_check_only
-class InterceptEndpointGroupAssociationDetails(
-    typing_extensions.TypedDict, total=False
-):
+class InterceptEndpointGroupAssociationDetails(typing.TypedDict, total=False):
     name: str
     network: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "ACTIVE",
         "CREATING",
@@ -489,26 +463,22 @@ class InterceptEndpointGroupAssociationDetails(
     ]
 
 @typing.type_check_only
-class InterceptEndpointGroupAssociationLocationDetails(
-    typing_extensions.TypedDict, total=False
-):
+class InterceptEndpointGroupAssociationLocationDetails(typing.TypedDict, total=False):
     location: str
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "OUT_OF_SYNC"]
+    state: typing.Literal["STATE_UNSPECIFIED", "ACTIVE", "OUT_OF_SYNC"]
 
 @typing.type_check_only
-class InterceptEndpointGroupConnectedDeploymentGroup(
-    typing_extensions.TypedDict, total=False
-):
+class InterceptEndpointGroupConnectedDeploymentGroup(typing.TypedDict, total=False):
     locations: _list[InterceptLocation]
     name: str
 
 @typing.type_check_only
-class InterceptLocation(typing_extensions.TypedDict, total=False):
+class InterceptLocation(typing.TypedDict, total=False):
     location: str
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "OUT_OF_SYNC"]
+    state: typing.Literal["STATE_UNSPECIFIED", "ACTIVE", "OUT_OF_SYNC"]
 
 @typing.type_check_only
-class ListAddressGroupReferencesResponse(typing_extensions.TypedDict, total=False):
+class ListAddressGroupReferencesResponse(typing.TypedDict, total=False):
     addressGroupReferences: _list[
         ListAddressGroupReferencesResponseAddressGroupReference
     ]
@@ -516,173 +486,165 @@ class ListAddressGroupReferencesResponse(typing_extensions.TypedDict, total=Fals
 
 @typing.type_check_only
 class ListAddressGroupReferencesResponseAddressGroupReference(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     firewallPolicy: str
     rulePriority: int
     securityPolicy: str
 
 @typing.type_check_only
-class ListAddressGroupsResponse(typing_extensions.TypedDict, total=False):
+class ListAddressGroupsResponse(typing.TypedDict, total=False):
     addressGroups: _list[AddressGroup]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListAuthorizationPoliciesResponse(typing_extensions.TypedDict, total=False):
+class ListAuthorizationPoliciesResponse(typing.TypedDict, total=False):
     authorizationPolicies: _list[AuthorizationPolicy]
     nextPageToken: str
 
 @typing.type_check_only
-class ListAuthzPoliciesResponse(typing_extensions.TypedDict, total=False):
+class ListAuthzPoliciesResponse(typing.TypedDict, total=False):
     authzPolicies: _list[AuthzPolicy]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListBackendAuthenticationConfigsResponse(
-    typing_extensions.TypedDict, total=False
-):
+class ListBackendAuthenticationConfigsResponse(typing.TypedDict, total=False):
     backendAuthenticationConfigs: _list[BackendAuthenticationConfig]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListClientTlsPoliciesResponse(typing_extensions.TypedDict, total=False):
+class ListClientTlsPoliciesResponse(typing.TypedDict, total=False):
     clientTlsPolicies: _list[ClientTlsPolicy]
     nextPageToken: str
 
 @typing.type_check_only
-class ListDnsThreatDetectorsResponse(typing_extensions.TypedDict, total=False):
+class ListDnsThreatDetectorsResponse(typing.TypedDict, total=False):
     dnsThreatDetectors: _list[DnsThreatDetector]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListFirewallEndpointAssociationsResponse(
-    typing_extensions.TypedDict, total=False
-):
+class ListFirewallEndpointAssociationsResponse(typing.TypedDict, total=False):
     firewallEndpointAssociations: _list[FirewallEndpointAssociation]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListFirewallEndpointsResponse(typing_extensions.TypedDict, total=False):
+class ListFirewallEndpointsResponse(typing.TypedDict, total=False):
     firewallEndpoints: _list[FirewallEndpoint]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListGatewaySecurityPoliciesResponse(typing_extensions.TypedDict, total=False):
+class ListGatewaySecurityPoliciesResponse(typing.TypedDict, total=False):
     gatewaySecurityPolicies: _list[GatewaySecurityPolicy]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListGatewaySecurityPolicyRulesResponse(typing_extensions.TypedDict, total=False):
+class ListGatewaySecurityPolicyRulesResponse(typing.TypedDict, total=False):
     gatewaySecurityPolicyRules: _list[GatewaySecurityPolicyRule]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListInterceptDeploymentGroupsResponse(typing_extensions.TypedDict, total=False):
+class ListInterceptDeploymentGroupsResponse(typing.TypedDict, total=False):
     interceptDeploymentGroups: _list[InterceptDeploymentGroup]
     nextPageToken: str
 
 @typing.type_check_only
-class ListInterceptDeploymentsResponse(typing_extensions.TypedDict, total=False):
+class ListInterceptDeploymentsResponse(typing.TypedDict, total=False):
     interceptDeployments: _list[InterceptDeployment]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListInterceptEndpointGroupAssociationsResponse(
-    typing_extensions.TypedDict, total=False
-):
+class ListInterceptEndpointGroupAssociationsResponse(typing.TypedDict, total=False):
     interceptEndpointGroupAssociations: _list[InterceptEndpointGroupAssociation]
     nextPageToken: str
 
 @typing.type_check_only
-class ListInterceptEndpointGroupsResponse(typing_extensions.TypedDict, total=False):
+class ListInterceptEndpointGroupsResponse(typing.TypedDict, total=False):
     interceptEndpointGroups: _list[InterceptEndpointGroup]
     nextPageToken: str
 
 @typing.type_check_only
-class ListLocationsResponse(typing_extensions.TypedDict, total=False):
+class ListLocationsResponse(typing.TypedDict, total=False):
     locations: _list[Location]
     nextPageToken: str
 
 @typing.type_check_only
-class ListMirroringDeploymentGroupsResponse(typing_extensions.TypedDict, total=False):
+class ListMirroringDeploymentGroupsResponse(typing.TypedDict, total=False):
     mirroringDeploymentGroups: _list[MirroringDeploymentGroup]
     nextPageToken: str
 
 @typing.type_check_only
-class ListMirroringDeploymentsResponse(typing_extensions.TypedDict, total=False):
+class ListMirroringDeploymentsResponse(typing.TypedDict, total=False):
     mirroringDeployments: _list[MirroringDeployment]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListMirroringEndpointGroupAssociationsResponse(
-    typing_extensions.TypedDict, total=False
-):
+class ListMirroringEndpointGroupAssociationsResponse(typing.TypedDict, total=False):
     mirroringEndpointGroupAssociations: _list[MirroringEndpointGroupAssociation]
     nextPageToken: str
 
 @typing.type_check_only
-class ListMirroringEndpointGroupsResponse(typing_extensions.TypedDict, total=False):
+class ListMirroringEndpointGroupsResponse(typing.TypedDict, total=False):
     mirroringEndpointGroups: _list[MirroringEndpointGroup]
     nextPageToken: str
 
 @typing.type_check_only
-class ListOperationsResponse(typing_extensions.TypedDict, total=False):
+class ListOperationsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListSACAttachmentsResponse(typing_extensions.TypedDict, total=False):
+class ListSACAttachmentsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     sacAttachments: _list[SACAttachment]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListSACRealmsResponse(typing_extensions.TypedDict, total=False):
+class ListSACRealmsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     sacRealms: _list[SACRealm]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListSecurityProfileGroupsResponse(typing_extensions.TypedDict, total=False):
+class ListSecurityProfileGroupsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     securityProfileGroups: _list[SecurityProfileGroup]
 
 @typing.type_check_only
-class ListSecurityProfilesResponse(typing_extensions.TypedDict, total=False):
+class ListSecurityProfilesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     securityProfiles: _list[SecurityProfile]
 
 @typing.type_check_only
-class ListServerTlsPoliciesResponse(typing_extensions.TypedDict, total=False):
+class ListServerTlsPoliciesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     serverTlsPolicies: _list[ServerTlsPolicy]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListTlsInspectionPoliciesResponse(typing_extensions.TypedDict, total=False):
+class ListTlsInspectionPoliciesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     tlsInspectionPolicies: _list[TlsInspectionPolicy]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListUrlListsResponse(typing_extensions.TypedDict, total=False):
+class ListUrlListsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     unreachable: _list[str]
     urlLists: _list[UrlList]
 
 @typing.type_check_only
-class Location(typing_extensions.TypedDict, total=False):
+class Location(typing.TypedDict, total=False):
     displayName: str
     labels: dict[str, typing.Any]
     locationId: str
@@ -690,9 +652,9 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class MTLSPolicy(typing_extensions.TypedDict, total=False):
+class MTLSPolicy(typing.TypedDict, total=False):
     clientValidationCa: _list[ValidationCA]
-    clientValidationMode: typing_extensions.Literal[
+    clientValidationMode: typing.Literal[
         "CLIENT_VALIDATION_MODE_UNSPECIFIED",
         "ALLOW_INVALID_OR_MISSING_CLIENT_CERT",
         "REJECT_INVALID",
@@ -700,7 +662,7 @@ class MTLSPolicy(typing_extensions.TypedDict, total=False):
     clientValidationTrustConfig: str
 
 @typing.type_check_only
-class MirroringDeployment(typing_extensions.TypedDict, total=False):
+class MirroringDeployment(typing.TypedDict, total=False):
     createTime: str
     description: str
     forwardingRule: str
@@ -708,7 +670,7 @@ class MirroringDeployment(typing_extensions.TypedDict, total=False):
     mirroringDeploymentGroup: str
     name: str
     reconciling: bool
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "ACTIVE",
         "CREATING",
@@ -719,7 +681,7 @@ class MirroringDeployment(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class MirroringDeploymentGroup(typing_extensions.TypedDict, total=False):
+class MirroringDeploymentGroup(typing.TypedDict, total=False):
     connectedEndpointGroups: _list[MirroringDeploymentGroupConnectedEndpointGroup]
     createTime: str
     description: str
@@ -729,21 +691,19 @@ class MirroringDeploymentGroup(typing_extensions.TypedDict, total=False):
     nestedDeployments: _list[MirroringDeploymentGroupDeployment]
     network: str
     reconciling: bool
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED", "ACTIVE", "CREATING", "DELETING", "CLOSED"
     ]
     updateTime: str
 
 @typing.type_check_only
-class MirroringDeploymentGroupConnectedEndpointGroup(
-    typing_extensions.TypedDict, total=False
-):
+class MirroringDeploymentGroupConnectedEndpointGroup(typing.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class MirroringDeploymentGroupDeployment(typing_extensions.TypedDict, total=False):
+class MirroringDeploymentGroupDeployment(typing.TypedDict, total=False):
     name: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "ACTIVE",
         "CREATING",
@@ -753,7 +713,7 @@ class MirroringDeploymentGroupDeployment(typing_extensions.TypedDict, total=Fals
     ]
 
 @typing.type_check_only
-class MirroringEndpointGroup(typing_extensions.TypedDict, total=False):
+class MirroringEndpointGroup(typing.TypedDict, total=False):
     associations: _list[MirroringEndpointGroupAssociationDetails]
     connectedDeploymentGroups: _list[MirroringEndpointGroupConnectedDeploymentGroup]
     createTime: str
@@ -762,7 +722,7 @@ class MirroringEndpointGroup(typing_extensions.TypedDict, total=False):
     mirroringDeploymentGroup: str
     name: str
     reconciling: bool
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "ACTIVE",
         "CLOSED",
@@ -771,11 +731,11 @@ class MirroringEndpointGroup(typing_extensions.TypedDict, total=False):
         "OUT_OF_SYNC",
         "DELETE_FAILED",
     ]
-    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "DIRECT"]
+    type: typing.Literal["TYPE_UNSPECIFIED", "DIRECT"]
     updateTime: str
 
 @typing.type_check_only
-class MirroringEndpointGroupAssociation(typing_extensions.TypedDict, total=False):
+class MirroringEndpointGroupAssociation(typing.TypedDict, total=False):
     createTime: str
     labels: dict[str, typing.Any]
     locations: _list[MirroringLocation]
@@ -785,7 +745,7 @@ class MirroringEndpointGroupAssociation(typing_extensions.TypedDict, total=False
     network: str
     networkCookie: int
     reconciling: bool
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "ACTIVE",
         "CREATING",
@@ -797,12 +757,10 @@ class MirroringEndpointGroupAssociation(typing_extensions.TypedDict, total=False
     updateTime: str
 
 @typing.type_check_only
-class MirroringEndpointGroupAssociationDetails(
-    typing_extensions.TypedDict, total=False
-):
+class MirroringEndpointGroupAssociationDetails(typing.TypedDict, total=False):
     name: str
     network: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "ACTIVE",
         "CREATING",
@@ -813,26 +771,22 @@ class MirroringEndpointGroupAssociationDetails(
     ]
 
 @typing.type_check_only
-class MirroringEndpointGroupAssociationLocationDetails(
-    typing_extensions.TypedDict, total=False
-):
+class MirroringEndpointGroupAssociationLocationDetails(typing.TypedDict, total=False):
     location: str
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "OUT_OF_SYNC"]
+    state: typing.Literal["STATE_UNSPECIFIED", "ACTIVE", "OUT_OF_SYNC"]
 
 @typing.type_check_only
-class MirroringEndpointGroupConnectedDeploymentGroup(
-    typing_extensions.TypedDict, total=False
-):
+class MirroringEndpointGroupConnectedDeploymentGroup(typing.TypedDict, total=False):
     locations: _list[MirroringLocation]
     name: str
 
 @typing.type_check_only
-class MirroringLocation(typing_extensions.TypedDict, total=False):
+class MirroringLocation(typing.TypedDict, total=False):
     location: str
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "OUT_OF_SYNC"]
+    state: typing.Literal["STATE_UNSPECIFIED", "ACTIVE", "OUT_OF_SYNC"]
 
 @typing.type_check_only
-class Operation(typing_extensions.TypedDict, total=False):
+class Operation(typing.TypedDict, total=False):
     done: bool
     error: Status
     metadata: dict[str, typing.Any]
@@ -840,7 +794,7 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class OperationMetadata(typing_extensions.TypedDict, total=False):
+class OperationMetadata(typing.TypedDict, total=False):
     apiVersion: str
     createTime: str
     endTime: str
@@ -850,23 +804,23 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
-class RemoveAddressGroupItemsRequest(typing_extensions.TypedDict, total=False):
+class RemoveAddressGroupItemsRequest(typing.TypedDict, total=False):
     items: _list[str]
     requestId: str
 
 @typing.type_check_only
-class Rule(typing_extensions.TypedDict, total=False):
+class Rule(typing.TypedDict, total=False):
     destinations: _list[Destination]
     sources: _list[Source]
 
 @typing.type_check_only
-class SACAttachment(typing_extensions.TypedDict, total=False):
+class SACAttachment(typing.TypedDict, total=False):
     createTime: str
     labels: dict[str, typing.Any]
     name: str
     nccGateway: str
     sacRealm: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "PENDING_PARTNER_ATTACHMENT",
         "PARTNER_ATTACHED",
@@ -875,15 +829,15 @@ class SACAttachment(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class SACRealm(typing_extensions.TypedDict, total=False):
+class SACRealm(typing.TypedDict, total=False):
     createTime: str
     labels: dict[str, typing.Any]
     name: str
     pairingKey: SACRealmPairingKey
-    securityService: typing_extensions.Literal[
+    securityService: typing.Literal[
         "SECURITY_SERVICE_UNSPECIFIED", "PALO_ALTO_PRISMA_ACCESS"
     ]
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "PENDING_PARTNER_ATTACHMENT",
         "PARTNER_ATTACHED",
@@ -893,12 +847,12 @@ class SACRealm(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class SACRealmPairingKey(typing_extensions.TypedDict, total=False):
+class SACRealmPairingKey(typing.TypedDict, total=False):
     expireTime: str
     key: str
 
 @typing.type_check_only
-class SecurityProfile(typing_extensions.TypedDict, total=False):
+class SecurityProfile(typing.TypedDict, total=False):
     createTime: str
     customInterceptProfile: CustomInterceptProfile
     customMirroringProfile: CustomMirroringProfile
@@ -907,7 +861,7 @@ class SecurityProfile(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     name: str
     threatPreventionProfile: ThreatPreventionProfile
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "PROFILE_TYPE_UNSPECIFIED",
         "THREAT_PREVENTION",
         "CUSTOM_MIRRORING",
@@ -918,7 +872,7 @@ class SecurityProfile(typing_extensions.TypedDict, total=False):
     urlFilteringProfile: UrlFilteringProfile
 
 @typing.type_check_only
-class SecurityProfileGroup(typing_extensions.TypedDict, total=False):
+class SecurityProfileGroup(typing.TypedDict, total=False):
     createTime: str
     customInterceptProfile: str
     customMirroringProfile: str
@@ -932,7 +886,7 @@ class SecurityProfileGroup(typing_extensions.TypedDict, total=False):
     urlFilteringProfile: str
 
 @typing.type_check_only
-class ServerTlsPolicy(typing_extensions.TypedDict, total=False):
+class ServerTlsPolicy(typing.TypedDict, total=False):
     allowOpen: bool
     createTime: str
     description: str
@@ -943,32 +897,32 @@ class ServerTlsPolicy(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class SeverityOverride(typing_extensions.TypedDict, total=False):
-    action: typing_extensions.Literal[
+class SeverityOverride(typing.TypedDict, total=False):
+    action: typing.Literal[
         "THREAT_ACTION_UNSPECIFIED", "DEFAULT_ACTION", "ALLOW", "ALERT", "DENY"
     ]
-    severity: typing_extensions.Literal[
+    severity: typing.Literal[
         "SEVERITY_UNSPECIFIED", "INFORMATIONAL", "LOW", "MEDIUM", "HIGH", "CRITICAL"
     ]
 
 @typing.type_check_only
-class Source(typing_extensions.TypedDict, total=False):
+class Source(typing.TypedDict, total=False):
     ipBlocks: _list[str]
     principals: _list[str]
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class ThreatOverride(typing_extensions.TypedDict, total=False):
-    action: typing_extensions.Literal[
+class ThreatOverride(typing.TypedDict, total=False):
+    action: typing.Literal[
         "THREAT_ACTION_UNSPECIFIED", "DEFAULT_ACTION", "ALLOW", "ALERT", "DENY"
     ]
     threatId: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "THREAT_TYPE_UNSPECIFIED",
         "UNKNOWN",
         "VULNERABILITY",
@@ -978,23 +932,23 @@ class ThreatOverride(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class ThreatPreventionProfile(typing_extensions.TypedDict, total=False):
+class ThreatPreventionProfile(typing.TypedDict, total=False):
     antivirusOverrides: _list[AntivirusOverride]
     severityOverrides: _list[SeverityOverride]
     threatOverrides: _list[ThreatOverride]
 
 @typing.type_check_only
-class TlsInspectionPolicy(typing_extensions.TypedDict, total=False):
+class TlsInspectionPolicy(typing.TypedDict, total=False):
     caPool: str
     createTime: str
     customTlsFeatures: _list[str]
     description: str
     excludePublicCaSet: bool
-    minTlsVersion: typing_extensions.Literal[
+    minTlsVersion: typing.Literal[
         "TLS_VERSION_UNSPECIFIED", "TLS_1_0", "TLS_1_1", "TLS_1_2", "TLS_1_3"
     ]
     name: str
-    tlsFeatureProfile: typing_extensions.Literal[
+    tlsFeatureProfile: typing.Literal[
         "PROFILE_UNSPECIFIED",
         "PROFILE_COMPATIBLE",
         "PROFILE_MODERN",
@@ -1005,19 +959,17 @@ class TlsInspectionPolicy(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class UrlFilter(typing_extensions.TypedDict, total=False):
-    filteringAction: typing_extensions.Literal[
-        "URL_FILTERING_ACTION_UNSPECIFIED", "ALLOW", "DENY"
-    ]
+class UrlFilter(typing.TypedDict, total=False):
+    filteringAction: typing.Literal["URL_FILTERING_ACTION_UNSPECIFIED", "ALLOW", "DENY"]
     priority: int
     urls: _list[str]
 
 @typing.type_check_only
-class UrlFilteringProfile(typing_extensions.TypedDict, total=False):
+class UrlFilteringProfile(typing.TypedDict, total=False):
     urlFilters: _list[UrlFilter]
 
 @typing.type_check_only
-class UrlList(typing_extensions.TypedDict, total=False):
+class UrlList(typing.TypedDict, total=False):
     createTime: str
     description: str
     name: str
@@ -1025,6 +977,6 @@ class UrlList(typing_extensions.TypedDict, total=False):
     values: _list[str]
 
 @typing.type_check_only
-class ValidationCA(typing_extensions.TypedDict, total=False):
+class ValidationCA(typing.TypedDict, total=False):
     certificateProviderInstance: CertificateProviderInstance
     grpcEndpoint: GoogleCloudNetworksecurityV1GrpcEndpoint

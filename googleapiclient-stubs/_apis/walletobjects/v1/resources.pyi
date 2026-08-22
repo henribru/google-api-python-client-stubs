@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -249,6 +248,9 @@ class WalletobjectsResource(googleapiclient.discovery.Resource):
         def insert(
             self, *, body: JwtResource, **kwargs: typing.Any
         ) -> JwtInsertResponseHttpRequest: ...
+        def validate(
+            self, *, body: JwtValidateRequest, **kwargs: typing.Any
+        ) -> JwtValidateResponseHttpRequest: ...
 
     @typing.type_check_only
     class LoyaltyclassResource(googleapiclient.discovery.Resource):
@@ -706,6 +708,14 @@ class JwtInsertResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> JwtInsertResponse: ...
+
+@typing.type_check_only
+class JwtValidateResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> JwtValidateResponse: ...
 
 @typing.type_check_only
 class LoyaltyClassHttpRequest(googleapiclient.http.HttpRequest):

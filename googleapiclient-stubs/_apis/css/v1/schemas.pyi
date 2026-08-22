@@ -1,12 +1,10 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class Account(typing_extensions.TypedDict, total=False):
-    accountType: typing_extensions.Literal[
+class Account(typing.TypedDict, total=False):
+    accountType: typing.Literal[
         "ACCOUNT_TYPE_UNSPECIFIED",
         "CSS_GROUP",
         "CSS_DOMAIN",
@@ -26,18 +24,16 @@ class Account(typing_extensions.TypedDict, total=False):
     parent: str
 
 @typing.type_check_only
-class AccountLabel(typing_extensions.TypedDict, total=False):
+class AccountLabel(typing.TypedDict, total=False):
     accountId: str
     description: str
     displayName: str
     labelId: str
-    labelType: typing_extensions.Literal[
-        "LABEL_TYPE_UNSPECIFIED", "MANUAL", "AUTOMATIC"
-    ]
+    labelType: typing.Literal["LABEL_TYPE_UNSPECIFIED", "MANUAL", "AUTOMATIC"]
     name: str
 
 @typing.type_check_only
-class Attributes(typing_extensions.TypedDict, total=False):
+class Attributes(typing.TypedDict, total=False):
     additionalImageLinks: _list[str]
     adult: bool
     ageGroup: str
@@ -94,13 +90,13 @@ class Attributes(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
-class Certification(typing_extensions.TypedDict, total=False):
+class Certification(typing.TypedDict, total=False):
     authority: str
     code: str
     name: str
 
 @typing.type_check_only
-class CssProduct(typing_extensions.TypedDict, total=False):
+class CssProduct(typing.TypedDict, total=False):
     attributes: Attributes
     contentLanguage: str
     cssProductStatus: CssProductStatus
@@ -110,7 +106,7 @@ class CssProduct(typing_extensions.TypedDict, total=False):
     rawProvidedId: str
 
 @typing.type_check_only
-class CssProductInput(typing_extensions.TypedDict, total=False):
+class CssProductInput(typing.TypedDict, total=False):
     attributes: Attributes
     contentLanguage: str
     customAttributes: _list[CustomAttribute]
@@ -121,7 +117,7 @@ class CssProductInput(typing_extensions.TypedDict, total=False):
     rawProvidedId: str
 
 @typing.type_check_only
-class CssProductStatus(typing_extensions.TypedDict, total=False):
+class CssProductStatus(typing.TypedDict, total=False):
     creationDate: str
     destinationStatuses: _list[DestinationStatus]
     googleExpirationDate: str
@@ -129,37 +125,35 @@ class CssProductStatus(typing_extensions.TypedDict, total=False):
     lastUpdateDate: str
 
 @typing.type_check_only
-class CustomAttribute(typing_extensions.TypedDict, total=False):
+class CustomAttribute(typing.TypedDict, total=False):
     groupValues: _list[CustomAttribute]
     name: str
     value: str
 
 @typing.type_check_only
-class DestinationStatus(typing_extensions.TypedDict, total=False):
+class DestinationStatus(typing.TypedDict, total=False):
     approvedCountries: _list[str]
     destination: str
     disapprovedCountries: _list[str]
     pendingCountries: _list[str]
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class HeadlineOfferInstallment(typing_extensions.TypedDict, total=False):
+class HeadlineOfferInstallment(typing.TypedDict, total=False):
     amount: Price
     downpayment: Price
     months: str
 
 @typing.type_check_only
-class HeadlineOfferSubscriptionCost(typing_extensions.TypedDict, total=False):
+class HeadlineOfferSubscriptionCost(typing.TypedDict, total=False):
     amount: Price
-    period: typing_extensions.Literal[
-        "SUBSCRIPTION_PERIOD_UNSPECIFIED", "MONTH", "YEAR"
-    ]
+    period: typing.Literal["SUBSCRIPTION_PERIOD_UNSPECIFIED", "MONTH", "YEAR"]
     periodLength: str
 
 @typing.type_check_only
-class ItemLevelIssue(typing_extensions.TypedDict, total=False):
+class ItemLevelIssue(typing.TypedDict, total=False):
     applicableCountries: _list[str]
     attribute: str
     code: str
@@ -171,55 +165,55 @@ class ItemLevelIssue(typing_extensions.TypedDict, total=False):
     servability: str
 
 @typing.type_check_only
-class ListAccountLabelsResponse(typing_extensions.TypedDict, total=False):
+class ListAccountLabelsResponse(typing.TypedDict, total=False):
     accountLabels: _list[AccountLabel]
     nextPageToken: str
 
 @typing.type_check_only
-class ListChildAccountsResponse(typing_extensions.TypedDict, total=False):
+class ListChildAccountsResponse(typing.TypedDict, total=False):
     accounts: _list[Account]
     nextPageToken: str
 
 @typing.type_check_only
-class ListCssProductsResponse(typing_extensions.TypedDict, total=False):
+class ListCssProductsResponse(typing.TypedDict, total=False):
     cssProducts: _list[CssProduct]
     nextPageToken: str
 
 @typing.type_check_only
-class ListQuotaGroupsResponse(typing_extensions.TypedDict, total=False):
+class ListQuotaGroupsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     quotaGroups: _list[QuotaGroup]
 
 @typing.type_check_only
-class MethodDetails(typing_extensions.TypedDict, total=False):
+class MethodDetails(typing.TypedDict, total=False):
     method: str
     path: str
     subapi: str
     version: str
 
 @typing.type_check_only
-class Price(typing_extensions.TypedDict, total=False):
+class Price(typing.TypedDict, total=False):
     amountMicros: str
     currencyCode: str
 
 @typing.type_check_only
-class ProductDetail(typing_extensions.TypedDict, total=False):
+class ProductDetail(typing.TypedDict, total=False):
     attributeName: str
     attributeValue: str
     sectionName: str
 
 @typing.type_check_only
-class ProductDimension(typing_extensions.TypedDict, total=False):
+class ProductDimension(typing.TypedDict, total=False):
     unit: str
     value: float
 
 @typing.type_check_only
-class ProductWeight(typing_extensions.TypedDict, total=False):
+class ProductWeight(typing.TypedDict, total=False):
     unit: str
     value: float
 
 @typing.type_check_only
-class QuotaGroup(typing_extensions.TypedDict, total=False):
+class QuotaGroup(typing.TypedDict, total=False):
     methodDetails: _list[MethodDetails]
     name: str
     quotaLimit: str
@@ -227,6 +221,6 @@ class QuotaGroup(typing_extensions.TypedDict, total=False):
     quotaUsage: str
 
 @typing.type_check_only
-class UpdateAccountLabelsRequest(typing_extensions.TypedDict, total=False):
+class UpdateAccountLabelsRequest(typing.TypedDict, total=False):
     labelIds: _list[str]
     parent: str

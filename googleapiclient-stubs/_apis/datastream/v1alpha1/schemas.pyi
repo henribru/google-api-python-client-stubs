@@ -1,23 +1,21 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class AvroFileFormat(typing_extensions.TypedDict, total=False): ...
+class AvroFileFormat(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class BackfillAllStrategy(typing_extensions.TypedDict, total=False):
+class BackfillAllStrategy(typing.TypedDict, total=False):
     mysqlExcludedObjects: MysqlRdbms
     oracleExcludedObjects: OracleRdbms
 
 @typing.type_check_only
-class BackfillJob(typing_extensions.TypedDict, total=False):
+class BackfillJob(typing.TypedDict, total=False):
     errors: _list[Error]
     lastEndTime: str
     lastStartTime: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "NOT_STARTED",
         "PENDING",
@@ -27,20 +25,20 @@ class BackfillJob(typing_extensions.TypedDict, total=False):
         "COMPLETED",
         "UNSUPPORTED",
     ]
-    trigger: typing_extensions.Literal["TRIGGER_UNSPECIFIED", "AUTOMATIC", "MANUAL"]
+    trigger: typing.Literal["TRIGGER_UNSPECIFIED", "AUTOMATIC", "MANUAL"]
 
 @typing.type_check_only
-class BackfillNoneStrategy(typing_extensions.TypedDict, total=False): ...
+class BackfillNoneStrategy(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class BadRequest(typing_extensions.TypedDict, total=False):
+class BadRequest(typing.TypedDict, total=False):
     fieldViolations: _list[FieldViolation]
 
 @typing.type_check_only
-class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
+class CancelOperationRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ConnectionProfile(typing_extensions.TypedDict, total=False):
+class ConnectionProfile(typing.TypedDict, total=False):
     createTime: str
     displayName: str
     forwardSshConnectivity: ForwardSshTunnelConnectivity
@@ -55,17 +53,17 @@ class ConnectionProfile(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class DebugInfo(typing_extensions.TypedDict, total=False):
+class DebugInfo(typing.TypedDict, total=False):
     detail: str
     stackEntries: _list[str]
 
 @typing.type_check_only
-class DestinationConfig(typing_extensions.TypedDict, total=False):
+class DestinationConfig(typing.TypedDict, total=False):
     destinationConnectionProfileName: str
     gcsDestinationConfig: GcsDestinationConfig
 
 @typing.type_check_only
-class DiscoverConnectionProfileRequest(typing_extensions.TypedDict, total=False):
+class DiscoverConnectionProfileRequest(typing.TypedDict, total=False):
     connectionProfile: ConnectionProfile
     connectionProfileName: str
     mysqlRdbms: MysqlRdbms
@@ -74,18 +72,18 @@ class DiscoverConnectionProfileRequest(typing_extensions.TypedDict, total=False)
     recursive: bool
 
 @typing.type_check_only
-class DiscoverConnectionProfileResponse(typing_extensions.TypedDict, total=False):
+class DiscoverConnectionProfileResponse(typing.TypedDict, total=False):
     mysqlRdbms: MysqlRdbms
     oracleRdbms: OracleRdbms
 
 @typing.type_check_only
-class DropLargeObjects(typing_extensions.TypedDict, total=False): ...
+class DropLargeObjects(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Error(typing_extensions.TypedDict, total=False):
+class Error(typing.TypedDict, total=False):
     details: dict[str, typing.Any]
     errorTime: str
     errorUuid: str
@@ -93,32 +91,32 @@ class Error(typing_extensions.TypedDict, total=False):
     reason: str
 
 @typing.type_check_only
-class ErrorInfo(typing_extensions.TypedDict, total=False):
+class ErrorInfo(typing.TypedDict, total=False):
     domain: str
     metadata: dict[str, typing.Any]
     reason: str
 
 @typing.type_check_only
-class FetchErrorsRequest(typing_extensions.TypedDict, total=False): ...
+class FetchErrorsRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class FetchErrorsResponse(typing_extensions.TypedDict, total=False):
+class FetchErrorsResponse(typing.TypedDict, total=False):
     errors: _list[Error]
 
 @typing.type_check_only
-class FetchStaticIpsResponse(typing_extensions.TypedDict, total=False):
+class FetchStaticIpsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     staticIps: _list[str]
 
 @typing.type_check_only
-class FieldViolation(typing_extensions.TypedDict, total=False):
+class FieldViolation(typing.TypedDict, total=False):
     description: str
     field: str
     localizedMessage: LocalizedMessage
     reason: str
 
 @typing.type_check_only
-class ForwardSshTunnelConnectivity(typing_extensions.TypedDict, total=False):
+class ForwardSshTunnelConnectivity(typing.TypedDict, total=False):
     hostname: str
     password: str
     port: int
@@ -126,84 +124,84 @@ class ForwardSshTunnelConnectivity(typing_extensions.TypedDict, total=False):
     username: str
 
 @typing.type_check_only
-class GcsDestinationConfig(typing_extensions.TypedDict, total=False):
+class GcsDestinationConfig(typing.TypedDict, total=False):
     avroFileFormat: AvroFileFormat
     fileRotationInterval: str
     fileRotationMb: int
-    gcsFileFormat: typing_extensions.Literal["GCS_FILE_FORMAT_UNSPECIFIED", "AVRO"]
+    gcsFileFormat: typing.Literal["GCS_FILE_FORMAT_UNSPECIFIED", "AVRO"]
     jsonFileFormat: JsonFileFormat
     path: str
 
 @typing.type_check_only
-class GcsProfile(typing_extensions.TypedDict, total=False):
+class GcsProfile(typing.TypedDict, total=False):
     bucketName: str
     rootPath: str
 
 @typing.type_check_only
-class Help(typing_extensions.TypedDict, total=False):
+class Help(typing.TypedDict, total=False):
     links: _list[Link]
 
 @typing.type_check_only
-class JsonFileFormat(typing_extensions.TypedDict, total=False):
-    compression: typing_extensions.Literal[
+class JsonFileFormat(typing.TypedDict, total=False):
+    compression: typing.Literal[
         "JSON_COMPRESSION_UNSPECIFIED", "NO_COMPRESSION", "GZIP"
     ]
-    schemaFileFormat: typing_extensions.Literal[
+    schemaFileFormat: typing.Literal[
         "SCHEMA_FILE_FORMAT_UNSPECIFIED", "NO_SCHEMA_FILE", "AVRO_SCHEMA_FILE"
     ]
 
 @typing.type_check_only
-class Link(typing_extensions.TypedDict, total=False):
+class Link(typing.TypedDict, total=False):
     description: str
     url: str
 
 @typing.type_check_only
-class ListConnectionProfilesResponse(typing_extensions.TypedDict, total=False):
+class ListConnectionProfilesResponse(typing.TypedDict, total=False):
     connectionProfiles: _list[ConnectionProfile]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListLocationsResponse(typing_extensions.TypedDict, total=False):
+class ListLocationsResponse(typing.TypedDict, total=False):
     locations: _list[Location]
     nextPageToken: str
 
 @typing.type_check_only
-class ListOperationsResponse(typing_extensions.TypedDict, total=False):
+class ListOperationsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListPrivateConnectionsResponse(typing_extensions.TypedDict, total=False):
+class ListPrivateConnectionsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     privateConnections: _list[PrivateConnection]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListRoutesResponse(typing_extensions.TypedDict, total=False):
+class ListRoutesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     routes: _list[Route]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListStreamObjectsResponse(typing_extensions.TypedDict, total=False):
+class ListStreamObjectsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     streamObjects: _list[StreamObject]
 
 @typing.type_check_only
-class ListStreamsResponse(typing_extensions.TypedDict, total=False):
+class ListStreamsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     streams: _list[Stream]
     unreachable: _list[str]
 
 @typing.type_check_only
-class LocalizedMessage(typing_extensions.TypedDict, total=False):
+class LocalizedMessage(typing.TypedDict, total=False):
     locale: str
     message: str
 
 @typing.type_check_only
-class Location(typing_extensions.TypedDict, total=False):
+class Location(typing.TypedDict, total=False):
     displayName: str
     labels: dict[str, typing.Any]
     locationId: str
@@ -211,7 +209,7 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class MysqlColumn(typing_extensions.TypedDict, total=False):
+class MysqlColumn(typing.TypedDict, total=False):
     collation: str
     columnName: str
     dataType: str
@@ -221,17 +219,17 @@ class MysqlColumn(typing_extensions.TypedDict, total=False):
     primaryKey: bool
 
 @typing.type_check_only
-class MysqlDatabase(typing_extensions.TypedDict, total=False):
+class MysqlDatabase(typing.TypedDict, total=False):
     databaseName: str
     mysqlTables: _list[MysqlTable]
 
 @typing.type_check_only
-class MysqlObjectIdentifier(typing_extensions.TypedDict, total=False):
+class MysqlObjectIdentifier(typing.TypedDict, total=False):
     database: str
     table: str
 
 @typing.type_check_only
-class MysqlProfile(typing_extensions.TypedDict, total=False):
+class MysqlProfile(typing.TypedDict, total=False):
     hostname: str
     password: str
     port: int
@@ -239,16 +237,16 @@ class MysqlProfile(typing_extensions.TypedDict, total=False):
     username: str
 
 @typing.type_check_only
-class MysqlRdbms(typing_extensions.TypedDict, total=False):
+class MysqlRdbms(typing.TypedDict, total=False):
     mysqlDatabases: _list[MysqlDatabase]
 
 @typing.type_check_only
-class MysqlSourceConfig(typing_extensions.TypedDict, total=False):
+class MysqlSourceConfig(typing.TypedDict, total=False):
     allowlist: MysqlRdbms
     rejectlist: MysqlRdbms
 
 @typing.type_check_only
-class MysqlSslConfig(typing_extensions.TypedDict, total=False):
+class MysqlSslConfig(typing.TypedDict, total=False):
     caCertificate: str
     caCertificateSet: bool
     clientCertificate: str
@@ -257,15 +255,15 @@ class MysqlSslConfig(typing_extensions.TypedDict, total=False):
     clientKeySet: bool
 
 @typing.type_check_only
-class MysqlTable(typing_extensions.TypedDict, total=False):
+class MysqlTable(typing.TypedDict, total=False):
     mysqlColumns: _list[MysqlColumn]
     tableName: str
 
 @typing.type_check_only
-class NoConnectivitySettings(typing_extensions.TypedDict, total=False): ...
+class NoConnectivitySettings(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Operation(typing_extensions.TypedDict, total=False):
+class Operation(typing.TypedDict, total=False):
     done: bool
     error: Status
     metadata: dict[str, typing.Any]
@@ -273,7 +271,7 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class OperationMetadata(typing_extensions.TypedDict, total=False):
+class OperationMetadata(typing.TypedDict, total=False):
     apiVersion: str
     createTime: str
     endTime: str
@@ -284,7 +282,7 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
-class OracleColumn(typing_extensions.TypedDict, total=False):
+class OracleColumn(typing.TypedDict, total=False):
     columnName: str
     dataType: str
     encoding: str
@@ -296,12 +294,12 @@ class OracleColumn(typing_extensions.TypedDict, total=False):
     scale: int
 
 @typing.type_check_only
-class OracleObjectIdentifier(typing_extensions.TypedDict, total=False):
+class OracleObjectIdentifier(typing.TypedDict, total=False):
     schema: str
     table: str
 
 @typing.type_check_only
-class OracleProfile(typing_extensions.TypedDict, total=False):
+class OracleProfile(typing.TypedDict, total=False):
     connectionAttributes: dict[str, typing.Any]
     databaseService: str
     hostname: str
@@ -310,43 +308,43 @@ class OracleProfile(typing_extensions.TypedDict, total=False):
     username: str
 
 @typing.type_check_only
-class OracleRdbms(typing_extensions.TypedDict, total=False):
+class OracleRdbms(typing.TypedDict, total=False):
     oracleSchemas: _list[OracleSchema]
 
 @typing.type_check_only
-class OracleSchema(typing_extensions.TypedDict, total=False):
+class OracleSchema(typing.TypedDict, total=False):
     oracleTables: _list[OracleTable]
     schemaName: str
 
 @typing.type_check_only
-class OracleSourceConfig(typing_extensions.TypedDict, total=False):
+class OracleSourceConfig(typing.TypedDict, total=False):
     allowlist: OracleRdbms
     dropLargeObjects: DropLargeObjects
     rejectlist: OracleRdbms
 
 @typing.type_check_only
-class OracleTable(typing_extensions.TypedDict, total=False):
+class OracleTable(typing.TypedDict, total=False):
     oracleColumns: _list[OracleColumn]
     tableName: str
 
 @typing.type_check_only
-class PreconditionFailure(typing_extensions.TypedDict, total=False):
+class PreconditionFailure(typing.TypedDict, total=False):
     violations: _list[PreconditionFailureViolation]
 
 @typing.type_check_only
-class PreconditionFailureViolation(typing_extensions.TypedDict, total=False):
+class PreconditionFailureViolation(typing.TypedDict, total=False):
     description: str
     subject: str
     type: str
 
 @typing.type_check_only
-class PrivateConnection(typing_extensions.TypedDict, total=False):
+class PrivateConnection(typing.TypedDict, total=False):
     createTime: str
     displayName: str
     error: Error
     labels: dict[str, typing.Any]
     name: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "CREATING",
         "CREATED",
@@ -358,15 +356,15 @@ class PrivateConnection(typing_extensions.TypedDict, total=False):
     vpcPeeringConfig: VpcPeeringConfig
 
 @typing.type_check_only
-class PrivateConnectivity(typing_extensions.TypedDict, total=False):
+class PrivateConnectivity(typing.TypedDict, total=False):
     privateConnectionName: str
 
 @typing.type_check_only
-class QuotaFailure(typing_extensions.TypedDict, total=False):
+class QuotaFailure(typing.TypedDict, total=False):
     violations: _list[QuotaFailureViolation]
 
 @typing.type_check_only
-class QuotaFailureViolation(typing_extensions.TypedDict, total=False):
+class QuotaFailureViolation(typing.TypedDict, total=False):
     apiService: str
     description: str
     futureQuotaValue: str
@@ -377,23 +375,23 @@ class QuotaFailureViolation(typing_extensions.TypedDict, total=False):
     subject: str
 
 @typing.type_check_only
-class RequestInfo(typing_extensions.TypedDict, total=False):
+class RequestInfo(typing.TypedDict, total=False):
     requestId: str
     servingData: str
 
 @typing.type_check_only
-class ResourceInfo(typing_extensions.TypedDict, total=False):
+class ResourceInfo(typing.TypedDict, total=False):
     description: str
     owner: str
     resourceName: str
     resourceType: str
 
 @typing.type_check_only
-class RetryInfo(typing_extensions.TypedDict, total=False):
+class RetryInfo(typing.TypedDict, total=False):
     retryDelay: str
 
 @typing.type_check_only
-class Route(typing_extensions.TypedDict, total=False):
+class Route(typing.TypedDict, total=False):
     createTime: str
     destinationAddress: str
     destinationPort: int
@@ -403,35 +401,35 @@ class Route(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class SourceConfig(typing_extensions.TypedDict, total=False):
+class SourceConfig(typing.TypedDict, total=False):
     mysqlSourceConfig: MysqlSourceConfig
     oracleSourceConfig: OracleSourceConfig
     sourceConnectionProfileName: str
 
 @typing.type_check_only
-class SourceObjectIdentifier(typing_extensions.TypedDict, total=False):
+class SourceObjectIdentifier(typing.TypedDict, total=False):
     mysqlIdentifier: MysqlObjectIdentifier
     oracleIdentifier: OracleObjectIdentifier
 
 @typing.type_check_only
-class StartBackfillJobResponse(typing_extensions.TypedDict, total=False):
+class StartBackfillJobResponse(typing.TypedDict, total=False):
     object: StreamObject
 
 @typing.type_check_only
-class StaticServiceIpConnectivity(typing_extensions.TypedDict, total=False): ...
+class StaticServiceIpConnectivity(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class StopBackfillJobResponse(typing_extensions.TypedDict, total=False):
+class StopBackfillJobResponse(typing.TypedDict, total=False):
     object: StreamObject
 
 @typing.type_check_only
-class Stream(typing_extensions.TypedDict, total=False):
+class Stream(typing.TypedDict, total=False):
     backfillAll: BackfillAllStrategy
     backfillNone: BackfillNoneStrategy
     createTime: str
@@ -442,7 +440,7 @@ class Stream(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     name: str
     sourceConfig: SourceConfig
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "CREATED",
         "RUNNING",
@@ -456,7 +454,7 @@ class Stream(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class StreamObject(typing_extensions.TypedDict, total=False):
+class StreamObject(typing.TypedDict, total=False):
     backfillJob: BackfillJob
     createTime: str
     displayName: str
@@ -466,26 +464,24 @@ class StreamObject(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class Validation(typing_extensions.TypedDict, total=False):
+class Validation(typing.TypedDict, total=False):
     code: str
     description: str
     message: _list[ValidationMessage]
-    status: typing_extensions.Literal[
-        "STATUS_UNSPECIFIED", "NOT_EXECUTED", "FAILED", "PASSED"
-    ]
+    status: typing.Literal["STATUS_UNSPECIFIED", "NOT_EXECUTED", "FAILED", "PASSED"]
 
 @typing.type_check_only
-class ValidationMessage(typing_extensions.TypedDict, total=False):
+class ValidationMessage(typing.TypedDict, total=False):
     code: str
-    level: typing_extensions.Literal["LEVEL_UNSPECIFIED", "WARNING", "ERROR"]
+    level: typing.Literal["LEVEL_UNSPECIFIED", "WARNING", "ERROR"]
     message: str
     metadata: dict[str, typing.Any]
 
 @typing.type_check_only
-class ValidationResult(typing_extensions.TypedDict, total=False):
+class ValidationResult(typing.TypedDict, total=False):
     validations: _list[Validation]
 
 @typing.type_check_only
-class VpcPeeringConfig(typing_extensions.TypedDict, total=False):
+class VpcPeeringConfig(typing.TypedDict, total=False):
     subnet: str
     vpcName: str

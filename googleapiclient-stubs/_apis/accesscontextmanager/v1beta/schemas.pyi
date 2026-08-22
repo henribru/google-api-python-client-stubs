@@ -1,16 +1,12 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class AccessContextManagerOperationMetadata(
-    typing_extensions.TypedDict, total=False
-): ...
+class AccessContextManagerOperationMetadata(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class AccessLevel(typing_extensions.TypedDict, total=False):
+class AccessLevel(typing.TypedDict, total=False):
     basic: BasicLevel
     custom: CustomLevel
     description: str
@@ -18,18 +14,18 @@ class AccessLevel(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
-class AccessPolicy(typing_extensions.TypedDict, total=False):
+class AccessPolicy(typing.TypedDict, total=False):
     name: str
     parent: str
     title: str
 
 @typing.type_check_only
-class BasicLevel(typing_extensions.TypedDict, total=False):
-    combiningFunction: typing_extensions.Literal["AND", "OR"]
+class BasicLevel(typing.TypedDict, total=False):
+    combiningFunction: typing.Literal["AND", "OR"]
     conditions: _list[Condition]
 
 @typing.type_check_only
-class Condition(typing_extensions.TypedDict, total=False):
+class Condition(typing.TypedDict, total=False):
     devicePolicy: DevicePolicy
     ipSubnetworks: _list[str]
     members: _list[str]
@@ -38,16 +34,16 @@ class Condition(typing_extensions.TypedDict, total=False):
     requiredAccessLevels: _list[str]
 
 @typing.type_check_only
-class CustomLevel(typing_extensions.TypedDict, total=False):
+class CustomLevel(typing.TypedDict, total=False):
     expr: Expr
 
 @typing.type_check_only
-class DevicePolicy(typing_extensions.TypedDict, total=False):
+class DevicePolicy(typing.TypedDict, total=False):
     allowedDeviceManagementLevels: _list[
-        typing_extensions.Literal["MANAGEMENT_UNSPECIFIED", "NONE", "BASIC", "COMPLETE"]
+        typing.Literal["MANAGEMENT_UNSPECIFIED", "NONE", "BASIC", "COMPLETE"]
     ]
     allowedEncryptionStatuses: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "ENCRYPTION_UNSPECIFIED",
             "ENCRYPTION_UNSUPPORTED",
             "UNENCRYPTED",
@@ -60,29 +56,29 @@ class DevicePolicy(typing_extensions.TypedDict, total=False):
     requireScreenlock: bool
 
 @typing.type_check_only
-class Expr(typing_extensions.TypedDict, total=False):
+class Expr(typing.TypedDict, total=False):
     description: str
     expression: str
     location: str
     title: str
 
 @typing.type_check_only
-class ListAccessLevelsResponse(typing_extensions.TypedDict, total=False):
+class ListAccessLevelsResponse(typing.TypedDict, total=False):
     accessLevels: _list[AccessLevel]
     nextPageToken: str
 
 @typing.type_check_only
-class ListAccessPoliciesResponse(typing_extensions.TypedDict, total=False):
+class ListAccessPoliciesResponse(typing.TypedDict, total=False):
     accessPolicies: _list[AccessPolicy]
     nextPageToken: str
 
 @typing.type_check_only
-class ListServicePerimetersResponse(typing_extensions.TypedDict, total=False):
+class ListServicePerimetersResponse(typing.TypedDict, total=False):
     nextPageToken: str
     servicePerimeters: _list[ServicePerimeter]
 
 @typing.type_check_only
-class Operation(typing_extensions.TypedDict, total=False):
+class Operation(typing.TypedDict, total=False):
     done: bool
     error: Status
     metadata: dict[str, typing.Any]
@@ -90,9 +86,9 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class OsConstraint(typing_extensions.TypedDict, total=False):
+class OsConstraint(typing.TypedDict, total=False):
     minimumVersion: str
-    osType: typing_extensions.Literal[
+    osType: typing.Literal[
         "OS_UNSPECIFIED",
         "DESKTOP_MAC",
         "DESKTOP_WINDOWS",
@@ -104,17 +100,15 @@ class OsConstraint(typing_extensions.TypedDict, total=False):
     requireVerifiedChromeOs: bool
 
 @typing.type_check_only
-class ServicePerimeter(typing_extensions.TypedDict, total=False):
+class ServicePerimeter(typing.TypedDict, total=False):
     description: str
     name: str
-    perimeterType: typing_extensions.Literal[
-        "PERIMETER_TYPE_REGULAR", "PERIMETER_TYPE_BRIDGE"
-    ]
+    perimeterType: typing.Literal["PERIMETER_TYPE_REGULAR", "PERIMETER_TYPE_BRIDGE"]
     status: ServicePerimeterConfig
     title: str
 
 @typing.type_check_only
-class ServicePerimeterConfig(typing_extensions.TypedDict, total=False):
+class ServicePerimeterConfig(typing.TypedDict, total=False):
     accessLevels: _list[str]
     resources: _list[str]
     restrictedServices: _list[str]
@@ -122,12 +116,12 @@ class ServicePerimeterConfig(typing_extensions.TypedDict, total=False):
     vpcAccessibleServices: VpcAccessibleServices
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class VpcAccessibleServices(typing_extensions.TypedDict, total=False):
+class VpcAccessibleServices(typing.TypedDict, total=False):
     allowedServices: _list[str]
     enableRestriction: bool

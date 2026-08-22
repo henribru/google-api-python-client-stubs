@@ -1,35 +1,33 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class ActingUser(typing_extensions.TypedDict, total=False):
+class ActingUser(typing.TypedDict, total=False):
     email: str
     imageUrl: str
 
 @typing.type_check_only
-class CertDnsChallenge(typing_extensions.TypedDict, total=False):
+class CertDnsChallenge(typing.TypedDict, total=False):
     domainName: str
     token: str
 
 @typing.type_check_only
-class CertHttpChallenge(typing_extensions.TypedDict, total=False):
+class CertHttpChallenge(typing.TypedDict, total=False):
     path: str
     token: str
 
 @typing.type_check_only
-class CertVerification(typing_extensions.TypedDict, total=False):
+class CertVerification(typing.TypedDict, total=False):
     dns: DnsUpdates
     http: HttpUpdate
 
 @typing.type_check_only
-class Certificate(typing_extensions.TypedDict, total=False):
+class Certificate(typing.TypedDict, total=False):
     createTime: str
     expireTime: str
     issues: _list[Status]
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "CERT_STATE_UNSPECIFIED",
         "CERT_PREPARING",
         "CERT_VALIDATING",
@@ -38,13 +36,13 @@ class Certificate(typing_extensions.TypedDict, total=False):
         "CERT_EXPIRING_SOON",
         "CERT_EXPIRED",
     ]
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "TYPE_UNSPECIFIED", "TEMPORARY", "GROUPED", "PROJECT_GROUPED", "DEDICATED"
     ]
     verification: CertVerification
 
 @typing.type_check_only
-class Channel(typing_extensions.TypedDict, total=False):
+class Channel(typing.TypedDict, total=False):
     createTime: str
     expireTime: str
     labels: dict[str, typing.Any]
@@ -56,30 +54,30 @@ class Channel(typing_extensions.TypedDict, total=False):
     url: str
 
 @typing.type_check_only
-class CloneVersionRequest(typing_extensions.TypedDict, total=False):
+class CloneVersionRequest(typing.TypedDict, total=False):
     exclude: PathFilter
     finalize: bool
     include: PathFilter
     sourceVersion: str
 
 @typing.type_check_only
-class CloudRunRewrite(typing_extensions.TypedDict, total=False):
+class CloudRunRewrite(typing.TypedDict, total=False):
     region: str
     serviceId: str
     tag: str
 
 @typing.type_check_only
-class CustomDomain(typing_extensions.TypedDict, total=False):
+class CustomDomain(typing.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     cert: Certificate
-    certPreference: typing_extensions.Literal[
+    certPreference: typing.Literal[
         "TYPE_UNSPECIFIED", "TEMPORARY", "GROUPED", "PROJECT_GROUPED", "DEDICATED"
     ]
     createTime: str
     deleteTime: str
     etag: str
     expireTime: str
-    hostState: typing_extensions.Literal[
+    hostState: typing.Literal[
         "HOST_STATE_UNSPECIFIED",
         "HOST_UNHOSTED",
         "HOST_UNREACHABLE",
@@ -90,7 +88,7 @@ class CustomDomain(typing_extensions.TypedDict, total=False):
     issues: _list[Status]
     labels: dict[str, typing.Any]
     name: str
-    ownershipState: typing_extensions.Literal[
+    ownershipState: typing.Literal[
         "OWNERSHIP_STATE_UNSPECIFIED",
         "OWNERSHIP_MISSING",
         "OWNERSHIP_UNREACHABLE",
@@ -105,8 +103,8 @@ class CustomDomain(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class CustomDomainMetadata(typing_extensions.TypedDict, total=False):
-    certState: typing_extensions.Literal[
+class CustomDomainMetadata(typing.TypedDict, total=False):
+    certState: typing.Literal[
         "CERT_STATE_UNSPECIFIED",
         "CERT_PREPARING",
         "CERT_VALIDATING",
@@ -115,7 +113,7 @@ class CustomDomainMetadata(typing_extensions.TypedDict, total=False):
         "CERT_EXPIRING_SOON",
         "CERT_EXPIRED",
     ]
-    hostState: typing_extensions.Literal[
+    hostState: typing.Literal[
         "HOST_STATE_UNSPECIFIED",
         "HOST_UNHOSTED",
         "HOST_UNREACHABLE",
@@ -125,7 +123,7 @@ class CustomDomainMetadata(typing_extensions.TypedDict, total=False):
     ]
     issues: _list[Status]
     liveMigrationSteps: _list[LiveMigrationStep]
-    ownershipState: typing_extensions.Literal[
+    ownershipState: typing.Literal[
         "OWNERSHIP_STATE_UNSPECIFIED",
         "OWNERSHIP_MISSING",
         "OWNERSHIP_UNREACHABLE",
@@ -137,33 +135,31 @@ class CustomDomainMetadata(typing_extensions.TypedDict, total=False):
     quickSetupUpdates: DnsUpdates
 
 @typing.type_check_only
-class DnsRecord(typing_extensions.TypedDict, total=False):
+class DnsRecord(typing.TypedDict, total=False):
     domainName: str
     rdata: str
-    requiredAction: typing_extensions.Literal["NONE", "ADD", "REMOVE"]
-    type: typing_extensions.Literal[
-        "TYPE_UNSPECIFIED", "A", "CNAME", "TXT", "AAAA", "CAA"
-    ]
+    requiredAction: typing.Literal["NONE", "ADD", "REMOVE"]
+    type: typing.Literal["TYPE_UNSPECIFIED", "A", "CNAME", "TXT", "AAAA", "CAA"]
 
 @typing.type_check_only
-class DnsRecordSet(typing_extensions.TypedDict, total=False):
+class DnsRecordSet(typing.TypedDict, total=False):
     checkError: Status
     domainName: str
     records: _list[DnsRecord]
 
 @typing.type_check_only
-class DnsUpdates(typing_extensions.TypedDict, total=False):
+class DnsUpdates(typing.TypedDict, total=False):
     checkTime: str
     desired: _list[DnsRecordSet]
     discovered: _list[DnsRecordSet]
 
 @typing.type_check_only
-class Domain(typing_extensions.TypedDict, total=False):
+class Domain(typing.TypedDict, total=False):
     domainName: str
     domainRedirect: DomainRedirect
     provisioning: DomainProvisioning
     site: str
-    status: typing_extensions.Literal[
+    status: typing.Literal[
         "DOMAIN_STATUS_UNSPECIFIED",
         "DOMAIN_CHANGE_PENDING",
         "DOMAIN_ACTIVE",
@@ -173,11 +169,11 @@ class Domain(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class DomainProvisioning(typing_extensions.TypedDict, total=False):
+class DomainProvisioning(typing.TypedDict, total=False):
     certChallengeDiscoveredTxt: _list[str]
     certChallengeDns: CertDnsChallenge
     certChallengeHttp: CertHttpChallenge
-    certStatus: typing_extensions.Literal[
+    certStatus: typing.Literal[
         "CERT_STATUS_UNSPECIFIED",
         "CERT_PENDING",
         "CERT_MISSING",
@@ -188,7 +184,7 @@ class DomainProvisioning(typing_extensions.TypedDict, total=False):
     ]
     discoveredIps: _list[str]
     dnsFetchTime: str
-    dnsStatus: typing_extensions.Literal[
+    dnsStatus: typing.Literal[
         "DNS_STATUS_UNSPECIFIED",
         "DNS_PENDING",
         "DNS_MISSING",
@@ -199,21 +195,21 @@ class DomainProvisioning(typing_extensions.TypedDict, total=False):
     expectedIps: _list[str]
 
 @typing.type_check_only
-class DomainRedirect(typing_extensions.TypedDict, total=False):
+class DomainRedirect(typing.TypedDict, total=False):
     domainName: str
-    type: typing_extensions.Literal["REDIRECT_TYPE_UNSPECIFIED", "MOVED_PERMANENTLY"]
+    type: typing.Literal["REDIRECT_TYPE_UNSPECIFIED", "MOVED_PERMANENTLY"]
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Header(typing_extensions.TypedDict, total=False):
+class Header(typing.TypedDict, total=False):
     glob: str
     headers: dict[str, typing.Any]
     regex: str
 
 @typing.type_check_only
-class HttpUpdate(typing_extensions.TypedDict, total=False):
+class HttpUpdate(typing.TypedDict, total=False):
     checkError: Status
     desired: str
     discovered: str
@@ -221,56 +217,56 @@ class HttpUpdate(typing_extensions.TypedDict, total=False):
     path: str
 
 @typing.type_check_only
-class I18nConfig(typing_extensions.TypedDict, total=False):
+class I18nConfig(typing.TypedDict, total=False):
     root: str
 
 @typing.type_check_only
-class ListChannelsResponse(typing_extensions.TypedDict, total=False):
+class ListChannelsResponse(typing.TypedDict, total=False):
     channels: _list[Channel]
     nextPageToken: str
 
 @typing.type_check_only
-class ListCustomDomainsResponse(typing_extensions.TypedDict, total=False):
+class ListCustomDomainsResponse(typing.TypedDict, total=False):
     customDomains: _list[CustomDomain]
     nextPageToken: str
 
 @typing.type_check_only
-class ListDomainsResponse(typing_extensions.TypedDict, total=False):
+class ListDomainsResponse(typing.TypedDict, total=False):
     domains: _list[Domain]
     nextPageToken: str
 
 @typing.type_check_only
-class ListOperationsResponse(typing_extensions.TypedDict, total=False):
+class ListOperationsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListReleasesResponse(typing_extensions.TypedDict, total=False):
+class ListReleasesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     releases: _list[Release]
 
 @typing.type_check_only
-class ListSitesResponse(typing_extensions.TypedDict, total=False):
+class ListSitesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     sites: _list[Site]
 
 @typing.type_check_only
-class ListVersionFilesResponse(typing_extensions.TypedDict, total=False):
+class ListVersionFilesResponse(typing.TypedDict, total=False):
     files: _list[VersionFile]
     nextPageToken: str
 
 @typing.type_check_only
-class ListVersionsResponse(typing_extensions.TypedDict, total=False):
+class ListVersionsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     versions: _list[Version]
 
 @typing.type_check_only
-class LiveMigrationStep(typing_extensions.TypedDict, total=False):
+class LiveMigrationStep(typing.TypedDict, total=False):
     certVerification: CertVerification
     dnsUpdates: DnsUpdates
     issues: _list[Status]
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "PREPARING",
         "PENDING",
@@ -280,7 +276,7 @@ class LiveMigrationStep(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class Operation(typing_extensions.TypedDict, total=False):
+class Operation(typing.TypedDict, total=False):
     done: bool
     error: Status
     metadata: dict[str, typing.Any]
@@ -288,38 +284,36 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class PathFilter(typing_extensions.TypedDict, total=False):
+class PathFilter(typing.TypedDict, total=False):
     regexes: _list[str]
 
 @typing.type_check_only
-class PopulateVersionFilesRequest(typing_extensions.TypedDict, total=False):
+class PopulateVersionFilesRequest(typing.TypedDict, total=False):
     files: dict[str, typing.Any]
 
 @typing.type_check_only
-class PopulateVersionFilesResponse(typing_extensions.TypedDict, total=False):
+class PopulateVersionFilesResponse(typing.TypedDict, total=False):
     uploadRequiredHashes: _list[str]
     uploadUrl: str
 
 @typing.type_check_only
-class Redirect(typing_extensions.TypedDict, total=False):
+class Redirect(typing.TypedDict, total=False):
     glob: str
     location: str
     regex: str
     statusCode: int
 
 @typing.type_check_only
-class Release(typing_extensions.TypedDict, total=False):
+class Release(typing.TypedDict, total=False):
     message: str
     name: str
     releaseTime: str
     releaseUser: ActingUser
-    type: typing_extensions.Literal[
-        "TYPE_UNSPECIFIED", "DEPLOY", "ROLLBACK", "SITE_DISABLE"
-    ]
+    type: typing.Literal["TYPE_UNSPECIFIED", "DEPLOY", "ROLLBACK", "SITE_DISABLE"]
     version: Version
 
 @typing.type_check_only
-class Rewrite(typing_extensions.TypedDict, total=False):
+class Rewrite(typing.TypedDict, total=False):
     dynamicLinks: bool
     function: str
     functionRegion: str
@@ -329,43 +323,43 @@ class Rewrite(typing_extensions.TypedDict, total=False):
     run: CloudRunRewrite
 
 @typing.type_check_only
-class ServingConfig(typing_extensions.TypedDict, total=False):
-    appAssociation: typing_extensions.Literal["AUTO", "NONE"]
+class ServingConfig(typing.TypedDict, total=False):
+    appAssociation: typing.Literal["AUTO", "NONE"]
     cleanUrls: bool
     headers: _list[Header]
     i18n: I18nConfig
     redirects: _list[Redirect]
     rewrites: _list[Rewrite]
-    trailingSlashBehavior: typing_extensions.Literal[
+    trailingSlashBehavior: typing.Literal[
         "TRAILING_SLASH_BEHAVIOR_UNSPECIFIED", "ADD", "REMOVE"
     ]
 
 @typing.type_check_only
-class Site(typing_extensions.TypedDict, total=False):
+class Site(typing.TypedDict, total=False):
     appId: str
     defaultUrl: str
     labels: dict[str, typing.Any]
     name: str
-    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "DEFAULT_SITE", "USER_SITE"]
+    type: typing.Literal["TYPE_UNSPECIFIED", "DEFAULT_SITE", "USER_SITE"]
 
 @typing.type_check_only
-class SiteConfig(typing_extensions.TypedDict, total=False):
+class SiteConfig(typing.TypedDict, total=False):
     cloudLoggingEnabled: bool
     maxVersions: str
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class UndeleteCustomDomainRequest(typing_extensions.TypedDict, total=False):
+class UndeleteCustomDomainRequest(typing.TypedDict, total=False):
     etag: str
     validateOnly: bool
 
 @typing.type_check_only
-class Version(typing_extensions.TypedDict, total=False):
+class Version(typing.TypedDict, total=False):
     config: ServingConfig
     createTime: str
     createUser: ActingUser
@@ -376,7 +370,7 @@ class Version(typing_extensions.TypedDict, total=False):
     finalizeUser: ActingUser
     labels: dict[str, typing.Any]
     name: str
-    status: typing_extensions.Literal[
+    status: typing.Literal[
         "VERSION_STATUS_UNSPECIFIED",
         "CREATED",
         "FINALIZED",
@@ -388,7 +382,7 @@ class Version(typing_extensions.TypedDict, total=False):
     versionBytes: str
 
 @typing.type_check_only
-class VersionFile(typing_extensions.TypedDict, total=False):
+class VersionFile(typing.TypedDict, total=False):
     hash: str
     path: str
-    status: typing_extensions.Literal["STATUS_UNSPECIFIED", "EXPECTED", "ACTIVE"]
+    status: typing.Literal["STATUS_UNSPECIFIED", "EXPECTED", "ACTIVE"]

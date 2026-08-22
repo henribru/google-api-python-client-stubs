@@ -1,11 +1,9 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class Account(typing_extensions.TypedDict, total=False):
+class Account(typing.TypedDict, total=False):
     childLink: dict[str, typing.Any]
     created: str
     id: str
@@ -17,14 +15,14 @@ class Account(typing_extensions.TypedDict, total=False):
     updated: str
 
 @typing.type_check_only
-class AccountRef(typing_extensions.TypedDict, total=False):
+class AccountRef(typing.TypedDict, total=False):
     href: str
     id: str
     kind: str
     name: str
 
 @typing.type_check_only
-class AccountSummaries(typing_extensions.TypedDict, total=False):
+class AccountSummaries(typing.TypedDict, total=False):
     items: _list[AccountSummary]
     itemsPerPage: int
     kind: str
@@ -35,7 +33,7 @@ class AccountSummaries(typing_extensions.TypedDict, total=False):
     username: str
 
 @typing.type_check_only
-class AccountSummary(typing_extensions.TypedDict, total=False):
+class AccountSummary(typing.TypedDict, total=False):
     id: str
     kind: str
     name: str
@@ -43,7 +41,7 @@ class AccountSummary(typing_extensions.TypedDict, total=False):
     webProperties: _list[WebPropertySummary]
 
 @typing.type_check_only
-class AccountTicket(typing_extensions.TypedDict, total=False):
+class AccountTicket(typing.TypedDict, total=False):
     account: Account
     id: str
     kind: str
@@ -52,7 +50,7 @@ class AccountTicket(typing_extensions.TypedDict, total=False):
     webproperty: Webproperty
 
 @typing.type_check_only
-class AccountTreeRequest(typing_extensions.TypedDict, total=False):
+class AccountTreeRequest(typing.TypedDict, total=False):
     accountName: str
     kind: str
     profileName: str
@@ -61,14 +59,14 @@ class AccountTreeRequest(typing_extensions.TypedDict, total=False):
     websiteUrl: str
 
 @typing.type_check_only
-class AccountTreeResponse(typing_extensions.TypedDict, total=False):
+class AccountTreeResponse(typing.TypedDict, total=False):
     account: Account
     kind: str
     profile: Profile
     webproperty: Webproperty
 
 @typing.type_check_only
-class Accounts(typing_extensions.TypedDict, total=False):
+class Accounts(typing.TypedDict, total=False):
     items: _list[Account]
     itemsPerPage: int
     kind: str
@@ -79,25 +77,23 @@ class Accounts(typing_extensions.TypedDict, total=False):
     username: str
 
 @typing.type_check_only
-class AdWordsAccount(typing_extensions.TypedDict, total=False):
+class AdWordsAccount(typing.TypedDict, total=False):
     autoTaggingEnabled: bool
     customerId: str
     kind: str
 
 @typing.type_check_only
-class AnalyticsDataimportDeleteUploadDataRequest(
-    typing_extensions.TypedDict, total=False
-):
+class AnalyticsDataimportDeleteUploadDataRequest(typing.TypedDict, total=False):
     customDataImportUids: _list[str]
 
 @typing.type_check_only
-class Column(typing_extensions.TypedDict, total=False):
+class Column(typing.TypedDict, total=False):
     attributes: dict[str, typing.Any]
     id: str
     kind: str
 
 @typing.type_check_only
-class Columns(typing_extensions.TypedDict, total=False):
+class Columns(typing.TypedDict, total=False):
     attributeNames: _list[str]
     etag: str
     items: _list[Column]
@@ -105,7 +101,7 @@ class Columns(typing_extensions.TypedDict, total=False):
     totalResults: int
 
 @typing.type_check_only
-class CustomDataSource(typing_extensions.TypedDict, total=False):
+class CustomDataSource(typing.TypedDict, total=False):
     accountId: str
     childLink: dict[str, typing.Any]
     created: str
@@ -124,7 +120,7 @@ class CustomDataSource(typing_extensions.TypedDict, total=False):
     webPropertyId: str
 
 @typing.type_check_only
-class CustomDataSources(typing_extensions.TypedDict, total=False):
+class CustomDataSources(typing.TypedDict, total=False):
     items: _list[CustomDataSource]
     itemsPerPage: int
     kind: str
@@ -135,7 +131,7 @@ class CustomDataSources(typing_extensions.TypedDict, total=False):
     username: str
 
 @typing.type_check_only
-class CustomDimension(typing_extensions.TypedDict, total=False):
+class CustomDimension(typing.TypedDict, total=False):
     accountId: str
     active: bool
     created: str
@@ -150,7 +146,7 @@ class CustomDimension(typing_extensions.TypedDict, total=False):
     webPropertyId: str
 
 @typing.type_check_only
-class CustomDimensions(typing_extensions.TypedDict, total=False):
+class CustomDimensions(typing.TypedDict, total=False):
     items: _list[CustomDimension]
     itemsPerPage: int
     kind: str
@@ -161,7 +157,7 @@ class CustomDimensions(typing_extensions.TypedDict, total=False):
     username: str
 
 @typing.type_check_only
-class CustomMetric(typing_extensions.TypedDict, total=False):
+class CustomMetric(typing.TypedDict, total=False):
     accountId: str
     active: bool
     created: str
@@ -179,7 +175,7 @@ class CustomMetric(typing_extensions.TypedDict, total=False):
     webPropertyId: str
 
 @typing.type_check_only
-class CustomMetrics(typing_extensions.TypedDict, total=False):
+class CustomMetrics(typing.TypedDict, total=False):
     items: _list[CustomMetric]
     itemsPerPage: int
     kind: str
@@ -190,7 +186,7 @@ class CustomMetrics(typing_extensions.TypedDict, total=False):
     username: str
 
 @typing.type_check_only
-class EntityAdWordsLink(typing_extensions.TypedDict, total=False):
+class EntityAdWordsLink(typing.TypedDict, total=False):
     adWordsAccounts: _list[AdWordsAccount]
     entity: dict[str, typing.Any]
     id: str
@@ -200,7 +196,7 @@ class EntityAdWordsLink(typing_extensions.TypedDict, total=False):
     selfLink: str
 
 @typing.type_check_only
-class EntityAdWordsLinks(typing_extensions.TypedDict, total=False):
+class EntityAdWordsLinks(typing.TypedDict, total=False):
     items: _list[EntityAdWordsLink]
     itemsPerPage: int
     kind: str
@@ -210,7 +206,7 @@ class EntityAdWordsLinks(typing_extensions.TypedDict, total=False):
     totalResults: int
 
 @typing.type_check_only
-class EntityUserLink(typing_extensions.TypedDict, total=False):
+class EntityUserLink(typing.TypedDict, total=False):
     entity: dict[str, typing.Any]
     id: str
     kind: str
@@ -219,7 +215,7 @@ class EntityUserLink(typing_extensions.TypedDict, total=False):
     userRef: UserRef
 
 @typing.type_check_only
-class EntityUserLinks(typing_extensions.TypedDict, total=False):
+class EntityUserLinks(typing.TypedDict, total=False):
     items: _list[EntityUserLink]
     itemsPerPage: int
     kind: str
@@ -229,7 +225,7 @@ class EntityUserLinks(typing_extensions.TypedDict, total=False):
     totalResults: int
 
 @typing.type_check_only
-class Experiment(typing_extensions.TypedDict, total=False):
+class Experiment(typing.TypedDict, total=False):
     accountId: str
     created: str
     description: str
@@ -260,7 +256,7 @@ class Experiment(typing_extensions.TypedDict, total=False):
     winnerFound: bool
 
 @typing.type_check_only
-class Experiments(typing_extensions.TypedDict, total=False):
+class Experiments(typing.TypedDict, total=False):
     items: _list[Experiment]
     itemsPerPage: int
     kind: str
@@ -271,7 +267,7 @@ class Experiments(typing_extensions.TypedDict, total=False):
     username: str
 
 @typing.type_check_only
-class Filter(typing_extensions.TypedDict, total=False):
+class Filter(typing.TypedDict, total=False):
     accountId: str
     advancedDetails: dict[str, typing.Any]
     created: str
@@ -289,7 +285,7 @@ class Filter(typing_extensions.TypedDict, total=False):
     uppercaseDetails: dict[str, typing.Any]
 
 @typing.type_check_only
-class FilterExpression(typing_extensions.TypedDict, total=False):
+class FilterExpression(typing.TypedDict, total=False):
     caseSensitive: bool
     expressionValue: str
     field: str
@@ -298,7 +294,7 @@ class FilterExpression(typing_extensions.TypedDict, total=False):
     matchType: str
 
 @typing.type_check_only
-class FilterRef(typing_extensions.TypedDict, total=False):
+class FilterRef(typing.TypedDict, total=False):
     accountId: str
     href: str
     id: str
@@ -306,7 +302,7 @@ class FilterRef(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class Filters(typing_extensions.TypedDict, total=False):
+class Filters(typing.TypedDict, total=False):
     items: _list[Filter]
     itemsPerPage: int
     kind: str
@@ -317,7 +313,7 @@ class Filters(typing_extensions.TypedDict, total=False):
     username: str
 
 @typing.type_check_only
-class GaData(typing_extensions.TypedDict, total=False):
+class GaData(typing.TypedDict, total=False):
     columnHeaders: _list[dict[str, typing.Any]]
     containsSampledData: bool
     dataLastRefreshed: str
@@ -337,7 +333,7 @@ class GaData(typing_extensions.TypedDict, total=False):
     totalsForAllResults: dict[str, typing.Any]
 
 @typing.type_check_only
-class Goal(typing_extensions.TypedDict, total=False):
+class Goal(typing.TypedDict, total=False):
     accountId: str
     active: bool
     created: str
@@ -358,7 +354,7 @@ class Goal(typing_extensions.TypedDict, total=False):
     webPropertyId: str
 
 @typing.type_check_only
-class Goals(typing_extensions.TypedDict, total=False):
+class Goals(typing.TypedDict, total=False):
     items: _list[Goal]
     itemsPerPage: int
     kind: str
@@ -369,20 +365,20 @@ class Goals(typing_extensions.TypedDict, total=False):
     username: str
 
 @typing.type_check_only
-class HashClientIdRequest(typing_extensions.TypedDict, total=False):
+class HashClientIdRequest(typing.TypedDict, total=False):
     clientId: str
     kind: str
     webPropertyId: str
 
 @typing.type_check_only
-class HashClientIdResponse(typing_extensions.TypedDict, total=False):
+class HashClientIdResponse(typing.TypedDict, total=False):
     clientId: str
     hashedClientId: str
     kind: str
     webPropertyId: str
 
 @typing.type_check_only
-class IncludeConditions(typing_extensions.TypedDict, total=False):
+class IncludeConditions(typing.TypedDict, total=False):
     daysToLookBack: int
     isSmartList: bool
     kind: str
@@ -390,7 +386,7 @@ class IncludeConditions(typing_extensions.TypedDict, total=False):
     segment: str
 
 @typing.type_check_only
-class LinkedForeignAccount(typing_extensions.TypedDict, total=False):
+class LinkedForeignAccount(typing.TypedDict, total=False):
     accountId: str
     eligibleForSearch: bool
     id: str
@@ -403,7 +399,7 @@ class LinkedForeignAccount(typing_extensions.TypedDict, total=False):
     webPropertyId: str
 
 @typing.type_check_only
-class McfData(typing_extensions.TypedDict, total=False):
+class McfData(typing.TypedDict, total=False):
     columnHeaders: _list[dict[str, typing.Any]]
     containsSampledData: bool
     id: str
@@ -421,7 +417,7 @@ class McfData(typing_extensions.TypedDict, total=False):
     totalsForAllResults: dict[str, typing.Any]
 
 @typing.type_check_only
-class Profile(typing_extensions.TypedDict, total=False):
+class Profile(typing.TypedDict, total=False):
     accountId: str
     botFilteringEnabled: bool
     childLink: dict[str, typing.Any]
@@ -450,7 +446,7 @@ class Profile(typing_extensions.TypedDict, total=False):
     websiteUrl: str
 
 @typing.type_check_only
-class ProfileFilterLink(typing_extensions.TypedDict, total=False):
+class ProfileFilterLink(typing.TypedDict, total=False):
     filterRef: FilterRef
     id: str
     kind: str
@@ -459,7 +455,7 @@ class ProfileFilterLink(typing_extensions.TypedDict, total=False):
     selfLink: str
 
 @typing.type_check_only
-class ProfileFilterLinks(typing_extensions.TypedDict, total=False):
+class ProfileFilterLinks(typing.TypedDict, total=False):
     items: _list[ProfileFilterLink]
     itemsPerPage: int
     kind: str
@@ -470,7 +466,7 @@ class ProfileFilterLinks(typing_extensions.TypedDict, total=False):
     username: str
 
 @typing.type_check_only
-class ProfileRef(typing_extensions.TypedDict, total=False):
+class ProfileRef(typing.TypedDict, total=False):
     accountId: str
     href: str
     id: str
@@ -480,7 +476,7 @@ class ProfileRef(typing_extensions.TypedDict, total=False):
     webPropertyId: str
 
 @typing.type_check_only
-class ProfileSummary(typing_extensions.TypedDict, total=False):
+class ProfileSummary(typing.TypedDict, total=False):
     id: str
     kind: str
     name: str
@@ -488,7 +484,7 @@ class ProfileSummary(typing_extensions.TypedDict, total=False):
     type: str
 
 @typing.type_check_only
-class Profiles(typing_extensions.TypedDict, total=False):
+class Profiles(typing.TypedDict, total=False):
     items: _list[Profile]
     itemsPerPage: int
     kind: str
@@ -499,7 +495,7 @@ class Profiles(typing_extensions.TypedDict, total=False):
     username: str
 
 @typing.type_check_only
-class RealtimeData(typing_extensions.TypedDict, total=False):
+class RealtimeData(typing.TypedDict, total=False):
     columnHeaders: _list[dict[str, typing.Any]]
     id: str
     kind: str
@@ -511,7 +507,7 @@ class RealtimeData(typing_extensions.TypedDict, total=False):
     totalsForAllResults: dict[str, typing.Any]
 
 @typing.type_check_only
-class RemarketingAudience(typing_extensions.TypedDict, total=False):
+class RemarketingAudience(typing.TypedDict, total=False):
     accountId: str
     audienceDefinition: dict[str, typing.Any]
     audienceType: str
@@ -528,7 +524,7 @@ class RemarketingAudience(typing_extensions.TypedDict, total=False):
     webPropertyId: str
 
 @typing.type_check_only
-class RemarketingAudiences(typing_extensions.TypedDict, total=False):
+class RemarketingAudiences(typing.TypedDict, total=False):
     items: _list[RemarketingAudience]
     itemsPerPage: int
     kind: str
@@ -539,7 +535,7 @@ class RemarketingAudiences(typing_extensions.TypedDict, total=False):
     username: str
 
 @typing.type_check_only
-class Segment(typing_extensions.TypedDict, total=False):
+class Segment(typing.TypedDict, total=False):
     created: str
     definition: str
     id: str
@@ -551,7 +547,7 @@ class Segment(typing_extensions.TypedDict, total=False):
     updated: str
 
 @typing.type_check_only
-class Segments(typing_extensions.TypedDict, total=False):
+class Segments(typing.TypedDict, total=False):
     items: _list[Segment]
     itemsPerPage: int
     kind: str
@@ -561,7 +557,7 @@ class Segments(typing_extensions.TypedDict, total=False):
     totalResults: int
     username: str
 
-AlternativeUnsampledReport = typing_extensions.TypedDict(
+AlternativeUnsampledReport = typing.TypedDict(
     "AlternativeUnsampledReport",
     {
         "accountId": str,
@@ -591,7 +587,7 @@ AlternativeUnsampledReport = typing_extensions.TypedDict(
 class UnsampledReport(AlternativeUnsampledReport): ...
 
 @typing.type_check_only
-class UnsampledReports(typing_extensions.TypedDict, total=False):
+class UnsampledReports(typing.TypedDict, total=False):
     items: _list[UnsampledReport]
     itemsPerPage: int
     kind: str
@@ -602,7 +598,7 @@ class UnsampledReports(typing_extensions.TypedDict, total=False):
     username: str
 
 @typing.type_check_only
-class Upload(typing_extensions.TypedDict, total=False):
+class Upload(typing.TypedDict, total=False):
     accountId: str
     customDataSourceId: str
     errors: _list[str]
@@ -612,7 +608,7 @@ class Upload(typing_extensions.TypedDict, total=False):
     uploadTime: str
 
 @typing.type_check_only
-class Uploads(typing_extensions.TypedDict, total=False):
+class Uploads(typing.TypedDict, total=False):
     items: _list[Upload]
     itemsPerPage: int
     kind: str
@@ -622,7 +618,7 @@ class Uploads(typing_extensions.TypedDict, total=False):
     totalResults: int
 
 @typing.type_check_only
-class UserDeletionRequest(typing_extensions.TypedDict, total=False):
+class UserDeletionRequest(typing.TypedDict, total=False):
     deletionRequestTime: str
     firebaseProjectId: str
     id: dict[str, typing.Any]
@@ -631,13 +627,13 @@ class UserDeletionRequest(typing_extensions.TypedDict, total=False):
     webPropertyId: str
 
 @typing.type_check_only
-class UserRef(typing_extensions.TypedDict, total=False):
+class UserRef(typing.TypedDict, total=False):
     email: str
     id: str
     kind: str
 
 @typing.type_check_only
-class WebPropertyRef(typing_extensions.TypedDict, total=False):
+class WebPropertyRef(typing.TypedDict, total=False):
     accountId: str
     href: str
     id: str
@@ -646,7 +642,7 @@ class WebPropertyRef(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class WebPropertySummary(typing_extensions.TypedDict, total=False):
+class WebPropertySummary(typing.TypedDict, total=False):
     id: str
     internalWebPropertyId: str
     kind: str
@@ -657,7 +653,7 @@ class WebPropertySummary(typing_extensions.TypedDict, total=False):
     websiteUrl: str
 
 @typing.type_check_only
-class Webproperties(typing_extensions.TypedDict, total=False):
+class Webproperties(typing.TypedDict, total=False):
     items: _list[Webproperty]
     itemsPerPage: int
     kind: str
@@ -668,7 +664,7 @@ class Webproperties(typing_extensions.TypedDict, total=False):
     username: str
 
 @typing.type_check_only
-class Webproperty(typing_extensions.TypedDict, total=False):
+class Webproperty(typing.TypedDict, total=False):
     accountId: str
     childLink: dict[str, typing.Any]
     created: str

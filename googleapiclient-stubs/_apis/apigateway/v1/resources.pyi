@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -36,9 +35,7 @@ class ApigatewayResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        view: typing_extensions.Literal[
-                            "CONFIG_VIEW_UNSPECIFIED", "BASIC", "FULL"
-                        ]
+                        view: typing.Literal["CONFIG_VIEW_UNSPECIFIED", "BASIC", "FULL"]
                         | None = ...,
                         **kwargs: typing.Any,
                     ) -> ApigatewayApiConfigHttpRequest: ...

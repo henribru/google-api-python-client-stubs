@@ -1,95 +1,93 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class AcceptInvitationRequest(typing_extensions.TypedDict, total=False): ...
+class AcceptInvitationRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Account(typing_extensions.TypedDict, total=False):
+class Account(typing.TypedDict, total=False):
     accountName: str
     accountNumber: str
     name: str
     organizationInfo: OrganizationInfo
-    permissionLevel: typing_extensions.Literal[
+    permissionLevel: typing.Literal[
         "PERMISSION_LEVEL_UNSPECIFIED", "OWNER_LEVEL", "MEMBER_LEVEL"
     ]
     primaryOwner: str
-    role: typing_extensions.Literal[
+    role: typing.Literal[
         "ACCOUNT_ROLE_UNSPECIFIED", "PRIMARY_OWNER", "OWNER", "MANAGER", "SITE_MANAGER"
     ]
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "ACCOUNT_TYPE_UNSPECIFIED",
         "PERSONAL",
         "LOCATION_GROUP",
         "USER_GROUP",
         "ORGANIZATION",
     ]
-    verificationState: typing_extensions.Literal[
+    verificationState: typing.Literal[
         "VERIFICATION_STATE_UNSPECIFIED",
         "VERIFIED",
         "UNVERIFIED",
         "VERIFICATION_REQUESTED",
     ]
-    vettedState: typing_extensions.Literal[
+    vettedState: typing.Literal[
         "VETTED_STATE_UNSPECIFIED", "NOT_VETTED", "VETTED", "INVALID"
     ]
 
 @typing.type_check_only
-class Admin(typing_extensions.TypedDict, total=False):
+class Admin(typing.TypedDict, total=False):
     account: str
     admin: str
     name: str
     pendingInvitation: bool
-    role: typing_extensions.Literal[
+    role: typing.Literal[
         "ADMIN_ROLE_UNSPECIFIED", "PRIMARY_OWNER", "OWNER", "MANAGER", "SITE_MANAGER"
     ]
 
 @typing.type_check_only
-class DeclineInvitationRequest(typing_extensions.TypedDict, total=False): ...
+class DeclineInvitationRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Invitation(typing_extensions.TypedDict, total=False):
+class Invitation(typing.TypedDict, total=False):
     name: str
-    role: typing_extensions.Literal[
+    role: typing.Literal[
         "ADMIN_ROLE_UNSPECIFIED", "PRIMARY_OWNER", "OWNER", "MANAGER", "SITE_MANAGER"
     ]
     targetAccount: Account
     targetLocation: TargetLocation
-    targetType: typing_extensions.Literal[
+    targetType: typing.Literal[
         "TARGET_TYPE_UNSPECIFIED", "ACCOUNTS_ONLY", "LOCATIONS_ONLY"
     ]
 
 @typing.type_check_only
-class ListAccountAdminsResponse(typing_extensions.TypedDict, total=False):
+class ListAccountAdminsResponse(typing.TypedDict, total=False):
     accountAdmins: _list[Admin]
 
 @typing.type_check_only
-class ListAccountsResponse(typing_extensions.TypedDict, total=False):
+class ListAccountsResponse(typing.TypedDict, total=False):
     accounts: _list[Account]
     nextPageToken: str
 
 @typing.type_check_only
-class ListInvitationsResponse(typing_extensions.TypedDict, total=False):
+class ListInvitationsResponse(typing.TypedDict, total=False):
     invitations: _list[Invitation]
 
 @typing.type_check_only
-class ListLocationAdminsResponse(typing_extensions.TypedDict, total=False):
+class ListLocationAdminsResponse(typing.TypedDict, total=False):
     admins: _list[Admin]
 
 @typing.type_check_only
-class OrganizationInfo(typing_extensions.TypedDict, total=False):
+class OrganizationInfo(typing.TypedDict, total=False):
     address: PostalAddress
     phoneNumber: str
     registeredDomain: str
 
 @typing.type_check_only
-class PostalAddress(typing_extensions.TypedDict, total=False):
+class PostalAddress(typing.TypedDict, total=False):
     addressLines: _list[str]
     administrativeArea: str
     languageCode: str
@@ -103,11 +101,11 @@ class PostalAddress(typing_extensions.TypedDict, total=False):
     sublocality: str
 
 @typing.type_check_only
-class TargetLocation(typing_extensions.TypedDict, total=False):
+class TargetLocation(typing.TypedDict, total=False):
     address: str
     locationName: str
     placeId: str
 
 @typing.type_check_only
-class TransferLocationRequest(typing_extensions.TypedDict, total=False):
+class TransferLocationRequest(typing.TypedDict, total=False):
     destinationAccount: str

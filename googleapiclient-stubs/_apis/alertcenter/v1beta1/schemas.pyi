@@ -1,24 +1,22 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class AbuseDetected(typing_extensions.TypedDict, total=False):
+class AbuseDetected(typing.TypedDict, total=False):
     additionalDetails: EntityList
     product: str
     subAlertId: str
-    variationType: typing_extensions.Literal[
+    variationType: typing.Literal[
         "ABUSE_DETECTED_VARIATION_TYPE_UNSPECIFIED",
         "DRIVE_ABUSIVE_CONTENT",
         "LIMITED_DISABLE",
     ]
 
 @typing.type_check_only
-class AccessApproval(typing_extensions.TypedDict, total=False):
+class AccessApproval(typing.TypedDict, total=False):
     justificationReason: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "JUSTIFICATION_UNSPECIFIED",
             "CUSTOMER_INITIATED_SUPPORT",
             "GOOGLE_INITIATED_REVIEW",
@@ -34,8 +32,8 @@ class AccessApproval(typing_extensions.TypedDict, total=False):
     tickets: _list[SupportTicket]
 
 @typing.type_check_only
-class AccountSuspensionDetails(typing_extensions.TypedDict, total=False):
-    abuseReason: typing_extensions.Literal[
+class AccountSuspensionDetails(typing.TypedDict, total=False):
+    abuseReason: typing.Literal[
         "ACCOUNT_SUSPENSION_ABUSE_REASON_UNSPECIFIED",
         "TOS_VIOLATION",
         "SPAM",
@@ -50,9 +48,9 @@ class AccountSuspensionDetails(typing_extensions.TypedDict, total=False):
     productName: str
 
 @typing.type_check_only
-class AccountSuspensionWarning(typing_extensions.TypedDict, total=False):
+class AccountSuspensionWarning(typing.TypedDict, total=False):
     appealWindow: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "ACCOUNT_SUSPENSION_WARNING_STATE_UNSPECIFIED",
         "WARNING",
         "SUSPENDED",
@@ -62,16 +60,16 @@ class AccountSuspensionWarning(typing_extensions.TypedDict, total=False):
     suspensionDetails: _list[AccountSuspensionDetails]
 
 @typing.type_check_only
-class AccountWarning(typing_extensions.TypedDict, total=False):
+class AccountWarning(typing.TypedDict, total=False):
     email: str
     loginDetails: LoginDetails
 
 @typing.type_check_only
-class ActionInfo(typing_extensions.TypedDict, total=False):
+class ActionInfo(typing.TypedDict, total=False):
     evidenceLockerFilePath: str
 
 @typing.type_check_only
-class ActivityRule(typing_extensions.TypedDict, total=False):
+class ActivityRule(typing.TypedDict, total=False):
     actionNames: _list[str]
     createTime: str
     description: str
@@ -86,7 +84,7 @@ class ActivityRule(typing_extensions.TypedDict, total=False):
     windowSize: str
 
 @typing.type_check_only
-class Alert(typing_extensions.TypedDict, total=False):
+class Alert(typing.TypedDict, total=False):
     alertId: str
     createTime: str
     customerId: str
@@ -102,13 +100,13 @@ class Alert(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class AlertFeedback(typing_extensions.TypedDict, total=False):
+class AlertFeedback(typing.TypedDict, total=False):
     alertId: str
     createTime: str
     customerId: str
     email: str
     feedbackId: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "ALERT_FEEDBACK_TYPE_UNSPECIFIED",
         "NOT_USEFUL",
         "SOMEWHAT_USEFUL",
@@ -116,7 +114,7 @@ class AlertFeedback(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class AlertMetadata(typing_extensions.TypedDict, total=False):
+class AlertMetadata(typing.TypedDict, total=False):
     alertId: str
     assignee: str
     customerId: str
@@ -126,29 +124,29 @@ class AlertMetadata(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class ApnsCertificateExpirationInfo(typing_extensions.TypedDict, total=False):
+class ApnsCertificateExpirationInfo(typing.TypedDict, total=False):
     appleId: str
     expirationTime: str
     uid: str
 
 @typing.type_check_only
-class AppMakerSqlSetupNotification(typing_extensions.TypedDict, total=False):
+class AppMakerSqlSetupNotification(typing.TypedDict, total=False):
     requestInfo: _list[RequestInfo]
 
 @typing.type_check_only
-class AppSettingsChanged(typing_extensions.TypedDict, total=False):
+class AppSettingsChanged(typing.TypedDict, total=False):
     alertDetails: str
     name: str
 
 @typing.type_check_only
-class AppsOutage(typing_extensions.TypedDict, total=False):
+class AppsOutage(typing.TypedDict, total=False):
     dashboardUri: str
     incidentTrackingId: str
     mergeInfo: MergeInfo
     nextUpdateTime: str
     products: _list[str]
     resolutionTime: str
-    status: typing_extensions.Literal[
+    status: typing.Literal[
         "STATUS_UNSPECIFIED",
         "NEW",
         "ONGOING",
@@ -160,62 +158,62 @@ class AppsOutage(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class Attachment(typing_extensions.TypedDict, total=False):
+class Attachment(typing.TypedDict, total=False):
     csv: Csv
 
 @typing.type_check_only
-class BadWhitelist(typing_extensions.TypedDict, total=False):
+class BadWhitelist(typing.TypedDict, total=False):
     domainId: DomainId
     maliciousEntity: MaliciousEntity
     messages: _list[GmailMessageInfo]
     sourceIp: str
 
 @typing.type_check_only
-class BatchDeleteAlertsRequest(typing_extensions.TypedDict, total=False):
+class BatchDeleteAlertsRequest(typing.TypedDict, total=False):
     alertId: _list[str]
     customerId: str
 
 @typing.type_check_only
-class BatchDeleteAlertsResponse(typing_extensions.TypedDict, total=False):
+class BatchDeleteAlertsResponse(typing.TypedDict, total=False):
     failedAlertStatus: dict[str, typing.Any]
     successAlertIds: _list[str]
 
 @typing.type_check_only
-class BatchUndeleteAlertsRequest(typing_extensions.TypedDict, total=False):
+class BatchUndeleteAlertsRequest(typing.TypedDict, total=False):
     alertId: _list[str]
     customerId: str
 
 @typing.type_check_only
-class BatchUndeleteAlertsResponse(typing_extensions.TypedDict, total=False):
+class BatchUndeleteAlertsResponse(typing.TypedDict, total=False):
     failedAlertStatus: dict[str, typing.Any]
     successAlertIds: _list[str]
 
 @typing.type_check_only
-class ClientSideEncryptionServiceUnavailable(typing_extensions.TypedDict, total=False):
+class ClientSideEncryptionServiceUnavailable(typing.TypedDict, total=False):
     idpError: _list[IdentityProviderError]
     keyServiceError: _list[KeyServiceError]
 
 @typing.type_check_only
-class CloudPubsubTopic(typing_extensions.TypedDict, total=False):
-    payloadFormat: typing_extensions.Literal["PAYLOAD_FORMAT_UNSPECIFIED", "JSON"]
+class CloudPubsubTopic(typing.TypedDict, total=False):
+    payloadFormat: typing.Literal["PAYLOAD_FORMAT_UNSPECIFIED", "JSON"]
     topicName: str
 
 @typing.type_check_only
-class Csv(typing_extensions.TypedDict, total=False):
+class Csv(typing.TypedDict, total=False):
     dataRows: _list[CsvRow]
     headers: _list[str]
 
 @typing.type_check_only
-class CsvRow(typing_extensions.TypedDict, total=False):
+class CsvRow(typing.TypedDict, total=False):
     entries: _list[str]
 
 @typing.type_check_only
-class DeviceCompromised(typing_extensions.TypedDict, total=False):
+class DeviceCompromised(typing.TypedDict, total=False):
     email: str
     events: _list[DeviceCompromisedSecurityDetail]
 
 @typing.type_check_only
-class DeviceCompromisedSecurityDetail(typing_extensions.TypedDict, total=False):
+class DeviceCompromisedSecurityDetail(typing.TypedDict, total=False):
     deviceCompromisedState: str
     deviceId: str
     deviceModel: str
@@ -225,7 +223,7 @@ class DeviceCompromisedSecurityDetail(typing_extensions.TypedDict, total=False):
     serialNumber: str
 
 @typing.type_check_only
-class DeviceManagementRule(typing_extensions.TypedDict, total=False):
+class DeviceManagementRule(typing.TypedDict, total=False):
     deviceId: str
     deviceModel: str
     deviceType: str
@@ -238,24 +236,24 @@ class DeviceManagementRule(typing_extensions.TypedDict, total=False):
     serialNumber: str
 
 @typing.type_check_only
-class DlpRuleViolation(typing_extensions.TypedDict, total=False):
+class DlpRuleViolation(typing.TypedDict, total=False):
     ruleViolationInfo: RuleViolationInfo
 
 @typing.type_check_only
-class DomainId(typing_extensions.TypedDict, total=False):
+class DomainId(typing.TypedDict, total=False):
     customerPrimaryDomain: str
 
 @typing.type_check_only
-class DomainWideTakeoutInitiated(typing_extensions.TypedDict, total=False):
+class DomainWideTakeoutInitiated(typing.TypedDict, total=False):
     email: str
     takeoutRequestId: str
 
 @typing.type_check_only
-class DriveSyncStateChanged(typing_extensions.TypedDict, total=False):
+class DriveSyncStateChanged(typing.TypedDict, total=False):
     email: str
     syncPauseStartTime: str
-    syncState: typing_extensions.Literal["SYNC_STATE_UNSPECIFIED", "PAUSED", "RESUMED"]
-    syncStateChangeReason: typing_extensions.Literal[
+    syncState: typing.Literal["SYNC_STATE_UNSPECIFIED", "PAUSED", "RESUMED"]
+    syncStateChangeReason: typing.Literal[
         "SYNC_STATE_CHANGE_REASON_UNSPECIFIED",
         "UNUSUAL_ACTIVITY",
         "USER_FEEDBACK_TRUE_POSITIVE",
@@ -263,22 +261,22 @@ class DriveSyncStateChanged(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Entity(typing_extensions.TypedDict, total=False):
+class Entity(typing.TypedDict, total=False):
     link: str
     name: str
     values: _list[str]
 
 @typing.type_check_only
-class EntityList(typing_extensions.TypedDict, total=False):
+class EntityList(typing.TypedDict, total=False):
     entities: _list[Entity]
     headers: _list[str]
     name: str
 
 @typing.type_check_only
-class GmailMessageInfo(typing_extensions.TypedDict, total=False):
+class GmailMessageInfo(typing.TypedDict, total=False):
     attachmentsSha256Hash: _list[str]
     date: str
     md5HashMessageBody: str
@@ -290,7 +288,7 @@ class GmailMessageInfo(typing_extensions.TypedDict, total=False):
     subjectText: str
 
 @typing.type_check_only
-class GoogleOperations(typing_extensions.TypedDict, total=False):
+class GoogleOperations(typing.TypedDict, total=False):
     affectedUserEmails: _list[str]
     attachmentData: Attachment
     description: str
@@ -299,10 +297,10 @@ class GoogleOperations(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
-class IdentityProviderError(typing_extensions.TypedDict, total=False):
+class IdentityProviderError(typing.TypedDict, total=False):
     authorizationBaseUrl: str
     errorCount: str
-    errorInfo: typing_extensions.Literal[
+    errorInfo: typing.Literal[
         "IDENTITY_PROVIDER_ERROR_INFO_UNSPECIFIED",
         "EMAIL_MISMATCH",
         "UNAVAILABLE_DISCOVERY_CONTENT",
@@ -317,9 +315,9 @@ class IdentityProviderError(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class KeyServiceError(typing_extensions.TypedDict, total=False):
+class KeyServiceError(typing.TypedDict, total=False):
     errorCount: str
-    errorInfo: typing_extensions.Literal[
+    errorInfo: typing.Literal[
         "KEY_SERVICE_ERROR_INFO_UNSPECIFIED",
         "MALFORMED_JSON",
         "MISSING_KEY",
@@ -332,85 +330,85 @@ class KeyServiceError(typing_extensions.TypedDict, total=False):
     keyServiceUrl: str
 
 @typing.type_check_only
-class ListAlertFeedbackResponse(typing_extensions.TypedDict, total=False):
+class ListAlertFeedbackResponse(typing.TypedDict, total=False):
     feedback: _list[AlertFeedback]
 
 @typing.type_check_only
-class ListAlertsResponse(typing_extensions.TypedDict, total=False):
+class ListAlertsResponse(typing.TypedDict, total=False):
     alerts: _list[Alert]
     nextPageToken: str
 
 @typing.type_check_only
-class LoginDetails(typing_extensions.TypedDict, total=False):
+class LoginDetails(typing.TypedDict, total=False):
     ipAddress: str
     loginTime: str
 
 @typing.type_check_only
-class MailPhishing(typing_extensions.TypedDict, total=False):
+class MailPhishing(typing.TypedDict, total=False):
     domainId: DomainId
     isInternal: bool
     maliciousEntity: MaliciousEntity
     messages: _list[GmailMessageInfo]
-    systemActionType: typing_extensions.Literal[
+    systemActionType: typing.Literal[
         "SYSTEM_ACTION_TYPE_UNSPECIFIED", "NO_OPERATION", "REMOVED_FROM_INBOX"
     ]
 
 @typing.type_check_only
-class MaliciousEntity(typing_extensions.TypedDict, total=False):
+class MaliciousEntity(typing.TypedDict, total=False):
     displayName: str
     entity: User
     fromHeader: str
 
 @typing.type_check_only
-class MandatoryServiceAnnouncement(typing_extensions.TypedDict, total=False):
+class MandatoryServiceAnnouncement(typing.TypedDict, total=False):
     description: str
     title: str
 
 @typing.type_check_only
-class MatchInfo(typing_extensions.TypedDict, total=False):
+class MatchInfo(typing.TypedDict, total=False):
     predefinedDetector: PredefinedDetectorInfo
     userDefinedDetector: UserDefinedDetectorInfo
 
 @typing.type_check_only
-class MergeInfo(typing_extensions.TypedDict, total=False):
+class MergeInfo(typing.TypedDict, total=False):
     newAlertId: str
     newIncidentTrackingId: str
 
 @typing.type_check_only
-class Notification(typing_extensions.TypedDict, total=False):
+class Notification(typing.TypedDict, total=False):
     cloudPubsubTopic: CloudPubsubTopic
 
 @typing.type_check_only
-class PhishingSpike(typing_extensions.TypedDict, total=False):
+class PhishingSpike(typing.TypedDict, total=False):
     domainId: DomainId
     isInternal: bool
     maliciousEntity: MaliciousEntity
     messages: _list[GmailMessageInfo]
 
 @typing.type_check_only
-class PredefinedDetectorInfo(typing_extensions.TypedDict, total=False):
+class PredefinedDetectorInfo(typing.TypedDict, total=False):
     detectorName: str
 
 @typing.type_check_only
-class PrimaryAdminChangedEvent(typing_extensions.TypedDict, total=False):
+class PrimaryAdminChangedEvent(typing.TypedDict, total=False):
     domain: str
     previousAdminEmail: str
     updatedAdminEmail: str
 
 @typing.type_check_only
-class ReportingRule(typing_extensions.TypedDict, total=False):
+class ReportingRule(typing.TypedDict, total=False):
     alertDetails: str
     name: str
     query: str
 
 @typing.type_check_only
-class RequestInfo(typing_extensions.TypedDict, total=False):
+class RequestInfo(typing.TypedDict, total=False):
     appDeveloperEmail: _list[str]
     appKey: str
     numberOfRequests: str
 
 @typing.type_check_only
-class ResourceInfo(typing_extensions.TypedDict, total=False):
+class ResourceInfo(typing.TypedDict, total=False):
     chatAttachmentId: str
     chatMessageId: str
     deviceId: str
@@ -419,17 +417,17 @@ class ResourceInfo(typing_extensions.TypedDict, total=False):
     resourceTitle: str
 
 @typing.type_check_only
-class RuleInfo(typing_extensions.TypedDict, total=False):
+class RuleInfo(typing.TypedDict, total=False):
     displayName: str
     resourceName: str
 
 @typing.type_check_only
-class RuleViolationInfo(typing_extensions.TypedDict, total=False):
-    agentType: typing_extensions.Literal["AGENT_TYPE_UNSPECIFIED", "STUDIO"]
-    dataSource: typing_extensions.Literal[
+class RuleViolationInfo(typing.TypedDict, total=False):
+    agentType: typing.Literal["AGENT_TYPE_UNSPECIFIED", "STUDIO", "WORK_AGENT"]
+    dataSource: typing.Literal[
         "DATA_SOURCE_UNSPECIFIED", "DRIVE", "GMAIL", "CHROME", "CHAT"
     ]
-    eventType: typing_extensions.Literal[
+    eventType: typing.Literal[
         "EVENT_TYPE_UNSPECIFIED", "ACCESS_BLOCKED", "SHARING_BLOCKED"
     ]
     matchInfo: _list[MatchInfo]
@@ -437,7 +435,7 @@ class RuleViolationInfo(typing_extensions.TypedDict, total=False):
     resourceInfo: ResourceInfo
     ruleInfo: RuleInfo
     suppressedActionTypes: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "ACTION_TYPE_UNSPECIFIED",
             "DRIVE_BLOCK_EXTERNAL_SHARING",
             "DRIVE_WARN_ON_EXTERNAL_SHARING",
@@ -464,6 +462,7 @@ class RuleViolationInfo(typing_extensions.TypedDict, total=False):
             "CHROME_STORE_CONTENT",
             "CHROME_WATERMARK",
             "CHROME_FORCE_SAVE_TO_CLOUD",
+            "CHROME_KEEP_IN_MANAGED_CHROME",
             "DELETE_WEBPROTECT_EVIDENCE",
             "CHAT_BLOCK_CONTENT",
             "CHAT_WARN_USER",
@@ -472,7 +471,7 @@ class RuleViolationInfo(typing_extensions.TypedDict, total=False):
             "RULE_DEACTIVATE",
         ]
     ]
-    trigger: typing_extensions.Literal[
+    trigger: typing.Literal[
         "TRIGGER_UNSPECIFIED",
         "DRIVE_SHARE",
         "MAIL_BEING_SENT",
@@ -486,10 +485,11 @@ class RuleViolationInfo(typing_extensions.TypedDict, total=False):
         "CHROMEOS_FILE_TRANSFER",
         "GEMINI_ACCESS",
         "AGENT_EXECUTION",
+        "CHROME_DATA_COPIED",
     ]
     triggeredActionInfo: _list[ActionInfo]
     triggeredActionTypes: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "ACTION_TYPE_UNSPECIFIED",
             "DRIVE_BLOCK_EXTERNAL_SHARING",
             "DRIVE_WARN_ON_EXTERNAL_SHARING",
@@ -516,6 +516,7 @@ class RuleViolationInfo(typing_extensions.TypedDict, total=False):
             "CHROME_STORE_CONTENT",
             "CHROME_WATERMARK",
             "CHROME_FORCE_SAVE_TO_CLOUD",
+            "CHROME_KEEP_IN_MANAGED_CHROME",
             "DELETE_WEBPROTECT_EVIDENCE",
             "CHAT_BLOCK_CONTENT",
             "CHAT_WARN_USER",
@@ -527,20 +528,20 @@ class RuleViolationInfo(typing_extensions.TypedDict, total=False):
     triggeringUserEmail: str
 
 @typing.type_check_only
-class SSOProfileCreatedEvent(typing_extensions.TypedDict, total=False):
+class SSOProfileCreatedEvent(typing.TypedDict, total=False):
     inboundSsoProfileName: str
 
 @typing.type_check_only
-class SSOProfileDeletedEvent(typing_extensions.TypedDict, total=False):
+class SSOProfileDeletedEvent(typing.TypedDict, total=False):
     inboundSsoProfileName: str
 
 @typing.type_check_only
-class SSOProfileUpdatedEvent(typing_extensions.TypedDict, total=False):
+class SSOProfileUpdatedEvent(typing.TypedDict, total=False):
     inboundSsoProfileChanges: str
     inboundSsoProfileName: str
 
 @typing.type_check_only
-class SensitiveAdminAction(typing_extensions.TypedDict, total=False):
+class SensitiveAdminAction(typing.TypedDict, total=False):
     actorEmail: str
     eventTime: str
     primaryAdminChangedEvent: PrimaryAdminChangedEvent
@@ -550,35 +551,35 @@ class SensitiveAdminAction(typing_extensions.TypedDict, total=False):
     superAdminPasswordResetEvent: SuperAdminPasswordResetEvent
 
 @typing.type_check_only
-class Settings(typing_extensions.TypedDict, total=False):
+class Settings(typing.TypedDict, total=False):
     notifications: _list[Notification]
 
 @typing.type_check_only
-class StateSponsoredAttack(typing_extensions.TypedDict, total=False):
+class StateSponsoredAttack(typing.TypedDict, total=False):
     email: str
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class SuperAdminPasswordResetEvent(typing_extensions.TypedDict, total=False):
+class SuperAdminPasswordResetEvent(typing.TypedDict, total=False):
     userEmail: str
 
 @typing.type_check_only
-class SupportTicket(typing_extensions.TypedDict, total=False):
+class SupportTicket(typing.TypedDict, total=False):
     ticketId: str
     ticketUrl: str
 
 @typing.type_check_only
-class SuspiciousActivity(typing_extensions.TypedDict, total=False):
+class SuspiciousActivity(typing.TypedDict, total=False):
     email: str
     events: _list[SuspiciousActivitySecurityDetail]
 
 @typing.type_check_only
-class SuspiciousActivitySecurityDetail(typing_extensions.TypedDict, total=False):
+class SuspiciousActivitySecurityDetail(typing.TypedDict, total=False):
     deviceId: str
     deviceModel: str
     deviceProperty: str
@@ -590,16 +591,16 @@ class SuspiciousActivitySecurityDetail(typing_extensions.TypedDict, total=False)
     serialNumber: str
 
 @typing.type_check_only
-class TransferError(typing_extensions.TypedDict, total=False):
+class TransferError(typing.TypedDict, total=False):
     email: str
-    entityType: typing_extensions.Literal[
+    entityType: typing.Literal[
         "TRANSFER_ENTITY_TYPE_UNSPECIFIED",
         "TRANSFER_AUTO_ATTENDANT",
         "TRANSFER_RING_GROUP",
         "TRANSFER_USER",
     ]
     id: str
-    invalidReason: typing_extensions.Literal[
+    invalidReason: typing.Literal[
         "TRANSFER_INVALID_REASON_UNSPECIFIED",
         "TRANSFER_TARGET_DELETED",
         "UNLICENSED",
@@ -609,35 +610,35 @@ class TransferError(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class TransferMisconfiguration(typing_extensions.TypedDict, total=False):
+class TransferMisconfiguration(typing.TypedDict, total=False):
     errors: _list[TransferError]
 
 @typing.type_check_only
-class UndeleteAlertRequest(typing_extensions.TypedDict, total=False):
+class UndeleteAlertRequest(typing.TypedDict, total=False):
     customerId: str
 
 @typing.type_check_only
-class User(typing_extensions.TypedDict, total=False):
+class User(typing.TypedDict, total=False):
     displayName: str
     emailAddress: str
 
 @typing.type_check_only
-class UserChanges(typing_extensions.TypedDict, total=False):
+class UserChanges(typing.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class UserDefinedDetectorInfo(typing_extensions.TypedDict, total=False):
+class UserDefinedDetectorInfo(typing.TypedDict, total=False):
     displayName: str
     resourceName: str
 
 @typing.type_check_only
-class VaultAcceleratedDeletion(typing_extensions.TypedDict, total=False):
-    actionType: typing_extensions.Literal[
+class VaultAcceleratedDeletion(typing.TypedDict, total=False):
+    actionType: typing.Literal[
         "VAULT_ACCELERATED_DELETION_ACTION_TYPE_UNSPECIFIED",
         "VAULT_ACCELERATED_DELETION_ACTION_TYPE_CREATE",
         "VAULT_ACCELERATED_DELETION_ACTION_TYPE_CANCEL",
     ]
-    appType: typing_extensions.Literal[
+    appType: typing.Literal[
         "VAULT_ACCELERATED_DELETION_APP_TYPE_UNSPECIFIED",
         "VAULT_ACCELERATED_DELETION_APP_TYPE_GMAIL",
     ]
@@ -646,9 +647,9 @@ class VaultAcceleratedDeletion(typing_extensions.TypedDict, total=False):
     matterId: str
 
 @typing.type_check_only
-class VoiceMisconfiguration(typing_extensions.TypedDict, total=False):
+class VoiceMisconfiguration(typing.TypedDict, total=False):
     entityName: str
-    entityType: typing_extensions.Literal[
+    entityType: typing.Literal[
         "ENTITY_TYPE_UNSPECIFIED", "AUTO_ATTENDANT", "RING_GROUP"
     ]
     fixUri: str
@@ -657,12 +658,12 @@ class VoiceMisconfiguration(typing_extensions.TypedDict, total=False):
     voicemailMisconfiguration: VoicemailMisconfiguration
 
 @typing.type_check_only
-class VoicemailMisconfiguration(typing_extensions.TypedDict, total=False):
+class VoicemailMisconfiguration(typing.TypedDict, total=False):
     errors: _list[VoicemailRecipientError]
 
 @typing.type_check_only
-class VoicemailRecipientError(typing_extensions.TypedDict, total=False):
+class VoicemailRecipientError(typing.TypedDict, total=False):
     email: str
-    invalidReason: typing_extensions.Literal[
+    invalidReason: typing.Literal[
         "EMAIL_INVALID_REASON_UNSPECIFIED", "OUT_OF_QUOTA", "RECIPIENT_DELETED"
     ]

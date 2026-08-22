@@ -1,11 +1,9 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class AddOnAttachment(typing_extensions.TypedDict, total=False):
+class AddOnAttachment(typing.TypedDict, total=False):
     copyHistory: _list[CopyHistory]
     courseId: str
     dueDate: Date
@@ -20,11 +18,11 @@ class AddOnAttachment(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
-class AddOnAttachmentStudentSubmission(typing_extensions.TypedDict, total=False):
+class AddOnAttachmentStudentSubmission(typing.TypedDict, total=False):
     courseWorkSubmissionId: str
     id: str
     pointsEarned: float
-    postSubmissionState: typing_extensions.Literal[
+    postSubmissionState: typing.Literal[
         "SUBMISSION_STATE_UNSPECIFIED",
         "NEW",
         "CREATED",
@@ -35,7 +33,7 @@ class AddOnAttachmentStudentSubmission(typing_extensions.TypedDict, total=False)
     userId: str
 
 @typing.type_check_only
-class AddOnContext(typing_extensions.TypedDict, total=False):
+class AddOnContext(typing.TypedDict, total=False):
     courseId: str
     itemId: str
     postId: str
@@ -44,9 +42,9 @@ class AddOnContext(typing_extensions.TypedDict, total=False):
     teacherContext: TeacherContext
 
 @typing.type_check_only
-class Announcement(typing_extensions.TypedDict, total=False):
+class Announcement(typing.TypedDict, total=False):
     alternateLink: str
-    assigneeMode: typing_extensions.Literal[
+    assigneeMode: typing.Literal[
         "ASSIGNEE_MODE_UNSPECIFIED", "ALL_STUDENTS", "INDIVIDUAL_STUDENTS"
     ]
     courseId: str
@@ -56,45 +54,45 @@ class Announcement(typing_extensions.TypedDict, total=False):
     individualStudentsOptions: IndividualStudentsOptions
     materials: _list[Material]
     scheduledTime: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "ANNOUNCEMENT_STATE_UNSPECIFIED", "PUBLISHED", "DRAFT", "DELETED"
     ]
     text: str
     updateTime: str
 
 @typing.type_check_only
-class Assignment(typing_extensions.TypedDict, total=False):
+class Assignment(typing.TypedDict, total=False):
     studentWorkFolder: DriveFolder
 
 @typing.type_check_only
-class AssignmentSubmission(typing_extensions.TypedDict, total=False):
+class AssignmentSubmission(typing.TypedDict, total=False):
     attachments: _list[Attachment]
 
 @typing.type_check_only
-class Attachment(typing_extensions.TypedDict, total=False):
+class Attachment(typing.TypedDict, total=False):
     driveFile: DriveFile
     form: Form
     link: Link
     youTubeVideo: YouTubeVideo
 
 @typing.type_check_only
-class CloudPubsubTopic(typing_extensions.TypedDict, total=False):
+class CloudPubsubTopic(typing.TypedDict, total=False):
     topicName: str
 
 @typing.type_check_only
-class CopyHistory(typing_extensions.TypedDict, total=False):
+class CopyHistory(typing.TypedDict, total=False):
     attachmentId: str
     courseId: str
     itemId: str
     postId: str
 
 @typing.type_check_only
-class Course(typing_extensions.TypedDict, total=False):
+class Course(typing.TypedDict, total=False):
     alternateLink: str
     calendarId: str
     courseGroupEmail: str
     courseMaterialSets: _list[CourseMaterialSet]
-    courseState: typing_extensions.Literal[
+    courseState: typing.Literal[
         "COURSE_STATE_UNSPECIFIED",
         "ACTIVE",
         "ARCHIVED",
@@ -120,29 +118,29 @@ class Course(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class CourseAlias(typing_extensions.TypedDict, total=False):
+class CourseAlias(typing.TypedDict, total=False):
     alias: str
 
 @typing.type_check_only
-class CourseMaterial(typing_extensions.TypedDict, total=False):
+class CourseMaterial(typing.TypedDict, total=False):
     driveFile: DriveFile
     form: Form
     link: Link
     youTubeVideo: YouTubeVideo
 
 @typing.type_check_only
-class CourseMaterialSet(typing_extensions.TypedDict, total=False):
+class CourseMaterialSet(typing.TypedDict, total=False):
     materials: _list[CourseMaterial]
     title: str
 
 @typing.type_check_only
-class CourseRosterChangesInfo(typing_extensions.TypedDict, total=False):
+class CourseRosterChangesInfo(typing.TypedDict, total=False):
     courseId: str
 
 @typing.type_check_only
-class CourseWork(typing_extensions.TypedDict, total=False):
+class CourseWork(typing.TypedDict, total=False):
     alternateLink: str
-    assigneeMode: typing_extensions.Literal[
+    assigneeMode: typing.Literal[
         "ASSIGNEE_MODE_UNSPECIFIED", "ALL_STUDENTS", "INDIVIDUAL_STUDENTS"
     ]
     assignment: Assignment
@@ -161,10 +159,10 @@ class CourseWork(typing_extensions.TypedDict, total=False):
     maxPoints: float
     multipleChoiceQuestion: MultipleChoiceQuestion
     scheduledTime: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "COURSE_WORK_STATE_UNSPECIFIED", "PUBLISHED", "DRAFT", "DELETED"
     ]
-    submissionModificationMode: typing_extensions.Literal[
+    submissionModificationMode: typing.Literal[
         "SUBMISSION_MODIFICATION_MODE_UNSPECIFIED",
         "MODIFIABLE_UNTIL_TURNED_IN",
         "MODIFIABLE",
@@ -172,7 +170,7 @@ class CourseWork(typing_extensions.TypedDict, total=False):
     title: str
     topicId: str
     updateTime: str
-    workType: typing_extensions.Literal[
+    workType: typing.Literal[
         "COURSE_WORK_TYPE_UNSPECIFIED",
         "ASSIGNMENT",
         "SHORT_ANSWER_QUESTION",
@@ -180,13 +178,13 @@ class CourseWork(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class CourseWorkChangesInfo(typing_extensions.TypedDict, total=False):
+class CourseWorkChangesInfo(typing.TypedDict, total=False):
     courseId: str
 
 @typing.type_check_only
-class CourseWorkMaterial(typing_extensions.TypedDict, total=False):
+class CourseWorkMaterial(typing.TypedDict, total=False):
     alternateLink: str
-    assigneeMode: typing_extensions.Literal[
+    assigneeMode: typing.Literal[
         "ASSIGNEE_MODE_UNSPECIFIED", "ALL_STUDENTS", "INDIVIDUAL_STUDENTS"
     ]
     courseId: str
@@ -197,7 +195,7 @@ class CourseWorkMaterial(typing_extensions.TypedDict, total=False):
     individualStudentsOptions: IndividualStudentsOptions
     materials: _list[Material]
     scheduledTime: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "COURSEWORK_MATERIAL_STATE_UNSPECIFIED", "PUBLISHED", "DRAFT", "DELETED"
     ]
     title: str
@@ -205,43 +203,43 @@ class CourseWorkMaterial(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class Criterion(typing_extensions.TypedDict, total=False):
+class Criterion(typing.TypedDict, total=False):
     description: str
     id: str
     levels: _list[Level]
     title: str
 
 @typing.type_check_only
-class Date(typing_extensions.TypedDict, total=False):
+class Date(typing.TypedDict, total=False):
     day: int
     month: int
     year: int
 
 @typing.type_check_only
-class DriveFile(typing_extensions.TypedDict, total=False):
+class DriveFile(typing.TypedDict, total=False):
     alternateLink: str
     id: str
     thumbnailUrl: str
     title: str
 
 @typing.type_check_only
-class DriveFolder(typing_extensions.TypedDict, total=False):
+class DriveFolder(typing.TypedDict, total=False):
     alternateLink: str
     id: str
     title: str
 
 @typing.type_check_only
-class EmbedUri(typing_extensions.TypedDict, total=False):
+class EmbedUri(typing.TypedDict, total=False):
     uri: str
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Feed(typing_extensions.TypedDict, total=False):
+class Feed(typing.TypedDict, total=False):
     courseRosterChangesInfo: CourseRosterChangesInfo
     courseWorkChangesInfo: CourseWorkChangesInfo
-    feedType: typing_extensions.Literal[
+    feedType: typing.Literal[
         "FEED_TYPE_UNSPECIFIED",
         "DOMAIN_ROSTER_CHANGES",
         "COURSE_ROSTER_CHANGES",
@@ -249,33 +247,33 @@ class Feed(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class Form(typing_extensions.TypedDict, total=False):
+class Form(typing.TypedDict, total=False):
     formUrl: str
     responseUrl: str
     thumbnailUrl: str
     title: str
 
 @typing.type_check_only
-class GeminiGem(typing_extensions.TypedDict, total=False):
+class GeminiGem(typing.TypedDict, total=False):
     id: str
     title: str
     url: str
 
 @typing.type_check_only
-class GlobalPermission(typing_extensions.TypedDict, total=False):
-    permission: typing_extensions.Literal["PERMISSION_UNSPECIFIED", "CREATE_COURSE"]
+class GlobalPermission(typing.TypedDict, total=False):
+    permission: typing.Literal["PERMISSION_UNSPECIFIED", "CREATE_COURSE"]
 
 @typing.type_check_only
-class GradeCategory(typing_extensions.TypedDict, total=False):
+class GradeCategory(typing.TypedDict, total=False):
     defaultGradeDenominator: int
     id: str
     name: str
     weight: int
 
 @typing.type_check_only
-class GradeHistory(typing_extensions.TypedDict, total=False):
+class GradeHistory(typing.TypedDict, total=False):
     actorUserId: str
-    gradeChangeType: typing_extensions.Literal[
+    gradeChangeType: typing.Literal[
         "UNKNOWN_GRADE_CHANGE_TYPE",
         "DRAFT_GRADE_POINTS_EARNED_CHANGE",
         "ASSIGNED_GRADE_POINTS_EARNED_CHANGE",
@@ -286,11 +284,11 @@ class GradeHistory(typing_extensions.TypedDict, total=False):
     pointsEarned: float
 
 @typing.type_check_only
-class GradebookSettings(typing_extensions.TypedDict, total=False):
-    calculationType: typing_extensions.Literal[
+class GradebookSettings(typing.TypedDict, total=False):
+    calculationType: typing.Literal[
         "CALCULATION_TYPE_UNSPECIFIED", "TOTAL_POINTS", "WEIGHTED_CATEGORIES"
     ]
-    displaySetting: typing_extensions.Literal[
+    displaySetting: typing.Literal[
         "DISPLAY_SETTING_UNSPECIFIED",
         "SHOW_OVERALL_GRADE",
         "HIDE_OVERALL_GRADE",
@@ -299,142 +297,140 @@ class GradebookSettings(typing_extensions.TypedDict, total=False):
     gradeCategories: _list[GradeCategory]
 
 @typing.type_check_only
-class GradingPeriod(typing_extensions.TypedDict, total=False):
+class GradingPeriod(typing.TypedDict, total=False):
     endDate: Date
     id: str
     startDate: Date
     title: str
 
 @typing.type_check_only
-class GradingPeriodSettings(typing_extensions.TypedDict, total=False):
+class GradingPeriodSettings(typing.TypedDict, total=False):
     applyToExistingCoursework: bool
     gradingPeriods: _list[GradingPeriod]
 
 @typing.type_check_only
-class Guardian(typing_extensions.TypedDict, total=False):
+class Guardian(typing.TypedDict, total=False):
     guardianId: str
     guardianProfile: UserProfile
     invitedEmailAddress: str
     studentId: str
 
 @typing.type_check_only
-class GuardianInvitation(typing_extensions.TypedDict, total=False):
+class GuardianInvitation(typing.TypedDict, total=False):
     creationTime: str
     invitationId: str
     invitedEmailAddress: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "GUARDIAN_INVITATION_STATE_UNSPECIFIED", "PENDING", "COMPLETE"
     ]
     studentId: str
 
 @typing.type_check_only
-class IndividualStudentsOptions(typing_extensions.TypedDict, total=False):
+class IndividualStudentsOptions(typing.TypedDict, total=False):
     studentIds: _list[str]
 
 @typing.type_check_only
-class Invitation(typing_extensions.TypedDict, total=False):
+class Invitation(typing.TypedDict, total=False):
     courseId: str
     id: str
-    role: typing_extensions.Literal[
-        "COURSE_ROLE_UNSPECIFIED", "STUDENT", "TEACHER", "OWNER"
-    ]
+    role: typing.Literal["COURSE_ROLE_UNSPECIFIED", "STUDENT", "TEACHER", "OWNER"]
     userId: str
 
 @typing.type_check_only
-class Level(typing_extensions.TypedDict, total=False):
+class Level(typing.TypedDict, total=False):
     description: str
     id: str
     points: float
     title: str
 
 @typing.type_check_only
-class Link(typing_extensions.TypedDict, total=False):
+class Link(typing.TypedDict, total=False):
     thumbnailUrl: str
     title: str
     url: str
 
 @typing.type_check_only
-class ListAddOnAttachmentsResponse(typing_extensions.TypedDict, total=False):
+class ListAddOnAttachmentsResponse(typing.TypedDict, total=False):
     addOnAttachments: _list[AddOnAttachment]
     nextPageToken: str
 
 @typing.type_check_only
-class ListAnnouncementsResponse(typing_extensions.TypedDict, total=False):
+class ListAnnouncementsResponse(typing.TypedDict, total=False):
     announcements: _list[Announcement]
     nextPageToken: str
 
 @typing.type_check_only
-class ListCourseAliasesResponse(typing_extensions.TypedDict, total=False):
+class ListCourseAliasesResponse(typing.TypedDict, total=False):
     aliases: _list[CourseAlias]
     nextPageToken: str
 
 @typing.type_check_only
-class ListCourseWorkMaterialResponse(typing_extensions.TypedDict, total=False):
+class ListCourseWorkMaterialResponse(typing.TypedDict, total=False):
     courseWorkMaterial: _list[CourseWorkMaterial]
     nextPageToken: str
 
 @typing.type_check_only
-class ListCourseWorkResponse(typing_extensions.TypedDict, total=False):
+class ListCourseWorkResponse(typing.TypedDict, total=False):
     courseWork: _list[CourseWork]
     nextPageToken: str
 
 @typing.type_check_only
-class ListCoursesResponse(typing_extensions.TypedDict, total=False):
+class ListCoursesResponse(typing.TypedDict, total=False):
     courses: _list[Course]
     nextPageToken: str
 
 @typing.type_check_only
-class ListGuardianInvitationsResponse(typing_extensions.TypedDict, total=False):
+class ListGuardianInvitationsResponse(typing.TypedDict, total=False):
     guardianInvitations: _list[GuardianInvitation]
     nextPageToken: str
 
 @typing.type_check_only
-class ListGuardiansResponse(typing_extensions.TypedDict, total=False):
+class ListGuardiansResponse(typing.TypedDict, total=False):
     guardians: _list[Guardian]
     nextPageToken: str
 
 @typing.type_check_only
-class ListInvitationsResponse(typing_extensions.TypedDict, total=False):
+class ListInvitationsResponse(typing.TypedDict, total=False):
     invitations: _list[Invitation]
     nextPageToken: str
 
 @typing.type_check_only
-class ListRubricsResponse(typing_extensions.TypedDict, total=False):
+class ListRubricsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     rubrics: _list[Rubric]
 
 @typing.type_check_only
-class ListStudentGroupMembersResponse(typing_extensions.TypedDict, total=False):
+class ListStudentGroupMembersResponse(typing.TypedDict, total=False):
     nextPageToken: str
     studentGroupMembers: _list[StudentGroupMember]
 
 @typing.type_check_only
-class ListStudentGroupsResponse(typing_extensions.TypedDict, total=False):
+class ListStudentGroupsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     studentGroups: _list[StudentGroup]
 
 @typing.type_check_only
-class ListStudentSubmissionsResponse(typing_extensions.TypedDict, total=False):
+class ListStudentSubmissionsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     studentSubmissions: _list[StudentSubmission]
 
 @typing.type_check_only
-class ListStudentsResponse(typing_extensions.TypedDict, total=False):
+class ListStudentsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     students: _list[Student]
 
 @typing.type_check_only
-class ListTeachersResponse(typing_extensions.TypedDict, total=False):
+class ListTeachersResponse(typing.TypedDict, total=False):
     nextPageToken: str
     teachers: _list[Teacher]
 
 @typing.type_check_only
-class ListTopicResponse(typing_extensions.TypedDict, total=False):
+class ListTopicResponse(typing.TypedDict, total=False):
     nextPageToken: str
     topic: _list[Topic]
 
 @typing.type_check_only
-class Material(typing_extensions.TypedDict, total=False):
+class Material(typing.TypedDict, total=False):
     driveFile: SharedDriveFile
     form: Form
     gem: GeminiGem
@@ -443,63 +439,63 @@ class Material(typing_extensions.TypedDict, total=False):
     youtubeVideo: YouTubeVideo
 
 @typing.type_check_only
-class ModifyAnnouncementAssigneesRequest(typing_extensions.TypedDict, total=False):
-    assigneeMode: typing_extensions.Literal[
+class ModifyAnnouncementAssigneesRequest(typing.TypedDict, total=False):
+    assigneeMode: typing.Literal[
         "ASSIGNEE_MODE_UNSPECIFIED", "ALL_STUDENTS", "INDIVIDUAL_STUDENTS"
     ]
     modifyIndividualStudentsOptions: ModifyIndividualStudentsOptions
 
 @typing.type_check_only
-class ModifyAttachmentsRequest(typing_extensions.TypedDict, total=False):
+class ModifyAttachmentsRequest(typing.TypedDict, total=False):
     addAttachments: _list[Attachment]
 
 @typing.type_check_only
-class ModifyCourseWorkAssigneesRequest(typing_extensions.TypedDict, total=False):
-    assigneeMode: typing_extensions.Literal[
+class ModifyCourseWorkAssigneesRequest(typing.TypedDict, total=False):
+    assigneeMode: typing.Literal[
         "ASSIGNEE_MODE_UNSPECIFIED", "ALL_STUDENTS", "INDIVIDUAL_STUDENTS"
     ]
     modifyIndividualStudentsOptions: ModifyIndividualStudentsOptions
 
 @typing.type_check_only
-class ModifyIndividualStudentsOptions(typing_extensions.TypedDict, total=False):
+class ModifyIndividualStudentsOptions(typing.TypedDict, total=False):
     addStudentIds: _list[str]
     removeStudentIds: _list[str]
 
 @typing.type_check_only
-class MultipleChoiceQuestion(typing_extensions.TypedDict, total=False):
+class MultipleChoiceQuestion(typing.TypedDict, total=False):
     choices: _list[str]
 
 @typing.type_check_only
-class MultipleChoiceSubmission(typing_extensions.TypedDict, total=False):
+class MultipleChoiceSubmission(typing.TypedDict, total=False):
     answer: str
 
 @typing.type_check_only
-class Name(typing_extensions.TypedDict, total=False):
+class Name(typing.TypedDict, total=False):
     familyName: str
     fullName: str
     givenName: str
 
 @typing.type_check_only
-class NotebookLmNotebook(typing_extensions.TypedDict, total=False):
+class NotebookLmNotebook(typing.TypedDict, total=False):
     id: str
     title: str
     url: str
 
 @typing.type_check_only
-class ReclaimStudentSubmissionRequest(typing_extensions.TypedDict, total=False): ...
+class ReclaimStudentSubmissionRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Registration(typing_extensions.TypedDict, total=False):
+class Registration(typing.TypedDict, total=False):
     cloudPubsubTopic: CloudPubsubTopic
     expiryTime: str
     feed: Feed
     registrationId: str
 
 @typing.type_check_only
-class ReturnStudentSubmissionRequest(typing_extensions.TypedDict, total=False): ...
+class ReturnStudentSubmissionRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Rubric(typing_extensions.TypedDict, total=False):
+class Rubric(typing.TypedDict, total=False):
     courseId: str
     courseWorkId: str
     creationTime: str
@@ -509,26 +505,24 @@ class Rubric(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class RubricGrade(typing_extensions.TypedDict, total=False):
+class RubricGrade(typing.TypedDict, total=False):
     criterionId: str
     levelId: str
     points: float
 
 @typing.type_check_only
-class SharedDriveFile(typing_extensions.TypedDict, total=False):
+class SharedDriveFile(typing.TypedDict, total=False):
     driveFile: DriveFile
-    shareMode: typing_extensions.Literal[
-        "UNKNOWN_SHARE_MODE", "VIEW", "EDIT", "STUDENT_COPY"
-    ]
+    shareMode: typing.Literal["UNKNOWN_SHARE_MODE", "VIEW", "EDIT", "STUDENT_COPY"]
 
 @typing.type_check_only
-class ShortAnswerSubmission(typing_extensions.TypedDict, total=False):
+class ShortAnswerSubmission(typing.TypedDict, total=False):
     answer: str
 
 @typing.type_check_only
-class StateHistory(typing_extensions.TypedDict, total=False):
+class StateHistory(typing.TypedDict, total=False):
     actorUserId: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "CREATED",
         "TURNED_IN",
@@ -539,30 +533,30 @@ class StateHistory(typing_extensions.TypedDict, total=False):
     stateTimestamp: str
 
 @typing.type_check_only
-class Student(typing_extensions.TypedDict, total=False):
+class Student(typing.TypedDict, total=False):
     courseId: str
     profile: UserProfile
     studentWorkFolder: DriveFolder
     userId: str
 
 @typing.type_check_only
-class StudentContext(typing_extensions.TypedDict, total=False):
+class StudentContext(typing.TypedDict, total=False):
     submissionId: str
 
 @typing.type_check_only
-class StudentGroup(typing_extensions.TypedDict, total=False):
+class StudentGroup(typing.TypedDict, total=False):
     courseId: str
     id: str
     title: str
 
 @typing.type_check_only
-class StudentGroupMember(typing_extensions.TypedDict, total=False):
+class StudentGroupMember(typing.TypedDict, total=False):
     courseId: str
     studentGroupId: str
     userId: str
 
 @typing.type_check_only
-class StudentSubmission(typing_extensions.TypedDict, total=False):
+class StudentSubmission(typing.TypedDict, total=False):
     alternateLink: str
     assignedGrade: float
     assignedRubricGrades: dict[str, typing.Any]
@@ -570,7 +564,7 @@ class StudentSubmission(typing_extensions.TypedDict, total=False):
     associatedWithDeveloper: bool
     courseId: str
     courseWorkId: str
-    courseWorkType: typing_extensions.Literal[
+    courseWorkType: typing.Literal[
         "COURSE_WORK_TYPE_UNSPECIFIED",
         "ASSIGNMENT",
         "SHORT_ANSWER_QUESTION",
@@ -583,7 +577,7 @@ class StudentSubmission(typing_extensions.TypedDict, total=False):
     late: bool
     multipleChoiceSubmission: MultipleChoiceSubmission
     shortAnswerSubmission: ShortAnswerSubmission
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "SUBMISSION_STATE_UNSPECIFIED",
         "NEW",
         "CREATED",
@@ -596,38 +590,38 @@ class StudentSubmission(typing_extensions.TypedDict, total=False):
     userId: str
 
 @typing.type_check_only
-class SubmissionHistory(typing_extensions.TypedDict, total=False):
+class SubmissionHistory(typing.TypedDict, total=False):
     gradeHistory: GradeHistory
     stateHistory: StateHistory
 
 @typing.type_check_only
-class Teacher(typing_extensions.TypedDict, total=False):
+class Teacher(typing.TypedDict, total=False):
     courseId: str
     profile: UserProfile
     userId: str
 
 @typing.type_check_only
-class TeacherContext(typing_extensions.TypedDict, total=False): ...
+class TeacherContext(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class TimeOfDay(typing_extensions.TypedDict, total=False):
+class TimeOfDay(typing.TypedDict, total=False):
     hours: int
     minutes: int
     nanos: int
     seconds: int
 
 @typing.type_check_only
-class Topic(typing_extensions.TypedDict, total=False):
+class Topic(typing.TypedDict, total=False):
     courseId: str
     name: str
     topicId: str
     updateTime: str
 
 @typing.type_check_only
-class TurnInStudentSubmissionRequest(typing_extensions.TypedDict, total=False): ...
+class TurnInStudentSubmissionRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class UserProfile(typing_extensions.TypedDict, total=False):
+class UserProfile(typing.TypedDict, total=False):
     emailAddress: str
     id: str
     name: Name
@@ -636,7 +630,7 @@ class UserProfile(typing_extensions.TypedDict, total=False):
     verifiedTeacher: bool
 
 @typing.type_check_only
-class YouTubeVideo(typing_extensions.TypedDict, total=False):
+class YouTubeVideo(typing.TypedDict, total=False):
     alternateLink: str
     id: str
     thumbnailUrl: str

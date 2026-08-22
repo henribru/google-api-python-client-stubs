@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -31,9 +30,213 @@ class AssuredworkloadsResource(googleapiclient.discovery.Resource):
         ) -> GoogleCloudAssuredworkloadsV1beta1RevertArchivedResourceEventsResponseHttpRequest: ...
 
     @typing.type_check_only
+    class FoldersResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class LocationsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class DbFindingSummariesResource(googleapiclient.discovery.Resource):
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleCloudAssuredworkloadsV1beta1ListDbFindingSummariesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudAssuredworkloadsV1beta1ListDbFindingSummariesResponseHttpRequest,
+                    previous_response: GoogleCloudAssuredworkloadsV1beta1ListDbFindingSummariesResponse,
+                ) -> (
+                    GoogleCloudAssuredworkloadsV1beta1ListDbFindingSummariesResponseHttpRequest
+                    | None
+                ): ...
+
+            @typing.type_check_only
+            class DbFrameworkComplianceReportsResource(
+                googleapiclient.discovery.Resource
+            ):
+                @typing.type_check_only
+                class DbControlComplianceSummariesResource(
+                    googleapiclient.discovery.Resource
+                ):
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        filter: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleCloudAssuredworkloadsV1beta1ListDbControlComplianceSummariesResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: GoogleCloudAssuredworkloadsV1beta1ListDbControlComplianceSummariesResponseHttpRequest,
+                        previous_response: GoogleCloudAssuredworkloadsV1beta1ListDbControlComplianceSummariesResponse,
+                    ) -> (
+                        GoogleCloudAssuredworkloadsV1beta1ListDbControlComplianceSummariesResponseHttpRequest
+                        | None
+                    ): ...
+
+                def aggregate(
+                    self,
+                    *,
+                    name: str,
+                    filter: str | None = ...,
+                    interval_endTime: str | None = ...,
+                    interval_startTime: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleCloudAssuredworkloadsV1beta1AggregateDbFrameworkComplianceReportResponseHttpRequest: ...
+                def fetch(
+                    self,
+                    *,
+                    name: str,
+                    endTime: str | None = ...,
+                    filter: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleCloudAssuredworkloadsV1beta1FetchDbFrameworkComplianceReportResponseHttpRequest: ...
+                def dbControlComplianceSummaries(
+                    self,
+                ) -> DbControlComplianceSummariesResource: ...
+
+            @typing.type_check_only
+            class DbFrameworkComplianceSummariesResource(
+                googleapiclient.discovery.Resource
+            ):
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    view: typing.Literal[
+                        "FRAMEWORK_COMPLIANCE_SUMMARY_VIEW_UNSPECIFIED",
+                        "FRAMEWORK_COMPLIANCE_SUMMARY_VIEW_BASIC",
+                        "FRAMEWORK_COMPLIANCE_SUMMARY_VIEW_FULL",
+                    ]
+                    | None = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleCloudAssuredworkloadsV1beta1ListDbFrameworkComplianceSummariesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudAssuredworkloadsV1beta1ListDbFrameworkComplianceSummariesResponseHttpRequest,
+                    previous_response: GoogleCloudAssuredworkloadsV1beta1ListDbFrameworkComplianceSummariesResponse,
+                ) -> (
+                    GoogleCloudAssuredworkloadsV1beta1ListDbFrameworkComplianceSummariesResponseHttpRequest
+                    | None
+                ): ...
+
+            def dbFindingSummaries(self) -> DbFindingSummariesResource: ...
+            def dbFrameworkComplianceReports(
+                self,
+            ) -> DbFrameworkComplianceReportsResource: ...
+            def dbFrameworkComplianceSummaries(
+                self,
+            ) -> DbFrameworkComplianceSummariesResource: ...
+
+        def locations(self) -> LocationsResource: ...
+
+    @typing.type_check_only
     class OrganizationsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class DbFindingSummariesResource(googleapiclient.discovery.Resource):
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleCloudAssuredworkloadsV1beta1ListDbFindingSummariesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudAssuredworkloadsV1beta1ListDbFindingSummariesResponseHttpRequest,
+                    previous_response: GoogleCloudAssuredworkloadsV1beta1ListDbFindingSummariesResponse,
+                ) -> (
+                    GoogleCloudAssuredworkloadsV1beta1ListDbFindingSummariesResponseHttpRequest
+                    | None
+                ): ...
+
+            @typing.type_check_only
+            class DbFrameworkComplianceReportsResource(
+                googleapiclient.discovery.Resource
+            ):
+                @typing.type_check_only
+                class DbControlComplianceSummariesResource(
+                    googleapiclient.discovery.Resource
+                ):
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        filter: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleCloudAssuredworkloadsV1beta1ListDbControlComplianceSummariesResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: GoogleCloudAssuredworkloadsV1beta1ListDbControlComplianceSummariesResponseHttpRequest,
+                        previous_response: GoogleCloudAssuredworkloadsV1beta1ListDbControlComplianceSummariesResponse,
+                    ) -> (
+                        GoogleCloudAssuredworkloadsV1beta1ListDbControlComplianceSummariesResponseHttpRequest
+                        | None
+                    ): ...
+
+                def aggregate(
+                    self,
+                    *,
+                    name: str,
+                    filter: str | None = ...,
+                    interval_endTime: str | None = ...,
+                    interval_startTime: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleCloudAssuredworkloadsV1beta1AggregateDbFrameworkComplianceReportResponseHttpRequest: ...
+                def fetch(
+                    self,
+                    *,
+                    name: str,
+                    endTime: str | None = ...,
+                    filter: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleCloudAssuredworkloadsV1beta1FetchDbFrameworkComplianceReportResponseHttpRequest: ...
+                def dbControlComplianceSummaries(
+                    self,
+                ) -> DbControlComplianceSummariesResource: ...
+
+            @typing.type_check_only
+            class DbFrameworkComplianceSummariesResource(
+                googleapiclient.discovery.Resource
+            ):
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    view: typing.Literal[
+                        "FRAMEWORK_COMPLIANCE_SUMMARY_VIEW_UNSPECIFIED",
+                        "FRAMEWORK_COMPLIANCE_SUMMARY_VIEW_BASIC",
+                        "FRAMEWORK_COMPLIANCE_SUMMARY_VIEW_FULL",
+                    ]
+                    | None = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleCloudAssuredworkloadsV1beta1ListDbFrameworkComplianceSummariesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudAssuredworkloadsV1beta1ListDbFrameworkComplianceSummariesResponseHttpRequest,
+                    previous_response: GoogleCloudAssuredworkloadsV1beta1ListDbFrameworkComplianceSummariesResponse,
+                ) -> (
+                    GoogleCloudAssuredworkloadsV1beta1ListDbFrameworkComplianceSummariesResponseHttpRequest
+                    | None
+                ): ...
+
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def get(
@@ -54,16 +257,6 @@ class AssuredworkloadsResource(googleapiclient.discovery.Resource):
                     previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
                     previous_response: GoogleLongrunningListOperationsResponse,
                 ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
-
-            @typing.type_check_only
-            class ViolationsResource(googleapiclient.discovery.Resource):
-                def batchAcknowledgeViolations(
-                    self,
-                    *,
-                    parent: str,
-                    body: GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsRequest,
-                    **kwargs: typing.Any,
-                ) -> GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsResponseHttpRequest: ...
 
             @typing.type_check_only
             class WorkloadsResource(googleapiclient.discovery.Resource):
@@ -102,13 +295,6 @@ class AssuredworkloadsResource(googleapiclient.discovery.Resource):
                         body: GoogleCloudAssuredworkloadsV1beta1AcknowledgeViolationRequest,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudAssuredworkloadsV1beta1AcknowledgeViolationResponseHttpRequest: ...
-                    def batchAcknowledgeViolations(
-                        self,
-                        *,
-                        parent: str,
-                        body: GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsRequest,
-                        **kwargs: typing.Any,
-                    ) -> GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsResponseHttpRequest: ...
                     def get(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> GoogleCloudAssuredworkloadsV1beta1ViolationHttpRequest: ...
@@ -208,22 +394,126 @@ class AssuredworkloadsResource(googleapiclient.discovery.Resource):
                 def updates(self) -> UpdatesResource: ...
                 def violations(self) -> ViolationsResource: ...
 
+            def dbFindingSummaries(self) -> DbFindingSummariesResource: ...
+            def dbFrameworkComplianceReports(
+                self,
+            ) -> DbFrameworkComplianceReportsResource: ...
+            def dbFrameworkComplianceSummaries(
+                self,
+            ) -> DbFrameworkComplianceSummariesResource: ...
             def operations(self) -> OperationsResource: ...
-            def violations(self) -> ViolationsResource: ...
             def workloads(self) -> WorkloadsResource: ...
 
+        def locations(self) -> LocationsResource: ...
+
+    @typing.type_check_only
+    class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
-        class ViolationsResource(googleapiclient.discovery.Resource):
-            def batchAcknowledgeViolations(
+        class LocationsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class DbFindingSummariesResource(googleapiclient.discovery.Resource):
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleCloudAssuredworkloadsV1beta1ListDbFindingSummariesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudAssuredworkloadsV1beta1ListDbFindingSummariesResponseHttpRequest,
+                    previous_response: GoogleCloudAssuredworkloadsV1beta1ListDbFindingSummariesResponse,
+                ) -> (
+                    GoogleCloudAssuredworkloadsV1beta1ListDbFindingSummariesResponseHttpRequest
+                    | None
+                ): ...
+
+            @typing.type_check_only
+            class DbFrameworkComplianceReportsResource(
+                googleapiclient.discovery.Resource
+            ):
+                @typing.type_check_only
+                class DbControlComplianceSummariesResource(
+                    googleapiclient.discovery.Resource
+                ):
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        filter: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleCloudAssuredworkloadsV1beta1ListDbControlComplianceSummariesResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: GoogleCloudAssuredworkloadsV1beta1ListDbControlComplianceSummariesResponseHttpRequest,
+                        previous_response: GoogleCloudAssuredworkloadsV1beta1ListDbControlComplianceSummariesResponse,
+                    ) -> (
+                        GoogleCloudAssuredworkloadsV1beta1ListDbControlComplianceSummariesResponseHttpRequest
+                        | None
+                    ): ...
+
+                def aggregate(
+                    self,
+                    *,
+                    name: str,
+                    filter: str | None = ...,
+                    interval_endTime: str | None = ...,
+                    interval_startTime: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleCloudAssuredworkloadsV1beta1AggregateDbFrameworkComplianceReportResponseHttpRequest: ...
+                def fetch(
+                    self,
+                    *,
+                    name: str,
+                    endTime: str | None = ...,
+                    filter: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleCloudAssuredworkloadsV1beta1FetchDbFrameworkComplianceReportResponseHttpRequest: ...
+                def dbControlComplianceSummaries(
+                    self,
+                ) -> DbControlComplianceSummariesResource: ...
+
+            @typing.type_check_only
+            class DbFrameworkComplianceSummariesResource(
+                googleapiclient.discovery.Resource
+            ):
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    view: typing.Literal[
+                        "FRAMEWORK_COMPLIANCE_SUMMARY_VIEW_UNSPECIFIED",
+                        "FRAMEWORK_COMPLIANCE_SUMMARY_VIEW_BASIC",
+                        "FRAMEWORK_COMPLIANCE_SUMMARY_VIEW_FULL",
+                    ]
+                    | None = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleCloudAssuredworkloadsV1beta1ListDbFrameworkComplianceSummariesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudAssuredworkloadsV1beta1ListDbFrameworkComplianceSummariesResponseHttpRequest,
+                    previous_response: GoogleCloudAssuredworkloadsV1beta1ListDbFrameworkComplianceSummariesResponse,
+                ) -> (
+                    GoogleCloudAssuredworkloadsV1beta1ListDbFrameworkComplianceSummariesResponseHttpRequest
+                    | None
+                ): ...
+
+            def dbFindingSummaries(self) -> DbFindingSummariesResource: ...
+            def dbFrameworkComplianceReports(
                 self,
-                *,
-                parent: str,
-                body: GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsRequest,
-                **kwargs: typing.Any,
-            ) -> GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsResponseHttpRequest: ...
+            ) -> DbFrameworkComplianceReportsResource: ...
+            def dbFrameworkComplianceSummaries(
+                self,
+            ) -> DbFrameworkComplianceSummariesResource: ...
 
         def locations(self) -> LocationsResource: ...
-        def violations(self) -> ViolationsResource: ...
 
     def new_batch_http_request(
         self,
@@ -238,7 +528,9 @@ class AssuredworkloadsResource(googleapiclient.discovery.Resource):
         | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def assuredworkloads(self) -> AssuredworkloadsResource: ...
+    def folders(self) -> FoldersResource: ...
     def organizations(self) -> OrganizationsResource: ...
+    def projects(self) -> ProjectsResource: ...
 
 @typing.type_check_only
 class GoogleCloudAssuredworkloadsV1beta1AcknowledgeViolationResponseHttpRequest(
@@ -249,6 +541,18 @@ class GoogleCloudAssuredworkloadsV1beta1AcknowledgeViolationResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudAssuredworkloadsV1beta1AcknowledgeViolationResponse: ...
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1beta1AggregateDbFrameworkComplianceReportResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> (
+        GoogleCloudAssuredworkloadsV1beta1AggregateDbFrameworkComplianceReportResponse
+    ): ...
 
 @typing.type_check_only
 class GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponseHttpRequest(
@@ -271,16 +575,6 @@ class GoogleCloudAssuredworkloadsV1beta1ArchiveResourceEventsResponseHttpRequest
     ) -> GoogleCloudAssuredworkloadsV1beta1ArchiveResourceEventsResponse: ...
 
 @typing.type_check_only
-class GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsResponse: ...
-
-@typing.type_check_only
 class GoogleCloudAssuredworkloadsV1beta1EnableComplianceUpdatesResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -299,6 +593,48 @@ class GoogleCloudAssuredworkloadsV1beta1EnableResourceMonitoringResponseHttpRequ
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudAssuredworkloadsV1beta1EnableResourceMonitoringResponse: ...
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1beta1FetchDbFrameworkComplianceReportResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudAssuredworkloadsV1beta1FetchDbFrameworkComplianceReportResponse: ...
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1beta1ListDbControlComplianceSummariesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudAssuredworkloadsV1beta1ListDbControlComplianceSummariesResponse: ...
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1beta1ListDbFindingSummariesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudAssuredworkloadsV1beta1ListDbFindingSummariesResponse: ...
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1beta1ListDbFrameworkComplianceSummariesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> (
+        GoogleCloudAssuredworkloadsV1beta1ListDbFrameworkComplianceSummariesResponse
+    ): ...
 
 @typing.type_check_only
 class GoogleCloudAssuredworkloadsV1beta1ListViolationsResponseHttpRequest(

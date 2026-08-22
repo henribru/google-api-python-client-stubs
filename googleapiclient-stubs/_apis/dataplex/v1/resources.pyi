@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -575,7 +574,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        view: typing_extensions.Literal[
+                        view: typing.Literal[
                             "DATA_SCAN_JOB_VIEW_UNSPECIFIED", "BASIC", "FULL"
                         ]
                         | None = ...,
@@ -623,9 +622,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    view: typing_extensions.Literal[
-                        "DATA_SCAN_VIEW_UNSPECIFIED", "BASIC", "FULL"
-                    ]
+                    view: typing.Literal["DATA_SCAN_VIEW_UNSPECIFIED", "BASIC", "FULL"]
                     | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudDataplexV1DataScanHttpRequest: ...
@@ -836,7 +833,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                         name: str,
                         aspectTypes: str | _list[str] | None = ...,
                         paths: str | _list[str] | None = ...,
-                        view: typing_extensions.Literal[
+                        view: typing.Literal[
                             "ENTRY_VIEW_UNSPECIFIED", "BASIC", "FULL", "CUSTOM", "ALL"
                         ]
                         | None = ...,
@@ -1547,7 +1544,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             name: str,
-                            view: typing_extensions.Literal[
+                            view: typing.Literal[
                                 "ENTITY_VIEW_UNSPECIFIED", "BASIC", "SCHEMA", "FULL"
                             ]
                             | None = ...,
@@ -1560,7 +1557,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                             filter: str | None = ...,
                             pageSize: int | None = ...,
                             pageToken: str | None = ...,
-                            view: typing_extensions.Literal[
+                            view: typing.Literal[
                                 "ENTITY_VIEW_UNSPECIFIED", "TABLES", "FILESETS"
                             ]
                             | None = ...,
@@ -1857,7 +1854,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                 aspectTypes: str | _list[str] | None = ...,
                 entry: str | None = ...,
                 paths: str | _list[str] | None = ...,
-                view: typing_extensions.Literal[
+                view: typing.Literal[
                     "ENTRY_VIEW_UNSPECIFIED", "BASIC", "FULL", "CUSTOM", "ALL"
                 ]
                 | None = ...,
@@ -1869,9 +1866,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                 name: str,
                 entry: str | None = ...,
                 entryLinkTypes: str | _list[str] | None = ...,
-                entryMode: typing_extensions.Literal[
-                    "ENTRY_MODE_UNSPECIFIED", "SOURCE", "TARGET"
-                ]
+                entryMode: typing.Literal["ENTRY_MODE_UNSPECIFIED", "SOURCE", "TARGET"]
                 | None = ...,
                 pageSize: int | None = ...,
                 pageToken: str | None = ...,

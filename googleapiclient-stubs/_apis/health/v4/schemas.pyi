@@ -1,58 +1,56 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class ActiveEnergyBurned(typing_extensions.TypedDict, total=False):
+class ActiveEnergyBurned(typing.TypedDict, total=False):
     interval: ObservationTimeInterval
     kcal: float
 
 @typing.type_check_only
-class ActiveEnergyBurnedRollupValue(typing_extensions.TypedDict, total=False):
+class ActiveEnergyBurnedRollupValue(typing.TypedDict, total=False):
     kcalSum: float
 
 @typing.type_check_only
-class ActiveMinutes(typing_extensions.TypedDict, total=False):
+class ActiveMinutes(typing.TypedDict, total=False):
     activeMinutesByActivityLevel: _list[ActiveMinutesByActivityLevel]
     interval: ObservationTimeInterval
 
 @typing.type_check_only
-class ActiveMinutesByActivityLevel(typing_extensions.TypedDict, total=False):
+class ActiveMinutesByActivityLevel(typing.TypedDict, total=False):
     activeMinutes: str
-    activityLevel: typing_extensions.Literal[
+    activityLevel: typing.Literal[
         "ACTIVITY_LEVEL_UNSPECIFIED", "LIGHT", "MODERATE", "VIGOROUS"
     ]
 
 @typing.type_check_only
-class ActiveMinutesRollupByActivityLevel(typing_extensions.TypedDict, total=False):
+class ActiveMinutesRollupByActivityLevel(typing.TypedDict, total=False):
     activeMinutesSum: str
-    activityLevel: typing_extensions.Literal[
+    activityLevel: typing.Literal[
         "ACTIVITY_LEVEL_UNSPECIFIED", "LIGHT", "MODERATE", "VIGOROUS"
     ]
 
 @typing.type_check_only
-class ActiveMinutesRollupValue(typing_extensions.TypedDict, total=False):
+class ActiveMinutesRollupValue(typing.TypedDict, total=False):
     activeMinutesRollupByActivityLevel: _list[ActiveMinutesRollupByActivityLevel]
 
 @typing.type_check_only
-class ActiveZoneMinutes(typing_extensions.TypedDict, total=False):
+class ActiveZoneMinutes(typing.TypedDict, total=False):
     activeZoneMinutes: str
-    heartRateZone: typing_extensions.Literal[
+    heartRateZone: typing.Literal[
         "HEART_RATE_ZONE_UNSPECIFIED", "FAT_BURN", "CARDIO", "PEAK"
     ]
     interval: ObservationTimeInterval
 
 @typing.type_check_only
-class ActiveZoneMinutesRollupValue(typing_extensions.TypedDict, total=False):
+class ActiveZoneMinutesRollupValue(typing.TypedDict, total=False):
     sumInCardioHeartZone: str
     sumInFatBurnHeartZone: str
     sumInPeakHeartZone: str
 
 @typing.type_check_only
-class ActivityLevel(typing_extensions.TypedDict, total=False):
-    activityLevelType: typing_extensions.Literal[
+class ActivityLevel(typing.TypedDict, total=False):
+    activityLevelType: typing.Literal[
         "ACTIVITY_LEVEL_TYPE_UNSPECIFIED",
         "SEDENTARY",
         "LIGHTLY_ACTIVE",
@@ -62,8 +60,8 @@ class ActivityLevel(typing_extensions.TypedDict, total=False):
     interval: ObservationTimeInterval
 
 @typing.type_check_only
-class ActivityLevelRollupByActivityLevelType(typing_extensions.TypedDict, total=False):
-    activityLevelType: typing_extensions.Literal[
+class ActivityLevelRollupByActivityLevelType(typing.TypedDict, total=False):
+    activityLevelType: typing.Literal[
         "ACTIVITY_LEVEL_TYPE_UNSPECIFIED",
         "SEDENTARY",
         "LIGHTLY_ACTIVE",
@@ -73,13 +71,13 @@ class ActivityLevelRollupByActivityLevelType(typing_extensions.TypedDict, total=
     totalDuration: str
 
 @typing.type_check_only
-class ActivityLevelRollupValue(typing_extensions.TypedDict, total=False):
+class ActivityLevelRollupValue(typing.TypedDict, total=False):
     activityLevelRollupsByActivityLevelType: _list[
         ActivityLevelRollupByActivityLevelType
     ]
 
 @typing.type_check_only
-class AlertWindow(typing_extensions.TypedDict, total=False):
+class AlertWindow(typing.TypedDict, total=False):
     civilEndTime: CivilDateTime
     civilStartTime: CivilDateTime
     endTime: str
@@ -90,42 +88,42 @@ class AlertWindow(typing_extensions.TypedDict, total=False):
     startUtcOffset: str
 
 @typing.type_check_only
-class Altitude(typing_extensions.TypedDict, total=False):
+class Altitude(typing.TypedDict, total=False):
     gainMillimeters: str
     interval: ObservationTimeInterval
 
 @typing.type_check_only
-class AltitudeRollupValue(typing_extensions.TypedDict, total=False):
+class AltitudeRollupValue(typing.TypedDict, total=False):
     gainMillimetersSum: str
 
 @typing.type_check_only
-class Application(typing_extensions.TypedDict, total=False):
+class Application(typing.TypedDict, total=False):
     googleWebClientId: str
     packageName: str
     webClientId: str
 
 @typing.type_check_only
-class BasalEnergyBurned(typing_extensions.TypedDict, total=False):
+class BasalEnergyBurned(typing.TypedDict, total=False):
     interval: ObservationTimeInterval
     kcal: float
 
 @typing.type_check_only
-class BatchDeleteDataPointsRequest(typing_extensions.TypedDict, total=False):
+class BatchDeleteDataPointsRequest(typing.TypedDict, total=False):
     names: _list[str]
 
 @typing.type_check_only
-class BloodGlucose(typing_extensions.TypedDict, total=False):
+class BloodGlucose(typing.TypedDict, total=False):
     bloodGlucoseMilligramsPerDeciliter: float
-    mealType: typing_extensions.Literal[
+    mealType: typing.Literal[
         "MEAL_TYPE_UNSPECIFIED", "BREAKFAST", "LUNCH", "DINNER", "SNACK"
     ]
-    measurementSource: typing_extensions.Literal[
+    measurementSource: typing.Literal[
         "MEASUREMENT_SOURCE_UNSPECIFIED",
         "SELF_MONITORING_BLOOD_GLUCOSE",
         "CONTINUOUS_GLUCOSE_MONITORING",
         "LAB_TEST",
     ]
-    measurementTiming: typing_extensions.Literal[
+    measurementTiming: typing.Literal[
         "MEASUREMENT_TIMING_UNSPECIFIED",
         "AFTER_MEAL",
         "BEFORE_MEAL",
@@ -136,7 +134,7 @@ class BloodGlucose(typing_extensions.TypedDict, total=False):
     ]
     notes: str
     sampleTime: ObservationSampleTime
-    specimen: typing_extensions.Literal[
+    specimen: typing.Literal[
         "SPECIMEN_UNSPECIFIED",
         "CAPILLARY_BLOOD",
         "INTERSTITIAL_FLUID",
@@ -147,43 +145,43 @@ class BloodGlucose(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class BloodGlucoseRollupValue(typing_extensions.TypedDict, total=False):
+class BloodGlucoseRollupValue(typing.TypedDict, total=False):
     bloodGlucoseMilligramsPerDeciliterAvg: float
 
 @typing.type_check_only
-class BodyFat(typing_extensions.TypedDict, total=False):
+class BodyFat(typing.TypedDict, total=False):
     percentage: float
     sampleTime: ObservationSampleTime
 
 @typing.type_check_only
-class BodyFatRollupValue(typing_extensions.TypedDict, total=False):
+class BodyFatRollupValue(typing.TypedDict, total=False):
     bodyFatPercentageAvg: float
 
 @typing.type_check_only
-class CaloriesInHeartRateZoneRollupValue(typing_extensions.TypedDict, total=False):
+class CaloriesInHeartRateZoneRollupValue(typing.TypedDict, total=False):
     caloriesInHeartRateZones: _list[CaloriesInHeartRateZoneValue]
 
 @typing.type_check_only
-class CaloriesInHeartRateZoneValue(typing_extensions.TypedDict, total=False):
-    heartRateZone: typing_extensions.Literal[
+class CaloriesInHeartRateZoneValue(typing.TypedDict, total=False):
+    heartRateZone: typing.Literal[
         "HEART_RATE_ZONE_TYPE_UNSPECIFIED", "LIGHT", "MODERATE", "VIGOROUS", "PEAK"
     ]
     kcal: float
 
 @typing.type_check_only
-class CivilDateTime(typing_extensions.TypedDict, total=False):
+class CivilDateTime(typing.TypedDict, total=False):
     date: Date
     time: TimeOfDay
 
 @typing.type_check_only
-class CivilTimeInterval(typing_extensions.TypedDict, total=False):
+class CivilTimeInterval(typing.TypedDict, total=False):
     end: CivilDateTime
     start: CivilDateTime
 
 @typing.type_check_only
-class CoreBodyTemperature(typing_extensions.TypedDict, total=False):
+class CoreBodyTemperature(typing.TypedDict, total=False):
     id: str
-    measurementLocation: typing_extensions.Literal[
+    measurementLocation: typing.Literal[
         "MEASUREMENT_LOCATION_UNSPECIFIED",
         "OTHER",
         "ARMPIT",
@@ -207,24 +205,24 @@ class CoreBodyTemperature(typing_extensions.TypedDict, total=False):
     temperatureCelsius: float
 
 @typing.type_check_only
-class CoreBodyTemperatureRollupValue(typing_extensions.TypedDict, total=False):
+class CoreBodyTemperatureRollupValue(typing.TypedDict, total=False):
     temperatureCelsiusAvg: float
     temperatureCelsiusMax: float
     temperatureCelsiusMin: float
 
 @typing.type_check_only
-class CreateSubscriberPayload(typing_extensions.TypedDict, total=False):
+class CreateSubscriberPayload(typing.TypedDict, total=False):
     endpointAuthorization: EndpointAuthorization
     endpointUri: str
     subscriberConfigs: _list[SubscriberConfig]
 
 @typing.type_check_only
-class CreateSubscriptionPayload(typing_extensions.TypedDict, total=False):
+class CreateSubscriptionPayload(typing.TypedDict, total=False):
     dataTypes: _list[str]
     user: str
 
 @typing.type_check_only
-class DailyHeartRateVariability(typing_extensions.TypedDict, total=False):
+class DailyHeartRateVariability(typing.TypedDict, total=False):
     averageHeartRateVariabilityMilliseconds: float
     date: Date
     deepSleepRootMeanSquareOfSuccessiveDifferencesMilliseconds: float
@@ -232,12 +230,12 @@ class DailyHeartRateVariability(typing_extensions.TypedDict, total=False):
     nonRemHeartRateBeatsPerMinute: str
 
 @typing.type_check_only
-class DailyHeartRateZones(typing_extensions.TypedDict, total=False):
+class DailyHeartRateZones(typing.TypedDict, total=False):
     date: Date
     heartRateZones: _list[HeartRateZone]
 
 @typing.type_check_only
-class DailyOxygenSaturation(typing_extensions.TypedDict, total=False):
+class DailyOxygenSaturation(typing.TypedDict, total=False):
     averagePercentage: float
     date: Date
     lowerBoundPercentage: float
@@ -245,24 +243,24 @@ class DailyOxygenSaturation(typing_extensions.TypedDict, total=False):
     upperBoundPercentage: float
 
 @typing.type_check_only
-class DailyRespiratoryRate(typing_extensions.TypedDict, total=False):
+class DailyRespiratoryRate(typing.TypedDict, total=False):
     breathsPerMinute: float
     date: Date
 
 @typing.type_check_only
-class DailyRestingHeartRate(typing_extensions.TypedDict, total=False):
+class DailyRestingHeartRate(typing.TypedDict, total=False):
     beatsPerMinute: str
     dailyRestingHeartRateMetadata: DailyRestingHeartRateMetadata
     date: Date
 
 @typing.type_check_only
-class DailyRestingHeartRateMetadata(typing_extensions.TypedDict, total=False):
-    calculationMethod: typing_extensions.Literal[
+class DailyRestingHeartRateMetadata(typing.TypedDict, total=False):
+    calculationMethod: typing.Literal[
         "CALCULATION_METHOD_UNSPECIFIED", "WITH_SLEEP", "ONLY_WITH_AWAKE_DATA"
     ]
 
 @typing.type_check_only
-class DailyRollUpDataPointsRequest(typing_extensions.TypedDict, total=False):
+class DailyRollUpDataPointsRequest(typing.TypedDict, total=False):
     dataSourceFamily: str
     pageSize: int
     pageToken: str
@@ -270,11 +268,11 @@ class DailyRollUpDataPointsRequest(typing_extensions.TypedDict, total=False):
     windowSizeDays: int
 
 @typing.type_check_only
-class DailyRollUpDataPointsResponse(typing_extensions.TypedDict, total=False):
+class DailyRollUpDataPointsResponse(typing.TypedDict, total=False):
     rollupDataPoints: _list[DailyRollupDataPoint]
 
 @typing.type_check_only
-class DailyRollupDataPoint(typing_extensions.TypedDict, total=False):
+class DailyRollupDataPoint(typing.TypedDict, total=False):
     activeEnergyBurned: ActiveEnergyBurnedRollupValue
     activeMinutes: ActiveMinutesRollupValue
     activeZoneMinutes: ActiveZoneMinutesRollupValue
@@ -302,15 +300,15 @@ class DailyRollupDataPoint(typing_extensions.TypedDict, total=False):
     weight: WeightRollupValue
 
 @typing.type_check_only
-class DailySleepTemperatureDerivations(typing_extensions.TypedDict, total=False):
+class DailySleepTemperatureDerivations(typing.TypedDict, total=False):
     baselineTemperatureCelsius: float
     date: Date
     nightlyTemperatureCelsius: float
     relativeNightlyStddev30dCelsius: float
 
 @typing.type_check_only
-class DailyVO2Max(typing_extensions.TypedDict, total=False):
-    cardioFitnessLevel: typing_extensions.Literal[
+class DailyVO2Max(typing.TypedDict, total=False):
+    cardioFitnessLevel: typing.Literal[
         "CARDIO_FITNESS_LEVEL_UNSPECIFIED",
         "POOR",
         "FAIR",
@@ -325,7 +323,7 @@ class DailyVO2Max(typing_extensions.TypedDict, total=False):
     vo2MaxCovariance: float
 
 @typing.type_check_only
-class DataPoint(typing_extensions.TypedDict, total=False):
+class DataPoint(typing.TypedDict, total=False):
     activeEnergyBurned: ActiveEnergyBurned
     activeMinutes: ActiveMinutes
     activeZoneMinutes: ActiveZoneMinutes
@@ -354,8 +352,11 @@ class DataPoint(typing_extensions.TypedDict, total=False):
     height: Height
     hydrationLog: HydrationLog
     irregularRhythmNotification: IrregularRhythmNotification
+    menstrualPeriod: MenstrualPeriod
+    moods: Moods
     name: str
     nutritionLog: NutritionLog
+    ovulationTest: OvulationTest
     oxygenSaturation: OxygenSaturation
     respiratoryRateSleepSummary: RespiratoryRateSleepSummary
     runVo2Max: RunVO2Max
@@ -363,15 +364,16 @@ class DataPoint(typing_extensions.TypedDict, total=False):
     sleep: Sleep
     steps: Steps
     swimLengthsData: SwimLengthsData
+    symptoms: Symptoms
     timeInHeartRateZone: TimeInHeartRateZone
     vo2Max: VO2Max
     weight: Weight
 
 @typing.type_check_only
-class DataSource(typing_extensions.TypedDict, total=False):
+class DataSource(typing.TypedDict, total=False):
     application: Application
     device: Device
-    platform: typing_extensions.Literal[
+    platform: typing.Literal[
         "PLATFORM_UNSPECIFIED",
         "FITBIT",
         "HEALTH_CONNECT",
@@ -382,7 +384,7 @@ class DataSource(typing_extensions.TypedDict, total=False):
         "GOOGLE_WEB_API",
         "GOOGLE_PARTNER_INTEGRATION",
     ]
-    recordingMethod: typing_extensions.Literal[
+    recordingMethod: typing.Literal[
         "RECORDING_METHOD_UNSPECIFIED",
         "MANUAL",
         "PASSIVELY_MEASURED",
@@ -392,13 +394,13 @@ class DataSource(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class Date(typing_extensions.TypedDict, total=False):
+class Date(typing.TypedDict, total=False):
     day: int
     month: int
     year: int
 
 @typing.type_check_only
-class DateTime(typing_extensions.TypedDict, total=False):
+class DateTime(typing.TypedDict, total=False):
     day: int
     hours: int
     minutes: int
@@ -410,9 +412,9 @@ class DateTime(typing_extensions.TypedDict, total=False):
     year: int
 
 @typing.type_check_only
-class Device(typing_extensions.TypedDict, total=False):
+class Device(typing.TypedDict, total=False):
     displayName: str
-    formFactor: typing_extensions.Literal[
+    formFactor: typing.Literal[
         "FORM_FACTOR_UNSPECIFIED",
         "FITNESS_BAND",
         "WATCH",
@@ -427,22 +429,22 @@ class Device(typing_extensions.TypedDict, total=False):
     manufacturer: str
 
 @typing.type_check_only
-class Distance(typing_extensions.TypedDict, total=False):
+class Distance(typing.TypedDict, total=False):
     interval: ObservationTimeInterval
     millimeters: str
 
 @typing.type_check_only
-class DistanceRollupValue(typing_extensions.TypedDict, total=False):
+class DistanceRollupValue(typing.TypedDict, total=False):
     millimetersSum: str
 
 @typing.type_check_only
-class Electrocardiogram(typing_extensions.TypedDict, total=False):
+class Electrocardiogram(typing.TypedDict, total=False):
     beatsPerMinuteAvg: str
     interval: SessionTimeInterval
     leadNumber: int
     medicalDeviceInfo: MedicalDeviceInfo
     millivoltsScalingFactor: int
-    resultClassification: typing_extensions.Literal[
+    resultClassification: typing.Literal[
         "RESULT_CLASSIFICATION_UNSPECIFIED",
         "NORMAL_SINUS_RHYTHM",
         "ATRIAL_FIBRILLATION",
@@ -456,17 +458,17 @@ class Electrocardiogram(typing_extensions.TypedDict, total=False):
     waveformSamples: _list[int]
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class EndpointAuthorization(typing_extensions.TypedDict, total=False):
+class EndpointAuthorization(typing.TypedDict, total=False):
     secret: str
     secretSet: bool
 
 @typing.type_check_only
-class EnergyQuantity(typing_extensions.TypedDict, total=False):
+class EnergyQuantity(typing.TypedDict, total=False):
     kcal: float
-    userProvidedUnit: typing_extensions.Literal[
+    userProvidedUnit: typing.Literal[
         "ENERGY_UNIT_UNSPECIFIED",
         "JOULE",
         "KILOJOULE",
@@ -476,9 +478,9 @@ class EnergyQuantity(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class EnergyQuantityRollup(typing_extensions.TypedDict, total=False):
+class EnergyQuantityRollup(typing.TypedDict, total=False):
     kcalSum: float
-    userProvidedUnitLast: typing_extensions.Literal[
+    userProvidedUnitLast: typing.Literal[
         "ENERGY_UNIT_UNSPECIFIED",
         "JOULE",
         "KILOJOULE",
@@ -488,13 +490,13 @@ class EnergyQuantityRollup(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class Exercise(typing_extensions.TypedDict, total=False):
+class Exercise(typing.TypedDict, total=False):
     activeDuration: str
     createTime: str
     displayName: str
     exerciseEvents: _list[ExerciseEvent]
     exerciseMetadata: ExerciseMetadata
-    exerciseType: typing_extensions.Literal[
+    exerciseType: typing.Literal[
         "EXERCISE_TYPE_UNSPECIFIED",
         "AEROBIC_WORKOUT",
         "ARCHERY",
@@ -686,10 +688,10 @@ class Exercise(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class ExerciseEvent(typing_extensions.TypedDict, total=False):
+class ExerciseEvent(typing.TypedDict, total=False):
     eventTime: str
     eventUtcOffset: str
-    exerciseEventType: typing_extensions.Literal[
+    exerciseEventType: typing.Literal[
         "EXERCISE_EVENT_TYPE_UNSPECIFIED",
         "START",
         "STOP",
@@ -700,26 +702,26 @@ class ExerciseEvent(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class ExerciseMetadata(typing_extensions.TypedDict, total=False):
+class ExerciseMetadata(typing.TypedDict, total=False):
     hasGps: bool
     poolLengthMillimeters: str
 
 @typing.type_check_only
-class ExportExerciseTcxResponse(typing_extensions.TypedDict, total=False):
+class ExportExerciseTcxResponse(typing.TypedDict, total=False):
     tcxData: str
 
 @typing.type_check_only
-class Floors(typing_extensions.TypedDict, total=False):
+class Floors(typing.TypedDict, total=False):
     count: str
     interval: ObservationTimeInterval
 
 @typing.type_check_only
-class FloorsRollupValue(typing_extensions.TypedDict, total=False):
+class FloorsRollupValue(typing.TypedDict, total=False):
     countSum: str
 
 @typing.type_check_only
-class Food(typing_extensions.TypedDict, total=False):
-    accessLevel: typing_extensions.Literal[
+class Food(typing.TypedDict, total=False):
+    accessLevel: typing.Literal[
         "FOOD_ACCESS_LEVEL_UNSPECIFIED",
         "FOOD_ACCESS_LEVEL_PUBLIC",
         "FOOD_ACCESS_LEVEL_PRIVATE",
@@ -733,7 +735,7 @@ class Food(typing_extensions.TypedDict, total=False):
     energyMax: EnergyQuantity
     energyMin: EnergyQuantity
     languageCode: str
-    mealType: typing_extensions.Literal[
+    mealType: typing.Literal[
         "MEAL_TYPE_UNSPECIFIED",
         "BEFORE_BREAKFAST",
         "BREAKFAST",
@@ -751,12 +753,12 @@ class Food(typing_extensions.TypedDict, total=False):
     totalFat: WeightQuantity
 
 @typing.type_check_only
-class FoodMeasurementUnit(typing_extensions.TypedDict, total=False):
+class FoodMeasurementUnit(typing.TypedDict, total=False):
     displayName: str
     pluralDisplayName: str
 
 @typing.type_check_only
-class FoodServing(typing_extensions.TypedDict, total=False):
+class FoodServing(typing.TypedDict, total=False):
     amount: float
     foodMeasurementUnit: str
     foodMeasurementUnitDisplayName: str
@@ -764,40 +766,36 @@ class FoodServing(typing_extensions.TypedDict, total=False):
     multiplier: float
 
 @typing.type_check_only
-class GoogleDevicesandservicesHealthV4DataType(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleDevicesandservicesHealthV4DataType(typing.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class GoogleDevicesandservicesHealthV4User(typing_extensions.TypedDict, total=False):
+class GoogleDevicesandservicesHealthV4User(typing.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
 class GoogleDevicesandservicesHealthV4WebhookNotificationCloudLog(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     httpResponse: HttpResponse
 
 @typing.type_check_only
-class HeartBeat(typing_extensions.TypedDict, total=False):
+class HeartBeat(typing.TypedDict, total=False):
     beatsPerMinute: int
     civilTime: CivilDateTime
     physicalTime: str
     utcOffset: str
 
 @typing.type_check_only
-class HeartRate(typing_extensions.TypedDict, total=False):
+class HeartRate(typing.TypedDict, total=False):
     beatsPerMinute: str
     metadata: HeartRateMetadata
     sampleTime: ObservationSampleTime
 
 @typing.type_check_only
-class HeartRateMetadata(typing_extensions.TypedDict, total=False):
-    motionContext: typing_extensions.Literal[
-        "MOTION_CONTEXT_UNSPECIFIED", "ACTIVE", "SEDENTARY"
-    ]
-    sensorLocation: typing_extensions.Literal[
+class HeartRateMetadata(typing.TypedDict, total=False):
+    motionContext: typing.Literal["MOTION_CONTEXT_UNSPECIFIED", "ACTIVE", "SEDENTARY"]
+    sensorLocation: typing.Literal[
         "SENSOR_LOCATION_UNSPECIFIED",
         "CHEST",
         "WRIST",
@@ -808,105 +806,115 @@ class HeartRateMetadata(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class HeartRateRollupValue(typing_extensions.TypedDict, total=False):
+class HeartRateRollupValue(typing.TypedDict, total=False):
     beatsPerMinuteAvg: float
     beatsPerMinuteMax: float
     beatsPerMinuteMin: float
 
 @typing.type_check_only
-class HeartRateVariability(typing_extensions.TypedDict, total=False):
+class HeartRateVariability(typing.TypedDict, total=False):
     rootMeanSquareOfSuccessiveDifferencesMilliseconds: float
     sampleTime: ObservationSampleTime
     standardDeviationMilliseconds: float
 
 @typing.type_check_only
-class HeartRateVariabilityPersonalRangeRollupValue(
-    typing_extensions.TypedDict, total=False
-):
+class HeartRateVariabilityPersonalRangeRollupValue(typing.TypedDict, total=False):
     averageHeartRateVariabilityMillisecondsMax: float
     averageHeartRateVariabilityMillisecondsMin: float
 
 @typing.type_check_only
-class HeartRateZone(typing_extensions.TypedDict, total=False):
-    heartRateZoneType: typing_extensions.Literal[
+class HeartRateZone(typing.TypedDict, total=False):
+    heartRateZoneType: typing.Literal[
         "HEART_RATE_ZONE_TYPE_UNSPECIFIED", "LIGHT", "MODERATE", "VIGOROUS", "PEAK"
     ]
     maxBeatsPerMinute: str
     minBeatsPerMinute: str
 
 @typing.type_check_only
-class Height(typing_extensions.TypedDict, total=False):
+class Height(typing.TypedDict, total=False):
     heightMillimeters: str
     sampleTime: ObservationSampleTime
 
 @typing.type_check_only
-class HttpHeader(typing_extensions.TypedDict, total=False):
+class HttpBody(typing.TypedDict, total=False):
+    contentType: str
+    data: str
+    extensions: _list[dict[str, typing.Any]]
+
+@typing.type_check_only
+class HttpHeader(typing.TypedDict, total=False):
     key: str
     value: str
 
 @typing.type_check_only
-class HttpResponse(typing_extensions.TypedDict, total=False):
+class HttpResponse(typing.TypedDict, total=False):
     body: str
     headers: _list[HttpHeader]
     reason: str
     status: int
 
 @typing.type_check_only
-class HydrationLog(typing_extensions.TypedDict, total=False):
+class HydrationLog(typing.TypedDict, total=False):
     amountConsumed: VolumeQuantity
     interval: SessionTimeInterval
 
 @typing.type_check_only
-class HydrationLogRollupValue(typing_extensions.TypedDict, total=False):
+class HydrationLogRollupValue(typing.TypedDict, total=False):
     amountConsumed: VolumeQuantityRollup
 
 @typing.type_check_only
-class Identity(typing_extensions.TypedDict, total=False):
+class Identity(typing.TypedDict, total=False):
     healthUserId: str
     legacyUserId: str
     name: str
 
 @typing.type_check_only
-class Interval(typing_extensions.TypedDict, total=False):
+class Interval(typing.TypedDict, total=False):
     endTime: str
     startTime: str
 
 @typing.type_check_only
-class IrnProfile(typing_extensions.TypedDict, total=False):
+class IrnProfile(typing.TypedDict, total=False):
     enrollmentStatus: bool
     name: str
     onboardingStatus: bool
     updateTime: str
 
 @typing.type_check_only
-class IrregularRhythmNotification(typing_extensions.TypedDict, total=False):
+class IrregularRhythmNotification(typing.TypedDict, total=False):
     alertWindows: _list[AlertWindow]
     interval: SessionTimeInterval
     medicalDeviceInfo: MedicalDeviceInfo
 
 @typing.type_check_only
-class ListDataPointsResponse(typing_extensions.TypedDict, total=False):
+class ListDataPointsResponse(typing.TypedDict, total=False):
     dataPoints: _list[DataPoint]
     nextPageToken: str
 
 @typing.type_check_only
-class ListPairedDevicesResponse(typing_extensions.TypedDict, total=False):
+class ListPairedDevicesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     pairedDevices: _list[PairedDevice]
 
 @typing.type_check_only
-class ListSubscribersResponse(typing_extensions.TypedDict, total=False):
+class ListSubscribersResponse(typing.TypedDict, total=False):
     nextPageToken: str
     subscribers: _list[Subscriber]
     totalSize: int
 
 @typing.type_check_only
-class ListSubscriptionsResponse(typing_extensions.TypedDict, total=False):
+class ListSubscriptionsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     subscriptions: _list[Subscription]
 
 @typing.type_check_only
-class MedicalDeviceInfo(typing_extensions.TypedDict, total=False):
+class ManifestParams(typing.TypedDict, total=False):
+    embeddedLengthMax: int
+    passcode: str
+    recipient: str
+
+@typing.type_check_only
+class MedicalDeviceInfo(typing.TypedDict, total=False):
     algorithmVersion: str
     deviceModel: str
     featureVersion: str
@@ -914,7 +922,12 @@ class MedicalDeviceInfo(typing_extensions.TypedDict, total=False):
     serviceVersion: str
 
 @typing.type_check_only
-class MetricsSummary(typing_extensions.TypedDict, total=False):
+class MenstrualPeriod(typing.TypedDict, total=False):
+    interval: ObservationTimeInterval
+    notes: str
+
+@typing.type_check_only
+class MetricsSummary(typing.TypedDict, total=False):
     activeZoneMinutes: str
     averageHeartRateBeatsPerMinute: str
     averagePaceSecondsPerMeter: float
@@ -929,7 +942,7 @@ class MetricsSummary(typing_extensions.TypedDict, total=False):
     totalSwimLengths: float
 
 @typing.type_check_only
-class MobilityMetrics(typing_extensions.TypedDict, total=False):
+class MobilityMetrics(typing.TypedDict, total=False):
     avgCadenceStepsPerMinute: float
     avgGroundContactTimeDuration: str
     avgStrideLengthMillimeters: str
@@ -937,8 +950,76 @@ class MobilityMetrics(typing_extensions.TypedDict, total=False):
     avgVerticalRatio: float
 
 @typing.type_check_only
-class NutrientQuantity(typing_extensions.TypedDict, total=False):
-    nutrient: typing_extensions.Literal[
+class Moods(typing.TypedDict, total=False):
+    moods: _list[
+        typing.Literal[
+            "MOOD_UNSPECIFIED",
+            "AMAZED",
+            "AMUSED",
+            "ANGRY",
+            "ANNOYED",
+            "ANXIOUS",
+            "HAPPY",
+            "CONTENT",
+            "SAD",
+            "WORRIED",
+            "FRUSTRATED",
+            "EXCITED",
+            "CALM",
+            "STRESSED",
+            "ASHAMED",
+            "BRAVE",
+            "CONFIDENT",
+            "DISAPPOINTED",
+            "DISCOURAGED",
+            "DISGUSTED",
+            "DRAINED",
+            "EMBARRASSED",
+            "GRATEFUL",
+            "GUILTY",
+            "HOPEFUL",
+            "HOPELESS",
+            "INDIFFERENT",
+            "IRRITATED",
+            "JEALOUS",
+            "JOYFUL",
+            "LONELY",
+            "OVERWHELMED",
+            "PASSIONATE",
+            "PEACEFUL",
+            "PROUD",
+            "RELIEVED",
+            "SATISFIED",
+            "SCARED",
+            "SURPRISED",
+            "ENERGIZED",
+            "FATIGUED",
+            "VERY_CALM",
+            "VERY_STRESSED",
+            "NEUTRAL",
+            "AFRAID",
+            "HURTING",
+            "BORED",
+            "BITTER",
+            "ENVIOUS",
+            "CONFUSED",
+            "CURIOUS",
+            "AWESTRUCK",
+            "INSPIRED",
+            "LONGING",
+            "ACCOMPLISHED",
+            "LOVING",
+            "COMPASSIONATE",
+        ]
+    ]
+    sampleTime: ObservationSampleTime
+    valences: _list[
+        typing.Literal["VALENCE_UNSPECIFIED", "UNPLEASANT", "BASELINE", "PLEASANT"]
+    ]
+
+@typing.type_check_only
+class NutrientQuantity(typing.TypedDict, total=False):
+    nutrient: typing.Literal[
         "NUTRIENT_UNSPECIFIED",
         "BIOTIN",
         "CAFFEINE",
@@ -983,8 +1064,8 @@ class NutrientQuantity(typing_extensions.TypedDict, total=False):
     quantity: WeightQuantity
 
 @typing.type_check_only
-class NutrientQuantityRollup(typing_extensions.TypedDict, total=False):
-    nutrient: typing_extensions.Literal[
+class NutrientQuantityRollup(typing.TypedDict, total=False):
+    nutrient: typing.Literal[
         "NUTRIENT_UNSPECIFIED",
         "BIOTIN",
         "CAFFEINE",
@@ -1029,13 +1110,13 @@ class NutrientQuantityRollup(typing_extensions.TypedDict, total=False):
     quantity: WeightQuantityRollup
 
 @typing.type_check_only
-class NutritionLog(typing_extensions.TypedDict, total=False):
+class NutritionLog(typing.TypedDict, total=False):
     energy: EnergyQuantity
     energyFromFat: EnergyQuantity
     food: str
     foodDisplayName: str
     interval: SessionTimeInterval
-    mealType: typing_extensions.Literal[
+    mealType: typing.Literal[
         "MEAL_TYPE_UNSPECIFIED",
         "BEFORE_BREAKFAST",
         "BREAKFAST",
@@ -1053,7 +1134,7 @@ class NutritionLog(typing_extensions.TypedDict, total=False):
     totalFat: WeightQuantity
 
 @typing.type_check_only
-class NutritionLogRollupValue(typing_extensions.TypedDict, total=False):
+class NutritionLogRollupValue(typing.TypedDict, total=False):
     energy: EnergyQuantityRollup
     energyFromFat: EnergyQuantityRollup
     nutrients: _list[NutrientQuantityRollup]
@@ -1061,13 +1142,13 @@ class NutritionLogRollupValue(typing_extensions.TypedDict, total=False):
     totalFat: WeightQuantityRollup
 
 @typing.type_check_only
-class ObservationSampleTime(typing_extensions.TypedDict, total=False):
+class ObservationSampleTime(typing.TypedDict, total=False):
     civilTime: CivilDateTime
     physicalTime: str
     utcOffset: str
 
 @typing.type_check_only
-class ObservationTimeInterval(typing_extensions.TypedDict, total=False):
+class ObservationTimeInterval(typing.TypedDict, total=False):
     civilEndTime: CivilDateTime
     civilStartTime: CivilDateTime
     endTime: str
@@ -1076,7 +1157,7 @@ class ObservationTimeInterval(typing_extensions.TypedDict, total=False):
     startUtcOffset: str
 
 @typing.type_check_only
-class Operation(typing_extensions.TypedDict, total=False):
+class Operation(typing.TypedDict, total=False):
     done: bool
     error: Status
     metadata: dict[str, typing.Any]
@@ -1084,22 +1165,34 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class OutOfBedSegment(typing_extensions.TypedDict, total=False):
+class OutOfBedSegment(typing.TypedDict, total=False):
     endTime: str
     endUtcOffset: str
     startTime: str
     startUtcOffset: str
 
 @typing.type_check_only
-class OxygenSaturation(typing_extensions.TypedDict, total=False):
+class OvulationTest(typing.TypedDict, total=False):
+    result: typing.Literal[
+        "OVULATION_TEST_RESULT_UNSPECIFIED",
+        "NEGATIVE",
+        "LUTEINIZING_HORMONE_SURGE",
+        "ESTROGEN_SURGE",
+        "POSITIVE",
+        "INDETERMINATE",
+    ]
+    sampleTime: ObservationSampleTime
+
+@typing.type_check_only
+class OxygenSaturation(typing.TypedDict, total=False):
     percentage: float
     sampleTime: ObservationSampleTime
 
 @typing.type_check_only
-class PairedDevice(typing_extensions.TypedDict, total=False):
+class PairedDevice(typing.TypedDict, total=False):
     batteryLevel: int
     batteryStatus: str
-    deviceType: typing_extensions.Literal["DEVICE_TYPE_UNSPECIFIED", "TRACKER", "SCALE"]
+    deviceType: typing.Literal["DEVICE_TYPE_UNSPECIFIED", "TRACKER", "SCALE"]
     deviceVersion: str
     features: _list[str]
     lastSyncTime: str
@@ -1107,7 +1200,7 @@ class PairedDevice(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class Profile(typing_extensions.TypedDict, total=False):
+class Profile(typing.TypedDict, total=False):
     age: int
     autoRunningStrideLengthMm: int
     autoWalkingStrideLengthMm: int
@@ -1117,12 +1210,12 @@ class Profile(typing_extensions.TypedDict, total=False):
     userConfiguredWalkingStrideLengthMm: int
 
 @typing.type_check_only
-class ReconcileDataPointsResponse(typing_extensions.TypedDict, total=False):
+class ReconcileDataPointsResponse(typing.TypedDict, total=False):
     dataPoints: _list[ReconciledDataPoint]
     nextPageToken: str
 
 @typing.type_check_only
-class ReconciledDataPoint(typing_extensions.TypedDict, total=False):
+class ReconciledDataPoint(typing.TypedDict, total=False):
     activeEnergyBurned: ActiveEnergyBurned
     activeMinutes: ActiveMinutes
     activeZoneMinutes: ActiveZoneMinutes
@@ -1160,7 +1253,7 @@ class ReconciledDataPoint(typing_extensions.TypedDict, total=False):
     weight: Weight
 
 @typing.type_check_only
-class RespiratoryRateSleepSummary(typing_extensions.TypedDict, total=False):
+class RespiratoryRateSleepSummary(typing.TypedDict, total=False):
     deepSleepStats: RespiratoryRateSleepSummaryStatistics
     fullSleepStats: RespiratoryRateSleepSummaryStatistics
     lightSleepStats: RespiratoryRateSleepSummaryStatistics
@@ -1168,20 +1261,18 @@ class RespiratoryRateSleepSummary(typing_extensions.TypedDict, total=False):
     sampleTime: ObservationSampleTime
 
 @typing.type_check_only
-class RespiratoryRateSleepSummaryStatistics(typing_extensions.TypedDict, total=False):
+class RespiratoryRateSleepSummaryStatistics(typing.TypedDict, total=False):
     breathsPerMinute: float
     signalToNoise: float
     standardDeviation: float
 
 @typing.type_check_only
-class RestingHeartRatePersonalRangeRollupValue(
-    typing_extensions.TypedDict, total=False
-):
+class RestingHeartRatePersonalRangeRollupValue(typing.TypedDict, total=False):
     beatsPerMinuteMax: float
     beatsPerMinuteMin: float
 
 @typing.type_check_only
-class RollUpDataPointsRequest(typing_extensions.TypedDict, total=False):
+class RollUpDataPointsRequest(typing.TypedDict, total=False):
     dataSourceFamily: str
     pageSize: int
     pageToken: str
@@ -1189,12 +1280,12 @@ class RollUpDataPointsRequest(typing_extensions.TypedDict, total=False):
     windowSize: str
 
 @typing.type_check_only
-class RollUpDataPointsResponse(typing_extensions.TypedDict, total=False):
+class RollUpDataPointsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     rollupDataPoints: _list[RollupDataPoint]
 
 @typing.type_check_only
-class RollupDataPoint(typing_extensions.TypedDict, total=False):
+class RollupDataPoint(typing.TypedDict, total=False):
     activeEnergyBurned: ActiveEnergyBurnedRollupValue
     activeMinutes: ActiveMinutesRollupValue
     activeZoneMinutes: ActiveZoneMinutesRollupValue
@@ -1220,32 +1311,32 @@ class RollupDataPoint(typing_extensions.TypedDict, total=False):
     weight: WeightRollupValue
 
 @typing.type_check_only
-class RunVO2Max(typing_extensions.TypedDict, total=False):
+class RunVO2Max(typing.TypedDict, total=False):
     runVo2Max: float
     sampleTime: ObservationSampleTime
 
 @typing.type_check_only
-class RunVO2MaxRollupValue(typing_extensions.TypedDict, total=False):
+class RunVO2MaxRollupValue(typing.TypedDict, total=False):
     rateAvg: float
     rateMax: float
     rateMin: float
 
 @typing.type_check_only
-class SedentaryPeriod(typing_extensions.TypedDict, total=False):
+class SedentaryPeriod(typing.TypedDict, total=False):
     interval: ObservationTimeInterval
 
 @typing.type_check_only
-class SedentaryPeriodRollupValue(typing_extensions.TypedDict, total=False):
+class SedentaryPeriodRollupValue(typing.TypedDict, total=False):
     durationSum: str
 
 @typing.type_check_only
-class Serving(typing_extensions.TypedDict, total=False):
+class Serving(typing.TypedDict, total=False):
     amount: float
     foodMeasurementUnit: str
     foodMeasurementUnitDisplayName: str
 
 @typing.type_check_only
-class SessionTimeInterval(typing_extensions.TypedDict, total=False):
+class SessionTimeInterval(typing.TypedDict, total=False):
     civilEndTime: CivilDateTime
     civilStartTime: CivilDateTime
     endTime: str
@@ -1254,46 +1345,46 @@ class SessionTimeInterval(typing_extensions.TypedDict, total=False):
     startUtcOffset: str
 
 @typing.type_check_only
-class Settings(typing_extensions.TypedDict, total=False):
+class Settings(typing.TypedDict, total=False):
     autoStrideEnabled: bool
-    distanceUnit: typing_extensions.Literal[
+    distanceUnit: typing.Literal[
         "DISTANCE_UNIT_UNSPECIFIED", "DISTANCE_UNIT_MILES", "DISTANCE_UNIT_KILOMETERS"
     ]
     foodLanguageCode: str
-    glucoseUnit: typing_extensions.Literal[
+    glucoseUnit: typing.Literal[
         "GLUCOSE_UNIT_UNSPECIFIED", "GLUCOSE_UNIT_MG_DL", "GLUCOSE_UNIT_MMOL_L"
     ]
-    heightUnit: typing_extensions.Literal[
+    heightUnit: typing.Literal[
         "HEIGHT_UNIT_UNSPECIFIED", "HEIGHT_UNIT_INCHES", "HEIGHT_UNIT_CENTIMETERS"
     ]
     languageLocale: str
     name: str
-    strideLengthRunningType: typing_extensions.Literal[
+    strideLengthRunningType: typing.Literal[
         "STRIDE_LENGTH_TYPE_UNSPECIFIED",
         "STRIDE_LENGTH_TYPE_DEFAULT",
         "STRIDE_LENGTH_TYPE_MANUAL",
         "STRIDE_LENGTH_TYPE_AUTO",
     ]
-    strideLengthWalkingType: typing_extensions.Literal[
+    strideLengthWalkingType: typing.Literal[
         "STRIDE_LENGTH_TYPE_UNSPECIFIED",
         "STRIDE_LENGTH_TYPE_DEFAULT",
         "STRIDE_LENGTH_TYPE_MANUAL",
         "STRIDE_LENGTH_TYPE_AUTO",
     ]
-    swimUnit: typing_extensions.Literal[
+    swimUnit: typing.Literal[
         "SWIM_UNIT_UNSPECIFIED", "SWIM_UNIT_METERS", "SWIM_UNIT_YARDS"
     ]
-    temperatureUnit: typing_extensions.Literal[
+    temperatureUnit: typing.Literal[
         "TEMPERATURE_UNIT_UNSPECIFIED",
         "TEMPERATURE_UNIT_CELSIUS",
         "TEMPERATURE_UNIT_FAHRENHEIT",
     ]
     timeZone: str
     utcOffset: str
-    waterUnit: typing_extensions.Literal[
+    waterUnit: typing.Literal[
         "WATER_UNIT_UNSPECIFIED", "WATER_UNIT_ML", "WATER_UNIT_FL_OZ", "WATER_UNIT_CUP"
     ]
-    weightUnit: typing_extensions.Literal[
+    weightUnit: typing.Literal[
         "WEIGHT_UNIT_UNSPECIFIED",
         "WEIGHT_UNIT_POUNDS",
         "WEIGHT_UNIT_STONE",
@@ -1301,23 +1392,25 @@ class Settings(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class Sleep(typing_extensions.TypedDict, total=False):
+class Sleep(typing.TypedDict, total=False):
     createTime: str
     interval: SessionTimeInterval
     metadata: SleepMetadata
     outOfBedSegments: _list[OutOfBedSegment]
+    shortAwakenings: _list[SleepStage]
     stages: _list[SleepStage]
     summary: SleepSummary
-    type: typing_extensions.Literal["SLEEP_TYPE_UNSPECIFIED", "CLASSIC", "STAGES"]
+    type: typing.Literal["SLEEP_TYPE_UNSPECIFIED", "CLASSIC", "STAGES"]
     updateTime: str
 
 @typing.type_check_only
-class SleepMetadata(typing_extensions.TypedDict, total=False):
+class SleepMetadata(typing.TypedDict, total=False):
     externalId: str
+    mainSleep: bool
     manuallyEdited: bool
     nap: bool
     processed: bool
-    stagesStatus: typing_extensions.Literal[
+    stagesStatus: typing.Literal[
         "STAGES_STATE_UNSPECIFIED",
         "REJECTED_COVERAGE",
         "REJECTED_MAX_GAP",
@@ -1331,13 +1424,13 @@ class SleepMetadata(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class SleepStage(typing_extensions.TypedDict, total=False):
+class SleepStage(typing.TypedDict, total=False):
     createTime: str
     endTime: str
     endUtcOffset: str
     startTime: str
     startUtcOffset: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "SLEEP_STAGE_TYPE_UNSPECIFIED",
         "AWAKE",
         "LIGHT",
@@ -1349,7 +1442,7 @@ class SleepStage(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class SleepSummary(typing_extensions.TypedDict, total=False):
+class SleepSummary(typing.TypedDict, total=False):
     minutesAfterWakeUp: str
     minutesAsleep: str
     minutesAwake: str
@@ -1358,22 +1451,22 @@ class SleepSummary(typing_extensions.TypedDict, total=False):
     stagesSummary: _list[StageSummary]
 
 @typing.type_check_only
-class SplitSummary(typing_extensions.TypedDict, total=False):
+class SplitSummary(typing.TypedDict, total=False):
     activeDuration: str
     endTime: str
     endUtcOffset: str
     metricsSummary: MetricsSummary
-    splitType: typing_extensions.Literal[
+    splitType: typing.Literal[
         "SPLIT_TYPE_UNSPECIFIED", "MANUAL", "DURATION", "DISTANCE", "CALORIES"
     ]
     startTime: str
     startUtcOffset: str
 
 @typing.type_check_only
-class StageSummary(typing_extensions.TypedDict, total=False):
+class StageSummary(typing.TypedDict, total=False):
     count: str
     minutes: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "SLEEP_STAGE_TYPE_UNSPECIFIED",
         "AWAKE",
         "LIGHT",
@@ -1384,50 +1477,48 @@ class StageSummary(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class Steps(typing_extensions.TypedDict, total=False):
+class Steps(typing.TypedDict, total=False):
     count: str
     interval: ObservationTimeInterval
 
 @typing.type_check_only
-class StepsRollupValue(typing_extensions.TypedDict, total=False):
+class StepsRollupValue(typing.TypedDict, total=False):
     countSum: str
 
 @typing.type_check_only
-class Subscriber(typing_extensions.TypedDict, total=False):
+class Subscriber(typing.TypedDict, total=False):
     createTime: str
     endpointAuthorization: EndpointAuthorization
     endpointUri: str
     name: str
-    state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "UNVERIFIED", "ACTIVE", "INACTIVE"
-    ]
+    state: typing.Literal["STATE_UNSPECIFIED", "UNVERIFIED", "ACTIVE", "INACTIVE"]
     subscriberConfigs: _list[SubscriberConfig]
     updateTime: str
 
 @typing.type_check_only
-class SubscriberConfig(typing_extensions.TypedDict, total=False):
+class SubscriberConfig(typing.TypedDict, total=False):
     dataTypes: _list[str]
-    subscriptionCreatePolicy: typing_extensions.Literal[
+    subscriptionCreatePolicy: typing.Literal[
         "SUBSCRIPTION_CREATE_POLICY_UNSPECIFIED", "AUTOMATIC", "MANUAL"
     ]
 
 @typing.type_check_only
-class Subscription(typing_extensions.TypedDict, total=False):
+class Subscription(typing.TypedDict, total=False):
     dataTypes: _list[str]
     name: str
     user: str
 
 @typing.type_check_only
-class SwimLengthsData(typing_extensions.TypedDict, total=False):
+class SwimLengthsData(typing.TypedDict, total=False):
     interval: ObservationTimeInterval
     strokeCount: str
-    swimStrokeType: typing_extensions.Literal[
+    swimStrokeType: typing.Literal[
         "SWIM_STROKE_TYPE_UNSPECIFIED",
         "FREESTYLE",
         "BACKSTROKE",
@@ -1436,53 +1527,91 @@ class SwimLengthsData(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class SwimLengthsDataRollupValue(typing_extensions.TypedDict, total=False):
+class SwimLengthsDataRollupValue(typing.TypedDict, total=False):
     strokeCountSum: str
 
 @typing.type_check_only
-class TimeInHeartRateZone(typing_extensions.TypedDict, total=False):
-    heartRateZoneType: typing_extensions.Literal[
+class Symptoms(typing.TypedDict, total=False):
+    sampleTime: ObservationSampleTime
+    symptoms: _list[
+        typing.Literal[
+            "SYMPTOM_VALUE_UNSPECIFIED",
+            "CRAMPS",
+            "HEADACHE",
+            "TENDER_BREASTS",
+            "ACNE",
+            "SICK",
+            "BLOATED",
+            "HOT_FLASHES",
+            "PMS",
+            "COUGH",
+            "FEVER",
+            "DIFFICULTY_BREATHING",
+            "BACK_PAIN",
+            "SHAKINESS",
+            "HUNGER",
+            "SWEATING",
+            "ANXIETY",
+            "THIRST",
+            "FREQUENT_URINATION",
+            "BLURRED_VISION",
+            "OTHER",
+            "SEX_DRIVE_HIGH",
+            "SEX_DRIVE_MEDIUM",
+            "SEX_DRIVE_LOW",
+            "HEART_PALPITATIONS",
+            "FAINTING",
+            "CHEST_PAIN",
+            "FATIGUE",
+            "CONFUSION",
+            "DIZZINESS",
+        ]
+    ]
+
+@typing.type_check_only
+class TimeInHeartRateZone(typing.TypedDict, total=False):
+    heartRateZoneType: typing.Literal[
         "HEART_RATE_ZONE_TYPE_UNSPECIFIED", "LIGHT", "MODERATE", "VIGOROUS", "PEAK"
     ]
     interval: ObservationTimeInterval
 
 @typing.type_check_only
-class TimeInHeartRateZoneRollupValue(typing_extensions.TypedDict, total=False):
+class TimeInHeartRateZoneRollupValue(typing.TypedDict, total=False):
     timeInHeartRateZones: _list[TimeInHeartRateZoneValue]
 
 @typing.type_check_only
-class TimeInHeartRateZoneValue(typing_extensions.TypedDict, total=False):
+class TimeInHeartRateZoneValue(typing.TypedDict, total=False):
     duration: str
-    heartRateZone: typing_extensions.Literal[
+    heartRateZone: typing.Literal[
         "HEART_RATE_ZONE_TYPE_UNSPECIFIED", "LIGHT", "MODERATE", "VIGOROUS", "PEAK"
     ]
 
 @typing.type_check_only
-class TimeInHeartRateZones(typing_extensions.TypedDict, total=False):
+class TimeInHeartRateZones(typing.TypedDict, total=False):
     lightTime: str
     moderateTime: str
     peakTime: str
     vigorousTime: str
 
 @typing.type_check_only
-class TimeOfDay(typing_extensions.TypedDict, total=False):
+class TimeOfDay(typing.TypedDict, total=False):
     hours: int
     minutes: int
     nanos: int
     seconds: int
 
 @typing.type_check_only
-class TimeZone(typing_extensions.TypedDict, total=False):
+class TimeZone(typing.TypedDict, total=False):
     id: str
     version: str
 
 @typing.type_check_only
-class TotalCaloriesRollupValue(typing_extensions.TypedDict, total=False):
+class TotalCaloriesRollupValue(typing.TypedDict, total=False):
     kcalSum: float
 
 @typing.type_check_only
-class VO2Max(typing_extensions.TypedDict, total=False):
-    measurementMethod: typing_extensions.Literal[
+class VO2Max(typing.TypedDict, total=False):
+    measurementMethod: typing.Literal[
         "MEASUREMENT_METHOD_UNSPECIFIED",
         "FITBIT_RUN",
         "GOOGLE_DEMOGRAPHIC",
@@ -1500,9 +1629,9 @@ class VO2Max(typing_extensions.TypedDict, total=False):
     vo2Max: float
 
 @typing.type_check_only
-class VolumeQuantity(typing_extensions.TypedDict, total=False):
+class VolumeQuantity(typing.TypedDict, total=False):
     milliliters: float
-    userProvidedUnit: typing_extensions.Literal[
+    userProvidedUnit: typing.Literal[
         "VOLUME_UNIT_UNSPECIFIED",
         "CUP_IMPERIAL",
         "CUP_US",
@@ -1515,9 +1644,9 @@ class VolumeQuantity(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class VolumeQuantityRollup(typing_extensions.TypedDict, total=False):
+class VolumeQuantityRollup(typing.TypedDict, total=False):
     millilitersSum: float
-    userProvidedUnitLast: typing_extensions.Literal[
+    userProvidedUnitLast: typing.Literal[
         "VOLUME_UNIT_UNSPECIFIED",
         "CUP_IMPERIAL",
         "CUP_US",
@@ -1530,15 +1659,15 @@ class VolumeQuantityRollup(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class Weight(typing_extensions.TypedDict, total=False):
+class Weight(typing.TypedDict, total=False):
     notes: str
     sampleTime: ObservationSampleTime
     weightGrams: float
 
 @typing.type_check_only
-class WeightQuantity(typing_extensions.TypedDict, total=False):
+class WeightQuantity(typing.TypedDict, total=False):
     grams: float
-    userProvidedUnit: typing_extensions.Literal[
+    userProvidedUnit: typing.Literal[
         "WEIGHT_UNIT_UNSPECIFIED",
         "GRAM",
         "KILOGRAM",
@@ -1551,9 +1680,9 @@ class WeightQuantity(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class WeightQuantityRollup(typing_extensions.TypedDict, total=False):
+class WeightQuantityRollup(typing.TypedDict, total=False):
     gramsSum: float
-    userProvidedUnitLast: typing_extensions.Literal[
+    userProvidedUnitLast: typing.Literal[
         "WEIGHT_UNIT_UNSPECIFIED",
         "GRAM",
         "KILOGRAM",
@@ -1566,5 +1695,5 @@ class WeightQuantityRollup(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class WeightRollupValue(typing_extensions.TypedDict, total=False):
+class WeightRollupValue(typing.TypedDict, total=False):
     weightGramsAvg: float

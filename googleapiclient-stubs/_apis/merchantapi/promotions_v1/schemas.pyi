@@ -1,17 +1,13 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class Attributes(typing_extensions.TypedDict, total=False):
-    audience: typing_extensions.Literal[
-        "AUDIENCE_UNSPECIFIED", "NEW_CUSTOMERS", "LOCATION"
-    ]
+class Attributes(typing.TypedDict, total=False):
+    audience: typing.Literal["AUDIENCE_UNSPECIFIED", "NEW_CUSTOMERS", "LOCATION"]
     brandExclusion: _list[str]
     brandInclusion: _list[str]
-    couponValueType: typing_extensions.Literal[
+    couponValueType: typing.Literal[
         "COUPON_VALUE_TYPE_UNSPECIFIED",
         "MONEY_OFF",
         "PERCENT_OFF",
@@ -29,7 +25,7 @@ class Attributes(typing_extensions.TypedDict, total=False):
         "PERCENT_OFF_RANGE",
     ]
     customRedemptionRestriction: str
-    eventApplicability: typing_extensions.Literal[
+    eventApplicability: typing.Literal[
         "EVENT_APPLICABILITY_UNSPECIFIED", "SITEWIDE", "SPECIFIC_CATEGORIES"
     ]
     freeGiftDescription: str
@@ -53,17 +49,15 @@ class Attributes(typing_extensions.TypedDict, total=False):
     minimumPurchaseAmount: Price
     minimumPurchaseQuantity: str
     moneyOffAmount: Price
-    offerType: typing_extensions.Literal[
-        "OFFER_TYPE_UNSPECIFIED", "NO_CODE", "GENERIC_CODE"
-    ]
+    offerType: typing.Literal["OFFER_TYPE_UNSPECIFIED", "NO_CODE", "GENERIC_CODE"]
     percentOff: str
-    productApplicability: typing_extensions.Literal[
+    productApplicability: typing.Literal[
         "PRODUCT_APPLICABILITY_UNSPECIFIED", "ALL_PRODUCTS", "SPECIFIC_PRODUCTS"
     ]
     productTypeExclusion: _list[str]
     productTypeInclusion: _list[str]
     promotionDestinations: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "DESTINATION_ENUM_UNSPECIFIED",
             "SHOPPING_ADS",
             "DISPLAY_ADS",
@@ -82,7 +76,7 @@ class Attributes(typing_extensions.TypedDict, total=False):
     promotionDisplayTimePeriod: Interval
     promotionEffectiveTimePeriod: Interval
     promotionUrl: str
-    redemptionRestriction: typing_extensions.Literal[
+    redemptionRestriction: typing.Literal[
         "REDEMPTION_RESTRICTION_UNSPECIFIED",
         "SUBSCRIBE",
         "FIRST_ORDER",
@@ -91,21 +85,21 @@ class Attributes(typing_extensions.TypedDict, total=False):
         "CUSTOM",
     ]
     regionIdInclusion: _list[str]
-    storeApplicability: typing_extensions.Literal[
+    storeApplicability: typing.Literal[
         "STORE_APPLICABILITY_UNSPECIFIED", "ALL_STORES", "SPECIFIC_STORES"
     ]
     storeCodesExclusion: _list[str]
     storeCodesInclusion: _list[str]
 
 @typing.type_check_only
-class CustomAttribute(typing_extensions.TypedDict, total=False):
+class CustomAttribute(typing.TypedDict, total=False):
     groupValues: _list[CustomAttribute]
     name: str
     value: str
 
 @typing.type_check_only
-class DestinationStatus(typing_extensions.TypedDict, total=False):
-    reportingContext: typing_extensions.Literal[
+class DestinationStatus(typing.TypedDict, total=False):
+    reportingContext: typing.Literal[
         "REPORTING_CONTEXT_ENUM_UNSPECIFIED",
         "SHOPPING_ADS",
         "DISCOVERY_ADS",
@@ -127,7 +121,7 @@ class DestinationStatus(typing_extensions.TypedDict, total=False):
         "MERCHANT_REVIEWS",
         "YOUTUBE_CHECKOUT",
     ]
-    status: typing_extensions.Literal[
+    status: typing.Literal[
         "STATE_UNSPECIFIED",
         "IN_REVIEW",
         "REJECTED",
@@ -138,24 +132,24 @@ class DestinationStatus(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class InsertPromotionRequest(typing_extensions.TypedDict, total=False):
+class InsertPromotionRequest(typing.TypedDict, total=False):
     dataSource: str
     promotion: Promotion
 
 @typing.type_check_only
-class Interval(typing_extensions.TypedDict, total=False):
+class Interval(typing.TypedDict, total=False):
     endTime: str
     startTime: str
 
 @typing.type_check_only
-class ItemLevelIssue(typing_extensions.TypedDict, total=False):
+class ItemLevelIssue(typing.TypedDict, total=False):
     applicableCountries: _list[str]
     attribute: str
     code: str
     description: str
     detail: str
     documentation: str
-    reportingContext: typing_extensions.Literal[
+    reportingContext: typing.Literal[
         "REPORTING_CONTEXT_ENUM_UNSPECIFIED",
         "SHOPPING_ADS",
         "DISCOVERY_ADS",
@@ -178,26 +172,26 @@ class ItemLevelIssue(typing_extensions.TypedDict, total=False):
         "YOUTUBE_CHECKOUT",
     ]
     resolution: str
-    severity: typing_extensions.Literal[
+    severity: typing.Literal[
         "SEVERITY_UNSPECIFIED", "NOT_IMPACTED", "DEMOTED", "DISAPPROVED"
     ]
 
 @typing.type_check_only
-class ListPromotionsResponse(typing_extensions.TypedDict, total=False):
+class ListPromotionsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     promotions: _list[Promotion]
 
 @typing.type_check_only
-class Price(typing_extensions.TypedDict, total=False):
+class Price(typing.TypedDict, total=False):
     amountMicros: str
     currencyCode: str
 
 @typing.type_check_only
-class ProductChange(typing_extensions.TypedDict, total=False):
+class ProductChange(typing.TypedDict, total=False):
     newValue: str
     oldValue: str
     regionCode: str
-    reportingContext: typing_extensions.Literal[
+    reportingContext: typing.Literal[
         "REPORTING_CONTEXT_ENUM_UNSPECIFIED",
         "SHOPPING_ADS",
         "DISCOVERY_ADS",
@@ -221,21 +215,19 @@ class ProductChange(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class ProductStatusChangeMessage(typing_extensions.TypedDict, total=False):
+class ProductStatusChangeMessage(typing.TypedDict, total=False):
     account: str
-    attribute: typing_extensions.Literal["ATTRIBUTE_UNSPECIFIED", "STATUS"]
+    attribute: typing.Literal["ATTRIBUTE_UNSPECIFIED", "STATUS"]
     changes: _list[ProductChange]
     eventTime: str
     expirationTime: str
     managingAccount: str
     resource: str
     resourceId: str
-    resourceType: typing_extensions.Literal[
-        "RESOURCE_UNSPECIFIED", "PRODUCT", "ACCOUNT_SERVICE"
-    ]
+    resourceType: typing.Literal["RESOURCE_UNSPECIFIED", "PRODUCT", "ACCOUNT_SERVICE"]
 
 @typing.type_check_only
-class Promotion(typing_extensions.TypedDict, total=False):
+class Promotion(typing.TypedDict, total=False):
     attributes: Attributes
     contentLanguage: str
     customAttributes: _list[CustomAttribute]
@@ -244,15 +236,13 @@ class Promotion(typing_extensions.TypedDict, total=False):
     promotionId: str
     promotionStatus: PromotionStatus
     redemptionChannel: _list[
-        typing_extensions.Literal[
-            "REDEMPTION_CHANNEL_UNSPECIFIED", "IN_STORE", "ONLINE"
-        ]
+        typing.Literal["REDEMPTION_CHANNEL_UNSPECIFIED", "IN_STORE", "ONLINE"]
     ]
     targetCountry: str
     versionNumber: str
 
 @typing.type_check_only
-class PromotionStatus(typing_extensions.TypedDict, total=False):
+class PromotionStatus(typing.TypedDict, total=False):
     creationDate: str
     destinationStatuses: _list[DestinationStatus]
     itemLevelIssues: _list[ItemLevelIssue]

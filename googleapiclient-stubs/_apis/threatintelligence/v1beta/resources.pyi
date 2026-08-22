@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -51,6 +50,9 @@ class ThreatIntelligenceServiceResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any,
             ) -> AlertHttpRequest: ...
             def get(self, *, name: str, **kwargs: typing.Any) -> AlertHttpRequest: ...
+            def getPassword(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GetPasswordResponseHttpRequest: ...
             def list(
                 self,
                 *,
@@ -245,6 +247,14 @@ class FindingHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Finding: ...
+
+@typing.type_check_only
+class GetPasswordResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GetPasswordResponse: ...
 
 @typing.type_check_only
 class ListAlertsResponseHttpRequest(googleapiclient.http.HttpRequest):

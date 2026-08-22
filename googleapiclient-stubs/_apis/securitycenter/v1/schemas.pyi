@@ -1,11 +1,9 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class Access(typing_extensions.TypedDict, total=False):
+class Access(typing.TypedDict, total=False):
     callerIp: str
     callerIpGeo: Geolocation
     methodName: str
@@ -19,7 +17,7 @@ class Access(typing_extensions.TypedDict, total=False):
     userName: str
 
 @typing.type_check_only
-class AccessReview(typing_extensions.TypedDict, total=False):
+class AccessReview(typing.TypedDict, total=False):
     group: str
     name: str
     ns: str
@@ -29,38 +27,51 @@ class AccessReview(typing_extensions.TypedDict, total=False):
     version: str
 
 @typing.type_check_only
-class AdaptiveProtection(typing_extensions.TypedDict, total=False):
+class AdaptiveProtection(typing.TypedDict, total=False):
     confidence: float
 
 @typing.type_check_only
-class AdcApplication(typing_extensions.TypedDict, total=False):
+class AdcApplication(typing.TypedDict, total=False):
     attributes: GoogleCloudSecuritycenterV1ResourceApplicationAttributes
     name: str
 
 @typing.type_check_only
-class AdcApplicationTemplateRevision(typing_extensions.TypedDict, total=False):
+class AdcApplicationTemplateRevision(typing.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class AdcSharedTemplateRevision(typing_extensions.TypedDict, total=False):
+class AdcSharedTemplateRevision(typing.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class AffectedResources(typing_extensions.TypedDict, total=False):
+class AffectedResources(typing.TypedDict, total=False):
     count: str
 
 @typing.type_check_only
-class AgentDataAccessEvent(typing_extensions.TypedDict, total=False):
+class Agent(typing.TypedDict, total=False):
+    displayName: str
+    id: str
+
+@typing.type_check_only
+class AgentAnomaly(typing.TypedDict, total=False):
+    confidenceScore: float
+    detectorReferences: _list[DetectorReference]
+    invocationReferences: _list[InvocationReference]
+
+@typing.type_check_only
+class AgentDataAccessEvent(typing.TypedDict, total=False):
     eventId: str
     eventTime: str
-    operation: typing_extensions.Literal[
-        "OPERATION_UNSPECIFIED", "READ", "MOVE", "COPY"
-    ]
+    operation: typing.Literal["OPERATION_UNSPECIFIED", "READ", "MOVE", "COPY"]
     principalSubject: str
 
 @typing.type_check_only
-class AiModel(typing_extensions.TypedDict, total=False):
-    deploymentPlatform: typing_extensions.Literal[
+class AgentSession(typing.TypedDict, total=False):
+    sessionId: str
+
+@typing.type_check_only
+class AiModel(typing.TypedDict, total=False):
+    deploymentPlatform: typing.Literal[
         "DEPLOYMENT_PLATFORM_UNSPECIFIED", "VERTEX_AI", "GKE", "GCE", "FINE_TUNED_MODEL"
     ]
     displayName: str
@@ -72,29 +83,27 @@ class AiModel(typing_extensions.TypedDict, total=False):
     usageCategory: str
 
 @typing.type_check_only
-class Allowed(typing_extensions.TypedDict, total=False):
+class Allowed(typing.TypedDict, total=False):
     ipRules: _list[IpRule]
 
 @typing.type_check_only
-class Application(typing_extensions.TypedDict, total=False):
+class Application(typing.TypedDict, total=False):
     baseUri: str
     fullUri: str
 
 @typing.type_check_only
-class ArtifactGuardPolicies(typing_extensions.TypedDict, total=False):
+class ArtifactGuardPolicies(typing.TypedDict, total=False):
     failingPolicies: _list[ArtifactGuardPolicy]
     resourceId: str
 
 @typing.type_check_only
-class ArtifactGuardPolicy(typing_extensions.TypedDict, total=False):
+class ArtifactGuardPolicy(typing.TypedDict, total=False):
     failureReason: str
     policyId: str
-    type: typing_extensions.Literal[
-        "ARTIFACT_GUARD_POLICY_TYPE_UNSPECIFIED", "VULNERABILITY"
-    ]
+    type: typing.Literal["ARTIFACT_GUARD_POLICY_TYPE_UNSPECIFIED", "VULNERABILITY"]
 
 @typing.type_check_only
-class Asset(typing_extensions.TypedDict, total=False):
+class Asset(typing.TypedDict, total=False):
     canonicalName: str
     createTime: str
     iamPolicy: IamPolicy
@@ -105,15 +114,15 @@ class Asset(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class AssetDiscoveryConfig(typing_extensions.TypedDict, total=False):
+class AssetDiscoveryConfig(typing.TypedDict, total=False):
     folderIds: _list[str]
-    inclusionMode: typing_extensions.Literal[
+    inclusionMode: typing.Literal[
         "INCLUSION_MODE_UNSPECIFIED", "INCLUDE_ONLY", "EXCLUDE"
     ]
     projectIds: _list[str]
 
 @typing.type_check_only
-class Attack(typing_extensions.TypedDict, total=False):
+class Attack(typing.TypedDict, total=False):
     classification: str
     volumeBps: int
     volumeBpsLong: str
@@ -121,30 +130,28 @@ class Attack(typing_extensions.TypedDict, total=False):
     volumePpsLong: str
 
 @typing.type_check_only
-class AttackExposure(typing_extensions.TypedDict, total=False):
+class AttackExposure(typing.TypedDict, total=False):
     attackExposureResult: str
     exposedHighValueResourcesCount: int
     exposedLowValueResourcesCount: int
     exposedMediumValueResourcesCount: int
     latestCalculationTime: str
     score: float
-    state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "CALCULATED", "NOT_CALCULATED"
-    ]
+    state: typing.Literal["STATE_UNSPECIFIED", "CALCULATED", "NOT_CALCULATED"]
 
 @typing.type_check_only
-class AttackPath(typing_extensions.TypedDict, total=False):
+class AttackPath(typing.TypedDict, total=False):
     edges: _list[AttackPathEdge]
     name: str
     pathNodes: _list[AttackPathNode]
 
 @typing.type_check_only
-class AttackPathEdge(typing_extensions.TypedDict, total=False):
+class AttackPathEdge(typing.TypedDict, total=False):
     destination: str
     source: str
 
 @typing.type_check_only
-class AttackPathNode(typing_extensions.TypedDict, total=False):
+class AttackPathNode(typing.TypedDict, total=False):
     associatedFindings: _list[PathNodeAssociatedFinding]
     attackSteps: _list[AttackStepNode]
     displayName: str
@@ -153,11 +160,11 @@ class AttackPathNode(typing_extensions.TypedDict, total=False):
     uuid: str
 
 @typing.type_check_only
-class AttackStepNode(typing_extensions.TypedDict, total=False):
+class AttackStepNode(typing.TypedDict, total=False):
     description: str
     displayName: str
     labels: dict[str, typing.Any]
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "NODE_TYPE_UNSPECIFIED",
         "NODE_TYPE_AND",
         "NODE_TYPE_OR",
@@ -167,66 +174,66 @@ class AttackStepNode(typing_extensions.TypedDict, total=False):
     uuid: str
 
 @typing.type_check_only
-class AuditConfig(typing_extensions.TypedDict, total=False):
+class AuditConfig(typing.TypedDict, total=False):
     auditLogConfigs: _list[AuditLogConfig]
     service: str
 
 @typing.type_check_only
-class AuditLogConfig(typing_extensions.TypedDict, total=False):
+class AuditLogConfig(typing.TypedDict, total=False):
     exemptedMembers: _list[str]
-    logType: typing_extensions.Literal[
+    logType: typing.Literal[
         "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
     ]
 
 @typing.type_check_only
-class AwsAccount(typing_extensions.TypedDict, total=False):
+class AwsAccount(typing.TypedDict, total=False):
     id: str
     name: str
 
 @typing.type_check_only
-class AwsMetadata(typing_extensions.TypedDict, total=False):
+class AwsMetadata(typing.TypedDict, total=False):
     account: AwsAccount
     organization: AwsOrganization
     organizationalUnits: _list[AwsOrganizationalUnit]
 
 @typing.type_check_only
-class AwsOrganization(typing_extensions.TypedDict, total=False):
+class AwsOrganization(typing.TypedDict, total=False):
     id: str
 
 @typing.type_check_only
-class AwsOrganizationalUnit(typing_extensions.TypedDict, total=False):
+class AwsOrganizationalUnit(typing.TypedDict, total=False):
     id: str
     name: str
 
 @typing.type_check_only
-class AzureManagementGroup(typing_extensions.TypedDict, total=False):
+class AzureManagementGroup(typing.TypedDict, total=False):
     displayName: str
     id: str
 
 @typing.type_check_only
-class AzureMetadata(typing_extensions.TypedDict, total=False):
+class AzureMetadata(typing.TypedDict, total=False):
     managementGroups: _list[AzureManagementGroup]
     resourceGroup: AzureResourceGroup
     subscription: AzureSubscription
     tenant: AzureTenant
 
 @typing.type_check_only
-class AzureResourceGroup(typing_extensions.TypedDict, total=False):
+class AzureResourceGroup(typing.TypedDict, total=False):
     id: str
     name: str
 
 @typing.type_check_only
-class AzureSubscription(typing_extensions.TypedDict, total=False):
+class AzureSubscription(typing.TypedDict, total=False):
     displayName: str
     id: str
 
 @typing.type_check_only
-class AzureTenant(typing_extensions.TypedDict, total=False):
+class AzureTenant(typing.TypedDict, total=False):
     displayName: str
     id: str
 
 @typing.type_check_only
-class BackupDisasterRecovery(typing_extensions.TypedDict, total=False):
+class BackupDisasterRecovery(typing.TypedDict, total=False):
     appliance: str
     applications: _list[str]
     backupCreateTime: str
@@ -239,35 +246,35 @@ class BackupDisasterRecovery(typing_extensions.TypedDict, total=False):
     storagePool: str
 
 @typing.type_check_only
-class BatchCreateResourceValueConfigsRequest(typing_extensions.TypedDict, total=False):
+class BatchCreateResourceValueConfigsRequest(typing.TypedDict, total=False):
     requests: _list[CreateResourceValueConfigRequest]
 
 @typing.type_check_only
-class BatchCreateResourceValueConfigsResponse(typing_extensions.TypedDict, total=False):
+class BatchCreateResourceValueConfigsResponse(typing.TypedDict, total=False):
     resourceValueConfigs: _list[GoogleCloudSecuritycenterV1ResourceValueConfig]
 
 @typing.type_check_only
-class BigQueryDestination(typing_extensions.TypedDict, total=False):
+class BigQueryDestination(typing.TypedDict, total=False):
     dataset: str
 
 @typing.type_check_only
-class Binding(typing_extensions.TypedDict, total=False):
+class Binding(typing.TypedDict, total=False):
     condition: Expr
     members: _list[str]
     role: str
 
 @typing.type_check_only
-class BulkMuteFindingsRequest(typing_extensions.TypedDict, total=False):
+class BulkMuteFindingsRequest(typing.TypedDict, total=False):
     filter: str
     muteAnnotation: str
-    muteState: typing_extensions.Literal["MUTE_STATE_UNSPECIFIED", "MUTED", "UNDEFINED"]
+    muteState: typing.Literal["MUTE_STATE_UNSPECIFIED", "MUTED", "UNDEFINED"]
 
 @typing.type_check_only
-class Chokepoint(typing_extensions.TypedDict, total=False):
+class Chokepoint(typing.TypedDict, total=False):
     relatedFindings: _list[str]
 
 @typing.type_check_only
-class CloudArmor(typing_extensions.TypedDict, total=False):
+class CloudArmor(typing.TypedDict, total=False):
     adaptiveProtection: AdaptiveProtection
     attack: Attack
     duration: str
@@ -276,68 +283,62 @@ class CloudArmor(typing_extensions.TypedDict, total=False):
     threatVector: str
 
 @typing.type_check_only
-class CloudControl(typing_extensions.TypedDict, total=False):
+class CloudControl(typing.TypedDict, total=False):
     cloudControlName: str
     policyType: str
-    type: typing_extensions.Literal[
-        "CLOUD_CONTROL_TYPE_UNSPECIFIED", "BUILT_IN", "CUSTOM"
-    ]
+    type: typing.Literal["CLOUD_CONTROL_TYPE_UNSPECIFIED", "BUILT_IN", "CUSTOM"]
     version: int
 
 @typing.type_check_only
-class CloudDlpDataProfile(typing_extensions.TypedDict, total=False):
+class CloudDlpDataProfile(typing.TypedDict, total=False):
     dataProfile: str
     infoTypes: _list[InfoType]
-    parentType: typing_extensions.Literal[
-        "PARENT_TYPE_UNSPECIFIED", "ORGANIZATION", "PROJECT"
-    ]
+    parentType: typing.Literal["PARENT_TYPE_UNSPECIFIED", "ORGANIZATION", "PROJECT"]
 
 @typing.type_check_only
-class CloudDlpInspection(typing_extensions.TypedDict, total=False):
+class CloudDlpInspection(typing.TypedDict, total=False):
     fullScan: bool
     infoType: str
     infoTypeCount: str
     inspectJob: str
 
 @typing.type_check_only
-class CloudLoggingEntry(typing_extensions.TypedDict, total=False):
+class CloudLoggingEntry(typing.TypedDict, total=False):
     insertId: str
     logId: str
     resourceContainer: str
     timestamp: str
 
 @typing.type_check_only
-class Compliance(typing_extensions.TypedDict, total=False):
+class Compliance(typing.TypedDict, total=False):
     ids: _list[str]
     standard: str
     version: str
 
 @typing.type_check_only
-class ComplianceDetails(typing_extensions.TypedDict, total=False):
+class ComplianceDetails(typing.TypedDict, total=False):
     cloudControl: CloudControl
     cloudControlDeploymentNames: _list[str]
     frameworks: _list[Framework]
 
 @typing.type_check_only
-class Connection(typing_extensions.TypedDict, total=False):
+class Connection(typing.TypedDict, total=False):
     destinationIp: str
     destinationPort: int
-    protocol: typing_extensions.Literal[
-        "PROTOCOL_UNSPECIFIED", "ICMP", "TCP", "UDP", "GRE", "ESP"
-    ]
+    protocol: typing.Literal["PROTOCOL_UNSPECIFIED", "ICMP", "TCP", "UDP", "GRE", "ESP"]
     sourceIp: str
     sourcePort: int
 
 @typing.type_check_only
-class Contact(typing_extensions.TypedDict, total=False):
+class Contact(typing.TypedDict, total=False):
     email: str
 
 @typing.type_check_only
-class ContactDetails(typing_extensions.TypedDict, total=False):
+class ContactDetails(typing.TypedDict, total=False):
     contacts: _list[Contact]
 
 @typing.type_check_only
-class Container(typing_extensions.TypedDict, total=False):
+class Container(typing.TypedDict, total=False):
     createTime: str
     imageId: str
     labels: _list[Label]
@@ -345,31 +346,31 @@ class Container(typing_extensions.TypedDict, total=False):
     uri: str
 
 @typing.type_check_only
-class Control(typing_extensions.TypedDict, total=False):
+class Control(typing.TypedDict, total=False):
     controlName: str
     displayName: str
 
 @typing.type_check_only
-class CreateResourceValueConfigRequest(typing_extensions.TypedDict, total=False):
+class CreateResourceValueConfigRequest(typing.TypedDict, total=False):
     parent: str
     resourceValueConfig: GoogleCloudSecuritycenterV1ResourceValueConfig
 
 @typing.type_check_only
-class CustomModuleValidationError(typing_extensions.TypedDict, total=False):
+class CustomModuleValidationError(typing.TypedDict, total=False):
     description: str
     end: Position
     fieldPath: str
     start: Position
 
 @typing.type_check_only
-class CustomModuleValidationErrors(typing_extensions.TypedDict, total=False):
+class CustomModuleValidationErrors(typing.TypedDict, total=False):
     errors: _list[CustomModuleValidationError]
 
 @typing.type_check_only
-class Cve(typing_extensions.TypedDict, total=False):
+class Cve(typing.TypedDict, total=False):
     cvssv3: Cvssv3
     exploitReleaseDate: str
-    exploitationActivity: typing_extensions.Literal[
+    exploitationActivity: typing.Literal[
         "EXPLOITATION_ACTIVITY_UNSPECIFIED",
         "WIDE",
         "CONFIRMED",
@@ -379,7 +380,7 @@ class Cve(typing_extensions.TypedDict, total=False):
     ]
     firstExploitationDate: str
     id: str
-    impact: typing_extensions.Literal[
+    impact: typing.Literal[
         "RISK_RATING_UNSPECIFIED", "LOW", "MEDIUM", "HIGH", "CRITICAL"
     ]
     observedInTheWild: bool
@@ -388,73 +389,67 @@ class Cve(typing_extensions.TypedDict, total=False):
     zeroDay: bool
 
 @typing.type_check_only
-class Cvssv3(typing_extensions.TypedDict, total=False):
-    attackComplexity: typing_extensions.Literal[
+class Cvssv3(typing.TypedDict, total=False):
+    attackComplexity: typing.Literal[
         "ATTACK_COMPLEXITY_UNSPECIFIED",
         "ATTACK_COMPLEXITY_LOW",
         "ATTACK_COMPLEXITY_HIGH",
     ]
-    attackVector: typing_extensions.Literal[
+    attackVector: typing.Literal[
         "ATTACK_VECTOR_UNSPECIFIED",
         "ATTACK_VECTOR_NETWORK",
         "ATTACK_VECTOR_ADJACENT",
         "ATTACK_VECTOR_LOCAL",
         "ATTACK_VECTOR_PHYSICAL",
     ]
-    availabilityImpact: typing_extensions.Literal[
+    availabilityImpact: typing.Literal[
         "IMPACT_UNSPECIFIED", "IMPACT_HIGH", "IMPACT_LOW", "IMPACT_NONE"
     ]
     baseScore: float
-    confidentialityImpact: typing_extensions.Literal[
+    confidentialityImpact: typing.Literal[
         "IMPACT_UNSPECIFIED", "IMPACT_HIGH", "IMPACT_LOW", "IMPACT_NONE"
     ]
-    integrityImpact: typing_extensions.Literal[
+    integrityImpact: typing.Literal[
         "IMPACT_UNSPECIFIED", "IMPACT_HIGH", "IMPACT_LOW", "IMPACT_NONE"
     ]
-    privilegesRequired: typing_extensions.Literal[
+    privilegesRequired: typing.Literal[
         "PRIVILEGES_REQUIRED_UNSPECIFIED",
         "PRIVILEGES_REQUIRED_NONE",
         "PRIVILEGES_REQUIRED_LOW",
         "PRIVILEGES_REQUIRED_HIGH",
     ]
-    scope: typing_extensions.Literal[
-        "SCOPE_UNSPECIFIED", "SCOPE_UNCHANGED", "SCOPE_CHANGED"
-    ]
-    userInteraction: typing_extensions.Literal[
+    scope: typing.Literal["SCOPE_UNSPECIFIED", "SCOPE_UNCHANGED", "SCOPE_CHANGED"]
+    userInteraction: typing.Literal[
         "USER_INTERACTION_UNSPECIFIED",
         "USER_INTERACTION_NONE",
         "USER_INTERACTION_REQUIRED",
     ]
 
 @typing.type_check_only
-class Cwe(typing_extensions.TypedDict, total=False):
+class Cwe(typing.TypedDict, total=False):
     id: str
     references: _list[Reference]
 
 @typing.type_check_only
-class DataAccessEvent(typing_extensions.TypedDict, total=False):
+class DataAccessEvent(typing.TypedDict, total=False):
     eventId: str
     eventTime: str
-    operation: typing_extensions.Literal[
-        "OPERATION_UNSPECIFIED", "READ", "MOVE", "COPY"
-    ]
+    operation: typing.Literal["OPERATION_UNSPECIFIED", "READ", "MOVE", "COPY"]
     principalEmail: str
 
 @typing.type_check_only
-class DataFlowEvent(typing_extensions.TypedDict, total=False):
+class DataFlowEvent(typing.TypedDict, total=False):
     eventId: str
     eventTime: str
-    operation: typing_extensions.Literal[
-        "OPERATION_UNSPECIFIED", "READ", "MOVE", "COPY"
-    ]
+    operation: typing.Literal["OPERATION_UNSPECIFIED", "READ", "MOVE", "COPY"]
     principalEmail: str
     violatedLocation: str
 
 @typing.type_check_only
-class DataRetentionDeletionEvent(typing_extensions.TypedDict, total=False):
+class DataRetentionDeletionEvent(typing.TypedDict, total=False):
     dataObjectCount: str
     eventDetectionTime: str
-    eventType: typing_extensions.Literal[
+    eventType: typing.Literal[
         "EVENT_TYPE_UNSPECIFIED",
         "EVENT_TYPE_MAX_TTL_EXCEEDED",
         "EVENT_TYPE_MAX_TTL_FROM_CREATION",
@@ -465,7 +460,7 @@ class DataRetentionDeletionEvent(typing_extensions.TypedDict, total=False):
     minRetentionAllowed: str
 
 @typing.type_check_only
-class Database(typing_extensions.TypedDict, total=False):
+class Database(typing.TypedDict, total=False):
     displayName: str
     grantees: _list[str]
     name: str
@@ -474,49 +469,57 @@ class Database(typing_extensions.TypedDict, total=False):
     version: str
 
 @typing.type_check_only
-class Dataset(typing_extensions.TypedDict, total=False):
+class Dataset(typing.TypedDict, total=False):
     displayName: str
     name: str
     source: str
 
 @typing.type_check_only
-class Denied(typing_extensions.TypedDict, total=False):
+class Denied(typing.TypedDict, total=False):
     ipRules: _list[IpRule]
 
 @typing.type_check_only
-class Detection(typing_extensions.TypedDict, total=False):
+class Detection(typing.TypedDict, total=False):
     binary: str
     percentPagesMatched: float
 
 @typing.type_check_only
-class DiscoveredWorkload(typing_extensions.TypedDict, total=False):
-    confidence: typing_extensions.Literal["CONFIDENCE_UNSPECIFIED", "CONFIDENCE_HIGH"]
+class DetectorReference(typing.TypedDict, total=False):
+    detectorId: str
+    displayName: str
+    explanation: str
+    recommendation: str
+    severity: typing.Literal[
+        "SEVERITY_UNSPECIFIED", "CRITICAL", "HIGH", "MEDIUM", "LOW"
+    ]
+
+@typing.type_check_only
+class DiscoveredWorkload(typing.TypedDict, total=False):
+    confidence: typing.Literal["CONFIDENCE_UNSPECIFIED", "CONFIDENCE_HIGH"]
     detectedRelevantHardware: bool
     detectedRelevantKeywords: bool
     detectedRelevantPackages: bool
-    workloadType: typing_extensions.Literal[
+    workloadType: typing.Literal[
         "WORKLOAD_TYPE_UNSPECIFIED", "MCP_SERVER", "AI_INFERENCE", "AGENT"
     ]
 
 @typing.type_check_only
-class Disk(typing_extensions.TypedDict, total=False):
+class Disk(typing.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class DiskPath(typing_extensions.TypedDict, total=False):
+class DiskPath(typing.TypedDict, total=False):
     partitionUuid: str
     relativePath: str
 
 @typing.type_check_only
-class DynamicMuteRecord(typing_extensions.TypedDict, total=False):
+class DynamicMuteRecord(typing.TypedDict, total=False):
     matchTime: str
     muteConfig: str
 
 @typing.type_check_only
-class EffectiveEventThreatDetectionCustomModule(
-    typing_extensions.TypedDict, total=False
-):
-    cloudProvider: typing_extensions.Literal[
+class EffectiveEventThreatDetectionCustomModule(typing.TypedDict, total=False):
+    cloudProvider: typing.Literal[
         "CLOUD_PROVIDER_UNSPECIFIED",
         "GOOGLE_CLOUD_PLATFORM",
         "AMAZON_WEB_SERVICES",
@@ -525,24 +528,24 @@ class EffectiveEventThreatDetectionCustomModule(
     config: dict[str, typing.Any]
     description: str
     displayName: str
-    enablementState: typing_extensions.Literal[
+    enablementState: typing.Literal[
         "ENABLEMENT_STATE_UNSPECIFIED", "ENABLED", "DISABLED"
     ]
     name: str
     type: str
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class EnvironmentVariable(typing_extensions.TypedDict, total=False):
+class EnvironmentVariable(typing.TypedDict, total=False):
     name: str
     val: str
 
 @typing.type_check_only
-class EventThreatDetectionCustomModule(typing_extensions.TypedDict, total=False):
+class EventThreatDetectionCustomModule(typing.TypedDict, total=False):
     ancestorModule: str
-    cloudProvider: typing_extensions.Literal[
+    cloudProvider: typing.Literal[
         "CLOUD_PROVIDER_UNSPECIFIED",
         "GOOGLE_CLOUD_PLATFORM",
         "AMAZON_WEB_SERVICES",
@@ -551,7 +554,7 @@ class EventThreatDetectionCustomModule(typing_extensions.TypedDict, total=False)
     config: dict[str, typing.Any]
     description: str
     displayName: str
-    enablementState: typing_extensions.Literal[
+    enablementState: typing.Literal[
         "ENABLEMENT_STATE_UNSPECIFIED", "ENABLED", "DISABLED", "INHERITED"
     ]
     lastEditor: str
@@ -560,33 +563,33 @@ class EventThreatDetectionCustomModule(typing_extensions.TypedDict, total=False)
     updateTime: str
 
 @typing.type_check_only
-class ExfilResource(typing_extensions.TypedDict, total=False):
+class ExfilResource(typing.TypedDict, total=False):
     components: _list[str]
     name: str
 
 @typing.type_check_only
-class Exfiltration(typing_extensions.TypedDict, total=False):
+class Exfiltration(typing.TypedDict, total=False):
     sources: _list[ExfilResource]
     targets: _list[ExfilResource]
     totalExfiltratedBytes: str
 
 @typing.type_check_only
-class ExportFindingsMetadata(typing_extensions.TypedDict, total=False):
+class ExportFindingsMetadata(typing.TypedDict, total=False):
     bigQueryDestination: BigQueryDestination
     exportStartTime: str
 
 @typing.type_check_only
-class ExportFindingsResponse(typing_extensions.TypedDict, total=False): ...
+class ExportFindingsResponse(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Expr(typing_extensions.TypedDict, total=False):
+class Expr(typing.TypedDict, total=False):
     description: str
     expression: str
     location: str
     title: str
 
 @typing.type_check_only
-class ExternalExposure(typing_extensions.TypedDict, total=False):
+class ExternalExposure(typing.TypedDict, total=False):
     backendBucket: str
     backendService: str
     exposedApplication: str
@@ -610,10 +613,10 @@ class ExternalExposure(typing_extensions.TypedDict, total=False):
     serviceFirewallPolicy: str
 
 @typing.type_check_only
-class File(typing_extensions.TypedDict, total=False):
+class File(typing.TypedDict, total=False):
     contents: str
     diskPath: DiskPath
-    fileLoadState: typing_extensions.Literal[
+    fileLoadState: typing.Literal[
         "FILE_LOAD_STATE_UNSPECIFIED", "LOADED_BY_PROCESS", "NOT_LOADED_BY_PROCESS"
     ]
     hashedSize: str
@@ -624,16 +627,19 @@ class File(typing_extensions.TypedDict, total=False):
     size: str
 
 @typing.type_check_only
-class FileOperation(typing_extensions.TypedDict, total=False):
-    type: typing_extensions.Literal[
+class FileOperation(typing.TypedDict, total=False):
+    type: typing.Literal[
         "OPERATION_TYPE_UNSPECIFIED", "OPEN", "READ", "RENAME", "WRITE", "EXECUTE"
     ]
 
 @typing.type_check_only
-class Finding(typing_extensions.TypedDict, total=False):
+class Finding(typing.TypedDict, total=False):
     access: Access
     affectedResources: AffectedResources
+    agent: Agent
+    agentAnomaly: AgentAnomaly
     agentDataAccessEvents: _list[AgentDataAccessEvent]
+    agentSessions: _list[AgentSession]
     aiModel: AiModel
     application: Application
     artifactGuardPolicies: ArtifactGuardPolicies
@@ -664,7 +670,7 @@ class Finding(typing_extensions.TypedDict, total=False):
     externalSystems: dict[str, typing.Any]
     externalUri: str
     files: _list[File]
-    findingClass: typing_extensions.Literal[
+    findingClass: typing.Literal[
         "FINDING_CLASS_UNSPECIFIED",
         "THREAT",
         "VULNERABILITY",
@@ -690,7 +696,7 @@ class Finding(typing_extensions.TypedDict, total=False):
     logEntries: _list[LogEntry]
     mitreAttack: MitreAttack
     moduleName: str
-    mute: typing_extensions.Literal["MUTE_UNSPECIFIED", "MUTED", "UNMUTED", "UNDEFINED"]
+    mute: typing.Literal["MUTE_UNSPECIFIED", "MUTED", "UNMUTED", "UNDEFINED"]
     muteInfo: MuteInfo
     muteInitiator: str
     muteUpdateTime: str
@@ -707,24 +713,24 @@ class Finding(typing_extensions.TypedDict, total=False):
     secret: Secret
     securityMarks: SecurityMarks
     securityPosture: SecurityPosture
-    severity: typing_extensions.Literal[
+    severity: typing.Literal[
         "SEVERITY_UNSPECIFIED", "CRITICAL", "HIGH", "MEDIUM", "LOW"
     ]
     sourceProperties: dict[str, typing.Any]
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "INACTIVE"]
+    state: typing.Literal["STATE_UNSPECIFIED", "ACTIVE", "INACTIVE"]
     toxicCombination: ToxicCombination
     vertexAi: VertexAi
     vulnerability: Vulnerability
 
 @typing.type_check_only
-class Folder(typing_extensions.TypedDict, total=False):
+class Folder(typing.TypedDict, total=False):
     resourceFolder: str
     resourceFolderDisplayName: str
 
 @typing.type_check_only
-class Framework(typing_extensions.TypedDict, total=False):
+class Framework(typing.TypedDict, total=False):
     category: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "FRAMEWORK_CATEGORY_UNSPECIFIED",
             "SECURITY_BENCHMARKS",
             "ASSURED_WORKLOADS",
@@ -736,12 +742,12 @@ class Framework(typing_extensions.TypedDict, total=False):
     controls: _list[Control]
     displayName: str
     name: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "FRAMEWORK_TYPE_UNSPECIFIED", "FRAMEWORK_TYPE_BUILT_IN", "FRAMEWORK_TYPE_CUSTOM"
     ]
 
 @typing.type_check_only
-class GcpMetadata(typing_extensions.TypedDict, total=False):
+class GcpMetadata(typing.TypedDict, total=False):
     folders: _list[GoogleCloudSecuritycenterV2Folder]
     organization: str
     parent: str
@@ -750,21 +756,19 @@ class GcpMetadata(typing_extensions.TypedDict, total=False):
     projectDisplayName: str
 
 @typing.type_check_only
-class Geolocation(typing_extensions.TypedDict, total=False):
+class Geolocation(typing.TypedDict, total=False):
     regionCode: str
 
 @typing.type_check_only
-class GetIamPolicyRequest(typing_extensions.TypedDict, total=False):
+class GetIamPolicyRequest(typing.TypedDict, total=False):
     options: GetPolicyOptions
 
 @typing.type_check_only
-class GetPolicyOptions(typing_extensions.TypedDict, total=False):
+class GetPolicyOptions(typing.TypedDict, total=False):
     requestedPolicyVersion: int
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV1BigQueryExport(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudSecuritycenterV1BigQueryExport(typing.TypedDict, total=False):
     createTime: str
     dataset: str
     description: str
@@ -775,7 +779,7 @@ class GoogleCloudSecuritycenterV1BigQueryExport(
     updateTime: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV1Binding(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV1Binding(typing.TypedDict, total=False):
     name: str
     ns: str
     role: Role
@@ -783,31 +787,29 @@ class GoogleCloudSecuritycenterV1Binding(typing_extensions.TypedDict, total=Fals
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV1BulkMuteFindingsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV1CustomConfig(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV1CustomConfig(typing.TypedDict, total=False):
     customOutput: GoogleCloudSecuritycenterV1CustomOutputSpec
     description: str
     predicate: Expr
     recommendation: str
     resourceSelector: GoogleCloudSecuritycenterV1ResourceSelector
-    severity: typing_extensions.Literal[
+    severity: typing.Literal[
         "SEVERITY_UNSPECIFIED", "CRITICAL", "HIGH", "MEDIUM", "LOW"
     ]
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV1CustomOutputSpec(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudSecuritycenterV1CustomOutputSpec(typing.TypedDict, total=False):
     properties: _list[GoogleCloudSecuritycenterV1Property]
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV1EffectiveSecurityHealthAnalyticsCustomModule(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    cloudProvider: typing_extensions.Literal[
+    cloudProvider: typing.Literal[
         "CLOUD_PROVIDER_UNSPECIFIED",
         "GOOGLE_CLOUD_PLATFORM",
         "AMAZON_WEB_SERVICES",
@@ -815,15 +817,13 @@ class GoogleCloudSecuritycenterV1EffectiveSecurityHealthAnalyticsCustomModule(
     ]
     customConfig: GoogleCloudSecuritycenterV1CustomConfig
     displayName: str
-    enablementState: typing_extensions.Literal[
+    enablementState: typing.Literal[
         "ENABLEMENT_STATE_UNSPECIFIED", "ENABLED", "DISABLED"
     ]
     name: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV1ExternalSystem(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudSecuritycenterV1ExternalSystem(typing.TypedDict, total=False):
     assignees: _list[str]
     caseCloseTime: str
     caseCreateTime: str
@@ -837,18 +837,16 @@ class GoogleCloudSecuritycenterV1ExternalSystem(
     ticketInfo: TicketInfo
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV1IamDetails(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV1IamDetails(typing.TypedDict, total=False):
     iamRolePermissions: _list[GoogleCloudSecuritycenterV1IamRolePermission]
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV1IamRolePermission(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudSecuritycenterV1IamRolePermission(typing.TypedDict, total=False):
     name: str
     role: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV1MuteConfig(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV1MuteConfig(typing.TypedDict, total=False):
     createTime: str
     description: str
     displayName: str
@@ -856,31 +854,29 @@ class GoogleCloudSecuritycenterV1MuteConfig(typing_extensions.TypedDict, total=F
     filter: str
     mostRecentEditor: str
     name: str
-    type: typing_extensions.Literal["MUTE_CONFIG_TYPE_UNSPECIFIED", "STATIC", "DYNAMIC"]
+    type: typing.Literal["MUTE_CONFIG_TYPE_UNSPECIFIED", "STATIC", "DYNAMIC"]
     updateTime: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV1NotificationMessage(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudSecuritycenterV1NotificationMessage(typing.TypedDict, total=False):
     finding: Finding
     notificationConfigName: str
     resource: GoogleCloudSecuritycenterV1Resource
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV1Property(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV1Property(typing.TypedDict, total=False):
     name: str
     valueExpression: Expr
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV1Resource(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV1Resource(typing.TypedDict, total=False):
     adcApplication: AdcApplication
     adcApplicationTemplate: AdcApplicationTemplateRevision
     adcSharedTemplate: AdcSharedTemplateRevision
     application: GoogleCloudSecuritycenterV1ResourceApplication
     awsMetadata: AwsMetadata
     azureMetadata: AzureMetadata
-    cloudProvider: typing_extensions.Literal[
+    cloudProvider: typing.Literal[
         "CLOUD_PROVIDER_UNSPECIFIED",
         "GOOGLE_CLOUD_PLATFORM",
         "AMAZON_WEB_SERVICES",
@@ -901,15 +897,13 @@ class GoogleCloudSecuritycenterV1Resource(typing_extensions.TypedDict, total=Fal
     type: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV1ResourceApplication(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudSecuritycenterV1ResourceApplication(typing.TypedDict, total=False):
     attributes: GoogleCloudSecuritycenterV1ResourceApplicationAttributes
     name: str
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV1ResourceApplicationAttributes(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     businessOwners: _list[
         GoogleCloudSecuritycenterV1ResourceApplicationAttributesContactInfo
@@ -925,37 +919,33 @@ class GoogleCloudSecuritycenterV1ResourceApplicationAttributes(
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV1ResourceApplicationAttributesContactInfo(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     email: str
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV1ResourceApplicationAttributesCriticality(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "CRITICALITY_TYPE_UNSPECIFIED", "MISSION_CRITICAL", "HIGH", "MEDIUM", "LOW"
     ]
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV1ResourceApplicationAttributesEnvironment(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "ENVIRONMENT_TYPE_UNSPECIFIED", "PRODUCTION", "STAGING", "TEST", "DEVELOPMENT"
     ]
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV1ResourceSelector(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudSecuritycenterV1ResourceSelector(typing.TypedDict, total=False):
     resourceTypes: _list[str]
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV1ResourceValueConfig(
-    typing_extensions.TypedDict, total=False
-):
-    cloudProvider: typing_extensions.Literal[
+class GoogleCloudSecuritycenterV1ResourceValueConfig(typing.TypedDict, total=False):
+    cloudProvider: typing.Literal[
         "CLOUD_PROVIDER_UNSPECIFIED",
         "GOOGLE_CLOUD_PLATFORM",
         "AMAZON_WEB_SERVICES",
@@ -966,7 +956,7 @@ class GoogleCloudSecuritycenterV1ResourceValueConfig(
     name: str
     resourceLabelsSelector: dict[str, typing.Any]
     resourceType: str
-    resourceValue: typing_extensions.Literal[
+    resourceValue: typing.Literal[
         "RESOURCE_VALUE_UNSPECIFIED", "HIGH", "MEDIUM", "LOW", "NONE"
     ]
     scope: str
@@ -978,19 +968,17 @@ class GoogleCloudSecuritycenterV1ResourceValueConfig(
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV1RunAssetDiscoveryResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     duration: str
-    state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "COMPLETED", "SUPERSEDED", "TERMINATED"
-    ]
+    state: typing.Literal["STATE_UNSPECIFIED", "COMPLETED", "SUPERSEDED", "TERMINATED"]
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModule(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     ancestorModule: str
-    cloudProvider: typing_extensions.Literal[
+    cloudProvider: typing.Literal[
         "CLOUD_PROVIDER_UNSPECIFIED",
         "GOOGLE_CLOUD_PLATFORM",
         "AMAZON_WEB_SERVICES",
@@ -998,7 +986,7 @@ class GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModule(
     ]
     customConfig: GoogleCloudSecuritycenterV1CustomConfig
     displayName: str
-    enablementState: typing_extensions.Literal[
+    enablementState: typing.Literal[
         "ENABLEMENT_STATE_UNSPECIFIED", "ENABLED", "DISABLED", "INHERITED"
     ]
     lastEditor: str
@@ -1007,28 +995,24 @@ class GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModule(
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV1SensitiveDataProtectionMapping(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    highSensitivityMapping: typing_extensions.Literal[
+    highSensitivityMapping: typing.Literal[
         "RESOURCE_VALUE_UNSPECIFIED", "HIGH", "MEDIUM", "LOW", "NONE"
     ]
-    mediumSensitivityMapping: typing_extensions.Literal[
+    mediumSensitivityMapping: typing.Literal[
         "RESOURCE_VALUE_UNSPECIFIED", "HIGH", "MEDIUM", "LOW", "NONE"
     ]
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV1beta1RunAssetDiscoveryResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     duration: str
-    state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "COMPLETED", "SUPERSEDED", "TERMINATED"
-    ]
+    state: typing.Literal["STATE_UNSPECIFIED", "COMPLETED", "SUPERSEDED", "TERMINATED"]
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV1p1beta1Finding(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudSecuritycenterV1p1beta1Finding(typing.TypedDict, total=False):
     canonicalName: str
     category: str
     createTime: str
@@ -1038,31 +1022,27 @@ class GoogleCloudSecuritycenterV1p1beta1Finding(
     parent: str
     resourceName: str
     securityMarks: GoogleCloudSecuritycenterV1p1beta1SecurityMarks
-    severity: typing_extensions.Literal[
+    severity: typing.Literal[
         "SEVERITY_UNSPECIFIED", "CRITICAL", "HIGH", "MEDIUM", "LOW"
     ]
     sourceProperties: dict[str, typing.Any]
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "INACTIVE"]
+    state: typing.Literal["STATE_UNSPECIFIED", "ACTIVE", "INACTIVE"]
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV1p1beta1Folder(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudSecuritycenterV1p1beta1Folder(typing.TypedDict, total=False):
     resourceFolder: str
     resourceFolderDisplayName: str
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV1p1beta1NotificationMessage(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     finding: GoogleCloudSecuritycenterV1p1beta1Finding
     notificationConfigName: str
     resource: GoogleCloudSecuritycenterV1p1beta1Resource
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV1p1beta1Resource(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudSecuritycenterV1p1beta1Resource(typing.TypedDict, total=False):
     folders: _list[GoogleCloudSecuritycenterV1p1beta1Folder]
     name: str
     parent: str
@@ -1072,23 +1052,19 @@ class GoogleCloudSecuritycenterV1p1beta1Resource(
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV1p1beta1RunAssetDiscoveryResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     duration: str
-    state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "COMPLETED", "SUPERSEDED", "TERMINATED"
-    ]
+    state: typing.Literal["STATE_UNSPECIFIED", "COMPLETED", "SUPERSEDED", "TERMINATED"]
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV1p1beta1SecurityMarks(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudSecuritycenterV1p1beta1SecurityMarks(typing.TypedDict, total=False):
     canonicalName: str
     marks: dict[str, typing.Any]
     name: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2Access(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV2Access(typing.TypedDict, total=False):
     callerIp: str
     callerIpGeo: GoogleCloudSecuritycenterV2Geolocation
     methodName: str
@@ -1104,7 +1080,7 @@ class GoogleCloudSecuritycenterV2Access(typing_extensions.TypedDict, total=False
     userName: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2AccessReview(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV2AccessReview(typing.TypedDict, total=False):
     group: str
     name: str
     ns: str
@@ -1114,50 +1090,55 @@ class GoogleCloudSecuritycenterV2AccessReview(typing_extensions.TypedDict, total
     version: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2AdaptiveProtection(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudSecuritycenterV2AdaptiveProtection(typing.TypedDict, total=False):
     confidence: float
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2AdcApplication(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudSecuritycenterV2AdcApplication(typing.TypedDict, total=False):
     attributes: GoogleCloudSecuritycenterV2ResourceApplicationAttributes
     name: str
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV2AdcApplicationTemplateRevision(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     name: str
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV2AdcSharedTemplateRevision(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     name: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2AffectedResources(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudSecuritycenterV2AffectedResources(typing.TypedDict, total=False):
     count: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2AgentDataAccessEvent(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudSecuritycenterV2Agent(typing.TypedDict, total=False):
+    displayName: str
+    id: str
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2AgentAnomaly(typing.TypedDict, total=False):
+    confidenceScore: float
+    detectorReferences: _list[GoogleCloudSecuritycenterV2DetectorReference]
+    invocationReferences: _list[GoogleCloudSecuritycenterV2InvocationReference]
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2AgentDataAccessEvent(typing.TypedDict, total=False):
     eventId: str
     eventTime: str
-    operation: typing_extensions.Literal[
-        "OPERATION_UNSPECIFIED", "READ", "MOVE", "COPY"
-    ]
+    operation: typing.Literal["OPERATION_UNSPECIFIED", "READ", "MOVE", "COPY"]
     principalSubject: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2AiModel(typing_extensions.TypedDict, total=False):
-    deploymentPlatform: typing_extensions.Literal[
+class GoogleCloudSecuritycenterV2AgentSession(typing.TypedDict, total=False):
+    sessionId: str
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2AiModel(typing.TypedDict, total=False):
+    deploymentPlatform: typing.Literal[
         "DEPLOYMENT_PLATFORM_UNSPECIFIED", "VERTEX_AI", "GKE", "GCE", "FINE_TUNED_MODEL"
     ]
     displayName: str
@@ -1169,33 +1150,27 @@ class GoogleCloudSecuritycenterV2AiModel(typing_extensions.TypedDict, total=Fals
     usageCategory: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2Allowed(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV2Allowed(typing.TypedDict, total=False):
     ipRules: _list[GoogleCloudSecuritycenterV2IpRule]
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2Application(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV2Application(typing.TypedDict, total=False):
     baseUri: str
     fullUri: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2ArtifactGuardPolicies(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudSecuritycenterV2ArtifactGuardPolicies(typing.TypedDict, total=False):
     failingPolicies: _list[GoogleCloudSecuritycenterV2ArtifactGuardPolicy]
     resourceId: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2ArtifactGuardPolicy(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudSecuritycenterV2ArtifactGuardPolicy(typing.TypedDict, total=False):
     failureReason: str
     policyId: str
-    type: typing_extensions.Literal[
-        "ARTIFACT_GUARD_POLICY_TYPE_UNSPECIFIED", "VULNERABILITY"
-    ]
+    type: typing.Literal["ARTIFACT_GUARD_POLICY_TYPE_UNSPECIFIED", "VULNERABILITY"]
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2Attack(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV2Attack(typing.TypedDict, total=False):
     classification: str
     volumeBps: int
     volumeBpsLong: str
@@ -1203,82 +1178,64 @@ class GoogleCloudSecuritycenterV2Attack(typing_extensions.TypedDict, total=False
     volumePpsLong: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2AttackExposure(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudSecuritycenterV2AttackExposure(typing.TypedDict, total=False):
     attackExposureResult: str
     exposedHighValueResourcesCount: int
     exposedLowValueResourcesCount: int
     exposedMediumValueResourcesCount: int
     latestCalculationTime: str
     score: float
-    state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "CALCULATED", "NOT_CALCULATED"
-    ]
+    state: typing.Literal["STATE_UNSPECIFIED", "CALCULATED", "NOT_CALCULATED"]
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2AwsAccount(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV2AwsAccount(typing.TypedDict, total=False):
     id: str
     name: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2AwsMetadata(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV2AwsMetadata(typing.TypedDict, total=False):
     account: GoogleCloudSecuritycenterV2AwsAccount
     organization: GoogleCloudSecuritycenterV2AwsOrganization
     organizationalUnits: _list[GoogleCloudSecuritycenterV2AwsOrganizationalUnit]
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2AwsOrganization(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudSecuritycenterV2AwsOrganization(typing.TypedDict, total=False):
     id: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2AwsOrganizationalUnit(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudSecuritycenterV2AwsOrganizationalUnit(typing.TypedDict, total=False):
     id: str
     name: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2AzureManagementGroup(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudSecuritycenterV2AzureManagementGroup(typing.TypedDict, total=False):
     displayName: str
     id: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2AzureMetadata(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudSecuritycenterV2AzureMetadata(typing.TypedDict, total=False):
     managementGroups: _list[GoogleCloudSecuritycenterV2AzureManagementGroup]
     resourceGroup: GoogleCloudSecuritycenterV2AzureResourceGroup
     subscription: GoogleCloudSecuritycenterV2AzureSubscription
     tenant: GoogleCloudSecuritycenterV2AzureTenant
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2AzureResourceGroup(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudSecuritycenterV2AzureResourceGroup(typing.TypedDict, total=False):
     id: str
     name: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2AzureSubscription(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudSecuritycenterV2AzureSubscription(typing.TypedDict, total=False):
     displayName: str
     id: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2AzureTenant(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV2AzureTenant(typing.TypedDict, total=False):
     displayName: str
     id: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2BackupDisasterRecovery(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudSecuritycenterV2BackupDisasterRecovery(typing.TypedDict, total=False):
     appliance: str
     applications: _list[str]
     backupCreateTime: str
@@ -1291,9 +1248,7 @@ class GoogleCloudSecuritycenterV2BackupDisasterRecovery(
     storagePool: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2BigQueryExport(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudSecuritycenterV2BigQueryExport(typing.TypedDict, total=False):
     createTime: str
     cryptoKeyName: str
     dataset: str
@@ -1305,7 +1260,7 @@ class GoogleCloudSecuritycenterV2BigQueryExport(
     updateTime: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2Binding(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV2Binding(typing.TypedDict, total=False):
     name: str
     ns: str
     role: GoogleCloudSecuritycenterV2Role
@@ -1313,15 +1268,15 @@ class GoogleCloudSecuritycenterV2Binding(typing_extensions.TypedDict, total=Fals
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV2BulkMuteFindingsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2Chokepoint(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV2Chokepoint(typing.TypedDict, total=False):
     relatedFindings: _list[str]
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2CloudArmor(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV2CloudArmor(typing.TypedDict, total=False):
     adaptiveProtection: GoogleCloudSecuritycenterV2AdaptiveProtection
     attack: GoogleCloudSecuritycenterV2Attack
     duration: str
@@ -1330,78 +1285,62 @@ class GoogleCloudSecuritycenterV2CloudArmor(typing_extensions.TypedDict, total=F
     threatVector: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2CloudControl(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV2CloudControl(typing.TypedDict, total=False):
     cloudControlName: str
     policyType: str
-    type: typing_extensions.Literal[
-        "CLOUD_CONTROL_TYPE_UNSPECIFIED", "BUILT_IN", "CUSTOM"
-    ]
+    type: typing.Literal["CLOUD_CONTROL_TYPE_UNSPECIFIED", "BUILT_IN", "CUSTOM"]
     version: int
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2CloudDlpDataProfile(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudSecuritycenterV2CloudDlpDataProfile(typing.TypedDict, total=False):
     dataProfile: str
     infoTypes: _list[GoogleCloudSecuritycenterV2InfoType]
-    parentType: typing_extensions.Literal[
-        "PARENT_TYPE_UNSPECIFIED", "ORGANIZATION", "PROJECT"
-    ]
+    parentType: typing.Literal["PARENT_TYPE_UNSPECIFIED", "ORGANIZATION", "PROJECT"]
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2CloudDlpInspection(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudSecuritycenterV2CloudDlpInspection(typing.TypedDict, total=False):
     fullScan: bool
     infoType: str
     infoTypeCount: str
     inspectJob: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2CloudLoggingEntry(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudSecuritycenterV2CloudLoggingEntry(typing.TypedDict, total=False):
     insertId: str
     logId: str
     resourceContainer: str
     timestamp: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2Compliance(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV2Compliance(typing.TypedDict, total=False):
     ids: _list[str]
     standard: str
     version: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2ComplianceDetails(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudSecuritycenterV2ComplianceDetails(typing.TypedDict, total=False):
     cloudControl: GoogleCloudSecuritycenterV2CloudControl
     cloudControlDeploymentNames: _list[str]
     frameworks: _list[GoogleCloudSecuritycenterV2Framework]
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2Connection(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV2Connection(typing.TypedDict, total=False):
     destinationIp: str
     destinationPort: int
-    protocol: typing_extensions.Literal[
-        "PROTOCOL_UNSPECIFIED", "ICMP", "TCP", "UDP", "GRE", "ESP"
-    ]
+    protocol: typing.Literal["PROTOCOL_UNSPECIFIED", "ICMP", "TCP", "UDP", "GRE", "ESP"]
     sourceIp: str
     sourcePort: int
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2Contact(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV2Contact(typing.TypedDict, total=False):
     email: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2ContactDetails(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudSecuritycenterV2ContactDetails(typing.TypedDict, total=False):
     contacts: _list[GoogleCloudSecuritycenterV2Contact]
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2Container(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV2Container(typing.TypedDict, total=False):
     createTime: str
     imageId: str
     labels: _list[GoogleCloudSecuritycenterV2Label]
@@ -1409,15 +1348,15 @@ class GoogleCloudSecuritycenterV2Container(typing_extensions.TypedDict, total=Fa
     uri: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2Control(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV2Control(typing.TypedDict, total=False):
     controlName: str
     displayName: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2Cve(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV2Cve(typing.TypedDict, total=False):
     cvssv3: GoogleCloudSecuritycenterV2Cvssv3
     exploitReleaseDate: str
-    exploitationActivity: typing_extensions.Literal[
+    exploitationActivity: typing.Literal[
         "EXPLOITATION_ACTIVITY_UNSPECIFIED",
         "WIDE",
         "CONFIRMED",
@@ -1427,7 +1366,7 @@ class GoogleCloudSecuritycenterV2Cve(typing_extensions.TypedDict, total=False):
     ]
     firstExploitationDate: str
     id: str
-    impact: typing_extensions.Literal[
+    impact: typing.Literal[
         "RISK_RATING_UNSPECIFIED", "LOW", "MEDIUM", "HIGH", "CRITICAL"
     ]
     observedInTheWild: bool
@@ -1436,79 +1375,69 @@ class GoogleCloudSecuritycenterV2Cve(typing_extensions.TypedDict, total=False):
     zeroDay: bool
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2Cvssv3(typing_extensions.TypedDict, total=False):
-    attackComplexity: typing_extensions.Literal[
+class GoogleCloudSecuritycenterV2Cvssv3(typing.TypedDict, total=False):
+    attackComplexity: typing.Literal[
         "ATTACK_COMPLEXITY_UNSPECIFIED",
         "ATTACK_COMPLEXITY_LOW",
         "ATTACK_COMPLEXITY_HIGH",
     ]
-    attackVector: typing_extensions.Literal[
+    attackVector: typing.Literal[
         "ATTACK_VECTOR_UNSPECIFIED",
         "ATTACK_VECTOR_NETWORK",
         "ATTACK_VECTOR_ADJACENT",
         "ATTACK_VECTOR_LOCAL",
         "ATTACK_VECTOR_PHYSICAL",
     ]
-    availabilityImpact: typing_extensions.Literal[
+    availabilityImpact: typing.Literal[
         "IMPACT_UNSPECIFIED", "IMPACT_HIGH", "IMPACT_LOW", "IMPACT_NONE"
     ]
     baseScore: float
-    confidentialityImpact: typing_extensions.Literal[
+    confidentialityImpact: typing.Literal[
         "IMPACT_UNSPECIFIED", "IMPACT_HIGH", "IMPACT_LOW", "IMPACT_NONE"
     ]
-    integrityImpact: typing_extensions.Literal[
+    integrityImpact: typing.Literal[
         "IMPACT_UNSPECIFIED", "IMPACT_HIGH", "IMPACT_LOW", "IMPACT_NONE"
     ]
-    privilegesRequired: typing_extensions.Literal[
+    privilegesRequired: typing.Literal[
         "PRIVILEGES_REQUIRED_UNSPECIFIED",
         "PRIVILEGES_REQUIRED_NONE",
         "PRIVILEGES_REQUIRED_LOW",
         "PRIVILEGES_REQUIRED_HIGH",
     ]
-    scope: typing_extensions.Literal[
-        "SCOPE_UNSPECIFIED", "SCOPE_UNCHANGED", "SCOPE_CHANGED"
-    ]
-    userInteraction: typing_extensions.Literal[
+    scope: typing.Literal["SCOPE_UNSPECIFIED", "SCOPE_UNCHANGED", "SCOPE_CHANGED"]
+    userInteraction: typing.Literal[
         "USER_INTERACTION_UNSPECIFIED",
         "USER_INTERACTION_NONE",
         "USER_INTERACTION_REQUIRED",
     ]
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2Cwe(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV2Cwe(typing.TypedDict, total=False):
     id: str
     references: _list[GoogleCloudSecuritycenterV2Reference]
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2DataAccessEvent(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudSecuritycenterV2DataAccessEvent(typing.TypedDict, total=False):
     eventId: str
     eventTime: str
-    operation: typing_extensions.Literal[
-        "OPERATION_UNSPECIFIED", "READ", "MOVE", "COPY"
-    ]
+    operation: typing.Literal["OPERATION_UNSPECIFIED", "READ", "MOVE", "COPY"]
     principalEmail: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2DataFlowEvent(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudSecuritycenterV2DataFlowEvent(typing.TypedDict, total=False):
     eventId: str
     eventTime: str
-    operation: typing_extensions.Literal[
-        "OPERATION_UNSPECIFIED", "READ", "MOVE", "COPY"
-    ]
+    operation: typing.Literal["OPERATION_UNSPECIFIED", "READ", "MOVE", "COPY"]
     principalEmail: str
     violatedLocation: str
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV2DataRetentionDeletionEvent(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     dataObjectCount: str
     eventDetectionTime: str
-    eventType: typing_extensions.Literal[
+    eventType: typing.Literal[
         "EVENT_TYPE_UNSPECIFIED",
         "EVENT_TYPE_MAX_TTL_EXCEEDED",
         "EVENT_TYPE_MAX_TTL_FROM_CREATION",
@@ -1519,7 +1448,7 @@ class GoogleCloudSecuritycenterV2DataRetentionDeletionEvent(
     minRetentionAllowed: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2Database(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV2Database(typing.TypedDict, total=False):
     displayName: str
     grantees: _list[str]
     name: str
@@ -1528,72 +1457,72 @@ class GoogleCloudSecuritycenterV2Database(typing_extensions.TypedDict, total=Fal
     version: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2Dataset(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV2Dataset(typing.TypedDict, total=False):
     displayName: str
     name: str
     source: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2Denied(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV2Denied(typing.TypedDict, total=False):
     ipRules: _list[GoogleCloudSecuritycenterV2IpRule]
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2Detection(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV2Detection(typing.TypedDict, total=False):
     binary: str
     percentPagesMatched: float
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2DiscoveredWorkload(
-    typing_extensions.TypedDict, total=False
-):
-    confidence: typing_extensions.Literal["CONFIDENCE_UNSPECIFIED", "CONFIDENCE_HIGH"]
+class GoogleCloudSecuritycenterV2DetectorReference(typing.TypedDict, total=False):
+    detectorId: str
+    displayName: str
+    explanation: str
+    recommendation: str
+    severity: typing.Literal[
+        "SEVERITY_UNSPECIFIED", "CRITICAL", "HIGH", "MEDIUM", "LOW"
+    ]
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2DiscoveredWorkload(typing.TypedDict, total=False):
+    confidence: typing.Literal["CONFIDENCE_UNSPECIFIED", "CONFIDENCE_HIGH"]
     detectedRelevantHardware: bool
     detectedRelevantKeywords: bool
     detectedRelevantPackages: bool
-    workloadType: typing_extensions.Literal[
+    workloadType: typing.Literal[
         "WORKLOAD_TYPE_UNSPECIFIED", "MCP_SERVER", "AI_INFERENCE", "AGENT"
     ]
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2Disk(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV2Disk(typing.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2DiskPath(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV2DiskPath(typing.TypedDict, total=False):
     partitionUuid: str
     relativePath: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2DynamicMuteRecord(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudSecuritycenterV2DynamicMuteRecord(typing.TypedDict, total=False):
     matchTime: str
     muteConfig: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2EnvironmentVariable(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudSecuritycenterV2EnvironmentVariable(typing.TypedDict, total=False):
     name: str
     val: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2ExfilResource(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudSecuritycenterV2ExfilResource(typing.TypedDict, total=False):
     components: _list[str]
     name: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2Exfiltration(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV2Exfiltration(typing.TypedDict, total=False):
     sources: _list[GoogleCloudSecuritycenterV2ExfilResource]
     targets: _list[GoogleCloudSecuritycenterV2ExfilResource]
     totalExfiltratedBytes: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2ExternalExposure(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudSecuritycenterV2ExternalExposure(typing.TypedDict, total=False):
     backendBucket: str
     backendService: str
     exposedApplication: str
@@ -1617,9 +1546,7 @@ class GoogleCloudSecuritycenterV2ExternalExposure(
     serviceFirewallPolicy: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2ExternalSystem(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudSecuritycenterV2ExternalSystem(typing.TypedDict, total=False):
     assignees: _list[str]
     caseCloseTime: str
     caseCreateTime: str
@@ -1633,10 +1560,10 @@ class GoogleCloudSecuritycenterV2ExternalSystem(
     ticketInfo: GoogleCloudSecuritycenterV2TicketInfo
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2File(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV2File(typing.TypedDict, total=False):
     contents: str
     diskPath: GoogleCloudSecuritycenterV2DiskPath
-    fileLoadState: typing_extensions.Literal[
+    fileLoadState: typing.Literal[
         "FILE_LOAD_STATE_UNSPECIFIED", "LOADED_BY_PROCESS", "NOT_LOADED_BY_PROCESS"
     ]
     hashedSize: str
@@ -1647,18 +1574,19 @@ class GoogleCloudSecuritycenterV2File(typing_extensions.TypedDict, total=False):
     size: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2FileOperation(
-    typing_extensions.TypedDict, total=False
-):
-    type: typing_extensions.Literal[
+class GoogleCloudSecuritycenterV2FileOperation(typing.TypedDict, total=False):
+    type: typing.Literal[
         "OPERATION_TYPE_UNSPECIFIED", "OPEN", "READ", "RENAME", "WRITE", "EXECUTE"
     ]
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2Finding(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV2Finding(typing.TypedDict, total=False):
     access: GoogleCloudSecuritycenterV2Access
     affectedResources: GoogleCloudSecuritycenterV2AffectedResources
+    agent: GoogleCloudSecuritycenterV2Agent
+    agentAnomaly: GoogleCloudSecuritycenterV2AgentAnomaly
     agentDataAccessEvents: _list[GoogleCloudSecuritycenterV2AgentDataAccessEvent]
+    agentSessions: _list[GoogleCloudSecuritycenterV2AgentSession]
     aiModel: GoogleCloudSecuritycenterV2AiModel
     application: GoogleCloudSecuritycenterV2Application
     artifactGuardPolicies: GoogleCloudSecuritycenterV2ArtifactGuardPolicies
@@ -1692,7 +1620,7 @@ class GoogleCloudSecuritycenterV2Finding(typing_extensions.TypedDict, total=Fals
     externalSystems: dict[str, typing.Any]
     externalUri: str
     files: _list[GoogleCloudSecuritycenterV2File]
-    findingClass: typing_extensions.Literal[
+    findingClass: typing.Literal[
         "FINDING_CLASS_UNSPECIFIED",
         "THREAT",
         "VULNERABILITY",
@@ -1718,7 +1646,7 @@ class GoogleCloudSecuritycenterV2Finding(typing_extensions.TypedDict, total=Fals
     logEntries: _list[GoogleCloudSecuritycenterV2LogEntry]
     mitreAttack: GoogleCloudSecuritycenterV2MitreAttack
     moduleName: str
-    mute: typing_extensions.Literal["MUTE_UNSPECIFIED", "MUTED", "UNMUTED", "UNDEFINED"]
+    mute: typing.Literal["MUTE_UNSPECIFIED", "MUTED", "UNMUTED", "UNDEFINED"]
     muteInfo: GoogleCloudSecuritycenterV2MuteInfo
     muteInitiator: str
     muteUpdateTime: str
@@ -1735,24 +1663,24 @@ class GoogleCloudSecuritycenterV2Finding(typing_extensions.TypedDict, total=Fals
     secret: GoogleCloudSecuritycenterV2Secret
     securityMarks: GoogleCloudSecuritycenterV2SecurityMarks
     securityPosture: GoogleCloudSecuritycenterV2SecurityPosture
-    severity: typing_extensions.Literal[
+    severity: typing.Literal[
         "SEVERITY_UNSPECIFIED", "CRITICAL", "HIGH", "MEDIUM", "LOW"
     ]
     sourceProperties: dict[str, typing.Any]
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "INACTIVE"]
+    state: typing.Literal["STATE_UNSPECIFIED", "ACTIVE", "INACTIVE"]
     toxicCombination: GoogleCloudSecuritycenterV2ToxicCombination
     vertexAi: GoogleCloudSecuritycenterV2VertexAi
     vulnerability: GoogleCloudSecuritycenterV2Vulnerability
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2Folder(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV2Folder(typing.TypedDict, total=False):
     resourceFolder: str
     resourceFolderDisplayName: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2Framework(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV2Framework(typing.TypedDict, total=False):
     category: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "FRAMEWORK_CATEGORY_UNSPECIFIED",
             "SECURITY_BENCHMARKS",
             "ASSURED_WORKLOADS",
@@ -1764,82 +1692,82 @@ class GoogleCloudSecuritycenterV2Framework(typing_extensions.TypedDict, total=Fa
     controls: _list[GoogleCloudSecuritycenterV2Control]
     displayName: str
     name: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "FRAMEWORK_TYPE_UNSPECIFIED", "FRAMEWORK_TYPE_BUILT_IN", "FRAMEWORK_TYPE_CUSTOM"
     ]
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2Geolocation(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV2Geolocation(typing.TypedDict, total=False):
     regionCode: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2GroupMembership(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudSecuritycenterV2GroupMembership(typing.TypedDict, total=False):
     groupId: str
-    groupType: typing_extensions.Literal[
+    groupType: typing.Literal[
         "GROUP_TYPE_UNSPECIFIED",
         "GROUP_TYPE_TOXIC_COMBINATION",
         "GROUP_TYPE_CHOKEPOINT",
     ]
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2HttpResponse(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV2HttpResponse(typing.TypedDict, total=False):
     path: str
     statusCode: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2IamBinding(typing_extensions.TypedDict, total=False):
-    action: typing_extensions.Literal["ACTION_UNSPECIFIED", "ADD", "REMOVE"]
+class GoogleCloudSecuritycenterV2IamBinding(typing.TypedDict, total=False):
+    action: typing.Literal["ACTION_UNSPECIFIED", "ADD", "REMOVE"]
     member: str
     role: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2IamDetails(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV2IamDetails(typing.TypedDict, total=False):
     iamRolePermissions: _list[GoogleCloudSecuritycenterV2IamRolePermission]
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2IamRolePermission(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudSecuritycenterV2IamRolePermission(typing.TypedDict, total=False):
     name: str
     role: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2Indicator(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV2Indicator(typing.TypedDict, total=False):
     domains: _list[str]
     ipAddresses: _list[str]
     signatures: _list[GoogleCloudSecuritycenterV2ProcessSignature]
     uris: _list[str]
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2InfoType(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV2InfoType(typing.TypedDict, total=False):
     name: str
     sensitivityScore: GoogleCloudSecuritycenterV2SensitivityScore
     version: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2IpRule(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV2InvocationReference(typing.TypedDict, total=False):
+    invocationId: str
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2IpRule(typing.TypedDict, total=False):
     portRanges: _list[GoogleCloudSecuritycenterV2PortRange]
     protocol: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2IpRules(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV2IpRules(typing.TypedDict, total=False):
     allowed: GoogleCloudSecuritycenterV2Allowed
     denied: GoogleCloudSecuritycenterV2Denied
     destinationIpRanges: _list[str]
-    direction: typing_extensions.Literal["DIRECTION_UNSPECIFIED", "INGRESS", "EGRESS"]
+    direction: typing.Literal["DIRECTION_UNSPECIFIED", "INGRESS", "EGRESS"]
     exposedServices: _list[str]
     sourceIpRanges: _list[str]
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2Issue(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV2Issue(typing.TypedDict, total=False):
     createTime: str
     description: str
     detection: str
     domains: _list[GoogleCloudSecuritycenterV2IssueDomain]
     exposureScore: float
-    issueType: typing_extensions.Literal[
+    issueType: typing.Literal[
         "ISSUE_TYPE_UNSPECIFIED", "CHOKEPOINT", "TOXIC_COMBINATION", "INSIGHT"
     ]
     lastObservationTime: str
@@ -1850,15 +1778,15 @@ class GoogleCloudSecuritycenterV2Issue(typing_extensions.TypedDict, total=False)
     remediations: _list[str]
     secondaryResources: _list[GoogleCloudSecuritycenterV2IssueResource]
     securityContexts: _list[GoogleCloudSecuritycenterV2IssueSecurityContext]
-    severity: typing_extensions.Literal[
+    severity: typing.Literal[
         "SEVERITY_UNSPECIFIED", "CRITICAL", "HIGH", "MEDIUM", "LOW"
     ]
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "INACTIVE"]
+    state: typing.Literal["STATE_UNSPECIFIED", "ACTIVE", "INACTIVE"]
     updateTime: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2IssueDomain(typing_extensions.TypedDict, total=False):
-    domainCategory: typing_extensions.Literal[
+class GoogleCloudSecuritycenterV2IssueDomain(typing.TypedDict, total=False):
+    domainCategory: typing.Literal[
         "DOMAIN_CATEGORY_UNSPECIFIED",
         "AI",
         "CODE",
@@ -1870,34 +1798,30 @@ class GoogleCloudSecuritycenterV2IssueDomain(typing_extensions.TypedDict, total=
     ]
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2IssueFinding(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV2IssueFinding(typing.TypedDict, total=False):
     cve: GoogleCloudSecuritycenterV2IssueFindingCve
     name: str
     securityBulletin: GoogleCloudSecuritycenterV2IssueFindingSecurityBulletin
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2IssueFindingCve(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudSecuritycenterV2IssueFindingCve(typing.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV2IssueFindingSecurityBulletin(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     name: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2IssueMute(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV2IssueMute(typing.TypedDict, total=False):
     muteInitiator: str
     muteReason: str
-    muteState: typing_extensions.Literal["MUTE_STATE_UNSPECIFIED", "NOT_MUTED", "MUTED"]
+    muteState: typing.Literal["MUTE_STATE_UNSPECIFIED", "NOT_MUTED", "MUTED"]
     muteUpdateTime: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2IssueResource(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudSecuritycenterV2IssueResource(typing.TypedDict, total=False):
     adcApplication: GoogleCloudSecuritycenterV2IssueResourceAdcApplication
     adcApplicationTemplate: (
         GoogleCloudSecuritycenterV2IssueResourceAdcApplicationTemplateRevision
@@ -1906,7 +1830,7 @@ class GoogleCloudSecuritycenterV2IssueResource(
     application: GoogleCloudSecuritycenterV2IssueResourceApplication
     awsMetadata: GoogleCloudSecuritycenterV2IssueResourceAwsMetadata
     azureMetadata: GoogleCloudSecuritycenterV2IssueResourceAzureMetadata
-    cloudProvider: typing_extensions.Literal[
+    cloudProvider: typing.Literal[
         "CLOUD_PROVIDER_UNSPECIFIED",
         "GOOGLE_CLOUD",
         "AMAZON_WEB_SERVICES",
@@ -1919,33 +1843,33 @@ class GoogleCloudSecuritycenterV2IssueResource(
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV2IssueResourceAdcApplication(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     attributes: GoogleCloudSecuritycenterV2IssueResourceApplicationAttributes
     name: str
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV2IssueResourceAdcApplicationTemplateRevision(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     name: str
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV2IssueResourceAdcSharedTemplateRevision(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     name: str
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV2IssueResourceApplication(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     attributes: GoogleCloudSecuritycenterV2IssueResourceApplicationAttributes
     name: str
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV2IssueResourceApplicationAttributes(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     businessOwners: _list[
         GoogleCloudSecuritycenterV2IssueResourceApplicationAttributesContactInfo
@@ -1965,92 +1889,88 @@ class GoogleCloudSecuritycenterV2IssueResourceApplicationAttributes(
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV2IssueResourceApplicationAttributesContactInfo(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     email: str
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV2IssueResourceApplicationAttributesCriticality(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "CRITICALITY_TYPE_UNSPECIFIED", "MISSION_CRITICAL", "HIGH", "MEDIUM", "LOW"
     ]
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV2IssueResourceApplicationAttributesEnvironment(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "ENVIRONMENT_TYPE_UNSPECIFIED", "PRODUCTION", "STAGING", "TEST", "DEVELOPMENT"
     ]
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV2IssueResourceAwsMetadata(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     account: GoogleCloudSecuritycenterV2IssueResourceAwsMetadataAwsAccount
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV2IssueResourceAwsMetadataAwsAccount(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     id: str
     name: str
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV2IssueResourceAzureMetadata(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     subscription: GoogleCloudSecuritycenterV2IssueResourceAzureMetadataAzureSubscription
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV2IssueResourceAzureMetadataAzureSubscription(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     displayName: str
     id: str
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV2IssueResourceGoogleCloudMetadata(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     projectId: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2IssueSecurityContext(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudSecuritycenterV2IssueSecurityContext(typing.TypedDict, total=False):
     aggregatedCount: GoogleCloudSecuritycenterV2IssueSecurityContextAggregatedCount
     context: GoogleCloudSecuritycenterV2IssueSecurityContextContext
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV2IssueSecurityContextAggregatedCount(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     key: str
     value: int
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV2IssueSecurityContextContext(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     type: str
     values: _list[str]
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2Job(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV2Job(typing.TypedDict, total=False):
     errorCode: int
     location: str
     name: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "JOB_STATE_UNSPECIFIED", "PENDING", "RUNNING", "SUCCEEDED", "FAILED"
     ]
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2KernelRootkit(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudSecuritycenterV2KernelRootkit(typing.TypedDict, total=False):
     name: str
     unexpectedCodeModification: bool
     unexpectedFtraceHandler: bool
@@ -2062,7 +1982,7 @@ class GoogleCloudSecuritycenterV2KernelRootkit(
     unexpectedSystemCallHandler: bool
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2Kubernetes(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV2Kubernetes(typing.TypedDict, total=False):
     accessReviews: _list[GoogleCloudSecuritycenterV2AccessReview]
     bindings: _list[GoogleCloudSecuritycenterV2Binding]
     nodePools: _list[GoogleCloudSecuritycenterV2NodePool]
@@ -2072,29 +1992,27 @@ class GoogleCloudSecuritycenterV2Kubernetes(typing_extensions.TypedDict, total=F
     roles: _list[GoogleCloudSecuritycenterV2Role]
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2Label(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV2Label(typing.TypedDict, total=False):
     name: str
     value: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2LoadBalancer(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV2LoadBalancer(typing.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2LogEntry(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV2LogEntry(typing.TypedDict, total=False):
     cloudLoggingEntry: GoogleCloudSecuritycenterV2CloudLoggingEntry
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2MemoryHashSignature(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudSecuritycenterV2MemoryHashSignature(typing.TypedDict, total=False):
     binaryFamily: str
     detections: _list[GoogleCloudSecuritycenterV2Detection]
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2MitreAttack(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV2MitreAttack(typing.TypedDict, total=False):
     additionalTactics: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "TACTIC_UNSPECIFIED",
             "RECONNAISSANCE",
             "RESOURCE_DEVELOPMENT",
@@ -2113,7 +2031,7 @@ class GoogleCloudSecuritycenterV2MitreAttack(typing_extensions.TypedDict, total=
         ]
     ]
     additionalTechniques: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "TECHNIQUE_UNSPECIFIED",
             "DATA_OBFUSCATION",
             "DATA_OBFUSCATION_STEGANOGRAPHY",
@@ -2255,7 +2173,7 @@ class GoogleCloudSecuritycenterV2MitreAttack(typing_extensions.TypedDict, total=
             "FINANCIAL_THEFT",
         ]
     ]
-    primaryTactic: typing_extensions.Literal[
+    primaryTactic: typing.Literal[
         "TACTIC_UNSPECIFIED",
         "RECONNAISSANCE",
         "RESOURCE_DEVELOPMENT",
@@ -2273,7 +2191,7 @@ class GoogleCloudSecuritycenterV2MitreAttack(typing_extensions.TypedDict, total=
         "IMPACT",
     ]
     primaryTechniques: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "TECHNIQUE_UNSPECIFIED",
             "DATA_OBFUSCATION",
             "DATA_OBFUSCATION_STEGANOGRAPHY",
@@ -2418,7 +2336,7 @@ class GoogleCloudSecuritycenterV2MitreAttack(typing_extensions.TypedDict, total=
     version: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2MuteConfig(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV2MuteConfig(typing.TypedDict, total=False):
     createTime: str
     cryptoKeyName: str
     description: str
@@ -2426,44 +2344,42 @@ class GoogleCloudSecuritycenterV2MuteConfig(typing_extensions.TypedDict, total=F
     filter: str
     mostRecentEditor: str
     name: str
-    type: typing_extensions.Literal["MUTE_CONFIG_TYPE_UNSPECIFIED", "STATIC", "DYNAMIC"]
+    type: typing.Literal["MUTE_CONFIG_TYPE_UNSPECIFIED", "STATIC", "DYNAMIC"]
     updateTime: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2MuteInfo(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV2MuteInfo(typing.TypedDict, total=False):
     dynamicMuteRecords: _list[GoogleCloudSecuritycenterV2DynamicMuteRecord]
     staticMute: GoogleCloudSecuritycenterV2StaticMute
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2Network(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV2Network(typing.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2Node(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV2Node(typing.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2NodePool(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV2NodePool(typing.TypedDict, total=False):
     name: str
     nodes: _list[GoogleCloudSecuritycenterV2Node]
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2Notebook(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV2Notebook(typing.TypedDict, total=False):
     lastAuthor: str
     name: str
     notebookUpdateTime: str
     service: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2NotificationMessage(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudSecuritycenterV2NotificationMessage(typing.TypedDict, total=False):
     finding: GoogleCloudSecuritycenterV2Finding
     notificationConfigName: str
     resource: GoogleCloudSecuritycenterV2Resource
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2Object(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV2Object(typing.TypedDict, total=False):
     containers: _list[GoogleCloudSecuritycenterV2Container]
     group: str
     kind: str
@@ -2471,52 +2387,48 @@ class GoogleCloudSecuritycenterV2Object(typing_extensions.TypedDict, total=False
     ns: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2OrgPolicy(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV2OrgPolicy(typing.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2Package(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV2Package(typing.TypedDict, total=False):
     cpeUri: str
     packageName: str
     packageType: str
     packageVersion: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2Pipeline(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV2Pipeline(typing.TypedDict, total=False):
     displayName: str
     name: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2Pod(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV2Pod(typing.TypedDict, total=False):
     containers: _list[GoogleCloudSecuritycenterV2Container]
     labels: _list[GoogleCloudSecuritycenterV2Label]
     name: str
     ns: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2PolicyDriftDetails(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudSecuritycenterV2PolicyDriftDetails(typing.TypedDict, total=False):
     detectedValue: str
     expectedValue: str
     field: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2PolicyViolationSummary(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudSecuritycenterV2PolicyViolationSummary(typing.TypedDict, total=False):
     conformantResourcesCount: str
     evaluationErrorsCount: str
     outOfScopeResourcesCount: str
     policyViolationsCount: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2PortRange(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV2PortRange(typing.TypedDict, total=False):
     max: str
     min: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2Process(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV2Process(typing.TypedDict, total=False):
     args: _list[str]
     argumentsTruncated: bool
     binary: GoogleCloudSecuritycenterV2File
@@ -2530,36 +2442,34 @@ class GoogleCloudSecuritycenterV2Process(typing_extensions.TypedDict, total=Fals
     userId: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2ProcessSignature(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudSecuritycenterV2ProcessSignature(typing.TypedDict, total=False):
     memoryHashSignature: GoogleCloudSecuritycenterV2MemoryHashSignature
-    signatureType: typing_extensions.Literal[
+    signatureType: typing.Literal[
         "SIGNATURE_TYPE_UNSPECIFIED", "SIGNATURE_TYPE_PROCESS", "SIGNATURE_TYPE_FILE"
     ]
     yaraRuleSignature: GoogleCloudSecuritycenterV2YaraRuleSignature
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2Reference(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV2Reference(typing.TypedDict, total=False):
     source: str
     uri: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2Requests(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV2Requests(typing.TypedDict, total=False):
     longTermAllowed: int
     longTermDenied: int
     ratio: float
     shortTermAllowed: int
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2Resource(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV2Resource(typing.TypedDict, total=False):
     adcApplication: GoogleCloudSecuritycenterV2AdcApplication
     adcApplicationTemplate: GoogleCloudSecuritycenterV2AdcApplicationTemplateRevision
     adcSharedTemplate: GoogleCloudSecuritycenterV2AdcSharedTemplateRevision
     application: GoogleCloudSecuritycenterV2ResourceApplication
     awsMetadata: GoogleCloudSecuritycenterV2AwsMetadata
     azureMetadata: GoogleCloudSecuritycenterV2AzureMetadata
-    cloudProvider: typing_extensions.Literal[
+    cloudProvider: typing.Literal[
         "CLOUD_PROVIDER_UNSPECIFIED",
         "GOOGLE_CLOUD_PLATFORM",
         "AMAZON_WEB_SERVICES",
@@ -2575,15 +2485,13 @@ class GoogleCloudSecuritycenterV2Resource(typing_extensions.TypedDict, total=Fal
     type: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2ResourceApplication(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudSecuritycenterV2ResourceApplication(typing.TypedDict, total=False):
     attributes: GoogleCloudSecuritycenterV2ResourceApplicationAttributes
     name: str
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV2ResourceApplicationAttributes(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     businessOwners: _list[
         GoogleCloudSecuritycenterV2ResourceApplicationAttributesContactInfo
@@ -2599,37 +2507,35 @@ class GoogleCloudSecuritycenterV2ResourceApplicationAttributes(
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV2ResourceApplicationAttributesContactInfo(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     email: str
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV2ResourceApplicationAttributesCriticality(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "CRITICALITY_TYPE_UNSPECIFIED", "MISSION_CRITICAL", "HIGH", "MEDIUM", "LOW"
     ]
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV2ResourceApplicationAttributesEnvironment(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "ENVIRONMENT_TYPE_UNSPECIFIED", "PRODUCTION", "STAGING", "TEST", "DEVELOPMENT"
     ]
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2ResourcePath(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV2ResourcePath(typing.TypedDict, total=False):
     nodes: _list[GoogleCloudSecuritycenterV2ResourcePathNode]
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2ResourcePathNode(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudSecuritycenterV2ResourcePathNode(typing.TypedDict, total=False):
     displayName: str
     id: str
-    nodeType: typing_extensions.Literal[
+    nodeType: typing.Literal[
         "RESOURCE_PATH_NODE_TYPE_UNSPECIFIED",
         "GCP_ORGANIZATION",
         "GCP_FOLDER",
@@ -2643,10 +2549,8 @@ class GoogleCloudSecuritycenterV2ResourcePathNode(
     ]
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2ResourceValueConfig(
-    typing_extensions.TypedDict, total=False
-):
-    cloudProvider: typing_extensions.Literal[
+class GoogleCloudSecuritycenterV2ResourceValueConfig(typing.TypedDict, total=False):
+    cloudProvider: typing.Literal[
         "CLOUD_PROVIDER_UNSPECIFIED",
         "GOOGLE_CLOUD_PLATFORM",
         "AMAZON_WEB_SERVICES",
@@ -2657,7 +2561,7 @@ class GoogleCloudSecuritycenterV2ResourceValueConfig(
     name: str
     resourceLabelsSelector: dict[str, typing.Any]
     resourceType: str
-    resourceValue: typing_extensions.Literal[
+    resourceValue: typing.Literal[
         "RESOURCE_VALUE_UNSPECIFIED", "HIGH", "MEDIUM", "LOW", "NONE"
     ]
     scope: str
@@ -2668,13 +2572,13 @@ class GoogleCloudSecuritycenterV2ResourceValueConfig(
     updateTime: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2Role(typing_extensions.TypedDict, total=False):
-    kind: typing_extensions.Literal["KIND_UNSPECIFIED", "ROLE", "CLUSTER_ROLE"]
+class GoogleCloudSecuritycenterV2Role(typing.TypedDict, total=False):
+    kind: typing.Literal["KIND_UNSPECIFIED", "ROLE", "CLUSTER_ROLE"]
     name: str
     ns: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2Secret(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV2Secret(typing.TypedDict, total=False):
     environmentVariable: GoogleCloudSecuritycenterV2SecretEnvironmentVariable
     filePath: GoogleCloudSecuritycenterV2SecretFilePath
     status: GoogleCloudSecuritycenterV2SecretStatus
@@ -2682,20 +2586,18 @@ class GoogleCloudSecuritycenterV2Secret(typing_extensions.TypedDict, total=False
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV2SecretEnvironmentVariable(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     key: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2SecretFilePath(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudSecuritycenterV2SecretFilePath(typing.TypedDict, total=False):
     path: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2SecretStatus(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV2SecretStatus(typing.TypedDict, total=False):
     lastUpdatedTime: str
-    validity: typing_extensions.Literal[
+    validity: typing.Literal[
         "SECRET_VALIDITY_UNSPECIFIED",
         "SECRET_VALIDITY_UNSUPPORTED",
         "SECRET_VALIDITY_FAILED",
@@ -2704,33 +2606,25 @@ class GoogleCloudSecuritycenterV2SecretStatus(typing_extensions.TypedDict, total
     ]
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2SecurityBulletin(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudSecuritycenterV2SecurityBulletin(typing.TypedDict, total=False):
     bulletinId: str
     submissionTime: str
     suggestedUpgradeVersion: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2SecurityMarks(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudSecuritycenterV2SecurityMarks(typing.TypedDict, total=False):
     canonicalName: str
     marks: dict[str, typing.Any]
     name: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2SecurityPolicy(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudSecuritycenterV2SecurityPolicy(typing.TypedDict, total=False):
     name: str
     preview: bool
     type: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2SecurityPosture(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudSecuritycenterV2SecurityPosture(typing.TypedDict, total=False):
     changedPolicy: str
     name: str
     policy: str
@@ -2742,20 +2636,18 @@ class GoogleCloudSecuritycenterV2SecurityPosture(
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV2SensitiveDataProtectionMapping(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    highSensitivityMapping: typing_extensions.Literal[
+    highSensitivityMapping: typing.Literal[
         "RESOURCE_VALUE_UNSPECIFIED", "HIGH", "MEDIUM", "LOW", "NONE"
     ]
-    mediumSensitivityMapping: typing_extensions.Literal[
+    mediumSensitivityMapping: typing.Literal[
         "RESOURCE_VALUE_UNSPECIFIED", "HIGH", "MEDIUM", "LOW", "NONE"
     ]
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2SensitivityScore(
-    typing_extensions.TypedDict, total=False
-):
-    score: typing_extensions.Literal[
+class GoogleCloudSecuritycenterV2SensitivityScore(typing.TypedDict, total=False):
+    score: typing.Literal[
         "SENSITIVITY_SCORE_LEVEL_UNSPECIFIED",
         "SENSITIVITY_LOW",
         "SENSITIVITY_UNKNOWN",
@@ -2765,28 +2657,24 @@ class GoogleCloudSecuritycenterV2SensitivityScore(
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV2ServiceAccountDelegationInfo(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     principalEmail: str
     principalSubject: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2StaticMute(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV2StaticMute(typing.TypedDict, total=False):
     applyTime: str
-    state: typing_extensions.Literal[
-        "MUTE_UNSPECIFIED", "MUTED", "UNMUTED", "UNDEFINED"
-    ]
+    state: typing.Literal["MUTE_UNSPECIFIED", "MUTED", "UNMUTED", "UNDEFINED"]
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2Subject(typing_extensions.TypedDict, total=False):
-    kind: typing_extensions.Literal[
-        "AUTH_TYPE_UNSPECIFIED", "USER", "SERVICEACCOUNT", "GROUP"
-    ]
+class GoogleCloudSecuritycenterV2Subject(typing.TypedDict, total=False):
+    kind: typing.Literal["AUTH_TYPE_UNSPECIFIED", "USER", "SERVICEACCOUNT", "GROUP"]
     name: str
     ns: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2TicketInfo(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV2TicketInfo(typing.TypedDict, total=False):
     assignee: str
     description: str
     id: str
@@ -2795,21 +2683,17 @@ class GoogleCloudSecuritycenterV2TicketInfo(typing_extensions.TypedDict, total=F
     uri: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2ToxicCombination(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudSecuritycenterV2ToxicCombination(typing.TypedDict, total=False):
     attackExposureScore: float
     relatedFindings: _list[str]
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2VertexAi(typing_extensions.TypedDict, total=False):
+class GoogleCloudSecuritycenterV2VertexAi(typing.TypedDict, total=False):
     datasets: _list[GoogleCloudSecuritycenterV2Dataset]
     pipelines: _list[GoogleCloudSecuritycenterV2Pipeline]
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2Vulnerability(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudSecuritycenterV2Vulnerability(typing.TypedDict, total=False):
     cve: GoogleCloudSecuritycenterV2Cve
     cwes: _list[GoogleCloudSecuritycenterV2Cwe]
     fixedPackage: GoogleCloudSecuritycenterV2Package
@@ -2819,13 +2703,11 @@ class GoogleCloudSecuritycenterV2Vulnerability(
     securityBulletin: GoogleCloudSecuritycenterV2SecurityBulletin
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV2YaraRuleSignature(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudSecuritycenterV2YaraRuleSignature(typing.TypedDict, total=False):
     yaraRule: str
 
 @typing.type_check_only
-class GroupAssetsRequest(typing_extensions.TypedDict, total=False):
+class GroupAssetsRequest(typing.TypedDict, total=False):
     compareDuration: str
     filter: str
     groupBy: str
@@ -2834,14 +2716,14 @@ class GroupAssetsRequest(typing_extensions.TypedDict, total=False):
     readTime: str
 
 @typing.type_check_only
-class GroupAssetsResponse(typing_extensions.TypedDict, total=False):
+class GroupAssetsResponse(typing.TypedDict, total=False):
     groupByResults: _list[GroupResult]
     nextPageToken: str
     readTime: str
     totalSize: int
 
 @typing.type_check_only
-class GroupFindingsRequest(typing_extensions.TypedDict, total=False):
+class GroupFindingsRequest(typing.TypedDict, total=False):
     compareDuration: str
     filter: str
     groupBy: str
@@ -2850,79 +2732,83 @@ class GroupFindingsRequest(typing_extensions.TypedDict, total=False):
     readTime: str
 
 @typing.type_check_only
-class GroupFindingsResponse(typing_extensions.TypedDict, total=False):
+class GroupFindingsResponse(typing.TypedDict, total=False):
     groupByResults: _list[GroupResult]
     nextPageToken: str
     readTime: str
     totalSize: int
 
 @typing.type_check_only
-class GroupMembership(typing_extensions.TypedDict, total=False):
+class GroupMembership(typing.TypedDict, total=False):
     groupId: str
-    groupType: typing_extensions.Literal[
+    groupType: typing.Literal[
         "GROUP_TYPE_UNSPECIFIED",
         "GROUP_TYPE_TOXIC_COMBINATION",
         "GROUP_TYPE_CHOKEPOINT",
     ]
 
 @typing.type_check_only
-class GroupResult(typing_extensions.TypedDict, total=False):
+class GroupResult(typing.TypedDict, total=False):
     count: str
     properties: dict[str, typing.Any]
 
 @typing.type_check_only
-class HttpResponse(typing_extensions.TypedDict, total=False):
+class HttpResponse(typing.TypedDict, total=False):
     path: str
     statusCode: str
 
 @typing.type_check_only
-class IamBinding(typing_extensions.TypedDict, total=False):
-    action: typing_extensions.Literal["ACTION_UNSPECIFIED", "ADD", "REMOVE"]
+class IamBinding(typing.TypedDict, total=False):
+    action: typing.Literal["ACTION_UNSPECIFIED", "ADD", "REMOVE"]
     member: str
     role: str
 
 @typing.type_check_only
-class IamPolicy(typing_extensions.TypedDict, total=False):
+class IamPolicy(typing.TypedDict, total=False):
     policyBlob: str
 
 @typing.type_check_only
-class Indicator(typing_extensions.TypedDict, total=False):
+class Indicator(typing.TypedDict, total=False):
     domains: _list[str]
     ipAddresses: _list[str]
     signatures: _list[ProcessSignature]
     uris: _list[str]
 
 @typing.type_check_only
-class InfoType(typing_extensions.TypedDict, total=False):
+class InfoType(typing.TypedDict, total=False):
     name: str
     sensitivityScore: SensitivityScore
     version: str
 
 @typing.type_check_only
-class IpRule(typing_extensions.TypedDict, total=False):
+class InvocationReference(typing.TypedDict, total=False):
+    invocationId: str
+
+@typing.type_check_only
+class IpRule(typing.TypedDict, total=False):
     portRanges: _list[PortRange]
     protocol: str
 
 @typing.type_check_only
-class IpRules(typing_extensions.TypedDict, total=False):
+class IpRules(typing.TypedDict, total=False):
     allowed: Allowed
     denied: Denied
     destinationIpRanges: _list[str]
-    direction: typing_extensions.Literal["DIRECTION_UNSPECIFIED", "INGRESS", "EGRESS"]
+    direction: typing.Literal["DIRECTION_UNSPECIFIED", "INGRESS", "EGRESS"]
     exposedServices: _list[str]
     sourceIpRanges: _list[str]
 
 @typing.type_check_only
-class Job(typing_extensions.TypedDict, total=False):
+class Job(typing.TypedDict, total=False):
     errorCode: int
     location: str
     name: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "JOB_STATE_UNSPECIFIED", "PENDING", "RUNNING", "SUCCEEDED", "FAILED"
     ]
 
 @typing.type_check_only
-class KernelRootkit(typing_extensions.TypedDict, total=False):
+class KernelRootkit(typing.TypedDict, total=False):
     name: str
     unexpectedCodeModification: bool
     unexpectedFtraceHandler: bool
@@ -2934,7 +2820,7 @@ class KernelRootkit(typing_extensions.TypedDict, total=False):
     unexpectedSystemCallHandler: bool
 
 @typing.type_check_only
-class Kubernetes(typing_extensions.TypedDict, total=False):
+class Kubernetes(typing.TypedDict, total=False):
     accessReviews: _list[AccessReview]
     bindings: _list[GoogleCloudSecuritycenterV1Binding]
     nodePools: _list[NodePool]
@@ -2944,42 +2830,42 @@ class Kubernetes(typing_extensions.TypedDict, total=False):
     roles: _list[Role]
 
 @typing.type_check_only
-class Label(typing_extensions.TypedDict, total=False):
+class Label(typing.TypedDict, total=False):
     name: str
     value: str
 
 @typing.type_check_only
-class ListAssetsResponse(typing_extensions.TypedDict, total=False):
+class ListAssetsResponse(typing.TypedDict, total=False):
     listAssetsResults: _list[ListAssetsResult]
     nextPageToken: str
     readTime: str
     totalSize: int
 
 @typing.type_check_only
-class ListAssetsResult(typing_extensions.TypedDict, total=False):
+class ListAssetsResult(typing.TypedDict, total=False):
     asset: Asset
-    stateChange: typing_extensions.Literal["UNUSED", "ADDED", "REMOVED", "ACTIVE"]
+    stateChange: typing.Literal["UNUSED", "ADDED", "REMOVED", "ACTIVE"]
 
 @typing.type_check_only
-class ListAttackPathsResponse(typing_extensions.TypedDict, total=False):
+class ListAttackPathsResponse(typing.TypedDict, total=False):
     attackPaths: _list[AttackPath]
     nextPageToken: str
 
 @typing.type_check_only
-class ListBigQueryExportsResponse(typing_extensions.TypedDict, total=False):
+class ListBigQueryExportsResponse(typing.TypedDict, total=False):
     bigQueryExports: _list[GoogleCloudSecuritycenterV1BigQueryExport]
     nextPageToken: str
 
 @typing.type_check_only
 class ListDescendantEventThreatDetectionCustomModulesResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     eventThreatDetectionCustomModules: _list[EventThreatDetectionCustomModule]
     nextPageToken: str
 
 @typing.type_check_only
 class ListDescendantSecurityHealthAnalyticsCustomModulesResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     nextPageToken: str
     securityHealthAnalyticsCustomModules: _list[
@@ -2988,7 +2874,7 @@ class ListDescendantSecurityHealthAnalyticsCustomModulesResponse(
 
 @typing.type_check_only
 class ListEffectiveEventThreatDetectionCustomModulesResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     effectiveEventThreatDetectionCustomModules: _list[
         EffectiveEventThreatDetectionCustomModule
@@ -2997,7 +2883,7 @@ class ListEffectiveEventThreatDetectionCustomModulesResponse(
 
 @typing.type_check_only
 class ListEffectiveSecurityHealthAnalyticsCustomModulesResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     effectiveSecurityHealthAnalyticsCustomModules: _list[
         GoogleCloudSecuritycenterV1EffectiveSecurityHealthAnalyticsCustomModule
@@ -3005,85 +2891,79 @@ class ListEffectiveSecurityHealthAnalyticsCustomModulesResponse(
     nextPageToken: str
 
 @typing.type_check_only
-class ListEventThreatDetectionCustomModulesResponse(
-    typing_extensions.TypedDict, total=False
-):
+class ListEventThreatDetectionCustomModulesResponse(typing.TypedDict, total=False):
     eventThreatDetectionCustomModules: _list[EventThreatDetectionCustomModule]
     nextPageToken: str
 
 @typing.type_check_only
-class ListFindingsResponse(typing_extensions.TypedDict, total=False):
+class ListFindingsResponse(typing.TypedDict, total=False):
     listFindingsResults: _list[ListFindingsResult]
     nextPageToken: str
     readTime: str
     totalSize: int
 
 @typing.type_check_only
-class ListFindingsResult(typing_extensions.TypedDict, total=False):
+class ListFindingsResult(typing.TypedDict, total=False):
     finding: Finding
     resource: Resource
-    stateChange: typing_extensions.Literal[
-        "UNUSED", "CHANGED", "UNCHANGED", "ADDED", "REMOVED"
-    ]
+    stateChange: typing.Literal["UNUSED", "CHANGED", "UNCHANGED", "ADDED", "REMOVED"]
 
 @typing.type_check_only
-class ListMuteConfigsResponse(typing_extensions.TypedDict, total=False):
+class ListMuteConfigsResponse(typing.TypedDict, total=False):
     muteConfigs: _list[GoogleCloudSecuritycenterV1MuteConfig]
     nextPageToken: str
 
 @typing.type_check_only
-class ListNotificationConfigsResponse(typing_extensions.TypedDict, total=False):
+class ListNotificationConfigsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     notificationConfigs: _list[NotificationConfig]
 
 @typing.type_check_only
-class ListOperationsResponse(typing_extensions.TypedDict, total=False):
+class ListOperationsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListResourceValueConfigsResponse(typing_extensions.TypedDict, total=False):
+class ListResourceValueConfigsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     resourceValueConfigs: _list[GoogleCloudSecuritycenterV1ResourceValueConfig]
 
 @typing.type_check_only
-class ListSecurityHealthAnalyticsCustomModulesResponse(
-    typing_extensions.TypedDict, total=False
-):
+class ListSecurityHealthAnalyticsCustomModulesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     securityHealthAnalyticsCustomModules: _list[
         GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModule
     ]
 
 @typing.type_check_only
-class ListSourcesResponse(typing_extensions.TypedDict, total=False):
+class ListSourcesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     sources: _list[Source]
 
 @typing.type_check_only
-class ListValuedResourcesResponse(typing_extensions.TypedDict, total=False):
+class ListValuedResourcesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     totalSize: int
     valuedResources: _list[ValuedResource]
 
 @typing.type_check_only
-class LoadBalancer(typing_extensions.TypedDict, total=False):
+class LoadBalancer(typing.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class LogEntry(typing_extensions.TypedDict, total=False):
+class LogEntry(typing.TypedDict, total=False):
     cloudLoggingEntry: CloudLoggingEntry
 
 @typing.type_check_only
-class MemoryHashSignature(typing_extensions.TypedDict, total=False):
+class MemoryHashSignature(typing.TypedDict, total=False):
     binaryFamily: str
     detections: _list[Detection]
 
 @typing.type_check_only
-class MitreAttack(typing_extensions.TypedDict, total=False):
+class MitreAttack(typing.TypedDict, total=False):
     additionalTactics: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "TACTIC_UNSPECIFIED",
             "RECONNAISSANCE",
             "RESOURCE_DEVELOPMENT",
@@ -3102,7 +2982,7 @@ class MitreAttack(typing_extensions.TypedDict, total=False):
         ]
     ]
     additionalTechniques: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "TECHNIQUE_UNSPECIFIED",
             "DATA_OBFUSCATION",
             "DATA_OBFUSCATION_STEGANOGRAPHY",
@@ -3244,7 +3124,7 @@ class MitreAttack(typing_extensions.TypedDict, total=False):
             "FINANCIAL_THEFT",
         ]
     ]
-    primaryTactic: typing_extensions.Literal[
+    primaryTactic: typing.Literal[
         "TACTIC_UNSPECIFIED",
         "RECONNAISSANCE",
         "RESOURCE_DEVELOPMENT",
@@ -3262,7 +3142,7 @@ class MitreAttack(typing_extensions.TypedDict, total=False):
         "IMPACT",
     ]
     primaryTechniques: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "TECHNIQUE_UNSPECIFIED",
             "DATA_OBFUSCATION",
             "DATA_OBFUSCATION_STEGANOGRAPHY",
@@ -3407,32 +3287,32 @@ class MitreAttack(typing_extensions.TypedDict, total=False):
     version: str
 
 @typing.type_check_only
-class MuteInfo(typing_extensions.TypedDict, total=False):
+class MuteInfo(typing.TypedDict, total=False):
     dynamicMuteRecords: _list[DynamicMuteRecord]
     staticMute: StaticMute
 
 @typing.type_check_only
-class Network(typing_extensions.TypedDict, total=False):
+class Network(typing.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class Node(typing_extensions.TypedDict, total=False):
+class Node(typing.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class NodePool(typing_extensions.TypedDict, total=False):
+class NodePool(typing.TypedDict, total=False):
     name: str
     nodes: _list[Node]
 
 @typing.type_check_only
-class Notebook(typing_extensions.TypedDict, total=False):
+class Notebook(typing.TypedDict, total=False):
     lastAuthor: str
     name: str
     notebookUpdateTime: str
     service: str
 
 @typing.type_check_only
-class NotificationConfig(typing_extensions.TypedDict, total=False):
+class NotificationConfig(typing.TypedDict, total=False):
     description: str
     name: str
     pubsubTopic: str
@@ -3440,7 +3320,7 @@ class NotificationConfig(typing_extensions.TypedDict, total=False):
     streamingConfig: StreamingConfig
 
 @typing.type_check_only
-class Object(typing_extensions.TypedDict, total=False):
+class Object(typing.TypedDict, total=False):
     containers: _list[Container]
     group: str
     kind: str
@@ -3448,7 +3328,7 @@ class Object(typing_extensions.TypedDict, total=False):
     ns: str
 
 @typing.type_check_only
-class Operation(typing_extensions.TypedDict, total=False):
+class Operation(typing.TypedDict, total=False):
     done: bool
     error: Status
     metadata: dict[str, typing.Any]
@@ -3456,72 +3336,72 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class OrgPolicy(typing_extensions.TypedDict, total=False):
+class OrgPolicy(typing.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class OrganizationSettings(typing_extensions.TypedDict, total=False):
+class OrganizationSettings(typing.TypedDict, total=False):
     assetDiscoveryConfig: AssetDiscoveryConfig
     enableAssetDiscovery: bool
     name: str
 
 @typing.type_check_only
-class Package(typing_extensions.TypedDict, total=False):
+class Package(typing.TypedDict, total=False):
     cpeUri: str
     packageName: str
     packageType: str
     packageVersion: str
 
 @typing.type_check_only
-class PathNodeAssociatedFinding(typing_extensions.TypedDict, total=False):
+class PathNodeAssociatedFinding(typing.TypedDict, total=False):
     canonicalFinding: str
     findingCategory: str
     name: str
 
 @typing.type_check_only
-class Pipeline(typing_extensions.TypedDict, total=False):
+class Pipeline(typing.TypedDict, total=False):
     displayName: str
     name: str
 
 @typing.type_check_only
-class Pod(typing_extensions.TypedDict, total=False):
+class Pod(typing.TypedDict, total=False):
     containers: _list[Container]
     labels: _list[Label]
     name: str
     ns: str
 
 @typing.type_check_only
-class Policy(typing_extensions.TypedDict, total=False):
+class Policy(typing.TypedDict, total=False):
     auditConfigs: _list[AuditConfig]
     bindings: _list[Binding]
     etag: str
     version: int
 
 @typing.type_check_only
-class PolicyDriftDetails(typing_extensions.TypedDict, total=False):
+class PolicyDriftDetails(typing.TypedDict, total=False):
     detectedValue: str
     expectedValue: str
     field: str
 
 @typing.type_check_only
-class PolicyViolationSummary(typing_extensions.TypedDict, total=False):
+class PolicyViolationSummary(typing.TypedDict, total=False):
     conformantResourcesCount: str
     evaluationErrorsCount: str
     outOfScopeResourcesCount: str
     policyViolationsCount: str
 
 @typing.type_check_only
-class PortRange(typing_extensions.TypedDict, total=False):
+class PortRange(typing.TypedDict, total=False):
     max: str
     min: str
 
 @typing.type_check_only
-class Position(typing_extensions.TypedDict, total=False):
+class Position(typing.TypedDict, total=False):
     columnNumber: int
     lineNumber: int
 
 @typing.type_check_only
-class Process(typing_extensions.TypedDict, total=False):
+class Process(typing.TypedDict, total=False):
     args: _list[str]
     argumentsTruncated: bool
     binary: File
@@ -3535,34 +3415,34 @@ class Process(typing_extensions.TypedDict, total=False):
     userId: str
 
 @typing.type_check_only
-class ProcessSignature(typing_extensions.TypedDict, total=False):
+class ProcessSignature(typing.TypedDict, total=False):
     memoryHashSignature: MemoryHashSignature
-    signatureType: typing_extensions.Literal[
+    signatureType: typing.Literal[
         "SIGNATURE_TYPE_UNSPECIFIED", "SIGNATURE_TYPE_PROCESS", "SIGNATURE_TYPE_FILE"
     ]
     yaraRuleSignature: YaraRuleSignature
 
 @typing.type_check_only
-class Reference(typing_extensions.TypedDict, total=False):
+class Reference(typing.TypedDict, total=False):
     source: str
     uri: str
 
 @typing.type_check_only
-class Requests(typing_extensions.TypedDict, total=False):
+class Requests(typing.TypedDict, total=False):
     longTermAllowed: int
     longTermDenied: int
     ratio: float
     shortTermAllowed: int
 
 @typing.type_check_only
-class Resource(typing_extensions.TypedDict, total=False):
+class Resource(typing.TypedDict, total=False):
     adcApplication: AdcApplication
     adcApplicationTemplate: AdcApplicationTemplateRevision
     adcSharedTemplate: AdcSharedTemplateRevision
     application: GoogleCloudSecuritycenterV1ResourceApplication
     awsMetadata: AwsMetadata
     azureMetadata: AzureMetadata
-    cloudProvider: typing_extensions.Literal[
+    cloudProvider: typing.Literal[
         "CLOUD_PROVIDER_UNSPECIFIED",
         "GOOGLE_CLOUD_PLATFORM",
         "AMAZON_WEB_SERVICES",
@@ -3583,14 +3463,14 @@ class Resource(typing_extensions.TypedDict, total=False):
     type: str
 
 @typing.type_check_only
-class ResourcePath(typing_extensions.TypedDict, total=False):
+class ResourcePath(typing.TypedDict, total=False):
     nodes: _list[ResourcePathNode]
 
 @typing.type_check_only
-class ResourcePathNode(typing_extensions.TypedDict, total=False):
+class ResourcePathNode(typing.TypedDict, total=False):
     displayName: str
     id: str
-    nodeType: typing_extensions.Literal[
+    nodeType: typing.Literal[
         "RESOURCE_PATH_NODE_TYPE_UNSPECIFIED",
         "GCP_ORGANIZATION",
         "GCP_FOLDER",
@@ -3604,37 +3484,37 @@ class ResourcePathNode(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class ResourceValueConfigMetadata(typing_extensions.TypedDict, total=False):
+class ResourceValueConfigMetadata(typing.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class Role(typing_extensions.TypedDict, total=False):
-    kind: typing_extensions.Literal["KIND_UNSPECIFIED", "ROLE", "CLUSTER_ROLE"]
+class Role(typing.TypedDict, total=False):
+    kind: typing.Literal["KIND_UNSPECIFIED", "ROLE", "CLUSTER_ROLE"]
     name: str
     ns: str
 
 @typing.type_check_only
-class RunAssetDiscoveryRequest(typing_extensions.TypedDict, total=False): ...
+class RunAssetDiscoveryRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Secret(typing_extensions.TypedDict, total=False):
+class Secret(typing.TypedDict, total=False):
     environmentVariable: SecretEnvironmentVariable
     filePath: SecretFilePath
     status: SecretStatus
     type: str
 
 @typing.type_check_only
-class SecretEnvironmentVariable(typing_extensions.TypedDict, total=False):
+class SecretEnvironmentVariable(typing.TypedDict, total=False):
     key: str
 
 @typing.type_check_only
-class SecretFilePath(typing_extensions.TypedDict, total=False):
+class SecretFilePath(typing.TypedDict, total=False):
     path: str
 
 @typing.type_check_only
-class SecretStatus(typing_extensions.TypedDict, total=False):
+class SecretStatus(typing.TypedDict, total=False):
     lastUpdatedTime: str
-    validity: typing_extensions.Literal[
+    validity: typing.Literal[
         "SECRET_VALIDITY_UNSPECIFIED",
         "SECRET_VALIDITY_UNSUPPORTED",
         "SECRET_VALIDITY_FAILED",
@@ -3643,13 +3523,13 @@ class SecretStatus(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class SecurityBulletin(typing_extensions.TypedDict, total=False):
+class SecurityBulletin(typing.TypedDict, total=False):
     bulletinId: str
     submissionTime: str
     suggestedUpgradeVersion: str
 
 @typing.type_check_only
-class SecurityCenterProperties(typing_extensions.TypedDict, total=False):
+class SecurityCenterProperties(typing.TypedDict, total=False):
     folders: _list[Folder]
     resourceDisplayName: str
     resourceName: str
@@ -3661,19 +3541,19 @@ class SecurityCenterProperties(typing_extensions.TypedDict, total=False):
     resourceType: str
 
 @typing.type_check_only
-class SecurityMarks(typing_extensions.TypedDict, total=False):
+class SecurityMarks(typing.TypedDict, total=False):
     canonicalName: str
     marks: dict[str, typing.Any]
     name: str
 
 @typing.type_check_only
-class SecurityPolicy(typing_extensions.TypedDict, total=False):
+class SecurityPolicy(typing.TypedDict, total=False):
     name: str
     preview: bool
     type: str
 
 @typing.type_check_only
-class SecurityPosture(typing_extensions.TypedDict, total=False):
+class SecurityPosture(typing.TypedDict, total=False):
     changedPolicy: str
     name: str
     policy: str
@@ -3684,8 +3564,8 @@ class SecurityPosture(typing_extensions.TypedDict, total=False):
     revisionId: str
 
 @typing.type_check_only
-class SensitivityScore(typing_extensions.TypedDict, total=False):
-    score: typing_extensions.Literal[
+class SensitivityScore(typing.TypedDict, total=False):
+    score: typing.Literal[
         "SENSITIVITY_SCORE_LEVEL_UNSPECIFIED",
         "SENSITIVITY_LOW",
         "SENSITIVITY_UNKNOWN",
@@ -3694,52 +3574,50 @@ class SensitivityScore(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class ServiceAccountDelegationInfo(typing_extensions.TypedDict, total=False):
+class ServiceAccountDelegationInfo(typing.TypedDict, total=False):
     principalEmail: str
     principalSubject: str
 
 @typing.type_check_only
-class SetFindingStateRequest(typing_extensions.TypedDict, total=False):
+class SetFindingStateRequest(typing.TypedDict, total=False):
     startTime: str
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "INACTIVE"]
+    state: typing.Literal["STATE_UNSPECIFIED", "ACTIVE", "INACTIVE"]
 
 @typing.type_check_only
-class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
+class SetIamPolicyRequest(typing.TypedDict, total=False):
     policy: Policy
     updateMask: str
 
 @typing.type_check_only
-class SetMuteRequest(typing_extensions.TypedDict, total=False):
-    mute: typing_extensions.Literal["MUTE_UNSPECIFIED", "MUTED", "UNMUTED", "UNDEFINED"]
+class SetMuteRequest(typing.TypedDict, total=False):
+    mute: typing.Literal["MUTE_UNSPECIFIED", "MUTED", "UNMUTED", "UNDEFINED"]
 
 @typing.type_check_only
-class SimulateSecurityHealthAnalyticsCustomModuleRequest(
-    typing_extensions.TypedDict, total=False
-):
+class SimulateSecurityHealthAnalyticsCustomModuleRequest(typing.TypedDict, total=False):
     customConfig: GoogleCloudSecuritycenterV1CustomConfig
     resource: SimulatedResource
 
 @typing.type_check_only
 class SimulateSecurityHealthAnalyticsCustomModuleResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     result: SimulatedResult
 
 @typing.type_check_only
-class SimulatedResource(typing_extensions.TypedDict, total=False):
+class SimulatedResource(typing.TypedDict, total=False):
     iamPolicyData: Policy
     resourceData: dict[str, typing.Any]
     resourceType: str
 
 @typing.type_check_only
-class SimulatedResult(typing_extensions.TypedDict, total=False):
+class SimulatedResult(typing.TypedDict, total=False):
     error: Status
     finding: Finding
     noViolation: Empty
 
 @typing.type_check_only
-class Simulation(typing_extensions.TypedDict, total=False):
-    cloudProvider: typing_extensions.Literal[
+class Simulation(typing.TypedDict, total=False):
+    cloudProvider: typing.Literal[
         "CLOUD_PROVIDER_UNSPECIFIED",
         "GOOGLE_CLOUD_PLATFORM",
         "AMAZON_WEB_SERVICES",
@@ -3750,47 +3628,43 @@ class Simulation(typing_extensions.TypedDict, total=False):
     resourceValueConfigsMetadata: _list[ResourceValueConfigMetadata]
 
 @typing.type_check_only
-class Source(typing_extensions.TypedDict, total=False):
+class Source(typing.TypedDict, total=False):
     canonicalName: str
     description: str
     displayName: str
     name: str
 
 @typing.type_check_only
-class StaticMute(typing_extensions.TypedDict, total=False):
+class StaticMute(typing.TypedDict, total=False):
     applyTime: str
-    state: typing_extensions.Literal[
-        "MUTE_UNSPECIFIED", "MUTED", "UNMUTED", "UNDEFINED"
-    ]
+    state: typing.Literal["MUTE_UNSPECIFIED", "MUTED", "UNMUTED", "UNDEFINED"]
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class StreamingConfig(typing_extensions.TypedDict, total=False):
+class StreamingConfig(typing.TypedDict, total=False):
     filter: str
 
 @typing.type_check_only
-class Subject(typing_extensions.TypedDict, total=False):
-    kind: typing_extensions.Literal[
-        "AUTH_TYPE_UNSPECIFIED", "USER", "SERVICEACCOUNT", "GROUP"
-    ]
+class Subject(typing.TypedDict, total=False):
+    kind: typing.Literal["AUTH_TYPE_UNSPECIFIED", "USER", "SERVICEACCOUNT", "GROUP"]
     name: str
     ns: str
 
 @typing.type_check_only
-class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
+class TestIamPermissionsRequest(typing.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
-class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
+class TestIamPermissionsResponse(typing.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
-class TicketInfo(typing_extensions.TypedDict, total=False):
+class TicketInfo(typing.TypedDict, total=False):
     assignee: str
     description: str
     id: str
@@ -3799,31 +3673,27 @@ class TicketInfo(typing_extensions.TypedDict, total=False):
     uri: str
 
 @typing.type_check_only
-class ToxicCombination(typing_extensions.TypedDict, total=False):
+class ToxicCombination(typing.TypedDict, total=False):
     attackExposureScore: float
     relatedFindings: _list[str]
 
 @typing.type_check_only
-class ValidateEventThreatDetectionCustomModuleRequest(
-    typing_extensions.TypedDict, total=False
-):
+class ValidateEventThreatDetectionCustomModuleRequest(typing.TypedDict, total=False):
     rawText: str
     type: str
 
 @typing.type_check_only
-class ValidateEventThreatDetectionCustomModuleResponse(
-    typing_extensions.TypedDict, total=False
-):
+class ValidateEventThreatDetectionCustomModuleResponse(typing.TypedDict, total=False):
     errors: CustomModuleValidationErrors
 
 @typing.type_check_only
-class ValuedResource(typing_extensions.TypedDict, total=False):
+class ValuedResource(typing.TypedDict, total=False):
     displayName: str
     exposedScore: float
     name: str
     resource: str
     resourceType: str
-    resourceValue: typing_extensions.Literal[
+    resourceValue: typing.Literal[
         "RESOURCE_VALUE_UNSPECIFIED",
         "RESOURCE_VALUE_LOW",
         "RESOURCE_VALUE_MEDIUM",
@@ -3832,12 +3702,12 @@ class ValuedResource(typing_extensions.TypedDict, total=False):
     resourceValueConfigsUsed: _list[ResourceValueConfigMetadata]
 
 @typing.type_check_only
-class VertexAi(typing_extensions.TypedDict, total=False):
+class VertexAi(typing.TypedDict, total=False):
     datasets: _list[Dataset]
     pipelines: _list[Pipeline]
 
 @typing.type_check_only
-class Vulnerability(typing_extensions.TypedDict, total=False):
+class Vulnerability(typing.TypedDict, total=False):
     cve: Cve
     cwes: _list[Cwe]
     fixedPackage: Package
@@ -3847,12 +3717,12 @@ class Vulnerability(typing_extensions.TypedDict, total=False):
     securityBulletin: SecurityBulletin
 
 @typing.type_check_only
-class VulnerabilityCountBySeverity(typing_extensions.TypedDict, total=False):
+class VulnerabilityCountBySeverity(typing.TypedDict, total=False):
     severityToFindingCount: dict[str, typing.Any]
 
 @typing.type_check_only
-class VulnerabilitySnapshot(typing_extensions.TypedDict, total=False):
-    cloudProvider: typing_extensions.Literal[
+class VulnerabilitySnapshot(typing.TypedDict, total=False):
+    cloudProvider: typing.Literal[
         "CLOUD_PROVIDER_UNSPECIFIED",
         "GOOGLE_CLOUD_PLATFORM",
         "AMAZON_WEB_SERVICES",
@@ -3863,5 +3733,5 @@ class VulnerabilitySnapshot(typing_extensions.TypedDict, total=False):
     snapshotTime: str
 
 @typing.type_check_only
-class YaraRuleSignature(typing_extensions.TypedDict, total=False):
+class YaraRuleSignature(typing.TypedDict, total=False):
     yaraRule: str

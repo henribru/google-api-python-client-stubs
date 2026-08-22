@@ -1,57 +1,55 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class Address(typing_extensions.TypedDict, total=False):
+class Address(typing.TypedDict, total=False):
     pipe: Pipe
     socketAddress: SocketAddress
 
 @typing.type_check_only
-class BuildVersion(typing_extensions.TypedDict, total=False):
+class BuildVersion(typing.TypedDict, total=False):
     metadata: dict[str, typing.Any]
     version: SemanticVersion
 
 @typing.type_check_only
-class ClientConfig(typing_extensions.TypedDict, total=False):
+class ClientConfig(typing.TypedDict, total=False):
     node: Node
     xdsConfig: _list[PerXdsConfig]
 
 @typing.type_check_only
-class ClientStatusRequest(typing_extensions.TypedDict, total=False):
+class ClientStatusRequest(typing.TypedDict, total=False):
     nodeMatchers: _list[NodeMatcher]
 
 @typing.type_check_only
-class ClientStatusResponse(typing_extensions.TypedDict, total=False):
+class ClientStatusResponse(typing.TypedDict, total=False):
     config: _list[ClientConfig]
 
 @typing.type_check_only
-class ClustersConfigDump(typing_extensions.TypedDict, total=False):
+class ClustersConfigDump(typing.TypedDict, total=False):
     dynamicActiveClusters: _list[DynamicCluster]
     dynamicWarmingClusters: _list[DynamicCluster]
     staticClusters: _list[StaticCluster]
     versionInfo: str
 
 @typing.type_check_only
-class DoubleMatcher(typing_extensions.TypedDict, total=False):
+class DoubleMatcher(typing.TypedDict, total=False):
     exact: float
     range: DoubleRange
 
 @typing.type_check_only
-class DoubleRange(typing_extensions.TypedDict, total=False):
+class DoubleRange(typing.TypedDict, total=False):
     end: float
     start: float
 
 @typing.type_check_only
-class DynamicCluster(typing_extensions.TypedDict, total=False):
+class DynamicCluster(typing.TypedDict, total=False):
     cluster: dict[str, typing.Any]
     lastUpdated: str
     versionInfo: str
 
 @typing.type_check_only
-class DynamicListener(typing_extensions.TypedDict, total=False):
+class DynamicListener(typing.TypedDict, total=False):
     activeState: DynamicListenerState
     drainingState: DynamicListenerState
     errorState: UpdateFailureState
@@ -59,26 +57,26 @@ class DynamicListener(typing_extensions.TypedDict, total=False):
     warmingState: DynamicListenerState
 
 @typing.type_check_only
-class DynamicListenerState(typing_extensions.TypedDict, total=False):
+class DynamicListenerState(typing.TypedDict, total=False):
     lastUpdated: str
     listener: dict[str, typing.Any]
     versionInfo: str
 
 @typing.type_check_only
-class DynamicRouteConfig(typing_extensions.TypedDict, total=False):
+class DynamicRouteConfig(typing.TypedDict, total=False):
     lastUpdated: str
     routeConfig: dict[str, typing.Any]
     versionInfo: str
 
 @typing.type_check_only
-class DynamicScopedRouteConfigs(typing_extensions.TypedDict, total=False):
+class DynamicScopedRouteConfigs(typing.TypedDict, total=False):
     lastUpdated: str
     name: str
     scopedRouteConfigs: _list[dict[str, typing.Any]]
     versionInfo: str
 
 @typing.type_check_only
-class Extension(typing_extensions.TypedDict, total=False):
+class Extension(typing.TypedDict, total=False):
     category: str
     disabled: bool
     name: str
@@ -86,33 +84,33 @@ class Extension(typing_extensions.TypedDict, total=False):
     version: BuildVersion
 
 @typing.type_check_only
-class GoogleRE2(typing_extensions.TypedDict, total=False):
+class GoogleRE2(typing.TypedDict, total=False):
     maxProgramSize: int
 
 @typing.type_check_only
-class InlineScopedRouteConfigs(typing_extensions.TypedDict, total=False):
+class InlineScopedRouteConfigs(typing.TypedDict, total=False):
     lastUpdated: str
     name: str
     scopedRouteConfigs: _list[dict[str, typing.Any]]
 
 @typing.type_check_only
-class ListMatcher(typing_extensions.TypedDict, total=False):
+class ListMatcher(typing.TypedDict, total=False):
     oneOf: ValueMatcher
 
 @typing.type_check_only
-class ListenersConfigDump(typing_extensions.TypedDict, total=False):
+class ListenersConfigDump(typing.TypedDict, total=False):
     dynamicListeners: _list[DynamicListener]
     staticListeners: _list[StaticListener]
     versionInfo: str
 
 @typing.type_check_only
-class Locality(typing_extensions.TypedDict, total=False):
+class Locality(typing.TypedDict, total=False):
     region: str
     subZone: str
     zone: str
 
 @typing.type_check_only
-class Node(typing_extensions.TypedDict, total=False):
+class Node(typing.TypedDict, total=False):
     buildVersion: str
     clientFeatures: _list[str]
     cluster: str
@@ -126,77 +124,77 @@ class Node(typing_extensions.TypedDict, total=False):
     userAgentVersion: str
 
 @typing.type_check_only
-class NodeMatcher(typing_extensions.TypedDict, total=False):
+class NodeMatcher(typing.TypedDict, total=False):
     nodeId: StringMatcher
     nodeMetadatas: _list[StructMatcher]
 
 @typing.type_check_only
-class NullMatch(typing_extensions.TypedDict, total=False): ...
+class NullMatch(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class PathSegment(typing_extensions.TypedDict, total=False):
+class PathSegment(typing.TypedDict, total=False):
     key: str
 
 @typing.type_check_only
-class PerXdsConfig(typing_extensions.TypedDict, total=False):
+class PerXdsConfig(typing.TypedDict, total=False):
     clusterConfig: ClustersConfigDump
     listenerConfig: ListenersConfigDump
     routeConfig: RoutesConfigDump
     scopedRouteConfig: ScopedRoutesConfigDump
-    status: typing_extensions.Literal["UNKNOWN", "SYNCED", "NOT_SENT", "STALE", "ERROR"]
+    status: typing.Literal["UNKNOWN", "SYNCED", "NOT_SENT", "STALE", "ERROR"]
 
 @typing.type_check_only
-class Pipe(typing_extensions.TypedDict, total=False):
+class Pipe(typing.TypedDict, total=False):
     mode: int
     path: str
 
 @typing.type_check_only
-class RegexMatcher(typing_extensions.TypedDict, total=False):
+class RegexMatcher(typing.TypedDict, total=False):
     googleRe2: GoogleRE2
     regex: str
 
 @typing.type_check_only
-class RoutesConfigDump(typing_extensions.TypedDict, total=False):
+class RoutesConfigDump(typing.TypedDict, total=False):
     dynamicRouteConfigs: _list[DynamicRouteConfig]
     staticRouteConfigs: _list[StaticRouteConfig]
 
 @typing.type_check_only
-class ScopedRoutesConfigDump(typing_extensions.TypedDict, total=False):
+class ScopedRoutesConfigDump(typing.TypedDict, total=False):
     dynamicScopedRouteConfigs: _list[DynamicScopedRouteConfigs]
     inlineScopedRouteConfigs: _list[InlineScopedRouteConfigs]
 
 @typing.type_check_only
-class SemanticVersion(typing_extensions.TypedDict, total=False):
+class SemanticVersion(typing.TypedDict, total=False):
     majorNumber: int
     minorNumber: int
     patch: int
 
 @typing.type_check_only
-class SocketAddress(typing_extensions.TypedDict, total=False):
+class SocketAddress(typing.TypedDict, total=False):
     address: str
     ipv4Compat: bool
     namedPort: str
     portValue: int
-    protocol: typing_extensions.Literal["TCP", "UDP"]
+    protocol: typing.Literal["TCP", "UDP"]
     resolverName: str
 
 @typing.type_check_only
-class StaticCluster(typing_extensions.TypedDict, total=False):
+class StaticCluster(typing.TypedDict, total=False):
     cluster: dict[str, typing.Any]
     lastUpdated: str
 
 @typing.type_check_only
-class StaticListener(typing_extensions.TypedDict, total=False):
+class StaticListener(typing.TypedDict, total=False):
     lastUpdated: str
     listener: dict[str, typing.Any]
 
 @typing.type_check_only
-class StaticRouteConfig(typing_extensions.TypedDict, total=False):
+class StaticRouteConfig(typing.TypedDict, total=False):
     lastUpdated: str
     routeConfig: dict[str, typing.Any]
 
 @typing.type_check_only
-class StringMatcher(typing_extensions.TypedDict, total=False):
+class StringMatcher(typing.TypedDict, total=False):
     exact: str
     ignoreCase: bool
     prefix: str
@@ -205,18 +203,18 @@ class StringMatcher(typing_extensions.TypedDict, total=False):
     suffix: str
 
 @typing.type_check_only
-class StructMatcher(typing_extensions.TypedDict, total=False):
+class StructMatcher(typing.TypedDict, total=False):
     path: _list[PathSegment]
     value: ValueMatcher
 
 @typing.type_check_only
-class UpdateFailureState(typing_extensions.TypedDict, total=False):
+class UpdateFailureState(typing.TypedDict, total=False):
     details: str
     failedConfiguration: dict[str, typing.Any]
     lastUpdateAttempt: str
 
 @typing.type_check_only
-class ValueMatcher(typing_extensions.TypedDict, total=False):
+class ValueMatcher(typing.TypedDict, total=False):
     boolMatch: bool
     doubleMatch: DoubleMatcher
     listMatch: ListMatcher

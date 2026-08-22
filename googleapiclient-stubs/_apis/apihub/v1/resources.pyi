@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -143,7 +142,7 @@ class APIHubResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             name: str,
-                            specContentType: typing_extensions.Literal[
+                            specContentType: typing.Literal[
                                 "SPEC_CONTENT_TYPE_UNSPECIFIED",
                                 "BOOSTED_SPEC_CONTENT",
                                 "GATEWAY_OPEN_API_SPEC",
@@ -749,6 +748,16 @@ class APIHubResource(googleapiclient.discovery.Resource):
                     | None
                 ): ...
 
+            @typing.type_check_only
+            class ServersResource(googleapiclient.discovery.Resource):
+                def configureAndDeployServer(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleCloudApihubV1ConfigureAndDeployServerRequest,
+                    **kwargs: typing.Any,
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+
             def collectApiData(
                 self,
                 *,
@@ -786,7 +795,7 @@ class APIHubResource(googleapiclient.discovery.Resource):
                 filter: str | None = ...,
                 pageSize: int | None = ...,
                 pageToken: str | None = ...,
-                view: typing_extensions.Literal[
+                view: typing.Literal[
                     "API_VIEW_TYPE_UNSPECIFIED", "MCP_SERVER", "MCP_TOOL"
                 ]
                 | None = ...,
@@ -826,6 +835,7 @@ class APIHubResource(googleapiclient.discovery.Resource):
             def runtimeProjectAttachments(
                 self,
             ) -> RuntimeProjectAttachmentsResource: ...
+            def servers(self) -> ServersResource: ...
 
         def locations(self) -> LocationsResource: ...
 

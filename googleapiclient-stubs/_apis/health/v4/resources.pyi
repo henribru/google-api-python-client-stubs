@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -88,6 +87,23 @@ class GoogleHealthAPIResource(googleapiclient.discovery.Resource):
             def subscriptions(self) -> SubscriptionsResource: ...
 
         def subscribers(self) -> SubscribersResource: ...
+
+    @typing.type_check_only
+    class ShlResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class MResource(googleapiclient.discovery.Resource):
+            def getShlManifest(
+                self, *, externalShlId: str, body: ManifestParams, **kwargs: typing.Any
+            ) -> HttpBodyHttpRequest: ...
+
+        @typing.type_check_only
+        class RResource(googleapiclient.discovery.Resource):
+            def get(
+                self, *, externalShlId: str, resourceToken: str, **kwargs: typing.Any
+            ) -> HttpBodyHttpRequest: ...
+
+        def m(self) -> MResource: ...
+        def r(self) -> RResource: ...
 
     @typing.type_check_only
     class UsersResource(googleapiclient.discovery.Resource):
@@ -239,6 +255,7 @@ class GoogleHealthAPIResource(googleapiclient.discovery.Resource):
         | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def projects(self) -> ProjectsResource: ...
+    def shl(self) -> ShlResource: ...
     def users(self) -> UsersResource: ...
 
 @typing.type_check_only
@@ -272,6 +289,14 @@ class ExportExerciseTcxResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ExportExerciseTcxResponse: ...
+
+@typing.type_check_only
+class HttpBodyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> HttpBody: ...
 
 @typing.type_check_only
 class IdentityHttpRequest(googleapiclient.http.HttpRequest):

@@ -1,26 +1,24 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class AllConnectionStrings(typing_extensions.TypedDict, total=False):
+class AllConnectionStrings(typing.TypedDict, total=False):
     high: str
     low: str
     medium: str
 
 @typing.type_check_only
-class AmazonS3IcebergStorage(typing_extensions.TypedDict, total=False):
+class AmazonS3IcebergStorage(typing.TypedDict, total=False):
     accessKeyId: str
     bucket: str
     endpoint: str
     region: str
-    schemeType: typing_extensions.Literal["SCHEME_TYPE_UNSPECIFIED", "S3", "S3A"]
+    schemeType: typing.Literal["SCHEME_TYPE_UNSPECIFIED", "S3", "S3A"]
     secretAccessKeySecret: str
 
 @typing.type_check_only
-class AutonomousDatabase(typing_extensions.TypedDict, total=False):
+class AutonomousDatabase(typing.TypedDict, total=False):
     adminPassword: str
     adminPasswordSecretVersion: str
     cidr: str
@@ -39,12 +37,12 @@ class AutonomousDatabase(typing_extensions.TypedDict, total=False):
     sourceConfig: SourceConfig
 
 @typing.type_check_only
-class AutonomousDatabaseApex(typing_extensions.TypedDict, total=False):
+class AutonomousDatabaseApex(typing.TypedDict, total=False):
     apexVersion: str
     ordsVersion: str
 
 @typing.type_check_only
-class AutonomousDatabaseBackup(typing_extensions.TypedDict, total=False):
+class AutonomousDatabaseBackup(typing.TypedDict, total=False):
     autonomousDatabase: str
     displayName: str
     labels: dict[str, typing.Any]
@@ -52,7 +50,7 @@ class AutonomousDatabaseBackup(typing_extensions.TypedDict, total=False):
     properties: AutonomousDatabaseBackupProperties
 
 @typing.type_check_only
-class AutonomousDatabaseBackupProperties(typing_extensions.TypedDict, total=False):
+class AutonomousDatabaseBackupProperties(typing.TypedDict, total=False):
     availableTillTime: str
     compartmentId: str
     databaseSizeTb: float
@@ -66,7 +64,7 @@ class AutonomousDatabaseBackupProperties(typing_extensions.TypedDict, total=Fals
     kmsKeyId: str
     kmsKeyVersionId: str
     lifecycleDetails: str
-    lifecycleState: typing_extensions.Literal[
+    lifecycleState: typing.Literal[
         "STATE_UNSPECIFIED",
         "CREATING",
         "ACTIVE",
@@ -79,21 +77,19 @@ class AutonomousDatabaseBackupProperties(typing_extensions.TypedDict, total=Fals
     retentionPeriodDays: int
     sizeTb: float
     startTime: str
-    type: typing_extensions.Literal[
-        "TYPE_UNSPECIFIED", "INCREMENTAL", "FULL", "LONG_TERM"
-    ]
+    type: typing.Literal["TYPE_UNSPECIFIED", "INCREMENTAL", "FULL", "LONG_TERM"]
     vaultId: str
 
 @typing.type_check_only
-class AutonomousDatabaseCharacterSet(typing_extensions.TypedDict, total=False):
+class AutonomousDatabaseCharacterSet(typing.TypedDict, total=False):
     characterSet: str
-    characterSetType: typing_extensions.Literal[
+    characterSetType: typing.Literal[
         "CHARACTER_SET_TYPE_UNSPECIFIED", "DATABASE", "NATIONAL"
     ]
     name: str
 
 @typing.type_check_only
-class AutonomousDatabaseConnectionStrings(typing_extensions.TypedDict, total=False):
+class AutonomousDatabaseConnectionStrings(typing.TypedDict, total=False):
     allConnectionStrings: AllConnectionStrings
     dedicated: str
     high: str
@@ -102,7 +98,7 @@ class AutonomousDatabaseConnectionStrings(typing_extensions.TypedDict, total=Fal
     profiles: _list[DatabaseConnectionStringProfile]
 
 @typing.type_check_only
-class AutonomousDatabaseConnectionUrls(typing_extensions.TypedDict, total=False):
+class AutonomousDatabaseConnectionUrls(typing.TypedDict, total=False):
     apexUri: str
     databaseTransformsUri: str
     graphStudioUri: str
@@ -113,7 +109,7 @@ class AutonomousDatabaseConnectionUrls(typing_extensions.TypedDict, total=False)
     sqlDevWebUri: str
 
 @typing.type_check_only
-class AutonomousDatabaseProperties(typing_extensions.TypedDict, total=False):
+class AutonomousDatabaseProperties(typing.TypedDict, total=False):
     actualUsedDataStorageSizeTb: float
     allocatedStorageSizeTb: float
     allowlistedIps: _list[str]
@@ -129,7 +125,7 @@ class AutonomousDatabaseProperties(typing_extensions.TypedDict, total=False):
     cpuCoreCount: int
     customerContacts: _list[CustomerContact]
     dataGuardRoleChangedTime: str
-    dataSafeState: typing_extensions.Literal[
+    dataSafeState: typing.Literal[
         "DATA_SAFE_STATE_UNSPECIFIED",
         "REGISTERING",
         "REGISTERED",
@@ -139,7 +135,7 @@ class AutonomousDatabaseProperties(typing_extensions.TypedDict, total=False):
     ]
     dataStorageSizeGb: int
     dataStorageSizeTb: int
-    databaseManagementState: typing_extensions.Literal[
+    databaseManagementState: typing.Literal[
         "DATABASE_MANAGEMENT_STATE_UNSPECIFIED",
         "ENABLING",
         "ENABLED",
@@ -148,13 +144,11 @@ class AutonomousDatabaseProperties(typing_extensions.TypedDict, total=False):
         "FAILED_ENABLING",
         "FAILED_DISABLING",
     ]
-    dbEdition: typing_extensions.Literal[
+    dbEdition: typing.Literal[
         "DATABASE_EDITION_UNSPECIFIED", "STANDARD_EDITION", "ENTERPRISE_EDITION"
     ]
     dbVersion: str
-    dbWorkload: typing_extensions.Literal[
-        "DB_WORKLOAD_UNSPECIFIED", "OLTP", "DW", "AJD", "APEX"
-    ]
+    dbWorkload: typing.Literal["DB_WORKLOAD_UNSPECIFIED", "OLTP", "DW", "AJD", "APEX"]
     disasterRecoveryRoleChangedTime: str
     encryptionKey: EncryptionKey
     encryptionKeyHistoryEntries: _list[EncryptionKeyHistoryEntry]
@@ -162,14 +156,14 @@ class AutonomousDatabaseProperties(typing_extensions.TypedDict, total=False):
     isAutoScalingEnabled: bool
     isLocalDataGuardEnabled: bool
     isStorageAutoScalingEnabled: bool
-    licenseType: typing_extensions.Literal[
+    licenseType: typing.Literal[
         "LICENSE_TYPE_UNSPECIFIED", "LICENSE_INCLUDED", "BRING_YOUR_OWN_LICENSE"
     ]
     lifecycleDetails: str
     localAdgAutoFailoverMaxDataLossLimit: int
     localAdgAutoFailoverMaxDataLossLimitDuration: int
     localDataGuardEnabled: bool
-    localDisasterRecoveryType: typing_extensions.Literal[
+    localDisasterRecoveryType: typing.Literal[
         "LOCAL_DISASTER_RECOVERY_TYPE_UNSPECIFIED",
         "ADG",
         "BACKUP_BASED",
@@ -178,7 +172,7 @@ class AutonomousDatabaseProperties(typing_extensions.TypedDict, total=False):
     localStandbyDb: AutonomousDatabaseStandbySummary
     maintenanceBeginTime: str
     maintenanceEndTime: str
-    maintenanceScheduleType: typing_extensions.Literal[
+    maintenanceScheduleType: typing.Literal[
         "MAINTENANCE_SCHEDULE_TYPE_UNSPECIFIED", "EARLY", "REGULAR"
     ]
     memoryPerOracleComputeUnitGbs: int
@@ -188,10 +182,8 @@ class AutonomousDatabaseProperties(typing_extensions.TypedDict, total=False):
     nextLongTermBackupTime: str
     ociUrl: str
     ocid: str
-    openMode: typing_extensions.Literal[
-        "OPEN_MODE_UNSPECIFIED", "READ_ONLY", "READ_WRITE"
-    ]
-    operationsInsightsState: typing_extensions.Literal[
+    openMode: typing.Literal["OPEN_MODE_UNSPECIFIED", "READ_ONLY", "READ_WRITE"]
+    operationsInsightsState: typing.Literal[
         "OPERATIONS_INSIGHTS_STATE_UNSPECIFIED",
         "ENABLING",
         "ENABLED",
@@ -201,20 +193,20 @@ class AutonomousDatabaseProperties(typing_extensions.TypedDict, total=False):
         "FAILED_DISABLING",
     ]
     peerDbIds: _list[str]
-    permissionLevel: typing_extensions.Literal[
+    permissionLevel: typing.Literal[
         "PERMISSION_LEVEL_UNSPECIFIED", "RESTRICTED", "UNRESTRICTED"
     ]
     privateEndpoint: str
     privateEndpointIp: str
     privateEndpointLabel: str
     refreshableClone: bool
-    refreshableMode: typing_extensions.Literal[
+    refreshableMode: typing.Literal[
         "REFRESHABLE_MODE_UNSPECIFIED", "AUTOMATIC", "MANUAL"
     ]
-    refreshableState: typing_extensions.Literal[
+    refreshableState: typing.Literal[
         "REFRESHABLE_STATE_UNSPECIFIED", "REFRESHING", "NOT_REFRESHING"
     ]
-    role: typing_extensions.Literal[
+    role: typing.Literal[
         "ROLE_UNSPECIFIED",
         "PRIMARY",
         "STANDBY",
@@ -226,7 +218,7 @@ class AutonomousDatabaseProperties(typing_extensions.TypedDict, total=False):
     secretId: str
     serviceAgentEmail: str
     sqlWebDeveloperUrl: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "PROVISIONING",
         "AVAILABLE",
@@ -256,21 +248,21 @@ class AutonomousDatabaseProperties(typing_extensions.TypedDict, total=False):
     vaultId: str
 
 @typing.type_check_only
-class AutonomousDatabaseRefreshableClone(typing_extensions.TypedDict, total=False):
+class AutonomousDatabaseRefreshableClone(typing.TypedDict, total=False):
     name: str
     region: str
 
 @typing.type_check_only
-class AutonomousDatabaseRefreshableClones(typing_extensions.TypedDict, total=False):
+class AutonomousDatabaseRefreshableClones(typing.TypedDict, total=False):
     autonomousDatabaseRefreshableClones: _list[AutonomousDatabaseRefreshableClone]
 
 @typing.type_check_only
-class AutonomousDatabaseStandbySummary(typing_extensions.TypedDict, total=False):
+class AutonomousDatabaseStandbySummary(typing.TypedDict, total=False):
     dataGuardRoleChangedTime: str
     disasterRecoveryRoleChangedTime: str
     lagTimeDuration: str
     lifecycleDetails: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "PROVISIONING",
         "AVAILABLE",
@@ -296,24 +288,22 @@ class AutonomousDatabaseStandbySummary(typing_extensions.TypedDict, total=False)
     ]
 
 @typing.type_check_only
-class AutonomousDbVersion(typing_extensions.TypedDict, total=False):
-    dbWorkload: typing_extensions.Literal[
-        "DB_WORKLOAD_UNSPECIFIED", "OLTP", "DW", "AJD", "APEX"
-    ]
+class AutonomousDbVersion(typing.TypedDict, total=False):
+    dbWorkload: typing.Literal["DB_WORKLOAD_UNSPECIFIED", "OLTP", "DW", "AJD", "APEX"]
     name: str
     version: str
     workloadUri: str
 
 @typing.type_check_only
-class AzureDataLakeStorageIcebergStorage(typing_extensions.TypedDict, total=False):
+class AzureDataLakeStorageIcebergStorage(typing.TypedDict, total=False):
     accountKeySecret: str
     azureAccount: str
     container: str
     endpoint: str
 
 @typing.type_check_only
-class BackupDestinationDetails(typing_extensions.TypedDict, total=False):
-    type: typing_extensions.Literal[
+class BackupDestinationDetails(typing.TypedDict, total=False):
+    type: typing.Literal[
         "BACKUP_DESTINATION_TYPE_UNSPECIFIED",
         "NFS",
         "RECOVERY_APPLIANCE",
@@ -323,17 +313,17 @@ class BackupDestinationDetails(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
+class CancelOperationRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class CloudAccountDetails(typing_extensions.TypedDict, total=False):
+class CloudAccountDetails(typing.TypedDict, total=False):
     accountCreationUri: str
     cloudAccount: str
     cloudAccountHomeRegion: str
     linkExistingAccountUri: str
 
 @typing.type_check_only
-class CloudExadataInfrastructure(typing_extensions.TypedDict, total=False):
+class CloudExadataInfrastructure(typing.TypedDict, total=False):
     createTime: str
     displayName: str
     entitlementId: str
@@ -343,12 +333,12 @@ class CloudExadataInfrastructure(typing_extensions.TypedDict, total=False):
     properties: CloudExadataInfrastructureProperties
 
 @typing.type_check_only
-class CloudExadataInfrastructureProperties(typing_extensions.TypedDict, total=False):
+class CloudExadataInfrastructureProperties(typing.TypedDict, total=False):
     activatedStorageCount: int
     additionalStorageCount: int
     availableStorageSizeGb: int
     computeCount: int
-    computeModel: typing_extensions.Literal[
+    computeModel: typing.Literal[
         "COMPUTE_MODEL_UNSPECIFIED", "COMPUTE_MODEL_ECPU", "COMPUTE_MODEL_OCPU"
     ]
     cpuCount: int
@@ -372,7 +362,7 @@ class CloudExadataInfrastructureProperties(typing_extensions.TypedDict, total=Fa
     ociUrl: str
     ocid: str
     shape: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "PROVISIONING",
         "AVAILABLE",
@@ -388,7 +378,7 @@ class CloudExadataInfrastructureProperties(typing_extensions.TypedDict, total=Fa
     totalStorageSizeGb: int
 
 @typing.type_check_only
-class CloudVmCluster(typing_extensions.TypedDict, total=False):
+class CloudVmCluster(typing.TypedDict, total=False):
     backupOdbSubnet: str
     backupSubnetCidr: str
     cidr: str
@@ -406,10 +396,10 @@ class CloudVmCluster(typing_extensions.TypedDict, total=False):
     properties: CloudVmClusterProperties
 
 @typing.type_check_only
-class CloudVmClusterProperties(typing_extensions.TypedDict, total=False):
+class CloudVmClusterProperties(typing.TypedDict, total=False):
     clusterName: str
     compartmentId: str
-    computeModel: typing_extensions.Literal[
+    computeModel: typing.Literal[
         "COMPUTE_MODEL_UNSPECIFIED", "COMPUTE_MODEL_ECPU", "COMPUTE_MODEL_OCPU"
     ]
     cpuCoreCount: int
@@ -417,15 +407,13 @@ class CloudVmClusterProperties(typing_extensions.TypedDict, total=False):
     dbNodeStorageSizeGb: int
     dbServerOcids: _list[str]
     diagnosticsDataCollectionOptions: DataCollectionOptions
-    diskRedundancy: typing_extensions.Literal[
-        "DISK_REDUNDANCY_UNSPECIFIED", "HIGH", "NORMAL"
-    ]
+    diskRedundancy: typing.Literal["DISK_REDUNDANCY_UNSPECIFIED", "HIGH", "NORMAL"]
     dnsListenerIp: str
     domain: str
     giVersion: str
     hostname: str
     hostnamePrefix: str
-    licenseType: typing_extensions.Literal[
+    licenseType: typing.Literal[
         "LICENSE_TYPE_UNSPECIFIED", "LICENSE_INCLUDED", "BRING_YOUR_OWN_LICENSE"
     ]
     localBackupEnabled: bool
@@ -442,7 +430,7 @@ class CloudVmClusterProperties(typing_extensions.TypedDict, total=False):
     shape: str
     sparseDiskgroupEnabled: bool
     sshPublicKeys: _list[str]
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "PROVISIONING",
         "AVAILABLE",
@@ -452,43 +440,52 @@ class CloudVmClusterProperties(typing_extensions.TypedDict, total=False):
         "FAILED",
         "MAINTENANCE_IN_PROGRESS",
     ]
-    storageManagementType: typing_extensions.Literal[
+    storageManagementType: typing.Literal[
         "STORAGE_MANAGEMENT_TYPE_UNSPECIFIED", "ASM", "EXASCALE"
     ]
     storageSizeGb: int
     systemVersion: str
     timeZone: TimeZone
+    vmBackupStorageType: typing.Literal[
+        "VM_BACKUP_STORAGE_TYPE_UNSPECIFIED",
+        "VM_BACKUP_STORAGE_TYPE_LOCAL",
+        "VM_BACKUP_STORAGE_TYPE_EXASCALE",
+    ]
+    vmFileSystemStorageType: typing.Literal[
+        "VM_FILE_SYSTEM_STORAGE_TYPE_UNSPECIFIED",
+        "VM_FILE_SYSTEM_STORAGE_TYPE_LOCAL",
+        "VM_FILE_SYSTEM_STORAGE_TYPE_EXASCALE",
+    ]
 
 @typing.type_check_only
-class ConfigureExascaleCloudExadataInfrastructureRequest(
-    typing_extensions.TypedDict, total=False
-):
+class ConfigureExascaleCloudExadataInfrastructureRequest(typing.TypedDict, total=False):
     requestId: str
     totalStorageSizeGb: int
+    totalVmStorageSizeGb: int
 
 @typing.type_check_only
-class CustomerContact(typing_extensions.TypedDict, total=False):
+class CustomerContact(typing.TypedDict, total=False):
     email: str
 
 @typing.type_check_only
-class DataCollectionOptions(typing_extensions.TypedDict, total=False):
+class DataCollectionOptions(typing.TypedDict, total=False):
     diagnosticsEventsEnabled: bool
     healthMonitoringEnabled: bool
     incidentLogsEnabled: bool
 
 @typing.type_check_only
-class DataCollectionOptionsCommon(typing_extensions.TypedDict, total=False):
+class DataCollectionOptionsCommon(typing.TypedDict, total=False):
     isDiagnosticsEventsEnabled: bool
     isHealthMonitoringEnabled: bool
     isIncidentLogsEnabled: bool
 
 @typing.type_check_only
-class DataCollectionOptionsDbSystem(typing_extensions.TypedDict, total=False):
+class DataCollectionOptionsDbSystem(typing.TypedDict, total=False):
     isDiagnosticsEventsEnabled: bool
     isIncidentLogsEnabled: bool
 
 @typing.type_check_only
-class Database(typing_extensions.TypedDict, total=False):
+class Database(typing.TypedDict, total=False):
     adminPassword: str
     adminPasswordSecretVersion: str
     characterSet: str
@@ -501,7 +498,7 @@ class Database(typing_extensions.TypedDict, total=False):
     name: str
     ncharacterSet: str
     ociUrl: str
-    opsInsightsStatus: typing_extensions.Literal[
+    opsInsightsStatus: typing.Literal[
         "OPERATIONS_INSIGHTS_STATUS_UNSPECIFIED",
         "ENABLING",
         "ENABLED",
@@ -517,36 +514,34 @@ class Database(typing_extensions.TypedDict, total=False):
     tdeWalletPasswordSecretVersion: str
 
 @typing.type_check_only
-class DatabaseCharacterSet(typing_extensions.TypedDict, total=False):
+class DatabaseCharacterSet(typing.TypedDict, total=False):
     characterSet: str
-    characterSetType: typing_extensions.Literal[
+    characterSetType: typing.Literal[
         "CHARACTER_SET_TYPE_UNSPECIFIED", "DATABASE", "NATIONAL"
     ]
     name: str
 
 @typing.type_check_only
-class DatabaseConnectionStringProfile(typing_extensions.TypedDict, total=False):
-    consumerGroup: typing_extensions.Literal[
+class DatabaseConnectionStringProfile(typing.TypedDict, total=False):
+    consumerGroup: typing.Literal[
         "CONSUMER_GROUP_UNSPECIFIED", "HIGH", "MEDIUM", "LOW", "TP", "TPURGENT"
     ]
     displayName: str
-    hostFormat: typing_extensions.Literal["HOST_FORMAT_UNSPECIFIED", "FQDN", "IP"]
+    hostFormat: typing.Literal["HOST_FORMAT_UNSPECIFIED", "FQDN", "IP"]
     isRegional: bool
-    protocol: typing_extensions.Literal["PROTOCOL_UNSPECIFIED", "TCP", "TCPS"]
-    sessionMode: typing_extensions.Literal[
-        "SESSION_MODE_UNSPECIFIED", "DIRECT", "INDIRECT"
-    ]
-    syntaxFormat: typing_extensions.Literal[
+    protocol: typing.Literal["PROTOCOL_UNSPECIFIED", "TCP", "TCPS"]
+    sessionMode: typing.Literal["SESSION_MODE_UNSPECIFIED", "DIRECT", "INDIRECT"]
+    syntaxFormat: typing.Literal[
         "SYNTAX_FORMAT_UNSPECIFIED", "LONG", "EZCONNECT", "EZCONNECTPLUS"
     ]
-    tlsAuthentication: typing_extensions.Literal[
+    tlsAuthentication: typing.Literal[
         "TLS_AUTHENTICATION_UNSPECIFIED", "SERVER", "MUTUAL"
     ]
     value: str
 
 @typing.type_check_only
-class DatabaseManagementConfig(typing_extensions.TypedDict, total=False):
-    managementState: typing_extensions.Literal[
+class DatabaseManagementConfig(typing.TypedDict, total=False):
+    managementState: typing.Literal[
         "MANAGEMENT_STATE_UNSPECIFIED",
         "ENABLING",
         "ENABLED",
@@ -557,16 +552,14 @@ class DatabaseManagementConfig(typing_extensions.TypedDict, total=False):
         "FAILED_DISABLING",
         "FAILED_UPDATING",
     ]
-    managementType: typing_extensions.Literal[
-        "MANAGEMENT_TYPE_UNSPECIFIED", "BASIC", "ADVANCED"
-    ]
+    managementType: typing.Literal["MANAGEMENT_TYPE_UNSPECIFIED", "BASIC", "ADVANCED"]
 
 @typing.type_check_only
-class DatabaseProperties(typing_extensions.TypedDict, total=False):
+class DatabaseProperties(typing.TypedDict, total=False):
     databaseManagementConfig: DatabaseManagementConfig
     dbBackupConfig: DbBackupConfig
     dbVersion: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "DATABASE_LIFECYCLE_STATE_UNSPECIFIED",
         "PROVISIONING",
         "AVAILABLE",
@@ -581,9 +574,9 @@ class DatabaseProperties(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class DbBackupConfig(typing_extensions.TypedDict, total=False):
+class DbBackupConfig(typing.TypedDict, total=False):
     autoBackupEnabled: bool
-    autoFullBackupDay: typing_extensions.Literal[
+    autoFullBackupDay: typing.Literal[
         "DAY_OF_WEEK_UNSPECIFIED",
         "MONDAY",
         "TUESDAY",
@@ -593,7 +586,7 @@ class DbBackupConfig(typing_extensions.TypedDict, total=False):
         "SATURDAY",
         "SUNDAY",
     ]
-    autoFullBackupWindow: typing_extensions.Literal[
+    autoFullBackupWindow: typing.Literal[
         "BACKUP_WINDOW_UNSPECIFIED",
         "SLOT_ONE",
         "SLOT_TWO",
@@ -608,7 +601,7 @@ class DbBackupConfig(typing_extensions.TypedDict, total=False):
         "SLOT_ELEVEN",
         "SLOT_TWELVE",
     ]
-    autoIncrementalBackupWindow: typing_extensions.Literal[
+    autoIncrementalBackupWindow: typing.Literal[
         "BACKUP_WINDOW_UNSPECIFIED",
         "SLOT_ONE",
         "SLOT_TWO",
@@ -623,7 +616,7 @@ class DbBackupConfig(typing_extensions.TypedDict, total=False):
         "SLOT_ELEVEN",
         "SLOT_TWELVE",
     ]
-    backupDeletionPolicy: typing_extensions.Literal[
+    backupDeletionPolicy: typing.Literal[
         "BACKUP_DELETION_POLICY_UNSPECIFIED",
         "DELETE_IMMEDIATELY",
         "DELETE_AFTER_RETENTION_PERIOD",
@@ -632,19 +625,19 @@ class DbBackupConfig(typing_extensions.TypedDict, total=False):
     retentionPeriodDays: int
 
 @typing.type_check_only
-class DbHome(typing_extensions.TypedDict, total=False):
+class DbHome(typing.TypedDict, total=False):
     database: Database
     dbVersion: str
     displayName: str
     isUnifiedAuditingEnabled: bool
 
 @typing.type_check_only
-class DbNode(typing_extensions.TypedDict, total=False):
+class DbNode(typing.TypedDict, total=False):
     name: str
     properties: DbNodeProperties
 
 @typing.type_check_only
-class DbNodeProperties(typing_extensions.TypedDict, total=False):
+class DbNodeProperties(typing.TypedDict, total=False):
     createTime: str
     dbNodeStorageSizeGb: int
     dbServerOcid: str
@@ -652,7 +645,7 @@ class DbNodeProperties(typing_extensions.TypedDict, total=False):
     memorySizeGb: int
     ocid: str
     ocpuCount: int
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "PROVISIONING",
         "AVAILABLE",
@@ -667,13 +660,13 @@ class DbNodeProperties(typing_extensions.TypedDict, total=False):
     totalCpuCoreCount: int
 
 @typing.type_check_only
-class DbServer(typing_extensions.TypedDict, total=False):
+class DbServer(typing.TypedDict, total=False):
     displayName: str
     name: str
     properties: DbServerProperties
 
 @typing.type_check_only
-class DbServerProperties(typing_extensions.TypedDict, total=False):
+class DbServerProperties(typing.TypedDict, total=False):
     dbNodeIds: _list[str]
     dbNodeStorageSizeGb: int
     maxDbNodeStorageSizeGb: int
@@ -682,7 +675,7 @@ class DbServerProperties(typing_extensions.TypedDict, total=False):
     memorySizeGb: int
     ocid: str
     ocpuCount: int
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "CREATING",
         "AVAILABLE",
@@ -693,7 +686,7 @@ class DbServerProperties(typing_extensions.TypedDict, total=False):
     vmCount: int
 
 @typing.type_check_only
-class DbSystem(typing_extensions.TypedDict, total=False):
+class DbSystem(typing.TypedDict, total=False):
     createTime: str
     displayName: str
     entitlementId: str
@@ -706,32 +699,28 @@ class DbSystem(typing_extensions.TypedDict, total=False):
     properties: DbSystemProperties
 
 @typing.type_check_only
-class DbSystemInitialStorageSize(typing_extensions.TypedDict, total=False):
+class DbSystemInitialStorageSize(typing.TypedDict, total=False):
     name: str
     properties: DbSystemInitialStorageSizeProperties
 
 @typing.type_check_only
-class DbSystemInitialStorageSizeProperties(typing_extensions.TypedDict, total=False):
+class DbSystemInitialStorageSizeProperties(typing.TypedDict, total=False):
     launchFromBackupStorageSizeDetails: _list[StorageSizeDetails]
-    shapeType: typing_extensions.Literal["SHAPE_TYPE_UNSPECIFIED", "STANDARD_X86"]
-    storageManagement: typing_extensions.Literal[
-        "STORAGE_MANAGEMENT_UNSPECIFIED", "ASM", "LVM"
-    ]
+    shapeType: typing.Literal["SHAPE_TYPE_UNSPECIFIED", "STANDARD_X86"]
+    storageManagement: typing.Literal["STORAGE_MANAGEMENT_UNSPECIFIED", "ASM", "LVM"]
     storageSizeDetails: _list[StorageSizeDetails]
 
 @typing.type_check_only
-class DbSystemOptions(typing_extensions.TypedDict, total=False):
-    storageManagement: typing_extensions.Literal[
-        "STORAGE_MANAGEMENT_UNSPECIFIED", "ASM", "LVM"
-    ]
+class DbSystemOptions(typing.TypedDict, total=False):
+    storageManagement: typing.Literal["STORAGE_MANAGEMENT_UNSPECIFIED", "ASM", "LVM"]
 
 @typing.type_check_only
-class DbSystemProperties(typing_extensions.TypedDict, total=False):
+class DbSystemProperties(typing.TypedDict, total=False):
     computeCount: int
-    computeModel: typing_extensions.Literal["COMPUTE_MODEL_UNSPECIFIED", "ECPU", "OCPU"]
+    computeModel: typing.Literal["COMPUTE_MODEL_UNSPECIFIED", "ECPU", "OCPU"]
     dataCollectionOptions: DataCollectionOptionsDbSystem
     dataStorageSizeGb: int
-    databaseEdition: typing_extensions.Literal[
+    databaseEdition: typing.Literal[
         "DB_SYSTEM_DATABASE_EDITION_UNSPECIFIED",
         "STANDARD_EDITION",
         "ENTERPRISE_EDITION",
@@ -743,10 +732,10 @@ class DbSystemProperties(typing_extensions.TypedDict, total=False):
     hostname: str
     hostnamePrefix: str
     initialDataStorageSizeGb: int
-    licenseModel: typing_extensions.Literal[
+    licenseModel: typing.Literal[
         "LICENSE_MODEL_UNSPECIFIED", "LICENSE_INCLUDED", "BRING_YOUR_OWN_LICENSE"
     ]
-    lifecycleState: typing_extensions.Literal[
+    lifecycleState: typing.Literal[
         "DB_SYSTEM_LIFECYCLE_STATE_UNSPECIFIED",
         "PROVISIONING",
         "AVAILABLE",
@@ -769,10 +758,12 @@ class DbSystemProperties(typing_extensions.TypedDict, total=False):
     timeZone: TimeZone
 
 @typing.type_check_only
-class DbSystemShape(typing_extensions.TypedDict, total=False):
+class DbSystemShape(typing.TypedDict, total=False):
+    availableCoreCount: int
     availableCoreCountPerNode: int
     availableDataStorageTb: int
     availableMemoryPerNodeGb: int
+    coreCountIncrement: int
     maxNodeCount: int
     maxStorageCount: int
     minCoreCountPerNode: int
@@ -780,16 +771,17 @@ class DbSystemShape(typing_extensions.TypedDict, total=False):
     minMemoryPerNodeGb: int
     minNodeCount: int
     minStorageCount: int
+    minimumCoreCount: int
     name: str
     shape: str
 
 @typing.type_check_only
-class DbVersion(typing_extensions.TypedDict, total=False):
+class DbVersion(typing.TypedDict, total=False):
     name: str
     properties: DbVersionProperties
 
 @typing.type_check_only
-class DbVersionProperties(typing_extensions.TypedDict, total=False):
+class DbVersionProperties(typing.TypedDict, total=False):
     isLatestForMajorVersion: bool
     isPreviewDbVersion: bool
     isUpgradeSupported: bool
@@ -797,41 +789,39 @@ class DbVersionProperties(typing_extensions.TypedDict, total=False):
     version: str
 
 @typing.type_check_only
-class DefinedTagValue(typing_extensions.TypedDict, total=False):
+class DefinedTagValue(typing.TypedDict, total=False):
     tags: dict[str, typing.Any]
 
 @typing.type_check_only
-class DeploymentDiagnosticData(typing_extensions.TypedDict, total=False):
+class DeploymentDiagnosticData(typing.TypedDict, total=False):
     bucket: str
     diagnosticEndTime: str
     diagnosticStartTime: str
-    diagnosticState: typing_extensions.Literal[
+    diagnosticState: typing.Literal[
         "DIAGNOSTIC_STATE_UNSPECIFIED", "IN_PROGRESS", "SUCCEEDED", "FAILED"
     ]
     namespace: str
     object: str
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class EncryptionKey(typing_extensions.TypedDict, total=False):
+class EncryptionKey(typing.TypedDict, total=False):
     kmsKey: str
-    provider: typing_extensions.Literal[
-        "PROVIDER_UNSPECIFIED", "GOOGLE_MANAGED", "ORACLE_MANAGED"
-    ]
+    provider: typing.Literal["PROVIDER_UNSPECIFIED", "GOOGLE_MANAGED", "ORACLE_MANAGED"]
 
 @typing.type_check_only
-class EncryptionKeyHistoryEntry(typing_extensions.TypedDict, total=False):
+class EncryptionKeyHistoryEntry(typing.TypedDict, total=False):
     activationTime: str
     encryptionKey: EncryptionKey
 
 @typing.type_check_only
-class Entitlement(typing_extensions.TypedDict, total=False):
+class Entitlement(typing.TypedDict, total=False):
     cloudAccountDetails: CloudAccountDetails
     entitlementId: str
     name: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "ACCOUNT_NOT_LINKED",
         "ACCOUNT_NOT_ACTIVE",
@@ -841,12 +831,13 @@ class Entitlement(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class ExadbVmCluster(typing_extensions.TypedDict, total=False):
+class ExadbVmCluster(typing.TypedDict, total=False):
     backupOdbSubnet: str
     createTime: str
     displayName: str
     entitlementId: str
     gcpOracleZone: str
+    identityConnector: IdentityConnector
     labels: dict[str, typing.Any]
     name: str
     odbNetwork: str
@@ -854,7 +845,7 @@ class ExadbVmCluster(typing_extensions.TypedDict, total=False):
     properties: ExadbVmClusterProperties
 
 @typing.type_check_only
-class ExadbVmClusterProperties(typing_extensions.TypedDict, total=False):
+class ExadbVmClusterProperties(typing.TypedDict, total=False):
     additionalEcpuCountPerNode: int
     clusterName: str
     dataCollectionOptions: DataCollectionOptionsCommon
@@ -864,10 +855,10 @@ class ExadbVmClusterProperties(typing_extensions.TypedDict, total=False):
     gridImageId: str
     hostname: str
     hostnamePrefix: str
-    licenseModel: typing_extensions.Literal[
+    licenseModel: typing.Literal[
         "LICENSE_MODEL_UNSPECIFIED", "LICENSE_INCLUDED", "BRING_YOUR_OWN_LICENSE"
     ]
-    lifecycleState: typing_extensions.Literal[
+    lifecycleState: typing.Literal[
         "EXADB_VM_CLUSTER_LIFECYCLE_STATE_UNSPECIFIED",
         "PROVISIONING",
         "AVAILABLE",
@@ -881,7 +872,7 @@ class ExadbVmClusterProperties(typing_extensions.TypedDict, total=False):
     nodeCount: int
     ociUri: str
     scanListenerPortTcp: int
-    shapeAttribute: typing_extensions.Literal[
+    shapeAttribute: typing.Literal[
         "SHAPE_ATTRIBUTE_UNSPECIFIED", "SMART_STORAGE", "BLOCK_STORAGE"
     ]
     sshPublicKeys: _list[str]
@@ -889,21 +880,23 @@ class ExadbVmClusterProperties(typing_extensions.TypedDict, total=False):
     vmFileSystemStorage: ExadbVmClusterStorageDetails
 
 @typing.type_check_only
-class ExadbVmClusterStorageDetails(typing_extensions.TypedDict, total=False):
+class ExadbVmClusterStorageDetails(typing.TypedDict, total=False):
     sizeInGbsPerNode: int
 
 @typing.type_check_only
-class ExascaleConfig(typing_extensions.TypedDict, total=False):
+class ExascaleConfig(typing.TypedDict, total=False):
     availableStorageSizeGb: int
+    availableVmStorageSizeGb: int
     totalStorageSizeGb: int
+    totalVmStorageSizeGb: int
 
 @typing.type_check_only
-class ExascaleDbStorageDetails(typing_extensions.TypedDict, total=False):
+class ExascaleDbStorageDetails(typing.TypedDict, total=False):
     availableSizeGbs: int
     totalSizeGbs: int
 
 @typing.type_check_only
-class ExascaleDbStorageVault(typing_extensions.TypedDict, total=False):
+class ExascaleDbStorageVault(typing.TypedDict, total=False):
     createTime: str
     displayName: str
     entitlementId: str
@@ -914,23 +907,19 @@ class ExascaleDbStorageVault(typing_extensions.TypedDict, total=False):
     properties: ExascaleDbStorageVaultProperties
 
 @typing.type_check_only
-class ExascaleDbStorageVaultProperties(typing_extensions.TypedDict, total=False):
+class ExascaleDbStorageVaultProperties(typing.TypedDict, total=False):
     additionalFlashCachePercent: int
     attachedShapeAttributes: _list[
-        typing_extensions.Literal[
-            "SHAPE_ATTRIBUTE_UNSPECIFIED", "SMART_STORAGE", "BLOCK_STORAGE"
-        ]
+        typing.Literal["SHAPE_ATTRIBUTE_UNSPECIFIED", "SMART_STORAGE", "BLOCK_STORAGE"]
     ]
     availableShapeAttributes: _list[
-        typing_extensions.Literal[
-            "SHAPE_ATTRIBUTE_UNSPECIFIED", "SMART_STORAGE", "BLOCK_STORAGE"
-        ]
+        typing.Literal["SHAPE_ATTRIBUTE_UNSPECIFIED", "SMART_STORAGE", "BLOCK_STORAGE"]
     ]
     description: str
     exascaleDbStorageDetails: ExascaleDbStorageDetails
     ociUri: str
     ocid: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "PROVISIONING",
         "AVAILABLE",
@@ -944,34 +933,30 @@ class ExascaleDbStorageVaultProperties(typing_extensions.TypedDict, total=False)
     vmClusterIds: _list[str]
 
 @typing.type_check_only
-class FailoverAutonomousDatabaseRequest(typing_extensions.TypedDict, total=False):
+class FailoverAutonomousDatabaseRequest(typing.TypedDict, total=False):
     peerAutonomousDatabase: str
 
 @typing.type_check_only
-class GenerateAutonomousDatabaseWalletRequest(typing_extensions.TypedDict, total=False):
+class GenerateAutonomousDatabaseWalletRequest(typing.TypedDict, total=False):
     isRegional: bool
     password: str
-    type: typing_extensions.Literal["GENERATE_TYPE_UNSPECIFIED", "ALL", "SINGLE"]
+    type: typing.Literal["GENERATE_TYPE_UNSPECIFIED", "ALL", "SINGLE"]
 
 @typing.type_check_only
-class GenerateAutonomousDatabaseWalletResponse(
-    typing_extensions.TypedDict, total=False
-):
+class GenerateAutonomousDatabaseWalletResponse(typing.TypedDict, total=False):
     archiveContent: str
 
 @typing.type_check_only
-class GiVersion(typing_extensions.TypedDict, total=False):
+class GiVersion(typing.TypedDict, total=False):
     name: str
     version: str
 
 @typing.type_check_only
-class GlueIcebergCatalog(typing_extensions.TypedDict, total=False):
+class GlueIcebergCatalog(typing.TypedDict, total=False):
     glueId: str
 
 @typing.type_check_only
-class GoldengateAmazonKinesisConnectionProperties(
-    typing_extensions.TypedDict, total=False
-):
+class GoldengateAmazonKinesisConnectionProperties(typing.TypedDict, total=False):
     accessKeyId: str
     awsRegion: str
     endpoint: str
@@ -979,9 +964,7 @@ class GoldengateAmazonKinesisConnectionProperties(
     technologyType: str
 
 @typing.type_check_only
-class GoldengateAmazonRedshiftConnectionProperties(
-    typing_extensions.TypedDict, total=False
-):
+class GoldengateAmazonRedshiftConnectionProperties(typing.TypedDict, total=False):
     connectionUrl: str
     password: str
     passwordSecretVersion: str
@@ -989,7 +972,7 @@ class GoldengateAmazonRedshiftConnectionProperties(
     username: str
 
 @typing.type_check_only
-class GoldengateAmazonS3ConnectionProperties(typing_extensions.TypedDict, total=False):
+class GoldengateAmazonS3ConnectionProperties(typing.TypedDict, total=False):
     accessKeyId: str
     endpoint: str
     region: str
@@ -997,12 +980,10 @@ class GoldengateAmazonS3ConnectionProperties(typing_extensions.TypedDict, total=
     technologyType: str
 
 @typing.type_check_only
-class GoldengateAzureDataLakeStorageConnectionProperties(
-    typing_extensions.TypedDict, total=False
-):
+class GoldengateAzureDataLakeStorageConnectionProperties(typing.TypedDict, total=False):
     account: str
     accountKeySecret: str
-    authenticationType: typing_extensions.Literal[
+    authenticationType: typing.Literal[
         "AUTHENTICATION_TYPE_UNSPECIFIED",
         "SHARED_KEY",
         "SHARED_ACCESS_SIGNATURE",
@@ -1018,7 +999,7 @@ class GoldengateAzureDataLakeStorageConnectionProperties(
 
 @typing.type_check_only
 class GoldengateAzureSynapseAnalyticsConnectionProperties(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     connectionString: str
     password: str
@@ -1027,18 +1008,18 @@ class GoldengateAzureSynapseAnalyticsConnectionProperties(
     username: str
 
 @typing.type_check_only
-class GoldengateBackupSchedule(typing_extensions.TypedDict, total=False):
+class GoldengateBackupSchedule(typing.TypedDict, total=False):
     backupScheduledTime: str
     bucket: str
     compartmentId: str
-    frequencyBackupScheduled: typing_extensions.Literal[
+    frequencyBackupScheduled: typing.Literal[
         "FREQUENCY_BACKUP_SCHEDULED_UNSPECIFIED", "DAILY", "WEEKLY", "MONTHLY"
     ]
     metadataOnly: bool
     namespace: str
 
 @typing.type_check_only
-class GoldengateConnection(typing_extensions.TypedDict, total=False):
+class GoldengateConnection(typing.TypedDict, total=False):
     createTime: str
     entitlementId: str
     gcpOracleZone: str
@@ -1050,7 +1031,7 @@ class GoldengateConnection(typing_extensions.TypedDict, total=False):
     properties: GoldengateConnectionProperties
 
 @typing.type_check_only
-class GoldengateConnectionAssignment(typing_extensions.TypedDict, total=False):
+class GoldengateConnectionAssignment(typing.TypedDict, total=False):
     createTime: str
     displayName: str
     entitlementId: str
@@ -1059,19 +1040,17 @@ class GoldengateConnectionAssignment(typing_extensions.TypedDict, total=False):
     properties: GoldengateConnectionAssignmentProperties
 
 @typing.type_check_only
-class GoldengateConnectionAssignmentProperties(
-    typing_extensions.TypedDict, total=False
-):
+class GoldengateConnectionAssignmentProperties(typing.TypedDict, total=False):
     alias: str
     goldengateConnection: str
     goldengateDeployment: str
     ocid: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "FAILED", "UPDATING", "DELETING"
     ]
 
 @typing.type_check_only
-class GoldengateConnectionProperties(typing_extensions.TypedDict, total=False):
+class GoldengateConnectionProperties(typing.TypedDict, total=False):
     amazonKinesisConnectionProperties: GoldengateAmazonKinesisConnectionProperties
     amazonRedshiftConnectionProperties: GoldengateAmazonRedshiftConnectionProperties
     amazonS3ConnectionProperties: GoldengateAmazonS3ConnectionProperties
@@ -1081,7 +1060,7 @@ class GoldengateConnectionProperties(typing_extensions.TypedDict, total=False):
     azureSynapseAnalyticsConnectionProperties: (
         GoldengateAzureSynapseAnalyticsConnectionProperties
     )
-    connectionType: typing_extensions.Literal[
+    connectionType: typing.Literal[
         "GOLDENGATE_CONNECTION_TYPE_UNSPECIFIED",
         "GOLDENGATE",
         "KAFKA",
@@ -1136,7 +1115,7 @@ class GoldengateConnectionProperties(typing_extensions.TypedDict, total=False):
         GoldengateKafkaSchemaRegistryConnectionProperties
     )
     lifecycleDetails: str
-    lifecycleState: typing_extensions.Literal[
+    lifecycleState: typing.Literal[
         "GOLDENGATE_CONNECTION_LIFECYCLE_STATE_UNSPECIFIED",
         "CREATING",
         "ACTIVE",
@@ -1160,7 +1139,7 @@ class GoldengateConnectionProperties(typing_extensions.TypedDict, total=False):
     oracleNosqlConnectionProperties: GoldengateOracleNosqlConnectionProperties
     postgresqlConnectionProperties: GoldengatePostgresqlConnectionProperties
     redisConnectionProperties: GoldengateRedisConnectionProperties
-    routingMethod: typing_extensions.Literal[
+    routingMethod: typing.Literal[
         "GOLDENGATE_CONNECTION_ROUTING_METHOD_UNSPECIFIED",
         "SHARED_DEPLOYMENT_ENDPOINT",
         "DEDICATED_ENDPOINT",
@@ -1169,8 +1148,8 @@ class GoldengateConnectionProperties(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class GoldengateConnectionType(typing_extensions.TypedDict, total=False):
-    connectionType: typing_extensions.Literal[
+class GoldengateConnectionType(typing.TypedDict, total=False):
+    connectionType: typing.Literal[
         "CONNECTION_TYPE_UNSPECIFIED",
         "GOLDENGATE",
         "KAFKA",
@@ -1206,10 +1185,8 @@ class GoldengateConnectionType(typing_extensions.TypedDict, total=False):
     technologyTypes: _list[str]
 
 @typing.type_check_only
-class GoldengateDatabricksConnectionProperties(
-    typing_extensions.TypedDict, total=False
-):
-    authenticationType: typing_extensions.Literal[
+class GoldengateDatabricksConnectionProperties(typing.TypedDict, total=False):
+    authenticationType: typing.Literal[
         "DATABRICKS_AUTHENTICATION_TYPE_UNSPECIFIED",
         "PERSONAL_ACCESS_TOKEN",
         "OAUTH_M2M",
@@ -1223,14 +1200,14 @@ class GoldengateDatabricksConnectionProperties(
     technologyType: str
 
 @typing.type_check_only
-class GoldengateDb2ConnectionProperties(typing_extensions.TypedDict, total=False):
+class GoldengateDb2ConnectionProperties(typing.TypedDict, total=False):
     additionalAttributes: _list[NameValuePair]
     database: str
     host: str
     password: str
     passwordSecretVersion: str
     port: int
-    securityProtocol: typing_extensions.Literal[
+    securityProtocol: typing.Literal[
         "DB2_SECURITY_PROTOCOL_UNSPECIFIED", "PLAIN", "TLS"
     ]
     sslClientKeystashFile: str
@@ -1240,7 +1217,7 @@ class GoldengateDb2ConnectionProperties(typing_extensions.TypedDict, total=False
     username: str
 
 @typing.type_check_only
-class GoldengateDeployment(typing_extensions.TypedDict, total=False):
+class GoldengateDeployment(typing.TypedDict, total=False):
     createTime: str
     displayName: str
     entitlementId: str
@@ -1253,16 +1230,16 @@ class GoldengateDeployment(typing_extensions.TypedDict, total=False):
     properties: GoldengateDeploymentProperties
 
 @typing.type_check_only
-class GoldengateDeploymentEnvironment(typing_extensions.TypedDict, total=False):
+class GoldengateDeploymentEnvironment(typing.TypedDict, total=False):
     autoScalingEnabled: bool
-    category: typing_extensions.Literal[
+    category: typing.Literal[
         "DEPLOYMENT_CATEGORY_UNSPECIFIED",
         "DATA_REPLICATION_CATEGORY",
         "DATA_TRANSFORMS_CATEGORY",
     ]
     defaultCpuCoreCount: int
     displayName: str
-    environmentType: typing_extensions.Literal[
+    environmentType: typing.Literal[
         "DEPLOYMENT_ENVIRONMENT_TYPE_UNSPECIFIED",
         "PRODUCTION",
         "DEVELOPMENT_OR_TESTING",
@@ -1275,17 +1252,17 @@ class GoldengateDeploymentEnvironment(typing_extensions.TypedDict, total=False):
     storageUsageLimitGbPerCpuCore: int
 
 @typing.type_check_only
-class GoldengateDeploymentLock(typing_extensions.TypedDict, total=False):
+class GoldengateDeploymentLock(typing.TypedDict, total=False):
     compartmentId: str
     createTime: str
     message: str
     relatedResourceId: str
-    type: typing_extensions.Literal["LOCK_TYPE_UNSPECIFIED", "FULL", "DELETE"]
+    type: typing.Literal["LOCK_TYPE_UNSPECIFIED", "FULL", "DELETE"]
 
 @typing.type_check_only
-class GoldengateDeploymentProperties(typing_extensions.TypedDict, total=False):
+class GoldengateDeploymentProperties(typing.TypedDict, total=False):
     backupSchedule: GoldengateBackupSchedule
-    category: typing_extensions.Literal[
+    category: typing.Literal[
         "GOLDENGATE_DEPLOYMENT_CATEGORY_UNSPECIFIED",
         "DATA_REPLICATION",
         "DATA_TRANSFORMS",
@@ -1293,7 +1270,7 @@ class GoldengateDeploymentProperties(typing_extensions.TypedDict, total=False):
     cpuCoreCount: int
     deploymentBackupId: str
     deploymentDiagnosticData: DeploymentDiagnosticData
-    deploymentRole: typing_extensions.Literal[
+    deploymentRole: typing.Literal[
         "GOLDENGATE_DEPLOYMENT_ROLE_TYPE_UNSPECIFIED", "PRIMARY", "STANDBY"
     ]
     deploymentType: str
@@ -1308,11 +1285,11 @@ class GoldengateDeploymentProperties(typing_extensions.TypedDict, total=False):
     isPublic: bool
     isStorageUtilizationLimitExceeded: bool
     lastBackupScheduleTime: str
-    licenseModel: typing_extensions.Literal[
+    licenseModel: typing.Literal[
         "LICENSE_MODEL_UNSPECIFIED", "LICENSE_INCLUDED", "BRING_YOUR_OWN_LICENSE"
     ]
     lifecycleDetails: str
-    lifecycleState: typing_extensions.Literal[
+    lifecycleState: typing.Literal[
         "GOLDENGATE_DEPLOYMENT_LIFECYCLE_STATE_UNSPECIFIED",
         "CREATING",
         "UPDATING",
@@ -1328,7 +1305,7 @@ class GoldengateDeploymentProperties(typing_extensions.TypedDict, total=False):
         "SUCCEEDED",
         "WAITING",
     ]
-    lifecycleSubState: typing_extensions.Literal[
+    lifecycleSubState: typing.Literal[
         "GOLDENGATE_DEPLOYMENT_LIFECYCLE_SUB_STATE_UNSPECIFIED",
         "RECOVERING",
         "STARTING",
@@ -1345,7 +1322,7 @@ class GoldengateDeploymentProperties(typing_extensions.TypedDict, total=False):
     maintenanceConfig: GoldengateMaintenanceConfig
     maintenanceWindow: GoldengateMaintenanceWindow
     nextBackupScheduleTime: str
-    nextMaintenanceActionType: typing_extensions.Literal[
+    nextMaintenanceActionType: typing.Literal[
         "NEXT_MAINTENANCE_ACTION_TYPE_UNSPECIFIED", "UPGRADE"
     ]
     nextMaintenanceDescription: str
@@ -1363,15 +1340,15 @@ class GoldengateDeploymentProperties(typing_extensions.TypedDict, total=False):
     upgradeRequiredTime: str
 
 @typing.type_check_only
-class GoldengateDeploymentType(typing_extensions.TypedDict, total=False):
-    category: typing_extensions.Literal[
+class GoldengateDeploymentType(typing.TypedDict, total=False):
+    category: typing.Literal[
         "DEPLOYMENT_CATEGORY_UNSPECIFIED",
         "DATA_REPLICATION_CATEGORY",
         "DATA_TRANSFORMS_CATEGORY",
     ]
     connectionTypes: _list[str]
     defaultUsername: str
-    deploymentType: typing_extensions.Literal[
+    deploymentType: typing.Literal[
         "DEPLOYMENT_TYPE_UNSPECIFIED",
         "OGG",
         "DATABASE_ORACLE",
@@ -1393,14 +1370,14 @@ class GoldengateDeploymentType(typing_extensions.TypedDict, total=False):
     targetTechnologies: _list[str]
 
 @typing.type_check_only
-class GoldengateDeploymentVersion(typing_extensions.TypedDict, total=False):
+class GoldengateDeploymentVersion(typing.TypedDict, total=False):
     name: str
     ocid: str
     properties: GoldengateDeploymentVersionProperties
 
 @typing.type_check_only
-class GoldengateDeploymentVersionProperties(typing_extensions.TypedDict, total=False):
-    deploymentType: typing_extensions.Literal[
+class GoldengateDeploymentVersionProperties(typing.TypedDict, total=False):
+    deploymentType: typing.Literal[
         "DEPLOYMENT_TYPE_UNSPECIFIED",
         "OGG",
         "DATABASE_ORACLE",
@@ -1415,23 +1392,21 @@ class GoldengateDeploymentVersionProperties(typing_extensions.TypedDict, total=F
     ]
     oggVersion: str
     releaseTime: str
-    releaseType: typing_extensions.Literal[
+    releaseType: typing.Literal[
         "DEPLOYMENT_RELEASE_TYPE_UNSPECIFIED", "MAJOR", "BUNDLE", "MINOR"
     ]
     securityFix: bool
     supportEndTime: str
 
 @typing.type_check_only
-class GoldengateElasticsearchConnectionProperties(
-    typing_extensions.TypedDict, total=False
-):
-    authenticationType: typing_extensions.Literal[
+class GoldengateElasticsearchConnectionProperties(typing.TypedDict, total=False):
+    authenticationType: typing.Literal[
         "ELASTICSEARCH_AUTHENTICATION_TYPE_UNSPECIFIED", "NONE", "BASIC"
     ]
     fingerprint: str
     password: str
     passwordSecretVersion: str
-    securityProtocol: typing_extensions.Literal[
+    securityProtocol: typing.Literal[
         "ELASTICSEARCH_SECURITY_PROTOCOL_UNSPECIFIED", "PLAIN", "TLS"
     ]
     servers: str
@@ -1439,14 +1414,12 @@ class GoldengateElasticsearchConnectionProperties(
     username: str
 
 @typing.type_check_only
-class GoldengateGenericConnectionProperties(typing_extensions.TypedDict, total=False):
+class GoldengateGenericConnectionProperties(typing.TypedDict, total=False):
     host: str
     technologyType: str
 
 @typing.type_check_only
-class GoldengateGoldengateConnectionProperties(
-    typing_extensions.TypedDict, total=False
-):
+class GoldengateGoldengateConnectionProperties(typing.TypedDict, total=False):
     goldengateDeploymentId: str
     host: str
     password: str
@@ -1456,49 +1429,41 @@ class GoldengateGoldengateConnectionProperties(
     username: str
 
 @typing.type_check_only
-class GoldengateGoogleBigQueryConnectionProperties(
-    typing_extensions.TypedDict, total=False
-):
+class GoldengateGoogleBigQueryConnectionProperties(typing.TypedDict, total=False):
     serviceAccountKeyFile: str
     technologyType: str
 
 @typing.type_check_only
-class GoldengateGoogleCloudStorageConnectionProperties(
-    typing_extensions.TypedDict, total=False
-):
+class GoldengateGoogleCloudStorageConnectionProperties(typing.TypedDict, total=False):
     serviceAccountKeyFile: str
     technologyType: str
 
 @typing.type_check_only
-class GoldengateGooglePubsubConnectionProperties(
-    typing_extensions.TypedDict, total=False
-):
+class GoldengateGooglePubsubConnectionProperties(typing.TypedDict, total=False):
     serviceAccountKeyFile: str
     technologyType: str
 
 @typing.type_check_only
-class GoldengateGroupToRolesMapping(typing_extensions.TypedDict, total=False):
+class GoldengateGroupToRolesMapping(typing.TypedDict, total=False):
     administratorGroupId: str
     operatorGroupId: str
     securityGroupId: str
     userGroupId: str
 
 @typing.type_check_only
-class GoldengateHdfsConnectionProperties(typing_extensions.TypedDict, total=False):
+class GoldengateHdfsConnectionProperties(typing.TypedDict, total=False):
     coreSiteXml: str
     technologyType: str
 
 @typing.type_check_only
-class GoldengateIcebergConnectionProperties(typing_extensions.TypedDict, total=False):
+class GoldengateIcebergConnectionProperties(typing.TypedDict, total=False):
     catalog: IcebergCatalog
     storage: IcebergStorage
     technologyType: str
 
 @typing.type_check_only
-class GoldengateJavaMessageServiceConnectionProperties(
-    typing_extensions.TypedDict, total=False
-):
-    authenticationType: typing_extensions.Literal[
+class GoldengateJavaMessageServiceConnectionProperties(typing.TypedDict, total=False):
+    authenticationType: typing.Literal[
         "JMS_AUTHENTICATION_TYPE_UNSPECIFIED", "NONE", "BASIC"
     ]
     connectionFactory: str
@@ -1513,7 +1478,7 @@ class GoldengateJavaMessageServiceConnectionProperties(
     keyStorePasswordSecretVersion: str
     password: str
     passwordSecretVersion: str
-    securityProtocol: typing_extensions.Literal[
+    securityProtocol: typing.Literal[
         "JMS_SECURITY_PROTOCOL_UNSPECIFIED", "PLAIN", "TLS", "MTLS"
     ]
     sslKeyPassword: str
@@ -1526,7 +1491,7 @@ class GoldengateJavaMessageServiceConnectionProperties(
     username: str
 
 @typing.type_check_only
-class GoldengateKafkaConnectionProperties(typing_extensions.TypedDict, total=False):
+class GoldengateKafkaConnectionProperties(typing.TypedDict, total=False):
     bootstrapServers: _list[KafkaBootstrapServer]
     clusterId: str
     consumerPropertiesFile: str
@@ -1536,7 +1501,7 @@ class GoldengateKafkaConnectionProperties(typing_extensions.TypedDict, total=Fal
     password: str
     passwordSecretVersion: str
     producerPropertiesFile: str
-    securityProtocol: typing_extensions.Literal[
+    securityProtocol: typing.Literal[
         "KAFKA_SECURITY_PROTOCOL_UNSPECIFIED",
         "SSL",
         "SASL_SSL",
@@ -1554,10 +1519,8 @@ class GoldengateKafkaConnectionProperties(typing_extensions.TypedDict, total=Fal
     username: str
 
 @typing.type_check_only
-class GoldengateKafkaSchemaRegistryConnectionProperties(
-    typing_extensions.TypedDict, total=False
-):
-    authenticationType: typing_extensions.Literal[
+class GoldengateKafkaSchemaRegistryConnectionProperties(typing.TypedDict, total=False):
+    authenticationType: typing.Literal[
         "AUTHENTICATION_TYPE_UNSPECIFIED", "NONE", "BASIC", "MUTUAL"
     ]
     keyStoreFile: str
@@ -1575,7 +1538,7 @@ class GoldengateKafkaSchemaRegistryConnectionProperties(
     username: str
 
 @typing.type_check_only
-class GoldengateMaintenanceConfig(typing_extensions.TypedDict, total=False):
+class GoldengateMaintenanceConfig(typing.TypedDict, total=False):
     bundleReleaseUpgradePeriodDays: int
     interimReleaseUpgradePeriodDays: int
     isInterimReleaseAutoUpgradeEnabled: bool
@@ -1583,8 +1546,8 @@ class GoldengateMaintenanceConfig(typing_extensions.TypedDict, total=False):
     securityPatchUpgradePeriodDays: int
 
 @typing.type_check_only
-class GoldengateMaintenanceWindow(typing_extensions.TypedDict, total=False):
-    day: typing_extensions.Literal[
+class GoldengateMaintenanceWindow(typing.TypedDict, total=False):
+    day: typing.Literal[
         "DAY_OF_WEEK_UNSPECIFIED",
         "MONDAY",
         "TUESDAY",
@@ -1597,9 +1560,7 @@ class GoldengateMaintenanceWindow(typing_extensions.TypedDict, total=False):
     startHour: int
 
 @typing.type_check_only
-class GoldengateMicrosoftFabricConnectionProperties(
-    typing_extensions.TypedDict, total=False
-):
+class GoldengateMicrosoftFabricConnectionProperties(typing.TypedDict, total=False):
     clientId: str
     clientSecret: str
     endpoint: str
@@ -1607,16 +1568,14 @@ class GoldengateMicrosoftFabricConnectionProperties(
     tenantId: str
 
 @typing.type_check_only
-class GoldengateMicrosoftSqlserverConnectionProperties(
-    typing_extensions.TypedDict, total=False
-):
+class GoldengateMicrosoftSqlserverConnectionProperties(typing.TypedDict, total=False):
     additionalAttributes: _list[NameValuePair]
     database: str
     host: str
     password: str
     passwordSecretVersion: str
     port: int
-    securityProtocol: typing_extensions.Literal[
+    securityProtocol: typing.Literal[
         "MICROSOFT_SQLSERVER_SECURITY_PROTOCOL_UNSPECIFIED", "PLAIN", "TLS"
     ]
     serverCertificateValidationRequired: bool
@@ -1625,12 +1584,12 @@ class GoldengateMicrosoftSqlserverConnectionProperties(
     username: str
 
 @typing.type_check_only
-class GoldengateMongodbConnectionProperties(typing_extensions.TypedDict, total=False):
+class GoldengateMongodbConnectionProperties(typing.TypedDict, total=False):
     connectionString: str
     databaseId: str
     password: str
     passwordSecretVersion: str
-    securityProtocol: typing_extensions.Literal[
+    securityProtocol: typing.Literal[
         "MONGODB_SECURITY_PROTOCOL_UNSPECIFIED", "PLAIN", "TLS", "MTLS"
     ]
     technologyType: str
@@ -1641,7 +1600,7 @@ class GoldengateMongodbConnectionProperties(typing_extensions.TypedDict, total=F
     username: str
 
 @typing.type_check_only
-class GoldengateMysqlConnectionProperties(typing_extensions.TypedDict, total=False):
+class GoldengateMysqlConnectionProperties(typing.TypedDict, total=False):
     additionalAttributes: _list[NameValuePair]
     database: str
     dbSystemId: str
@@ -1649,14 +1608,14 @@ class GoldengateMysqlConnectionProperties(typing_extensions.TypedDict, total=Fal
     password: str
     passwordSecretVersion: str
     port: int
-    securityProtocol: typing_extensions.Literal[
+    securityProtocol: typing.Literal[
         "MYSQL_SECURITY_PROTOCOL_UNSPECIFIED", "PLAIN", "TLS", "MTLS"
     ]
     sslCaFile: str
     sslCertFile: str
     sslCrlFile: str
     sslKeyFile: str
-    sslMode: typing_extensions.Literal[
+    sslMode: typing.Literal[
         "SSL_MODE_UNSPECIFIED",
         "DISABLED",
         "PREFERRED",
@@ -1668,9 +1627,7 @@ class GoldengateMysqlConnectionProperties(typing_extensions.TypedDict, total=Fal
     username: str
 
 @typing.type_check_only
-class GoldengateOciObjectStorageConnectionProperties(
-    typing_extensions.TypedDict, total=False
-):
+class GoldengateOciObjectStorageConnectionProperties(typing.TypedDict, total=False):
     privateKeyFile: str
     privateKeyPassphraseSecret: str
     publicKeyFingerprint: str
@@ -1681,14 +1638,12 @@ class GoldengateOciObjectStorageConnectionProperties(
     userId: str
 
 @typing.type_check_only
-class GoldengateOggDeployment(typing_extensions.TypedDict, total=False):
+class GoldengateOggDeployment(typing.TypedDict, total=False):
     adminPassword: str
     adminPasswordSecretVersion: str
     adminUsername: str
     certificate: str
-    credentialStore: typing_extensions.Literal[
-        "CREDENTIAL_STORE_UNSPECIFIED", "GOLDENGATE", "IAM"
-    ]
+    credentialStore: typing.Literal["CREDENTIAL_STORE_UNSPECIFIED", "GOLDENGATE", "IAM"]
     deployment: str
     groupRolesMapping: GoldengateGroupToRolesMapping
     identityDomainId: str
@@ -1696,9 +1651,7 @@ class GoldengateOggDeployment(typing_extensions.TypedDict, total=False):
     passwordSecretId: str
 
 @typing.type_check_only
-class GoldengateOracleAIDataPlatformConnectionProperties(
-    typing_extensions.TypedDict, total=False
-):
+class GoldengateOracleAIDataPlatformConnectionProperties(typing.TypedDict, total=False):
     connectionUrl: str
     privateKeyFile: str
     privateKeyPassphraseSecret: str
@@ -1710,25 +1663,21 @@ class GoldengateOracleAIDataPlatformConnectionProperties(
     userId: str
 
 @typing.type_check_only
-class GoldengateOracleConnectionProperties(typing_extensions.TypedDict, total=False):
-    authenticationMode: typing_extensions.Literal[
+class GoldengateOracleConnectionProperties(typing.TypedDict, total=False):
+    authenticationMode: typing.Literal[
         "ORACLE_AUTHENTICATION_MODE_UNSPECIFIED", "TLS", "MTLS"
     ]
     connectionString: str
     gcpOracleDatabaseId: str
     password: str
     passwordSecretVersion: str
-    sessionMode: typing_extensions.Literal[
-        "SESSION_MODE_UNSPECIFIED", "DIRECT", "REDIRECT"
-    ]
+    sessionMode: typing.Literal["SESSION_MODE_UNSPECIFIED", "DIRECT", "REDIRECT"]
     technologyType: str
     username: str
     walletFile: str
 
 @typing.type_check_only
-class GoldengateOracleNosqlConnectionProperties(
-    typing_extensions.TypedDict, total=False
-):
+class GoldengateOracleNosqlConnectionProperties(typing.TypedDict, total=False):
     privateKeyFile: str
     privateKeyPassphraseSecret: str
     publicKeyFingerprint: str
@@ -1739,14 +1688,12 @@ class GoldengateOracleNosqlConnectionProperties(
     userId: str
 
 @typing.type_check_only
-class GoldengatePlacement(typing_extensions.TypedDict, total=False):
+class GoldengatePlacement(typing.TypedDict, total=False):
     availabilityDomain: str
     faultDomain: str
 
 @typing.type_check_only
-class GoldengatePostgresqlConnectionProperties(
-    typing_extensions.TypedDict, total=False
-):
+class GoldengatePostgresqlConnectionProperties(typing.TypedDict, total=False):
     additionalAttributes: _list[NameValuePair]
     database: str
     dbSystemId: str
@@ -1754,14 +1701,14 @@ class GoldengatePostgresqlConnectionProperties(
     password: str
     passwordSecretVersion: str
     port: int
-    securityProtocol: typing_extensions.Literal[
+    securityProtocol: typing.Literal[
         "POSTGRESQL_SECURITY_PROTOCOL_UNSPECIFIED", "PLAIN", "TLS", "MTLS"
     ]
     sslCaFile: str
     sslCertFile: str
     sslCrlFile: str
     sslKeyFile: str
-    sslMode: typing_extensions.Literal[
+    sslMode: typing.Literal[
         "POSTGRESQL_SSL_MODE_UNSPECIFIED",
         "PREFER",
         "REQUIRE",
@@ -1772,8 +1719,8 @@ class GoldengatePostgresqlConnectionProperties(
     username: str
 
 @typing.type_check_only
-class GoldengateRedisConnectionProperties(typing_extensions.TypedDict, total=False):
-    authenticationType: typing_extensions.Literal[
+class GoldengateRedisConnectionProperties(typing.TypedDict, total=False):
+    authenticationType: typing.Literal[
         "REDIS_AUTHENTICATION_TYPE_UNSPECIFIED", "NONE", "BASIC"
     ]
     keyStoreFile: str
@@ -1782,7 +1729,7 @@ class GoldengateRedisConnectionProperties(typing_extensions.TypedDict, total=Fal
     password: str
     passwordSecretVersion: str
     redisClusterId: str
-    securityProtocol: typing_extensions.Literal[
+    securityProtocol: typing.Literal[
         "REDIS_SECURITY_PROTOCOL_UNSPECIFIED", "PLAIN", "TLS", "MTLS"
     ]
     servers: str
@@ -1793,8 +1740,8 @@ class GoldengateRedisConnectionProperties(typing_extensions.TypedDict, total=Fal
     username: str
 
 @typing.type_check_only
-class GoldengateSnowflakeConnectionProperties(typing_extensions.TypedDict, total=False):
-    authenticationType: typing_extensions.Literal[
+class GoldengateSnowflakeConnectionProperties(typing.TypedDict, total=False):
+    authenticationType: typing.Literal[
         "AUTHENTICATION_TYPE_UNSPECIFIED", "BASIC", "KEY_PAIR"
     ]
     connectionUrl: str
@@ -1806,14 +1753,14 @@ class GoldengateSnowflakeConnectionProperties(typing_extensions.TypedDict, total
     username: str
 
 @typing.type_check_only
-class GoogleCloudStorageIcebergStorage(typing_extensions.TypedDict, total=False):
+class GoogleCloudStorageIcebergStorage(typing.TypedDict, total=False):
     bucket: str
     projectId: str
     serviceAccountKeyFile: str
 
 @typing.type_check_only
-class IcebergCatalog(typing_extensions.TypedDict, total=False):
-    catalogType: typing_extensions.Literal[
+class IcebergCatalog(typing.TypedDict, total=False):
+    catalogType: typing.Literal[
         "CATALOG_TYPE_UNSPECIFIED", "GLUE", "HADOOP", "NESSIE", "POLARIS", "REST"
     ]
     glueIcebergCatalog: GlueIcebergCatalog
@@ -1822,11 +1769,11 @@ class IcebergCatalog(typing_extensions.TypedDict, total=False):
     restIcebergCatalog: RestIcebergCatalog
 
 @typing.type_check_only
-class IcebergStorage(typing_extensions.TypedDict, total=False):
+class IcebergStorage(typing.TypedDict, total=False):
     amazonS3IcebergStorage: AmazonS3IcebergStorage
     azureDataLakeStorageIcebergStorage: AzureDataLakeStorageIcebergStorage
     googleCloudStorageIcebergStorage: GoogleCloudStorageIcebergStorage
-    storageType: typing_extensions.Literal[
+    storageType: typing.Literal[
         "STORAGE_TYPE_UNSPECIFIED",
         "AMAZON_S3",
         "GOOGLE_CLOUD_STORAGE",
@@ -1834,8 +1781,8 @@ class IcebergStorage(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class IdentityConnector(typing_extensions.TypedDict, total=False):
-    connectionState: typing_extensions.Literal[
+class IdentityConnector(typing.TypedDict, total=False):
+    connectionState: typing.Literal[
         "CONNECTION_STATE_UNSPECIFIED",
         "CONNECTED",
         "PARTIALLY_CONNECTED",
@@ -1845,196 +1792,188 @@ class IdentityConnector(typing_extensions.TypedDict, total=False):
     serviceAgentEmail: str
 
 @typing.type_check_only
-class IngressIp(typing_extensions.TypedDict, total=False):
+class IngressIp(typing.TypedDict, total=False):
     ingressIpAddress: str
 
 @typing.type_check_only
-class KafkaBootstrapServer(typing_extensions.TypedDict, total=False):
+class KafkaBootstrapServer(typing.TypedDict, total=False):
     host: str
     port: int
     privateIpAddress: str
 
 @typing.type_check_only
-class ListAutonomousDatabaseBackupsResponse(typing_extensions.TypedDict, total=False):
+class ListAutonomousDatabaseBackupsResponse(typing.TypedDict, total=False):
     autonomousDatabaseBackups: _list[AutonomousDatabaseBackup]
     nextPageToken: str
 
 @typing.type_check_only
-class ListAutonomousDatabaseCharacterSetsResponse(
-    typing_extensions.TypedDict, total=False
-):
+class ListAutonomousDatabaseCharacterSetsResponse(typing.TypedDict, total=False):
     autonomousDatabaseCharacterSets: _list[AutonomousDatabaseCharacterSet]
     nextPageToken: str
 
 @typing.type_check_only
-class ListAutonomousDatabasesResponse(typing_extensions.TypedDict, total=False):
+class ListAutonomousDatabasesResponse(typing.TypedDict, total=False):
     autonomousDatabases: _list[AutonomousDatabase]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListAutonomousDbVersionsResponse(typing_extensions.TypedDict, total=False):
+class ListAutonomousDbVersionsResponse(typing.TypedDict, total=False):
     autonomousDbVersions: _list[AutonomousDbVersion]
     nextPageToken: str
 
 @typing.type_check_only
-class ListCloudExadataInfrastructuresResponse(typing_extensions.TypedDict, total=False):
+class ListCloudExadataInfrastructuresResponse(typing.TypedDict, total=False):
     cloudExadataInfrastructures: _list[CloudExadataInfrastructure]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListCloudVmClustersResponse(typing_extensions.TypedDict, total=False):
+class ListCloudVmClustersResponse(typing.TypedDict, total=False):
     cloudVmClusters: _list[CloudVmCluster]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListDatabaseCharacterSetsResponse(typing_extensions.TypedDict, total=False):
+class ListDatabaseCharacterSetsResponse(typing.TypedDict, total=False):
     databaseCharacterSets: _list[DatabaseCharacterSet]
     nextPageToken: str
 
 @typing.type_check_only
-class ListDatabasesResponse(typing_extensions.TypedDict, total=False):
+class ListDatabasesResponse(typing.TypedDict, total=False):
     databases: _list[Database]
     nextPageToken: str
 
 @typing.type_check_only
-class ListDbNodesResponse(typing_extensions.TypedDict, total=False):
+class ListDbNodesResponse(typing.TypedDict, total=False):
     dbNodes: _list[DbNode]
     nextPageToken: str
 
 @typing.type_check_only
-class ListDbServersResponse(typing_extensions.TypedDict, total=False):
+class ListDbServersResponse(typing.TypedDict, total=False):
     dbServers: _list[DbServer]
     nextPageToken: str
 
 @typing.type_check_only
-class ListDbSystemInitialStorageSizesResponse(typing_extensions.TypedDict, total=False):
+class ListDbSystemInitialStorageSizesResponse(typing.TypedDict, total=False):
     dbSystemInitialStorageSizes: _list[DbSystemInitialStorageSize]
     nextPageToken: str
 
 @typing.type_check_only
-class ListDbSystemShapesResponse(typing_extensions.TypedDict, total=False):
+class ListDbSystemShapesResponse(typing.TypedDict, total=False):
     dbSystemShapes: _list[DbSystemShape]
     nextPageToken: str
 
 @typing.type_check_only
-class ListDbSystemsResponse(typing_extensions.TypedDict, total=False):
+class ListDbSystemsResponse(typing.TypedDict, total=False):
     dbSystems: _list[DbSystem]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListDbVersionsResponse(typing_extensions.TypedDict, total=False):
+class ListDbVersionsResponse(typing.TypedDict, total=False):
     dbVersions: _list[DbVersion]
     nextPageToken: str
 
 @typing.type_check_only
-class ListEntitlementsResponse(typing_extensions.TypedDict, total=False):
+class ListEntitlementsResponse(typing.TypedDict, total=False):
     entitlements: _list[Entitlement]
     nextPageToken: str
 
 @typing.type_check_only
-class ListExadbVmClustersResponse(typing_extensions.TypedDict, total=False):
+class ListExadbVmClustersResponse(typing.TypedDict, total=False):
     exadbVmClusters: _list[ExadbVmCluster]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListExascaleDbStorageVaultsResponse(typing_extensions.TypedDict, total=False):
+class ListExascaleDbStorageVaultsResponse(typing.TypedDict, total=False):
     exascaleDbStorageVaults: _list[ExascaleDbStorageVault]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListGiVersionsResponse(typing_extensions.TypedDict, total=False):
+class ListGiVersionsResponse(typing.TypedDict, total=False):
     giVersions: _list[GiVersion]
     nextPageToken: str
 
 @typing.type_check_only
-class ListGoldengateConnectionAssignmentsResponse(
-    typing_extensions.TypedDict, total=False
-):
+class ListGoldengateConnectionAssignmentsResponse(typing.TypedDict, total=False):
     goldengateConnectionAssignments: _list[GoldengateConnectionAssignment]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListGoldengateConnectionTypesResponse(typing_extensions.TypedDict, total=False):
+class ListGoldengateConnectionTypesResponse(typing.TypedDict, total=False):
     goldengateConnectionTypes: _list[GoldengateConnectionType]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListGoldengateConnectionsResponse(typing_extensions.TypedDict, total=False):
+class ListGoldengateConnectionsResponse(typing.TypedDict, total=False):
     goldengateConnections: _list[GoldengateConnection]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListGoldengateDeploymentEnvironmentsResponse(
-    typing_extensions.TypedDict, total=False
-):
+class ListGoldengateDeploymentEnvironmentsResponse(typing.TypedDict, total=False):
     goldengateDeploymentEnvironments: _list[GoldengateDeploymentEnvironment]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListGoldengateDeploymentTypesResponse(typing_extensions.TypedDict, total=False):
+class ListGoldengateDeploymentTypesResponse(typing.TypedDict, total=False):
     goldengateDeploymentTypes: _list[GoldengateDeploymentType]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListGoldengateDeploymentVersionsResponse(
-    typing_extensions.TypedDict, total=False
-):
+class ListGoldengateDeploymentVersionsResponse(typing.TypedDict, total=False):
     goldengateDeploymentVersions: _list[GoldengateDeploymentVersion]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListGoldengateDeploymentsResponse(typing_extensions.TypedDict, total=False):
+class ListGoldengateDeploymentsResponse(typing.TypedDict, total=False):
     goldengateDeployments: _list[GoldengateDeployment]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListLocationsResponse(typing_extensions.TypedDict, total=False):
+class ListLocationsResponse(typing.TypedDict, total=False):
     locations: _list[Location]
     nextPageToken: str
 
 @typing.type_check_only
-class ListMinorVersionsResponse(typing_extensions.TypedDict, total=False):
+class ListMinorVersionsResponse(typing.TypedDict, total=False):
     minorVersions: _list[MinorVersion]
     nextPageToken: str
 
 @typing.type_check_only
-class ListOdbNetworksResponse(typing_extensions.TypedDict, total=False):
+class ListOdbNetworksResponse(typing.TypedDict, total=False):
     nextPageToken: str
     odbNetworks: _list[OdbNetwork]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListOdbSubnetsResponse(typing_extensions.TypedDict, total=False):
+class ListOdbSubnetsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     odbSubnets: _list[OdbSubnet]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListOperationsResponse(typing_extensions.TypedDict, total=False):
+class ListOperationsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListPluggableDatabasesResponse(typing_extensions.TypedDict, total=False):
+class ListPluggableDatabasesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     pluggableDatabases: _list[PluggableDatabase]
 
 @typing.type_check_only
-class Location(typing_extensions.TypedDict, total=False):
+class Location(typing.TypedDict, total=False):
     displayName: str
     labels: dict[str, typing.Any]
     locationId: str
@@ -2042,14 +1981,14 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class LocationMetadata(typing_extensions.TypedDict, total=False):
+class LocationMetadata(typing.TypedDict, total=False):
     gcpOracleZones: _list[str]
 
 @typing.type_check_only
-class MaintenanceWindow(typing_extensions.TypedDict, total=False):
+class MaintenanceWindow(typing.TypedDict, total=False):
     customActionTimeoutMins: int
     daysOfWeek: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "DAY_OF_WEEK_UNSPECIFIED",
             "MONDAY",
             "TUESDAY",
@@ -2064,7 +2003,7 @@ class MaintenanceWindow(typing_extensions.TypedDict, total=False):
     isCustomActionTimeoutEnabled: bool
     leadTimeWeek: int
     months: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "MONTH_UNSPECIFIED",
             "JANUARY",
             "FEBRUARY",
@@ -2080,10 +2019,8 @@ class MaintenanceWindow(typing_extensions.TypedDict, total=False):
             "DECEMBER",
         ]
     ]
-    patchingMode: typing_extensions.Literal[
-        "PATCHING_MODE_UNSPECIFIED", "ROLLING", "NON_ROLLING"
-    ]
-    preference: typing_extensions.Literal[
+    patchingMode: typing.Literal["PATCHING_MODE_UNSPECIFIED", "ROLLING", "NON_ROLLING"]
+    preference: typing.Literal[
         "MAINTENANCE_WINDOW_PREFERENCE_UNSPECIFIED",
         "CUSTOM_PREFERENCE",
         "NO_PREFERENCE",
@@ -2091,48 +2028,46 @@ class MaintenanceWindow(typing_extensions.TypedDict, total=False):
     weeksOfMonth: _list[int]
 
 @typing.type_check_only
-class MinorVersion(typing_extensions.TypedDict, total=False):
+class MinorVersion(typing.TypedDict, total=False):
     gridImageId: str
     name: str
     version: str
 
 @typing.type_check_only
-class NameValuePair(typing_extensions.TypedDict, total=False):
+class NameValuePair(typing.TypedDict, total=False):
     key: str
     value: str
 
 @typing.type_check_only
-class NessieIcebergCatalog(typing_extensions.TypedDict, total=False):
+class NessieIcebergCatalog(typing.TypedDict, total=False):
     branch: str
     uri: str
 
 @typing.type_check_only
-class OdbNetwork(typing_extensions.TypedDict, total=False):
+class OdbNetwork(typing.TypedDict, total=False):
     createTime: str
     entitlementId: str
     gcpOracleZone: str
     labels: dict[str, typing.Any]
     name: str
     network: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED", "PROVISIONING", "AVAILABLE", "TERMINATING", "FAILED"
     ]
 
 @typing.type_check_only
-class OdbSubnet(typing_extensions.TypedDict, total=False):
+class OdbSubnet(typing.TypedDict, total=False):
     cidrRange: str
     createTime: str
     labels: dict[str, typing.Any]
     name: str
-    purpose: typing_extensions.Literal[
-        "PURPOSE_UNSPECIFIED", "CLIENT_SUBNET", "BACKUP_SUBNET"
-    ]
-    state: typing_extensions.Literal[
+    purpose: typing.Literal["PURPOSE_UNSPECIFIED", "CLIENT_SUBNET", "BACKUP_SUBNET"]
+    state: typing.Literal[
         "STATE_UNSPECIFIED", "PROVISIONING", "AVAILABLE", "TERMINATING", "FAILED"
     ]
 
 @typing.type_check_only
-class Operation(typing_extensions.TypedDict, total=False):
+class Operation(typing.TypedDict, total=False):
     done: bool
     error: Status
     metadata: dict[str, typing.Any]
@@ -2140,7 +2075,7 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class OperationMetadata(typing_extensions.TypedDict, total=False):
+class OperationMetadata(typing.TypedDict, total=False):
     apiVersion: str
     createTime: str
     endTime: str
@@ -2151,22 +2086,22 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
-class PluggableDatabase(typing_extensions.TypedDict, total=False):
+class PluggableDatabase(typing.TypedDict, total=False):
     createTime: str
     name: str
     ociUrl: str
     properties: PluggableDatabaseProperties
 
 @typing.type_check_only
-class PluggableDatabaseConnectionStrings(typing_extensions.TypedDict, total=False):
+class PluggableDatabaseConnectionStrings(typing.TypedDict, total=False):
     allConnectionStrings: dict[str, typing.Any]
     pdbDefault: str
     pdbIpDefault: str
 
 @typing.type_check_only
-class PluggableDatabaseNodeLevelDetails(typing_extensions.TypedDict, total=False):
+class PluggableDatabaseNodeLevelDetails(typing.TypedDict, total=False):
     nodeName: str
-    openMode: typing_extensions.Literal[
+    openMode: typing.Literal[
         "PLUGGABLE_DATABASE_OPEN_MODE_UNSPECIFIED",
         "READ_ONLY",
         "READ_WRITE",
@@ -2176,7 +2111,7 @@ class PluggableDatabaseNodeLevelDetails(typing_extensions.TypedDict, total=False
     pluggableDatabaseId: str
 
 @typing.type_check_only
-class PluggableDatabaseProperties(typing_extensions.TypedDict, total=False):
+class PluggableDatabaseProperties(typing.TypedDict, total=False):
     compartmentId: str
     connectionStrings: PluggableDatabaseConnectionStrings
     containerDatabaseOcid: str
@@ -2185,7 +2120,7 @@ class PluggableDatabaseProperties(typing_extensions.TypedDict, total=False):
     freeformTags: dict[str, typing.Any]
     isRestricted: bool
     lifecycleDetails: str
-    lifecycleState: typing_extensions.Literal[
+    lifecycleState: typing.Literal[
         "PLUGGABLE_DATABASE_LIFECYCLE_STATE_UNSPECIFIED",
         "PROVISIONING",
         "AVAILABLE",
@@ -2202,7 +2137,7 @@ class PluggableDatabaseProperties(typing_extensions.TypedDict, total=False):
         "DISABLED",
     ]
     ocid: str
-    operationsInsightsState: typing_extensions.Literal[
+    operationsInsightsState: typing.Literal[
         "OPERATIONS_INSIGHTS_STATE_UNSPECIFIED",
         "ENABLING",
         "ENABLED",
@@ -2215,7 +2150,7 @@ class PluggableDatabaseProperties(typing_extensions.TypedDict, total=False):
     pdbNodeLevelDetails: _list[PluggableDatabaseNodeLevelDetails]
 
 @typing.type_check_only
-class PolarisIcebergCatalog(typing_extensions.TypedDict, total=False):
+class PolarisIcebergCatalog(typing.TypedDict, total=False):
     clientId: str
     clientSecret: str
     polarisCatalog: str
@@ -2223,31 +2158,29 @@ class PolarisIcebergCatalog(typing_extensions.TypedDict, total=False):
     uri: str
 
 @typing.type_check_only
-class RefreshAutonomousDatabaseRequest(typing_extensions.TypedDict, total=False):
+class RefreshAutonomousDatabaseRequest(typing.TypedDict, total=False):
     refreshCutoffTime: str
 
 @typing.type_check_only
-class RemoveVirtualMachineExadbVmClusterRequest(
-    typing_extensions.TypedDict, total=False
-):
+class RemoveVirtualMachineExadbVmClusterRequest(typing.TypedDict, total=False):
     hostnames: _list[str]
     requestId: str
 
 @typing.type_check_only
-class RestIcebergCatalog(typing_extensions.TypedDict, total=False):
+class RestIcebergCatalog(typing.TypedDict, total=False):
     properties: str
     uri: str
 
 @typing.type_check_only
-class RestartAutonomousDatabaseRequest(typing_extensions.TypedDict, total=False): ...
+class RestartAutonomousDatabaseRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class RestoreAutonomousDatabaseRequest(typing_extensions.TypedDict, total=False):
+class RestoreAutonomousDatabaseRequest(typing.TypedDict, total=False):
     restoreTime: str
 
 @typing.type_check_only
-class ScheduledOperationDetails(typing_extensions.TypedDict, total=False):
-    dayOfWeek: typing_extensions.Literal[
+class ScheduledOperationDetails(typing.TypedDict, total=False):
+    dayOfWeek: typing.Literal[
         "DAY_OF_WEEK_UNSPECIFIED",
         "MONDAY",
         "TUESDAY",
@@ -2261,7 +2194,7 @@ class ScheduledOperationDetails(typing_extensions.TypedDict, total=False):
     stopTime: TimeOfDay
 
 @typing.type_check_only
-class SourceConfig(typing_extensions.TypedDict, total=False):
+class SourceConfig(typing.TypedDict, total=False):
     autoRefreshFrequencySeconds: int
     autoRefreshPointLagSeconds: int
     autoRefreshStartTime: str
@@ -2269,11 +2202,11 @@ class SourceConfig(typing_extensions.TypedDict, total=False):
     autonomousDatabase: str
     autonomousDatabaseBackup: str
     backupTime: str
-    cloneType: typing_extensions.Literal["CLONE_TYPE_UNSPECIFIED", "FULL", "METADATA"]
-    refreshableMode: typing_extensions.Literal[
+    cloneType: typing.Literal["CLONE_TYPE_UNSPECIFIED", "FULL", "METADATA"]
+    refreshableMode: typing.Literal[
         "REFRESHABLE_MODE_UNSPECIFIED", "AUTOMATIC", "MANUAL"
     ]
-    sourceType: typing_extensions.Literal[
+    sourceType: typing.Literal[
         "SOURCE_TYPE_UNSPECIFIED",
         "CLONE_DATABASE",
         "CROSS_REGION_DISASTER_RECOVERY",
@@ -2284,63 +2217,59 @@ class SourceConfig(typing_extensions.TypedDict, total=False):
     useLatestAvailableBackup: bool
 
 @typing.type_check_only
-class StartAutonomousDatabaseRequest(typing_extensions.TypedDict, total=False): ...
+class StartAutonomousDatabaseRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class StartGoldengateDeploymentRequest(typing_extensions.TypedDict, total=False): ...
+class StartGoldengateDeploymentRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class StopAutonomousDatabaseRequest(typing_extensions.TypedDict, total=False): ...
+class StopAutonomousDatabaseRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class StopGoldengateDeploymentRequest(typing_extensions.TypedDict, total=False): ...
+class StopGoldengateDeploymentRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class StorageSizeDetails(typing_extensions.TypedDict, total=False):
+class StorageSizeDetails(typing.TypedDict, total=False):
     dataStorageSizeInGbs: int
     recoStorageSizeInGbs: int
 
 @typing.type_check_only
-class SwitchoverAutonomousDatabaseRequest(typing_extensions.TypedDict, total=False):
+class SwitchoverAutonomousDatabaseRequest(typing.TypedDict, total=False):
     peerAutonomousDatabase: str
 
 @typing.type_check_only
-class TestConnectionAssignmentError(typing_extensions.TypedDict, total=False):
+class TestConnectionAssignmentError(typing.TypedDict, total=False):
     action: str
     code: str
     issue: str
     message: str
 
 @typing.type_check_only
-class TestGoldengateConnectionAssignmentRequest(
-    typing_extensions.TypedDict, total=False
-):
-    type: typing_extensions.Literal["TEST_TYPE_UNSPECIFIED", "DEFAULT"]
+class TestGoldengateConnectionAssignmentRequest(typing.TypedDict, total=False):
+    type: typing.Literal["TEST_TYPE_UNSPECIFIED", "DEFAULT"]
 
 @typing.type_check_only
-class TestGoldengateConnectionAssignmentResponse(
-    typing_extensions.TypedDict, total=False
-):
+class TestGoldengateConnectionAssignmentResponse(typing.TypedDict, total=False):
     error: TestConnectionAssignmentError
     errors: _list[TestConnectionAssignmentError]
-    resultType: typing_extensions.Literal[
+    resultType: typing.Literal[
         "RESULT_TYPE_UNSPECIFIED", "SUCCEEDED", "FAILED", "TIMED_OUT"
     ]
 
 @typing.type_check_only
-class TimeOfDay(typing_extensions.TypedDict, total=False):
+class TimeOfDay(typing.TypedDict, total=False):
     hours: int
     minutes: int
     nanos: int
     seconds: int
 
 @typing.type_check_only
-class TimeZone(typing_extensions.TypedDict, total=False):
+class TimeZone(typing.TypedDict, total=False):
     id: str
     version: str

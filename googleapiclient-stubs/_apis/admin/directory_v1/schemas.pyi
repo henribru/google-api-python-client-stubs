@@ -1,11 +1,9 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class Alias(typing_extensions.TypedDict, total=False):
+class Alias(typing.TypedDict, total=False):
     alias: str
     etag: str
     id: str
@@ -13,13 +11,13 @@ class Alias(typing_extensions.TypedDict, total=False):
     primaryEmail: str
 
 @typing.type_check_only
-class Aliases(typing_extensions.TypedDict, total=False):
+class Aliases(typing.TypedDict, total=False):
     aliases: _list[typing.Any]
     etag: str
     kind: str
 
 @typing.type_check_only
-class Asp(typing_extensions.TypedDict, total=False):
+class Asp(typing.TypedDict, total=False):
     codeId: int
     creationTime: str
     etag: str
@@ -29,34 +27,34 @@ class Asp(typing_extensions.TypedDict, total=False):
     userKey: str
 
 @typing.type_check_only
-class Asps(typing_extensions.TypedDict, total=False):
+class Asps(typing.TypedDict, total=False):
     etag: str
     items: _list[Asp]
     kind: str
 
 @typing.type_check_only
-class AuxiliaryMessage(typing_extensions.TypedDict, total=False):
+class AuxiliaryMessage(typing.TypedDict, total=False):
     auxiliaryMessage: str
     fieldMask: str
-    severity: typing_extensions.Literal[
+    severity: typing.Literal[
         "SEVERITY_UNSPECIFIED", "SEVERITY_INFO", "SEVERITY_WARNING", "SEVERITY_ERROR"
     ]
 
 @typing.type_check_only
-class BacklightInfo(typing_extensions.TypedDict, total=False):
+class BacklightInfo(typing.TypedDict, total=False):
     brightness: int
     maxBrightness: int
     path: str
 
 @typing.type_check_only
-class BatchChangeChromeOsDeviceStatusRequest(typing_extensions.TypedDict, total=False):
-    changeChromeOsDeviceStatusAction: typing_extensions.Literal[
+class BatchChangeChromeOsDeviceStatusRequest(typing.TypedDict, total=False):
+    changeChromeOsDeviceStatusAction: typing.Literal[
         "CHANGE_CHROME_OS_DEVICE_STATUS_ACTION_UNSPECIFIED",
         "CHANGE_CHROME_OS_DEVICE_STATUS_ACTION_DEPROVISION",
         "CHANGE_CHROME_OS_DEVICE_STATUS_ACTION_DISABLE",
         "CHANGE_CHROME_OS_DEVICE_STATUS_ACTION_REENABLE",
     ]
-    deprovisionReason: typing_extensions.Literal[
+    deprovisionReason: typing.Literal[
         "DEPROVISION_REASON_UNSPECIFIED",
         "DEPROVISION_REASON_SAME_MODEL_REPLACEMENT",
         "DEPROVISION_REASON_UPGRADE",
@@ -72,52 +70,52 @@ class BatchChangeChromeOsDeviceStatusRequest(typing_extensions.TypedDict, total=
     deviceIds: _list[str]
 
 @typing.type_check_only
-class BatchChangeChromeOsDeviceStatusResponse(typing_extensions.TypedDict, total=False):
+class BatchChangeChromeOsDeviceStatusResponse(typing.TypedDict, total=False):
     changeChromeOsDeviceStatusResults: _list[ChangeChromeOsDeviceStatusResult]
 
 @typing.type_check_only
-class BatchCreatePrintServersRequest(typing_extensions.TypedDict, total=False):
+class BatchCreatePrintServersRequest(typing.TypedDict, total=False):
     requests: _list[CreatePrintServerRequest]
 
 @typing.type_check_only
-class BatchCreatePrintServersResponse(typing_extensions.TypedDict, total=False):
+class BatchCreatePrintServersResponse(typing.TypedDict, total=False):
     failures: _list[PrintServerFailureInfo]
     printServers: _list[PrintServer]
 
 @typing.type_check_only
-class BatchCreatePrintersRequest(typing_extensions.TypedDict, total=False):
+class BatchCreatePrintersRequest(typing.TypedDict, total=False):
     requests: _list[CreatePrinterRequest]
 
 @typing.type_check_only
-class BatchCreatePrintersResponse(typing_extensions.TypedDict, total=False):
+class BatchCreatePrintersResponse(typing.TypedDict, total=False):
     failures: _list[FailureInfo]
     printers: _list[Printer]
 
 @typing.type_check_only
-class BatchDeletePrintServersRequest(typing_extensions.TypedDict, total=False):
+class BatchDeletePrintServersRequest(typing.TypedDict, total=False):
     printServerIds: _list[str]
 
 @typing.type_check_only
-class BatchDeletePrintServersResponse(typing_extensions.TypedDict, total=False):
+class BatchDeletePrintServersResponse(typing.TypedDict, total=False):
     failedPrintServers: _list[PrintServerFailureInfo]
     printServerIds: _list[str]
 
 @typing.type_check_only
-class BatchDeletePrintersRequest(typing_extensions.TypedDict, total=False):
+class BatchDeletePrintersRequest(typing.TypedDict, total=False):
     printerIds: _list[str]
 
 @typing.type_check_only
-class BatchDeletePrintersResponse(typing_extensions.TypedDict, total=False):
+class BatchDeletePrintersResponse(typing.TypedDict, total=False):
     failedPrinters: _list[FailureInfo]
     printerIds: _list[str]
 
 @typing.type_check_only
-class BluetoothAdapterInfo(typing_extensions.TypedDict, total=False):
+class BluetoothAdapterInfo(typing.TypedDict, total=False):
     address: str
     numConnectedDevices: int
 
 @typing.type_check_only
-class Building(typing_extensions.TypedDict, total=False):
+class Building(typing.TypedDict, total=False):
     address: BuildingAddress
     buildingId: str
     buildingName: str
@@ -128,7 +126,7 @@ class Building(typing_extensions.TypedDict, total=False):
     kind: str
 
 @typing.type_check_only
-class BuildingAddress(typing_extensions.TypedDict, total=False):
+class BuildingAddress(typing.TypedDict, total=False):
     addressLines: _list[str]
     administrativeArea: str
     languageCode: str
@@ -138,24 +136,24 @@ class BuildingAddress(typing_extensions.TypedDict, total=False):
     sublocality: str
 
 @typing.type_check_only
-class BuildingCoordinates(typing_extensions.TypedDict, total=False):
+class BuildingCoordinates(typing.TypedDict, total=False):
     latitude: float
     longitude: float
 
 @typing.type_check_only
-class Buildings(typing_extensions.TypedDict, total=False):
+class Buildings(typing.TypedDict, total=False):
     buildings: _list[Building]
     etag: str
     kind: str
     nextPageToken: str
 
 @typing.type_check_only
-class ByteUsage(typing_extensions.TypedDict, total=False):
+class ByteUsage(typing.TypedDict, total=False):
     capacityBytes: str
     usedBytes: str
 
 @typing.type_check_only
-class CalendarResource(typing_extensions.TypedDict, total=False):
+class CalendarResource(typing.TypedDict, total=False):
     buildingId: str
     capacity: int
     etags: str
@@ -173,23 +171,23 @@ class CalendarResource(typing_extensions.TypedDict, total=False):
     userVisibleDescription: str
 
 @typing.type_check_only
-class CalendarResources(typing_extensions.TypedDict, total=False):
+class CalendarResources(typing.TypedDict, total=False):
     etag: str
     items: _list[CalendarResource]
     kind: str
     nextPageToken: str
 
 @typing.type_check_only
-class ChangeChromeOsDeviceStatusResult(typing_extensions.TypedDict, total=False):
+class ChangeChromeOsDeviceStatusResult(typing.TypedDict, total=False):
     deviceId: str
     error: Status
     response: ChangeChromeOsDeviceStatusSucceeded
 
 @typing.type_check_only
-class ChangeChromeOsDeviceStatusSucceeded(typing_extensions.TypedDict, total=False): ...
+class ChangeChromeOsDeviceStatusSucceeded(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Channel(typing_extensions.TypedDict, total=False):
+class Channel(typing.TypedDict, total=False):
     address: str
     expiration: str
     id: str
@@ -202,7 +200,7 @@ class Channel(typing_extensions.TypedDict, total=False):
     type: str
 
 @typing.type_check_only
-class ChromeOsDevice(typing_extensions.TypedDict, total=False):
+class ChromeOsDevice(typing.TypedDict, total=False):
     activeTimeRanges: _list[dict[str, typing.Any]]
     annotatedAssetId: str
     annotatedLocation: str
@@ -212,12 +210,10 @@ class ChromeOsDevice(typing_extensions.TypedDict, total=False):
     backlightInfo: _list[BacklightInfo]
     bluetoothAdapterInfo: _list[BluetoothAdapterInfo]
     bootMode: str
-    chromeOsType: typing_extensions.Literal[
-        "chromeOsTypeUnspecified", "chromeOsFlex", "chromeOs"
-    ]
+    chromeOsType: typing.Literal["chromeOsTypeUnspecified", "chromeOsFlex", "chromeOs"]
     cpuInfo: _list[dict[str, typing.Any]]
     cpuStatusReports: _list[dict[str, typing.Any]]
-    deprovisionReason: typing_extensions.Literal[
+    deprovisionReason: typing.Literal[
         "DEPROVISION_REASON_UNSPECIFIED",
         "DEPROVISION_REASON_SAME_MODEL_REPLACEMENT",
         "DEPROVISION_REASON_UPGRADE",
@@ -232,7 +228,7 @@ class ChromeOsDevice(typing_extensions.TypedDict, total=False):
     ]
     deviceFiles: _list[dict[str, typing.Any]]
     deviceId: str
-    deviceLicenseType: typing_extensions.Literal[
+    deviceLicenseType: typing.Literal[
         "deviceLicenseTypeUnspecified",
         "enterprise",
         "enterpriseUpgrade",
@@ -271,7 +267,7 @@ class ChromeOsDevice(typing_extensions.TypedDict, total=False):
     orgUnitPath: str
     osUpdateStatus: OsUpdateStatus
     osVersion: str
-    osVersionCompliance: typing_extensions.Literal[
+    osVersionCompliance: typing.Literal[
         "complianceUnspecified", "compliant", "pending", "notCompliant"
     ]
     platformVersion: str
@@ -286,37 +282,37 @@ class ChromeOsDevice(typing_extensions.TypedDict, total=False):
     willAutoRenew: bool
 
 @typing.type_check_only
-class ChromeOsDeviceAction(typing_extensions.TypedDict, total=False):
+class ChromeOsDeviceAction(typing.TypedDict, total=False):
     action: str
     deprovisionReason: str
 
 @typing.type_check_only
-class ChromeOsDevices(typing_extensions.TypedDict, total=False):
+class ChromeOsDevices(typing.TypedDict, total=False):
     chromeosdevices: _list[ChromeOsDevice]
     etag: str
     kind: str
     nextPageToken: str
 
 @typing.type_check_only
-class ChromeOsMoveDevicesToOu(typing_extensions.TypedDict, total=False):
+class ChromeOsMoveDevicesToOu(typing.TypedDict, total=False):
     deviceIds: _list[str]
 
 @typing.type_check_only
-class CountChromeOsDevicesResponse(typing_extensions.TypedDict, total=False):
+class CountChromeOsDevicesResponse(typing.TypedDict, total=False):
     count: str
 
 @typing.type_check_only
-class CreatePrintServerRequest(typing_extensions.TypedDict, total=False):
+class CreatePrintServerRequest(typing.TypedDict, total=False):
     parent: str
     printServer: PrintServer
 
 @typing.type_check_only
-class CreatePrinterRequest(typing_extensions.TypedDict, total=False):
+class CreatePrinterRequest(typing.TypedDict, total=False):
     parent: str
     printer: Printer
 
 @typing.type_check_only
-class Customer(typing_extensions.TypedDict, total=False):
+class Customer(typing.TypedDict, total=False):
     alternateEmail: str
     customerCreationTime: str
     customerDomain: str
@@ -328,7 +324,7 @@ class Customer(typing_extensions.TypedDict, total=False):
     postalAddress: CustomerPostalAddress
 
 @typing.type_check_only
-class CustomerPostalAddress(typing_extensions.TypedDict, total=False):
+class CustomerPostalAddress(typing.TypedDict, total=False):
     addressLine1: str
     addressLine2: str
     addressLine3: str
@@ -340,13 +336,13 @@ class CustomerPostalAddress(typing_extensions.TypedDict, total=False):
     region: str
 
 @typing.type_check_only
-class DirectoryChromeosdevicesCommand(typing_extensions.TypedDict, total=False):
+class DirectoryChromeosdevicesCommand(typing.TypedDict, total=False):
     commandExpireTime: str
     commandId: str
     commandResult: DirectoryChromeosdevicesCommandResult
     issueTime: str
     payload: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "PENDING",
         "EXPIRED",
@@ -355,7 +351,7 @@ class DirectoryChromeosdevicesCommand(typing_extensions.TypedDict, total=False):
         "ACKED_BY_CLIENT",
         "EXECUTED_BY_CLIENT",
     ]
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "COMMAND_TYPE_UNSPECIFIED",
         "REBOOT",
         "TAKE_A_SCREENSHOT",
@@ -369,19 +365,17 @@ class DirectoryChromeosdevicesCommand(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class DirectoryChromeosdevicesCommandResult(typing_extensions.TypedDict, total=False):
+class DirectoryChromeosdevicesCommandResult(typing.TypedDict, total=False):
     commandResultPayload: str
     errorMessage: str
     executeTime: str
-    result: typing_extensions.Literal[
+    result: typing.Literal[
         "COMMAND_RESULT_TYPE_UNSPECIFIED", "IGNORED", "FAILURE", "SUCCESS"
     ]
 
 @typing.type_check_only
-class DirectoryChromeosdevicesIssueCommandRequest(
-    typing_extensions.TypedDict, total=False
-):
-    commandType: typing_extensions.Literal[
+class DirectoryChromeosdevicesIssueCommandRequest(typing.TypedDict, total=False):
+    commandType: typing.Literal[
         "COMMAND_TYPE_UNSPECIFIED",
         "REBOOT",
         "TAKE_A_SCREENSHOT",
@@ -396,18 +390,16 @@ class DirectoryChromeosdevicesIssueCommandRequest(
     payload: str
 
 @typing.type_check_only
-class DirectoryChromeosdevicesIssueCommandResponse(
-    typing_extensions.TypedDict, total=False
-):
+class DirectoryChromeosdevicesIssueCommandResponse(typing.TypedDict, total=False):
     commandId: str
 
 @typing.type_check_only
-class DirectoryUsersCreateGuestRequest(typing_extensions.TypedDict, total=False):
+class DirectoryUsersCreateGuestRequest(typing.TypedDict, total=False):
     customer: str
     primaryGuestEmail: str
 
 @typing.type_check_only
-class DomainAlias(typing_extensions.TypedDict, total=False):
+class DomainAlias(typing.TypedDict, total=False):
     creationTime: str
     domainAliasName: str
     etag: str
@@ -416,13 +408,13 @@ class DomainAlias(typing_extensions.TypedDict, total=False):
     verified: bool
 
 @typing.type_check_only
-class DomainAliases(typing_extensions.TypedDict, total=False):
+class DomainAliases(typing.TypedDict, total=False):
     domainAliases: _list[DomainAlias]
     etag: str
     kind: str
 
 @typing.type_check_only
-class Domains(typing_extensions.TypedDict, total=False):
+class Domains(typing.TypedDict, total=False):
     creationTime: str
     domainAliases: _list[DomainAlias]
     domainName: str
@@ -432,17 +424,22 @@ class Domains(typing_extensions.TypedDict, total=False):
     verified: bool
 
 @typing.type_check_only
-class Domains2(typing_extensions.TypedDict, total=False):
+class Domains2(typing.TypedDict, total=False):
     domains: _list[Domains]
     etag: str
     kind: str
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class FailureInfo(typing_extensions.TypedDict, total=False):
-    errorCode: typing_extensions.Literal[
+class ExternalId(typing.TypedDict, total=False):
+    id: str
+    namespace: str
+
+@typing.type_check_only
+class FailureInfo(typing.TypedDict, total=False):
+    errorCode: typing.Literal[
         "OK",
         "CANCELLED",
         "UNKNOWN",
@@ -466,45 +463,46 @@ class FailureInfo(typing_extensions.TypedDict, total=False):
     printerId: str
 
 @typing.type_check_only
-class FanInfo(typing_extensions.TypedDict, total=False):
+class FanInfo(typing.TypedDict, total=False):
     speedRpm: int
 
 @typing.type_check_only
-class Feature(typing_extensions.TypedDict, total=False):
+class Feature(typing.TypedDict, total=False):
     etags: str
     kind: str
     name: str
 
 @typing.type_check_only
-class FeatureInstance(typing_extensions.TypedDict, total=False):
+class FeatureInstance(typing.TypedDict, total=False):
     feature: Feature
 
 @typing.type_check_only
-class FeatureRename(typing_extensions.TypedDict, total=False):
+class FeatureRename(typing.TypedDict, total=False):
     newName: str
 
 @typing.type_check_only
-class Features(typing_extensions.TypedDict, total=False):
+class Features(typing.TypedDict, total=False):
     etag: str
     features: _list[Feature]
     kind: str
     nextPageToken: str
 
 @typing.type_check_only
-class Group(typing_extensions.TypedDict, total=False):
+class Group(typing.TypedDict, total=False):
     adminCreated: bool
     aliases: _list[str]
     description: str
     directMembersCount: str
     email: str
     etag: str
+    externalIds: _list[ExternalId]
     id: str
     kind: str
     name: str
     nonEditableAliases: _list[str]
 
 @typing.type_check_only
-class GroupAlias(typing_extensions.TypedDict, total=False):
+class GroupAlias(typing.TypedDict, total=False):
     alias: str
     etag: str
     id: str
@@ -512,33 +510,33 @@ class GroupAlias(typing_extensions.TypedDict, total=False):
     primaryEmail: str
 
 @typing.type_check_only
-class Groups(typing_extensions.TypedDict, total=False):
+class Groups(typing.TypedDict, total=False):
     etag: str
     groups: _list[Group]
     kind: str
     nextPageToken: str
 
 @typing.type_check_only
-class GuestAccountInfo(typing_extensions.TypedDict, total=False):
+class GuestAccountInfo(typing.TypedDict, total=False):
     primaryGuestEmail: str
 
 @typing.type_check_only
-class ListPrintServersResponse(typing_extensions.TypedDict, total=False):
+class ListPrintServersResponse(typing.TypedDict, total=False):
     nextPageToken: str
     printServers: _list[PrintServer]
 
 @typing.type_check_only
-class ListPrinterModelsResponse(typing_extensions.TypedDict, total=False):
+class ListPrinterModelsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     printerModels: _list[PrinterModel]
 
 @typing.type_check_only
-class ListPrintersResponse(typing_extensions.TypedDict, total=False):
+class ListPrintersResponse(typing.TypedDict, total=False):
     nextPageToken: str
     printers: _list[Printer]
 
 @typing.type_check_only
-class Member(typing_extensions.TypedDict, total=False):
+class Member(typing.TypedDict, total=False):
     delivery_settings: str
     email: str
     etag: str
@@ -549,18 +547,18 @@ class Member(typing_extensions.TypedDict, total=False):
     type: str
 
 @typing.type_check_only
-class Members(typing_extensions.TypedDict, total=False):
+class Members(typing.TypedDict, total=False):
     etag: str
     kind: str
     members: _list[Member]
     nextPageToken: str
 
 @typing.type_check_only
-class MembersHasMember(typing_extensions.TypedDict, total=False):
+class MembersHasMember(typing.TypedDict, total=False):
     isMember: bool
 
 @typing.type_check_only
-class MobileDevice(typing_extensions.TypedDict, total=False):
+class MobileDevice(typing.TypedDict, total=False):
     adbStatus: bool
     applications: _list[dict[str, typing.Any]]
     basebandVersion: str
@@ -603,18 +601,18 @@ class MobileDevice(typing_extensions.TypedDict, total=False):
     wifiMacAddress: str
 
 @typing.type_check_only
-class MobileDeviceAction(typing_extensions.TypedDict, total=False):
+class MobileDeviceAction(typing.TypedDict, total=False):
     action: str
 
 @typing.type_check_only
-class MobileDevices(typing_extensions.TypedDict, total=False):
+class MobileDevices(typing.TypedDict, total=False):
     etag: str
     kind: str
     mobiledevices: _list[MobileDevice]
     nextPageToken: str
 
 @typing.type_check_only
-class OrgUnit(typing_extensions.TypedDict, total=False):
+class OrgUnit(typing.TypedDict, total=False):
     blockInheritance: bool
     description: str
     etag: str
@@ -626,15 +624,15 @@ class OrgUnit(typing_extensions.TypedDict, total=False):
     parentOrgUnitPath: str
 
 @typing.type_check_only
-class OrgUnits(typing_extensions.TypedDict, total=False):
+class OrgUnits(typing.TypedDict, total=False):
     etag: str
     kind: str
     organizationUnits: _list[OrgUnit]
 
 @typing.type_check_only
-class OsUpdateStatus(typing_extensions.TypedDict, total=False):
+class OsUpdateStatus(typing.TypedDict, total=False):
     rebootTime: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "updateStateUnspecified",
         "updateStateNotStarted",
         "updateStateDownloadInProgress",
@@ -646,7 +644,7 @@ class OsUpdateStatus(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class PrintServer(typing_extensions.TypedDict, total=False):
+class PrintServer(typing.TypedDict, total=False):
     createTime: str
     description: str
     displayName: str
@@ -656,8 +654,8 @@ class PrintServer(typing_extensions.TypedDict, total=False):
     uri: str
 
 @typing.type_check_only
-class PrintServerFailureInfo(typing_extensions.TypedDict, total=False):
-    errorCode: typing_extensions.Literal[
+class PrintServerFailureInfo(typing.TypedDict, total=False):
+    errorCode: typing.Literal[
         "OK",
         "CANCELLED",
         "UNKNOWN",
@@ -681,7 +679,7 @@ class PrintServerFailureInfo(typing_extensions.TypedDict, total=False):
     printServerId: str
 
 @typing.type_check_only
-class Printer(typing_extensions.TypedDict, total=False):
+class Printer(typing.TypedDict, total=False):
     auxiliaryMessages: _list[AuxiliaryMessage]
     createTime: str
     description: str
@@ -694,13 +692,13 @@ class Printer(typing_extensions.TypedDict, total=False):
     useDriverlessConfig: bool
 
 @typing.type_check_only
-class PrinterModel(typing_extensions.TypedDict, total=False):
+class PrinterModel(typing.TypedDict, total=False):
     displayName: str
     makeAndModel: str
     manufacturer: str
 
 @typing.type_check_only
-class Privilege(typing_extensions.TypedDict, total=False):
+class Privilege(typing.TypedDict, total=False):
     childPrivileges: _list[Privilege]
     etag: str
     isOuScopable: bool
@@ -710,13 +708,13 @@ class Privilege(typing_extensions.TypedDict, total=False):
     serviceName: str
 
 @typing.type_check_only
-class Privileges(typing_extensions.TypedDict, total=False):
+class Privileges(typing.TypedDict, total=False):
     etag: str
     items: _list[Privilege]
     kind: str
 
 @typing.type_check_only
-class Role(typing_extensions.TypedDict, total=False):
+class Role(typing.TypedDict, total=False):
     etag: str
     isSuperAdminRole: bool
     isSystemRole: bool
@@ -727,9 +725,9 @@ class Role(typing_extensions.TypedDict, total=False):
     rolePrivileges: _list[dict[str, typing.Any]]
 
 @typing.type_check_only
-class RoleAssignment(typing_extensions.TypedDict, total=False):
+class RoleAssignment(typing.TypedDict, total=False):
     assignedTo: str
-    assigneeType: typing_extensions.Literal["user", "group"]
+    assigneeType: typing.Literal["user", "group"]
     condition: str
     etag: str
     kind: str
@@ -739,21 +737,21 @@ class RoleAssignment(typing_extensions.TypedDict, total=False):
     scopeType: str
 
 @typing.type_check_only
-class RoleAssignments(typing_extensions.TypedDict, total=False):
+class RoleAssignments(typing.TypedDict, total=False):
     etag: str
     items: _list[RoleAssignment]
     kind: str
     nextPageToken: str
 
 @typing.type_check_only
-class Roles(typing_extensions.TypedDict, total=False):
+class Roles(typing.TypedDict, total=False):
     etag: str
     items: _list[Role]
     kind: str
     nextPageToken: str
 
 @typing.type_check_only
-class Schema(typing_extensions.TypedDict, total=False):
+class Schema(typing.TypedDict, total=False):
     displayName: str
     etag: str
     fields: _list[SchemaFieldSpec]
@@ -762,7 +760,7 @@ class Schema(typing_extensions.TypedDict, total=False):
     schemaName: str
 
 @typing.type_check_only
-class SchemaFieldSpec(typing_extensions.TypedDict, total=False):
+class SchemaFieldSpec(typing.TypedDict, total=False):
     displayName: str
     etag: str
     fieldId: str
@@ -775,19 +773,19 @@ class SchemaFieldSpec(typing_extensions.TypedDict, total=False):
     readAccessType: str
 
 @typing.type_check_only
-class Schemas(typing_extensions.TypedDict, total=False):
+class Schemas(typing.TypedDict, total=False):
     etag: str
     kind: str
     schemas: _list[Schema]
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class Token(typing_extensions.TypedDict, total=False):
+class Token(typing.TypedDict, total=False):
     anonymous: bool
     clientId: str
     displayText: str
@@ -798,13 +796,13 @@ class Token(typing_extensions.TypedDict, total=False):
     userKey: str
 
 @typing.type_check_only
-class Tokens(typing_extensions.TypedDict, total=False):
+class Tokens(typing.TypedDict, total=False):
     etag: str
     items: _list[Token]
     kind: str
 
 @typing.type_check_only
-class User(typing_extensions.TypedDict, total=False):
+class User(typing.TypedDict, total=False):
     addresses: typing.Any
     agreedToTerms: bool
     aliases: _list[str]
@@ -857,12 +855,12 @@ class User(typing_extensions.TypedDict, total=False):
     websites: typing.Any
 
 @typing.type_check_only
-class UserAbout(typing_extensions.TypedDict, total=False):
+class UserAbout(typing.TypedDict, total=False):
     contentType: str
     value: str
 
 @typing.type_check_only
-class UserAddress(typing_extensions.TypedDict, total=False):
+class UserAddress(typing.TypedDict, total=False):
     country: str
     countryCode: str
     customType: str
@@ -878,7 +876,7 @@ class UserAddress(typing_extensions.TypedDict, total=False):
     type: str
 
 @typing.type_check_only
-class UserAlias(typing_extensions.TypedDict, total=False):
+class UserAlias(typing.TypedDict, total=False):
     alias: str
     etag: str
     id: str
@@ -889,7 +887,7 @@ class UserAlias(typing_extensions.TypedDict, total=False):
 class UserCustomProperties(dict[str, typing.Any]): ...
 
 @typing.type_check_only
-class UserEmail(typing_extensions.TypedDict, total=False):
+class UserEmail(typing.TypedDict, total=False):
     address: str
     customType: str
     primary: bool
@@ -897,19 +895,19 @@ class UserEmail(typing_extensions.TypedDict, total=False):
     type: str
 
 @typing.type_check_only
-class UserExternalId(typing_extensions.TypedDict, total=False):
+class UserExternalId(typing.TypedDict, total=False):
     customType: str
     type: str
     value: str
 
 @typing.type_check_only
-class UserGender(typing_extensions.TypedDict, total=False):
+class UserGender(typing.TypedDict, total=False):
     addressMeAs: str
     customGender: str
     type: str
 
 @typing.type_check_only
-class UserIm(typing_extensions.TypedDict, total=False):
+class UserIm(typing.TypedDict, total=False):
     customProtocol: str
     customType: str
     im: str
@@ -918,19 +916,19 @@ class UserIm(typing_extensions.TypedDict, total=False):
     type: str
 
 @typing.type_check_only
-class UserKeyword(typing_extensions.TypedDict, total=False):
+class UserKeyword(typing.TypedDict, total=False):
     customType: str
     type: str
     value: str
 
 @typing.type_check_only
-class UserLanguage(typing_extensions.TypedDict, total=False):
+class UserLanguage(typing.TypedDict, total=False):
     customLanguage: str
     languageCode: str
     preference: str
 
 @typing.type_check_only
-class UserLocation(typing_extensions.TypedDict, total=False):
+class UserLocation(typing.TypedDict, total=False):
     area: str
     buildingId: str
     customType: str
@@ -940,18 +938,18 @@ class UserLocation(typing_extensions.TypedDict, total=False):
     type: str
 
 @typing.type_check_only
-class UserMakeAdmin(typing_extensions.TypedDict, total=False):
+class UserMakeAdmin(typing.TypedDict, total=False):
     status: bool
 
 @typing.type_check_only
-class UserName(typing_extensions.TypedDict, total=False):
+class UserName(typing.TypedDict, total=False):
     displayName: str
     familyName: str
     fullName: str
     givenName: str
 
 @typing.type_check_only
-class UserOrganization(typing_extensions.TypedDict, total=False):
+class UserOrganization(typing.TypedDict, total=False):
     costCenter: str
     customType: str
     department: str
@@ -966,14 +964,14 @@ class UserOrganization(typing_extensions.TypedDict, total=False):
     type: str
 
 @typing.type_check_only
-class UserPhone(typing_extensions.TypedDict, total=False):
+class UserPhone(typing.TypedDict, total=False):
     customType: str
     primary: bool
     type: str
     value: str
 
 @typing.type_check_only
-class UserPhoto(typing_extensions.TypedDict, total=False):
+class UserPhoto(typing.TypedDict, total=False):
     etag: str
     height: int
     id: str
@@ -984,7 +982,7 @@ class UserPhoto(typing_extensions.TypedDict, total=False):
     width: int
 
 @typing.type_check_only
-class UserPosixAccount(typing_extensions.TypedDict, total=False):
+class UserPosixAccount(typing.TypedDict, total=False):
     accountId: str
     gecos: str
     gid: str
@@ -997,30 +995,30 @@ class UserPosixAccount(typing_extensions.TypedDict, total=False):
     username: str
 
 @typing.type_check_only
-class UserRelation(typing_extensions.TypedDict, total=False):
+class UserRelation(typing.TypedDict, total=False):
     customType: str
     type: str
     value: str
 
 @typing.type_check_only
-class UserSshPublicKey(typing_extensions.TypedDict, total=False):
+class UserSshPublicKey(typing.TypedDict, total=False):
     expirationTimeUsec: str
     fingerprint: str
     key: str
 
 @typing.type_check_only
-class UserUndelete(typing_extensions.TypedDict, total=False):
+class UserUndelete(typing.TypedDict, total=False):
     orgUnitPath: str
 
 @typing.type_check_only
-class UserWebsite(typing_extensions.TypedDict, total=False):
+class UserWebsite(typing.TypedDict, total=False):
     customType: str
     primary: bool
     type: str
     value: str
 
 @typing.type_check_only
-class Users(typing_extensions.TypedDict, total=False):
+class Users(typing.TypedDict, total=False):
     etag: str
     kind: str
     nextPageToken: str
@@ -1028,14 +1026,14 @@ class Users(typing_extensions.TypedDict, total=False):
     users: _list[User]
 
 @typing.type_check_only
-class VerificationCode(typing_extensions.TypedDict, total=False):
+class VerificationCode(typing.TypedDict, total=False):
     etag: str
     kind: str
     userId: str
     verificationCode: str
 
 @typing.type_check_only
-class VerificationCodes(typing_extensions.TypedDict, total=False):
+class VerificationCodes(typing.TypedDict, total=False):
     etag: str
     items: _list[VerificationCode]
     kind: str

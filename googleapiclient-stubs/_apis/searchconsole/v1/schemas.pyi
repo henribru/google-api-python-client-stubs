@@ -1,16 +1,14 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class AmpInspectionResult(typing_extensions.TypedDict, total=False):
-    ampIndexStatusVerdict: typing_extensions.Literal[
+class AmpInspectionResult(typing.TypedDict, total=False):
+    ampIndexStatusVerdict: typing.Literal[
         "VERDICT_UNSPECIFIED", "PASS", "PARTIAL", "FAIL", "NEUTRAL"
     ]
     ampUrl: str
-    indexingState: typing_extensions.Literal[
+    indexingState: typing.Literal[
         "AMP_INDEXING_STATE_UNSPECIFIED",
         "AMP_INDEXING_ALLOWED",
         "BLOCKED_DUE_TO_NOINDEX",
@@ -18,7 +16,7 @@ class AmpInspectionResult(typing_extensions.TypedDict, total=False):
     ]
     issues: _list[AmpIssue]
     lastCrawlTime: str
-    pageFetchState: typing_extensions.Literal[
+    pageFetchState: typing.Literal[
         "PAGE_FETCH_STATE_UNSPECIFIED",
         "SUCCESSFUL",
         "SOFT_404",
@@ -32,20 +30,18 @@ class AmpInspectionResult(typing_extensions.TypedDict, total=False):
         "INTERNAL_CRAWL_ERROR",
         "INVALID_URL",
     ]
-    robotsTxtState: typing_extensions.Literal[
+    robotsTxtState: typing.Literal[
         "ROBOTS_TXT_STATE_UNSPECIFIED", "ALLOWED", "DISALLOWED"
     ]
-    verdict: typing_extensions.Literal[
-        "VERDICT_UNSPECIFIED", "PASS", "PARTIAL", "FAIL", "NEUTRAL"
-    ]
+    verdict: typing.Literal["VERDICT_UNSPECIFIED", "PASS", "PARTIAL", "FAIL", "NEUTRAL"]
 
 @typing.type_check_only
-class AmpIssue(typing_extensions.TypedDict, total=False):
+class AmpIssue(typing.TypedDict, total=False):
     issueMessage: str
-    severity: typing_extensions.Literal["SEVERITY_UNSPECIFIED", "WARNING", "ERROR"]
+    severity: typing.Literal["SEVERITY_UNSPECIFIED", "WARNING", "ERROR"]
 
 @typing.type_check_only
-class ApiDataRow(typing_extensions.TypedDict, total=False):
+class ApiDataRow(typing.TypedDict, total=False):
     clicks: float
     ctr: float
     impressions: float
@@ -53,12 +49,10 @@ class ApiDataRow(typing_extensions.TypedDict, total=False):
     position: float
 
 @typing.type_check_only
-class ApiDimensionFilter(typing_extensions.TypedDict, total=False):
-    dimension: typing_extensions.Literal[
-        "QUERY", "PAGE", "COUNTRY", "DEVICE", "SEARCH_APPEARANCE"
-    ]
+class ApiDimensionFilter(typing.TypedDict, total=False):
+    dimension: typing.Literal["QUERY", "PAGE", "COUNTRY", "DEVICE", "SEARCH_APPEARANCE"]
     expression: str
-    operator: typing_extensions.Literal[
+    operator: typing.Literal[
         "EQUALS",
         "NOT_EQUALS",
         "CONTAINS",
@@ -68,32 +62,30 @@ class ApiDimensionFilter(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class ApiDimensionFilterGroup(typing_extensions.TypedDict, total=False):
+class ApiDimensionFilterGroup(typing.TypedDict, total=False):
     filters: _list[ApiDimensionFilter]
-    groupType: typing_extensions.Literal["AND"]
+    groupType: typing.Literal["AND"]
 
 @typing.type_check_only
-class BlockedResource(typing_extensions.TypedDict, total=False):
+class BlockedResource(typing.TypedDict, total=False):
     url: str
 
 @typing.type_check_only
-class DetectedItems(typing_extensions.TypedDict, total=False):
+class DetectedItems(typing.TypedDict, total=False):
     items: _list[Item]
     richResultType: str
 
 @typing.type_check_only
-class Image(typing_extensions.TypedDict, total=False):
+class Image(typing.TypedDict, total=False):
     data: str
     mimeType: str
 
 @typing.type_check_only
-class IndexStatusInspectionResult(typing_extensions.TypedDict, total=False):
+class IndexStatusInspectionResult(typing.TypedDict, total=False):
     coverageState: str
-    crawledAs: typing_extensions.Literal[
-        "CRAWLING_USER_AGENT_UNSPECIFIED", "DESKTOP", "MOBILE"
-    ]
+    crawledAs: typing.Literal["CRAWLING_USER_AGENT_UNSPECIFIED", "DESKTOP", "MOBILE"]
     googleCanonical: str
-    indexingState: typing_extensions.Literal[
+    indexingState: typing.Literal[
         "INDEXING_STATE_UNSPECIFIED",
         "INDEXING_ALLOWED",
         "BLOCKED_BY_META_TAG",
@@ -101,7 +93,7 @@ class IndexStatusInspectionResult(typing_extensions.TypedDict, total=False):
         "BLOCKED_BY_ROBOTS_TXT",
     ]
     lastCrawlTime: str
-    pageFetchState: typing_extensions.Literal[
+    pageFetchState: typing.Literal[
         "PAGE_FETCH_STATE_UNSPECIFIED",
         "SUCCESSFUL",
         "SOFT_404",
@@ -116,38 +108,36 @@ class IndexStatusInspectionResult(typing_extensions.TypedDict, total=False):
         "INVALID_URL",
     ]
     referringUrls: _list[str]
-    robotsTxtState: typing_extensions.Literal[
+    robotsTxtState: typing.Literal[
         "ROBOTS_TXT_STATE_UNSPECIFIED", "ALLOWED", "DISALLOWED"
     ]
     sitemap: _list[str]
     userCanonical: str
-    verdict: typing_extensions.Literal[
-        "VERDICT_UNSPECIFIED", "PASS", "PARTIAL", "FAIL", "NEUTRAL"
-    ]
+    verdict: typing.Literal["VERDICT_UNSPECIFIED", "PASS", "PARTIAL", "FAIL", "NEUTRAL"]
 
 @typing.type_check_only
-class InspectUrlIndexRequest(typing_extensions.TypedDict, total=False):
+class InspectUrlIndexRequest(typing.TypedDict, total=False):
     inspectionUrl: str
     languageCode: str
     siteUrl: str
 
 @typing.type_check_only
-class InspectUrlIndexResponse(typing_extensions.TypedDict, total=False):
+class InspectUrlIndexResponse(typing.TypedDict, total=False):
     inspectionResult: UrlInspectionResult
 
 @typing.type_check_only
-class Item(typing_extensions.TypedDict, total=False):
+class Item(typing.TypedDict, total=False):
     issues: _list[RichResultsIssue]
     name: str
 
 @typing.type_check_only
-class Metadata(typing_extensions.TypedDict, total=False):
+class Metadata(typing.TypedDict, total=False):
     firstIncompleteDate: str
     firstIncompleteHour: str
 
 @typing.type_check_only
-class MobileFriendlyIssue(typing_extensions.TypedDict, total=False):
-    rule: typing_extensions.Literal[
+class MobileFriendlyIssue(typing.TypedDict, total=False):
+    rule: typing.Literal[
         "MOBILE_FRIENDLY_RULE_UNSPECIFIED",
         "USES_INCOMPATIBLE_PLUGINS",
         "CONFIGURE_VIEWPORT",
@@ -158,15 +148,13 @@ class MobileFriendlyIssue(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class MobileUsabilityInspectionResult(typing_extensions.TypedDict, total=False):
+class MobileUsabilityInspectionResult(typing.TypedDict, total=False):
     issues: _list[MobileUsabilityIssue]
-    verdict: typing_extensions.Literal[
-        "VERDICT_UNSPECIFIED", "PASS", "PARTIAL", "FAIL", "NEUTRAL"
-    ]
+    verdict: typing.Literal["VERDICT_UNSPECIFIED", "PASS", "PARTIAL", "FAIL", "NEUTRAL"]
 
 @typing.type_check_only
-class MobileUsabilityIssue(typing_extensions.TypedDict, total=False):
-    issueType: typing_extensions.Literal[
+class MobileUsabilityIssue(typing.TypedDict, total=False):
+    issueType: typing.Literal[
         "MOBILE_USABILITY_ISSUE_TYPE_UNSPECIFIED",
         "USES_INCOMPATIBLE_PLUGINS",
         "CONFIGURE_VIEWPORT",
@@ -176,32 +164,30 @@ class MobileUsabilityIssue(typing_extensions.TypedDict, total=False):
         "TAP_TARGETS_TOO_CLOSE",
     ]
     message: str
-    severity: typing_extensions.Literal["SEVERITY_UNSPECIFIED", "WARNING", "ERROR"]
+    severity: typing.Literal["SEVERITY_UNSPECIFIED", "WARNING", "ERROR"]
 
 @typing.type_check_only
-class ResourceIssue(typing_extensions.TypedDict, total=False):
+class ResourceIssue(typing.TypedDict, total=False):
     blockedResource: BlockedResource
 
 @typing.type_check_only
-class RichResultsInspectionResult(typing_extensions.TypedDict, total=False):
+class RichResultsInspectionResult(typing.TypedDict, total=False):
     detectedItems: _list[DetectedItems]
-    verdict: typing_extensions.Literal[
-        "VERDICT_UNSPECIFIED", "PASS", "PARTIAL", "FAIL", "NEUTRAL"
-    ]
+    verdict: typing.Literal["VERDICT_UNSPECIFIED", "PASS", "PARTIAL", "FAIL", "NEUTRAL"]
 
 @typing.type_check_only
-class RichResultsIssue(typing_extensions.TypedDict, total=False):
+class RichResultsIssue(typing.TypedDict, total=False):
     issueMessage: str
-    severity: typing_extensions.Literal["SEVERITY_UNSPECIFIED", "WARNING", "ERROR"]
+    severity: typing.Literal["SEVERITY_UNSPECIFIED", "WARNING", "ERROR"]
 
 @typing.type_check_only
-class RunMobileFriendlyTestRequest(typing_extensions.TypedDict, total=False):
+class RunMobileFriendlyTestRequest(typing.TypedDict, total=False):
     requestScreenshot: bool
     url: str
 
 @typing.type_check_only
-class RunMobileFriendlyTestResponse(typing_extensions.TypedDict, total=False):
-    mobileFriendliness: typing_extensions.Literal[
+class RunMobileFriendlyTestResponse(typing.TypedDict, total=False):
+    mobileFriendliness: typing.Literal[
         "MOBILE_FRIENDLY_TEST_RESULT_UNSPECIFIED",
         "MOBILE_FRIENDLY",
         "NOT_MOBILE_FRIENDLY",
@@ -212,55 +198,51 @@ class RunMobileFriendlyTestResponse(typing_extensions.TypedDict, total=False):
     testStatus: TestStatus
 
 @typing.type_check_only
-class SearchAnalyticsQueryRequest(typing_extensions.TypedDict, total=False):
-    aggregationType: typing_extensions.Literal[
+class SearchAnalyticsQueryRequest(typing.TypedDict, total=False):
+    aggregationType: typing.Literal[
         "AUTO", "BY_PROPERTY", "BY_PAGE", "BY_NEWS_SHOWCASE_PANEL"
     ]
-    dataState: typing_extensions.Literal[
-        "DATA_STATE_UNSPECIFIED", "FINAL", "ALL", "HOURLY_ALL"
-    ]
+    dataState: typing.Literal["DATA_STATE_UNSPECIFIED", "FINAL", "ALL", "HOURLY_ALL"]
     dimensionFilterGroups: _list[ApiDimensionFilterGroup]
     dimensions: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "DATE", "QUERY", "PAGE", "COUNTRY", "DEVICE", "SEARCH_APPEARANCE", "HOUR"
         ]
     ]
     endDate: str
     rowLimit: int
-    searchType: typing_extensions.Literal[
+    searchType: typing.Literal[
         "WEB", "IMAGE", "VIDEO", "NEWS", "DISCOVER", "GOOGLE_NEWS"
     ]
     startDate: str
     startRow: int
-    type: typing_extensions.Literal[
-        "WEB", "IMAGE", "VIDEO", "NEWS", "DISCOVER", "GOOGLE_NEWS"
-    ]
+    type: typing.Literal["WEB", "IMAGE", "VIDEO", "NEWS", "DISCOVER", "GOOGLE_NEWS"]
 
 @typing.type_check_only
-class SearchAnalyticsQueryResponse(typing_extensions.TypedDict, total=False):
+class SearchAnalyticsQueryResponse(typing.TypedDict, total=False):
     metadata: Metadata
-    responseAggregationType: typing_extensions.Literal[
+    responseAggregationType: typing.Literal[
         "AUTO", "BY_PROPERTY", "BY_PAGE", "BY_NEWS_SHOWCASE_PANEL"
     ]
     rows: _list[ApiDataRow]
 
 @typing.type_check_only
-class SitemapsListResponse(typing_extensions.TypedDict, total=False):
+class SitemapsListResponse(typing.TypedDict, total=False):
     sitemap: _list[WmxSitemap]
 
 @typing.type_check_only
-class SitesListResponse(typing_extensions.TypedDict, total=False):
+class SitesListResponse(typing.TypedDict, total=False):
     siteEntry: _list[WmxSite]
 
 @typing.type_check_only
-class TestStatus(typing_extensions.TypedDict, total=False):
+class TestStatus(typing.TypedDict, total=False):
     details: str
-    status: typing_extensions.Literal[
+    status: typing.Literal[
         "TEST_STATUS_UNSPECIFIED", "COMPLETE", "INTERNAL_ERROR", "PAGE_UNREACHABLE"
     ]
 
 @typing.type_check_only
-class UrlInspectionResult(typing_extensions.TypedDict, total=False):
+class UrlInspectionResult(typing.TypedDict, total=False):
     ampResult: AmpInspectionResult
     indexStatusResult: IndexStatusInspectionResult
     inspectionResultLink: str
@@ -268,8 +250,8 @@ class UrlInspectionResult(typing_extensions.TypedDict, total=False):
     richResultsResult: RichResultsInspectionResult
 
 @typing.type_check_only
-class WmxSite(typing_extensions.TypedDict, total=False):
-    permissionLevel: typing_extensions.Literal[
+class WmxSite(typing.TypedDict, total=False):
+    permissionLevel: typing.Literal[
         "SITE_PERMISSION_LEVEL_UNSPECIFIED",
         "SITE_OWNER",
         "SITE_FULL_USER",
@@ -279,7 +261,7 @@ class WmxSite(typing_extensions.TypedDict, total=False):
     siteUrl: str
 
 @typing.type_check_only
-class WmxSitemap(typing_extensions.TypedDict, total=False):
+class WmxSitemap(typing.TypedDict, total=False):
     contents: _list[WmxSitemapContent]
     errors: str
     isPending: bool
@@ -287,7 +269,7 @@ class WmxSitemap(typing_extensions.TypedDict, total=False):
     lastDownloaded: str
     lastSubmitted: str
     path: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "NOT_SITEMAP",
         "URL_LIST",
         "SITEMAP",
@@ -299,10 +281,10 @@ class WmxSitemap(typing_extensions.TypedDict, total=False):
     warnings: str
 
 @typing.type_check_only
-class WmxSitemapContent(typing_extensions.TypedDict, total=False):
+class WmxSitemapContent(typing.TypedDict, total=False):
     indexed: str
     submitted: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "WEB",
         "IMAGE",
         "VIDEO",

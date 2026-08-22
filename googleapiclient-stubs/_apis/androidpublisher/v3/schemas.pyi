@@ -1,12 +1,10 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class Abi(typing_extensions.TypedDict, total=False):
-    alias: typing_extensions.Literal[
+class Abi(typing.TypedDict, total=False):
+    alias: typing.Literal[
         "UNSPECIFIED_CPU_ARCHITECTURE",
         "ARMEABI",
         "ARMEABI_V7A",
@@ -17,18 +15,18 @@ class Abi(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class AbiTargeting(typing_extensions.TypedDict, total=False):
+class AbiTargeting(typing.TypedDict, total=False):
     alternatives: _list[Abi]
     value: _list[Abi]
 
 @typing.type_check_only
-class AcquisitionTargetingRule(typing_extensions.TypedDict, total=False):
+class AcquisitionTargetingRule(typing.TypedDict, total=False):
     scope: TargetingRuleScope
 
 @typing.type_check_only
-class ActivateBasePlanRequest(typing_extensions.TypedDict, total=False):
+class ActivateBasePlanRequest(typing.TypedDict, total=False):
     basePlanId: str
-    latencyTolerance: typing_extensions.Literal[
+    latencyTolerance: typing.Literal[
         "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
         "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
         "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT",
@@ -37,8 +35,8 @@ class ActivateBasePlanRequest(typing_extensions.TypedDict, total=False):
     productId: str
 
 @typing.type_check_only
-class ActivateOneTimeProductOfferRequest(typing_extensions.TypedDict, total=False):
-    latencyTolerance: typing_extensions.Literal[
+class ActivateOneTimeProductOfferRequest(typing.TypedDict, total=False):
+    latencyTolerance: typing.Literal[
         "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
         "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
         "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT",
@@ -49,8 +47,8 @@ class ActivateOneTimeProductOfferRequest(typing_extensions.TypedDict, total=Fals
     purchaseOptionId: str
 
 @typing.type_check_only
-class ActivatePurchaseOptionRequest(typing_extensions.TypedDict, total=False):
-    latencyTolerance: typing_extensions.Literal[
+class ActivatePurchaseOptionRequest(typing.TypedDict, total=False):
+    latencyTolerance: typing.Literal[
         "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
         "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
         "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT",
@@ -60,9 +58,9 @@ class ActivatePurchaseOptionRequest(typing_extensions.TypedDict, total=False):
     purchaseOptionId: str
 
 @typing.type_check_only
-class ActivateSubscriptionOfferRequest(typing_extensions.TypedDict, total=False):
+class ActivateSubscriptionOfferRequest(typing.TypedDict, total=False):
     basePlanId: str
-    latencyTolerance: typing_extensions.Literal[
+    latencyTolerance: typing.Literal[
         "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
         "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
         "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT",
@@ -72,32 +70,32 @@ class ActivateSubscriptionOfferRequest(typing_extensions.TypedDict, total=False)
     productId: str
 
 @typing.type_check_only
-class AddTargetingRequest(typing_extensions.TypedDict, total=False):
+class AddTargetingRequest(typing.TypedDict, total=False):
     targetingUpdate: TargetingUpdate
 
 @typing.type_check_only
-class AddTargetingResponse(typing_extensions.TypedDict, total=False): ...
+class AddTargetingResponse(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class AllUsers(typing_extensions.TypedDict, total=False):
+class AllUsers(typing.TypedDict, total=False):
     isAllUsersRequested: bool
 
 @typing.type_check_only
-class AndroidSdks(typing_extensions.TypedDict, total=False):
+class AndroidSdks(typing.TypedDict, total=False):
     sdkLevels: _list[str]
 
 @typing.type_check_only
-class Apk(typing_extensions.TypedDict, total=False):
+class Apk(typing.TypedDict, total=False):
     binary: ApkBinary
     versionCode: int
 
 @typing.type_check_only
-class ApkBinary(typing_extensions.TypedDict, total=False):
+class ApkBinary(typing.TypedDict, total=False):
     sha1: str
     sha256: str
 
 @typing.type_check_only
-class ApkDescription(typing_extensions.TypedDict, total=False):
+class ApkDescription(typing.TypedDict, total=False):
     assetSliceMetadata: SplitApkMetadata
     instantApkMetadata: SplitApkMetadata
     path: str
@@ -106,12 +104,12 @@ class ApkDescription(typing_extensions.TypedDict, total=False):
     targeting: ApkTargeting
 
 @typing.type_check_only
-class ApkSet(typing_extensions.TypedDict, total=False):
+class ApkSet(typing.TypedDict, total=False):
     apkDescription: _list[ApkDescription]
     moduleMetadata: ModuleMetadata
 
 @typing.type_check_only
-class ApkTargeting(typing_extensions.TypedDict, total=False):
+class ApkTargeting(typing.TypedDict, total=False):
     abiTargeting: AbiTargeting
     languageTargeting: LanguageTargeting
     multiAbiTargeting: MultiAbiTargeting
@@ -120,39 +118,45 @@ class ApkTargeting(typing_extensions.TypedDict, total=False):
     textureCompressionFormatTargeting: TextureCompressionFormatTargeting
 
 @typing.type_check_only
-class ApksAddExternallyHostedRequest(typing_extensions.TypedDict, total=False):
+class ApksAddExternallyHostedRequest(typing.TypedDict, total=False):
     externallyHostedApk: ExternallyHostedApk
 
 @typing.type_check_only
-class ApksAddExternallyHostedResponse(typing_extensions.TypedDict, total=False):
+class ApksAddExternallyHostedResponse(typing.TypedDict, total=False):
     externallyHostedApk: ExternallyHostedApk
 
 @typing.type_check_only
-class ApksListResponse(typing_extensions.TypedDict, total=False):
+class ApksListResponse(typing.TypedDict, total=False):
     apks: _list[Apk]
     kind: str
 
 @typing.type_check_only
-class AppDetails(typing_extensions.TypedDict, total=False):
+class AppContactInformation(typing.TypedDict, total=False):
+    contactEmail: str
+    phoneNumber: str
+    websiteUrl: str
+
+@typing.type_check_only
+class AppDetails(typing.TypedDict, total=False):
     contactEmail: str
     contactPhone: str
     contactWebsite: str
     defaultLanguage: str
 
 @typing.type_check_only
-class AppEdit(typing_extensions.TypedDict, total=False):
+class AppEdit(typing.TypedDict, total=False):
     expiryTimeSeconds: str
     id: str
 
 @typing.type_check_only
-class AppRecoveryAction(typing_extensions.TypedDict, total=False):
+class AppRecoveryAction(typing.TypedDict, total=False):
     appRecoveryId: str
     cancelTime: str
     createTime: str
     deployTime: str
     lastUpdateTime: str
     remoteInAppUpdateData: RemoteInAppUpdateData
-    status: typing_extensions.Literal[
+    status: typing.Literal[
         "RECOVERY_STATUS_UNSPECIFIED",
         "RECOVERY_STATUS_ACTIVE",
         "RECOVERY_STATUS_CANCELED",
@@ -163,53 +167,83 @@ class AppRecoveryAction(typing_extensions.TypedDict, total=False):
     targeting: Targeting
 
 @typing.type_check_only
-class AppVersionList(typing_extensions.TypedDict, total=False):
+class AppStoreAppActiveApkSet(typing.TypedDict, total=False):
+    baseApkId: str
+    splitApkId: _list[str]
+
+@typing.type_check_only
+class AppStoreAppActiveApks(typing.TypedDict, total=False):
+    activeApkSets: _list[AppStoreAppActiveApkSet]
+
+@typing.type_check_only
+class AppStoreAppDetails(typing.TypedDict, total=False):
+    contactEmail: str
+    developerName: str
+    developerWebsite: str
+
+@typing.type_check_only
+class AppStoreAppPolicyDeclaration(typing.TypedDict, total=False):
+    declarationId: str
+    responses: _list[PolicyResponse]
+
+@typing.type_check_only
+class AppStoreAppStoreListing(typing.TypedDict, total=False):
+    appIconId: str
+    appName: str
+    fullDescription: str
+    languageCode: str
+    screenshotId: _list[str]
+    shortDescription: str
+    videoLink: str
+
+@typing.type_check_only
+class AppVersionList(typing.TypedDict, total=False):
     versionCodes: _list[str]
 
 @typing.type_check_only
-class AppVersionRange(typing_extensions.TypedDict, total=False):
+class AppVersionRange(typing.TypedDict, total=False):
     versionCodeEnd: str
     versionCodeStart: str
 
 @typing.type_check_only
-class ArchiveSubscriptionRequest(typing_extensions.TypedDict, total=False): ...
+class ArchiveSubscriptionRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ArtifactSummary(typing_extensions.TypedDict, total=False):
+class ArtifactSummary(typing.TypedDict, total=False):
     versionCode: int
 
 @typing.type_check_only
-class AssetModuleMetadata(typing_extensions.TypedDict, total=False):
-    deliveryType: typing_extensions.Literal[
+class AssetModuleMetadata(typing.TypedDict, total=False):
+    deliveryType: typing.Literal[
         "UNKNOWN_DELIVERY_TYPE", "INSTALL_TIME", "ON_DEMAND", "FAST_FOLLOW"
     ]
     name: str
 
 @typing.type_check_only
-class AssetSliceSet(typing_extensions.TypedDict, total=False):
+class AssetSliceSet(typing.TypedDict, total=False):
     apkDescription: _list[ApkDescription]
     assetModuleMetadata: AssetModuleMetadata
 
 @typing.type_check_only
-class AutoRenewingBasePlanType(typing_extensions.TypedDict, total=False):
+class AutoRenewingBasePlanType(typing.TypedDict, total=False):
     accountHoldDuration: str
     billingPeriodDuration: str
     gracePeriodDuration: str
     legacyCompatible: bool
     legacyCompatibleSubscriptionOfferId: str
-    prorationMode: typing_extensions.Literal[
+    prorationMode: typing.Literal[
         "SUBSCRIPTION_PRORATION_MODE_UNSPECIFIED",
         "SUBSCRIPTION_PRORATION_MODE_CHARGE_ON_NEXT_BILLING_DATE",
         "SUBSCRIPTION_PRORATION_MODE_CHARGE_FULL_PRICE_IMMEDIATELY",
     ]
-    resubscribeState: typing_extensions.Literal[
+    resubscribeState: typing.Literal[
         "RESUBSCRIBE_STATE_UNSPECIFIED",
         "RESUBSCRIBE_STATE_ACTIVE",
         "RESUBSCRIBE_STATE_INACTIVE",
     ]
 
 @typing.type_check_only
-class AutoRenewingPlan(typing_extensions.TypedDict, total=False):
+class AutoRenewingPlan(typing.TypedDict, total=False):
     autoRenewEnabled: bool
     installmentDetails: InstallmentPlan
     priceChangeDetails: SubscriptionItemPriceChangeDetails
@@ -217,10 +251,10 @@ class AutoRenewingPlan(typing_extensions.TypedDict, total=False):
     recurringPrice: Money
 
 @typing.type_check_only
-class BaseDetails(typing_extensions.TypedDict, total=False): ...
+class BaseDetails(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class BasePlan(typing_extensions.TypedDict, total=False):
+class BasePlan(typing.TypedDict, total=False):
     autoRenewingBasePlanType: AutoRenewingBasePlanType
     basePlanId: str
     installmentsBasePlanType: InstallmentsBasePlanType
@@ -228,157 +262,149 @@ class BasePlan(typing_extensions.TypedDict, total=False):
     otherRegionsConfig: OtherRegionsBasePlanConfig
     prepaidBasePlanType: PrepaidBasePlanType
     regionalConfigs: _list[RegionalBasePlanConfig]
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "DRAFT", "ACTIVE", "INACTIVE"]
+    state: typing.Literal["STATE_UNSPECIFIED", "DRAFT", "ACTIVE", "INACTIVE"]
 
 @typing.type_check_only
-class BasePriceOfferPhase(typing_extensions.TypedDict, total=False): ...
+class BasePriceOfferPhase(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class BatchDeleteOneTimeProductOffersRequest(typing_extensions.TypedDict, total=False):
+class BatchDeleteOneTimeProductOffersRequest(typing.TypedDict, total=False):
     requests: _list[DeleteOneTimeProductOfferRequest]
 
 @typing.type_check_only
-class BatchDeleteOneTimeProductsRequest(typing_extensions.TypedDict, total=False):
+class BatchDeleteOneTimeProductsRequest(typing.TypedDict, total=False):
     requests: _list[DeleteOneTimeProductRequest]
 
 @typing.type_check_only
-class BatchDeletePurchaseOptionsRequest(typing_extensions.TypedDict, total=False):
+class BatchDeletePurchaseOptionsRequest(typing.TypedDict, total=False):
     requests: _list[DeletePurchaseOptionRequest]
 
 @typing.type_check_only
-class BatchGetOneTimeProductOffersRequest(typing_extensions.TypedDict, total=False):
+class BatchGetOneTimeProductOffersRequest(typing.TypedDict, total=False):
     requests: _list[GetOneTimeProductOfferRequest]
 
 @typing.type_check_only
-class BatchGetOneTimeProductOffersResponse(typing_extensions.TypedDict, total=False):
+class BatchGetOneTimeProductOffersResponse(typing.TypedDict, total=False):
     oneTimeProductOffers: _list[OneTimeProductOffer]
 
 @typing.type_check_only
-class BatchGetOneTimeProductsResponse(typing_extensions.TypedDict, total=False):
+class BatchGetOneTimeProductsResponse(typing.TypedDict, total=False):
     oneTimeProducts: _list[OneTimeProduct]
 
 @typing.type_check_only
-class BatchGetOrdersResponse(typing_extensions.TypedDict, total=False):
+class BatchGetOrdersResponse(typing.TypedDict, total=False):
     orders: _list[Order]
 
 @typing.type_check_only
-class BatchGetSubscriptionOffersRequest(typing_extensions.TypedDict, total=False):
+class BatchGetSubscriptionOffersRequest(typing.TypedDict, total=False):
     requests: _list[GetSubscriptionOfferRequest]
 
 @typing.type_check_only
-class BatchGetSubscriptionOffersResponse(typing_extensions.TypedDict, total=False):
+class BatchGetSubscriptionOffersResponse(typing.TypedDict, total=False):
     subscriptionOffers: _list[SubscriptionOffer]
 
 @typing.type_check_only
-class BatchGetSubscriptionsResponse(typing_extensions.TypedDict, total=False):
+class BatchGetSubscriptionsResponse(typing.TypedDict, total=False):
     subscriptions: _list[Subscription]
 
 @typing.type_check_only
-class BatchMigrateBasePlanPricesRequest(typing_extensions.TypedDict, total=False):
+class BatchMigrateBasePlanPricesRequest(typing.TypedDict, total=False):
     requests: _list[MigrateBasePlanPricesRequest]
 
 @typing.type_check_only
-class BatchMigrateBasePlanPricesResponse(typing_extensions.TypedDict, total=False):
+class BatchMigrateBasePlanPricesResponse(typing.TypedDict, total=False):
     responses: _list[MigrateBasePlanPricesResponse]
 
 @typing.type_check_only
-class BatchUpdateBasePlanStatesRequest(typing_extensions.TypedDict, total=False):
+class BatchUpdateBasePlanStatesRequest(typing.TypedDict, total=False):
     requests: _list[UpdateBasePlanStateRequest]
 
 @typing.type_check_only
-class BatchUpdateBasePlanStatesResponse(typing_extensions.TypedDict, total=False):
+class BatchUpdateBasePlanStatesResponse(typing.TypedDict, total=False):
     subscriptions: _list[Subscription]
 
 @typing.type_check_only
-class BatchUpdateOneTimeProductOfferStatesRequest(
-    typing_extensions.TypedDict, total=False
-):
+class BatchUpdateOneTimeProductOfferStatesRequest(typing.TypedDict, total=False):
     requests: _list[UpdateOneTimeProductOfferStateRequest]
 
 @typing.type_check_only
-class BatchUpdateOneTimeProductOfferStatesResponse(
-    typing_extensions.TypedDict, total=False
-):
+class BatchUpdateOneTimeProductOfferStatesResponse(typing.TypedDict, total=False):
     oneTimeProductOffers: _list[OneTimeProductOffer]
 
 @typing.type_check_only
-class BatchUpdateOneTimeProductOffersRequest(typing_extensions.TypedDict, total=False):
+class BatchUpdateOneTimeProductOffersRequest(typing.TypedDict, total=False):
     requests: _list[UpdateOneTimeProductOfferRequest]
 
 @typing.type_check_only
-class BatchUpdateOneTimeProductOffersResponse(typing_extensions.TypedDict, total=False):
+class BatchUpdateOneTimeProductOffersResponse(typing.TypedDict, total=False):
     oneTimeProductOffers: _list[OneTimeProductOffer]
 
 @typing.type_check_only
-class BatchUpdateOneTimeProductsRequest(typing_extensions.TypedDict, total=False):
+class BatchUpdateOneTimeProductsRequest(typing.TypedDict, total=False):
     requests: _list[UpdateOneTimeProductRequest]
 
 @typing.type_check_only
-class BatchUpdateOneTimeProductsResponse(typing_extensions.TypedDict, total=False):
+class BatchUpdateOneTimeProductsResponse(typing.TypedDict, total=False):
     oneTimeProducts: _list[OneTimeProduct]
 
 @typing.type_check_only
-class BatchUpdatePurchaseOptionStatesRequest(typing_extensions.TypedDict, total=False):
+class BatchUpdatePurchaseOptionStatesRequest(typing.TypedDict, total=False):
     requests: _list[UpdatePurchaseOptionStateRequest]
 
 @typing.type_check_only
-class BatchUpdatePurchaseOptionStatesResponse(typing_extensions.TypedDict, total=False):
+class BatchUpdatePurchaseOptionStatesResponse(typing.TypedDict, total=False):
     oneTimeProducts: _list[OneTimeProduct]
 
 @typing.type_check_only
-class BatchUpdateSubscriptionOfferStatesRequest(
-    typing_extensions.TypedDict, total=False
-):
+class BatchUpdateSubscriptionOfferStatesRequest(typing.TypedDict, total=False):
     requests: _list[UpdateSubscriptionOfferStateRequest]
 
 @typing.type_check_only
-class BatchUpdateSubscriptionOfferStatesResponse(
-    typing_extensions.TypedDict, total=False
-):
+class BatchUpdateSubscriptionOfferStatesResponse(typing.TypedDict, total=False):
     subscriptionOffers: _list[SubscriptionOffer]
 
 @typing.type_check_only
-class BatchUpdateSubscriptionOffersRequest(typing_extensions.TypedDict, total=False):
+class BatchUpdateSubscriptionOffersRequest(typing.TypedDict, total=False):
     requests: _list[UpdateSubscriptionOfferRequest]
 
 @typing.type_check_only
-class BatchUpdateSubscriptionOffersResponse(typing_extensions.TypedDict, total=False):
+class BatchUpdateSubscriptionOffersResponse(typing.TypedDict, total=False):
     subscriptionOffers: _list[SubscriptionOffer]
 
 @typing.type_check_only
-class BatchUpdateSubscriptionsRequest(typing_extensions.TypedDict, total=False):
+class BatchUpdateSubscriptionsRequest(typing.TypedDict, total=False):
     requests: _list[UpdateSubscriptionRequest]
 
 @typing.type_check_only
-class BatchUpdateSubscriptionsResponse(typing_extensions.TypedDict, total=False):
+class BatchUpdateSubscriptionsResponse(typing.TypedDict, total=False):
     subscriptions: _list[Subscription]
 
 @typing.type_check_only
-class Bundle(typing_extensions.TypedDict, total=False):
+class Bundle(typing.TypedDict, total=False):
     sha1: str
     sha256: str
     versionCode: int
 
 @typing.type_check_only
-class BundlesListResponse(typing_extensions.TypedDict, total=False):
+class BundlesListResponse(typing.TypedDict, total=False):
     bundles: _list[Bundle]
     kind: str
 
 @typing.type_check_only
-class BuyerAddress(typing_extensions.TypedDict, total=False):
+class BuyerAddress(typing.TypedDict, total=False):
     buyerCountry: str
     buyerPostcode: str
     buyerState: str
 
 @typing.type_check_only
-class CancelAppRecoveryRequest(typing_extensions.TypedDict, total=False): ...
+class CancelAppRecoveryRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class CancelAppRecoveryResponse(typing_extensions.TypedDict, total=False): ...
+class CancelAppRecoveryResponse(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class CancelOneTimeProductOfferRequest(typing_extensions.TypedDict, total=False):
-    latencyTolerance: typing_extensions.Literal[
+class CancelOneTimeProductOfferRequest(typing.TypedDict, total=False):
+    latencyTolerance: typing.Literal[
         "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
         "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
         "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT",
@@ -389,15 +415,15 @@ class CancelOneTimeProductOfferRequest(typing_extensions.TypedDict, total=False)
     purchaseOptionId: str
 
 @typing.type_check_only
-class CancelSubscriptionPurchaseRequest(typing_extensions.TypedDict, total=False):
+class CancelSubscriptionPurchaseRequest(typing.TypedDict, total=False):
     cancellationContext: CancellationContext
 
 @typing.type_check_only
-class CancelSubscriptionPurchaseResponse(typing_extensions.TypedDict, total=False): ...
+class CancelSubscriptionPurchaseResponse(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class CancelSurveyResult(typing_extensions.TypedDict, total=False):
-    reason: typing_extensions.Literal[
+class CancelSurveyResult(typing.TypedDict, total=False):
+    reason: typing.Literal[
         "CANCEL_SURVEY_REASON_UNSPECIFIED",
         "CANCEL_SURVEY_REASON_NOT_ENOUGH_USAGE",
         "CANCEL_SURVEY_REASON_TECHNICAL_ISSUES",
@@ -408,65 +434,162 @@ class CancelSurveyResult(typing_extensions.TypedDict, total=False):
     reasonUserInput: str
 
 @typing.type_check_only
-class CanceledStateContext(typing_extensions.TypedDict, total=False):
+class CanceledStateContext(typing.TypedDict, total=False):
     developerInitiatedCancellation: DeveloperInitiatedCancellation
     replacementCancellation: ReplacementCancellation
     systemInitiatedCancellation: SystemInitiatedCancellation
     userInitiatedCancellation: UserInitiatedCancellation
 
 @typing.type_check_only
-class CancellationContext(typing_extensions.TypedDict, total=False):
-    cancellationType: typing_extensions.Literal[
+class CancellationContext(typing.TypedDict, total=False):
+    cancellationType: typing.Literal[
         "CANCELLATION_TYPE_UNSPECIFIED",
         "USER_REQUESTED_STOP_RENEWALS",
         "DEVELOPER_REQUESTED_STOP_PAYMENTS",
     ]
 
 @typing.type_check_only
-class CancellationEvent(typing_extensions.TypedDict, total=False):
+class CancellationEvent(typing.TypedDict, total=False):
     eventTime: str
 
 @typing.type_check_only
-class Comment(typing_extensions.TypedDict, total=False):
+class CatalogAppView(typing.TypedDict, total=False):
+    activeVersionNames: _list[str]
+    appCategory: typing.Literal["APP_CATEGORY_UNSPECIFIED", "GAME", "APP"]
+    appContactInformation: AppContactInformation
+    appSubcategory: str
+    deliveryToken: str
+    developerDetails: DeveloperDetails
+    deviceCompatibilityRequirements: _list[DeviceCompatibilityRequirements]
+    excludedDevicesByIdentifier: _list[DeviceIdentifier]
+    excludedDevicesBySelector: _list[CatalogDeviceSelector]
+    firstReleaseDate: Date
+    hasInAppAds: bool
+    hasInAppPurchases: bool
+    iarcCertificateId: str
+    isAdultOnlyAudience: bool
+    lastPublishTime: str
+    localizedStoreListings: LocalizedStoreListings
+    packageName: str
+    permissions: _list[CatalogPermission]
+    permissionsSdk23: _list[CatalogPermission]
+    priceInTheUnitedStates: Money
+    privacyPolicyUrl: str
+    salePriceInTheUnitedStates: Money
+
+@typing.type_check_only
+class CatalogDeviceSelector(typing.TypedDict, total=False):
+    deviceTypeSelector: typing.Literal["DEVICE_TYPE_SELECTOR_UNSPECIFIED", "ANDROID_GO"]
+    ramSelector: RamSelector
+    socSelectors: _list[SocSelector]
+
+@typing.type_check_only
+class CatalogPermission(typing.TypedDict, total=False):
+    maxSdkVersion: int
+    name: str
+
+@typing.type_check_only
+class CatalogSdkVersion(typing.TypedDict, total=False):
+    maxSdkVersion: str
+    minSdkVersion: str
+    targetSdkVersion: str
+
+@typing.type_check_only
+class CoarseLocation(typing.TypedDict, total=False):
+    administrativeArea: str
+    locality: str
+    regionCode: str
+    sublocality: str
+
+@typing.type_check_only
+class Comment(typing.TypedDict, total=False):
     developerComment: DeveloperComment
     userComment: UserComment
 
 @typing.type_check_only
-class ConvertRegionPricesRequest(typing_extensions.TypedDict, total=False):
+class CompatibleScreen(typing.TypedDict, total=False):
+    density: typing.Literal[
+        "DENSITY_UNSPECIFIED",
+        "DENSITY_NODPI",
+        "DENSITY_LDPI",
+        "DENSITY_MDPI",
+        "DENSITY_TVDPI",
+        "DENSITY_HDPI",
+        "DENSITY_280",
+        "DENSITY_XHDPI",
+        "DENSITY_360",
+        "DENSITY_400",
+        "DENSITY_420",
+        "DENSITY_XXHDPI",
+        "DENSITY_560",
+        "DENSITY_XXXHDPI",
+    ]
+    screenSize: typing.Literal[
+        "SCREEN_SIZE_UNSPECIFIED",
+        "SCREEN_SIZE_SMALL",
+        "SCREEN_SIZE_NORMAL",
+        "SCREEN_SIZE_LARGE",
+        "SCREEN_SIZE_EXTRA_LARGE",
+    ]
+
+@typing.type_check_only
+class ConsumptionUsageEvent(typing.TypedDict, total=False):
+    consumptionItemDescription: str
+    consumptionTime: str
+    ipAddress: str
+    location: CoarseLocation
+    obfuscatedAccountId: str
+    obfuscatedProfileId: str
+
+@typing.type_check_only
+class ConvertRegionPricesRequest(typing.TypedDict, total=False):
     price: Money
     productTaxCategoryCode: str
 
 @typing.type_check_only
-class ConvertRegionPricesResponse(typing_extensions.TypedDict, total=False):
+class ConvertRegionPricesResponse(typing.TypedDict, total=False):
     convertedOtherRegionsPrice: ConvertedOtherRegionsPrice
     convertedRegionPrices: dict[str, typing.Any]
     regionVersion: RegionsVersion
 
 @typing.type_check_only
-class ConvertedOtherRegionsPrice(typing_extensions.TypedDict, total=False):
+class ConvertedOtherRegionsPrice(typing.TypedDict, total=False):
     eurPrice: Money
     usdPrice: Money
 
 @typing.type_check_only
-class ConvertedRegionPrice(typing_extensions.TypedDict, total=False):
+class ConvertedRegionPrice(typing.TypedDict, total=False):
     price: Money
     regionCode: str
     taxAmount: Money
 
 @typing.type_check_only
-class CountryTargeting(typing_extensions.TypedDict, total=False):
+class CountryTargeting(typing.TypedDict, total=False):
     countries: _list[str]
     includeRestOfWorld: bool
 
 @typing.type_check_only
-class CreateDraftAppRecoveryRequest(typing_extensions.TypedDict, total=False):
+class CreateAppStoreHostedAppRequest(typing.TypedDict, total=False):
+    packageName: str
+
+@typing.type_check_only
+class CreateAppStoreHostedAppResponse(typing.TypedDict, total=False): ...
+
+@typing.type_check_only
+class CreateDraftAppRecoveryRequest(typing.TypedDict, total=False):
     remoteInAppUpdate: RemoteInAppUpdate
     targeting: Targeting
 
 @typing.type_check_only
-class DeactivateBasePlanRequest(typing_extensions.TypedDict, total=False):
+class Date(typing.TypedDict, total=False):
+    day: int
+    month: int
+    year: int
+
+@typing.type_check_only
+class DeactivateBasePlanRequest(typing.TypedDict, total=False):
     basePlanId: str
-    latencyTolerance: typing_extensions.Literal[
+    latencyTolerance: typing.Literal[
         "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
         "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
         "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT",
@@ -475,8 +598,8 @@ class DeactivateBasePlanRequest(typing_extensions.TypedDict, total=False):
     productId: str
 
 @typing.type_check_only
-class DeactivateOneTimeProductOfferRequest(typing_extensions.TypedDict, total=False):
-    latencyTolerance: typing_extensions.Literal[
+class DeactivateOneTimeProductOfferRequest(typing.TypedDict, total=False):
+    latencyTolerance: typing.Literal[
         "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
         "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
         "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT",
@@ -487,8 +610,8 @@ class DeactivateOneTimeProductOfferRequest(typing_extensions.TypedDict, total=Fa
     purchaseOptionId: str
 
 @typing.type_check_only
-class DeactivatePurchaseOptionRequest(typing_extensions.TypedDict, total=False):
-    latencyTolerance: typing_extensions.Literal[
+class DeactivatePurchaseOptionRequest(typing.TypedDict, total=False):
+    latencyTolerance: typing.Literal[
         "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
         "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
         "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT",
@@ -498,9 +621,9 @@ class DeactivatePurchaseOptionRequest(typing_extensions.TypedDict, total=False):
     purchaseOptionId: str
 
 @typing.type_check_only
-class DeactivateSubscriptionOfferRequest(typing_extensions.TypedDict, total=False):
+class DeactivateSubscriptionOfferRequest(typing.TypedDict, total=False):
     basePlanId: str
-    latencyTolerance: typing_extensions.Literal[
+    latencyTolerance: typing.Literal[
         "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
         "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
         "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT",
@@ -510,29 +633,29 @@ class DeactivateSubscriptionOfferRequest(typing_extensions.TypedDict, total=Fals
     productId: str
 
 @typing.type_check_only
-class DeferSubscriptionPurchaseRequest(typing_extensions.TypedDict, total=False):
+class DeferSubscriptionPurchaseRequest(typing.TypedDict, total=False):
     deferralContext: DeferralContext
 
 @typing.type_check_only
-class DeferSubscriptionPurchaseResponse(typing_extensions.TypedDict, total=False):
+class DeferSubscriptionPurchaseResponse(typing.TypedDict, total=False):
     itemExpiryTimeDetails: _list[ItemExpiryTimeDetails]
 
 @typing.type_check_only
-class DeferralContext(typing_extensions.TypedDict, total=False):
+class DeferralContext(typing.TypedDict, total=False):
     deferDuration: str
     etag: str
     validateOnly: bool
 
 @typing.type_check_only
-class DeferredItemRemoval(typing_extensions.TypedDict, total=False): ...
+class DeferredItemRemoval(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class DeferredItemReplacement(typing_extensions.TypedDict, total=False):
+class DeferredItemReplacement(typing.TypedDict, total=False):
     productId: str
 
 @typing.type_check_only
-class DeleteOneTimeProductOfferRequest(typing_extensions.TypedDict, total=False):
-    latencyTolerance: typing_extensions.Literal[
+class DeleteOneTimeProductOfferRequest(typing.TypedDict, total=False):
+    latencyTolerance: typing.Literal[
         "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
         "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
         "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT",
@@ -543,8 +666,8 @@ class DeleteOneTimeProductOfferRequest(typing_extensions.TypedDict, total=False)
     purchaseOptionId: str
 
 @typing.type_check_only
-class DeleteOneTimeProductRequest(typing_extensions.TypedDict, total=False):
-    latencyTolerance: typing_extensions.Literal[
+class DeleteOneTimeProductRequest(typing.TypedDict, total=False):
+    latencyTolerance: typing.Literal[
         "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
         "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
         "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT",
@@ -553,9 +676,9 @@ class DeleteOneTimeProductRequest(typing_extensions.TypedDict, total=False):
     productId: str
 
 @typing.type_check_only
-class DeletePurchaseOptionRequest(typing_extensions.TypedDict, total=False):
+class DeletePurchaseOptionRequest(typing.TypedDict, total=False):
     force: bool
-    latencyTolerance: typing_extensions.Literal[
+    latencyTolerance: typing.Literal[
         "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
         "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
         "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT",
@@ -565,50 +688,88 @@ class DeletePurchaseOptionRequest(typing_extensions.TypedDict, total=False):
     purchaseOptionId: str
 
 @typing.type_check_only
-class DeobfuscationFile(typing_extensions.TypedDict, total=False):
-    symbolType: typing_extensions.Literal[
+class DeobfuscationFile(typing.TypedDict, total=False):
+    symbolType: typing.Literal[
         "deobfuscationFileTypeUnspecified", "proguard", "nativeCode"
     ]
 
 @typing.type_check_only
-class DeobfuscationFilesUploadResponse(typing_extensions.TypedDict, total=False):
+class DeobfuscationFilesUploadResponse(typing.TypedDict, total=False):
     deobfuscationFile: DeobfuscationFile
 
 @typing.type_check_only
-class DeployAppRecoveryRequest(typing_extensions.TypedDict, total=False): ...
+class DeployAppRecoveryRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class DeployAppRecoveryResponse(typing_extensions.TypedDict, total=False): ...
+class DeployAppRecoveryResponse(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class DeveloperComment(typing_extensions.TypedDict, total=False):
+class DeveloperComment(typing.TypedDict, total=False):
     lastModified: Timestamp
     text: str
 
 @typing.type_check_only
-class DeveloperInitiatedCancellation(typing_extensions.TypedDict, total=False): ...
+class DeveloperDetails(typing.TypedDict, total=False):
+    address: str
+    contactEmail: str
+    developerName: str
+    phoneNumber: str
+    website: str
 
 @typing.type_check_only
-class DeviceFeature(typing_extensions.TypedDict, total=False):
+class DeveloperInitiatedCancellation(typing.TypedDict, total=False): ...
+
+@typing.type_check_only
+class DeviceCompatibilityRequirements(typing.TypedDict, total=False):
+    compatibleScreens: _list[CompatibleScreen]
+    glEsVersion: int
+    isScreenRequired: bool
+    nativePlatforms: _list[str]
+    requiredSoftwareLibraries: _list[str]
+    requiredSystemFeatures: _list[str]
+    requiresSmallestWidthDp: str
+    sdkVersion: CatalogSdkVersion
+    supportedGlTextures: _list[str]
+    supportedScreens: _list[
+        typing.Literal[
+            "SCREEN_SIZE_UNSPECIFIED",
+            "SCREEN_SIZE_SMALL",
+            "SCREEN_SIZE_NORMAL",
+            "SCREEN_SIZE_LARGE",
+            "SCREEN_SIZE_EXTRA_LARGE",
+        ]
+    ]
+    use32BitAbi: typing.Literal[
+        "USE_32_BIT_ABI_UNSPECIFIED", "USE_32_BIT_ABI_TRUE", "USE_32_BIT_ABI_OTHER"
+    ]
+    usesConfigurations: _list[UsesConfiguration]
+
+@typing.type_check_only
+class DeviceFeature(typing.TypedDict, total=False):
     featureName: str
     featureVersion: int
 
 @typing.type_check_only
-class DeviceFeatureTargeting(typing_extensions.TypedDict, total=False):
+class DeviceFeatureTargeting(typing.TypedDict, total=False):
     requiredFeature: DeviceFeature
 
 @typing.type_check_only
-class DeviceGroup(typing_extensions.TypedDict, total=False):
+class DeviceGroup(typing.TypedDict, total=False):
     deviceSelectors: _list[DeviceSelector]
     name: str
 
 @typing.type_check_only
-class DeviceId(typing_extensions.TypedDict, total=False):
+class DeviceId(typing.TypedDict, total=False):
     buildBrand: str
     buildDevice: str
 
 @typing.type_check_only
-class DeviceMetadata(typing_extensions.TypedDict, total=False):
+class DeviceIdentifier(typing.TypedDict, total=False):
+    deviceBrand: str
+    deviceModel: str
+
+@typing.type_check_only
+class DeviceMetadata(typing.TypedDict, total=False):
     cpuMake: str
     cpuModel: str
     deviceClass: str
@@ -622,12 +783,12 @@ class DeviceMetadata(typing_extensions.TypedDict, total=False):
     screenWidthPx: int
 
 @typing.type_check_only
-class DeviceRam(typing_extensions.TypedDict, total=False):
+class DeviceRam(typing.TypedDict, total=False):
     maxBytes: str
     minBytes: str
 
 @typing.type_check_only
-class DeviceSelector(typing_extensions.TypedDict, total=False):
+class DeviceSelector(typing.TypedDict, total=False):
     deviceRam: DeviceRam
     excludedDeviceIds: _list[DeviceId]
     forbiddenSystemFeatures: _list[SystemFeature]
@@ -636,68 +797,68 @@ class DeviceSelector(typing_extensions.TypedDict, total=False):
     systemOnChips: _list[SystemOnChip]
 
 @typing.type_check_only
-class DeviceSpec(typing_extensions.TypedDict, total=False):
+class DeviceSpec(typing.TypedDict, total=False):
     screenDensity: int
     supportedAbis: _list[str]
     supportedLocales: _list[str]
 
 @typing.type_check_only
-class DeviceTier(typing_extensions.TypedDict, total=False):
+class DeviceTier(typing.TypedDict, total=False):
     deviceGroupNames: _list[str]
     level: int
 
 @typing.type_check_only
-class DeviceTierConfig(typing_extensions.TypedDict, total=False):
+class DeviceTierConfig(typing.TypedDict, total=False):
     deviceGroups: _list[DeviceGroup]
     deviceTierConfigId: str
     deviceTierSet: DeviceTierSet
     userCountrySets: _list[UserCountrySet]
 
 @typing.type_check_only
-class DeviceTierSet(typing_extensions.TypedDict, total=False):
+class DeviceTierSet(typing.TypedDict, total=False):
     deviceTiers: _list[DeviceTier]
 
 @typing.type_check_only
-class ExpansionFile(typing_extensions.TypedDict, total=False):
+class ExpansionFile(typing.TypedDict, total=False):
     fileSize: str
     referencesVersion: int
 
 @typing.type_check_only
-class ExpansionFilesUploadResponse(typing_extensions.TypedDict, total=False):
+class ExpansionFilesUploadResponse(typing.TypedDict, total=False):
     expansionFile: ExpansionFile
 
 @typing.type_check_only
-class ExternalAccountIdentifiers(typing_extensions.TypedDict, total=False):
+class ExternalAccountIdentifiers(typing.TypedDict, total=False):
     externalAccountId: str
     obfuscatedExternalAccountId: str
     obfuscatedExternalProfileId: str
 
 @typing.type_check_only
-class ExternalAccountIds(typing_extensions.TypedDict, total=False):
+class ExternalAccountIds(typing.TypedDict, total=False):
     obfuscatedAccountId: str
     obfuscatedProfileId: str
 
 @typing.type_check_only
-class ExternalOfferDetails(typing_extensions.TypedDict, total=False):
+class ExternalOfferDetails(typing.TypedDict, total=False):
     appDownloadEventExternalTransactionId: str
-    installedAppCategory: typing_extensions.Literal[
+    installedAppCategory: typing.Literal[
         "EXTERNAL_OFFER_APP_CATEGORY_UNSPECIFIED", "APP", "GAME"
     ]
     installedAppPackage: str
-    linkType: typing_extensions.Literal[
+    linkType: typing.Literal[
         "EXTERNAL_OFFER_LINK_TYPE_UNSPECIFIED",
         "LINK_TO_DIGITAL_CONTENT_OFFER",
         "LINK_TO_APP_DOWNLOAD",
     ]
 
 @typing.type_check_only
-class ExternalSubscription(typing_extensions.TypedDict, total=False):
-    subscriptionType: typing_extensions.Literal[
+class ExternalSubscription(typing.TypedDict, total=False):
+    subscriptionType: typing.Literal[
         "SUBSCRIPTION_TYPE_UNSPECIFIED", "RECURRING", "PREPAID"
     ]
 
 @typing.type_check_only
-class ExternalTransaction(typing_extensions.TypedDict, total=False):
+class ExternalTransaction(typing.TypedDict, total=False):
     createTime: str
     currentPreTaxAmount: Price
     currentTaxAmount: Price
@@ -710,22 +871,22 @@ class ExternalTransaction(typing_extensions.TypedDict, total=False):
     recurringTransaction: RecurringExternalTransaction
     testPurchase: ExternalTransactionTestPurchase
     transactionProgramCode: int
-    transactionState: typing_extensions.Literal[
+    transactionState: typing.Literal[
         "TRANSACTION_STATE_UNSPECIFIED", "TRANSACTION_REPORTED", "TRANSACTION_CANCELED"
     ]
     transactionTime: str
     userTaxAddress: ExternalTransactionAddress
 
 @typing.type_check_only
-class ExternalTransactionAddress(typing_extensions.TypedDict, total=False):
+class ExternalTransactionAddress(typing.TypedDict, total=False):
     administrativeArea: str
     regionCode: str
 
 @typing.type_check_only
-class ExternalTransactionTestPurchase(typing_extensions.TypedDict, total=False): ...
+class ExternalTransactionTestPurchase(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ExternallyHostedApk(typing_extensions.TypedDict, total=False):
+class ExternallyHostedApk(typing.TypedDict, total=False):
     applicationLabel: str
     certificateBase64s: _list[str]
     externallyHostedUrl: str
@@ -743,20 +904,20 @@ class ExternallyHostedApk(typing_extensions.TypedDict, total=False):
     versionName: str
 
 @typing.type_check_only
-class FreeTrialDetails(typing_extensions.TypedDict, total=False): ...
+class FreeTrialDetails(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class FreeTrialOfferPhase(typing_extensions.TypedDict, total=False): ...
+class FreeTrialOfferPhase(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class FullRefund(typing_extensions.TypedDict, total=False): ...
+class FullRefund(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class GeneratedApksListResponse(typing_extensions.TypedDict, total=False):
+class GeneratedApksListResponse(typing.TypedDict, total=False):
     generatedApks: _list[GeneratedApksPerSigningKey]
 
 @typing.type_check_only
-class GeneratedApksPerSigningKey(typing_extensions.TypedDict, total=False):
+class GeneratedApksPerSigningKey(typing.TypedDict, total=False):
     certificateSha256Hash: str
     generatedAssetPackSlices: _list[GeneratedAssetPackSlice]
     generatedRecoveryModules: _list[GeneratedRecoveryApk]
@@ -768,18 +929,18 @@ class GeneratedApksPerSigningKey(typing_extensions.TypedDict, total=False):
     unprotectedGeneratedStandaloneApks: _list[GeneratedStandaloneApk]
 
 @typing.type_check_only
-class GeneratedAssetPackSlice(typing_extensions.TypedDict, total=False):
+class GeneratedAssetPackSlice(typing.TypedDict, total=False):
     downloadId: str
     moduleName: str
     sliceId: str
     version: str
 
 @typing.type_check_only
-class GeneratedRecoveryApk(typing_extensions.TypedDict, total=False):
+class GeneratedRecoveryApk(typing.TypedDict, total=False):
     downloadId: str
     moduleName: str
     recoveryId: str
-    recoveryStatus: typing_extensions.Literal[
+    recoveryStatus: typing.Literal[
         "RECOVERY_STATUS_UNSPECIFIED",
         "RECOVERY_STATUS_ACTIVE",
         "RECOVERY_STATUS_CANCELED",
@@ -789,39 +950,39 @@ class GeneratedRecoveryApk(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class GeneratedSplitApk(typing_extensions.TypedDict, total=False):
+class GeneratedSplitApk(typing.TypedDict, total=False):
     downloadId: str
     moduleName: str
     splitId: str
     variantId: int
 
 @typing.type_check_only
-class GeneratedStandaloneApk(typing_extensions.TypedDict, total=False):
+class GeneratedStandaloneApk(typing.TypedDict, total=False):
     downloadId: str
     variantId: int
 
 @typing.type_check_only
-class GeneratedUniversalApk(typing_extensions.TypedDict, total=False):
+class GeneratedUniversalApk(typing.TypedDict, total=False):
     downloadId: str
 
 @typing.type_check_only
-class GetOneTimeProductOfferRequest(typing_extensions.TypedDict, total=False):
+class GetOneTimeProductOfferRequest(typing.TypedDict, total=False):
     offerId: str
     packageName: str
     productId: str
     purchaseOptionId: str
 
 @typing.type_check_only
-class GetSubscriptionOfferRequest(typing_extensions.TypedDict, total=False):
+class GetSubscriptionOfferRequest(typing.TypedDict, total=False):
     basePlanId: str
     offerId: str
     packageName: str
     productId: str
 
 @typing.type_check_only
-class Grant(typing_extensions.TypedDict, total=False):
+class Grant(typing.TypedDict, total=False):
     appLevelPermissions: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "APP_LEVEL_PERMISSION_UNSPECIFIED",
             "CAN_ACCESS_APP",
             "CAN_VIEW_FINANCIAL_DATA",
@@ -843,8 +1004,12 @@ class Grant(typing_extensions.TypedDict, total=False):
     packageName: str
 
 @typing.type_check_only
-class Image(typing_extensions.TypedDict, total=False):
-    aiGeneratedState: typing_extensions.Literal[
+class Group(typing.TypedDict, total=False):
+    responses: _list[NestedPolicyResponse]
+
+@typing.type_check_only
+class Image(typing.TypedDict, total=False):
+    aiGeneratedState: typing.Literal[
         "aiGeneratedStateUnspecified",
         "aiGeneratedStateNotAiGenerated",
         "aiGeneratedStateAiGeneratedDeveloperAttested",
@@ -855,19 +1020,23 @@ class Image(typing_extensions.TypedDict, total=False):
     url: str
 
 @typing.type_check_only
-class ImagesDeleteAllResponse(typing_extensions.TypedDict, total=False):
+class ImageAsset(typing.TypedDict, total=False):
+    imageUrl: str
+
+@typing.type_check_only
+class ImagesDeleteAllResponse(typing.TypedDict, total=False):
     deleted: _list[Image]
 
 @typing.type_check_only
-class ImagesListResponse(typing_extensions.TypedDict, total=False):
+class ImagesListResponse(typing.TypedDict, total=False):
     images: _list[Image]
 
 @typing.type_check_only
-class ImagesUploadResponse(typing_extensions.TypedDict, total=False):
+class ImagesUploadResponse(typing.TypedDict, total=False):
     image: Image
 
 @typing.type_check_only
-class InAppProduct(typing_extensions.TypedDict, total=False):
+class InAppProduct(typing.TypedDict, total=False):
     defaultLanguage: str
     defaultPrice: Price
     gracePeriod: str
@@ -875,44 +1044,44 @@ class InAppProduct(typing_extensions.TypedDict, total=False):
     managedProductTaxesAndComplianceSettings: ManagedProductTaxAndComplianceSettings
     packageName: str
     prices: dict[str, typing.Any]
-    purchaseType: typing_extensions.Literal[
+    purchaseType: typing.Literal[
         "purchaseTypeUnspecified", "managedUser", "subscription"
     ]
     sku: str
-    status: typing_extensions.Literal["statusUnspecified", "active", "inactive"]
+    status: typing.Literal["statusUnspecified", "active", "inactive"]
     subscriptionPeriod: str
     subscriptionTaxesAndComplianceSettings: SubscriptionTaxAndComplianceSettings
     trialPeriod: str
 
 @typing.type_check_only
-class InAppProductListing(typing_extensions.TypedDict, total=False):
+class InAppProductListing(typing.TypedDict, total=False):
     benefits: _list[str]
     description: str
     title: str
 
 @typing.type_check_only
-class InGracePeriodStateContext(typing_extensions.TypedDict, total=False):
+class InGracePeriodStateContext(typing.TypedDict, total=False):
     renewalDeclined: RenewalDeclinedContext
 
 @typing.type_check_only
-class InappproductsBatchDeleteRequest(typing_extensions.TypedDict, total=False):
+class InappproductsBatchDeleteRequest(typing.TypedDict, total=False):
     requests: _list[InappproductsDeleteRequest]
 
 @typing.type_check_only
-class InappproductsBatchGetResponse(typing_extensions.TypedDict, total=False):
+class InappproductsBatchGetResponse(typing.TypedDict, total=False):
     inappproduct: _list[InAppProduct]
 
 @typing.type_check_only
-class InappproductsBatchUpdateRequest(typing_extensions.TypedDict, total=False):
+class InappproductsBatchUpdateRequest(typing.TypedDict, total=False):
     requests: _list[InappproductsUpdateRequest]
 
 @typing.type_check_only
-class InappproductsBatchUpdateResponse(typing_extensions.TypedDict, total=False):
+class InappproductsBatchUpdateResponse(typing.TypedDict, total=False):
     inappproducts: _list[InAppProduct]
 
 @typing.type_check_only
-class InappproductsDeleteRequest(typing_extensions.TypedDict, total=False):
-    latencyTolerance: typing_extensions.Literal[
+class InappproductsDeleteRequest(typing.TypedDict, total=False):
+    latencyTolerance: typing.Literal[
         "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
         "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
         "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT",
@@ -921,18 +1090,18 @@ class InappproductsDeleteRequest(typing_extensions.TypedDict, total=False):
     sku: str
 
 @typing.type_check_only
-class InappproductsListResponse(typing_extensions.TypedDict, total=False):
+class InappproductsListResponse(typing.TypedDict, total=False):
     inappproduct: _list[InAppProduct]
     kind: str
     pageInfo: PageInfo
     tokenPagination: TokenPagination
 
 @typing.type_check_only
-class InappproductsUpdateRequest(typing_extensions.TypedDict, total=False):
+class InappproductsUpdateRequest(typing.TypedDict, total=False):
     allowMissing: bool
     autoConvertMissingPrices: bool
     inappproduct: InAppProduct
-    latencyTolerance: typing_extensions.Literal[
+    latencyTolerance: typing.Literal[
         "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
         "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
         "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT",
@@ -941,64 +1110,57 @@ class InappproductsUpdateRequest(typing_extensions.TypedDict, total=False):
     sku: str
 
 @typing.type_check_only
-class InstallmentPlan(typing_extensions.TypedDict, total=False):
+class InstallmentPlan(typing.TypedDict, total=False):
     initialCommittedPaymentsCount: int
     pendingCancellation: PendingCancellation
     remainingCommittedPaymentsCount: int
     subsequentCommittedPaymentsCount: int
 
 @typing.type_check_only
-class InstallmentsBasePlanType(typing_extensions.TypedDict, total=False):
+class InstallmentsBasePlanType(typing.TypedDict, total=False):
     accountHoldDuration: str
     billingPeriodDuration: str
     committedPaymentsCount: int
     gracePeriodDuration: str
-    prorationMode: typing_extensions.Literal[
+    prorationMode: typing.Literal[
         "SUBSCRIPTION_PRORATION_MODE_UNSPECIFIED",
         "SUBSCRIPTION_PRORATION_MODE_CHARGE_ON_NEXT_BILLING_DATE",
         "SUBSCRIPTION_PRORATION_MODE_CHARGE_FULL_PRICE_IMMEDIATELY",
     ]
-    renewalType: typing_extensions.Literal[
+    renewalType: typing.Literal[
         "RENEWAL_TYPE_UNSPECIFIED",
         "RENEWAL_TYPE_RENEWS_WITHOUT_COMMITMENT",
         "RENEWAL_TYPE_RENEWS_WITH_COMMITMENT",
     ]
-    resubscribeState: typing_extensions.Literal[
+    resubscribeState: typing.Literal[
         "RESUBSCRIBE_STATE_UNSPECIFIED",
         "RESUBSCRIBE_STATE_ACTIVE",
         "RESUBSCRIBE_STATE_INACTIVE",
     ]
 
 @typing.type_check_only
-class InternalAppSharingArtifact(typing_extensions.TypedDict, total=False):
+class InternalAppSharingArtifact(typing.TypedDict, total=False):
     certificateFingerprint: str
     downloadUrl: str
     sha256: str
 
 @typing.type_check_only
-class IntroductoryPriceDetails(typing_extensions.TypedDict, total=False): ...
+class IntroductoryPriceDetails(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class IntroductoryPriceInfo(typing_extensions.TypedDict, total=False):
-    introductoryPriceAmountMicros: str
-    introductoryPriceCurrencyCode: str
-    introductoryPriceCycles: int
-    introductoryPricePeriod: str
+class IntroductoryPriceOfferPhase(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class IntroductoryPriceOfferPhase(typing_extensions.TypedDict, total=False): ...
-
-@typing.type_check_only
-class ItemExpiryTimeDetails(typing_extensions.TypedDict, total=False):
+class ItemExpiryTimeDetails(typing.TypedDict, total=False):
     expiryTime: str
     productId: str
 
 @typing.type_check_only
-class ItemReplacement(typing_extensions.TypedDict, total=False):
+class ItemReplacement(typing.TypedDict, total=False):
     basePlanId: str
     offerId: str
     productId: str
-    replacementMode: typing_extensions.Literal[
+    replacementMode: typing.Literal[
         "REPLACEMENT_MODE_UNSPECIFIED",
         "WITH_TIME_PRORATION",
         "CHARGE_PRORATED_PRICE",
@@ -1009,12 +1171,17 @@ class ItemReplacement(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class LanguageTargeting(typing_extensions.TypedDict, total=False):
+class KeyedGroup(typing.TypedDict, total=False):
+    key: str
+    responses: _list[NestedPolicyResponse]
+
+@typing.type_check_only
+class LanguageTargeting(typing.TypedDict, total=False):
     alternatives: _list[str]
     value: _list[str]
 
 @typing.type_check_only
-class LineItem(typing_extensions.TypedDict, total=False):
+class LineItem(typing.TypedDict, total=False):
     listingPrice: Money
     oneTimePurchaseDetails: OneTimePurchaseDetails
     paidAppDetails: PaidAppDetails
@@ -1025,45 +1192,50 @@ class LineItem(typing_extensions.TypedDict, total=False):
     total: Money
 
 @typing.type_check_only
-class ListAppRecoveriesResponse(typing_extensions.TypedDict, total=False):
+class ListAppRecoveriesResponse(typing.TypedDict, total=False):
     recoveryActions: _list[AppRecoveryAction]
 
 @typing.type_check_only
-class ListDeviceTierConfigsResponse(typing_extensions.TypedDict, total=False):
+class ListDeviceTierConfigsResponse(typing.TypedDict, total=False):
     deviceTierConfigs: _list[DeviceTierConfig]
     nextPageToken: str
 
 @typing.type_check_only
-class ListOneTimeProductOffersResponse(typing_extensions.TypedDict, total=False):
+class ListOneTimeProductOffersResponse(typing.TypedDict, total=False):
     nextPageToken: str
     oneTimeProductOffers: _list[OneTimeProductOffer]
 
 @typing.type_check_only
-class ListOneTimeProductsResponse(typing_extensions.TypedDict, total=False):
+class ListOneTimeProductsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     oneTimeProducts: _list[OneTimeProduct]
 
 @typing.type_check_only
-class ListReleaseSummariesResponse(typing_extensions.TypedDict, total=False):
+class ListRecentUpdateEventsResponse(typing.TypedDict, total=False):
+    nextPageToken: str
+    recentUpdateEvents: _list[RecentUpdateEvent]
+
+@typing.type_check_only
+class ListReleaseSummariesResponse(typing.TypedDict, total=False):
     releases: _list[ReleaseSummary]
 
 @typing.type_check_only
-class ListSubscriptionOffersResponse(typing_extensions.TypedDict, total=False):
+class ListSubscriptionOffersResponse(typing.TypedDict, total=False):
     nextPageToken: str
     subscriptionOffers: _list[SubscriptionOffer]
 
 @typing.type_check_only
-class ListSubscriptionsResponse(typing_extensions.TypedDict, total=False):
+class ListSubscriptionsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     subscriptions: _list[Subscription]
 
 @typing.type_check_only
-class ListUsersResponse(typing_extensions.TypedDict, total=False):
+class ListUsersResponse(typing.TypedDict, total=False):
     nextPageToken: str
     users: _list[User]
 
 @typing.type_check_only
-class Listing(typing_extensions.TypedDict, total=False):
+class Listing(typing.TypedDict, total=False):
     fullDescription: str
     language: str
     shortDescription: str
@@ -1071,18 +1243,36 @@ class Listing(typing_extensions.TypedDict, total=False):
     video: str
 
 @typing.type_check_only
-class ListingsListResponse(typing_extensions.TypedDict, total=False):
+class ListingsListResponse(typing.TypedDict, total=False):
     kind: str
     listings: _list[Listing]
 
 @typing.type_check_only
-class LocalizedText(typing_extensions.TypedDict, total=False):
+class LocalizedStoreListing(typing.TypedDict, total=False):
+    appName: str
+    featureGraphic: ImageAsset
+    fullDescription: str
+    icon: ImageAsset
+    languageCode: str
+    phoneScreenshots: ScreenshotSet
+    shortDescription: str
+    tabletRegularScreenshots: ScreenshotSet
+    tabletSmallScreenshots: ScreenshotSet
+    video: VideoAsset
+
+@typing.type_check_only
+class LocalizedStoreListings(typing.TypedDict, total=False):
+    defaultLanguageCode: str
+    localizedStoreListings: _list[LocalizedStoreListing]
+
+@typing.type_check_only
+class LocalizedText(typing.TypedDict, total=False):
     language: str
     text: str
 
 @typing.type_check_only
-class ManagedProductTaxAndComplianceSettings(typing_extensions.TypedDict, total=False):
-    eeaWithdrawalRightType: typing_extensions.Literal[
+class ManagedProductTaxAndComplianceSettings(typing.TypedDict, total=False):
+    eeaWithdrawalRightType: typing.Literal[
         "WITHDRAWAL_RIGHT_TYPE_UNSPECIFIED",
         "WITHDRAWAL_RIGHT_DIGITAL_CONTENT",
         "WITHDRAWAL_RIGHT_SERVICE",
@@ -1093,9 +1283,9 @@ class ManagedProductTaxAndComplianceSettings(typing_extensions.TypedDict, total=
     taxRateInfoByRegionCode: dict[str, typing.Any]
 
 @typing.type_check_only
-class MigrateBasePlanPricesRequest(typing_extensions.TypedDict, total=False):
+class MigrateBasePlanPricesRequest(typing.TypedDict, total=False):
     basePlanId: str
-    latencyTolerance: typing_extensions.Literal[
+    latencyTolerance: typing.Literal[
         "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
         "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
         "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT",
@@ -1106,76 +1296,85 @@ class MigrateBasePlanPricesRequest(typing_extensions.TypedDict, total=False):
     regionsVersion: RegionsVersion
 
 @typing.type_check_only
-class MigrateBasePlanPricesResponse(typing_extensions.TypedDict, total=False): ...
+class MigrateBasePlanPricesResponse(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ModuleMetadata(typing_extensions.TypedDict, total=False):
-    deliveryType: typing_extensions.Literal[
+class ModuleMetadata(typing.TypedDict, total=False):
+    deliveryType: typing.Literal[
         "UNKNOWN_DELIVERY_TYPE", "INSTALL_TIME", "ON_DEMAND", "FAST_FOLLOW"
     ]
     dependencies: _list[str]
-    moduleType: typing_extensions.Literal["UNKNOWN_MODULE_TYPE", "FEATURE_MODULE"]
+    moduleType: typing.Literal["UNKNOWN_MODULE_TYPE", "FEATURE_MODULE"]
     name: str
     targeting: ModuleTargeting
 
 @typing.type_check_only
-class ModuleTargeting(typing_extensions.TypedDict, total=False):
+class ModuleTargeting(typing.TypedDict, total=False):
     deviceFeatureTargeting: _list[DeviceFeatureTargeting]
     sdkVersionTargeting: SdkVersionTargeting
     userCountriesTargeting: UserCountriesTargeting
 
 @typing.type_check_only
-class Money(typing_extensions.TypedDict, total=False):
+class Money(typing.TypedDict, total=False):
     currencyCode: str
     nanos: int
     units: str
 
 @typing.type_check_only
-class MultiAbi(typing_extensions.TypedDict, total=False):
+class MultiAbi(typing.TypedDict, total=False):
     abi: _list[Abi]
 
 @typing.type_check_only
-class MultiAbiTargeting(typing_extensions.TypedDict, total=False):
+class MultiAbiTargeting(typing.TypedDict, total=False):
     alternatives: _list[MultiAbi]
     value: _list[MultiAbi]
 
 @typing.type_check_only
-class OfferDetails(typing_extensions.TypedDict, total=False):
+class NestedPolicyResponse(typing.TypedDict, total=False):
+    booleanResponse: PolicyBooleanResponse
+    documentResponse: PolicyDocumentResponse
+    multipleChoiceResponse: PolicyMultipleChoiceResponse
+    questionId: str
+    singleChoiceResponse: PolicySingleChoiceResponse
+    stringResponse: PolicyStringResponse
+
+@typing.type_check_only
+class OfferDetails(typing.TypedDict, total=False):
     basePlanId: str
     offerId: str
     offerTags: _list[str]
 
 @typing.type_check_only
-class OfferPhase(typing_extensions.TypedDict, total=False):
+class OfferPhase(typing.TypedDict, total=False):
     basePrice: BasePriceOfferPhase
     freeTrial: FreeTrialOfferPhase
     introductoryPrice: IntroductoryPriceOfferPhase
     prorationPeriod: ProrationPeriodOfferPhase
 
 @typing.type_check_only
-class OfferPhaseDetails(typing_extensions.TypedDict, total=False):
+class OfferPhaseDetails(typing.TypedDict, total=False):
     baseDetails: BaseDetails
     freeTrialDetails: FreeTrialDetails
     introductoryPriceDetails: IntroductoryPriceDetails
     prorationPeriodDetails: ProrationPeriodDetails
 
 @typing.type_check_only
-class OfferTag(typing_extensions.TypedDict, total=False):
+class OfferTag(typing.TypedDict, total=False):
     tag: str
 
 @typing.type_check_only
-class OnHoldStateContext(typing_extensions.TypedDict, total=False):
+class OnHoldStateContext(typing.TypedDict, total=False):
     renewalDeclined: RenewalDeclinedContext
 
 @typing.type_check_only
-class OneTimeCode(typing_extensions.TypedDict, total=False): ...
+class OneTimeCode(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class OneTimeExternalTransaction(typing_extensions.TypedDict, total=False):
+class OneTimeExternalTransaction(typing.TypedDict, total=False):
     externalTransactionToken: str
 
 @typing.type_check_only
-class OneTimeProduct(typing_extensions.TypedDict, total=False):
+class OneTimeProduct(typing.TypedDict, total=False):
     listings: _list[OneTimeProductListing]
     offerTags: _list[OfferTag]
     packageName: str
@@ -1186,24 +1385,24 @@ class OneTimeProduct(typing_extensions.TypedDict, total=False):
     taxAndComplianceSettings: OneTimeProductTaxAndComplianceSettings
 
 @typing.type_check_only
-class OneTimeProductBuyPurchaseOption(typing_extensions.TypedDict, total=False):
+class OneTimeProductBuyPurchaseOption(typing.TypedDict, total=False):
     legacyCompatible: bool
     multiQuantityEnabled: bool
 
 @typing.type_check_only
-class OneTimeProductDiscountedOffer(typing_extensions.TypedDict, total=False):
+class OneTimeProductDiscountedOffer(typing.TypedDict, total=False):
     endTime: str
     redemptionLimit: str
     startTime: str
 
 @typing.type_check_only
-class OneTimeProductListing(typing_extensions.TypedDict, total=False):
+class OneTimeProductListing(typing.TypedDict, total=False):
     description: str
     languageCode: str
     title: str
 
 @typing.type_check_only
-class OneTimeProductOffer(typing_extensions.TypedDict, total=False):
+class OneTimeProductOffer(typing.TypedDict, total=False):
     discountedOffer: OneTimeProductDiscountedOffer
     offerId: str
     offerTags: _list[OfferTag]
@@ -1215,21 +1414,19 @@ class OneTimeProductOffer(typing_extensions.TypedDict, total=False):
         OneTimeProductOfferRegionalPricingAndAvailabilityConfig
     ]
     regionsVersion: RegionsVersion
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED", "DRAFT", "ACTIVE", "CANCELLED", "INACTIVE"
     ]
 
 @typing.type_check_only
-class OneTimeProductOfferNoPriceOverrideOptions(
-    typing_extensions.TypedDict, total=False
-): ...
+class OneTimeProductOfferNoPriceOverrideOptions(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
 class OneTimeProductOfferRegionalPricingAndAvailabilityConfig(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     absoluteDiscount: Money
-    availability: typing_extensions.Literal[
+    availability: typing.Literal[
         "AVAILABILITY_UNSPECIFIED", "AVAILABLE", "NO_LONGER_AVAILABLE"
     ]
     noOverride: OneTimeProductOfferNoPriceOverrideOptions
@@ -1237,9 +1434,9 @@ class OneTimeProductOfferRegionalPricingAndAvailabilityConfig(
     relativeDiscount: float
 
 @typing.type_check_only
-class OneTimeProductPreOrderOffer(typing_extensions.TypedDict, total=False):
+class OneTimeProductPreOrderOffer(typing.TypedDict, total=False):
     endTime: str
-    priceChangeBehavior: typing_extensions.Literal[
+    priceChangeBehavior: typing.Literal[
         "PRE_ORDER_PRICE_CHANGE_BEHAVIOR_UNSPECIFIED",
         "PRE_ORDER_PRICE_CHANGE_BEHAVIOR_TWO_POINT_LOWEST",
         "PRE_ORDER_PRICE_CHANGE_BEHAVIOR_NEW_ORDERS_ONLY",
@@ -1248,7 +1445,7 @@ class OneTimeProductPreOrderOffer(typing_extensions.TypedDict, total=False):
     startTime: str
 
 @typing.type_check_only
-class OneTimeProductPurchaseOption(typing_extensions.TypedDict, total=False):
+class OneTimeProductPurchaseOption(typing.TypedDict, total=False):
     buyOption: OneTimeProductBuyPurchaseOption
     newRegionsConfig: OneTimeProductPurchaseOptionNewRegionsConfig
     offerTags: _list[OfferTag]
@@ -1257,16 +1454,14 @@ class OneTimeProductPurchaseOption(typing_extensions.TypedDict, total=False):
         OneTimeProductPurchaseOptionRegionalPricingAndAvailabilityConfig
     ]
     rentOption: OneTimeProductRentPurchaseOption
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED", "DRAFT", "ACTIVE", "INACTIVE", "INACTIVE_PUBLISHED"
     ]
     taxAndComplianceSettings: PurchaseOptionTaxAndComplianceSettings
 
 @typing.type_check_only
-class OneTimeProductPurchaseOptionNewRegionsConfig(
-    typing_extensions.TypedDict, total=False
-):
-    availability: typing_extensions.Literal[
+class OneTimeProductPurchaseOptionNewRegionsConfig(typing.TypedDict, total=False):
+    availability: typing.Literal[
         "AVAILABILITY_UNSPECIFIED", "AVAILABLE", "NO_LONGER_AVAILABLE"
     ]
     eurPrice: Money
@@ -1274,9 +1469,9 @@ class OneTimeProductPurchaseOptionNewRegionsConfig(
 
 @typing.type_check_only
 class OneTimeProductPurchaseOptionRegionalPricingAndAvailabilityConfig(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    availability: typing_extensions.Literal[
+    availability: typing.Literal[
         "AVAILABILITY_UNSPECIFIED",
         "AVAILABLE",
         "NO_LONGER_AVAILABLE",
@@ -1287,19 +1482,19 @@ class OneTimeProductPurchaseOptionRegionalPricingAndAvailabilityConfig(
     regionCode: str
 
 @typing.type_check_only
-class OneTimeProductRentPurchaseOption(typing_extensions.TypedDict, total=False):
+class OneTimeProductRentPurchaseOption(typing.TypedDict, total=False):
     expirationPeriod: str
     rentalPeriod: str
 
 @typing.type_check_only
-class OneTimeProductTaxAndComplianceSettings(typing_extensions.TypedDict, total=False):
+class OneTimeProductTaxAndComplianceSettings(typing.TypedDict, total=False):
     isTokenizedDigitalAsset: bool
     productTaxCategoryCode: str
     regionalProductAgeRatingInfos: _list[RegionalProductAgeRatingInfo]
     regionalTaxConfigs: _list[RegionalTaxConfig]
 
 @typing.type_check_only
-class OneTimePurchaseDetails(typing_extensions.TypedDict, total=False):
+class OneTimePurchaseDetails(typing.TypedDict, total=False):
     offerId: str
     preorderDetails: PreorderDetails
     purchaseOptionId: str
@@ -1307,7 +1502,7 @@ class OneTimePurchaseDetails(typing_extensions.TypedDict, total=False):
     rentalDetails: RentalDetails
 
 @typing.type_check_only
-class Order(typing_extensions.TypedDict, total=False):
+class Order(typing.TypedDict, total=False):
     buyerAddress: BuyerAddress
     createTime: str
     developerRevenueInBuyerCurrency: Money
@@ -1318,7 +1513,7 @@ class Order(typing_extensions.TypedDict, total=False):
     orderId: str
     pointsDetails: PointsDetails
     purchaseToken: str
-    salesChannel: typing_extensions.Literal[
+    salesChannel: typing.Literal[
         "SALES_CHANNEL_UNSPECIFIED",
         "IN_APP",
         "PC_EMULATOR",
@@ -1326,7 +1521,7 @@ class Order(typing_extensions.TypedDict, total=False):
         "PLAY_STORE",
         "OUTSIDE_PLAY_STORE",
     ]
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "PENDING",
         "PROCESSED",
@@ -1339,33 +1534,41 @@ class Order(typing_extensions.TypedDict, total=False):
     total: Money
 
 @typing.type_check_only
-class OrderDetails(typing_extensions.TypedDict, total=False):
+class OrderDetails(typing.TypedDict, total=False):
     taxInclusive: bool
 
 @typing.type_check_only
-class OrderHistory(typing_extensions.TypedDict, total=False):
+class OrderHistory(typing.TypedDict, total=False):
     cancellationEvent: CancellationEvent
     partialRefundEvents: _list[PartialRefundEvent]
     processedEvent: ProcessedEvent
     refundEvent: RefundEvent
 
 @typing.type_check_only
-class OtherRecurringProduct(typing_extensions.TypedDict, total=False): ...
+class OrdersReviewRefundRequest(typing.TypedDict, total=False):
+    consumptionPercentageMilliunits: int
+    consumptionUsageEvents: _list[ConsumptionUsageEvent]
+    pendingRefundToken: str
+    refundPreference: typing.Literal[
+        "REFUND_PREFERENCE_UNSPECIFIED", "DECLINE", "APPROVE", "NEUTRAL"
+    ]
+    sampleContentProvided: bool
 
 @typing.type_check_only
-class OtherRegionsBasePlanConfig(typing_extensions.TypedDict, total=False):
+class OtherRecurringProduct(typing.TypedDict, total=False): ...
+
+@typing.type_check_only
+class OtherRegionsBasePlanConfig(typing.TypedDict, total=False):
     eurPrice: Money
     newSubscriberAvailability: bool
     usdPrice: Money
 
 @typing.type_check_only
-class OtherRegionsSubscriptionOfferConfig(typing_extensions.TypedDict, total=False):
+class OtherRegionsSubscriptionOfferConfig(typing.TypedDict, total=False):
     otherRegionsNewSubscriberAvailability: bool
 
 @typing.type_check_only
-class OtherRegionsSubscriptionOfferPhaseConfig(
-    typing_extensions.TypedDict, total=False
-):
+class OtherRegionsSubscriptionOfferPhaseConfig(typing.TypedDict, total=False):
     absoluteDiscounts: OtherRegionsSubscriptionOfferPhasePrices
     free: OtherRegionsSubscriptionOfferPhaseFreePriceOverride
     otherRegionsPrices: OtherRegionsSubscriptionOfferPhasePrices
@@ -1373,101 +1576,138 @@ class OtherRegionsSubscriptionOfferPhaseConfig(
 
 @typing.type_check_only
 class OtherRegionsSubscriptionOfferPhaseFreePriceOverride(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
-class OtherRegionsSubscriptionOfferPhasePrices(
-    typing_extensions.TypedDict, total=False
-):
+class OtherRegionsSubscriptionOfferPhasePrices(typing.TypedDict, total=False):
     eurPrice: Money
     usdPrice: Money
 
 @typing.type_check_only
-class OutOfAppPurchaseContext(typing_extensions.TypedDict, total=False):
+class OutOfAppPurchaseContext(typing.TypedDict, total=False):
     expiredExternalAccountIdentifiers: ExternalAccountIdentifiers
     expiredPurchaseToken: str
 
 @typing.type_check_only
-class PageInfo(typing_extensions.TypedDict, total=False):
+class PageInfo(typing.TypedDict, total=False):
     resultPerPage: int
     startIndex: int
     totalResults: int
 
 @typing.type_check_only
-class PaidAppDetails(typing_extensions.TypedDict, total=False): ...
+class PaidAppDetails(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class PartialRefund(typing_extensions.TypedDict, total=False):
+class PartialRefund(typing.TypedDict, total=False):
     refundId: str
     refundPreTaxAmount: Price
 
 @typing.type_check_only
-class PartialRefundEvent(typing_extensions.TypedDict, total=False):
+class PartialRefundEvent(typing.TypedDict, total=False):
     createTime: str
     processTime: str
     refundDetails: RefundDetails
-    state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "PENDING", "PROCESSED_SUCCESSFULLY"
-    ]
+    state: typing.Literal["STATE_UNSPECIFIED", "PENDING", "PROCESSED_SUCCESSFULLY"]
 
 @typing.type_check_only
-class PausedStateContext(typing_extensions.TypedDict, total=False):
+class PausedStateContext(typing.TypedDict, total=False):
     autoResumeTime: str
 
 @typing.type_check_only
-class PendingCancellation(typing_extensions.TypedDict, total=False): ...
+class PendingCancellation(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class PointsDetails(typing_extensions.TypedDict, total=False):
+class PointsDetails(typing.TypedDict, total=False):
     pointsCouponValue: Money
     pointsDiscountRateMicros: str
     pointsOfferId: str
     pointsSpent: str
 
 @typing.type_check_only
-class PreorderDetails(typing_extensions.TypedDict, total=False): ...
+class PolicyBooleanResponse(typing.TypedDict, total=False):
+    value: bool
 
 @typing.type_check_only
-class PreorderOfferDetails(typing_extensions.TypedDict, total=False):
+class PolicyDocumentResponse(typing.TypedDict, total=False):
+    documentId: str
+    expiryDate: Date
+    nonExpiring: bool
+
+@typing.type_check_only
+class PolicyGroupResponse(typing.TypedDict, total=False):
+    groups: _list[Group]
+
+@typing.type_check_only
+class PolicyKeyedGroupResponse(typing.TypedDict, total=False):
+    groups: _list[KeyedGroup]
+
+@typing.type_check_only
+class PolicyMultipleChoiceResponse(typing.TypedDict, total=False):
+    values: _list[str]
+
+@typing.type_check_only
+class PolicyResponse(typing.TypedDict, total=False):
+    booleanResponse: PolicyBooleanResponse
+    documentResponse: PolicyDocumentResponse
+    groupResponse: PolicyGroupResponse
+    keyedGroupResponse: PolicyKeyedGroupResponse
+    multipleChoiceResponse: PolicyMultipleChoiceResponse
+    questionId: str
+    singleChoiceResponse: PolicySingleChoiceResponse
+    stringResponse: PolicyStringResponse
+
+@typing.type_check_only
+class PolicySingleChoiceResponse(typing.TypedDict, total=False):
+    value: str
+
+@typing.type_check_only
+class PolicyStringResponse(typing.TypedDict, total=False):
+    value: str
+
+@typing.type_check_only
+class PreorderDetails(typing.TypedDict, total=False): ...
+
+@typing.type_check_only
+class PreorderOfferDetails(typing.TypedDict, total=False):
     preorderReleaseTime: str
 
 @typing.type_check_only
-class PrepaidBasePlanType(typing_extensions.TypedDict, total=False):
+class PrepaidBasePlanType(typing.TypedDict, total=False):
     billingPeriodDuration: str
-    timeExtension: typing_extensions.Literal[
+    timeExtension: typing.Literal[
         "TIME_EXTENSION_UNSPECIFIED", "TIME_EXTENSION_ACTIVE", "TIME_EXTENSION_INACTIVE"
     ]
 
 @typing.type_check_only
-class PrepaidPlan(typing_extensions.TypedDict, total=False):
+class PrepaidPlan(typing.TypedDict, total=False):
     allowExtendAfterTime: str
 
 @typing.type_check_only
-class Price(typing_extensions.TypedDict, total=False):
+class Price(typing.TypedDict, total=False):
     currency: str
     priceMicros: str
 
 @typing.type_check_only
-class PriceStepUpConsentDetails(typing_extensions.TypedDict, total=False):
+class PriceStepUpConsentDetails(typing.TypedDict, total=False):
     consentDeadlineTime: str
     newPrice: Money
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "CONSENT_STATE_UNSPECIFIED", "PENDING", "CONFIRMED", "COMPLETED"
     ]
 
 @typing.type_check_only
-class ProcessedEvent(typing_extensions.TypedDict, total=False):
+class ProcessedEvent(typing.TypedDict, total=False):
     eventTime: str
 
 @typing.type_check_only
-class ProductLineItem(typing_extensions.TypedDict, total=False):
+class ProductLineItem(typing.TypedDict, total=False):
     productId: str
     productOfferDetails: ProductOfferDetails
 
 @typing.type_check_only
-class ProductOfferDetails(typing_extensions.TypedDict, total=False):
-    consumptionState: typing_extensions.Literal[
+class ProductOfferDetails(typing.TypedDict, total=False):
+    consumptionState: typing.Literal[
         "CONSUMPTION_STATE_UNSPECIFIED",
         "CONSUMPTION_STATE_YET_TO_BE_CONSUMED",
         "CONSUMPTION_STATE_CONSUMED",
@@ -1482,7 +1722,7 @@ class ProductOfferDetails(typing_extensions.TypedDict, total=False):
     rentOfferDetails: RentOfferDetails
 
 @typing.type_check_only
-class ProductPurchase(typing_extensions.TypedDict, total=False):
+class ProductPurchase(typing.TypedDict, total=False):
     acknowledgementState: int
     consumptionState: int
     developerPayload: str
@@ -1500,8 +1740,8 @@ class ProductPurchase(typing_extensions.TypedDict, total=False):
     regionCode: str
 
 @typing.type_check_only
-class ProductPurchaseV2(typing_extensions.TypedDict, total=False):
-    acknowledgementState: typing_extensions.Literal[
+class ProductPurchaseV2(typing.TypedDict, total=False):
+    acknowledgementState: typing.Literal[
         "ACKNOWLEDGEMENT_STATE_UNSPECIFIED",
         "ACKNOWLEDGEMENT_STATE_PENDING",
         "ACKNOWLEDGEMENT_STATE_ACKNOWLEDGED",
@@ -1517,41 +1757,55 @@ class ProductPurchaseV2(typing_extensions.TypedDict, total=False):
     testPurchaseContext: TestPurchaseContext
 
 @typing.type_check_only
-class ProductPurchasesAcknowledgeRequest(typing_extensions.TypedDict, total=False):
+class ProductPurchasesAcknowledgeRequest(typing.TypedDict, total=False):
     developerPayload: str
 
 @typing.type_check_only
-class ProrationPeriodDetails(typing_extensions.TypedDict, total=False):
-    originalOfferPhase: typing_extensions.Literal[
+class ProrationPeriodDetails(typing.TypedDict, total=False):
+    originalOfferPhase: typing.Literal[
         "OFFER_PHASE_UNSPECIFIED", "BASE", "INTRODUCTORY", "FREE_TRIAL"
     ]
 
 @typing.type_check_only
-class ProrationPeriodOfferPhase(typing_extensions.TypedDict, total=False):
-    originalOfferPhaseType: typing_extensions.Literal[
+class ProrationPeriodOfferPhase(typing.TypedDict, total=False):
+    originalOfferPhaseType: typing.Literal[
         "ORIGINAL_OFFER_PHASE_TYPE_UNSPECIFIED", "BASE", "INTRODUCTORY", "FREE_TRIAL"
     ]
 
 @typing.type_check_only
-class PurchaseOptionTaxAndComplianceSettings(typing_extensions.TypedDict, total=False):
-    withdrawalRightType: typing_extensions.Literal[
+class PurchaseOptionTaxAndComplianceSettings(typing.TypedDict, total=False):
+    withdrawalRightType: typing.Literal[
         "WITHDRAWAL_RIGHT_TYPE_UNSPECIFIED",
         "WITHDRAWAL_RIGHT_DIGITAL_CONTENT",
         "WITHDRAWAL_RIGHT_SERVICE",
     ]
 
 @typing.type_check_only
-class PurchaseStateContext(typing_extensions.TypedDict, total=False):
-    purchaseState: typing_extensions.Literal[
+class PurchaseStateContext(typing.TypedDict, total=False):
+    purchaseState: typing.Literal[
         "PURCHASE_STATE_UNSPECIFIED", "PURCHASED", "CANCELLED", "PENDING"
     ]
 
 @typing.type_check_only
-class RecurringExternalTransaction(typing_extensions.TypedDict, total=False):
+class RamSelector(typing.TypedDict, total=False):
+    ramMbLessThanOrEqual: str
+
+@typing.type_check_only
+class RecentAppView(typing.TypedDict, total=False):
+    appView: CatalogAppView
+
+@typing.type_check_only
+class RecentUpdateEvent(typing.TypedDict, total=False):
+    eventTime: str
+    playAppPackageName: str
+    updateType: typing.Literal["UPDATE_TYPE_UNSPECIFIED", "MODIFICATION", "DELETION"]
+
+@typing.type_check_only
+class RecurringExternalTransaction(typing.TypedDict, total=False):
     externalSubscription: ExternalSubscription
     externalTransactionToken: str
     initialExternalTransactionId: str
-    migratedTransactionProgram: typing_extensions.Literal[
+    migratedTransactionProgram: typing.Literal[
         "EXTERNAL_TRANSACTION_PROGRAM_UNSPECIFIED",
         "USER_CHOICE_BILLING",
         "ALTERNATIVE_BILLING_ONLY",
@@ -1559,34 +1813,32 @@ class RecurringExternalTransaction(typing_extensions.TypedDict, total=False):
     otherRecurringProduct: OtherRecurringProduct
 
 @typing.type_check_only
-class RefundDetails(typing_extensions.TypedDict, total=False):
+class RefundDetails(typing.TypedDict, total=False):
     tax: Money
     total: Money
 
 @typing.type_check_only
-class RefundEvent(typing_extensions.TypedDict, total=False):
+class RefundEvent(typing.TypedDict, total=False):
     eventTime: str
     refundDetails: RefundDetails
-    refundReason: typing_extensions.Literal[
-        "REFUND_REASON_UNSPECIFIED", "OTHER", "CHARGEBACK"
-    ]
+    refundReason: typing.Literal["REFUND_REASON_UNSPECIFIED", "OTHER", "CHARGEBACK"]
 
 @typing.type_check_only
-class RefundExternalTransactionRequest(typing_extensions.TypedDict, total=False):
+class RefundExternalTransactionRequest(typing.TypedDict, total=False):
     fullRefund: FullRefund
     partialRefund: PartialRefund
     refundTime: str
 
 @typing.type_check_only
-class RegionalBasePlanConfig(typing_extensions.TypedDict, total=False):
+class RegionalBasePlanConfig(typing.TypedDict, total=False):
     newSubscriberAvailability: bool
     price: Money
     regionCode: str
 
 @typing.type_check_only
-class RegionalPriceMigrationConfig(typing_extensions.TypedDict, total=False):
+class RegionalPriceMigrationConfig(typing.TypedDict, total=False):
     oldestAllowedPriceVersionTime: str
-    priceIncreaseType: typing_extensions.Literal[
+    priceIncreaseType: typing.Literal[
         "PRICE_INCREASE_TYPE_UNSPECIFIED",
         "PRICE_INCREASE_TYPE_OPT_IN",
         "PRICE_INCREASE_TYPE_OPT_OUT",
@@ -1594,8 +1846,8 @@ class RegionalPriceMigrationConfig(typing_extensions.TypedDict, total=False):
     regionCode: str
 
 @typing.type_check_only
-class RegionalProductAgeRatingInfo(typing_extensions.TypedDict, total=False):
-    productAgeRatingTier: typing_extensions.Literal[
+class RegionalProductAgeRatingInfo(typing.TypedDict, total=False):
+    productAgeRatingTier: typing.Literal[
         "PRODUCT_AGE_RATING_TIER_UNKNOWN",
         "PRODUCT_AGE_RATING_TIER_EVERYONE",
         "PRODUCT_AGE_RATING_TIER_THIRTEEN_AND_ABOVE",
@@ -1605,12 +1857,12 @@ class RegionalProductAgeRatingInfo(typing_extensions.TypedDict, total=False):
     regionCode: str
 
 @typing.type_check_only
-class RegionalSubscriptionOfferConfig(typing_extensions.TypedDict, total=False):
+class RegionalSubscriptionOfferConfig(typing.TypedDict, total=False):
     newSubscriberAvailability: bool
     regionCode: str
 
 @typing.type_check_only
-class RegionalSubscriptionOfferPhaseConfig(typing_extensions.TypedDict, total=False):
+class RegionalSubscriptionOfferPhaseConfig(typing.TypedDict, total=False):
     absoluteDiscount: Money
     free: RegionalSubscriptionOfferPhaseFreePriceOverride
     price: Money
@@ -1619,14 +1871,14 @@ class RegionalSubscriptionOfferPhaseConfig(typing_extensions.TypedDict, total=Fa
 
 @typing.type_check_only
 class RegionalSubscriptionOfferPhaseFreePriceOverride(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
-class RegionalTaxConfig(typing_extensions.TypedDict, total=False):
+class RegionalTaxConfig(typing.TypedDict, total=False):
     eligibleForStreamingServiceTaxRate: bool
     regionCode: str
-    streamingTaxType: typing_extensions.Literal[
+    streamingTaxType: typing.Literal[
         "STREAMING_TAX_TYPE_UNSPECIFIED",
         "STREAMING_TAX_TYPE_TELCO_VIDEO_RENTAL",
         "STREAMING_TAX_TYPE_TELCO_VIDEO_SALES",
@@ -1635,7 +1887,7 @@ class RegionalTaxConfig(typing_extensions.TypedDict, total=False):
         "STREAMING_TAX_TYPE_TELCO_AUDIO_SALES",
         "STREAMING_TAX_TYPE_TELCO_AUDIO_MULTI_CHANNEL",
     ]
-    taxTier: typing_extensions.Literal[
+    taxTier: typing.Literal[
         "TAX_TIER_UNSPECIFIED",
         "TAX_TIER_BOOKS_1",
         "TAX_TIER_NEWS_1",
@@ -1645,9 +1897,9 @@ class RegionalTaxConfig(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class RegionalTaxRateInfo(typing_extensions.TypedDict, total=False):
+class RegionalTaxRateInfo(typing.TypedDict, total=False):
     eligibleForStreamingServiceTaxRate: bool
-    streamingTaxType: typing_extensions.Literal[
+    streamingTaxType: typing.Literal[
         "STREAMING_TAX_TYPE_UNSPECIFIED",
         "STREAMING_TAX_TYPE_TELCO_VIDEO_RENTAL",
         "STREAMING_TAX_TYPE_TELCO_VIDEO_SALES",
@@ -1656,7 +1908,7 @@ class RegionalTaxRateInfo(typing_extensions.TypedDict, total=False):
         "STREAMING_TAX_TYPE_TELCO_AUDIO_SALES",
         "STREAMING_TAX_TYPE_TELCO_AUDIO_MULTI_CHANNEL",
     ]
-    taxTier: typing_extensions.Literal[
+    taxTier: typing.Literal[
         "TAX_TIER_UNSPECIFIED",
         "TAX_TIER_BOOKS_1",
         "TAX_TIER_NEWS_1",
@@ -1666,17 +1918,17 @@ class RegionalTaxRateInfo(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class Regions(typing_extensions.TypedDict, total=False):
+class Regions(typing.TypedDict, total=False):
     regionCode: _list[str]
 
 @typing.type_check_only
-class RegionsVersion(typing_extensions.TypedDict, total=False):
+class RegionsVersion(typing.TypedDict, total=False):
     version: str
 
 @typing.type_check_only
-class ReleaseSummary(typing_extensions.TypedDict, total=False):
+class ReleaseSummary(typing.TypedDict, total=False):
     activeArtifacts: _list[ArtifactSummary]
-    releaseLifecycleState: typing_extensions.Literal[
+    releaseLifecycleState: typing.Literal[
         "RELEASE_LIFECYCLE_STATE_UNSPECIFIED",
         "RELEASE_LIFECYCLE_STATE_DRAFT",
         "RELEASE_LIFECYCLE_STATE_NOT_SENT_FOR_REVIEW",
@@ -1689,94 +1941,94 @@ class ReleaseSummary(typing_extensions.TypedDict, total=False):
     track: str
 
 @typing.type_check_only
-class RemoteInAppUpdate(typing_extensions.TypedDict, total=False):
+class RemoteInAppUpdate(typing.TypedDict, total=False):
     isRemoteInAppUpdateRequested: bool
 
 @typing.type_check_only
-class RemoteInAppUpdateData(typing_extensions.TypedDict, total=False):
+class RemoteInAppUpdateData(typing.TypedDict, total=False):
     remoteAppUpdateDataPerBundle: _list[RemoteInAppUpdateDataPerBundle]
 
 @typing.type_check_only
-class RemoteInAppUpdateDataPerBundle(typing_extensions.TypedDict, total=False):
+class RemoteInAppUpdateDataPerBundle(typing.TypedDict, total=False):
     recoveredDeviceCount: str
     totalDeviceCount: str
     versionCode: str
 
 @typing.type_check_only
-class RenewalDeclinedContext(typing_extensions.TypedDict, total=False):
+class RenewalDeclinedContext(typing.TypedDict, total=False):
     pendingOrderId: str
 
 @typing.type_check_only
-class RentOfferDetails(typing_extensions.TypedDict, total=False): ...
+class RentOfferDetails(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class RentalDetails(typing_extensions.TypedDict, total=False): ...
+class RentalDetails(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ReplacementCancellation(typing_extensions.TypedDict, total=False): ...
+class ReplacementCancellation(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class RestrictedPaymentCountries(typing_extensions.TypedDict, total=False):
+class RestrictedPaymentCountries(typing.TypedDict, total=False):
     regionCodes: _list[str]
 
 @typing.type_check_only
-class Review(typing_extensions.TypedDict, total=False):
+class Review(typing.TypedDict, total=False):
     authorName: str
     comments: _list[Comment]
     reviewId: str
 
 @typing.type_check_only
-class ReviewReplyResult(typing_extensions.TypedDict, total=False):
+class ReviewReplyResult(typing.TypedDict, total=False):
     lastEdited: Timestamp
     replyText: str
 
 @typing.type_check_only
-class ReviewsListResponse(typing_extensions.TypedDict, total=False):
+class ReviewsListResponse(typing.TypedDict, total=False):
     pageInfo: PageInfo
     reviews: _list[Review]
     tokenPagination: TokenPagination
 
 @typing.type_check_only
-class ReviewsReplyRequest(typing_extensions.TypedDict, total=False):
+class ReviewsReplyRequest(typing.TypedDict, total=False):
     replyText: str
 
 @typing.type_check_only
-class ReviewsReplyResponse(typing_extensions.TypedDict, total=False):
+class ReviewsReplyResponse(typing.TypedDict, total=False):
     result: ReviewReplyResult
 
 @typing.type_check_only
-class RevocationContext(typing_extensions.TypedDict, total=False):
+class RevocationContext(typing.TypedDict, total=False):
     fullRefund: RevocationContextFullRefund
     itemBasedRefund: RevocationContextItemBasedRefund
     proratedRefund: RevocationContextProratedRefund
 
 @typing.type_check_only
-class RevocationContextFullRefund(typing_extensions.TypedDict, total=False): ...
+class RevocationContextFullRefund(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class RevocationContextItemBasedRefund(typing_extensions.TypedDict, total=False):
+class RevocationContextItemBasedRefund(typing.TypedDict, total=False):
     productId: str
 
 @typing.type_check_only
-class RevocationContextProratedRefund(typing_extensions.TypedDict, total=False): ...
+class RevocationContextProratedRefund(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class RevokeSubscriptionPurchaseRequest(typing_extensions.TypedDict, total=False):
+class RevokeSubscriptionPurchaseRequest(typing.TypedDict, total=False):
     revocationContext: RevocationContext
 
 @typing.type_check_only
-class RevokeSubscriptionPurchaseResponse(typing_extensions.TypedDict, total=False): ...
+class RevokeSubscriptionPurchaseResponse(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class SafetyLabelsUpdateRequest(typing_extensions.TypedDict, total=False):
+class SafetyLabelsUpdateRequest(typing.TypedDict, total=False):
     safetyLabels: str
 
 @typing.type_check_only
-class SafetyLabelsUpdateResponse(typing_extensions.TypedDict, total=False): ...
+class SafetyLabelsUpdateResponse(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ScreenDensity(typing_extensions.TypedDict, total=False):
-    densityAlias: typing_extensions.Literal[
+class ScreenDensity(typing.TypedDict, total=False):
+    densityAlias: typing.Literal[
         "DENSITY_UNSPECIFIED",
         "NODPI",
         "LDPI",
@@ -1790,41 +2042,50 @@ class ScreenDensity(typing_extensions.TypedDict, total=False):
     densityDpi: int
 
 @typing.type_check_only
-class ScreenDensityTargeting(typing_extensions.TypedDict, total=False):
+class ScreenDensityTargeting(typing.TypedDict, total=False):
     alternatives: _list[ScreenDensity]
     value: _list[ScreenDensity]
 
 @typing.type_check_only
-class SdkVersion(typing_extensions.TypedDict, total=False):
+class ScreenshotSet(typing.TypedDict, total=False):
+    screenshots: _list[ImageAsset]
+
+@typing.type_check_only
+class SdkVersion(typing.TypedDict, total=False):
     min: int
 
 @typing.type_check_only
-class SdkVersionTargeting(typing_extensions.TypedDict, total=False):
+class SdkVersionTargeting(typing.TypedDict, total=False):
     alternatives: _list[SdkVersion]
     value: _list[SdkVersion]
 
 @typing.type_check_only
-class SignupPromotion(typing_extensions.TypedDict, total=False):
+class SignupPromotion(typing.TypedDict, total=False):
     oneTimeCode: OneTimeCode
     vanityCode: VanityCode
 
 @typing.type_check_only
-class SplitApkMetadata(typing_extensions.TypedDict, total=False):
+class SocSelector(typing.TypedDict, total=False):
+    socMake: str
+    socModel: str
+
+@typing.type_check_only
+class SplitApkMetadata(typing.TypedDict, total=False):
     isMasterSplit: bool
     splitId: str
 
 @typing.type_check_only
-class SplitApkVariant(typing_extensions.TypedDict, total=False):
+class SplitApkVariant(typing.TypedDict, total=False):
     apkSet: _list[ApkSet]
     targeting: VariantTargeting
     variantNumber: int
 
 @typing.type_check_only
-class StandaloneApkMetadata(typing_extensions.TypedDict, total=False):
+class StandaloneApkMetadata(typing.TypedDict, total=False):
     fusedModuleName: _list[str]
 
 @typing.type_check_only
-class SubscribeWithGoogleInfo(typing_extensions.TypedDict, total=False):
+class SubscribeWithGoogleInfo(typing.TypedDict, total=False):
     emailAddress: str
     familyName: str
     givenName: str
@@ -1832,7 +2093,7 @@ class SubscribeWithGoogleInfo(typing_extensions.TypedDict, total=False):
     profileName: str
 
 @typing.type_check_only
-class Subscription(typing_extensions.TypedDict, total=False):
+class Subscription(typing.TypedDict, total=False):
     archived: bool
     basePlans: _list[BasePlan]
     listings: _list[SubscriptionListing]
@@ -1842,20 +2103,15 @@ class Subscription(typing_extensions.TypedDict, total=False):
     taxAndComplianceSettings: SubscriptionTaxAndComplianceSettings
 
 @typing.type_check_only
-class SubscriptionCancelSurveyResult(typing_extensions.TypedDict, total=False):
-    cancelSurveyReason: int
-    userInputCancelReason: str
-
-@typing.type_check_only
-class SubscriptionDeferralInfo(typing_extensions.TypedDict, total=False):
+class SubscriptionDeferralInfo(typing.TypedDict, total=False):
     desiredExpiryTimeMillis: str
     expectedExpiryTimeMillis: str
 
 @typing.type_check_only
-class SubscriptionDetails(typing_extensions.TypedDict, total=False):
+class SubscriptionDetails(typing.TypedDict, total=False):
     basePlanId: str
     offerId: str
-    offerPhase: typing_extensions.Literal[
+    offerPhase: typing.Literal[
         "OFFER_PHASE_UNSPECIFIED", "BASE", "INTRODUCTORY", "FREE_TRIAL"
     ]
     offerPhaseDetails: OfferPhaseDetails
@@ -1863,16 +2119,16 @@ class SubscriptionDetails(typing_extensions.TypedDict, total=False):
     servicePeriodStartTime: str
 
 @typing.type_check_only
-class SubscriptionItemPriceChangeDetails(typing_extensions.TypedDict, total=False):
+class SubscriptionItemPriceChangeDetails(typing.TypedDict, total=False):
     expectedNewPriceChargeTime: str
     newPrice: Money
-    priceChangeMode: typing_extensions.Literal[
+    priceChangeMode: typing.Literal[
         "PRICE_CHANGE_MODE_UNSPECIFIED",
         "PRICE_DECREASE",
         "PRICE_INCREASE",
         "OPT_OUT_PRICE_INCREASE",
     ]
-    priceChangeState: typing_extensions.Literal[
+    priceChangeState: typing.Literal[
         "PRICE_CHANGE_STATE_UNSPECIFIED",
         "OUTSTANDING",
         "CONFIRMED",
@@ -1881,14 +2137,14 @@ class SubscriptionItemPriceChangeDetails(typing_extensions.TypedDict, total=Fals
     ]
 
 @typing.type_check_only
-class SubscriptionListing(typing_extensions.TypedDict, total=False):
+class SubscriptionListing(typing.TypedDict, total=False):
     benefits: _list[str]
     description: str
     languageCode: str
     title: str
 
 @typing.type_check_only
-class SubscriptionOffer(typing_extensions.TypedDict, total=False):
+class SubscriptionOffer(typing.TypedDict, total=False):
     basePlanId: str
     offerId: str
     offerTags: _list[OfferTag]
@@ -1897,60 +2153,23 @@ class SubscriptionOffer(typing_extensions.TypedDict, total=False):
     phases: _list[SubscriptionOfferPhase]
     productId: str
     regionalConfigs: _list[RegionalSubscriptionOfferConfig]
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "DRAFT", "ACTIVE", "INACTIVE"]
+    state: typing.Literal["STATE_UNSPECIFIED", "DRAFT", "ACTIVE", "INACTIVE"]
     targeting: SubscriptionOfferTargeting
 
 @typing.type_check_only
-class SubscriptionOfferPhase(typing_extensions.TypedDict, total=False):
+class SubscriptionOfferPhase(typing.TypedDict, total=False):
     duration: str
     otherRegionsConfig: OtherRegionsSubscriptionOfferPhaseConfig
     recurrenceCount: int
     regionalConfigs: _list[RegionalSubscriptionOfferPhaseConfig]
 
 @typing.type_check_only
-class SubscriptionOfferTargeting(typing_extensions.TypedDict, total=False):
+class SubscriptionOfferTargeting(typing.TypedDict, total=False):
     acquisitionRule: AcquisitionTargetingRule
     upgradeRule: UpgradeTargetingRule
 
 @typing.type_check_only
-class SubscriptionPriceChange(typing_extensions.TypedDict, total=False):
-    newPrice: Price
-    state: int
-
-@typing.type_check_only
-class SubscriptionPurchase(typing_extensions.TypedDict, total=False):
-    acknowledgementState: int
-    autoRenewing: bool
-    autoResumeTimeMillis: str
-    cancelReason: int
-    cancelSurveyResult: SubscriptionCancelSurveyResult
-    countryCode: str
-    developerPayload: str
-    emailAddress: str
-    expiryTimeMillis: str
-    externalAccountId: str
-    familyName: str
-    givenName: str
-    introductoryPriceInfo: IntroductoryPriceInfo
-    kind: str
-    linkedPurchaseToken: str
-    obfuscatedExternalAccountId: str
-    obfuscatedExternalProfileId: str
-    orderId: str
-    paymentState: int
-    priceAmountMicros: str
-    priceChange: SubscriptionPriceChange
-    priceCurrencyCode: str
-    profileId: str
-    profileName: str
-    promotionCode: str
-    promotionType: int
-    purchaseType: int
-    startTimeMillis: str
-    userCancellationTimeMillis: str
-
-@typing.type_check_only
-class SubscriptionPurchaseLineItem(typing_extensions.TypedDict, total=False):
+class SubscriptionPurchaseLineItem(typing.TypedDict, total=False):
     autoRenewingPlan: AutoRenewingPlan
     deferredItemRemoval: DeferredItemRemoval
     deferredItemReplacement: DeferredItemReplacement
@@ -1964,8 +2183,8 @@ class SubscriptionPurchaseLineItem(typing_extensions.TypedDict, total=False):
     signupPromotion: SignupPromotion
 
 @typing.type_check_only
-class SubscriptionPurchaseV2(typing_extensions.TypedDict, total=False):
-    acknowledgementState: typing_extensions.Literal[
+class SubscriptionPurchaseV2(typing.TypedDict, total=False):
+    acknowledgementState: typing.Literal[
         "ACKNOWLEDGEMENT_STATE_UNSPECIFIED",
         "ACKNOWLEDGEMENT_STATE_PENDING",
         "ACKNOWLEDGEMENT_STATE_ACKNOWLEDGED",
@@ -1975,7 +2194,6 @@ class SubscriptionPurchaseV2(typing_extensions.TypedDict, total=False):
     externalAccountIdentifiers: ExternalAccountIdentifiers
     inGracePeriodStateContext: InGracePeriodStateContext
     kind: str
-    latestOrderId: str
     lineItems: _list[SubscriptionPurchaseLineItem]
     linkedPurchaseToken: str
     onHoldStateContext: OnHoldStateContext
@@ -1984,7 +2202,7 @@ class SubscriptionPurchaseV2(typing_extensions.TypedDict, total=False):
     regionCode: str
     startTime: str
     subscribeWithGoogleInfo: SubscribeWithGoogleInfo
-    subscriptionState: typing_extensions.Literal[
+    subscriptionState: typing.Literal[
         "SUBSCRIPTION_STATE_UNSPECIFIED",
         "SUBSCRIPTION_STATE_PENDING",
         "SUBSCRIPTION_STATE_ACTIVE",
@@ -1998,21 +2216,21 @@ class SubscriptionPurchaseV2(typing_extensions.TypedDict, total=False):
     testPurchase: TestPurchase
 
 @typing.type_check_only
-class SubscriptionPurchasesAcknowledgeRequest(typing_extensions.TypedDict, total=False):
+class SubscriptionPurchasesAcknowledgeRequest(typing.TypedDict, total=False):
     developerPayload: str
     externalAccountIds: ExternalAccountIds
 
 @typing.type_check_only
-class SubscriptionPurchasesDeferRequest(typing_extensions.TypedDict, total=False):
+class SubscriptionPurchasesDeferRequest(typing.TypedDict, total=False):
     deferralInfo: SubscriptionDeferralInfo
 
 @typing.type_check_only
-class SubscriptionPurchasesDeferResponse(typing_extensions.TypedDict, total=False):
+class SubscriptionPurchasesDeferResponse(typing.TypedDict, total=False):
     newExpiryTimeMillis: str
 
 @typing.type_check_only
-class SubscriptionTaxAndComplianceSettings(typing_extensions.TypedDict, total=False):
-    eeaWithdrawalRightType: typing_extensions.Literal[
+class SubscriptionTaxAndComplianceSettings(typing.TypedDict, total=False):
+    eeaWithdrawalRightType: typing.Literal[
         "WITHDRAWAL_RIGHT_TYPE_UNSPECIFIED",
         "WITHDRAWAL_RIGHT_DIGITAL_CONTENT",
         "WITHDRAWAL_RIGHT_SERVICE",
@@ -2023,29 +2241,29 @@ class SubscriptionTaxAndComplianceSettings(typing_extensions.TypedDict, total=Fa
     taxRateInfoByRegionCode: dict[str, typing.Any]
 
 @typing.type_check_only
-class SystemApkOptions(typing_extensions.TypedDict, total=False):
+class SystemApkOptions(typing.TypedDict, total=False):
     rotated: bool
     uncompressedDexFiles: bool
     uncompressedNativeLibraries: bool
 
 @typing.type_check_only
-class SystemApksListResponse(typing_extensions.TypedDict, total=False):
+class SystemApksListResponse(typing.TypedDict, total=False):
     variants: _list[Variant]
 
 @typing.type_check_only
-class SystemFeature(typing_extensions.TypedDict, total=False):
+class SystemFeature(typing.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class SystemInitiatedCancellation(typing_extensions.TypedDict, total=False): ...
+class SystemInitiatedCancellation(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class SystemOnChip(typing_extensions.TypedDict, total=False):
+class SystemOnChip(typing.TypedDict, total=False):
     manufacturer: str
     model: str
 
 @typing.type_check_only
-class Targeting(typing_extensions.TypedDict, total=False):
+class Targeting(typing.TypedDict, total=False):
     allUsers: AllUsers
     androidSdks: AndroidSdks
     regions: Regions
@@ -2053,45 +2271,43 @@ class Targeting(typing_extensions.TypedDict, total=False):
     versionRange: AppVersionRange
 
 @typing.type_check_only
-class TargetingInfo(typing_extensions.TypedDict, total=False):
+class TargetingInfo(typing.TypedDict, total=False):
     assetSliceSet: _list[AssetSliceSet]
     packageName: str
     variant: _list[SplitApkVariant]
 
 @typing.type_check_only
-class TargetingRuleScope(typing_extensions.TypedDict, total=False):
+class TargetingRuleScope(typing.TypedDict, total=False):
     anySubscriptionInApp: TargetingRuleScopeAnySubscriptionInApp
     specificSubscriptionInApp: str
     thisSubscription: TargetingRuleScopeThisSubscription
 
 @typing.type_check_only
-class TargetingRuleScopeAnySubscriptionInApp(
-    typing_extensions.TypedDict, total=False
-): ...
+class TargetingRuleScopeAnySubscriptionInApp(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class TargetingRuleScopeThisSubscription(typing_extensions.TypedDict, total=False): ...
+class TargetingRuleScopeThisSubscription(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class TargetingUpdate(typing_extensions.TypedDict, total=False):
+class TargetingUpdate(typing.TypedDict, total=False):
     allUsers: AllUsers
     androidSdks: AndroidSdks
     regions: Regions
 
 @typing.type_check_only
-class TestPurchase(typing_extensions.TypedDict, total=False): ...
+class TestPurchase(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class TestPurchaseContext(typing_extensions.TypedDict, total=False):
-    fopType: typing_extensions.Literal["FOP_TYPE_UNSPECIFIED", "TEST"]
+class TestPurchaseContext(typing.TypedDict, total=False):
+    fopType: typing.Literal["FOP_TYPE_UNSPECIFIED", "TEST"]
 
 @typing.type_check_only
-class Testers(typing_extensions.TypedDict, total=False):
+class Testers(typing.TypedDict, total=False):
     googleGroups: _list[str]
 
 @typing.type_check_only
-class TextureCompressionFormat(typing_extensions.TypedDict, total=False):
-    alias: typing_extensions.Literal[
+class TextureCompressionFormat(typing.TypedDict, total=False):
+    alias: typing.Literal[
         "UNSPECIFIED_TEXTURE_COMPRESSION_FORMAT",
         "ETC1_RGB8",
         "PALETTED",
@@ -2106,69 +2322,91 @@ class TextureCompressionFormat(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class TextureCompressionFormatTargeting(typing_extensions.TypedDict, total=False):
+class TextureCompressionFormatTargeting(typing.TypedDict, total=False):
     alternatives: _list[TextureCompressionFormat]
     value: _list[TextureCompressionFormat]
 
 @typing.type_check_only
-class Timestamp(typing_extensions.TypedDict, total=False):
+class Timestamp(typing.TypedDict, total=False):
     nanos: int
     seconds: str
 
 @typing.type_check_only
-class TokenPagination(typing_extensions.TypedDict, total=False):
+class TokenPagination(typing.TypedDict, total=False):
     nextPageToken: str
     previousPageToken: str
 
 @typing.type_check_only
-class Track(typing_extensions.TypedDict, total=False):
+class Track(typing.TypedDict, total=False):
     releases: _list[TrackRelease]
     track: str
 
 @typing.type_check_only
-class TrackConfig(typing_extensions.TypedDict, total=False):
-    formFactor: typing_extensions.Literal[
+class TrackConfig(typing.TypedDict, total=False):
+    formFactor: typing.Literal[
         "FORM_FACTOR_UNSPECIFIED", "DEFAULT", "WEAR", "AUTOMOTIVE"
     ]
     track: str
-    type: typing_extensions.Literal["TRACK_TYPE_UNSPECIFIED", "CLOSED_TESTING"]
+    type: typing.Literal["TRACK_TYPE_UNSPECIFIED", "CLOSED_TESTING"]
 
 @typing.type_check_only
-class TrackCountryAvailability(typing_extensions.TypedDict, total=False):
+class TrackCountryAvailability(typing.TypedDict, total=False):
     countries: _list[TrackTargetedCountry]
     restOfWorld: bool
     syncWithProduction: bool
 
 @typing.type_check_only
-class TrackRelease(typing_extensions.TypedDict, total=False):
+class TrackRelease(typing.TypedDict, total=False):
     countryTargeting: CountryTargeting
     inAppUpdatePriority: int
     name: str
     releaseNotes: _list[LocalizedText]
-    status: typing_extensions.Literal[
+    status: typing.Literal[
         "statusUnspecified", "draft", "inProgress", "halted", "completed"
     ]
     userFraction: float
     versionCodes: _list[str]
 
 @typing.type_check_only
-class TrackTargetedCountry(typing_extensions.TypedDict, total=False):
+class TrackTargetedCountry(typing.TypedDict, total=False):
     countryCode: str
 
 @typing.type_check_only
-class TracksListResponse(typing_extensions.TypedDict, total=False):
+class TracksListResponse(typing.TypedDict, total=False):
     kind: str
     tracks: _list[Track]
 
 @typing.type_check_only
-class UpdateBasePlanStateRequest(typing_extensions.TypedDict, total=False):
+class UpdateAppStoreHostedAppPublishStatusRequest(typing.TypedDict, total=False):
+    publishState: typing.Literal[
+        "APP_STORE_APP_PUBLISH_STATE_UNSPECIFIED",
+        "APP_STORE_APP_PUBLISH_STATE_PUBLISHED",
+        "APP_STORE_APP_PUBLISH_STATE_UNPUBLISHED",
+    ]
+
+@typing.type_check_only
+class UpdateAppStoreHostedAppPublishStatusResponse(typing.TypedDict, total=False): ...
+
+@typing.type_check_only
+class UpdateAppStoreHostedAppRequest(typing.TypedDict, total=False):
+    activeApks: AppStoreAppActiveApks
+    activeLocalizedStoreListings: _list[AppStoreAppStoreListing]
+    appDetails: AppStoreAppDetails
+    packageName: str
+    policyDeclarations: _list[AppStoreAppPolicyDeclaration]
+
+@typing.type_check_only
+class UpdateAppStoreHostedAppResponse(typing.TypedDict, total=False): ...
+
+@typing.type_check_only
+class UpdateBasePlanStateRequest(typing.TypedDict, total=False):
     activateBasePlanRequest: ActivateBasePlanRequest
     deactivateBasePlanRequest: DeactivateBasePlanRequest
 
 @typing.type_check_only
-class UpdateOneTimeProductOfferRequest(typing_extensions.TypedDict, total=False):
+class UpdateOneTimeProductOfferRequest(typing.TypedDict, total=False):
     allowMissing: bool
-    latencyTolerance: typing_extensions.Literal[
+    latencyTolerance: typing.Literal[
         "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
         "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
         "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT",
@@ -2178,15 +2416,15 @@ class UpdateOneTimeProductOfferRequest(typing_extensions.TypedDict, total=False)
     updateMask: str
 
 @typing.type_check_only
-class UpdateOneTimeProductOfferStateRequest(typing_extensions.TypedDict, total=False):
+class UpdateOneTimeProductOfferStateRequest(typing.TypedDict, total=False):
     activateOneTimeProductOfferRequest: ActivateOneTimeProductOfferRequest
     cancelOneTimeProductOfferRequest: CancelOneTimeProductOfferRequest
     deactivateOneTimeProductOfferRequest: DeactivateOneTimeProductOfferRequest
 
 @typing.type_check_only
-class UpdateOneTimeProductRequest(typing_extensions.TypedDict, total=False):
+class UpdateOneTimeProductRequest(typing.TypedDict, total=False):
     allowMissing: bool
-    latencyTolerance: typing_extensions.Literal[
+    latencyTolerance: typing.Literal[
         "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
         "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
         "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT",
@@ -2196,14 +2434,14 @@ class UpdateOneTimeProductRequest(typing_extensions.TypedDict, total=False):
     updateMask: str
 
 @typing.type_check_only
-class UpdatePurchaseOptionStateRequest(typing_extensions.TypedDict, total=False):
+class UpdatePurchaseOptionStateRequest(typing.TypedDict, total=False):
     activatePurchaseOptionRequest: ActivatePurchaseOptionRequest
     deactivatePurchaseOptionRequest: DeactivatePurchaseOptionRequest
 
 @typing.type_check_only
-class UpdateSubscriptionOfferRequest(typing_extensions.TypedDict, total=False):
+class UpdateSubscriptionOfferRequest(typing.TypedDict, total=False):
     allowMissing: bool
-    latencyTolerance: typing_extensions.Literal[
+    latencyTolerance: typing.Literal[
         "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
         "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
         "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT",
@@ -2213,14 +2451,14 @@ class UpdateSubscriptionOfferRequest(typing_extensions.TypedDict, total=False):
     updateMask: str
 
 @typing.type_check_only
-class UpdateSubscriptionOfferStateRequest(typing_extensions.TypedDict, total=False):
+class UpdateSubscriptionOfferStateRequest(typing.TypedDict, total=False):
     activateSubscriptionOfferRequest: ActivateSubscriptionOfferRequest
     deactivateSubscriptionOfferRequest: DeactivateSubscriptionOfferRequest
 
 @typing.type_check_only
-class UpdateSubscriptionRequest(typing_extensions.TypedDict, total=False):
+class UpdateSubscriptionRequest(typing.TypedDict, total=False):
     allowMissing: bool
-    latencyTolerance: typing_extensions.Literal[
+    latencyTolerance: typing.Literal[
         "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
         "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
         "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT",
@@ -2230,14 +2468,38 @@ class UpdateSubscriptionRequest(typing_extensions.TypedDict, total=False):
     updateMask: str
 
 @typing.type_check_only
-class UpgradeTargetingRule(typing_extensions.TypedDict, total=False):
+class UpgradeTargetingRule(typing.TypedDict, total=False):
     billingPeriodDuration: str
     oncePerUser: bool
     scope: TargetingRuleScope
 
 @typing.type_check_only
-class User(typing_extensions.TypedDict, total=False):
-    accessState: typing_extensions.Literal[
+class UploadApkRequest(typing.TypedDict, total=False): ...
+
+@typing.type_check_only
+class UploadApkResponse(typing.TypedDict, total=False):
+    apkId: str
+
+@typing.type_check_only
+class UploadAppStoreAppPolicyDeclarationFileRequest(typing.TypedDict, total=False):
+    fileType: typing.Literal[
+        "DECLARATION_FILE_TYPE_UNSPECIFIED", "DECLARATION_FILE_TYPE_DOCUMENT"
+    ]
+
+@typing.type_check_only
+class UploadAppStoreAppPolicyDeclarationFileResponse(typing.TypedDict, total=False):
+    fileId: str
+
+@typing.type_check_only
+class UploadImageRequest(typing.TypedDict, total=False): ...
+
+@typing.type_check_only
+class UploadImageResponse(typing.TypedDict, total=False):
+    imageId: str
+
+@typing.type_check_only
+class User(typing.TypedDict, total=False):
+    accessState: typing.Literal[
         "ACCESS_STATE_UNSPECIFIED",
         "INVITED",
         "INVITATION_EXPIRED",
@@ -2245,7 +2507,7 @@ class User(typing_extensions.TypedDict, total=False):
         "ACCESS_EXPIRED",
     ]
     developerAccountPermissions: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "DEVELOPER_LEVEL_PERMISSION_UNSPECIFIED",
             "CAN_SEE_ALL_APPS",
             "CAN_VIEW_FINANCIAL_DATA_GLOBAL",
@@ -2276,7 +2538,7 @@ class User(typing_extensions.TypedDict, total=False):
     partial: bool
 
 @typing.type_check_only
-class UserComment(typing_extensions.TypedDict, total=False):
+class UserComment(typing.TypedDict, total=False):
     androidOsVersion: int
     appVersionCode: int
     appVersionName: str
@@ -2291,37 +2553,64 @@ class UserComment(typing_extensions.TypedDict, total=False):
     thumbsUpCount: int
 
 @typing.type_check_only
-class UserCountriesTargeting(typing_extensions.TypedDict, total=False):
+class UserCountriesTargeting(typing.TypedDict, total=False):
     countryCodes: _list[str]
     exclude: bool
 
 @typing.type_check_only
-class UserCountrySet(typing_extensions.TypedDict, total=False):
+class UserCountrySet(typing.TypedDict, total=False):
     countryCodes: _list[str]
     name: str
 
 @typing.type_check_only
-class UserInitiatedCancellation(typing_extensions.TypedDict, total=False):
+class UserInitiatedCancellation(typing.TypedDict, total=False):
     cancelSurveyResult: CancelSurveyResult
     cancelTime: str
 
 @typing.type_check_only
-class UsesPermission(typing_extensions.TypedDict, total=False):
+class UsesConfiguration(typing.TypedDict, total=False):
+    requiredKeyboardType: typing.Literal[
+        "KEYBOARD_TYPE_UNSPECIFIED",
+        "KEYBOARD_TYPE_UNDEFINED",
+        "KEYBOARD_TYPE_NO_KEYS",
+        "KEYBOARD_TYPE_QWERTY",
+        "KEYBOARD_TYPE_TWELVE_KEY",
+    ]
+    requiredNavigationType: typing.Literal[
+        "NAVIGATION_TYPE_UNSPECIFIED",
+        "NAVIGATION_TYPE_UNDEFINED",
+        "NAVIGATION_TYPE_NO_NAVIGATION",
+        "NAVIGATION_TYPE_DPAD",
+        "NAVIGATION_TYPE_TRACKBALL",
+        "NAVIGATION_TYPE_WHEEL",
+    ]
+    requiredTouchscreenType: typing.Literal[
+        "TOUCHSCREEN_TYPE_UNSPECIFIED",
+        "TOUCHSCREEN_TYPE_UNDEFINED",
+        "TOUCHSCREEN_TYPE_NO_TOUCHSCREEN",
+        "TOUCHSCREEN_TYPE_STYLUS",
+        "TOUCHSCREEN_TYPE_FINGER",
+    ]
+    requiresFiveWayNavigation: bool
+    requiresHardwareKeyboard: bool
+
+@typing.type_check_only
+class UsesPermission(typing.TypedDict, total=False):
     maxSdkVersion: int
     name: str
 
 @typing.type_check_only
-class VanityCode(typing_extensions.TypedDict, total=False):
+class VanityCode(typing.TypedDict, total=False):
     promotionCode: str
 
 @typing.type_check_only
-class Variant(typing_extensions.TypedDict, total=False):
+class Variant(typing.TypedDict, total=False):
     deviceSpec: DeviceSpec
     options: SystemApkOptions
     variantId: int
 
 @typing.type_check_only
-class VariantTargeting(typing_extensions.TypedDict, total=False):
+class VariantTargeting(typing.TypedDict, total=False):
     abiTargeting: AbiTargeting
     multiAbiTargeting: MultiAbiTargeting
     screenDensityTargeting: ScreenDensityTargeting
@@ -2329,7 +2618,11 @@ class VariantTargeting(typing_extensions.TypedDict, total=False):
     textureCompressionFormatTargeting: TextureCompressionFormatTargeting
 
 @typing.type_check_only
-class VoidedPurchase(typing_extensions.TypedDict, total=False):
+class VideoAsset(typing.TypedDict, total=False):
+    videoUrl: str
+
+@typing.type_check_only
+class VoidedPurchase(typing.TypedDict, total=False):
     kind: str
     orderId: str
     purchaseTimeMillis: str
@@ -2340,7 +2633,7 @@ class VoidedPurchase(typing_extensions.TypedDict, total=False):
     voidedTimeMillis: str
 
 @typing.type_check_only
-class VoidedPurchasesListResponse(typing_extensions.TypedDict, total=False):
+class VoidedPurchasesListResponse(typing.TypedDict, total=False):
     pageInfo: PageInfo
     tokenPagination: TokenPagination
     voidedPurchases: _list[VoidedPurchase]

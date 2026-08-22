@@ -1,26 +1,24 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class ActivationOptions(typing_extensions.TypedDict, total=False):
+class ActivationOptions(typing.TypedDict, total=False):
     activationUrl: str
     allowReactivation: bool
 
 @typing.type_check_only
-class ActivationStatus(typing_extensions.TypedDict, total=False):
-    state: typing_extensions.Literal[
+class ActivationStatus(typing.TypedDict, total=False):
+    state: typing.Literal[
         "UNKNOWN_STATE", "NOT_ACTIVATED", "not_activated", "ACTIVATED", "activated"
     ]
 
 @typing.type_check_only
-class AddMessageRequest(typing_extensions.TypedDict, total=False):
+class AddMessageRequest(typing.TypedDict, total=False):
     message: Message
 
 @typing.type_check_only
-class AirportInfo(typing_extensions.TypedDict, total=False):
+class AirportInfo(typing.TypedDict, total=False):
     airportIataCode: str
     airportNameOverride: LocalizedString
     gate: str
@@ -28,36 +26,36 @@ class AirportInfo(typing_extensions.TypedDict, total=False):
     terminal: str
 
 @typing.type_check_only
-class AppLinkData(typing_extensions.TypedDict, total=False):
+class AppLinkData(typing.TypedDict, total=False):
     androidAppLinkInfo: AppLinkDataAppLinkInfo
     displayText: LocalizedString
     iosAppLinkInfo: AppLinkDataAppLinkInfo
     webAppLinkInfo: AppLinkDataAppLinkInfo
 
 @typing.type_check_only
-class AppLinkDataAppLinkInfo(typing_extensions.TypedDict, total=False):
+class AppLinkDataAppLinkInfo(typing.TypedDict, total=False):
     appLogoImage: Image
     appTarget: AppLinkDataAppLinkInfoAppTarget
     description: LocalizedString
     title: LocalizedString
 
 @typing.type_check_only
-class AppLinkDataAppLinkInfoAppTarget(typing_extensions.TypedDict, total=False):
+class AppLinkDataAppLinkInfoAppTarget(typing.TypedDict, total=False):
     packageName: str
     targetUri: Uri
 
 @typing.type_check_only
-class AuthenticationKey(typing_extensions.TypedDict, total=False):
+class AuthenticationKey(typing.TypedDict, total=False):
     id: int
     publicKeyPem: str
 
 @typing.type_check_only
-class Barcode(typing_extensions.TypedDict, total=False):
+class Barcode(typing.TypedDict, total=False):
     alternateText: str
     kind: str
-    renderEncoding: typing_extensions.Literal["RENDER_ENCODING_UNSPECIFIED", "UTF_8"]
+    renderEncoding: typing.Literal["RENDER_ENCODING_UNSPECIFIED", "UTF_8"]
     showCodeText: LocalizedString
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "BARCODE_TYPE_UNSPECIFIED",
         "AZTEC",
         "aztec",
@@ -90,11 +88,11 @@ class Barcode(typing_extensions.TypedDict, total=False):
     value: str
 
 @typing.type_check_only
-class BarcodeSectionDetail(typing_extensions.TypedDict, total=False):
+class BarcodeSectionDetail(typing.TypedDict, total=False):
     fieldSelector: FieldSelector
 
 @typing.type_check_only
-class Blobstore2Info(typing_extensions.TypedDict, total=False):
+class Blobstore2Info(typing.TypedDict, total=False):
     blobGeneration: str
     blobId: str
     downloadExternalReadToken: str
@@ -104,8 +102,8 @@ class Blobstore2Info(typing_extensions.TypedDict, total=False):
     uploadMetadataContainer: str
 
 @typing.type_check_only
-class BoardingAndSeatingInfo(typing_extensions.TypedDict, total=False):
-    boardingDoor: typing_extensions.Literal[
+class BoardingAndSeatingInfo(typing.TypedDict, total=False):
+    boardingDoor: typing.Literal[
         "BOARDING_DOOR_UNSPECIFIED", "FRONT", "front", "BACK", "back"
     ]
     boardingGroup: str
@@ -118,8 +116,8 @@ class BoardingAndSeatingInfo(typing_extensions.TypedDict, total=False):
     sequenceNumber: str
 
 @typing.type_check_only
-class BoardingAndSeatingPolicy(typing_extensions.TypedDict, total=False):
-    boardingPolicy: typing_extensions.Literal[
+class BoardingAndSeatingPolicy(typing.TypedDict, total=False):
+    boardingPolicy: typing.Literal[
         "BOARDING_POLICY_UNSPECIFIED",
         "ZONE_BASED",
         "zoneBased",
@@ -129,7 +127,7 @@ class BoardingAndSeatingPolicy(typing_extensions.TypedDict, total=False):
         "boardingPolicyOther",
     ]
     kind: str
-    seatClassPolicy: typing_extensions.Literal[
+    seatClassPolicy: typing.Literal[
         "SEAT_CLASS_POLICY_UNSPECIFIED",
         "CABIN_BASED",
         "cabinBased",
@@ -142,50 +140,50 @@ class BoardingAndSeatingPolicy(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class CallbackOptions(typing_extensions.TypedDict, total=False):
+class CallbackOptions(typing.TypedDict, total=False):
     updateRequestUrl: str
     url: str
 
 @typing.type_check_only
-class CardBarcodeSectionDetails(typing_extensions.TypedDict, total=False):
+class CardBarcodeSectionDetails(typing.TypedDict, total=False):
     firstBottomDetail: BarcodeSectionDetail
     firstTopDetail: BarcodeSectionDetail
     secondTopDetail: BarcodeSectionDetail
 
 @typing.type_check_only
-class CardRowOneItem(typing_extensions.TypedDict, total=False):
+class CardRowOneItem(typing.TypedDict, total=False):
     item: TemplateItem
 
 @typing.type_check_only
-class CardRowTemplateInfo(typing_extensions.TypedDict, total=False):
+class CardRowTemplateInfo(typing.TypedDict, total=False):
     oneItem: CardRowOneItem
     threeItems: CardRowThreeItems
     twoItems: CardRowTwoItems
 
 @typing.type_check_only
-class CardRowThreeItems(typing_extensions.TypedDict, total=False):
+class CardRowThreeItems(typing.TypedDict, total=False):
     endItem: TemplateItem
     middleItem: TemplateItem
     startItem: TemplateItem
 
 @typing.type_check_only
-class CardRowTwoItems(typing_extensions.TypedDict, total=False):
+class CardRowTwoItems(typing.TypedDict, total=False):
     endItem: TemplateItem
     startItem: TemplateItem
 
 @typing.type_check_only
-class CardTemplateOverride(typing_extensions.TypedDict, total=False):
+class CardTemplateOverride(typing.TypedDict, total=False):
     cardRowTemplateInfos: _list[CardRowTemplateInfo]
 
 @typing.type_check_only
-class ClassTemplateInfo(typing_extensions.TypedDict, total=False):
+class ClassTemplateInfo(typing.TypedDict, total=False):
     cardBarcodeSectionDetails: CardBarcodeSectionDetails
     cardTemplateOverride: CardTemplateOverride
     detailsTemplateOverride: DetailsTemplateOverride
     listTemplateOverride: ListTemplateOverride
 
 @typing.type_check_only
-class CompositeMedia(typing_extensions.TypedDict, total=False):
+class CompositeMedia(typing.TypedDict, total=False):
     blobRef: str
     blobstore2Info: Blobstore2Info
     cosmoBinaryReference: str
@@ -195,13 +193,13 @@ class CompositeMedia(typing_extensions.TypedDict, total=False):
     md5Hash: str
     objectId: ObjectId
     path: str
-    referenceType: typing_extensions.Literal[
+    referenceType: typing.Literal[
         "PATH", "BLOB_REF", "INLINE", "BIGSTORE_REF", "COSMO_BINARY_REFERENCE"
     ]
     sha1Hash: str
 
 @typing.type_check_only
-class ContentTypeInfo(typing_extensions.TypedDict, total=False):
+class ContentTypeInfo(typing.TypedDict, total=False):
     bestGuess: str
     fromBytes: str
     fromFileName: str
@@ -211,23 +209,23 @@ class ContentTypeInfo(typing_extensions.TypedDict, total=False):
     fusionIdDetectionMetadata: str
 
 @typing.type_check_only
-class DateTime(typing_extensions.TypedDict, total=False):
+class DateTime(typing.TypedDict, total=False):
     date: str
 
 @typing.type_check_only
-class DetailsItemInfo(typing_extensions.TypedDict, total=False):
+class DetailsItemInfo(typing.TypedDict, total=False):
     item: TemplateItem
 
 @typing.type_check_only
-class DetailsTemplateOverride(typing_extensions.TypedDict, total=False):
+class DetailsTemplateOverride(typing.TypedDict, total=False):
     detailsItemInfos: _list[DetailsItemInfo]
 
 @typing.type_check_only
-class DeviceContext(typing_extensions.TypedDict, total=False):
+class DeviceContext(typing.TypedDict, total=False):
     deviceToken: str
 
 @typing.type_check_only
-class DiffChecksumsResponse(typing_extensions.TypedDict, total=False):
+class DiffChecksumsResponse(typing.TypedDict, total=False):
     checksumsLocation: CompositeMedia
     chunkSizeBytes: str
     objectLocation: CompositeMedia
@@ -235,30 +233,30 @@ class DiffChecksumsResponse(typing_extensions.TypedDict, total=False):
     objectVersion: str
 
 @typing.type_check_only
-class DiffDownloadResponse(typing_extensions.TypedDict, total=False):
+class DiffDownloadResponse(typing.TypedDict, total=False):
     objectLocation: CompositeMedia
 
 @typing.type_check_only
-class DiffUploadRequest(typing_extensions.TypedDict, total=False):
+class DiffUploadRequest(typing.TypedDict, total=False):
     checksumsInfo: CompositeMedia
     objectInfo: CompositeMedia
     objectVersion: str
 
 @typing.type_check_only
-class DiffUploadResponse(typing_extensions.TypedDict, total=False):
+class DiffUploadResponse(typing.TypedDict, total=False):
     objectVersion: str
     originalObject: CompositeMedia
 
 @typing.type_check_only
-class DiffVersionResponse(typing_extensions.TypedDict, total=False):
+class DiffVersionResponse(typing.TypedDict, total=False):
     objectSizeBytes: str
     objectVersion: str
 
 @typing.type_check_only
-class DiscoverableProgram(typing_extensions.TypedDict, total=False):
+class DiscoverableProgram(typing.TypedDict, total=False):
     merchantSigninInfo: DiscoverableProgramMerchantSigninInfo
     merchantSignupInfo: DiscoverableProgramMerchantSignupInfo
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "TRUSTED_TESTERS",
         "trustedTesters",
@@ -269,13 +267,13 @@ class DiscoverableProgram(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class DiscoverableProgramMerchantSigninInfo(typing_extensions.TypedDict, total=False):
+class DiscoverableProgramMerchantSigninInfo(typing.TypedDict, total=False):
     signinWebsite: Uri
 
 @typing.type_check_only
-class DiscoverableProgramMerchantSignupInfo(typing_extensions.TypedDict, total=False):
+class DiscoverableProgramMerchantSignupInfo(typing.TypedDict, total=False):
     signupSharedDatas: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "SHARED_DATA_TYPE_UNSPECIFIED",
             "FIRST_NAME",
             "LAST_NAME",
@@ -294,15 +292,15 @@ class DiscoverableProgramMerchantSignupInfo(typing_extensions.TypedDict, total=F
     signupWebsite: Uri
 
 @typing.type_check_only
-class DownloadParameters(typing_extensions.TypedDict, total=False):
+class DownloadParameters(typing.TypedDict, total=False):
     allowGzipCompression: bool
     ignoreRange: bool
 
 @typing.type_check_only
-class EventDateTime(typing_extensions.TypedDict, total=False):
+class EventDateTime(typing.TypedDict, total=False):
     customDoorsOpenLabel: LocalizedString
     doorsOpen: str
-    doorsOpenLabel: typing_extensions.Literal[
+    doorsOpenLabel: typing.Literal[
         "DOORS_OPEN_LABEL_UNSPECIFIED",
         "DOORS_OPEN",
         "doorsOpen",
@@ -314,12 +312,12 @@ class EventDateTime(typing_extensions.TypedDict, total=False):
     start: str
 
 @typing.type_check_only
-class EventReservationInfo(typing_extensions.TypedDict, total=False):
+class EventReservationInfo(typing.TypedDict, total=False):
     confirmationCode: str
     kind: str
 
 @typing.type_check_only
-class EventSeat(typing_extensions.TypedDict, total=False):
+class EventSeat(typing.TypedDict, total=False):
     gate: LocalizedString
     kind: str
     row: LocalizedString
@@ -327,12 +325,12 @@ class EventSeat(typing_extensions.TypedDict, total=False):
     section: LocalizedString
 
 @typing.type_check_only
-class EventTicketClass(typing_extensions.TypedDict, total=False):
+class EventTicketClass(typing.TypedDict, total=False):
     allowMultipleUsersPerObject: bool
     appLinkData: AppLinkData
     callbackOptions: CallbackOptions
     classTemplateInfo: ClassTemplateInfo
-    confirmationCodeLabel: typing_extensions.Literal[
+    confirmationCodeLabel: typing.Literal[
         "CONFIRMATION_CODE_LABEL_UNSPECIFIED",
         "CONFIRMATION_CODE",
         "confirmationCode",
@@ -354,7 +352,7 @@ class EventTicketClass(typing_extensions.TypedDict, total=False):
     eventId: str
     eventName: LocalizedString
     finePrint: LocalizedString
-    gateLabel: typing_extensions.Literal[
+    gateLabel: typing.Literal[
         "GATE_LABEL_UNSPECIFIED", "GATE", "gate", "DOOR", "door", "ENTRANCE", "entrance"
     ]
     heroImage: Image
@@ -371,7 +369,7 @@ class EventTicketClass(typing_extensions.TypedDict, total=False):
     logo: Image
     merchantLocations: _list[MerchantLocation]
     messages: _list[Message]
-    multipleDevicesAndHoldersAllowedStatus: typing_extensions.Literal[
+    multipleDevicesAndHoldersAllowedStatus: typing.Literal[
         "STATUS_UNSPECIFIED",
         "MULTIPLE_HOLDERS",
         "ONE_USER_ALL_DEVICES",
@@ -380,12 +378,12 @@ class EventTicketClass(typing_extensions.TypedDict, total=False):
         "oneUserAllDevices",
         "oneUserOneDevice",
     ]
-    notifyPreference: typing_extensions.Literal[
+    notifyPreference: typing.Literal[
         "NOTIFICATION_SETTINGS_FOR_UPDATES_UNSPECIFIED", "NOTIFY_ON_UPDATE"
     ]
     redemptionIssuers: _list[str]
     review: Review
-    reviewStatus: typing_extensions.Literal[
+    reviewStatus: typing.Literal[
         "REVIEW_STATUS_UNSPECIFIED",
         "UNDER_REVIEW",
         "underReview",
@@ -396,9 +394,9 @@ class EventTicketClass(typing_extensions.TypedDict, total=False):
         "DRAFT",
         "draft",
     ]
-    rowLabel: typing_extensions.Literal["ROW_LABEL_UNSPECIFIED", "ROW", "row"]
-    seatLabel: typing_extensions.Literal["SEAT_LABEL_UNSPECIFIED", "SEAT", "seat"]
-    sectionLabel: typing_extensions.Literal[
+    rowLabel: typing.Literal["ROW_LABEL_UNSPECIFIED", "ROW", "row"]
+    seatLabel: typing.Literal["SEAT_LABEL_UNSPECIFIED", "SEAT", "seat"]
+    sectionLabel: typing.Literal[
         "SECTION_LABEL_UNSPECIFIED", "SECTION", "section", "THEATER", "theater"
     ]
     securityAnimation: SecurityAnimation
@@ -406,7 +404,7 @@ class EventTicketClass(typing_extensions.TypedDict, total=False):
     valueAddedModuleData: _list[ValueAddedModuleData]
     venue: EventVenue
     version: str
-    viewUnlockRequirement: typing_extensions.Literal[
+    viewUnlockRequirement: typing.Literal[
         "VIEW_UNLOCK_REQUIREMENT_UNSPECIFIED",
         "UNLOCK_NOT_REQUIRED",
         "UNLOCK_REQUIRED_TO_VIEW",
@@ -415,16 +413,16 @@ class EventTicketClass(typing_extensions.TypedDict, total=False):
     wordMark: Image
 
 @typing.type_check_only
-class EventTicketClassAddMessageResponse(typing_extensions.TypedDict, total=False):
+class EventTicketClassAddMessageResponse(typing.TypedDict, total=False):
     resource: EventTicketClass
 
 @typing.type_check_only
-class EventTicketClassListResponse(typing_extensions.TypedDict, total=False):
+class EventTicketClassListResponse(typing.TypedDict, total=False):
     pagination: Pagination
     resources: _list[EventTicketClass]
 
 @typing.type_check_only
-class EventTicketObject(typing_extensions.TypedDict, total=False):
+class EventTicketObject(typing.TypedDict, total=False):
     appLinkData: AppLinkData
     barcode: Barcode
     classId: str
@@ -446,7 +444,7 @@ class EventTicketObject(typing_extensions.TypedDict, total=False):
     locations: _list[LatLongPoint]
     merchantLocations: _list[MerchantLocation]
     messages: _list[Message]
-    notifyPreference: typing_extensions.Literal[
+    notifyPreference: typing.Literal[
         "NOTIFICATION_SETTINGS_FOR_UPDATES_UNSPECIFIED", "NOTIFY_ON_UPDATE"
     ]
     passConstraints: PassConstraints
@@ -455,7 +453,7 @@ class EventTicketObject(typing_extensions.TypedDict, total=False):
     saveRestrictions: SaveRestrictions
     seatInfo: EventSeat
     smartTapRedemptionValue: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "ACTIVE",
         "active",
@@ -475,27 +473,27 @@ class EventTicketObject(typing_extensions.TypedDict, total=False):
     version: str
 
 @typing.type_check_only
-class EventTicketObjectAddMessageResponse(typing_extensions.TypedDict, total=False):
+class EventTicketObjectAddMessageResponse(typing.TypedDict, total=False):
     resource: EventTicketObject
 
 @typing.type_check_only
-class EventTicketObjectListResponse(typing_extensions.TypedDict, total=False):
+class EventTicketObjectListResponse(typing.TypedDict, total=False):
     pagination: Pagination
     resources: _list[EventTicketObject]
 
 @typing.type_check_only
-class EventVenue(typing_extensions.TypedDict, total=False):
+class EventVenue(typing.TypedDict, total=False):
     address: LocalizedString
     kind: str
     name: LocalizedString
 
 @typing.type_check_only
-class ExpiryNotification(typing_extensions.TypedDict, total=False):
+class ExpiryNotification(typing.TypedDict, total=False):
     enableNotification: bool
 
 @typing.type_check_only
-class FieldReference(typing_extensions.TypedDict, total=False):
-    dateFormat: typing_extensions.Literal[
+class FieldReference(typing.TypedDict, total=False):
+    dateFormat: typing.Literal[
         "DATE_FORMAT_UNSPECIFIED",
         "DATE_TIME",
         "dateTime",
@@ -513,13 +511,13 @@ class FieldReference(typing_extensions.TypedDict, total=False):
     fieldPath: str
 
 @typing.type_check_only
-class FieldSelector(typing_extensions.TypedDict, total=False):
+class FieldSelector(typing.TypedDict, total=False):
     fields: _list[FieldReference]
 
 @typing.type_check_only
-class FirstRowOption(typing_extensions.TypedDict, total=False):
+class FirstRowOption(typing.TypedDict, total=False):
     fieldOption: FieldSelector
-    transitOption: typing_extensions.Literal[
+    transitOption: typing.Literal[
         "TRANSIT_OPTION_UNSPECIFIED",
         "ORIGIN_AND_DESTINATION_NAMES",
         "originAndDestinationNames",
@@ -530,7 +528,7 @@ class FirstRowOption(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class FlightCarrier(typing_extensions.TypedDict, total=False):
+class FlightCarrier(typing.TypedDict, total=False):
     airlineAllianceLogo: Image
     airlineLogo: Image
     airlineName: LocalizedString
@@ -540,7 +538,7 @@ class FlightCarrier(typing_extensions.TypedDict, total=False):
     wideAirlineLogo: Image
 
 @typing.type_check_only
-class FlightClass(typing_extensions.TypedDict, total=False):
+class FlightClass(typing.TypedDict, total=False):
     allowMultipleUsersPerObject: bool
     appLinkData: AppLinkData
     boardingAndSeatingPolicy: BoardingAndSeatingPolicy
@@ -550,7 +548,7 @@ class FlightClass(typing_extensions.TypedDict, total=False):
     destination: AirportInfo
     enableSmartTap: bool
     flightHeader: FlightHeader
-    flightStatus: typing_extensions.Literal[
+    flightStatus: typing.Literal[
         "FLIGHT_STATUS_UNSPECIFIED",
         "SCHEDULED",
         "scheduled",
@@ -585,7 +583,7 @@ class FlightClass(typing_extensions.TypedDict, total=False):
     locations: _list[LatLongPoint]
     merchantLocations: _list[MerchantLocation]
     messages: _list[Message]
-    multipleDevicesAndHoldersAllowedStatus: typing_extensions.Literal[
+    multipleDevicesAndHoldersAllowedStatus: typing.Literal[
         "STATUS_UNSPECIFIED",
         "MULTIPLE_HOLDERS",
         "ONE_USER_ALL_DEVICES",
@@ -594,13 +592,13 @@ class FlightClass(typing_extensions.TypedDict, total=False):
         "oneUserAllDevices",
         "oneUserOneDevice",
     ]
-    notifyPreference: typing_extensions.Literal[
+    notifyPreference: typing.Literal[
         "NOTIFICATION_SETTINGS_FOR_UPDATES_UNSPECIFIED", "NOTIFY_ON_UPDATE"
     ]
     origin: AirportInfo
     redemptionIssuers: _list[str]
     review: Review
-    reviewStatus: typing_extensions.Literal[
+    reviewStatus: typing.Literal[
         "REVIEW_STATUS_UNSPECIFIED",
         "UNDER_REVIEW",
         "underReview",
@@ -615,7 +613,7 @@ class FlightClass(typing_extensions.TypedDict, total=False):
     textModulesData: _list[TextModuleData]
     valueAddedModuleData: _list[ValueAddedModuleData]
     version: str
-    viewUnlockRequirement: typing_extensions.Literal[
+    viewUnlockRequirement: typing.Literal[
         "VIEW_UNLOCK_REQUIREMENT_UNSPECIFIED",
         "UNLOCK_NOT_REQUIRED",
         "UNLOCK_REQUIRED_TO_VIEW",
@@ -623,16 +621,16 @@ class FlightClass(typing_extensions.TypedDict, total=False):
     wordMark: Image
 
 @typing.type_check_only
-class FlightClassAddMessageResponse(typing_extensions.TypedDict, total=False):
+class FlightClassAddMessageResponse(typing.TypedDict, total=False):
     resource: FlightClass
 
 @typing.type_check_only
-class FlightClassListResponse(typing_extensions.TypedDict, total=False):
+class FlightClassListResponse(typing.TypedDict, total=False):
     pagination: Pagination
     resources: _list[FlightClass]
 
 @typing.type_check_only
-class FlightHeader(typing_extensions.TypedDict, total=False):
+class FlightHeader(typing.TypedDict, total=False):
     carrier: FlightCarrier
     flightNumber: str
     flightNumberDisplayOverride: str
@@ -641,7 +639,7 @@ class FlightHeader(typing_extensions.TypedDict, total=False):
     operatingFlightNumber: str
 
 @typing.type_check_only
-class FlightObject(typing_extensions.TypedDict, total=False):
+class FlightObject(typing.TypedDict, total=False):
     appLinkData: AppLinkData
     barcode: Barcode
     boardingAndSeatingInfo: BoardingAndSeatingInfo
@@ -662,7 +660,7 @@ class FlightObject(typing_extensions.TypedDict, total=False):
     locations: _list[LatLongPoint]
     merchantLocations: _list[MerchantLocation]
     messages: _list[Message]
-    notifyPreference: typing_extensions.Literal[
+    notifyPreference: typing.Literal[
         "NOTIFICATION_SETTINGS_FOR_UPDATES_UNSPECIFIED", "NOTIFY_ON_UPDATE"
     ]
     passConstraints: PassConstraints
@@ -672,7 +670,7 @@ class FlightObject(typing_extensions.TypedDict, total=False):
     saveRestrictions: SaveRestrictions
     securityProgramLogo: Image
     smartTapRedemptionValue: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "ACTIVE",
         "active",
@@ -689,22 +687,22 @@ class FlightObject(typing_extensions.TypedDict, total=False):
     version: str
 
 @typing.type_check_only
-class FlightObjectAddMessageResponse(typing_extensions.TypedDict, total=False):
+class FlightObjectAddMessageResponse(typing.TypedDict, total=False):
     resource: FlightObject
 
 @typing.type_check_only
-class FlightObjectListResponse(typing_extensions.TypedDict, total=False):
+class FlightObjectListResponse(typing.TypedDict, total=False):
     pagination: Pagination
     resources: _list[FlightObject]
 
 @typing.type_check_only
-class FrequentFlyerInfo(typing_extensions.TypedDict, total=False):
+class FrequentFlyerInfo(typing.TypedDict, total=False):
     frequentFlyerNumber: str
     frequentFlyerProgramName: LocalizedString
     kind: str
 
 @typing.type_check_only
-class GenericClass(typing_extensions.TypedDict, total=False):
+class GenericClass(typing.TypedDict, total=False):
     appLinkData: AppLinkData
     callbackOptions: CallbackOptions
     classTemplateInfo: ClassTemplateInfo
@@ -714,7 +712,7 @@ class GenericClass(typing_extensions.TypedDict, total=False):
     linksModuleData: LinksModuleData
     merchantLocations: _list[MerchantLocation]
     messages: _list[Message]
-    multipleDevicesAndHoldersAllowedStatus: typing_extensions.Literal[
+    multipleDevicesAndHoldersAllowedStatus: typing.Literal[
         "STATUS_UNSPECIFIED",
         "MULTIPLE_HOLDERS",
         "ONE_USER_ALL_DEVICES",
@@ -727,28 +725,28 @@ class GenericClass(typing_extensions.TypedDict, total=False):
     securityAnimation: SecurityAnimation
     textModulesData: _list[TextModuleData]
     valueAddedModuleData: _list[ValueAddedModuleData]
-    viewUnlockRequirement: typing_extensions.Literal[
+    viewUnlockRequirement: typing.Literal[
         "VIEW_UNLOCK_REQUIREMENT_UNSPECIFIED",
         "UNLOCK_NOT_REQUIRED",
         "UNLOCK_REQUIRED_TO_VIEW",
     ]
 
 @typing.type_check_only
-class GenericClassAddMessageResponse(typing_extensions.TypedDict, total=False):
+class GenericClassAddMessageResponse(typing.TypedDict, total=False):
     resource: GenericClass
 
 @typing.type_check_only
-class GenericClassListResponse(typing_extensions.TypedDict, total=False):
+class GenericClassListResponse(typing.TypedDict, total=False):
     pagination: Pagination
     resources: _list[GenericClass]
 
 @typing.type_check_only
-class GenericObject(typing_extensions.TypedDict, total=False):
+class GenericObject(typing.TypedDict, total=False):
     appLinkData: AppLinkData
     barcode: Barcode
     cardTitle: LocalizedString
     classId: str
-    genericType: typing_extensions.Literal[
+    genericType: typing.Literal[
         "GENERIC_TYPE_UNSPECIFIED",
         "GENERIC_SEASON_PASS",
         "GENERIC_UTILITY_BILLS",
@@ -787,7 +785,7 @@ class GenericObject(typing_extensions.TypedDict, total=False):
     rotatingBarcode: RotatingBarcode
     saveRestrictions: SaveRestrictions
     smartTapRedemptionValue: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "ACTIVE",
         "active",
@@ -805,16 +803,16 @@ class GenericObject(typing_extensions.TypedDict, total=False):
     wideLogo: Image
 
 @typing.type_check_only
-class GenericObjectAddMessageResponse(typing_extensions.TypedDict, total=False):
+class GenericObjectAddMessageResponse(typing.TypedDict, total=False):
     resource: GenericObject
 
 @typing.type_check_only
-class GenericObjectListResponse(typing_extensions.TypedDict, total=False):
+class GenericObjectListResponse(typing.TypedDict, total=False):
     pagination: Pagination
     resources: _list[GenericObject]
 
 @typing.type_check_only
-class GiftCardClass(typing_extensions.TypedDict, total=False):
+class GiftCardClass(typing.TypedDict, total=False):
     allowBarcodeRedemption: bool
     allowMultipleUsersPerObject: bool
     appLinkData: AppLinkData
@@ -842,7 +840,7 @@ class GiftCardClass(typing_extensions.TypedDict, total=False):
     merchantLocations: _list[MerchantLocation]
     merchantName: str
     messages: _list[Message]
-    multipleDevicesAndHoldersAllowedStatus: typing_extensions.Literal[
+    multipleDevicesAndHoldersAllowedStatus: typing.Literal[
         "STATUS_UNSPECIFIED",
         "MULTIPLE_HOLDERS",
         "ONE_USER_ALL_DEVICES",
@@ -851,14 +849,14 @@ class GiftCardClass(typing_extensions.TypedDict, total=False):
         "oneUserAllDevices",
         "oneUserOneDevice",
     ]
-    notifyPreference: typing_extensions.Literal[
+    notifyPreference: typing.Literal[
         "NOTIFICATION_SETTINGS_FOR_UPDATES_UNSPECIFIED", "NOTIFY_ON_UPDATE"
     ]
     pinLabel: str
     programLogo: Image
     redemptionIssuers: _list[str]
     review: Review
-    reviewStatus: typing_extensions.Literal[
+    reviewStatus: typing.Literal[
         "REVIEW_STATUS_UNSPECIFIED",
         "UNDER_REVIEW",
         "underReview",
@@ -873,7 +871,7 @@ class GiftCardClass(typing_extensions.TypedDict, total=False):
     textModulesData: _list[TextModuleData]
     valueAddedModuleData: _list[ValueAddedModuleData]
     version: str
-    viewUnlockRequirement: typing_extensions.Literal[
+    viewUnlockRequirement: typing.Literal[
         "VIEW_UNLOCK_REQUIREMENT_UNSPECIFIED",
         "UNLOCK_NOT_REQUIRED",
         "UNLOCK_REQUIRED_TO_VIEW",
@@ -882,16 +880,16 @@ class GiftCardClass(typing_extensions.TypedDict, total=False):
     wordMark: Image
 
 @typing.type_check_only
-class GiftCardClassAddMessageResponse(typing_extensions.TypedDict, total=False):
+class GiftCardClassAddMessageResponse(typing.TypedDict, total=False):
     resource: GiftCardClass
 
 @typing.type_check_only
-class GiftCardClassListResponse(typing_extensions.TypedDict, total=False):
+class GiftCardClassListResponse(typing.TypedDict, total=False):
     pagination: Pagination
     resources: _list[GiftCardClass]
 
 @typing.type_check_only
-class GiftCardObject(typing_extensions.TypedDict, total=False):
+class GiftCardObject(typing.TypedDict, total=False):
     appLinkData: AppLinkData
     balance: Money
     balanceUpdateTime: DateTime
@@ -914,7 +912,7 @@ class GiftCardObject(typing_extensions.TypedDict, total=False):
     locations: _list[LatLongPoint]
     merchantLocations: _list[MerchantLocation]
     messages: _list[Message]
-    notifyPreference: typing_extensions.Literal[
+    notifyPreference: typing.Literal[
         "NOTIFICATION_SETTINGS_FOR_UPDATES_UNSPECIFIED", "NOTIFY_ON_UPDATE"
     ]
     passConstraints: PassConstraints
@@ -922,7 +920,7 @@ class GiftCardObject(typing_extensions.TypedDict, total=False):
     rotatingBarcode: RotatingBarcode
     saveRestrictions: SaveRestrictions
     smartTapRedemptionValue: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "ACTIVE",
         "active",
@@ -939,44 +937,44 @@ class GiftCardObject(typing_extensions.TypedDict, total=False):
     version: str
 
 @typing.type_check_only
-class GiftCardObjectAddMessageResponse(typing_extensions.TypedDict, total=False):
+class GiftCardObjectAddMessageResponse(typing.TypedDict, total=False):
     resource: GiftCardObject
 
 @typing.type_check_only
-class GiftCardObjectListResponse(typing_extensions.TypedDict, total=False):
+class GiftCardObjectListResponse(typing.TypedDict, total=False):
     pagination: Pagination
     resources: _list[GiftCardObject]
 
 @typing.type_check_only
-class GroupingInfo(typing_extensions.TypedDict, total=False):
+class GroupingInfo(typing.TypedDict, total=False):
     groupingId: str
     sortIndex: int
 
 @typing.type_check_only
-class Image(typing_extensions.TypedDict, total=False):
+class Image(typing.TypedDict, total=False):
     contentDescription: LocalizedString
     kind: str
     privateImageId: str
     sourceUri: ImageUri
 
 @typing.type_check_only
-class ImageModuleData(typing_extensions.TypedDict, total=False):
+class ImageModuleData(typing.TypedDict, total=False):
     id: str
     mainImage: Image
 
 @typing.type_check_only
-class ImageUri(typing_extensions.TypedDict, total=False):
+class ImageUri(typing.TypedDict, total=False):
     description: str
     localizedDescription: LocalizedString
     uri: str
 
 @typing.type_check_only
-class InfoModuleData(typing_extensions.TypedDict, total=False):
+class InfoModuleData(typing.TypedDict, total=False):
     labelValueRows: _list[LabelValueRow]
     showLastUpdateTime: bool
 
 @typing.type_check_only
-class Issuer(typing_extensions.TypedDict, total=False):
+class Issuer(typing.TypedDict, total=False):
     callbackOptions: CallbackOptions
     contactInfo: IssuerContactInfo
     homepageUrl: str
@@ -985,69 +983,79 @@ class Issuer(typing_extensions.TypedDict, total=False):
     smartTapMerchantData: SmartTapMerchantData
 
 @typing.type_check_only
-class IssuerContactInfo(typing_extensions.TypedDict, total=False):
+class IssuerContactInfo(typing.TypedDict, total=False):
     alertsEmails: _list[str]
     email: str
     name: str
     phone: str
 
 @typing.type_check_only
-class IssuerListResponse(typing_extensions.TypedDict, total=False):
+class IssuerListResponse(typing.TypedDict, total=False):
     resources: _list[Issuer]
 
 @typing.type_check_only
-class IssuerToUserInfo(typing_extensions.TypedDict, total=False):
-    action: typing_extensions.Literal[
-        "ACTION_UNSPECIFIED", "S2AP", "s2ap", "SIGN_UP", "signUp"
-    ]
+class IssuerToUserInfo(typing.TypedDict, total=False):
+    action: typing.Literal["ACTION_UNSPECIFIED", "S2AP", "s2ap", "SIGN_UP", "signUp"]
     signUpInfo: SignUpInfo
     url: str
     value: str
 
 @typing.type_check_only
-class JwtInsertResponse(typing_extensions.TypedDict, total=False):
+class JsonResource(typing.TypedDict, total=False):
+    json: str
+
+@typing.type_check_only
+class JwtInsertResponse(typing.TypedDict, total=False):
     resources: Resources
     saveUri: str
 
 @typing.type_check_only
-class JwtResource(typing_extensions.TypedDict, total=False):
+class JwtResource(typing.TypedDict, total=False):
     jwt: str
 
 @typing.type_check_only
-class LabelValue(typing_extensions.TypedDict, total=False):
+class JwtValidateRequest(typing.TypedDict, total=False):
+    jsonResource: JsonResource
+    jwtResource: JwtResource
+
+@typing.type_check_only
+class JwtValidateResponse(typing.TypedDict, total=False): ...
+
+@typing.type_check_only
+class LabelValue(typing.TypedDict, total=False):
     label: str
     localizedLabel: LocalizedString
     localizedValue: LocalizedString
     value: str
 
 @typing.type_check_only
-class LabelValueRow(typing_extensions.TypedDict, total=False):
+class LabelValueRow(typing.TypedDict, total=False):
     columns: _list[LabelValue]
 
 @typing.type_check_only
-class LatLongPoint(typing_extensions.TypedDict, total=False):
+class LatLongPoint(typing.TypedDict, total=False):
     kind: str
     latitude: float
     longitude: float
 
 @typing.type_check_only
-class LinksModuleData(typing_extensions.TypedDict, total=False):
+class LinksModuleData(typing.TypedDict, total=False):
     uris: _list[Uri]
 
 @typing.type_check_only
-class ListTemplateOverride(typing_extensions.TypedDict, total=False):
+class ListTemplateOverride(typing.TypedDict, total=False):
     firstRowOption: FirstRowOption
     secondRowOption: FieldSelector
     thirdRowOption: FieldSelector
 
 @typing.type_check_only
-class LocalizedString(typing_extensions.TypedDict, total=False):
+class LocalizedString(typing.TypedDict, total=False):
     defaultValue: TranslatedString
     kind: str
     translatedValues: _list[TranslatedString]
 
 @typing.type_check_only
-class LoyaltyClass(typing_extensions.TypedDict, total=False):
+class LoyaltyClass(typing.TypedDict, total=False):
     accountIdLabel: str
     accountNameLabel: str
     allowMultipleUsersPerObject: bool
@@ -1077,7 +1085,7 @@ class LoyaltyClass(typing_extensions.TypedDict, total=False):
     locations: _list[LatLongPoint]
     merchantLocations: _list[MerchantLocation]
     messages: _list[Message]
-    multipleDevicesAndHoldersAllowedStatus: typing_extensions.Literal[
+    multipleDevicesAndHoldersAllowedStatus: typing.Literal[
         "STATUS_UNSPECIFIED",
         "MULTIPLE_HOLDERS",
         "ONE_USER_ALL_DEVICES",
@@ -1086,14 +1094,14 @@ class LoyaltyClass(typing_extensions.TypedDict, total=False):
         "oneUserAllDevices",
         "oneUserOneDevice",
     ]
-    notifyPreference: typing_extensions.Literal[
+    notifyPreference: typing.Literal[
         "NOTIFICATION_SETTINGS_FOR_UPDATES_UNSPECIFIED", "NOTIFY_ON_UPDATE"
     ]
     programLogo: Image
     programName: str
     redemptionIssuers: _list[str]
     review: Review
-    reviewStatus: typing_extensions.Literal[
+    reviewStatus: typing.Literal[
         "REVIEW_STATUS_UNSPECIFIED",
         "UNDER_REVIEW",
         "underReview",
@@ -1112,7 +1120,7 @@ class LoyaltyClass(typing_extensions.TypedDict, total=False):
     textModulesData: _list[TextModuleData]
     valueAddedModuleData: _list[ValueAddedModuleData]
     version: str
-    viewUnlockRequirement: typing_extensions.Literal[
+    viewUnlockRequirement: typing.Literal[
         "VIEW_UNLOCK_REQUIREMENT_UNSPECIFIED",
         "UNLOCK_NOT_REQUIRED",
         "UNLOCK_REQUIRED_TO_VIEW",
@@ -1121,16 +1129,16 @@ class LoyaltyClass(typing_extensions.TypedDict, total=False):
     wordMark: Image
 
 @typing.type_check_only
-class LoyaltyClassAddMessageResponse(typing_extensions.TypedDict, total=False):
+class LoyaltyClassAddMessageResponse(typing.TypedDict, total=False):
     resource: LoyaltyClass
 
 @typing.type_check_only
-class LoyaltyClassListResponse(typing_extensions.TypedDict, total=False):
+class LoyaltyClassListResponse(typing.TypedDict, total=False):
     pagination: Pagination
     resources: _list[LoyaltyClass]
 
 @typing.type_check_only
-class LoyaltyObject(typing_extensions.TypedDict, total=False):
+class LoyaltyObject(typing.TypedDict, total=False):
     accountId: str
     accountName: str
     appLinkData: AppLinkData
@@ -1153,7 +1161,7 @@ class LoyaltyObject(typing_extensions.TypedDict, total=False):
     loyaltyPoints: LoyaltyPoints
     merchantLocations: _list[MerchantLocation]
     messages: _list[Message]
-    notifyPreference: typing_extensions.Literal[
+    notifyPreference: typing.Literal[
         "NOTIFICATION_SETTINGS_FOR_UPDATES_UNSPECIFIED", "NOTIFY_ON_UPDATE"
     ]
     passConstraints: PassConstraints
@@ -1161,7 +1169,7 @@ class LoyaltyObject(typing_extensions.TypedDict, total=False):
     saveRestrictions: SaveRestrictions
     secondaryLoyaltyPoints: LoyaltyPoints
     smartTapRedemptionValue: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "ACTIVE",
         "active",
@@ -1178,29 +1186,29 @@ class LoyaltyObject(typing_extensions.TypedDict, total=False):
     version: str
 
 @typing.type_check_only
-class LoyaltyObjectAddMessageResponse(typing_extensions.TypedDict, total=False):
+class LoyaltyObjectAddMessageResponse(typing.TypedDict, total=False):
     resource: LoyaltyObject
 
 @typing.type_check_only
-class LoyaltyObjectListResponse(typing_extensions.TypedDict, total=False):
+class LoyaltyObjectListResponse(typing.TypedDict, total=False):
     pagination: Pagination
     resources: _list[LoyaltyObject]
 
 @typing.type_check_only
-class LoyaltyPoints(typing_extensions.TypedDict, total=False):
+class LoyaltyPoints(typing.TypedDict, total=False):
     balance: LoyaltyPointsBalance
     label: str
     localizedLabel: LocalizedString
 
 @typing.type_check_only
-class LoyaltyPointsBalance(typing_extensions.TypedDict, total=False):
+class LoyaltyPointsBalance(typing.TypedDict, total=False):
     double: float
     int: int
     money: Money
     string: str
 
 @typing.type_check_only
-class Media(typing_extensions.TypedDict, total=False):
+class Media(typing.TypedDict, total=False):
     algorithm: str
     bigstoreObjectRef: str
     blobRef: str
@@ -1226,7 +1234,7 @@ class Media(typing_extensions.TypedDict, total=False):
     mediaId: str
     objectId: ObjectId
     path: str
-    referenceType: typing_extensions.Literal[
+    referenceType: typing.Literal[
         "PATH",
         "BLOB_REF",
         "INLINE",
@@ -1248,12 +1256,12 @@ class Media(typing_extensions.TypedDict, total=False):
     token: str
 
 @typing.type_check_only
-class MediaRequestInfo(typing_extensions.TypedDict, total=False):
+class MediaRequestInfo(typing.TypedDict, total=False):
     currentBytes: str
     customData: str
     diffObjectVersion: str
     finalStatus: int
-    notificationType: typing_extensions.Literal[
+    notificationType: typing.Literal[
         "START", "PROGRESS", "END", "RESPONSE_SENT", "ERROR"
     ]
     physicalHeaders: str
@@ -1263,12 +1271,12 @@ class MediaRequestInfo(typing_extensions.TypedDict, total=False):
     totalBytesIsEstimated: bool
 
 @typing.type_check_only
-class MerchantLocation(typing_extensions.TypedDict, total=False):
+class MerchantLocation(typing.TypedDict, total=False):
     latitude: float
     longitude: float
 
 @typing.type_check_only
-class Message(typing_extensions.TypedDict, total=False):
+class Message(typing.TypedDict, total=False):
     body: str
     displayInterval: TimeInterval
     header: str
@@ -1276,7 +1284,7 @@ class Message(typing_extensions.TypedDict, total=False):
     kind: str
     localizedBody: LocalizedString
     localizedHeader: LocalizedString
-    messageType: typing_extensions.Literal[
+    messageType: typing.Literal[
         "MESSAGE_TYPE_UNSPECIFIED",
         "TEXT",
         "text",
@@ -1286,37 +1294,37 @@ class Message(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class ModifyLinkedOfferObjects(typing_extensions.TypedDict, total=False):
+class ModifyLinkedOfferObjects(typing.TypedDict, total=False):
     addLinkedOfferObjectIds: _list[str]
     removeLinkedOfferObjectIds: _list[str]
 
 @typing.type_check_only
-class ModifyLinkedOfferObjectsRequest(typing_extensions.TypedDict, total=False):
+class ModifyLinkedOfferObjectsRequest(typing.TypedDict, total=False):
     linkedOfferObjectIds: ModifyLinkedOfferObjects
 
 @typing.type_check_only
-class ModuleViewConstraints(typing_extensions.TypedDict, total=False):
+class ModuleViewConstraints(typing.TypedDict, total=False):
     displayInterval: TimeInterval
 
 @typing.type_check_only
-class Money(typing_extensions.TypedDict, total=False):
+class Money(typing.TypedDict, total=False):
     currencyCode: str
     kind: str
     micros: str
 
 @typing.type_check_only
-class Notifications(typing_extensions.TypedDict, total=False):
+class Notifications(typing.TypedDict, total=False):
     expiryNotification: ExpiryNotification
     upcomingNotification: UpcomingNotification
 
 @typing.type_check_only
-class ObjectId(typing_extensions.TypedDict, total=False):
+class ObjectId(typing.TypedDict, total=False):
     bucketName: str
     generation: str
     objectName: str
 
 @typing.type_check_only
-class OfferClass(typing_extensions.TypedDict, total=False):
+class OfferClass(typing.TypedDict, total=False):
     allowMultipleUsersPerObject: bool
     appLinkData: AppLinkData
     callbackOptions: CallbackOptions
@@ -1344,7 +1352,7 @@ class OfferClass(typing_extensions.TypedDict, total=False):
     locations: _list[LatLongPoint]
     merchantLocations: _list[MerchantLocation]
     messages: _list[Message]
-    multipleDevicesAndHoldersAllowedStatus: typing_extensions.Literal[
+    multipleDevicesAndHoldersAllowedStatus: typing.Literal[
         "STATUS_UNSPECIFIED",
         "MULTIPLE_HOLDERS",
         "ONE_USER_ALL_DEVICES",
@@ -1353,11 +1361,11 @@ class OfferClass(typing_extensions.TypedDict, total=False):
         "oneUserAllDevices",
         "oneUserOneDevice",
     ]
-    notifyPreference: typing_extensions.Literal[
+    notifyPreference: typing.Literal[
         "NOTIFICATION_SETTINGS_FOR_UPDATES_UNSPECIFIED", "NOTIFY_ON_UPDATE"
     ]
     provider: str
-    redemptionChannel: typing_extensions.Literal[
+    redemptionChannel: typing.Literal[
         "REDEMPTION_CHANNEL_UNSPECIFIED",
         "INSTORE",
         "instore",
@@ -1370,7 +1378,7 @@ class OfferClass(typing_extensions.TypedDict, total=False):
     ]
     redemptionIssuers: _list[str]
     review: Review
-    reviewStatus: typing_extensions.Literal[
+    reviewStatus: typing.Literal[
         "REVIEW_STATUS_UNSPECIFIED",
         "UNDER_REVIEW",
         "underReview",
@@ -1388,7 +1396,7 @@ class OfferClass(typing_extensions.TypedDict, total=False):
     titleImage: Image
     valueAddedModuleData: _list[ValueAddedModuleData]
     version: str
-    viewUnlockRequirement: typing_extensions.Literal[
+    viewUnlockRequirement: typing.Literal[
         "VIEW_UNLOCK_REQUIREMENT_UNSPECIFIED",
         "UNLOCK_NOT_REQUIRED",
         "UNLOCK_REQUIRED_TO_VIEW",
@@ -1397,16 +1405,16 @@ class OfferClass(typing_extensions.TypedDict, total=False):
     wordMark: Image
 
 @typing.type_check_only
-class OfferClassAddMessageResponse(typing_extensions.TypedDict, total=False):
+class OfferClassAddMessageResponse(typing.TypedDict, total=False):
     resource: OfferClass
 
 @typing.type_check_only
-class OfferClassListResponse(typing_extensions.TypedDict, total=False):
+class OfferClassListResponse(typing.TypedDict, total=False):
     pagination: Pagination
     resources: _list[OfferClass]
 
 @typing.type_check_only
-class OfferObject(typing_extensions.TypedDict, total=False):
+class OfferObject(typing.TypedDict, total=False):
     appLinkData: AppLinkData
     barcode: Barcode
     classId: str
@@ -1425,14 +1433,14 @@ class OfferObject(typing_extensions.TypedDict, total=False):
     locations: _list[LatLongPoint]
     merchantLocations: _list[MerchantLocation]
     messages: _list[Message]
-    notifyPreference: typing_extensions.Literal[
+    notifyPreference: typing.Literal[
         "NOTIFICATION_SETTINGS_FOR_UPDATES_UNSPECIFIED", "NOTIFY_ON_UPDATE"
     ]
     passConstraints: PassConstraints
     rotatingBarcode: RotatingBarcode
     saveRestrictions: SaveRestrictions
     smartTapRedemptionValue: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "ACTIVE",
         "active",
@@ -1449,45 +1457,45 @@ class OfferObject(typing_extensions.TypedDict, total=False):
     version: str
 
 @typing.type_check_only
-class OfferObjectAddMessageResponse(typing_extensions.TypedDict, total=False):
+class OfferObjectAddMessageResponse(typing.TypedDict, total=False):
     resource: OfferObject
 
 @typing.type_check_only
-class OfferObjectListResponse(typing_extensions.TypedDict, total=False):
+class OfferObjectListResponse(typing.TypedDict, total=False):
     pagination: Pagination
     resources: _list[OfferObject]
 
 @typing.type_check_only
-class Pagination(typing_extensions.TypedDict, total=False):
+class Pagination(typing.TypedDict, total=False):
     kind: str
     nextPageToken: str
     resultsPerPage: int
 
 @typing.type_check_only
-class PassConstraints(typing_extensions.TypedDict, total=False):
+class PassConstraints(typing.TypedDict, total=False):
     nfcConstraint: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "NFC_CONSTRAINT_UNSPECIFIED", "BLOCK_PAYMENT", "BLOCK_CLOSED_LOOP_TRANSIT"
         ]
     ]
-    screenshotEligibility: typing_extensions.Literal[
+    screenshotEligibility: typing.Literal[
         "SCREENSHOT_ELIGIBILITY_UNSPECIFIED", "ELIGIBLE", "INELIGIBLE"
     ]
 
 @typing.type_check_only
-class Permission(typing_extensions.TypedDict, total=False):
+class Permission(typing.TypedDict, total=False):
     emailAddress: str
-    role: typing_extensions.Literal[
+    role: typing.Literal[
         "ROLE_UNSPECIFIED", "OWNER", "owner", "READER", "reader", "WRITER", "writer"
     ]
 
 @typing.type_check_only
-class Permissions(typing_extensions.TypedDict, total=False):
+class Permissions(typing.TypedDict, total=False):
     issuerId: str
     permissions: _list[Permission]
 
 @typing.type_check_only
-class PurchaseDetails(typing_extensions.TypedDict, total=False):
+class PurchaseDetails(typing.TypedDict, total=False):
     accountId: str
     confirmationCode: str
     purchaseDateTime: str
@@ -1495,14 +1503,14 @@ class PurchaseDetails(typing_extensions.TypedDict, total=False):
     ticketCost: TicketCost
 
 @typing.type_check_only
-class ReservationInfo(typing_extensions.TypedDict, total=False):
+class ReservationInfo(typing.TypedDict, total=False):
     confirmationCode: str
     eticketNumber: str
     frequentFlyerInfo: FrequentFlyerInfo
     kind: str
 
 @typing.type_check_only
-class Resources(typing_extensions.TypedDict, total=False):
+class Resources(typing.TypedDict, total=False):
     eventTicketClasses: _list[EventTicketClass]
     eventTicketObjects: _list[EventTicketObject]
     flightClasses: _list[FlightClass]
@@ -1519,17 +1527,17 @@ class Resources(typing_extensions.TypedDict, total=False):
     transitObjects: _list[TransitObject]
 
 @typing.type_check_only
-class Review(typing_extensions.TypedDict, total=False):
+class Review(typing.TypedDict, total=False):
     comments: str
 
 @typing.type_check_only
-class RotatingBarcode(typing_extensions.TypedDict, total=False):
+class RotatingBarcode(typing.TypedDict, total=False):
     alternateText: str
     initialRotatingBarcodeValues: RotatingBarcodeValues
-    renderEncoding: typing_extensions.Literal["RENDER_ENCODING_UNSPECIFIED", "UTF_8"]
+    renderEncoding: typing.Literal["RENDER_ENCODING_UNSPECIFIED", "UTF_8"]
     showCodeText: LocalizedString
     totpDetails: RotatingBarcodeTotpDetails
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "BARCODE_TYPE_UNSPECIFIED",
         "AZTEC",
         "aztec",
@@ -1562,63 +1570,61 @@ class RotatingBarcode(typing_extensions.TypedDict, total=False):
     valuePattern: str
 
 @typing.type_check_only
-class RotatingBarcodeTotpDetails(typing_extensions.TypedDict, total=False):
-    algorithm: typing_extensions.Literal["TOTP_ALGORITHM_UNSPECIFIED", "TOTP_SHA1"]
+class RotatingBarcodeTotpDetails(typing.TypedDict, total=False):
+    algorithm: typing.Literal["TOTP_ALGORITHM_UNSPECIFIED", "TOTP_SHA1"]
     parameters: _list[RotatingBarcodeTotpDetailsTotpParameters]
     periodMillis: str
 
 @typing.type_check_only
-class RotatingBarcodeTotpDetailsTotpParameters(
-    typing_extensions.TypedDict, total=False
-):
+class RotatingBarcodeTotpDetailsTotpParameters(typing.TypedDict, total=False):
     key: str
     valueLength: int
 
 @typing.type_check_only
-class RotatingBarcodeValues(typing_extensions.TypedDict, total=False):
+class RotatingBarcodeValues(typing.TypedDict, total=False):
     periodMillis: str
     startDateTime: str
     values: _list[str]
 
 @typing.type_check_only
-class SaveRestrictions(typing_extensions.TypedDict, total=False):
+class SaveRestrictions(typing.TypedDict, total=False):
     restrictToEmailSha256: str
 
 @typing.type_check_only
-class SecurityAnimation(typing_extensions.TypedDict, total=False):
-    animationType: typing_extensions.Literal[
+class SecurityAnimation(typing.TypedDict, total=False):
+    animationType: typing.Literal[
         "ANIMATION_UNSPECIFIED", "FOIL_SHIMMER", "foilShimmer"
     ]
 
 @typing.type_check_only
-class SetPassUpdateNoticeRequest(typing_extensions.TypedDict, total=False):
+class SetPassUpdateNoticeRequest(typing.TypedDict, total=False):
     externalPassId: str
     updateUri: str
     updatedPassJwtSignature: str
 
 @typing.type_check_only
-class SetPassUpdateNoticeResponse(typing_extensions.TypedDict, total=False): ...
+class SetPassUpdateNoticeResponse(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class SignUpInfo(typing_extensions.TypedDict, total=False):
+class SignUpInfo(typing.TypedDict, total=False):
     classId: str
 
 @typing.type_check_only
-class SmartTap(typing_extensions.TypedDict, total=False):
+class SmartTap(typing.TypedDict, total=False):
     id: str
     infos: _list[IssuerToUserInfo]
     kind: str
     merchantId: str
 
 @typing.type_check_only
-class SmartTapMerchantData(typing_extensions.TypedDict, total=False):
+class SmartTapMerchantData(typing.TypedDict, total=False):
     authenticationKeys: _list[AuthenticationKey]
     smartTapMerchantId: str
 
 @typing.type_check_only
-class TemplateItem(typing_extensions.TypedDict, total=False):
+class TemplateItem(typing.TypedDict, total=False):
     firstValue: FieldSelector
-    predefinedItem: typing_extensions.Literal[
+    predefinedItem: typing.Literal[
         "PREDEFINED_ITEM_UNSPECIFIED",
         "FREQUENT_FLYER_PROGRAM_NAME_AND_NUMBER",
         "frequentFlyerProgramNameAndNumber",
@@ -1628,7 +1634,7 @@ class TemplateItem(typing_extensions.TypedDict, total=False):
     secondValue: FieldSelector
 
 @typing.type_check_only
-class TextModuleData(typing_extensions.TypedDict, total=False):
+class TextModuleData(typing.TypedDict, total=False):
     body: str
     header: str
     id: str
@@ -1636,13 +1642,13 @@ class TextModuleData(typing_extensions.TypedDict, total=False):
     localizedHeader: LocalizedString
 
 @typing.type_check_only
-class TicketCost(typing_extensions.TypedDict, total=False):
+class TicketCost(typing.TypedDict, total=False):
     discountMessage: LocalizedString
     faceValue: Money
     purchasePrice: Money
 
 @typing.type_check_only
-class TicketLeg(typing_extensions.TypedDict, total=False):
+class TicketLeg(typing.TypedDict, total=False):
     arrivalDateTime: str
     carriage: str
     departureDateTime: str
@@ -1659,17 +1665,17 @@ class TicketLeg(typing_extensions.TypedDict, total=False):
     zone: str
 
 @typing.type_check_only
-class TicketRestrictions(typing_extensions.TypedDict, total=False):
+class TicketRestrictions(typing.TypedDict, total=False):
     otherRestrictions: LocalizedString
     routeRestrictions: LocalizedString
     routeRestrictionsDetails: LocalizedString
     timeRestrictions: LocalizedString
 
 @typing.type_check_only
-class TicketSeat(typing_extensions.TypedDict, total=False):
+class TicketSeat(typing.TypedDict, total=False):
     coach: str
     customFareClass: LocalizedString
-    fareClass: typing_extensions.Literal[
+    fareClass: typing.Literal[
         "FARE_CLASS_UNSPECIFIED",
         "ECONOMY",
         "economy",
@@ -1682,13 +1688,13 @@ class TicketSeat(typing_extensions.TypedDict, total=False):
     seatAssignment: LocalizedString
 
 @typing.type_check_only
-class TimeInterval(typing_extensions.TypedDict, total=False):
+class TimeInterval(typing.TypedDict, total=False):
     end: DateTime
     kind: str
     start: DateTime
 
 @typing.type_check_only
-class TransitClass(typing_extensions.TypedDict, total=False):
+class TransitClass(typing.TypedDict, total=False):
     activationOptions: ActivationOptions
     allowMultipleUsersPerObject: bool
     appLinkData: AppLinkData
@@ -1730,7 +1736,7 @@ class TransitClass(typing_extensions.TypedDict, total=False):
     logo: Image
     merchantLocations: _list[MerchantLocation]
     messages: _list[Message]
-    multipleDevicesAndHoldersAllowedStatus: typing_extensions.Literal[
+    multipleDevicesAndHoldersAllowedStatus: typing.Literal[
         "STATUS_UNSPECIFIED",
         "MULTIPLE_HOLDERS",
         "ONE_USER_ALL_DEVICES",
@@ -1739,12 +1745,12 @@ class TransitClass(typing_extensions.TypedDict, total=False):
         "oneUserAllDevices",
         "oneUserOneDevice",
     ]
-    notifyPreference: typing_extensions.Literal[
+    notifyPreference: typing.Literal[
         "NOTIFICATION_SETTINGS_FOR_UPDATES_UNSPECIFIED", "NOTIFY_ON_UPDATE"
     ]
     redemptionIssuers: _list[str]
     review: Review
-    reviewStatus: typing_extensions.Literal[
+    reviewStatus: typing.Literal[
         "REVIEW_STATUS_UNSPECIFIED",
         "UNDER_REVIEW",
         "underReview",
@@ -1758,7 +1764,7 @@ class TransitClass(typing_extensions.TypedDict, total=False):
     securityAnimation: SecurityAnimation
     textModulesData: _list[TextModuleData]
     transitOperatorName: LocalizedString
-    transitType: typing_extensions.Literal[
+    transitType: typing.Literal[
         "TRANSIT_TYPE_UNSPECIFIED",
         "BUS",
         "bus",
@@ -1773,7 +1779,7 @@ class TransitClass(typing_extensions.TypedDict, total=False):
     ]
     valueAddedModuleData: _list[ValueAddedModuleData]
     version: str
-    viewUnlockRequirement: typing_extensions.Literal[
+    viewUnlockRequirement: typing.Literal[
         "VIEW_UNLOCK_REQUIREMENT_UNSPECIFIED",
         "UNLOCK_NOT_REQUIRED",
         "UNLOCK_REQUIRED_TO_VIEW",
@@ -1783,22 +1789,22 @@ class TransitClass(typing_extensions.TypedDict, total=False):
     wordMark: Image
 
 @typing.type_check_only
-class TransitClassAddMessageResponse(typing_extensions.TypedDict, total=False):
+class TransitClassAddMessageResponse(typing.TypedDict, total=False):
     resource: TransitClass
 
 @typing.type_check_only
-class TransitClassListResponse(typing_extensions.TypedDict, total=False):
+class TransitClassListResponse(typing.TypedDict, total=False):
     pagination: Pagination
     resources: _list[TransitClass]
 
 @typing.type_check_only
-class TransitObject(typing_extensions.TypedDict, total=False):
+class TransitObject(typing.TypedDict, total=False):
     activationStatus: ActivationStatus
     appLinkData: AppLinkData
     barcode: Barcode
     classId: str
     classReference: TransitClass
-    concessionCategory: typing_extensions.Literal[
+    concessionCategory: typing.Literal[
         "CONCESSION_CATEGORY_UNSPECIFIED",
         "ADULT",
         "adult",
@@ -1824,12 +1830,12 @@ class TransitObject(typing_extensions.TypedDict, total=False):
     locations: _list[LatLongPoint]
     merchantLocations: _list[MerchantLocation]
     messages: _list[Message]
-    notifyPreference: typing_extensions.Literal[
+    notifyPreference: typing.Literal[
         "NOTIFICATION_SETTINGS_FOR_UPDATES_UNSPECIFIED", "NOTIFY_ON_UPDATE"
     ]
     passConstraints: PassConstraints
     passengerNames: str
-    passengerType: typing_extensions.Literal[
+    passengerType: typing.Literal[
         "PASSENGER_TYPE_UNSPECIFIED",
         "SINGLE_PASSENGER",
         "singlePassenger",
@@ -1840,7 +1846,7 @@ class TransitObject(typing_extensions.TypedDict, total=False):
     rotatingBarcode: RotatingBarcode
     saveRestrictions: SaveRestrictions
     smartTapRedemptionValue: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "ACTIVE",
         "active",
@@ -1856,7 +1862,7 @@ class TransitObject(typing_extensions.TypedDict, total=False):
     ticketLegs: _list[TicketLeg]
     ticketNumber: str
     ticketRestrictions: TicketRestrictions
-    ticketStatus: typing_extensions.Literal[
+    ticketStatus: typing.Literal[
         "TICKET_STATUS_UNSPECIFIED",
         "USED",
         "used",
@@ -1866,7 +1872,7 @@ class TransitObject(typing_extensions.TypedDict, total=False):
         "exchanged",
     ]
     tripId: str
-    tripType: typing_extensions.Literal[
+    tripType: typing.Literal[
         "TRIP_TYPE_UNSPECIFIED", "ROUND_TRIP", "roundTrip", "ONE_WAY", "oneWay"
     ]
     validTimeInterval: TimeInterval
@@ -1874,45 +1880,43 @@ class TransitObject(typing_extensions.TypedDict, total=False):
     version: str
 
 @typing.type_check_only
-class TransitObjectAddMessageResponse(typing_extensions.TypedDict, total=False):
+class TransitObjectAddMessageResponse(typing.TypedDict, total=False):
     resource: TransitObject
 
 @typing.type_check_only
-class TransitObjectListResponse(typing_extensions.TypedDict, total=False):
+class TransitObjectListResponse(typing.TypedDict, total=False):
     pagination: Pagination
     resources: _list[TransitObject]
 
 @typing.type_check_only
-class TransitObjectUploadRotatingBarcodeValuesRequest(
-    typing_extensions.TypedDict, total=False
-):
+class TransitObjectUploadRotatingBarcodeValuesRequest(typing.TypedDict, total=False):
     blob: Media
     mediaRequestInfo: MediaRequestInfo
 
 @typing.type_check_only
 class TransitObjectUploadRotatingBarcodeValuesResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
-class TranslatedString(typing_extensions.TypedDict, total=False):
+class TranslatedString(typing.TypedDict, total=False):
     kind: str
     language: str
     value: str
 
 @typing.type_check_only
-class UpcomingNotification(typing_extensions.TypedDict, total=False):
+class UpcomingNotification(typing.TypedDict, total=False):
     enableNotification: bool
 
 @typing.type_check_only
-class UploadPrivateImageRequest(typing_extensions.TypedDict, total=False): ...
+class UploadPrivateImageRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class UploadPrivateImageResponse(typing_extensions.TypedDict, total=False):
+class UploadPrivateImageResponse(typing.TypedDict, total=False):
     privateImageId: str
 
 @typing.type_check_only
-class Uri(typing_extensions.TypedDict, total=False):
+class Uri(typing.TypedDict, total=False):
     description: str
     id: str
     kind: str
@@ -1920,7 +1924,7 @@ class Uri(typing_extensions.TypedDict, total=False):
     uri: str
 
 @typing.type_check_only
-class ValueAddedModuleData(typing_extensions.TypedDict, total=False):
+class ValueAddedModuleData(typing.TypedDict, total=False):
     body: LocalizedString
     header: LocalizedString
     image: Image

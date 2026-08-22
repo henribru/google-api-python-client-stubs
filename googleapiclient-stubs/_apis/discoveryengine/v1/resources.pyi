@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -841,6 +840,10 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             getWidgetConfigRequestOption_turnOffCollectionComponents: bool
                             | None = ...,
                             languageCode: str | None = ...,
+                            modelInfoView: typing.Literal[
+                                "MODEL_INFO_VIEW_UNSPECIFIED", "END_USER_WEB", "ADMIN"
+                            ]
+                            | None = ...,
                             **kwargs: typing.Any,
                         ) -> GoogleCloudDiscoveryengineV1WidgetConfigHttpRequest: ...
                         def patch(
@@ -1407,6 +1410,10 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             getWidgetConfigRequestOption_turnOffCollectionComponents: bool
                             | None = ...,
                             languageCode: str | None = ...,
+                            modelInfoView: typing.Literal[
+                                "MODEL_INFO_VIEW_UNSPECIFIED", "END_USER_WEB", "ADMIN"
+                            ]
+                            | None = ...,
                             **kwargs: typing.Any,
                         ) -> GoogleCloudDiscoveryengineV1WidgetConfigHttpRequest: ...
                         def patch(
@@ -2139,6 +2146,10 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                         getWidgetConfigRequestOption_turnOffCollectionComponents: bool
                         | None = ...,
                         languageCode: str | None = ...,
+                        modelInfoView: typing.Literal[
+                            "MODEL_INFO_VIEW_UNSPECIFIED", "END_USER_WEB", "ADMIN"
+                        ]
+                        | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudDiscoveryengineV1WidgetConfigHttpRequest: ...
                     def patch(
@@ -2492,6 +2503,13 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
             def getCmekConfig(
                 self, *, name: str, **kwargs: typing.Any
             ) -> GoogleCloudDiscoveryengineV1CmekConfigHttpRequest: ...
+            def provision(
+                self,
+                *,
+                name: str,
+                body: GoogleCloudDiscoveryengineV1ProvisionProjectRequest,
+                **kwargs: typing.Any,
+            ) -> GoogleLongrunningOperationHttpRequest: ...
             def setUpDataConnector(
                 self,
                 *,

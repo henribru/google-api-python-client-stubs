@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -90,7 +89,7 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
                     debugOptions_enableDebugging: bool | None = ...,
                     pageSize: int | None = ...,
                     pageToken: str | None = ...,
-                    resolutionStatusCode: typing_extensions.Literal[
+                    resolutionStatusCode: typing.Literal[
                         "CODE_UNSPECIFIED",
                         "NOT_FOUND",
                         "IDENTITY_SOURCE_NOT_FOUND",
@@ -125,9 +124,7 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
                     name: str,
                     connectorName: str | None = ...,
                     debugOptions_enableDebugging: bool | None = ...,
-                    mode: typing_extensions.Literal[
-                        "UNSPECIFIED", "SYNCHRONOUS", "ASYNCHRONOUS"
-                    ]
+                    mode: typing.Literal["UNSPECIFIED", "SYNCHRONOUS", "ASYNCHRONOUS"]
                     | None = ...,
                     version: str | None = ...,
                     **kwargs: typing.Any,
@@ -246,6 +243,7 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
                 *,
                 pageToken: str | None = ...,
                 requestOptions_clientDisplayLanguageCode: str | None = ...,
+                requestOptions_countryCode: str | None = ...,
                 requestOptions_debugOptions_enableDebugging: bool | None = ...,
                 requestOptions_languageCode: str | None = ...,
                 requestOptions_searchApplicationId: str | None = ...,

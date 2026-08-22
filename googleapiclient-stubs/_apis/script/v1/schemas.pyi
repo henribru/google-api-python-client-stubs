@@ -1,77 +1,73 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class Content(typing_extensions.TypedDict, total=False):
+class Content(typing.TypedDict, total=False):
     files: _list[File]
     scriptId: str
 
 @typing.type_check_only
-class CreateProjectRequest(typing_extensions.TypedDict, total=False):
+class CreateProjectRequest(typing.TypedDict, total=False):
     parentId: str
     title: str
 
 @typing.type_check_only
-class Deployment(typing_extensions.TypedDict, total=False):
+class Deployment(typing.TypedDict, total=False):
     deploymentConfig: DeploymentConfig
     deploymentId: str
     entryPoints: _list[EntryPoint]
     updateTime: str
 
 @typing.type_check_only
-class DeploymentConfig(typing_extensions.TypedDict, total=False):
+class DeploymentConfig(typing.TypedDict, total=False):
     description: str
     manifestFileName: str
     scriptId: str
     versionNumber: int
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class EntryPoint(typing_extensions.TypedDict, total=False):
+class EntryPoint(typing.TypedDict, total=False):
     addOn: GoogleAppsScriptTypeAddOnEntryPoint
-    entryPointType: typing_extensions.Literal[
+    entryPointType: typing.Literal[
         "ENTRY_POINT_TYPE_UNSPECIFIED", "WEB_APP", "EXECUTION_API", "ADD_ON"
     ]
     executionApi: GoogleAppsScriptTypeExecutionApiEntryPoint
     webApp: GoogleAppsScriptTypeWebAppEntryPoint
 
 @typing.type_check_only
-class ExecutionError(typing_extensions.TypedDict, total=False):
+class ExecutionError(typing.TypedDict, total=False):
     errorMessage: str
     errorType: str
     scriptStackTraceElements: _list[ScriptStackTraceElement]
 
 @typing.type_check_only
-class ExecutionRequest(typing_extensions.TypedDict, total=False):
+class ExecutionRequest(typing.TypedDict, total=False):
     devMode: bool
     function: str
     parameters: _list[typing.Any]
     sessionState: str
 
 @typing.type_check_only
-class ExecutionResponse(typing_extensions.TypedDict, total=False):
+class ExecutionResponse(typing.TypedDict, total=False):
     result: typing.Any
 
 @typing.type_check_only
-class File(typing_extensions.TypedDict, total=False):
+class File(typing.TypedDict, total=False):
     createTime: str
     functionSet: GoogleAppsScriptTypeFunctionSet
     lastModifyUser: GoogleAppsScriptTypeUser
     name: str
     source: str
-    type: typing_extensions.Literal[
-        "ENUM_TYPE_UNSPECIFIED", "SERVER_JS", "HTML", "JSON"
-    ]
+    type: typing.Literal["ENUM_TYPE_UNSPECIFIED", "SERVER_JS", "HTML", "JSON"]
     updateTime: str
 
 @typing.type_check_only
-class GoogleAppsScriptTypeAddOnEntryPoint(typing_extensions.TypedDict, total=False):
-    addOnType: typing_extensions.Literal["UNKNOWN_ADDON_TYPE", "GMAIL", "DATA_STUDIO"]
+class GoogleAppsScriptTypeAddOnEntryPoint(typing.TypedDict, total=False):
+    addOnType: typing.Literal["UNKNOWN_ADDON_TYPE", "GMAIL", "DATA_STUDIO"]
     description: str
     helpUrl: str
     postInstallTipUrl: str
@@ -79,31 +75,29 @@ class GoogleAppsScriptTypeAddOnEntryPoint(typing_extensions.TypedDict, total=Fal
     title: str
 
 @typing.type_check_only
-class GoogleAppsScriptTypeExecutionApiConfig(typing_extensions.TypedDict, total=False):
-    access: typing_extensions.Literal[
+class GoogleAppsScriptTypeExecutionApiConfig(typing.TypedDict, total=False):
+    access: typing.Literal[
         "UNKNOWN_ACCESS", "MYSELF", "DOMAIN", "ANYONE", "ANYONE_ANONYMOUS"
     ]
 
 @typing.type_check_only
-class GoogleAppsScriptTypeExecutionApiEntryPoint(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAppsScriptTypeExecutionApiEntryPoint(typing.TypedDict, total=False):
     entryPointConfig: GoogleAppsScriptTypeExecutionApiConfig
 
 @typing.type_check_only
-class GoogleAppsScriptTypeFunction(typing_extensions.TypedDict, total=False):
+class GoogleAppsScriptTypeFunction(typing.TypedDict, total=False):
     name: str
     parameters: _list[str]
 
 @typing.type_check_only
-class GoogleAppsScriptTypeFunctionSet(typing_extensions.TypedDict, total=False):
+class GoogleAppsScriptTypeFunctionSet(typing.TypedDict, total=False):
     values: _list[GoogleAppsScriptTypeFunction]
 
 @typing.type_check_only
-class GoogleAppsScriptTypeProcess(typing_extensions.TypedDict, total=False):
+class GoogleAppsScriptTypeProcess(typing.TypedDict, total=False):
     duration: str
     functionName: str
-    processStatus: typing_extensions.Literal[
+    processStatus: typing.Literal[
         "PROCESS_STATUS_UNSPECIFIED",
         "RUNNING",
         "PAUSED",
@@ -115,7 +109,7 @@ class GoogleAppsScriptTypeProcess(typing_extensions.TypedDict, total=False):
         "DELAYED",
         "EXECUTION_DISABLED",
     ]
-    processType: typing_extensions.Literal[
+    processType: typing.Literal[
         "PROCESS_TYPE_UNSPECIFIED",
         "ADD_ON",
         "EXECUTION_API",
@@ -128,75 +122,73 @@ class GoogleAppsScriptTypeProcess(typing_extensions.TypedDict, total=False):
         "BATCH_TASK",
     ]
     projectName: str
-    runtimeVersion: typing_extensions.Literal[
+    runtimeVersion: typing.Literal[
         "RUNTIME_VERSION_UNSPECIFIED", "DEPRECATED_ES5", "V8"
     ]
     startTime: str
-    userAccessLevel: typing_extensions.Literal[
+    userAccessLevel: typing.Literal[
         "USER_ACCESS_LEVEL_UNSPECIFIED", "NONE", "READ", "WRITE", "OWNER"
     ]
 
 @typing.type_check_only
-class GoogleAppsScriptTypeUser(typing_extensions.TypedDict, total=False):
+class GoogleAppsScriptTypeUser(typing.TypedDict, total=False):
     domain: str
     email: str
     name: str
     photoUrl: str
 
 @typing.type_check_only
-class GoogleAppsScriptTypeWebAppConfig(typing_extensions.TypedDict, total=False):
-    access: typing_extensions.Literal[
+class GoogleAppsScriptTypeWebAppConfig(typing.TypedDict, total=False):
+    access: typing.Literal[
         "UNKNOWN_ACCESS", "MYSELF", "DOMAIN", "ANYONE", "ANYONE_ANONYMOUS"
     ]
-    executeAs: typing_extensions.Literal[
-        "UNKNOWN_EXECUTE_AS", "USER_ACCESSING", "USER_DEPLOYING"
-    ]
+    executeAs: typing.Literal["UNKNOWN_EXECUTE_AS", "USER_ACCESSING", "USER_DEPLOYING"]
 
 @typing.type_check_only
-class GoogleAppsScriptTypeWebAppEntryPoint(typing_extensions.TypedDict, total=False):
+class GoogleAppsScriptTypeWebAppEntryPoint(typing.TypedDict, total=False):
     entryPointConfig: GoogleAppsScriptTypeWebAppConfig
     url: str
 
 @typing.type_check_only
-class ListDeploymentsResponse(typing_extensions.TypedDict, total=False):
+class ListDeploymentsResponse(typing.TypedDict, total=False):
     deployments: _list[Deployment]
     nextPageToken: str
 
 @typing.type_check_only
-class ListScriptProcessesResponse(typing_extensions.TypedDict, total=False):
+class ListScriptProcessesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     processes: _list[GoogleAppsScriptTypeProcess]
 
 @typing.type_check_only
-class ListUserProcessesResponse(typing_extensions.TypedDict, total=False):
+class ListUserProcessesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     processes: _list[GoogleAppsScriptTypeProcess]
 
 @typing.type_check_only
-class ListVersionsResponse(typing_extensions.TypedDict, total=False):
+class ListVersionsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     versions: _list[Version]
 
 @typing.type_check_only
-class Metrics(typing_extensions.TypedDict, total=False):
+class Metrics(typing.TypedDict, total=False):
     activeUsers: _list[MetricsValue]
     failedExecutions: _list[MetricsValue]
     totalExecutions: _list[MetricsValue]
 
 @typing.type_check_only
-class MetricsValue(typing_extensions.TypedDict, total=False):
+class MetricsValue(typing.TypedDict, total=False):
     endTime: str
     startTime: str
     value: str
 
 @typing.type_check_only
-class Operation(typing_extensions.TypedDict, total=False):
+class Operation(typing.TypedDict, total=False):
     done: bool
     error: Status
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class Project(typing_extensions.TypedDict, total=False):
+class Project(typing.TypedDict, total=False):
     createTime: str
     creator: GoogleAppsScriptTypeUser
     lastModifyUser: GoogleAppsScriptTypeUser
@@ -206,22 +198,22 @@ class Project(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class ScriptStackTraceElement(typing_extensions.TypedDict, total=False):
+class ScriptStackTraceElement(typing.TypedDict, total=False):
     function: str
     lineNumber: int
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class UpdateDeploymentRequest(typing_extensions.TypedDict, total=False):
+class UpdateDeploymentRequest(typing.TypedDict, total=False):
     deploymentConfig: DeploymentConfig
 
 @typing.type_check_only
-class Version(typing_extensions.TypedDict, total=False):
+class Version(typing.TypedDict, total=False):
     createTime: str
     description: str
     scriptId: str

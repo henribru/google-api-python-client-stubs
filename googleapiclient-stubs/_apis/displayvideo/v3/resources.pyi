@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -64,7 +63,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                         *,
                         advertiserId: str,
                         adGroupId: str,
-                        targetingType: typing_extensions.Literal[
+                        targetingType: typing.Literal[
                             "TARGETING_TYPE_UNSPECIFIED",
                             "TARGETING_TYPE_CHANNEL",
                             "TARGETING_TYPE_APP_CATEGORY",
@@ -125,7 +124,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                         *,
                         advertiserId: str,
                         adGroupId: str,
-                        targetingType: typing_extensions.Literal[
+                        targetingType: typing.Literal[
                             "TARGETING_TYPE_UNSPECIFIED",
                             "TARGETING_TYPE_CHANNEL",
                             "TARGETING_TYPE_APP_CATEGORY",
@@ -186,7 +185,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                         *,
                         advertiserId: str,
                         adGroupId: str,
-                        targetingType: typing_extensions.Literal[
+                        targetingType: typing.Literal[
                             "TARGETING_TYPE_UNSPECIFIED",
                             "TARGETING_TYPE_CHANNEL",
                             "TARGETING_TYPE_APP_CATEGORY",
@@ -247,7 +246,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                         *,
                         advertiserId: str,
                         adGroupId: str,
-                        targetingType: typing_extensions.Literal[
+                        targetingType: typing.Literal[
                             "TARGETING_TYPE_UNSPECIFIED",
                             "TARGETING_TYPE_CHANNEL",
                             "TARGETING_TYPE_APP_CATEGORY",
@@ -601,7 +600,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                 *,
                 advertiserId: str,
                 issueMonth: str | None = ...,
-                loiSapinInvoiceType: typing_extensions.Literal[
+                loiSapinInvoiceType: typing.Literal[
                     "LOI_SAPIN_INVOICE_TYPE_UNSPECIFIED",
                     "LOI_SAPIN_INVOICE_TYPE_MEDIA",
                     "LOI_SAPIN_INVOICE_TYPE_PLATFORM",
@@ -637,7 +636,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                         *,
                         advertiserId: str,
                         lineItemId: str,
-                        targetingType: typing_extensions.Literal[
+                        targetingType: typing.Literal[
                             "TARGETING_TYPE_UNSPECIFIED",
                             "TARGETING_TYPE_CHANNEL",
                             "TARGETING_TYPE_APP_CATEGORY",
@@ -698,7 +697,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                         *,
                         advertiserId: str,
                         lineItemId: str,
-                        targetingType: typing_extensions.Literal[
+                        targetingType: typing.Literal[
                             "TARGETING_TYPE_UNSPECIFIED",
                             "TARGETING_TYPE_CHANNEL",
                             "TARGETING_TYPE_APP_CATEGORY",
@@ -759,7 +758,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                         *,
                         advertiserId: str,
                         lineItemId: str,
-                        targetingType: typing_extensions.Literal[
+                        targetingType: typing.Literal[
                             "TARGETING_TYPE_UNSPECIFIED",
                             "TARGETING_TYPE_CHANNEL",
                             "TARGETING_TYPE_APP_CATEGORY",
@@ -820,7 +819,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                         *,
                         advertiserId: str,
                         lineItemId: str,
-                        targetingType: typing_extensions.Literal[
+                        targetingType: typing.Literal[
                             "TARGETING_TYPE_UNSPECIFIED",
                             "TARGETING_TYPE_CHANNEL",
                             "TARGETING_TYPE_APP_CATEGORY",
@@ -1147,7 +1146,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     advertiserId: str,
-                    targetingType: typing_extensions.Literal[
+                    targetingType: typing.Literal[
                         "TARGETING_TYPE_UNSPECIFIED",
                         "TARGETING_TYPE_CHANNEL",
                         "TARGETING_TYPE_APP_CATEGORY",
@@ -1207,7 +1206,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     advertiserId: str,
-                    targetingType: typing_extensions.Literal[
+                    targetingType: typing.Literal[
                         "TARGETING_TYPE_UNSPECIFIED",
                         "TARGETING_TYPE_CHANNEL",
                         "TARGETING_TYPE_APP_CATEGORY",
@@ -1267,7 +1266,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     advertiserId: str,
-                    targetingType: typing_extensions.Literal[
+                    targetingType: typing.Literal[
                         "TARGETING_TYPE_UNSPECIFIED",
                         "TARGETING_TYPE_CHANNEL",
                         "TARGETING_TYPE_APP_CATEGORY",
@@ -1327,7 +1326,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     advertiserId: str,
-                    targetingType: typing_extensions.Literal[
+                    targetingType: typing.Literal[
                         "TARGETING_TYPE_UNSPECIFIED",
                         "TARGETING_TYPE_CHANNEL",
                         "TARGETING_TYPE_APP_CATEGORY",
@@ -1647,56 +1646,6 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
             previous_request: ListCustomListsResponseHttpRequest,
             previous_response: ListCustomListsResponse,
         ) -> ListCustomListsResponseHttpRequest | None: ...
-
-    @typing.type_check_only
-    class FirstAndThirdPartyAudiencesResource(googleapiclient.discovery.Resource):
-        def create(
-            self,
-            *,
-            body: FirstAndThirdPartyAudience,
-            advertiserId: str | None = ...,
-            **kwargs: typing.Any,
-        ) -> FirstAndThirdPartyAudienceHttpRequest: ...
-        def editCustomerMatchMembers(
-            self,
-            *,
-            firstAndThirdPartyAudienceId: str,
-            body: EditCustomerMatchMembersRequest,
-            **kwargs: typing.Any,
-        ) -> EditCustomerMatchMembersResponseHttpRequest: ...
-        def get(
-            self,
-            *,
-            firstAndThirdPartyAudienceId: str,
-            advertiserId: str | None = ...,
-            partnerId: str | None = ...,
-            **kwargs: typing.Any,
-        ) -> FirstAndThirdPartyAudienceHttpRequest: ...
-        def list(
-            self,
-            *,
-            advertiserId: str | None = ...,
-            filter: str | None = ...,
-            orderBy: str | None = ...,
-            pageSize: int | None = ...,
-            pageToken: str | None = ...,
-            partnerId: str | None = ...,
-            **kwargs: typing.Any,
-        ) -> ListFirstAndThirdPartyAudiencesResponseHttpRequest: ...
-        def list_next(
-            self,
-            previous_request: ListFirstAndThirdPartyAudiencesResponseHttpRequest,
-            previous_response: ListFirstAndThirdPartyAudiencesResponse,
-        ) -> ListFirstAndThirdPartyAudiencesResponseHttpRequest | None: ...
-        def patch(
-            self,
-            *,
-            firstAndThirdPartyAudienceId: str,
-            body: FirstAndThirdPartyAudience,
-            advertiserId: str | None = ...,
-            updateMask: str | None = ...,
-            **kwargs: typing.Any,
-        ) -> FirstAndThirdPartyAudienceHttpRequest: ...
 
     @typing.type_check_only
     class FloodlightGroupsResource(googleapiclient.discovery.Resource):
@@ -2048,7 +1997,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     partnerId: str,
-                    targetingType: typing_extensions.Literal[
+                    targetingType: typing.Literal[
                         "TARGETING_TYPE_UNSPECIFIED",
                         "TARGETING_TYPE_CHANNEL",
                         "TARGETING_TYPE_APP_CATEGORY",
@@ -2108,7 +2057,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     partnerId: str,
-                    targetingType: typing_extensions.Literal[
+                    targetingType: typing.Literal[
                         "TARGETING_TYPE_UNSPECIFIED",
                         "TARGETING_TYPE_CHANNEL",
                         "TARGETING_TYPE_APP_CATEGORY",
@@ -2168,7 +2117,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     partnerId: str,
-                    targetingType: typing_extensions.Literal[
+                    targetingType: typing.Literal[
                         "TARGETING_TYPE_UNSPECIFIED",
                         "TARGETING_TYPE_CHANNEL",
                         "TARGETING_TYPE_APP_CATEGORY",
@@ -2228,7 +2177,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     partnerId: str,
-                    targetingType: typing_extensions.Literal[
+                    targetingType: typing.Literal[
                         "TARGETING_TYPE_UNSPECIFIED",
                         "TARGETING_TYPE_CHANNEL",
                         "TARGETING_TYPE_APP_CATEGORY",
@@ -2342,7 +2291,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
             def get(
                 self,
                 *,
-                targetingType: typing_extensions.Literal[
+                targetingType: typing.Literal[
                     "TARGETING_TYPE_UNSPECIFIED",
                     "TARGETING_TYPE_CHANNEL",
                     "TARGETING_TYPE_APP_CATEGORY",
@@ -2402,7 +2351,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
             def list(
                 self,
                 *,
-                targetingType: typing_extensions.Literal[
+                targetingType: typing.Literal[
                     "TARGETING_TYPE_UNSPECIFIED",
                     "TARGETING_TYPE_CHANNEL",
                     "TARGETING_TYPE_APP_CATEGORY",
@@ -2470,7 +2419,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
             def search(
                 self,
                 *,
-                targetingType: typing_extensions.Literal[
+                targetingType: typing.Literal[
                     "TARGETING_TYPE_UNSPECIFIED",
                     "TARGETING_TYPE_CHANNEL",
                     "TARGETING_TYPE_APP_CATEGORY",
@@ -2585,7 +2534,6 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
     def combinedAudiences(self) -> CombinedAudiencesResource: ...
     def customBiddingAlgorithms(self) -> CustomBiddingAlgorithmsResource: ...
     def customLists(self) -> CustomListsResource: ...
-    def firstAndThirdPartyAudiences(self) -> FirstAndThirdPartyAudiencesResource: ...
     def floodlightGroups(self) -> FloodlightGroupsResource: ...
     def googleAudiences(self) -> GoogleAudiencesResource: ...
     def guaranteedOrders(self) -> GuaranteedOrdersResource: ...
@@ -2869,14 +2817,6 @@ class DuplicateLineItemResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> DuplicateLineItemResponse: ...
 
 @typing.type_check_only
-class EditCustomerMatchMembersResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> EditCustomerMatchMembersResponse: ...
-
-@typing.type_check_only
 class EditGuaranteedOrderReadAccessorsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -2893,14 +2833,6 @@ class EmptyHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Empty: ...
-
-@typing.type_check_only
-class FirstAndThirdPartyAudienceHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> FirstAndThirdPartyAudience: ...
 
 @typing.type_check_only
 class FloodlightActivityHttpRequest(googleapiclient.http.HttpRequest):
@@ -3091,16 +3023,6 @@ class ListCustomListsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListCustomListsResponse: ...
-
-@typing.type_check_only
-class ListFirstAndThirdPartyAudiencesResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> ListFirstAndThirdPartyAudiencesResponse: ...
 
 @typing.type_check_only
 class ListFloodlightActivitiesResponseHttpRequest(googleapiclient.http.HttpRequest):

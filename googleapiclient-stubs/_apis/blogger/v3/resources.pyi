@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -31,9 +30,7 @@ class BloggerResource(googleapiclient.discovery.Resource):
             *,
             blogId: str,
             maxPosts: int | None = ...,
-            view: typing_extensions.Literal[
-                "VIEW_TYPE_UNSPECIFIED", "READER", "AUTHOR", "ADMIN"
-            ]
+            view: typing.Literal["VIEW_TYPE_UNSPECIFIED", "READER", "AUTHOR", "ADMIN"]
             | None = ...,
             **kwargs: typing.Any,
         ) -> BlogHttpRequest: ...
@@ -41,9 +38,7 @@ class BloggerResource(googleapiclient.discovery.Resource):
             self,
             *,
             url: str,
-            view: typing_extensions.Literal[
-                "VIEW_TYPE_UNSPECIFIED", "READER", "AUTHOR", "ADMIN"
-            ]
+            view: typing.Literal["VIEW_TYPE_UNSPECIFIED", "READER", "AUTHOR", "ADMIN"]
             | None = ...,
             **kwargs: typing.Any,
         ) -> BlogHttpRequest: ...
@@ -52,21 +47,15 @@ class BloggerResource(googleapiclient.discovery.Resource):
             *,
             userId: str,
             fetchUserInfo: bool | None = ...,
-            role: typing_extensions.Literal[
-                "VIEW_TYPE_UNSPECIFIED", "READER", "AUTHOR", "ADMIN"
-            ]
+            role: typing.Literal["VIEW_TYPE_UNSPECIFIED", "READER", "AUTHOR", "ADMIN"]
             | _list[
-                typing_extensions.Literal[
-                    "VIEW_TYPE_UNSPECIFIED", "READER", "AUTHOR", "ADMIN"
-                ]
+                typing.Literal["VIEW_TYPE_UNSPECIFIED", "READER", "AUTHOR", "ADMIN"]
             ]
             | None = ...,
-            status: typing_extensions.Literal["LIVE", "DELETED"]
-            | _list[typing_extensions.Literal["LIVE", "DELETED"]]
+            status: typing.Literal["LIVE", "DELETED"]
+            | _list[typing.Literal["LIVE", "DELETED"]]
             | None = ...,
-            view: typing_extensions.Literal[
-                "VIEW_TYPE_UNSPECIFIED", "READER", "AUTHOR", "ADMIN"
-            ]
+            view: typing.Literal["VIEW_TYPE_UNSPECIFIED", "READER", "AUTHOR", "ADMIN"]
             | None = ...,
             **kwargs: typing.Any,
         ) -> BlogListHttpRequest: ...
@@ -85,9 +74,7 @@ class BloggerResource(googleapiclient.discovery.Resource):
             blogId: str,
             postId: str,
             commentId: str,
-            view: typing_extensions.Literal[
-                "VIEW_TYPE_UNSPECIFIED", "READER", "AUTHOR", "ADMIN"
-            ]
+            view: typing.Literal["VIEW_TYPE_UNSPECIFIED", "READER", "AUTHOR", "ADMIN"]
             | None = ...,
             **kwargs: typing.Any,
         ) -> CommentHttpRequest: ...
@@ -101,11 +88,8 @@ class BloggerResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             pageToken: str | None = ...,
             startDate: str | None = ...,
-            status: typing_extensions.Literal["LIVE", "EMPTIED", "PENDING", "SPAM"]
-            | None = ...,
-            view: typing_extensions.Literal[
-                "VIEW_TYPE_UNSPECIFIED", "READER", "AUTHOR", "ADMIN"
-            ]
+            status: typing.Literal["LIVE", "EMPTIED", "PENDING", "SPAM"] | None = ...,
+            view: typing.Literal["VIEW_TYPE_UNSPECIFIED", "READER", "AUTHOR", "ADMIN"]
             | None = ...,
             **kwargs: typing.Any,
         ) -> CommentListHttpRequest: ...
@@ -123,8 +107,8 @@ class BloggerResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             pageToken: str | None = ...,
             startDate: str | None = ...,
-            status: typing_extensions.Literal["LIVE", "EMPTIED", "PENDING", "SPAM"]
-            | _list[typing_extensions.Literal["LIVE", "EMPTIED", "PENDING", "SPAM"]]
+            status: typing.Literal["LIVE", "EMPTIED", "PENDING", "SPAM"]
+            | _list[typing.Literal["LIVE", "EMPTIED", "PENDING", "SPAM"]]
             | None = ...,
             **kwargs: typing.Any,
         ) -> CommentListHttpRequest: ...
@@ -146,8 +130,8 @@ class BloggerResource(googleapiclient.discovery.Resource):
             self,
             *,
             blogId: str,
-            range: typing_extensions.Literal["all", "30DAYS", "7DAYS"]
-            | _list[typing_extensions.Literal["all", "30DAYS", "7DAYS"]]
+            range: typing.Literal["all", "30DAYS", "7DAYS"]
+            | _list[typing.Literal["all", "30DAYS", "7DAYS"]]
             | None = ...,
             **kwargs: typing.Any,
         ) -> PageviewsHttpRequest: ...
@@ -167,9 +151,7 @@ class BloggerResource(googleapiclient.discovery.Resource):
             *,
             blogId: str,
             pageId: str,
-            view: typing_extensions.Literal[
-                "VIEW_TYPE_UNSPECIFIED", "READER", "AUTHOR", "ADMIN"
-            ]
+            view: typing.Literal["VIEW_TYPE_UNSPECIFIED", "READER", "AUTHOR", "ADMIN"]
             | None = ...,
             **kwargs: typing.Any,
         ) -> PageHttpRequest: ...
@@ -188,12 +170,10 @@ class BloggerResource(googleapiclient.discovery.Resource):
             fetchBodies: bool | None = ...,
             maxResults: int | None = ...,
             pageToken: str | None = ...,
-            status: typing_extensions.Literal["LIVE", "DRAFT", "SOFT_TRASHED"]
-            | _list[typing_extensions.Literal["LIVE", "DRAFT", "SOFT_TRASHED"]]
+            status: typing.Literal["LIVE", "DRAFT", "SOFT_TRASHED"]
+            | _list[typing.Literal["LIVE", "DRAFT", "SOFT_TRASHED"]]
             | None = ...,
-            view: typing_extensions.Literal[
-                "VIEW_TYPE_UNSPECIFIED", "READER", "AUTHOR", "ADMIN"
-            ]
+            view: typing.Literal["VIEW_TYPE_UNSPECIFIED", "READER", "AUTHOR", "ADMIN"]
             | None = ...,
             **kwargs: typing.Any,
         ) -> PageListHttpRequest: ...
@@ -247,22 +227,14 @@ class BloggerResource(googleapiclient.discovery.Resource):
             fetchBodies: bool | None = ...,
             labels: str | None = ...,
             maxResults: int | None = ...,
-            orderBy: typing_extensions.Literal[
-                "ORDER_BY_UNSPECIFIED", "PUBLISHED", "UPDATED"
-            ]
+            orderBy: typing.Literal["ORDER_BY_UNSPECIFIED", "PUBLISHED", "UPDATED"]
             | None = ...,
             pageToken: str | None = ...,
             startDate: str | None = ...,
-            status: typing_extensions.Literal[
-                "LIVE", "DRAFT", "SCHEDULED", "SOFT_TRASHED"
-            ]
-            | _list[
-                typing_extensions.Literal["LIVE", "DRAFT", "SCHEDULED", "SOFT_TRASHED"]
-            ]
+            status: typing.Literal["LIVE", "DRAFT", "SCHEDULED", "SOFT_TRASHED"]
+            | _list[typing.Literal["LIVE", "DRAFT", "SCHEDULED", "SOFT_TRASHED"]]
             | None = ...,
-            view: typing_extensions.Literal[
-                "VIEW_TYPE_UNSPECIFIED", "READER", "AUTHOR", "ADMIN"
-            ]
+            view: typing.Literal["VIEW_TYPE_UNSPECIFIED", "READER", "AUTHOR", "ADMIN"]
             | None = ...,
             **kwargs: typing.Any,
         ) -> PostUserInfosListHttpRequest: ...
@@ -290,9 +262,7 @@ class BloggerResource(googleapiclient.discovery.Resource):
             fetchBody: bool | None = ...,
             fetchImages: bool | None = ...,
             maxComments: int | None = ...,
-            view: typing_extensions.Literal[
-                "VIEW_TYPE_UNSPECIFIED", "READER", "AUTHOR", "ADMIN"
-            ]
+            view: typing.Literal["VIEW_TYPE_UNSPECIFIED", "READER", "AUTHOR", "ADMIN"]
             | None = ...,
             **kwargs: typing.Any,
         ) -> PostHttpRequest: ...
@@ -302,9 +272,7 @@ class BloggerResource(googleapiclient.discovery.Resource):
             blogId: str,
             path: str,
             maxComments: int | None = ...,
-            view: typing_extensions.Literal[
-                "VIEW_TYPE_UNSPECIFIED", "READER", "AUTHOR", "ADMIN"
-            ]
+            view: typing.Literal["VIEW_TYPE_UNSPECIFIED", "READER", "AUTHOR", "ADMIN"]
             | None = ...,
             **kwargs: typing.Any,
         ) -> PostHttpRequest: ...
@@ -327,26 +295,18 @@ class BloggerResource(googleapiclient.discovery.Resource):
             fetchImages: bool | None = ...,
             labels: str | None = ...,
             maxResults: int | None = ...,
-            orderBy: typing_extensions.Literal[
-                "ORDER_BY_UNSPECIFIED", "PUBLISHED", "UPDATED"
-            ]
+            orderBy: typing.Literal["ORDER_BY_UNSPECIFIED", "PUBLISHED", "UPDATED"]
             | None = ...,
             pageToken: str | None = ...,
-            sortOption: typing_extensions.Literal[
+            sortOption: typing.Literal[
                 "SORT_OPTION_UNSPECIFIED", "DESCENDING", "ASCENDING"
             ]
             | None = ...,
             startDate: str | None = ...,
-            status: typing_extensions.Literal[
-                "LIVE", "DRAFT", "SCHEDULED", "SOFT_TRASHED"
-            ]
-            | _list[
-                typing_extensions.Literal["LIVE", "DRAFT", "SCHEDULED", "SOFT_TRASHED"]
-            ]
+            status: typing.Literal["LIVE", "DRAFT", "SCHEDULED", "SOFT_TRASHED"]
+            | _list[typing.Literal["LIVE", "DRAFT", "SCHEDULED", "SOFT_TRASHED"]]
             | None = ...,
-            view: typing_extensions.Literal[
-                "VIEW_TYPE_UNSPECIFIED", "READER", "AUTHOR", "ADMIN"
-            ]
+            view: typing.Literal["VIEW_TYPE_UNSPECIFIED", "READER", "AUTHOR", "ADMIN"]
             | None = ...,
             **kwargs: typing.Any,
         ) -> PostListHttpRequest: ...
@@ -383,9 +343,7 @@ class BloggerResource(googleapiclient.discovery.Resource):
             blogId: str,
             q: str,
             fetchBodies: bool | None = ...,
-            orderBy: typing_extensions.Literal[
-                "ORDER_BY_UNSPECIFIED", "PUBLISHED", "UPDATED"
-            ]
+            orderBy: typing.Literal["ORDER_BY_UNSPECIFIED", "PUBLISHED", "UPDATED"]
             | None = ...,
             **kwargs: typing.Any,
         ) -> PostListHttpRequest: ...

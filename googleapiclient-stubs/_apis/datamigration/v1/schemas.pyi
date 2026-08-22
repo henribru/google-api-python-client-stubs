@@ -1,17 +1,15 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class AlloyDbConnectionProfile(typing_extensions.TypedDict, total=False):
+class AlloyDbConnectionProfile(typing.TypedDict, total=False):
     clusterId: str
     settings: AlloyDbSettings
 
 @typing.type_check_only
-class AlloyDbSettings(typing_extensions.TypedDict, total=False):
-    databaseVersion: typing_extensions.Literal[
+class AlloyDbSettings(typing.TypedDict, total=False):
+    databaseVersion: typing.Literal[
         "DATABASE_VERSION_UNSPECIFIED",
         "POSTGRES_14",
         "POSTGRES_15",
@@ -26,53 +24,53 @@ class AlloyDbSettings(typing_extensions.TypedDict, total=False):
     vpcNetwork: str
 
 @typing.type_check_only
-class ApplyConversionWorkspaceRequest(typing_extensions.TypedDict, total=False):
+class ApplyConversionWorkspaceRequest(typing.TypedDict, total=False):
     autoCommit: bool
     connectionProfile: str
     dryRun: bool
     filter: str
 
 @typing.type_check_only
-class ApplyHash(typing_extensions.TypedDict, total=False):
+class ApplyHash(typing.TypedDict, total=False):
     uuidFromBytes: Empty
 
 @typing.type_check_only
-class ApplyJobDetails(typing_extensions.TypedDict, total=False):
+class ApplyJobDetails(typing.TypedDict, total=False):
     connectionProfile: str
     filter: str
 
 @typing.type_check_only
-class AssignSpecificValue(typing_extensions.TypedDict, total=False):
+class AssignSpecificValue(typing.TypedDict, total=False):
     value: str
 
 @typing.type_check_only
-class AuditConfig(typing_extensions.TypedDict, total=False):
+class AuditConfig(typing.TypedDict, total=False):
     auditLogConfigs: _list[AuditLogConfig]
     service: str
 
 @typing.type_check_only
-class AuditLogConfig(typing_extensions.TypedDict, total=False):
+class AuditLogConfig(typing.TypedDict, total=False):
     exemptedMembers: _list[str]
-    logType: typing_extensions.Literal[
+    logType: typing.Literal[
         "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
     ]
 
 @typing.type_check_only
-class AuthorizedNetwork(typing_extensions.TypedDict, total=False):
+class AuthorizedNetwork(typing.TypedDict, total=False):
     cidrRange: str
 
 @typing.type_check_only
-class BackgroundJobLogEntry(typing_extensions.TypedDict, total=False):
+class BackgroundJobLogEntry(typing.TypedDict, total=False):
     applyJobDetails: ApplyJobDetails
     completionComment: str
-    completionState: typing_extensions.Literal[
+    completionState: typing.Literal[
         "JOB_COMPLETION_STATE_UNSPECIFIED", "SUCCEEDED", "FAILED"
     ]
     convertJobDetails: ConvertJobDetails
     finishTime: str
     id: str
     importRulesJobDetails: ImportRulesJobDetails
-    jobType: typing_extensions.Literal[
+    jobType: typing.Literal[
         "BACKGROUND_JOB_TYPE_UNSPECIFIED",
         "BACKGROUND_JOB_TYPE_SOURCE_SEED",
         "BACKGROUND_JOB_TYPE_CONVERT",
@@ -84,25 +82,25 @@ class BackgroundJobLogEntry(typing_extensions.TypedDict, total=False):
     startTime: str
 
 @typing.type_check_only
-class BadRequest(typing_extensions.TypedDict, total=False):
+class BadRequest(typing.TypedDict, total=False):
     fieldViolations: _list[FieldViolation]
 
 @typing.type_check_only
-class BinaryLogParser(typing_extensions.TypedDict, total=False):
+class BinaryLogParser(typing.TypedDict, total=False):
     logFileDirectories: LogFileDirectories
     oracleAsmLogFileAccess: OracleAsmLogFileAccess
 
 @typing.type_check_only
-class Binding(typing_extensions.TypedDict, total=False):
+class Binding(typing.TypedDict, total=False):
     condition: Expr
     members: _list[str]
     role: str
 
 @typing.type_check_only
-class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
+class CancelOperationRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class CloudSqlConnectionProfile(typing_extensions.TypedDict, total=False):
+class CloudSqlConnectionProfile(typing.TypedDict, total=False):
     additionalPublicIp: str
     cloudSqlId: str
     privateIp: str
@@ -110,12 +108,12 @@ class CloudSqlConnectionProfile(typing_extensions.TypedDict, total=False):
     settings: CloudSqlSettings
 
 @typing.type_check_only
-class CloudSqlSettings(typing_extensions.TypedDict, total=False):
-    activationPolicy: typing_extensions.Literal[
+class CloudSqlSettings(typing.TypedDict, total=False):
+    activationPolicy: typing.Literal[
         "SQL_ACTIVATION_POLICY_UNSPECIFIED", "ALWAYS", "NEVER"
     ]
     autoStorageIncrease: bool
-    availabilityType: typing_extensions.Literal[
+    availabilityType: typing.Literal[
         "SQL_AVAILABILITY_TYPE_UNSPECIFIED", "ZONAL", "REGIONAL"
     ]
     cmekKeyName: str
@@ -124,11 +122,11 @@ class CloudSqlSettings(typing_extensions.TypedDict, total=False):
     dataDiskProvisionedIops: str
     dataDiskProvisionedThroughput: str
     dataDiskSizeGb: str
-    dataDiskType: typing_extensions.Literal[
+    dataDiskType: typing.Literal[
         "SQL_DATA_DISK_TYPE_UNSPECIFIED", "PD_SSD", "PD_HDD", "HYPERDISK_BALANCED"
     ]
     databaseFlags: dict[str, typing.Any]
-    databaseVersion: typing_extensions.Literal[
+    databaseVersion: typing.Literal[
         "SQL_DATABASE_VERSION_UNSPECIFIED",
         "MYSQL_5_6",
         "MYSQL_5_7",
@@ -156,9 +154,7 @@ class CloudSqlSettings(typing_extensions.TypedDict, total=False):
         "POSTGRES_16",
     ]
     databaseVersionName: str
-    edition: typing_extensions.Literal[
-        "EDITION_UNSPECIFIED", "ENTERPRISE", "ENTERPRISE_PLUS"
-    ]
+    edition: typing.Literal["EDITION_UNSPECIFIED", "ENTERPRISE", "ENTERPRISE_PLUS"]
     ipConfig: SqlIpConfig
     rootPassword: str
     rootPasswordSet: bool
@@ -170,7 +166,7 @@ class CloudSqlSettings(typing_extensions.TypedDict, total=False):
     zone: str
 
 @typing.type_check_only
-class ColumnEntity(typing_extensions.TypedDict, total=False):
+class ColumnEntity(typing.TypedDict, total=False):
     array: bool
     arrayLength: int
     autoGenerated: bool
@@ -192,18 +188,18 @@ class ColumnEntity(typing_extensions.TypedDict, total=False):
     udt: bool
 
 @typing.type_check_only
-class CommitConversionWorkspaceRequest(typing_extensions.TypedDict, total=False):
+class CommitConversionWorkspaceRequest(typing.TypedDict, total=False):
     commitName: str
 
 @typing.type_check_only
-class ConditionalColumnSetValue(typing_extensions.TypedDict, total=False):
+class ConditionalColumnSetValue(typing.TypedDict, total=False):
     customFeatures: dict[str, typing.Any]
     sourceNumericFilter: SourceNumericFilter
     sourceTextFilter: SourceTextFilter
     valueTransformation: ValueTransformation
 
 @typing.type_check_only
-class ConnectionProfile(typing_extensions.TypedDict, total=False):
+class ConnectionProfile(typing.TypedDict, total=False):
     alloydb: AlloyDbConnectionProfile
     cloudsql: CloudSqlConnectionProfile
     createTime: str
@@ -214,7 +210,7 @@ class ConnectionProfile(typing_extensions.TypedDict, total=False):
     name: str
     oracle: OracleConnectionProfile
     postgresql: PostgreSqlConnectionProfile
-    provider: typing_extensions.Literal[
+    provider: typing.Literal[
         "DATABASE_PROVIDER_UNSPECIFIED",
         "CLOUDSQL",
         "RDS",
@@ -222,11 +218,11 @@ class ConnectionProfile(typing_extensions.TypedDict, total=False):
         "ALLOYDB",
         "AZURE_DATABASE",
     ]
-    role: typing_extensions.Literal["ROLE_UNSPECIFIED", "SOURCE", "DESTINATION"]
+    role: typing.Literal["ROLE_UNSPECIFIED", "SOURCE", "DESTINATION"]
     satisfiesPzi: bool
     satisfiesPzs: bool
     sqlserver: SqlServerConnectionProfile
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "DRAFT",
         "CREATING",
@@ -239,7 +235,7 @@ class ConnectionProfile(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class ConstraintEntity(typing_extensions.TypedDict, total=False):
+class ConstraintEntity(typing.TypedDict, total=False):
     customFeatures: dict[str, typing.Any]
     name: str
     referenceColumns: _list[str]
@@ -249,10 +245,10 @@ class ConstraintEntity(typing_extensions.TypedDict, total=False):
     type: str
 
 @typing.type_check_only
-class ConversionWorkspace(typing_extensions.TypedDict, total=False):
+class ConversionWorkspace(typing.TypedDict, total=False):
     createTime: str
     destination: DatabaseEngineInfo
-    destinationProvider: typing_extensions.Literal[
+    destinationProvider: typing.Literal[
         "DATABASE_PROVIDER_UNSPECIFIED",
         "CLOUDSQL",
         "RDS",
@@ -267,7 +263,7 @@ class ConversionWorkspace(typing_extensions.TypedDict, total=False):
     latestCommitTime: str
     name: str
     source: DatabaseEngineInfo
-    sourceProvider: typing_extensions.Literal[
+    sourceProvider: typing.Literal[
         "DATABASE_PROVIDER_UNSPECIFIED",
         "CLOUDSQL",
         "RDS",
@@ -278,42 +274,42 @@ class ConversionWorkspace(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class ConversionWorkspaceInfo(typing_extensions.TypedDict, total=False):
+class ConversionWorkspaceInfo(typing.TypedDict, total=False):
     commitId: str
     name: str
 
 @typing.type_check_only
-class ConvertConversionWorkspaceRequest(typing_extensions.TypedDict, total=False):
+class ConvertConversionWorkspaceRequest(typing.TypedDict, total=False):
     autoCommit: bool
     convertFullPath: bool
     filter: str
 
 @typing.type_check_only
-class ConvertJobDetails(typing_extensions.TypedDict, total=False):
+class ConvertJobDetails(typing.TypedDict, total=False):
     filter: str
 
 @typing.type_check_only
-class ConvertRowIdToColumn(typing_extensions.TypedDict, total=False):
+class ConvertRowIdToColumn(typing.TypedDict, total=False):
     onlyIfNoPrimaryKey: bool
 
 @typing.type_check_only
-class DataCacheConfig(typing_extensions.TypedDict, total=False):
+class DataCacheConfig(typing.TypedDict, total=False):
     dataCacheEnabled: bool
 
 @typing.type_check_only
-class DatabaseEngineInfo(typing_extensions.TypedDict, total=False):
-    engine: typing_extensions.Literal[
+class DatabaseEngineInfo(typing.TypedDict, total=False):
+    engine: typing.Literal[
         "DATABASE_ENGINE_UNSPECIFIED", "MYSQL", "POSTGRESQL", "SQLSERVER", "ORACLE"
     ]
     version: str
 
 @typing.type_check_only
-class DatabaseEntity(typing_extensions.TypedDict, total=False):
+class DatabaseEntity(typing.TypedDict, total=False):
     database: DatabaseInstanceEntity
     databaseFunction: FunctionEntity
     databasePackage: PackageEntity
     entityDdl: _list[EntityDdl]
-    entityType: typing_extensions.Literal[
+    entityType: typing.Literal[
         "DATABASE_ENTITY_TYPE_UNSPECIFIED",
         "DATABASE_ENTITY_TYPE_SCHEMA",
         "DATABASE_ENTITY_TYPE_TABLE",
@@ -341,22 +337,20 @@ class DatabaseEntity(typing_extensions.TypedDict, total=False):
     storedProcedure: StoredProcedureEntity
     synonym: SynonymEntity
     table: TableEntity
-    tree: typing_extensions.Literal[
-        "TREE_TYPE_UNSPECIFIED", "SOURCE", "DRAFT", "DESTINATION"
-    ]
+    tree: typing.Literal["TREE_TYPE_UNSPECIFIED", "SOURCE", "DRAFT", "DESTINATION"]
     udt: UDTEntity
     view: ViewEntity
 
 @typing.type_check_only
-class DatabaseInstanceEntity(typing_extensions.TypedDict, total=False):
+class DatabaseInstanceEntity(typing.TypedDict, total=False):
     customFeatures: dict[str, typing.Any]
 
 @typing.type_check_only
-class DatabaseType(typing_extensions.TypedDict, total=False):
-    engine: typing_extensions.Literal[
+class DatabaseType(typing.TypedDict, total=False):
+    engine: typing.Literal[
         "DATABASE_ENGINE_UNSPECIFIED", "MYSQL", "POSTGRESQL", "SQLSERVER", "ORACLE"
     ]
-    provider: typing_extensions.Literal[
+    provider: typing.Literal[
         "DATABASE_PROVIDER_UNSPECIFIED",
         "CLOUDSQL",
         "RDS",
@@ -366,28 +360,26 @@ class DatabaseType(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class DebugInfo(typing_extensions.TypedDict, total=False):
+class DebugInfo(typing.TypedDict, total=False):
     detail: str
     stackEntries: _list[str]
 
 @typing.type_check_only
-class DemoteDestinationRequest(typing_extensions.TypedDict, total=False): ...
+class DemoteDestinationRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class DescribeConversionWorkspaceRevisionsResponse(
-    typing_extensions.TypedDict, total=False
-):
+class DescribeConversionWorkspaceRevisionsResponse(typing.TypedDict, total=False):
     revisions: _list[ConversionWorkspace]
 
 @typing.type_check_only
-class DescribeDatabaseEntitiesResponse(typing_extensions.TypedDict, total=False):
+class DescribeDatabaseEntitiesResponse(typing.TypedDict, total=False):
     databaseEntities: _list[DatabaseEntity]
     nextPageToken: str
 
 @typing.type_check_only
-class DoubleComparisonFilter(typing_extensions.TypedDict, total=False):
+class DoubleComparisonFilter(typing.TypedDict, total=False):
     value: float
-    valueComparison: typing_extensions.Literal[
+    valueComparison: typing.Literal[
         "VALUE_COMPARISON_UNSPECIFIED",
         "VALUE_COMPARISON_IF_VALUE_SMALLER_THAN",
         "VALUE_COMPARISON_IF_VALUE_SMALLER_EQUAL_THAN",
@@ -396,33 +388,33 @@ class DoubleComparisonFilter(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class DumpFlag(typing_extensions.TypedDict, total=False):
+class DumpFlag(typing.TypedDict, total=False):
     name: str
     value: str
 
 @typing.type_check_only
-class DumpFlags(typing_extensions.TypedDict, total=False):
+class DumpFlags(typing.TypedDict, total=False):
     dumpFlags: _list[DumpFlag]
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class EncryptionConfig(typing_extensions.TypedDict, total=False):
+class EncryptionConfig(typing.TypedDict, total=False):
     kmsKeyName: str
 
 @typing.type_check_only
-class EntityDdl(typing_extensions.TypedDict, total=False):
+class EntityDdl(typing.TypedDict, total=False):
     ddl: str
-    ddlKind: typing_extensions.Literal[
+    ddlKind: typing.Literal[
         "DDL_KIND_UNSPECIFIED", "SOURCE", "DETERMINISTIC", "AI", "USER_EDIT"
     ]
     ddlType: str
-    editedDdlKind: typing_extensions.Literal[
+    editedDdlKind: typing.Literal[
         "DDL_KIND_UNSPECIFIED", "SOURCE", "DETERMINISTIC", "AI", "USER_EDIT"
     ]
     entity: str
-    entityType: typing_extensions.Literal[
+    entityType: typing.Literal[
         "DATABASE_ENTITY_TYPE_UNSPECIFIED",
         "DATABASE_ENTITY_TYPE_SCHEMA",
         "DATABASE_ENTITY_TYPE_TABLE",
@@ -443,10 +435,10 @@ class EntityDdl(typing_extensions.TypedDict, total=False):
     issueId: _list[str]
 
 @typing.type_check_only
-class EntityIssue(typing_extensions.TypedDict, total=False):
+class EntityIssue(typing.TypedDict, total=False):
     code: str
     ddl: str
-    entityType: typing_extensions.Literal[
+    entityType: typing.Literal[
         "DATABASE_ENTITY_TYPE_UNSPECIFIED",
         "DATABASE_ENTITY_TYPE_SCHEMA",
         "DATABASE_ENTITY_TYPE_TABLE",
@@ -467,13 +459,13 @@ class EntityIssue(typing_extensions.TypedDict, total=False):
     id: str
     message: str
     position: Position
-    severity: typing_extensions.Literal[
+    severity: typing.Literal[
         "ISSUE_SEVERITY_UNSPECIFIED",
         "ISSUE_SEVERITY_INFO",
         "ISSUE_SEVERITY_WARNING",
         "ISSUE_SEVERITY_ERROR",
     ]
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "ISSUE_TYPE_UNSPECIFIED",
         "ISSUE_TYPE_DDL",
         "ISSUE_TYPE_APPLY",
@@ -482,9 +474,9 @@ class EntityIssue(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class EntityMapping(typing_extensions.TypedDict, total=False):
+class EntityMapping(typing.TypedDict, total=False):
     draftEntity: str
-    draftType: typing_extensions.Literal[
+    draftType: typing.Literal[
         "DATABASE_ENTITY_TYPE_UNSPECIFIED",
         "DATABASE_ENTITY_TYPE_SCHEMA",
         "DATABASE_ENTITY_TYPE_TABLE",
@@ -504,7 +496,7 @@ class EntityMapping(typing_extensions.TypedDict, total=False):
     ]
     mappingLog: _list[EntityMappingLogEntry]
     sourceEntity: str
-    sourceType: typing_extensions.Literal[
+    sourceType: typing.Literal[
         "DATABASE_ENTITY_TYPE_UNSPECIFIED",
         "DATABASE_ENTITY_TYPE_SCHEMA",
         "DATABASE_ENTITY_TYPE_TABLE",
@@ -524,47 +516,47 @@ class EntityMapping(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class EntityMappingLogEntry(typing_extensions.TypedDict, total=False):
+class EntityMappingLogEntry(typing.TypedDict, total=False):
     mappingComment: str
     ruleId: str
     ruleRevisionId: str
 
 @typing.type_check_only
-class EntityMove(typing_extensions.TypedDict, total=False):
+class EntityMove(typing.TypedDict, total=False):
     newSchema: str
 
 @typing.type_check_only
-class ErrorInfo(typing_extensions.TypedDict, total=False):
+class ErrorInfo(typing.TypedDict, total=False):
     domain: str
     metadata: dict[str, typing.Any]
     reason: str
 
 @typing.type_check_only
-class Expr(typing_extensions.TypedDict, total=False):
+class Expr(typing.TypedDict, total=False):
     description: str
     expression: str
     location: str
     title: str
 
 @typing.type_check_only
-class FetchStaticIpsResponse(typing_extensions.TypedDict, total=False):
+class FetchStaticIpsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     staticIps: _list[str]
 
 @typing.type_check_only
-class FieldViolation(typing_extensions.TypedDict, total=False):
+class FieldViolation(typing.TypedDict, total=False):
     description: str
     field: str
     localizedMessage: LocalizedMessage
     reason: str
 
 @typing.type_check_only
-class FilterTableColumns(typing_extensions.TypedDict, total=False):
+class FilterTableColumns(typing.TypedDict, total=False):
     excludeColumns: _list[str]
     includeColumns: _list[str]
 
 @typing.type_check_only
-class ForwardSshTunnelConnectivity(typing_extensions.TypedDict, total=False):
+class ForwardSshTunnelConnectivity(typing.TypedDict, total=False):
     hostname: str
     password: str
     port: int
@@ -572,26 +564,26 @@ class ForwardSshTunnelConnectivity(typing_extensions.TypedDict, total=False):
     username: str
 
 @typing.type_check_only
-class FunctionEntity(typing_extensions.TypedDict, total=False):
+class FunctionEntity(typing.TypedDict, total=False):
     customFeatures: dict[str, typing.Any]
     sqlCode: str
 
 @typing.type_check_only
-class GenerateSshScriptRequest(typing_extensions.TypedDict, total=False):
+class GenerateSshScriptRequest(typing.TypedDict, total=False):
     vm: str
     vmCreationConfig: VmCreationConfig
     vmPort: int
     vmSelectionConfig: VmSelectionConfig
 
 @typing.type_check_only
-class GenerateTcpProxyScriptRequest(typing_extensions.TypedDict, total=False):
+class GenerateTcpProxyScriptRequest(typing.TypedDict, total=False):
     vmMachineType: str
     vmName: str
     vmSubnet: str
     vmZone: str
 
 @typing.type_check_only
-class GoogleCloudClouddmsV1OperationMetadata(typing_extensions.TypedDict, total=False):
+class GoogleCloudClouddmsV1OperationMetadata(typing.TypedDict, total=False):
     apiVersion: str
     createTime: str
     endTime: str
@@ -602,26 +594,26 @@ class GoogleCloudClouddmsV1OperationMetadata(typing_extensions.TypedDict, total=
     verb: str
 
 @typing.type_check_only
-class Help(typing_extensions.TypedDict, total=False):
+class Help(typing.TypedDict, total=False):
     links: _list[Link]
 
 @typing.type_check_only
-class HeterogeneousMetadata(typing_extensions.TypedDict, total=False):
+class HeterogeneousMetadata(typing.TypedDict, total=False):
     unsupportedEventsCount: str
 
 @typing.type_check_only
-class ImportMappingRulesRequest(typing_extensions.TypedDict, total=False):
+class ImportMappingRulesRequest(typing.TypedDict, total=False):
     autoCommit: bool
     rulesFiles: _list[RulesFile]
-    rulesFormat: typing_extensions.Literal[
+    rulesFormat: typing.Literal[
         "IMPORT_RULES_FILE_FORMAT_UNSPECIFIED",
         "IMPORT_RULES_FILE_FORMAT_HARBOUR_BRIDGE_SESSION_FILE",
         "IMPORT_RULES_FILE_FORMAT_ORATOPG_CONFIG_FILE",
     ]
 
 @typing.type_check_only
-class ImportRulesJobDetails(typing_extensions.TypedDict, total=False):
-    fileFormat: typing_extensions.Literal[
+class ImportRulesJobDetails(typing.TypedDict, total=False):
+    fileFormat: typing.Literal[
         "IMPORT_RULES_FILE_FORMAT_UNSPECIFIED",
         "IMPORT_RULES_FILE_FORMAT_HARBOUR_BRIDGE_SESSION_FILE",
         "IMPORT_RULES_FILE_FORMAT_ORATOPG_CONFIG_FILE",
@@ -629,7 +621,7 @@ class ImportRulesJobDetails(typing_extensions.TypedDict, total=False):
     files: _list[str]
 
 @typing.type_check_only
-class IndexEntity(typing_extensions.TypedDict, total=False):
+class IndexEntity(typing.TypedDict, total=False):
     customFeatures: dict[str, typing.Any]
     name: str
     tableColumns: _list[str]
@@ -638,15 +630,15 @@ class IndexEntity(typing_extensions.TypedDict, total=False):
     unique: bool
 
 @typing.type_check_only
-class InstanceNetworkConfig(typing_extensions.TypedDict, total=False):
+class InstanceNetworkConfig(typing.TypedDict, total=False):
     authorizedExternalNetworks: _list[AuthorizedNetwork]
     enableOutboundPublicIp: bool
     enablePublicIp: bool
 
 @typing.type_check_only
-class IntComparisonFilter(typing_extensions.TypedDict, total=False):
+class IntComparisonFilter(typing.TypedDict, total=False):
     value: str
-    valueComparison: typing_extensions.Literal[
+    valueComparison: typing.Literal[
         "VALUE_COMPARISON_UNSPECIFIED",
         "VALUE_COMPARISON_IF_VALUE_SMALLER_THAN",
         "VALUE_COMPARISON_IF_VALUE_SMALLER_EQUAL_THAN",
@@ -655,62 +647,62 @@ class IntComparisonFilter(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class Link(typing_extensions.TypedDict, total=False):
+class Link(typing.TypedDict, total=False):
     description: str
     url: str
 
 @typing.type_check_only
-class ListConnectionProfilesResponse(typing_extensions.TypedDict, total=False):
+class ListConnectionProfilesResponse(typing.TypedDict, total=False):
     connectionProfiles: _list[ConnectionProfile]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListConversionWorkspacesResponse(typing_extensions.TypedDict, total=False):
+class ListConversionWorkspacesResponse(typing.TypedDict, total=False):
     conversionWorkspaces: _list[ConversionWorkspace]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListLocationsResponse(typing_extensions.TypedDict, total=False):
+class ListLocationsResponse(typing.TypedDict, total=False):
     locations: _list[Location]
     nextPageToken: str
 
 @typing.type_check_only
-class ListMappingRulesResponse(typing_extensions.TypedDict, total=False):
+class ListMappingRulesResponse(typing.TypedDict, total=False):
     mappingRules: _list[MappingRule]
     nextPageToken: str
 
 @typing.type_check_only
-class ListMigrationJobObjectsResponse(typing_extensions.TypedDict, total=False):
+class ListMigrationJobObjectsResponse(typing.TypedDict, total=False):
     migrationJobObjects: _list[MigrationJobObject]
     nextPageToken: str
 
 @typing.type_check_only
-class ListMigrationJobsResponse(typing_extensions.TypedDict, total=False):
+class ListMigrationJobsResponse(typing.TypedDict, total=False):
     migrationJobs: _list[MigrationJob]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListOperationsResponse(typing_extensions.TypedDict, total=False):
+class ListOperationsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListPrivateConnectionsResponse(typing_extensions.TypedDict, total=False):
+class ListPrivateConnectionsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     privateConnections: _list[PrivateConnection]
     unreachable: _list[str]
 
 @typing.type_check_only
-class LocalizedMessage(typing_extensions.TypedDict, total=False):
+class LocalizedMessage(typing.TypedDict, total=False):
     locale: str
     message: str
 
 @typing.type_check_only
-class Location(typing_extensions.TypedDict, total=False):
+class Location(typing.TypedDict, total=False):
     displayName: str
     labels: dict[str, typing.Any]
     locationId: str
@@ -718,24 +710,24 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class LogFileDirectories(typing_extensions.TypedDict, total=False):
+class LogFileDirectories(typing.TypedDict, total=False):
     archivedLogDirectory: str
     onlineLogDirectory: str
 
 @typing.type_check_only
-class LogMiner(typing_extensions.TypedDict, total=False): ...
+class LogMiner(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class LookupMigrationJobObjectRequest(typing_extensions.TypedDict, total=False):
+class LookupMigrationJobObjectRequest(typing.TypedDict, total=False):
     sourceObjectIdentifier: SourceObjectIdentifier
 
 @typing.type_check_only
-class MachineConfig(typing_extensions.TypedDict, total=False):
+class MachineConfig(typing.TypedDict, total=False):
     cpuCount: int
     machineType: str
 
 @typing.type_check_only
-class MappingRule(typing_extensions.TypedDict, total=False):
+class MappingRule(typing.TypedDict, total=False):
     conditionalColumnSetValue: ConditionalColumnSetValue
     convertRowidColumn: ConvertRowIdToColumn
     displayName: str
@@ -748,7 +740,7 @@ class MappingRule(typing_extensions.TypedDict, total=False):
     revisionCreateTime: str
     revisionId: str
     ruleOrder: str
-    ruleScope: typing_extensions.Literal[
+    ruleScope: typing.Literal[
         "DATABASE_ENTITY_TYPE_UNSPECIFIED",
         "DATABASE_ENTITY_TYPE_SCHEMA",
         "DATABASE_ENTITY_TYPE_TABLE",
@@ -771,12 +763,10 @@ class MappingRule(typing_extensions.TypedDict, total=False):
     singleEntityRename: SingleEntityRename
     singlePackageChange: SinglePackageChange
     sourceSqlChange: SourceSqlChange
-    state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "ENABLED", "DISABLED", "DELETED"
-    ]
+    state: typing.Literal["STATE_UNSPECIFIED", "ENABLED", "DISABLED", "DELETED"]
 
 @typing.type_check_only
-class MappingRuleFilter(typing_extensions.TypedDict, total=False):
+class MappingRuleFilter(typing.TypedDict, total=False):
     entities: _list[str]
     entityNameContains: str
     entityNamePrefix: str
@@ -784,13 +774,13 @@ class MappingRuleFilter(typing_extensions.TypedDict, total=False):
     parentEntity: str
 
 @typing.type_check_only
-class MaterializedViewEntity(typing_extensions.TypedDict, total=False):
+class MaterializedViewEntity(typing.TypedDict, total=False):
     customFeatures: dict[str, typing.Any]
     indices: _list[IndexEntity]
     sqlCode: str
 
 @typing.type_check_only
-class MigrationJob(typing_extensions.TypedDict, total=False):
+class MigrationJob(typing.TypedDict, total=False):
     cmekKeyName: str
     conversionWorkspace: ConversionWorkspaceInfo
     createTime: str
@@ -799,7 +789,7 @@ class MigrationJob(typing_extensions.TypedDict, total=False):
     displayName: str
     dumpFlags: DumpFlags
     dumpPath: str
-    dumpType: typing_extensions.Literal["DUMP_TYPE_UNSPECIFIED", "LOGICAL", "PHYSICAL"]
+    dumpType: typing.Literal["DUMP_TYPE_UNSPECIFIED", "LOGICAL", "PHYSICAL"]
     duration: str
     endTime: str
     error: Status
@@ -811,7 +801,7 @@ class MigrationJob(typing_extensions.TypedDict, total=False):
     oracleToPostgresConfig: OracleToPostgresConfig
     originalMigrationName: str
     performanceConfig: PerformanceConfig
-    phase: typing_extensions.Literal[
+    phase: typing.Literal[
         "PHASE_UNSPECIFIED",
         "FULL_DUMP",
         "CDC",
@@ -822,7 +812,7 @@ class MigrationJob(typing_extensions.TypedDict, total=False):
     ]
     postgresHomogeneousConfig: PostgresHomogeneousConfig
     postgresToSqlserverConfig: PostgresToSqlServerConfig
-    purpose: typing_extensions.Literal["PURPOSE_UNSPECIFIED", "MIGRATE", "FAILBACK"]
+    purpose: typing.Literal["PURPOSE_UNSPECIFIED", "MIGRATE", "FAILBACK"]
     reverseSshConnectivity: ReverseSshConnectivity
     satisfiesPzi: bool
     satisfiesPzs: bool
@@ -830,7 +820,7 @@ class MigrationJob(typing_extensions.TypedDict, total=False):
     sourceDatabase: DatabaseType
     sqlserverHomogeneousMigrationJobConfig: SqlServerHomogeneousMigrationJobConfig
     sqlserverToPostgresConfig: SqlServerToPostgresConfig
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "MAINTENANCE",
         "DRAFT",
@@ -849,17 +839,17 @@ class MigrationJob(typing_extensions.TypedDict, total=False):
         "RESUMING",
     ]
     staticIpConnectivity: StaticIpConnectivity
-    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "ONE_TIME", "CONTINUOUS"]
+    type: typing.Literal["TYPE_UNSPECIFIED", "ONE_TIME", "CONTINUOUS"]
     updateTime: str
     vpcPeeringConnectivity: VpcPeeringConnectivity
 
 @typing.type_check_only
-class MigrationJobObject(typing_extensions.TypedDict, total=False):
+class MigrationJobObject(typing.TypedDict, total=False):
     createTime: str
     error: Status
     heterogeneousMetadata: HeterogeneousMetadata
     name: str
-    phase: typing_extensions.Literal[
+    phase: typing.Literal[
         "PHASE_UNSPECIFIED",
         "FULL_DUMP",
         "CDC",
@@ -871,7 +861,7 @@ class MigrationJobObject(typing_extensions.TypedDict, total=False):
         "RESTORING_BACKUP",
     ]
     sourceObject: SourceObjectIdentifier
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "NOT_STARTED",
         "RUNNING",
@@ -886,12 +876,12 @@ class MigrationJobObject(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class MigrationJobObjectsConfig(typing_extensions.TypedDict, total=False):
+class MigrationJobObjectsConfig(typing.TypedDict, total=False):
     sourceObjectsConfig: SourceObjectsConfig
 
 @typing.type_check_only
-class MigrationJobVerificationError(typing_extensions.TypedDict, total=False):
-    errorCode: typing_extensions.Literal[
+class MigrationJobVerificationError(typing.TypedDict, total=False):
+    errorCode: typing.Literal[
         "ERROR_CODE_UNSPECIFIED",
         "CONNECTION_FAILURE",
         "AUTHENTICATION_FAILURE",
@@ -927,7 +917,7 @@ class MigrationJobVerificationError(typing_extensions.TypedDict, total=False):
     errorMessage: str
 
 @typing.type_check_only
-class MultiColumnDatatypeChange(typing_extensions.TypedDict, total=False):
+class MultiColumnDatatypeChange(typing.TypedDict, total=False):
     customFeatures: dict[str, typing.Any]
     newDataType: str
     overrideFractionalSecondsPrecision: int
@@ -939,9 +929,9 @@ class MultiColumnDatatypeChange(typing_extensions.TypedDict, total=False):
     sourceTextFilter: SourceTextFilter
 
 @typing.type_check_only
-class MultiEntityRename(typing_extensions.TypedDict, total=False):
+class MultiEntityRename(typing.TypedDict, total=False):
     newNamePattern: str
-    sourceNameTransformation: typing_extensions.Literal[
+    sourceNameTransformation: typing.Literal[
         "ENTITY_NAME_TRANSFORMATION_UNSPECIFIED",
         "ENTITY_NAME_TRANSFORMATION_NO_TRANSFORMATION",
         "ENTITY_NAME_TRANSFORMATION_LOWER_CASE",
@@ -950,7 +940,7 @@ class MultiEntityRename(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class MySqlConnectionProfile(typing_extensions.TypedDict, total=False):
+class MySqlConnectionProfile(typing.TypedDict, total=False):
     cloudSqlId: str
     host: str
     password: str
@@ -960,11 +950,11 @@ class MySqlConnectionProfile(typing_extensions.TypedDict, total=False):
     username: str
 
 @typing.type_check_only
-class MySqlHomogeneousConfig(typing_extensions.TypedDict, total=False):
+class MySqlHomogeneousConfig(typing.TypedDict, total=False):
     isPrimaryDestination: bool
 
 @typing.type_check_only
-class Operation(typing_extensions.TypedDict, total=False):
+class Operation(typing.TypedDict, total=False):
     done: bool
     error: Status
     metadata: dict[str, typing.Any]
@@ -972,7 +962,7 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class OracleAsmConfig(typing_extensions.TypedDict, total=False):
+class OracleAsmConfig(typing.TypedDict, total=False):
     asmService: str
     hostname: str
     password: str
@@ -982,10 +972,10 @@ class OracleAsmConfig(typing_extensions.TypedDict, total=False):
     username: str
 
 @typing.type_check_only
-class OracleAsmLogFileAccess(typing_extensions.TypedDict, total=False): ...
+class OracleAsmLogFileAccess(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class OracleConnectionProfile(typing_extensions.TypedDict, total=False):
+class OracleConnectionProfile(typing.TypedDict, total=False):
     databaseService: str
     forwardSshConnectivity: ForwardSshTunnelConnectivity
     host: str
@@ -999,7 +989,7 @@ class OracleConnectionProfile(typing_extensions.TypedDict, total=False):
     username: str
 
 @typing.type_check_only
-class OracleSourceConfig(typing_extensions.TypedDict, total=False):
+class OracleSourceConfig(typing.TypedDict, total=False):
     binaryLogParser: BinaryLogParser
     cdcStartPosition: str
     logMiner: LogMiner
@@ -1008,45 +998,45 @@ class OracleSourceConfig(typing_extensions.TypedDict, total=False):
     skipFullDump: bool
 
 @typing.type_check_only
-class OracleToPostgresConfig(typing_extensions.TypedDict, total=False):
+class OracleToPostgresConfig(typing.TypedDict, total=False):
     oracleSourceConfig: OracleSourceConfig
     postgresDestinationConfig: PostgresDestinationConfig
 
 @typing.type_check_only
-class PackageEntity(typing_extensions.TypedDict, total=False):
+class PackageEntity(typing.TypedDict, total=False):
     customFeatures: dict[str, typing.Any]
     packageBody: str
     packageSqlCode: str
 
 @typing.type_check_only
-class PerformanceConfig(typing_extensions.TypedDict, total=False):
-    dumpParallelLevel: typing_extensions.Literal[
+class PerformanceConfig(typing.TypedDict, total=False):
+    dumpParallelLevel: typing.Literal[
         "DUMP_PARALLEL_LEVEL_UNSPECIFIED", "MIN", "OPTIMAL", "MAX"
     ]
 
 @typing.type_check_only
-class Policy(typing_extensions.TypedDict, total=False):
+class Policy(typing.TypedDict, total=False):
     auditConfigs: _list[AuditConfig]
     bindings: _list[Binding]
     etag: str
     version: int
 
 @typing.type_check_only
-class Position(typing_extensions.TypedDict, total=False):
+class Position(typing.TypedDict, total=False):
     column: int
     length: int
     line: int
     offset: int
 
 @typing.type_check_only
-class PostgreSqlConnectionProfile(typing_extensions.TypedDict, total=False):
+class PostgreSqlConnectionProfile(typing.TypedDict, total=False):
     alloydbClusterId: str
     cloudSqlId: str
     database: str
     enableIamAuthentication: bool
     forwardSshConnectivity: ForwardSshTunnelConnectivity
     host: str
-    networkArchitecture: typing_extensions.Literal[
+    networkArchitecture: typing.Literal[
         "NETWORK_ARCHITECTURE_UNSPECIFIED",
         "NETWORK_ARCHITECTURE_OLD_CSQL_PRODUCER",
         "NETWORK_ARCHITECTURE_NEW_CSQL_PRODUCER",
@@ -1061,36 +1051,36 @@ class PostgreSqlConnectionProfile(typing_extensions.TypedDict, total=False):
     username: str
 
 @typing.type_check_only
-class PostgresDestinationConfig(typing_extensions.TypedDict, total=False):
+class PostgresDestinationConfig(typing.TypedDict, total=False):
     maxConcurrentConnections: int
     transactionTimeout: str
 
 @typing.type_check_only
-class PostgresHomogeneousConfig(typing_extensions.TypedDict, total=False):
+class PostgresHomogeneousConfig(typing.TypedDict, total=False):
     isNativeLogical: bool
     maxAdditionalSubscriptions: int
 
 @typing.type_check_only
-class PostgresSourceConfig(typing_extensions.TypedDict, total=False):
+class PostgresSourceConfig(typing.TypedDict, total=False):
     skipFullDump: bool
 
 @typing.type_check_only
-class PostgresToSqlServerConfig(typing_extensions.TypedDict, total=False):
+class PostgresToSqlServerConfig(typing.TypedDict, total=False):
     postgresSourceConfig: PostgresSourceConfig
     sqlserverDestinationConfig: SqlServerDestinationConfig
 
 @typing.type_check_only
-class PreconditionFailure(typing_extensions.TypedDict, total=False):
+class PreconditionFailure(typing.TypedDict, total=False):
     violations: _list[PreconditionFailureViolation]
 
 @typing.type_check_only
-class PreconditionFailureViolation(typing_extensions.TypedDict, total=False):
+class PreconditionFailureViolation(typing.TypedDict, total=False):
     description: str
     subject: str
     type: str
 
 @typing.type_check_only
-class PrimaryInstanceSettings(typing_extensions.TypedDict, total=False):
+class PrimaryInstanceSettings(typing.TypedDict, total=False):
     databaseFlags: dict[str, typing.Any]
     id: str
     instanceNetworkConfig: InstanceNetworkConfig
@@ -1100,16 +1090,17 @@ class PrimaryInstanceSettings(typing_extensions.TypedDict, total=False):
     privateIp: str
 
 @typing.type_check_only
-class PrivateConnection(typing_extensions.TypedDict, total=False):
+class PrivateConnection(typing.TypedDict, total=False):
     createTime: str
     displayName: str
     error: Status
     labels: dict[str, typing.Any]
     name: str
     pscInterfaceConfig: PscInterfaceConfig
+    reservedPublicIpConfig: ReservedPublicIpConfig
     satisfiesPzi: bool
     satisfiesPzs: bool
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "CREATING",
         "CREATED",
@@ -1122,27 +1113,27 @@ class PrivateConnection(typing_extensions.TypedDict, total=False):
     vpcPeeringConfig: VpcPeeringConfig
 
 @typing.type_check_only
-class PrivateConnectivity(typing_extensions.TypedDict, total=False):
+class PrivateConnectivity(typing.TypedDict, total=False):
     privateConnection: str
 
 @typing.type_check_only
-class PrivateServiceConnectConnectivity(typing_extensions.TypedDict, total=False):
+class PrivateServiceConnectConnectivity(typing.TypedDict, total=False):
     serviceAttachment: str
 
 @typing.type_check_only
-class PromoteMigrationJobRequest(typing_extensions.TypedDict, total=False):
+class PromoteMigrationJobRequest(typing.TypedDict, total=False):
     objectsFilter: MigrationJobObjectsConfig
 
 @typing.type_check_only
-class PscInterfaceConfig(typing_extensions.TypedDict, total=False):
+class PscInterfaceConfig(typing.TypedDict, total=False):
     networkAttachment: str
 
 @typing.type_check_only
-class QuotaFailure(typing_extensions.TypedDict, total=False):
+class QuotaFailure(typing.TypedDict, total=False):
     violations: _list[QuotaFailureViolation]
 
 @typing.type_check_only
-class QuotaFailureViolation(typing_extensions.TypedDict, total=False):
+class QuotaFailureViolation(typing.TypedDict, total=False):
     apiService: str
     description: str
     futureQuotaValue: str
@@ -1153,70 +1144,75 @@ class QuotaFailureViolation(typing_extensions.TypedDict, total=False):
     subject: str
 
 @typing.type_check_only
-class RequestInfo(typing_extensions.TypedDict, total=False):
+class RequestInfo(typing.TypedDict, total=False):
     requestId: str
     servingData: str
 
 @typing.type_check_only
-class ResourceInfo(typing_extensions.TypedDict, total=False):
+class ReservedPublicIpConfig(typing.TypedDict, total=False):
+    egressPublicIps: _list[str]
+    natIpsCount: int
+
+@typing.type_check_only
+class ResourceInfo(typing.TypedDict, total=False):
     description: str
     owner: str
     resourceName: str
     resourceType: str
 
 @typing.type_check_only
-class RestartMigrationJobRequest(typing_extensions.TypedDict, total=False):
+class RestartMigrationJobRequest(typing.TypedDict, total=False):
     objectsFilter: MigrationJobObjectsConfig
     restartFailedObjects: bool
     skipValidation: bool
 
 @typing.type_check_only
-class ResumeMigrationJobRequest(typing_extensions.TypedDict, total=False):
+class ResumeMigrationJobRequest(typing.TypedDict, total=False):
     skipValidation: bool
 
 @typing.type_check_only
-class RetryInfo(typing_extensions.TypedDict, total=False):
+class RetryInfo(typing.TypedDict, total=False):
     retryDelay: str
 
 @typing.type_check_only
-class ReverseSshConnectivity(typing_extensions.TypedDict, total=False):
+class ReverseSshConnectivity(typing.TypedDict, total=False):
     vm: str
     vmIp: str
     vmPort: int
     vpc: str
 
 @typing.type_check_only
-class RollbackConversionWorkspaceRequest(typing_extensions.TypedDict, total=False): ...
+class RollbackConversionWorkspaceRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class RoundToScale(typing_extensions.TypedDict, total=False):
+class RoundToScale(typing.TypedDict, total=False):
     scale: int
 
 @typing.type_check_only
-class RulesFile(typing_extensions.TypedDict, total=False):
+class RulesFile(typing.TypedDict, total=False):
     rulesContent: str
     rulesSourceFilename: str
 
 @typing.type_check_only
-class SchemaEntity(typing_extensions.TypedDict, total=False):
+class SchemaEntity(typing.TypedDict, total=False):
     customFeatures: dict[str, typing.Any]
 
 @typing.type_check_only
-class SearchBackgroundJobsResponse(typing_extensions.TypedDict, total=False):
+class SearchBackgroundJobsResponse(typing.TypedDict, total=False):
     jobs: _list[BackgroundJobLogEntry]
 
 @typing.type_check_only
-class SeedConversionWorkspaceRequest(typing_extensions.TypedDict, total=False):
+class SeedConversionWorkspaceRequest(typing.TypedDict, total=False):
     autoCommit: bool
     destinationConnectionProfile: str
     sourceConnectionProfile: str
 
 @typing.type_check_only
-class SeedJobDetails(typing_extensions.TypedDict, total=False):
+class SeedJobDetails(typing.TypedDict, total=False):
     connectionProfile: str
 
 @typing.type_check_only
-class SequenceEntity(typing_extensions.TypedDict, total=False):
+class SequenceEntity(typing.TypedDict, total=False):
     cache: str
     customFeatures: dict[str, typing.Any]
     cycle: bool
@@ -1226,17 +1222,17 @@ class SequenceEntity(typing_extensions.TypedDict, total=False):
     startValue: str
 
 @typing.type_check_only
-class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
+class SetIamPolicyRequest(typing.TypedDict, total=False):
     policy: Policy
     updateMask: str
 
 @typing.type_check_only
-class SetTablePrimaryKey(typing_extensions.TypedDict, total=False):
+class SetTablePrimaryKey(typing.TypedDict, total=False):
     primaryKey: str
     primaryKeyColumns: _list[str]
 
 @typing.type_check_only
-class SingleColumnChange(typing_extensions.TypedDict, total=False):
+class SingleColumnChange(typing.TypedDict, total=False):
     array: bool
     arrayLength: int
     autoGenerated: bool
@@ -1254,17 +1250,17 @@ class SingleColumnChange(typing_extensions.TypedDict, total=False):
     udt: bool
 
 @typing.type_check_only
-class SingleEntityRename(typing_extensions.TypedDict, total=False):
+class SingleEntityRename(typing.TypedDict, total=False):
     newName: str
 
 @typing.type_check_only
-class SinglePackageChange(typing_extensions.TypedDict, total=False):
+class SinglePackageChange(typing.TypedDict, total=False):
     packageBody: str
     packageDescription: str
 
 @typing.type_check_only
-class SourceNumericFilter(typing_extensions.TypedDict, total=False):
-    numericFilterOption: typing_extensions.Literal[
+class SourceNumericFilter(typing.TypedDict, total=False):
+    numericFilterOption: typing.Literal[
         "NUMERIC_FILTER_OPTION_UNSPECIFIED",
         "NUMERIC_FILTER_OPTION_ALL",
         "NUMERIC_FILTER_OPTION_LIMIT",
@@ -1276,43 +1272,43 @@ class SourceNumericFilter(typing_extensions.TypedDict, total=False):
     sourceMinScaleFilter: int
 
 @typing.type_check_only
-class SourceObjectConfig(typing_extensions.TypedDict, total=False):
+class SourceObjectConfig(typing.TypedDict, total=False):
     objectIdentifier: SourceObjectIdentifier
 
 @typing.type_check_only
-class SourceObjectIdentifier(typing_extensions.TypedDict, total=False):
+class SourceObjectIdentifier(typing.TypedDict, total=False):
     database: str
     schema: str
     table: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "MIGRATION_JOB_OBJECT_TYPE_UNSPECIFIED", "DATABASE", "SCHEMA", "TABLE"
     ]
 
 @typing.type_check_only
-class SourceObjectsConfig(typing_extensions.TypedDict, total=False):
+class SourceObjectsConfig(typing.TypedDict, total=False):
     objectConfigs: _list[SourceObjectConfig]
-    objectsSelectionType: typing_extensions.Literal[
+    objectsSelectionType: typing.Literal[
         "OBJECTS_SELECTION_TYPE_UNSPECIFIED", "ALL_OBJECTS", "SPECIFIED_OBJECTS"
     ]
 
 @typing.type_check_only
-class SourceSqlChange(typing_extensions.TypedDict, total=False):
+class SourceSqlChange(typing.TypedDict, total=False):
     sqlCode: str
 
 @typing.type_check_only
-class SourceTextFilter(typing_extensions.TypedDict, total=False):
+class SourceTextFilter(typing.TypedDict, total=False):
     sourceMaxLengthFilter: str
     sourceMinLengthFilter: str
 
 @typing.type_check_only
-class SqlAclEntry(typing_extensions.TypedDict, total=False):
+class SqlAclEntry(typing.TypedDict, total=False):
     expireTime: str
     label: str
     ttl: str
     value: str
 
 @typing.type_check_only
-class SqlIpConfig(typing_extensions.TypedDict, total=False):
+class SqlIpConfig(typing.TypedDict, total=False):
     allocatedIpRange: str
     authorizedNetworks: _list[SqlAclEntry]
     enableIpv4: bool
@@ -1320,12 +1316,12 @@ class SqlIpConfig(typing_extensions.TypedDict, total=False):
     requireSsl: bool
 
 @typing.type_check_only
-class SqlServerBackups(typing_extensions.TypedDict, total=False):
+class SqlServerBackups(typing.TypedDict, total=False):
     gcsBucket: str
     gcsPrefix: str
 
 @typing.type_check_only
-class SqlServerConnectionProfile(typing_extensions.TypedDict, total=False):
+class SqlServerConnectionProfile(typing.TypedDict, total=False):
     backups: SqlServerBackups
     cloudSqlId: str
     cloudSqlProjectId: str
@@ -1343,28 +1339,28 @@ class SqlServerConnectionProfile(typing_extensions.TypedDict, total=False):
     username: str
 
 @typing.type_check_only
-class SqlServerDagConfig(typing_extensions.TypedDict, total=False):
+class SqlServerDagConfig(typing.TypedDict, total=False):
     linkedServer: str
     sourceAg: str
 
 @typing.type_check_only
-class SqlServerDatabaseBackup(typing_extensions.TypedDict, total=False):
+class SqlServerDatabaseBackup(typing.TypedDict, total=False):
     database: str
     encryptionOptions: SqlServerEncryptionOptions
 
 @typing.type_check_only
-class SqlServerDestinationConfig(typing_extensions.TypedDict, total=False):
+class SqlServerDestinationConfig(typing.TypedDict, total=False):
     maxConcurrentConnections: int
     transactionTimeout: str
 
 @typing.type_check_only
-class SqlServerEncryptionOptions(typing_extensions.TypedDict, total=False):
+class SqlServerEncryptionOptions(typing.TypedDict, total=False):
     certPath: str
     pvkPassword: str
     pvkPath: str
 
 @typing.type_check_only
-class SqlServerHomogeneousMigrationJobConfig(typing_extensions.TypedDict, total=False):
+class SqlServerHomogeneousMigrationJobConfig(typing.TypedDict, total=False):
     backupFilePattern: str
     dagConfig: SqlServerDagConfig
     databaseBackups: _list[SqlServerDatabaseBackup]
@@ -1372,60 +1368,60 @@ class SqlServerHomogeneousMigrationJobConfig(typing_extensions.TypedDict, total=
     useDiffBackup: bool
 
 @typing.type_check_only
-class SqlServerSourceConfig(typing_extensions.TypedDict, total=False):
+class SqlServerSourceConfig(typing.TypedDict, total=False):
     cdcStartPosition: str
     maxConcurrentCdcConnections: int
     maxConcurrentFullDumpConnections: int
     skipFullDump: bool
 
 @typing.type_check_only
-class SqlServerToPostgresConfig(typing_extensions.TypedDict, total=False):
+class SqlServerToPostgresConfig(typing.TypedDict, total=False):
     postgresDestinationConfig: PostgresDestinationConfig
     sqlserverSourceConfig: SqlServerSourceConfig
 
 @typing.type_check_only
-class SshScript(typing_extensions.TypedDict, total=False):
+class SshScript(typing.TypedDict, total=False):
     script: str
 
 @typing.type_check_only
-class SslConfig(typing_extensions.TypedDict, total=False):
+class SslConfig(typing.TypedDict, total=False):
     caCertificate: str
     clientCertificate: str
     clientKey: str
     sslFlags: dict[str, typing.Any]
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "SSL_TYPE_UNSPECIFIED", "SERVER_ONLY", "SERVER_CLIENT", "REQUIRED", "NONE"
     ]
 
 @typing.type_check_only
-class StartMigrationJobRequest(typing_extensions.TypedDict, total=False):
+class StartMigrationJobRequest(typing.TypedDict, total=False):
     skipValidation: bool
 
 @typing.type_check_only
-class StaticIpConnectivity(typing_extensions.TypedDict, total=False): ...
+class StaticIpConnectivity(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class StaticServiceIpConnectivity(typing_extensions.TypedDict, total=False): ...
+class StaticServiceIpConnectivity(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class StopMigrationJobRequest(typing_extensions.TypedDict, total=False): ...
+class StopMigrationJobRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class StoredProcedureEntity(typing_extensions.TypedDict, total=False):
+class StoredProcedureEntity(typing.TypedDict, total=False):
     customFeatures: dict[str, typing.Any]
     sqlCode: str
 
 @typing.type_check_only
-class SynonymEntity(typing_extensions.TypedDict, total=False):
+class SynonymEntity(typing.TypedDict, total=False):
     customFeatures: dict[str, typing.Any]
     sourceEntity: str
-    sourceType: typing_extensions.Literal[
+    sourceType: typing.Literal[
         "DATABASE_ENTITY_TYPE_UNSPECIFIED",
         "DATABASE_ENTITY_TYPE_SCHEMA",
         "DATABASE_ENTITY_TYPE_TABLE",
@@ -1445,7 +1441,7 @@ class SynonymEntity(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class TableEntity(typing_extensions.TypedDict, total=False):
+class TableEntity(typing.TypedDict, total=False):
     columns: _list[ColumnEntity]
     comment: str
     constraints: _list[ConstraintEntity]
@@ -1454,19 +1450,19 @@ class TableEntity(typing_extensions.TypedDict, total=False):
     triggers: _list[TriggerEntity]
 
 @typing.type_check_only
-class TcpProxyScript(typing_extensions.TypedDict, total=False):
+class TcpProxyScript(typing.TypedDict, total=False):
     script: str
 
 @typing.type_check_only
-class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
+class TestIamPermissionsRequest(typing.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
-class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
+class TestIamPermissionsResponse(typing.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
-class TriggerEntity(typing_extensions.TypedDict, total=False):
+class TriggerEntity(typing.TypedDict, total=False):
     customFeatures: dict[str, typing.Any]
     name: str
     sqlCode: str
@@ -1474,21 +1470,21 @@ class TriggerEntity(typing_extensions.TypedDict, total=False):
     triggeringEvents: _list[str]
 
 @typing.type_check_only
-class UDTEntity(typing_extensions.TypedDict, total=False):
+class UDTEntity(typing.TypedDict, total=False):
     customFeatures: dict[str, typing.Any]
     udtBody: str
     udtSqlCode: str
 
 @typing.type_check_only
-class UserPassword(typing_extensions.TypedDict, total=False):
+class UserPassword(typing.TypedDict, total=False):
     password: str
     passwordSet: bool
     user: str
 
 @typing.type_check_only
-class ValueListFilter(typing_extensions.TypedDict, total=False):
+class ValueListFilter(typing.TypedDict, total=False):
     ignoreCase: bool
-    valuePresentList: typing_extensions.Literal[
+    valuePresentList: typing.Literal[
         "VALUE_PRESENT_IN_LIST_UNSPECIFIED",
         "VALUE_PRESENT_IN_LIST_IF_VALUE_LIST",
         "VALUE_PRESENT_IN_LIST_IF_VALUE_NOT_LIST",
@@ -1496,7 +1492,7 @@ class ValueListFilter(typing_extensions.TypedDict, total=False):
     values: _list[str]
 
 @typing.type_check_only
-class ValueTransformation(typing_extensions.TypedDict, total=False):
+class ValueTransformation(typing.TypedDict, total=False):
     applyHash: ApplyHash
     assignMaxValue: Empty
     assignMinValue: Empty
@@ -1509,31 +1505,31 @@ class ValueTransformation(typing_extensions.TypedDict, total=False):
     valueList: ValueListFilter
 
 @typing.type_check_only
-class VerifyMigrationJobRequest(typing_extensions.TypedDict, total=False):
+class VerifyMigrationJobRequest(typing.TypedDict, total=False):
     migrationJob: MigrationJob
     updateMask: str
 
 @typing.type_check_only
-class ViewEntity(typing_extensions.TypedDict, total=False):
+class ViewEntity(typing.TypedDict, total=False):
     constraints: _list[ConstraintEntity]
     customFeatures: dict[str, typing.Any]
     sqlCode: str
 
 @typing.type_check_only
-class VmCreationConfig(typing_extensions.TypedDict, total=False):
+class VmCreationConfig(typing.TypedDict, total=False):
     subnet: str
     vmMachineType: str
     vmZone: str
 
 @typing.type_check_only
-class VmSelectionConfig(typing_extensions.TypedDict, total=False):
+class VmSelectionConfig(typing.TypedDict, total=False):
     vmZone: str
 
 @typing.type_check_only
-class VpcPeeringConfig(typing_extensions.TypedDict, total=False):
+class VpcPeeringConfig(typing.TypedDict, total=False):
     subnet: str
     vpcName: str
 
 @typing.type_check_only
-class VpcPeeringConnectivity(typing_extensions.TypedDict, total=False):
+class VpcPeeringConnectivity(typing.TypedDict, total=False):
     vpc: str

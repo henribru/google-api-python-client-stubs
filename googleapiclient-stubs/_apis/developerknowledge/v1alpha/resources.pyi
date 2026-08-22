@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -19,7 +18,7 @@ class DeveloperKnowledgeResource(googleapiclient.discovery.Resource):
             self,
             *,
             names: str | _list[str] | None = ...,
-            view: typing_extensions.Literal[
+            view: typing.Literal[
                 "DOCUMENT_VIEW_UNSPECIFIED",
                 "DOCUMENT_VIEW_BASIC",
                 "DOCUMENT_VIEW_FULL",
@@ -32,7 +31,7 @@ class DeveloperKnowledgeResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            view: typing_extensions.Literal[
+            view: typing.Literal[
                 "DOCUMENT_VIEW_UNSPECIFIED",
                 "DOCUMENT_VIEW_BASIC",
                 "DOCUMENT_VIEW_FULL",

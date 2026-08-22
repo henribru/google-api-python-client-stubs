@@ -1,18 +1,16 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class Api(typing_extensions.TypedDict, total=False):
+class Api(typing.TypedDict, total=False):
     operation: str
     protocol: str
     service: str
     version: str
 
 @typing.type_check_only
-class AttributeContext(typing_extensions.TypedDict, total=False):
+class AttributeContext(typing.TypedDict, total=False):
     api: Api
     destination: Peer
     extensions: _list[dict[str, typing.Any]]
@@ -23,7 +21,7 @@ class AttributeContext(typing_extensions.TypedDict, total=False):
     source: Peer
 
 @typing.type_check_only
-class AuditLog(typing_extensions.TypedDict, total=False):
+class AuditLog(typing.TypedDict, total=False):
     apiVersionIdentifier: str
     authenticationInfo: AuthenticationInfo
     authorizationInfo: _list[AuthorizationInfo]
@@ -42,7 +40,7 @@ class AuditLog(typing_extensions.TypedDict, total=False):
     status: Status
 
 @typing.type_check_only
-class Auth(typing_extensions.TypedDict, total=False):
+class Auth(typing.TypedDict, total=False):
     accessLevels: _list[str]
     audiences: _list[str]
     claims: dict[str, typing.Any]
@@ -52,7 +50,7 @@ class Auth(typing_extensions.TypedDict, total=False):
     principal: str
 
 @typing.type_check_only
-class AuthenticationInfo(typing_extensions.TypedDict, total=False):
+class AuthenticationInfo(typing.TypedDict, total=False):
     authoritySelector: str
     loggableShortLivedCredential: dict[str, typing.Any]
     oauthInfo: OAuthInfo
@@ -64,10 +62,10 @@ class AuthenticationInfo(typing_extensions.TypedDict, total=False):
     thirdPartyPrincipal: dict[str, typing.Any]
 
 @typing.type_check_only
-class AuthorizationInfo(typing_extensions.TypedDict, total=False):
+class AuthorizationInfo(typing.TypedDict, total=False):
     granted: bool
     permission: str
-    permissionType: typing_extensions.Literal[
+    permissionType: typing.Literal[
         "PERMISSION_TYPE_UNSPECIFIED",
         "ADMIN_READ",
         "ADMIN_WRITE",
@@ -78,40 +76,40 @@ class AuthorizationInfo(typing_extensions.TypedDict, total=False):
     resourceAttributes: Resource
 
 @typing.type_check_only
-class CheckRequest(typing_extensions.TypedDict, total=False):
+class CheckRequest(typing.TypedDict, total=False):
     attributes: AttributeContext
     flags: str
     resources: _list[ResourceInfo]
     serviceConfigId: str
 
 @typing.type_check_only
-class CheckResponse(typing_extensions.TypedDict, total=False):
+class CheckResponse(typing.TypedDict, total=False):
     dynamicMetadata: dict[str, typing.Any]
     headers: dict[str, typing.Any]
     status: Status
 
 @typing.type_check_only
-class FirstPartyPrincipal(typing_extensions.TypedDict, total=False):
+class FirstPartyPrincipal(typing.TypedDict, total=False):
     principalEmail: str
     serviceMetadata: dict[str, typing.Any]
 
 @typing.type_check_only
-class OAuthInfo(typing_extensions.TypedDict, total=False):
+class OAuthInfo(typing.TypedDict, total=False):
     oauthClientId: str
 
 @typing.type_check_only
-class Oauth(typing_extensions.TypedDict, total=False):
+class Oauth(typing.TypedDict, total=False):
     clientId: str
 
 @typing.type_check_only
-class OrgPolicyViolationInfo(typing_extensions.TypedDict, total=False):
+class OrgPolicyViolationInfo(typing.TypedDict, total=False):
     payload: dict[str, typing.Any]
     resourceTags: dict[str, typing.Any]
     resourceType: str
     violationInfo: _list[ViolationInfo]
 
 @typing.type_check_only
-class Peer(typing_extensions.TypedDict, total=False):
+class Peer(typing.TypedDict, total=False):
     ip: str
     labels: dict[str, typing.Any]
     port: str
@@ -119,20 +117,20 @@ class Peer(typing_extensions.TypedDict, total=False):
     regionCode: str
 
 @typing.type_check_only
-class PolicyViolationInfo(typing_extensions.TypedDict, total=False):
+class PolicyViolationInfo(typing.TypedDict, total=False):
     orgPolicyViolationInfo: OrgPolicyViolationInfo
 
 @typing.type_check_only
-class ReportRequest(typing_extensions.TypedDict, total=False):
+class ReportRequest(typing.TypedDict, total=False):
     operations: _list[AttributeContext]
     serviceConfigId: str
 
 @typing.type_check_only
-class ReportResponse(typing_extensions.TypedDict, total=False):
+class ReportResponse(typing.TypedDict, total=False):
     extensions: dict[str, typing.Any]
 
 @typing.type_check_only
-class Request(typing_extensions.TypedDict, total=False):
+class Request(typing.TypedDict, total=False):
     auth: Auth
     headers: dict[str, typing.Any]
     host: str
@@ -148,7 +146,7 @@ class Request(typing_extensions.TypedDict, total=False):
     time: str
 
 @typing.type_check_only
-class RequestMetadata(typing_extensions.TypedDict, total=False):
+class RequestMetadata(typing.TypedDict, total=False):
     callerIp: str
     callerNetwork: str
     callerSuppliedUserAgent: str
@@ -156,7 +154,7 @@ class RequestMetadata(typing_extensions.TypedDict, total=False):
     requestAttributes: Request
 
 @typing.type_check_only
-class Resource(typing_extensions.TypedDict, total=False):
+class Resource(typing.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     createTime: str
     deleteTime: str
@@ -171,7 +169,7 @@ class Resource(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class ResourceInfo(typing_extensions.TypedDict, total=False):
+class ResourceInfo(typing.TypedDict, total=False):
     container: str
     location: str
     name: str
@@ -179,12 +177,12 @@ class ResourceInfo(typing_extensions.TypedDict, total=False):
     type: str
 
 @typing.type_check_only
-class ResourceLocation(typing_extensions.TypedDict, total=False):
+class ResourceLocation(typing.TypedDict, total=False):
     currentLocations: _list[str]
     originalLocations: _list[str]
 
 @typing.type_check_only
-class Response(typing_extensions.TypedDict, total=False):
+class Response(typing.TypedDict, total=False):
     backendLatency: str
     code: str
     headers: dict[str, typing.Any]
@@ -192,38 +190,38 @@ class Response(typing_extensions.TypedDict, total=False):
     time: str
 
 @typing.type_check_only
-class ServiceAccountDelegationInfo(typing_extensions.TypedDict, total=False):
+class ServiceAccountDelegationInfo(typing.TypedDict, total=False):
     firstPartyPrincipal: FirstPartyPrincipal
     principalSubject: str
     thirdPartyPrincipal: ThirdPartyPrincipal
 
 @typing.type_check_only
-class ServiceDelegationHistory(typing_extensions.TypedDict, total=False):
+class ServiceDelegationHistory(typing.TypedDict, total=False):
     originalPrincipal: str
     serviceMetadata: _list[ServiceMetadata]
 
 @typing.type_check_only
-class ServiceMetadata(typing_extensions.TypedDict, total=False):
+class ServiceMetadata(typing.TypedDict, total=False):
     jobMetadata: dict[str, typing.Any]
     principalSubject: str
     serviceDomain: str
 
 @typing.type_check_only
-class SpanContext(typing_extensions.TypedDict, total=False):
+class SpanContext(typing.TypedDict, total=False):
     spanName: str
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class ThirdPartyPrincipal(typing_extensions.TypedDict, total=False):
+class ThirdPartyPrincipal(typing.TypedDict, total=False):
     thirdPartyClaims: dict[str, typing.Any]
 
 @typing.type_check_only
-class V2HttpRequest(typing_extensions.TypedDict, total=False):
+class V2HttpRequest(typing.TypedDict, total=False):
     cacheFillBytes: str
     cacheHit: bool
     cacheLookup: bool
@@ -241,7 +239,7 @@ class V2HttpRequest(typing_extensions.TypedDict, total=False):
     userAgent: str
 
 @typing.type_check_only
-class V2LogEntry(typing_extensions.TypedDict, total=False):
+class V2LogEntry(typing.TypedDict, total=False):
     httpRequest: V2HttpRequest
     insertId: str
     labels: dict[str, typing.Any]
@@ -249,7 +247,7 @@ class V2LogEntry(typing_extensions.TypedDict, total=False):
     name: str
     operation: V2LogEntryOperation
     protoPayload: dict[str, typing.Any]
-    severity: typing_extensions.Literal[
+    severity: typing.Literal[
         "DEFAULT",
         "DEBUG",
         "INFO",
@@ -267,37 +265,35 @@ class V2LogEntry(typing_extensions.TypedDict, total=False):
     trace: str
 
 @typing.type_check_only
-class V2LogEntryOperation(typing_extensions.TypedDict, total=False):
+class V2LogEntryOperation(typing.TypedDict, total=False):
     first: bool
     id: str
     last: bool
     producer: str
 
 @typing.type_check_only
-class V2LogEntrySourceLocation(typing_extensions.TypedDict, total=False):
+class V2LogEntrySourceLocation(typing.TypedDict, total=False):
     file: str
     function: str
     line: str
 
 @typing.type_check_only
-class V2ResourceEvent(typing_extensions.TypedDict, total=False):
+class V2ResourceEvent(typing.TypedDict, total=False):
     contextId: str
     destinations: str
     parent: Resource
-    path: typing_extensions.Literal["API_PATH_UNSPECIFIED", "REQUEST", "RESPONSE"]
+    path: typing.Literal["API_PATH_UNSPECIFIED", "REQUEST", "RESPONSE"]
     payload: dict[str, typing.Any]
     resource: Resource
-    type: typing_extensions.Literal[
-        "TYPE_UNSPECIFIED", "CREATE", "UPDATE", "DELETE", "UNDELETE"
-    ]
+    type: typing.Literal["TYPE_UNSPECIFIED", "CREATE", "UPDATE", "DELETE", "UNDELETE"]
 
 @typing.type_check_only
-class ViolationInfo(typing_extensions.TypedDict, total=False):
+class ViolationInfo(typing.TypedDict, total=False):
     checkedValue: str
     constraint: str
     constraintViolationInfo: dict[str, typing.Any]
     errorMessage: str
-    policyType: typing_extensions.Literal[
+    policyType: typing.Literal[
         "POLICY_TYPE_UNSPECIFIED",
         "BOOLEAN_CONSTRAINT",
         "LIST_CONSTRAINT",

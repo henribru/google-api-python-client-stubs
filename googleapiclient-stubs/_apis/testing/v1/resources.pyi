@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -88,7 +87,7 @@ class TestingResource(googleapiclient.discovery.Resource):
         def get(
             self,
             *,
-            environmentType: typing_extensions.Literal[
+            environmentType: typing.Literal[
                 "ENVIRONMENT_TYPE_UNSPECIFIED",
                 "ANDROID",
                 "IOS",

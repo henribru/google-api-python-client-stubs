@@ -1,136 +1,134 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class AdWordsLocationExtensions(typing_extensions.TypedDict, total=False):
+class AdWordsLocationExtensions(typing.TypedDict, total=False):
     adPhone: str
 
 @typing.type_check_only
-class Attribute(typing_extensions.TypedDict, total=False):
+class Attribute(typing.TypedDict, total=False):
     name: str
     repeatedEnumValue: RepeatedEnumAttributeValue
     uriValues: _list[UriAttributeValue]
-    valueType: typing_extensions.Literal[
+    valueType: typing.Literal[
         "ATTRIBUTE_VALUE_TYPE_UNSPECIFIED", "BOOL", "ENUM", "URL", "REPEATED_ENUM"
     ]
     values: _list[typing.Any]
 
 @typing.type_check_only
-class AttributeMetadata(typing_extensions.TypedDict, total=False):
+class AttributeMetadata(typing.TypedDict, total=False):
     deprecated: bool
     displayName: str
     groupDisplayName: str
     parent: str
     repeatable: bool
     valueMetadata: _list[AttributeValueMetadata]
-    valueType: typing_extensions.Literal[
+    valueType: typing.Literal[
         "ATTRIBUTE_VALUE_TYPE_UNSPECIFIED", "BOOL", "ENUM", "URL", "REPEATED_ENUM"
     ]
 
 @typing.type_check_only
-class AttributeValueMetadata(typing_extensions.TypedDict, total=False):
+class AttributeValueMetadata(typing.TypedDict, total=False):
     displayName: str
     value: typing.Any
 
 @typing.type_check_only
-class Attributes(typing_extensions.TypedDict, total=False):
+class Attributes(typing.TypedDict, total=False):
     attributes: _list[Attribute]
     name: str
 
 @typing.type_check_only
-class BatchGetCategoriesResponse(typing_extensions.TypedDict, total=False):
+class BatchGetCategoriesResponse(typing.TypedDict, total=False):
     categories: _list[Category]
 
 @typing.type_check_only
-class BusinessHours(typing_extensions.TypedDict, total=False):
+class BusinessHours(typing.TypedDict, total=False):
     periods: _list[TimePeriod]
 
 @typing.type_check_only
-class Categories(typing_extensions.TypedDict, total=False):
+class Categories(typing.TypedDict, total=False):
     additionalCategories: _list[Category]
     primaryCategory: Category
 
 @typing.type_check_only
-class Category(typing_extensions.TypedDict, total=False):
+class Category(typing.TypedDict, total=False):
     displayName: str
     moreHoursTypes: _list[MoreHoursType]
     name: str
     serviceTypes: _list[ServiceType]
 
 @typing.type_check_only
-class Chain(typing_extensions.TypedDict, total=False):
+class Chain(typing.TypedDict, total=False):
     chainNames: _list[ChainName]
     locationCount: int
     name: str
     websites: _list[ChainUri]
 
 @typing.type_check_only
-class ChainName(typing_extensions.TypedDict, total=False):
+class ChainName(typing.TypedDict, total=False):
     displayName: str
     languageCode: str
 
 @typing.type_check_only
-class ChainUri(typing_extensions.TypedDict, total=False):
+class ChainUri(typing.TypedDict, total=False):
     uri: str
 
 @typing.type_check_only
-class Date(typing_extensions.TypedDict, total=False):
+class Date(typing.TypedDict, total=False):
     day: int
     month: int
     year: int
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class FreeFormServiceItem(typing_extensions.TypedDict, total=False):
+class FreeFormServiceItem(typing.TypedDict, total=False):
     category: str
     label: Label
 
 @typing.type_check_only
-class GoogleLocation(typing_extensions.TypedDict, total=False):
+class GoogleLocation(typing.TypedDict, total=False):
     location: Location
     name: str
     requestAdminRightsUri: str
 
 @typing.type_check_only
-class GoogleUpdatedLocation(typing_extensions.TypedDict, total=False):
+class GoogleUpdatedLocation(typing.TypedDict, total=False):
     diffMask: str
     location: Location
     pendingMask: str
 
 @typing.type_check_only
-class Label(typing_extensions.TypedDict, total=False):
+class Label(typing.TypedDict, total=False):
     description: str
     displayName: str
     languageCode: str
 
 @typing.type_check_only
-class LatLng(typing_extensions.TypedDict, total=False):
+class LatLng(typing.TypedDict, total=False):
     latitude: float
     longitude: float
 
 @typing.type_check_only
-class ListAttributeMetadataResponse(typing_extensions.TypedDict, total=False):
+class ListAttributeMetadataResponse(typing.TypedDict, total=False):
     attributeMetadata: _list[AttributeMetadata]
     nextPageToken: str
 
 @typing.type_check_only
-class ListCategoriesResponse(typing_extensions.TypedDict, total=False):
+class ListCategoriesResponse(typing.TypedDict, total=False):
     categories: _list[Category]
     nextPageToken: str
 
 @typing.type_check_only
-class ListLocationsResponse(typing_extensions.TypedDict, total=False):
+class ListLocationsResponse(typing.TypedDict, total=False):
     locations: _list[Location]
     nextPageToken: str
     totalSize: int
 
 @typing.type_check_only
-class Location(typing_extensions.TypedDict, total=False):
+class Location(typing.TypedDict, total=False):
     adWordsLocationExtensions: AdWordsLocationExtensions
     categories: Categories
     labels: _list[str]
@@ -153,7 +151,7 @@ class Location(typing_extensions.TypedDict, total=False):
     websiteUri: str
 
 @typing.type_check_only
-class Metadata(typing_extensions.TypedDict, total=False):
+class Metadata(typing.TypedDict, total=False):
     canDelete: bool
     canHaveBusinessCalls: bool
     canHaveFoodMenus: bool
@@ -171,27 +169,27 @@ class Metadata(typing_extensions.TypedDict, total=False):
     placeId: str
 
 @typing.type_check_only
-class Money(typing_extensions.TypedDict, total=False):
+class Money(typing.TypedDict, total=False):
     currencyCode: str
     nanos: int
     units: str
 
 @typing.type_check_only
-class MoreHours(typing_extensions.TypedDict, total=False):
+class MoreHours(typing.TypedDict, total=False):
     hoursTypeId: str
     periods: _list[TimePeriod]
 
 @typing.type_check_only
-class MoreHoursType(typing_extensions.TypedDict, total=False):
+class MoreHoursType(typing.TypedDict, total=False):
     displayName: str
     hoursTypeId: str
     localizedDisplayName: str
 
 @typing.type_check_only
-class OpenInfo(typing_extensions.TypedDict, total=False):
+class OpenInfo(typing.TypedDict, total=False):
     canReopen: bool
     openingDate: Date
-    status: typing_extensions.Literal[
+    status: typing.Literal[
         "OPEN_FOR_BUSINESS_UNSPECIFIED",
         "OPEN",
         "CLOSED_PERMANENTLY",
@@ -199,21 +197,21 @@ class OpenInfo(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class PhoneNumbers(typing_extensions.TypedDict, total=False):
+class PhoneNumbers(typing.TypedDict, total=False):
     additionalPhones: _list[str]
     primaryPhone: str
 
 @typing.type_check_only
-class PlaceInfo(typing_extensions.TypedDict, total=False):
+class PlaceInfo(typing.TypedDict, total=False):
     placeId: str
     placeName: str
 
 @typing.type_check_only
-class Places(typing_extensions.TypedDict, total=False):
+class Places(typing.TypedDict, total=False):
     placeInfos: _list[PlaceInfo]
 
 @typing.type_check_only
-class PostalAddress(typing_extensions.TypedDict, total=False):
+class PostalAddress(typing.TypedDict, total=False):
     addressLines: _list[str]
     administrativeArea: str
     languageCode: str
@@ -227,44 +225,44 @@ class PostalAddress(typing_extensions.TypedDict, total=False):
     sublocality: str
 
 @typing.type_check_only
-class Profile(typing_extensions.TypedDict, total=False):
+class Profile(typing.TypedDict, total=False):
     description: str
 
 @typing.type_check_only
-class RelationshipData(typing_extensions.TypedDict, total=False):
+class RelationshipData(typing.TypedDict, total=False):
     childrenLocations: _list[RelevantLocation]
     parentChain: str
     parentLocation: RelevantLocation
 
 @typing.type_check_only
-class RelevantLocation(typing_extensions.TypedDict, total=False):
+class RelevantLocation(typing.TypedDict, total=False):
     placeId: str
-    relationType: typing_extensions.Literal[
+    relationType: typing.Literal[
         "RELATION_TYPE_UNSPECIFIED", "DEPARTMENT_OF", "INDEPENDENT_ESTABLISHMENT_IN"
     ]
 
 @typing.type_check_only
-class RepeatedEnumAttributeValue(typing_extensions.TypedDict, total=False):
+class RepeatedEnumAttributeValue(typing.TypedDict, total=False):
     setValues: _list[str]
     unsetValues: _list[str]
 
 @typing.type_check_only
-class SearchChainsResponse(typing_extensions.TypedDict, total=False):
+class SearchChainsResponse(typing.TypedDict, total=False):
     chains: _list[Chain]
 
 @typing.type_check_only
-class SearchGoogleLocationsRequest(typing_extensions.TypedDict, total=False):
+class SearchGoogleLocationsRequest(typing.TypedDict, total=False):
     location: Location
     pageSize: int
     query: str
 
 @typing.type_check_only
-class SearchGoogleLocationsResponse(typing_extensions.TypedDict, total=False):
+class SearchGoogleLocationsResponse(typing.TypedDict, total=False):
     googleLocations: _list[GoogleLocation]
 
 @typing.type_check_only
-class ServiceAreaBusiness(typing_extensions.TypedDict, total=False):
-    businessType: typing_extensions.Literal[
+class ServiceAreaBusiness(typing.TypedDict, total=False):
+    businessType: typing.Literal[
         "BUSINESS_TYPE_UNSPECIFIED",
         "CUSTOMER_LOCATION_ONLY",
         "CUSTOMER_AND_BUSINESS_LOCATION",
@@ -273,18 +271,18 @@ class ServiceAreaBusiness(typing_extensions.TypedDict, total=False):
     regionCode: str
 
 @typing.type_check_only
-class ServiceItem(typing_extensions.TypedDict, total=False):
+class ServiceItem(typing.TypedDict, total=False):
     freeFormServiceItem: FreeFormServiceItem
     price: Money
     structuredServiceItem: StructuredServiceItem
 
 @typing.type_check_only
-class ServiceType(typing_extensions.TypedDict, total=False):
+class ServiceType(typing.TypedDict, total=False):
     displayName: str
     serviceTypeId: str
 
 @typing.type_check_only
-class SpecialHourPeriod(typing_extensions.TypedDict, total=False):
+class SpecialHourPeriod(typing.TypedDict, total=False):
     closeTime: TimeOfDay
     closed: bool
     endDate: Date
@@ -292,24 +290,24 @@ class SpecialHourPeriod(typing_extensions.TypedDict, total=False):
     startDate: Date
 
 @typing.type_check_only
-class SpecialHours(typing_extensions.TypedDict, total=False):
+class SpecialHours(typing.TypedDict, total=False):
     specialHourPeriods: _list[SpecialHourPeriod]
 
 @typing.type_check_only
-class StructuredServiceItem(typing_extensions.TypedDict, total=False):
+class StructuredServiceItem(typing.TypedDict, total=False):
     description: str
     serviceTypeId: str
 
 @typing.type_check_only
-class TimeOfDay(typing_extensions.TypedDict, total=False):
+class TimeOfDay(typing.TypedDict, total=False):
     hours: int
     minutes: int
     nanos: int
     seconds: int
 
 @typing.type_check_only
-class TimePeriod(typing_extensions.TypedDict, total=False):
-    closeDay: typing_extensions.Literal[
+class TimePeriod(typing.TypedDict, total=False):
+    closeDay: typing.Literal[
         "DAY_OF_WEEK_UNSPECIFIED",
         "MONDAY",
         "TUESDAY",
@@ -320,7 +318,7 @@ class TimePeriod(typing_extensions.TypedDict, total=False):
         "SUNDAY",
     ]
     closeTime: TimeOfDay
-    openDay: typing_extensions.Literal[
+    openDay: typing.Literal[
         "DAY_OF_WEEK_UNSPECIFIED",
         "MONDAY",
         "TUESDAY",
@@ -333,5 +331,5 @@ class TimePeriod(typing_extensions.TypedDict, total=False):
     openTime: TimeOfDay
 
 @typing.type_check_only
-class UriAttributeValue(typing_extensions.TypedDict, total=False):
+class UriAttributeValue(typing.TypedDict, total=False):
     uri: str

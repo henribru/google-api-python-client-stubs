@@ -1,31 +1,30 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class AISkillAnalysisNote(typing_extensions.TypedDict, total=False): ...
+class AISkillAnalysisNote(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class AISkillAnalysisOccurrence(typing_extensions.TypedDict, total=False):
+class AISkillAnalysisOccurrence(typing.TypedDict, total=False):
     findings: _list[Finding]
-    maxSeverity: typing_extensions.Literal["SEVERITY_UNSPECIFIED", "CRITICAL", "HIGH"]
+    maxSeverity: typing.Literal["SEVERITY_UNSPECIFIED", "CRITICAL", "HIGH"]
+    perScannerVerdict: PerScannerVerdict
     skillName: str
 
 @typing.type_check_only
-class AnalysisCompleted(typing_extensions.TypedDict, total=False):
+class AnalysisCompleted(typing.TypedDict, total=False):
     analysisType: _list[str]
 
 @typing.type_check_only
-class Artifact(typing_extensions.TypedDict, total=False):
+class Artifact(typing.TypedDict, total=False):
     checksum: str
     id: str
     name: str
     names: _list[str]
 
 @typing.type_check_only
-class Assessment(typing_extensions.TypedDict, total=False):
+class Assessment(typing.TypedDict, total=False):
     cve: str
     impacts: _list[str]
     justification: Justification
@@ -33,50 +32,50 @@ class Assessment(typing_extensions.TypedDict, total=False):
     relatedUris: _list[URI]
     remediations: _list[Remediation]
     shortDescription: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED", "AFFECTED", "NOT_AFFECTED", "FIXED", "UNDER_INVESTIGATION"
     ]
     vulnerabilityId: str
 
 @typing.type_check_only
-class Attestation(typing_extensions.TypedDict, total=False):
+class Attestation(typing.TypedDict, total=False):
     pgpSignedAttestation: PgpSignedAttestation
 
 @typing.type_check_only
-class AttestationAuthority(typing_extensions.TypedDict, total=False):
+class AttestationAuthority(typing.TypedDict, total=False):
     hint: AttestationAuthorityHint
 
 @typing.type_check_only
-class AttestationAuthorityHint(typing_extensions.TypedDict, total=False):
+class AttestationAuthorityHint(typing.TypedDict, total=False):
     humanReadableName: str
 
 @typing.type_check_only
-class BaseImage(typing_extensions.TypedDict, total=False):
+class BaseImage(typing.TypedDict, total=False):
     layerCount: int
     name: str
     registry: str
     repository: str
 
 @typing.type_check_only
-class Basis(typing_extensions.TypedDict, total=False):
+class Basis(typing.TypedDict, total=False):
     fingerprint: Fingerprint
     resourceUrl: str
 
 @typing.type_check_only
-class Binding(typing_extensions.TypedDict, total=False):
+class Binding(typing.TypedDict, total=False):
     condition: Expr
     members: _list[str]
     role: str
 
 @typing.type_check_only
-class BuildDefinition(typing_extensions.TypedDict, total=False):
+class BuildDefinition(typing.TypedDict, total=False):
     buildType: str
     externalParameters: dict[str, typing.Any]
     internalParameters: dict[str, typing.Any]
     resolvedDependencies: _list[ResourceDescriptor]
 
 @typing.type_check_only
-class BuildDetails(typing_extensions.TypedDict, total=False):
+class BuildDetails(typing.TypedDict, total=False):
     inTotoSlsaProvenanceV1: InTotoSlsaProvenanceV1
     intotoProvenance: InTotoProvenance
     intotoStatement: InTotoStatement
@@ -84,13 +83,13 @@ class BuildDetails(typing_extensions.TypedDict, total=False):
     provenanceBytes: str
 
 @typing.type_check_only
-class BuildMetadata(typing_extensions.TypedDict, total=False):
+class BuildMetadata(typing.TypedDict, total=False):
     finishedOn: str
     invocationId: str
     startedOn: str
 
 @typing.type_check_only
-class BuildProvenance(typing_extensions.TypedDict, total=False):
+class BuildProvenance(typing.TypedDict, total=False):
     buildOptions: dict[str, typing.Any]
     builderVersion: str
     builtArtifacts: _list[Artifact]
@@ -106,16 +105,14 @@ class BuildProvenance(typing_extensions.TypedDict, total=False):
     triggerId: str
 
 @typing.type_check_only
-class BuildSignature(typing_extensions.TypedDict, total=False):
+class BuildSignature(typing.TypedDict, total=False):
     keyId: str
-    keyType: typing_extensions.Literal[
-        "KEY_TYPE_UNSPECIFIED", "PGP_ASCII_ARMORED", "PKIX_PEM"
-    ]
+    keyType: typing.Literal["KEY_TYPE_UNSPECIFIED", "PGP_ASCII_ARMORED", "PKIX_PEM"]
     publicKey: str
     signature: str
 
 @typing.type_check_only
-class BuildStep(typing_extensions.TypedDict, total=False):
+class BuildStep(typing.TypedDict, total=False):
     allowExitCodes: _list[int]
     allowFailure: bool
     args: _list[str]
@@ -131,7 +128,7 @@ class BuildStep(typing_extensions.TypedDict, total=False):
     results: _list[StepResult]
     script: str
     secretEnv: _list[str]
-    status: typing_extensions.Literal[
+    status: typing.Literal[
         "STATUS_UNKNOWN",
         "PENDING",
         "QUEUING",
@@ -150,45 +147,45 @@ class BuildStep(typing_extensions.TypedDict, total=False):
     waitFor: _list[str]
 
 @typing.type_check_only
-class BuildType(typing_extensions.TypedDict, total=False):
+class BuildType(typing.TypedDict, total=False):
     builderVersion: str
     signature: BuildSignature
 
 @typing.type_check_only
-class BuilderConfig(typing_extensions.TypedDict, total=False):
+class BuilderConfig(typing.TypedDict, total=False):
     id: str
 
 @typing.type_check_only
-class CISAKnownExploitedVulnerabilities(typing_extensions.TypedDict, total=False):
+class CISAKnownExploitedVulnerabilities(typing.TypedDict, total=False):
     knownRansomwareCampaignUse: str
 
 @typing.type_check_only
-class CVSS(typing_extensions.TypedDict, total=False):
-    attackComplexity: typing_extensions.Literal[
+class CVSS(typing.TypedDict, total=False):
+    attackComplexity: typing.Literal[
         "ATTACK_COMPLEXITY_UNSPECIFIED",
         "ATTACK_COMPLEXITY_LOW",
         "ATTACK_COMPLEXITY_HIGH",
         "ATTACK_COMPLEXITY_MEDIUM",
     ]
-    attackRequirements: typing_extensions.Literal[
+    attackRequirements: typing.Literal[
         "ATTACK_REQUIREMENTS_UNSPECIFIED",
         "ATTACK_REQUIREMENTS_NONE",
         "ATTACK_REQUIREMENTS_PRESENT",
     ]
-    attackVector: typing_extensions.Literal[
+    attackVector: typing.Literal[
         "ATTACK_VECTOR_UNSPECIFIED",
         "ATTACK_VECTOR_NETWORK",
         "ATTACK_VECTOR_ADJACENT",
         "ATTACK_VECTOR_LOCAL",
         "ATTACK_VECTOR_PHYSICAL",
     ]
-    authentication: typing_extensions.Literal[
+    authentication: typing.Literal[
         "AUTHENTICATION_UNSPECIFIED",
         "AUTHENTICATION_MULTIPLE",
         "AUTHENTICATION_SINGLE",
         "AUTHENTICATION_NONE",
     ]
-    availabilityImpact: typing_extensions.Literal[
+    availabilityImpact: typing.Literal[
         "IMPACT_UNSPECIFIED",
         "IMPACT_HIGH",
         "IMPACT_LOW",
@@ -197,7 +194,7 @@ class CVSS(typing_extensions.TypedDict, total=False):
         "IMPACT_COMPLETE",
     ]
     baseScore: float
-    confidentialityImpact: typing_extensions.Literal[
+    confidentialityImpact: typing.Literal[
         "IMPACT_UNSPECIFIED",
         "IMPACT_HIGH",
         "IMPACT_LOW",
@@ -205,7 +202,7 @@ class CVSS(typing_extensions.TypedDict, total=False):
         "IMPACT_PARTIAL",
         "IMPACT_COMPLETE",
     ]
-    exploitMaturity: typing_extensions.Literal[
+    exploitMaturity: typing.Literal[
         "EXPLOIT_MATURITY_UNSPECIFIED",
         "EXPLOIT_MATURITY_NOT_DEFINED",
         "EXPLOIT_MATURITY_ATTACKED",
@@ -214,7 +211,7 @@ class CVSS(typing_extensions.TypedDict, total=False):
     ]
     exploitabilityScore: float
     impactScore: float
-    integrityImpact: typing_extensions.Literal[
+    integrityImpact: typing.Literal[
         "IMPACT_UNSPECIFIED",
         "IMPACT_HIGH",
         "IMPACT_LOW",
@@ -222,16 +219,14 @@ class CVSS(typing_extensions.TypedDict, total=False):
         "IMPACT_PARTIAL",
         "IMPACT_COMPLETE",
     ]
-    privilegesRequired: typing_extensions.Literal[
+    privilegesRequired: typing.Literal[
         "PRIVILEGES_REQUIRED_UNSPECIFIED",
         "PRIVILEGES_REQUIRED_NONE",
         "PRIVILEGES_REQUIRED_LOW",
         "PRIVILEGES_REQUIRED_HIGH",
     ]
-    scope: typing_extensions.Literal[
-        "SCOPE_UNSPECIFIED", "SCOPE_UNCHANGED", "SCOPE_CHANGED"
-    ]
-    subsequentSystemAvailabilityImpact: typing_extensions.Literal[
+    scope: typing.Literal["SCOPE_UNSPECIFIED", "SCOPE_UNCHANGED", "SCOPE_CHANGED"]
+    subsequentSystemAvailabilityImpact: typing.Literal[
         "IMPACT_UNSPECIFIED",
         "IMPACT_HIGH",
         "IMPACT_LOW",
@@ -239,7 +234,7 @@ class CVSS(typing_extensions.TypedDict, total=False):
         "IMPACT_PARTIAL",
         "IMPACT_COMPLETE",
     ]
-    subsequentSystemConfidentialityImpact: typing_extensions.Literal[
+    subsequentSystemConfidentialityImpact: typing.Literal[
         "IMPACT_UNSPECIFIED",
         "IMPACT_HIGH",
         "IMPACT_LOW",
@@ -247,7 +242,7 @@ class CVSS(typing_extensions.TypedDict, total=False):
         "IMPACT_PARTIAL",
         "IMPACT_COMPLETE",
     ]
-    subsequentSystemIntegrityImpact: typing_extensions.Literal[
+    subsequentSystemIntegrityImpact: typing.Literal[
         "IMPACT_UNSPECIFIED",
         "IMPACT_HIGH",
         "IMPACT_LOW",
@@ -255,14 +250,14 @@ class CVSS(typing_extensions.TypedDict, total=False):
         "IMPACT_PARTIAL",
         "IMPACT_COMPLETE",
     ]
-    userInteraction: typing_extensions.Literal[
+    userInteraction: typing.Literal[
         "USER_INTERACTION_UNSPECIFIED",
         "USER_INTERACTION_NONE",
         "USER_INTERACTION_REQUIRED",
         "USER_INTERACTION_PASSIVE",
         "USER_INTERACTION_ACTIVE",
     ]
-    vulnerableSystemAvailabilityImpact: typing_extensions.Literal[
+    vulnerableSystemAvailabilityImpact: typing.Literal[
         "IMPACT_UNSPECIFIED",
         "IMPACT_HIGH",
         "IMPACT_LOW",
@@ -270,7 +265,7 @@ class CVSS(typing_extensions.TypedDict, total=False):
         "IMPACT_PARTIAL",
         "IMPACT_COMPLETE",
     ]
-    vulnerableSystemConfidentialityImpact: typing_extensions.Literal[
+    vulnerableSystemConfidentialityImpact: typing.Literal[
         "IMPACT_UNSPECIFIED",
         "IMPACT_HIGH",
         "IMPACT_LOW",
@@ -278,7 +273,7 @@ class CVSS(typing_extensions.TypedDict, total=False):
         "IMPACT_PARTIAL",
         "IMPACT_COMPLETE",
     ]
-    vulnerableSystemIntegrityImpact: typing_extensions.Literal[
+    vulnerableSystemIntegrityImpact: typing.Literal[
         "IMPACT_UNSPECIFIED",
         "IMPACT_HIGH",
         "IMPACT_LOW",
@@ -288,14 +283,14 @@ class CVSS(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class CisBenchmark(typing_extensions.TypedDict, total=False):
+class CisBenchmark(typing.TypedDict, total=False):
     profileLevel: int
-    severity: typing_extensions.Literal[
+    severity: typing.Literal[
         "SEVERITY_UNSPECIFIED", "MINIMAL", "LOW", "MEDIUM", "HIGH", "CRITICAL"
     ]
 
 @typing.type_check_only
-class Command(typing_extensions.TypedDict, total=False):
+class Command(typing.TypedDict, total=False):
     args: _list[str]
     dir: str
     env: _list[str]
@@ -304,13 +299,13 @@ class Command(typing_extensions.TypedDict, total=False):
     waitFor: _list[str]
 
 @typing.type_check_only
-class Completeness(typing_extensions.TypedDict, total=False):
+class Completeness(typing.TypedDict, total=False):
     arguments: bool
     environment: bool
     materials: bool
 
 @typing.type_check_only
-class ComplianceNote(typing_extensions.TypedDict, total=False):
+class ComplianceNote(typing.TypedDict, total=False):
     cisBenchmark: CisBenchmark
     description: str
     impact: str
@@ -321,36 +316,36 @@ class ComplianceNote(typing_extensions.TypedDict, total=False):
     version: _list[ComplianceVersion]
 
 @typing.type_check_only
-class ComplianceOccurrence(typing_extensions.TypedDict, total=False):
+class ComplianceOccurrence(typing.TypedDict, total=False):
     nonComplianceReason: str
     nonCompliantFiles: _list[NonCompliantFile]
     version: ComplianceVersion
 
 @typing.type_check_only
-class ComplianceVersion(typing_extensions.TypedDict, total=False):
+class ComplianceVersion(typing.TypedDict, total=False):
     benchmarkDocument: str
     cpeUri: str
     version: str
 
 @typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1ApprovalConfig(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     approvalRequired: bool
 
 @typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1ApprovalResult(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     approvalTime: str
     approverAccount: str
     comment: str
-    decision: typing_extensions.Literal["DECISION_UNSPECIFIED", "APPROVED", "REJECTED"]
+    decision: typing.Literal["DECISION_UNSPECIFIED", "APPROVED", "REJECTED"]
     url: str
 
 @typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1Artifacts(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     genericArtifacts: _list[
         ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsGenericArtifact
@@ -369,7 +364,7 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1Artifacts(
 
 @typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsArtifactObjects(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     location: str
     paths: _list[str]
@@ -377,14 +372,14 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsArtifactObjects(
 
 @typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsGenericArtifact(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     folder: str
     registryPath: str
 
 @typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsGoModule(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     modulePath: str
     moduleVersion: str
@@ -395,7 +390,7 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsGoModule(
 
 @typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsMavenArtifact(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     artifactId: str
     deployFolder: str
@@ -406,14 +401,14 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsMavenArtifact(
 
 @typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsNpmPackage(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     packagePath: str
     repository: str
 
 @typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsOci(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     file: str
     registryPath: str
@@ -421,15 +416,13 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsOci(
 
 @typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsPythonPackage(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     paths: _list[str]
     repository: str
 
 @typing.type_check_only
-class ContaineranalysisGoogleDevtoolsCloudbuildV1Build(
-    typing_extensions.TypedDict, total=False
-):
+class ContaineranalysisGoogleDevtoolsCloudbuildV1Build(typing.TypedDict, total=False):
     approval: ContaineranalysisGoogleDevtoolsCloudbuildV1BuildApproval
     artifacts: ContaineranalysisGoogleDevtoolsCloudbuildV1Artifacts
     availableSecrets: ContaineranalysisGoogleDevtoolsCloudbuildV1Secrets
@@ -453,7 +446,7 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1Build(
     source: ContaineranalysisGoogleDevtoolsCloudbuildV1Source
     sourceProvenance: ContaineranalysisGoogleDevtoolsCloudbuildV1SourceProvenance
     startTime: str
-    status: typing_extensions.Literal[
+    status: typing.Literal[
         "STATUS_UNKNOWN",
         "PENDING",
         "QUEUED",
@@ -475,20 +468,20 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1Build(
 
 @typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1BuildApproval(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     config: ContaineranalysisGoogleDevtoolsCloudbuildV1ApprovalConfig
     result: ContaineranalysisGoogleDevtoolsCloudbuildV1ApprovalResult
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED", "PENDING", "APPROVED", "REJECTED", "CANCELLED"
     ]
 
 @typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1BuildFailureInfo(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     detail: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "FAILURE_TYPE_UNSPECIFIED",
         "PUSH_FAILED",
         "PUSH_IMAGE_NOT_FOUND",
@@ -500,10 +493,10 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1BuildFailureInfo(
 
 @typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1BuildOptions(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     automapSubstitutions: bool
-    defaultLogsBucketBehavior: typing_extensions.Literal[
+    defaultLogsBucketBehavior: typing.Literal[
         "DEFAULT_LOGS_BUCKET_BEHAVIOR_UNSPECIFIED",
         "REGIONAL_USER_OWNED_BUCKET",
         "LEGACY_BUCKET",
@@ -512,10 +505,8 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1BuildOptions(
     dynamicSubstitutions: bool
     enableStructuredLogging: bool
     env: _list[str]
-    logStreamingOption: typing_extensions.Literal[
-        "STREAM_DEFAULT", "STREAM_ON", "STREAM_OFF"
-    ]
-    logging: typing_extensions.Literal[
+    logStreamingOption: typing.Literal["STREAM_DEFAULT", "STREAM_ON", "STREAM_OFF"]
+    logging: typing.Literal[
         "LOGGING_UNSPECIFIED",
         "LEGACY",
         "GCS_ONLY",
@@ -523,7 +514,7 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1BuildOptions(
         "CLOUD_LOGGING_ONLY",
         "NONE",
     ]
-    machineType: typing_extensions.Literal[
+    machineType: typing.Literal[
         "UNSPECIFIED",
         "N1_HIGHCPU_8",
         "N1_HIGHCPU_32",
@@ -534,26 +525,26 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1BuildOptions(
     ]
     pool: ContaineranalysisGoogleDevtoolsCloudbuildV1BuildOptionsPoolOption
     pubsubTopic: str
-    requestedVerifyOption: typing_extensions.Literal["NOT_VERIFIED", "VERIFIED"]
+    requestedVerifyOption: typing.Literal["NOT_VERIFIED", "VERIFIED"]
     secretEnv: _list[str]
     sourceProvenanceHash: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "NONE", "SHA256", "MD5", "GO_MODULE_H1", "SHA512", "DIRSUM_SHA256"
         ]
     ]
-    substitutionOption: typing_extensions.Literal["MUST_MATCH", "ALLOW_LOOSE"]
+    substitutionOption: typing.Literal["MUST_MATCH", "ALLOW_LOOSE"]
     volumes: _list[ContaineranalysisGoogleDevtoolsCloudbuildV1Volume]
     workerPool: str
 
 @typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1BuildOptionsPoolOption(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     name: str
 
 @typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1BuildStep(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     allowExitCodes: _list[int]
     allowFailure: bool
@@ -569,7 +560,7 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1BuildStep(
     results: _list[ContaineranalysisGoogleDevtoolsCloudbuildV1StepResult]
     script: str
     secretEnv: _list[str]
-    status: typing_extensions.Literal[
+    status: typing.Literal[
         "STATUS_UNKNOWN",
         "PENDING",
         "QUEUED",
@@ -588,34 +579,32 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1BuildStep(
 
 @typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1BuildStepResults(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     results: dict[str, typing.Any]
 
 @typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1BuildWarning(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    priority: typing_extensions.Literal[
-        "PRIORITY_UNSPECIFIED", "INFO", "WARNING", "ALERT"
-    ]
+    priority: typing.Literal["PRIORITY_UNSPECIFIED", "INFO", "WARNING", "ALERT"]
     text: str
 
 @typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1BuiltImage(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     artifactRegistryPackage: str
     digest: str
     name: str
-    ociMediaType: typing_extensions.Literal[
+    ociMediaType: typing.Literal[
         "OCI_MEDIA_TYPE_UNSPECIFIED", "IMAGE_MANIFEST", "IMAGE_INDEX"
     ]
     pushTiming: ContaineranalysisGoogleDevtoolsCloudbuildV1TimeSpan
 
 @typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1ConnectedRepository(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     dir: str
     repository: str
@@ -623,7 +612,7 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1ConnectedRepository(
 
 @typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1Dependency(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     empty: bool
     genericArtifact: (
@@ -633,14 +622,14 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1Dependency(
 
 @typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1DependencyGenericArtifactDependency(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     destPath: str
     resource: str
 
 @typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1DependencyGitSourceDependency(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     depth: str
     destPath: str
@@ -650,14 +639,14 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1DependencyGitSourceDependency(
 
 @typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1DependencyGitSourceRepository(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     developerConnect: str
     url: str
 
 @typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1DeveloperConnectConfig(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     dir: str
     gitRepositoryLink: str
@@ -665,49 +654,47 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1DeveloperConnectConfig(
 
 @typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1FileHashes(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     fileHash: _list[ContaineranalysisGoogleDevtoolsCloudbuildV1Hash]
 
 @typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1GitConfig(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     http: ContaineranalysisGoogleDevtoolsCloudbuildV1GitConfigHttpConfig
 
 @typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1GitConfigHttpConfig(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     proxySecretVersionName: str
 
 @typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1GitSource(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     dir: str
     revision: str
     url: str
 
 @typing.type_check_only
-class ContaineranalysisGoogleDevtoolsCloudbuildV1Hash(
-    typing_extensions.TypedDict, total=False
-):
-    type: typing_extensions.Literal[
+class ContaineranalysisGoogleDevtoolsCloudbuildV1Hash(typing.TypedDict, total=False):
+    type: typing.Literal[
         "NONE", "SHA256", "MD5", "GO_MODULE_H1", "SHA512", "DIRSUM_SHA256"
     ]
     value: str
 
 @typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1InlineSecret(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     envMap: dict[str, typing.Any]
     kmsKeyName: str
 
 @typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1RepoSource(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     branchName: str
     commitSha: str
@@ -719,9 +706,7 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1RepoSource(
     tagName: str
 
 @typing.type_check_only
-class ContaineranalysisGoogleDevtoolsCloudbuildV1Results(
-    typing_extensions.TypedDict, total=False
-):
+class ContaineranalysisGoogleDevtoolsCloudbuildV1Results(typing.TypedDict, total=False):
     artifactManifest: str
     artifactTiming: ContaineranalysisGoogleDevtoolsCloudbuildV1TimeSpan
     buildStepImages: _list[str]
@@ -742,30 +727,24 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1Results(
     ]
 
 @typing.type_check_only
-class ContaineranalysisGoogleDevtoolsCloudbuildV1Secret(
-    typing_extensions.TypedDict, total=False
-):
+class ContaineranalysisGoogleDevtoolsCloudbuildV1Secret(typing.TypedDict, total=False):
     kmsKeyName: str
     secretEnv: dict[str, typing.Any]
 
 @typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1SecretManagerSecret(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     env: str
     versionName: str
 
 @typing.type_check_only
-class ContaineranalysisGoogleDevtoolsCloudbuildV1Secrets(
-    typing_extensions.TypedDict, total=False
-):
+class ContaineranalysisGoogleDevtoolsCloudbuildV1Secrets(typing.TypedDict, total=False):
     inline: _list[ContaineranalysisGoogleDevtoolsCloudbuildV1InlineSecret]
     secretManager: _list[ContaineranalysisGoogleDevtoolsCloudbuildV1SecretManagerSecret]
 
 @typing.type_check_only
-class ContaineranalysisGoogleDevtoolsCloudbuildV1Source(
-    typing_extensions.TypedDict, total=False
-):
+class ContaineranalysisGoogleDevtoolsCloudbuildV1Source(typing.TypedDict, total=False):
     connectedRepository: ContaineranalysisGoogleDevtoolsCloudbuildV1ConnectedRepository
     developerConnectConfig: (
         ContaineranalysisGoogleDevtoolsCloudbuildV1DeveloperConnectConfig
@@ -779,7 +758,7 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1Source(
 
 @typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1SourceProvenance(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     fileHashes: dict[str, typing.Any]
     resolvedConnectedRepository: (
@@ -794,7 +773,7 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1SourceProvenance(
 
 @typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1StepResult(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     attestationContent: str
     attestationType: str
@@ -802,18 +781,16 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1StepResult(
 
 @typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1StorageSource(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     bucket: str
     generation: str
     object: str
-    sourceFetcher: typing_extensions.Literal[
-        "SOURCE_FETCHER_UNSPECIFIED", "GSUTIL", "GCS_FETCHER"
-    ]
+    sourceFetcher: typing.Literal["SOURCE_FETCHER_UNSPECIFIED", "GSUTIL", "GCS_FETCHER"]
 
 @typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1StorageSourceManifest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     bucket: str
     generation: str
@@ -821,14 +798,14 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1StorageSourceManifest(
 
 @typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1TimeSpan(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     endTime: str
     startTime: str
 
 @typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedGenericArtifact(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     artifactFingerprint: ContaineranalysisGoogleDevtoolsCloudbuildV1FileHashes
     artifactRegistryPackage: str
@@ -838,7 +815,7 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedGenericArtifact(
 
 @typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedGoModule(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     artifactRegistryPackage: str
     fileHashes: ContaineranalysisGoogleDevtoolsCloudbuildV1FileHashes
@@ -847,7 +824,7 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedGoModule(
 
 @typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedMavenArtifact(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     artifactRegistryPackage: str
     fileHashes: ContaineranalysisGoogleDevtoolsCloudbuildV1FileHashes
@@ -856,7 +833,7 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedMavenArtifact(
 
 @typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedNpmPackage(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     artifactRegistryPackage: str
     fileHashes: ContaineranalysisGoogleDevtoolsCloudbuildV1FileHashes
@@ -865,7 +842,7 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedNpmPackage(
 
 @typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedPythonPackage(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     artifactRegistryPackage: str
     fileHashes: ContaineranalysisGoogleDevtoolsCloudbuildV1FileHashes
@@ -873,53 +850,51 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedPythonPackage(
     uri: str
 
 @typing.type_check_only
-class ContaineranalysisGoogleDevtoolsCloudbuildV1Volume(
-    typing_extensions.TypedDict, total=False
-):
+class ContaineranalysisGoogleDevtoolsCloudbuildV1Volume(typing.TypedDict, total=False):
     name: str
     path: str
 
 @typing.type_check_only
-class CreateOperationRequest(typing_extensions.TypedDict, total=False):
+class CreateOperationRequest(typing.TypedDict, total=False):
     operation: Operation
     operationId: str
 
 @typing.type_check_only
-class DSSEAttestationNote(typing_extensions.TypedDict, total=False):
+class DSSEAttestationNote(typing.TypedDict, total=False):
     hint: DSSEHint
 
 @typing.type_check_only
-class DSSEAttestationOccurrence(typing_extensions.TypedDict, total=False):
+class DSSEAttestationOccurrence(typing.TypedDict, total=False):
     envelope: Envelope
     statement: InTotoStatement
 
 @typing.type_check_only
-class DSSEHint(typing_extensions.TypedDict, total=False):
+class DSSEHint(typing.TypedDict, total=False):
     humanReadableName: str
 
 @typing.type_check_only
-class Deployable(typing_extensions.TypedDict, total=False):
+class Deployable(typing.TypedDict, total=False):
     resourceUri: _list[str]
 
 @typing.type_check_only
-class Deployment(typing_extensions.TypedDict, total=False):
+class Deployment(typing.TypedDict, total=False):
     address: str
     config: str
     deployTime: str
-    platform: typing_extensions.Literal["PLATFORM_UNSPECIFIED", "GKE", "FLEX", "CUSTOM"]
+    platform: typing.Literal["PLATFORM_UNSPECIFIED", "GKE", "FLEX", "CUSTOM"]
     resourceUri: _list[str]
     undeployTime: str
     userEmail: str
 
 @typing.type_check_only
-class Derived(typing_extensions.TypedDict, total=False):
+class Derived(typing.TypedDict, total=False):
     baseResourceUrl: str
     distance: int
     fingerprint: Fingerprint
     layerInfo: _list[Layer]
 
 @typing.type_check_only
-class Detail(typing_extensions.TypedDict, total=False):
+class Detail(typing.TypedDict, total=False):
     cpeUri: str
     description: str
     fixedLocation: VulnerabilityLocation
@@ -933,15 +908,15 @@ class Detail(typing_extensions.TypedDict, total=False):
     vendor: str
 
 @typing.type_check_only
-class Digest(typing_extensions.TypedDict, total=False):
+class Digest(typing.TypedDict, total=False):
     algo: str
     digestBytes: str
 
 @typing.type_check_only
-class Discovered(typing_extensions.TypedDict, total=False):
+class Discovered(typing.TypedDict, total=False):
     analysisCompleted: AnalysisCompleted
     analysisError: _list[Status]
-    analysisStatus: typing_extensions.Literal[
+    analysisStatus: typing.Literal[
         "ANALYSIS_STATUS_UNSPECIFIED",
         "PENDING",
         "SCANNING",
@@ -952,7 +927,7 @@ class Discovered(typing_extensions.TypedDict, total=False):
     ]
     analysisStatusError: Status
     archiveTime: str
-    continuousAnalysis: typing_extensions.Literal[
+    continuousAnalysis: typing.Literal[
         "CONTINUOUS_ANALYSIS_UNSPECIFIED", "ACTIVE", "INACTIVE"
     ]
     cpe: str
@@ -964,8 +939,8 @@ class Discovered(typing_extensions.TypedDict, total=False):
     vulnerabilityAttestation: VulnerabilityAttestation
 
 @typing.type_check_only
-class Discovery(typing_extensions.TypedDict, total=False):
-    analysisKind: typing_extensions.Literal[
+class Discovery(typing.TypedDict, total=False):
+    analysisKind: typing.Literal[
         "KIND_UNSPECIFIED",
         "PACKAGE_VULNERABILITY",
         "BUILD_DETAILS",
@@ -988,8 +963,8 @@ class Discovery(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class Distribution(typing_extensions.TypedDict, total=False):
-    architecture: typing_extensions.Literal["ARCHITECTURE_UNSPECIFIED", "X86", "X64"]
+class Distribution(typing.TypedDict, total=False):
+    architecture: typing.Literal["ARCHITECTURE_UNSPECIFIED", "X86", "X64"]
     cpeUri: str
     description: str
     latestVersion: Version
@@ -997,12 +972,12 @@ class Distribution(typing_extensions.TypedDict, total=False):
     url: str
 
 @typing.type_check_only
-class DocumentNote(typing_extensions.TypedDict, total=False):
+class DocumentNote(typing.TypedDict, total=False):
     dataLicence: str
     spdxVersion: str
 
 @typing.type_check_only
-class DocumentOccurrence(typing_extensions.TypedDict, total=False):
+class DocumentOccurrence(typing.TypedDict, total=False):
     createTime: str
     creatorComment: str
     creators: _list[str]
@@ -1014,34 +989,34 @@ class DocumentOccurrence(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Envelope(typing_extensions.TypedDict, total=False):
+class Envelope(typing.TypedDict, total=False):
     payload: str
     payloadType: str
     signatures: _list[EnvelopeSignature]
 
 @typing.type_check_only
-class EnvelopeSignature(typing_extensions.TypedDict, total=False):
+class EnvelopeSignature(typing.TypedDict, total=False):
     keyid: str
     sig: str
 
 @typing.type_check_only
-class ExploitPredictionScoringSystem(typing_extensions.TypedDict, total=False):
+class ExploitPredictionScoringSystem(typing.TypedDict, total=False):
     percentile: float
     score: float
 
 @typing.type_check_only
-class Expr(typing_extensions.TypedDict, total=False):
+class Expr(typing.TypedDict, total=False):
     description: str
     expression: str
     location: str
     title: str
 
 @typing.type_check_only
-class ExternalRef(typing_extensions.TypedDict, total=False):
-    category: typing_extensions.Literal[
+class ExternalRef(typing.TypedDict, total=False):
+    category: typing.Literal[
         "CATEGORY_UNSPECIFIED", "SECURITY", "PACKAGE_MANAGER", "PERSISTENT_ID", "OTHER"
     ]
     comment: str
@@ -1049,24 +1024,24 @@ class ExternalRef(typing_extensions.TypedDict, total=False):
     type: str
 
 @typing.type_check_only
-class File(typing_extensions.TypedDict, total=False):
+class File(typing.TypedDict, total=False):
     digest: dict[str, typing.Any]
     name: str
 
 @typing.type_check_only
-class FileHashes(typing_extensions.TypedDict, total=False):
+class FileHashes(typing.TypedDict, total=False):
     fileHash: _list[Hash]
 
 @typing.type_check_only
-class FileLocation(typing_extensions.TypedDict, total=False):
+class FileLocation(typing.TypedDict, total=False):
     filePath: str
     layerDetails: LayerDetails
     lineNumber: int
 
 @typing.type_check_only
-class FileNote(typing_extensions.TypedDict, total=False):
+class FileNote(typing.TypedDict, total=False):
     checksum: _list[str]
-    fileType: typing_extensions.Literal[
+    fileType: typing.Literal[
         "FILE_TYPE_UNSPECIFIED",
         "SOURCE",
         "BINARY",
@@ -1083,7 +1058,7 @@ class FileNote(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
-class FileOccurrence(typing_extensions.TypedDict, total=False):
+class FileOccurrence(typing.TypedDict, total=False):
     attributions: _list[str]
     comment: str
     contributors: _list[str]
@@ -1094,48 +1069,48 @@ class FileOccurrence(typing_extensions.TypedDict, total=False):
     notice: str
 
 @typing.type_check_only
-class Finding(typing_extensions.TypedDict, total=False):
+class Finding(typing.TypedDict, total=False):
     category: str
     details: str
     location: FindingLocation
-    scanner: typing_extensions.Literal[
-        "SCANNER_UNSPECIFIED", "STATIC", "LLM", "WS_POLICY"
+    scanner: typing.Literal[
+        "SCANNER_UNSPECIFIED", "STATIC", "LLM", "WS_POLICY", "GOOGLE_ANTIVIRUS"
     ]
-    severity: typing_extensions.Literal["SEVERITY_UNSPECIFIED", "CRITICAL", "HIGH"]
+    severity: typing.Literal["SEVERITY_UNSPECIFIED", "CRITICAL", "HIGH"]
 
 @typing.type_check_only
-class FindingLocation(typing_extensions.TypedDict, total=False):
+class FindingLocation(typing.TypedDict, total=False):
     filePath: str
     lineNumber: str
 
 @typing.type_check_only
-class Fingerprint(typing_extensions.TypedDict, total=False):
+class Fingerprint(typing.TypedDict, total=False):
     v1Name: str
     v2Blob: _list[str]
     v2Name: str
 
 @typing.type_check_only
-class GetIamPolicyRequest(typing_extensions.TypedDict, total=False):
+class GetIamPolicyRequest(typing.TypedDict, total=False):
     options: GetPolicyOptions
 
 @typing.type_check_only
-class GetPolicyOptions(typing_extensions.TypedDict, total=False):
+class GetPolicyOptions(typing.TypedDict, total=False):
     requestedPolicyVersion: int
 
 @typing.type_check_only
-class GetVulnzOccurrencesSummaryResponse(typing_extensions.TypedDict, total=False):
+class GetVulnzOccurrencesSummaryResponse(typing.TypedDict, total=False):
     counts: _list[SeverityCount]
 
 @typing.type_check_only
 class GoogleDevtoolsContaineranalysisV1alpha1AliasContext(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    kind: typing_extensions.Literal["KIND_UNSPECIFIED", "FIXED", "MOVABLE", "OTHER"]
+    kind: typing.Literal["KIND_UNSPECIFIED", "FIXED", "MOVABLE", "OTHER"]
     name: str
 
 @typing.type_check_only
 class GoogleDevtoolsContaineranalysisV1alpha1CloudRepoSourceContext(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     aliasContext: GoogleDevtoolsContaineranalysisV1alpha1AliasContext
     repoId: GoogleDevtoolsContaineranalysisV1alpha1RepoId
@@ -1143,7 +1118,7 @@ class GoogleDevtoolsContaineranalysisV1alpha1CloudRepoSourceContext(
 
 @typing.type_check_only
 class GoogleDevtoolsContaineranalysisV1alpha1GerritSourceContext(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     aliasContext: GoogleDevtoolsContaineranalysisV1alpha1AliasContext
     gerritProject: str
@@ -1152,41 +1127,39 @@ class GoogleDevtoolsContaineranalysisV1alpha1GerritSourceContext(
 
 @typing.type_check_only
 class GoogleDevtoolsContaineranalysisV1alpha1GitSourceContext(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     revisionId: str
     url: str
 
 @typing.type_check_only
 class GoogleDevtoolsContaineranalysisV1alpha1OperationMetadata(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     createTime: str
     endTime: str
 
 @typing.type_check_only
 class GoogleDevtoolsContaineranalysisV1alpha1ProjectRepoId(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     projectId: str
     repoName: str
 
 @typing.type_check_only
-class GoogleDevtoolsContaineranalysisV1alpha1RepoId(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleDevtoolsContaineranalysisV1alpha1RepoId(typing.TypedDict, total=False):
     projectRepoId: GoogleDevtoolsContaineranalysisV1alpha1ProjectRepoId
     uid: str
 
 @typing.type_check_only
 class GoogleDevtoolsContaineranalysisV1alpha1SlsaProvenanceZeroTwoSlsaBuilder(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     id: str
 
 @typing.type_check_only
 class GoogleDevtoolsContaineranalysisV1alpha1SlsaProvenanceZeroTwoSlsaCompleteness(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     environment: bool
     materials: bool
@@ -1194,7 +1167,7 @@ class GoogleDevtoolsContaineranalysisV1alpha1SlsaProvenanceZeroTwoSlsaCompletene
 
 @typing.type_check_only
 class GoogleDevtoolsContaineranalysisV1alpha1SlsaProvenanceZeroTwoSlsaConfigSource(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     digest: dict[str, typing.Any]
     entryPoint: str
@@ -1202,7 +1175,7 @@ class GoogleDevtoolsContaineranalysisV1alpha1SlsaProvenanceZeroTwoSlsaConfigSour
 
 @typing.type_check_only
 class GoogleDevtoolsContaineranalysisV1alpha1SlsaProvenanceZeroTwoSlsaInvocation(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     configSource: (
         GoogleDevtoolsContaineranalysisV1alpha1SlsaProvenanceZeroTwoSlsaConfigSource
@@ -1212,14 +1185,14 @@ class GoogleDevtoolsContaineranalysisV1alpha1SlsaProvenanceZeroTwoSlsaInvocation
 
 @typing.type_check_only
 class GoogleDevtoolsContaineranalysisV1alpha1SlsaProvenanceZeroTwoSlsaMaterial(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     digest: dict[str, typing.Any]
     uri: str
 
 @typing.type_check_only
 class GoogleDevtoolsContaineranalysisV1alpha1SlsaProvenanceZeroTwoSlsaMetadata(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     buildFinishedOn: str
     buildInvocationId: str
@@ -1231,7 +1204,7 @@ class GoogleDevtoolsContaineranalysisV1alpha1SlsaProvenanceZeroTwoSlsaMetadata(
 
 @typing.type_check_only
 class GoogleDevtoolsContaineranalysisV1alpha1SourceContext(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     cloudRepo: GoogleDevtoolsContaineranalysisV1alpha1CloudRepoSourceContext
     gerrit: GoogleDevtoolsContaineranalysisV1alpha1GerritSourceContext
@@ -1239,33 +1212,31 @@ class GoogleDevtoolsContaineranalysisV1alpha1SourceContext(
     labels: dict[str, typing.Any]
 
 @typing.type_check_only
-class Hash(typing_extensions.TypedDict, total=False):
-    type: typing_extensions.Literal["NONE", "SHA256", "GO_MODULE_H1", "DIRSUM_SHA256"]
+class Hash(typing.TypedDict, total=False):
+    type: typing.Literal["NONE", "SHA256", "GO_MODULE_H1", "DIRSUM_SHA256"]
     value: str
 
 @typing.type_check_only
-class IdentifierHelper(typing_extensions.TypedDict, total=False):
-    field: typing_extensions.Literal[
-        "IDENTIFIER_HELPER_FIELD_UNSPECIFIED", "GENERIC_URI"
-    ]
+class IdentifierHelper(typing.TypedDict, total=False):
+    field: typing.Literal["IDENTIFIER_HELPER_FIELD_UNSPECIFIED", "GENERIC_URI"]
     genericUri: str
 
 @typing.type_check_only
-class InTotoProvenance(typing_extensions.TypedDict, total=False):
+class InTotoProvenance(typing.TypedDict, total=False):
     builderConfig: BuilderConfig
     materials: _list[str]
     metadata: Metadata
     recipe: Recipe
 
 @typing.type_check_only
-class InTotoSlsaProvenanceV1(typing_extensions.TypedDict, total=False):
+class InTotoSlsaProvenanceV1(typing.TypedDict, total=False):
     _type: str
     predicate: SlsaProvenanceV1
     predicateType: str
     subject: _list[Subject]
 
 @typing.type_check_only
-class InTotoStatement(typing_extensions.TypedDict, total=False):
+class InTotoStatement(typing.TypedDict, total=False):
     _type: str
     predicateType: str
     provenance: InTotoProvenance
@@ -1274,8 +1245,8 @@ class InTotoStatement(typing_extensions.TypedDict, total=False):
     subject: _list[Subject]
 
 @typing.type_check_only
-class Installation(typing_extensions.TypedDict, total=False):
-    architecture: typing_extensions.Literal["ARCHITECTURE_UNSPECIFIED", "X86", "X64"]
+class Installation(typing.TypedDict, total=False):
+    architecture: typing.Literal["ARCHITECTURE_UNSPECIFIED", "X86", "X64"]
     cpeUri: str
     license: License
     location: _list[Location]
@@ -1284,9 +1255,9 @@ class Installation(typing_extensions.TypedDict, total=False):
     version: Version
 
 @typing.type_check_only
-class Justification(typing_extensions.TypedDict, total=False):
+class Justification(typing.TypedDict, total=False):
     details: str
-    justificationType: typing_extensions.Literal[
+    justificationType: typing.Literal[
         "JUSTIFICATION_TYPE_UNSPECIFIED",
         "COMPONENT_NOT_PRESENT",
         "VULNERABLE_CODE_NOT_PRESENT",
@@ -1296,9 +1267,9 @@ class Justification(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class Layer(typing_extensions.TypedDict, total=False):
+class Layer(typing.TypedDict, total=False):
     arguments: str
-    directive: typing_extensions.Literal[
+    directive: typing.Literal[
         "DIRECTIVE_UNSPECIFIED",
         "MAINTAINER",
         "RUN",
@@ -1320,7 +1291,7 @@ class Layer(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class LayerDetails(typing_extensions.TypedDict, total=False):
+class LayerDetails(typing.TypedDict, total=False):
     baseImages: _list[BaseImage]
     chainId: str
     command: str
@@ -1328,43 +1299,58 @@ class LayerDetails(typing_extensions.TypedDict, total=False):
     index: int
 
 @typing.type_check_only
-class License(typing_extensions.TypedDict, total=False):
+class License(typing.TypedDict, total=False):
     comments: str
     expression: str
 
 @typing.type_check_only
-class ListNoteOccurrencesResponse(typing_extensions.TypedDict, total=False):
+class ListNoteOccurrencesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     occurrences: _list[Occurrence]
 
 @typing.type_check_only
-class ListNotesResponse(typing_extensions.TypedDict, total=False):
+class ListNotesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     notes: _list[Note]
 
 @typing.type_check_only
-class ListOccurrencesResponse(typing_extensions.TypedDict, total=False):
+class ListOccurrencesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     occurrences: _list[Occurrence]
 
 @typing.type_check_only
-class ListScanConfigsResponse(typing_extensions.TypedDict, total=False):
+class ListScanConfigsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     scanConfigs: _list[ScanConfig]
 
 @typing.type_check_only
-class Location(typing_extensions.TypedDict, total=False):
+class Location(typing.TypedDict, total=False):
     cpeUri: str
     path: str
     version: Version
 
 @typing.type_check_only
-class Material(typing_extensions.TypedDict, total=False):
+class MaliciousContentLLMResult(typing.TypedDict, total=False):
+    maxSeverity: typing.Literal["SEVERITY_UNSPECIFIED", "CRITICAL", "HIGH"]
+    scanState: typing.Literal["SCAN_STATE_UNSPECIFIED", "PERFORMED", "NOT_PERFORMED"]
+
+@typing.type_check_only
+class MaliciousContentStaticResult(typing.TypedDict, total=False):
+    maxSeverity: typing.Literal["SEVERITY_UNSPECIFIED", "CRITICAL", "HIGH"]
+    scanState: typing.Literal["SCAN_STATE_UNSPECIFIED", "PERFORMED", "NOT_PERFORMED"]
+
+@typing.type_check_only
+class MalwareScanResult(typing.TypedDict, total=False):
+    scanState: typing.Literal["SCAN_STATE_UNSPECIFIED", "PERFORMED", "NOT_PERFORMED"]
+    verdict: typing.Literal["VERDICT_UNSPECIFIED", "PASSED", "FAILED"]
+
+@typing.type_check_only
+class Material(typing.TypedDict, total=False):
     digest: dict[str, typing.Any]
     uri: str
 
 @typing.type_check_only
-class Metadata(typing_extensions.TypedDict, total=False):
+class Metadata(typing.TypedDict, total=False):
     buildFinishedOn: str
     buildInvocationId: str
     buildStartedOn: str
@@ -1372,13 +1358,13 @@ class Metadata(typing_extensions.TypedDict, total=False):
     reproducible: bool
 
 @typing.type_check_only
-class NonCompliantFile(typing_extensions.TypedDict, total=False):
+class NonCompliantFile(typing.TypedDict, total=False):
     displayCommand: str
     path: str
     reason: str
 
 @typing.type_check_only
-class Note(typing_extensions.TypedDict, total=False):
+class Note(typing.TypedDict, total=False):
     aiSkillAnalysis: AISkillAnalysisNote
     attestationAuthority: AttestationAuthority
     baseImage: Basis
@@ -1389,7 +1375,7 @@ class Note(typing_extensions.TypedDict, total=False):
     discovery: Discovery
     dsseAttestation: DSSEAttestationNote
     expirationTime: str
-    kind: typing_extensions.Literal[
+    kind: typing.Literal[
         "KIND_UNSPECIFIED",
         "PACKAGE_VULNERABILITY",
         "BUILD_DETAILS",
@@ -1427,7 +1413,7 @@ class Note(typing_extensions.TypedDict, total=False):
     vulnerabilityType: VulnerabilityType
 
 @typing.type_check_only
-class Occurrence(typing_extensions.TypedDict, total=False):
+class Occurrence(typing.TypedDict, total=False):
     aiSkillAnalysis: AISkillAnalysisOccurrence
     attestation: Attestation
     buildDetails: BuildDetails
@@ -1439,7 +1425,7 @@ class Occurrence(typing_extensions.TypedDict, total=False):
     dsseAttestation: DSSEAttestationOccurrence
     envelope: Envelope
     installation: Installation
-    kind: typing_extensions.Literal[
+    kind: typing.Literal[
         "KIND_UNSPECIFIED",
         "PACKAGE_VULNERABILITY",
         "BUILD_DETAILS",
@@ -1476,7 +1462,7 @@ class Occurrence(typing_extensions.TypedDict, total=False):
     vulnerabilityDetails: VulnerabilityDetails
 
 @typing.type_check_only
-class Operation(typing_extensions.TypedDict, total=False):
+class Operation(typing.TypedDict, total=False):
     done: bool
     error: Status
     metadata: dict[str, typing.Any]
@@ -1484,8 +1470,8 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class Package(typing_extensions.TypedDict, total=False):
-    architecture: typing_extensions.Literal["ARCHITECTURE_UNSPECIFIED", "X86", "X64"]
+class Package(typing.TypedDict, total=False):
+    architecture: typing.Literal["ARCHITECTURE_UNSPECIFIED", "X86", "X64"]
     cpeUri: str
     description: str
     digest: _list[Digest]
@@ -1498,7 +1484,7 @@ class Package(typing_extensions.TypedDict, total=False):
     version: Version
 
 @typing.type_check_only
-class PackageInfoNote(typing_extensions.TypedDict, total=False):
+class PackageInfoNote(typing.TypedDict, total=False):
     analyzed: bool
     attribution: str
     checksum: str
@@ -1518,7 +1504,7 @@ class PackageInfoNote(typing_extensions.TypedDict, total=False):
     version: str
 
 @typing.type_check_only
-class PackageInfoOccurrence(typing_extensions.TypedDict, total=False):
+class PackageInfoOccurrence(typing.TypedDict, total=False):
     comment: str
     filename: str
     homePage: str
@@ -1531,9 +1517,9 @@ class PackageInfoOccurrence(typing_extensions.TypedDict, total=False):
     version: str
 
 @typing.type_check_only
-class PackageIssue(typing_extensions.TypedDict, total=False):
+class PackageIssue(typing.TypedDict, total=False):
     affectedLocation: VulnerabilityLocation
-    effectiveSeverity: typing_extensions.Literal[
+    effectiveSeverity: typing.Literal[
         "SEVERITY_UNSPECIFIED", "MINIMAL", "LOW", "MEDIUM", "HIGH", "CRITICAL"
     ]
     fixedLocation: VulnerabilityLocation
@@ -1541,39 +1527,44 @@ class PackageIssue(typing_extensions.TypedDict, total=False):
     severityName: str
 
 @typing.type_check_only
-class PgpSignedAttestation(typing_extensions.TypedDict, total=False):
-    contentType: typing_extensions.Literal[
-        "CONTENT_TYPE_UNSPECIFIED", "SIMPLE_SIGNING_JSON"
-    ]
+class PerScannerVerdict(typing.TypedDict, total=False):
+    maliciousContentLlmResult: MaliciousContentLLMResult
+    maliciousContentStaticResult: MaliciousContentStaticResult
+    malwareScan: MalwareScanResult
+    workspacePolicy: WorkspacePolicyResult
+
+@typing.type_check_only
+class PgpSignedAttestation(typing.TypedDict, total=False):
+    contentType: typing.Literal["CONTENT_TYPE_UNSPECIFIED", "SIMPLE_SIGNING_JSON"]
     pgpKeyId: str
     signature: str
 
 @typing.type_check_only
-class Policy(typing_extensions.TypedDict, total=False):
+class Policy(typing.TypedDict, total=False):
     bindings: _list[Binding]
     etag: str
     version: int
 
 @typing.type_check_only
-class Product(typing_extensions.TypedDict, total=False):
+class Product(typing.TypedDict, total=False):
     id: str
     identifierHelper: IdentifierHelper
     name: str
 
 @typing.type_check_only
-class ProvenanceBuilder(typing_extensions.TypedDict, total=False):
+class ProvenanceBuilder(typing.TypedDict, total=False):
     builderDependencies: _list[ResourceDescriptor]
     id: str
     version: dict[str, typing.Any]
 
 @typing.type_check_only
-class Publisher(typing_extensions.TypedDict, total=False):
+class Publisher(typing.TypedDict, total=False):
     issuingAuthority: str
     name: str
     publisherNamespace: str
 
 @typing.type_check_only
-class Recipe(typing_extensions.TypedDict, total=False):
+class Recipe(typing.TypedDict, total=False):
     arguments: _list[dict[str, typing.Any]]
     definedInMaterial: str
     entryPoint: str
@@ -1581,13 +1572,13 @@ class Recipe(typing_extensions.TypedDict, total=False):
     type: str
 
 @typing.type_check_only
-class RelatedUrl(typing_extensions.TypedDict, total=False):
+class RelatedUrl(typing.TypedDict, total=False):
     label: str
     url: str
 
 @typing.type_check_only
-class RelationshipNote(typing_extensions.TypedDict, total=False):
-    type: typing_extensions.Literal[
+class RelationshipNote(typing.TypedDict, total=False):
+    type: typing.Literal[
         "RELATIONSHIP_TYPE_UNSPECIFIED",
         "DESCRIBES",
         "DESCRIBED_BY",
@@ -1635,11 +1626,11 @@ class RelationshipNote(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class RelationshipOccurrence(typing_extensions.TypedDict, total=False):
+class RelationshipOccurrence(typing.TypedDict, total=False):
     comment: str
     source: str
     target: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "RELATIONSHIP_TYPE_UNSPECIFIED",
         "DESCRIBES",
         "DESCRIBED_BY",
@@ -1687,9 +1678,9 @@ class RelationshipOccurrence(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class Remediation(typing_extensions.TypedDict, total=False):
+class Remediation(typing.TypedDict, total=False):
     details: str
-    remediationType: typing_extensions.Literal[
+    remediationType: typing.Literal[
         "REMEDIATION_TYPE_UNSPECIFIED",
         "MITIGATION",
         "NO_FIX_PLANNED",
@@ -1700,7 +1691,7 @@ class Remediation(typing_extensions.TypedDict, total=False):
     remediationUri: URI
 
 @typing.type_check_only
-class RepoSource(typing_extensions.TypedDict, total=False):
+class RepoSource(typing.TypedDict, total=False):
     branchName: str
     commitSha: str
     projectId: str
@@ -1708,13 +1699,13 @@ class RepoSource(typing_extensions.TypedDict, total=False):
     tagName: str
 
 @typing.type_check_only
-class Resource(typing_extensions.TypedDict, total=False):
+class Resource(typing.TypedDict, total=False):
     contentHash: Hash
     name: str
     uri: str
 
 @typing.type_check_only
-class ResourceDescriptor(typing_extensions.TypedDict, total=False):
+class ResourceDescriptor(typing.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     content: str
     digest: dict[str, typing.Any]
@@ -1724,50 +1715,48 @@ class ResourceDescriptor(typing_extensions.TypedDict, total=False):
     uri: str
 
 @typing.type_check_only
-class Risk(typing_extensions.TypedDict, total=False):
+class Risk(typing.TypedDict, total=False):
     cisaKev: CISAKnownExploitedVulnerabilities
     epss: ExploitPredictionScoringSystem
 
 @typing.type_check_only
-class RunDetails(typing_extensions.TypedDict, total=False):
+class RunDetails(typing.TypedDict, total=False):
     builder: ProvenanceBuilder
     byproducts: _list[ResourceDescriptor]
     metadata: BuildMetadata
 
 @typing.type_check_only
-class SBOMReferenceNote(typing_extensions.TypedDict, total=False):
+class SBOMReferenceNote(typing.TypedDict, total=False):
     format: str
     version: str
 
 @typing.type_check_only
-class SBOMReferenceOccurrence(typing_extensions.TypedDict, total=False):
+class SBOMReferenceOccurrence(typing.TypedDict, total=False):
     payload: SbomReferenceIntotoPayload
     payloadType: str
     signatures: _list[EnvelopeSignature]
 
 @typing.type_check_only
-class SBOMStatus(typing_extensions.TypedDict, total=False):
+class SBOMStatus(typing.TypedDict, total=False):
     error: str
-    sbomState: typing_extensions.Literal[
-        "SBOM_STATE_UNSPECIFIED", "PENDING", "COMPLETE"
-    ]
+    sbomState: typing.Literal["SBOM_STATE_UNSPECIFIED", "PENDING", "COMPLETE"]
 
 @typing.type_check_only
-class SbomReferenceIntotoPayload(typing_extensions.TypedDict, total=False):
+class SbomReferenceIntotoPayload(typing.TypedDict, total=False):
     _type: str
     predicate: SbomReferenceIntotoPredicate
     predicateType: str
     subject: _list[Subject]
 
 @typing.type_check_only
-class SbomReferenceIntotoPredicate(typing_extensions.TypedDict, total=False):
+class SbomReferenceIntotoPredicate(typing.TypedDict, total=False):
     digest: dict[str, typing.Any]
     location: str
     mimeType: str
     referrerId: str
 
 @typing.type_check_only
-class ScanConfig(typing_extensions.TypedDict, total=False):
+class ScanConfig(typing.TypedDict, total=False):
     createTime: str
     description: str
     enabled: bool
@@ -1775,15 +1764,15 @@ class ScanConfig(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class SecretLocation(typing_extensions.TypedDict, total=False):
+class SecretLocation(typing.TypedDict, total=False):
     fileLocation: FileLocation
 
 @typing.type_check_only
-class SecretNote(typing_extensions.TypedDict, total=False): ...
+class SecretNote(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class SecretOccurrence(typing_extensions.TypedDict, total=False):
-    kind: typing_extensions.Literal[
+class SecretOccurrence(typing.TypedDict, total=False):
+    kind: typing.Literal[
         "SECRET_KIND_UNSPECIFIED",
         "SECRET_KIND_UNKNOWN",
         "SECRET_KIND_GCP_SERVICE_ACCOUNT_KEY",
@@ -1812,36 +1801,34 @@ class SecretOccurrence(typing_extensions.TypedDict, total=False):
     statuses: _list[SecretStatus]
 
 @typing.type_check_only
-class SecretStatus(typing_extensions.TypedDict, total=False):
+class SecretStatus(typing.TypedDict, total=False):
     message: str
-    status: typing_extensions.Literal[
-        "STATUS_UNSPECIFIED", "UNKNOWN", "VALID", "INVALID"
-    ]
+    status: typing.Literal["STATUS_UNSPECIFIED", "UNKNOWN", "VALID", "INVALID"]
     updateTime: str
 
 @typing.type_check_only
-class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
+class SetIamPolicyRequest(typing.TypedDict, total=False):
     policy: Policy
 
 @typing.type_check_only
-class SeverityCount(typing_extensions.TypedDict, total=False):
+class SeverityCount(typing.TypedDict, total=False):
     count: str
-    severity: typing_extensions.Literal[
+    severity: typing.Literal[
         "SEVERITY_UNSPECIFIED", "MINIMAL", "LOW", "MEDIUM", "HIGH", "CRITICAL"
     ]
 
 @typing.type_check_only
-class SlsaBuilder(typing_extensions.TypedDict, total=False):
+class SlsaBuilder(typing.TypedDict, total=False):
     id: str
 
 @typing.type_check_only
-class SlsaCompleteness(typing_extensions.TypedDict, total=False):
+class SlsaCompleteness(typing.TypedDict, total=False):
     arguments: bool
     environment: bool
     materials: bool
 
 @typing.type_check_only
-class SlsaMetadata(typing_extensions.TypedDict, total=False):
+class SlsaMetadata(typing.TypedDict, total=False):
     buildFinishedOn: str
     buildInvocationId: str
     buildStartedOn: str
@@ -1849,19 +1836,19 @@ class SlsaMetadata(typing_extensions.TypedDict, total=False):
     reproducible: bool
 
 @typing.type_check_only
-class SlsaProvenance(typing_extensions.TypedDict, total=False):
+class SlsaProvenance(typing.TypedDict, total=False):
     builder: SlsaBuilder
     materials: _list[Material]
     metadata: SlsaMetadata
     recipe: SlsaRecipe
 
 @typing.type_check_only
-class SlsaProvenanceV1(typing_extensions.TypedDict, total=False):
+class SlsaProvenanceV1(typing.TypedDict, total=False):
     buildDefinition: BuildDefinition
     runDetails: RunDetails
 
 @typing.type_check_only
-class SlsaProvenanceZeroTwo(typing_extensions.TypedDict, total=False):
+class SlsaProvenanceZeroTwo(typing.TypedDict, total=False):
     buildConfig: dict[str, typing.Any]
     buildType: str
     builder: GoogleDevtoolsContaineranalysisV1alpha1SlsaProvenanceZeroTwoSlsaBuilder
@@ -1874,7 +1861,7 @@ class SlsaProvenanceZeroTwo(typing_extensions.TypedDict, total=False):
     metadata: GoogleDevtoolsContaineranalysisV1alpha1SlsaProvenanceZeroTwoSlsaMetadata
 
 @typing.type_check_only
-class SlsaRecipe(typing_extensions.TypedDict, total=False):
+class SlsaRecipe(typing.TypedDict, total=False):
     arguments: dict[str, typing.Any]
     definedInMaterial: str
     entryPoint: str
@@ -1882,7 +1869,7 @@ class SlsaRecipe(typing_extensions.TypedDict, total=False):
     type: str
 
 @typing.type_check_only
-class Source(typing_extensions.TypedDict, total=False):
+class Source(typing.TypedDict, total=False):
     additionalContexts: _list[GoogleDevtoolsContaineranalysisV1alpha1SourceContext]
     artifactStorageSource: StorageSource
     context: GoogleDevtoolsContaineranalysisV1alpha1SourceContext
@@ -1891,98 +1878,98 @@ class Source(typing_extensions.TypedDict, total=False):
     storageSource: StorageSource
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class StepResult(typing_extensions.TypedDict, total=False):
+class StepResult(typing.TypedDict, total=False):
     attestationContentName: str
     attestationType: str
     name: str
 
 @typing.type_check_only
-class StorageSource(typing_extensions.TypedDict, total=False):
+class StorageSource(typing.TypedDict, total=False):
     bucket: str
     generation: str
     object: str
 
 @typing.type_check_only
-class Subject(typing_extensions.TypedDict, total=False):
+class Subject(typing.TypedDict, total=False):
     digest: dict[str, typing.Any]
     name: str
 
 @typing.type_check_only
-class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
+class TestIamPermissionsRequest(typing.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
-class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
+class TestIamPermissionsResponse(typing.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
-class TimeSpan(typing_extensions.TypedDict, total=False):
+class TimeSpan(typing.TypedDict, total=False):
     endTime: str
     startTime: str
 
 @typing.type_check_only
-class URI(typing_extensions.TypedDict, total=False):
+class URI(typing.TypedDict, total=False):
     label: str
     uri: str
 
 @typing.type_check_only
-class UpdateOperationRequest(typing_extensions.TypedDict, total=False):
+class UpdateOperationRequest(typing.TypedDict, total=False):
     operation: Operation
     updateMask: str
 
 @typing.type_check_only
-class UpgradeDistribution(typing_extensions.TypedDict, total=False):
+class UpgradeDistribution(typing.TypedDict, total=False):
     classification: str
     cpeUri: str
     cve: _list[str]
     severity: str
 
 @typing.type_check_only
-class UpgradeNote(typing_extensions.TypedDict, total=False):
+class UpgradeNote(typing.TypedDict, total=False):
     distributions: _list[UpgradeDistribution]
     package: str
     version: Version
 
 @typing.type_check_only
-class UpgradeOccurrence(typing_extensions.TypedDict, total=False):
+class UpgradeOccurrence(typing.TypedDict, total=False):
     distribution: UpgradeDistribution
     package: str
     parsedVersion: Version
 
 @typing.type_check_only
-class Version(typing_extensions.TypedDict, total=False):
+class Version(typing.TypedDict, total=False):
     epoch: int
     inclusive: bool
-    kind: typing_extensions.Literal["NORMAL", "MINIMUM", "MAXIMUM"]
+    kind: typing.Literal["NORMAL", "MINIMUM", "MAXIMUM"]
     name: str
     revision: str
 
 @typing.type_check_only
-class VexAssessment(typing_extensions.TypedDict, total=False):
+class VexAssessment(typing.TypedDict, total=False):
     cve: str
     impacts: _list[str]
     justification: Justification
     noteName: str
     relatedUris: _list[URI]
     remediations: _list[Remediation]
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED", "AFFECTED", "NOT_AFFECTED", "FIXED", "UNDER_INVESTIGATION"
     ]
     vulnerabilityId: str
 
 @typing.type_check_only
-class Volume(typing_extensions.TypedDict, total=False):
+class Volume(typing.TypedDict, total=False):
     name: str
     path: str
 
 @typing.type_check_only
-class VulnerabilityAssessmentNote(typing_extensions.TypedDict, total=False):
+class VulnerabilityAssessmentNote(typing.TypedDict, total=False):
     assessment: Assessment
     languageCode: str
     longDescription: str
@@ -1992,52 +1979,57 @@ class VulnerabilityAssessmentNote(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
-class VulnerabilityAttestation(typing_extensions.TypedDict, total=False):
+class VulnerabilityAttestation(typing.TypedDict, total=False):
     error: str
     lastAttemptTime: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "VULNERABILITY_ATTESTATION_STATE_UNSPECIFIED", "SUCCESS", "FAILURE"
     ]
 
 @typing.type_check_only
-class VulnerabilityDetails(typing_extensions.TypedDict, total=False):
+class VulnerabilityDetails(typing.TypedDict, total=False):
     cvssScore: float
     cvssV2: CVSS
     cvssV3: CVSS
     cvssV4: CVSS
-    cvssVersion: typing_extensions.Literal[
+    cvssVersion: typing.Literal[
         "CVSS_VERSION_UNSPECIFIED", "CVSS_VERSION_2", "CVSS_VERSION_3", "CVSS_VERSION_4"
     ]
-    effectiveSeverity: typing_extensions.Literal[
+    effectiveSeverity: typing.Literal[
         "SEVERITY_UNSPECIFIED", "MINIMAL", "LOW", "MEDIUM", "HIGH", "CRITICAL"
     ]
     extraDetails: str
     packageIssue: _list[PackageIssue]
     risk: Risk
-    severity: typing_extensions.Literal[
+    severity: typing.Literal[
         "SEVERITY_UNSPECIFIED", "MINIMAL", "LOW", "MEDIUM", "HIGH", "CRITICAL"
     ]
     type: str
     vexAssessment: VexAssessment
 
 @typing.type_check_only
-class VulnerabilityLocation(typing_extensions.TypedDict, total=False):
+class VulnerabilityLocation(typing.TypedDict, total=False):
     cpeUri: str
     fileLocation: _list[FileLocation]
     package: str
     version: Version
 
 @typing.type_check_only
-class VulnerabilityType(typing_extensions.TypedDict, total=False):
+class VulnerabilityType(typing.TypedDict, total=False):
     advisoryPublishTime: str
     cvssScore: float
     cvssV2: CVSS
     cvssV4: CVSS
-    cvssVersion: typing_extensions.Literal[
+    cvssVersion: typing.Literal[
         "CVSS_VERSION_UNSPECIFIED", "CVSS_VERSION_2", "CVSS_VERSION_3", "CVSS_VERSION_4"
     ]
     cwe: _list[str]
     details: _list[Detail]
-    severity: typing_extensions.Literal[
+    severity: typing.Literal[
         "SEVERITY_UNSPECIFIED", "MINIMAL", "LOW", "MEDIUM", "HIGH", "CRITICAL"
     ]
+
+@typing.type_check_only
+class WorkspacePolicyResult(typing.TypedDict, total=False):
+    scanState: typing.Literal["SCAN_STATE_UNSPECIFIED", "PERFORMED", "NOT_PERFORMED"]
+    verdict: typing.Literal["VERDICT_UNSPECIFIED", "PASSED", "FAILED"]

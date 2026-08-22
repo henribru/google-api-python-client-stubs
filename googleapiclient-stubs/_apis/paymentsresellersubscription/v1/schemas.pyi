@@ -1,18 +1,16 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class Amount(typing_extensions.TypedDict, total=False):
+class Amount(typing.TypedDict, total=False):
     amountMicros: str
     currencyCode: str
 
 @typing.type_check_only
-class CancelSubscriptionRequest(typing_extensions.TypedDict, total=False):
+class CancelSubscriptionRequest(typing.TypedDict, total=False):
     cancelImmediately: bool
-    cancellationReason: typing_extensions.Literal[
+    cancellationReason: typing.Literal[
         "CANCELLATION_REASON_UNSPECIFIED",
         "CANCELLATION_REASON_FRAUD",
         "CANCELLATION_REASON_REMORSE",
@@ -28,102 +26,102 @@ class CancelSubscriptionRequest(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class CancelSubscriptionResponse(typing_extensions.TypedDict, total=False):
+class CancelSubscriptionResponse(typing.TypedDict, total=False):
     subscription: Subscription
 
 @typing.type_check_only
-class CreateSubscriptionIntent(typing_extensions.TypedDict, total=False):
+class CreateSubscriptionIntent(typing.TypedDict, total=False):
     cycleOptions: CycleOptions
     parent: str
     subscription: Subscription
     subscriptionId: str
 
 @typing.type_check_only
-class CycleOptions(typing_extensions.TypedDict, total=False):
+class CycleOptions(typing.TypedDict, total=False):
     initialCycleDuration: Duration
 
 @typing.type_check_only
-class Duration(typing_extensions.TypedDict, total=False):
+class Duration(typing.TypedDict, total=False):
     count: int
-    unit: typing_extensions.Literal["UNIT_UNSPECIFIED", "MONTH", "DAY", "HOUR"]
+    unit: typing.Literal["UNIT_UNSPECIFIED", "MONTH", "DAY", "HOUR"]
 
 @typing.type_check_only
-class EntitleSubscriptionIntent(typing_extensions.TypedDict, total=False):
+class EntitleSubscriptionIntent(typing.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class EntitleSubscriptionRequest(typing_extensions.TypedDict, total=False):
+class EntitleSubscriptionRequest(typing.TypedDict, total=False):
     lineItemEntitlementDetails: _list[
         EntitleSubscriptionRequestLineItemEntitlementDetails
     ]
 
 @typing.type_check_only
 class EntitleSubscriptionRequestLineItemEntitlementDetails(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     lineItemIndex: int
     products: _list[str]
 
 @typing.type_check_only
-class EntitleSubscriptionResponse(typing_extensions.TypedDict, total=False):
+class EntitleSubscriptionResponse(typing.TypedDict, total=False):
     subscription: Subscription
 
 @typing.type_check_only
-class ExtendSubscriptionRequest(typing_extensions.TypedDict, total=False):
+class ExtendSubscriptionRequest(typing.TypedDict, total=False):
     extension: Extension
     requestId: str
 
 @typing.type_check_only
-class ExtendSubscriptionResponse(typing_extensions.TypedDict, total=False):
+class ExtendSubscriptionResponse(typing.TypedDict, total=False):
     cycleEndTime: str
     freeTrialEndTime: str
     renewalTime: str
 
 @typing.type_check_only
-class Extension(typing_extensions.TypedDict, total=False):
+class Extension(typing.TypedDict, total=False):
     duration: Duration
     partnerUserToken: str
 
 @typing.type_check_only
-class FindEligiblePromotionsRequest(typing_extensions.TypedDict, total=False):
+class FindEligiblePromotionsRequest(typing.TypedDict, total=False):
     filter: str
     pageSize: int
     pageToken: str
 
 @typing.type_check_only
-class FindEligiblePromotionsResponse(typing_extensions.TypedDict, total=False):
+class FindEligiblePromotionsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     promotions: _list[Promotion]
 
 @typing.type_check_only
-class FiniteBillingCycleDetails(typing_extensions.TypedDict, total=False):
+class FiniteBillingCycleDetails(typing.TypedDict, total=False):
     billingCycleCountLimit: str
 
 @typing.type_check_only
-class GenerateUserSessionRequest(typing_extensions.TypedDict, total=False):
+class GenerateUserSessionRequest(typing.TypedDict, total=False):
     intentPayload: IntentPayload
 
 @typing.type_check_only
-class GenerateUserSessionResponse(typing_extensions.TypedDict, total=False):
+class GenerateUserSessionResponse(typing.TypedDict, total=False):
     userSession: UserSession
 
 @typing.type_check_only
-class GoogleHomePayload(typing_extensions.TypedDict, total=False):
+class GoogleHomePayload(typing.TypedDict, total=False):
     attachedToGoogleStructure: bool
     googleStructureId: str
     partnerStructureId: str
 
 @typing.type_check_only
-class GoogleOnePayload(typing_extensions.TypedDict, total=False):
+class GoogleOnePayload(typing.TypedDict, total=False):
     campaigns: _list[str]
-    offering: typing_extensions.Literal[
+    offering: typing.Literal[
         "OFFERING_UNSPECIFIED",
         "OFFERING_VAS_BUNDLE",
         "OFFERING_VAS_STANDALONE",
         "OFFERING_HARD_BUNDLE",
         "OFFERING_SOFT_BUNDLE",
     ]
-    salesChannel: typing_extensions.Literal[
+    salesChannel: typing.Literal[
         "CHANNEL_UNSPECIFIED",
         "CHANNEL_RETAIL",
         "CHANNEL_ONLINE_WEB",
@@ -133,42 +131,42 @@ class GoogleOnePayload(typing_extensions.TypedDict, total=False):
     storeId: str
 
 @typing.type_check_only
-class GoogleTypeLocalizedText(typing_extensions.TypedDict, total=False):
+class GoogleTypeLocalizedText(typing.TypedDict, total=False):
     languageCode: str
     text: str
 
 @typing.type_check_only
-class IntentPayload(typing_extensions.TypedDict, total=False):
+class IntentPayload(typing.TypedDict, total=False):
     createIntent: CreateSubscriptionIntent
     entitleIntent: EntitleSubscriptionIntent
     intentOptions: IntentPayloadIntentOptions
 
 @typing.type_check_only
-class IntentPayloadIntentOptions(typing_extensions.TypedDict, total=False):
+class IntentPayloadIntentOptions(typing.TypedDict, total=False):
     enableOfferOverride: bool
 
 @typing.type_check_only
-class ListProductsResponse(typing_extensions.TypedDict, total=False):
+class ListProductsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     products: _list[Product]
 
 @typing.type_check_only
-class ListPromotionsResponse(typing_extensions.TypedDict, total=False):
+class ListPromotionsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     promotions: _list[Promotion]
 
 @typing.type_check_only
-class Location(typing_extensions.TypedDict, total=False):
+class Location(typing.TypedDict, total=False):
     postalCode: str
     regionCode: str
 
 @typing.type_check_only
-class Product(typing_extensions.TypedDict, total=False):
+class Product(typing.TypedDict, total=False):
     bundleDetails: ProductBundleDetails
     finiteBillingCycleDetails: FiniteBillingCycleDetails
     name: str
     priceConfigs: _list[ProductPriceConfig]
-    productType: typing_extensions.Literal[
+    productType: typing.Literal[
         "PRODUCT_TYPE_UNSPECIFIED",
         "PRODUCT_TYPE_SUBSCRIPTION",
         "PRODUCT_TYPE_BUNDLE_SUBSCRIPTION",
@@ -178,37 +176,37 @@ class Product(typing_extensions.TypedDict, total=False):
     titles: _list[GoogleTypeLocalizedText]
 
 @typing.type_check_only
-class ProductBundleDetails(typing_extensions.TypedDict, total=False):
+class ProductBundleDetails(typing.TypedDict, total=False):
     bundleElements: _list[ProductBundleDetailsBundleElement]
-    entitlementMode: typing_extensions.Literal[
+    entitlementMode: typing.Literal[
         "ENTITLEMENT_MODE_UNSPECIFIED",
         "ENTITLEMENT_MODE_FULL",
         "ENTITLEMENT_MODE_INCREMENTAL",
     ]
 
 @typing.type_check_only
-class ProductBundleDetailsBundleElement(typing_extensions.TypedDict, total=False):
+class ProductBundleDetailsBundleElement(typing.TypedDict, total=False):
     product: str
 
 @typing.type_check_only
-class ProductPayload(typing_extensions.TypedDict, total=False):
+class ProductPayload(typing.TypedDict, total=False):
     googleHomePayload: GoogleHomePayload
     googleOnePayload: GoogleOnePayload
     youtubePayload: YoutubePayload
 
 @typing.type_check_only
-class ProductPriceConfig(typing_extensions.TypedDict, total=False):
+class ProductPriceConfig(typing.TypedDict, total=False):
     amount: Amount
     regionCode: str
 
 @typing.type_check_only
-class Promotion(typing_extensions.TypedDict, total=False):
+class Promotion(typing.TypedDict, total=False):
     applicableProducts: _list[str]
     endTime: str
     freeTrialDuration: Duration
     introductoryPricingDetails: PromotionIntroductoryPricingDetails
     name: str
-    promotionType: typing_extensions.Literal[
+    promotionType: typing.Literal[
         "PROMOTION_TYPE_UNSPECIFIED",
         "PROMOTION_TYPE_FREE_TRIAL",
         "PROMOTION_TYPE_INTRODUCTORY_PRICING",
@@ -218,14 +216,14 @@ class Promotion(typing_extensions.TypedDict, total=False):
     titles: _list[GoogleTypeLocalizedText]
 
 @typing.type_check_only
-class PromotionIntroductoryPricingDetails(typing_extensions.TypedDict, total=False):
+class PromotionIntroductoryPricingDetails(typing.TypedDict, total=False):
     introductoryPricingSpecs: _list[
         PromotionIntroductoryPricingDetailsIntroductoryPricingSpec
     ]
 
 @typing.type_check_only
 class PromotionIntroductoryPricingDetailsIntroductoryPricingSpec(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     discountAmount: Amount
     discountRatioMicros: str
@@ -233,9 +231,9 @@ class PromotionIntroductoryPricingDetailsIntroductoryPricingSpec(
     regionCode: str
 
 @typing.type_check_only
-class ResumeSubscriptionRequest(typing_extensions.TypedDict, total=False):
+class ResumeSubscriptionRequest(typing.TypedDict, total=False):
     cycleOptions: CycleOptions
-    resumeMode: typing_extensions.Literal[
+    resumeMode: typing.Literal[
         "RESUME_MODE_UNSPECIFIED",
         "RESUME_MODE_CYCLE_OPTIONS",
         "RESUME_MODE_RESTORE_EXISTING_BILLING_SCHEDULE",
@@ -243,16 +241,16 @@ class ResumeSubscriptionRequest(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class ResumeSubscriptionResponse(typing_extensions.TypedDict, total=False):
+class ResumeSubscriptionResponse(typing.TypedDict, total=False):
     subscription: Subscription
 
 @typing.type_check_only
-class ServicePeriod(typing_extensions.TypedDict, total=False):
+class ServicePeriod(typing.TypedDict, total=False):
     endTime: str
     startTime: str
 
 @typing.type_check_only
-class Subscription(typing_extensions.TypedDict, total=False):
+class Subscription(typing.TypedDict, total=False):
     cancellationDetails: SubscriptionCancellationDetails
     createTime: str
     cycleEndTime: str
@@ -262,7 +260,7 @@ class Subscription(typing_extensions.TypedDict, total=False):
     migrationDetails: SubscriptionMigrationDetails
     name: str
     partnerUserToken: str
-    processingState: typing_extensions.Literal[
+    processingState: typing.Literal[
         "PROCESSING_STATE_UNSPECIFIED",
         "PROCESSING_STATE_CANCELLING",
         "PROCESSING_STATE_RECURRING",
@@ -276,7 +274,7 @@ class Subscription(typing_extensions.TypedDict, total=False):
     redirectUri: str
     renewalTime: str
     serviceLocation: Location
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "STATE_CREATED",
         "STATE_ACTIVE",
@@ -289,8 +287,8 @@ class Subscription(typing_extensions.TypedDict, total=False):
     upgradeDowngradeDetails: SubscriptionUpgradeDowngradeDetails
 
 @typing.type_check_only
-class SubscriptionCancellationDetails(typing_extensions.TypedDict, total=False):
-    reason: typing_extensions.Literal[
+class SubscriptionCancellationDetails(typing.TypedDict, total=False):
+    reason: typing.Literal[
         "CANCELLATION_REASON_UNSPECIFIED",
         "CANCELLATION_REASON_FRAUD",
         "CANCELLATION_REASON_REMORSE",
@@ -306,7 +304,7 @@ class SubscriptionCancellationDetails(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class SubscriptionLineItem(typing_extensions.TypedDict, total=False):
+class SubscriptionLineItem(typing.TypedDict, total=False):
     amount: Amount
     bundleDetails: SubscriptionLineItemBundleDetails
     description: str
@@ -318,12 +316,12 @@ class SubscriptionLineItem(typing_extensions.TypedDict, total=False):
     oneTimeRecurrenceDetails: SubscriptionLineItemOneTimeRecurrenceDetails
     product: str
     productPayload: ProductPayload
-    recurrenceType: typing_extensions.Literal[
+    recurrenceType: typing.Literal[
         "LINE_ITEM_RECURRENCE_TYPE_UNSPECIFIED",
         "LINE_ITEM_RECURRENCE_TYPE_PERIODIC",
         "LINE_ITEM_RECURRENCE_TYPE_ONE_TIME",
     ]
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "LINE_ITEM_STATE_UNSPECIFIED",
         "LINE_ITEM_STATE_ACTIVE",
         "LINE_ITEM_STATE_INACTIVE",
@@ -335,40 +333,38 @@ class SubscriptionLineItem(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class SubscriptionLineItemBundleDetails(typing_extensions.TypedDict, total=False):
+class SubscriptionLineItemBundleDetails(typing.TypedDict, total=False):
     bundleElementDetails: _list[SubscriptionLineItemBundleDetailsBundleElementDetails]
 
 @typing.type_check_only
 class SubscriptionLineItemBundleDetailsBundleElementDetails(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     product: str
     userAccountLinkedTime: str
 
 @typing.type_check_only
-class SubscriptionLineItemOneTimeRecurrenceDetails(
-    typing_extensions.TypedDict, total=False
-):
+class SubscriptionLineItemOneTimeRecurrenceDetails(typing.TypedDict, total=False):
     servicePeriod: ServicePeriod
 
 @typing.type_check_only
-class SubscriptionMigrationDetails(typing_extensions.TypedDict, total=False):
+class SubscriptionMigrationDetails(typing.TypedDict, total=False):
     migratedSubscriptionId: str
 
 @typing.type_check_only
-class SubscriptionPromotionSpec(typing_extensions.TypedDict, total=False):
+class SubscriptionPromotionSpec(typing.TypedDict, total=False):
     freeTrialDuration: Duration
     introductoryPricingDetails: PromotionIntroductoryPricingDetails
     promotion: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "PROMOTION_TYPE_UNSPECIFIED",
         "PROMOTION_TYPE_FREE_TRIAL",
         "PROMOTION_TYPE_INTRODUCTORY_PRICING",
     ]
 
 @typing.type_check_only
-class SubscriptionUpgradeDowngradeDetails(typing_extensions.TypedDict, total=False):
-    billingCycleSpec: typing_extensions.Literal[
+class SubscriptionUpgradeDowngradeDetails(typing.TypedDict, total=False):
+    billingCycleSpec: typing.Literal[
         "BILLING_CYCLE_SPEC_UNSPECIFIED",
         "BILLING_CYCLE_SPEC_ALIGN_WITH_PREVIOUS_SUBSCRIPTION",
         "BILLING_CYCLE_SPEC_START_IMMEDIATELY",
@@ -377,34 +373,34 @@ class SubscriptionUpgradeDowngradeDetails(typing_extensions.TypedDict, total=Fal
     previousSubscriptionId: str
 
 @typing.type_check_only
-class SuspendSubscriptionRequest(typing_extensions.TypedDict, total=False):
-    suspendMode: typing_extensions.Literal[
+class SuspendSubscriptionRequest(typing.TypedDict, total=False):
+    suspendMode: typing.Literal[
         "SUSPEND_MODE_UNSPECIFIED",
         "SUSPEND_MODE_CANCEL_AFTER_GRACE_PERIOD",
         "SUSPEND_MODE_CANCEL_AFTER_RETENTION_PERIOD",
     ]
 
 @typing.type_check_only
-class SuspendSubscriptionResponse(typing_extensions.TypedDict, total=False):
+class SuspendSubscriptionResponse(typing.TypedDict, total=False):
     subscription: Subscription
 
 @typing.type_check_only
-class UndoCancelSubscriptionRequest(typing_extensions.TypedDict, total=False): ...
+class UndoCancelSubscriptionRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class UndoCancelSubscriptionResponse(typing_extensions.TypedDict, total=False):
+class UndoCancelSubscriptionResponse(typing.TypedDict, total=False):
     subscription: Subscription
 
 @typing.type_check_only
-class UserSession(typing_extensions.TypedDict, total=False):
+class UserSession(typing.TypedDict, total=False):
     expireTime: str
     token: str
 
 @typing.type_check_only
-class YoutubePayload(typing_extensions.TypedDict, total=False):
+class YoutubePayload(typing.TypedDict, total=False):
     accessEndTime: str
     partnerEligibilityIds: _list[str]
-    partnerPlanType: typing_extensions.Literal[
+    partnerPlanType: typing.Literal[
         "PARTNER_PLAN_TYPE_UNSPECIFIED",
         "PARTNER_PLAN_TYPE_STANDALONE",
         "PARTNER_PLAN_TYPE_HARD_BUNDLE",
